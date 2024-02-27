@@ -17,10 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Runtime.CompilerServices;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Dispatching;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Contracts.Messages;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Contracts.ViewModels;
 
@@ -30,9 +34,16 @@ public abstract partial class ViewModelBase : ObservableObject, ILanguageAware
 
     public ILocalizationProvider Localizer { get; }
 
-    protected ViewModelBase(ILocalizationProvider localizationProvider)
+    protected ILogger Logger { get; }
+    protected IIssueReporter IssueReporter { get; }
+
+    protected ViewModelBase(ILocalizationProvider localizationProvider,
+        ILogger logger,
+        IIssueReporter issueReporter)
     {
         Localizer = localizationProvider;
+        Logger = logger;
+        IssueReporter = issueReporter;
     }
 
     public void Receive(LanguageChangedMessage message)
@@ -54,8 +65,25 @@ public abstract partial class ViewModelBase : ObservableObject, ILanguageAware
         OnPropertyChanged(string.Empty);
     }
 
-    protected void ExecuteOnUIThread(Action callback)
+    protected void ExecuteOnUIThread(Action callback,
+        [CallerFilePath] string sourceFilePath = "",
+        [CallerMemberName] string sourceMemberName = "",
+        [CallerLineNumber] int sourceLineNumber = 0)
     {
-        _dispatcherQueue.TryEnqueue(() => callback());
+        _dispatcherQueue.TryEnqueue(() => ExecuteSafely(callback, sourceFilePath, sourceMemberName, sourceLineNumber));
+    }
+
+    private void ExecuteSafely(Action callback, string sourceFilePath, string sourceMemberName, int sourceLineNumber)
+    {
+        try
+        {
+            callback();
+        }
+        catch (Exception ex)
+        {
+            Logger.Error<AppLog>($"Exception handled by {nameof(ViewModelBase)} {nameof(ExecuteSafely)}.",
+                ex, sourceFilePath, sourceMemberName, sourceLineNumber);
+            IssueReporter.CaptureError(ex, sourceFilePath, sourceMemberName, sourceLineNumber);
+        }
     }
 }

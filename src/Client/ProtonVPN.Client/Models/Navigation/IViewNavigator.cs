@@ -30,9 +30,9 @@ public interface IViewNavigator
 
     bool CanNavigate { get; set; }
 
-    Window Window { get; set; }
+    Window? Window { get; set; }
 
-    Frame Frame { get; set; }
+    Frame? Frame { get; set; }
 
     event NavigatedEventHandler Navigated;
 

@@ -26,6 +26,8 @@ using ProtonVPN.Client.Logic.Feedback.Contracts;
 using ProtonVPN.Client.Mappers;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.ReportIssue.Models;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.ReportIssue.Steps;
 
@@ -37,8 +39,12 @@ public partial class CategorySelectionViewModel : PageViewModelBase<IReportIssue
 
     public ObservableCollection<IssueCategory> Categories { get; }
 
-    public CategorySelectionViewModel(IReportIssueViewNavigator viewNavigator, ILocalizationProvider localizationProvider, IReportIssueDataProvider dataProvider)
-        : base(viewNavigator, localizationProvider)
+    public CategorySelectionViewModel(IReportIssueViewNavigator viewNavigator,
+        ILocalizationProvider localizationProvider,
+        IReportIssueDataProvider dataProvider,
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(viewNavigator, localizationProvider, logger, issueReporter)
     {
         _dataProvider = dataProvider;
 

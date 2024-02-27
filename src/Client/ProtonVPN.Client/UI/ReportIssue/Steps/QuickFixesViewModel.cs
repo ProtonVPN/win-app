@@ -27,6 +27,8 @@ using ProtonVPN.Client.Mappers;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.UI.ReportIssue.Models;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.ReportIssue.Steps;
 
@@ -44,8 +46,13 @@ public partial class QuickFixesViewModel : PageViewModelBase<IReportIssueViewNav
 
     public override string? Title => Category?.Name;
 
-    public QuickFixesViewModel(IReportIssueViewNavigator viewNavigator, ILocalizationProvider localizationProvider, IReportIssueDataProvider dataProvider, IUrls urls)
-        : base(viewNavigator, localizationProvider)
+    public QuickFixesViewModel(IReportIssueViewNavigator viewNavigator,
+        ILocalizationProvider localizationProvider,
+        IReportIssueDataProvider dataProvider,
+        IUrls urls,
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(viewNavigator, localizationProvider, logger, issueReporter)
     {
         _dataProvider = dataProvider;
         _urls = urls;

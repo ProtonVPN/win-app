@@ -23,6 +23,8 @@ using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Gallery;
 
@@ -34,8 +36,11 @@ public partial class GalleryViewModel : NavigationPageViewModelBase
 
     public override bool IsBackEnabled => false;
 
-    public GalleryViewModel(IMainViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
-        : base(viewNavigator, localizationProvider)
+    public GalleryViewModel(IMainViewNavigator viewNavigator,
+        ILocalizationProvider localizationProvider,
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(viewNavigator, localizationProvider, logger, issueReporter)
     { }
 
     [RelayCommand]

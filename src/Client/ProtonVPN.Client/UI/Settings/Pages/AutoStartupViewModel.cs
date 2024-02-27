@@ -27,6 +27,8 @@ using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.UI.Settings.Pages.Entities;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
@@ -89,13 +91,17 @@ public partial class AutoStartupViewModel : SettingsPageViewModelBase
         IOverlayActivator overlayActivator,
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
-        IConnectionManager connectionManager)
+        IConnectionManager connectionManager,
+        ILogger logger,
+        IIssueReporter issueReporter)
         : base(viewNavigator, 
                localizationProvider, 
                overlayActivator, 
                settings,
                settingsConflictResolver, 
-               connectionManager)
+               connectionManager,
+               logger,
+               issueReporter)
     { }
 
     protected override void SaveSettings()

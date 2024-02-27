@@ -23,6 +23,8 @@ using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Contracts.ViewModels;
 
@@ -33,8 +35,11 @@ public abstract partial class ShellViewModelBase<TViewNavigator> : PageViewModel
 
     public PageViewModelBase? CurrentPage => ViewNavigator?.Frame?.GetPageViewModel() as PageViewModelBase;
 
-    protected ShellViewModelBase(TViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
-        : base(viewNavigator, localizationProvider)
+    protected ShellViewModelBase(TViewNavigator viewNavigator,
+        ILocalizationProvider localizationProvider,
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(viewNavigator, localizationProvider, logger, issueReporter)
     {
         ViewNavigator.Navigated += OnNavigated;
     }

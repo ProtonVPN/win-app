@@ -31,6 +31,8 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Account;
 
@@ -54,8 +56,10 @@ public partial class AccountViewModel : ViewModelBase, IEventMessageReceiver<Log
         IConnectionManager connectionManager,
         IOverlayActivator overlayActivator,
         IWebAuthenticator webAuthenticator,
-        IUrls urls)
-        : base(localizationProvider)
+        IUrls urls,
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(localizationProvider, logger, issueReporter)
     {
         _settings = settings;
         _userAuthenticator = userAuthenticator;

@@ -28,6 +28,8 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Countries;
 
@@ -52,8 +54,10 @@ public class ServerViewModel : ServerViewModelBase, ISearchableItem
     public ServerViewModel(
         ILocalizationProvider localizationProvider,
         IMainViewNavigator mainViewNavigator,
-        IConnectionManager connectionManager) 
-        : base(localizationProvider, mainViewNavigator, connectionManager)
+        IConnectionManager connectionManager,
+        ILogger logger,
+        IIssueReporter issueReporter) 
+        : base(localizationProvider, mainViewNavigator, connectionManager, logger, issueReporter)
     { }
 
     public bool MatchesSearchQuery(string query)

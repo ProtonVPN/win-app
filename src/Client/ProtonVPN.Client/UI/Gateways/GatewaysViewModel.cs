@@ -29,6 +29,8 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Gateways.Factories;
 using ProtonVPN.Client.UI.Gateways.Items;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Gateways;
 
@@ -57,8 +59,10 @@ public partial class GatewaysViewModel :
         IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
         IServersLoader serversLoader,
-        GatewayViewModelsFactory gatewayViewModelsFactory)
-        : base(viewNavigator, localizationProvider)
+        GatewayViewModelsFactory gatewayViewModelsFactory,
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(viewNavigator, localizationProvider, logger, issueReporter)
     {
         _serversLoader = serversLoader;
         _gatewayViewModelsFactory = gatewayViewModelsFactory;

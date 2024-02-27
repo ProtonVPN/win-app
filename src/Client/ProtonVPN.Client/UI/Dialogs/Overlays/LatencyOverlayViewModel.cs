@@ -22,6 +22,8 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Dialogs.Overlays;
 
@@ -35,10 +37,14 @@ public class LatencyOverlayViewModel : OverlayViewModelBase
         ILocalizationProvider localizationProvider,
         IMainViewNavigator viewNavigator,
         IOverlayActivator overlayActivator, 
-        IUrls urls)
-        : base(localizationProvider, 
-               viewNavigator, 
-               overlayActivator)
+        IUrls urls,
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(localizationProvider,
+               viewNavigator,
+               overlayActivator,
+               logger,
+               issueReporter)
     {
         _urls = urls;
     }

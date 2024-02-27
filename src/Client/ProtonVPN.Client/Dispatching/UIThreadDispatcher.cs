@@ -17,17 +17,46 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Runtime.CompilerServices;
 using Microsoft.UI.Dispatching;
 using ProtonVPN.Client.Common.Dispatching;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Dispatching;
 
 public class UIThreadDispatcher : IUIThreadDispatcher
 {
     private readonly DispatcherQueue _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
+    private readonly ILogger _logger;
+    private readonly IIssueReporter _issueReporter;
 
-    public bool TryEnqueue(Action callback)
+    public UIThreadDispatcher(ILogger logger, IIssueReporter issueReporter)
     {
-        return _dispatcherQueue.TryEnqueue(() => callback());
+        _logger = logger;
+        _issueReporter = issueReporter;
+    }
+
+    public bool TryEnqueue(Action callback,
+        [CallerFilePath] string sourceFilePath = "",
+        [CallerMemberName] string sourceMemberName = "",
+        [CallerLineNumber] int sourceLineNumber = 0)
+    {
+        return _dispatcherQueue.TryEnqueue(() => ExecuteSafely(callback, sourceFilePath, sourceMemberName, sourceLineNumber));
+    }
+
+    private void ExecuteSafely(Action callback, string sourceFilePath, string sourceMemberName, int sourceLineNumber)
+    {
+        try
+        {
+            callback();
+        }
+        catch (Exception ex)
+        {
+            _logger.Error<AppLog>($"Exception handled by {nameof(UIThreadDispatcher)} {nameof(ExecuteSafely)}.",
+                ex, sourceFilePath, sourceMemberName, sourceLineNumber);
+            _issueReporter.CaptureError(ex, sourceFilePath, sourceMemberName, sourceLineNumber);
+        }
     }
 }

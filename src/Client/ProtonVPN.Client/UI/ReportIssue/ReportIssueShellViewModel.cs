@@ -23,6 +23,8 @@ using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.ReportIssue.Steps;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.ReportIssue;
 
@@ -48,8 +50,11 @@ public partial class ReportIssueShellViewModel : ShellViewModelBase<IReportIssue
 
     public bool IsHeaderVisible => CurrentStep > 0 && CurrentStep <= TotalSteps;
 
-    public ReportIssueShellViewModel(IReportIssueViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
-        : base(viewNavigator, localizationProvider)
+    public ReportIssueShellViewModel(IReportIssueViewNavigator viewNavigator,
+        ILocalizationProvider localizationProvider,
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(viewNavigator, localizationProvider, logger, issueReporter)
     { }
 
     [RelayCommand(CanExecute = nameof(CanNavigateBackward))]

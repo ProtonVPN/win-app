@@ -24,9 +24,10 @@ using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Home.Recents;
 
@@ -72,8 +73,10 @@ public partial class RecentItemViewModel : ViewModelBase
     public RecentItemViewModel(IConnectionManager connectionManager,
         IRecentConnectionsProvider recentConnectionsProvider,
         IRecentConnection recentConnection,
-        ILocalizationProvider localizationProvider)
-        : base(localizationProvider)
+        ILocalizationProvider localizationProvider,
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(localizationProvider, logger, issueReporter)
     {
         ArgumentNullException.ThrowIfNull(recentConnection, nameof(recentConnection));
         ArgumentNullException.ThrowIfNull(recentConnection.ConnectionIntent, nameof(recentConnection.ConnectionIntent));

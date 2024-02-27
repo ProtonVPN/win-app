@@ -65,4 +65,14 @@ public class VpnServiceCaller : ServiceCallerBase<IVpnController>, IVpnServiceCa
     {
         return InvokeAsync(c => c.ApplySettings(settings).Wrap());
     }
+
+    public Task RepeatStateAsync()
+    {
+        return InvokeAsync(c => c.RepeatState().Wrap());
+    }
+
+    public Task RepeatPortForwardingStateAsync()
+    {
+        return InvokeAsync(c => c.RepeatPortForwardingState().Wrap());
+    }
 }

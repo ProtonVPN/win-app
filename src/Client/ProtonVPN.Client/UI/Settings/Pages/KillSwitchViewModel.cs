@@ -30,6 +30,8 @@ using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.UI.Settings.Pages.Entities;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
@@ -75,13 +77,17 @@ public partial class KillSwitchViewModel : SettingsPageViewModelBase
         ISettingsConflictResolver settingsConflictResolver,
         IUrls urls,
         IConnectionManager connectionManager,
-        IVpnServiceSettingsUpdater vpnServiceSettingsUpdater)
+        IVpnServiceSettingsUpdater vpnServiceSettingsUpdater,
+        ILogger logger,
+        IIssueReporter issueReporter)
         : base(viewNavigator, 
                localizationProvider, 
                overlayActivator, 
                settings, 
                settingsConflictResolver, 
-               connectionManager)
+               connectionManager,
+               logger,
+               issueReporter)
     {
         _urls = urls;
         _vpnServiceSettingsUpdater = vpnServiceSettingsUpdater;

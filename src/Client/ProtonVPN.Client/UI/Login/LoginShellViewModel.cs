@@ -27,6 +27,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Logging.Contracts.Events.GuestHoleLogs;
@@ -35,8 +36,6 @@ namespace ProtonVPN.Client.UI.Login;
 
 public partial class LoginShellViewModel : ShellViewModelBase<ILoginViewNavigator>, IEventMessageReceiver<LoginStateChangedMessage>, IEventMessageReceiver<LoggedOutMessage>
 {
-    private readonly ILogger _logger;
-
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(HasError))]
     private string _errorMessage;
@@ -48,11 +47,10 @@ public partial class LoginShellViewModel : ShellViewModelBase<ILoginViewNavigato
     public LoginShellViewModel(
         ILoginViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
-        ILogger logger)
-        : base(viewNavigator, localizationProvider)
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(viewNavigator, localizationProvider, logger, issueReporter)
     {
-        _logger = logger;
-
         _errorMessage = string.Empty;
     }
 
@@ -123,14 +121,14 @@ public partial class LoginShellViewModel : ShellViewModelBase<ILoginViewNavigato
         switch (message.AuthError)
         {
             case AuthError.MissingGoSrpDll:
-                _logger.Fatal<AppCrashLog>("The app is missing GoSrp.dll");
+                Logger.Fatal<AppCrashLog>("The app is missing GoSrp.dll");
                 //TODO: add modal about missing file
                 ViewNavigator.CloseCurrentWindow();
                 break;
 
             case AuthError.GuestHoleFailed:
                 //TODO: show troubleshooting dialog
-                _logger.Error<GuestHoleLog>("Failed to authenticate using guest hole.");
+                Logger.Error<GuestHoleLog>("Failed to authenticate using guest hole.");
                 break;
 
             case AuthError.SsoAuthFailed:

@@ -30,6 +30,8 @@ using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.ReportIssue;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Home.ConnectionError;
 
@@ -58,7 +60,10 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
         IUrls urls,
         ISettings settings,
         IDialogActivator dialogActivator,
-        IReportIssueViewNavigator reportIssueViewNavigator) : base(localizationProvider)
+        IReportIssueViewNavigator reportIssueViewNavigator,
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(localizationProvider, logger, issueReporter)
     {
         _urls = urls;
         _settings = settings;

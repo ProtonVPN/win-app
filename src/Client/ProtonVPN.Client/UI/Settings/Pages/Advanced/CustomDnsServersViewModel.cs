@@ -32,6 +32,8 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.UI.Settings.Pages.Entities;
 using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 using Windows.System;
 
 namespace ProtonVPN.Client.UI.Settings.Pages.Advanced;
@@ -60,13 +62,17 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
         IOverlayActivator overlayActivator,
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
-        IConnectionManager connectionManager)
+        IConnectionManager connectionManager,
+        ILogger logger,
+        IIssueReporter issueReporter)
         : base(viewNavigator, 
                localizationProvider, 
                overlayActivator, 
                settings, 
                settingsConflictResolver, 
-               connectionManager)
+               connectionManager,
+               logger,
+               issueReporter)
     {
         _currentIpAddress = string.Empty;
 
@@ -84,7 +90,7 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
         }
         else
         {
-            CustomDnsServers.Add(new(Localizer, this, CurrentIpAddress));
+            CustomDnsServers.Add(new(Localizer, Logger, IssueReporter, this, CurrentIpAddress));
         }
 
         CurrentIpAddress = string.Empty;
@@ -120,7 +126,7 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
         CustomDnsServers.Clear();
         foreach (CustomDnsServer server in Settings.CustomDnsServersList)
         {
-            CustomDnsServers.Add(new(Localizer, this, server.IpAddress, server.IsActive));
+            CustomDnsServers.Add(new(Localizer, Logger, IssueReporter, this, server.IpAddress, server.IsActive));
         }
     }
 

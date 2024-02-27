@@ -26,6 +26,8 @@ using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Settings.Pages.Entities;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
@@ -49,13 +51,17 @@ public partial class CensorshipViewModel : SettingsPageViewModelBase
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IUrls urls,
-        IConnectionManager connectionManager)
+        IConnectionManager connectionManager,
+        ILogger logger,
+        IIssueReporter issueReporter)
         : base(viewNavigator, 
                localizationProvider, 
                overlayActivator, 
                settings, 
                settingsConflictResolver, 
-               connectionManager)
+               connectionManager,
+               logger,
+               issueReporter)
     {
         _urls = urls;
     }

@@ -31,6 +31,7 @@ using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Configurations.Contracts;
+using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
@@ -41,7 +42,6 @@ public partial class SsoLoginOverlayViewModel : OverlayViewModelBase
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly ISettings _settings;
     private readonly IConfiguration _configuration;
-    private readonly ILogger _logger;
     private readonly Regex _uriRegex = new(".+\\/sso\\/login#token=(?<token>.+)&uid=(?<uid>.+)");
 
     [ObservableProperty]
@@ -58,13 +58,13 @@ public partial class SsoLoginOverlayViewModel : OverlayViewModelBase
         IUserAuthenticator userAuthenticator,
         ISettings settings,
         IConfiguration configuration,
-        ILogger logger)
-        : base(localizationProvider, viewNavigator, overlayActivator)
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(localizationProvider, viewNavigator, overlayActivator, logger, issueReporter)
     {
         _userAuthenticator = userAuthenticator;
         _settings = settings;
         _configuration = configuration;
-        _logger = logger;
 
         SsoWebView = new WebView2() { VerticalAlignment = VerticalAlignment.Stretch };
 
@@ -139,7 +139,7 @@ public partial class SsoLoginOverlayViewModel : OverlayViewModelBase
         }
         catch (Exception e)
         {
-            _logger.Error<AppLog>($"Error occured when trying to navigate to the SSO login page.", e);
+            Logger.Error<AppLog>($"Error occured when trying to navigate to the SSO login page.", e);
         }
     }
 }

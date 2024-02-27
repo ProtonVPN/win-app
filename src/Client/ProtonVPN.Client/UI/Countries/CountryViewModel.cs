@@ -26,6 +26,8 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Countries;
 
@@ -65,8 +67,10 @@ public partial class CountryViewModel : LocationViewModelBase, IComparable, ISea
     public CountryViewModel(
         ILocalizationProvider localizationProvider,
         IMainViewNavigator mainViewNavigator,
-        IConnectionManager connectionManager) :
-        base(localizationProvider, mainViewNavigator, connectionManager)
+        IConnectionManager connectionManager,
+        ILogger logger,
+        IIssueReporter issueReporter) :
+        base(localizationProvider, mainViewNavigator, connectionManager, logger, issueReporter)
     {
     }
 

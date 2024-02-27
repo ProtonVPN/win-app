@@ -29,6 +29,8 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Countries.CountriesFeatureTabs;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Countries;
 
@@ -56,11 +58,13 @@ public partial class CountriesViewModel : NavigationPageViewModelBase, IEventMes
         IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
         ICountriesFeatureTabsViewNavigator countriesFeatureTabsViewNavigator,
+        ILogger logger,
+        IIssueReporter issueReporter,
         AllCountriesPageViewModel allCountriesPageViewModel,
         SecureCoreCountriesPageViewModel secureCoreCountriesPageViewModel,
         P2PCountriesPageViewModel p2PCountriesPageViewModel,
         TorCountriesPageViewModel torCountriesPageViewModel)
-        : base(viewNavigator, localizationProvider)
+        : base(viewNavigator, localizationProvider, logger, issueReporter)
     {
         CountriesFeatureTabsViewNavigator = countriesFeatureTabsViewNavigator;
         CountriesFeatureTabsViewNavigator.Navigated += OnNavigated;

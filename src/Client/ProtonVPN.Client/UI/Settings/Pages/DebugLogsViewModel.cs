@@ -25,6 +25,8 @@ using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Configurations.Contracts;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
@@ -41,9 +43,13 @@ public partial class DebugLogsViewModel : PageViewModelBase<IMainViewNavigator>
         ILocalizationProvider localizationProvider,
         IOverlayActivator overlayActivator,
         IStaticConfiguration staticConfig, 
-        IUrls urls)
+        IUrls urls,
+        ILogger logger,
+        IIssueReporter issueReporter)
         : base(viewNavigator, 
-               localizationProvider)
+               localizationProvider,
+               logger,
+               issueReporter)
     {
         _overlayActivator = overlayActivator;
         _staticConfig = staticConfig;

@@ -25,6 +25,8 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Countries;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Gateways.Items;
 
@@ -32,13 +34,16 @@ public class B2BServerViewModel : ServerViewModelBase
 {
     public string? GatewayName { get; private set; }
 
-    protected override ConnectionIntent ConnectionIntent => new(new GatewayServerLocationIntent(Id, Name, ExitCountryCode, GatewayName), new B2BFeatureIntent());
+    protected override ConnectionIntent ConnectionIntent =>
+        new(new GatewayServerLocationIntent(Id, Name, ExitCountryCode, GatewayName), new B2BFeatureIntent());
 
     public B2BServerViewModel(
         ILocalizationProvider localizationProvider,
         IMainViewNavigator mainViewNavigator,
-        IConnectionManager connectionManager)
-        : base(localizationProvider, mainViewNavigator, connectionManager)
+        IConnectionManager connectionManager,
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(localizationProvider, mainViewNavigator, connectionManager, logger, issueReporter)
     { }
 
     public override void CopyPropertiesFromServer(Server server)

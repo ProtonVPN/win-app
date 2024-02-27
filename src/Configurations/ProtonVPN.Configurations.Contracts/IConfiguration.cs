@@ -63,6 +63,7 @@ public interface IConfiguration : IStaticConfiguration
     TimeSpan DefaultDnsTimeToLive { get; }
     TimeSpan DnsOverHttpsPerProviderTimeout { get; }
     TimeSpan DohClientTimeout { get; }
+    TimeSpan VpnStatePollingInterval { get; }
 
     IList<string> DohProviders { get; }
     IUrlsConfiguration Urls { get; }

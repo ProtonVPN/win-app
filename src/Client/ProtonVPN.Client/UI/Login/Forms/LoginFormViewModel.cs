@@ -21,7 +21,6 @@ using System.Security;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Api.Contracts;
-using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
@@ -41,6 +40,8 @@ using ProtonVPN.Client.UI.Login.Enums;
 using ProtonVPN.Client.UI.Login.Overlays;
 using ProtonVPN.Client.UI.ReportIssue;
 using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 using Windows.System;
 
 namespace ProtonVPN.Client.UI.Login.Forms;
@@ -120,8 +121,10 @@ public partial class LoginFormViewModel :
         IDialogActivator dialogActivator,
         IReportIssueViewNavigator reportIssueViewNavigator,
         IFeatureFlagsObserver featureFlagsObserver,
+        ILogger logger,
+        IIssueReporter issueReporter,
         SsoLoginOverlayViewModel ssoLoginOverlayViewModel)
-        : base(loginViewNavigator, localizationProvider)
+        : base(loginViewNavigator, localizationProvider, logger, issueReporter)
     {
         _urls = urls;
         _eventMessageSender = eventMessageSender;

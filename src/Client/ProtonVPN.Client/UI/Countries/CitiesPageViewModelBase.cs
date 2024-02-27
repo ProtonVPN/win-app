@@ -30,6 +30,8 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Home;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Countries;
 
@@ -47,12 +49,16 @@ public abstract partial class CitiesPageViewModelBase : CountryTabViewModelBase
         IServersLoader serversLoader,
         ICountryFeatureTabsViewNavigator viewNavigator,
         CountryViewModelsFactory countryViewModelsFactory,
-        ILocalizationProvider localizationProvider)
+        ILocalizationProvider localizationProvider,
+        ILogger logger,
+        IIssueReporter issueReporter)
         : base(mainViewNavigator,
                overlayActivator,
                countryViewModelsFactory,
                viewNavigator,
-               localizationProvider)
+               localizationProvider,
+               logger,
+               issueReporter)
     {
         _connectionManager = connectionManager;
         ServersLoader = serversLoader;

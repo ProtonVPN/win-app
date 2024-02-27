@@ -34,6 +34,8 @@ using ProtonVPN.Client.UI.Gateways;
 using ProtonVPN.Client.UI.Home;
 using ProtonVPN.Client.UI.Settings;
 using ProtonVPN.Common.Legacy.Extensions;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI;
 
@@ -59,9 +61,11 @@ public partial class ShellViewModel : ShellViewModelBase<IMainViewNavigator>, IE
         GatewaysViewModel gatewaysViewModel,
         CountriesViewModel countriesViewModel,
         ISettings settings,
+        ILogger logger,
+        IIssueReporter issueReporter,
         SettingsViewModel settingsViewModel,
         Lazy<GalleryViewModel> galleryViewModel)
-        : base(viewNavigator, localizationProvider)
+        : base(viewNavigator, localizationProvider, logger, issueReporter)
     {
         _eventMessageSender = eventMessageSender;
         _settings = settings;

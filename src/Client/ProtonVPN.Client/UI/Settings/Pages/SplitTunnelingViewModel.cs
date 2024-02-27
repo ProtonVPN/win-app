@@ -37,6 +37,8 @@ using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.UI.Settings.Pages.Entities;
 using ProtonVPN.Client.UI.Settings.Pages.SplitTunneling;
 using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 using Windows.System;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
@@ -120,13 +122,17 @@ public partial class SplitTunnelingViewModel : SettingsPageViewModelBase
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager,
         IUrls urls,
-        IVpnServiceSettingsUpdater vpnServiceSettingsUpdater)
+        IVpnServiceSettingsUpdater vpnServiceSettingsUpdater,
+        ILogger logger,
+        IIssueReporter issueReporter)
         : base(viewNavigator, 
                localizationProvider, 
                overlayActivator, 
                settings, 
                settingsConflictResolver, 
-               connectionManager)
+               connectionManager,
+               logger,
+               issueReporter)
     {
         _urls = urls;
         _vpnServiceSettingsUpdater = vpnServiceSettingsUpdater;
@@ -188,7 +194,7 @@ public partial class SplitTunnelingViewModel : SettingsPageViewModelBase
         }
         else
         {
-            ipAddresses.Add(new(Localizer, this, CurrentIpAddress!));
+            ipAddresses.Add(new(Localizer, Logger, IssueReporter, this, CurrentIpAddress!));
         }
 
         CurrentIpAddress = string.Empty;
@@ -275,7 +281,7 @@ public partial class SplitTunnelingViewModel : SettingsPageViewModelBase
         ipAddresses.Clear();
         foreach (SplitTunnelingIpAddress ip in settingsIpAddresses)
         {
-            ipAddresses.Add(new(Localizer, this, ip.IpAddress, ip.IsActive));
+            ipAddresses.Add(new(Localizer, Logger, IssueReporter, this, ip.IpAddress, ip.IsActive));
         }
     }
 
@@ -302,7 +308,7 @@ public partial class SplitTunnelingViewModel : SettingsPageViewModelBase
 
     private async Task<SplitTunnelingAppViewModel> CreateAppFromPathAsync(string filePath, bool isActive, List<string>? alternateFilePaths)
     {
-        SplitTunnelingAppViewModel app = new(Localizer, this, filePath, isActive, alternateFilePaths);
+        SplitTunnelingAppViewModel app = new(Localizer, Logger, IssueReporter, this, filePath, isActive, alternateFilePaths);
         await app.InitializeAsync();
         return app;
     }

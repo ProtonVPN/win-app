@@ -17,16 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Media.Imaging;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Common.Core.Extensions;
-using Windows.Storage;
-using Windows.Storage.FileProperties;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Settings.Pages.SplitTunneling;
 
@@ -45,12 +43,23 @@ public partial class SplitTunnelingAppViewModel : ViewModelBase
 
     public ImageSource? AppIcon { get; private set; }
 
-    public SplitTunnelingAppViewModel(ILocalizationProvider localizationProvider, SplitTunnelingViewModel parentViewModel, string appFilePath, List<string>? alternateAppFilePaths)
-        : this(localizationProvider, parentViewModel, appFilePath, true, alternateAppFilePaths)
+    public SplitTunnelingAppViewModel(ILocalizationProvider localizationProvider,
+        ILogger logger,
+        IIssueReporter issueReporter,
+        SplitTunnelingViewModel parentViewModel,
+        string appFilePath,
+        List<string>? alternateAppFilePaths)
+        : this(localizationProvider, logger, issueReporter, parentViewModel, appFilePath, true, alternateAppFilePaths)
     { }
 
-    public SplitTunnelingAppViewModel(ILocalizationProvider localizationProvider, SplitTunnelingViewModel parentViewModel, string appFilePath, bool isActive, List<string>? alternateAppFilePaths)
-        : base(localizationProvider)
+    public SplitTunnelingAppViewModel(ILocalizationProvider localizationProvider,
+        ILogger logger,
+        IIssueReporter issueReporter,
+        SplitTunnelingViewModel parentViewModel,
+        string appFilePath,
+        bool isActive,
+        List<string>? alternateAppFilePaths)
+        : base(localizationProvider, logger, issueReporter)
     {
         _parentViewModel = parentViewModel;
 

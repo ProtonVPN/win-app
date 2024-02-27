@@ -20,13 +20,14 @@
 using System;
 using System.Text;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Core.Networking;
+using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Legacy.NetShield;
 using ProtonVPN.Common.Legacy.PortForwarding;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
 using ProtonVPN.Logging.Contracts.Events.ProcessCommunicationLogs;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
@@ -139,15 +140,21 @@ namespace ProtonVPN.Service.ProcessCommunication
         private async void OnVpnStateChanged(object sender, EventArgs<VpnState> e)
         {
             VpnState state = e.Data;
+            _logger.Info<AppServiceLog>($"VPN state changed - {GetVpnStatusLogMessage(state)}");
             _vpnState = state;
             await SendStateChangeAsync(state);
         }
 
+        private string GetVpnStatusLogMessage(VpnState state)
+        {
+            return $"Status '{state.Status}', Error: '{state.Error}', LocalIp: '{state.LocalIp}', " +
+                $"RemoteIp: '{state.RemoteIp}', Label: '{state.Label}', " +
+                $"VpnProtocol: '{state.VpnProtocol}', OpenVpnAdapter: '{state.OpenVpnAdapter}'";
+        }
+
         private async Task SendStateChangeAsync(VpnState state)
         {
-            _logger.Info<ProcessCommunicationLog>($"Sending VPN Status '{state.Status}', Error: '{state.Error}', " +
-                $"LocalIp: '{state.LocalIp}', RemoteIp: '{state.RemoteIp}', Label: '{state.Label}', " +
-                $"VpnProtocol: '{state.VpnProtocol}', OpenVpnAdapter: '{state.OpenVpnAdapter}'");
+            _logger.Debug<ProcessCommunicationLog>($"Sending VPN state - {GetVpnStatusLogMessage(state)}");
             await SendAsync(appController => appController.VpnStateChange(CreateVpnStateIpcEntity(state)));
         }
 
@@ -199,21 +206,27 @@ namespace ProtonVPN.Service.ProcessCommunication
         private async void OnPortForwardingStateChanged(object sender, EventArgs<PortForwardingState> e)
         {
             PortForwardingState state = e.Data;
+            _logger.Info<AppServiceLog>($"Port Forwarding state changed - {GetPortForwardingStateLogMessage(state)}");
             _portForwardingState = state;
             await SendPortForwardingStateChangeAsync(state);
         }
 
-        private async Task SendPortForwardingStateChangeAsync(PortForwardingState state)
+        private string GetPortForwardingStateLogMessage(PortForwardingState state)
         {
-            StringBuilder logMessage = new StringBuilder().Append("Sending PortForwarding " +
-                $"Status '{state.Status}' triggered at '{state.TimestampUtc}'");
+            StringBuilder logMessage = new StringBuilder()
+                .Append($"Status '{state.Status}' triggered at '{state.TimestampUtc}'");
             if (state.MappedPort?.MappedPort is not null)
             {
                 TemporaryMappedPort mappedPort = state.MappedPort;
                 logMessage.Append($", Port pair {mappedPort.MappedPort}, expiring in " +
                                   $"{mappedPort.Lifetime} at {mappedPort.ExpirationDateUtc}");
             }
-            _logger.Info<ProcessCommunicationLog>(logMessage.ToString());
+            return logMessage.ToString();
+        }
+
+        private async Task SendPortForwardingStateChangeAsync(PortForwardingState state)
+        {
+            _logger.Debug<ProcessCommunicationLog>($"Sending Port Forwarding state - {GetPortForwardingStateLogMessage(state)}");
             PortForwardingStateIpcEntity stateIpcEntity = 
                 _entityMapper.Map<PortForwardingState, PortForwardingStateIpcEntity>(state);
             await SendAsync(appController => appController.PortForwardingStateChange(stateIpcEntity));

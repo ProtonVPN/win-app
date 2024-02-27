@@ -24,6 +24,8 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Contracts.ViewModels;
 
@@ -38,8 +40,10 @@ public abstract partial class PageViewModelBase : ActivatableViewModelBase, IEve
 
     public virtual string? Title { get; }
 
-    protected PageViewModelBase(ILocalizationProvider localizationProvider)
-        : base(localizationProvider)
+    protected PageViewModelBase(ILocalizationProvider localizationProvider,
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(localizationProvider, logger, issueReporter)
     { }
 
     public void InvalidateTitle()
@@ -63,8 +67,11 @@ public abstract partial class PageViewModelBase<TViewNavigator> : PageViewModelB
 {
     protected TViewNavigator ViewNavigator { get; }
 
-    public PageViewModelBase(TViewNavigator viewNavigator, ILocalizationProvider localizationProvider)
-        : base(localizationProvider)
+    public PageViewModelBase(TViewNavigator viewNavigator,
+        ILocalizationProvider localizationProvider,
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(localizationProvider, logger, issueReporter)
     {
         ViewNavigator = viewNavigator;
     }
