@@ -29,4 +29,9 @@ public class TorFeatureIntent : FeatureIntentBase
     {
         return server.Features.IsSupported(ServerFeatures.Tor);
     }
+
+    public override string ToString()
+    {
+        return "Tor";
+    }
 }

@@ -42,4 +42,9 @@ public class CityStateLocationIntent : CountryLocationIntent
     {
         return base.IsSupported(server) && server.City == CityState;
     }
+
+    public override string ToString()
+    {
+        return $"{base.ToString()}{(string.IsNullOrEmpty(CityState) ? string.Empty : $" - {CityState}")}";
+    }
 }

@@ -47,4 +47,9 @@ public class CountryLocationIntent : LocationIntentBase
     {
         return IsFastest || server.ExitCountry == CountryCode;
     }
+
+    public override string ToString()
+    {
+        return IsFastest ? "Fastest country" : $"Country {CountryCode}";
+    }
 }

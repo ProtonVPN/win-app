@@ -33,6 +33,7 @@ using ProtonVPN.Common.Legacy.Abstract;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ConnectionDetails = ProtonVPN.Client.Logic.Connection.Contracts.Models.ConnectionDetails;
@@ -90,6 +91,8 @@ public class ConnectionManager : IInternalConnectionManager,
 
         CurrentConnectionIntent = connectionIntent;
 
+        _logger.Debug<ConnectTriggerLog>($"[CONNECTION_PROCESS] Connection attempt to: {connectionIntent}.");
+
         SetConnectionStatus(ConnectionStatus.Connecting);
 
         ConnectionRequestIpcEntity request = await _connectionRequestCreator.CreateAsync(connectionIntent);
@@ -120,6 +123,8 @@ public class ConnectionManager : IInternalConnectionManager,
     {
         IConnectionIntent? connectionIntent = CurrentConnectionIntent;
 
+        _logger.Debug<ConnectTriggerLog>($"[CONNECTION_PROCESS] Reconnection attempt to: {connectionIntent?.ToString() ?? "<no intent>"}.");
+
         if (connectionIntent is null)
         {
             await DisconnectAsync();
@@ -135,6 +140,8 @@ public class ConnectionManager : IInternalConnectionManager,
 
     public async Task DisconnectAsync()
     {
+        _logger.Debug<ConnectTriggerLog>($"[CONNECTION_PROCESS] Disconnection attempt.");
+
         CurrentConnectionIntent = null;
         CurrentConnectionDetails = null;
 
@@ -172,6 +179,7 @@ public class ConnectionManager : IInternalConnectionManager,
         {
             Server? server = GetCurrentServer(message);
             PhysicalServer? physicalServer = server?.Servers.FirstOrDefault(FilterPhysicalServerByVpnState(message));
+
             if (server is null || physicalServer is null)
             {
                 _logger.Error<AppLog>($"The status changed to Connected but the associated Server is null. Error: '{message.Error}' " +
@@ -213,6 +221,8 @@ public class ConnectionManager : IInternalConnectionManager,
         ConnectionStatus = connectionStatus;
         CurrentError = error;
         _eventMessageSender.Send(new ConnectionStatusChanged(connectionStatus));
+
+        _logger.Debug<ConnectTriggerLog>($"[CONNECTION_PROCESS] Status updated to {ConnectionStatus}.{(IsConnected ? $" Connected to server {CurrentConnectionDetails?.ServerName}" : string.Empty)}");
     }
 
     public void Receive(ConnectionDetailsIpcEntity message)

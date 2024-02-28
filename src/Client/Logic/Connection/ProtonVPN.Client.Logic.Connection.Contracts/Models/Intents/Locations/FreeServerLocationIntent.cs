@@ -52,4 +52,9 @@ public class FreeServerLocationIntent : LocationIntentBase
     {
         return server.Tier == ServerTiers.Free;
     }
+
+    public override string ToString()
+    {
+        return $"{Type} free server";
+    }
 }

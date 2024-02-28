@@ -41,4 +41,9 @@ public class GatewayLocationIntent : LocationIntentBase
     {
         return server.GatewayName == GatewayName;
     }
+
+    public override string ToString()
+    {
+        return $"Gateway {GatewayName}";
+    }
 }

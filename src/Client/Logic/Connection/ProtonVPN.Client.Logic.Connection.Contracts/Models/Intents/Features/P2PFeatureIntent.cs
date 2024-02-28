@@ -29,4 +29,9 @@ public class P2PFeatureIntent : FeatureIntentBase
     {
         return server.Features.IsSupported(ServerFeatures.P2P);
     }
+
+    public override string ToString()
+    {
+        return "P2P";
+    }
 }
