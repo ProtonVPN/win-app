@@ -50,6 +50,9 @@ public class LocationIntentMapper : IMapper<ILocationIntent, SerializableLocatio
                 GatewayLocationIntent gatewayLocationIntent =>
                     _entityMapper.Map<GatewayLocationIntent, SerializableLocationIntent>(gatewayLocationIntent),
 
+                FreeServerLocationIntent freeServerLocationIntent =>
+                    _entityMapper.Map<FreeServerLocationIntent, SerializableLocationIntent>(freeServerLocationIntent),
+
                 _ => throw new NotImplementedException($"No mapping is implemented for {leftEntity.GetType().FullName}"),
             };
     }
@@ -65,6 +68,7 @@ public class LocationIntentMapper : IMapper<ILocationIntent, SerializableLocatio
                 nameof(CountryLocationIntent) => _entityMapper.Map<SerializableLocationIntent, CountryLocationIntent>(rightEntity),
                 nameof(GatewayServerLocationIntent) => _entityMapper.Map<SerializableLocationIntent, GatewayServerLocationIntent>(rightEntity),
                 nameof(GatewayLocationIntent) => _entityMapper.Map<SerializableLocationIntent, GatewayLocationIntent>(rightEntity),
+                nameof(FreeServerLocationIntent) => _entityMapper.Map<SerializableLocationIntent, FreeServerLocationIntent>(rightEntity),
                 _ => throw new NotImplementedException($"No mapping is implemented for {rightEntity.TypeName}"),
             };
     }

@@ -24,7 +24,7 @@ namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 
 public interface IConnectionIntent
 {
-    ILocationIntent? Location { get; }
+    ILocationIntent Location { get; }
 
     IFeatureIntent? Feature { get; }
 

@@ -46,4 +46,11 @@ public class SecureCoreFeatureIntent : FeatureIntentBase
         return server.Features.IsSupported(ServerFeatures.SecureCore) && 
             (string.IsNullOrEmpty(EntryCountryCode) || server.EntryCountry == EntryCountryCode);
     }
+
+    public override string ToString()
+    {
+        return IsFastest 
+            ? "Secure Core"
+            : $"Secure Core via {EntryCountryCode}";         
+    }
 }

@@ -47,4 +47,9 @@ public class ServerLocationIntent : CityStateLocationIntent
     {
         return server.Id == Id;
     }
+
+    public override string ToString()
+    {
+        return $"{base.ToString()} - {Name}";
+    }
 }

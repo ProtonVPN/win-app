@@ -49,4 +49,9 @@ public class GatewayServerLocationIntent : GatewayLocationIntent
     {
         return server.Id == Id;
     }
+
+    public override string ToString()
+    {
+        return $"{base.ToString()} - {Name}";
+    }
 }

@@ -29,4 +29,9 @@ public class B2BFeatureIntent : FeatureIntentBase
     {
         return server.Features.IsSupported(ServerFeatures.B2B);
     }
+
+    public override string ToString()
+    {
+        return "B2B";
+    }
 }

@@ -27,4 +27,6 @@ public class SerializableLocationIntent
     public string? Id { get; set; }
     public string? Name { get; set; }
     public string? GatewayName { get; set; }
+    public int? FreeServerType { get; set; }
+    public string? FreeServerExcludedLogicalId { get; set; }
 }

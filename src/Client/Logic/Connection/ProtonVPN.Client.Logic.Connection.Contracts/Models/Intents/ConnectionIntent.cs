@@ -27,7 +27,7 @@ public class ConnectionIntent : IConnectionIntent
     public static IConnectionIntent Default => new ConnectionIntent(new CountryLocationIntent());
     public static IConnectionIntent FreeDefault => new ConnectionIntent(new FreeServerLocationIntent());
 
-    public ILocationIntent? Location { get; }
+    public ILocationIntent Location { get; }
 
     public IFeatureIntent? Feature { get; }
 
@@ -44,8 +44,13 @@ public class ConnectionIntent : IConnectionIntent
             return false;
         }
 
-        // Check whether both location are null or identical. Same for feature
-        return ((Location == null && intent.Location == null) || Location?.IsSameAs(intent.Location) == true)
+        // Check whether both location are identical and both feature are null or identical.
+        return Location.IsSameAs(intent.Location)
             && ((Feature == null && intent.Feature == null) || Feature?.IsSameAs(intent.Feature) == true);
+    }
+
+    public override string ToString()
+    {
+        return $"{Location}{(Feature is null ? string.Empty : $" [{Feature}]")}";
     }
 }
