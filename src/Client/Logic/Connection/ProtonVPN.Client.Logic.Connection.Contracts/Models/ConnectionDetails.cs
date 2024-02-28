@@ -38,7 +38,8 @@ public class ConnectionDetails
     public DateTime EstablishedConnectionTimeUtc { get; }
 
     public string ExitCountryCode => Server.ExitCountry;
-    public string? EntryCountryCode => Server.Features.IsSupported(ServerFeatures.SecureCore) ? Server.EntryCountry : null;
+    public bool IsSecureCore => Server.Features.IsSupported(ServerFeatures.SecureCore);
+    public string? EntryCountryCode => IsSecureCore ? Server.EntryCountry : null;
     public string CityState => Server.City;
     public string ServerId => Server.Id;
     public string PhysicalServerId => PhysicalServer.Id;

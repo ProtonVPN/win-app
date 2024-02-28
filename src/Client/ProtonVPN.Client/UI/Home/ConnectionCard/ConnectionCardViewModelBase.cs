@@ -167,10 +167,7 @@ public abstract partial class ConnectionCardViewModelBase : ViewModelBase,
 
     public void Receive(ConnectionStatusChanged message)
     {
-        ExecuteOnUIThread(() =>
-        {
-            InvalidateCurrentConnectionStatus();
-        });
+        ExecuteOnUIThread(InvalidateCurrentConnectionStatus);
     }
 
     protected override void OnLanguageChanged()
