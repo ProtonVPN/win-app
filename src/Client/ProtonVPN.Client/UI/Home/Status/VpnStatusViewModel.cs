@@ -25,10 +25,6 @@ using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
-using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
-using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Models;
@@ -113,44 +109,20 @@ public partial class VpnStatusViewModel : ViewModelBase,
         _connectionManager = connectionManager;
         _settings = settings;
 
-        _currentConnectionStatus = ConnectionStatus.Disconnected;
         _isNetShieldStatEnabled = false;
-        _isSecureCoreConnection = true;
 
+        InvalidateCurrentConnectionStatus();
         InvalidateDeviceLocation();
     }
 
     public void Receive(ConnectionStatusChanged message)
     {
-        ExecuteOnUIThread(() =>
-        {
-            if (message?.ConnectionStatus is null)
-            {
-                return;
-            }
-
-            CurrentConnectionStatus = message.ConnectionStatus;
-
-            if (CurrentConnectionStatus != ConnectionStatus.Connected)
-            {
-                IsSecureCoreConnection = false;
-                return;
-            }
-
-            ConnectionDetails? connectionDetails = _connectionManager.CurrentConnectionDetails;
-
-            IsSecureCoreConnection = connectionDetails != null
-                                  && connectionDetails?.OriginalConnectionIntent.Feature is SecureCoreFeatureIntent
-                                  && connectionDetails.Server.Features.IsSupported(ServerFeatures.SecureCore);
-        });
+        ExecuteOnUIThread(InvalidateCurrentConnectionStatus);
     }
 
     public void Receive(DeviceLocationChangedMessage message)
     {
-        ExecuteOnUIThread(() =>
-        {
-            InvalidateDeviceLocation();
-        });
+        ExecuteOnUIThread(InvalidateDeviceLocation);
     }
 
     protected override void OnLanguageChanged()
@@ -158,6 +130,14 @@ public partial class VpnStatusViewModel : ViewModelBase,
         OnPropertyChanged(nameof(Title));
         OnPropertyChanged(nameof(Subtitle));
         OnPropertyChanged(nameof(Country));
+    }
+
+    private void InvalidateCurrentConnectionStatus()
+    {
+        CurrentConnectionStatus = _connectionManager.ConnectionStatus;
+
+        IsSecureCoreConnection = _connectionManager.IsConnected
+                              && (_connectionManager.CurrentConnectionDetails?.IsSecureCore ?? false);
     }
 
     private void InvalidateDeviceLocation()
