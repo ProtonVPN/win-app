@@ -18,8 +18,8 @@
  */
 
 using System;
-using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Core.Networking;
+using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Logging.Contracts;
@@ -95,7 +95,7 @@ public class HandlingRequestsWrapper : ISingleVpnConnection
         _disconnectError = error;
 
         _logger.Info<DisconnectLog>("HandlingRequestsWrapper: Disconnect requested, queuing Disconnect");
-        Queued(Disconnect);
+        Queued(() => Disconnect(VpnProtocol.Smart));
     }
 
     public void SetFeatures(VpnFeatures vpnFeatures)
@@ -141,7 +141,7 @@ public class HandlingRequestsWrapper : ISingleVpnConnection
                 return;
             }
 
-            InvokeDisconnecting();
+            InvokeDisconnecting(state.VpnProtocol);
 
             return;
         }
@@ -152,7 +152,7 @@ public class HandlingRequestsWrapper : ISingleVpnConnection
             _disconnectRequested = true;
             _disconnectError = state.Error;
             _logger.Info<DisconnectLog>("HandlingRequestsWrapper: Disconnecting unexpectedly, queuing Disconnect");
-            Queued(Disconnect);
+            Queued(() => Disconnect(state.VpnProtocol));
         }
 
         if (state.Status == VpnStatus.Disconnecting || state.Status == VpnStatus.Disconnected)
@@ -165,7 +165,7 @@ public class HandlingRequestsWrapper : ISingleVpnConnection
                 _disconnectRequested = true;
                 _disconnectError = error;
                 _logger.Info<DisconnectLog>("HandlingRequestsWrapper: Disconnecting unexpectedly, queuing Disconnect");
-                Queued(Disconnect);
+                Queued(() => Disconnect(state.VpnProtocol));
                 return;
             }
 
@@ -198,7 +198,7 @@ public class HandlingRequestsWrapper : ISingleVpnConnection
         }
     }
 
-    private void Disconnect()
+    private void Disconnect(VpnProtocol vpnProtocol)
     {
         if (_disconnectRequested)
         {
@@ -206,11 +206,11 @@ public class HandlingRequestsWrapper : ISingleVpnConnection
 
             if (_disconnected)
             {
-                InvokeDisconnected();
+                InvokeDisconnected(vpnProtocol);
             }
             else
             {
-                InvokeDisconnecting();
+                InvokeDisconnecting(vpnProtocol);
 
                 _connecting = false;
                 _logger.Info<DisconnectLog>("HandlingRequestsWrapper: Disconnecting");
@@ -219,20 +219,20 @@ public class HandlingRequestsWrapper : ISingleVpnConnection
         }
     }
 
-    private void InvokeDisconnecting()
+    private void InvokeDisconnecting(VpnProtocol vpnProtocol)
     {
         InvokeStateChanged(new VpnState(
             VpnStatus.Disconnecting,
             _disconnectError,
-            _config?.VpnProtocol ?? VpnProtocol.Smart));
+            vpnProtocol));
     }
 
-    private void InvokeDisconnected()
+    private void InvokeDisconnected(VpnProtocol vpnProtocol)
     {
         InvokeStateChanged(new VpnState(
             VpnStatus.Disconnected,
             _disconnectError,
-            _config?.VpnProtocol ?? VpnProtocol.Smart));
+            vpnProtocol));
     }
 
     private void InvokeStateChanged(VpnState state)

@@ -197,7 +197,27 @@ internal class NetworkAdapterStatusWrapper : ISingleVpnConnection
     private void HandleNoTapError()
     {
         _logger.Error<DisconnectTriggerLog>("OpenVPN TAP network adapter not found. Disconnecting.");
+
+        // The state is directly invoked to Disconnected because:
+        // - We don't need a disconnecting procedure as this code is right after pinging and before anything else
+        // - The call to Disconnect right below will, most likely, not result in state changes as the VPN state
+        //   in the steps ahead (Local Agent, Protocols, etc.) should be Disconnected already
+        InvokeDisconnected();
+
         Disconnect(VpnError.NoTapAdaptersError);
+    }
+
+    private void InvokeDisconnected()
+    {
+        StateChanged?.Invoke(this,
+            new EventArgs<VpnState>(new VpnState(
+                VpnStatus.Disconnected,
+                VpnError.NoTapAdaptersError,
+                string.Empty,
+                _endpoint.Server.Ip,
+                _endpoint.VpnProtocol,
+                openVpnAdapter: _config.OpenVpnAdapter,
+                label: _endpoint.Server.Label)));
     }
 
     public void Disconnect(VpnError error)

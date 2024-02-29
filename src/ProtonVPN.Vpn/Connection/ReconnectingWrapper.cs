@@ -19,17 +19,16 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy;
+using ProtonVPN.Common.Legacy.Threading;
+using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
 using ProtonVPN.Logging.Contracts.Events.ServerSwitchLogs;
-using ProtonVPN.Common.Legacy.Threading;
-using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.ServerValidation;
 
@@ -50,7 +49,6 @@ namespace ProtonVPN.Vpn.Connection
         private VpnEndpoint _endpoint;
         private bool _isToConnect;
         private bool _isToReconnect;
-        private bool _isToDiscardProtocol;
 
         public ReconnectingWrapper(
             ILogger logger,
@@ -86,7 +84,6 @@ namespace ProtonVPN.Vpn.Connection
             _credentials = credentials;
             _isToConnect = true;
             _isToReconnect = true;
-            _isToDiscardProtocol = true;
 
             _logger.Info<DisconnectTriggerLog>("Requesting disconnect as first step of connection process.");
             CancelTokenAndDisconnect(VpnError.NoneKeepEnabledKillSwitch);
@@ -124,65 +121,29 @@ namespace ProtonVPN.Vpn.Connection
         private void Origin_StateChanged(object sender, EventArgs<VpnState> e)
         {
             _state = e.Data;
-
-            if (_state.Status == VpnStatus.Connecting || _state.Status == VpnStatus.Reconnecting)
-            {
-                _isToDiscardProtocol = true;
-            }
             
-            if (IsToHandleAdapterError())
-            {
-                OnAdapterError();
-            } 
-            else if (_state.Status == VpnStatus.Disconnected && _isToConnect)
+            if (_state.Status == VpnStatus.Disconnected && _isToConnect)
             {
                 _isToConnect = false;
                 _logger.Info<ConnectLog>("A connect is pending. " +
                     "Starting connection after status changed to Disconnected.");
                 PingAndConnectAsync();
+                return;
             }
-            else if (IsToCancelReconnection())
+
+            if (IsToCancelReconnection())
             {
                 _isToReconnect = false;
             }
-            else if (IsToReconnect())
+            else if (IsToReconnect(_state))
             {
                 _logger.Info<ServerSwitchTriggerLog>("Trying the next server. " +
                     $"Status: '{_state.Status}', Error: '{_state.Error}'.");
                 ConnectToNextEndpoint();
+                return;
             }
 
             OnStateChanged(FilterVpnState(_state));
-        }
-
-        private bool IsToHandleAdapterError()
-        {
-            return _isToDiscardProtocol && IsAdapterError(_state.Error) &&
-                   (_state.Status == VpnStatus.Disconnecting || _state.Status == VpnStatus.Disconnected);
-        }
-
-        private void OnAdapterError()
-        {
-            _isToDiscardProtocol = false;
-            if (_config.PreferredProtocols.Any())
-            {
-                _logger.Info<ConnectLog>($"Discarding protocol '{_config.PreferredProtocols[0]}'.");
-                _config.PreferredProtocols.RemoveAt(0);
-            }
-
-            if (_config.PreferredProtocols.Count == 0)
-            {
-                _logger.Warn<DisconnectTriggerLog>("Preferred protocols list is empty. Disconnecting.");
-                CancelTokenAndDisconnect(VpnError.ServerUnreachable);
-            }
-            else
-            {
-                _logger.Info<ConnectLog>("Preferred protocols list is not empty. " +
-                    "Reconnecting after discarding protocol.");
-                _candidates.Reset();
-                _isToConnect = true;
-                _isToReconnect = true;
-            }
         }
 
         private async Task PingAndConnectAsync()
@@ -278,7 +239,7 @@ namespace ProtonVPN.Vpn.Connection
         {
             return !_isToConnect &&
                    (_state.Status == VpnStatus.Disconnecting || _state.Status == VpnStatus.Disconnected) &&
-                   (!IsServerError(_state.Error) && !IsAdapterError(_state.Error));
+                   !IsServerError(_state.Error);
         }
 
         private bool IsServerError(VpnError error)
@@ -290,37 +251,21 @@ namespace ProtonVPN.Vpn.Connection
                    error == VpnError.Unknown;
         }
 
-        private bool IsAdapterError(VpnError error)
-        {
-            return error == VpnError.ServerUnreachable || error == VpnError.AdapterTimeoutError;
-        }
-
-        private bool IsToReconnect()
+        private bool IsToReconnect(VpnState state)
         {
             return _isToReconnect &&
-                (_state.Status == VpnStatus.Disconnecting || _state.Status == VpnStatus.Disconnected) &&
-                IsServerError(_state.Error);
+                (state.Status == VpnStatus.Disconnecting || state.Status == VpnStatus.Disconnected) &&
+                IsServerError(state.Error);
         }
 
         private VpnState FilterVpnState(VpnState state)
         {
-            if (IsToSuppressVpnState(state))
-            {
-                return null;
-            }
-
             if (ShouldBeReconnecting(state))
             {
                 return CreateReconnectingVpnState(state);
             }
 
             return state;
-        }
-
-        private bool IsToSuppressVpnState(VpnState state)
-        {
-            return _isToReconnect &&
-                   (state.Status == VpnStatus.Disconnecting || state.Status == VpnStatus.Disconnected);
         }
 
         private bool ShouldBeReconnecting(VpnState state)

@@ -190,10 +190,7 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
     private void OnDisconnectActionCompleted(object sender, TaskCompletedEventArgs e)
     {
         _logger.Info<DisconnectLog>("Disconnect action completed.");
-        if (_vpnStatus is not VpnStatus.Disconnected)
-        {
-            InvokeStateChange(VpnStatus.Disconnected, _lastVpnError);
-        }
+        InvokeStateChange(VpnStatus.Disconnected, _lastVpnError);
         _lastVpnError = VpnError.None;
     }
 

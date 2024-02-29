@@ -170,7 +170,7 @@ public class KillSwitch : IVpnStateAware, IServiceSettingsAware, IStartable
                     return null;
                 }
 
-                if (state.Error == VpnError.None || state.Error.IsSessionLimitError())
+                if (state.Error == VpnError.None || state.Error.IsSessionLimitError() || state.Error.IsNetworkAdapterError())
                 {
                     return _serviceSettings.KillSwitchMode == KillSwitchMode.Hard;
                 }
