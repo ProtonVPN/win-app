@@ -22,4 +22,6 @@ namespace ProtonVPN.Client.Logic.Updates.Contracts;
 public interface IUpdatesManager
 {
     void Initialize();
+
+    void CheckForUpdate(bool isManualCheck);
 }

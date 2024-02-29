@@ -285,6 +285,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </toolkit:SettingsCard.ActionIcon>
             </toolkit:SettingsCard>
 
+            <toolkit:SettingsCard AutomationProperties.AutomationId="AboutSettingsCard"
+                                  Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
+                                  CommandParameter="ProtonVPN.Client.UI.Settings.Pages.About.AboutViewModel"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_About_Title')}"
+                                  Description="{x:Bind ViewModel.ClientVersionDescription}"
+                                  IsClickEnabled="True"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                <toolkit:SettingsCard.HeaderIcon>
+                    <pathicons:BrandProtonVpn />
+                </toolkit:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.ActionIcon>
+                    <pathicons:ChevronRight />
+                </toolkit:SettingsCard.ActionIcon>
+            </toolkit:SettingsCard>
+
             <toolkit:SettingsCard AutomationProperties.AutomationId="DeveloperToolsSettingsCard"
                                   Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
                                   CommandParameter="ProtonVPN.Client.UI.Settings.Pages.DeveloperToolsViewModel"
@@ -324,15 +339,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Style="{StaticResource SecondaryButtonStyle}" />
 
             <StackPanel Margin="0,16,0,0">
-                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
-                           Style="{StaticResource CaptionTextBlockStyle}">
-                    <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_AppVersion')}" /><Run Text=":" />
-                    <Run Text="{x:Bind ViewModel.ClientVersionDescription}" />                    
-                    <!-- TODO: Re-enable 'About' hyperlink once implemented -->
-                    <!--<Hyperlink AutomationProperties.AutomationId="AboutHyperlink">
-                        <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_About')}" />
-                    </Hyperlink>-->
-                </TextBlock>
                 <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Style="{StaticResource CaptionTextBlockStyle}">
                     <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_OperatingSystemVersion')}" /><Run Text=":" />

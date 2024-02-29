@@ -20,7 +20,6 @@
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Activation;
-using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -35,16 +34,14 @@ public class TorOverlayViewModel : OverlayViewModelBase
 
     public TorOverlayViewModel(
         ILocalizationProvider localizationProvider,
-        IMainViewNavigator viewNavigator,
         IOverlayActivator overlayActivator,
         IUrls urls,
         ILogger logger,
         IIssueReporter issueReporter)
         : base(localizationProvider,
-               viewNavigator,
-               overlayActivator,
-               logger,
-               issueReporter)
+            logger,
+            issueReporter,
+            overlayActivator)
     {
         _urls = urls;
     }

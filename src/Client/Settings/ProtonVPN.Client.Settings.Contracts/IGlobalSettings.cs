@@ -52,6 +52,5 @@ public interface IGlobalSettings
     TimeSpan ConnectedServerCheckInterval { get; set; }
     ChangeServerSettings ChangeServerSettings { get; set; }
 
-
     Dictionary<string, Dictionary<string, string?>>? LegacySettingsByUsername { get; set; }
 }

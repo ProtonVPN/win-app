@@ -25,7 +25,6 @@ using ProtonVPN.Client.HumanVerification;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models.Activation;
-using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -48,17 +47,15 @@ public partial class HumanVerificationViewModel : OverlayViewModelBase,
 
     public HumanVerificationViewModel(
         ILocalizationProvider localizationProvider,
-        IMainViewNavigator viewNavigator,
         IOverlayActivator overlayActivator,
         IEventMessageSender eventMessageSender,
         IThemeSelector themeSelector,
         ILogger logger,
         IIssueReporter issueReporter)
         : base(localizationProvider,
-               viewNavigator,
-               overlayActivator,
                logger,
-               issueReporter)
+               issueReporter,
+               overlayActivator)
     {
         _eventMessageSender = eventMessageSender;
         _themeSelector = themeSelector;

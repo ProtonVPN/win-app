@@ -34,6 +34,9 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Update
         public bool New { get; set; }
 
         [DataMember(Order = 4)]
+        public string ReleaseDate { get; set; }
+
+        [DataMember(Order = 5)]
         public string[] ChangeLog { get; set; }
     }
 }

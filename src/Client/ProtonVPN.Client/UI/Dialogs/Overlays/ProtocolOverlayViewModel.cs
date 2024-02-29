@@ -33,6 +33,7 @@ namespace ProtonVPN.Client.UI.Dialogs.Overlays;
 
 public partial class ProtocolOverlayViewModel : OverlayViewModelBase, IEventMessageReceiver<SettingChangedMessage>
 {
+    private readonly IViewNavigator _viewNavigator;
     private readonly ISettings _settings;
     private readonly IUrls _urls;
 
@@ -49,11 +50,11 @@ public partial class ProtocolOverlayViewModel : OverlayViewModelBase, IEventMess
         ILogger logger,
         IIssueReporter issueReporter)
         : base(localizationProvider,
-               viewNavigator,
-               overlayActivator,
                logger,
-               issueReporter)
+               issueReporter,
+               overlayActivator)
     {
+        _viewNavigator = viewNavigator;
         _settings = settings;
         _urls = urls;
     }
@@ -63,7 +64,7 @@ public partial class ProtocolOverlayViewModel : OverlayViewModelBase, IEventMess
     {
         CloseOverlay();
 
-        await ViewNavigator.NavigateToAsync(pageKey);
+        await _viewNavigator.NavigateToAsync(pageKey);
     }
 
     public void Receive(SettingChangedMessage message)

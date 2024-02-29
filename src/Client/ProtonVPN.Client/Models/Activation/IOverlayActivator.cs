@@ -35,10 +35,10 @@ public interface IOverlayActivator
 
     Task ShowOverlayAsync(string overlayKey, Window? rootWindow = null);
 
-    void CloseOverlay<TOverlayViewModel>(Window? rootWindow = null)
+    void CloseOverlay<TOverlayViewModel>()
         where TOverlayViewModel : OverlayViewModelBase;
 
-    void CloseOverlay(string overlayKey, Window? rootWindow = null);
+    void CloseOverlay(string overlayKey);
 
-    void CloseAllOverlays(Window? rootWindow = null);
+    void CloseAllOverlays();
 }

@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Contracts.ViewModels;
 
 namespace ProtonVPN.Client.Models.Navigation;

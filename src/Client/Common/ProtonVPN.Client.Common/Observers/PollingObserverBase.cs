@@ -23,7 +23,7 @@ using Timer = System.Timers.Timer;
 
 namespace ProtonVPN.Client.Common.Observers;
 
-public abstract class PollingObserverBase : ObserverBase, IObserver
+public abstract class PollingObserverBase : ObserverBase
 {
     private readonly Timer _timer;
 
@@ -31,7 +31,7 @@ public abstract class PollingObserverBase : ObserverBase, IObserver
 
     protected bool IsTimerEnabled => _timer.Enabled;
 
-    public PollingObserverBase(ILogger logger, IIssueReporter issueReporter)
+    protected PollingObserverBase(ILogger logger, IIssueReporter issueReporter)
         : base(logger, issueReporter)
     {
         _timer = new Timer

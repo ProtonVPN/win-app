@@ -64,6 +64,7 @@ namespace ProtonVPN.Update.Releases
                             ChangeLog = release.ChangeLog,
                             EarlyAccess = isEarlyAccess,
                             File = release.File,
+                            ReleaseDate = release.ReleaseDate,
                             New = version > _currentVersion,
                             Version = version,
                         };

@@ -30,6 +30,8 @@ namespace ProtonVPN.Update
 
         bool New { get; }
 
+        DateTimeOffset? ReleaseDate { get; }
+
         IReadOnlyList<string> ChangeLog { get; }
     }
 }

@@ -70,6 +70,9 @@
         <None Update="appsettings.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <Page Update="UI\Update\UpdateBoxComponent.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
         <Page Update="UI\Home\ConnectionCard\Overlays\ChangeServerOverlayDialog.xaml">
           <Generator>MSBuild:Compile</Generator>
         </Page>
@@ -200,6 +203,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <None Remove="UI\Settings\Pages\About\AboutPage.xaml" />
         <None Remove="Assets\protonvpn.ico" />
         <None Remove="UI\Account\AccountComponent.xaml" />
         <None Remove="UI\Countries\Controls\CountryFeatureTitleControl.xaml" />
@@ -250,8 +254,10 @@
         <None Remove="UI\ReportIssue\Steps\CategorySelectionPage.xaml" />
         <None Remove="UI\ReportIssue\Steps\ContactFormPage.xaml" />
         <None Remove="UI\ReportIssue\Steps\QuickFixesPage.xaml" />
+        <None Remove="UI\Settings\Pages\About\LicensingPage.xaml" />
         <None Remove="UI\Settings\Pages\DeveloperToolsPage.xaml" />
         <None Remove="UI\Tray\TrayIconComponent.xaml" />
+        <None Remove="UI\Update\UpdateBoxComponent.xaml" />
         <None Remove="UI\Update\UpdateComponent.xaml" />
     </ItemGroup>
 

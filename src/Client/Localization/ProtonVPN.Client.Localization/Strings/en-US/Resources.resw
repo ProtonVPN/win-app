@@ -2374,4 +2374,37 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges" xml:space="preserve">
     <value>Get unlimited server changes with VPN Plus.</value>
   </data>
+  <data name="Settings_About_CurrentVersion" xml:space="preserve">
+    <value>Current version</value>
+  </data>
+  <data name="Settings_About_Licensing" xml:space="preserve">
+    <value>Licensing</value>
+  </data>
+  <data name="Settings_About_LearnMore" xml:space="preserve">
+    <value>Learn more</value>
+  </data>
+  <data name="Settings_About_Changelog" xml:space="preserve">
+    <value>Changelog</value>
+  </data>
+  <data name="Settings_About_GetLatestVersion" xml:space="preserve">
+    <value>Get the latest version</value>
+  </data>
+  <data name="Settings_About_Update_Description" xml:space="preserve">
+    <value>Get the most from your VPN by updating to the latest version of the app.</value>
+  </data>
+  <data name="Settings_About_NewVersion" xml:space="preserve">
+    <value>NEW</value>
+  </data>
+  <data name="Settings_About_Title" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Settings_About_Loading" xml:space="preserve">
+    <value>Loading</value>
+  </data>
+  <data name="Settings_About_FailedToFetch" xml:space="preserve">
+    <value>Failed to load changelog information.</value>
+  </data>
+  <data name="Settings_About_TryAgain" xml:space="preserve">
+    <value>Try again</value>
+  </data>
 </root>

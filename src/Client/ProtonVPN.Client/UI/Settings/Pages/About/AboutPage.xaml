@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<Page x:Class="ProtonVPN.Client.UI.Settings.Pages.About.AboutPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+      xmlns:update="using:ProtonVPN.Client.UI.Update"
+      xmlns:models="using:ProtonVPN.Client.UI.Settings.Pages.About.Models"
+      NavigationCacheMode="Required"
+      xmlns:sys="using:System"
+      x:DefaultBindMode="OneWay"
+      mc:Ignorable="d">
+
+    <custom:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
+                               CanContentScroll="False"
+                               IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
+                               IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}">
+
+        <custom:PageContentControl.PageHeader>
+            <TextBlock Text="{x:Bind ViewModel.Title}"
+                       Style="{StaticResource SubtitleTextBlockStyle}"
+                       TextWrapping="Wrap" />
+        </custom:PageContentControl.PageHeader>
+
+        <Grid Margin="0,4,0,-24"
+              RowDefinitions="Auto,*">
+            <StackPanel Grid.Row="0">
+                <Grid ColumnDefinitions="Auto,*"
+                      ColumnSpacing="16">
+                    <Image Grid.Column="0"
+                           Source="{StaticResource ProtonVpnOnApplicationIconSource}"
+                           Width="48"
+                           Height="48" />
+                    <Grid Grid.Column="1"
+                          ColumnDefinitions="*,*"
+                          RowDefinitions="36,36">
+                        <TextBlock Grid.Column="0"
+                                   Grid.Row="0"
+                                   VerticalAlignment="Center"
+                                   Style="{ThemeResource BodyTextBlockStyle}"
+                                   Foreground="{ThemeResource TextWeakColorBrush}"
+                                   Text="{x:Bind ViewModel.Localizer.Get('Settings_About_CurrentVersion')}" />
+                        <TextBlock Grid.Column="1"
+                                   Grid.Row="0"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"
+                                   Style="{ThemeResource BodyStrongTextBlockStyle}"
+                                   Text="{x:Bind ViewModel.ClientVersion}" />
+                        <TextBlock Grid.Column="0"
+                                   Grid.Row="2"
+                                   VerticalAlignment="Center"
+                                   Style="{ThemeResource BodyTextBlockStyle}"
+                                   Foreground="{ThemeResource TextWeakColorBrush}"
+                                   Text="{x:Bind ViewModel.Localizer.Get('Settings_About_Licensing')}" />
+                        <custom:GhostButton Grid.Column="1"
+                                            Grid.Row="2"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Right"
+                                            Style="{StaticResource PrimaryGhostButtonStyle}"
+                                            Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
+                                            CommandParameter="ProtonVPN.Client.UI.Settings.Pages.About.LicensingViewModel"
+                                            Content="{x:Bind ViewModel.Localizer.Get('Settings_About_LearnMore')}" />
+                    </Grid>
+                </Grid>
+
+                <update:UpdateBoxComponent />
+
+                <TextBlock Margin="0,32,0,8"
+                           Style="{ThemeResource SubtitleTextBlockStyle}"
+                           Text="{x:Bind ViewModel.Localizer.Get('Settings_About_Changelog')}" />
+
+                <Grid ColumnDefinitions="Auto,*"
+                      ColumnSpacing="8"
+                      VerticalAlignment="Center"
+                      Margin="0,16,0,0"
+                      Visibility="{x:Bind ViewModel.IsToShowLoadingComponent, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <ProgressRing Grid.Column="0"
+                                  Width="16"
+                                  Height="16"
+                                  VerticalAlignment="Center"
+                                  IsActive="{x:Bind ViewModel.IsToShowLoadingComponent}" />
+                    <TextBlock Grid.Column="1"
+                               Style="{ThemeResource BodyStrongTextBlockStyle}"
+                               Text="{x:Bind ViewModel.Localizer.Get('Settings_About_Loading')}" />
+                </Grid>
+
+                <Grid ColumnDefinitions="Auto,*"
+                      ColumnSpacing="8"
+                      Margin="0,16,0,0"
+                      Visibility="{x:Bind ViewModel.IsToShowErrorComponent, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBlock Grid.Column="0"
+                               VerticalAlignment="Center"
+                               Style="{ThemeResource BodyStrongTextBlockStyle}"
+                               Text="{x:Bind ViewModel.Localizer.Get('Settings_About_FailedToFetch')}" />
+                    <Button Style="{ThemeResource PrimaryButtonStyle}"
+                            Grid.Column="1"
+                            VerticalAlignment="Center"
+                            Command="{x:Bind ViewModel.TryAgainCommand, Mode=OneTime}"
+                            Content="{x:Bind ViewModel.Localizer.Get('Settings_About_TryAgain')}" />
+                </Grid>
+            </StackPanel>
+
+            <ScrollViewer Grid.Row="1"
+                          VerticalScrollBarVisibility="Auto">
+                <ItemsRepeater ItemsSource="{x:Bind ViewModel.Releases}"
+                               Margin="0,0,20,0">
+                    <ItemsRepeater.ItemTemplate>
+                        <DataTemplate x:DataType="models:Release">
+                            <StackPanel Spacing="4"
+                                        Margin="0,24,0,0">
+                                <StackPanel Orientation="Horizontal"
+                                            Spacing="4">
+                                    <TextBlock Text="{x:Bind Version}"
+                                               VerticalAlignment="Center"
+                                               Style="{ThemeResource BodyStrongTextBlockStyle}" />
+                                    <Border VerticalAlignment="Center"
+                                            BorderThickness="1"
+                                            CornerRadius="4"
+                                            Padding="6,2"
+                                            BorderBrush="{ThemeResource SignalWarningColorBrush}"
+                                            Visibility="{x:Bind NewVersionLabel, Converter={StaticResource StringVisibilityConverter}}">
+                                        <TextBlock Text="{x:Bind NewVersionLabel}"
+                                                   Style="{ThemeResource CaptionStrongTextBlockStyle}"
+                                                   Foreground="{ThemeResource SignalWarningColorBrush}" />
+                                    </Border>
+                                    <TextBlock Text="{x:Bind sys:String.Format('{0:d}', ReleaseDate)}"
+                                               VerticalAlignment="Center"
+                                               Margin="4,0,0,0"
+                                               Style="{ThemeResource CaptionTextBlockStyle}"
+                                               Foreground="{ThemeResource TextWeakColorBrush}" />
+                                </StackPanel>
+
+                                <ItemsControl ItemsSource="{x:Bind ChangeLog}"
+                                              Margin="4,0,0,0">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid ColumnDefinitions="Auto,*"
+                                                  ColumnSpacing="4">
+                                                <TextBlock Grid.Column="0"
+                                                           Style="{ThemeResource CaptionTextBlockStyle}"
+                                                           Text="•" />
+                                                <TextBlock Grid.Column="1"
+                                                           Style="{ThemeResource CaptionTextBlockStyle}"
+                                                           Text="{Binding}" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsRepeater.ItemTemplate>
+                </ItemsRepeater>
+            </ScrollViewer>
+        </Grid>
+    </custom:PageContentControl>
+</Page>

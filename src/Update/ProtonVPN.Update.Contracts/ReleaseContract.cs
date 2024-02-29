@@ -27,6 +27,8 @@ namespace ProtonVPN.Update.Contracts
 
         public bool New { get; set; }
 
+        public DateTimeOffset? ReleaseDate { get; set; }
+
         public IReadOnlyList<string> ChangeLog { get; set; } = new List<string>();
     }
 }
