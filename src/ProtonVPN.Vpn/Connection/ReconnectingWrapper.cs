@@ -260,12 +260,23 @@ namespace ProtonVPN.Vpn.Connection
 
         private VpnState FilterVpnState(VpnState state)
         {
+            if (IsToSuppressVpnState(state))
+            {
+                return null;
+            }
+
             if (ShouldBeReconnecting(state))
             {
                 return CreateReconnectingVpnState(state);
             }
 
             return state;
+        }
+
+        private bool IsToSuppressVpnState(VpnState state)
+        {
+            return (_isToReconnect || _isToConnect) &&
+                   (state.Status is VpnStatus.Disconnecting or VpnStatus.Disconnected);
         }
 
         private bool ShouldBeReconnecting(VpnState state)
