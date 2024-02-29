@@ -37,4 +37,9 @@ public static class VpnErrorExtensions
     {
         return _sessionLimitVpnErrors.Contains(error);
     }
+
+    public static bool IsNetworkAdapterError(this VpnError error)
+    {
+        return error is VpnError.TapAdapterInUseError or VpnError.NoTapAdaptersError or VpnError.TapRequiresUpdateError;
+    }
 }
