@@ -22,11 +22,9 @@
         <ProjectReference Include="..\..\ProtonVPN.Core\ProtonVPN.Core.csproj" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="DnsClient" />
         <PackageReference Include="Newtonsoft.Json" />
         <PackageReference Include="Polly" />
         <PackageReference Include="Polly.Contrib.WaitAndRetry" />
         <PackageReference Include="System.Net.Http" />
-        <PackageReference Include="Caliburn.Micro.Core" />
     </ItemGroup>
 </Project>

@@ -17,32 +17,29 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Models.Activation;
-using ProtonVPN.Client.Models.Urls;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Client.UI.Settings.Pages.About.Models;
+using ProtonVPN.Update.Contracts;
 
-namespace ProtonVPN.Client.UI.Dialogs.Overlays;
+namespace ProtonVPN.Client.UI.Settings.Pages.About;
 
-public class LatencyOverlayViewModel : OverlayViewModelBase
+public class ReleaseViewModelFactory
 {
-    private readonly IUrls _urls;
+    private readonly ILocalizationProvider _localizer;
 
-    public string LearnMoreUrl => _urls.InternetSpeedLearnMore;
-
-    public LatencyOverlayViewModel(
-        ILocalizationProvider localizationProvider,
-        ILogger logger,
-        IIssueReporter issueReporter,
-        IOverlayActivator overlayActivator, 
-        IUrls urls)
-        : base(localizationProvider,
-               logger,
-               issueReporter,
-               overlayActivator)
+    public ReleaseViewModelFactory(ILocalizationProvider localizer)
     {
-        _urls = urls;
+        _localizer = localizer;
+    }
+
+    public IReadOnlyList<Release> GetReleases(IReadOnlyList<ReleaseContract> releases)
+    {
+        return releases.Select(r => new Release
+        {
+            Version = r.Version,
+            NewVersionLabel = r.New ? _localizer.Get("Settings_About_NewVersion") : string.Empty,
+            ReleaseDate = r.ReleaseDate,
+            ChangeLog = r.ChangeLog,
+        }).ToList();
     }
 }

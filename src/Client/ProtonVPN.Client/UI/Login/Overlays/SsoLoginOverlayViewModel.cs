@@ -39,6 +39,7 @@ namespace ProtonVPN.Client.UI.Login.Overlays;
 
 public partial class SsoLoginOverlayViewModel : OverlayViewModelBase
 {
+    private readonly IViewNavigator _viewNavigator;
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly ISettings _settings;
     private readonly IConfiguration _configuration;
@@ -60,13 +61,14 @@ public partial class SsoLoginOverlayViewModel : OverlayViewModelBase
         IConfiguration configuration,
         ILogger logger,
         IIssueReporter issueReporter)
-        : base(localizationProvider, viewNavigator, overlayActivator, logger, issueReporter)
+        : base(localizationProvider, logger, issueReporter, overlayActivator)
     {
+        _viewNavigator = viewNavigator;
         _userAuthenticator = userAuthenticator;
         _settings = settings;
         _configuration = configuration;
 
-        SsoWebView = new WebView2() { VerticalAlignment = VerticalAlignment.Stretch };
+        SsoWebView = new WebView2 { VerticalAlignment = VerticalAlignment.Stretch };
 
         SsoWebView.NavigationStarting += OnNavigationStarting;
         SsoWebView.NavigationCompleted += OnNavigationCompleted;
@@ -102,8 +104,7 @@ public partial class SsoLoginOverlayViewModel : OverlayViewModelBase
         _ssoResponseToken = null;
         IsLoadingPage = true;
         await InitializeWebViewAsync(ssoChallengeToken);
-        await ShowOverlayAsync();
-
+        await OverlayActivator.ShowOverlayAsync(OverlayKey, _viewNavigator.Window);
         return await _userAuthenticator.CompleteSsoAuthAsync(_ssoResponseToken ?? string.Empty);
     }
 

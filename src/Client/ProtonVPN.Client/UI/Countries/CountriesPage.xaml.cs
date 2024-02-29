@@ -19,7 +19,6 @@
 
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Helpers;
-using ProtonVPN.Client.UI.Settings;
 
 namespace ProtonVPN.Client.UI.Countries;
 

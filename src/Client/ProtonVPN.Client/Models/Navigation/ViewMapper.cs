@@ -39,6 +39,7 @@ using ProtonVPN.Client.UI.Login.Forms;
 using ProtonVPN.Client.UI.Login.Overlays;
 using ProtonVPN.Client.UI.Gateways;
 using ProtonVPN.Client.UI.Home.ConnectionCard.Overlays;
+using ProtonVPN.Client.UI.Settings.Pages.About;
 
 namespace ProtonVPN.Client.Models.Navigation;
 
@@ -147,6 +148,8 @@ public class ViewMapper : IViewMapper
         ConfigurePage<P2PCountriesPageViewModel, P2PCountriesPage>();
         ConfigurePage<TorCountriesPageViewModel, TorCountriesPage>();
         ConfigurePage<DeveloperToolsViewModel, DeveloperToolsPage>();
+        ConfigurePage<AboutViewModel, AboutPage>();
+        ConfigurePage<LicensingViewModel, LicensingPage>();
 
         ConfigureDebugPages();
     }

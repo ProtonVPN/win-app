@@ -39,6 +39,8 @@ namespace ProtonVPN.Update.Releases
 
         public FileResponse File { get; set; }
 
+        public DateTimeOffset? ReleaseDate { get; set; }
+
         public bool Empty()
         {
             return Version.ToString() == "0.0.0" ||

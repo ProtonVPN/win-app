@@ -35,7 +35,6 @@ using ProtonVPN.Client.UI.Home.ConnectionCard.Overlays;
 using ProtonVPN.Client.UI.Home.ConnectionError;
 using ProtonVPN.Client.UI.Home.Details;
 using ProtonVPN.Client.UI.Home.Help;
-using ProtonVPN.Client.UI.Home.Map;
 using ProtonVPN.Client.UI.Home.Recents;
 using ProtonVPN.Client.UI.Home.Status;
 using ProtonVPN.Client.UI.HumanVerification;
@@ -47,6 +46,7 @@ using ProtonVPN.Client.UI.ReportIssue.Results;
 using ProtonVPN.Client.UI.ReportIssue.Steps;
 using ProtonVPN.Client.UI.Settings;
 using ProtonVPN.Client.UI.Settings.Pages;
+using ProtonVPN.Client.UI.Settings.Pages.About;
 using ProtonVPN.Client.UI.Settings.Pages.Advanced;
 using ProtonVPN.Client.UI.Tray;
 using ProtonVPN.Client.UI.Update;
@@ -115,10 +115,12 @@ public class ViewModelsModule : Module
         RegisterViewModel<ConnectionErrorViewModel>(builder);
         RegisterViewModel<DeveloperToolsViewModel>(builder);
         RegisterViewModel<UpdateViewModel>(builder);
-
+        RegisterViewModel<LicensingViewModel>(builder);
         RegisterViewModel<GalleryViewModel>(builder);
         RegisterViewModel<GalleryItemViewModel>(builder);
+
         RegisterViewModel<HumanVerificationViewModel>(builder).AutoActivate();
+        RegisterViewModel<AboutViewModel>(builder).AutoActivate();
     }
 
     private IRegistrationBuilder<TType, ConcreteReflectionActivatorData, SingleRegistrationStyle>

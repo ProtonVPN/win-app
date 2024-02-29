@@ -20,7 +20,6 @@
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Activation;
-using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
@@ -28,31 +27,23 @@ namespace ProtonVPN.Client.Contracts.ViewModels;
 
 public abstract partial class OverlayViewModelBase : ViewModelBase
 {
-    protected readonly IViewNavigator ViewNavigator;
     protected readonly IOverlayActivator OverlayActivator;
 
     protected OverlayViewModelBase(
         ILocalizationProvider localizationProvider, 
-        IViewNavigator viewNavigator, 
-        IOverlayActivator overlayActivator,
         ILogger logger,
-        IIssueReporter issueReporter)
+        IIssueReporter issueReporter,
+        IOverlayActivator overlayActivator)
         : base(localizationProvider, logger, issueReporter)
     {
-        ViewNavigator = viewNavigator;
         OverlayActivator = overlayActivator;
     }
 
-    private string OverlayKey => GetType().FullName!;
+    protected string OverlayKey => GetType().FullName!;
 
     [RelayCommand]
     public void CloseOverlay()
     {
-        OverlayActivator.CloseOverlay(OverlayKey, ViewNavigator.Window);
-    }
-
-    public async Task ShowOverlayAsync()
-    {
-        await OverlayActivator.ShowOverlayAsync(OverlayKey, ViewNavigator.Window);
+        OverlayActivator.CloseOverlay(OverlayKey);
     }
 }

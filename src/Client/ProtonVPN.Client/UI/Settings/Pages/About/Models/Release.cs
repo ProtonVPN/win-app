@@ -17,11 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Logic.Updates.Contracts;
+namespace ProtonVPN.Client.UI.Settings.Pages.About.Models;
 
-public interface IUpdatesManager
+public class Release
 {
-    void Initialize();
+    public required Version Version { get; set; }
 
-    void CheckForUpdate(bool isManualCheck);
+    public required string NewVersionLabel { get; set; }
+
+    public required DateTimeOffset? ReleaseDate { get; set; }
+
+    public required IReadOnlyList<string> ChangeLog { get; set; }
 }

@@ -65,10 +65,9 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
     private readonly IPortForwardingManager _portForwardingManager;
     private readonly Lazy<ObservableCollection<string>> _languages;
 
-
     public bool IsToShowDeveloperTools => _settings.IsDebugModeEnabled;
 
-    public string ClientVersionDescription => $"{App.APPLICATION_NAME} {AssemblyVersion.Get()}";
+    public string ClientVersionDescription => $"{Localizer.Get("Settings_AppVersion")}: {AssemblyVersion.Get()}";
     public string OperatingSystemVersionDescription => OSVersion.GetString();
 
     public ApplicationElementTheme SelectedTheme
@@ -311,6 +310,7 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
         OnPropertyChanged(nameof(VpnAcceleratorSettingsState));
         OnPropertyChanged(nameof(SelectedLanguage));
         OnPropertyChanged(nameof(SelectedTheme));
+        OnPropertyChanged(nameof(ClientVersionDescription));
     }
 
     private string? GetPortForwardingStatusMessage()

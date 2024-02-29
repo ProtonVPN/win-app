@@ -29,7 +29,6 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Models.Activation;
-using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -57,7 +56,6 @@ public partial class ChangeServerOverlayViewModel : OverlayViewModelBase,
 
     public ChangeServerOverlayViewModel(
         ILocalizationProvider localizationProvider,
-        IMainViewNavigator viewNavigator,
         IOverlayActivator overlayActivator,
         IChangeServerModerator changeServerModerator,
         IConnectionManager connectionManager,
@@ -66,10 +64,9 @@ public partial class ChangeServerOverlayViewModel : OverlayViewModelBase,
         ILogger logger,
         IIssueReporter issueReporter)
         : base(localizationProvider,
-               viewNavigator,
-               overlayActivator,
-               logger,
-               issueReporter)
+            logger,
+            issueReporter,
+            overlayActivator)
     {
         _changeServerModerator = changeServerModerator;
         _connectionManager = connectionManager;

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,11 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Logic.Updates.Contracts;
+namespace ProtonVPN.Client.UI.Update;
 
-public interface IUpdatesManager
+public sealed partial class UpdateBoxComponent
 {
-    void Initialize();
+    public UpdateViewModel ViewModel { get; }
 
-    void CheckForUpdate(bool isManualCheck);
+    public UpdateBoxComponent()
+    {
+        ViewModel = App.GetService<UpdateViewModel>();
+        InitializeComponent();
+    }
 }

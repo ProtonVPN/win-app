@@ -28,7 +28,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Button VerticalContentAlignment="Center"
             Width="Auto"
-            Height="Auto"
             HorizontalContentAlignment="Stretch"
             FontWeight="{ThemeResource BodyFontWeight}"
             AutomationProperties.AutomationId="UpdateButton"

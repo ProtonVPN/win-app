@@ -23,6 +23,7 @@ using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.UI.Dialogs;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
@@ -162,7 +163,7 @@ public class DialogActivator : WindowActivatorBase, IDialogActivator
     {
         dialog.Closed -= OnDialogClosed;
 
-        _overlayActivator.CloseAllOverlays(dialog);
+        _overlayActivator.CloseAllOverlays();
 
         _activeDialogs.Remove(dialog);
     }

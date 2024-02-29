@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml;
+using ProtonVPN.Client.Common.Observers;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
@@ -30,19 +30,20 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Update;
 using ProtonVPN.Update.Contracts;
 
 namespace ProtonVPN.Client.Logic.Updates;
 
-public class UpdatesManager : IUpdatesManager,
+public class UpdatesManager : PollingObserverBase, IUpdatesManager,
     IEventMessageReceiver<UpdateStateIpcEntity>,
     IEventMessageReceiver<ConnectionStatusChanged>,
     IEventMessageReceiver<SettingChangedMessage>
 {
     private readonly IConnectionManager _connectionManager;
     private readonly IConfiguration _config;
-    private readonly DispatcherTimer _refreshTimer;
     private readonly IEntityMapper _entityMapper;
     private readonly ISettings _settings;
     private readonly IUpdateServiceCaller _updateServiceCaller;
@@ -60,13 +61,17 @@ public class UpdatesManager : IUpdatesManager,
     private bool IsToCheckForUpdate => DateTime.UtcNow - _lastCheckTime >= _config.UpdateCheckInterval;
     private bool IsToRemindAboutUpdate => _manualCheck || DateTime.UtcNow - _lastNotifiedAt >= _config.UpdateRemindInterval;
 
+    protected override TimeSpan PollingInterval => _config.UpdateCheckInterval;
+
     public UpdatesManager(
+        ILogger logger,
+        IIssueReporter issueReporter,
         IConnectionManager connectionManager,
         IConfiguration config,
         IEntityMapper entityMapper,
         ISettings settings,
         IUpdateServiceCaller updateServiceCaller,
-        IEventMessageSender eventMessageSender)
+        IEventMessageSender eventMessageSender) : base(logger, issueReporter)
     {
         _connectionManager = connectionManager;
         _config = config;
@@ -74,17 +79,14 @@ public class UpdatesManager : IUpdatesManager,
         _settings = settings;
         _updateServiceCaller = updateServiceCaller;
         _eventMessageSender = eventMessageSender;
-
-        _refreshTimer = new() { Interval = config.UpdateCheckInterval };
-        _refreshTimer.Tick += OnRefreshTimerTick;
     }
 
-    private void OnRefreshTimerTick(object? sender, object e)
+    protected async override Task OnTriggerAsync()
     {
-        StartCheckingForUpdate(false);
+        CheckForUpdate(false);
     }
 
-    public void StartCheckingForUpdate(bool isManualCheck)
+    public void CheckForUpdate(bool isManualCheck)
     {
         _requestedManualCheck |= isManualCheck;
 
@@ -108,14 +110,18 @@ public class UpdatesManager : IUpdatesManager,
             {
                 IsUpdateAvailable = false,
             });
-            StartCheckingForUpdate(true);
+            CheckForUpdate(true);
         }
+    }
+
+    private void SendClientUpdateStateChangeMessage(ClientUpdateStateChangedMessage message)
+    {
+        _eventMessageSender.Send(message);
     }
 
     public void Initialize()
     {
-        StartCheckingForUpdate(true);
-        _refreshTimer.Start();
+        StartTimerAndTriggerOnStart();
     }
 
     public void Receive(UpdateStateIpcEntity message)
@@ -151,33 +157,22 @@ public class UpdatesManager : IUpdatesManager,
                 _requestedManualCheck = false;
             }
 
-            if (IsToSendAppUpdateStateChangeMessage(state))
+            bool isUpdateAvailable = state.IsReady || (IsAppReadyForUpdateOrUpdated(state.Status) && IsToRemindAboutUpdate);
+            _lastNotifiedAt = DateTime.UtcNow;
+
+            SendClientUpdateStateChangeMessage(new ClientUpdateStateChangedMessage
             {
-                _lastNotifiedAt = DateTime.UtcNow;
-                SendClientUpdateStateChangeMessage(new ClientUpdateStateChangedMessage
-                {
-                    State = state,
-                    IsUpdateAvailable = true,
-                });
-            }
+                State = state,
+                IsUpdateAvailable = isUpdateAvailable,
+            });
 
             _status = state.Status;
         }
     }
 
-    private bool IsToSendAppUpdateStateChangeMessage(AppUpdateStateContract state)
-    {
-        return IsAppReadyForUpdateOrUpdated(state.Status) && IsToRemindAboutUpdate;
-    }
-
     private bool IsAppReadyForUpdateOrUpdated(AppUpdateStatus status)
     {
         return status is AppUpdateStatus.Ready or AppUpdateStatus.AutoUpdated or AppUpdateStatus.AutoUpdateFailed;
-    }
-
-    private void SendClientUpdateStateChangeMessage(ClientUpdateStateChangedMessage message)
-    {
-        _eventMessageSender.Send(message);
     }
 
     public void Receive(ConnectionStatusChanged message)
@@ -191,7 +186,7 @@ public class UpdatesManager : IUpdatesManager,
         if (_feedType != feedType)
         {
             _feedType = feedType;
-            StartCheckingForUpdate(true);
+            CheckForUpdate(true);
         }
     }
 }

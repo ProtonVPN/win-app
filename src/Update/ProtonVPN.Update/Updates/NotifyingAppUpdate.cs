@@ -202,6 +202,7 @@ namespace ProtonVPN.Update.Updates
             {
                 ChangeLog = release.ChangeLog,
                 EarlyAccess = release.EarlyAccess,
+                ReleaseDate = release.ReleaseDate,
                 New = release.New,
                 Version = release.Version
             }).ToList();

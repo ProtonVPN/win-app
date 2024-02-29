@@ -36,7 +36,7 @@ public class OverlayActivator : WindowActivatorBase, IOverlayActivator
     private readonly IViewMapper _viewMapper;
     private readonly ISettings _settings;
 
-    private List<ActiveOverlay> _activeOverlays = new();
+    private readonly List<ActiveOverlay> _activeOverlays = new();
 
     public OverlayActivator(ILogger logger, IViewMapper viewMapper, IThemeSelector themeSelector, ISettings settings)
         : base(logger, themeSelector)
@@ -109,26 +109,24 @@ public class OverlayActivator : WindowActivatorBase, IOverlayActivator
         return ShowOverlayAsync(overlayType, rootWindow);
     }
 
-    public void CloseOverlay<TOverlayViewModel>(Window? rootWindow = null)
+    public void CloseOverlay<TOverlayViewModel>()
         where TOverlayViewModel : OverlayViewModelBase
     {
         Type overlayType = _viewMapper.GetOverlayType<TOverlayViewModel>();
 
-        CloseOverlay(overlayType, rootWindow);
+        CloseOverlay(overlayType);
     }
 
-    public void CloseOverlay(string overlayKey, Window? rootWindow = null)
+    public void CloseOverlay(string overlayKey)
     {
         Type overlayType = _viewMapper.GetOverlayType(overlayKey);
 
-        CloseOverlay(overlayType, rootWindow);
+        CloseOverlay(overlayType);
     }
 
-    public void CloseAllOverlays(Window? rootWindow = null)
+    public void CloseAllOverlays()
     {
-        rootWindow ??= App.MainWindow;
-
-        foreach (ContentDialog overlay in _activeOverlays.Where(o => o.BelongsTo(rootWindow)).Select(o => o.Dialog).ToList())
+        foreach (ContentDialog overlay in _activeOverlays.Select(o => o.Dialog).ToList())
         {
             overlay.Hide();
         }
@@ -171,13 +169,11 @@ public class OverlayActivator : WindowActivatorBase, IOverlayActivator
         }
     }
 
-    private void CloseOverlay(Type overlayType, Window? rootWindow)
+    private void CloseOverlay(Type overlayType)
     {
         try
         {
-            rootWindow ??= App.MainWindow;
-
-            ActiveOverlay? overlay = _activeOverlays.FirstOrDefault(o => o.BelongsTo(rootWindow) && o.IsOfType(overlayType));
+            ActiveOverlay? overlay = _activeOverlays.FirstOrDefault(o => o.IsOfType(overlayType));
             if (overlay == null)
             {
                 Logger.Info<AppLog>($"Overlay '{overlayType}' is not currently active");

@@ -19,30 +19,21 @@
 
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Models.Activation;
-using ProtonVPN.Client.Models.Urls;
+using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
-namespace ProtonVPN.Client.UI.Dialogs.Overlays;
+namespace ProtonVPN.Client.UI.Settings.Pages.About;
 
-public class LatencyOverlayViewModel : OverlayViewModelBase
+public class LicensingViewModel : PageViewModelBase<IMainViewNavigator>
 {
-    private readonly IUrls _urls;
+    public override string Title => Localizer.Get("Settings_About_Licensing");
 
-    public string LearnMoreUrl => _urls.InternetSpeedLearnMore;
-
-    public LatencyOverlayViewModel(
+    public LicensingViewModel(
+        IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
         ILogger logger,
-        IIssueReporter issueReporter,
-        IOverlayActivator overlayActivator, 
-        IUrls urls)
-        : base(localizationProvider,
-               logger,
-               issueReporter,
-               overlayActivator)
+        IIssueReporter issueReporter) : base(viewNavigator, localizationProvider, logger, issueReporter)
     {
-        _urls = urls;
     }
 }
