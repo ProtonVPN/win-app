@@ -21,5 +21,5 @@ namespace ProtonVPN.Client.Settings.Contracts.Migrations;
 
 public interface IUserSettingsMigrator
 {
-    Task MigrateAsync();
+    void Migrate();
 }

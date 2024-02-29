@@ -410,7 +410,7 @@ public class UserAuthenticator : IUserAuthenticator
             await _serversUpdater.UpdateAsync();
         }
 
-        await _userSettingsMigrator.MigrateAsync();
+        _userSettingsMigrator.Migrate();
     }
 
     private void SaveUnauthSessionDetails(UnauthSessionResponse response)

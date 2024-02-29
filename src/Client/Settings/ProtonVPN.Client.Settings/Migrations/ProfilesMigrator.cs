@@ -25,7 +25,6 @@ using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
-using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Migrations;
 
 namespace ProtonVPN.Client.Settings.Migrations;
@@ -36,15 +35,13 @@ public class ProfilesMigrator : IProfilesMigrator
     private const string FASTEST_PROFILE_NAME = "Fastest";
     private const string RANDOM_PROFILE_NAME = "Random";
 
-    private readonly ISettings _settings;
     private readonly IServersLoader _serversLoader;
     private readonly IRecentConnectionsProvider _recentConnectionsProvider;
 
-    public ProfilesMigrator(ISettings settings,
+    public ProfilesMigrator(
         IServersLoader serversLoader,
         IRecentConnectionsProvider recentConnectionsProvider)
     {
-        _settings = settings;
         _serversLoader = serversLoader;
         _recentConnectionsProvider = recentConnectionsProvider;
     }
@@ -82,7 +79,7 @@ public class ProfilesMigrator : IProfilesMigrator
 
     private IConnectionIntent GetConnectionIntent(LegacyProfile profile)
     {
-        ILocationIntent? locationIntent = null;
+        ILocationIntent? locationIntent;
         IFeatureIntent? featureIntent = null;
 
         Server? server = string.IsNullOrEmpty(profile.ServerId)

@@ -92,7 +92,7 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider,
     private void SaveRecentsToFile()
     {
         List<IRecentConnection> recentConnections = _recentConnections.ToList();
-        Task.Run(() => { _recentsFileReaderWriter.Save(recentConnections); }).ConfigureAwait(false);
+        Task.Run(() => _recentsFileReaderWriter.Save(recentConnections)).ConfigureAwait(false);
     }
 
     private void BroadcastRecentConnectionsChanged()
@@ -246,7 +246,8 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider,
             {
                 _recentConnections = recentConnections;
             }
-            SaveRecentsAndBroadcastChanges();
+
+            _recentsFileReaderWriter.Save(recentConnections);
         }
     }
 

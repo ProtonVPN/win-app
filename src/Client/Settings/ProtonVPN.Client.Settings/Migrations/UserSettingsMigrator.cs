@@ -47,7 +47,7 @@ public class UserSettingsMigrator : IUserSettingsMigrator
         _profilesMigrator = profilesMigrator;
     }
 
-    public async Task MigrateAsync()
+    public void Migrate()
     {
         string? username = _settings.Username;
         if (_settings.IsUserSettingsMigrationDone || string.IsNullOrWhiteSpace(username))
@@ -66,7 +66,7 @@ public class UserSettingsMigrator : IUserSettingsMigrator
             else
             {
                 _logger.Info<AppLog>($"Migrating user settings for username '{username}'.");
-                await MigrateUserSettingsAsync(userSettingsPair.Value.Value);
+                MigrateUserSettings(userSettingsPair.Value.Value);
                 _logger.Info<AppLog>($"Finished migrating user settings for username '{username}'. Removing previous settings.");
                 RemoveMigratedUserSettings(settingsByUsername, userSettingsPair.Value.Key);
                 _logger.Info<AppLog>($"Removed previous settings.");
@@ -127,7 +127,7 @@ public class UserSettingsMigrator : IUserSettingsMigrator
         }
     }
 
-    private async Task MigrateUserSettingsAsync(Dictionary<string, string?> userSettings)
+    private void MigrateUserSettings(Dictionary<string, string?> userSettings)
     {
         MigrateBoolUserSetting(userSettings, nameof(IUserSettings.IsNotificationEnabled), val => { _settings.IsNotificationEnabled = val; });
         MigrateBoolUserSetting(userSettings, nameof(IUserSettings.IsVpnAcceleratorEnabled), val => { _settings.IsVpnAcceleratorEnabled = val; });
@@ -164,7 +164,7 @@ public class UserSettingsMigrator : IUserSettingsMigrator
         MigrateOpenVpnAdapter(userSettings);
         MigrateVpnProtocol(userSettings);
 
-        await MigrateProfilesAndQuickConnectProfileIdAsync(userSettings);
+        MigrateProfilesAndQuickConnectProfileId(userSettings);
     }
 
     private void MigrateBoolUserSetting(Dictionary<string, string?> userSettings, string settingName, Action<bool> setter)
@@ -268,7 +268,7 @@ public class UserSettingsMigrator : IUserSettingsMigrator
         }
     }
 
-    private async Task MigrateProfilesAndQuickConnectProfileIdAsync(Dictionary<string, string?> userSettings)
+    private void MigrateProfilesAndQuickConnectProfileId(Dictionary<string, string?> userSettings)
     {
         userSettings.TryGetValue(GlobalSettingsMigrator.QUICK_CONNECT_PROFILE_ID_SETTING_KEY, out string? quickConnectProfileId);
 
