@@ -26,6 +26,7 @@ using System.Text;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
+using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.ApiClient;
 public class LokiApiClient
@@ -33,27 +34,32 @@ public class LokiApiClient
     private readonly string _lokiPushEndpoint = Environment.GetEnvironmentVariable("LOKI_ENDPOINT");
     private HttpClient _httpClient = new HttpClient();
 
+    private JObject GetMetadata(string runId)
+    {
+        return new JObject(
+            new List<JProperty>
+            {
+                new JProperty("id", runId),
+                new JProperty("platform", "Windows"),
+                new JProperty("environment", "prod"),
+                new JProperty("appVersion", TestEnvironment.GetAppVersion())
+            });
+    }
+
     public async Task PushCollectedMetricsAsync(List<JProperty> metrics, string runId, string labelValue)
     {
-        List<JProperty> metadata = new List<JProperty>
-        {
-            new JProperty("id", runId.ToString()),
-            new JProperty("platform", "Windows")
-        };
-
-        JArray fullMetrics = BaseMetricsJsonBody(metadata, metrics);
+        JArray fullMetrics = BaseMetricsJsonBody(GetMetadata(runId), metrics);
         JObject requestBody = BaseLokiRequestJsonBody(fullMetrics, labelValue);
-
         await PostMetricsAsync(requestBody);
     }
 
     public async Task PushLogsAsync(string logsPath, string runId, string lokiLabel)
     {
-        JObject requestBody = AddLogsToRequestJson(logsPath, runId, lokiLabel);
+        JObject requestBody = AddLogsToRequestJson(logsPath, lokiLabel, GetMetadata(runId));
         await PostMetricsAsync(requestBody);
     }
 
-    private JObject AddLogsToRequestJson(string pathToLogs, string runId, string lokiLabel)
+    private JObject AddLogsToRequestJson(string pathToLogs, string lokiLabel, JObject metadata)
     {
         List<JArray> logs = new List<JArray>();
         FileStream fileStream = new FileStream(pathToLogs, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
@@ -64,10 +70,9 @@ public class LokiApiClient
             {
                 List<string> logLines = new List<string>(line.Split(" | "));
                 string timestamp = ConvertTimeToUnixNanosecond(logLines.First());
-                logLines.Insert(0, $" | {runId}");
-                logLines.RemoveAt(1);
+                logLines.RemoveAt(0);
                 string formattedLogs = string.Join(" | ", logLines);
-                JArray element = new JArray(timestamp, formattedLogs);
+                JArray element = new JArray(timestamp, formattedLogs, metadata);
                 logs.Add(element);
             }
         }
@@ -106,7 +111,7 @@ public class LokiApiClient
             new JProperty("streams", new JArray(
                 new JObject(
                     new JProperty("stream", new JObject(
-                        new JProperty("slo", labelValue)
+                        new JProperty("sli", labelValue)
                     )),
                     new JProperty("values", new JArray(
                         data
@@ -115,15 +120,12 @@ public class LokiApiClient
         ));
     }
 
-    private JArray BaseMetricsJsonBody(List<JProperty> metadata, object metric)
+    private JArray BaseMetricsJsonBody(JObject metadata, object metric)
     {
         return new JArray(
-                GetCurrentUnixTimeInNanoseconds().ToString(),
-                new JObject(
-                    new JProperty("metadata",
-                        new JObject(metadata)),
-                    new JProperty("metrics",
-                        new JObject(metric))).ToString());
+            GetCurrentUnixTimeInNanoseconds().ToString(),
+            new JObject(metric).ToString(),
+            metadata);
     }
 
     private long GetCurrentUnixTimeInNanoseconds()

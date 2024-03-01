@@ -19,12 +19,23 @@
 
 using System;
 using System.IO;
+using Microsoft.Win32;
 using ProtonVPN.Common.Core.Helpers;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
 
 public class TestEnvironment : TestSession
 {
+    public static string GetAppVersion()
+    {
+        string registryKeyPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Proton VPN_is1";
+        RegistryKey localMachineRegistry = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
+        RegistryKey key = localMachineRegistry.OpenSubKey(registryKeyPath);
+
+        object displayVersionObject = key?.GetValue("DisplayVersion");
+        return displayVersionObject?.ToString();
+    }
+
     public static bool AreTestsRunningLocally()
     {
         bool isLocalEnvironment = false;
