@@ -22,6 +22,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
+             xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:icons="using:ProtonVPN.Client.Common.UI.Assets.Icons"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -39,25 +40,25 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
               Style="{StaticResource GhostExpanderStyle}"
               Visibility="{x:Bind ViewModel.HasRecentConnections}">
         <ScrollViewer MaxHeight="180"
-                      Margin="0,0,-8,0"
-                      Padding="0,0,8,0"
+                      Margin="0,0,-12,0"
+                      Padding="0,0,12,0"
                       AutomationProperties.AutomationId="RecentsPane"
                       ScrollViewer.VerticalScrollBarVisibility="Auto">
             <ItemsControl IsTabStop="False"
                           ItemsSource="{x:Bind ViewModel.RecentConnections}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate x:DataType="recents:RecentItemViewModel">
-                        <controls:DualCommandsRowControl Padding="12,0"
-                                                         IsRowContentDisabled="{x:Bind IsServerUnderMaintenance}"
-                                                         PrimaryCommand="{x:Bind ToggleConnectionCommand}"
-                                                         PrimaryCommandText="{x:Bind PrimaryCommandText}"
-                                                         SecondaryCommandToolTip="{x:Bind SecondaryCommandToolTip}">
+                        <custom:DualCommandsRow Padding="12,0"
+                                                IsContentEnabled="{x:Bind IsServerAvailable}"
+                                                PrimaryCommand="{x:Bind ToggleConnectionCommand}"
+                                                PrimaryCommandContent="{x:Bind PrimaryCommandText}"
+                                                SecondaryCommandToolTip="{x:Bind SecondaryCommandToolTip}">
 
-                            <controls:DualCommandsRowControl.SecondaryCommandIcon>
+                            <custom:DualCommandsRow.SecondaryCommandIcon>
                                 <pathicons:ThreeDotsVertical />
-                            </controls:DualCommandsRowControl.SecondaryCommandIcon>
+                            </custom:DualCommandsRow.SecondaryCommandIcon>
 
-                            <controls:DualCommandsRowControl.SecondaryCommandFlyout>
+                            <custom:DualCommandsRow.SecondaryCommandFlyout>
                                 <MenuFlyout Closing="OnActionsMenuFlyoutClosing"
                                             Placement="BottomEdgeAlignedRight">
                                     <MenuFlyoutItem Command="{x:Bind PinCommand}"
@@ -81,7 +82,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         </MenuFlyoutItem.Icon>
                                     </MenuFlyoutItem>
                                 </MenuFlyout>
-                            </controls:DualCommandsRowControl.SecondaryCommandFlyout>
+                            </custom:DualCommandsRow.SecondaryCommandFlyout>
 
                             <Grid HorizontalAlignment="Left"
                                   ColumnSpacing="8">
@@ -154,14 +155,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                                 <pathicons:Wrench Grid.Column="4"
                                                   Foreground="{ThemeResource TextWeakColorBrush}"
-                                                  Visibility="{x:Bind IsServerUnderMaintenance}" />
+                                                  Visibility="{x:Bind IsServerAvailable, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
 
                                 <icons:ActiveDot Grid.Column="5"
                                                  Width="16"
                                                  Height="16"
                                                  Visibility="{x:Bind IsActiveConnection, Converter={StaticResource BooleanToVisibilityConverter}}" />
                             </Grid>
-                        </controls:DualCommandsRowControl>
+                        </custom:DualCommandsRow>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

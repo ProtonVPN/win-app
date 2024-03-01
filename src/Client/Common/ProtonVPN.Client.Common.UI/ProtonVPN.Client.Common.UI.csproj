@@ -582,6 +582,7 @@
         <None Remove="Assets\Icons\UnprotectedLock.xaml" />
         <None Remove="Assets\Illustrations\Dark\free-countries.svg" />
         <None Remove="Assets\Illustrations\Dark\product-logo.svg" />
+        <None Remove="Assets\Illustrations\Dark\vpn-plus.svg" />
         <None Remove="Assets\Illustrations\Dark\welcome.png" />
         <None Remove="Assets\Illustrations\free-connection-flags.svg" />
         <None Remove="Assets\Illustrations\kill-switch-off.png" />
@@ -590,6 +591,7 @@
         <None Remove="Assets\Illustrations\latency.png" />
         <None Remove="Assets\Illustrations\Light\free-countries.svg" />
         <None Remove="Assets\Illustrations\Light\product-logo.svg" />
+        <None Remove="Assets\Illustrations\Light\vpn-plus.svg" />
         <None Remove="Assets\Illustrations\Light\welcome.png" />
         <None Remove="Assets\Illustrations\netshield-off.png" />
         <None Remove="Assets\Illustrations\netshield-on.png" />
@@ -632,6 +634,7 @@
         <None Remove="Styles\Controls\ComboBoxStyles.xaml" />
         <None Remove="Styles\Controls\ConnectionCardStyles.xaml" />
         <None Remove="Styles\Controls\ContentDialogStyles.xaml" />
+        <None Remove="Styles\Controls\DualCommandsRowStyles.xaml" />
         <None Remove="Styles\Controls\ExpanderStyles.xaml" />
         <None Remove="Styles\Controls\FlyoutStyles.xaml" />
         <None Remove="Styles\Controls\GhostButtonStyles.xaml" />
@@ -1627,6 +1630,9 @@
         <Content Update="Assets\Illustrations\Dark\product-logo.svg">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Illustrations\Dark\vpn-plus.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Illustrations\Dark\welcome.png">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -1650,6 +1656,9 @@
         </Content>
         <Content Update="Assets\Illustrations\Light\product-logo.svg">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Light\vpn-plus.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\Light\welcome.png">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1713,6 +1722,11 @@
     </ItemGroup>
     <ItemGroup>
       <Page Update="Styles\Controls\ConnectionCardStyles.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Styles\Controls\DualCommandsRowStyles.xaml">
         <Generator>MSBuild:Compile</Generator>
       </Page>
     </ItemGroup>
