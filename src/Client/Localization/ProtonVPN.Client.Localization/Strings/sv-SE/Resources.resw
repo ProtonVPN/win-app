@@ -1957,6 +1957,39 @@ stoppade</value>
   <data name="Settings_About">
     <value>Om</value>
   </data>
+  <data name="Settings_About_Changelog">
+    <value>Ändringslogg</value>
+  </data>
+  <data name="Settings_About_CurrentVersion">
+    <value>Nuvarande version</value>
+  </data>
+  <data name="Settings_About_FailedToFetch">
+    <value>Misslyckades att ladda information om ändringslogg.</value>
+  </data>
+  <data name="Settings_About_GetLatestVersion">
+    <value>Skaffa senaste versionen</value>
+  </data>
+  <data name="Settings_About_LearnMore">
+    <value>Lär dig mer</value>
+  </data>
+  <data name="Settings_About_Licensing">
+    <value>Licensiering</value>
+  </data>
+  <data name="Settings_About_Loading">
+    <value>Laddar in</value>
+  </data>
+  <data name="Settings_About_NewVersion">
+    <value>NYTT</value>
+  </data>
+  <data name="Settings_About_Title">
+    <value>Om</value>
+  </data>
+  <data name="Settings_About_TryAgain">
+    <value>Försök igen</value>
+  </data>
+  <data name="Settings_About_Update_Description">
+    <value>Få ut det mesta av ditt VPN genom att uppdatera till den senaste versionen av appen.</value>
+  </data>
   <data name="Settings_AppVersion">
     <value>App-version</value>
   </data>
@@ -2123,6 +2156,9 @@ stoppade</value>
   </data>
   <data name="Settings_Features_PortForwarding_Footer">
     <value>För att använda vidarebefordran av port, anslut till en server som stöder P2P.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Loading">
+    <value>Laddar in …</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications">
     <value>Aviseringar</value>

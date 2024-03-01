@@ -1336,10 +1336,10 @@
     <value>Por enquanto, você alcançou o número máximo de mudanças de servidor grátis</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
-    <value>Proton Free automatically connects you to the fastest available free server from our {0} free country. This will normally be the closest server to your location.</value>
+    <value>Proton Free conecta você automaticamente ao servidor gratuito mais rápido disponível em nosso {0} país gratuito. Este normalmente será o servidor mais próximo da sua localização</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
-    <value>O Proton Grátis conecta automaticamente você ao servidor gratuito mais rápido disponível em nossos {0} países gratuitos. Normalmente, este será o servidor mais próximo à sua localização.</value>
+    <value>Proton Free conecta você automaticamente ao servidor gratuito mais rápido disponível em nossos {0} países gratuitos. Normalmente, este será o servidor mais próximo da sua localização.</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_One">
     <value>País com servidor gratuito ({0})</value>
@@ -1955,6 +1955,39 @@ parados</value>
   <data name="Settings_About">
     <value>Sobre</value>
   </data>
+  <data name="Settings_About_Changelog">
+    <value>Registro de alterações</value>
+  </data>
+  <data name="Settings_About_CurrentVersion">
+    <value>Versão atual</value>
+  </data>
+  <data name="Settings_About_FailedToFetch">
+    <value>Não foi possível carregar as informações do registro de alterações.</value>
+  </data>
+  <data name="Settings_About_GetLatestVersion">
+    <value>Obtenha a versão mais recente</value>
+  </data>
+  <data name="Settings_About_LearnMore">
+    <value>Saiba mais</value>
+  </data>
+  <data name="Settings_About_Licensing">
+    <value>Licenciamento</value>
+  </data>
+  <data name="Settings_About_Loading">
+    <value>Carregando</value>
+  </data>
+  <data name="Settings_About_NewVersion">
+    <value>NOVO</value>
+  </data>
+  <data name="Settings_About_Title">
+    <value>Sobre</value>
+  </data>
+  <data name="Settings_About_TryAgain">
+    <value>Tentar novamente</value>
+  </data>
+  <data name="Settings_About_Update_Description">
+    <value>Atualize o aplicativo para a versão mais recente para aproveitar ao máximo sua VPN.</value>
+  </data>
   <data name="Settings_AppVersion">
     <value>Versão do aplicativo</value>
   </data>
@@ -2121,6 +2154,9 @@ parados</value>
   </data>
   <data name="Settings_Features_PortForwarding_Footer">
     <value>Para usar o encaminhamento de porta, conecte-se a um servidor que suporte P2P.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Loading">
+    <value>Carregando...</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications">
     <value>Notificações</value>

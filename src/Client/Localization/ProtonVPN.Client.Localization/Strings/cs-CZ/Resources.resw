@@ -1351,13 +1351,13 @@
     <value>Proton Free vás automaticky připojí k nejrychlejšímu dostupnému bezplatnému serveru z naší {0} bezplatné země. Obvykle se jedná o server, který je nejblíže vaší poloze.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Few">
-    <value>Proton Free automatically connects you to the fastest available free server from our {0} free countries. This will normally be the closest server to your location.</value>
+    <value>Proton Free vás automaticky připojí k nejrychlejšímu dostupnému bezplatnému serveru z našich {0} bezplatných zemí. Obvykle se jedná o server, který je nejblíže vaší poloze.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Many">
-    <value>Proton Free automatically connects you to the fastest available free server from our {0} free countries. This will normally be the closest server to your location.</value>
+    <value>Proton Free vás automaticky připojí k nejrychlejšímu dostupnému bezplatnému serveru z našich {0} bezplatných zemí. Obvykle se jedná o server, který je nejblíže vaší poloze.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
-    <value>Proton Free automatically connects you to the fastest available free server from our {0} free countries. This will normally be the closest server to your location.</value>
+    <value>Proton Free vás automaticky připojí k nejrychlejšímu dostupnému bezplatnému serveru z našich {0} bezplatných zemí. Obvykle se jedná o server, který je nejblíže vaší poloze.</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_One">
     <value>Země se servery Free ({0})</value>
@@ -1981,6 +1981,39 @@ zastaveno</value>
   <data name="Settings_About">
     <value>O aplikaci</value>
   </data>
+  <data name="Settings_About_Changelog">
+    <value>Changelog</value>
+  </data>
+  <data name="Settings_About_CurrentVersion">
+    <value>Současná verze</value>
+  </data>
+  <data name="Settings_About_FailedToFetch">
+    <value>Failed to load changelog information.</value>
+  </data>
+  <data name="Settings_About_GetLatestVersion">
+    <value>Get the latest version</value>
+  </data>
+  <data name="Settings_About_LearnMore">
+    <value>Learn more</value>
+  </data>
+  <data name="Settings_About_Licensing">
+    <value>Licensing</value>
+  </data>
+  <data name="Settings_About_Loading">
+    <value>Loading</value>
+  </data>
+  <data name="Settings_About_NewVersion">
+    <value>NEW</value>
+  </data>
+  <data name="Settings_About_Title">
+    <value>About</value>
+  </data>
+  <data name="Settings_About_TryAgain">
+    <value>Try again</value>
+  </data>
+  <data name="Settings_About_Update_Description">
+    <value>Get the most from your VPN by updating to the latest version of the app.</value>
+  </data>
   <data name="Settings_AppVersion">
     <value>Verze aplikace</value>
   </data>
@@ -2147,6 +2180,9 @@ zastaveno</value>
   </data>
   <data name="Settings_Features_PortForwarding_Footer">
     <value>Chcete-li použít přesměrování portů, připojte se k serveru, který podporuje P2P.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Loading">
+    <value>Loading...</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications">
     <value>Upozornění</value>

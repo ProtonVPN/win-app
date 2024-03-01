@@ -181,7 +181,7 @@
     <value>Zgłoś problem</value>
   </data>
   <data name="Connection_Error_RpcServerUnavailable">
-    <value>Proton VPN nie może się połączyć, ponieważ serwer RPC jest niedostępny na twoim systemie.</value>
+    <value>Proton VPN nie może nawiązać połączenia, ponieważ serwer RPC jest niedostępny na Twoim systemie.</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
     <value>Osiągnięto maksymalną liczbę podłączonych urządzeń. Aby połączyć się, rozłącz inne urządzenie lub ulepsz konto do planu PLUS w celu połączenia 10 urządzeń jednocześnie.</value>
@@ -313,7 +313,7 @@
     <value>Smart Routing</value>
   </data>
   <data name="Countries_SmartRouting_Description">
-    <value>Serwery fizycznie znajdują się w {0}, ale wydaje się, że przeglądasz z {1}.</value>
+    <value>Serwery fizycznie znajdują się w {0}, ale przeglądasz Internet z {1}.</value>
     <comment>{0} and {1} represent country names.</comment>
   </data>
   <data name="Countries_Tor">
@@ -1404,7 +1404,7 @@ Wysokie opóźnienie może spowolnić połączenie.</value>
     <value>Co to jest opóźnienie?</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
-    <value>Jak używać torrent z P2P</value>
+    <value>Jak używać torrentów z P2P</value>
   </data>
   <data name="Dialogs_P2P_Title">
     <value>P2P</value>
@@ -1549,11 +1549,11 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Co to jest obciążenie serwera?</value>
   </data>
   <data name="Dialogs_SmartRouting_Description">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
+    <value>Funkcja Smart Routing używa wirtualnych serwerów, aby zapewnić dostęp do usługi VPN w trudno dostępnych krajach.
 
-When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+Po nawiązaniu połączenia z serwerem Smart Routing przeglądanie odbywa się w kraju docelowym, mimo że fizyczny serwer znajduje się w innym miejscu.
 
-Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących prywatności i innych form cenzury.</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
@@ -1568,7 +1568,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Tor</value>
   </data>
   <data name="Dialogs_Welcome_Message">
-    <value>Przygotowujemy dla Ciebie nowe doświadczenie z VPN. To powinno zająć tylko chwilę.</value>
+    <value>Przygotowujemy aplikację. To może potrwać chwilę.</value>
   </data>
   <data name="Dialogs_Welcome_Title">
     <value>Witaj w Proton VPN</value>
@@ -1847,7 +1847,7 @@ stopped</value>
     <value>Dostępna jest aktualizacja</value>
   </data>
   <data name="Home_Update_UpdateReady">
-    <value>Aktualizacja ukończona</value>
+    <value>Aktualizacja jest gotowa</value>
   </data>
   <data name="Home_VpnStatus_Landmark">
     <value>Status VPN</value>
@@ -1981,6 +1981,39 @@ stopped</value>
   <data name="Settings_About">
     <value>Informacje</value>
   </data>
+  <data name="Settings_About_Changelog">
+    <value>Dziennik zmian</value>
+  </data>
+  <data name="Settings_About_CurrentVersion">
+    <value>Obecna wersja</value>
+  </data>
+  <data name="Settings_About_FailedToFetch">
+    <value>Nie udało się załadować informacji z dziennika zmian.</value>
+  </data>
+  <data name="Settings_About_GetLatestVersion">
+    <value>Pobierz najnowszą wersję</value>
+  </data>
+  <data name="Settings_About_LearnMore">
+    <value>Dowiedz się więcej</value>
+  </data>
+  <data name="Settings_About_Licensing">
+    <value>Licencje</value>
+  </data>
+  <data name="Settings_About_Loading">
+    <value>Ładowanie</value>
+  </data>
+  <data name="Settings_About_NewVersion">
+    <value>Nowość</value>
+  </data>
+  <data name="Settings_About_Title">
+    <value>Informacje</value>
+  </data>
+  <data name="Settings_About_TryAgain">
+    <value>Spróbuj ponownie</value>
+  </data>
+  <data name="Settings_About_Update_Description">
+    <value>Wykorzystaj w pełni możliwości VPN, aktualizując aplikację do najnowszej wersji.</value>
+  </data>
   <data name="Settings_AppVersion">
     <value>Wersja aplikacji</value>
   </data>
@@ -2018,7 +2051,7 @@ stopped</value>
     <value>Alternatywne przekierowanie połączenia</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting_Description">
-    <value>Jeśli usługi Proton są zablokowane ze względu na ograniczenia sieci, spróbujemy użyć alternatywnego trasowania sieci, aby połączyć cię z naszymi witrynami.</value>
+    <value>Jeśli usługi Proton są zablokowane z powodu ograniczeń sieciowych, spróbujemy użyć alternatywnego przekierowania połączenia.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
     <value>Niestandardowe serwery DNS</value>
@@ -2030,7 +2063,7 @@ stopped</value>
     <value>Włączyć niestandardowe serwery DNS?</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
-    <value>Połącz z Proton VPN, używając własnego system nazw domen (DNS). Korzystaj tylko z zaufanych serwerów DNS.</value>
+    <value>Połącz się z Proton VPN, używając własnego serwera DNS. Korzystaj tylko z zaufanych serwerów DNS.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>Serwery DNS ({0})</value>
@@ -2148,6 +2181,9 @@ stopped</value>
   <data name="Settings_Features_PortForwarding_Footer">
     <value>Aby użyć przekierowania portów, połącz się z serwerem, który wspiera ruch P2P.</value>
   </data>
+  <data name="Settings_Features_PortForwarding_Loading">
+    <value>Ładowanie...</value>
+  </data>
   <data name="Settings_Features_PortForwarding_Notifications">
     <value>Powiadomienia</value>
   </data>
@@ -2178,7 +2214,7 @@ stopped</value>
     <value>Włączyć Split Tunneling?</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Description">
-    <value>Dopasuj swoje połączenie, decydując, które aplikacje i adresy IP są chronione przez VPN.</value>
+    <value>Dostosuj połączenie, decydując, które aplikacje i adresy IP są chronione przez VPN.</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Inverse">
     <value>Odwrotny</value>
@@ -2266,7 +2302,7 @@ stopped</value>
     <value>Sterownik sieciowy OpenVPN</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver_Description">
-    <value>Sterowniki sieciowe mogą wpływać na prędkość połączenia. Nowy adapteru TUN zapewnia wyższą prędkość oraz powraca do adaptera TAP, jeśli napotka jakiekolwiek problemy z połączeniem.</value>
+    <value>Sterowniki sieciowe mogą wpływać na prędkość połączenia. Nowy adapter TUN zapewnia wyższą prędkość oraz przełącza się do adaptera TAP, jeśli napotka problemy z połączeniem.</value>
   </data>
   <data name="Settings_General_Theme">
     <value>Motyw</value>

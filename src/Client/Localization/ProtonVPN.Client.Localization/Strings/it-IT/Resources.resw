@@ -1957,6 +1957,39 @@ bloccati</value>
   <data name="Settings_About">
     <value>Informazioni</value>
   </data>
+  <data name="Settings_About_Changelog">
+    <value>Changelog</value>
+  </data>
+  <data name="Settings_About_CurrentVersion">
+    <value>Versione attuale</value>
+  </data>
+  <data name="Settings_About_FailedToFetch">
+    <value>Caricamento del changelog non riuscito</value>
+  </data>
+  <data name="Settings_About_GetLatestVersion">
+    <value>Aggiorna all'ultima versione</value>
+  </data>
+  <data name="Settings_About_LearnMore">
+    <value>Scopri di più</value>
+  </data>
+  <data name="Settings_About_Licensing">
+    <value>Licenza</value>
+  </data>
+  <data name="Settings_About_Loading">
+    <value>Caricamento in corso</value>
+  </data>
+  <data name="Settings_About_NewVersion">
+    <value>NUOVA</value>
+  </data>
+  <data name="Settings_About_Title">
+    <value>Informazioni</value>
+  </data>
+  <data name="Settings_About_TryAgain">
+    <value>Riprova</value>
+  </data>
+  <data name="Settings_About_Update_Description">
+    <value>Aggiorna l'app all'ultima versione per ottenere il massimo dalla tua VPN.</value>
+  </data>
   <data name="Settings_AppVersion">
     <value>Versione dell'applicazione</value>
   </data>
@@ -2123,6 +2156,9 @@ bloccati</value>
   </data>
   <data name="Settings_Features_PortForwarding_Footer">
     <value>Per utilizzare il port forwarding, connettiti a un server che supporta il P2P.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Loading">
+    <value>Caricamento in corso</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications">
     <value>Notifiche</value>

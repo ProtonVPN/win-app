@@ -242,7 +242,7 @@
     <value>{0} cities</value>
   </data>
   <data name="Countries_Connect">
-    <value>Connect</value>
+    <value>Pripojiť</value>
     <comment>Connect button label on a country row in the countries tab</comment>
   </data>
   <data name="Countries_Fastest">
@@ -1476,7 +1476,7 @@ Vysoká latencia môže spomaliť vaše pripojenie.</value>
     <value>We couldn't send your report. Please check your connection and try again.</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_RetryAction">
-    <value>Try again</value>
+    <value>Skúsiť znova</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Success">
     <value>Report sent</value>
@@ -1678,7 +1678,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
   </data>
   <data name="Gateways_Page_Title">
-    <value>Gateways</value>
+    <value>Brány</value>
   </data>
   <data name="Gateways_Server">
     <value>Dedicated server</value>
@@ -1981,6 +1981,39 @@ zastavených</value>
   <data name="Settings_About">
     <value>O aplikácii</value>
   </data>
+  <data name="Settings_About_Changelog">
+    <value>Changelog</value>
+  </data>
+  <data name="Settings_About_CurrentVersion">
+    <value>Súčasná verzia</value>
+  </data>
+  <data name="Settings_About_FailedToFetch">
+    <value>Failed to load changelog information.</value>
+  </data>
+  <data name="Settings_About_GetLatestVersion">
+    <value>Get the latest version</value>
+  </data>
+  <data name="Settings_About_LearnMore">
+    <value>Learn more</value>
+  </data>
+  <data name="Settings_About_Licensing">
+    <value>Licensing</value>
+  </data>
+  <data name="Settings_About_Loading">
+    <value>Loading</value>
+  </data>
+  <data name="Settings_About_NewVersion">
+    <value>NEW</value>
+  </data>
+  <data name="Settings_About_Title">
+    <value>About</value>
+  </data>
+  <data name="Settings_About_TryAgain">
+    <value>Try again</value>
+  </data>
+  <data name="Settings_About_Update_Description">
+    <value>Get the most from your VPN by updating to the latest version of the app.</value>
+  </data>
   <data name="Settings_AppVersion">
     <value>Verzia aplikácie</value>
   </data>
@@ -2003,7 +2036,7 @@ zastavených</value>
     <value>Apply and reconnect</value>
   </data>
   <data name="Settings_Common_Discard">
-    <value>Discard</value>
+    <value>Zahodiť</value>
   </data>
   <data name="Settings_Common_Discard_Title">
     <value>Discard settings changes?</value>
@@ -2107,7 +2140,7 @@ zastavených</value>
     <value>When kill switch is on, you won't be able to connect to websites and apps excluded from your VPN connection through split tunneling.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Standard">
-    <value>Standard</value>
+    <value>Štandardný</value>
   </data>
   <data name="Settings_Features_KillSwitch_Standard_Description">
     <value>Automatically disconnect from the internet if VPN connection is lost.</value>
@@ -2148,6 +2181,9 @@ zastavených</value>
   <data name="Settings_Features_PortForwarding_Footer">
     <value>To use Port Forwarding, please connect to a server that supports P2P.</value>
   </data>
+  <data name="Settings_Features_PortForwarding_Loading">
+    <value>Loading...</value>
+  </data>
   <data name="Settings_Features_PortForwarding_Notifications">
     <value>Notifications</value>
   </data>
@@ -2158,7 +2194,7 @@ zastavených</value>
     <value>Split tunneling</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_Add">
-    <value>Add app</value>
+    <value>Pridať aplikáciu</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_FilesFilterName">
     <value>App files</value>
@@ -2200,7 +2236,7 @@ zastavených</value>
     <value>Pridať adresu IPv4</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Standard">
-    <value>Standard</value>
+    <value>Štandardný</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Standard_Description">
     <value>Selected apps and IP addresses are excluded from VPN connection</value>
@@ -2383,7 +2419,7 @@ zastavených</value>
     <value>Exit</value>
   </data>
   <data name="Tray_Actions_OpenApplication">
-    <value>Open {0}</value>
+    <value>Otvoriť {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp">

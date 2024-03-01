@@ -1957,6 +1957,39 @@ bloqués</value>
   <data name="Settings_About">
     <value>À propos</value>
   </data>
+  <data name="Settings_About_Changelog">
+    <value>Liste des modifications</value>
+  </data>
+  <data name="Settings_About_CurrentVersion">
+    <value>Version actuelle</value>
+  </data>
+  <data name="Settings_About_FailedToFetch">
+    <value>Impossible de charger les listes de modifications</value>
+  </data>
+  <data name="Settings_About_GetLatestVersion">
+    <value>Obtenir la dernière version</value>
+  </data>
+  <data name="Settings_About_LearnMore">
+    <value>En savoir plus</value>
+  </data>
+  <data name="Settings_About_Licensing">
+    <value>Licences</value>
+  </data>
+  <data name="Settings_About_Loading">
+    <value>Chargement</value>
+  </data>
+  <data name="Settings_About_NewVersion">
+    <value>NOUVEAU</value>
+  </data>
+  <data name="Settings_About_Title">
+    <value>À propos</value>
+  </data>
+  <data name="Settings_About_TryAgain">
+    <value>Réessayer</value>
+  </data>
+  <data name="Settings_About_Update_Description">
+    <value>Tirez le meilleur parti de votre VPN en mettant à jour la dernière version de l'application</value>
+  </data>
   <data name="Settings_AppVersion">
     <value>Version de l'application</value>
   </data>
@@ -2123,6 +2156,9 @@ bloqués</value>
   </data>
   <data name="Settings_Features_PortForwarding_Footer">
     <value>Pour utiliser le transfert de port, veuillez vous connecter à un serveur qui prend en charge le P2P.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Loading">
+    <value>Chargement en cours</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications">
     <value>Notifications</value>
