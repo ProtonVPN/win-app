@@ -1957,6 +1957,39 @@ stoppet</value>
   <data name="Settings_About">
     <value>Om</value>
   </data>
+  <data name="Settings_About_Changelog">
+    <value>Endringslogg</value>
+  </data>
+  <data name="Settings_About_CurrentVersion">
+    <value>Gjeldende versjon</value>
+  </data>
+  <data name="Settings_About_FailedToFetch">
+    <value>Kan ikke laste inn endringslogginformasjon.</value>
+  </data>
+  <data name="Settings_About_GetLatestVersion">
+    <value>Få den nyeste versjonen</value>
+  </data>
+  <data name="Settings_About_LearnMore">
+    <value>Lær mer</value>
+  </data>
+  <data name="Settings_About_Licensing">
+    <value>Lisensiering</value>
+  </data>
+  <data name="Settings_About_Loading">
+    <value>Laster</value>
+  </data>
+  <data name="Settings_About_NewVersion">
+    <value>NYTT</value>
+  </data>
+  <data name="Settings_About_Title">
+    <value>Om</value>
+  </data>
+  <data name="Settings_About_TryAgain">
+    <value>Prøv igjen</value>
+  </data>
+  <data name="Settings_About_Update_Description">
+    <value>Få mest mulig ut av VPN-et ditt ved å oppdatere til den nyeste versjonen av appen.</value>
+  </data>
   <data name="Settings_AppVersion">
     <value>Appversjon</value>
   </data>
@@ -2123,6 +2156,9 @@ stoppet</value>
   </data>
   <data name="Settings_Features_PortForwarding_Footer">
     <value>For å bruke portvideresending må du koble til en tjener som støtter P2P.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Loading">
+    <value>Laster...</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications">
     <value>Varsler</value>

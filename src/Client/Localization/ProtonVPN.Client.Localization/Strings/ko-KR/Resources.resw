@@ -1945,6 +1945,39 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   <data name="Settings_About">
     <value>정보</value>
   </data>
+  <data name="Settings_About_Changelog">
+    <value>변경 내역</value>
+  </data>
+  <data name="Settings_About_CurrentVersion">
+    <value>현재 버전</value>
+  </data>
+  <data name="Settings_About_FailedToFetch">
+    <value>변경사항 정보 불러오기 실패.</value>
+  </data>
+  <data name="Settings_About_GetLatestVersion">
+    <value>최신 버전 받기</value>
+  </data>
+  <data name="Settings_About_LearnMore">
+    <value>더 알아보기</value>
+  </data>
+  <data name="Settings_About_Licensing">
+    <value>라이센싱</value>
+  </data>
+  <data name="Settings_About_Loading">
+    <value>로딩 중</value>
+  </data>
+  <data name="Settings_About_NewVersion">
+    <value>신규</value>
+  </data>
+  <data name="Settings_About_Title">
+    <value>정보</value>
+  </data>
+  <data name="Settings_About_TryAgain">
+    <value>다시 시도</value>
+  </data>
+  <data name="Settings_About_Update_Description">
+    <value>최신 버전으로 업데이트하여 VPN을 최대한 활용해 보세요.</value>
+  </data>
   <data name="Settings_AppVersion">
     <value>앱 버전</value>
   </data>
@@ -2111,6 +2144,9 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   </data>
   <data name="Settings_Features_PortForwarding_Footer">
     <value>포트 포워딩을 사용하려면 P2P를 지원하는 서버에 연결하셔야 합니다.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Loading">
+    <value>불러오는 중...</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications">
     <value>알림</value>

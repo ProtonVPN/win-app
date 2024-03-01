@@ -1957,6 +1957,39 @@ detenidos</value>
   <data name="Settings_About">
     <value>Acerca de</value>
   </data>
+  <data name="Settings_About_Changelog">
+    <value>Registro de cambios</value>
+  </data>
+  <data name="Settings_About_CurrentVersion">
+    <value>Versión actual</value>
+  </data>
+  <data name="Settings_About_FailedToFetch">
+    <value>No se pudo cargar la información del registro de cambios</value>
+  </data>
+  <data name="Settings_About_GetLatestVersion">
+    <value>Obtener la última versión</value>
+  </data>
+  <data name="Settings_About_LearnMore">
+    <value>Más información</value>
+  </data>
+  <data name="Settings_About_Licensing">
+    <value>Licencia</value>
+  </data>
+  <data name="Settings_About_Loading">
+    <value>Cargando</value>
+  </data>
+  <data name="Settings_About_NewVersion">
+    <value>NOVEDADES</value>
+  </data>
+  <data name="Settings_About_Title">
+    <value>Acerca de</value>
+  </data>
+  <data name="Settings_About_TryAgain">
+    <value>Reintentar</value>
+  </data>
+  <data name="Settings_About_Update_Description">
+    <value>Aproveche al máximo su VPN actualizando a la última versión de la app.</value>
+  </data>
   <data name="Settings_AppVersion">
     <value>Versión de la app</value>
   </data>
@@ -2123,6 +2156,9 @@ detenidos</value>
   </data>
   <data name="Settings_Features_PortForwarding_Footer">
     <value>Para usar el reenvío de puertos conéctese a un servidor que admita P2P.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Loading">
+    <value>Cargando...</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications">
     <value>Notificaciones</value>

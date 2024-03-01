@@ -1981,6 +1981,39 @@ Smart Routing звычайна выкарыстоўваюць для абыхо�
   <data name="Settings_About">
     <value>Аб праграме</value>
   </data>
+  <data name="Settings_About_Changelog">
+    <value>Спіс змен</value>
+  </data>
+  <data name="Settings_About_CurrentVersion">
+    <value>Бягучая версія</value>
+  </data>
+  <data name="Settings_About_FailedToFetch">
+    <value>Збой загрузкі звестак спіса змен.</value>
+  </data>
+  <data name="Settings_About_GetLatestVersion">
+    <value>Атрымаць апошнюю версію</value>
+  </data>
+  <data name="Settings_About_LearnMore">
+    <value>Даведацца больш</value>
+  </data>
+  <data name="Settings_About_Licensing">
+    <value>Ліцэнзаванне</value>
+  </data>
+  <data name="Settings_About_Loading">
+    <value>Загрузка</value>
+  </data>
+  <data name="Settings_About_NewVersion">
+    <value>НОВАЯ</value>
+  </data>
+  <data name="Settings_About_Title">
+    <value>Пра праграму</value>
+  </data>
+  <data name="Settings_About_TryAgain">
+    <value>Паспрабаваць яшчэ раз</value>
+  </data>
+  <data name="Settings_About_Update_Description">
+    <value>Атрымайце яшчэ больш ад свайго VPN, абнавіўшы праграму да апошняй версіі.</value>
+  </data>
   <data name="Settings_AppVersion">
     <value>Версія праграмы</value>
   </data>
@@ -2147,6 +2180,9 @@ Smart Routing звычайна выкарыстоўваюць для абыхо�
   </data>
   <data name="Settings_Features_PortForwarding_Footer">
     <value>Падключайцеся да сервера з падтрымкай P2P, каб скарыстацца функцыяй перанакіравання партоў.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Loading">
+    <value>Загрузка...</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications">
     <value>Апавяшчэнні</value>

@@ -1945,6 +1945,39 @@ dihentikan</value>
   <data name="Settings_About">
     <value>Tentang</value>
   </data>
+  <data name="Settings_About_Changelog">
+    <value>Changelog</value>
+  </data>
+  <data name="Settings_About_CurrentVersion">
+    <value>Versi saat ini</value>
+  </data>
+  <data name="Settings_About_FailedToFetch">
+    <value>Informasi riwayat perubahan gagal dimuat.</value>
+  </data>
+  <data name="Settings_About_GetLatestVersion">
+    <value>Dapatkan versi terbaru</value>
+  </data>
+  <data name="Settings_About_LearnMore">
+    <value>Learn more</value>
+  </data>
+  <data name="Settings_About_Licensing">
+    <value>Licensing</value>
+  </data>
+  <data name="Settings_About_Loading">
+    <value>Loading</value>
+  </data>
+  <data name="Settings_About_NewVersion">
+    <value>NEW</value>
+  </data>
+  <data name="Settings_About_Title">
+    <value>About</value>
+  </data>
+  <data name="Settings_About_TryAgain">
+    <value>Try again</value>
+  </data>
+  <data name="Settings_About_Update_Description">
+    <value>Dapatkan yang terbaik dari VPN Anda dengan memperbarui aplikasi ke versi terbaru.</value>
+  </data>
   <data name="Settings_AppVersion">
     <value>Versi aplikasi</value>
   </data>
@@ -2111,6 +2144,9 @@ dihentikan</value>
   </data>
   <data name="Settings_Features_PortForwarding_Footer">
     <value>Untuk menggunakan Penerusan Port, silakan hubungkan diri Anda ke server yang mendukung P2P.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Loading">
+    <value>Memuat...</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications">
     <value>Notifikasi</value>

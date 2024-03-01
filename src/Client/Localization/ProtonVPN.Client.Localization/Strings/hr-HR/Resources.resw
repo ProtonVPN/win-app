@@ -1969,6 +1969,39 @@ stopped</value>
   <data name="Settings_About">
     <value>About</value>
   </data>
+  <data name="Settings_About_Changelog">
+    <value>Changelog</value>
+  </data>
+  <data name="Settings_About_CurrentVersion">
+    <value>Trenutna verzija</value>
+  </data>
+  <data name="Settings_About_FailedToFetch">
+    <value>Failed to load changelog information.</value>
+  </data>
+  <data name="Settings_About_GetLatestVersion">
+    <value>Get the latest version</value>
+  </data>
+  <data name="Settings_About_LearnMore">
+    <value>Learn more</value>
+  </data>
+  <data name="Settings_About_Licensing">
+    <value>Licensing</value>
+  </data>
+  <data name="Settings_About_Loading">
+    <value>Loading</value>
+  </data>
+  <data name="Settings_About_NewVersion">
+    <value>NEW</value>
+  </data>
+  <data name="Settings_About_Title">
+    <value>About</value>
+  </data>
+  <data name="Settings_About_TryAgain">
+    <value>Try again</value>
+  </data>
+  <data name="Settings_About_Update_Description">
+    <value>Get the most from your VPN by updating to the latest version of the app.</value>
+  </data>
   <data name="Settings_AppVersion">
     <value>App version</value>
   </data>
@@ -2135,6 +2168,9 @@ stopped</value>
   </data>
   <data name="Settings_Features_PortForwarding_Footer">
     <value>To use Port Forwarding, please connect to a server that supports P2P.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Loading">
+    <value>Loading...</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications">
     <value>Notifications</value>

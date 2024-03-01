@@ -1955,6 +1955,39 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
   <data name="Settings_About">
     <value>შესახებ</value>
   </data>
+  <data name="Settings_About_Changelog">
+    <value>ცვლილებების სია</value>
+  </data>
+  <data name="Settings_About_CurrentVersion">
+    <value>მიმდინარე ვერსია</value>
+  </data>
+  <data name="Settings_About_FailedToFetch">
+    <value>ცვლილებების ჟურნალის ჩატვირთვა ჩავარდა.</value>
+  </data>
+  <data name="Settings_About_GetLatestVersion">
+    <value>ბოლო ვერსიის დაყენება</value>
+  </data>
+  <data name="Settings_About_LearnMore">
+    <value>გაიგეთ მეტი</value>
+  </data>
+  <data name="Settings_About_Licensing">
+    <value>ლიცენზია</value>
+  </data>
+  <data name="Settings_About_Loading">
+    <value>ჩატვირთვა</value>
+  </data>
+  <data name="Settings_About_NewVersion">
+    <value>ახალი</value>
+  </data>
+  <data name="Settings_About_Title">
+    <value>შესახებ</value>
+  </data>
+  <data name="Settings_About_TryAgain">
+    <value>კიდევ სცადეთ</value>
+  </data>
+  <data name="Settings_About_Update_Description">
+    <value>მიიღეთ VPN-ისგან უფრო მეტი აპის ბოლო ვერსიამდე განახლებით.</value>
+  </data>
   <data name="Settings_AppVersion">
     <value>აპის ვერსია</value>
   </data>
@@ -2121,6 +2154,9 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
   </data>
   <data name="Settings_Features_PortForwarding_Footer">
     <value>იმისათვის, რომ გამოიყენოთ პორტის გადამისამართება, დაუკავშირდით სერვერს, რომელსაც P2P-ის მხარდაჭერა გააჩნია</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Loading">
+    <value>ჩატვირთვა...</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications">
     <value>გაფრთხილებები</value>

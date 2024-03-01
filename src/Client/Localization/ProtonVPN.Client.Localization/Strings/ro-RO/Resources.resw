@@ -1969,6 +1969,39 @@ opriți</value>
   <data name="Settings_About">
     <value>Despre</value>
   </data>
+  <data name="Settings_About_Changelog">
+    <value>Istoric modificări</value>
+  </data>
+  <data name="Settings_About_CurrentVersion">
+    <value>Versiune curentă</value>
+  </data>
+  <data name="Settings_About_FailedToFetch">
+    <value>Eșuare încărcare informații cu istoricul modificărilor.</value>
+  </data>
+  <data name="Settings_About_GetLatestVersion">
+    <value>Luați ultima versiune!</value>
+  </data>
+  <data name="Settings_About_LearnMore">
+    <value>Detalii</value>
+  </data>
+  <data name="Settings_About_Licensing">
+    <value>Licențiere</value>
+  </data>
+  <data name="Settings_About_Loading">
+    <value>Se încarcă</value>
+  </data>
+  <data name="Settings_About_NewVersion">
+    <value>NOU</value>
+  </data>
+  <data name="Settings_About_Title">
+    <value>Despre</value>
+  </data>
+  <data name="Settings_About_TryAgain">
+    <value>Reîncercare</value>
+  </data>
+  <data name="Settings_About_Update_Description">
+    <value>Obțineți tot ce poate oferi aplicația VPN actualizând-o la ultima versiune.</value>
+  </data>
   <data name="Settings_AppVersion">
     <value>Versiune aplicație</value>
   </data>
@@ -2135,6 +2168,9 @@ opriți</value>
   </data>
   <data name="Settings_Features_PortForwarding_Footer">
     <value>Pentru a utiliza redirecționarea portului, conectați-vă la un server care acceptă P2P.</value>
+  </data>
+  <data name="Settings_Features_PortForwarding_Loading">
+    <value>Se încarcă…</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications">
     <value>Notificări</value>
