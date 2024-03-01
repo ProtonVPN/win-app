@@ -22,19 +22,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.ThemeDictionaries>
-
         <ResourceDictionary x:Key="Light">
             <BitmapImage x:Key="WelcomeIllustrationSource"
                          UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/welcome.png" />
             <SvgImageSource x:Key="ProductLogoIllustrationSource"
                             UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/product-logo.svg" />
+            <SvgImageSource x:Key="VpnPlusIllustrationSource"
+                            UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/vpn-plus.svg" />
         </ResourceDictionary>
-
         <ResourceDictionary x:Key="Dark">
             <BitmapImage x:Key="WelcomeIllustrationSource"
                          UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Dark/welcome.png" />
             <SvgImageSource x:Key="ProductLogoIllustrationSource"
                             UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Dark/product-logo.svg" />
+            <SvgImageSource x:Key="VpnPlusIllustrationSource"
+                            UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Dark/vpn-plus.svg" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 

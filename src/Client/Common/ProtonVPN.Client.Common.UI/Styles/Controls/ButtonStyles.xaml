@@ -235,6 +235,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="MinHeight" Value="36" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="Background" Value="{ThemeResource InteractionDefaultColorBrush}"/>
+        <Setter Property="BorderBrush" Value="{ThemeResource InteractionDefaultColorBrush}"/>
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Template">
             <Setter.Value>
@@ -253,6 +255,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                       ContentTransitions="{TemplateBinding ContentTransitions}"
                                       CornerRadius="{TemplateBinding CornerRadius}"
                                       Foreground="{TemplateBinding Foreground}">
+                        
                         <ContentPresenter.BackgroundTransition>
                             <BrushTransition Duration="0:0:0.083" />
                         </ContentPresenter.BackgroundTransition>
@@ -260,9 +263,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal" />
-
                                 <VisualState x:Name="PointerOver">
-
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentContainer"
                                                                        Storyboard.TargetProperty="Background">
@@ -271,9 +272,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
-
                                 <VisualState x:Name="Pressed">
-
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentContainer"
                                                                        Storyboard.TargetProperty="Background">
@@ -282,9 +281,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
-
                                 <VisualState x:Name="Disabled">
-
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentContainer"
                                                                        Storyboard.TargetProperty="Background">

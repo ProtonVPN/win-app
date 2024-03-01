@@ -42,7 +42,7 @@ public partial class RecentItemViewModel : ViewModelBase
 
     public bool IsActiveConnection => _recentConnection.IsActiveConnection;
 
-    public bool IsServerUnderMaintenance => _recentConnection.IsServerUnderMaintenance;
+    public bool IsServerAvailable => !_recentConnection.IsServerUnderMaintenance;
 
     public string? ExitCountry => _recentConnection.ConnectionIntent?.Location?.GetCountryCode();
 
@@ -66,9 +66,9 @@ public partial class RecentItemViewModel : ViewModelBase
         ? Localizer.Get("Common_Actions_Disconnect")
         : Localizer.Get("Common_Actions_Connect");
 
-    public string SecondaryCommandToolTip => IsServerUnderMaintenance
-        ? Localizer.Get("Home_Recents_ServerUnderMaintenance")
-        : Localizer.Get("Home_Recents_SecondaryActions_ToolTip");
+    public string SecondaryCommandToolTip => IsServerAvailable
+        ? Localizer.Get("Home_Recents_SecondaryActions_ToolTip")
+        : Localizer.Get("Home_Recents_ServerUnderMaintenance");
 
     public RecentItemViewModel(IConnectionManager connectionManager,
         IRecentConnectionsProvider recentConnectionsProvider,
@@ -109,7 +109,7 @@ public partial class RecentItemViewModel : ViewModelBase
 
     private bool CanToggleConnection()
     {
-        return !IsServerUnderMaintenance;
+        return IsActiveConnection || IsServerAvailable;
     }
 
     [RelayCommand(CanExecute = nameof(CanPin))]

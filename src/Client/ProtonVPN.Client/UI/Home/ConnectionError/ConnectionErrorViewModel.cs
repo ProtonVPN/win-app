@@ -23,6 +23,7 @@ using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Models.Activation;
@@ -37,7 +38,8 @@ namespace ProtonVPN.Client.UI.Home.ConnectionError;
 
 public partial class ConnectionErrorViewModel : ViewModelBase,
     IEventMessageReceiver<ConnectionErrorMessage>,
-    IEventMessageReceiver<ConnectionStatusChanged>
+    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<LoggingOutMessage>
 {
     private readonly IUrls _urls;
     private readonly ISettings _settings;
@@ -127,5 +129,10 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
                 CloseError();
             }
         });
+    }
+
+    public void Receive(LoggingOutMessage message)
+    {
+        ExecuteOnUIThread(CloseError);
     }
 }
