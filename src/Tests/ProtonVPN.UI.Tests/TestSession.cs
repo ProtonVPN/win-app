@@ -161,13 +161,7 @@ public class TestSession
 
     protected static string GetProtonClientFolder()
     {
-        string registryKeyPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Proton VPN_is1";
-        RegistryKey localMachineRegistry = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
-        RegistryKey key = localMachineRegistry.OpenSubKey(registryKeyPath);
-
-        object displayVersionObject = key?.GetValue("DisplayVersion");
-        displayVersionObject?.ToString();
-        string versionFolder = $"v{displayVersionObject?.ToString()}";
+        string versionFolder = $"v{TestEnvironment.GetAppVersion()}";
         return Path.Combine(TestConstants.AppFolderPath, versionFolder);
     }
 
