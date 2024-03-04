@@ -1985,7 +1985,7 @@ zastaveno</value>
     <value>Changelog</value>
   </data>
   <data name="Settings_About_CurrentVersion">
-    <value>Současná verze</value>
+    <value>Aktuální verze</value>
   </data>
   <data name="Settings_About_FailedToFetch">
     <value>Failed to load changelog information.</value>

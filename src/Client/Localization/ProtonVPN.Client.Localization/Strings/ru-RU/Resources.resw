@@ -1342,10 +1342,10 @@
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
-    <value>Get unlimited server changes with VPN Plus.</value>
+    <value>Получите неограниченное количество изменений сервера с VPN Plus.</value>
   </data>
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
-    <value>You've reached the maximum number of free server changes for now</value>
+    <value>Вы достигли максимального количества бесплатных изменений сервера на данный момент</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free automatically connects you to the fastest available free server from our {0} free country. This will normally be the closest server to your location.</value>
@@ -1956,7 +1956,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Шестая цифра</value>
   </data>
   <data name="Main_Loading_SigningIn">
-    <value>Signing in, please wait...</value>
+    <value>Выполняется вход, подождите...</value>
     <comment>Message in the loading screen when signing in or starting the app</comment>
   </data>
   <data name="Main_Loading_SigningOut">
@@ -2009,7 +2009,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>О программе</value>
   </data>
   <data name="Settings_About_TryAgain">
-    <value>Try again</value>
+    <value>Повторите попытку</value>
   </data>
   <data name="Settings_About_Update_Description">
     <value>Get the most from your VPN by updating to the latest version of the app.</value>
@@ -2074,7 +2074,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>IPv6 leak protection</value>
+    <value>Защита от утечки IPv6</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
     <value>Предотвращает утечку адреса IPv6.</value>
@@ -2182,7 +2182,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Чтобы использовать Переадресацию портов, подключитесь к серверу с поддержкой P2P.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Loading">
-    <value>Loading...</value>
+    <value>Загружается...</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications">
     <value>Уведомления</value>
@@ -2281,7 +2281,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Автоматические обновления</value>
   </data>
   <data name="Settings_General_AutomaticUpdates_Description">
-    <value>Automatically check and install Proton VPN updates</value>
+    <value>Автоматически проверять и устанавливать обновления Proton VPN</value>
   </data>
   <data name="Settings_General_BetaAccess">
     <value>Бета доступ</value>
@@ -2299,7 +2299,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Получайте уведомления о текущей деятельности Proton VPN</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver">
-    <value>OpenVPN network driver</value>
+    <value>Сетевой драйвер OpenVPN</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver_Description">
     <value>Network drivers can impact your connection speed. The new TUN adapter provides higher speed and falls back on the TAP adapter if it encounters any connectivity problems.</value>

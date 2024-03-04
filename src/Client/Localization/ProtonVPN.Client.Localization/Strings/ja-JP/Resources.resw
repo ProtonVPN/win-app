@@ -154,7 +154,7 @@
     <value>更新</value>
   </data>
   <data name="Common_Actions_Upgrade">
-    <value>Upgrade</value>
+    <value>アップグレード</value>
   </data>
   <data name="Common_Links_LearnMore">
     <value>より詳しく</value>
@@ -1324,16 +1324,16 @@
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
-    <value>Get unlimited server changes with VPN Plus.</value>
+    <value>VPN Plusで無制限にサーバーを変更できます。</value>
   </data>
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
-    <value>You've reached the maximum number of free server changes for now</value>
+    <value>無料サーバーの変更回数が上限に達しました。</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
     <value>Proton Free automatically connects you to the fastest available free server from our {0} free countries. This will normally be the closest server to your location.</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Other">
-    <value>Free server countries ({0})</value>
+    <value>無料サーバーの国 ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Title">
     <value>無料接続</value>
@@ -1511,11 +1511,11 @@ VPN connection</value>
     <value>サーバー負荷とは何ですか?</value>
   </data>
   <data name="Dialogs_SmartRouting_Description">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
+    <value>Smart Routingは、仮想サーバーを使用して、アクセスが困難な国でも VPN カバレッジを提供します。
 
-When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+Smart Routing サーバーに接続すると、物理サーバーが別の場所にある場合でも、目的の国でブラウジングしているように見えます。
 
-Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+Smart Routingは通常、反プライバシー法やその他の形式の検閲を回避するために使用されます。</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
@@ -1659,7 +1659,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>マイアカウント</value>
   </data>
   <data name="Home_ConnectionCard_ChangeServer">
-    <value>Change server</value>
+    <value>サーバーを変更</value>
   </data>
   <data name="Home_ConnectionCard_Header_BrowseSafely">
     <value>からの安全なブラウジング</value>
@@ -1944,25 +1944,25 @@ saved</value>
     <value>詳細</value>
   </data>
   <data name="Settings_About_Changelog">
-    <value>Changelog</value>
+    <value>更新履歴</value>
   </data>
   <data name="Settings_About_CurrentVersion">
     <value>現在のバージョン</value>
   </data>
   <data name="Settings_About_FailedToFetch">
-    <value>Failed to load changelog information.</value>
+    <value>更新履歴の読み込みに失敗しました。</value>
   </data>
   <data name="Settings_About_GetLatestVersion">
-    <value>Get the latest version</value>
+    <value>最新バージョンを入手</value>
   </data>
   <data name="Settings_About_LearnMore">
-    <value>Learn more</value>
+    <value>詳細</value>
   </data>
   <data name="Settings_About_Licensing">
-    <value>Licensing</value>
+    <value>ライセンス</value>
   </data>
   <data name="Settings_About_Loading">
-    <value>Loading</value>
+    <value>読み込み中</value>
   </data>
   <data name="Settings_About_NewVersion">
     <value>NEW</value>
@@ -1971,10 +1971,10 @@ saved</value>
     <value>About</value>
   </data>
   <data name="Settings_About_TryAgain">
-    <value>Try again</value>
+    <value>再試行</value>
   </data>
   <data name="Settings_About_Update_Description">
-    <value>Get the most from your VPN by updating to the latest version of the app.</value>
+    <value>アプリの最新バージョンに更新することで、VPNを最大限に活用できます。</value>
   </data>
   <data name="Settings_AppVersion">
     <value>アプリバージョン</value>
@@ -2144,7 +2144,7 @@ saved</value>
     <value>ポート転送を使用するには、P2P をサポートするサーバーに接続してください。</value>
   </data>
   <data name="Settings_Features_PortForwarding_Loading">
-    <value>Loading...</value>
+    <value>読み込み中...</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications">
     <value>通知</value>
