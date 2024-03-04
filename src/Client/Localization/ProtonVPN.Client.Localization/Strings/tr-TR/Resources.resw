@@ -1958,37 +1958,37 @@ izleyiciler</value>
     <value>Hakkında</value>
   </data>
   <data name="Settings_About_Changelog">
-    <value>Changelog</value>
+    <value>Değişiklik günlüğü</value>
   </data>
   <data name="Settings_About_CurrentVersion">
     <value>Güncel sürüm</value>
   </data>
   <data name="Settings_About_FailedToFetch">
-    <value>Failed to load changelog information.</value>
+    <value>Değişiklik günlüğü bilgileri yüklenemedi.</value>
   </data>
   <data name="Settings_About_GetLatestVersion">
-    <value>Get the latest version</value>
+    <value>En son sürümü edinin</value>
   </data>
   <data name="Settings_About_LearnMore">
-    <value>Learn more</value>
+    <value>Daha fazla bilgi edinin</value>
   </data>
   <data name="Settings_About_Licensing">
-    <value>Licensing</value>
+    <value>Lisanslama</value>
   </data>
   <data name="Settings_About_Loading">
-    <value>Loading</value>
+    <value>Yükleniyor</value>
   </data>
   <data name="Settings_About_NewVersion">
-    <value>NEW</value>
+    <value>YENİ</value>
   </data>
   <data name="Settings_About_Title">
-    <value>About</value>
+    <value>Hakkında</value>
   </data>
   <data name="Settings_About_TryAgain">
-    <value>Try again</value>
+    <value>Tekrar deneyin</value>
   </data>
   <data name="Settings_About_Update_Description">
-    <value>Get the most from your VPN by updating to the latest version of the app.</value>
+    <value>Uygulamanın en son sürümüne güncelleyerek VPN'inizden en iyi şekilde yararlanın.</value>
   </data>
   <data name="Settings_AppVersion">
     <value>Uygulama sürümü</value>
@@ -2158,7 +2158,7 @@ izleyiciler</value>
     <value>Bağlantı noktası yönlendirmeyi kullanmak için lütfen P2P destekleyen bir sunucuya bağlanın.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Loading">
-    <value>Loading...</value>
+    <value>Yükleniyor...</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications">
     <value>Bildirimler</value>

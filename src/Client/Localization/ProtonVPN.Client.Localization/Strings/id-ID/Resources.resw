@@ -1946,7 +1946,7 @@ dihentikan</value>
     <value>Tentang</value>
   </data>
   <data name="Settings_About_Changelog">
-    <value>Changelog</value>
+    <value>Riwayat perubahan</value>
   </data>
   <data name="Settings_About_CurrentVersion">
     <value>Versi saat ini</value>
@@ -1958,22 +1958,22 @@ dihentikan</value>
     <value>Dapatkan versi terbaru</value>
   </data>
   <data name="Settings_About_LearnMore">
-    <value>Learn more</value>
+    <value>Pelajari lebih lanjut</value>
   </data>
   <data name="Settings_About_Licensing">
-    <value>Licensing</value>
+    <value>Lisensi</value>
   </data>
   <data name="Settings_About_Loading">
-    <value>Loading</value>
+    <value>Memuat</value>
   </data>
   <data name="Settings_About_NewVersion">
-    <value>NEW</value>
+    <value>BARU</value>
   </data>
   <data name="Settings_About_Title">
-    <value>About</value>
+    <value>Tentang</value>
   </data>
   <data name="Settings_About_TryAgain">
-    <value>Try again</value>
+    <value>Coba lagi</value>
   </data>
   <data name="Settings_About_Update_Description">
     <value>Dapatkan yang terbaik dari VPN Anda dengan memperbarui aplikasi ke versi terbaru.</value>

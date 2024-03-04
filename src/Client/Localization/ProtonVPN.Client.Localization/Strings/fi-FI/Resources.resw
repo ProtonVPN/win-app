@@ -1958,37 +1958,37 @@ estetty</value>
     <value>Tietoja</value>
   </data>
   <data name="Settings_About_Changelog">
-    <value>Changelog</value>
+    <value>Muutosloki</value>
   </data>
   <data name="Settings_About_CurrentVersion">
     <value>Nykyinen versio</value>
   </data>
   <data name="Settings_About_FailedToFetch">
-    <value>Failed to load changelog information.</value>
+    <value>Muutoslokitietojen lataaminen epäonnistui.</value>
   </data>
   <data name="Settings_About_GetLatestVersion">
-    <value>Get the latest version</value>
+    <value>Hanki uusin versio</value>
   </data>
   <data name="Settings_About_LearnMore">
-    <value>Learn more</value>
+    <value>Lue lisää</value>
   </data>
   <data name="Settings_About_Licensing">
-    <value>Licensing</value>
+    <value>Lisenssit</value>
   </data>
   <data name="Settings_About_Loading">
-    <value>Loading</value>
+    <value>Ladataan</value>
   </data>
   <data name="Settings_About_NewVersion">
-    <value>NEW</value>
+    <value>UUSI</value>
   </data>
   <data name="Settings_About_Title">
-    <value>About</value>
+    <value>Tietoja</value>
   </data>
   <data name="Settings_About_TryAgain">
-    <value>Try again</value>
+    <value>Yritä uudelleen</value>
   </data>
   <data name="Settings_About_Update_Description">
-    <value>Get the most from your VPN by updating to the latest version of the app.</value>
+    <value>Ota VPN:stä kaikki irti päivittämällä sovelluksen uusimpaan versioon.</value>
   </data>
   <data name="Settings_AppVersion">
     <value>Sovelluksen versio</value>
@@ -2158,7 +2158,7 @@ estetty</value>
     <value>Jos haluat käyttää porttiohjausta, muodosta yhteys P2P:tä tukevaan palvelimeen.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Loading">
-    <value>Loading...</value>
+    <value>Ladataan...</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications">
     <value>Ilmoitukset</value>

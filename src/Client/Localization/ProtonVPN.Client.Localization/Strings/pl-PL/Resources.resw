@@ -1982,13 +1982,13 @@ stopped</value>
     <value>Informacje</value>
   </data>
   <data name="Settings_About_Changelog">
-    <value>Dziennik zmian</value>
+    <value>Lista zmian</value>
   </data>
   <data name="Settings_About_CurrentVersion">
     <value>Obecna wersja</value>
   </data>
   <data name="Settings_About_FailedToFetch">
-    <value>Nie udało się załadować informacji z dziennika zmian.</value>
+    <value>Nie udało się załadować listy zmian.</value>
   </data>
   <data name="Settings_About_GetLatestVersion">
     <value>Pobierz najnowszą wersję</value>
@@ -2003,16 +2003,16 @@ stopped</value>
     <value>Ładowanie</value>
   </data>
   <data name="Settings_About_NewVersion">
-    <value>Nowość</value>
+    <value>NOWA WERSJA</value>
   </data>
   <data name="Settings_About_Title">
-    <value>Informacje</value>
+    <value>O aplikacji</value>
   </data>
   <data name="Settings_About_TryAgain">
     <value>Spróbuj ponownie</value>
   </data>
   <data name="Settings_About_Update_Description">
-    <value>Wykorzystaj w pełni możliwości VPN, aktualizując aplikację do najnowszej wersji.</value>
+    <value>Wykorzystaj w pełni możliwości usługi VPN, aktualizując aplikację do najnowszej wersji.</value>
   </data>
   <data name="Settings_AppVersion">
     <value>Wersja aplikacji</value>

@@ -1946,13 +1946,13 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
     <value>정보</value>
   </data>
   <data name="Settings_About_Changelog">
-    <value>변경 내역</value>
+    <value>변경기록</value>
   </data>
   <data name="Settings_About_CurrentVersion">
     <value>현재 버전</value>
   </data>
   <data name="Settings_About_FailedToFetch">
-    <value>변경사항 정보 불러오기 실패.</value>
+    <value>변경기록을 불러오지 못했습니다.</value>
   </data>
   <data name="Settings_About_GetLatestVersion">
     <value>최신 버전 받기</value>
@@ -1961,7 +1961,7 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
     <value>더 알아보기</value>
   </data>
   <data name="Settings_About_Licensing">
-    <value>라이센싱</value>
+    <value>라이선싱</value>
   </data>
   <data name="Settings_About_Loading">
     <value>로딩 중</value>
@@ -1973,7 +1973,7 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
     <value>정보</value>
   </data>
   <data name="Settings_About_TryAgain">
-    <value>다시 시도</value>
+    <value>다시 시도하기</value>
   </data>
   <data name="Settings_About_Update_Description">
     <value>최신 버전으로 업데이트하여 VPN을 최대한 활용해 보세요.</value>
