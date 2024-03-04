@@ -412,7 +412,7 @@
     <value>Esta versão do Proton VPN poderá já ter resolvido o seu problema!</value>
   </data>
   <data name="BugReport_lbl_QuickSolutions">
-    <value>Correcções rápidas</value>
+    <value>Correções rápidas</value>
   </data>
   <data name="BugReport_lbl_QuickSolutionsInfo">
     <value>Estas dicas poderão ajudá-lo a resolver o seu problema mais rapidamente.</value>
@@ -522,11 +522,11 @@
     <comment>The beginning of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_2">
-    <value>não funcionou</value>
+    <value>falhou</value>
     <comment>The end of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_2_SecureCore">
-    <value>erro de ligação</value>
+    <value>a ligação falhou</value>
     <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Countries_lbl_One">
@@ -1922,7 +1922,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
-    <value>O token de actualização não é válido. Inicie sessão novamente.</value>
+    <value>O token de atualização é inválido. Inicie sessão novamente.</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">
@@ -1937,7 +1937,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
-    <value>O Kill switch está actualmente ativo.</value>
+    <value>O Kill switch está atualmente ativo.</value>
     <comment>The text displayed on the login window when user was force logged out while kill switch is active</comment>
   </data>
   <data name="Login_lbl_Password">
@@ -1960,7 +1960,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The text displayed in login window when login takes longer than expected</comment>
   </data>
   <data name="Login_lbl_TwoFactorAuthCode">
-    <value>Código de autenticação em dois passos</value>
+    <value>Código de autenticação de dois fatores</value>
   </data>
   <data name="Login_lbl_Username">
     <value>Utilizador</value>
@@ -2470,7 +2470,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Secure Core ligado</value>
   </data>
   <data name="QuickSettings_btn_Upgrade">
-    <value>ACTUALIZAR</value>
+    <value>ATUALIZAR</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
     <value>Desativa a internet se a ligação VPN cair para evitar fugas acidentais de IP.</value>
@@ -2500,7 +2500,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Rastreador parado</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
-    <value>Os rastreadores são sítios web de terceiros que recolhem, armazenam e vendem informações sobre a sua actividade na web.</value>
+    <value>Os rastreadores são sítios web de terceiros que recolhem, armazenam e vendem informações sobre a sua atividade na web.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>Se as páginas não carregarem, tente desativar o NetShield</value>
@@ -2509,7 +2509,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Acelere a transferência de torrents e os jogos online, permitindo que as aplicações locais suportadas estejam acessíveis a partir da internet.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
-    <value>Redireccione os seus dados mais sensíveis através dos nossos servidores mais seguros, em países que respeitam a privacidade.</value>
+    <value>Redirecione os seus dados mais sensíveis através dos nossos servidores mais seguros, em países que respeitam a privacidade.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreWarning">
     <value>O Secure Core pode reduzir a velocidade da VPN</value>
@@ -2560,7 +2560,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The name of Secure Core server feature</comment>
   </data>
   <data name="Servers_Feature_val_Streaming">
-    <value>Transmissão</value>
+    <value>Streaming</value>
   </data>
   <data name="Servers_Feature_val_Tor">
     <value>Servidor Tor</value>
@@ -2612,7 +2612,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The text on Disconnect button in Server list in Countries tab of Sidebar in main app window (disconnects from the VPN server)</comment>
   </data>
   <data name="Servers_btn_Upgrade">
-    <value>Actualizar</value>
+    <value>Atualizar</value>
     <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
   </data>
   <data name="Servers_lbl_UpgradeToPlus">
@@ -2623,10 +2623,10 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The label displayed before entry country name in Server list of Countries tab of Sidebar section of main app window when Secure Core mode is enabled</comment>
   </data>
   <data name="Servers_msg_CantConnect_CertificateExpired">
-    <value>O Proton VPN falhou ao actualizar o certificado de autenticação do cliente.</value>
+    <value>O Proton VPN falhou ao atualizar o certificado de autenticação do cliente.</value>
   </data>
   <data name="Servers_msg_CantConnect_Maintenance">
-    <value>O servidor ao qual está a tentar ligar está actualmente desligado para manutenção. Selecione outro servidor ou perfil.</value>
+    <value>O servidor ao qual está a tentar ligar está atualmente desligado para manutenção. Selecione outro servidor ou perfil.</value>
     <comment>The message displayed when connecting to server which is on maintenance</comment>
   </data>
   <data name="Servers_msg_CantConnect_Missing">
@@ -2773,11 +2773,11 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The WireGuard protocol name displayed in the Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
   </data>
   <data name="Settings_Connection_Warning_CustomDnsServer">
-    <value>Ao utilizar servidores DNS personalizados desactivará o NetShield. Os servidores DNS são responsáveis por direccioná-lo para as páginas corretas. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Utilize apenas servidores DNS de confiança. Deseja activar os servidores DNS personalizados?</value>
+    <value>Utilizar servidores DNS personalizados desativará o NetShield. Os servidores DNS são responsáveis por o direcionar para as páginas corretas. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Utilize só servidores DNS em que confia. Deseja ligar os servidores DNS?</value>
     <comment>The text displayed in Custom DNS Servers warning modal window when use is trying to turn the feature ON when NetShield feature is turned on as well</comment>
   </data>
   <data name="Settings_Connection_btn_Upgrade">
-    <value>Actualizar</value>
+    <value>Atualizar</value>
     <comment>The text on Upgrade button in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_CustomDnsServer">
@@ -2785,7 +2785,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The label for Custom DNS Servers combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_CustomDnsServer_Info">
-    <value>Introduza um servidor DNS privado (tal como o AdGuard DNS) para processar os seus pedidos DNS. Ao utilizar servidores DNS personalizados desactivará o NetShield. Os servidores DNS são responsáveis por direccioná-lo para as páginas corretas, por isso utilize apenas servidores de confiança.</value>
+    <value>Introduza um servidor DNS privado (como o AdGuard DNS) para processar os seus pedidos de DNS. A utilização de um servidor DNS personalizado desativará o NetShield. Os servidores DNS são responsáveis por direcioná-lo para o site correto, por isso utilize apenas servidores em que confia.</value>
     <comment>The description of Custom DNS Servers setting displayed in the tooltip of the ( i ) image next to the label for Custom DNS Server toggle switch in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_DefaultProtocol">
@@ -2800,7 +2800,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>NAT moderado</value>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat_Info">
-    <value>O NAT moderado desactiva a aleatoriedade no mapeamento de endereços locais, o que pode reduzir ligeiramente a sua segurança, mas permite a utilização de tecnologias como ligações directas em aplicações. Isto é útil, por exemplo, em jogos online.</value>
+    <value>O NAT moderado desativa a aleatoriedade no mapeamento de endereços locais, o que pode reduzir ligeiramente a sua segurança, mas permite a utilização de tecnologias como ligações diretas em aplicações. Isto é útil, por exemplo, em jogos online.</value>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect">
     <value>Ligação rápida</value>
@@ -2839,11 +2839,11 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The title of Connection tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_AutoUpdate">
-    <value>Actualizações automáticas</value>
+    <value>Atualizações automáticas</value>
     <comment>The label for Automatic updates toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_AutoUpdate_Info">
-    <value>Verificar e instalar automaticamente as actualizações para o Proton VPN.</value>
+    <value>Verificar e instalar automaticamente as atualizações para o Proton VPN.</value>
     <comment>The description of Automatic updates setting displayed in the tooltip of ( i ) image next to the label for Automatic updates toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_ConnectOnAppStart">
@@ -2859,7 +2859,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The label for Early Access toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_EarlyAccess_Info">
-    <value>Seja o primeiro a receber as últimas actualizações. Lembre-se de que versões recentes podem ser menos estáveis.</value>
+    <value>Seja o primeiro a receber as últimas atualizações. Lembre-se de que versões recentes podem ser menos estáveis.</value>
     <comment>The description of Early Access setting displayed in the tooltip of ( i ) image next to the label for Early Access toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_Language">
@@ -3299,7 +3299,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Encaminhe através dos servidores ultra seguros na Suíça, Suécia e Islândia</value>
   </data>
   <data name="Upsell_SecureCore_Subtitle">
-    <value>Quando actualizar para o Plus</value>
+    <value>Quando atualizar para o Plus</value>
   </data>
   <data name="Upsell_SecureCore_Title">
     <value>Duplique a encriptação com o Secure Core</value>
@@ -3320,7 +3320,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Obtenha o melhor de ambos mundos</value>
   </data>
   <data name="Upsell_btn_Upgrade">
-    <value>Actualizar</value>
+    <value>Atualizar</value>
     <comment>The text on Upgrade button in Upgrade Required Upsell window (opens web page for subscription plan upgrade)</comment>
   </data>
   <data name="VpnPlan_val_Free">

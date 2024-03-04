@@ -3263,7 +3263,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Enkripsi berganda dengan Secure Core</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet1">
-    <value>Bagi lalu lintas Anda menjadi terowongan VPN dan non-VPN</value>
+    <value>Pisahkan lalu lintas jaringan Anda ke dalam tunnel VPN dan non-VPN</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet2">
     <value>Berikan izin kepada aplikasi dan alamat IP terpercaya untuk melewati VPN demi kecepatan yang lebih tinggi.</value>
@@ -3275,7 +3275,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Akses &lt;Bold&gt;split tunneling&lt;/Bold&gt; dengan VPN Plus</value>
   </data>
   <data name="Upsell_SplitTunneling_Title">
-    <value>Dapatkan yang terbaik</value>
+    <value>Dapatkan yang terbaik dari koneksi VPN dan non-VPN</value>
   </data>
   <data name="Upsell_btn_Upgrade">
     <value>Tingkatkan</value>

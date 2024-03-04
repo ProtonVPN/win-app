@@ -1907,7 +1907,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The text on NoThanks button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Ok">
-    <value>Гаразд</value>
+    <value>OK</value>
   </data>
   <data name="Dialogs_reconnection_FromServer">
     <value>Із сервера:</value>

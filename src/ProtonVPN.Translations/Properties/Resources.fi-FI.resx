@@ -1930,7 +1930,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The description of error displayed in Login window</comment>
   </data>
   <data name="Login_btn_Authenticate">
-    <value>Todenna</value>
+    <value>Tunnistaudu</value>
   </data>
   <data name="Login_btn_Login">
     <value>Kirjaudu sisään</value>
