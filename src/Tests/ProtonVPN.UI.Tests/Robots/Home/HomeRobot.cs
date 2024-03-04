@@ -51,12 +51,12 @@ public partial class HomeRobot : UIActions
     protected MenuItem IssueCategoryMenuItem => ElementByAutomationId("IssueCategoryMenuItem").AsMenuItem();
 
     protected AutomationElement RecentsTab => ElementByName("Recents");
-    protected AutomationElement PrimaryActionButton => ElementByAutomationId("btnPrimary");
-    protected AutomationElement SecondaryActionButton => ElementByAutomationId("btnSecondary");
+    protected AutomationElement PrimaryActionButton => ElementByAutomationId("PrimaryButton");
+    protected AutomationElement SecondaryActionButton => ElementByAutomationId("SecondaryButton");
     protected AutomationElement RemoveButton => ElementByName("Remove");
 
     protected AutomationElement GetRecentsCountry(string countryName)
     {
-        return ElementByAutomationId("RecentsPane").FindFirstChild(cf => cf.ByName($"{countryName} "));
+        return ElementByAutomationId("RecentsPane").FindFirstDescendant(cf => cf.ByName($"Connect to {countryName}"));
     }
 }

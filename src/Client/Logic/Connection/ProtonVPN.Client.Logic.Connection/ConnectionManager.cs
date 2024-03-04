@@ -91,7 +91,7 @@ public class ConnectionManager : IInternalConnectionManager,
 
         CurrentConnectionIntent = connectionIntent;
 
-        _logger.Debug<ConnectTriggerLog>($"[CONNECTION_PROCESS] Connection attempt to: {connectionIntent}.");
+        _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Connection attempt to: {connectionIntent}.");
 
         SetConnectionStatus(ConnectionStatus.Connecting);
 
@@ -123,7 +123,7 @@ public class ConnectionManager : IInternalConnectionManager,
     {
         IConnectionIntent? connectionIntent = CurrentConnectionIntent;
 
-        _logger.Debug<ConnectTriggerLog>($"[CONNECTION_PROCESS] Reconnection attempt to: {connectionIntent?.ToString() ?? "<no intent>"}.");
+        _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Reconnection attempt to: {connectionIntent?.ToString() ?? "<no intent>"}.");
 
         if (connectionIntent is null)
         {
@@ -140,7 +140,7 @@ public class ConnectionManager : IInternalConnectionManager,
 
     public async Task DisconnectAsync()
     {
-        _logger.Debug<ConnectTriggerLog>($"[CONNECTION_PROCESS] Disconnection attempt.");
+        _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Disconnection attempt.");
 
         CurrentConnectionIntent = null;
         CurrentConnectionDetails = null;
@@ -222,7 +222,7 @@ public class ConnectionManager : IInternalConnectionManager,
         CurrentError = error;
         _eventMessageSender.Send(new ConnectionStatusChanged(connectionStatus));
 
-        _logger.Debug<ConnectTriggerLog>($"[CONNECTION_PROCESS] Status updated to {ConnectionStatus}.{(IsConnected ? $" Connected to server {CurrentConnectionDetails?.ServerName}" : string.Empty)}");
+        _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Status updated to {ConnectionStatus}.{(IsConnected ? $" Connected to server {CurrentConnectionDetails?.ServerName}" : string.Empty)}");
     }
 
     public void Receive(ConnectionDetailsIpcEntity message)
