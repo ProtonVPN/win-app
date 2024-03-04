@@ -52,7 +52,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                 IsContentEnabled="{x:Bind IsServerAvailable}"
                                                 PrimaryCommand="{x:Bind ToggleConnectionCommand}"
                                                 PrimaryCommandContent="{x:Bind PrimaryCommandText}"
-                                                SecondaryCommandToolTip="{x:Bind SecondaryCommandToolTip}">
+                                                SecondaryCommandToolTip="{x:Bind SecondaryCommandToolTip}"
+                                                AutomationProperties.FullDescription="{x:Bind FullTitle}"
+                                                PrimaryCommandAutomationName="{x:Bind PrimaryCommandDescription}"
+                                                SecondaryCommandAutomationName="{x:Bind SecondaryCommandDescription}">
 
                             <custom:DualCommandsRow.SecondaryCommandIcon>
                                 <pathicons:ThreeDotsVertical />

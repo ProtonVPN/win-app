@@ -70,6 +70,14 @@ public partial class RecentItemViewModel : ViewModelBase
         ? Localizer.Get("Home_Recents_SecondaryActions_ToolTip")
         : Localizer.Get("Home_Recents_ServerUnderMaintenance");
 
+    public string FullTitle => $"{Title}{(string.IsNullOrEmpty(Subtitle) ? string.Empty: Subtitle)}";
+
+    public string PrimaryCommandDescription => IsActiveConnection
+        ? Localizer.GetFormat("Common_Actions_DisconnectFrom", FullTitle)
+        : Localizer.GetFormat("Common_Actions_ConnectTo", FullTitle);
+
+    public string SecondaryCommandDescription => Localizer.GetFormat("Common_Actions_ActionsFor", FullTitle);
+
     public RecentItemViewModel(IConnectionManager connectionManager,
         IRecentConnectionsProvider recentConnectionsProvider,
         IRecentConnection recentConnection,
@@ -91,6 +99,9 @@ public partial class RecentItemViewModel : ViewModelBase
     {
         OnPropertyChanged(nameof(Title));
         OnPropertyChanged(nameof(Subtitle));
+        OnPropertyChanged(nameof(FullTitle));
+        OnPropertyChanged(nameof(PrimaryCommandDescription));
+        OnPropertyChanged(nameof(SecondaryCommandDescription));
         OnPropertyChanged(nameof(PrimaryCommandText));
         OnPropertyChanged(nameof(SecondaryCommandToolTip));
     }
