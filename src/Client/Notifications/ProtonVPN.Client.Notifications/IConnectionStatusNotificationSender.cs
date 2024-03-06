@@ -17,15 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Autofac;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 
-namespace ProtonVPN.Client.Notifications.Installers;
+namespace ProtonVPN.Client.Notifications;
 
-public class NotificationsModule : Module
+public interface IConnectionStatusNotificationSender
 {
-    protected override void Load(ContainerBuilder builder)
-    {
-        builder.RegisterType<PortForwardingNewPortNotificationSender>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<ConnectionStatusNotificationSender>().AsImplementedInterfaces().SingleInstance();
-    }
+    void Send(ConnectionStatus currentStatus);
 }

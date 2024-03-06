@@ -17,15 +17,23 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Autofac;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Client.Notifications;
 
-namespace ProtonVPN.Client.Notifications.Installers;
+namespace ProtonVPN.Client.Handlers;
 
-public class NotificationsModule : Module
+public class ConnectionStatusNotificationHandler : IHandler, IEventMessageReceiver<ConnectionStatusChanged>
 {
-    protected override void Load(ContainerBuilder builder)
+    private readonly IConnectionStatusNotificationSender _connectionStatusNotificationSender;
+
+    public ConnectionStatusNotificationHandler(IConnectionStatusNotificationSender connectionStatusNotificationSender)
     {
-        builder.RegisterType<PortForwardingNewPortNotificationSender>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<ConnectionStatusNotificationSender>().AsImplementedInterfaces().SingleInstance();
+        _connectionStatusNotificationSender = connectionStatusNotificationSender;
+    }
+
+    public void Receive(ConnectionStatusChanged message)
+    {
+        _connectionStatusNotificationSender.Send(message.ConnectionStatus);
     }
 }
