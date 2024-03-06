@@ -26,6 +26,7 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Themes;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
@@ -37,13 +38,13 @@ public partial class HumanVerificationViewModel : OverlayViewModelBase,
 {
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IThemeSelector _themeSelector;
+    private readonly IConfiguration _configuration;
 
     private string _token = string.Empty;
 
     public bool IsDarkTheme => _themeSelector.GetTheme().ApplicationTheme == ApplicationTheme.Dark;
 
-    //TODO: use configuration for api url
-    public string Url => $"https://vpn-api.proton.me/core/v4/captcha?Token={_token}{(IsDarkTheme ? "&Dark=1" : string.Empty)}";
+    public string Url => GetCaptchaUrl();
 
     public HumanVerificationViewModel(
         ILocalizationProvider localizationProvider,
@@ -51,7 +52,8 @@ public partial class HumanVerificationViewModel : OverlayViewModelBase,
         IEventMessageSender eventMessageSender,
         IThemeSelector themeSelector,
         ILogger logger,
-        IIssueReporter issueReporter)
+        IIssueReporter issueReporter,
+        IConfiguration configuration)
         : base(localizationProvider,
                logger,
                issueReporter,
@@ -59,6 +61,7 @@ public partial class HumanVerificationViewModel : OverlayViewModelBase,
     {
         _eventMessageSender = eventMessageSender;
         _themeSelector = themeSelector;
+        _configuration = configuration;
     }
 
     [RelayCommand]
@@ -72,11 +75,18 @@ public partial class HumanVerificationViewModel : OverlayViewModelBase,
     public void Receive(RequestTokenMessage message)
     {
         _token = message.Token;
+        OnPropertyChanged(nameof(Url));
     }
 
     public void Receive(ThemeChangedMessage message)
     {
         OnPropertyChanged(nameof(IsDarkTheme));
         OnPropertyChanged(nameof(Url));
+    }
+
+    private string GetCaptchaUrl()
+    {
+        Uri requestUri = new(new Uri(_configuration.Urls.ApiUrl), $"core/v4/captcha?Token={_token}{(IsDarkTheme ? "&Dark=1" : string.Empty)}");
+        return requestUri.AbsoluteUri;
     }
 }
