@@ -221,7 +221,7 @@ public abstract class SettingsCacheBase : ISettingsCache
         Set(propertyName, json);
 
         OnPropertyChanged(oldValue, newValue, propertyName);
-        LogChange(propertyName, oldValue, newValue);
+        LogChange(propertyName, oldValue, newValue, encryption);
     }
 
     private void Set(string propertyName, string? json)
@@ -258,7 +258,23 @@ public abstract class SettingsCacheBase : ISettingsCache
         _eventMessageSender.Send(new SettingChangedMessage(propertyName, typeof(T), oldValue, newValue));
     }
 
-    private void LogChange<T>(string propertyName, T oldValue, T newValue)
+    private void LogChange<T>(string propertyName, T oldValue, T newValue, SettingEncryption encryption)
+    {
+#if DEBUG
+        LogChangeUnencrypted(propertyName, oldValue, newValue);
+#else
+        if (encryption == SettingEncryption.Encrypted)
+        {
+            Logger.Info<SettingsChangeLog>($"Setting '{propertyName}' changed (encrypted).");
+        }
+        else
+        {
+            LogChangeUnencrypted(propertyName, oldValue, newValue);
+        }
+#endif
+    }
+
+    private void LogChangeUnencrypted<T>(string propertyName, T? oldValue, T? newValue)
     {
         string oldValueJson = _jsonSerializer.SerializeToString(oldValue).GetLastChars(64);
         string newValueJson = _jsonSerializer.SerializeToString(newValue).GetLastChars(64);
