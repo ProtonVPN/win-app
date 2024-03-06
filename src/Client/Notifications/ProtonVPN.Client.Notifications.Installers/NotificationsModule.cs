@@ -26,5 +26,6 @@ public class NotificationsModule : Module
     protected override void Load(ContainerBuilder builder)
     {
         builder.RegisterType<PortForwardingNewPortNotificationSender>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ConnectionStatusNotificationSender>().AsImplementedInterfaces().SingleInstance();
     }
 }

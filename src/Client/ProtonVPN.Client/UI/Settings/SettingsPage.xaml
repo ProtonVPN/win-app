@@ -180,18 +180,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </toolkit:SettingsCard.ActionIcon>
             </toolkit:SettingsCard>
 
-            <!--  TODO: App Notifications have not been implemented yet. Keep the settings card disabled for now.  -->
             <toolkit:SettingsCard AutomationProperties.AutomationId="NotificationsSettingsCard"
                                   Description="{x:Bind ViewModel.Localizer.Get('Settings_General_Notifications_Description')}"
                                   Header="{x:Bind ViewModel.Localizer.Get('Settings_General_Notifications')}"
-                                  IsEnabled="False"
-                                  IsTabStop="False"
                                   Style="{StaticResource DefaultSettingsCardStyle}">
                 <toolkit:SettingsCard.HeaderIcon>
                     <pathicons:Bell />
                 </toolkit:SettingsCard.HeaderIcon>
-                <ToggleSwitch IsOn="{x:Bind ViewModel.IsNotificationEnabled, Mode=OneWay}"
-                              Style="{StaticResource ToggleSwitchStyle}" /> <!--Mode=TwoWay}"-->
+                <ToggleSwitch IsOn="{x:Bind ViewModel.IsNotificationEnabled, Mode=TwoWay}"
+                              Style="{StaticResource ToggleSwitchStyle}" />
             </toolkit:SettingsCard>
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="LanguagesSettingsCard"
