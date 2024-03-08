@@ -44,8 +44,6 @@ public partial class TwoFactorFormViewModel : PageViewModelBase<ILoginViewNaviga
     [NotifyCanExecuteChangedFor(nameof(AuthenticateCommand))]
     private bool _isAuthenticating;
 
-    public IRelayCommand<string> AuthenticateCommand { get; }
-
     public override bool IsBackEnabled => true;
 
     public event EventHandler OnTwoFactorFailure;
@@ -63,10 +61,9 @@ public partial class TwoFactorFormViewModel : PageViewModelBase<ILoginViewNaviga
         _eventMessageSender = eventMessageSender;
         _userAuthenticator = userAuthenticator;
         _guestHoleActionExecutor = guestHoleActionExecutor;
-
-        AuthenticateCommand = new RelayCommand<string>(twoFactorCode => AuthenticateAsync(twoFactorCode), CanAuthenticate);
     }
 
+    [RelayCommand(CanExecute=nameof(CanAuthenticate))]
     public async Task AuthenticateAsync(string twoFactorCode)
     {
         try

@@ -17,25 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Newtonsoft.Json;
+namespace ProtonVPN.Client.Models;
 
-namespace ProtonVPN.Client.Helpers;
-
-public static class Json
+public enum WindowStatus
 {
-    public static async Task<string> StringifyAsync(object value)
-    {
-        return await Task.Run<string>(() =>
-        {
-            return JsonConvert.SerializeObject(value);
-        });
-    }
-
-    public static async Task<T> ToObjectAsync<T>(string value)
-    {
-        return await Task.Run<T>(() =>
-        {
-            return JsonConvert.DeserializeObject<T>(value);
-        });
-    }
+    Active,
+    Closed,
+    Hidden
 }

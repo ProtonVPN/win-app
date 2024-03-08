@@ -24,6 +24,4 @@ namespace ProtonVPN.Client.Contracts;
 public interface IShellPage
 {
     void Initialize(Window window);
-
-    void Reset();
 }

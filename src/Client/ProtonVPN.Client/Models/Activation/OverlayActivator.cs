@@ -134,9 +134,17 @@ public class OverlayActivator : WindowActivatorBase, IOverlayActivator
 
     protected override void OnThemeChanged(ElementTheme theme)
     {
-        foreach (ContentDialog overlay in _activeOverlays.Select(o => o.Dialog).ToList())
+        foreach (ActiveOverlay overlay in _activeOverlays.ToList())
         {
-            overlay.RequestedTheme = theme;
+            overlay.Dialog.RequestedTheme = theme;
+        }
+    }
+
+    protected override void OnLanguageChanged(string language)
+    {
+        foreach (ActiveOverlay overlay in _activeOverlays.ToList())
+        {
+            overlay.Dialog.ApplyFlowDirection(language);
         }
     }
 

@@ -30,22 +30,32 @@ namespace ProtonVPN.Client.UI;
 
 public sealed partial class ShellPage : IShellPage
 {
+    private const double TIMER_INTERVAL_IN_MS = 400;
+    private const double PANE_WIDTH_RATIO = 0.2;
+    private const double PANE_MIN_WIDTH = 160;
+    private const double PANE_MAX_WIDTH = 300;
+
+    private DispatcherTimer _timer;
+
     public ShellViewModel ViewModel { get; }
 
     public ShellPage()
     {
         ViewModel = App.GetService<ShellViewModel>();
         InitializeComponent();
+
+        _timer = new DispatcherTimer
+        {
+            Interval = TimeSpan.FromMilliseconds(TIMER_INTERVAL_IN_MS),
+        };
+        _timer.Tick += OnTimerTick;
+
+        InvalidatePaneLayout();
     }
 
     public void Initialize(Window window)
     {
         ViewModel.InitializeViewNavigator(window, NavigationFrame);
-    }
-
-    public void Reset()
-    {
-        ViewModel.ResetViewNavigator();
     }
 
     private static KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key, VirtualKeyModifiers? modifiers = null)
@@ -69,6 +79,13 @@ public sealed partial class ShellPage : IShellPage
         bool result = await viewNavigator.GoBackAsync();
 
         args.Handled = result;
+    }
+
+    private void OnTimerTick(object? sender, object e)
+    {
+        _timer.Stop();
+
+        InvalidatePaneLayout();
     }
 
     private void OnLoaded(object sender, RoutedEventArgs e)
@@ -106,5 +123,23 @@ public sealed partial class ShellPage : IShellPage
             // Force selecting the proper item on the side bar, so it matches the actual page.
             NavigationViewControl.SelectedItem = ViewModel.SelectedNavigationPage;
         }
+    }
+
+    private void OnNavigationViewControlSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        if (!_timer.IsEnabled)
+        {
+            // Delay InvalidatePaneLayout to prevent a glitch with the split view control
+            _timer.Start();
+        }
+    }
+
+    private void InvalidatePaneLayout()
+    {
+        double actualWidth = NavigationViewControl.ActualWidth;
+
+        double paneWidth = Math.Min(PANE_MAX_WIDTH, Math.Max(PANE_MIN_WIDTH, actualWidth * PANE_WIDTH_RATIO));
+
+        ViewModel.NavigationPaneWidth = paneWidth;
     }
 }

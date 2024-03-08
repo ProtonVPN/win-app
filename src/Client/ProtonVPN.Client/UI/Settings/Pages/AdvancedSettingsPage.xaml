@@ -40,13 +40,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
                                        IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
                                        ReconnectCommand="{x:Bind ViewModel.ReconnectCommand, Mode=OneTime}"
-                                       ReconnectCommandText="{x:Bind ViewModel.Localizer.Get('Common_Actions_Reconnect')}">
-
-        <custom:PageContentControl.PageHeader>
-            <TextBlock Text="{x:Bind ViewModel.Title}"
-                       Style="{StaticResource SubtitleTextBlockStyle}"
-                       TextWrapping="Wrap" />
-        </custom:PageContentControl.PageHeader>
+                                       ReconnectCommandText="{x:Bind ViewModel.Localizer.Get('Common_Actions_Reconnect')}"
+                                       PageHeader="{x:Bind ViewModel.Title}">
 
         <StackPanel x:Name="ContentArea">
 

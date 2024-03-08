@@ -19,13 +19,14 @@
 
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Localization.Contracts.Messages;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Models.Activation;
 
-public abstract class WindowActivatorBase : IEventMessageReceiver<ThemeChangedMessage>
+public abstract class WindowActivatorBase : IEventMessageReceiver<ThemeChangedMessage>, IEventMessageReceiver<LanguageChangedMessage>
 {
     protected ILogger Logger { get; }
 
@@ -44,5 +45,12 @@ public abstract class WindowActivatorBase : IEventMessageReceiver<ThemeChangedMe
         OnThemeChanged(theme);
     }
 
+    public void Receive(LanguageChangedMessage message)
+    {
+        OnLanguageChanged(message.Language);
+    }
+
     protected abstract void OnThemeChanged(ElementTheme theme);
+
+    protected abstract void OnLanguageChanged(string language);
 }

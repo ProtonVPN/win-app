@@ -32,7 +32,7 @@ namespace ProtonVPN.Client.UI.Gateways.Items;
 
 public class B2BServerViewModel : ServerViewModelBase
 {
-    public string? GatewayName { get; private set; }
+    public string GatewayName { get; private set; } = string.Empty;
 
     protected override ConnectionIntent ConnectionIntent =>
         new(new GatewayServerLocationIntent(Id, Name, ExitCountryCode, GatewayName), new B2BFeatureIntent());

@@ -38,11 +38,6 @@ public sealed partial class LoginShellPage : IShellPage
         ViewModel.InitializeViewNavigator(window, NavigationFrame);
     }
 
-    public void Reset()
-    {
-        ViewModel.ResetViewNavigator();
-    }
-
     private async void OnBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
     {
         await ViewModel.GoBackAsync();

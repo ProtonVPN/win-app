@@ -65,7 +65,10 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
     private SplitViewDisplayMode _connectionDetailsPaneDisplayMode;
 
     [ObservableProperty]
-    private string _activeCountryCode;
+    private double _connectionDetailsPaneWidth;
+
+    [ObservableProperty]
+    private string _activeCountryCode = string.Empty;
 
     public bool IsConnectionDetailsPaneInline => IsConnectionDetailsPaneOpened && ConnectionDetailsPaneDisplayMode.IsInline();
 
@@ -97,6 +100,8 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
         _settings = settings;
         _themeSelector = themeSelector;
         _connectionDetailsViewModel = connectionDetailsViewModel;
+
+        InvalidateActiveCountryCode();
     }
 
     [RelayCommand]

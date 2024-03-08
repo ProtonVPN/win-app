@@ -57,7 +57,10 @@ public class ViewModelsModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
+        RegisterViewModel<ShellViewModel>(builder);
+        RegisterViewModel<LoginShellViewModel>(builder);
         RegisterViewModel<ReportIssueShellViewModel>(builder);
+
         RegisterViewModel<CategorySelectionViewModel>(builder);
         RegisterViewModel<QuickFixesViewModel>(builder);
         RegisterViewModel<ContactFormViewModel>(builder);
@@ -92,7 +95,6 @@ public class ViewModelsModule : Module
         RegisterViewModel<CitiesPageViewModel>(builder);
         RegisterViewModel<P2PCitiesPageViewModel>(builder);
         RegisterViewModel<HomeViewModel>(builder);
-        RegisterViewModel<ShellViewModel>(builder);
         RegisterViewModel<TrayIconViewModel>(builder);
         RegisterViewModel<CensorshipViewModel>(builder);
         RegisterViewModel<AutoStartupViewModel>(builder);
@@ -107,7 +109,6 @@ public class ViewModelsModule : Module
         RegisterViewModel<NetShieldViewModel>(builder);
         RegisterViewModel<CountryTabViewModel>(builder);
         RegisterViewModel<AccountViewModel>(builder);
-        RegisterViewModel<LoginShellViewModel>(builder);
         RegisterViewModel<LoginFormViewModel>(builder);
         RegisterViewModel<TwoFactorFormViewModel>(builder);
         RegisterViewModel<NoSearchResultsViewModel>(builder);
@@ -123,8 +124,8 @@ public class ViewModelsModule : Module
         RegisterViewModel<AboutViewModel>(builder).AutoActivate();
     }
 
-    private IRegistrationBuilder<TType, ConcreteReflectionActivatorData, SingleRegistrationStyle>
-        RegisterViewModel<TType>(ContainerBuilder builder) where TType : notnull
+    private IRegistrationBuilder<TType, ConcreteReflectionActivatorData, SingleRegistrationStyle> RegisterViewModel<TType>(ContainerBuilder builder) 
+        where TType : notnull
     {
         return builder.RegisterType<TType>().AsSelf().As<IEventMessageReceiver>().SingleInstance();
     }

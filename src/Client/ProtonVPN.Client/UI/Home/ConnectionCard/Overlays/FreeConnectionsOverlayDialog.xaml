@@ -61,10 +61,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Spacing="8">
                         <controls:CountryFlagControl Width="30"
                                                      VerticalAlignment="Top"
-                                                     ExitCountryCode="{x:Bind Code}" />
+                                                     ExitCountryCode="{x:Bind Code, Mode=OneTime}" />
                         <TextBlock Foreground="{ThemeResource TextNormColorBrush}"
                                    Style="{StaticResource BodyTextBlockStyle}"
-                                   Text="{x:Bind Name}"
+                                   Text="{x:Bind Name, Mode=OneTime}"
                                    TextTrimming="CharacterEllipsis" />
                     </StackPanel>
                 </DataTemplate>

@@ -28,7 +28,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       xmlns:st="using:ProtonVPN.Client.UI.Settings.Pages.SplitTunneling"
       x:DefaultBindMode="OneWay"
-      NavigationCacheMode="Enabled"
+      NavigationCacheMode="Required"
       mc:Ignorable="d">
 
     <Page.Resources>
@@ -52,9 +52,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        VerticalAlignment="Top"
                        Source="{x:Bind ViewModel.SplitTunnelingFeatureIconSource}" />
                 <TextBlock Grid.Column="1"
-                           Style="{StaticResource SubtitleTextBlockStyle}"
+                           VerticalAlignment="Top"
                            Text="{x:Bind ViewModel.Title}"
-                           TextWrapping="Wrap" />
+                           Style="{StaticResource SubtitleTextBlockStyle}"
+                           TextWrapping="Wrap"/>
             </Grid>
         </custom:PageContentControl.PageHeader>
 

@@ -25,19 +25,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
-      NavigationCacheMode="Enabled"
+      NavigationCacheMode="Required"
       x:DefaultBindMode="OneWay"
       mc:Ignorable="d">
 
     <custom:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
                                IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
-                               IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}">
-
-        <custom:PageContentControl.PageHeader>
-            <TextBlock Text="{x:Bind ViewModel.Title}"
-                       Style="{StaticResource SubtitleTextBlockStyle}"
-                       TextWrapping="Wrap" />
-        </custom:PageContentControl.PageHeader>
+                               IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
+                               PageHeader="{x:Bind ViewModel.Title}">
 
         <StackPanel>
 

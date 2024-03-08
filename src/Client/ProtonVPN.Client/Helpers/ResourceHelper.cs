@@ -59,7 +59,7 @@ public static class ResourceHelper
 
         if (illustrationsDictionary == null || !illustrationsDictionary.ContainsKey(resourceKey))
         {
-            return default;
+            throw new ArgumentException($"Illustration '{resourceKey}' not found");
         }
 
         return (ImageSource)illustrationsDictionary[resourceKey];
@@ -72,23 +72,10 @@ public static class ResourceHelper
 
         if (iconsDictionary == null || !iconsDictionary.ContainsKey(resourceKey))
         {
-            return default;
+            throw new ArgumentException($"Icon '{resourceKey}' not found");
         }
 
         return (ImageSource)iconsDictionary[resourceKey];
-    }
-
-    public static Style GetContentDialogStyle(string resourceKey)
-    {
-        ResourceDictionary? contentDialogDictionary = Application.Current?.Resources
-            .MergedDictionaries.FirstOrDefault(md => md.Source.AbsoluteUri.EndsWith("Styles/Controls/ContentDialogStyles.xaml"));
-
-        if (contentDialogDictionary == null || !contentDialogDictionary.ContainsKey(resourceKey))
-        {
-            return default;
-        }
-
-        return (Style)contentDialogDictionary[resourceKey];
     }
 
     public static string GetFullImagePath(this ImageSource imageSource)

@@ -32,18 +32,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       xmlns:recents="using:ProtonVPN.Client.UI.Home.Recents"
       xmlns:selectors="using:ProtonVPN.Client.UI.Home.Selectors"
-      xmlns:status="using:ProtonVPN.Client.UI.Home.Status"
+      xmlns:status="using:ProtonVPN.Client.UI.Home.Status" 
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
       mc:Ignorable="d">
 
     <Page.Resources>
-        <x:Double x:Key="ConnectionDetailsPaneWidth">260</x:Double>
-
-        <helpers:SliderValueToMarginConverter x:Key="SliderValueToMarginConverter"
-                                              MaximumValue="{StaticResource MaximumDetailsPaneWidth}"
-                                              MinimumValue="{StaticResource MinimumDetailsPaneWidth}" />
-
         <x:Double x:Key="MapOverlayGradientHeight">82.0</x:Double>
 
         <DataTemplate x:Key="ConnectionCardTemplate">
@@ -72,14 +66,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Grid x:Name="ContentArea">
         <SplitView x:Name="SplitViewArea"
                    BorderThickness="0"
+                   SizeChanged="OnSplitViewAreaSizeChanged"
                    CornerRadius="4,0,0,4"
                    DisplayMode="{x:Bind ViewModel.ConnectionDetailsPaneDisplayMode, Mode=TwoWay}"
                    IsPaneOpen="{x:Bind ViewModel.IsConnectionDetailsPaneOpened, Mode=TwoWay}"
                    IsTabStop="False"
-                   OpenPaneLength="{StaticResource ConnectionDetailsPaneWidth}"
+                   OpenPaneLength="{x:Bind ViewModel.ConnectionDetailsPaneWidth, Mode=OneWay}"
                    PaneBackground="{ThemeResource PaneOverlayBackgroundColorBrush}"
                    PanePlacement="Right">
             <SplitView.Pane>
+
                 <Grid Margin="16,20"
                       AutomationProperties.LandmarkType="Custom"
                       AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Landmark')}"
@@ -141,7 +137,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        Padding="0,0,0,-32"
                                        CanContentScroll="False"
                                        IsBackButtonVisible="False"
-                                       IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}">
+                                       IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
+                                       Style="{StaticResource StretchPageContentControlStyle}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />

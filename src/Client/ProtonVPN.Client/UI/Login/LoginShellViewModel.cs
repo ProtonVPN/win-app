@@ -109,9 +109,9 @@ public partial class LoginShellViewModel : ShellViewModelBase<ILoginViewNavigato
         }
     }
 
-    protected override void OnNavigated(object sender, NavigationEventArgs e)
+    protected override void OnNavigated()
     {
-        base.OnNavigated(sender, e);
+        base.OnNavigated();
 
         OnPropertyChanged(nameof(IsBackEnabled));
     }

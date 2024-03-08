@@ -23,7 +23,6 @@ using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.UI.Dialogs;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
@@ -34,7 +33,10 @@ public class DialogActivator : WindowActivatorBase, IDialogActivator
     private readonly IViewMapper _viewMapper;
     private readonly IOverlayActivator _overlayActivator;
     private readonly ISettings _settings;
-    private List<Window> _activeDialogs = new();
+
+    private bool _handleClosedEvents = true;
+
+    private List<ActiveDialog> _activeDialogs = new();
 
     public DialogActivator(ILogger logger, IViewMapper viewMapper, IThemeSelector themeSelector, IOverlayActivator overlayActivator, ISettings settings)
         : base(logger, themeSelector)
@@ -76,15 +78,24 @@ public class DialogActivator : WindowActivatorBase, IDialogActivator
 
     public void CloseAllDialogs()
     {
-        foreach (Window dialog in _activeDialogs.ToList())
+        try
         {
-            dialog.Close();
+            _handleClosedEvents = false;
+
+            foreach (ActiveDialog dialog in _activeDialogs.ToList())
+            {
+                dialog.Close();
+            }
+        }
+        finally
+        {
+            _handleClosedEvents = true;
         }
     }
 
     public void HideAllDialogs()
     {
-        foreach (Window dialog in _activeDialogs.ToList())
+        foreach (ActiveDialog dialog in _activeDialogs.Where(d => d.Status is WindowStatus.Active).ToList())
         {
             dialog.Hide();
         }
@@ -92,7 +103,7 @@ public class DialogActivator : WindowActivatorBase, IDialogActivator
 
     public void ActivateAllDialogs()
     {
-        foreach (Window dialog in _activeDialogs.ToList())
+        foreach (ActiveDialog dialog in _activeDialogs.Where(d => d.Status is not WindowStatus.Closed).ToList())
         {
             dialog.Activate();
         }
@@ -100,30 +111,47 @@ public class DialogActivator : WindowActivatorBase, IDialogActivator
 
     protected override void OnThemeChanged(ElementTheme theme)
     {
-        foreach (Window dialog in _activeDialogs.ToList())
+        foreach (ActiveDialog dialog in _activeDialogs.ToList())
         {
-            dialog.ApplyTheme(theme);
+            dialog.Window.ApplyTheme(theme);
         }
+    }
+
+    protected override void OnLanguageChanged(string language)
+    {
+        foreach (ActiveDialog dialog in _activeDialogs.ToList())
+        {
+            dialog.Window.ApplyFlowDirection(language);
+        }
+    }
+
+    private ActiveDialog? GetDialog(Type dialogType)
+    {
+        return _activeDialogs.FirstOrDefault(d => d.Window.GetType() == dialogType);
     }
 
     private void ShowDialog(Type dialogType)
     {
         try
         {
-            Window? dialog = _activeDialogs.FirstOrDefault(d => d.GetType() == dialogType);
+            ActiveDialog? dialog = GetDialog(dialogType);
             if (dialog == null)
             {
-                dialog = Activator.CreateInstance(dialogType) as Window
+                Window window = Activator.CreateInstance(dialogType) as Window
                     ?? throw new InvalidCastException($"Type {dialogType} is not recognized as a Window.");
 
-                dialog.ApplyTheme(ThemeSelector.GetTheme().Theme);
-                dialog.ApplyFlowDirection(_settings.Language);
-                dialog.CenterOnScreen();
+                window.ApplyTheme(ThemeSelector.GetTheme().Theme);
+                window.ApplyFlowDirection(_settings.Language);
+                window.CenterOnScreen();
+
+                dialog = new(window);
 
                 RegisterDialog(dialog);
+
+                dialog.Show();
             }
 
-            dialog.Show();
+            dialog.Activate();
         }
         catch (Exception e)
         {
@@ -136,14 +164,14 @@ public class DialogActivator : WindowActivatorBase, IDialogActivator
     {
         try
         {
-            Window? dialog = _activeDialogs.FirstOrDefault(d => d.GetType() == dialogType);
+            ActiveDialog? dialog = GetDialog(dialogType);
             if (dialog == null)
             {
-                Logger.Info<AppLog>($"Dialog '{dialogType}' is not currently active");
+                Logger.Info<AppLog>($"Dialog '{dialogType}' cannot be closed as it is not currently active");
                 return;
             }
 
-            dialog.Close();
+            dialog.FakeClose();
         }
         catch (Exception e)
         {
@@ -152,27 +180,37 @@ public class DialogActivator : WindowActivatorBase, IDialogActivator
         }
     }
 
-    private void RegisterDialog(Window dialog)
+    private void RegisterDialog(ActiveDialog dialog)
     {
-        dialog.Closed += OnDialogClosed;
+        dialog.Window.Closed += OnDialogClosed;
 
         _activeDialogs.Add(dialog);
     }
 
-    private void UnregisterDialog(Window dialog)
+    private void UnregisterDialog(ActiveDialog dialog)
     {
-        dialog.Closed -= OnDialogClosed;
-
-        _overlayActivator.CloseAllOverlays();
+        dialog.Window.Closed -= OnDialogClosed;
 
         _activeDialogs.Remove(dialog);
     }
 
     private void OnDialogClosed(object sender, WindowEventArgs args)
     {
-        if (sender is Window dialog)
+        if (sender is Window window)
         {
-            UnregisterDialog(dialog);
+            ActiveDialog? dialog = _activeDialogs.FirstOrDefault(d => d.Window == window);
+            if (dialog != null)
+            {
+                if (_handleClosedEvents)
+                {
+                    // Hide window instead
+                    args.Handled = true;
+                    dialog.FakeClose();
+                    return;
+                }
+
+                UnregisterDialog(dialog);
+            }
         }
     }
 }

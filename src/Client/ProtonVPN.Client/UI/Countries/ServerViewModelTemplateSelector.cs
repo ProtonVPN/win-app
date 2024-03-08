@@ -24,17 +24,19 @@ namespace ProtonVPN.Client.UI.Countries;
 
 public class ServerViewModelTemplateSelector : DataTemplateSelector
 {
-    public DataTemplate SecureCoreServerTemplate { get; set; }
+    public DataTemplate? SecureCoreServerTemplate { get; set; }
 
-    public DataTemplate ServerTemplate { get; set; }
+    public DataTemplate? ServerTemplate { get; set; }
 
     protected override DataTemplate SelectTemplateCore(object item)
     {
-        if (item is ServerViewModel serverViewModel)
-        {
-            return serverViewModel.IsSecureCore ? SecureCoreServerTemplate : ServerTemplate;
-        }
+        bool isSecureCoreServer = item is ServerViewModel serverViewModel 
+                               && serverViewModel.IsSecureCore;
 
-        return new DataTemplate();
+        DataTemplate? template = isSecureCoreServer
+            ? SecureCoreServerTemplate
+            : ServerTemplate;
+
+        return template ?? throw new InvalidOperationException("Server data template is undefined");
     }
 }

@@ -50,13 +50,12 @@ public abstract partial class ShellViewModelBase<TViewNavigator> : PageViewModel
         ViewNavigator.Frame = frame;
     }
 
-    public void ResetViewNavigator()
+    private void OnNavigated(object sender, NavigationEventArgs e)
     {
-        ViewNavigator.Window = null;
-        ViewNavigator.Frame = null;
+        ExecuteOnUIThread(OnNavigated);
     }
 
-    protected virtual void OnNavigated(object sender, NavigationEventArgs e)
+    protected virtual void OnNavigated()
     {
         OnPropertyChanged(nameof(IsBackEnabled));
         OnPropertyChanged(nameof(CurrentPage));

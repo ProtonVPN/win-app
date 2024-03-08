@@ -26,7 +26,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       x:DefaultBindMode="OneWay"
-      NavigationCacheMode="Enabled"
+      NavigationCacheMode="Required"
       mc:Ignorable="d">
 
     <custom:SettingsPageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
@@ -41,12 +41,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Image Grid.Column="0"
                        Width="32"
                        Height="32"
+                       Margin="0,-2,0,0"
                        VerticalAlignment="Top"
                        Source="{x:Bind ViewModel.NetShieldFeatureIconSource}" />
                 <TextBlock Grid.Column="1"
+                           VerticalAlignment="Top"
                            Text="{x:Bind ViewModel.Title}"
                            Style="{StaticResource SubtitleTextBlockStyle}"
-                           TextWrapping="Wrap" />
+                           TextWrapping="Wrap"/>
             </Grid>
         </custom:PageContentControl.PageHeader>
 

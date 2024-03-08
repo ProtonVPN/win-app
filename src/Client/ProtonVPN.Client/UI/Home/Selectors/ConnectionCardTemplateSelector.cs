@@ -24,16 +24,18 @@ namespace ProtonVPN.Client.UI.Home.Selectors;
 
 public class ConnectionCardTemplateSelector : DataTemplateSelector
 {
-    public DataTemplate ConnectionCardTemplate { get; set; }
+    public DataTemplate? ConnectionCardTemplate { get; set; }
 
-    public DataTemplate FreeConnectionCardTemplate { get; set; }
+    public DataTemplate? FreeConnectionCardTemplate { get; set; }
 
     protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
     {
         bool isPaidUser = Convert.ToBoolean(item);
 
-        return isPaidUser 
-            ? ConnectionCardTemplate 
+        DataTemplate? template = isPaidUser 
+            ? ConnectionCardTemplate
             : FreeConnectionCardTemplate;
+
+        return template ?? throw new InvalidOperationException("Connection card data template is undefined");
     }
 }

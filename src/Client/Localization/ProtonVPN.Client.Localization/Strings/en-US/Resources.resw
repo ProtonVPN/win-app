@@ -1588,7 +1588,7 @@
     <value>Auto startup</value>
   </data>
   <data name="Settings_General_AutoStartup_Description" xml:space="preserve">
-    <value>Auto launch, auto connect</value>
+    <value>Set the app to launch or connect automatically</value>
   </data>
   <data name="Settings_General_BetaAccess" xml:space="preserve">
     <value>Beta access</value>
