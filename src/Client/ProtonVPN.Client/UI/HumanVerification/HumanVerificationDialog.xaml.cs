@@ -17,13 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Security.Cryptography.X509Certificates;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.Web.WebView2.Core;
 using Newtonsoft.Json;
 using ProtonVPN.Api.Contracts.HumanVerification;
+using ProtonVPN.Api.Extensions;
+using ProtonVPN.Api.Handlers.TlsPinning;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using Windows.Security.Cryptography.Certificates;
 
 namespace ProtonVPN.Client.UI.HumanVerification;
 
@@ -33,11 +37,15 @@ public sealed partial class HumanVerificationDialog
 
     private readonly ILogger _logger;
     private readonly IHumanVerificationConfig _humanVerificationConfig;
+    private readonly IConfiguration _config;
+    private readonly ICertificateValidator _certificateValidator;
 
     public HumanVerificationDialog()
     {
         _logger = App.GetService<ILogger>();
         _humanVerificationConfig = App.GetService<IHumanVerificationConfig>();
+        _config = App.GetService<IConfiguration>();
+        _certificateValidator = App.GetService<ICertificateValidator>();
 
         ViewModel = App.GetService<HumanVerificationViewModel>();
         UserDataFolder = App.GetService<IConfiguration>().WebViewFolder;
@@ -101,15 +109,54 @@ public sealed partial class HumanVerificationDialog
         }
     }
 
-    private void OnServerCertificateErrorDetected(CoreWebView2 sender,
-        CoreWebView2ServerCertificateErrorDetectedEventArgs e)
-    {
-        e.Action = CoreWebView2ServerCertificateErrorAction.Cancel;
-        _logger.Error<AppLog>($"Failed to validate server certificate in a WebView. Reason: ${e.ErrorStatus}");
-    }
-
     private void LogWebViewInitializationException(Exception e)
     {
         _logger.Error<AppLog>("Failed to initialize CoreWebView2.", e);
+    }
+
+    private void OnServerCertificateErrorDetected(object sender, CoreWebView2ServerCertificateErrorDetectedEventArgs e)
+    {
+        try
+        {
+            if (e.ErrorStatus == CoreWebView2WebErrorStatus.CertificateIsInvalid && IsCertificateValid(e))
+            {
+                e.Action = CoreWebView2ServerCertificateErrorAction.AlwaysAllow;
+            }
+            else
+            {
+                e.Action = CoreWebView2ServerCertificateErrorAction.Cancel;
+                _logger.Error<AppLog>($"Failed to validate server certificate in a WebView. Reason: ${e.ErrorStatus}");
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.Error<AppLog>("Failed to validate server certificate in a WebView.", ex);
+        }
+    }
+
+    private bool IsCertificateValid(CoreWebView2ServerCertificateErrorDetectedEventArgs e)
+    {
+        X509Certificate2 certificate = ConvertToX509Certificate2(e.ServerCertificate);
+        Uri requestUri = new(e.RequestUri);
+        CertificateValidationParams validationParams = new()
+        {
+            Certificate = certificate,
+            Chain = e.ServerCertificate.PemEncodedIssuerCertificateChain,
+            HasSslError = _config.IsCertificateValidationEnabled,
+            Host = requestUri.Host,
+            RequestUri = requestUri,
+        };
+
+        return _certificateValidator.IsValid(validationParams);
+    }
+
+    private static X509Certificate2 ConvertToX509Certificate2(CoreWebView2Certificate certificate)
+    {
+        X509Certificate2 x509Certificate = new X509Certificate2(Convert.FromBase64String(certificate.ToPemEncoding().Replace("-----BEGIN CERTIFICATE-----", string.Empty).Replace("-----END CERTIFICATE-----", string.Empty)))
+        {
+            FriendlyName = certificate.DisplayName
+        };
+
+        return x509Certificate;
     }
 }
