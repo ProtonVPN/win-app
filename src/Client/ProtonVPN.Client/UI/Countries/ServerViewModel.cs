@@ -35,9 +35,9 @@ namespace ProtonVPN.Client.UI.Countries;
 
 public class ServerViewModel : ServerViewModelBase, ISearchableItem
 {
-    public string EntryCountryCode { get; private set; }
+    public string EntryCountryCode { get; private set; } = string.Empty;
     public string EntryCountryName => Localizer.GetFormat("Countries_ViaCountry", Localizer.GetCountryName(EntryCountryCode));
-    public string City { get; private set; }
+    public string City { get; private set; } = string.Empty;
     public bool IsVirtual { get; private set; }
     public bool IsSecureCore { get; private set; }
     public bool SupportsP2P { get; private set; }

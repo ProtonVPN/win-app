@@ -20,78 +20,93 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
                     xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
-                    xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom">
+                    xmlns:triggers="using:CommunityToolkit.WinUI">
 
     <Thickness x:Key="PageContentControlPadding">16</Thickness>
     <Thickness x:Key="PageContentControlHeaderContainerMargin">0,16,0,11</Thickness>
 
     <Style BasedOn="{StaticResource DefaultPageContentControlStyle}" TargetType="custom:PageContentControl" />
 
-    <Style x:Key="DefaultPageContentControlStyle" TargetType="custom:PageContentControl">
+    <Style x:Key="StretchPageContentControlStyle" TargetType="custom:PageContentControl">
         <Setter Property="Padding" Value="{StaticResource PageContentControlPadding}" />
         <Setter Property="Background" Value="{ThemeResource BackgroundNormColorBrush}" />
         <Setter Property="BorderBrush" Value="{ThemeResource BorderWeakColorBrush}" />
         <Setter Property="BorderThickness" Value="1,1,0,0" />
         <Setter Property="CornerRadius" Value="8,0,0,0" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="PageHeaderFontSize" Value="{StaticResource SubtitleFontSize}" />
+        <Setter Property="PageHeaderFontWeight" Value="{StaticResource SubtitleFontWeight}" />
+        <Setter Property="PageHeaderLineHeight" Value="{StaticResource SubtitleLineHeight}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:PageContentControl">
 
                     <Grid x:Name="PageContainer"
-                          Padding="{TemplateBinding Padding}"
-                          Background="{TemplateBinding Background}"
                           BorderBrush="{TemplateBinding BorderBrush}"
                           BorderThickness="{TemplateBinding BorderThickness}"
                           CornerRadius="{TemplateBinding CornerRadius}">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
 
-                        <Grid x:Name="PART_HeaderContainer"
-                              Grid.Row="0"
-                              Margin="{StaticResource PageContentControlHeaderContainerMargin}"
-                              Visibility="Collapsed">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" 
+                                              MaxWidth="{Binding MaxContentWidth, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Grid x:Name="PageContentContainer"
+                              Padding="{TemplateBinding Padding}"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
 
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
 
-                            <custom:GhostButton Grid.Column="0"
-                                                VerticalAlignment="Top"
-                                                Margin="0,0,16,0"
-                                                AutomationProperties.AutomationId="GoBackButton"
-                                                Command="{Binding BackCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                                CommandParameter="{Binding BackCommandParameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                                Visibility="{Binding IsBackButtonVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <custom:GhostButton.LeftIcon>
-                                    <pathicons:ArrowLeft />
-                                </custom:GhostButton.LeftIcon>
-                            </custom:GhostButton>
+                            <Grid x:Name="PART_HeaderContainer"
+                                  Grid.Row="0"
+                                  Margin="{StaticResource PageContentControlHeaderContainerMargin}"
+                                  Visibility="Collapsed">
 
-                            <ContentPresenter x:Name="PART_HeaderPresenter"
-                                              Grid.Column="1"
-                                              VerticalAlignment="Top"
-                                              AutomationProperties.AutomationId="PageTitleLabel"
-                                              AutomationProperties.HeadingLevel="Level1"
-                                              Content="{TemplateBinding PageHeader}"
-                                              ContentTemplate="{TemplateBinding PageHeaderTemplate}"
-                                              FontSize="{ThemeResource TitleFontSize}"
-                                              FontWeight="{ThemeResource TitleFontWeight}"
-                                              LineHeight="{ThemeResource TitleLineHeight}"
-                                              OpticalMarginAlignment="TrimSideBearings" />
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <custom:GhostButton Grid.Column="0"
+                                                    Margin="0,2,16,0"
+                                                    VerticalAlignment="Top"
+                                                    AutomationProperties.AutomationId="GoBackButton"
+                                                    Command="{Binding BackCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                    CommandParameter="{Binding BackCommandParameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                    Visibility="{Binding IsBackButtonVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <custom:GhostButton.LeftIcon>
+                                        <pathicons:ArrowLeft />
+                                    </custom:GhostButton.LeftIcon>
+                                </custom:GhostButton>
+
+                                <ContentPresenter x:Name="PART_HeaderPresenter"
+                                                  Grid.Column="1"
+                                                  VerticalAlignment="Top"
+                                                  AutomationProperties.AutomationId="PageTitleLabel"
+                                                  AutomationProperties.HeadingLevel="Level1"
+                                                  Content="{TemplateBinding PageHeader}"
+                                                  ContentTemplate="{TemplateBinding PageHeaderTemplate}"
+                                                  FontSize="{TemplateBinding PageHeaderFontSize}"
+                                                  FontWeight="{TemplateBinding PageHeaderFontWeight}"
+                                                  LineHeight="{TemplateBinding PageHeaderLineHeight}"
+                                                  TextWrapping="Wrap"
+                                                  OpticalMarginAlignment="TrimSideBearings" />
+                            </Grid>
+
+                            <ScrollViewer Grid.Row="1"
+                                          Margin="0,0,-12,0"
+                                          Padding="0,0,12,0"
+                                          HorizontalScrollBarVisibility="Disabled"
+                                          VerticalScrollBarVisibility="{Binding CanContentScroll, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToScrollBarVisibilityConverter}}">
+
+                                <ContentPresenter Margin="0,0,0,32" />
+                            </ScrollViewer>
                         </Grid>
-
-                        <ScrollViewer Grid.Row="1"
-                                      Margin="0,0,-12,0"
-                                      Padding="0,0,12,0"
-                                      HorizontalScrollBarVisibility="Disabled"
-                                      VerticalScrollBarVisibility="{Binding CanContentScroll, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToScrollBarVisibilityConverter}}">
-
-                            <ContentPresenter Margin="0,0,0,32" />
-                        </ScrollViewer>
 
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup>
@@ -114,6 +129,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Setter>
     </Style>
 
+    <Style x:Key="DefaultPageContentControlStyle" BasedOn="{StaticResource StretchPageContentControlStyle}" TargetType="custom:PageContentControl">
+        <Setter Property="MaxContentWidth" Value="{StaticResource MaximumPageContentWidth}" />
+    </Style>
+
+    <Style x:Key="MainPageContentControlStyle" BasedOn="{StaticResource DefaultPageContentControlStyle}" TargetType="custom:PageContentControl">
+        <Setter Property="PageHeaderFontSize" Value="{StaticResource TitleFontSize}" />
+        <Setter Property="PageHeaderFontWeight" Value="{StaticResource TitleFontWeight}" />
+        <Setter Property="PageHeaderLineHeight" Value="{StaticResource TitleLineHeight}" />
+    </Style>
+
     <Style BasedOn="{StaticResource SettingsPageContentControlStyle}" TargetType="custom:SettingsPageContentControl" />
 
     <Style x:Key="SettingsPageContentControlStyle" BasedOn="{StaticResource DefaultPageContentControlStyle}" TargetType="custom:SettingsPageContentControl">
@@ -122,68 +147,79 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ControlTemplate TargetType="custom:SettingsPageContentControl">
 
                     <Grid x:Name="PageContainer"
-                          Padding="{TemplateBinding Padding}"
-                          Background="{TemplateBinding Background}"
                           BorderBrush="{TemplateBinding BorderBrush}"
                           BorderThickness="{TemplateBinding BorderThickness}"
                           CornerRadius="{TemplateBinding CornerRadius}">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
 
-                        <Grid x:Name="PART_HeaderContainer"
-                              Grid.Row="0"
-                              Margin="{StaticResource PageContentControlHeaderContainerMargin}"
-                              Visibility="Collapsed">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" 
+                                              MaxWidth="{Binding MaxContentWidth, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                        </Grid.ColumnDefinitions>
 
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+                        <Grid x:Name="PageContentContainer"
+                              Padding="{TemplateBinding Padding}"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
 
-                            <custom:GhostButton Grid.Column="0"
-                                                VerticalAlignment="Top"
-                                                Margin="0,0,16,0"
-                                                AutomationProperties.AutomationId="GoBackButton"
-                                                Command="{Binding BackCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                                CommandParameter="{Binding BackCommandParameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                                Visibility="{Binding IsBackButtonVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <custom:GhostButton.LeftIcon>
-                                    <pathicons:ArrowLeft />
-                                </custom:GhostButton.LeftIcon>
-                            </custom:GhostButton>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
 
-                            <ContentPresenter x:Name="PART_HeaderPresenter"
-                                              Grid.Column="1"
-                                              VerticalAlignment="Top"
-                                              AutomationProperties.AutomationId="PageTitleLabel"
-                                              AutomationProperties.HeadingLevel="Level1"
-                                              Content="{TemplateBinding PageHeader}"
-                                              ContentTemplate="{TemplateBinding PageHeaderTemplate}"
-                                              FontSize="{ThemeResource TitleFontSize}"
-                                              FontWeight="{ThemeResource TitleFontWeight}"
-                                              LineHeight="{ThemeResource TitleLineHeight}"
-                                              OpticalMarginAlignment="TrimSideBearings" />
+                            <Grid x:Name="PART_HeaderContainer"
+                                  Grid.Row="0"
+                                  Margin="{StaticResource PageContentControlHeaderContainerMargin}"
+                                  Visibility="Collapsed">
 
-                            <Button Grid.Column="2"
-                                    Margin="16,0,0,0"
-                                    Command="{Binding ReconnectCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                    CommandParameter="{Binding ReconnectCommandParameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                    Content="{TemplateBinding ReconnectCommandText}"
-                                    Style="{StaticResource PrimaryButtonStyle}"
-                                    Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}" />
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <custom:GhostButton Grid.Column="0"
+                                                    Margin="0,2,16,0"
+                                                    VerticalAlignment="Top"
+                                                    AutomationProperties.AutomationId="GoBackButton"
+                                                    Command="{Binding BackCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                    CommandParameter="{Binding BackCommandParameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                    Visibility="{Binding IsBackButtonVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <custom:GhostButton.LeftIcon>
+                                        <pathicons:ArrowLeft />
+                                    </custom:GhostButton.LeftIcon>
+                                </custom:GhostButton>
+
+                                <ContentPresenter x:Name="PART_HeaderPresenter"
+                                                  Grid.Column="1"
+                                                  VerticalAlignment="Top"
+                                                  AutomationProperties.AutomationId="PageTitleLabel"
+                                                  AutomationProperties.HeadingLevel="Level1"
+                                                  Content="{TemplateBinding PageHeader}"
+                                                  ContentTemplate="{TemplateBinding PageHeaderTemplate}"
+                                                  FontSize="{TemplateBinding PageHeaderFontSize}"
+                                                  FontWeight="{TemplateBinding PageHeaderFontWeight}"
+                                                  LineHeight="{TemplateBinding PageHeaderLineHeight}"
+                                                  TextWrapping="Wrap"
+                                                  OpticalMarginAlignment="TrimSideBearings" />
+
+                                <Button Grid.Column="2"
+                                        Margin="16,0,0,0"
+                                        VerticalAlignment="Top"
+                                        Command="{Binding ReconnectCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                        CommandParameter="{Binding ReconnectCommandParameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                        Content="{TemplateBinding ReconnectCommandText}"
+                                        Style="{StaticResource PrimaryButtonStyle}"
+                                        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}" />
+                            </Grid>
+
+                            <ScrollViewer Grid.Row="1"
+                                          Margin="0,0,-12,0"
+                                          Padding="0,0,12,0"
+                                          HorizontalScrollBarVisibility="Disabled"
+                                          VerticalScrollBarVisibility="{Binding CanContentScroll, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToScrollBarVisibilityConverter}}">
+
+                                <ContentPresenter Margin="0,0,0,32" />
+                            </ScrollViewer>
                         </Grid>
-
-                        <ScrollViewer Grid.Row="1"
-                                      Margin="0,0,-12,0"
-                                      Padding="0,0,12,0"
-                                      HorizontalScrollBarVisibility="Disabled"
-                                      VerticalScrollBarVisibility="{Binding CanContentScroll, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToScrollBarVisibilityConverter}}">
-
-                            <ContentPresenter Margin="0,0,0,32" />
-                        </ScrollViewer>
 
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup>

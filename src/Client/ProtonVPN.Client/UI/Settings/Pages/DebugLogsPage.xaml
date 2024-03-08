@@ -27,18 +27,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       x:DefaultBindMode="OneWay"
-      NavigationCacheMode="Enabled"
+      NavigationCacheMode="Required"
       mc:Ignorable="d">
 
     <custom:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
                                IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
-                               IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}">
-
-        <custom:PageContentControl.PageHeader>
-            <TextBlock Text="{x:Bind ViewModel.Title}"
-                       Style="{StaticResource SubtitleTextBlockStyle}"
-                       TextWrapping="Wrap" />
-        </custom:PageContentControl.PageHeader>
+                               IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
+                               PageHeader="{x:Bind ViewModel.Title}">
 
         <StackPanel x:Name="ContentArea">
 

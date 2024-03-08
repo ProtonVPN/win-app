@@ -25,28 +25,27 @@ namespace ProtonVPN.Client.UI.ReportIssue.Selectors;
 
 public class IssueInputFieldDataTemplateSelector : DataTemplateSelector
 {
-    public DataTemplate SingleLineTextInputFieldTemplate { get; set; }
+    public DataTemplate? SingleLineTextInputFieldTemplate { get; set; }
 
-    public DataTemplate MultiLineTextInputFieldTemplate { get; set; }
+    public DataTemplate? MultiLineTextInputFieldTemplate { get; set; }
 
-    public DataTemplate EmailInputFieldTemplate { get; set; }
+    public DataTemplate? EmailInputFieldTemplate { get; set; }
 
-    public DataTemplate CheckboxInputFieldTemplate { get; set; }
+    public DataTemplate? CheckboxInputFieldTemplate { get; set; }
     
     protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
     {
-        switch (item)
+        DataTemplate? template = item switch
         {
-            case SingleLineTextInputField _:
-                return SingleLineTextInputFieldTemplate;
-            case MultiLineTextInputField _:
-                return MultiLineTextInputFieldTemplate;
-            case EmailInputField _:
-                return EmailInputFieldTemplate;
-            case CheckboxInputField _:
-                return CheckboxInputFieldTemplate;
-            default:
-                return SingleLineTextInputFieldTemplate;
-        }
+            SingleLineTextInputField => SingleLineTextInputFieldTemplate,
+            MultiLineTextInputField => MultiLineTextInputFieldTemplate,
+            EmailInputField => EmailInputFieldTemplate,
+            CheckboxInputField => CheckboxInputFieldTemplate,
+            _ => SingleLineTextInputFieldTemplate
+        };
+        
+        return template
+            ?? SingleLineTextInputFieldTemplate 
+            ?? throw new InvalidOperationException("Issue input field data template is undefined");
     }
 }

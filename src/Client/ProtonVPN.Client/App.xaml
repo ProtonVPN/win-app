@@ -80,6 +80,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <x:Double x:Key="LoginPageContentWidth">328</x:Double>
             <x:Double x:Key="MaximumHomePageContentWidth">600.0</x:Double>
+
+            <x:Double x:Key="MaximumPageContentWidth">600.0</x:Double>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -161,7 +161,7 @@ public partial class SplitTunnelingViewModel : SettingsPageViewModelBase
     public async Task AddAppAsync()
     {
         ObservableCollection<SplitTunnelingAppViewModel> apps = GetApps();
-        string filePath = await ViewNavigator.Window.PickSingleFileAsync(Localizer.Get("Settings_Features_SplitTunneling_Apps_FilesFilterName"), new string[] { EXE_FILE_EXTENSION });
+        string filePath = await ViewNavigator.Window.PickSingleFileAsync(Localizer.Get("Settings_Features_SplitTunneling_Apps_FilesFilterName"), [EXE_FILE_EXTENSION]);
         if (!IsValidAppPath(filePath))
         {
             return;

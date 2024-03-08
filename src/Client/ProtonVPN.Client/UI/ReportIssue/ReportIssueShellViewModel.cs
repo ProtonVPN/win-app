@@ -84,9 +84,9 @@ public partial class ReportIssueShellViewModel : ShellViewModelBase<IReportIssue
         return false;
     }
 
-    protected override void OnNavigated(object sender, NavigationEventArgs e)
+    protected override void OnNavigated()
     {
-        base.OnNavigated(sender, e);
+        base.OnNavigated();
 
         InvalidateWindowTitle();
 

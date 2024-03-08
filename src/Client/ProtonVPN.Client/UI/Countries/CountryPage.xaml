@@ -33,15 +33,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       NavigationCacheMode="Required"
       mc:Ignorable="d">
 
-    <custom:PageContentControl Padding="16,16,4,16"
-                               BackCommand="{x:Bind ViewModel.GoBackCommand}"
+    <custom:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand}"
                                CanContentScroll="False"
                                IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
                                IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}">
 
         <custom:PageContentControl.PageHeader>
             <Grid ColumnDefinitions="Auto,*"
-                  ColumnSpacing="8">
+                  ColumnSpacing="12">
                 <controls:CountryFlagControl Grid.Column="0"
                                              Width="30"
                                              Height="20"
@@ -51,8 +50,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                              ExitCountryCode="{x:Bind ViewModel.CurrentCountryCode}" />
                 <TextBlock Grid.Column="1"
                            VerticalAlignment="Top"
-                           Style="{StaticResource SubtitleTextBlockStyle}"
                            Text="{x:Bind ViewModel.Title}"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
                            TextWrapping="Wrap" />
             </Grid>
         </custom:PageContentControl.PageHeader>
@@ -60,8 +59,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Grid Margin="0,4,0,-24"
               RowDefinitions="Auto,*">
 
-            <Grid ColumnSpacing="16"
-                  Margin="0,0,16,8"
+            <Grid ColumnSpacing="8"
+                  Margin="0,4,0,8"
                   Visibility="{x:Bind ViewModel.IsVirtual, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -69,15 +68,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0"
-                           VerticalAlignment="Center"
+                           VerticalAlignment="Top"
                            FontSize="{ThemeResource CaptionFontSize}"
                            Foreground="{ThemeResource TextWeakColorBrush}"
                            Text="{x:Bind ViewModel.SmartRoutingLabel}"
                            TextWrapping="Wrap" />
 
                 <custom:GhostButton Grid.Column="1"
-                                    VerticalAlignment="Center"
-                                    Command="{Binding ViewModel.ShowSmartRoutingOverlayCommandCommand, ElementName=PageArea, Mode=OneTime}">
+                                    Margin="0,-4,0,0"
+                                    VerticalAlignment="Top"
+                                    Command="{x:Bind ViewModel.ShowSmartRoutingOverlayCommandCommand, Mode=OneTime}">
                     <custom:GhostButton.LeftIcon>
                         <pathIcons:InfoCircle />
                     </custom:GhostButton.LeftIcon>

@@ -20,6 +20,7 @@
 using System.Windows.Input;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Windows.UI.Text;
 
 namespace ProtonVPN.Client.Common.UI.Controls.Custom;
 
@@ -47,7 +48,43 @@ public class PageContentControl : ContentControl
     public static readonly DependencyProperty IsCompactProperty =
         DependencyProperty.Register(nameof(IsCompact), typeof(bool), typeof(PageContentControl), new PropertyMetadata(default));
 
+    public static readonly DependencyProperty MaxContentWidthProperty =
+        DependencyProperty.Register(nameof(MaxContentWidth), typeof(double), typeof(PageContentControl), new PropertyMetadata(double.MaxValue));
+
+    public static readonly DependencyProperty PageHeaderFontSizeProperty =
+        DependencyProperty.Register(nameof(PageHeaderFontSize), typeof(double), typeof(PageContentControl), new PropertyMetadata(default));
+
+    public static readonly DependencyProperty PageHeaderFontWeightProperty =
+        DependencyProperty.Register(nameof(PageHeaderFontWeight), typeof(FontWeight), typeof(PageContentControl), new PropertyMetadata(default));
+
+    public static readonly DependencyProperty PageHeaderLineHeightProperty =
+        DependencyProperty.Register(nameof(PageHeaderLineHeight), typeof(double), typeof(PageContentControl), new PropertyMetadata(default));
+
     protected Panel PART_HeaderContainer;
+
+    public double PageHeaderFontSize
+    {
+        get => (int)GetValue(PageHeaderFontSizeProperty);
+        set => SetValue(PageHeaderFontSizeProperty, value);
+    }
+
+    public FontWeight PageHeaderFontWeight
+    {
+        get => (FontWeight)GetValue(PageHeaderFontWeightProperty);
+        set => SetValue(PageHeaderFontWeightProperty, value);
+    }
+
+    public double PageHeaderLineHeight
+    {
+        get => (double)GetValue(PageHeaderLineHeightProperty);
+        set => SetValue(PageHeaderLineHeightProperty, value);
+    }
+
+    public double MaxContentWidth
+    {
+        get => (double)GetValue(MaxContentWidthProperty);
+        set => SetValue(MaxContentWidthProperty, value);
+    }
 
     public bool IsCompact
     {

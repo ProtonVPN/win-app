@@ -25,6 +25,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+      NavigationCacheMode="Required"
       mc:Ignorable="d">
 
     <Page.Resources>
@@ -36,7 +37,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <custom:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand}"
                                IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
                                IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}"
-                               PageHeader="{x:Bind ViewModel.Title}">
+                               PageHeader="{x:Bind ViewModel.Title}"
+                               Style="{StaticResource MainPageContentControlStyle}">
 
         <StackPanel x:Name="ContentArea">
 

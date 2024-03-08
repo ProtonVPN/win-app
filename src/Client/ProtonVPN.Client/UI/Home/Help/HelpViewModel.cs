@@ -21,6 +21,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
+using ProtonVPN.Client.Common.Collections;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Feedback.Contracts;
@@ -42,7 +43,7 @@ public partial class HelpViewModel : ViewModelBase
 
     public bool HasCategories => Categories.Any();
 
-    public ObservableCollection<IssueCategory> Categories { get; } = new();
+    public SmartObservableCollection<IssueCategory> Categories { get; }
 
     public HelpViewModel(
         ILocalizationProvider localizationProvider, 
@@ -64,14 +65,8 @@ public partial class HelpViewModel : ViewModelBase
     [RelayCommand]
     public async Task ShowCategoriesAsync()
     {
-        Categories.Clear();
-
         List<IssueCategoryResponse> categories = await _dataProvider.GetCategoriesAsync();
-
-        foreach (IssueCategoryResponse category in categories)
-        {
-            Categories.Add(ReportIssueMapper.Map(category));
-        }
+        Categories.Reset(categories.Select(ReportIssueMapper.Map));
     }
 
     [RelayCommand]

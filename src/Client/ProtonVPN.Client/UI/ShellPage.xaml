@@ -21,11 +21,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 <Page x:Class="ProtonVPN.Client.UI.ShellPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:account="using:ProtonVPN.Client.UI.Account"
       xmlns:bases="using:ProtonVPN.Client.Contracts.ViewModels"
       xmlns:helpers="using:ProtonVPN.Client.Helpers"
-      xmlns:account="using:ProtonVPN.Client.UI.Account"
       xmlns:update="using:ProtonVPN.Client.UI.Update"
       x:DefaultBindMode="OneWay"
+      NavigationCacheMode="Required"
       Loaded="OnLoaded">
 
     <Page.Resources>
@@ -47,26 +48,27 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     CompactModeThresholdWidth="0"
                     CompactPaneLength="48"
                     DisplayModeChanged="OnNavigationViewDisplayModeChanged"
-                    IsPaneOpen="{x:Bind ViewModel.IsNavigationPaneOpened, Mode=TwoWay}"
                     ExpandedModeThresholdWidth="520"
                     IsBackButtonVisible="Collapsed"
                     IsBackEnabled="{x:Bind ViewModel.IsBackEnabled}"
+                    IsPaneOpen="{x:Bind ViewModel.IsNavigationPaneOpened, Mode=TwoWay}"
                     IsPaneToggleButtonVisible="True"
                     IsPaneVisible="True"
                     IsSettingsVisible="False"
                     ItemInvoked="OnNavigationViewItemInvoked"
                     MenuItemsSource="{x:Bind ViewModel.NavigationPages, Mode=OneTime}"
-                    OpenPaneLength="160"
+                    OpenPaneLength="{x:Bind ViewModel.NavigationPaneWidth}"
                     PaneDisplayMode="Auto"
-                    SelectedItem="{x:Bind ViewModel.SelectedNavigationPage}">
+                    SelectedItem="{x:Bind ViewModel.SelectedNavigationPage}"
+                    SizeChanged="OnNavigationViewControlSizeChanged">
 
         <NavigationView.MenuItemTemplate>
             <DataTemplate x:DataType="bases:NavigationPageViewModelBase">
                 <NavigationViewItem helpers:NavigationHelper.NavigateTo="{x:Bind PageType}"
                                     AutomationProperties.AutomationId="NavigationViewItem"
-                                    Visibility="{x:Bind IsPageEnabled}"
                                     Content="{x:Bind Title}"
-                                    Icon="{x:Bind Icon, Mode=OneTime}" />
+                                    Icon="{x:Bind Icon, Mode=OneTime}"
+                                    Visibility="{x:Bind IsPageEnabled}" />
             </DataTemplate>
         </NavigationView.MenuItemTemplate>
 

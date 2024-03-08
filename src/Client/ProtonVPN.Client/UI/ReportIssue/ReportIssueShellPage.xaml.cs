@@ -36,9 +36,4 @@ public sealed partial class ReportIssueShellPage : IShellPage
     {
         ViewModel.InitializeViewNavigator(window, NavigationFrame);
     }
-
-    public void Reset()
-    {
-        ViewModel.ResetViewNavigator();
-    }
 }

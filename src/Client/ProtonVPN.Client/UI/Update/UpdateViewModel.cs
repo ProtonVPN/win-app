@@ -68,7 +68,7 @@ public partial class UpdateViewModel : ViewModelBase,
     private bool _isToShowUpdateButtonLabel = true;
 
     [ObservableProperty]
-    private string _updateButtonLabel;
+    private string _updateButtonLabel = string.Empty;
 
     private ConnectionStatus _connectionStatus;
     private AppUpdateStateContract? _clientUpdateState;
@@ -204,7 +204,7 @@ public partial class UpdateViewModel : ViewModelBase,
     private string GetUpdateFileName()
     {
         string fileName;
-        string filePath = _clientUpdateState.FilePath;
+        string filePath = _clientUpdateState?.FilePath ?? string.Empty;
         try
         {
             fileName = Path.GetFileNameWithoutExtension(filePath);

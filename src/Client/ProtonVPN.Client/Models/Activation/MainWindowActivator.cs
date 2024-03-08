@@ -24,7 +24,6 @@ using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Localization.Contracts.Messages;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
@@ -46,8 +45,7 @@ public class MainWindowActivator :
     IEventMessageReceiver<LoggedInMessage>, 
     IEventMessageReceiver<LoggingOutMessage>, 
     IEventMessageReceiver<LoggedOutMessage>, 
-    IEventMessageReceiver<ConnectionStatusChanged>,
-    IEventMessageReceiver<LanguageChangedMessage>
+    IEventMessageReceiver<ConnectionStatusChanged>
 {
     private const int LOGIN_WINDOW_WIDTH = 620;
     private const int LOGIN_WINDOW_HEIGHT = 640;
@@ -63,6 +61,7 @@ public class MainWindowActivator :
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IUIThreadDispatcher _uiThreadDispatcher;
     private readonly ILocalizationProvider _localizationProvider;
+
     private bool _handleClosedEvents = true;
     private bool _wasWindowShown;
 
@@ -209,6 +208,11 @@ public class MainWindowActivator :
         InvalidateAppTheme();
     }
 
+    protected override void OnLanguageChanged(string language)
+    {
+        InvalidateFlowDirection();
+    }
+
     private void OnMainWindowClosed(object sender, WindowEventArgs args)
     {
         SaveWindowPosition();
@@ -305,10 +309,5 @@ public class MainWindowActivator :
             _settings.WindowWidth = Convert.ToInt32(App.MainWindow.Width);
             _settings.WindowHeight = Convert.ToInt32(App.MainWindow.Height);
         }
-    }
-
-    public void Receive(LanguageChangedMessage message)
-    {
-        InvalidateFlowDirection();
     }
 }

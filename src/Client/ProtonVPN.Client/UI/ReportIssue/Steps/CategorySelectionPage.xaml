@@ -59,9 +59,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     aprop:AncestorSource.AncestorType="ItemsRepeater" />
                             <toolkit:SettingsCard AutomationProperties.AutomationId="IssueCategorySettingsCard"
                                                Command="{Binding DataContext.DataContext.SelectCategoryCommand, ElementName=proxy}"
-                                               CommandParameter="{x:Bind}"
-                                               Header="{x:Bind Name}"
-                                               HeaderIcon="{x:Bind Icon}"
+                                               CommandParameter="{x:Bind Mode=OneTime}"
+                                               Header="{x:Bind Name, Mode=OneTime}"
+                                               HeaderIcon="{x:Bind Icon, Mode=OneTime}"
                                                IsClickEnabled="True"
                                                Style="{StaticResource DefaultSettingsCardStyle}">
                                 <toolkit:SettingsCard.ActionIcon>

@@ -793,7 +793,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Spacing="8"
                     Margin="16,0,0,0"
                     VerticalAlignment="Center"
-                    Visibility="{x:Bind IsToShowPinAdjustmentUi, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Visibility="{x:Bind IsToShowPinAdjustmentUi, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneTime}">
             <StackPanel Orientation="Horizontal"
                         Spacing="8">
                 <TextBox x:Name="CountryTextBox" />

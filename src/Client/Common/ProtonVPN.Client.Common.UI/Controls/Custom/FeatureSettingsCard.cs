@@ -36,6 +36,8 @@ public class FeatureSettingsCard : SettingsCard
 
     public FeatureSettingsCard()
     {
+        DefaultStyleKey = typeof(FeatureSettingsCard);
+
         // Set the header icon just so the container is not made invisible
         HeaderIcon = new FontIcon();
     }

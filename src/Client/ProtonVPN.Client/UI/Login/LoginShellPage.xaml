@@ -25,6 +25,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       Margin="-1,0,0,0"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+      NavigationCacheMode="Required"
       mc:Ignorable="d">
 
     <Grid VerticalAlignment="Stretch"

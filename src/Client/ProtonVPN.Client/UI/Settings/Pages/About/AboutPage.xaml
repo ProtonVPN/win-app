@@ -34,13 +34,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <custom:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
                                CanContentScroll="False"
                                IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
-                               IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}">
-
-        <custom:PageContentControl.PageHeader>
-            <TextBlock Text="{x:Bind ViewModel.Title}"
-                       Style="{StaticResource SubtitleTextBlockStyle}"
-                       TextWrapping="Wrap" />
-        </custom:PageContentControl.PageHeader>
+                               IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
+                               PageHeader="{x:Bind ViewModel.Title}">
 
         <Grid Margin="0,4,0,-24"
               RowDefinitions="Auto,*">
@@ -130,7 +125,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         Margin="0,24,0,0">
                                 <StackPanel Orientation="Horizontal"
                                             Spacing="4">
-                                    <TextBlock Text="{x:Bind Version}"
+                                    <TextBlock Text="{x:Bind Version, Mode=OneTime}"
                                                VerticalAlignment="Center"
                                                Style="{ThemeResource BodyStrongTextBlockStyle}" />
                                     <Border VerticalAlignment="Center"
@@ -138,31 +133,26 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             CornerRadius="4"
                                             Padding="6,2"
                                             BorderBrush="{ThemeResource SignalWarningColorBrush}"
-                                            Visibility="{x:Bind NewVersionLabel, Converter={StaticResource StringVisibilityConverter}}">
-                                        <TextBlock Text="{x:Bind NewVersionLabel}"
+                                            Visibility="{x:Bind NewVersionLabel, Converter={StaticResource StringVisibilityConverter}, Mode=OneTime}">
+                                        <TextBlock Text="{x:Bind NewVersionLabel, Mode=OneTime}"
                                                    Style="{ThemeResource CaptionStrongTextBlockStyle}"
                                                    Foreground="{ThemeResource SignalWarningColorBrush}" />
                                     </Border>
-                                    <TextBlock Text="{x:Bind sys:String.Format('{0:d}', ReleaseDate)}"
+                                    <TextBlock Text="{x:Bind sys:String.Format('{0:d}', ReleaseDate), Mode=OneTime}"
                                                VerticalAlignment="Center"
                                                Margin="4,0,0,0"
                                                Style="{ThemeResource CaptionTextBlockStyle}"
                                                Foreground="{ThemeResource TextWeakColorBrush}" />
                                 </StackPanel>
 
-                                <ItemsControl ItemsSource="{x:Bind ChangeLog}"
+                                <ItemsControl ItemsSource="{x:Bind ChangeLog, Mode=OneTime}"
                                               Margin="4,0,0,0">
                                     <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid ColumnDefinitions="Auto,*"
-                                                  ColumnSpacing="4">
-                                                <TextBlock Grid.Column="0"
-                                                           Style="{ThemeResource CaptionTextBlockStyle}"
-                                                           Text="•" />
-                                                <TextBlock Grid.Column="1"
-                                                           Style="{ThemeResource CaptionTextBlockStyle}"
-                                                           Text="{Binding}" />
-                                            </Grid>
+                                        <DataTemplate x:DataType="sys:String">
+                                            <TextBlock Style="{ThemeResource CaptionTextBlockStyle}">
+                                                <Run Text="•"/>
+                                                <Run Text="{x:Bind}"/>
+                                            </TextBlock>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>

@@ -24,22 +24,56 @@ namespace ProtonVPN.Client.UI.Home;
 
 public sealed partial class HomePage
 {
-    private const double INLINE_MODE_THRESHOLD_WIDTH = 620.0;
+    private const double TIMER_INTERVAL_IN_MS = 500;
+    private const double INLINE_MODE_THRESHOLD_WIDTH = 625.0;
+    private const double PANE_WIDTH_RATIO = 0.4;
+    private const double PANE_MIN_WIDTH = 250;
+    private const double PANE_MAX_WIDTH = 420;
+
+    private DispatcherTimer _timer;
+
+    public HomeViewModel ViewModel { get; }
 
     public HomePage()
     {
         ViewModel = App.GetService<HomeViewModel>();
         InitializeComponent();
 
-        SplitViewArea.SizeChanged += OnSplitViewAreaSizeChanged;
+        _timer = new DispatcherTimer
+        {
+            Interval = TimeSpan.FromMilliseconds(TIMER_INTERVAL_IN_MS),
+        };
+        _timer.Tick += OnTimerTick;
+
+        InvalidatePaneLayout();
     }
 
-    public HomeViewModel ViewModel { get; }
+    private void OnTimerTick(object? sender, object e)
+    {
+        _timer.Stop();
+
+        InvalidatePaneLayout();
+    }
 
     private void OnSplitViewAreaSizeChanged(object sender, SizeChangedEventArgs e)
     {
-        SplitViewArea.DisplayMode = SplitViewArea.ActualWidth >= INLINE_MODE_THRESHOLD_WIDTH
+        if (!_timer.IsEnabled)
+        {
+            // Delay InvalidatePaneLayout to prevent a glitch with the split view control
+            _timer.Start();
+        }
+    }
+
+    private void InvalidatePaneLayout()
+    {
+        double actualWidth = SplitViewArea.ActualWidth;
+
+        ViewModel.ConnectionDetailsPaneDisplayMode = actualWidth >= INLINE_MODE_THRESHOLD_WIDTH
             ? SplitViewDisplayMode.Inline
             : SplitViewDisplayMode.Overlay;
+
+        double paneWidth = Math.Min(PANE_MAX_WIDTH, Math.Max(PANE_MIN_WIDTH, actualWidth * PANE_WIDTH_RATIO));
+
+        ViewModel.ConnectionDetailsPaneWidth = paneWidth;
     }
 }

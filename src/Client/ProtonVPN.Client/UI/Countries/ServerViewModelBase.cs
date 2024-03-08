@@ -29,10 +29,10 @@ namespace ProtonVPN.Client.UI.Countries;
 
 public abstract class ServerViewModelBase : LocationViewModelBase
 {
-    public string Id { get; private set; }
-    public string ExitCountryCode { get; private set; }
+    public string Id { get; private set; } = string.Empty;
+    public string ExitCountryCode { get; private set; } = string.Empty;
     public string ExitCountryName => Localizer.GetCountryName(ExitCountryCode);
-    public string Name { get; private set; }
+    public string Name { get; private set; } = string.Empty;
     public double Load { get; private set; }
     public string LoadPercent => $"{Load:P0}";
     public bool IsUnderMaintenance { get; private set; }

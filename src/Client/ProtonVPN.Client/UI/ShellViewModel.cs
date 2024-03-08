@@ -50,6 +50,9 @@ public partial class ShellViewModel : ShellViewModelBase<IMainViewNavigator>, IE
     [ObservableProperty]
     private bool _isNavigationPaneOpened;
 
+    [ObservableProperty]
+    private double _navigationPaneWidth;
+
     public override string Title => App.APPLICATION_NAME;
 
     public ObservableCollection<NavigationPageViewModelBase> NavigationPages { get; }
@@ -101,9 +104,9 @@ public partial class ShellViewModel : ShellViewModelBase<IMainViewNavigator>, IE
         NavigationPages.ForEach(p => p.InvalidateTitle());
     }
 
-    protected override void OnNavigated(object sender, NavigationEventArgs e)
+    protected override void OnNavigated()
     {
-        base.OnNavigated(sender, e);
+        base.OnNavigated();
 
         SelectedNavigationPage = CurrentPage as NavigationPageViewModelBase
                               ?? NavigationPages.FirstOrDefault(p => p.IsHostFor(CurrentPage));

@@ -46,10 +46,10 @@ public partial class CountryTabViewModel : PageViewModelBase<IMainViewNavigator>
 
     [ObservableProperty] 
     [NotifyPropertyChangedFor(nameof(Title))]
-    private string _currentCountryCode;
+    private string _currentCountryCode = string.Empty;
 
     [ObservableProperty]
-    private string _smartRoutingLabel;
+    private string _smartRoutingLabel = string.Empty;
 
     [ObservableProperty]
     private bool _isVirtual;

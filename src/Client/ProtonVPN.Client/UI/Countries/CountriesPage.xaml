@@ -34,20 +34,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                CanContentScroll="False"
                                IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
                                IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
-                               Padding="16,16,4,16">
-
-        <custom:PageContentControl.PageHeader>
-            <TextBlock Text="{x:Bind ViewModel.Title}"
-                       Style="{StaticResource SubtitleTextBlockStyle}"
-                       TextWrapping="Wrap" />
-        </custom:PageContentControl.PageHeader>
+                               PageHeader="{x:Bind ViewModel.Title}"
+                               Style="{StaticResource MainPageContentControlStyle}">
 
         <Grid Margin="0,4,0,-24"
               RowDefinitions="Auto,*"
               RowSpacing="8">
 
-            <AutoSuggestBox PlaceholderText="{x:Bind ViewModel.Localizer.Get('Countries_SearchPlaceholder')}"
-                            Margin="0,0,12,0"
+            <AutoSuggestBox Margin="0,0,12,0"
+                            PlaceholderText="{x:Bind ViewModel.Localizer.Get('Countries_SearchPlaceholder')}"
                             QueryIcon="Find"
                             Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -71,7 +66,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               HorizontalScrollBarVisibility="Disabled"
                               VerticalScrollBarVisibility="Auto">
 
-                    <Frame x:Name="CountriesFeatureTabFrame"/>
+                    <Frame x:Name="CountriesFeatureTabFrame" />
 
                 </ScrollViewer>
 

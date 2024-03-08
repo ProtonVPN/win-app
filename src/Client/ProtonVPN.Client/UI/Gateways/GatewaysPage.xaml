@@ -33,7 +33,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
                                IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
                                IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
-                               PageHeader="{x:Bind ViewModel.Title}">
+                               PageHeader="{x:Bind ViewModel.Title}"
+                               Style="{StaticResource MainPageContentControlStyle}">
 
         <ItemsRepeater ItemsSource="{x:Bind ViewModel.Gateways}"
                        TabFocusNavigation="Local">
