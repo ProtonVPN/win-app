@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net8.0-windows</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <OutputPath>..\..\..\..\bin</OutputPath>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Autofac" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\ProtonVPN.Client.Logic.Users.Contracts\ProtonVPN.Client.Logic.Users.Contracts.csproj" />
+      <ProjectReference Include="..\ProtonVPN.Client.Logic.Users\ProtonVPN.Client.Logic.Users.csproj" />
+    </ItemGroup>
+</Project>

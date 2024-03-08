@@ -33,13 +33,15 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Home.ConnectionCard;
 
 public abstract partial class ConnectionCardViewModelBase : ViewModelBase,
-    IEventMessageReceiver<ConnectionStatusChanged>
+    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<VpnPlanChangedMessage>
 {
     protected readonly IConnectionManager ConnectionManager;
     private readonly HomeViewModel _homeViewModel;
@@ -170,6 +172,16 @@ public abstract partial class ConnectionCardViewModelBase : ViewModelBase,
         ExecuteOnUIThread(InvalidateCurrentConnectionStatus);
     }
 
+    public void Receive(VpnPlanChangedMessage message)
+    {
+        ExecuteOnUIThread(InvalidateCurrentConnectionStatus);
+    }
+
+    protected virtual void InvalidateCurrentConnectionStatus()
+    {
+        CurrentConnectionStatus = ConnectionManager.ConnectionStatus;
+    }
+
     protected override void OnLanguageChanged()
     {
         OnPropertyChanged(nameof(Header));
@@ -177,11 +189,6 @@ public abstract partial class ConnectionCardViewModelBase : ViewModelBase,
         OnPropertyChanged(nameof(Subtitle));
         OnPropertyChanged(nameof(HasSubtitle));
         OnPropertyChanged(nameof(HasSubtitleAndFeature));
-    }
-
-    protected virtual void InvalidateCurrentConnectionStatus()
-    {
-        CurrentConnectionStatus = ConnectionManager.ConnectionStatus;
     }
 
     [RelayCommand(CanExecute = nameof(CanConnect))]
@@ -240,5 +247,4 @@ public abstract partial class ConnectionCardViewModelBase : ViewModelBase,
             _ => CurrentConnectionIntent?.Feature is TFeatureIntent
         };
     }
-
 }

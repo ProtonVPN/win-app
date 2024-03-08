@@ -29,6 +29,7 @@ using ProtonVPN.Client.Logic.Recents.Installers;
 using ProtonVPN.Client.Logic.Servers.Installers;
 using ProtonVPN.Client.Logic.Services.Installers;
 using ProtonVPN.Client.Logic.Updates.Installers;
+using ProtonVPN.Client.Logic.Users.Installers;
 using ProtonVPN.Client.Notifications.Installers;
 using ProtonVPN.Client.Settings.Installers;
 using ProtonVPN.Configurations.Installers;
@@ -87,6 +88,7 @@ public class MainModule : Module
                .RegisterModule<NotificationsModule>()
                .RegisterModule<FilesModule>()
                .RegisterModule<ClientFilesModule>()
-               .RegisterModule<PowerEventsModule>();
+               .RegisterModule<PowerEventsModule>()
+               .RegisterModule<UsersLogicModule>();
     }
 }

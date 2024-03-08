@@ -28,6 +28,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
@@ -36,7 +37,9 @@ using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Account;
 
-public partial class AccountViewModel : ViewModelBase, IEventMessageReceiver<LoggedInMessage>
+public partial class AccountViewModel : ViewModelBase,
+    IEventMessageReceiver<LoggedInMessage>,
+    IEventMessageReceiver<VpnPlanChangedMessage>
 {
     private readonly ISettings _settings;
     private readonly IUserAuthenticator _userAuthenticator;
@@ -112,5 +115,13 @@ public partial class AccountViewModel : ViewModelBase, IEventMessageReceiver<Log
         base.OnLanguageChanged();
 
         OnPropertyChanged(nameof(VpnPlan));
+    }
+
+    public void Receive(VpnPlanChangedMessage message)
+    {
+        ExecuteOnUIThread(() =>
+        {
+            OnPropertyChanged(nameof(VpnPlan));
+        });
     }
 }

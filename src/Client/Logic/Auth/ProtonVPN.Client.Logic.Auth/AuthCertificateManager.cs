@@ -104,9 +104,9 @@ public class AuthCertificateManager : IAuthCertificateManager
                 if (response.Failure)
                 {
                     _logger.Error<UserCertificateRefreshErrorLog>("Auth certificate request failed with " +
-                                                                  $"Status Code {response.ResponseMessage.StatusCode}, " +
-                                                                  $"Internal Code {response.Value.Code}, " +
-                                                                  $"Error '{response.Value.Error}'.");
+                        $"Status Code {response.ResponseMessage.StatusCode}, " +
+                        $"Internal Code {response.Value.Code}, " +
+                        $"Error '{response.Value.Error}'.");
                 }
             }
         }
