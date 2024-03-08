@@ -32,6 +32,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Users.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Migrations;
 using ProtonVPN.Logging.Contracts;
@@ -56,6 +57,7 @@ public class UserAuthenticatorTest
     private IServersLoader _serversLoader;
     private IServersUpdater _serversUpdater;
     private IUserSettingsMigrator _userSettingsMigrator;
+    private IVpnPlanUpdater _vpnPlanUpdater;
 
     [TestInitialize]
     public void Initialize()
@@ -71,6 +73,7 @@ public class UserAuthenticatorTest
         _serversLoader = Substitute.For<IServersLoader>();
         _serversUpdater = Substitute.For<IServersUpdater>();
         _userSettingsMigrator = Substitute.For<IUserSettingsMigrator>();
+        _vpnPlanUpdater = Substitute.For<IVpnPlanUpdater>();
     }
 
     [TestCleanup]
@@ -87,6 +90,7 @@ public class UserAuthenticatorTest
         _serversLoader = null;
         _serversUpdater = null;
         _userSettingsMigrator = null;
+        _vpnPlanUpdater = null;
     }
 
     [TestMethod]
@@ -148,6 +152,6 @@ public class UserAuthenticatorTest
     {
         return new(_logger, _apiClient, _authCertificateManager, _settings, _eventMessageSender,
             _guestHoleActionExecutor, _tokenClient, _connectionManager, _serversLoader,
-            _serversUpdater, _userSettingsMigrator);
+            _serversUpdater, _userSettingsMigrator, _vpnPlanUpdater);
     }
 }

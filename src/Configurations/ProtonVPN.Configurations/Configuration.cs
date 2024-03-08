@@ -65,6 +65,8 @@ public partial class Configuration : StaticConfiguration, IConfiguration
     public TimeSpan DnsOverHttpsPerProviderTimeout => Get();
     public TimeSpan DohClientTimeout => Get();
     public TimeSpan VpnStatePollingInterval => Get();
+    public TimeSpan VpnPlanRequestInterval => GetWithRandomizedDeviation();
+    public TimeSpan VpnPlanMinimumRequestInterval => GetWithRandomizedDeviation();
 
     public IList<string> DohProviders => Get();
     public IUrlsConfiguration Urls => Get();

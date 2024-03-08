@@ -30,6 +30,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Users.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Migrations;
 using ProtonVPN.Common.Legacy.Abstract;
@@ -56,6 +57,7 @@ public class UserAuthenticator : IUserAuthenticator
     private readonly IServersLoader _serversLoader;
     private readonly IServersUpdater _serversUpdater;
     private readonly IUserSettingsMigrator _userSettingsMigrator;
+    private readonly IVpnPlanUpdater _vpnPlanUpdater;
     private AuthResponse _authResponse;
 
     public bool IsLoggingIn { get; private set; }
@@ -73,7 +75,8 @@ public class UserAuthenticator : IUserAuthenticator
         IConnectionManager connectionManager,
         IServersLoader serversLoader,
         IServersUpdater serversUpdater,
-        IUserSettingsMigrator userSettingsMigrator)
+        IUserSettingsMigrator userSettingsMigrator,
+        IVpnPlanUpdater vpnPlanUpdater)
     {
         _logger = logger;
         _apiClient = apiClient;
@@ -86,6 +89,7 @@ public class UserAuthenticator : IUserAuthenticator
         _serversLoader = serversLoader;
         _serversUpdater = serversUpdater;
         _userSettingsMigrator = userSettingsMigrator;
+        _vpnPlanUpdater = vpnPlanUpdater;
 
         _tokenClient.RefreshTokenExpired += OnTokenExpiredAsync;
     }
@@ -326,8 +330,8 @@ public class UserAuthenticator : IUserAuthenticator
             }
 
             Task<ApiResponseResult<UsersResponse>> getUserTask = _apiClient.GetUserAsync();
-            Task<ApiResponseResult<VpnInfoWrapperResponse>> getVpnInfoTask = _apiClient.GetVpnInfoResponse();
-            await Task.WhenAll(getUserTask, getVpnInfoTask);
+            Task<ApiResponseResult<VpnInfoWrapperResponse>?> forceUpdateVpnPlanTask = _vpnPlanUpdater.ForceUpdateAsync();
+            await Task.WhenAll(getUserTask, forceUpdateVpnPlanTask);
 
             if (getUserTask.Result.Success)
             {
@@ -347,16 +351,12 @@ public class UserAuthenticator : IUserAuthenticator
                 return AuthResult.Fail(getUserTask.Result);
             }
 
-            if (getVpnInfoTask.Result.Success)
-            {
-                _settings.VpnPlanTitle = getVpnInfoTask.Result.Value.Vpn.PlanTitle;
-                _settings.IsPaid = getVpnInfoTask.Result.Value.Vpn.MaxTier > 0;
-                _settings.MaxTier = getVpnInfoTask.Result.Value.Vpn.MaxTier;
-            }
-            else if (getVpnInfoTask.Result.Value.Code == ResponseCodes.NoVpnConnectionsAssigned)
+            if (forceUpdateVpnPlanTask.Result is not null &&
+                forceUpdateVpnPlanTask.Result.Failure &&
+                forceUpdateVpnPlanTask.Result.Value.Code == ResponseCodes.NoVpnConnectionsAssigned)
             {
                 await LogoutAsync(LogoutReason.NoVpnConnectionsAssigned);
-                return AuthResult.Fail(getVpnInfoTask.Result);
+                return AuthResult.Fail(forceUpdateVpnPlanTask.Result);
             }
         }
         catch (Exception e)

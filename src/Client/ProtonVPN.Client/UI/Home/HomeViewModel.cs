@@ -30,6 +30,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Themes;
@@ -45,7 +46,8 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
     IEventMessageReceiver<ConnectionStatusChanged>,
     IEventMessageReceiver<SettingChangedMessage>,
     IEventMessageReceiver<LoggedInMessage>,
-    IEventMessageReceiver<ThemeChangedMessage>
+    IEventMessageReceiver<ThemeChangedMessage>,
+    IEventMessageReceiver<VpnPlanChangedMessage>
 {
     private readonly IConnectionManager _connectionManager;
     private readonly ISettings _settings;
@@ -170,15 +172,18 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
     {
         ExecuteOnUIThread(() =>
         {
-            if (message.PropertyName == nameof(ISettings.IsPaid))
-            {
-                OnPropertyChanged(nameof(IsPaidUser));
-            }
-
             if (message.PropertyName == nameof(ISettings.DeviceLocation))
             {
                 InvalidateActiveCountryCode();
             }
+        });
+    }
+
+    public void Receive(VpnPlanChangedMessage message)
+    {
+        ExecuteOnUIThread(() =>
+        {
+            OnPropertyChanged(nameof(IsPaidUser));
         });
     }
 

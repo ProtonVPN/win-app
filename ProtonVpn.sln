@@ -375,11 +375,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Files.Inst
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PowerEvents", "PowerEvents", "{E2A3CC01-8C2A-433E-A015-96781C9E8EAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.OperatingSystems.PowerEvents", "src\OperatingSystems\PowerEvents\ProtonVPN.OperatingSystems.PowerEvents\ProtonVPN.OperatingSystems.PowerEvents.csproj", "{035F1F13-16D5-4F46-AC0E-5EFD2D595817}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.OperatingSystems.PowerEvents", "src\OperatingSystems\PowerEvents\ProtonVPN.OperatingSystems.PowerEvents\ProtonVPN.OperatingSystems.PowerEvents.csproj", "{035F1F13-16D5-4F46-AC0E-5EFD2D595817}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.OperatingSystems.PowerEvents.Contracts", "src\OperatingSystems\PowerEvents\ProtonVPN.OperatingSystems.PowerEvents.Contracts\ProtonVPN.OperatingSystems.PowerEvents.Contracts.csproj", "{C6BA2E39-5697-4F06-ADF2-7B06F34BC164}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.OperatingSystems.PowerEvents.Contracts", "src\OperatingSystems\PowerEvents\ProtonVPN.OperatingSystems.PowerEvents.Contracts\ProtonVPN.OperatingSystems.PowerEvents.Contracts.csproj", "{C6BA2E39-5697-4F06-ADF2-7B06F34BC164}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.OperatingSystems.PowerEvents.Installers", "src\OperatingSystems\PowerEvents\ProtonVPN.OperatingSystems.PowerEvents.Installers\ProtonVPN.OperatingSystems.PowerEvents.Installers.csproj", "{4ACB40FE-6EA3-40C5-9FB7-E8323B7E5E75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.OperatingSystems.PowerEvents.Installers", "src\OperatingSystems\PowerEvents\ProtonVPN.OperatingSystems.PowerEvents.Installers\ProtonVPN.OperatingSystems.PowerEvents.Installers.csproj", "{4ACB40FE-6EA3-40C5-9FB7-E8323B7E5E75}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Users", "Users", "{BE2BAA32-0CFB-455C-9E64-81880D1AD219}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Client.Logic.Users", "src\Client\Logic\Users\ProtonVPN.Client.Logic.Users\ProtonVPN.Client.Logic.Users.csproj", "{2CA26BEA-C671-44C0-BFA5-7DF2AE9C0FFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Client.Logic.Users.Contracts", "src\Client\Logic\Users\ProtonVPN.Client.Logic.Users.Contracts\ProtonVPN.Client.Logic.Users.Contracts.csproj", "{6A964726-F347-4CC4-9AB0-74721B6DA827}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Client.Logic.Users.Installers", "src\Client\Logic\Users\ProtonVPN.Client.Logic.Users.Installers\ProtonVPN.Client.Logic.Users.Installers.csproj", "{B0112A8B-5CEF-4AAF-87EC-B7A084094302}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1541,6 +1549,30 @@ Global
 		{4ACB40FE-6EA3-40C5-9FB7-E8323B7E5E75}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4ACB40FE-6EA3-40C5-9FB7-E8323B7E5E75}.Release|x64.ActiveCfg = Release|Any CPU
 		{4ACB40FE-6EA3-40C5-9FB7-E8323B7E5E75}.Release|x64.Build.0 = Release|Any CPU
+		{2CA26BEA-C671-44C0-BFA5-7DF2AE9C0FFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CA26BEA-C671-44C0-BFA5-7DF2AE9C0FFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CA26BEA-C671-44C0-BFA5-7DF2AE9C0FFC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2CA26BEA-C671-44C0-BFA5-7DF2AE9C0FFC}.Debug|x64.Build.0 = Debug|Any CPU
+		{2CA26BEA-C671-44C0-BFA5-7DF2AE9C0FFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CA26BEA-C671-44C0-BFA5-7DF2AE9C0FFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CA26BEA-C671-44C0-BFA5-7DF2AE9C0FFC}.Release|x64.ActiveCfg = Release|Any CPU
+		{2CA26BEA-C671-44C0-BFA5-7DF2AE9C0FFC}.Release|x64.Build.0 = Release|Any CPU
+		{6A964726-F347-4CC4-9AB0-74721B6DA827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A964726-F347-4CC4-9AB0-74721B6DA827}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A964726-F347-4CC4-9AB0-74721B6DA827}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6A964726-F347-4CC4-9AB0-74721B6DA827}.Debug|x64.Build.0 = Debug|Any CPU
+		{6A964726-F347-4CC4-9AB0-74721B6DA827}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A964726-F347-4CC4-9AB0-74721B6DA827}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A964726-F347-4CC4-9AB0-74721B6DA827}.Release|x64.ActiveCfg = Release|Any CPU
+		{6A964726-F347-4CC4-9AB0-74721B6DA827}.Release|x64.Build.0 = Release|Any CPU
+		{B0112A8B-5CEF-4AAF-87EC-B7A084094302}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0112A8B-5CEF-4AAF-87EC-B7A084094302}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0112A8B-5CEF-4AAF-87EC-B7A084094302}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B0112A8B-5CEF-4AAF-87EC-B7A084094302}.Debug|x64.Build.0 = Debug|Any CPU
+		{B0112A8B-5CEF-4AAF-87EC-B7A084094302}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0112A8B-5CEF-4AAF-87EC-B7A084094302}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0112A8B-5CEF-4AAF-87EC-B7A084094302}.Release|x64.ActiveCfg = Release|Any CPU
+		{B0112A8B-5CEF-4AAF-87EC-B7A084094302}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1696,6 +1728,10 @@ Global
 		{035F1F13-16D5-4F46-AC0E-5EFD2D595817} = {E2A3CC01-8C2A-433E-A015-96781C9E8EAA}
 		{C6BA2E39-5697-4F06-ADF2-7B06F34BC164} = {E2A3CC01-8C2A-433E-A015-96781C9E8EAA}
 		{4ACB40FE-6EA3-40C5-9FB7-E8323B7E5E75} = {E2A3CC01-8C2A-433E-A015-96781C9E8EAA}
+		{BE2BAA32-0CFB-455C-9E64-81880D1AD219} = {99290229-BE7B-44DB-B946-423443A21083}
+		{2CA26BEA-C671-44C0-BFA5-7DF2AE9C0FFC} = {BE2BAA32-0CFB-455C-9E64-81880D1AD219}
+		{6A964726-F347-4CC4-9AB0-74721B6DA827} = {BE2BAA32-0CFB-455C-9E64-81880D1AD219}
+		{B0112A8B-5CEF-4AAF-87EC-B7A084094302} = {BE2BAA32-0CFB-455C-9E64-81880D1AD219}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5CFD3EA5-ADCA-48F0-9E3F-BBC76CCBF1C2}

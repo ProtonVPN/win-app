@@ -21,6 +21,7 @@ using Microsoft.UI.Xaml;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Services.Contracts;
+using ProtonVPN.Client.Logic.Users.Contracts;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -36,19 +37,22 @@ public class PowerModeAndWindowActivationHandler : IHandler, IEventMessageReceiv
     private readonly IVpnServiceCaller _vpnServiceCaller;
     private readonly IAuthCertificateManager _authCertificateManager;
     private readonly IUserAuthenticator _userAuthenticator;
+    private readonly IVpnPlanUpdater _vpnPlanUpdater;
 
     public PowerModeAndWindowActivationHandler(ILogger logger,
         ISettings settings,
         IVpnServiceCaller vpnServiceCaller,
         IAuthCertificateManager authCertificateManager,
         IUserAuthenticator userAuthenticator,
-        IPowerEventNotifier powerEventNotifier)
+        IPowerEventNotifier powerEventNotifier,
+        IVpnPlanUpdater vpnPlanUpdater)
     {
         _logger = logger;
         _settings = settings;
         _vpnServiceCaller = vpnServiceCaller;
         _authCertificateManager = authCertificateManager;
         _userAuthenticator = userAuthenticator;
+        _vpnPlanUpdater = vpnPlanUpdater;
 
         powerEventNotifier.OnResume += OnResume;
     }
@@ -58,7 +62,7 @@ public class PowerModeAndWindowActivationHandler : IHandler, IEventMessageReceiv
         if (_userAuthenticator.IsLoggedIn)
         {
             _logger.Info<AppLog>("Resuming from sleep while logged in");
-            RepeatVpnStateAndRequestNewCertificate();
+            OnTrigger();
         }
         else
         {
@@ -66,16 +70,16 @@ public class PowerModeAndWindowActivationHandler : IHandler, IEventMessageReceiv
         }
     }
 
-    private void RepeatVpnStateAndRequestNewCertificate()
+    private void OnTrigger()
     {
         _vpnServiceCaller.RepeatStateAsync();
-
         if (_settings.IsPortForwardingEnabled)
         {
             _vpnServiceCaller.RepeatPortForwardingStateAsync();
         }
 
         _authCertificateManager.RequestNewCertificateAsync();
+        _vpnPlanUpdater.UpdateAsync();
     }
 
     public void Receive(ApplicationStartedMessage message)
@@ -89,7 +93,7 @@ public class PowerModeAndWindowActivationHandler : IHandler, IEventMessageReceiv
             _userAuthenticator.IsLoggedIn)
         {
             _logger.Debug<AppLog>("Window activated while logged in");
-            RepeatVpnStateAndRequestNewCertificate();
+            OnTrigger();
         }
     }
 }

@@ -316,6 +316,8 @@
         <ProjectReference Include="..\Logic\Services\ProtonVPN.Client.Logic.Services.Installers\ProtonVPN.Client.Logic.Services.Installers.csproj" />
         <ProjectReference Include="..\Logic\Updates\ProtonVPN.Client.Logic.Updates.Contracts\ProtonVPN.Client.Logic.Updates.Contracts.csproj" />
         <ProjectReference Include="..\Logic\Updates\ProtonVPN.Client.Logic.Updates.Installers\ProtonVPN.Client.Logic.Updates.Installers.csproj" />
+        <ProjectReference Include="..\Logic\Users\ProtonVPN.Client.Logic.Users.Contracts\ProtonVPN.Client.Logic.Users.Contracts.csproj" />
+        <ProjectReference Include="..\Logic\Users\ProtonVPN.Client.Logic.Users.Installers\ProtonVPN.Client.Logic.Users.Installers.csproj" />
         <ProjectReference Include="..\Notifications\ProtonVPN.Client.Notifications.Installers\ProtonVPN.Client.Notifications.Installers.csproj" />
         <ProjectReference Include="..\Settings\ProtonVPN.Client.Settings.Installers\ProtonVPN.Client.Settings.Installers.csproj" />
     </ItemGroup>
