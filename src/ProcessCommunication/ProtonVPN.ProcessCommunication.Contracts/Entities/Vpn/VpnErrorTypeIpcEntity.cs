@@ -137,5 +137,8 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
 
         [EnumMember]
         PlanNeedsToBeUpgraded = 86151,
+
+        [EnumMember]
+        ServerSessionError = 86203,
     }
 }

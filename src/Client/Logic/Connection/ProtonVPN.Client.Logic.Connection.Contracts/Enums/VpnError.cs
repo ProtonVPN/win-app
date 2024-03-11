@@ -64,4 +64,6 @@ public enum VpnError
     SessionLimitReachedUnknown = 86110,
 
     PlanNeedsToBeUpgraded = 86151,
+
+    ServerSessionError = 86203,
 }
