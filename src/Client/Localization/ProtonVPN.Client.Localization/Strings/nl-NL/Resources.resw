@@ -1535,7 +1535,7 @@ Smart Routing wordt meestal gebruikt om anti-privacywetten en andere vormen van 
     <value>Smart Routing</value>
   </data>
   <data name="Dialogs_Tor_Description">
-    <value>Maak verbinding met een Tor-server om via een willekeurige browser toegang te krijgen tot verborgen services en uionsites.</value>
+    <value>Maak verbinding met een Tor-server om via een willekeurige browser toegang te krijgen tot verborgen services en privé(onion)sites.</value>
   </data>
   <data name="Dialogs_Tor_LearnMore">
     <value>Hoe krijgt u toegang tot het Tor-netwerk</value>
@@ -1718,7 +1718,7 @@ Smart Routing wordt meestal gebruikt om anti-privacywetten en andere vormen van 
     <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
   </data>
   <data name="Home_ConnectionDetails_HideIP_Description">
-    <value>Verberg IP adres van gebruiker</value>
+    <value>Verberg IP-adres van gebruiker</value>
   </data>
   <data name="Home_ConnectionDetails_Landmark">
     <value>Verbindingsdetails</value>
@@ -2257,7 +2257,7 @@ gestopt</value>
     <value>Automatische updates</value>
   </data>
   <data name="Settings_General_AutomaticUpdates_Description">
-    <value>Automatisch controleren en installeren van Proton VPN updates</value>
+    <value>Automatisch controleren en installeren van Proton VPN-updates</value>
   </data>
   <data name="Settings_General_BetaAccess">
     <value>Bèta-toegang</value>

@@ -1353,13 +1353,13 @@ High latency can slow down your connection.</value>
     <value>High (150ms+)</value>
   </data>
   <data name="Dialogs_Latency_LowRange_Description">
-    <value>Lightning fast speeds</value>
+    <value>光速快</value>
   </data>
   <data name="Dialogs_Latency_LowRange_Title">
     <value>Low (1ms - 50ms)</value>
   </data>
   <data name="Dialogs_Latency_MediumRange_Description">
-    <value>Unlikely to affect VPN speed</value>
+    <value>不大影響 VPN 速度</value>
   </data>
   <data name="Dialogs_Latency_MediumRange_Title">
     <value>Medium (50ms - 150ms)</value>
@@ -1394,7 +1394,7 @@ High latency can slow down your connection.</value>
 • Hide your IP address from your service provider and peers</value>
   </data>
   <data name="Dialogs_Protocol_Description">
-    <value>A protocol is a set of instructions your device follows to connect and communicate with a server.</value>
+    <value>通訊協定乃您的裝置與伺服器連線與通訊時所跟隨的一套指示。</value>
   </data>
   <data name="Dialogs_Protocol_SwitchHeader">
     <value>Switch VPN Protocol</value>
@@ -1498,19 +1498,19 @@ A high server load can slow down your connection.</value>
     <value>High (91-100%)</value>
   </data>
   <data name="Dialogs_ServerLoad_LowRange_Description">
-    <value>Lightning fast speeds</value>
+    <value>光速快</value>
   </data>
   <data name="Dialogs_ServerLoad_LowRange_Title">
     <value>Low (1-75%)</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Description">
-    <value>Unlikely to affect VPN speed</value>
+    <value>不大影響 VPN 速度</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Title">
     <value>Medium (76-90%)</value>
   </data>
   <data name="Dialogs_ServerLoad_Title">
-    <value>What is server load?</value>
+    <value>甚麼是伺服器附載</value>
   </data>
   <data name="Dialogs_SmartRouting_Description">
     <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
@@ -1651,7 +1651,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Sign out</value>
   </data>
   <data name="Home_Account_SignOut_Confirmation_Message">
-    <value>You'll be disconnected from VPN.</value>
+    <value>將與VPN中斷連線。</value>
   </data>
   <data name="Home_Account_SignOut_Confirmation_Title">
     <value>Sign out from {0}?</value>
@@ -1709,7 +1709,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Hide user IP address</value>
   </data>
   <data name="Home_ConnectionDetails_Landmark">
-    <value>Connection details</value>
+    <value>連結詳細資訊</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_ConnectionDetails_Latency">
@@ -1738,7 +1738,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Show user IP address</value>
   </data>
   <data name="Home_ConnectionDetails_Title">
-    <value>Connection details</value>
+    <value>連結詳細資訊</value>
   </data>
   <data name="Home_ConnectionDetails_Upload">
     <value>Upload</value>
@@ -2058,19 +2058,19 @@ saved</value>
     <value>啟用 Moderate NAT?</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Description">
-    <value>Select a network address translation type for your connection.</value>
+    <value>選取您的連線要使用的網路位址轉譯類型。</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate">
-    <value>Moderate (type 2)</value>
+    <value>中等 (類別 2)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
-    <value>Some restriction on data entering your network. This option is best for online video gaming.</value>
+    <value>部分限制數據流入您的網路。此選項最適合線上視訊遊戲。</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict">
-    <value>Strict (type 3)</value>
+    <value>嚴格 (類別 3)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
-    <value>Restricts the data entering your network. This option is more secure, but can make peer-to-peer gaming connections more difficult.</value>
+    <value>限制數據流入您的網路。此選項較為安全，惟點對點遊戲連線或會較困難。</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protocol</value>
@@ -2121,7 +2121,7 @@ saved</value>
     <value>Protect yourself from ads, malware, and trackers on websites and apps.</value>
   </data>
   <data name="Settings_Features_NetShield_Footer">
-    <value>Some websites may not load properly when ads and trackers are blocked.</value>
+    <value>當廣告與追蹤器被封鎖時，部份網站或未能正確載入。</value>
   </data>
   <data name="Settings_Features_PortForwarding">
     <value>Port forwarding</value>
@@ -2328,19 +2328,19 @@ saved</value>
     <value>WireGuard</value>
   </data>
   <data name="Settings_RestoreDefault">
-    <value>Restore default settings</value>
+    <value>還原至預設設定</value>
   </data>
   <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action">
     <value>Restore and reconnect</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Action">
-    <value>Restore default settings</value>
+    <value>還原至預設設定</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Message">
     <value>This will reset your Proton VPN settings to their original state.</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Title">
-    <value>Restore default settings?</value>
+    <value>還原至預設設定?</value>
   </data>
   <data name="Settings_SelectedProtocol_OpenVpnTcp">
     <value>OpenVPN (TCP)</value>

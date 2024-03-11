@@ -1958,37 +1958,37 @@
     <value>Σχετικά</value>
   </data>
   <data name="Settings_About_Changelog">
-    <value>Changelog</value>
+    <value>Αρχείο αλλαγών</value>
   </data>
   <data name="Settings_About_CurrentVersion">
     <value>Τρέχουσα έκδοση</value>
   </data>
   <data name="Settings_About_FailedToFetch">
-    <value>Failed to load changelog information.</value>
+    <value>Αποτυχία φόρτωσης πληροφοριών αρχείου καταγραφής αλλαγών.</value>
   </data>
   <data name="Settings_About_GetLatestVersion">
-    <value>Get the latest version</value>
+    <value>Λάβετε την τελευταία έκδοση</value>
   </data>
   <data name="Settings_About_LearnMore">
-    <value>Learn more</value>
+    <value>Περισσότερες πληροφορίες</value>
   </data>
   <data name="Settings_About_Licensing">
-    <value>Licensing</value>
+    <value>Αδειοδότηση</value>
   </data>
   <data name="Settings_About_Loading">
-    <value>Loading</value>
+    <value>Φόρτωση</value>
   </data>
   <data name="Settings_About_NewVersion">
-    <value>NEW</value>
+    <value>ΝΕΟ</value>
   </data>
   <data name="Settings_About_Title">
-    <value>About</value>
+    <value>Σχετικά</value>
   </data>
   <data name="Settings_About_TryAgain">
-    <value>Try again</value>
+    <value>Δοκιμάστε ξανά</value>
   </data>
   <data name="Settings_About_Update_Description">
-    <value>Get the most from your VPN by updating to the latest version of the app.</value>
+    <value>Αξιοποιήστε στο έπακρο το VPN σας κάνοντας ενημέρωση στην πιο πρόσφατη έκδοση της εφαρμογής.</value>
   </data>
   <data name="Settings_AppVersion">
     <value>Έκδοση εφαρμογής</value>
@@ -2158,7 +2158,7 @@
     <value>Για να χρησιμοποιήσετε την Προώθηση Θυρών, συνδεθείτε σε έναν διακομιστή που υποστηρίζει P2P.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Loading">
-    <value>Loading...</value>
+    <value>Φόρτωση...</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications">
     <value>Ειδοποιήσεις</value>

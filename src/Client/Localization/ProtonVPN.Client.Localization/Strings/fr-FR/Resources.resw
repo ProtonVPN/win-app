@@ -1348,7 +1348,7 @@
     <value>Pays avec serveur gratuit ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Title">
-    <value>Connexions avec Proton Free</value>
+    <value>Connexions gratuites</value>
   </data>
   <data name="Dialogs_FreeConnections_WorlwideCoverageUpsell">
     <value>Profitez de serveurs dans le monde entier en passant à VPN Plus.</value>
@@ -1817,7 +1817,7 @@ bloqués</value>
     <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
   </data>
   <data name="Home_Update_Confirmation_Title">
-    <value>Mettre à jour Proton VPN?</value>
+    <value>Mettre à jour Proton VPN ?</value>
   </data>
   <data name="Home_Update_UpdateAvailable">
     <value>Mise à jour disponible</value>
@@ -1973,7 +1973,7 @@ bloqués</value>
     <value>En savoir plus</value>
   </data>
   <data name="Settings_About_Licensing">
-    <value>Licences</value>
+    <value>Licence</value>
   </data>
   <data name="Settings_About_Loading">
     <value>Chargement</value>
@@ -2050,7 +2050,7 @@ bloqués</value>
     <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>Protection contre l'exposition des adresses IPv6</value>
+    <value>Protection contre les fuites d'adresses IPv6</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
     <value>Empêcher la fuite d'adresse IPv6.</value>
@@ -2158,7 +2158,7 @@ bloqués</value>
     <value>Pour utiliser le transfert de port, veuillez vous connecter à un serveur qui prend en charge le P2P.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Loading">
-    <value>Chargement en cours</value>
+    <value>Chargement...</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications">
     <value>Notifications</value>

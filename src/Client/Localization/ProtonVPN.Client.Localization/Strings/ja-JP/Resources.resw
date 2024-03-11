@@ -1755,14 +1755,14 @@ Smart Routingは通常、反プライバシー法やその他の形式の検閲�
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_NetShield_AdsBlocked">
-    <value>Ads
-blocked</value>
+    <value>件の広告を
+ブロック</value>
     <comment>Use 
  to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
   </data>
   <data name="Home_NetShield_DataSaved">
-    <value>Data
-saved</value>
+    <value>のデータを
+節約</value>
     <comment>Use 
  to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
   </data>
@@ -1965,7 +1965,7 @@ saved</value>
     <value>読み込み中</value>
   </data>
   <data name="Settings_About_NewVersion">
-    <value>NEW</value>
+    <value>新規</value>
   </data>
   <data name="Settings_About_Title">
     <value>About</value>

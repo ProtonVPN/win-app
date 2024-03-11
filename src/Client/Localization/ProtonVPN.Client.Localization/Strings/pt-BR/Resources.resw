@@ -2060,7 +2060,7 @@ parados</value>
     <value>Permite que você se conecte a impressoras, alto-falantes e outros dispositivos na rede local do seu dispositivo.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
-    <value>NAT tipo</value>
+    <value>Tipo NAT</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Description">
     <value>Você não poderá usar o encaminhamento de porta com NAT moderado.</value>
