@@ -68,6 +68,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         VpnError.SessionLimitReachedPro,
         VpnError.SessionLimitReachedUnknown,
         VpnError.SystemErrorOnTheServer,
+        VpnError.ServerSessionError,
     ];
 
     private VpnStatus _currentStatus;

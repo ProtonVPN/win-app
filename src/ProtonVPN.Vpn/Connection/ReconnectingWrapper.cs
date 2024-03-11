@@ -248,6 +248,7 @@ namespace ProtonVPN.Vpn.Connection
                    error == VpnError.NetshError ||
                    error == VpnError.TlsError ||
                    error == VpnError.PingTimeoutError ||
+                   error == VpnError.ServerSessionError ||
                    error == VpnError.Unknown;
         }
 

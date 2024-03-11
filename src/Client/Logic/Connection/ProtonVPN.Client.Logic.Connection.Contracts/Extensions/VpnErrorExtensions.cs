@@ -49,6 +49,7 @@ public static class VpnErrorExtensions
         VpnError.Unpaid,
         VpnError.PasswordChanged,
         VpnError.ServerUnreachable,
+        VpnError.ServerSessionError,
         VpnError.Unknown,
     ];
 
