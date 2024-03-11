@@ -168,7 +168,7 @@
   <data name="Common_States_On">
     <value>Вкл.</value>
   </data>
-  <data name="Connection_Error_MissingAuthCertificate">
+  <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN не смог получить сертификат аутентификации из-за проблемы с сетью.</value>
   </data>
   <data name="Connection_Error_NoServers">

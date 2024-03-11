@@ -48,7 +48,7 @@ public class UserAuthenticator : IUserAuthenticator
 
     private readonly ILogger _logger;
     private readonly IApiClient _apiClient;
-    private readonly IAuthCertificateManager _authCertificateManager;
+    private readonly IConnectionCertificateManager _connectionCertificateManager;
     private readonly ISettings _settings;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IGuestHoleActionExecutor _guestHoleActionExecutor;
@@ -67,7 +67,7 @@ public class UserAuthenticator : IUserAuthenticator
     public UserAuthenticator(
         ILogger logger,
         IApiClient apiClient,
-        IAuthCertificateManager authCertificateManager,
+        IConnectionCertificateManager connectionCertificateManager,
         ISettings settings,
         IEventMessageSender eventMessageSender,
         IGuestHoleActionExecutor guestHoleActionExecutor,
@@ -80,7 +80,7 @@ public class UserAuthenticator : IUserAuthenticator
     {
         _logger = logger;
         _apiClient = apiClient;
-        _authCertificateManager = authCertificateManager;
+        _connectionCertificateManager = connectionCertificateManager;
         _settings = settings;
         _eventMessageSender = eventMessageSender;
         _guestHoleActionExecutor = guestHoleActionExecutor;
@@ -260,7 +260,7 @@ public class UserAuthenticator : IUserAuthenticator
                 await _connectionManager.DisconnectAsync();
             }
 
-            _authCertificateManager.DeleteKeyPairAndCertificate();
+            _connectionCertificateManager.DeleteKeyPairAndCertificate();
 
             await SendLogoutRequestAsync();
 
@@ -329,34 +329,34 @@ public class UserAuthenticator : IUserAuthenticator
                 return AuthResult.Fail(AuthError.GetSessionDetailsFailed);
             }
 
-            Task<ApiResponseResult<UsersResponse>> getUserTask = _apiClient.GetUserAsync();
-            Task<ApiResponseResult<VpnInfoWrapperResponse>?> forceUpdateVpnPlanTask = _vpnPlanUpdater.ForceUpdateAsync();
-            await Task.WhenAll(getUserTask, forceUpdateVpnPlanTask);
+            ApiResponseResult<UsersResponse> usersResponse = await _apiClient.GetUserAsync();
 
-            if (getUserTask.Result.Success)
+            if (usersResponse.Success)
             {
                 // After migration from previous version, there is no User ID. Global Settings should be set before User Settings.
                 if (string.IsNullOrWhiteSpace(_settings.UserId))
                 {
-                    _settings.UserId = getUserTask.Result.Value.User.UserId;
+                    _settings.UserId = usersResponse.Value.User.UserId;
                 }
 
-                _settings.Username = getUserTask.Result.Value.User.GetUsername();
-                _settings.UserDisplayName = getUserTask.Result.Value.User.GetDisplayName();
+                _settings.Username = usersResponse.Value.User.GetUsername();
+                _settings.UserDisplayName = usersResponse.Value.User.GetDisplayName();
             }
 
             if (string.IsNullOrWhiteSpace(_settings.UserId))
             {
                 await LogoutAsync(LogoutReason.SessionExpired);
-                return AuthResult.Fail(getUserTask.Result);
+                return AuthResult.Fail(usersResponse);
             }
 
-            if (forceUpdateVpnPlanTask.Result is not null &&
-                forceUpdateVpnPlanTask.Result.Failure &&
-                forceUpdateVpnPlanTask.Result.Value.Code == ResponseCodes.NoVpnConnectionsAssigned)
+            ApiResponseResult<VpnInfoWrapperResponse>? vpnInfoResponse = await _vpnPlanUpdater.ForceUpdateAsync();
+
+            if (vpnInfoResponse is not null &&
+                vpnInfoResponse.Failure &&
+                vpnInfoResponse.Value.Code == ResponseCodes.NoVpnConnectionsAssigned)
             {
                 await LogoutAsync(LogoutReason.NoVpnConnectionsAssigned);
-                return AuthResult.Fail(forceUpdateVpnPlanTask.Result);
+                return AuthResult.Fail(vpnInfoResponse);
             }
         }
         catch (Exception e)
@@ -424,11 +424,11 @@ public class UserAuthenticator : IUserAuthenticator
     {
         if (isAutoLogin)
         {
-            await _authCertificateManager.RequestNewCertificateAsync();
+            await _connectionCertificateManager.RequestNewCertificateAsync(isToSendMessageIfCertificateIsNotRefreshed: true);
         }
         else
         {
-            await _authCertificateManager.ForceRequestNewKeyPairAndCertificateAsync();
+            await _connectionCertificateManager.ForceRequestNewKeyPairAndCertificateAsync();
         }
     }
 

@@ -2202,7 +2202,7 @@
   <data name="PortForwarding_lbl_ServerWarning">
     <value>برای استفاده از Port Forwarding، لطفا به سروری که از P2P پشتیبانی میکند &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;متصل&lt;/Hyperlink&gt; شوید.</value>
   </data>
-  <data name="ProfileConnector_msg_MissingAuthCert">
+  <data name="ProfileConnector_msg_MissingConnectionCertificate">
     <value>بدلیل مشکلات شبکه Proton VPN قادر به دریافت گواهینامه تایید تعیین اعتبار نیست.</value>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">

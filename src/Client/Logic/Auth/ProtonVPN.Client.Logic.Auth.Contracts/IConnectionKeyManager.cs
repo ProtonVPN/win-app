@@ -17,12 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading.Tasks;
+using ProtonVPN.Crypto.Contracts;
 
-namespace ProtonVPN.Core.Auth
+namespace ProtonVPN.Client.Logic.Auth.Contracts;
+
+public interface IConnectionKeyManager
 {
-    public interface IAuthCredentialManager
-    {
-        Task<AuthCredential> GenerateAsync();
-    }
+    void RegenerateKeyPair();
+    void DeleteKeyPair();
+    AsymmetricKeyPair? GetKeyPairOrNull();
+    SecretKey? GetSecretKey();
+    PublicKey? GetPublicKey();
 }

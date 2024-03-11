@@ -2233,7 +2233,7 @@ Postępuj zgodnie z &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;
   <data name="PortForwarding_lbl_ServerWarning">
     <value>Aby przekierować porty, &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;połącz się&lt;/Hyperlink&gt; z serwerem P2P.</value>
   </data>
-  <data name="ProfileConnector_msg_MissingAuthCert">
+  <data name="ProfileConnector_msg_MissingConnectionCertificate">
     <value>Z powodu problemu z siecią, aplikacja Proton VPN nie może pobrać certyfikatu uwierzytelniania.</value>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">

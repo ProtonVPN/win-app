@@ -19,6 +19,11 @@
 
 namespace ProtonVPN.Client.Logic.Auth.Contracts;
 
-public interface IAuthCertificateUpdater
+public interface IConnectionCertificateManager
 {
+    void SetFeatures(IList<string> features);
+    void DeleteKeyPairAndCertificate();
+    Task RequestNewCertificateAsync(bool isToSendMessageIfCertificateIsNotRefreshed = false);
+    Task ForceRequestNewCertificateAsync();
+    Task ForceRequestNewKeyPairAndCertificateAsync();
 }

@@ -4920,9 +4920,9 @@ namespace ProtonVPN.Translations.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Proton VPN failed to fetch authentication certificate due to network issue..
         /// </summary>
-        public static string ProfileConnector_msg_MissingAuthCert {
+        public static string ProfileConnector_msg_MissingConnectionCertificate {
             get {
-                return ResourceManager.GetString("ProfileConnector_msg_MissingAuthCert", resourceCulture);
+                return ResourceManager.GetString("ProfileConnector_msg_MissingConnectionCertificate", resourceCulture);
             }
         }
         

@@ -2203,7 +2203,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
   <data name="PortForwarding_lbl_ServerWarning">
     <value>Para usar el enrutamiento de puertos, &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;conéctese&lt;/Hyperlink&gt; a un servidor que admita P2P.</value>
   </data>
-  <data name="ProfileConnector_msg_MissingAuthCert">
+  <data name="ProfileConnector_msg_MissingConnectionCertificate">
     <value>Proton VPN no pudo obtener el certificado de autenticación debido a un problema de red.</value>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">

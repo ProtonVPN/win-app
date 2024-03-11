@@ -21,49 +21,49 @@ using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.UserCertificateLogs;
 
 namespace ProtonVPN.Client.Logic.Auth;
 
-public class AuthCertificateUpdater : IAuthCertificateUpdater, IEventMessageReceiver<LoggedInMessage>, IEventMessageReceiver<LoggingOutMessage>
+public class ConnectionCertificateUpdater : IConnectionCertificateUpdater, IEventMessageReceiver<LoggedInMessage>, IEventMessageReceiver<LoggingOutMessage>
 {
     private readonly IConfiguration _config;
-    private readonly IAuthCertificateManager _authCertificateManager;
+    private readonly IConnectionCertificateManager _connectionCertificateManager;
     private readonly ILogger _logger;
     private readonly IUIThreadDispatcher _uiThreadDispatcher;
     private Timer? _timer;
 
-    public AuthCertificateUpdater(IConfiguration config,
-        IAuthCertificateManager authCertificateManager,
+    public ConnectionCertificateUpdater(IConfiguration config,
+        IConnectionCertificateManager connectionCertificateManager,
         ILogger logger,
         IUIThreadDispatcher uiThreadDispatcher)
     {
         _config = config;
-        _authCertificateManager = authCertificateManager;
+        _connectionCertificateManager = connectionCertificateManager;
         _logger = logger;
         _uiThreadDispatcher = uiThreadDispatcher;
     }
 
     private void Timer_OnTick(object? sender)
     {
-        _uiThreadDispatcher.TryEnqueue(() => _authCertificateManager.RequestNewCertificateAsync());
+        _uiThreadDispatcher.TryEnqueue(() => _connectionCertificateManager.RequestNewCertificateAsync());
     }
 
-    //TODO: fetch new certificate on plan change
-    // public async Task OnVpnPlanChangedAsync(VpnPlanChangedEventArgs e)
-    // {
-    //     await _authCertificateManager.ForceRequestNewCertificateAsync();
-    // }
+     public async Task OnVpnPlanChangedAsync(VpnPlanChangedMessage message)
+    {
+        await _connectionCertificateManager.ForceRequestNewCertificateAsync();
+    }
 
     public void Receive(LoggedInMessage message)
     {
-        TimeSpan interval = _config.AuthCertificateUpdateInterval;
+        TimeSpan interval = _config.ConnectionCertificateUpdateInterval;
         _timer = new(Timer_OnTick);
         _timer.Change(interval, interval);
         _logger.Info<UserCertificateScheduleRefreshLog>(
-            $"User certificate refresh scheduled for every '{interval}'.");
+            $"Connection certificate refresh scheduled for every '{interval}'.");
     }
 
     public void Receive(LoggingOutMessage message)

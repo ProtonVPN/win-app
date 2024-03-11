@@ -2203,7 +2203,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
   <data name="PortForwarding_lbl_ServerWarning">
     <value>Para usar o Port Forwarding, &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;conecte-se&lt;/Hyperlink&gt; a um servidor que suporte P2P.</value>
   </data>
-  <data name="ProfileConnector_msg_MissingAuthCert">
+  <data name="ProfileConnector_msg_MissingConnectionCertificate">
     <value>O Proton VPN falhou ao obter o certificado de autenticação devido a problemas de rede.</value>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">

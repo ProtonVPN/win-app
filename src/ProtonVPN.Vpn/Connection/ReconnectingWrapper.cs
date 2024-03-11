@@ -85,13 +85,21 @@ namespace ProtonVPN.Vpn.Connection
             _isToConnect = true;
             _isToReconnect = true;
 
-            _logger.Info<DisconnectTriggerLog>("Requesting disconnect as first step of connection process.");
+            _logger.Info<DisconnectTriggerLog>("Requesting disconnect as the first step of a connection process.");
             CancelTokenAndDisconnect(VpnError.NoneKeepEnabledKillSwitch);
         }
 
-        public void UpdateAuthCertificate(string certificate)
+        public void ResetConnection()
         {
-            _origin.UpdateAuthCertificate(certificate);
+            if (_isToReconnect)
+            {
+                _candidates.Reset();
+                _isToConnect = true;
+                _isToReconnect = true;
+
+                _logger.Info<DisconnectTriggerLog>("Requesting disconnect as the first step of a connection reset process.");
+                CancelTokenAndDisconnect(VpnError.NoneKeepEnabledKillSwitch);
+            }
         }
 
         public void SetFeatures(VpnFeatures vpnFeatures)

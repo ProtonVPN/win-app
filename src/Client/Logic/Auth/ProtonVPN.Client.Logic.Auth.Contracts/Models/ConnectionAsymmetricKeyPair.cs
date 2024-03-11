@@ -17,13 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Legacy.Vpn;
+namespace ProtonVPN.Client.Logic.Auth.Contracts.Models;
 
-namespace ProtonVPN.Vpn.Common
+public readonly struct ConnectionAsymmetricKeyPair
 {
-    public interface ISingleVpnConnection : IAdapterSingleVpnConnection
-    {
-        void SetFeatures(VpnFeatures vpnFeatures);
-        void RequestNetShieldStats();
-    }
+    public required string PublicKey { get; init; }
+    public required string SecretKey { get; init; }
 }

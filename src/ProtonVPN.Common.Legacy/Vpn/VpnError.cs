@@ -43,7 +43,7 @@ public enum VpnError
     WireGuardAdapterInUseError,
     ServerValidationError,
     NoServerValidationPublicKey,
-    MissingAuthCertificate,
+    MissingConnectionCertificate,
 
     CertificateExpired = 86101,
     CertificateRevoked = 86102,

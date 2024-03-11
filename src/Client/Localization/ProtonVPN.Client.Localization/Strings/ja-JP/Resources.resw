@@ -168,7 +168,7 @@
   <data name="Common_States_On">
     <value>オン</value>
   </data>
-  <data name="Connection_Error_MissingAuthCertificate">
+  <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN はネットワークの問題によりクライアント証明書の取得に失敗しました。</value>
   </data>
   <data name="Connection_Error_NoServers">

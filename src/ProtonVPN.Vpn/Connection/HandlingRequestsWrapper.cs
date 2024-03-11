@@ -103,11 +103,6 @@ public class HandlingRequestsWrapper : ISingleVpnConnection
         _origin.SetFeatures(vpnFeatures);
     }
 
-    public void UpdateAuthCertificate(string certificate)
-    {
-        _origin.UpdateAuthCertificate(certificate);
-    }
-
     public void RequestNetShieldStats()
     {
         _origin.RequestNetShieldStats();

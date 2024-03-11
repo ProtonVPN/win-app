@@ -2234,7 +2234,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
   <data name="PortForwarding_lbl_ServerWarning">
     <value>Щоб використовувати переспрямування портів, &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;під'єднайтеся&lt;/Hyperlink&gt; до сервера, який підтримує P2P.</value>
   </data>
-  <data name="ProfileConnector_msg_MissingAuthCert">
+  <data name="ProfileConnector_msg_MissingConnectionCertificate">
     <value>Proton VPN не вдалося одержати сертифікат автентифікацій через проблему мережі.</value>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">

@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Common.Core.Networking;
@@ -38,13 +39,8 @@ public interface IUserSettings
     VpnProtocol VpnProtocol { get; set; }
     OpenVpnAdapter OpenVpnAdapter { get; set; }
     string? VpnPlanTitle { get; set; }
-    string? AuthenticationPublicKey { get; set; }
-    string? AuthenticationSecretKey { get; set; }
-    string? AuthenticationCertificatePem { get; set; }
-    string? CertificationServerPublicKey { get; set; }
-    DateTimeOffset? AuthenticationCertificateRequestUtcDate { get; set; }
-    DateTimeOffset? AuthenticationCertificateExpirationUtcDate { get; set; }
-    DateTimeOffset? AuthenticationCertificateRefreshUtcDate { get; set; }
+    ConnectionAsymmetricKeyPair? ConnectionKeyPair { get; set; }
+    ConnectionCertificate? ConnectionCertificate { get; set; }
     NatType NatType { get; set; }
     bool IsPaid { get; set; }
     sbyte MaxTier { get; set; }

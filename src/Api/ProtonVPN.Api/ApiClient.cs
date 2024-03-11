@@ -212,13 +212,13 @@ public class ApiClient : BaseApiClient, IApiClient
         return await SendRequest<BaseResponse>(request, "Check authentication server status");
     }
 
-    public async Task<ApiResponseResult<CertificateResponse>> RequestAuthCertificateAsync(
+    public async Task<ApiResponseResult<CertificateResponse>> RequestConnectionCertificateAsync(
         CertificateRequest certificateRequest)
     {
         HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "vpn/v1/certificate");
         request.Content = GetJsonContent(certificateRequest);
         request.SetRetryCount(CERTIFICATE_RETRY_COUNT);
-        return await SendRequest<CertificateResponse>(request, "Create auth certificate");
+        return await SendRequest<CertificateResponse>(request, "Create connection certificate");
     }
 
     public async Task<ApiResponseResult<BaseResponse>> ApplyPromoCodeAsync(PromoCodeRequest promoCodeRequest)

@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
@@ -107,45 +108,15 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userCache.SetReferenceType(value, SettingEncryption.Encrypted);
     }
 
-    public string? AuthenticationPublicKey
-    {
-        get => _userCache.GetReferenceType<string>(SettingEncryption.Encrypted);
-        set => _userCache.SetReferenceType(value, SettingEncryption.Encrypted);
-    }
-
-    public string? AuthenticationSecretKey
-    {
-        get => _userCache.GetReferenceType<string>(SettingEncryption.Encrypted);
-        set => _userCache.SetReferenceType(value, SettingEncryption.Encrypted);
-    }
-
-    public string? AuthenticationCertificatePem
-    {
-        get => _userCache.GetReferenceType<string>(SettingEncryption.Encrypted);
-        set => _userCache.SetReferenceType(value, SettingEncryption.Encrypted);
-    }
-
-    public string? CertificationServerPublicKey
-    {
-        get => _userCache.GetReferenceType<string>(SettingEncryption.Encrypted);
-        set => _userCache.SetReferenceType(value, SettingEncryption.Encrypted);
-    }
-
-    public DateTimeOffset? AuthenticationCertificateRequestUtcDate
-    {
-        get => _userCache.GetValueType<DateTimeOffset>(SettingEncryption.Encrypted);
+    public ConnectionAsymmetricKeyPair? ConnectionKeyPair
+{
+        get => _userCache.GetValueType<ConnectionAsymmetricKeyPair>(SettingEncryption.Encrypted);
         set => _userCache.SetValueType(value, SettingEncryption.Encrypted);
     }
 
-    public DateTimeOffset? AuthenticationCertificateExpirationUtcDate
+    public ConnectionCertificate? ConnectionCertificate
     {
-        get => _userCache.GetValueType<DateTimeOffset>(SettingEncryption.Encrypted);
-        set => _userCache.SetValueType(value, SettingEncryption.Encrypted);
-    }
-
-    public DateTimeOffset? AuthenticationCertificateRefreshUtcDate
-    {
-        get => _userCache.GetValueType<DateTimeOffset>(SettingEncryption.Encrypted);
+        get => _userCache.GetValueType<ConnectionCertificate>(SettingEncryption.Encrypted);
         set => _userCache.SetValueType(value, SettingEncryption.Encrypted);
     }
 

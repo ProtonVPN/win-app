@@ -17,13 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Legacy.Vpn;
+using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 
-namespace ProtonVPN.Vpn.Common
+namespace ProtonVPN.Client.Logic.Auth.Contracts.Messages;
+
+public class ConnectionCertificateUpdatedMessage
 {
-    public interface ISingleVpnConnection : IAdapterSingleVpnConnection
-    {
-        void SetFeatures(VpnFeatures vpnFeatures);
-        void RequestNetShieldStats();
-    }
+    public ConnectionCertificate? Certificate { get; init; }
 }

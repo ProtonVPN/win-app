@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Migrations;
@@ -136,13 +137,8 @@ public class UserSettingsMigrator : IUserSettingsMigrator
         MigrateBoolUserSetting(userSettings, nameof(IUserSettings.IsNetShieldEnabled), val => { _settings.IsNetShieldEnabled = val; });
 
         MigrateStringUserSetting(userSettings, nameof(IUserSettings.VpnPlanTitle), val => { _settings.VpnPlanTitle = val; });
-        MigrateStringUserSetting(userSettings, nameof(IUserSettings.AuthenticationPublicKey), val => { _settings.AuthenticationPublicKey = val?.Decrypt(); });
-        MigrateStringUserSetting(userSettings, nameof(IUserSettings.AuthenticationSecretKey), val => { _settings.AuthenticationSecretKey = val?.Decrypt(); });
-        MigrateStringUserSetting(userSettings, nameof(IUserSettings.AuthenticationCertificatePem), val => { _settings.AuthenticationCertificatePem = val?.Decrypt(); });
-
-        MigrateDateUserSetting(userSettings, nameof(IUserSettings.AuthenticationCertificateRequestUtcDate), val => { _settings.AuthenticationCertificateRequestUtcDate = val; });
-        MigrateDateUserSetting(userSettings, nameof(IUserSettings.AuthenticationCertificateExpirationUtcDate), val => { _settings.AuthenticationCertificateExpirationUtcDate = val; });
-        MigrateDateUserSetting(userSettings, nameof(IUserSettings.AuthenticationCertificateRefreshUtcDate), val => { _settings.AuthenticationCertificateRefreshUtcDate = val; });
+        MigrateConnectionKeyPair(userSettings);
+        MigrateConnectionCertificate(userSettings);
 
         MigrateAutoConnectMode(userSettings);
         MigrateBoolUserSetting(userSettings, nameof(IUserSettings.IsAutoConnectEnabled), val => { _settings.IsAutoConnectEnabled = val; });
@@ -165,6 +161,51 @@ public class UserSettingsMigrator : IUserSettingsMigrator
         MigrateVpnProtocol(userSettings);
 
         MigrateProfilesAndQuickConnectProfileId(userSettings);
+    }
+
+    private void MigrateConnectionKeyPair(Dictionary<string, string?> userSettings)
+    {
+        if (userSettings.TryGetValue(nameof(IUserSettings.ConnectionKeyPair), out string? rawSettingValue) &&
+            !string.IsNullOrWhiteSpace(rawSettingValue))
+        {
+            try
+            {
+                ConnectionAsymmetricKeyPair? deserializedValue = _jsonSerializer.DeserializeFromString<ConnectionAsymmetricKeyPair>(rawSettingValue.Decrypt());
+                if (deserializedValue is not null)
+                {
+                    _settings.ConnectionKeyPair = deserializedValue;
+                }
+            }
+            catch
+            {
+            }
+        }
+    }
+
+    private void MigrateConnectionCertificate(Dictionary<string, string?> userSettings)
+    {
+        if (_settings.ConnectionKeyPair is null)
+        {
+            return; // If no connection key pair exists, the certificate is worthless as both are necessary in the connection process
+        }
+
+        if (userSettings.TryGetValue(nameof(IUserSettings.ConnectionCertificate), out string? rawSettingValue) &&
+            !string.IsNullOrWhiteSpace(rawSettingValue))
+        {
+            try
+            {
+                _settings.ConnectionCertificate = new ConnectionCertificate()
+                {
+                    Pem = rawSettingValue.Decrypt(),
+                    RequestUtcDate = DateTimeOffset.MinValue,
+                    RefreshUtcDate = DateTimeOffset.MinValue,
+                    ExpirationUtcDate = DateTimeOffset.MinValue,
+                };
+            }
+            catch
+            {
+            }
+        }
     }
 
     private void MigrateBoolUserSetting(Dictionary<string, string?> userSettings, string settingName, Action<bool> setter)

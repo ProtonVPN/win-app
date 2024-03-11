@@ -59,6 +59,11 @@ namespace ProtonVPN.Vpn.Connection
             _origin.Connect(servers, config, credentials);
         }
 
+        public void ResetConnection()
+        {
+            _origin.ResetConnection();
+        }
+
         public void Disconnect(VpnError error)
         {
             _origin.Disconnect(error);
@@ -67,11 +72,6 @@ namespace ProtonVPN.Vpn.Connection
         public void SetFeatures(VpnFeatures vpnFeatures)
         {
             _origin.SetFeatures(vpnFeatures);
-        }
-
-        public void UpdateAuthCertificate(string certificate)
-        {
-            _origin.UpdateAuthCertificate(certificate);
         }
 
         public void RequestNetShieldStats()

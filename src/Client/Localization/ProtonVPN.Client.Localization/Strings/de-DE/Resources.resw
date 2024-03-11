@@ -168,7 +168,7 @@
   <data name="Common_States_On">
     <value>Ein</value>
   </data>
-  <data name="Connection_Error_MissingAuthCertificate">
+  <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN konnte das Authentifizierungszertifikat aufgrund eines Netzwerkproblems nicht abrufen.</value>
   </data>
   <data name="Connection_Error_NoServers">

@@ -68,11 +68,6 @@ namespace ProtonVPN.Vpn.Connection
             _origin.Disconnect(error);
         }
 
-        public void UpdateAuthCertificate(string certificate)
-        {
-            _origin.UpdateAuthCertificate(certificate);
-        }
-
         public async void SetFeatures(VpnFeatures vpnFeatures)
         {
             if (IsToStopPortMappingProtocolClient(vpnFeatures))

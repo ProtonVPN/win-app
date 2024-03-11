@@ -168,7 +168,7 @@
   <data name="Common_States_On">
     <value>Aan</value>
   </data>
-  <data name="Connection_Error_MissingAuthCertificate">
+  <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN is er niet in geslaagd om het authenticatiecertificaat op te halen vanwege een netwerk probleem.</value>
   </data>
   <data name="Connection_Error_NoServers">

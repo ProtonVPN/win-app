@@ -18,23 +18,23 @@
  */
 
 using System.Runtime.Serialization;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Crypto;
 
-namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
+namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
+
+[DataContract]
+public class VpnCredentialsIpcEntity
 {
-    [DataContract]
-    public class VpnCredentialsIpcEntity
-    {
-        [DataMember(Order = 1)]
-        public string Username { get; set; }
+    [DataMember(Order = 1)]
+    public string Username { get; set; }
 
-        [DataMember(Order = 2)]
-        public string Password { get; set; }
+    [DataMember(Order = 2)]
+    public string Password { get; set; }
 
-        [DataMember(Order = 3)]
-        public string ClientCertPem { get; set; }
+    [DataMember(Order = 3)]
+    public ConnectionCertificateIpcEntity Certificate { get; set; }
 
-        [DataMember(Order = 4)]
-        public AsymmetricKeyPairIpcEntity ClientKeyPair { get; set; }
-    }
+    [DataMember(Order = 4)]
+    public AsymmetricKeyPairIpcEntity ClientKeyPair { get; set; }
 }

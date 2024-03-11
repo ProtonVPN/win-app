@@ -18,6 +18,7 @@
  */
 
 using System.Xml;
+using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Migrations;
@@ -191,12 +192,8 @@ public class GlobalSettingsMigrator : IGlobalSettingsMigrator
             { nameof(IUserSettings.IsNetShieldEnabled), GetUserSetting(username, "UserNetShieldEnabled") },
             { nameof(IUserSettings.VpnPlanTitle), GetUserSetting(username, "UserVpnPlanName") },
 
-            { nameof(IUserSettings.AuthenticationPublicKey), GetUserSetting(username, "UserAuthenticationPublicKey") },
-            { nameof(IUserSettings.AuthenticationSecretKey), GetUserSetting(username, "UserAuthenticationSecretKey") },
-            { nameof(IUserSettings.AuthenticationCertificatePem), GetUserSetting(username, "UserAuthenticationCertificatePem") },
-            { nameof(IUserSettings.AuthenticationCertificateRequestUtcDate), GetUserSetting(username, "UserAuthenticationCertificateRequestUtcDate") },
-            { nameof(IUserSettings.AuthenticationCertificateExpirationUtcDate), GetUserSetting(username, "UserAuthenticationCertificateExpirationUtcDate") },
-            { nameof(IUserSettings.AuthenticationCertificateRefreshUtcDate), GetUserSetting(username, "UserAuthenticationCertificateRefreshUtcDate") },
+            { nameof(IUserSettings.ConnectionKeyPair), GetConnectionKeyPair(username) },
+            { nameof(IUserSettings.ConnectionCertificate), GetConnectionCertificate(username) },
 
             { nameof(IUserSettings.AutoConnectMode), GetUserSetting(username, "UserQuickConnect") },
             { nameof(IUserSettings.IsAutoConnectEnabled), GetSettingValue("ConnectOnAppStart") },
@@ -249,6 +246,38 @@ public class GlobalSettingsMigrator : IGlobalSettingsMigrator
         catch
         {
             return default;
+        }
+    }
+
+    private string? GetConnectionKeyPair(string username)
+    {
+        string? publicKey = GetUserSetting(username, "UserAuthenticationPublicKey")?.Decrypt();
+        string? secretKey = GetUserSetting(username, "UserAuthenticationSecretKey")?.Decrypt();
+
+        if (publicKey is null || secretKey is null)
+        {
+            return null;
+        }
+
+        ConnectionAsymmetricKeyPair connectionKeyPair = new()
+        {
+            PublicKey = publicKey,
+            SecretKey = secretKey,
+        };
+
+        return _jsonSerializer.SerializeToString(connectionKeyPair).Encrypt();
+    }
+
+    private string? GetConnectionCertificate(string username)
+    {
+        try
+        {
+            string? userAuthenticationCertificatePem = GetUserSetting(username, "UserAuthenticationCertificatePem");
+            return string.IsNullOrWhiteSpace(userAuthenticationCertificatePem) ? null : userAuthenticationCertificatePem;
+        }
+        catch
+        {
+            return null;
         }
     }
 

@@ -54,14 +54,14 @@ namespace ProtonVPN.Service.Vpn
             _origin.Connect(servers, config, credentials);
         }
 
+        public void ResetConnection()
+        {
+            _origin.ResetConnection();
+        }
+
         public void Disconnect(VpnError error)
         {
             _origin.Disconnect(error);
-        }
-
-        public void UpdateAuthCertificate(string certificate)
-        {
-            _origin.UpdateAuthCertificate(certificate);
         }
 
         public void SetFeatures(VpnFeatures vpnFeatures)

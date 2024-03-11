@@ -2202,7 +2202,7 @@
   <data name="PortForwarding_lbl_ServerWarning">
     <value>Bağlantı noktası yönlendirmeyi kullanmak için P2P destekleyen bir sunucu ile &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;bağlantı kurun&lt;/Hyperlink&gt;.</value>
   </data>
-  <data name="ProfileConnector_msg_MissingAuthCert">
+  <data name="ProfileConnector_msg_MissingConnectionCertificate">
     <value>Proton VPN, ağ sorunu nedeniyle kimlik doğrulama sertifikasını alamadı.</value>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">

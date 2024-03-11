@@ -48,7 +48,7 @@ public interface IConfiguration : IStaticConfiguration
     TimeSpan ServiceCheckInterval { get; }
     TimeSpan ClientConfigUpdateInterval { get; }
     TimeSpan FeatureFlagsUpdateInterval { get; }
-    TimeSpan AuthCertificateUpdateInterval { get; }
+    TimeSpan ConnectionCertificateUpdateInterval { get; }
     TimeSpan ServerUpdateInterval { get; }
     TimeSpan ServerLoadUpdateInterval { get; }
     TimeSpan AnnouncementUpdateInterval { get; }

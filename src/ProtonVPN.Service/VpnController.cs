@@ -21,12 +21,12 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.Helpers;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
-using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
 using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.EntityMapping.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
+using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
@@ -36,6 +36,7 @@ using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.Service.ProcessCommunication;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Vpn.Common;
+using ProtonVPN.Vpn.ConnectionCertificates;
 using ProtonVPN.Vpn.PortMapping;
 
 namespace ProtonVPN.Service
@@ -50,6 +51,7 @@ namespace ProtonVPN.Service
         private readonly IServiceGrpcClient _grpcClient;
         private readonly IAppControllerCaller _appControllerCaller;
         private readonly IEntityMapper _entityMapper;
+        private readonly IConnectionCertificateCache _connectionCertificateCache;
 
         public VpnController(
             IVpnConnection vpnConnection,
@@ -59,7 +61,8 @@ namespace ProtonVPN.Service
             IPortMappingProtocolClient portMappingProtocolClient,
             IServiceGrpcClient grpcClient,
             IAppControllerCaller appControllerCaller,
-            IEntityMapper entityMapper)
+            IEntityMapper entityMapper,
+            IConnectionCertificateCache connectionCertificateCache)
         {
             _vpnConnection = vpnConnection;
             _logger = logger;
@@ -69,6 +72,7 @@ namespace ProtonVPN.Service
             _grpcClient = grpcClient;
             _appControllerCaller = appControllerCaller;
             _entityMapper = entityMapper;
+            _connectionCertificateCache = connectionCertificateCache;
         }
 
         public async Task RegisterStateConsumer(StateConsumerIpcEntity stateConsumer)
@@ -95,6 +99,7 @@ namespace ProtonVPN.Service
             config.OpenVpnAdapter = _serviceSettings.OpenVpnAdapter;
             IReadOnlyList<VpnHost> endpoints = _entityMapper.Map<VpnServerIpcEntity, VpnHost>(connectionRequest.Servers);
             VpnCredentials credentials = _entityMapper.Map<VpnCredentialsIpcEntity, VpnCredentials>(connectionRequest.Credentials);
+            _connectionCertificateCache.Set(new ConnectionCertificate(credentials.ClientCertificatePem, credentials.ClientCertificateExpirationDateUtc));
             _vpnConnection.Connect(endpoints, config, credentials);
         }
 
@@ -105,9 +110,9 @@ namespace ProtonVPN.Service
             _vpnConnection.Disconnect((VpnError)disconnectionRequest.ErrorType);
         }
 
-        public async Task UpdateAuthCertificate(AuthCertificateIpcEntity certificate)
+        public async Task UpdateConnectionCertificate(ConnectionCertificateIpcEntity certificate)
         {
-            _vpnConnection.UpdateAuthCertificate(certificate.Certificate);
+            _connectionCertificateCache.Set(new ConnectionCertificate(certificate.Pem, certificate.ExpirationDateUtc));
         }
 
         public async Task<TrafficBytesIpcEntity> GetTrafficBytes()

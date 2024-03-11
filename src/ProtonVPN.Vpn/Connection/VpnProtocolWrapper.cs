@@ -80,11 +80,6 @@ internal class VpnProtocolWrapper : ISingleVpnConnection
         VpnConnection?.SetFeatures(vpnFeatures);
     }
 
-    public void UpdateAuthCertificate(string certificate)
-    {
-        VpnConnection?.UpdateAuthCertificate(certificate);
-    }
-
     public void RequestNetShieldStats()
     {
         VpnConnection?.RequestNetShieldStats();

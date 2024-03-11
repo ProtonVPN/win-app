@@ -168,7 +168,7 @@
   <data name="Common_States_On">
     <value>Ενεργό</value>
   </data>
-  <data name="Connection_Error_MissingAuthCertificate">
+  <data name="Connection_Error_MissingConnectionCertificate">
     <value>Το Proton VPN απέτυχε να ανακτήσει το πιστοποιητικό ελέγχου ταυτότητας λόγω προβλήματος δικτύου.</value>
   </data>
   <data name="Connection_Error_NoServers">

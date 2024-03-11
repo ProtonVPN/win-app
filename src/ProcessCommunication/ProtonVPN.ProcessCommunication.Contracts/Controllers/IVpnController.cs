@@ -32,7 +32,7 @@ public interface IVpnController : IServiceController
 
     Task Connect(ConnectionRequestIpcEntity connectionRequest);
     Task Disconnect(DisconnectionRequestIpcEntity disconnectionRequest);
-    Task UpdateAuthCertificate(AuthCertificateIpcEntity certificate);
+    Task UpdateConnectionCertificate(ConnectionCertificateIpcEntity certificate);
     Task<TrafficBytesIpcEntity> GetTrafficBytes();
     Task ApplySettings(MainSettingsIpcEntity settings);
 

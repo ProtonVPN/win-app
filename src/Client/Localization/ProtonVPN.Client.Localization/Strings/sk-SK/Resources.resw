@@ -168,7 +168,7 @@
   <data name="Common_States_On">
     <value>Zapnuté</value>
   </data>
-  <data name="Connection_Error_MissingAuthCertificate">
+  <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN sa nepodarilo načítať overovací certifikát kvôli problému so sieťou.</value>
   </data>
   <data name="Connection_Error_NoServers">

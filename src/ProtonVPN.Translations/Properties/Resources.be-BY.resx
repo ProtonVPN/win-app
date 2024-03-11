@@ -2233,7 +2233,7 @@
   <data name="PortForwarding_lbl_ServerWarning">
     <value>Для таго, каб выкарыстоўваць перанакіраванне партоў, &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;падключыцеся&lt;/Hyperlink&gt; да сервера, які падтрымлівае аднарангавую сетку (P2P).</value>
   </data>
-  <data name="ProfileConnector_msg_MissingAuthCert">
+  <data name="ProfileConnector_msg_MissingConnectionCertificate">
     <value>Не ўдалося атрымаць сертыфікат аўтэнтыфікацыі Proton VPN па прычыне праблем з сеткай.</value>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">

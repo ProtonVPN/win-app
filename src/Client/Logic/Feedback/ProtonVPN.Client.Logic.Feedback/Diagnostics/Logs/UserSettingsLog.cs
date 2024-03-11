@@ -21,6 +21,7 @@ using System.Collections;
 using System.Text;
 using Newtonsoft.Json;
 using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Configurations.Contracts;
 
@@ -71,9 +72,9 @@ public class UserSettingsLog : LogBase
         yield return new(nameof(ISettings.VpnProtocol), _settings.VpnProtocol);
         yield return new(nameof(ISettings.Username), _settings.Username);
         yield return new(nameof(ISettings.VpnPlanTitle), _settings.VpnPlanTitle);
-        yield return new(nameof(ISettings.AuthenticationCertificateRequestUtcDate), _settings.AuthenticationCertificateRequestUtcDate);
-        yield return new(nameof(ISettings.AuthenticationCertificateExpirationUtcDate), _settings.AuthenticationCertificateExpirationUtcDate);
-        yield return new(nameof(ISettings.AuthenticationCertificateRefreshUtcDate), _settings.AuthenticationCertificateRefreshUtcDate);
+        yield return new($"{nameof(ISettings.ConnectionCertificate)}.{nameof(ConnectionCertificate.RequestUtcDate)}", _settings.ConnectionCertificate?.RequestUtcDate);
+        yield return new($"{nameof(ISettings.ConnectionCertificate)}.{nameof(ConnectionCertificate.RefreshUtcDate)}", _settings.ConnectionCertificate?.RefreshUtcDate);
+        yield return new($"{nameof(ISettings.ConnectionCertificate)}.{nameof(ConnectionCertificate.ExpirationUtcDate)}", _settings.ConnectionCertificate?.ExpirationUtcDate);
         yield return new(nameof(ISettings.NatType), _settings.NatType);
         yield return new(nameof(ISettings.IsVpnAcceleratorEnabled), _settings.IsVpnAcceleratorEnabled);
         yield return new(nameof(ISettings.WindowWidth), _settings.WindowWidth);

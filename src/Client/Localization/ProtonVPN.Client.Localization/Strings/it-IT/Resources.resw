@@ -168,7 +168,7 @@
   <data name="Common_States_On">
     <value>Attivo</value>
   </data>
-  <data name="Connection_Error_MissingAuthCertificate">
+  <data name="Connection_Error_MissingConnectionCertificate">
     <value>Caricamento del certificato di autenticazione per Proton VPN non riuscito a causa di un problema di rete.</value>
   </data>
   <data name="Connection_Error_NoServers">

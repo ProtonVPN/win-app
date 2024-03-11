@@ -2218,7 +2218,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="PortForwarding_lbl_ServerWarning">
     <value>To use Port Forwarding, please &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;connect&lt;/Hyperlink&gt; to a server that supports P2P.</value>
   </data>
-  <data name="ProfileConnector_msg_MissingAuthCert">
+  <data name="ProfileConnector_msg_MissingConnectionCertificate">
     <value>Proton VPN failed to fetch authentication certificate due to network issue.</value>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">

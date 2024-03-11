@@ -34,6 +34,7 @@ using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Logging.Contracts.Events.LocalAgentLogs;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Config;
+using ProtonVPN.Vpn.ConnectionCertificates;
 using ProtonVPN.Vpn.Gateways;
 using ProtonVPN.Vpn.LocalAgent;
 using ProtonVPN.Vpn.LocalAgent.Contracts;
@@ -52,6 +53,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
     private readonly EventReceiver _eventReceiver;
     private readonly SplitTunnelRouting _splitTunnelRouting;
     private readonly IGatewayCache _gatewayCache;
+    private readonly IConnectionCertificateCache _connectionCertificateCache;
     private readonly IAdapterSingleVpnConnection _origin;
     private readonly ISingleAction _timeoutAction;
 
@@ -79,7 +81,6 @@ internal class LocalAgentWrapper : ISingleVpnConnection
     private bool _isConnectRequested;
     private bool _tlsConnected;
     private EventArgs<VpnState> _vpnState;
-    private string _clientCertPem = string.Empty;
     private string _localIp = string.Empty;
     private DateTime _lastNetShieldStatsRequestDate = DateTime.MinValue;
 
@@ -88,18 +89,23 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         EventReceiver eventReceiver,
         SplitTunnelRouting splitTunnelRouting,
         IGatewayCache gatewayCache,
+        IConnectionCertificateCache connectionCertificateCache,
         IAdapterSingleVpnConnection origin)
     {
         _logger = logger;
         _eventReceiver = eventReceiver;
         _splitTunnelRouting = splitTunnelRouting;
         _gatewayCache = gatewayCache;
+        _connectionCertificateCache = connectionCertificateCache;
         _origin = origin;
+
         origin.StateChanged += OnVpnStateChanged;
         eventReceiver.StateChanged += OnLocalAgentStateChanged;
         eventReceiver.ErrorOccurred += OnLocalAgentErrorOccurred;
         _timeoutAction = new SingleAction(TimeoutAction);
         _timeoutAction.Completed += OnTimeoutActionCompleted;
+
+        _connectionCertificateCache.Changed += OnCertificateChange;
     }
 
     public event EventHandler<EventArgs<VpnState>> StateChanged;
@@ -118,7 +124,6 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         _endpoint = endpoint;
         _credentials = credentials;
         _vpnConfig = config;
-        _clientCertPem = credentials.ClientCertPem;
         _origin.Connect(endpoint, credentials, config);
     }
 
@@ -169,18 +174,17 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         };
     }
 
-    public void UpdateAuthCertificate(string certificate)
+    private void OnCertificateChange(object sender, EventArgs<ConnectionCertificate> connectionCertificateArgs)
     {
-        _clientCertPem = certificate;
-        _logger.Info<LocalAgentLog>("Client certificate updated. Closing existing TLS channel and reconnecting.");
+        _logger.Info<LocalAgentLog>("Connection certificate updated. Closing existing TLS channel and reconnecting.");
         _eventReceiver.Stop();
-        ReconnectToTlsChannel();
+        ReconnectToTlsChannel(connectionCertificateArgs.Data);
     }
 
-    private void ReconnectToTlsChannel()
+    private void ReconnectToTlsChannel(ConnectionCertificate connectionCertificate)
     {
         CloseTlsChannel();
-        ConnectToTlsChannel();
+        ConnectToTlsChannel(connectionCertificate);
     }
 
     private async Task TimeoutAction(CancellationToken cancellationToken)
@@ -269,7 +273,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         else if (e.Error == VpnError.CertificateNotYetProvided)
         {
             _logger.Info<LocalAgentErrorLog>("Reconnecting to TLS channel.");
-            ReconnectToTlsChannel();
+            ReconnectToTlsChannel(_connectionCertificateCache.Get());
         }
         else if (e.Error == VpnError.CertificateExpired)
         {
@@ -333,21 +337,21 @@ internal class LocalAgentWrapper : ISingleVpnConnection
 
     private void HandleVpnConnectedState()
     {
-        if (string.IsNullOrEmpty(_credentials.ClientCertPem))
+        if (_credentials.IsCertificateCredentials)
         {
-            InvokeStateChange(VpnStatus.Connected);
+            InvokeStateChange(VpnStatus.AssigningIp);
+            ConnectToTlsChannel(_connectionCertificateCache.Get());
+            _timeoutAction.Run();
         }
         else
         {
-            InvokeStateChange(VpnStatus.AssigningIp);
-            ConnectToTlsChannel();
-            _timeoutAction.Run();
+            InvokeStateChange(VpnStatus.Connected);
         }
     }
 
     private void HandleVpnDisconnectedState()
     {
-        if (string.IsNullOrEmpty(_credentials.ClientCertPem))
+        if (string.IsNullOrEmpty(_credentials.ClientCertificatePem))
         {
             return;
         }
@@ -370,7 +374,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         }
     }
 
-    private void ConnectToTlsChannel()
+    private void ConnectToTlsChannel(ConnectionCertificate connectionCertificate)
     {
         if (!_isConnectRequested)
         {
@@ -385,7 +389,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
             return;
         }
 
-        using GoString clientCertPem = _clientCertPem.ToGoString();
+        using GoString clientCertPem = connectionCertificate.Pem.ToGoString();
         using GoString clientKeyPem = _credentials.ClientKeyPair.SecretKey.Pem.ToGoString();
         using GoString serverCaPem = VpnCertConfig.RootCa.ToGoString();
         using GoString host = $"{gatewayIPAddress}:{DEFAULT_PORT}".ToGoString();

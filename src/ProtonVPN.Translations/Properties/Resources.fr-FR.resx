@@ -2203,7 +2203,7 @@ Nous vous invitons à suivre &lt;Hyperlink Command="{Binding OpenArticleCommand}
   <data name="PortForwarding_lbl_ServerWarning">
     <value>Pour utiliser la redirection de port, veuillez vous &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;connecter&lt;/Hyperlink&gt; à un serveur prenant en charge le P2P.</value>
   </data>
-  <data name="ProfileConnector_msg_MissingAuthCert">
+  <data name="ProfileConnector_msg_MissingConnectionCertificate">
     <value>Proton VPN n'a pas pu obtenir l'authentification du certificat suite à une erreur réseau.</value>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">

@@ -2203,7 +2203,7 @@ Por favor, siga as &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;R
   <data name="PortForwarding_lbl_ServerWarning">
     <value>Para usar essa funcionalidade, &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;conecte&lt;/Hyperlink&gt; no servidor que suporte P2P.</value>
   </data>
-  <data name="ProfileConnector_msg_MissingAuthCert">
+  <data name="ProfileConnector_msg_MissingConnectionCertificate">
     <value>O Proton VPN falhou ao buscar o certificado de autenticação devido a um problema de rede.</value>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">
