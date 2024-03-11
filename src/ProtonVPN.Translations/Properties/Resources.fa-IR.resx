@@ -3190,7 +3190,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>می‌خواهید یک کشور مدنظر را انتخاب کنید؟</value>
   </data>
   <data name="Upsell_CustomDns_Bullet1">
-    <value>Connect to VPN with your &lt;Bold&gt;custom domain name system (DNS)&lt;/Bold&gt;</value>
+    <value>به VPN با &lt;Bold&gt; سیستم نام دامنه سفارشی‌تان (DNS) &lt;/Bold&gt; وصل شوید</value>
   </data>
   <data name="Upsell_CustomDns_Bullet2">
     <value>با &lt;Bold&gt; پروفایل‌ها &lt;/Bold&gt; اتصالات مکرر استفاده شده را ذخیره کنید</value>
@@ -3218,10 +3218,10 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>نوع NAT ۲ (متعادل) سرعت و پایداری را با فعال کردن اتصالات مستقیم بین دستگاه‌ها بهینه می‌کند</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
-    <value>Unlock &lt;Bold&gt;NAT type 2&lt;/Bold&gt; with VPN Plus</value>
+    <value>قفل‌گشایی &lt;Bold&gt; تیپ ۲ NAT &lt;/Bold&gt; با VPN Plus</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
-    <value>Level up your gaming experience</value>
+    <value>به تجربه بازی کردن خود بهبود ببخشید</value>
   </data>
   <data name="Upsell_Netshield_BlockAds">
     <value>مسدود کردن تبلیغات و ردیاب‌ها</value>
@@ -3255,23 +3255,23 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_Plan_Business_Info">
-    <value>Available with VPN Business.</value>
+    <value>قابل دسترسی با VPN Business.</value>
     <comment>The tooltip text of the business plan badge</comment>
   </data>
   <data name="Upsell_PortForwarding_Bullet1">
-    <value>Improve your peer-to-peer download speeds</value>
+    <value>به سرعت بارگیری‌های همتا به همتا خود بهبود ببخشید</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet2">
-    <value>Connect to online gaming servers and host multiplayer games</value>
+    <value>به سرورهای بازی‌های آنلاین متصل شوید و بازی‌های چندنفره میزبانی کنید</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet3">
-    <value>Set up remote access to devices on your local network</value>
+    <value>دسترسی از راه دور برای دستگاه‌های روی شبکه محلی‌تان باز کنید</value>
   </data>
   <data name="Upsell_PortForwarding_Subtitle">
-    <value>Unlock &lt;Bold&gt;port forwarding&lt;/Bold&gt; with VPN Plus</value>
+    <value>قفل‌گشایی &lt;Bold&gt; port forwarding &lt;/Bold&gt; با VPN Plus</value>
   </data>
   <data name="Upsell_PortForwarding_Title">
-    <value>Supercharge your P2P connections</value>
+    <value>به اتصالات P2P تان قدرت ببخشید</value>
   </data>
   <data name="Upsell_Profiles_Bullet1">
     <value>سرور، شهر یا کشور ترجيحی‌تان را ذخیره کنید.</value>

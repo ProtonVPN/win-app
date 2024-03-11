@@ -2329,7 +2329,7 @@ Podľa pokynov &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run T
     <comment>The watermark text displayed in empty Gateway combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Name_Watermark">
-    <value>Zadajte Názov Profilu</value>
+    <value>Zadajte názov profilu</value>
     <comment>Thw watermark text displayed in empty Name text box of Profile window</comment>
   </data>
   <data name="Profiles_Profile_Name_val_Fastest">
@@ -2337,7 +2337,7 @@ Podľa pokynov &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run T
     <comment>The name of Fastest profile</comment>
   </data>
   <data name="Profiles_Profile_Name_val_Random">
-    <value>Náhodne</value>
+    <value>Náhodný</value>
     <comment>The name of Random profile</comment>
   </data>
   <data name="Profiles_Profile_btn_Discard">
@@ -2369,7 +2369,7 @@ Podľa pokynov &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run T
     <comment>The label for Gateway combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Name">
-    <value>Názov</value>
+    <value>Názov:</value>
     <comment>The label for Name text box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Protocol">
@@ -2389,7 +2389,7 @@ Podľa pokynov &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run T
     <comment>The message displayed in Question dialog when cancelling changes in Profile window.</comment>
   </data>
   <data name="Profiles_Profile_ttl_Create">
-    <value>Vytvoriť Profil</value>
+    <value>Vytvoriť profil</value>
     <comment>The title of Profile window when creating new profile</comment>
   </data>
   <data name="Profiles_Profile_ttl_Edit">
@@ -2429,7 +2429,7 @@ Podľa pokynov &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run T
     <comment>The warning message displayed when trying to connect to profile with all servers offline</comment>
   </data>
   <data name="Profiles_msg_CountryOffline">
-    <value>Servery v tejto krajine sú momentálne nedostupné z dôvodu údržby. Vyberte inú krajinu.</value>
+    <value>Servery v tejto krajine sú momentálne nedostupné z dôvodu údržby. Vyberte prosím inú krajinu.</value>
     <comment>The message displayed when trying to connect to country with no servers available</comment>
   </data>
   <data name="Profiles_msg_DeleteConfirm">
@@ -2437,7 +2437,7 @@ Podľa pokynov &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run T
     <comment>The confirmation message displayed when deleting profile in Profiles window</comment>
   </data>
   <data name="Profiles_msg_NoServersAvailable">
-    <value>Momentálne nie sú pre váš výber k dispozícii žiadne servery. Vyberte inú možnosť.</value>
+    <value>Momentálne nie sú pre váš výber k dispozícii žiadne servery. Vyberte prosím inú možnosť.</value>
     <comment>The message displayed when trying to connect to a country or profile with no servers available</comment>
   </data>
   <data name="Profiles_ttl">
