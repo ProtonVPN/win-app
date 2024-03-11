@@ -17,13 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Logic.Auth.Contracts;
+namespace ProtonVPN.Client.Logic.Auth.Contracts.Models;
 
-public interface IAuthCertificateManager
+public readonly struct ConnectionCertificate
 {
-    void SetFeatures(IList<string> features);
-    void DeleteKeyPairAndCertificate();
-    Task RequestNewCertificateAsync();
-    Task ForceRequestNewCertificateAsync();
-    Task ForceRequestNewKeyPairAndCertificateAsync();
+    public required string Pem { get; init; }
+    public required DateTimeOffset RequestUtcDate { get; init; }
+    public required DateTimeOffset RefreshUtcDate { get; init; }
+    public required DateTimeOffset ExpirationUtcDate { get; init; }
 }

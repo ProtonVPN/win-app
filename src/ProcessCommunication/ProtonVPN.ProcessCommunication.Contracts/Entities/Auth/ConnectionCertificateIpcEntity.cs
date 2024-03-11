@@ -16,10 +16,16 @@
  * You should have received a copy of the GNU General Public License
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
+using System.Runtime.Serialization;
 
-namespace ProtonVPN.Core.Auth
+namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
+
+[DataContract]
+public class ConnectionCertificateIpcEntity
 {
-    public interface IAuthCertificateUpdater
-    {
-    }
+    [DataMember(Order = 1, IsRequired = true)]
+    public string Pem { get; set; }
+
+    [DataMember(Order = 2, IsRequired = true)]
+    public DateTime ExpirationDateUtc { get; set; }
 }

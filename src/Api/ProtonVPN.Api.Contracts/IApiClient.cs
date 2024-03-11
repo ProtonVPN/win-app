@@ -57,7 +57,7 @@ public interface IApiClient : IClientBase
     Task<ApiResponseResult<StreamingServicesResponse>> GetStreamingServicesAsync();
     Task<ApiResponseResult<PartnersResponse>> GetPartnersAsync();
     Task<ApiResponseResult<BaseResponse>> CheckAuthenticationServerStatusAsync();
-    Task<ApiResponseResult<CertificateResponse>> RequestAuthCertificateAsync(CertificateRequest request);
+    Task<ApiResponseResult<CertificateResponse>> RequestConnectionCertificateAsync(CertificateRequest request);
     Task<ApiResponseResult<BaseResponse>> ApplyPromoCodeAsync(PromoCodeRequest promoCodeRequest);
     Task<ApiResponseResult<ForkedAuthSessionResponse>> ForkAuthSessionAsync(AuthForkSessionRequest request);
     Task<ApiResponseResult<UsersResponse>> GetUserAsync();

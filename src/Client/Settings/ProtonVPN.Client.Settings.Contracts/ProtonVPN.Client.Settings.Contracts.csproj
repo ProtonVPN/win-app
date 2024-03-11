@@ -14,5 +14,6 @@
         <ProjectReference Include="..\..\..\Dns\ProtonVPN.Dns.Contracts\ProtonVPN.Dns.Contracts.csproj" />
         <ProjectReference Include="..\..\Common\ProtonVPN.Client.Common\ProtonVPN.Client.Common.csproj" />
         <ProjectReference Include="..\..\Localization\ProtonVPN.Client.Localization.Contracts\ProtonVPN.Client.Localization.Contracts.csproj" />
+        <ProjectReference Include="..\..\Logic\Auth\ProtonVPN.Client.Logic.Auth.Contracts\ProtonVPN.Client.Logic.Auth.Contracts.csproj" />
     </ItemGroup>
 </Project>

@@ -92,17 +92,17 @@ namespace ProtonVPN.Service.Vpn
             Queued(Connect);
         }
 
+        public void ResetConnection()
+        {
+            _origin.ResetConnection();
+        }
+
         public void Disconnect(VpnError error)
         {
             _connectRequested = false;
             _disconnectedReceived = false;
 
             _origin.Disconnect(error);
-        }
-
-        public void UpdateAuthCertificate(string certificate)
-        {
-            _origin.UpdateAuthCertificate(certificate);
         }
 
         public void SetFeatures(VpnFeatures vpnFeatures)

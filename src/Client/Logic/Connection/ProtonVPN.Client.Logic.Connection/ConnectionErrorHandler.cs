@@ -37,7 +37,7 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
     private readonly ILogger _logger;
     private readonly IEntityMapper _entityMapper;
     private readonly IEventMessageSender _eventMessageSender;
-    private readonly IAuthCertificateManager _authCertificateManager;
+    private readonly IConnectionCertificateManager _connectionCertificateManager;
     private readonly INetworkAdapterValidator _networkAdapterValidator;
     private readonly IConnectionManager _connectionManager;
 
@@ -47,14 +47,14 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
         ILogger logger,
         IEntityMapper entityMapper,
         IEventMessageSender eventMessageSender,
-        IAuthCertificateManager authCertificateManager,
+        IConnectionCertificateManager connectionCertificateManager,
         INetworkAdapterValidator networkAdapterValidator,
         IConnectionManager connectionManager)
     {
         _logger = logger;
         _entityMapper = entityMapper;
         _eventMessageSender = eventMessageSender;
-        _authCertificateManager = authCertificateManager;
+        _connectionCertificateManager = connectionCertificateManager;
         _networkAdapterValidator = networkAdapterValidator;
         _connectionManager = connectionManager;
     }
@@ -74,14 +74,14 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
         }
         else if (error == VpnError.CertificateExpired)
         {
-            await _authCertificateManager.ForceRequestNewCertificateAsync();
+            await _connectionCertificateManager.RequestNewCertificateAsync(isToSendMessageIfCertificateIsNotRefreshed: true);
             // No need to reconnect, if the certificate was updated successfully,
             // ConnectionManager will inform the service about updated certificate.
             return ConnectionErrorHandlerResult.NoAction;
         }
         else if (error.RequiresCertificateUpdate())
         {
-            await _authCertificateManager.ForceRequestNewKeyPairAndCertificateAsync();
+            await _connectionCertificateManager.ForceRequestNewKeyPairAndCertificateAsync();
             response = await ReconnectAsync();
         }
         else if (error.RequiresInformingUser())

@@ -17,16 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Crypto.Contracts;
+namespace ProtonVPN.Client.Logic.Auth.Contracts;
 
-namespace ProtonVPN.Core.Auth
+public interface IConnectionCertificateUpdater
 {
-    public interface IAuthKeyManager
-    {
-        void RegenerateKeyPair();
-        void DeleteKeyPair();
-        AsymmetricKeyPair GetKeyPairOrNull();
-        SecretKey GetSecretKey();
-        PublicKey GetPublicKey();
-    }
 }

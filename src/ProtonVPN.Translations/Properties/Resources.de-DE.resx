@@ -2203,7 +2203,7 @@ Bitte folge &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
   <data name="PortForwarding_lbl_ServerWarning">
     <value>Um die Port Weiterleitung zu nutzen, &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;verbinde&lt;/Hyperlink&gt; dich bitte mit einem Server der P2P unterstützt.</value>
   </data>
-  <data name="ProfileConnector_msg_MissingAuthCert">
+  <data name="ProfileConnector_msg_MissingConnectionCertificate">
     <value>Proton VPN konnte das Authentifizierungszertifikat aufgrund eines Netzwerkproblems nicht abrufen.</value>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">

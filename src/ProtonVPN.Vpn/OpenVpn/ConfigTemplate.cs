@@ -58,7 +58,7 @@ namespace ProtonVPN.Vpn.OpenVpn
             }
             else
             {
-                sb.AppendLine("<cert>").AppendLine(vpnCredentials.ClientCertPem.Trim()).AppendLine("</cert>");
+                sb.AppendLine("<cert>").AppendLine(vpnCredentials.ClientCertificatePem.Trim()).AppendLine("</cert>");
                 sb.AppendLine("<key>").AppendLine(vpnCredentials.ClientKeyPair.SecretKey.Pem).AppendLine("</key>");
             }
 

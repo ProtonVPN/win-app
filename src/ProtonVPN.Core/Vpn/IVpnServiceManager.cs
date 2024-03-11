@@ -30,7 +30,6 @@ namespace ProtonVPN.Core.Vpn
     public interface IVpnServiceManager
     {
         Task Connect(VpnConnectionRequest connectionRequest);
-        Task UpdateAuthCertificate(string certificate);
         Task Disconnect(VpnError vpnError,
             [CallerFilePath] string sourceFilePath = "",
             [CallerMemberName] string sourceMemberName = "",

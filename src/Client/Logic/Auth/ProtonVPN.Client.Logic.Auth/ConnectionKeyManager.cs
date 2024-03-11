@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -25,7 +26,7 @@ using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Logic.Auth;
 
-public class AuthKeyManager : IAuthKeyManager
+public class ConnectionKeyManager : IConnectionKeyManager
 {
     private const KeyAlgorithm ALGORITHM = KeyAlgorithm.Ed25519;
 
@@ -33,7 +34,7 @@ public class AuthKeyManager : IAuthKeyManager
     private readonly ILogger _logger;
     private readonly ISettings _settings;
 
-    public AuthKeyManager(IEd25519Asn1KeyGenerator ed25519Asn1KeyGenerator, ILogger logger, ISettings settings)
+    public ConnectionKeyManager(IEd25519Asn1KeyGenerator ed25519Asn1KeyGenerator, ILogger logger, ISettings settings)
     {
         _ed25519Asn1KeyGenerator = ed25519Asn1KeyGenerator;
         _logger = logger;
@@ -44,34 +45,36 @@ public class AuthKeyManager : IAuthKeyManager
     {
         AsymmetricKeyPair asymmetricKeyPair = _ed25519Asn1KeyGenerator.Generate();
 
-        _settings.AuthenticationPublicKey = asymmetricKeyPair.PublicKey.Base64;
-        _settings.AuthenticationSecretKey = asymmetricKeyPair.SecretKey.Base64;
-        _logger.Info<AppLog>("New auth key pair successfully generated and saved.");
+        _settings.ConnectionKeyPair = new ConnectionAsymmetricKeyPair()
+        {
+            PublicKey = asymmetricKeyPair.PublicKey.Base64,
+            SecretKey = asymmetricKeyPair.SecretKey.Base64,
+        };
+        _logger.Info<AppLog>("New connection key pair successfully generated and saved.");
     }
 
     public void DeleteKeyPair()
     {
-        _settings.AuthenticationPublicKey = null;
-        _settings.AuthenticationSecretKey = null;
-        _logger.Info<AppLog>("Auth key pair deleted.");
+        _settings.ConnectionKeyPair = null;
+        _logger.Info<AppLog>("Connection key pair deleted.");
     }
 
-    public AsymmetricKeyPair GetKeyPairOrNull()
+    public AsymmetricKeyPair? GetKeyPairOrNull()
     {
-        SecretKey secretKey = GetSecretKey();
-        PublicKey publicKey = GetPublicKey();
+        SecretKey? secretKey = GetSecretKey();
+        PublicKey? publicKey = GetPublicKey();
         return secretKey == null || publicKey == null ? null : new(secretKey, publicKey);
     }
 
-    public SecretKey GetSecretKey()
+    public SecretKey? GetSecretKey()
     {
-        string key = _settings.AuthenticationSecretKey;
+        string? key = _settings.ConnectionKeyPair?.SecretKey;
         return string.IsNullOrEmpty(key) ? null : new SecretKey(key, ALGORITHM);
     }
 
-    public PublicKey GetPublicKey()
+    public PublicKey? GetPublicKey()
     {
-        string key = _settings.AuthenticationPublicKey;
+        string? key = _settings.ConnectionKeyPair?.PublicKey;
         return string.IsNullOrEmpty(key) ? null : new PublicKey(key, ALGORITHM);
     }
 }

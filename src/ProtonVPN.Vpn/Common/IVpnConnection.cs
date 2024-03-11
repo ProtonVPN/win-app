@@ -23,19 +23,18 @@ using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Legacy.Vpn;
 
-namespace ProtonVPN.Vpn.Common
+namespace ProtonVPN.Vpn.Common;
+
+public interface IVpnConnection
 {
-    public interface IVpnConnection
-    {
-        event EventHandler<EventArgs<VpnState>> StateChanged;
-        event EventHandler<ConnectionDetails> ConnectionDetailsChanged;
+    event EventHandler<EventArgs<VpnState>> StateChanged;
+    event EventHandler<ConnectionDetails> ConnectionDetailsChanged;
 
-        TrafficBytes Total { get; }
+    TrafficBytes Total { get; }
 
-        void Connect(IReadOnlyList<VpnHost> servers, VpnConfig config, VpnCredentials credentials);
-        void Disconnect(VpnError error = VpnError.None);
-        void SetFeatures(VpnFeatures vpnFeatures);
-        void UpdateAuthCertificate(string certificate);
-        void RequestNetShieldStats();
-    }
+    void Connect(IReadOnlyList<VpnHost> servers, VpnConfig config, VpnCredentials credentials);
+    void ResetConnection();
+    void Disconnect(VpnError error = VpnError.None);
+    void SetFeatures(VpnFeatures vpnFeatures);
+    void RequestNetShieldStats();
 }

@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
@@ -26,8 +27,6 @@ using ProtonVPN.Client.Logic.Connection.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Logic.Services.Contracts;
-using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.Abstract;
 using ProtonVPN.EntityMapping.Contracts;
@@ -42,7 +41,7 @@ namespace ProtonVPN.Client.Logic.Connection;
 
 public class ConnectionManager : IInternalConnectionManager,
     IEventMessageReceiver<ConnectionDetailsIpcEntity>,
-    IEventMessageReceiver<SettingChangedMessage>
+    IEventMessageReceiver<ConnectionCertificateUpdatedMessage>
 {
     private readonly ILogger _logger;
     private readonly IVpnServiceCaller _vpnServiceCaller;
@@ -235,14 +234,14 @@ public class ConnectionManager : IInternalConnectionManager,
         });
     }
 
-    public async void Receive(SettingChangedMessage message)
+    public async void Receive(ConnectionCertificateUpdatedMessage message)
     {
-        if (message.PropertyName == nameof(ISettings.AuthenticationCertificatePem) &&
-            message.NewValue is not null)
+        if (message.Certificate is not null)
         {
-            await _vpnServiceCaller.UpdateAuthCertificateAsync(new AuthCertificateIpcEntity
+            await _vpnServiceCaller.UpdateConnectionCertificateAsync(new ConnectionCertificateIpcEntity
             {
-                Certificate = (string)message.NewValue
+                Pem = message.Certificate.Value.Pem,
+                ExpirationDateUtc = message.Certificate.Value.ExpirationUtcDate.UtcDateTime
             });
         }
     }

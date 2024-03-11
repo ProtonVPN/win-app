@@ -49,7 +49,7 @@ public partial class Configuration : StaticConfiguration, IConfiguration
     public TimeSpan ServiceCheckInterval => Get();
     public TimeSpan ClientConfigUpdateInterval => GetWithRandomizedDeviation();
     public TimeSpan FeatureFlagsUpdateInterval => GetWithRandomizedDeviation();
-    public TimeSpan AuthCertificateUpdateInterval => GetWithRandomizedDeviation();
+    public TimeSpan ConnectionCertificateUpdateInterval => GetWithRandomizedDeviation();
     public TimeSpan ServerUpdateInterval => GetWithRandomizedDeviation();
     public TimeSpan ServerLoadUpdateInterval => GetWithRandomizedDeviation();
     public TimeSpan AnnouncementUpdateInterval => GetWithRandomizedDeviation();

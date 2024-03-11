@@ -88,10 +88,5 @@ namespace ProtonVPN.Vpn.Connection
         {
             _origin.SetFeatures(vpnFeatures);
         }
-
-        public void UpdateAuthCertificate(string certificate)
-        {
-            _origin.UpdateAuthCertificate(certificate);
-        }
     }
 }

@@ -26,9 +26,9 @@ public class AuthLogicModule : Module
     protected override void Load(ContainerBuilder builder)
     {
         builder.RegisterType<UserAuthenticator>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<AuthCertificateManager>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<AuthKeyManager>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<AuthCertificateUpdater>().AsImplementedInterfaces().AutoActivate().SingleInstance();
+        builder.RegisterType<ConnectionCertificateManager>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ConnectionKeyManager>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ConnectionCertificateUpdater>().AsImplementedInterfaces().AutoActivate().SingleInstance();
         builder.RegisterType<UserHashGenerator>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<WebAuthenticator>().AsImplementedInterfaces().SingleInstance();
     }

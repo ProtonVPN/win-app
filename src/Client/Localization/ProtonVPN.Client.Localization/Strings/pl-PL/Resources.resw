@@ -168,7 +168,7 @@
   <data name="Common_States_On">
     <value>Włączone</value>
   </data>
-  <data name="Connection_Error_MissingAuthCertificate">
+  <data name="Connection_Error_MissingConnectionCertificate">
     <value>Z powodu problemu z siecią, aplikacja Proton VPN nie może pobrać certyfikatu uwierzytelniania.</value>
   </data>
   <data name="Connection_Error_NoServers">

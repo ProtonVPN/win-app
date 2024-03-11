@@ -30,7 +30,7 @@ public static class VpnErrorExtensions
         VpnError.TapRequiresUpdateError,
         VpnError.TlsCertificateError,
         VpnError.RpcServerUnavailable,
-        VpnError.MissingAuthCertificate,
+        VpnError.MissingConnectionCertificate,
         VpnError.WireGuardAdapterInUseError,
         VpnError.SessionLimitReachedBasic,
         VpnError.SessionLimitReachedFree,

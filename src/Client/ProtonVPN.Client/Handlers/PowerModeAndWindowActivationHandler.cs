@@ -35,14 +35,14 @@ public class PowerModeAndWindowActivationHandler : IHandler, IEventMessageReceiv
     private readonly ILogger _logger;
     private readonly ISettings _settings;
     private readonly IVpnServiceCaller _vpnServiceCaller;
-    private readonly IAuthCertificateManager _authCertificateManager;
+    private readonly IConnectionCertificateManager _connectionCertificateManager;
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IVpnPlanUpdater _vpnPlanUpdater;
 
     public PowerModeAndWindowActivationHandler(ILogger logger,
         ISettings settings,
         IVpnServiceCaller vpnServiceCaller,
-        IAuthCertificateManager authCertificateManager,
+        IConnectionCertificateManager connectionCertificateManager,
         IUserAuthenticator userAuthenticator,
         IPowerEventNotifier powerEventNotifier,
         IVpnPlanUpdater vpnPlanUpdater)
@@ -50,7 +50,7 @@ public class PowerModeAndWindowActivationHandler : IHandler, IEventMessageReceiv
         _logger = logger;
         _settings = settings;
         _vpnServiceCaller = vpnServiceCaller;
-        _authCertificateManager = authCertificateManager;
+        _connectionCertificateManager = connectionCertificateManager;
         _userAuthenticator = userAuthenticator;
         _vpnPlanUpdater = vpnPlanUpdater;
 
@@ -78,7 +78,7 @@ public class PowerModeAndWindowActivationHandler : IHandler, IEventMessageReceiv
             _vpnServiceCaller.RepeatPortForwardingStateAsync();
         }
 
-        _authCertificateManager.RequestNewCertificateAsync();
+        _connectionCertificateManager.RequestNewCertificateAsync();
         _vpnPlanUpdater.UpdateAsync();
     }
 

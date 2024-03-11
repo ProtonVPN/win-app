@@ -72,14 +72,14 @@ namespace ProtonVPN.Vpn.Connection
             _taskQueue.Enqueue(() => _origin.Connect(servers, config, credentials));
         }
 
+        public void ResetConnection()
+        {
+            _origin.ResetConnection();
+        }
+
         public void Disconnect(VpnError error = VpnError.None)
         {
             _origin.Disconnect(error);
-        }
-
-        public void UpdateAuthCertificate(string certificate)
-        {
-            _taskQueue.Enqueue(() => _origin.UpdateAuthCertificate(certificate));
         }
 
         public void SetFeatures(VpnFeatures vpnFeatures)

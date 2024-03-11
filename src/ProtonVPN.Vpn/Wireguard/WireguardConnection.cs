@@ -205,12 +205,12 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         {
             if (_isServiceStopPending)
             {
-                _logger.Info<AppServiceStopLog>("Waiting for service to stop.");
-                await Task.Delay(500, cancellationToken);
+                _logger.Debug<AppServiceStopLog>("Waiting for WireGuard service to stop.");
+                await Task.Delay(100, cancellationToken);
             }
             else
             {
-                _logger.Info<AppServiceStopLog>("Service is running, trying to stop.");
+                _logger.Info<AppServiceStopLog>("WireGuard service is running, trying to stop.");
                 await _wireGuardService.StopAsync(cancellationToken);
                 _isServiceStopPending = true;
             }
@@ -218,7 +218,7 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
 
         if (_isServiceStopPending)
         {
-            _logger.Info<AppServiceStopLog>("Service is stopped.");
+            _logger.Info<AppServiceStopLog>("WireGuard service is stopped.");
             _isServiceStopPending = false;
         }
     }

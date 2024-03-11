@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
@@ -31,6 +32,7 @@ using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.UserCertificateLogs;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Crypto;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
@@ -44,15 +46,15 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
     protected readonly ISmartStandardServerListGenerator SmartStandardServerListGenerator;
 
     private readonly ILogger _logger;
-    private readonly IAuthKeyManager _authKeyManager;
-    private readonly IAuthCertificateManager _authCertificateManager;
+    private readonly IConnectionKeyManager _connectionKeyManager;
+    private readonly IConnectionCertificateManager _connectionCertificateManager;
 
     public ConnectionRequestCreator(
         ILogger logger,
         ISettings settings,
         IEntityMapper entityMapper,
-        IAuthKeyManager authKeyManager,
-        IAuthCertificateManager authCertificateManager,
+        IConnectionKeyManager connectionKeyManager,
+        IConnectionCertificateManager connectionCertificateManager,
         IIntentServerListGenerator intentServerListGenerator,
         ISmartSecureCoreServerListGenerator smartSecureCoreServerListGenerator,
         ISmartStandardServerListGenerator smartStandardServerListGenerator,
@@ -64,8 +66,8 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
         SmartStandardServerListGenerator = smartStandardServerListGenerator;
 
         _logger = logger;
-        _authKeyManager = authKeyManager;
-        _authCertificateManager = authCertificateManager;
+        _connectionKeyManager = connectionKeyManager;
+        _connectionCertificateManager = connectionCertificateManager;
     }
 
     public virtual async Task<ConnectionRequestIpcEntity> CreateAsync(IConnectionIntent connectionIntent)
@@ -86,23 +88,52 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
 
     protected override async Task<VpnCredentialsIpcEntity> GetVpnCredentialsAsync()
     {
-        PublicKey publicKey = _authKeyManager.GetPublicKey();
-        SecretKey secretKey = _authKeyManager.GetSecretKey();
+        await RequestCertificateIfNecessaryAsync();
 
-        if (string.IsNullOrEmpty(Settings.AuthenticationCertificatePem))
-        {
-            _logger.Info<UserCertificateLog>("Auth certificate is missing, requesting a new certificate.");
-            await _authCertificateManager.ForceRequestNewCertificateAsync();
-        }
+        ConnectionCertificate? connectionCertificate = Settings.ConnectionCertificate;
+        AsymmetricKeyPair? keyPair = _connectionKeyManager.GetKeyPairOrNull();
 
         return new VpnCredentialsIpcEntity
         {
-            ClientCertPem = Settings.AuthenticationCertificatePem,
-            ClientKeyPair = new AsymmetricKeyPairIpcEntity
+            Certificate = connectionCertificate.HasValue ? CreateCertificate(connectionCertificate.Value) : null,
+            ClientKeyPair = keyPair is null ? null : new AsymmetricKeyPairIpcEntity
             {
-                PublicKey = EntityMapper.Map<PublicKey, PublicKeyIpcEntity>(publicKey),
-                SecretKey = EntityMapper.Map<SecretKey, SecretKeyIpcEntity>(secretKey)
+                PublicKey = EntityMapper.Map<PublicKey, PublicKeyIpcEntity>(keyPair.PublicKey),
+                SecretKey = EntityMapper.Map<SecretKey, SecretKeyIpcEntity>(keyPair.SecretKey)
             }
+        };
+    }
+
+    private async Task RequestCertificateIfNecessaryAsync()
+    {
+        if (_connectionKeyManager.GetKeyPairOrNull() is null)
+        {
+            _logger.Info<UserCertificateLog>("Connection keys are missing, forcing new keys and certificate.");
+            await _connectionCertificateManager.ForceRequestNewKeyPairAndCertificateAsync();
+        }
+        else
+        {
+            ConnectionCertificate? connectionCertificate = Settings.ConnectionCertificate;
+
+            if (connectionCertificate is null)
+            {
+                _logger.Info<UserCertificateLog>("Connection certificate is missing, requesting a new certificate.");
+                await _connectionCertificateManager.RequestNewCertificateAsync();
+            }
+            else if (connectionCertificate.Value.ExpirationUtcDate <= DateTimeOffset.UtcNow)
+            {
+                _logger.Info<UserCertificateLog>("Connection certificate is expired, requesting a new certificate.");
+                await _connectionCertificateManager.RequestNewCertificateAsync();
+            }
+        }
+    }
+
+    private ConnectionCertificateIpcEntity CreateCertificate(ConnectionCertificate connectionCertificate)
+    {
+        return new()
+        {
+            Pem = connectionCertificate.Pem,
+            ExpirationDateUtc = connectionCertificate.ExpirationUtcDate.UtcDateTime,
         };
     }
 

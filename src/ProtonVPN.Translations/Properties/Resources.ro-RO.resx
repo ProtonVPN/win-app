@@ -2218,7 +2218,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
   <data name="PortForwarding_lbl_ServerWarning">
     <value>Pentru a folosi redirecționarea porturilor, &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;conectați-vă&lt;/Hyperlink&gt; la un server care suportă P2P.</value>
   </data>
-  <data name="ProfileConnector_msg_MissingAuthCert">
+  <data name="ProfileConnector_msg_MissingConnectionCertificate">
     <value>Proton VPN a eșuat să preia certificatul de autentificare datorită problemelor de rețea.</value>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">

@@ -91,11 +91,6 @@ public class BestPortWrapper : ISingleVpnConnection
         _origin.SetFeatures(vpnFeatures);
     }
 
-    public void UpdateAuthCertificate(string certificate)
-    {
-        _origin.UpdateAuthCertificate(certificate);
-    }
-
     public void RequestNetShieldStats()
     {
         _origin.RequestNetShieldStats();
@@ -152,9 +147,11 @@ public class BestPortWrapper : ISingleVpnConnection
 
         string username = $"{_vpnCredentials.Username}+b:{endpoint.Server.Label}";
 
-        return string.IsNullOrEmpty(_vpnCredentials.ClientCertPem) || _vpnCredentials.ClientKeyPair == null
-            ? new VpnCredentials(username, _vpnCredentials.Password)
-            : new VpnCredentials(_vpnCredentials.ClientCertPem, _vpnCredentials.ClientKeyPair);
+        return _vpnCredentials.IsCertificateCredentials
+            ? new VpnCredentials(_vpnCredentials.ClientCertificatePem,
+                _vpnCredentials.ClientCertificateExpirationDateUtc,
+                _vpnCredentials.ClientKeyPair)
+            : new VpnCredentials(username, _vpnCredentials.Password);
     }
 
     private async void DelayedDisconnect(CancellationToken cancellationToken)

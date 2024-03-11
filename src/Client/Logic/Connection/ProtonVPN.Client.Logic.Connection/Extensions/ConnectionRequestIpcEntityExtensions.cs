@@ -32,9 +32,15 @@ public static class ConnectionRequestIpcEntityExtensions
         {
             error = VpnError.NoServers;
         }
-        else if (string.IsNullOrEmpty(request.Credentials.ClientCertPem))
+        else if (request.Credentials.Certificate is null ||
+                 request.Credentials.ClientKeyPair is null ||
+                 string.IsNullOrWhiteSpace(request.Credentials.Certificate.Pem))
         {
-            error = VpnError.MissingAuthCertificate;
+            error = VpnError.MissingConnectionCertificate;
+        }
+        else if (request.Credentials.Certificate.ExpirationDateUtc <= DateTimeOffset.UtcNow)
+        {
+            error = VpnError.CertificateExpired;
         }
 
         return error;

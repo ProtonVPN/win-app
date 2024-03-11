@@ -119,11 +119,11 @@ internal partial class VpnService : ServiceBase
 
     protected override bool OnPowerEvent(PowerBroadcastStatus powerStatus)
     {
-        _logger.Info<OperatingSystemLog>($"Power status changed to {powerStatus}");
+        _logger.Debug<OperatingSystemLog>($"Power status changed to {powerStatus}");
         if (powerStatus == PowerBroadcastStatus.ResumeSuspend && _isConnected)
         {
-            _logger.Info<ConnectionLog>("Disconnecting due to resume from sleep.");
-            _vpnConnection.Disconnect(VpnError.Unknown);
+            _logger.Info<ConnectionLog>("Resetting connection due to resume from sleep.");
+            _vpnConnection.ResetConnection();
         }
 
         return true;

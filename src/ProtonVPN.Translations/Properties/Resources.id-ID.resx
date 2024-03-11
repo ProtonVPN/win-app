@@ -2188,7 +2188,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
   <data name="PortForwarding_lbl_ServerWarning">
     <value>Untuk dapat menggunakan Port Forwarding, mohon &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;hubungkan&lt;/Hyperlink&gt; diri Anda ke server yang mendukung P2P.</value>
   </data>
-  <data name="ProfileConnector_msg_MissingAuthCert">
+  <data name="ProfileConnector_msg_MissingConnectionCertificate">
     <value>Proton VPN tidak dapat mengambil sertifikat autentikasi karena masalah jaringan.</value>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">

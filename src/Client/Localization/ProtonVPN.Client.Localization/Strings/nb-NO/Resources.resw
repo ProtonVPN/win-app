@@ -168,7 +168,7 @@
   <data name="Common_States_On">
     <value>På</value>
   </data>
-  <data name="Connection_Error_MissingAuthCertificate">
+  <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN klarte ikke å hente autentiseringssertifikat på grunn av nettverksproblem.</value>
   </data>
   <data name="Connection_Error_NoServers">

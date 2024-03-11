@@ -168,7 +168,7 @@
   <data name="Common_States_On">
     <value>켜기</value>
   </data>
-  <data name="Connection_Error_MissingAuthCertificate">
+  <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN이 네트워크 문제로 인해 인증서를 불러오지 못했습니다.</value>
   </data>
   <data name="Connection_Error_NoServers">

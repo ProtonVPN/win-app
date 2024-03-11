@@ -26,21 +26,21 @@ using ProtonVPN.Crypto.Contracts;
 
 namespace ProtonVPN.Client.Logic.Auth.Tests;
 
-public class MockOfAuthKeyManager : IAuthKeyManager
+public class MockOfConnectionKeyManager : IConnectionKeyManager
 {
     private SecretKey _secretKey;
     private PublicKey _publicKey;
 
     public IDictionary<string, int> MethodCalls;
 
-    public MockOfAuthKeyManager()
+    public MockOfConnectionKeyManager()
     {
         _secretKey = null;
         _publicKey = null;
 
         MethodCalls = new Dictionary<string, int>();
 
-        Type type = typeof(MockOfAuthKeyManager);
+        Type type = typeof(MockOfConnectionKeyManager);
         MethodInfo[] methods = type.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
         foreach (MethodInfo method in methods)
         {

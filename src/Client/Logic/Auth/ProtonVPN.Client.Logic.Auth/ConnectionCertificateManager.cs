@@ -19,34 +19,39 @@
 
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Certificates;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
+using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.UserCertificateLogs;
 
 namespace ProtonVPN.Client.Logic.Auth;
 
-//TODO: call RequestNewCertificateAsync on window restore
-public class AuthCertificateManager : IAuthCertificateManager
+public class ConnectionCertificateManager : IConnectionCertificateManager
 {
     private readonly ISettings _settings;
-    private readonly IAuthKeyManager _authKeyManager;
+    private readonly IConnectionKeyManager _connectionKeyManager;
     private readonly IApiClient _apiClient;
     private readonly ILogger _logger;
+    private readonly IEventMessageSender _eventMessageSender;
     private readonly SemaphoreSlim _semaphore = new(1, 1);
 
     private IList<string> _features = new List<string>();
 
-    public AuthCertificateManager(
+    public ConnectionCertificateManager(
         ISettings settings,
-        IAuthKeyManager authKeyManager,
+        IConnectionKeyManager connectionKeyManager,
         IApiClient apiClient,
-        ILogger logger)
+        ILogger logger,
+        IEventMessageSender eventMessageSender)
     {
         _settings = settings;
-        _authKeyManager = authKeyManager;
+        _connectionKeyManager = connectionKeyManager;
         _apiClient = apiClient;
         _logger = logger;
+        _eventMessageSender = eventMessageSender;
     }
 
     public void SetFeatures(IList<string> features)
@@ -56,15 +61,10 @@ public class AuthCertificateManager : IAuthCertificateManager
 
     public void DeleteKeyPairAndCertificate()
     {
-        _authKeyManager.DeleteKeyPair();
-
-        _settings.CertificationServerPublicKey = null;
-        _settings.AuthenticationCertificatePem = null;
-        _settings.AuthenticationCertificateRequestUtcDate = null;
-        _settings.AuthenticationCertificateExpirationUtcDate = null;
-        _settings.AuthenticationCertificateRefreshUtcDate = null;
-        
-        _logger.Info<UserCertificateRevokedLog>("Auth certificate deleted.");
+        _connectionKeyManager.DeleteKeyPair();
+        _settings.ConnectionCertificate = null;
+        SendUpdateMessage(null);
+        _logger.Info<UserCertificateRevokedLog>("Connection certificate deleted.");
     }
 
     private enum NewCertificateRequestParameter
@@ -74,9 +74,10 @@ public class AuthCertificateManager : IAuthCertificateManager
         ForceNewKeyPairAndCertificate = 2
     }
 
-    public async Task RequestNewCertificateAsync()
+    public async Task RequestNewCertificateAsync(bool isToSendMessageIfCertificateIsNotUpdated = false)
     {
-        await EnqueueRequestAsync(NewCertificateRequestParameter.NewCertificateIfCurrentIsOld);
+        await EnqueueRequestAsync(NewCertificateRequestParameter.NewCertificateIfCurrentIsOld,
+            isToSendMessageIfCertificateIsNotUpdated);
     }
 
     public async Task ForceRequestNewCertificateAsync()
@@ -89,7 +90,8 @@ public class AuthCertificateManager : IAuthCertificateManager
         await EnqueueRequestAsync(NewCertificateRequestParameter.ForceNewKeyPairAndCertificate);
     }
 
-    private async Task EnqueueRequestAsync(NewCertificateRequestParameter parameter)
+    private async Task EnqueueRequestAsync(NewCertificateRequestParameter parameter,
+        bool isToSendMessageIfCertificateIsNotUpdated = false)
     {
         await _semaphore.WaitAsync();
 
@@ -103,16 +105,25 @@ public class AuthCertificateManager : IAuthCertificateManager
                 ApiResponseResult<CertificateResponse> response = await RequestAsync(features);
                 if (response.Failure)
                 {
-                    _logger.Error<UserCertificateRefreshErrorLog>("Auth certificate request failed with " +
+                    _logger.Error<UserCertificateRefreshErrorLog>("Connection certificate request failed with " +
                         $"Status Code {response.ResponseMessage.StatusCode}, " +
                         $"Internal Code {response.Value.Code}, " +
                         $"Error '{response.Value.Error}'.");
+
+                    if (isToSendMessageIfCertificateIsNotUpdated)
+                    {
+                        SendMessageWithCurrentCertificate();
+                    }
                 }
+            }
+            else if (isToSendMessageIfCertificateIsNotUpdated)
+            {
+                SendMessageWithCurrentCertificate();
             }
         }
         catch (Exception e)
         {
-            _logger.Error<UserCertificateRefreshErrorLog>("Auth certificate request failed.", e);
+            _logger.Error<UserCertificateRefreshErrorLog>("Connection certificate request failed.", e);
         }
         finally
         {
@@ -125,64 +136,72 @@ public class AuthCertificateManager : IAuthCertificateManager
         switch (parameter)
         {
             case NewCertificateRequestParameter.NewCertificateIfCurrentIsOld:
-                _logger.Info<UserCertificateRefreshLog>("Requesting a new auth certificate since the current one is considered old.");
+                _logger.Info<UserCertificateRefreshLog>("Requesting a new connection certificate since the current one is considered old.");
                 break;
             case NewCertificateRequestParameter.ForceNewCertificate:
-                _logger.Info<UserCertificateRefreshLog>("Forcing a new auth certificate request.");
+                _logger.Info<UserCertificateRefreshLog>("Forcing a new connection certificate request.");
                 break;
             case NewCertificateRequestParameter.ForceNewKeyPairAndCertificate:
-                _logger.Info<UserCertificateRefreshLog>("Generating new auth key pair and forcing a new auth certificate request.");
+                _logger.Info<UserCertificateRefreshLog>("Generating new connection key pair and forcing a new connection certificate request.");
                 break;
         }
     }
 
     private bool IsToRequest()
     {
-        DateTimeOffset? refreshDate = _settings.AuthenticationCertificateRefreshUtcDate;
-        return !refreshDate.HasValue || DateTimeOffset.UtcNow >= refreshDate.Value;
+        ConnectionCertificate? connectionCertificate = _settings.ConnectionCertificate;
+        DateTimeOffset utcNow = DateTimeOffset.UtcNow;
+        return connectionCertificate is null ||
+               string.IsNullOrWhiteSpace(connectionCertificate.Value.Pem) ||
+               utcNow >= connectionCertificate.Value.RefreshUtcDate ||
+               utcNow >= connectionCertificate.Value.ExpirationUtcDate;
     }
 
     private void RegenerateKeyPairIfRequested(NewCertificateRequestParameter parameter)
     {
         if (parameter == NewCertificateRequestParameter.ForceNewKeyPairAndCertificate)
         {
-            _authKeyManager.RegenerateKeyPair();
+            _connectionKeyManager.RegenerateKeyPair();
         }
     }
 
     private async Task<ApiResponseResult<CertificateResponse>> RequestAsync(IList<string> features)
     {
         ApiResponseResult<CertificateResponse> certificateResponseData =
-            await RequestAuthCertificateAsync(features);
+            await RequestConnectionCertificateAsync(features);
 
         if (certificateResponseData.Failure && certificateResponseData.Value.Code == ResponseCodes.ClientPublicKeyConflict)
         {
-            _logger.Warn<UserCertificateRefreshErrorLog>("New auth certificate failed because the " +
+            _logger.Warn<UserCertificateRefreshErrorLog>("New connection certificate failed because the " +
                                                          "client public key is already in use. Generating a new key pair and retrying.");
-            _authKeyManager.RegenerateKeyPair();
-            certificateResponseData = await RequestAuthCertificateAsync(features);
+            _connectionKeyManager.RegenerateKeyPair();
+            certificateResponseData = await RequestConnectionCertificateAsync(features);
         }
 
         return certificateResponseData;
     }
 
-    private async Task<ApiResponseResult<CertificateResponse>> RequestAuthCertificateAsync(IList<string> features)
+    private async Task<ApiResponseResult<CertificateResponse>> RequestConnectionCertificateAsync(IList<string> features)
     {
         CertificateRequest certificateRequest = CreateCertificateRequestData(features);
         ApiResponseResult<CertificateResponse> certificateResponseData =
-            await _apiClient.RequestAuthCertificateAsync(certificateRequest);
+            await _apiClient.RequestConnectionCertificateAsync(certificateRequest);
 
         if (certificateResponseData.Success)
         {
-            _settings.AuthenticationCertificateRequestUtcDate = DateTimeOffset.UtcNow;
-            _settings.AuthenticationCertificatePem = certificateResponseData.Value.Certificate;
-            _settings.AuthenticationCertificateExpirationUtcDate =
-                DateTimeOffset.FromUnixTimeSeconds(certificateResponseData.Value.ExpirationTime);
-            _settings.AuthenticationCertificateRefreshUtcDate =
-                DateTimeOffset.FromUnixTimeSeconds(certificateResponseData.Value.RefreshTime);
-            _settings.CertificationServerPublicKey = certificateResponseData.Value.ServerPublicKey;
-            _logger.Info<UserCertificateNewLog>("New auth certificate successfully saved. " +
-                                                $"Expires at {_settings.AuthenticationCertificateExpirationUtcDate}.");
+            ConnectionCertificate connectionCertificate = new()
+            {
+                Pem = certificateResponseData.Value.Certificate,
+                RequestUtcDate = DateTimeOffset.UtcNow,
+                RefreshUtcDate = DateTimeOffset.FromUnixTimeSeconds(certificateResponseData.Value.RefreshTime),
+                ExpirationUtcDate = DateTimeOffset.FromUnixTimeSeconds(certificateResponseData.Value.ExpirationTime),
+            };
+            _settings.ConnectionCertificate = connectionCertificate;
+
+            _logger.Info<UserCertificateNewLog>("New connection certificate successfully saved. " +
+                                                $"Expires at {connectionCertificate.ExpirationUtcDate}.");
+
+            SendUpdateMessage(connectionCertificate);
         }
 
         return certificateResponseData;
@@ -199,13 +218,28 @@ public class AuthCertificateManager : IAuthCertificateManager
 
     private string GetOrCreateClientPublicKeyPem()
     {
-        string clientPublicKey = _authKeyManager.GetPublicKey()?.Pem;
+        string? clientPublicKey = _connectionKeyManager.GetPublicKey()?.Pem;
         if (string.IsNullOrEmpty(clientPublicKey))
         {
-            _authKeyManager.RegenerateKeyPair();
-            clientPublicKey = _authKeyManager.GetPublicKey()?.Pem;
+            _connectionKeyManager.RegenerateKeyPair();
+            clientPublicKey = _connectionKeyManager.GetPublicKey()?.Pem;
         }
 
-        return clientPublicKey;
+        return clientPublicKey ?? string.Empty;
+    }
+
+    private void SendUpdateMessage(ConnectionCertificate? connectionCertificate)
+    {
+        ConnectionCertificateUpdatedMessage message = new()
+        {
+            Certificate = connectionCertificate
+        };
+
+        _eventMessageSender.Send(message);
+    }
+
+    private void SendMessageWithCurrentCertificate()
+    {
+        SendUpdateMessage(_settings.ConnectionCertificate);
     }
 }

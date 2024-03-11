@@ -168,7 +168,7 @@
   <data name="Common_States_On">
     <value>ჩართ</value>
   </data>
-  <data name="Connection_Error_MissingAuthCertificate">
+  <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN-მა ქსელის პრობლემის გამო ავთენტიკაციის სერტიფიკატი ვერ გამოითხოვა.</value>
   </data>
   <data name="Connection_Error_NoServers">

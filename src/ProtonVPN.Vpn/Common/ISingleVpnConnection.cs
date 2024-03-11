@@ -24,7 +24,6 @@ namespace ProtonVPN.Vpn.Common
     public interface ISingleVpnConnection : IAdapterSingleVpnConnection
     {
         void SetFeatures(VpnFeatures vpnFeatures);
-        void UpdateAuthCertificate(string certificate);
         void RequestNetShieldStats();
     }
 }

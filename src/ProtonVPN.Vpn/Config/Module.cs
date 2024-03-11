@@ -29,6 +29,7 @@ using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Connection;
+using ProtonVPN.Vpn.ConnectionCertificates;
 using ProtonVPN.Vpn.Gateways;
 using ProtonVPN.Vpn.LocalAgent;
 using ProtonVPN.Vpn.Management;
@@ -50,6 +51,7 @@ public class Module
 {
     public void Load(ContainerBuilder builder)
     {
+        builder.RegisterType<ConnectionCertificateCache>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ServerValidator>().As<IServerValidator>().SingleInstance();
         builder.RegisterType<GatewayCache>().As<IGatewayCache>().SingleInstance();
         builder.RegisterType<VpnEndpointScanner>().SingleInstance();
@@ -143,9 +145,11 @@ public class Module
         IGatewayCache gatewayCache = c.Resolve<IGatewayCache>();
         INetShieldStatisticEventManager netShieldStatisticEventManager = c.Resolve<INetShieldStatisticEventManager>();
         IX25519KeyGenerator x25519KeyGenerator = c.Resolve<IX25519KeyGenerator>();
+        IConnectionCertificateCache connectionCertificateCache = c.Resolve<IConnectionCertificateCache>();
 
         return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager), c.Resolve<SplitTunnelRouting>(),
             gatewayCache,
+            connectionCertificateCache,
             new WireGuardConnection(logger, config, gatewayCache,
                 new WireGuardService(logger, staticConfig, new SafeService(
                     new LoggingService(logger,
@@ -161,9 +165,11 @@ public class Module
         IOpenVpnConfigurations openVpnConfig = c.Resolve<IStaticConfiguration>().OpenVpn;
         IGatewayCache gatewayCache = c.Resolve<IGatewayCache>();
         INetShieldStatisticEventManager netShieldStatisticEventManager = c.Resolve<INetShieldStatisticEventManager>();
+        IConnectionCertificateCache connectionCertificateCache = c.Resolve<IConnectionCertificateCache>();
 
         return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager), c.Resolve<SplitTunnelRouting>(),
             gatewayCache,
+            connectionCertificateCache,
             new OpenVpnConnection(
                 logger,
                 c.Resolve<IStaticConfiguration>(),

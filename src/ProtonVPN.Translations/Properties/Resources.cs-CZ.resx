@@ -2233,7 +2233,7 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="PortForwarding_lbl_ServerWarning">
     <value>Pro použití přesměrování portu, se prosím &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;připojte&lt;/Hyperlink&gt; k serveru, který podporuje P2P.</value>
   </data>
-  <data name="ProfileConnector_msg_MissingAuthCert">
+  <data name="ProfileConnector_msg_MissingConnectionCertificate">
     <value>Proton VPN se nepodařilo načíst ověřovací certifikát kvůli problému se sítí.</value>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">

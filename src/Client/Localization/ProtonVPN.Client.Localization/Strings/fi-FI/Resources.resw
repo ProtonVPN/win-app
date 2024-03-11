@@ -168,7 +168,7 @@
   <data name="Common_States_On">
     <value>Käytössä</value>
   </data>
-  <data name="Connection_Error_MissingAuthCertificate">
+  <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN ei voinut noutaa todennusvarmennetta verkko-ongelman vuoksi.</value>
   </data>
   <data name="Connection_Error_NoServers">

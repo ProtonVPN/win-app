@@ -168,7 +168,7 @@
   <data name="Common_States_On">
     <value>Açık</value>
   </data>
-  <data name="Connection_Error_MissingAuthCertificate">
+  <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN, ağ sorunu nedeniyle kimlik doğrulama sertifikasını alamadı.</value>
   </data>
   <data name="Connection_Error_NoServers">

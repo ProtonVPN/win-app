@@ -22,6 +22,7 @@ using NSubstitute;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Crypto;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
@@ -73,13 +74,13 @@ public class VpnCredentialsMapperTest
         Assert.IsNotNull(result);
         Assert.AreEqual(entityToTest.Username, result.Username);
         Assert.AreEqual(entityToTest.Password, result.Password);
-        Assert.IsNull(result.ClientCertPem);
+        Assert.IsNull(result.Certificate);
     }
 
     [TestMethod]
     public void TestMapLeftToRight_WithCertificate()
     {
-        VpnCredentials entityToTest = new("CERT", new AsymmetricKeyPair(
+        VpnCredentials entityToTest = new("CERT", DateTime.UtcNow.AddDays(1), new AsymmetricKeyPair(
             new SecretKey("PVPN", KeyAlgorithm.Ed25519), new PublicKey("PVPN", KeyAlgorithm.Ed25519)));
 
         VpnCredentialsIpcEntity result = _mapper.Map(entityToTest);
@@ -87,7 +88,8 @@ public class VpnCredentialsMapperTest
         Assert.IsNotNull(result);
         Assert.IsNull(result.Username);
         Assert.IsNull(result.Password);
-        Assert.AreEqual(entityToTest.ClientCertPem, result.ClientCertPem);
+        Assert.AreEqual(entityToTest.ClientCertificatePem, result.Certificate.Pem);
+        Assert.AreEqual(entityToTest.ClientCertificateExpirationDateUtc, result.Certificate.ExpirationDateUtc);
         Assert.AreEqual(_expectedAsymmetricKeyPairIpcEntity, result.ClientKeyPair);
     }
 
@@ -114,7 +116,8 @@ public class VpnCredentialsMapperTest
         Assert.IsNotNull(result);
         Assert.AreEqual(entityToTest.Username, result.Username);
         Assert.AreEqual(entityToTest.Password, result.Password);
-        Assert.IsNull(result.ClientCertPem);
+        Assert.IsNull(result.ClientCertificatePem);
+        Assert.IsFalse(result.IsCertificateCredentials);
     }
 
     [TestMethod]
@@ -122,7 +125,7 @@ public class VpnCredentialsMapperTest
     {
         VpnCredentialsIpcEntity entityToTest = new()
         {
-            ClientCertPem = DateTime.UtcNow.Ticks.ToString(),
+            Certificate = CreateCertificate(),
             ClientKeyPair = new AsymmetricKeyPairIpcEntity()
         };
 
@@ -131,7 +134,18 @@ public class VpnCredentialsMapperTest
         Assert.IsNotNull(result);
         Assert.IsNull(result.Username);
         Assert.IsNull(result.Password);
-        Assert.AreEqual(entityToTest.ClientCertPem, result.ClientCertPem);
+        Assert.AreEqual(entityToTest.Certificate.Pem, result.ClientCertificatePem);
+        Assert.AreEqual(entityToTest.Certificate.ExpirationDateUtc, result.ClientCertificateExpirationDateUtc);
         Assert.AreEqual(_expectedAsymmetricKeyPair, result.ClientKeyPair);
+        Assert.IsTrue(result.IsCertificateCredentials);
+    }
+
+    private ConnectionCertificateIpcEntity CreateCertificate()
+    {
+        return new()
+        {
+            Pem = DateTime.UtcNow.Ticks.ToString(),
+            ExpirationDateUtc = DateTime.UtcNow.AddDays(1),
+        };
     }
 }

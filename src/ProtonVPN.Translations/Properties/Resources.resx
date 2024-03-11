@@ -2913,7 +2913,7 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Servers_msg_CantConnect_CertificateExpired" xml:space="preserve">
     <value>Proton VPN was unable to refresh client authentication certificate.</value>
   </data>
-  <data name="ProfileConnector_msg_MissingAuthCert" xml:space="preserve">
+  <data name="ProfileConnector_msg_MissingConnectionCertificate" xml:space="preserve">
     <value>Proton VPN failed to fetch authentication certificate due to network issue.</value>
   </data>
   <data name="VpnProtocol_val_WireGuard" xml:space="preserve">

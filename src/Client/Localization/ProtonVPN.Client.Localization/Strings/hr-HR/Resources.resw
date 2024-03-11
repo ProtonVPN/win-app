@@ -168,7 +168,7 @@
   <data name="Common_States_On">
     <value>On</value>
   </data>
-  <data name="Connection_Error_MissingAuthCertificate">
+  <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN failed to fetch authentication certificate due to network issue.</value>
   </data>
   <data name="Connection_Error_NoServers">
