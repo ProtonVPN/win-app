@@ -1809,8 +1809,8 @@ danych</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_NetShield_TrackersStopped">
-    <value>Trackers
-stopped</value>
+    <value>elementów śledzących
+zatrzymanych</value>
     <comment>Use 
  to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
   </data>

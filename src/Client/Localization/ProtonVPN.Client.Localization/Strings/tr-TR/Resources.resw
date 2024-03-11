@@ -1967,10 +1967,10 @@ izleyiciler</value>
     <value>Değişiklik günlüğü bilgileri yüklenemedi.</value>
   </data>
   <data name="Settings_About_GetLatestVersion">
-    <value>En son sürümü edinin</value>
+    <value>Son sürümü edinin</value>
   </data>
   <data name="Settings_About_LearnMore">
-    <value>Daha fazla bilgi edinin</value>
+    <value>Ayrıntılı bilgi alın</value>
   </data>
   <data name="Settings_About_Licensing">
     <value>Lisanslama</value>
@@ -1985,10 +1985,10 @@ izleyiciler</value>
     <value>Hakkında</value>
   </data>
   <data name="Settings_About_TryAgain">
-    <value>Tekrar deneyin</value>
+    <value>Yeniden dene</value>
   </data>
   <data name="Settings_About_Update_Description">
-    <value>Uygulamanın en son sürümüne güncelleyerek VPN'inizden en iyi şekilde yararlanın.</value>
+    <value>Uygulamayı son sürüme güncelleyerek VPN hizmetinizden en iyi şekilde yararlanın.</value>
   </data>
   <data name="Settings_AppVersion">
     <value>Uygulama sürümü</value>

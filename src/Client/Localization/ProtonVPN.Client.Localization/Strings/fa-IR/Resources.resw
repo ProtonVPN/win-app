@@ -121,52 +121,52 @@
     <value>Proton VPN Free</value>
   </data>
   <data name="Cities">
-    <value>Cities</value>
+    <value>شهرها</value>
   </data>
   <data name="Common_Actions_Add">
-    <value>Add</value>
+    <value>افزودن</value>
   </data>
   <data name="Common_Actions_Cancel">
-    <value>Cancel</value>
+    <value>انصراف</value>
   </data>
   <data name="Common_Actions_Close">
-    <value>Close</value>
+    <value>بستن</value>
   </data>
   <data name="Common_Actions_Connect">
-    <value>Connect</value>
+    <value>اتصال</value>
   </data>
   <data name="Common_Actions_ContactUs">
-    <value>Contact us</value>
+    <value>تماس با ما</value>
   </data>
   <data name="Common_Actions_Disconnect">
-    <value>Disconnect</value>
+    <value>قطع اتصال</value>
   </data>
   <data name="Common_Actions_Enable">
-    <value>Enable</value>
+    <value>فعال‌سازی</value>
   </data>
   <data name="Common_Actions_Reconnect">
-    <value>Reconnect</value>
+    <value>اتصال مجدد</value>
   </data>
   <data name="Common_Actions_Remove">
-    <value>Remove</value>
+    <value>حذف</value>
   </data>
   <data name="Common_Actions_Update">
-    <value>Update</value>
+    <value>به‌روزرسانی</value>
   </data>
   <data name="Common_Actions_Upgrade">
-    <value>Upgrade</value>
+    <value>ارتقاء</value>
   </data>
   <data name="Common_Links_LearnMore">
-    <value>Learn more</value>
+    <value>بیشتر بدانید</value>
   </data>
   <data name="Common_Message_Loading">
-    <value>Loading...</value>
+    <value>در حال بارگیری...</value>
   </data>
   <data name="Common_States_Off">
-    <value>Off</value>
+    <value>خاموش</value>
   </data>
   <data name="Common_States_On">
-    <value>On</value>
+    <value>روشن</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>بدلیل مشکلات شبکه Proton VPN قادر به دریافت گواهینامه تایید تعیین اعتبار نیست.</value>
@@ -181,13 +181,13 @@
     <value>گزارش اشکال</value>
   </data>
   <data name="Connection_Error_RpcServerUnavailable">
-    <value>Proton VPN can't connect because the RPC server is unavailable on your system.</value>
+    <value>Proton VPN قادر به اتصال نیست چون سرور RPC در سیستمتان در دسترس نیست.</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
-    <value>You have reached your maximum device limit. Please disconnect another device to connect this one or upgrade to PLUS to get up to 10 devices connected at the same time.</value>
+    <value>شما به حداکثر محدودیت دستگاه‌هایتان رسیده‌اید. لطفاً برای اتصال این دستگاه، دستگاهی دیگر یا قطع کنید یا به طرح PLUS برای اتصال هم‌زمان تا ۱۰ دستگاه ارتقا دهید.</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedPaidUser">
-    <value>You have reached your maximum device limit. Please disconnect another device to connect this one.</value>
+    <value>شما به حداکثر محدودیت دستگاه‌هایتان رسیده‌اید. لطفاً برای اتصال این دستگاه، دستگاهی دیگر را قطع کنید.</value>
   </data>
   <data name="Connection_Error_TapAdapterInUse">
     <value>آداپتور شبکه شما در حال حاضر در حال استفاده است.</value>
@@ -196,60 +196,60 @@
     <value>نسخه آداپتور شبکه قدیمی است.</value>
   </data>
   <data name="Connection_Error_TlsCertificate">
-    <value>There's a problem validating the VPN server certificate, which might indicate that the network connection is being tampered with or the server you are trying to connect to has a configuration problem. Get help from our customer support by sending an Issue Report.</value>
+    <value>مشکلی در تأیید اعبار گواهی سرور وجود دارد، که می‌تواند نشان دهنده این باشد که اتصال شبکه دستکاری شده است یا سرور مدنظرتان مشکل پیکربندی دارد. با فرستادن گزارش مشکل از پشتیبانی مشتری کمک بگیرید.</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>We're not sure what happened here. Please try again or contact our customer support team.</value>
+    <value>ما مطمئن نیستیم که این‌جا چه اتفاقی افتاده است. لطفاً دوباره امتحان کنید یا با تیم پشتیبانی مشتری ما تماس بگیرید.</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
-    <value>View possible solutions</value>
+    <value>نشان دادن راه‌حل‌های ممکن</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
-    <value>Proton VPN could not connect because a WireGuard network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, you can switch protocols in the Advanced Settings.</value>
+    <value>Proton VPN قادر به اتصال نیست چون یک آداپتور شبکه WireGuard از پیش در حال استفاده است. لطفاً اتصالات VPN فعال را قطع کرده و دوباره امتحان کنید. درضمن، می‌توانید بین پروتوکول‌ها در تنظیمات پیشرفته تغییر دهید.</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
-    <value>Auto-selected from</value>
+    <value>به‌طور خودکار انتخاب شده از</value>
     <comment>Appears in the connection card for free users. A set of flags is displayed after the text (eg. Auto-selected from [us-flag] [jp-flag]...)</comment>
   </data>
   <data name="Connection_Intent_City_Server">
-    <value>{0} #{1}</value>
+    <value>{0}#{1}</value>
     <comment>Name of the server including city name. {0} is a placeholder for the city name. {1} is a placeholder for the number associated to the server (eg. Zurich #20)</comment>
   </data>
   <data name="Connection_Intent_Country_Server">
-    <value>{0} #{1}</value>
+    <value>{0}#{1}</value>
     <comment>Name of the server including country name. {0} is a placeholder for the country name. {1} is a placeholder for the number associated to the server (eg. Switzerland #20)</comment>
   </data>
   <data name="Connection_Via_SecureCore">
-    <value>via {0}</value>
+    <value>از طریق {0}</value>
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
   </data>
   <data name="Countries_All">
-    <value>All</value>
+    <value>همه</value>
   </data>
   <data name="Countries_Cities">
-    <value>Cities</value>
+    <value>شهرها</value>
   </data>
   <data name="Countries_City_One">
-    <value>{0} city</value>
+    <value>{0} شهر</value>
   </data>
   <data name="Countries_City_Other">
-    <value>{0} cities</value>
+    <value>{0} شهر</value>
   </data>
   <data name="Countries_Connect">
-    <value>Connect</value>
+    <value>اتصال</value>
     <comment>Connect button label on a country row in the countries tab</comment>
   </data>
   <data name="Countries_Fastest">
-    <value>Fastest country</value>
+    <value>سریع‌ترین کشور</value>
   </data>
   <data name="Countries_Info">
-    <value>Info</value>
+    <value>اطلاعات</value>
   </data>
   <data name="Countries_NoSearchResults">
     <value>هیچ نتیجه‌ای یافت نشد</value>
   </data>
   <data name="Countries_NumberOfCities">
-    <value>Cities ({0})</value>
+    <value>شهرها ({0})</value>
     <comment>{0} represents the number of cities</comment>
   </data>
   <data name="Countries_NumberOfCountries">
@@ -257,25 +257,25 @@
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_NumberOfServers">
-    <value>Servers ({0})</value>
+    <value>سرورها ({0})</value>
     <comment>{0} represents a number of servers</comment>
   </data>
   <data name="Countries_P2P">
     <value>P2P</value>
   </data>
   <data name="Countries_P2PCountries">
-    <value>P2P countries ({0})</value>
+    <value>کشورهای P2P ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_P2P_Cities">
-    <value>P2P cities ({0})</value>
+    <value>شهرهای P2P ({0})</value>
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
   <data name="Countries_Page_Title">
-    <value>Countries</value>
+    <value>کشورها</value>
   </data>
   <data name="Countries_SearchPlaceholder">
-    <value>I want to browse from...</value>
+    <value>می‌خواهم مرور کنم از...</value>
   </data>
   <data name="Countries_SecureCore">
     <value>Secure Core</value>
@@ -285,7 +285,7 @@
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_SecureCoreServers">
-    <value>Secure Core servers ({0})</value>
+    <value>سرورهای Secure Core ({0})</value>
     <comment>{0} represents the number of severs</comment>
   </data>
   <data name="Countries_Server_One">
@@ -295,35 +295,35 @@
     <value>{0} سرور</value>
   </data>
   <data name="Countries_ServerLoad">
-    <value>Server load</value>
+    <value>بار سرور</value>
   </data>
   <data name="Countries_SmartRouting">
-    <value>Smart routing</value>
+    <value>مسیریابی هوشمند</value>
   </data>
   <data name="Countries_SmartRouting_Description">
-    <value>Servers are physically located in {0}, but you'll appear to be browsing from {1}.</value>
+    <value>سرورها به‌صورت فیزیکی در {0} هستند، ولی شما به‌عنوان مرور از {1} دیده می‌شوید.</value>
     <comment>{0} and {1} represent country names.</comment>
   </data>
   <data name="Countries_Tor">
     <value>Tor</value>
   </data>
   <data name="Countries_TorCountries">
-    <value>Tor countries ({0})</value>
+    <value>کشورهای Tor ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_TorServers">
-    <value>Tor servers ({0})</value>
+    <value>سرورهای Tor ({0})</value>
     <comment>{0} represents a number of tor servers in the country</comment>
   </data>
   <data name="Countries_TryDifferentKeyword">
     <value>لطفا کلمه کلیدی دیگری را امتحان کنید</value>
   </data>
   <data name="Countries_ViaCountry">
-    <value>via {0}</value>
+    <value>از طریق {0}</value>
     <comment>{0} represents country name. For example: via Australia.</comment>
   </data>
   <data name="Country_Fastest">
-    <value>Fastest country</value>
+    <value>سریع‌ترین کشور</value>
   </data>
   <data name="Country_val_AD">
     <value>آندورا</value>
@@ -1286,7 +1286,7 @@
     <comment>The name of VG country</comment>
   </data>
   <data name="Country_val_VI">
-    <value>Virgin Islands, USA</value>
+    <value>جزایر ویرجین آمریکا</value>
     <comment>The name of VI country</comment>
   </data>
   <data name="Country_val_VN">
@@ -1330,92 +1330,92 @@
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
-    <value>Get unlimited server changes with VPN Plus.</value>
+    <value>با VPN Plus قابلیت تغییر دادن سرور نامحدود بگیرید.</value>
   </data>
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
-    <value>You've reached the maximum number of free server changes for now</value>
+    <value>شما در حال حاضر به حداکثر تغییرات مجاز در سرورهای رایگان رسیده‌اید</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
-    <value>Proton Free automatically connects you to the fastest available free server from our {0} free country. This will normally be the closest server to your location.</value>
+    <value>Proton Free به‌طور خودکار شما را به سریع‌ترین سرور رایگان در دسترس از {0} کشور رایگان ما وصل می‌کند. این به‌طور معمول نزدیک‌ترین سرور به مکان شما است.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
-    <value>Proton Free automatically connects you to the fastest available free server from our {0} free countries. This will normally be the closest server to your location.</value>
+    <value>Proton Free به‌طور خودکار شما را به سریع‌ترین سرور رایگان در دسترس از {0} کشور رایگان ما وصل می‌کند. این به‌طور معمول نزدیک‌ترین سرور به مکان شما است.</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_One">
-    <value>Free server country ({0})</value>
+    <value>کشور سرور رایگان ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Other">
-    <value>Free server countries ({0})</value>
+    <value>کشورهای سرور رایگان ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Title">
-    <value>Free connections</value>
+    <value>اتصالات رایگان</value>
   </data>
   <data name="Dialogs_FreeConnections_WorlwideCoverageUpsell">
-    <value>Get worldwide coverage with VPN Plus</value>
+    <value>با VPN Plus پوشش جهانی بگیرید</value>
   </data>
   <data name="Dialogs_Latency_Description">
-    <value>Latency shows how long it takes for a server to respond to requests.
+    <value>تأخیر نشان می‌دهد که چقدر طول می‌کشد تا سرور به درخواست‌ها پاسخ دهد.
 
-High latency can slow down your connection.</value>
+تأخیر زیاد می‌تواد اتصالتان را آهسته کند.</value>
   </data>
   <data name="Dialogs_Latency_HighRange_Description">
-    <value>VPN may run slower than normal</value>
+    <value>VPN ممکن است از حد معمول آهسته‌تر عمل کند</value>
   </data>
   <data name="Dialogs_Latency_HighRange_Title">
-    <value>High (150ms+)</value>
+    <value>زیاد (۱۵۰ms+)</value>
   </data>
   <data name="Dialogs_Latency_LowRange_Description">
-    <value>Lightning fast speeds</value>
+    <value>سرعت‌های بسیار بالا</value>
   </data>
   <data name="Dialogs_Latency_LowRange_Title">
-    <value>Low (1ms - 50ms)</value>
+    <value>کم (۱ms - ۵۰ms)</value>
   </data>
   <data name="Dialogs_Latency_MediumRange_Description">
-    <value>Unlikely to affect VPN speed</value>
+    <value>احتمال تأثیر بر سرعت VPN کم است</value>
   </data>
   <data name="Dialogs_Latency_MediumRange_Title">
-    <value>Medium (50ms - 150ms)</value>
+    <value>متوسط (۵۰ms - ۱۵۰ms)</value>
   </data>
   <data name="Dialogs_Latency_Title">
-    <value>What is latency?</value>
+    <value>تأخیر چیست؟</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
-    <value>How to torrent with P2P</value>
+    <value>چگونه با P2P تورنت انجام دهیم</value>
   </data>
   <data name="Dialogs_P2P_Title">
     <value>P2P</value>
   </data>
   <data name="Dialogs_P2P_WhatIsP2PServer">
-    <value>What is a P2P server?</value>
+    <value>سرور P2P چیست؟</value>
   </data>
   <data name="Dialogs_P2P_WhatIsP2PServer_Description">
-    <value>P2P (peer-to-peer) VPN servers unblock torrent sites.</value>
+    <value>سرور‌های VPN با قابلیت P2P (همتا به همتا) دسترسی به سایت‌های تورنت را باز می‌کنند.</value>
   </data>
   <data name="Dialogs_P2P_WhatIsTorrenting">
-    <value>What is torrenting?</value>
+    <value>تورنت کردن چیست؟</value>
   </data>
   <data name="Dialogs_P2P_WhatIsTorrenting_Description">
-    <value>The fast sharing and downloading of large files over a peer-to-peer (P2P) network.</value>
+    <value>اشتراک گذاری و بارگیری سریع فایل‌های بزرگ روی یک شبکه همتا به همتا (P2P).</value>
   </data>
   <data name="Dialogs_P2P_WhyUse">
-    <value>Why use a P2P server when torrenting?</value>
+    <value>چرا هنگام تورنت کردن از یک سرور P2P استفاده کنیم؟</value>
   </data>
   <data name="Dialogs_P2P_WhyUse_Description">
-    <value>• Increased upload and download speeds
-• No activity logs
-• Hide your IP address from your service provider and peers</value>
+    <value>• سرعت‌های بارگذاری و بارگیریِ افزایش یافته
+• بدون لاگ کردن فعالیت‌ها
+• نشانی IP تان را از ارائه دهنده سرویس و همتاهایتان مخفی کنید</value>
   </data>
   <data name="Dialogs_Protocol_Description">
-    <value>A protocol is a set of instructions your device follows to connect and communicate with a server.</value>
+    <value>یک پروتوکول دسته‌ای از دستورالعمل‌هایی است که دستگاهتان برای اتصال و ارتباط با یک سرور دنبال می‌کند.</value>
   </data>
   <data name="Dialogs_Protocol_SwitchHeader">
-    <value>Switch VPN Protocol</value>
+    <value>تغییر پروتوکول VPN</value>
   </data>
   <data name="Dialogs_Protocol_Title">
-    <value>What is a VPN protocol?</value>
+    <value>پروتوکول VPN چیست؟</value>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Email">
-    <value>Email</value>
+    <value>ایمیل</value>
     <comment>The label for user e-mail address in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Email_Description">
@@ -1427,41 +1427,41 @@ High latency can slow down your connection.</value>
     <comment>The label for the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description">
-    <value>Error logs show us what went wrong, and which actions led to your issue. We'll only ever use them to help our engineers fix bugs.</value>
+    <value>لاگ‌های خطا به ما نشان می‌دهند که چه خطایی رخ داده است، و چه اقداماتی منجر به مشکلتان شده‌اند. ما فقط از آن‌ها برای کمک به مهندسانمان برای رفع اشکالات استفاده می‌کنیم.</value>
     <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_Header">
     <value>مشکل چیست؟</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes">
-    <value>Quick fixes</value>
+    <value>راه‌حل‌های سریع</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes_Footer">
-    <value>Didn't work?</value>
+    <value>کار نکرد؟</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes_Header">
     <value>این راه‌کارها می‌توانند به حل سریع‌تر مشکل شما کمک کنند.</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_DoneAction">
-    <value>Done</value>
+    <value>انجام شد</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Fail">
     <value>مشکلی پیش آمد</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Fail_Description">
-    <value>We couldn't send your report. Please check your connection and try again.</value>
+    <value>ما نتوانستیم گزارشتان را بفرستیم. لطفاً اتصالتان را بررسی کنید و دوباره امتحان کنید.</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_RetryAction">
-    <value>Try again</value>
+    <value>دوباره امتحان کنید</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Success">
-    <value>Report sent</value>
+    <value>گزارش فرستاده شد</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Success_Description">
-    <value>Thanks for your feedback. We'll get back to you as soon as we can.</value>
+    <value>با تشکر از بازخورد شما. ما در اسرع وقت با شما تماس خواهیم گرفت.</value>
   </data>
   <data name="Dialogs_ReportIssue_SendReport">
-    <value>Send report</value>
+    <value>فرستادن گزارش</value>
   </data>
   <data name="Dialogs_ReportIssue_Steps">
     <value>Step {0} of {1}</value>
@@ -1499,37 +1499,37 @@ VPN connection</value>
     <value>Secure Core</value>
   </data>
   <data name="Dialogs_ServerLoad_Description">
-    <value>Server load shows how close a server is to its maximum capacity.
+    <value>بار سرور نشان می‌دهد که چقدر یک سرور به حداکثر ظرفیتش نزدیک است.
 
-A high server load can slow down your connection.</value>
+بار سرور سنگین می‌تواند سرعت اتصالتان را کاهش دهد.</value>
   </data>
   <data name="Dialogs_ServerLoad_HighRange_Description">
-    <value>VPN may run slower than normal</value>
+    <value>VPN ممکن است از حد معمول آهسته‌تر اجرا شود</value>
   </data>
   <data name="Dialogs_ServerLoad_HighRange_Title">
-    <value>High (91-100%)</value>
+    <value>سنگین (۹۱-۱۰۰٪)</value>
   </data>
   <data name="Dialogs_ServerLoad_LowRange_Description">
-    <value>Lightning fast speeds</value>
+    <value>سرعت‌های بسیار بالا</value>
   </data>
   <data name="Dialogs_ServerLoad_LowRange_Title">
-    <value>Low (1-75%)</value>
+    <value>سبک (۱-۷۵٪)</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Description">
-    <value>Unlikely to affect VPN speed</value>
+    <value>احتمال تأثیر بر سرعت VPN کم است</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Title">
-    <value>Medium (76-90%)</value>
+    <value>متوسط (۷۶-۹۰٪)</value>
   </data>
   <data name="Dialogs_ServerLoad_Title">
-    <value>What is server load?</value>
+    <value>بار سرور چیست؟</value>
   </data>
   <data name="Dialogs_SmartRouting_Description">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
+    <value>ویژگی مسیریابی هوشمند، از سرورهای مجازی استفاده می‌کند تا پوشش VPN در کشورهای با دسترسی سخت را ارائه دهد.
 
-When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+هنگامی که شما به یک سرور مسیریابی هوشمند وصل می‌شوید، شما به عنوان مرور در کشور مقصد دیده می‌شوید، با این‌که سرور به‌صورت فیزیکی در جای دیگری است.
 
-Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+ویژگی مسیریابی هوشمند  به‌طور معمول برای دور زدن قوانین ضد حریم خصوصی و اشکال دیگر سانسور استفاده می‌شود.</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
@@ -1550,7 +1550,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>به Proton VPN خوش آمدید</value>
   </data>
   <data name="Format_Milliseconds">
-    <value>{0}ms</value>
+    <value>{0} میلی‌ثانیه</value>
     <comment>Format a number as a time in milliseconds. {0} is a place holder for the number of milliseconds (eg. 46ms)</comment>
   </data>
   <data name="Format_Size_Bytes">
@@ -1610,27 +1610,27 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
   <data name="Format_Time_Day">
-    <value>{0} day</value>
+    <value>{0} روز</value>
     <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
   </data>
   <data name="Format_Time_DayHours">
-    <value>{0} day {1} hr</value>
+    <value>{0} روز {1} ساعت</value>
     <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
   </data>
   <data name="Format_Time_Days">
-    <value>{0} days</value>
+    <value>{0} روز</value>
     <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
   </data>
   <data name="Format_Time_DaysHours">
-    <value>{0} days {1} hr</value>
+    <value>{0} روز {1} ساعت</value>
     <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
   </data>
   <data name="Format_Time_Hours">
-    <value>{0} hr</value>
+    <value>{0} ساعت</value>
     <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_HoursMinutes">
-    <value>{0} hr {1} min</value>
+    <value>{0} ساعت {1} دقیقه</value>
     <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_HoursMinutesSeconds_Short">
@@ -1638,7 +1638,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss -&gt; 01:05:36).</comment>
   </data>
   <data name="Format_Time_Minutes">
-    <value>{0} min</value>
+    <value>{0} دقیقه</value>
     <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_MinutesSeconds">
@@ -1673,7 +1673,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>My account</value>
   </data>
   <data name="Home_ConnectionCard_ChangeServer">
-    <value>Change server</value>
+    <value>تغییر سرور</value>
   </data>
   <data name="Home_ConnectionCard_Header_BrowseSafely">
     <value>Browsing safely from</value>
@@ -1781,113 +1781,113 @@ saved</value>
  to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
   </data>
   <data name="Home_NetShield_Landmark">
-    <value>NetShield statistics</value>
+    <value>آمارهای NetShield</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_NetShield_TrackersStopped">
-    <value>Trackers
-stopped</value>
+    <value>ردیاب‌های
+متوقف شدند</value>
     <comment>Use 
  to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
   </data>
   <data name="Home_Page_Title">
-    <value>Home</value>
+    <value>خانه</value>
   </data>
   <data name="Home_Recents_Landmark">
-    <value>Recent connections</value>
+    <value>اتصالات اخیر</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_Recents_Pin">
-    <value>Pin</value>
+    <value>پین</value>
   </data>
   <data name="Home_Recents_SecondaryActions_ToolTip">
-    <value>Actions</value>
+    <value>اقدامات</value>
   </data>
   <data name="Home_Recents_ServerUnderMaintenance">
-    <value>Server is under maintenance</value>
+    <value>سرور تحت تعمیر است</value>
   </data>
   <data name="Home_Recents_Title">
-    <value>Recents</value>
+    <value>موارد اخیر</value>
   </data>
   <data name="Home_Recents_Unpin">
-    <value>Unpin</value>
+    <value>حذف پین</value>
   </data>
   <data name="Home_Update_Confirmation_Message">
-    <value>To complete the update process, Proton VPN will temporarily disconnect and deactivate Advanced Kill Switch if any of these are active. Do you want to continue?</value>
+    <value>برای تکمیل فرایند به‌روزرسانی، Proton VPN به طور موقت قطع و Kill Switch پیشرفته را در صورت فعال بودن غیرفعال خواهد کرد. آیا می‌خواهید ادامه دهید؟</value>
     <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
   </data>
   <data name="Home_Update_Confirmation_Title">
     <value>به‌روزرسانی Proton VPN?</value>
   </data>
   <data name="Home_Update_UpdateAvailable">
-    <value>Update available</value>
+    <value>به‌روزرسانی موجود است</value>
   </data>
   <data name="Home_Update_UpdateReady">
-    <value>Update ready</value>
+    <value>به‌روزرسانی آماده است</value>
   </data>
   <data name="Home_VpnStatus_Landmark">
-    <value>VPN status</value>
+    <value>‏وضعیت VPN</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_VpnStatus_Subtitle_Connecting">
-    <value>Protecting your digital identity</value>
+    <value>از هویت دیجیتالی‌تان محافظت می‌کند</value>
   </data>
   <data name="Home_VpnStatus_Subtitle_Disconnected">
-    <value>You are unprotected</value>
+    <value>شما محافظت نشده‌اید</value>
   </data>
   <data name="Home_VpnStatus_Title_Connected">
-    <value>Protected</value>
+    <value>محافظت شده</value>
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
-    <value>An error occured when retrieving the session details. Please try again.</value>
+    <value>در هنگام بازیابی جزئیات جلسه خطایی رخ داد. لطفاً دوباره امتحان کنید.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>کد نادرست است. لطفا دوباره امتحان کنید.</value>
   </data>
   <data name="Login_Error_SessionExpired">
-    <value>Your session has expired. Please sign in again.</value>
+    <value>نشست شما منقضی شده است. لطفاً دوباره وارد شوید.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_SsoAuthFailed">
-    <value>SSO Authentication failed. Please try again.</value>
+    <value>احراز هویت SSO ناموفق بود. لطفاً دوباره امتحان کنید.</value>
   </data>
   <data name="Login_Error_TwoFactorAuthFailed">
     <value>اطلاعات ورود به سیستم نادرست است. لطفا دوباره تلاش کنید.</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
-    <value>Two factor authentication failed. Please sign in again.</value>
+    <value>احراز هویت دو عاملی ناموفق بود. لطفاً دوباره وارد حساب شوید.</value>
   </data>
   <data name="Login_Form">
-    <value>Sign in form</value>
+    <value>فرم ورود به حساب</value>
   </data>
   <data name="Login_Form_CreateAccount">
-    <value>Create account</value>
+    <value>ساختن حساب</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="Login_Form_Email">
-    <value>Email</value>
+    <value>ایمیل</value>
   </data>
   <data name="Login_Form_ForgotUsername">
     <value>فراموشی نام کاربری</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_Help">
-    <value>Help</value>
+    <value>راهنمایی</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_Password">
-    <value>Password</value>
+    <value>رمزعبور</value>
   </data>
   <data name="Login_Form_ReportAnIssue">
     <value>گزارش اشکال</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_ResetPassword">
-    <value>Reset password</value>
+    <value>بازیابی رمزعبور</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_SignIn">
-    <value>Sign in</value>
+    <value>ورود به حساب</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="Login_Form_SignInWithPassword">
@@ -1897,14 +1897,14 @@ stopped</value>
     <value>ورود با احراز هویت یکپارچه</value>
   </data>
   <data name="Login_Form_TroubleSigningIn">
-    <value>Trouble signing in</value>
+    <value>مشکل در ورود به حساب</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_Username">
     <value>رایانامه یا نام‌کاربری</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate">
-    <value>Authenticate</value>
+    <value>احراز هویت</value>
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle">
@@ -1914,36 +1914,36 @@ stopped</value>
     <value>احراز هویت دو مرحله‌ای</value>
   </data>
   <data name="Login_TwoFactor_Digit1">
-    <value>First digit</value>
+    <value>رقم اول</value>
   </data>
   <data name="Login_TwoFactor_Digit2">
-    <value>Second digit</value>
+    <value>رقم دوم</value>
   </data>
   <data name="Login_TwoFactor_Digit3">
-    <value>Third digit</value>
+    <value>رقم سوم</value>
   </data>
   <data name="Login_TwoFactor_Digit4">
-    <value>Fourth digit</value>
+    <value>رقم چهارم</value>
   </data>
   <data name="Login_TwoFactor_Digit5">
-    <value>Fifth digit</value>
+    <value>رقم پنجم</value>
   </data>
   <data name="Login_TwoFactor_Digit6">
-    <value>Sixth digit</value>
+    <value>رقم ششم</value>
   </data>
   <data name="Main_Loading_SigningIn">
-    <value>Signing in, please wait...</value>
+    <value>در حال ورود به حساب، لطفاً صبر کنید...</value>
     <comment>Message in the loading screen when signing in or starting the app</comment>
   </data>
   <data name="Main_Loading_SigningOut">
-    <value>Signing out, please wait...</value>
+    <value>در حال خروج از حساب، لطفاً صبر کنید...</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
   <data name="Notifications_PortForwarding_Description">
     <value>این شماره را در برنامه BitTorrent خود تنظیم کنید تا از سرعت بیشتر بهره ببرید.</value>
   </data>
   <data name="Server_Fastest_Free">
-    <value>Fastest free server</value>
+    <value>سریع‌ترین سرور رایگان</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
@@ -1952,73 +1952,73 @@ stopped</value>
     <value>Tor</value>
   </data>
   <data name="Server_Free">
-    <value>Free server</value>
+    <value>سرور رایگان</value>
   </data>
   <data name="Settings_About">
-    <value>About</value>
+    <value>درباره</value>
   </data>
   <data name="Settings_About_Changelog">
-    <value>Changelog</value>
+    <value>لیست تغییرات</value>
   </data>
   <data name="Settings_About_CurrentVersion">
     <value>نسخه فعلی</value>
   </data>
   <data name="Settings_About_FailedToFetch">
-    <value>Failed to load changelog information.</value>
+    <value>بارگیری لیست تغییرات ناموفق بود.</value>
   </data>
   <data name="Settings_About_GetLatestVersion">
-    <value>Get the latest version</value>
+    <value>دریافت آخرین نسخه</value>
   </data>
   <data name="Settings_About_LearnMore">
-    <value>Learn more</value>
+    <value>بیشتر بدانید</value>
   </data>
   <data name="Settings_About_Licensing">
-    <value>Licensing</value>
+    <value>مجوزها</value>
   </data>
   <data name="Settings_About_Loading">
-    <value>Loading</value>
+    <value>در حال بارگیری</value>
   </data>
   <data name="Settings_About_NewVersion">
-    <value>NEW</value>
+    <value>جدید</value>
   </data>
   <data name="Settings_About_Title">
-    <value>About</value>
+    <value>درباره</value>
   </data>
   <data name="Settings_About_TryAgain">
-    <value>Try again</value>
+    <value>دوباره امتحان کنید</value>
   </data>
   <data name="Settings_About_Update_Description">
-    <value>Get the most from your VPN by updating to the latest version of the app.</value>
+    <value>از VPN تان با به‌روزرسانی به آخرین نسخه‌ی برنامه بیشترین استفاده را ببرید.</value>
   </data>
   <data name="Settings_AppVersion">
-    <value>App version</value>
+    <value>نسخه برنامه</value>
   </data>
   <data name="Settings_Censorship_Footer">
-    <value>These statistics do not contain your IP address, and they cannot be used to identify you. We'll never share them with third parties.</value>
+    <value>این آمارها نشانی IP شما را شامل‌ نمی‌شوند، و برای شناسایی شما قابل استفاده نیستند. ما هرگز آن‌ها را با اشخاص ثالث در اشتراک نمی‌گذاریم.</value>
   </data>
   <data name="Settings_Censorship_ShareCrashReports">
-    <value>Share anonymous crash reports</value>
+    <value>گزارش‌های فروپاشی را به‌طور ناشناس در اشتراک بگذارید</value>
   </data>
   <data name="Settings_Censorship_ShareCrashReports_Description">
-    <value>Crash reports help us fix bugs, detect firewalls, and avoid VPN blocks.</value>
+    <value>گزارش‌های فروپاشی به ما کمک می‌کند تا اشکالات را رفع کنیم، دیوارهای آتش را شناسایی کنیم و از مسدود شدن VPN جلوگیری کنیم.</value>
   </data>
   <data name="Settings_Censorship_ShareStatistics">
-    <value>Share anonymous usage statistics</value>
+    <value>آمارهای استفاده به‌طور ناشناس در اشتراک بگذارید</value>
   </data>
   <data name="Settings_Censorship_ShareStatistics_Description">
-    <value>Usage data helps us overcome VPN blocks and improve app performance.</value>
+    <value>داده‌های استفاده در غلبه بر مسدود سازی‌های VPN و بهبود یابی عملکرد برنامه به ما کمک می‌کند.</value>
   </data>
   <data name="Settings_Common_ApplyAndReconnect">
-    <value>Apply and reconnect</value>
+    <value>اعمال و اتصال دوباره</value>
   </data>
   <data name="Settings_Common_Discard">
-    <value>Discard</value>
+    <value>چشم‌پوشی کردن</value>
   </data>
   <data name="Settings_Common_Discard_Title">
-    <value>Discard settings changes?</value>
+    <value>تغییرات در تنظیمات کنونی، چشم‌پوشی شوند؟</value>
   </data>
   <data name="Settings_Connection">
-    <value>Connection</value>
+    <value>اتصال</value>
   </data>
   <data name="Settings_Connection_AdvancedSettings">
     <value>تنظیمات پیشرفته</value>
@@ -2027,22 +2027,22 @@ stopped</value>
     <value>مسیریابی جایگزین</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting_Description">
-    <value>If Proton services are blocked due to network restrictions, we'll try using alternative network routing to connect you to our sites.</value>
+    <value>اگر سرویس‌های Proton با ممنوعیت‌های شبکه مسدود شده‌اند، ما سعی می‌کنیم از مسیریابی شبکه‌ جایگزین برای اتصال شما به سایت‌هایمان استفاده کنیم.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
-    <value>Custom DNS servers</value>
+    <value>سرورهای DNS سفارشی</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
-    <value>You won't be able to use NetShield when connected with a custom DNS server.</value>
+    <value>شما در هنگام استفاده از یک سرور DNS سفارشی قادر به استفاده از NetShield نیستید.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title">
-    <value>Enable custom DNS servers?</value>
+    <value>سرورهای DNS سفارشی فعال شوند؟</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
-    <value>Connect to Proton VPN using your own domain name system (DNS). Only use DNS servers that you trust.</value>
+    <value>به Proton VPN با سیستم نام دامنه (DNS) خودتان وصل شوید. فقط از سرورهای DNS که اعتماد دارید استفاده کنید.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
-    <value>DNS servers ({0})</value>
+    <value>سرورهای DNS ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark">
@@ -2050,7 +2050,7 @@ stopped</value>
     <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>IPv6 leak protection</value>
+    <value>محافظت در برابر نشتی IPv6</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
     <value>جلوگیری از نشت آدرس IPv6.</value>
@@ -2134,7 +2134,7 @@ stopped</value>
     <value>Protect yourself from ads, malware, and trackers on websites and apps.</value>
   </data>
   <data name="Settings_Features_NetShield_Footer">
-    <value>Some websites may not load properly when ads and trackers are blocked.</value>
+    <value>بعضی وب‌سایت‌ها ممکن است درست بارگیری نشوند هنگامی که تبلیغات و ردیاب‌ها مسدود هستند.</value>
   </data>
   <data name="Settings_Features_PortForwarding">
     <value>Port forwarding</value>
@@ -2158,7 +2158,7 @@ stopped</value>
     <value>To use Port Forwarding, please connect to a server that supports P2P.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Loading">
-    <value>Loading...</value>
+    <value>در حال بارگیری...</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications">
     <value>Notifications</value>
@@ -2167,7 +2167,7 @@ stopped</value>
     <value>در صورت تغییر شماره Port Forwarding مطلع شوید</value>
   </data>
   <data name="Settings_Features_SplitTunneling">
-    <value>Split tunneling</value>
+    <value>تونل‌سازی بخشی</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_Add">
     <value>Add app</value>
@@ -2233,16 +2233,16 @@ stopped</value>
     <value>Fastest connection</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Latest">
-    <value>Last connected</value>
+    <value>آخرین اتصال</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch">
-    <value>Auto launch</value>
+    <value>شروع خودکار برنامه</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Description">
-    <value>Proton VPN will automatically open when you sign in to your device</value>
+    <value>Proton VPN هنگامی که وارد دستگاه‌تان می‌شوید به‌طور خودکار باز می‌شود</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Desktop">
-    <value>Open on desktop</value>
+    <value>باز کردن روی دسکتاپ</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray">
     <value>Minimize to System Tray</value>
@@ -2254,7 +2254,7 @@ stopped</value>
     <value>Auto launch, auto connect</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
-    <value>Automatic updates</value>
+    <value>به‌روزرسانی‌های خودکار</value>
   </data>
   <data name="Settings_General_AutomaticUpdates_Description">
     <value>Automatically check and install Proton VPN updates</value>
@@ -2296,7 +2296,7 @@ stopped</value>
     <value>Improve Proton</value>
   </data>
   <data name="Settings_Improve_Censorship">
-    <value>Help us fight censorship</value>
+    <value>به ما برای مبارزه با سانسور کمک کنید</value>
   </data>
   <data name="Settings_OperatingSystemVersion">
     <value>Operating System version</value>

@@ -208,7 +208,7 @@
     <value>Proton VPN не смог подключиться, потому что в данный момент используется сетевой адаптер WireGuard. Пожалуйста, отключите все активные VPN и повторите попытку, или же поменяйте протокол в расширенных настройках.</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
-    <value>Auto-selected from</value>
+    <value>Автоматически выбрано из</value>
     <comment>Appears in the connection card for free users. A set of flags is displayed after the text (eg. Auto-selected from [us-flag] [jp-flag]...)</comment>
   </data>
   <data name="Connection_Intent_City_Server">
@@ -2000,7 +2000,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Licensing</value>
   </data>
   <data name="Settings_About_Loading">
-    <value>Loading</value>
+    <value>Загрузка</value>
   </data>
   <data name="Settings_About_NewVersion">
     <value>NEW</value>

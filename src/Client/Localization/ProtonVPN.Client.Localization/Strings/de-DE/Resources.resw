@@ -1532,7 +1532,7 @@ Wenn du dich mit einem Smart Routing-Server verbindest, scheint es, als würdest
 Smart Routing wird in der Regel verwendet, um Datenschutzgesetze und andere Formen der Zensur zu umgehen.</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
-    <value>Smart Routing</value>
+    <value>Intelligentes Routing</value>
   </data>
   <data name="Dialogs_Tor_Description">
     <value>Verbinde dich mit einem Tor-Server, um mit einem beliebigen Browser auf versteckte Dienste und Onion-Seiten zuzugreifen.</value>

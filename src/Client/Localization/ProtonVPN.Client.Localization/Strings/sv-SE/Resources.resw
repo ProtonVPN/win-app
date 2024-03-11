@@ -298,7 +298,7 @@
     <value>Serverbelastning</value>
   </data>
   <data name="Countries_SmartRouting">
-    <value>Smart Routing</value>
+    <value>Smart routing</value>
   </data>
   <data name="Countries_SmartRouting_Description">
     <value>Servrar är fysiskt placerade i {0}, men du ser ut att surfa från {1}.</value>
