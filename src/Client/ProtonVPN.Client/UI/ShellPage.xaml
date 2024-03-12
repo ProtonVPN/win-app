@@ -26,8 +26,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:helpers="using:ProtonVPN.Client.Helpers"
       xmlns:update="using:ProtonVPN.Client.UI.Update"
       x:DefaultBindMode="OneWay"
-      NavigationCacheMode="Required"
-      Loaded="OnLoaded">
+      NavigationCacheMode="Required">
 
     <Page.Resources>
         <helpers:IsHeaderVisibleToPaneContentMarginConverter x:Key="IsHeaderVisibleToPaneContentMarginConverter"
@@ -53,7 +52,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     IsBackEnabled="{x:Bind ViewModel.IsBackEnabled}"
                     IsPaneOpen="{x:Bind ViewModel.IsNavigationPaneOpened, Mode=TwoWay}"
                     IsPaneToggleButtonVisible="True"
-                    IsPaneVisible="True"
+                    IsPaneVisible="True" 
                     IsSettingsVisible="False"
                     ItemInvoked="OnNavigationViewItemInvoked"
                     MenuItemsSource="{x:Bind ViewModel.NavigationPages, Mode=OneTime}"
