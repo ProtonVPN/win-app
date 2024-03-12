@@ -21,7 +21,6 @@ using System.Net;
 using System.Net.Http;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Extensions;
 
 namespace ProtonVPN.Api.Tests.Extensions
@@ -30,11 +29,13 @@ namespace ProtonVPN.Api.Tests.Extensions
     public class HttpResponseMessageExtensionsTest
     {
         [TestMethod]
-        [DataRow(HttpStatusCode.NotFound)]
         [DataRow(HttpStatusCode.OK)]
         [DataRow(HttpStatusCode.BadRequest)]
+        [DataRow(HttpStatusCode.Unauthorized)]
+        [DataRow(HttpStatusCode.Forbidden)]
+        [DataRow(HttpStatusCode.NotFound)]
         [DataRow(HttpStatusCode.Conflict)]
-        [DataRow(ExpandedHttpStatusCodes.UNPROCESSABLE_ENTITY)]
+        [DataRow(HttpStatusCode.UnprocessableEntity)]
         public void IsToRetry_ShouldAvoidRetryingOnSpecificStatusCodes(HttpStatusCode httpStatusCode)
         {
             // Arrange
@@ -56,7 +57,7 @@ namespace ProtonVPN.Api.Tests.Extensions
 
         [TestMethod]
         [DataRow(HttpStatusCode.ServiceUnavailable)]
-        [DataRow(ExpandedHttpStatusCodes.TOO_MANY_REQUESTS)]
+        [DataRow(HttpStatusCode.TooManyRequests)]
         public void IsToRetry_ShouldRetryOnHttpStatusCodeWithRetryAfterHeader(HttpStatusCode httpStatusCode)
         {
             // Arrange
@@ -71,7 +72,7 @@ namespace ProtonVPN.Api.Tests.Extensions
         public void IsToRetry_ShouldNotRetryOnTooManyRequestWithoutRetryAfterHeader()
         {
             // Arrange
-            HttpResponseMessage message = GetResponseMessage(ExpandedHttpStatusCodes.TOO_MANY_REQUESTS);
+            HttpResponseMessage message = GetResponseMessage(HttpStatusCode.TooManyRequests);
 
             // Assert
             message.IsToRetry().Should().BeFalse();
