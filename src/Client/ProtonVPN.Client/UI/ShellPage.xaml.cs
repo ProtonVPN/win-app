@@ -88,12 +88,6 @@ public sealed partial class ShellPage : IShellPage
         InvalidatePaneLayout();
     }
 
-    private void OnLoaded(object sender, RoutedEventArgs e)
-    {
-        KeyboardAccelerators.Add(BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu));
-        KeyboardAccelerators.Add(BuildKeyboardAccelerator(VirtualKey.GoBack));
-    }
-
     private void OnNavigationViewDisplayModeChanged(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args)
     {
         ViewModel.OnNavigationDisplayModeChanged(args.DisplayMode);
