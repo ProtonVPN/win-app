@@ -127,6 +127,10 @@ public class Bootstrapper : IBootstrapper
             {
                 _settings.AreAutomaticUpdatesEnabled = false;
             }
+            else if (arg.EqualsIgnoringCase("-ExitAppOnClose"))
+            {
+                _mainWindowActivator.DisableHandleClosedEvents();
+            }
         }
     }
 }

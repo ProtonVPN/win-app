@@ -17,8 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml.Controls;
-
 namespace ProtonVPN.Client.UI.Tray;
 
 public sealed partial class TrayIconComponent
