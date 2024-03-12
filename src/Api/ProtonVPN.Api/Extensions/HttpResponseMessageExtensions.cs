@@ -20,49 +20,48 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
-using ProtonVPN.Api.Contracts;
 
-namespace ProtonVPN.Api.Extensions
+namespace ProtonVPN.Api.Extensions;
+
+public static class HttpResponseMessageExtensions
 {
-    public static class HttpResponseMessageExtensions
+    private static readonly List<HttpStatusCode> _skipRetryStatusCodes =
+    [
+        HttpStatusCode.BadRequest,
+        HttpStatusCode.Unauthorized,
+        HttpStatusCode.Forbidden,
+        HttpStatusCode.NotFound,
+        HttpStatusCode.Conflict,
+        HttpStatusCode.UnprocessableEntity,
+    ];
+
+    public static bool IsToRetry(this HttpResponseMessage message)
     {
-        private static readonly List<HttpStatusCode> SkipRetryStatusCodes = new()
+        double retryAfterSeconds = message.RetryAfterInSeconds();
+        if (retryAfterSeconds > 0 &&
+            message.StatusCode is HttpStatusCode.ServiceUnavailable or HttpStatusCode.TooManyRequests)
         {
-            HttpStatusCode.NotFound,
-            HttpStatusCode.BadRequest,
-            HttpStatusCode.Conflict,
-            HttpStatusCode.Unauthorized,
-            ExpandedHttpStatusCodes.UNPROCESSABLE_ENTITY,
-        };
-
-        public static bool IsToRetry(this HttpResponseMessage message)
+            return true;
+        }
+        if (message.StatusCode is HttpStatusCode.TooManyRequests && retryAfterSeconds == 0)
         {
-            double retryAfterSeconds = message.RetryAfterInSeconds();
-            if (retryAfterSeconds > 0 &&
-                message.StatusCode is HttpStatusCode.ServiceUnavailable or ExpandedHttpStatusCodes.TOO_MANY_REQUESTS)
-            {
-                return true;
-            }
-            if (message.StatusCode is ExpandedHttpStatusCodes.TOO_MANY_REQUESTS && retryAfterSeconds == 0)
-            {
-                return false;
-            }
-            if (message.StatusCode is HttpStatusCode.ServiceUnavailable)
-            {
-                return false;
-            }
-
-            return !message.IsSuccessStatusCode && !SkipRetryStatusCodes.Contains(message.StatusCode);
+            return false;
+        }
+        if (message.StatusCode is HttpStatusCode.ServiceUnavailable)
+        {
+            return false;
         }
 
-        public static bool IsToRetryOnce(this HttpResponseMessage message)
-        {
-            return message.StatusCode is HttpStatusCode.RequestTimeout or HttpStatusCode.BadGateway;
-        }
+        return !message.IsSuccessStatusCode && !_skipRetryStatusCodes.Contains(message.StatusCode);
+    }
 
-        public static double RetryAfterInSeconds(this HttpResponseMessage message)
-        {
-            return message.Headers.RetryAfter?.Delta?.TotalSeconds ?? 0;
-        }
+    public static bool IsToRetryOnce(this HttpResponseMessage message)
+    {
+        return message.StatusCode is HttpStatusCode.RequestTimeout or HttpStatusCode.BadGateway;
+    }
+
+    public static double RetryAfterInSeconds(this HttpResponseMessage message)
+    {
+        return message.Headers.RetryAfter?.Delta?.TotalSeconds ?? 0;
     }
 }

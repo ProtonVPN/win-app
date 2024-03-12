@@ -26,7 +26,6 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using Polly.Timeout;
-using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Handlers.Retries;
 using ProtonVPN.Api.Tests.Mocks;
 using ProtonVPN.Logging.Contracts;
@@ -48,7 +47,7 @@ namespace ProtonVPN.Api.Tests.Handlers.Retries
             MockedRequest request = mockHttpMessageHandler.When("*")
                 .Respond(_ =>
                 {
-                    HttpResponseMessage response = new(ExpandedHttpStatusCodes.TOO_MANY_REQUESTS);
+                    HttpResponseMessage response = new(HttpStatusCode.TooManyRequests);
                     response.Headers.RetryAfter = new RetryConditionHeaderValue(TimeSpan.FromSeconds(1));
                     return response;
                 });
@@ -63,7 +62,7 @@ namespace ProtonVPN.Api.Tests.Handlers.Retries
 
         [TestMethod]
         [DataRow(HttpStatusCode.ServiceUnavailable)]
-        [DataRow(ExpandedHttpStatusCodes.TOO_MANY_REQUESTS)]
+        [DataRow(HttpStatusCode.TooManyRequests)]
         public async Task It_ShouldNotRetryWithoutRetryAfterHeader(HttpStatusCode httpStatusCode)
         {
             // Arrange
@@ -100,9 +99,11 @@ namespace ProtonVPN.Api.Tests.Handlers.Retries
         [TestMethod]
         [DataRow(HttpStatusCode.ServiceUnavailable)]
         [DataRow(HttpStatusCode.BadRequest)]
-        [DataRow(HttpStatusCode.Conflict)]
         [DataRow(HttpStatusCode.Unauthorized)]
-        [DataRow(ExpandedHttpStatusCodes.UNPROCESSABLE_ENTITY)]
+        [DataRow(HttpStatusCode.Forbidden)]
+        [DataRow(HttpStatusCode.NotFound)]
+        [DataRow(HttpStatusCode.Conflict)]
+        [DataRow(HttpStatusCode.UnprocessableEntity)]
         public async Task It_ShouldNotRetry(HttpStatusCode httpStatusCode)
         {
             // Arrange
