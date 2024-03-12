@@ -35,7 +35,11 @@ using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Tray;
 
-public partial class TrayIconViewModel : ViewModelBase, IEventMessageReceiver<ConnectionStatusChanged>, IEventMessageReceiver<LoggedInMessage>, IEventMessageReceiver<LoggedOutMessage>
+public partial class TrayIconViewModel : 
+    ViewModelBase, 
+    IEventMessageReceiver<ConnectionStatusChanged>, 
+    IEventMessageReceiver<LoggedInMessage>, 
+    IEventMessageReceiver<LoggedOutMessage>
 {
     private readonly IMainWindowActivator _mainWindowActivator;
     private readonly IRecentConnectionsProvider _recentConnectionsProvider;
@@ -68,7 +72,7 @@ public partial class TrayIconViewModel : ViewModelBase, IEventMessageReceiver<Co
     [RelayCommand]
     public void ShowApplication()
     {
-        _mainWindowActivator.Activate();
+        _mainWindowActivator.Show();
     }
 
     [RelayCommand]
@@ -93,26 +97,17 @@ public partial class TrayIconViewModel : ViewModelBase, IEventMessageReceiver<Co
 
     public void Receive(ConnectionStatusChanged message)
     {
-        ExecuteOnUIThread(() =>
-        {
-            InvalidateTray();
-        });
+        ExecuteOnUIThread(InvalidateTray);
     }
 
     public void Receive(LoggedInMessage message)
     {
-        ExecuteOnUIThread(() =>
-        {
-            InvalidateTray();
-        });
+        ExecuteOnUIThread(InvalidateTray);
     }
 
     public void Receive(LoggedOutMessage message)
     {
-        ExecuteOnUIThread(() =>
-        {
-            InvalidateTray();
-        });
+        ExecuteOnUIThread(InvalidateTray);
     }
 
     protected override void OnLanguageChanged()

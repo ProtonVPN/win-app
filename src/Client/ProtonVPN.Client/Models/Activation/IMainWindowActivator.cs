@@ -23,9 +23,9 @@ public interface IMainWindowActivator
 {
     void Show();
 
-    void Activate();
-
     void Hide();
 
     void Exit();
+
+    void DisableHandleClosedEvents();
 }

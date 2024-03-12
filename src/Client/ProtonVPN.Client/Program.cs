@@ -118,7 +118,7 @@ public class Program
         App.GetService<IUIThreadDispatcher>().TryEnqueue(() =>
         {
             IMainWindowActivator mainWindowActivator = App.GetService<IMainWindowActivator>();
-            mainWindowActivator.Activate();
+            mainWindowActivator.Show();
         });
     }
 

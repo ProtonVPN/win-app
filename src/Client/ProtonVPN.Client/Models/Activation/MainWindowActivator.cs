@@ -35,6 +35,7 @@ using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Home;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Models.Activation;
 
@@ -63,7 +64,7 @@ public class MainWindowActivator :
     private readonly ILocalizationProvider _localizationProvider;
 
     private bool _handleClosedEvents = true;
-    private bool _wasWindowShown;
+    private bool _isFirstActivation = true;
 
     public MainWindowActivator(
         ILogger logger,
@@ -96,19 +97,49 @@ public class MainWindowActivator :
 
     public void Show()
     {
-        App.MainWindow.Closed += OnMainWindowClosed;
-        App.MainWindow.WindowStateChanged += OnMainWindowStateChanged;
+        if (_isFirstActivation)
+        {
+            App.MainWindow.Closed += OnMainWindowClosed;
+            App.MainWindow.WindowStateChanged += OnMainWindowStateChanged;
 
-        InvalidateWindowPosition();
-        InvalidateWindowContent();
-        InvalidateAppTheme();
-        InvalidateFlowDirection();
+            InvalidateWindowPosition();
+            InvalidateWindowContent();
+            InvalidateAppTheme();
+            InvalidateFlowDirection();
 
-        App.MainWindow.Show();
-        App.MainWindow.BringToFront();
+            Activate();
 
-        _wasWindowShown = true;
-        _eventMessageSender.Send(new ApplicationStartedMessage());
+            _isFirstActivation = false;
+
+            _eventMessageSender.Send(new ApplicationStartedMessage());
+        }
+        else
+        {
+            Activate();
+        }
+    }
+
+    public void Hide()
+    {
+        Logger.Info<AppLog>("Hide application to tray and enable efficiency mode.");
+
+        App.MainWindow.Hide(enableEfficiencyMode: true);
+
+        _dialogActivator.HideAllDialogs();
+    }
+
+    public void Exit()
+    {
+        Logger.Info<AppLog>("Exit application.");
+
+        _handleClosedEvents = false;
+
+        App.MainWindow.Close();
+    }
+
+    public void DisableHandleClosedEvents()
+    {
+        _handleClosedEvents = false;
     }
 
     private void InvalidateFlowDirection()
@@ -116,31 +147,14 @@ public class MainWindowActivator :
         App.MainWindow.ApplyFlowDirection(_settings.Language);
     }
 
-    public void Activate()
+    private void Activate()
     {
-        if (!_wasWindowShown)
-        {
-            Show();
-        }
+        Logger.Info<AppLog>("Activate application. Disable efficiency mode if enabled.");
 
-        App.MainWindow.Activate();
+        App.MainWindow.Show(disableEfficiencyMode: true);
         App.MainWindow.BringToFront();
 
         _dialogActivator.ActivateAllDialogs();
-    }
-
-    public void Hide()
-    {
-        App.MainWindow.Hide(true);
-
-        _dialogActivator.HideAllDialogs();
-    }
-
-    public void Exit()
-    {
-        _handleClosedEvents = false;
-
-        App.MainWindow.Close();
     }
 
     public void Receive(LoggingInMessage message)
@@ -231,6 +245,8 @@ public class MainWindowActivator :
 
         _dialogActivator.CloseAllDialogs();
         _overlayActivator.CloseAllOverlays();
+
+        Logger.Info<AppLog>("Stop Proton VPN service.");
 
         _serviceManager.Stop();
     }
