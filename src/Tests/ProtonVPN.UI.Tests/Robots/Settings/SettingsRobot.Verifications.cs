@@ -17,7 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using FlaUI.Core.AutomationElements;
+using FlaUI.Core.Tools;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestsHelper;
 
@@ -90,13 +92,31 @@ public partial class SettingsRobot
 
     public SettingsRobot VerifyCustomDnsIsSet(string dnsAddress)
     {
-        Assert.IsTrue(DoesContainDnsAddress(dnsAddress), DnsAdressErrorMessage(dnsAddress));
+        RetryResult<bool> retry = Retry.WhileFalse(
+            () => {
+                return DoesContainDnsAddress(dnsAddress);
+            },
+            TestConstants.VeryShortTimeout, TestConstants.RetryInterval);
+
+        if (!retry.Success)
+        {
+            throw new Exception(DnsAdressErrorMessage(dnsAddress));
+        }
         return this;
     }
 
-    public SettingsRobot VerifyCustomDnsIsNotSet(string dnsAdress)
+    public SettingsRobot VerifyCustomDnsIsNotSet(string dnsAddress)
     {
-        Assert.IsFalse(DoesContainDnsAddress(dnsAdress), DnsAdressErrorMessage(dnsAdress));
+        RetryResult<bool> retry = Retry.WhileTrue(
+            () => {
+                return DoesContainDnsAddress(dnsAddress);
+            },
+            TestConstants.VeryShortTimeout, TestConstants.RetryInterval);
+
+        if (!retry.Success)
+        {
+            throw new Exception(DnsAdressErrorMessage(dnsAddress));
+        }
         return this;
     }
 
