@@ -172,6 +172,12 @@ public class CustomDnsTests : TestSession
             .VerifyCustomDnsIsSet(dnsAddress);
     }
 
+    [TearDown]
+    public void SaveArtifacts()
+    {
+        SaveScreenshotAndLogsIfFailed();
+    }
+
     [OneTimeTearDown]
     public void TestCleanup()
     {
