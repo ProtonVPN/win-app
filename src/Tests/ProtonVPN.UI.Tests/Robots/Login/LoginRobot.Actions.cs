@@ -46,15 +46,9 @@ public partial class LoginRobot
 
     public LoginRobot DoReportAnIssue()
     {
-        HelpButton.Click();
-
-        // Cannot find ReportIssueMenuItem element in button flyout. Using mouse action as workaround.
-        //ReportIssueMenuItem.Click();
-
+        HelpButton.Invoke();
         CommonActions.Wait(TestConstants.DefaultAnimationDelay);
-        Mouse.MoveBy(0, -40);
-        Mouse.DoubleClick();
-
+        ReportIssueMenuItem.Click();
         return this;
     }
 }
