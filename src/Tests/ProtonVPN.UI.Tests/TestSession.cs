@@ -75,7 +75,7 @@ public class TestSession
         try
         {
             Directory.Delete(TestConstants.UserStoragePath, true);
-            Directory.Delete(Path.Combine(GetProtonClientFolder(), "ServiceData", "Logs"), true);
+            Directory.Delete(GetServiceLogsPath(), true);
         }
         catch
         {
@@ -92,10 +92,7 @@ public class TestSession
         {
             //Do nothing, since artifact collection shouldn't block cleanup.
         }
-        App.Kill();
-        App.Dispose();
-        StopService("ProtonVPN Service");
-        StopService("ProtonVPN Wireguard");
+        App.Close();
     }
 
     protected static void LaunchApp()
@@ -109,12 +106,17 @@ public class TestSession
         }
         
         string installedClientPath = Path.Combine(GetProtonClientFolder(), CLIENT_NAME);
-        App = Application.Launch(installedClientPath);
+        ProcessStartInfo startInfo = new ProcessStartInfo(installedClientPath)
+        {
+            Arguments = "-ExitAppOnClose"
+        };
+        App = Application.Launch(startInfo);
+
         RetryResult<bool> result = WaitUntilAppIsRunning();
         if (!result.Success)
         {
             //Sometimes app fails to launch on first try due to CI issues.
-            App = Application.Launch(installedClientPath);
+            App = Application.Launch(startInfo);
         }
 
         RefreshWindow(TestConstants.LongTimeout);
@@ -154,6 +156,15 @@ public class TestSession
         }
     }
 
+    protected static void SaveScreenshotAndLogsIfFailed()
+    {
+        if (!TestEnvironment.AreTestsRunningLocally() && TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+        {
+            string testName = TestContext.CurrentContext.Test.MethodName;
+            TestsRecorder.SaveScreenshotAndLogs(testName, GetServiceLogsPath());
+        }
+    }
+
     protected static string GetServiceLogsPath()
     {
         return Path.Combine(GetProtonClientFolder(), "ServiceData", "Logs", "service-logs.txt");
@@ -177,19 +188,6 @@ public class TestSession
         Window.Focus();
     }
 
-    private static void SaveScreenshotAndLogsIfFailed()
-    {
-        if (!TestEnvironment.AreTestsRunningLocally())
-        {
-            TestStatus status = TestContext.CurrentContext.Result.Outcome.Status;
-            string testName = TestContext.CurrentContext.Test.MethodName;
-            if (status == TestStatus.Failed)
-            {
-                TestsRecorder.SaveScreenshotAndLogs(testName, GetServiceLogsPath());
-            }
-        }
-    }
-
     private static RetryResult<bool> WaitUntilAppIsRunning()
     {
         RetryResult<bool> retry = Retry.WhileFalse(
@@ -200,18 +198,5 @@ public class TestSession
             TimeSpan.FromSeconds(30), TestConstants.RetryInterval);
 
         return retry;
-    }
-
-    private static void StopService(string serviceName)
-    {
-        try
-        {
-            ServiceController service = new ServiceController(serviceName);
-            service.Stop();
-        }
-        catch (InvalidOperationException)
-        {
-            //Ignore because service might not be started.
-        }
     }
 }

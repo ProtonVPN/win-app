@@ -109,6 +109,12 @@ public class RecentsTests : TestSession
             .VerifyRecentsDoesNotExist(SECOND_COUNTRY_NAME);
     }
 
+    [TearDown]
+    public void SaveArtifacts()
+    {
+        SaveScreenshotAndLogsIfFailed();
+    }
+
     [OneTimeTearDown]
     public void TestCleanup()
     {
