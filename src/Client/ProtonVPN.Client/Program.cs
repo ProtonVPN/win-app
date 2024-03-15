@@ -20,19 +20,17 @@
 using System.Runtime.InteropServices;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
-using Microsoft.Windows.AppLifecycle;
 using ProtonVPN.Client.Bootstrapping;
-using ProtonVPN.Client.Common.Dispatching;
-using ProtonVPN.Client.Models.Activation;
+using ProtonVPN.Client.Helpers;
 using ProtonVPN.Common.Core.Extensions;
-using Windows.ApplicationModel.Activation;
-using WinRT;
 
 namespace ProtonVPN.Client;
 
 public class Program
 {
     private const string SINGLE_INSTANCE_APP_MUTEX_NAME = "{588dc704-8eac-4a43-9345-ec7186b23f05}";
+
+    private static Mutex _mutex; // The variable is kept to hold the Mutex lock
 
     // This method should be async Task to be able to await IsFirstInstanceAsync,
     // but when changing to async Task, the xaml inspector tool is not able to find elements.
@@ -48,10 +46,7 @@ public class Program
             return;
         }
 
-        ComWrappersSupport.InitializeComWrappers();
-
-        bool isFirstInstance = IsFirstInstanceAsync().Result;
-        if (isFirstInstance)
+        if (IsFirstInstance())
         {
             ProtocolActivationManager.Register();
             SetCurrentProcessExplicitAppUserModelID("Proton.VPN");
@@ -65,61 +60,15 @@ public class Program
 
             ProtocolActivationManager.Unregister();
         }
-    }
-
-    private static async Task<bool> IsFirstInstanceAsync()
-    {
-        if (IsLegacyAppRunning())
-        {
-            return false;
-        }
-
-        bool isFirstInstance = false;
-        AppInstance keyInstance = AppInstance.FindOrRegisterForKey(App.APPLICATION_NAME);
-        if (keyInstance.IsCurrent)
-        {
-            isFirstInstance = true;
-            keyInstance.Activated += OnActivated;
-        }
         else
         {
-            AppActivationArguments args = AppInstance.GetCurrent().GetActivatedEventArgs();
-            await keyInstance.RedirectActivationToAsync(args);
+            OtherInstancesActivator.BringToForeground();
         }
-
+    }
+    private static bool IsFirstInstance()
+    {
+        _mutex = new Mutex(true, SINGLE_INSTANCE_APP_MUTEX_NAME, out bool isFirstInstance);
         return isFirstInstance;
-    }
-
-    private static bool IsLegacyAppRunning()
-    {
-        _ = new Mutex(true, SINGLE_INSTANCE_APP_MUTEX_NAME, out bool isFirstInstance);
-        return !isFirstInstance;
-    }
-
-    private static void OnActivated(object? sender, AppActivationArguments args)
-    {
-        switch (args.Kind)
-        {
-            case ExtendedActivationKind.Launch:
-                ActivateMainWindow();
-                break;
-            case ExtendedActivationKind.Protocol:
-                ActivateMainWindow();
-                if (args.Data is IProtocolActivatedEventArgs activationArgs)
-                {
-                    // VPNWIN-2088 - use activationArgs.Uri to handle announcements and subscription change notifications
-                }
-                break;
-        }
-    }
-
-    private static void ActivateMainWindow()
-    {
-        App.GetService<IUIThreadDispatcher>().TryEnqueue(() =>
-        {
-            IMainWindowActivator mainWindowActivator = App.GetService<IMainWindowActivator>();
-            mainWindowActivator.Show();
-        });
     }
 
     [DllImport("shell32.dll", SetLastError = true)]
