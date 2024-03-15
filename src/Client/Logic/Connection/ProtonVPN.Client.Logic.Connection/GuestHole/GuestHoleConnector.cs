@@ -62,7 +62,7 @@ public class GuestHoleConnector : IGuestHoleConnector
 
     public async Task DisconnectAsync()
     {
-        // TODO: use VpnError.NoneKeepEnabledKillSwitch for disconnect
+        // VPNWIN-2106 - Use VpnError.NoneKeepEnabledKillSwitch for disconnect
         DisconnectionRequestIpcEntity request = _disconnectionRequestCreator.Create();
 
         await _vpnServiceCaller.DisconnectAsync(request);

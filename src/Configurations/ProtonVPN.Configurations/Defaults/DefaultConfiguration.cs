@@ -129,9 +129,6 @@ public static class DefaultConfiguration
     /// <returns>C:\Users\{user}\AppData\Local\ProtonVPN</returns>
     public static string LegacyAppLocalData => Path.Combine(_localAppDataPath.Value, "ProtonVPN");
 
-    // TODO: remove the property as well as all the code which still uses this property
-    public static string ServersJsonCacheFilePath => Path.Combine(_localAppDataProtonVpnPath.Value, "Servers.json");
-
     // C:\Program Files\Proton\VPN\v4.0.0\Resources\wintun.dll
     public static string WintunDriverPath => Path.Combine(_resourcesFolderPath.Value, "wintun.dll");
 

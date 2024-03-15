@@ -50,7 +50,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           Height="{StaticResource ProgressRingSize}"
                           Margin="0,0,0,-280"/>
 
-            <!--  TODO: Animate vpn logo?  -->
+            <!--  VPNWIN-2111 - Animate vpn logo?  -->
 
         </Grid>
     </Viewbox>

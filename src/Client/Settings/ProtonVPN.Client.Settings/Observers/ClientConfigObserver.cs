@@ -108,8 +108,6 @@ public class ClientConfigObserver :
             ShortDelay = TimeSpan.FromSeconds(value.ChangeServerShortDelayInSeconds),
             LongDelay = TimeSpan.FromSeconds(value.ChangeServerLongDelayInSeconds)
         };
-
-        // TODO: Retrieve legacy feature flags here?
     }
 
     private bool IsWireGuardPortSupported(int port)

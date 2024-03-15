@@ -289,7 +289,7 @@ public class UnauthorizedResponseHandlerTest
         _innerHandler.VerifyNoOutstandingExpectation();
     }
 
-    // TODO: FIX THIS UNIT TEST
+    // VPNWIN-2099
     // Sometimes throws "TimeoutException: The operation has timed out." on line 350, the second instance of "await requestBreakpoint.WaitForHitAndContinue().TimeoutAfter(TestTimeout);"
     // Sometimes throws "System.InvalidOperationException: There are 1 unfulfilled expectations" on line 360 "_innerHandler.VerifyNoOutstandingExpectation();"
 

@@ -75,7 +75,7 @@ public class ClientModule : Module
 
         builder.Register(c =>
             new SafeSystemNetworkInterfaces(c.Resolve<ILogger>(), new SystemNetworkInterfaces()))
-            .As<INetworkInterfaces>().SingleInstance(); // TODO: Remove this custom manual registration
+            .As<INetworkInterfaces>().SingleInstance(); // VPNWIN-2108 - Remove this custom manual registration
     }
 
     private void RegisterHandlers(ContainerBuilder builder)

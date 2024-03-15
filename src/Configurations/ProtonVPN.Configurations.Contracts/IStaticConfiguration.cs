@@ -49,8 +49,6 @@ public interface IStaticConfiguration
     string ServiceSettingsFilePath { get; }
     string LegacyAppLocalData { get; }
 
-    string ServersJsonCacheFilePath { get; }
-
     IOpenVpnConfigurations OpenVpn { get; }
     IWireGuardConfigurations WireGuard { get; }
 

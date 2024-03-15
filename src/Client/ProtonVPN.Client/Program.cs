@@ -107,7 +107,7 @@ public class Program
                 ActivateMainWindow();
                 if (args.Data is IProtocolActivatedEventArgs activationArgs)
                 {
-                    // TODO: use activationArgs.Uri to handle announcements and subscription change notifications
+                    // VPNWIN-2088 - use activationArgs.Uri to handle announcements and subscription change notifications
                 }
                 break;
         }

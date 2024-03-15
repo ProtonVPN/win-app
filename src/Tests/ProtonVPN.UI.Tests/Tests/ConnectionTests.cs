@@ -67,8 +67,8 @@ public class ConnectionTests : TestSession
             .VerifyVpnStatusIsDisconnected()
             .VerifyConnectionCardIsInInitalState();
 
-        //TODO When reconnection logic is implemented remove this sleep.
-        //Certificate sometimes takes longer to get and app does not handle it yet
+        // VPNWIN-2096 - When reconnection logic is implemented remove this sleep.
+        // Certificate sometimes takes longer to get and app does not handle it yet
         _shellRobot
             .Wait(TestConstants.InitializationDelay);
     }
@@ -135,7 +135,7 @@ public class ConnectionTests : TestSession
     [Test]
     public void ConnectToSpecificCountry()
     {
-        //VPNWIN-1952 Country list loading should be improved
+        // VPNWIN-1952 - Country list loading should be improved
         _shellRobot
             .Wait(TestConstants.InitializationDelay);
 
@@ -156,7 +156,7 @@ public class ConnectionTests : TestSession
     [Test]
     public void ConnectToSpecificCity()
     {
-        //VPNWIN-1952 Country list loading should be improved
+        // VPNWIN-1952 - Country list loading should be improved
         _shellRobot
             .Wait(TestConstants.InitializationDelay);
 
@@ -181,7 +181,7 @@ public class ConnectionTests : TestSession
     [Test]
     public void ConnectToSpecificServer()
     {
-        //VPNWIN-1952 Country list loading should be improved
+        // VPNWIN-1952 - Country list loading should be improved
         _shellRobot
             .Wait(TestConstants.InitializationDelay);
 
@@ -210,7 +210,7 @@ public class ConnectionTests : TestSession
             .DoOpenConnectionDetails()
             .VerifyConnectionDetailsIsOpened();
 
-        // TODO: Latency is kept hidden as it is not implemented yet. 
+        // VPNWIN-2095 - Latency is kept hidden as it is not implemented yet. 
         //_homeRobot
         //    .DoOpenLatencyOverlay();
 

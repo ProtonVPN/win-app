@@ -18,6 +18,7 @@
  */
 
 using System.Collections.Generic;
+using System.IO;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Common.Legacy.FileStoraging;
 using ProtonVPN.Configurations.Contracts;
@@ -29,9 +30,11 @@ namespace ProtonVPN.Core.Servers.FileStoraging;
 public class ServersFileStorage : FileStorageBase<IEnumerable<LogicalServerResponse>>,
     IServersFileStorage
 {
+    private const string SERVERS_JSON_CACHE_FILE_NAME = "Servers.json";
+
     public ServersFileStorage(ILogger logger,
         IFileReaderWriter fileReaderWriter, IStaticConfiguration config)
-        : base(logger, fileReaderWriter, config.ServersJsonCacheFilePath)
+        : base(logger, fileReaderWriter, Path.Combine(config.LegacyAppLocalData, SERVERS_JSON_CACHE_FILE_NAME))
     {
     }
 }
