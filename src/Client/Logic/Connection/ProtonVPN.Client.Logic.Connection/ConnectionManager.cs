@@ -186,7 +186,7 @@ public class ConnectionManager : IInternalConnectionManager,
                                       $"Status: '{message.Status}' EntryIp: '{message.EndpointIp}' Label: '{message.Label}' " +
                                       $"NetworkAdapterType: '{message.OpenVpnAdapterType}' VpnProtocol: '{message.VpnProtocol}'");
 
-                // TODO: Either (1) Reconnect without last server, or (2) Delete this comment
+                // VPNWIN-2105 - Either (1) Reconnect without last server, or (2) Delete this comment
                 await ReconnectAsync();
             }
             else
@@ -201,7 +201,7 @@ public class ConnectionManager : IInternalConnectionManager,
 
     private Server? GetCurrentServer(VpnStateIpcEntity state)
     {
-        //TODO: instead of EndpointIp and Label we should have VpnHost (including Id property) so we can easily find server by ID.
+        // VPNWIN-2113 - instead of EndpointIp and Label we should have VpnHost (including Id property) so we can easily find server by ID.
         return _serversLoader.GetServers().FirstOrDefault(s => s.Servers.Any(FilterPhysicalServerByVpnState(state)));
     }
 

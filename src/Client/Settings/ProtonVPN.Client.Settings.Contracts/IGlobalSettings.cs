@@ -40,7 +40,7 @@ public interface IGlobalSettings
     int[] WireGuardPorts { get; set; }
     int[] OpenVpnTcpPorts { get; set; }
     int[] OpenVpnUdpPorts { get; set; }
-    ConcurrentDictionary<string, DnsResponse>? DnsCache { get; set; } // TODO: Move to its own file
+    ConcurrentDictionary<string, DnsResponse>? DnsCache { get; set; } // VPNWIN-2098 - Move to its own file
     bool IsDoHEnabled { get; set; }
     bool IsKillSwitchEnabled { get; set; }
     bool IsBetaAccessEnabled { get; set; }

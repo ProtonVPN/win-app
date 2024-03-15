@@ -51,8 +51,6 @@ public class StaticConfiguration : IStaticConfiguration
     public string ServiceSettingsFilePath { get; } = DefaultConfiguration.ServiceSettingsFilePath;
     public string LegacyAppLocalData { get; } = DefaultConfiguration.LegacyAppLocalData;
 
-    public string ServersJsonCacheFilePath { get; } = DefaultConfiguration.ServersJsonCacheFilePath;
-
     public IOpenVpnConfigurations OpenVpn { get; } = DefaultConfiguration.OpenVpn;
     public IWireGuardConfigurations WireGuard { get; } = DefaultConfiguration.WireGuard;
 

@@ -206,7 +206,7 @@ public class ServersUpdater : IServersUpdater, IServersCache, IEventMessageRecei
         List<Server> filteredServers = [];
         foreach (Server server in servers)
         {
-            // TODO: Listen to changes to MaxTier setting and process the servers again through here
+            // VPNWIN-2053 - Listen to changes to MaxTier setting and process the servers again through here
             // (This should be done when we have a regular or triggered call to fetch user data)
             if (_settings.MaxTier >= (sbyte)server.Tier)
             {

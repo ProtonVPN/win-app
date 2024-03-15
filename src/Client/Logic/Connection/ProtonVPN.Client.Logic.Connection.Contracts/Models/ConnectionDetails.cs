@@ -47,7 +47,7 @@ public class ConnectionDetails
     public ServerTiers? ServerTier => Server.Tier;
     public string ServerName => Server.Name;
     public double ServerLoad => Server.Load / 100D;
-    public TimeSpan? ServerLatency { get; } // TODO: Implement real value
+    public TimeSpan? ServerLatency { get; } // VPNWIN-2095 - Calculate latency
     public bool IsGateway => Server.Features.IsSupported(ServerFeatures.B2B);
     public string GatewayName => Server.GatewayName;
 

@@ -122,12 +122,12 @@ public partial class LoginShellViewModel : ShellViewModelBase<ILoginViewNavigato
         {
             case AuthError.MissingGoSrpDll:
                 Logger.Fatal<AppCrashLog>("The app is missing GoSrp.dll");
-                //TODO: add modal about missing file
+                // VPNWIN-2109 - Add modal about missing file
                 ViewNavigator.CloseCurrentWindow();
                 break;
 
             case AuthError.GuestHoleFailed:
-                //TODO: show troubleshooting dialog
+                // VPNWIN-1982 - Show troubleshooting dialog
                 Logger.Error<GuestHoleLog>("Failed to authenticate using guest hole.");
                 break;
 

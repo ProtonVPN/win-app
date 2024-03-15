@@ -93,6 +93,6 @@ public class AppController : IAppController
             $"[Malware: '{netShieldStatistic.NumOfMaliciousUrlsBlocked}']" +
             $"[Trackers: '{netShieldStatistic.NumOfTrackingUrlsBlocked}']");
 
-#warning TODO: Should invoke something
+        // VPNWIN-1768 - Should invoke something
     }
 }

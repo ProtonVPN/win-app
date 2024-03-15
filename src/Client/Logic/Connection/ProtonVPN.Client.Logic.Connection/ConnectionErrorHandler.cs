@@ -90,7 +90,9 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
         }
         else if (error.RequiresReconnectWithoutLastServer())
         {
-            // TODO: Either (1) Reconnect without last server, or (2) Delete this separation between RequiresReconnectWithoutLastServer and RequiresReconnect
+            // VPNWIN-2103 - Either 
+            // (1) Reconnect without last server, or 
+            // (2) Delete this separation between RequiresReconnectWithoutLastServer and RequiresReconnect
             response = await ReconnectAsync();
         }
         else if (error.RequiresReconnect())
