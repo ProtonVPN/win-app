@@ -168,7 +168,7 @@
   <data name="Common_States_On">
     <value>Ligado</value>
   </data>
-  <data name="Connection_Error_MissingConnectionCertificate">
+  <data name="Connection_Error_MissingAuthCertificate">
     <value>O Proton VPN não conseguiu obter o certificado de autenticação devido a problemas de rede.</value>
   </data>
   <data name="Connection_Error_NoServers">

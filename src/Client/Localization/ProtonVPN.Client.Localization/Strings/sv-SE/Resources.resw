@@ -168,7 +168,7 @@
   <data name="Common_States_On">
     <value>På</value>
   </data>
-  <data name="Connection_Error_MissingConnectionCertificate">
+  <data name="Connection_Error_MissingAuthCertificate">
     <value>Proton VPN kunde inte hämta autentiseringscertifikat på grund av nätverksproblem.</value>
   </data>
   <data name="Connection_Error_NoServers">
@@ -298,7 +298,7 @@
     <value>Serverbelastning</value>
   </data>
   <data name="Countries_SmartRouting">
-    <value>Smart routing</value>
+    <value>Smart dirigering</value>
   </data>
   <data name="Countries_SmartRouting_Description">
     <value>Servrar är fysiskt placerade i {0}, men du ser ut att surfa från {1}.</value>
@@ -1333,7 +1333,7 @@
     <value>Få obegränsade serverändringar med VPN Plus.</value>
   </data>
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
-    <value>You've reached the maximum number of free server changes for now</value>
+    <value>Du har nått det maximala antalet gratis serverändringar för tillfället</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free automatically connects you to the fastest available free server from our {0} free country. This will normally be the closest server to your location.</value>
@@ -2275,7 +2275,7 @@ stoppade</value>
     <value>Bli aviserad om pågående Proton VPN-aktiviteter</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver">
-    <value>OpenVPN network driver</value>
+    <value>OpenVPN nätverksdrivrutin</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver_Description">
     <value>Nätverksdrivrutiner kan påverka din anslutningshastighet. Den nya TUN-adaptern ger högre hastighet och faller tillbaka på TAP-adaptern om den stöter på några anslutningsproblem.</value>

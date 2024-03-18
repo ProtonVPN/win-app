@@ -168,7 +168,7 @@
   <data name="Common_States_On">
     <value>Aktif</value>
   </data>
-  <data name="Connection_Error_MissingConnectionCertificate">
+  <data name="Connection_Error_MissingAuthCertificate">
     <value>Proton VPN tidak dapat mengambil sertifikat autentikasi karena masalah jaringan.</value>
   </data>
   <data name="Connection_Error_NoServers">
@@ -205,7 +205,7 @@
     <value>Tampilkan solusi yang memungkinkan</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
-    <value>Proton VPN tidak dapat terhubung karena adapter jaringan WireGuard telah digunakan. Mohon putuskan seluruh koneksi VPN yang aktif dan coba lagi. Sebagai alternatif, cobalah untuk mengubah protokol jaringan melalui menu Pengaturan Lanjutan.</value>
+    <value>Proton VPN tidak dapat terhubung karena adapter jaringan WireGuard telah digunakan. Silakan putuskan seluruh koneksi VPN yang sedang aktif dan coba lagi. Sebagai alternatif, cobalah untuk mengubah protokol jaringan melalui menu Pengaturan Lanjutan.</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Terpilih secara otomatis dari</value>
@@ -220,7 +220,7 @@
     <comment>Name of the server including country name. {0} is a placeholder for the country name. {1} is a placeholder for the number associated to the server (eg. Switzerland #20)</comment>
   </data>
   <data name="Connection_Via_SecureCore">
-    <value>melalui {0}</value>
+    <value>via {0}</value>
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
   </data>
   <data name="Countries_All">
@@ -295,7 +295,7 @@
     <value>Smart Routing</value>
   </data>
   <data name="Countries_SmartRouting_Description">
-    <value>Server terletak di {0} secara fisik, tetapi Anda akan terlihat seolah-olah Anda meramban dari {1}.</value>
+    <value>Server yang melayani Anda secara fisik terletak di {0}, namun Anda akan terlihat seolah-olah Anda meramban dari {1}.</value>
     <comment>{0} and {1} represent country names.</comment>
   </data>
   <data name="Countries_Tor">
@@ -310,7 +310,7 @@
     <comment>{0} represents a number of tor servers in the country</comment>
   </data>
   <data name="Countries_TryDifferentKeyword">
-    <value>Mohon coba kata kunci pencarian yang berbeda</value>
+    <value>Silakan coba kata kunci pencarian lainnya</value>
   </data>
   <data name="Countries_ViaCountry">
     <value>melalui {0}</value>
@@ -1324,13 +1324,13 @@
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
-    <value>Dapatkan perubahan server tanpa batas dengan VPN Plus.</value>
+    <value>Dapatkan pengubahan server tanpa batas dengan VPN Plus.</value>
   </data>
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
-    <value>Anda sudah mencapai batas angka dari pengubahan server untuk sekarang</value>
+    <value>Anda telah mencapai batas pengubahan server Free untuk saat ini</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
-    <value>Proton Free menghubungkan Anda ke server gratis secara otomatis dari {0} negara gratis kami. Ini biasanya adalah server yang terdekat dengan lokasi Anda.</value>
+    <value>Proton Free akan menghubungkan Anda secara otomatis ke server tercepat yang tersedia dari {0} negara gratis kami. Pada umumnya, server ini adalah server yang terletak paling dekat dengan lokasi Anda.</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Other">
     <value>Negara server Free ({0})</value>
@@ -1342,9 +1342,9 @@
     <value>Dapatkan cakupan server di seluruh dunia dengan VPN Plus</value>
   </data>
   <data name="Dialogs_Latency_Description">
-    <value>Latensi menunjukkan seberapa lama server dapat membalas permintaan.
+    <value>Latensi menunjukkan waktu yang dibutuhkan oleh suatu server membalas permintaan.
 
-Latensi tinggi dapat memperlambat koneksi Anda.</value>
+Latensi yang tinggi dapat memperlambat koneksi Anda.</value>
   </data>
   <data name="Dialogs_Latency_HighRange_Description">
     <value>VPN dapat berjalan lebih lambat dari biasanya</value>
@@ -1383,7 +1383,7 @@ Latensi tinggi dapat memperlambat koneksi Anda.</value>
     <value>Apa itu torrenting?</value>
   </data>
   <data name="Dialogs_P2P_WhatIsTorrenting_Description">
-    <value>Berkecepatan tinggi dalam pembagian dan pengunduhan berkas besar melalui jaringan peer-to-peer (P2P).</value>
+    <value>Torrent merupakan proses pembagian dan pengunduhan berkas besar melalui jaringan peer-to-peer (P2P).</value>
   </data>
   <data name="Dialogs_P2P_WhyUse">
     <value>Mengapa menggunakan server P2P saat melakukan torrent?</value>
@@ -1415,7 +1415,7 @@ Latensi tinggi dapat memperlambat koneksi Anda.</value>
     <comment>The label for the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description">
-    <value>Catatan kesalahan membantu kami melihat apa yang salah, dan tindakan apa yang menjadi masalah Anda. Kami hanya akan menggunakannya untuk membantu insinyur kami memperbaiki kutu.</value>
+    <value>Log error membantu kami dalam melihat apa yang salah dan tindakan apa saja yang menyebabkan masalah Anda. Kami hanya akan menggunakan log ini untuk membantu insinyur kami memperbaiki bug yang ada.</value>
     <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_Header">
@@ -1446,7 +1446,7 @@ Latensi tinggi dapat memperlambat koneksi Anda.</value>
     <value>Laporan terkirim</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Success_Description">
-    <value>Terima kasih atas masukan Anda. Kami akan kembali ke Anda secepat mungkin.</value>
+    <value>Terima kasih atas masukan Anda. Kami akan menghubungi Anda kembali sesegera mungkin.</value>
   </data>
   <data name="Dialogs_ReportIssue_SendReport">
     <value>Kirim laporan</value>
@@ -1459,7 +1459,7 @@ Latensi tinggi dapat memperlambat koneksi Anda.</value>
     <value>Laporkan masalah</value>
   </data>
   <data name="Dialogs_SecureCore_AdvancedPrivacy">
-    <value>Privasi bertingkat lanjut</value>
+    <value>Privasi lanjutan</value>
   </data>
   <data name="Dialogs_SecureCore_Description">
     <value>Secure Core menghubungkan Anda ke server tujuan melalui server VPN kedua yang berkeamanan maksimum.
@@ -1495,13 +1495,13 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>VPN dapat berjalan lebih lambat dari biasanya</value>
   </data>
   <data name="Dialogs_ServerLoad_HighRange_Title">
-    <value>Tinggi (91–100%)</value>
+    <value>Tinggi (91-100%)</value>
   </data>
   <data name="Dialogs_ServerLoad_LowRange_Description">
     <value>Kecepatan kilat</value>
   </data>
   <data name="Dialogs_ServerLoad_LowRange_Title">
-    <value>Rendah (1–75%)</value>
+    <value>Rendah (1-75%)</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Description">
     <value>Tidak berpengaruh pada kecepatan VPN secara garis besar</value>
@@ -1513,17 +1513,17 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Apa itu muatan server?</value>
   </data>
   <data name="Dialogs_SmartRouting_Description">
-    <value>Smart Routing menggunakan server virtual untuk menyediakan VPN di negara-negara yang susah dijangkau.
+    <value>Smart Routing menggunakan server virtual untuk menyediakan VPN di negara dengan pembatasan internet yang ketat.
 
-Ketika anda menyambungkan ke Smart Routing server, anda akan tampak menjelajah di negara tujuan, meskipun server fisik berada di tempat lain.
+Pada saat Anda terhubung ke server dengan Smart Routing, Anda akan terlihat seolah-olah Anda sedang menjelajah dari negara tujuan Anda, meskipun server yang melayani Anda secara fisik berada di tempat lain.  
 
-Smart Routing biasanya digunakan untuk mengindari dari undang-undang anti-privasi dan bentuk sensor lainnya.</value>
+Smart Routing pada umumnya digunakan untuk menghindari undang-undang anti-privasi dan bentuk sensor lainnya.</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
   </data>
   <data name="Dialogs_Tor_Description">
-    <value>Hubungkan ke server Tor untuk mengakses layanan tersembunyi dan situs onion menggunakan peramban apa pun.</value>
+    <value>Hubungkan ke server Tor untuk mengakses layanan tersembunyi dan situs onion menggunakan browser mana pun.</value>
   </data>
   <data name="Dialogs_Tor_LearnMore">
     <value>Cara mengakses jaringan Tor</value>
@@ -1532,7 +1532,7 @@ Smart Routing biasanya digunakan untuk mengindari dari undang-undang anti-privas
     <value>Tor</value>
   </data>
   <data name="Dialogs_Welcome_Message">
-    <value>Kami sedang mempersiapkan pengalaman VPN Anda yang baru. Ini seharusnya hanya membutuhkan beberapa waktu.</value>
+    <value>Kami sedang mempersiapkan pengalaman VPN Anda yang baru. Proses ini hanya akan memakan waktu sejenak.</value>
   </data>
   <data name="Dialogs_Welcome_Title">
     <value>Selamat datang di Proton VPN</value>
@@ -1630,7 +1630,7 @@ Smart Routing biasanya digunakan untuk mengindari dari undang-undang anti-privas
     <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_MinutesSeconds">
-    <value>{0} menit {1} dtk</value>
+    <value>{0} mnt {1} dtk</value>
     <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_MinutesSeconds_Short">
@@ -1651,7 +1651,7 @@ Smart Routing biasanya digunakan untuk mengindari dari undang-undang anti-privas
     <value>Keluar</value>
   </data>
   <data name="Home_Account_SignOut_Confirmation_Message">
-    <value>Anda akan diputuskan dari VPN.</value>
+    <value>Anda akan terputus dari VPN.</value>
   </data>
   <data name="Home_Account_SignOut_Confirmation_Title">
     <value>Keluar dari {0}?</value>
@@ -1670,7 +1670,7 @@ Smart Routing biasanya digunakan untuk mengindari dari undang-undang anti-privas
     <value>Menghubungkan ke...</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
-    <value>Koneksi gratis</value>
+    <value>Koneksi Free</value>
   </data>
   <data name="Home_ConnectionCard_Header_LastConnectedTo">
     <value>Terakhir terhubung ke</value>
@@ -1801,7 +1801,7 @@ dihentikan</value>
     <value>Lepas sematan</value>
   </data>
   <data name="Home_Update_Confirmation_Message">
-    <value>Untuk menyelesaikan proses pembaruan, Proton VPN akan terputus sementara dan Kill Switch Bertingkat Lanjut yang berjalan akan dinonaktifkan. Apakah Anda ingin melanjutkan?</value>
+    <value>Untuk menyelesaikan proses pembaruan, Proton VPN akan terputus untuk sementara dan seluruh kill switch lanjutan yang aktif akan dinonaktifkan. Apakah Anda ingin melanjutkan?</value>
     <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
   </data>
   <data name="Home_Update_Confirmation_Title">
@@ -1811,7 +1811,7 @@ dihentikan</value>
     <value>Pembaruan tersedia</value>
   </data>
   <data name="Home_Update_UpdateReady">
-    <value>Pembaruan siap</value>
+    <value>Pembaruan siap dipasang</value>
   </data>
   <data name="Home_VpnStatus_Landmark">
     <value>Status VPN</value>
@@ -2089,13 +2089,13 @@ dihentikan</value>
     <value>Lanjutan</value>
   </data>
   <data name="Settings_Features_KillSwitch_Advanced_Description">
-    <value>Hanya perbolehkan akses internet ketika terhubung ke Proton VPN. Kill switch bertingkat lanjut akan tetap aktif bahkan ketika Anda memulai ulang perangkat Anda.</value>
+    <value>Membatasi agar internet hanya tersedia pada saat Anda terhubung ke Proton VPN. Kill switch lanjutan akan tetap aktif bahkan ketika Anda memulai ulang perangkat Anda.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Conflict_Description">
     <value>Tindakan ini akan menonaktifkan split tunneling.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Conflict_Title">
-    <value>Aktifkan Kill Switch?</value>
+    <value>Aktifkan kill switch?</value>
   </data>
   <data name="Settings_Features_KillSwitch_Description">
     <value>Melindungi alamat IP Anda dengan memutuskan Anda dari internet apabila koneksi VPN hilang.</value>
@@ -2113,13 +2113,13 @@ dihentikan</value>
     <value>NetShield</value>
   </data>
   <data name="Settings_Features_NetShield_Conflict_Description">
-    <value>Anda tidak akan dapat menghubungkan ke server DNS khusus ketika NetShield diaktifkan.</value>
+    <value>Anda tidak akan dapat terhubung ke server DNS khusus pada saat NetShield diaktifkan.</value>
   </data>
   <data name="Settings_Features_NetShield_Conflict_Title">
     <value>Aktifkan NetShield?</value>
   </data>
   <data name="Settings_Features_NetShield_Description">
-    <value>Lindungi Anda sendiri dari iklan, perangkat lunak jahat, dan pelacak di situs web dan aplikasi.</value>
+    <value>Lindungi diri Anda dari iklan, malware, dan pelacak pada berbagai situs web dan aplikasi.</value>
   </data>
   <data name="Settings_Features_NetShield_Footer">
     <value>Beberapa situs web mungkin tidak akan termuat dengan benar ketika iklan dan pelacak diblokir.</value>
@@ -2128,10 +2128,10 @@ dihentikan</value>
     <value>Penerusan port</value>
   </data>
   <data name="Settings_Features_PortForwarding_ActivePort">
-    <value>Porta yang aktif:</value>
+    <value>Port yang aktif:</value>
   </data>
   <data name="Settings_Features_PortForwarding_ActivePort_Copy">
-    <value>Salin nomor porta</value>
+    <value>Salin nomor port</value>
   </data>
   <data name="Settings_Features_PortForwarding_Conflict_Description">
     <value>Anda tidak akan dapat menggunakan NAT Moderat pada saat penerusan port diaktifkan.</value>
@@ -2140,7 +2140,7 @@ dihentikan</value>
     <value>Aktifkan penerusan port?</value>
   </data>
   <data name="Settings_Features_PortForwarding_Description">
-    <value>Lewati tembok api untuk menghubungkan ke server dan perangkat P2P dalam jaringan lokal Anda.</value>
+    <value>Melewati firewall untuk menghubungkan Anda ke server dan perangkat P2P dalam jaringan lokal Anda.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Footer">
     <value>Untuk menggunakan Penerusan Port, silakan hubungkan diri Anda ke server yang mendukung P2P.</value>
@@ -2181,13 +2181,13 @@ dihentikan</value>
     <value>Sesuaikan koneksi Anda dengan menentukan aplikasi dan alamat IP mana saja yang akan terlindung oleh VPN.</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Inverse">
-    <value>Kebalikan</value>
+    <value>Berkebalikan</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Inverse_Description">
-    <value>Hanya aplikasi dan alamat IP yang dipilih yang akan terhubung ke VPN, lalu lintas lainnya tidak terlindung</value>
+    <value>Hanya aplikasi dan alamat IP yang dipilih yang akan terhubung ke VPN, sedangkan lalu lintas lainnya tidak terlindung</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Add">
-    <value>Tambahkan IP</value>
+    <value>Tambah IP</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Header">
     <value>Alamat IP yang dipilih ({0})</value>
@@ -2197,7 +2197,7 @@ dihentikan</value>
     <value>Hapus IP</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Watermark">
-    <value>Tambahkan alamat IPv4</value>
+    <value>Tambah alamat IPv4</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Standard">
     <value>Standar</value>
@@ -2215,7 +2215,7 @@ dihentikan</value>
     <value>Penghubungan otomatis</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>Anda akan terhubung ke server ketika Proton VPN dibuka</value>
+    <value>Anda akan terhubung ke salah satu server segera setelah aplikasi Proton VPN diluncurkan</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>Koneksi tercepat</value>
@@ -2233,7 +2233,7 @@ dihentikan</value>
     <value>Buka di desktop</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray">
-    <value>Kecilkan ke Baki Sistem</value>
+    <value>Kecilkan ke System Tray</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Taskbar">
     <value>Kecilkan ke Taskbar</value>
@@ -2359,13 +2359,13 @@ dihentikan</value>
     <value>Dukungan</value>
   </data>
   <data name="Settings_Support_DebugLogs">
-    <value>Catatan debug</value>
+    <value>Log debug</value>
   </data>
   <data name="Settings_Support_DebugLogs_Application">
     <value>Log aplikasi</value>
   </data>
   <data name="Settings_Support_DebugLogs_ErrorMessage">
-    <value>Folder catatan tidak dapat ditemukan.</value>
+    <value>Folder log tidak dapat ditemukan.</value>
   </data>
   <data name="Settings_Support_DebugLogs_Service">
     <value>Catatan layanan</value>

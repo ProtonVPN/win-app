@@ -168,7 +168,7 @@
   <data name="Common_States_On">
     <value>Уключана</value>
   </data>
-  <data name="Connection_Error_MissingConnectionCertificate">
+  <data name="Connection_Error_MissingAuthCertificate">
     <value>Не ўдалося атрымаць сертыфікат аўтэнтыфікацыі Proton VPN па прычыне праблем з сеткай.</value>
   </data>
   <data name="Connection_Error_NoServers">

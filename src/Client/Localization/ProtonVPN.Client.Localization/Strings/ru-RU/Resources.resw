@@ -168,7 +168,7 @@
   <data name="Common_States_On">
     <value>Вкл.</value>
   </data>
-  <data name="Connection_Error_MissingConnectionCertificate">
+  <data name="Connection_Error_MissingAuthCertificate">
     <value>Proton VPN не смог получить сертификат аутентификации из-за проблемы с сетью.</value>
   </data>
   <data name="Connection_Error_NoServers">
@@ -1918,7 +1918,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Войти с паролем</value>
   </data>
   <data name="Login_Form_SignInWithSso">
-    <value>Войти с помощью системы единого входа</value>
+    <value>Войти через SSO</value>
   </data>
   <data name="Login_Form_TroubleSigningIn">
     <value>Проблемы со входом</value>

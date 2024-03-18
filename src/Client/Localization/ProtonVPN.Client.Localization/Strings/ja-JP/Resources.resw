@@ -168,7 +168,7 @@
   <data name="Common_States_On">
     <value>オン</value>
   </data>
-  <data name="Connection_Error_MissingConnectionCertificate">
+  <data name="Connection_Error_MissingAuthCertificate">
     <value>Proton VPN はネットワークの問題によりクライアント証明書の取得に失敗しました。</value>
   </data>
   <data name="Connection_Error_NoServers">
@@ -1330,7 +1330,7 @@
     <value>無料サーバーの変更回数が上限に達しました。</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
-    <value>Proton Free automatically connects you to the fastest available free server from our {0} free countries. This will normally be the closest server to your location.</value>
+    <value>Proton Free は、{0} ヶ国から利用可能な最速の無料サーバーに自動的に接続します。 通常、これはあなたの場所に最も近いサーバーになります。</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Other">
     <value>無料サーバーの国 ({0})</value>
@@ -2264,7 +2264,7 @@ Smart Routingは通常、反プライバシー法やその他の形式の検閲�
     <value>OpenVPN ネットワークドライバ</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver_Description">
-    <value>Network drivers can impact your connection speed. The new TUN adapter provides higher speed and falls back on the TAP adapter if it encounters any connectivity problems.</value>
+    <value>ネットワークドライバーは接続速度に影響を与える可能性があります。 新しい TUN アダプターはより高速な速度を提供し、接続上の問題が発生した場合は TAP アダプターに戻ります。</value>
   </data>
   <data name="Settings_General_Theme">
     <value>テーマ</value>
