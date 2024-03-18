@@ -1608,7 +1608,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The message displayed in Disconnect modal window while trying to identify connection problem</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch">
-    <value>O Kill switch protege o seu IP bloqueando todas as ligações. Em caso de problemas, pode desactivar o Kill switch.</value>
+    <value>O Kill switch protege o seu IP bloqueando todas as ligações. Em caso de problemas, pode desativar o Kill switch.</value>
     <comment>The text displayed in Disconnect modal window if the disconnect occurred with kill switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoServers">
@@ -1620,7 +1620,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The error description displayed in Disconnect modal window if TAP adapter is not installed</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_OldVersion">
-    <value>Versão do adaptador de rede desactualizada.</value>
+    <value>Versão do adaptador de rede desatualizada.</value>
     <comment>The error description displayed in Disconnect modal window if TAP adapter version is too low</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TapErrorHelp">
@@ -1628,7 +1628,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The text displayed in Disconnect modal window if TAP error is detected</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TlsCertificateError">
-    <value>Há um problema a validar o certificado do servidor VPN, o que pode indicar que a sua rede pode estar a ser manipulada por terceiros ou que o servidor ao qual está a tentar ligar-se tem um problema de configuração. Pode obter ajuda do nosso suporte ao cliente enviando uma mensagem para &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Issue Report"/&gt;&lt;/Hyperlink&gt;.</value>
+    <value>Há um problema a validar o certificado do servidor VPN, o que pode indicar que a sua rede pode estar a ser manipulada por terceiros ou que o servidor ao qual está a tentar ligar-se tem um problema de configuração. Pode obter ajuda do nosso apoio ao cliente enviando uma mensagem para &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Issue Report"/&gt;&lt;/Hyperlink&gt;.</value>
     <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occurred</comment>
   </data>
   <data name="Dialogs_DoNotShowThisMessageAgain">
@@ -1643,11 +1643,11 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The text on "Keep disabled" button in the Enable Smart Protocol window</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_msg">
-    <value>O Proton VPN detectou que a sua rede actual está a impedir uma ligação à VPN. Ativar o Smart Protocol pode ultrapassar esta limitação.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;Saiba mais sobre o Smart Protocol&lt;/Hyperlink&gt;.</value>
+    <value>O Proton VPN detetou que a sua rede atual está a impedir uma ligação à VPN. Ativar o Smart Protocol pode ultrapassar esta limitação.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;Saiba mais sobre o Smart Protocol&lt;/Hyperlink&gt;.</value>
     <comment>The message displayed in the Enable Smart Protocol window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about Smart Protocol.").</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_ttl">
-    <value>Smart Protocol actualmente descativado</value>
+    <value>Smart Protocol atualmente desativado</value>
     <comment>The title of the Enable Smart Protocol window</comment>
   </data>
   <data name="Dialogs_Exit_btn_Cancel">
@@ -1664,7 +1664,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Sair da aplicação desliga o dispositivo da VPN.</value>
   </data>
   <data name="Dialogs_Exit_msg_KillSwitchOn">
-    <value>O Kill switch bloqueia todas as ligações para evitar a fuga de dados. Se sair da aplicação, isto irá desactivar o Kill switch.</value>
+    <value>O Kill Switch bloqueia todas as ligações para evitar a fuga de dados. Sair da aplicação irá desativar o Kill Switch.</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch">
     <value>O Kill switch permanente está ativado. Se sair da aplicação, isto irá bloquear todas as ligações de saída até que o Proton VPN seja ligado novamente.</value>
@@ -1734,26 +1734,26 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The warning message displayed when P2P traffic is detected on servers not allowing it.</comment>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_msg">
-    <value>Ativar o encaminhamento de porta só quando necessário, para garantir a mais forte proteção de privacidade e segurança.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadPortForwardingRisksCommand}"&gt;Será que preciso de o encaminhamento de porta?&lt;/Hyperlink&gt;</value>
+    <value>Ativar o encaminhamento de porta só quando necessário, para garantir a mais forte proteção de privacidade e segurança.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadPortForwardingRisksCommand}"&gt;Será que preciso do encaminhamento de porta?&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_ttl">
     <value>Ativar o encaminhamento de porta?</value>
   </data>
   <data name="Dialogs_Proxy_msg_ProxyDetected">
-    <value>O Proton VPN detectou um servidor proxy configurado na sua rede local. O Proton VPN não pode proteger o tráfego que passa por este proxy. Isto significa que a sua ligação não estará completamente protegida, como esperado.</value>
+    <value>O Proton VPN detetou um servidor proxy configurado na sua rede local. O Proton VPN não pode proteger o tráfego que passa por este proxy. Isto significa que a sua ligação não estará completamente protegida, como esperado.</value>
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
-    <value>Apresentando o visual actualizado do Proton. Muitos serviços, uma missão. Damos-lhe as boas-vindas a uma internet onde a privacidade é o padrão. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Saber mais&lt;/Hyperlink&gt;</value>
+    <value>Apresentando o visual atualizado do Proton. Muitos serviços, uma missão. Damos-lhe as boas-vindas a uma internet onde a privacidade é o padrão. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Saber mais&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Dialogs_Rebranding_Title_new_plans">
-    <value>Proton actualizado, proteção unificada</value>
+    <value>Proton atualizado, proteção unificada</value>
   </data>
   <data name="Dialogs_Rebranding_btn_GotIt_new_plans">
     <value>Entendi</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
-    <value>Para que o tunelamento dividido funcione corretamente, deve desabilitar a chave de segurança.</value>
+    <value>Para que o Split Tunneling funcione corretamente, deve desabilitar o Kill Switch.</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1_One">
     <value>Centenas de servidores em {0} país</value>
@@ -3248,7 +3248,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_msg">
-    <value>Possui necessidade avançadas ou profissionais que requerem portas diferentes do habitual? Actualize para o Plus para aceder a esta e outras funcionalidades premium.</value>
+    <value>Possui necessidades avançadas ou profissionais que requerem portas diferentes do habitual? Atualize para o Plus para aceder a esta e outras funcionalidades premium.</value>
     <comment>The text in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_ttl">

@@ -2342,7 +2342,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The watermark text displayed in empty Server combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_msg_DiscardChangesConfirm">
-    <value>Hay cambios de perfil sin guardar. &lt;LineBreak/&gt;&lt;LineBreak/&gt;¿En verdad desea descartarlos?</value>
+    <value>Hay cambios de perfil sin guardar. &lt;LineBreak/&gt;&lt;LineBreak/&gt;¿Está seguro de que quiere descartarlos?</value>
     <comment>The message displayed in Question dialog when cancelling changes in Profile window.</comment>
   </data>
   <data name="Profiles_Profile_ttl_Create">

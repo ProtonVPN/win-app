@@ -2673,7 +2673,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Driver Jaringan OpenVPN</value>
   </data>
   <data name="Settings_Advanced_lbl_NetworkDriver_info">
-    <value>Driver jaringan dapat mempengaruhi koneksi dan kecepatan Anda. Adapter TUN baru menyediakan kecepatan yang lebih tinggi, kembali ke adapter TAP jika Anda menemukan masalah pada konektivitas.</value>
+    <value>Driver jaringan dapat memengaruhi koneksi dan kecepatan Anda. Adapter TUN yang baru menyediakan kecepatan yang lebih tinggi, namun apabila koneksi Anda bermasalah, kembalilah ke adapter TAP yang lama.</value>
   </data>
   <data name="Settings_Advanced_lbl_NonStandardPorts">
     <value>Port non-standar</value>
