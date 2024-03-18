@@ -168,7 +168,7 @@
   <data name="Common_States_On">
     <value>On</value>
   </data>
-  <data name="Connection_Error_MissingConnectionCertificate">
+  <data name="Connection_Error_MissingAuthCertificate">
     <value>由於網路問題，Proton VPN 提取認證憑證失敗。</value>
   </data>
   <data name="Connection_Error_NoServers">

@@ -168,7 +168,7 @@
   <data name="Common_States_On">
     <value>Activé</value>
   </data>
-  <data name="Connection_Error_MissingConnectionCertificate">
+  <data name="Connection_Error_MissingAuthCertificate">
     <value>Proton VPN n'a pas pu obtenir l'authentification du certificat suite à une erreur réseau.</value>
   </data>
   <data name="Connection_Error_NoServers">
@@ -1823,7 +1823,7 @@ bloqués</value>
     <value>Mise à jour disponible</value>
   </data>
   <data name="Home_Update_UpdateReady">
-    <value>La mise à jour est prête</value>
+    <value>La mise à jour est prête.</value>
   </data>
   <data name="Home_VpnStatus_Landmark">
     <value>État du VPN</value>
@@ -1932,11 +1932,11 @@ bloqués</value>
     <value>Sixième chiffre</value>
   </data>
   <data name="Main_Loading_SigningIn">
-    <value>Connexion en cours, veuillez patienter...</value>
+    <value>La connexion est en cours. Veuillez patienter...</value>
     <comment>Message in the loading screen when signing in or starting the app</comment>
   </data>
   <data name="Main_Loading_SigningOut">
-    <value>Déconnexion en cours, veuillez patienter...</value>
+    <value>La déconnexion est en cours. Veuillez patienter...</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
   <data name="Notifications_PortForwarding_Description">
@@ -1952,7 +1952,7 @@ bloqués</value>
     <value>Tor</value>
   </data>
   <data name="Server_Free">
-    <value>Serveur FREE</value>
+    <value>Serveur Free</value>
   </data>
   <data name="Settings_About">
     <value>À propos</value>
@@ -2027,13 +2027,13 @@ bloqués</value>
     <value>Routage alternatif</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting_Description">
-    <value>Si les services Proton sont bloqués en raison de restrictions du réseau, nous essaierons d'utiliser un routage alternatif du réseau pour vous connecter à nos sites.</value>
+    <value>Si les services Proton sont bloqués en raison de restrictions de réseau, nous essaierons d'utiliser un autre routage de réseau pour vous connecter à nos sites.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
     <value>Serveurs DNS personnalisés</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
-    <value>Vous ne pourrez pas utiliser l'option NetShield lorsque vous êtes connecté à un serveur DNS personnalisé.</value>
+    <value>Vous ne pourrez pas utiliser l'option NetShield si vous êtes connecté à un serveur DNS personnalisé.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title">
     <value>Activer les serveurs DNS personnalisés ?</value>
@@ -2053,7 +2053,7 @@ bloqués</value>
     <value>Protection contre les fuites d'adresses IPv6</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
-    <value>Empêcher la fuite d'adresse IPv6.</value>
+    <value>Empêche la fuite d'adresse IPv6.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
     <value>Connexions LAN</value>
@@ -2065,7 +2065,7 @@ bloqués</value>
     <value>Type de NAT</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Description">
-    <value>Vous ne pourrez pas utiliser la redirection de port avec un NAT modérée.</value>
+    <value>Vous ne pourrez pas utiliser la redirection de port avec un NAT modéré.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Title">
     <value>Activer le NAT modéré?</value>
@@ -2077,13 +2077,13 @@ bloqués</value>
     <value>Modéré (type 2)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
-    <value>Certaines restrictions sur les données entrant dans votre réseau. Cette option est idéale pour les jeux vidéo en ligne.</value>
+    <value>Il existe certaines restrictions sur les données entrant dans votre réseau. Cette option est parfaite pour les jeux vidéo en ligne.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict">
     <value>Strict (type 3)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
-    <value>Restreint les données entrant dans votre réseau. Cette option est plus sûre, mais peut compliquer les connexions de jeux vidéo en pair à pair.</value>
+    <value>Restreint les données entrant dans votre réseau. Cette option est plus sûre, mais peut compliquer les connexions P2P pour les jeux vidéo.</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protocole</value>
@@ -2125,7 +2125,7 @@ bloqués</value>
     <value>NetShield</value>
   </data>
   <data name="Settings_Features_NetShield_Conflict_Description">
-    <value>Vous ne pourrez pas vous connecter à un serveur DNS personnalisé quand NetShield est activé.</value>
+    <value>Vous ne pourrez pas vous connecter à un serveur DNS personnalisé si NetShield est activé.</value>
   </data>
   <data name="Settings_Features_NetShield_Conflict_Title">
     <value>Activer NetShield ?</value>
@@ -2146,7 +2146,7 @@ bloqués</value>
     <value>Copier le numéro de port</value>
   </data>
   <data name="Settings_Features_PortForwarding_Conflict_Description">
-    <value>Vous ne pourrez pas utiliser le NAT modérée lorsque la redirection de port est activée.</value>
+    <value>Vous ne pourrez pas utiliser le NAT modérée si la redirection de port est activée.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Conflict_Title">
     <value>Activer le transfert de port ?</value>
@@ -2196,7 +2196,7 @@ bloqués</value>
     <value>Inverse</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Inverse_Description">
-    <value>Seules les applications et adresses IP sélectionnées se connectent au travers du VPN, tout le reste du trafic n'est pas protégé</value>
+    <value>Seules les applications et adresses IP sélectionnées se connectent par VPN. Tout le reste du trafic n'est pas protégé</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Add">
     <value>Ajouter une adresse IP</value>

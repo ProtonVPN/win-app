@@ -168,7 +168,7 @@
   <data name="Common_States_On">
     <value>Aan</value>
   </data>
-  <data name="Connection_Error_MissingConnectionCertificate">
+  <data name="Connection_Error_MissingAuthCertificate">
     <value>Proton VPN is er niet in geslaagd om het authenticatiecertificaat op te halen vanwege een netwerk probleem.</value>
   </data>
   <data name="Connection_Error_NoServers">
@@ -264,7 +264,7 @@
     <value>P2P</value>
   </data>
   <data name="Countries_P2PCountries">
-    <value>P2P landen ({0})</value>
+    <value>P2P-landen ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_P2P_Cities">
@@ -308,7 +308,7 @@
     <value>Tor</value>
   </data>
   <data name="Countries_TorCountries">
-    <value>Tor landen ({0})</value>
+    <value>Tor-landen ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_TorServers">
@@ -2278,7 +2278,7 @@ gestopt</value>
     <value>OpenVPN-netwerk stuurprogramma</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver_Description">
-    <value>Netwerk chauffeurs kunnen uw verbindingssnelheid beïnvloeden. De nieuwe TUN-adapter heeft een hogere snelheid en valt terug op de TAP-adapter als het problemen met de verbinding ondervindt.</value>
+    <value>Netwerkstuurprogramma's kunnen uw verbindingssnelheid beïnvloeden. De nieuwe TUN-adapter heeft een hogere snelheid en valt terug op de TAP-adapter als het problemen met de verbinding ondervindt.</value>
   </data>
   <data name="Settings_General_Theme">
     <value>Thema</value>
@@ -2374,7 +2374,7 @@ gestopt</value>
     <value>Debug Logboek</value>
   </data>
   <data name="Settings_Support_DebugLogs_Application">
-    <value>Toepassingslogboek</value>
+    <value>Applicatielogboek</value>
   </data>
   <data name="Settings_Support_DebugLogs_ErrorMessage">
     <value>De map met logs is niet gevonden</value>

@@ -168,7 +168,7 @@
   <data name="Common_States_On">
     <value>Pornit</value>
   </data>
-  <data name="Connection_Error_MissingConnectionCertificate">
+  <data name="Connection_Error_MissingAuthCertificate">
     <value>Proton VPN a eșuat să preia certificatul de autentificare datorită problemelor de rețea.</value>
   </data>
   <data name="Connection_Error_NoServers">
