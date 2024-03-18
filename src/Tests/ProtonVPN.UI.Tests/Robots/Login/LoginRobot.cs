@@ -29,9 +29,12 @@ public partial class LoginRobot : UIActions
     protected Button SignInButton => ElementByAutomationId("SignInButton").AsButton();
     protected TextBox ErrorMessageTextBox => ElementByAutomationId("Message", TestConstants.MediumTimeout).AsTextBox();
     protected TextBox AuthenticateButton => ElementByAutomationId("AuthenticateButton").AsTextBox();
-    protected TextBox TwoFactorInputField(string position) => ElementByName($"{position} digit").AsTextBox();
 
     protected Button HelpButton => ElementByAutomationId("HelpButton").AsButton();
     protected Menu HelpFlyoutMenu => ElementByAutomationId("HelpFlyoutMenu").AsMenu();
     protected MenuItem ReportIssueMenuItem => HelpFlyoutMenu.FindFirstDescendant("ReportIssueMenuItem").AsMenuItem();
+    protected TextBox TwoFactorInputField(string position)
+    {
+        return ElementByName($"{position} digit", TestConstants.ShortTimeout).AsTextBox();
+    }
 }

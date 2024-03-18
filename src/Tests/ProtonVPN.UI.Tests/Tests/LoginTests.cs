@@ -102,7 +102,6 @@ public class LoginTests : TestSession
     public void LoginWithZeroAssignedConnectionsUser()
     {
         _loginRobot
-            .Wait(TestConstants.InitializationDelay)
             .DoLogin(TestUserData.ZeroAssignedConnectionsUser)
             .VerifyLoginErrorIsDisplayed(ZERO_VPN_CONNECTIONS_ASSIGNED_MESSAGES);
     }

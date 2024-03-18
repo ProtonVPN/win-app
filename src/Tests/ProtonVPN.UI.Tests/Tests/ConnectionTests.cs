@@ -66,11 +66,6 @@ public class ConnectionTests : TestSession
             .DoWaitForVpnStatusSubtitleLabel()
             .VerifyVpnStatusIsDisconnected()
             .VerifyConnectionCardIsInInitalState();
-
-        // VPNWIN-2096 - When reconnection logic is implemented remove this sleep.
-        // Certificate sometimes takes longer to get and app does not handle it yet
-        _shellRobot
-            .Wait(TestConstants.InitializationDelay);
     }
 
     [Test]
@@ -98,8 +93,7 @@ public class ConnectionTests : TestSession
 
         _homeRobot
             .DoConnect()
-            .VerifyAllStatesUntilConnected()
-            .Wait(TestConstants.ConnectionDelay);
+            .VerifyAllStatesUntilConnected();
 
         CommonAssertions.AssertIpAddressChanged(unprotectedIpAddress);
 
@@ -135,10 +129,6 @@ public class ConnectionTests : TestSession
     [Test]
     public void ConnectToSpecificCountry()
     {
-        // VPNWIN-1952 - Country list loading should be improved
-        _shellRobot
-            .Wait(TestConstants.InitializationDelay);
-
         NavigateToCountriesPage();
 
         _countriesRobot
@@ -156,10 +146,6 @@ public class ConnectionTests : TestSession
     [Test]
     public void ConnectToSpecificCity()
     {
-        // VPNWIN-1952 - Country list loading should be improved
-        _shellRobot
-            .Wait(TestConstants.InitializationDelay);
-
         NavigateToCountriesPage();
 
         _countriesRobot
@@ -181,9 +167,6 @@ public class ConnectionTests : TestSession
     [Test]
     public void ConnectToSpecificServer()
     {
-        // VPNWIN-1952 - Country list loading should be improved
-        _shellRobot
-            .Wait(TestConstants.InitializationDelay);
 
         NavigateToServers(COUNTRY_CODE, CITY);
 
