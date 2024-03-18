@@ -21,7 +21,6 @@ using System.Text;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Navigation;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.System;
 
@@ -37,7 +36,20 @@ public sealed partial class TwoFactorForm
     {
         ViewModel = App.GetService<TwoFactorFormViewModel>();
         ViewModel.OnTwoFactorFailure += OnTwoFactorFailure;
+        ViewModel.OnTwoFactorSuccess += OnTwoFactorSuccess;
         InitializeComponent();
+        FirstDigit.Loaded += OnFirstDigitLoaded;
+    }
+
+    private void OnFirstDigitLoaded(object sender, RoutedEventArgs e)
+    {
+        ResetForm();
+    }
+
+    private void ResetForm()
+    {
+        ClearAllDigits();
+        FirstDigit.Focus(FocusState.Programmatic);
     }
 
     public TwoFactorFormViewModel ViewModel { get; }
@@ -215,17 +227,14 @@ public sealed partial class TwoFactorForm
         }
     }
 
-    protected override void OnNavigatedTo(NavigationEventArgs e)
-    {
-        base.OnNavigatedTo(e);
-
-        FirstDigit.Focus(FocusState.Programmatic);
-    }
-
     private void OnTwoFactorFailure(object? sender, EventArgs e)
     {
+        ResetForm();
+    }
+
+    private void OnTwoFactorSuccess(object? sender, EventArgs e)
+    {
         ClearAllDigits();
-        FirstDigit.Focus(FocusState.Programmatic);
     }
 
     private void ClearAllDigits()

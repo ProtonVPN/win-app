@@ -17,10 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Windows.System;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Navigation;
+using Windows.System;
 
 namespace ProtonVPN.Client.UI.Login.Forms;
 
@@ -30,6 +29,13 @@ public sealed partial class LoginForm
     {
         ViewModel = App.GetService<LoginFormViewModel>();
         InitializeComponent();
+        UsernameTextBox.Loaded += OnUsernameTextBoxLoaded;
+    }
+
+    private void OnUsernameTextBoxLoaded(object sender, RoutedEventArgs e)
+    {
+        UsernameTextBox.Focus(FocusState.Programmatic);
+        UsernameTextBox.SelectAll();
     }
 
     public LoginFormViewModel ViewModel { get; }
@@ -40,13 +46,5 @@ public sealed partial class LoginForm
         {
             LoginButton.Command.Execute(null);
         }
-    }
-
-    protected override void OnNavigatedTo(NavigationEventArgs e)
-    {
-        base.OnNavigatedTo(e);
-
-        UsernameTextBox.Focus(FocusState.Programmatic);
-        UsernameTextBox.SelectAll();
     }
 }
