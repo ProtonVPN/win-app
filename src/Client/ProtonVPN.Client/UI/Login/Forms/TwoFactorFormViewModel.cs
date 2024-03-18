@@ -47,6 +47,7 @@ public partial class TwoFactorFormViewModel : PageViewModelBase<ILoginViewNaviga
     public override bool IsBackEnabled => true;
 
     public event EventHandler OnTwoFactorFailure;
+    public event EventHandler OnTwoFactorSuccess;
 
     public TwoFactorFormViewModel(
         ILoginViewNavigator loginViewNavigator, 
@@ -81,6 +82,7 @@ public partial class TwoFactorFormViewModel : PageViewModelBase<ILoginViewNaviga
                 }
 
                 _eventMessageSender.Send(new LoginStateChangedMessage(LoginState.Success));
+                OnTwoFactorSuccess?.Invoke(this, EventArgs.Empty);
             }
             else
             {
