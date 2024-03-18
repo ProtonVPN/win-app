@@ -78,12 +78,22 @@ public class DeviceLocationObserver :
     {
         DeviceLocation? currentLocation = _settings.DeviceLocation;
 
+        // Secure core servers do not provide client IP address, so we should keep the last known.
+        string ip = !string.IsNullOrEmpty(message.ClientIpAddress)
+            ? message.ClientIpAddress
+            : currentLocation?.IpAddress ?? string.Empty;
+
         // Connection details does not contain the ISP info. If IP address has not changed, we can assume ISP is the same as previously.
         string isp = currentLocation != null && message.ClientIpAddress == currentLocation?.IpAddress
             ? currentLocation.Value.Isp
             : string.Empty;
 
-        UpdateDeviceLocation(message.ClientIpAddress, message.ClientCountryCode, isp);
+        // Secure core servers do not provide client country code, so we should keep the last known.
+        string countryCode = !string.IsNullOrEmpty(message.ClientCountryCode)
+            ? message.ClientCountryCode
+            : currentLocation?.CountryCode ?? string.Empty;
+
+        UpdateDeviceLocation(ip, countryCode, isp);
     }
 
     public async void Receive(ConnectionStatusChanged message)
