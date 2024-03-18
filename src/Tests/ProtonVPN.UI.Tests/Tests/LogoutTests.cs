@@ -47,11 +47,6 @@ public class LogoutTests : TestSession
             .DoWaitForVpnStatusSubtitleLabel()
             .VerifyVpnStatusIsDisconnected()
             .VerifyConnectionCardIsInInitalState();
-
-        // VPNWIN-2096 - When reconnection logic is implemented remove this sleep.
-        // Certificate sometimes takes longer to get and app does not handle it yet
-        _shellRobot
-            .Wait(TestConstants.InitializationDelay);
     }
 
     [Test]
@@ -72,8 +67,7 @@ public class LogoutTests : TestSession
 
         _homeRobot
             .DoConnect()
-            .VerifyAllStatesUntilConnected()
-            .Wait(TestConstants.ConnectionDelay);
+            .VerifyAllStatesUntilConnected();
 
         CommonAssertions.AssertIpAddressChanged(unprotectedIpAddress);
 

@@ -56,11 +56,6 @@ public class FreeConnectionTests : TestSession
             .DoWaitForVpnStatusSubtitleLabel()
             .VerifyVpnStatusIsDisconnected()
             .VerifyConnectionCardIsInInitalStateForFreeUser();
-
-        // VPNWIN-2096 - When reconnection logic is implemented remove this sleep.
-        // Certificate sometimes takes longer to get and app does not handle it yet
-        _shellRobot
-            .Wait(TestConstants.InitializationDelay);
     }
 
     [Test]
@@ -70,8 +65,7 @@ public class FreeConnectionTests : TestSession
 
         _homeRobot
             .DoConnect()
-            .VerifyAllStatesUntilConnectedToFreeServer()
-            .Wait(TestConstants.ConnectionDelay);
+            .VerifyAllStatesUntilConnectedToFreeServer();
 
         CommonAssertions.AssertIpAddressChanged(unprotectedIpAddress);
 
@@ -111,8 +105,7 @@ public class FreeConnectionTests : TestSession
 
         _homeRobot
             .DoConnect()
-            .VerifyAllStatesUntilConnectedToFreeServer()
-            .Wait(TestConstants.ConnectionDelay);
+            .VerifyAllStatesUntilConnectedToFreeServer();
 
         CommonAssertions.AssertIpAddressChanged(unprotectedIpAddress);
 
@@ -121,8 +114,7 @@ public class FreeConnectionTests : TestSession
         _homeRobot
             .DoChangeServer()
             .VerifyVpnStatusIsConnecting()
-            .VerifyVpnStatusIsConnected()
-            .Wait(TestConstants.ConnectionDelay);
+            .VerifyVpnStatusIsConnected();
 
         CommonAssertions.AssertIpAddressChanged(unprotectedIpAddress);
         CommonAssertions.AssertIpAddressChanged(protectedIpAddress);

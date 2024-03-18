@@ -17,8 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using FlaUI.Core.AutomationElements;
-using FlaUI.Core.Input;
+using System;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots.Login;
@@ -47,7 +46,7 @@ public partial class LoginRobot
     public LoginRobot DoReportAnIssue()
     {
         HelpButton.Invoke();
-        CommonActions.Wait(TestConstants.DefaultAnimationDelay);
+        CommonActions.Wait(TimeSpan.FromSeconds(1));
         ReportIssueMenuItem.Click();
         return this;
     }
