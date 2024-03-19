@@ -64,7 +64,6 @@ public class MainWindowActivator :
     private readonly ILocalizationProvider _localizationProvider;
 
     private bool _handleClosedEvents = true;
-    private bool _isFirstActivation = true;
 
     public MainWindowActivator(
         ILogger logger,
@@ -95,28 +94,19 @@ public class MainWindowActivator :
         _localizationProvider = localizationProvider;
     }
 
-    public void Show()
+    public void Initialize()
     {
-        if (_isFirstActivation)
-        {
-            App.MainWindow.Closed += OnMainWindowClosed;
-            App.MainWindow.WindowStateChanged += OnMainWindowStateChanged;
+        Logger.Info<AppLog>("Initializing Main Window.");
 
-            InvalidateWindowPosition();
-            InvalidateWindowContent();
-            InvalidateAppTheme();
-            InvalidateFlowDirection();
+        App.MainWindow.Closed += OnMainWindowClosed;
+        App.MainWindow.WindowStateChanged += OnMainWindowStateChanged;
 
-            Activate();
+        InvalidateWindowPosition();
+        InvalidateWindowContent();
+        InvalidateAppTheme();
+        InvalidateFlowDirection();
 
-            _isFirstActivation = false;
-
-            _eventMessageSender.Send(new ApplicationStartedMessage());
-        }
-        else
-        {
-            Activate();
-        }
+        _eventMessageSender.Send(new ApplicationStartedMessage());
     }
 
     public void Hide()
@@ -147,7 +137,7 @@ public class MainWindowActivator :
         App.MainWindow.ApplyFlowDirection(_settings.Language);
     }
 
-    private void Activate()
+    public void Activate()
     {
         Logger.Info<AppLog>("Activate application. Disable efficiency mode if enabled.");
 
@@ -229,15 +219,18 @@ public class MainWindowActivator :
 
     private void OnMainWindowClosed(object sender, WindowEventArgs args)
     {
+        Logger.Info<AppLog>("The main window was requested to close.");
+
         SaveWindowPosition();
 
         if (_handleClosedEvents && _userAuthenticator.IsLoggedIn)
         {
-            // Hide window to tray
-            args.Handled = true;
+            args.Handled = true; // Do not exit the app
             Hide();
             return;
         }
+
+        Logger.Info<AppLog>("The client was requested to exit.");
 
         App.MainWindow.Closed -= OnMainWindowClosed;
 
@@ -318,12 +311,19 @@ public class MainWindowActivator :
 
     private void SaveWindowPosition()
     {
-        if (_userAuthenticator.IsLoggedIn && App.MainWindow.WindowState == WindowState.Normal)
+        try
         {
-            _settings.WindowXPosition = App.MainWindow.AppWindow.Position.X;
-            _settings.WindowYPosition = App.MainWindow.AppWindow.Position.Y;
-            _settings.WindowWidth = Convert.ToInt32(App.MainWindow.Width);
-            _settings.WindowHeight = Convert.ToInt32(App.MainWindow.Height);
+            if (_userAuthenticator.IsLoggedIn && App.MainWindow.WindowState == WindowState.Normal)
+            {
+                _settings.WindowXPosition = App.MainWindow.AppWindow.Position.X;
+                _settings.WindowYPosition = App.MainWindow.AppWindow.Position.Y;
+                _settings.WindowWidth = Convert.ToInt32(App.MainWindow.Width);
+                _settings.WindowHeight = Convert.ToInt32(App.MainWindow.Height);
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.Error<AppLog>("An exception occurred when saving the window position.", ex);
         }
     }
 }

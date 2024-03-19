@@ -92,7 +92,7 @@ public class PowerModeAndWindowActivationHandler : IHandler, IEventMessageReceiv
         if (args.WindowActivationState is not WindowActivationState.Deactivated &&
             _userAuthenticator.IsLoggedIn)
         {
-            _logger.Debug<AppLog>("Window activated while logged in");
+            _logger.Debug<AppLog>($"Window activated while logged in (State: {args.WindowActivationState})");
             OnTrigger();
         }
     }
