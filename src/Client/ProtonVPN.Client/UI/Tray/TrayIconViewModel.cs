@@ -72,7 +72,7 @@ public partial class TrayIconViewModel :
     [RelayCommand]
     public void ShowApplication()
     {
-        _mainWindowActivator.Show();
+        _mainWindowActivator.Activate();
     }
 
     [RelayCommand]

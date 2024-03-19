@@ -88,9 +88,11 @@ public class Bootstrapper : IBootstrapper
 
     private void HandleMainWindow()
     {
+        _mainWindowActivator.Initialize();
+
         if (!_userAuthenticator.HasAuthenticatedSessionData() || !_settings.IsAutoLaunchEnabled || _settings.AutoLaunchMode == AutoLaunchMode.OpenOnDesktop)
         {
-            _mainWindowActivator.Show();
+            _mainWindowActivator.Activate();
         }
     }
 
