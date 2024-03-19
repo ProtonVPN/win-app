@@ -159,7 +159,7 @@ public class GlobalSettings : IGlobalSettings
     public List<FeatureFlag> FeatureFlags
     {
         get => _globalCache.GetListValueType<FeatureFlag>(SettingEncryption.Encrypted) ?? DefaultSettings.FeatureFlags;
-        set => _globalCache.SetListValueType<FeatureFlag>(value, SettingEncryption.Encrypted);
+        set => _globalCache.SetListValueType(value, SettingEncryption.Encrypted);
     }
 
     public bool IsFeatureConnectedServerCheckEnabled
@@ -177,7 +177,7 @@ public class GlobalSettings : IGlobalSettings
     public Dictionary<string, Dictionary<string, string?>>? LegacySettingsByUsername
     {
         get => _globalCache.GetReferenceType<Dictionary<string, Dictionary<string, string?>>>(SettingEncryption.Unencrypted);
-        set => _globalCache.SetReferenceType<Dictionary<string, Dictionary<string, string?>>>(value, SettingEncryption.Unencrypted);
+        set => _globalCache.SetReferenceType(value, SettingEncryption.Unencrypted);
     }
 
     public ChangeServerSettings ChangeServerSettings

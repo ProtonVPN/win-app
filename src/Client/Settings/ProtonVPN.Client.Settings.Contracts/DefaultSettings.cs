@@ -51,8 +51,6 @@ public static class DefaultSettings
     public static bool IsAutoLaunchEnabled = true;
     public static AutoLaunchMode AutoLaunchMode = AutoLaunchMode.MinimizeToSystemTray;
     public static bool IsAutoConnectEnabled = true;
-    public static AutoConnectMode AutoConnectMode = AutoConnectMode.LatestConnection;
-    public static bool IsNetShieldEnabled = true;
     public static bool IsKillSwitchEnabled = false;
     public static bool IsGlobalSettingsMigrationDone = false;
     public static bool IsUserSettingsMigrationDone = false;
@@ -68,17 +66,29 @@ public static class DefaultSettings
     public static List<FeatureFlag> FeatureFlags = new();
     public static bool IsFeatureConnectedServerCheckEnabled = true;
     public static TimeSpan ConnectedServerCheckInterval = TimeSpan.FromMinutes(30);
+
     public static ChangeServerSettings ChangeServerSettings = new()
     {
         AttemptsLimit = 4,
         ShortDelay = TimeSpan.FromSeconds(90),
         LongDelay = TimeSpan.FromSeconds(1200),
     };
+
     public static ChangeServerAttempts ChangeServerAttempts = new()
     {
         LastAttemptUtcDate = DateTimeOffset.MinValue,
-        AttemptsCount = 0        
+        AttemptsCount = 0
     };
+
+    public static AutoConnectMode GetAutoConnectMode(bool isPaidUser)
+    {
+        return isPaidUser ? AutoConnectMode.LatestConnection : AutoConnectMode.FastestConnection;
+    }
+
+    public static bool IsNetShieldEnabled(bool isPaidUser)
+    {
+        return isPaidUser;
+    }
 
     public static List<SplitTunnelingApp> SplitTunnelingAppsList()
     {

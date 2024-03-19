@@ -43,6 +43,7 @@ public class SettingsModule : Module
         builder.RegisterType<GlobalSettingsMigrator>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<UserSettingsMigrator>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ProfilesMigrator>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<SettingsCorrector>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<ClientConfigObserver>().AsImplementedInterfaces().AutoActivate().SingleInstance();
         builder.RegisterType<FeatureFlagsObserver>().AsImplementedInterfaces().AutoActivate().SingleInstance();

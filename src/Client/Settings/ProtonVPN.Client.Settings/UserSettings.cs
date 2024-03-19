@@ -194,13 +194,29 @@ public class UserSettings : GlobalSettings, IUserSettings
 
     public AutoConnectMode AutoConnectMode
     {
-        get => _userCache.GetValueType<AutoConnectMode>(SettingEncryption.Unencrypted) ?? DefaultSettings.AutoConnectMode;
+        get
+        {
+            if (IsPaid)
+            {
+                return _userCache.GetValueType<AutoConnectMode>(SettingEncryption.Unencrypted) ?? DefaultSettings.GetAutoConnectMode(true);
+            }
+
+            return DefaultSettings.GetAutoConnectMode(false);
+        }
         set => _userCache.SetValueType<AutoConnectMode>(value, SettingEncryption.Unencrypted);
     }
 
     public bool IsNetShieldEnabled
     {
-        get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsNetShieldEnabled;
+        get
+        {
+            if (IsPaid)
+            {
+                return _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsNetShieldEnabled(true);
+            }
+
+            return DefaultSettings.IsNetShieldEnabled(false);
+        }
         set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
