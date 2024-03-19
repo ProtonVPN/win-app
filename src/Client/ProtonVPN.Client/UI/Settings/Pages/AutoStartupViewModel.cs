@@ -20,8 +20,11 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Common.Attributes;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Settings.Contracts;
@@ -32,7 +35,9 @@ using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public partial class AutoStartupViewModel : SettingsPageViewModelBase
+public partial class AutoStartupViewModel : SettingsPageViewModelBase,
+    IEventMessageReceiver<VpnPlanChangedMessage>,
+    IEventMessageReceiver<LoggedInMessage>
 {
     [ObservableProperty]
     private bool _isAutoLaunchEnabled;
@@ -45,13 +50,20 @@ public partial class AutoStartupViewModel : SettingsPageViewModelBase
     private AutoLaunchMode _currentAutoLaunchMode;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsAutoConnectCardExpanded))]
     private bool _isAutoConnectEnabled;
+
+    public bool IsAutoConnectCardExpanded => IsPaidUser && IsAutoConnectEnabled;
 
     [ObservableProperty]
     [property: SettingName(nameof(ISettings.AutoConnectMode))]
     [NotifyPropertyChangedFor(nameof(IsAutoConnectFastestConnection))]
     [NotifyPropertyChangedFor(nameof(IsAutoConnectLatestConnection))]
     private AutoConnectMode _currentAutoConnectMode;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsAutoConnectCardExpanded))]
+    private bool _isPaidUser;
 
     public bool IsAutoLaunchOpenOnDesktop
     {
@@ -83,7 +95,7 @@ public partial class AutoStartupViewModel : SettingsPageViewModelBase
         set => SetAutoConnectMode(value, AutoConnectMode.LatestConnection);
     }
 
-    public override string? Title => Localizer.Get("Settings_General_AutoStartup");
+    public override string Title => Localizer.Get("Settings_General_AutoStartup");
 
     public AutoStartupViewModel(
         IMainViewNavigator viewNavigator,
@@ -94,15 +106,17 @@ public partial class AutoStartupViewModel : SettingsPageViewModelBase
         IConnectionManager connectionManager,
         ILogger logger,
         IIssueReporter issueReporter)
-        : base(viewNavigator, 
-               localizationProvider, 
-               overlayActivator, 
-               settings,
-               settingsConflictResolver, 
-               connectionManager,
-               logger,
-               issueReporter)
-    { }
+        : base(viewNavigator,
+            localizationProvider,
+            overlayActivator,
+            settings,
+            settingsConflictResolver,
+            connectionManager,
+            logger,
+            issueReporter)
+    {
+        InvalidateIsPaidUser();
+    }
 
     protected override void SaveSettings()
     {
@@ -126,6 +140,11 @@ public partial class AutoStartupViewModel : SettingsPageViewModelBase
         yield return new(nameof(ISettings.AutoLaunchMode), CurrentAutoLaunchMode, Settings.AutoLaunchMode != CurrentAutoLaunchMode);
         yield return new(nameof(ISettings.IsAutoConnectEnabled), IsAutoConnectEnabled, Settings.IsAutoConnectEnabled != IsAutoConnectEnabled);
         yield return new(nameof(ISettings.AutoConnectMode), CurrentAutoConnectMode, Settings.AutoConnectMode != CurrentAutoConnectMode);
+    }
+
+    private void InvalidateIsPaidUser()
+    {
+        IsPaidUser = Settings.IsPaid;
     }
 
     private bool IsAutoLaunchMode(AutoLaunchMode autoLaunchMode)
@@ -152,5 +171,15 @@ public partial class AutoStartupViewModel : SettingsPageViewModelBase
         {
             CurrentAutoConnectMode = autoConnectMode;
         }
+    }
+
+    public void Receive(VpnPlanChangedMessage message)
+    {
+        ExecuteOnUIThread(InvalidateIsPaidUser);
+    }
+
+    public void Receive(LoggedInMessage message)
+    {
+        ExecuteOnUIThread(InvalidateIsPaidUser);
     }
 }

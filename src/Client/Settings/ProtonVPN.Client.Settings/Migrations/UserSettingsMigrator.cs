@@ -35,16 +35,19 @@ public class UserSettingsMigrator : IUserSettingsMigrator
     private readonly ISettings _settings;
     private readonly ILogger _logger;
     private readonly IJsonSerializer _jsonSerializer;
+    private readonly ISettingsCorrector _settingsCorrector;
     private readonly IProfilesMigrator _profilesMigrator;
 
     public UserSettingsMigrator(ISettings settings,
         ILogger logger,
         IJsonSerializer jsonSerializer,
+        ISettingsCorrector settingsCorrector,
         IProfilesMigrator profilesMigrator)
     {
         _settings = settings;
         _logger = logger;
         _jsonSerializer = jsonSerializer;
+        _settingsCorrector = settingsCorrector;
         _profilesMigrator = profilesMigrator;
     }
 
@@ -79,6 +82,7 @@ public class UserSettingsMigrator : IUserSettingsMigrator
         }
 
         _settings.IsUserSettingsMigrationDone = true;
+        _settingsCorrector.Correct();
     }
 
     private void RemoveMigratedUserSettings(Dictionary<string, Dictionary<string, string?>> settingsByUsername, string username)
@@ -136,7 +140,6 @@ public class UserSettingsMigrator : IUserSettingsMigrator
         MigrateBoolUserSetting(userSettings, nameof(IUserSettings.IsIpv6LeakProtectionEnabled), val => { _settings.IsIpv6LeakProtectionEnabled = val; });
         MigrateBoolUserSetting(userSettings, nameof(IUserSettings.IsNetShieldEnabled), val => { _settings.IsNetShieldEnabled = val; });
 
-        MigrateStringUserSetting(userSettings, nameof(IUserSettings.VpnPlanTitle), val => { _settings.VpnPlanTitle = val; });
         MigrateConnectionKeyPair(userSettings);
         MigrateConnectionCertificate(userSettings);
 
@@ -219,35 +222,6 @@ public class UserSettingsMigrator : IUserSettingsMigrator
         }
     }
 
-    private void MigrateStringUserSetting(Dictionary<string, string?> userSettings, string settingName, Action<string?> setter)
-    {
-        if (userSettings.TryGetValue(settingName, out string? rawSettingValue))
-        {
-            setter(rawSettingValue);
-        }
-    }
-
-    private void MigrateDateUserSetting(Dictionary<string, string?> userSettings, string settingName, Action<DateTimeOffset?> setter)
-    {
-        if (userSettings.TryGetValue(settingName, out string? rawSettingValue) && rawSettingValue is not null)
-        {
-            setter(ParseDate(rawSettingValue));
-        }
-    }
-
-    private DateTimeOffset? ParseDate(string? value)
-    {
-        if (!string.IsNullOrEmpty(value))
-        {
-            value = value.Replace("\"", "");
-            if (DateTimeOffset.TryParse(value, out DateTimeOffset result))
-            {
-                return result;
-            }
-        }
-        return null;
-    }
-
     private void MigrateJsonUserSetting<T>(Dictionary<string, string?> userSettings, string settingName, Action<T> setter)
         where T : class
     {
@@ -274,7 +248,7 @@ public class UserSettingsMigrator : IUserSettingsMigrator
             _settings.AutoConnectMode = rawSettingValue switch
             {
                 "Fastest" => AutoConnectMode.FastestConnection,
-                _ => DefaultSettings.AutoConnectMode,
+                _ => AutoConnectMode.LatestConnection,
             };
         }
     }

@@ -69,11 +69,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <toolkit:SettingsExpander Description="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoConnect_Description')}"
                                       Header="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoConnect')}"
-                                      IsExpanded="{x:Bind ViewModel.IsAutoConnectEnabled}">
+                                      IsExpanded="{x:Bind ViewModel.IsAutoConnectCardExpanded}">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsAutoConnectEnabled, Mode=TwoWay}"
                               Style="{StaticResource ToggleSwitchStyle}" />
                 <toolkit:SettingsExpander.Items>
-                    <StackPanel Spacing="16">
+                    <StackPanel Spacing="16"
+                                Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <RadioButton Content="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoConnect_Latest')}"
                                      IsChecked="{x:Bind ViewModel.IsAutoConnectLatestConnection, Mode=TwoWay}"
                                      Style="{StaticResource AutoConnectRadioButtonStyle}" />
