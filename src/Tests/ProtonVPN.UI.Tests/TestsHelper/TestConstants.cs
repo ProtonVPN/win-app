@@ -35,6 +35,7 @@ public static class TestConstants
     public static TimeSpan LongTimeout => TimeSpan.FromSeconds(60);
     public static TimeSpan RetryInterval => TimeSpan.FromMilliseconds(500);
     public static string AppFolderPath = @"C:\Program Files\Proton\VPN";
+    public static string LauncherPath = @"C:\Program Files\Proton\VPN\ProtonVPN.Launcher.exe";
     public static string MapCountry = "CA";
     public static string PathToRecorder = @"C:\TestRecorder\ffmpeg.exe";
     public static string ClientLogsPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Proton\Proton VPN\Logs\client-logs.txt");

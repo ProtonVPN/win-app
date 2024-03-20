@@ -18,7 +18,10 @@
  */
 
 using System;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using Microsoft.Win32;
 using ProtonVPN.Common.Core.Helpers;
 
@@ -47,13 +50,20 @@ public class TestEnvironment : TestSession
         return isLocalEnvironment;
     }
 
+    public static string GetCommitHash()
+    {
+        FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(TestConstants.LauncherPath);
+        string version = fileVersionInfo.ProductVersion;
+        return version.Split("-").Last();
+    }
+
     public static bool IsVideoRecorderPresent()
     {
         return File.Exists(TestConstants.PathToRecorder);
     }
 
-    public static bool IsWindows11()
+    public static int GetOperatingSystemMajorVersion()
     {
-        return OSVersion.Get().Build >= 22000;
+        return Environment.OSVersion.Version.Major;
     }
 }

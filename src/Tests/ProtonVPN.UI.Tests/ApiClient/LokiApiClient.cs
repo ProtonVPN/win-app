@@ -34,32 +34,20 @@ public class LokiApiClient
     private readonly string _lokiPushEndpoint = Environment.GetEnvironmentVariable("LOKI_ENDPOINT");
     private HttpClient _httpClient = new HttpClient();
 
-    private JObject GetMetadata(string runId)
-    {
-        return new JObject(
-            new List<JProperty>
-            {
-                new JProperty("id", runId),
-                new JProperty("platform", "Windows"),
-                new JProperty("environment", "prod"),
-                new JProperty("appVersion", TestEnvironment.GetAppVersion())
-            });
-    }
-
-    public async Task PushCollectedMetricsAsync(List<JProperty> metrics, string runId, string labelValue)
+    public async Task PushCollectedMetricsAsync(List<JProperty> metrics, string runId, string measurementGroup, string workflow)
     {
         JArray fullMetrics = BaseMetricsJsonBody(GetMetadata(runId), metrics);
-        JObject requestBody = BaseLokiRequestJsonBody(fullMetrics, labelValue);
+        JObject requestBody = BaseLokiRequestJsonBody(fullMetrics, GetMetricsLabels(measurementGroup, workflow));
         await PostMetricsAsync(requestBody);
     }
 
-    public async Task PushLogsAsync(string logsPath, string runId, string lokiLabel)
+    public async Task PushLogsAsync(string logsPath, string runId, string lokiLabel, string workflow)
     {
-        JObject requestBody = AddLogsToRequestJson(logsPath, lokiLabel, GetMetadata(runId));
+        JObject requestBody = AddLogsToRequestJson(logsPath, lokiLabel, workflow, GetMetadata(runId));
         await PostMetricsAsync(requestBody);
     }
 
-    private JObject AddLogsToRequestJson(string pathToLogs, string lokiLabel, JObject metadata)
+    private JObject AddLogsToRequestJson(string pathToLogs, string measurementGroup, string workflow, JObject metadata)
     {
         List<JArray> logs = new List<JArray>();
         FileStream fileStream = new FileStream(pathToLogs, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
@@ -76,14 +64,14 @@ public class LokiApiClient
                 logs.Add(element);
             }
         }
-        return BaseLokiRequestJsonBody(logs, lokiLabel);
+        return BaseLokiRequestJsonBody(logs, GetLogsLabels(workflow));
     }
 
     private async Task PostMetricsAsync(JObject requestBody)
     {
         string jsonContent = JsonConvert.SerializeObject(requestBody);
         var httpContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-
+        Console.WriteLine(jsonContent);
         HttpResponseMessage response = await _httpClient.PostAsync(_lokiPushEndpoint, httpContent);
 
         response.EnsureSuccessStatusCode();
@@ -105,27 +93,58 @@ public class LokiApiClient
         return timestamp;
     }
 
-    private JObject BaseLokiRequestJsonBody(object data, string labelValue)
-    {
-        return new JObject(
-            new JProperty("streams", new JArray(
-                new JObject(
-                    new JProperty("stream", new JObject(
-                        new JProperty("sli", labelValue)
-                    )),
-                    new JProperty("values", new JArray(
-                        data
-                ))
-            ))
-        ));
-    }
-
     private JArray BaseMetricsJsonBody(JObject metadata, object metric)
     {
         return new JArray(
             GetCurrentUnixTimeInNanoseconds().ToString(),
             new JObject(metric).ToString(),
             metadata);
+    }
+
+
+    private JObject BaseLokiRequestJsonBody(object data, JObject labels)
+    {
+        return new JObject(
+            new JProperty("streams", new JArray(
+                new JObject(
+                    new JProperty("stream", labels),
+                    new JProperty("values", new JArray(data))
+            ))
+        ));
+    }
+    private JObject GetMetadata(string runId)
+    {
+        return new JObject(
+            new List<JProperty>
+            {
+                new JProperty("id", runId),
+                new JProperty("app_version", TestEnvironment.GetAppVersion()),
+                new JProperty("os_version", TestEnvironment.GetOperatingSystemMajorVersion().ToString()),
+                new JProperty("build_commit_sha1", TestEnvironment.GetCommitHash())
+            });
+    }
+
+    private JObject GetMetricsLabels(string measurementGroup, string workflow)
+    {
+        return new JObject
+            (
+                new JProperty("sli", measurementGroup),
+                new JProperty("workflow", workflow),
+                new JProperty("environment", "prod"),
+                new JProperty("platform", "windows"),
+                new JProperty("product", "VPN")
+            );
+    }
+
+    private JObject GetLogsLabels(string workflow)
+    {
+        return new JObject
+            (
+                new JProperty("workflow", workflow),
+                new JProperty("environment", "prod"),
+                new JProperty("platform", "windows"),
+                new JProperty("product", "VPN")
+            );
     }
 
     private long GetCurrentUnixTimeInNanoseconds()
