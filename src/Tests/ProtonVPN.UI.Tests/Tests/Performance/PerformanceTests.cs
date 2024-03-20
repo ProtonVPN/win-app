@@ -18,7 +18,6 @@
  */
 
 using System;
-using System.IO;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.ApiClient;
@@ -26,7 +25,6 @@ using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.Robots.Countries;
 using ProtonVPN.UI.Tests.Robots.Home;
 using ProtonVPN.UI.Tests.Robots.Login;
-using ProtonVPN.UI.Tests.Robots.Settings;
 using ProtonVPN.UI.Tests.Robots.Shell;
 using ProtonVPN.UI.Tests.TestsHelper;
 
@@ -38,14 +36,14 @@ public class PerformanceTests : TestSession
 {
     private string _runId;
     private string _measurementGroup;
+    private string _workflow = "main_measurements";
 
     private LoginRobot _loginRobot = new();
     private HomeRobot _homeRobot = new();
     private ShellRobot _shellRobot = new();
     private CountriesRobot _countriesRobot = new();
-    private SettingsRobot _settingsRobot = new();
 
-    private LokiApiClient _lokiHelper = new();
+    private LokiApiClient _lokiApiClient = new();
     private PerformanceTestHelper _performanceTestHelper = new();
 
 
@@ -141,7 +139,7 @@ public class PerformanceTests : TestSession
     public async Task TestCleanup()
     {
         PerformanceTestHelper.AddTestStatusMetric();
-        await _lokiHelper.PushCollectedMetricsAsync(PerformanceTestHelper.MetricsList, _runId, _measurementGroup);
+        await _lokiApiClient.PushCollectedMetricsAsync(PerformanceTestHelper.MetricsList, _runId, _measurementGroup, _workflow);
         PerformanceTestHelper.Reset();
     }
 
@@ -149,7 +147,7 @@ public class PerformanceTests : TestSession
     public async Task OneTimeTearDownAsync()
     {
         Cleanup();
-        await _lokiHelper.PushLogsAsync(TestConstants.ClientLogsPath, _runId, "windows_client_logs");
-        await _lokiHelper.PushLogsAsync(GetServiceLogsPath(), _runId, "windows_service_logs");
+        await _lokiApiClient.PushLogsAsync(TestConstants.ClientLogsPath, _runId, "windows_client_logs", _workflow);
+        await _lokiApiClient.PushLogsAsync(GetServiceLogsPath(), _runId, "windows_service_logs", _workflow);
     }
 }
