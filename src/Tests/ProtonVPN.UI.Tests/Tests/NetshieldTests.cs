@@ -70,7 +70,8 @@ public class NetshieldTests : TestSession
             .DoNavigateToSettingsPage();
         _settingsRobot
             .DoNavigateToNetShieldSettingsPage()
-            .DoSelectNetshield();
+            .DoSelectNetshield()
+            .DoApplyChanges();
         _shellRobot
             .DoNavigateToHomePage()
             .Wait(TestConstants.DefaultNavigationDelay);

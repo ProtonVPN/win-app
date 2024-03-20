@@ -25,6 +25,7 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Clipboards;
@@ -55,17 +56,15 @@ public partial class PortForwardingViewModel : SettingsPageViewModelBase,
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(PortForwardingFeatureIconSource))]
-    [NotifyPropertyChangedFor(nameof(HasActivePortNumber))]
-    [NotifyPropertyChangedFor(nameof(HasStatusMessage))]
     [NotifyPropertyChangedFor(nameof(IsExpanded))]
     private bool _isPortForwardingEnabled;
 
     [ObservableProperty]
     private bool _isPortForwardingNotificationEnabled;
 
-    public bool IsExpanded => HasActivePortNumber || HasStatusMessage;
+    public bool IsExpanded => IsPortForwardingEnabled && ConnectionManager.IsConnected && (HasActivePortNumber || HasStatusMessage);
 
-    public bool HasActivePortNumber => ActivePortNumber.HasValue && IsPortForwardingEnabled && ConnectionManager.IsConnected;
+    public bool HasActivePortNumber => ActivePortNumber.HasValue;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(HasStatusMessage))]
@@ -156,18 +155,12 @@ public partial class PortForwardingViewModel : SettingsPageViewModelBase,
 
     public void Receive(PortForwardingStatusChanged message)
     {
-        ExecuteOnUIThread(() =>
-        {
-            InvalidateStatusMessageAndActivePortNumber();
-        });
+        ExecuteOnUIThread(InvalidateStatusMessageAndActivePortNumber);
     }
 
     public void Receive(PortForwardingPortChanged message)
     {
-        ExecuteOnUIThread(() =>
-        {
-            InvalidateStatusMessageAndActivePortNumber();
-        });
+        ExecuteOnUIThread(InvalidateStatusMessageAndActivePortNumber);
     }
 
     private void InvalidateStatusMessageAndActivePortNumber()
@@ -181,9 +174,8 @@ public partial class PortForwardingViewModel : SettingsPageViewModelBase,
             : null;
     }
 
-    public override void Receive(ConnectionStatusChanged message)
+    protected override void OnConnectionStatusChanged(ConnectionStatus connectionStatus)
     {
-        base.Receive(message);
-        OnPropertyChanged(nameof(HasActivePortNumber));
+        OnPropertyChanged(nameof(IsExpanded));
     }
 }

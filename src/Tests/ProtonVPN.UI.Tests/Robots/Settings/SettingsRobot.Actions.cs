@@ -105,9 +105,9 @@ public partial class SettingsRobot
         return this;
     }
 
-    public SettingsRobot DoReconnect()
+    public SettingsRobot DoApplyChanges()
     {
-        ReconnectButton.Click();
+        ApplyButton.Click();
         return this;
     }
 

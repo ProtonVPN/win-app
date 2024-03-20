@@ -24,34 +24,34 @@ namespace ProtonVPN.Client.Common.UI.Controls.Custom;
 
 public class SettingsPageContentControl : PageContentControl
 {
-    public static readonly DependencyProperty ReconnectCommandProperty =
-        DependencyProperty.Register(nameof(ReconnectCommand), typeof(ICommand), typeof(SettingsPageContentControl), new PropertyMetadata(default, OnReconnectCommandPropertyChanged));
+    public static readonly DependencyProperty ApplyCommandProperty =
+        DependencyProperty.Register(nameof(ApplyCommand), typeof(ICommand), typeof(SettingsPageContentControl), new PropertyMetadata(default, OnApplyCommandPropertyChanged));
 
-    public static readonly DependencyProperty ReconnectCommandParameterProperty =
-        DependencyProperty.Register(nameof(ReconnectCommandParameter), typeof(object), typeof(SettingsPageContentControl), new PropertyMetadata(default, OnReconnectCommandPropertyChanged));
+    public static readonly DependencyProperty ApplyCommandParameterProperty =
+        DependencyProperty.Register(nameof(ApplyCommandParameter), typeof(object), typeof(SettingsPageContentControl), new PropertyMetadata(default, OnApplyCommandPropertyChanged));
 
-    public static readonly DependencyProperty ReconnectCommandTextProperty =
-        DependencyProperty.Register(nameof(ReconnectCommandText), typeof(string), typeof(SettingsPageContentControl), new PropertyMetadata(default));
+    public static readonly DependencyProperty ApplyCommandTextProperty =
+        DependencyProperty.Register(nameof(ApplyCommandText), typeof(string), typeof(SettingsPageContentControl), new PropertyMetadata(default));
 
-    public ICommand ReconnectCommand
+    public ICommand ApplyCommand
     {
-        get => (ICommand)GetValue(ReconnectCommandProperty);
-        set => SetValue(ReconnectCommandProperty, value);
+        get => (ICommand)GetValue(ApplyCommandProperty);
+        set => SetValue(ApplyCommandProperty, value);
     }
 
-    public object ReconnectCommandParameter
+    public object ApplyCommandParameter
     {
-        get => GetValue(ReconnectCommandParameterProperty);
-        set => SetValue(ReconnectCommandParameterProperty, value);
+        get => GetValue(ApplyCommandParameterProperty);
+        set => SetValue(ApplyCommandParameterProperty, value);
     }
 
-    public string ReconnectCommandText
+    public string ApplyCommandText
     {
-        get => (string)GetValue(ReconnectCommandTextProperty);
-        set => SetValue(ReconnectCommandTextProperty, value);
+        get => (string)GetValue(ApplyCommandTextProperty);
+        set => SetValue(ApplyCommandTextProperty, value);
     }
 
-    protected bool IsReconnectCommandEmpty => ReconnectCommand == null || !ReconnectCommand.CanExecute(ReconnectCommandParameter);
+    protected bool IsApplyCommandEmpty => ApplyCommand == null || !ApplyCommand.CanExecute(ApplyCommandParameter);
 
     public SettingsPageContentControl()
     {
@@ -65,12 +65,12 @@ public class SettingsPageContentControl : PageContentControl
             return;
         }
 
-        PART_HeaderContainer.Visibility = IsPageHeaderEmpty && IsBackCommandEmpty && IsReconnectCommandEmpty
+        PART_HeaderContainer.Visibility = IsPageHeaderEmpty && IsBackCommandEmpty && IsApplyCommandEmpty
             ? Visibility.Collapsed
             : Visibility.Visible;
     }
 
-    private static void OnReconnectCommandPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnApplyCommandPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is SettingsPageContentControl control)
         {

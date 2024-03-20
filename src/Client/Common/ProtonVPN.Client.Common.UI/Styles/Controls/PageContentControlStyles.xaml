@@ -204,9 +204,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <Button Grid.Column="2"
                                         Margin="16,0,0,0"
                                         VerticalAlignment="Top"
-                                        Command="{Binding ReconnectCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                        CommandParameter="{Binding ReconnectCommandParameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                        Content="{TemplateBinding ReconnectCommandText}"
+                                        AutomationProperties.AutomationId="ApplyButton"
+                                        Command="{Binding ApplyCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                        CommandParameter="{Binding ApplyCommandParameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                        Content="{TemplateBinding ApplyCommandText}"
                                         Style="{StaticResource PrimaryButtonStyle}"
                                         Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}" />
                             </Grid>
