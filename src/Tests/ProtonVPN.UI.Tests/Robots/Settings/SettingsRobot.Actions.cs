@@ -130,6 +130,25 @@ public partial class SettingsRobot
         return this;
     }
 
+    public SettingsRobot EnableSplitTunneling()
+    {
+        SplitTunnelingButton.Click();
+        return this;
+    }
+
+    public SettingsRobot ExcludeApp(string name)
+    {
+        SplitTunnelingApp(name).Click();
+        return this;
+    }
+
+    public SettingsRobot ExcludeIp(string ip)
+    {
+        IpTextBlock.Text = ip;
+        AddIpButton.Invoke();
+        return this;
+    }
+
     public SettingsRobot DoSelectProtocol(Protocol protocol)
     {
         switch(protocol)

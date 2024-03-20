@@ -19,6 +19,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Xml.Linq;
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Input;
 using FlaUI.Core.Tools;
@@ -51,6 +52,17 @@ public class UIActions : TestSession
         return this;
     }
 
+    public dynamic WaitUntilElementExistsByXpath(string xpath, TimeSpan time)
+    {
+        WaitForElement(() =>
+        {
+            RefreshWindow();
+            return Window.FindFirstByXPath(xpath) != null;
+        }, time, xpath);
+
+        return this;
+    }
+
     protected dynamic WaitUntilTextMatches(Func<Label> getLabelMethod, TimeSpan time, string text)
     {
         WaitForElement(() =>
@@ -72,6 +84,12 @@ public class UIActions : TestSession
     {
         WaitUntilElementExistsByAutomationId(automationId, timeout ?? TestConstants.VeryShortTimeout);
         return Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId));
+    }
+
+    protected AutomationElement ElementByXpath(string xpath, TimeSpan? timeout = null)
+    {
+        WaitUntilElementExistsByXpath(xpath, timeout ?? TestConstants.VeryShortTimeout);
+        return Window.FindFirstByXPath(xpath);
     }
 
     protected AutomationElement ElementByName(string name, TimeSpan? timeout = null)

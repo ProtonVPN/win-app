@@ -26,10 +26,11 @@ using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.Robots.Countries;
 using ProtonVPN.UI.Tests.Robots.Home;
 using ProtonVPN.UI.Tests.Robots.Login;
+using ProtonVPN.UI.Tests.Robots.Settings;
 using ProtonVPN.UI.Tests.Robots.Shell;
 using ProtonVPN.UI.Tests.TestsHelper;
 
-namespace ProtonVPN.UI.Tests.Tests;
+namespace ProtonVPN.UI.Tests.Tests.Performance;
 
 [TestFixture]
 [Category("Performance")]
@@ -42,6 +43,7 @@ public class PerformanceTests : TestSession
     private HomeRobot _homeRobot = new();
     private ShellRobot _shellRobot = new();
     private CountriesRobot _countriesRobot = new();
+    private SettingsRobot _settingsRobot = new();
 
     private LokiApiClient _lokiHelper = new();
     private PerformanceTestHelper _performanceTestHelper = new();
@@ -50,8 +52,8 @@ public class PerformanceTests : TestSession
     [OneTimeSetUp]
     public void TestInitialize()
     {
-        _runId = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
         LaunchApp();
+        _runId = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
     }
 
     [Test, Order(0)]
@@ -148,7 +150,6 @@ public class PerformanceTests : TestSession
     {
         Cleanup();
         await _lokiHelper.PushLogsAsync(TestConstants.ClientLogsPath, _runId, "windows_client_logs");
-        string serviceLogsPath = Path.Combine(GetProtonClientFolder(), "ServiceData", "Logs", "service-logs.txt");
-        await _lokiHelper.PushLogsAsync(serviceLogsPath, _runId, "windows_service_logs");
+        await _lokiHelper.PushLogsAsync(GetServiceLogsPath(), _runId, "windows_service_logs");
     }
 }
