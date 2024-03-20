@@ -88,7 +88,8 @@ public class SettingsTests : TestSession
         _settingsRobot
             .VerifySmartProtocolIsChecked()
             .DoSelectProtocol(Protocol.Wireguard)
-            .VerifyWireGuardProtocolIsChecked();
+            .VerifyWireGuardProtocolIsChecked()
+            .DoApplyChanges();
 
         _shellRobot
             .DoNavigateBackward()

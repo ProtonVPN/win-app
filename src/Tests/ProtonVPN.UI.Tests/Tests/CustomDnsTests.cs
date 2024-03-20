@@ -72,7 +72,7 @@ public class CustomDnsTests : TestSession
         _settingsRobot
             .DoClickCustomDnsToggle()
             .DoEnableOnWarning()
-            .DoReconnect()
+            .DoApplyChanges()
             .VerifyCustomDnsIsEnabled();
 
         _shellRobot
@@ -95,7 +95,7 @@ public class CustomDnsTests : TestSession
     {
         _settingsRobot
             .DoSetCustomDnsIpAddress(CUSTOM_DNS_ADDRESS)
-            .DoReconnect();
+            .DoApplyChanges();
 
         VerifyIfConnectedAndDnsIsSet(CUSTOM_DNS_ADDRESS);
     }
@@ -105,7 +105,7 @@ public class CustomDnsTests : TestSession
     {
         _settingsRobot
             .DoClickCustomDnsToggle()
-            .DoReconnect();
+            .DoApplyChanges();
 
         VerifyIfConnectedAndDnsIsNotSet(CUSTOM_DNS_ADDRESS);
 
@@ -114,7 +114,7 @@ public class CustomDnsTests : TestSession
         _settingsRobot
             .DoNavigateToCustomDnsServersSettingsPage()
             .DoClickCustomDnsToggle()
-            .DoReconnect();
+            .DoApplyChanges();
     }
 
     [Test, Order(3)]
@@ -122,7 +122,7 @@ public class CustomDnsTests : TestSession
     {
         _settingsRobot
             .DoClickCustomDnsAddress(CUSTOM_DNS_ADDRESS)
-            .DoReconnect();
+            .DoApplyChanges();
 
         VerifyIfConnectedAndDnsIsNotSet(CUSTOM_DNS_ADDRESS);
     }
@@ -132,7 +132,7 @@ public class CustomDnsTests : TestSession
     {
         _settingsRobot
             .DoClickCustomDnsAddress(CUSTOM_DNS_ADDRESS)
-            .DoReconnect();
+            .DoApplyChanges();
 
         VerifyIfConnectedAndDnsIsSet(CUSTOM_DNS_ADDRESS);
     }
@@ -142,7 +142,7 @@ public class CustomDnsTests : TestSession
     {
         _settingsRobot
             .DoClickTrashIcon()
-            .DoReconnect();
+            .DoApplyChanges();
 
         VerifyIfConnectedAndDnsIsNotSet(CUSTOM_DNS_ADDRESS);
     }

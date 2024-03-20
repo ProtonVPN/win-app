@@ -1327,11 +1327,11 @@
   </data>
   <data name="Format_Time_MinutesSeconds_Short" xml:space="preserve">
     <value>mm\:ss</value>
-    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '\' character (eg. mm\:ss -&gt; 05:36).</comment>
+    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '\' character (eg. mm\:ss gives 05:36).</comment>
   </data>
   <data name="Format_Time_HoursMinutesSeconds_Short" xml:space="preserve">
     <value>hh\:mm\:ss</value>
-    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '\' character (eg. hh\:mm\:ss -&gt; 01:05:36).</comment>
+    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '\' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
   <data name="Home_Account_SignOut" xml:space="preserve">
     <value>Sign out</value>
@@ -2428,5 +2428,9 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="SystemNotification_ConnectedTo" xml:space="preserve">
     <value>Connected to {0}.</value>
     <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
+  </data>
+  <data name="Settings_Common_Apply" xml:space="preserve">
+    <value>Apply</value>
+    <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
 </root>

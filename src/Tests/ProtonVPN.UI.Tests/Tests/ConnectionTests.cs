@@ -269,7 +269,8 @@ public class ConnectionTests : TestSession
             .DoNavigateToSettingsPage();
         _settingsRobot
             .DoNavigateToProtocolSettingsPage()
-            .DoSelectProtocol(protocol);
+            .DoSelectProtocol(protocol)
+            .DoApplyChanges();
         _shellRobot
             .DoNavigateToHomePage();
 

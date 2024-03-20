@@ -53,7 +53,7 @@ public partial class SettingsRobot : UIActions
     protected Button PrimaryButton => ElementByAutomationId("PrimaryButton").AsButton();
     protected TextBox CustomDnsIpAddressTextBox => ElementByAutomationId("CustomDnsIpAddressBox").AsTextBox();
     protected Button AddButton => ElementByAutomationId("AddButton").AsButton();
-    protected Button ReconnectButton => ElementByName("Reconnect").AsButton();
+    protected Button ApplyButton => ElementByAutomationId("ApplyButton").AsButton();
     protected Button TrashIconButton => ElementByAutomationId("TrashIcon").AsButton();
 
     protected CheckBox GetCustomDnsCheckBox(string dnsAddress)

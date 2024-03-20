@@ -26,6 +26,7 @@ using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
@@ -48,6 +49,10 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
     protected readonly ISettingsConflictResolver SettingsConflictResolver;
     protected readonly IConnectionManager ConnectionManager;
 
+    public string ApplyCommandText => Localizer.Get(IsReconnectionRequired()
+        ? "Common_Actions_Reconnect"
+        : "Settings_Common_Apply");
+
     public SettingsPageViewModelBase(IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
         IOverlayActivator overlayActivator,
@@ -67,19 +72,22 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
         ConnectionManager = connectionManager;
     }
 
-    [RelayCommand(CanExecute = nameof(CanReconnect))]
-    public async Task ReconnectAsync()
+    [RelayCommand(CanExecute = nameof(CanApply))]
+    public async Task ApplyAsync()
     {
+        bool isReconnectionRequired = IsReconnectionRequired();
+
         SaveSettings();
 
-        await ConnectionManager.ReconnectAsync();
+        if (isReconnectionRequired)
+        {
+            await ConnectionManager.ReconnectAsync();
+        }
     }
 
-    public bool CanReconnect()
+    public bool CanApply()
     {
-        return !ConnectionManager.IsDisconnected
-            && HasChangedSettings()
-            && IsReconnectionRequired();
+        return HasChangedSettings();
     }
 
     private bool HasChangedSettings()
@@ -91,6 +99,11 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
 
     private bool IsReconnectionRequired()
     {
+        if (ConnectionManager.IsDisconnected)
+        {
+            return false;
+        }
+
         IEnumerable<ChangedSettingArgs> changedSettings = GetChangedSettings();
         foreach (ChangedSettingArgs changedSetting in changedSettings)
         {
@@ -113,15 +126,16 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
         return GetSettings().Where(s => s.HasChanged);
     }
 
-    public virtual void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChanged message)
     {
         ExecuteOnUIThread(() =>
         {
-            ReconnectCommand.NotifyCanExecuteChanged();
+            OnPropertyChanged(nameof(ApplyCommandText));
+            OnConnectionStatusChanged(message.ConnectionStatus);
         });
     }
 
-    public virtual void Receive(SettingChangedMessage message)
+    public void Receive(SettingChangedMessage message)
     {
         ExecuteOnUIThread(() =>
         {
@@ -131,12 +145,8 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
 
     public override async Task<bool> OnNavigatingFromAsync()
     {
-        if (!CanReconnect()) // No reconnection required, simply save settings when leaving page
+        if (!CanApply()) // No changes made, simply leave page
         {
-            if (HasChangedSettings()) // If any changes, save settings when leaving page
-            {
-                SaveSettings();
-            }
             return true;
         }
 
@@ -145,7 +155,9 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
             {
                 Title = Localizer.Get("Settings_Common_Discard_Title"),
                 PrimaryButtonText = Localizer.Get("Settings_Common_Discard"),
-                SecondaryButtonText = Localizer.Get("Settings_Common_ApplyAndReconnect"),
+                SecondaryButtonText = Localizer.Get(IsReconnectionRequired()
+                    ? "Settings_Common_ApplyAndReconnect"
+                    : "Settings_Common_Apply"),
                 CloseButtonText = Localizer.Get("Common_Actions_Cancel"),
                 UseVerticalLayoutForButtons = true,
             });
@@ -155,8 +167,8 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
             case ContentDialogResult.Primary: // Do nothing, user decided to discard settings changes.
                 return true;
 
-            case ContentDialogResult.Secondary: // Apply settings and trigger reconnections
-                await ReconnectAsync();
+            case ContentDialogResult.Secondary: // Apply settings and trigger reconnection if needed
+                await ApplyAsync();
                 return true;
 
             default: // Cancel navigation, stays on current page without deleting changes user have made
@@ -171,6 +183,9 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
         RetrieveSettings();
     }
 
+    protected virtual void OnConnectionStatusChanged(ConnectionStatus connectionStatus)
+    { }
+    
     protected virtual void OnSettingsChanged(string propertyName)
     { }
 
@@ -182,12 +197,13 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
     {
         base.OnPropertyChanged(e);
 
-        ReconnectCommand.NotifyCanExecuteChanged();
-
-        if (string.IsNullOrEmpty(e?.PropertyName))
+        if (string.IsNullOrEmpty(e?.PropertyName) || e.PropertyName == nameof(ApplyCommandText))
         {
             return;
         }
+
+        ApplyCommand.NotifyCanExecuteChanged();
+        OnPropertyChanged(nameof(ApplyCommandText));
 
         string settingName = GetSettingName(e.PropertyName);
         object? settingValue = GetType()?.GetProperty(e.PropertyName)?.GetValue(this);
@@ -213,5 +229,12 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
             && !string.IsNullOrEmpty(attribute.SettingPropertyName)
             ? attribute.SettingPropertyName
             : propertyName;
+    }
+
+    protected override void OnLanguageChanged()
+    {
+        base.OnLanguageChanged();
+
+        OnPropertyChanged(nameof(ApplyCommandText));
     }
 }
