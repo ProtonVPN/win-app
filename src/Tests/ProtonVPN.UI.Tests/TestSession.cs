@@ -75,7 +75,7 @@ public class TestSession
         try
         {
             Directory.Delete(TestConstants.UserStoragePath, true);
-            Directory.Delete(GetServiceLogsPath(), true);
+            File.Delete(GetServiceLogsPath());
         }
         catch
         {

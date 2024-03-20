@@ -55,6 +55,13 @@ public partial class SettingsRobot : UIActions
     protected Button AddButton => ElementByAutomationId("AddButton").AsButton();
     protected Button ApplyButton => ElementByAutomationId("ApplyButton").AsButton();
     protected Button TrashIconButton => ElementByAutomationId("TrashIcon").AsButton();
+    protected Button SplitTunnelingButton => ElementByXpath("//Button[@Name='Split tunneling']").AsButton();
+    protected TextBox IpTextBlock => ElementByName("Add IPv4 address").AsTextBox();
+    protected Button AddIpButton => ElementByAutomationId("AddIpAddressButton").AsButton();
+    protected AutomationElement SplitTunnelingApp(string splitTunnelingAppName)
+    {
+        return ElementByName(splitTunnelingAppName);
+    }
 
     protected CheckBox GetCustomDnsCheckBox(string dnsAddress)
     {
