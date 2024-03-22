@@ -21,7 +21,7 @@
 
 #define Hash ""
 #define VersionFolder "v" + MyAppVersion
-#define DisableAutoUpdateArg "/DisableAutoUpdate"
+#define DisableAutoUpdateArg "-DisableAutoUpdate"
 #define RegistryRunPath "Software\Microsoft\Windows\CurrentVersion\Run"
 #define LegacyClientName "ProtonVPN"
 
@@ -430,7 +430,7 @@ begin
       if WizardSilent() = false then begin
         langCode := ActiveLanguage();
         StringChangeEx(langCode, '_', '-', True);
-        launcherArgs := '/lang ' + langCode;
+        launcherArgs := '-Language ' + langCode;
       end;
       if IsToDisableAutoUpdate = true then begin
         launcherArgs := launcherArgs + ' {#DisableAutoUpdateArg}';
