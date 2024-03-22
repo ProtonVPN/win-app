@@ -40,7 +40,7 @@ public class Bootstrapper : IBootstrapper
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IUpdatesManager _updatesManager;
     private readonly IGlobalSettingsMigrator _globalSettingsMigrator;
-    private readonly ISettings _settings;
+    private readonly IGlobalSettings _globalSettings;
     private readonly ILogger _logger;
 
     public Bootstrapper(
@@ -51,7 +51,7 @@ public class Bootstrapper : IBootstrapper
         IUserAuthenticator userAuthenticator,
         IUpdatesManager updatesManager,
         IGlobalSettingsMigrator settingsMigrator,
-        ISettings settings,
+        IGlobalSettings globalSettings,
         ILogger logger)
     {
         _processCommunicationStarter = processCommunicationStarter;
@@ -61,7 +61,7 @@ public class Bootstrapper : IBootstrapper
         _userAuthenticator = userAuthenticator;
         _updatesManager = updatesManager;
         _globalSettingsMigrator = settingsMigrator;
-        _settings = settings;
+        _globalSettings = globalSettings;
         _logger = logger;
     }
 
@@ -90,7 +90,9 @@ public class Bootstrapper : IBootstrapper
     {
         _mainWindowActivator.Initialize();
 
-        if (!_userAuthenticator.HasAuthenticatedSessionData() || !_settings.IsAutoLaunchEnabled || _settings.AutoLaunchMode == AutoLaunchMode.OpenOnDesktop)
+        if (!_userAuthenticator.HasAuthenticatedSessionData() || 
+            !_globalSettings.IsAutoLaunchEnabled || 
+            _globalSettings.AutoLaunchMode == AutoLaunchMode.OpenOnDesktop)
         {
             _mainWindowActivator.Activate();
         }
@@ -119,15 +121,26 @@ public class Bootstrapper : IBootstrapper
     private void ParseAndRunCommandLineArguments()
     {
         string[] args = Environment.GetCommandLineArgs();
-        foreach (string arg in args)
+        for (int i = 0; i < args.Length; i++)
         {
-            if (arg.EqualsIgnoringCase("-RestoreDefaultSettings"))
+            string arg = args[i];
+            if (arg.EqualsIgnoringCase("-Language"))
+            {
+                int languageArgumentIndex = i + 1;
+                if (languageArgumentIndex < args.Length)
+                {
+                    _globalSettings.Language = args[languageArgumentIndex];
+                    i++;
+                    continue;
+                }
+            }
+            else if (arg.EqualsIgnoringCase("-RestoreDefaultSettings"))
             {
                 _settingsRestorer.Restore();
             }
-            else if (arg.EqualsIgnoringCase("/DisableAutoUpdate"))
+            else if (arg.EqualsIgnoringCase("-DisableAutoUpdate"))
             {
-                _settings.AreAutomaticUpdatesEnabled = false;
+                _globalSettings.AreAutomaticUpdatesEnabled = false;
             }
             else if (arg.EqualsIgnoringCase("-ExitAppOnClose"))
             {
