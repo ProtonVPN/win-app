@@ -23,6 +23,15 @@ namespace ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 
 public class BrandProtonCalendar : CustomPathIcon
 {
-    protected override string IconGeometry { get; }
-        = "M2.5 3h11a.5.5 0 0 1 .5.5V8h-2V5.5A1.5 1.5 0 0 0 10.5 4H2v-.5a.5.5 0 0 1 .5-.5ZM1 3.5v9A1.5 1.5 0 0 0 2.5 14H10v-3.5A1.5 1.5 0 0 1 11.5 9H15V3.5A1.5 1.5 0 0 0 13.5 2h-11A1.5 1.5 0 0 0 1 3.5ZM8 13v-.879a1 1 0 0 1 .293-.707L9 10.707V13H8Z";
+    protected override string IconGeometry16 { get; }
+        = "M1 3.5A1.5 1.5 0 0 1 2.5 2h11A1.5 1.5 0 0 1 15 3.5V9h-3.5a1.5 1.5 0 0 0-1.5 1.5V14H2.5A1.5 1.5 0 0 1 1 12.5v-9ZM13.5 3h-11a.5.5 0 0 0-.5.5V4h8.5A1.5 1.5 0 0 1 12 5.5V8h2V3.5a.5.5 0 0 0-.5-.5ZM11 8.05V5.5a.5.5 0 0 0-.5-.5H2v7.5a.5.5 0 0 0 .5.5H7v-.704a2 2 0 0 1 .586-1.414l2.06-2.06A2.495 2.495 0 0 1 11 8.05Zm-3 4.246V13h1v-2.118l-.707.707a1 1 0 0 0-.293.707Z";
+
+    protected override string IconGeometry20 { get; }
+        = "M2 5.3A2.3 2.3 0 0 1 4.3 3h11.4A2.3 2.3 0 0 1 18 5.3V11h-4.5a1.5 1.5 0 0 0-1.5 1.5V17H4.3A2.3 2.3 0 0 1 2 14.7V5.3ZM4.3 4A1.3 1.3 0 0 0 3 5.3V6h9a2 2 0 0 1 2 2v2h3V5.3A1.3 1.3 0 0 0 15.7 4H4.3Zm8.7 6.05V8a1 1 0 0 0-1-1H3v7.7A1.3 1.3 0 0 0 4.3 16H8v-1.043a2.5 2.5 0 0 1 .931-1.947l2.655-2.14.009.011A2.498 2.498 0 0 1 13 10.05Zm-2 2.577L9.559 13.79A1.5 1.5 0 0 0 9 14.957V16h2v-3.373Z"; 
+
+    protected override string IconGeometry24 { get; }
+        = ""; 
+
+    protected override string IconGeometry32 { get; }
+        = "";
 }

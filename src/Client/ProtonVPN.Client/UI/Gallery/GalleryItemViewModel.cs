@@ -54,6 +54,7 @@ public partial class GalleryItemViewModel : PageViewModelBase<IMainViewNavigator
         PageContent = PageName switch
         {
             "Colors" => new ColorsPage(),
+            "Icons" => new IconsPage(),
             "Inputs" => new InputsPage(),
             "Map controls" => new MapPage(),
             "Others" => new OtherControlsPage(),

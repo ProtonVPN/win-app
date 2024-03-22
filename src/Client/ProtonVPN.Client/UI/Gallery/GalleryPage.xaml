@@ -56,6 +56,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </toolkit:SettingsCard>
 
             <toolkit:SettingsCard Command="{x:Bind ViewModel.NavigateToGalleryCommand}"
+                               CommandParameter="Icons"
+                               Header="Icons"
+                               IsClickEnabled="True"
+                               Style="{StaticResource DefaultSettingsCardStyle}">
+                <toolkit:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xED58;" />
+                </toolkit:SettingsCard.HeaderIcon>
+            </toolkit:SettingsCard>
+
+            <toolkit:SettingsCard Command="{x:Bind ViewModel.NavigateToGalleryCommand}"
                                CommandParameter="Typography"
                                Header="Typography"
                                IsClickEnabled="True"

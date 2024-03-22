@@ -21,8 +21,17 @@ using ProtonVPN.Client.Common.UI.Assets.Icons.Base;
 
 namespace ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 
-public class SidePanelLeft : CustomPathIcon
+public class SizeBigToSmall : CustomPathIcon
 {
-    protected override string IconGeometry { get; }
-        = "M6.5 2.5v11H3A1.5 1.5 0 0 1 1.5 12V4a1.5 1.5 0 0 1 1.49-1.5H6.5Z";
+    protected override string IconGeometry16 { get; }
+        = "M1 2a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2Zm5 0H2v3h4V2ZM1 8a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V8Zm3 0H2v2h2V8Zm7.5-7a.5.5 0 0 1 .5.5v11.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L11 13.293V1.5a.5.5 0 0 1 .5-.5Z";
+
+    protected override string IconGeometry20 { get; }
+        = ""; 
+
+    protected override string IconGeometry24 { get; }
+        = ""; 
+
+    protected override string IconGeometry32 { get; }
+        = "";
 }
