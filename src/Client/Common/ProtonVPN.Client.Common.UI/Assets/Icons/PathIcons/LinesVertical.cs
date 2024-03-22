@@ -23,6 +23,15 @@ namespace ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 
 public class LinesVertical : CustomPathIcon
 {
-    protected override string IconGeometry { get; }
+    protected override string IconGeometry16 { get; }
         = "M6 2.5v11a.5.5 0 0 0 1 0v-11a.5.5 0 0 0-1 0Zm3 0v11a.5.5 0 0 0 1 0v-11a.5.5 0 0 0-1 0Z";
+
+    protected override string IconGeometry20 { get; }
+        = "M7.5 3.125v13.75a.625.625 0 1 0 1.25 0V3.125a.625.625 0 1 0-1.25 0Zm3.75 0v13.75a.625.625 0 1 0 1.25 0V3.125a.625.625 0 1 0-1.25 0Z"; 
+
+    protected override string IconGeometry24 { get; }
+        = "M9 3.75v16.5a.75.75 0 0 0 1.5 0V3.75a.75.75 0 0 0-1.5 0Zm4.5 0v16.5a.75.75 0 0 0 1.5 0V3.75a.75.75 0 0 0-1.5 0Z"; 
+
+    protected override string IconGeometry32 { get; }
+        = "M12 5v22a1 1 0 1 0 2 0V5a1 1 0 1 0-2 0Zm6 0v22a1 1 0 1 0 2 0V5a1 1 0 1 0-2 0Z";
 }

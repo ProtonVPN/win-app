@@ -23,6 +23,15 @@ namespace ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 
 public class ThreeDotsHorizontal : CustomPathIcon
 {
-    protected override string IconGeometry { get; }
-        = "M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z M9 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z M14 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z";
+    protected override string IconGeometry16 { get; }
+        = "M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm5 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm5 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z";
+
+    protected override string IconGeometry20 { get; }
+        = "M5 10a1.25 1.25 0 1 1-2.5 0A1.25 1.25 0 0 1 5 10Zm6.25 0a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0Zm6.25 0a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0Z"; 
+
+    protected override string IconGeometry24 { get; }
+        = "M6 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm7.5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm7.5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"; 
+
+    protected override string IconGeometry32 { get; }
+        = "M8 16a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm10 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm10 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z";
 }

@@ -23,6 +23,15 @@ namespace ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 
 public class Bolt : CustomPathIcon
 {
-    protected override string IconGeometry { get; }
-        = "M5.765 14.941a.5.5 0 0 1-.247-.573L6.845 9.5H3.5a.5.5 0 0 1-.378-.827l6.5-7.5a.5.5 0 0 1 .86.459L9.155 6.5H12.5a.5.5 0 0 1 .378.827l-6.5 7.5a.5.5 0 0 1-.613.114Zm5.64-7.441H8.5a.5.5 0 0 1-.482-.632l.922-3.381L4.595 8.5H7.5a.5.5 0 0 1 .482.632l-.922 3.381L11.405 7.5Z";
+    protected override string IconGeometry16 { get; }
+        = "M5.797 15.957a.5.5 0 0 1-.286-.562L6.881 9H3.5a.5.5 0 0 1-.4-.8l6-8a.5.5 0 0 1 .893.382L9.09 6h3.41a.5.5 0 0 1 .405.793l-6.5 9a.5.5 0 0 1-.608.164ZM11.522 7H8.5a.5.5 0 0 1-.493-.582L8.67 2.44 4.5 8h3a.5.5 0 0 1 .489.605l-1.002 4.674L11.522 7Z";
+
+    protected override string IconGeometry20 { get; }
+        = ""; 
+
+    protected override string IconGeometry24 { get; }
+        = ""; 
+
+    protected override string IconGeometry32 { get; }
+        = "";
 }

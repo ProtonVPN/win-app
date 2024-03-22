@@ -23,6 +23,15 @@ namespace ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 
 public class CircleHalfFilled : CustomPathIcon
 {
-    protected override string IconGeometry { get; }
+    protected override string IconGeometry16 { get; }
         = "M8 14V2a6 6 0 1 0 0 12ZM8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1Z";
+
+    protected override string IconGeometry20 { get; }
+        = "M10 17.5v-15a7.5 7.5 0 1 0 0 15Zm0-16.25a8.75 8.75 0 1 1 0 17.5 8.75 8.75 0 0 1 0-17.5Z"; 
+
+    protected override string IconGeometry24 { get; }
+        = "M12 21V3a9 9 0 0 0 0 18Zm0-19.5c5.799 0 10.5 4.701 10.5 10.5S17.799 22.5 12 22.5 1.5 17.799 1.5 12 6.201 1.5 12 1.5Z"; 
+
+    protected override string IconGeometry32 { get; }
+        = "M16 28V4C9.373 4 4 9.373 4 16s5.373 12 12 12Zm0-26c7.732 0 14 6.268 14 14s-6.268 14-14 14S2 23.732 2 16 8.268 2 16 2Z";
 }

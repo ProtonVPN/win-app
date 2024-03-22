@@ -17,12 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Common.UI.Assets.Icons.Base;
+namespace ProtonVPN.Client.Common.UI.Gallery.Pages;
 
-namespace ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
-
-public class SidePanelRight : CustomPathIcon
+public sealed partial class IconsPage
 {
-    protected override string IconGeometry { get; }
-        = "M9.5 13.5v-11H13A1.5 1.5 0 0 1 14.5 4v8a1.5 1.5 0 0 1-1.5 1.5H9.5Z";
+    public IconsPage()
+    {
+        InitializeComponent();
+    }
 }

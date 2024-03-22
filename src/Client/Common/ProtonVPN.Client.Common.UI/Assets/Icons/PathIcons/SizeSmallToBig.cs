@@ -21,8 +21,17 @@ using ProtonVPN.Client.Common.UI.Assets.Icons.Base;
 
 namespace ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 
-public class SpeechBubble : CustomPathIcon
+public class SizeSmallToBig : CustomPathIcon
 {
-    protected override string IconGeometry { get; }
-        = "M9.086 10.996H13a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v5.996a1 1 0 0 0 1 1h4v2.085l2.086-2.085Zm-2.489 3.9A.35.35 0 0 1 6 14.65v-2.653H3a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v5.996a2 2 0 0 1-2 2H9.5l-2.903 2.9Z";
+    protected override string IconGeometry16 { get; }
+        = "M1 7a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7Zm5 0H2v3h4V7ZM1 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2Zm3 0H2v2h2V2Zm7.5-1a.5.5 0 0 1 .5.5v11.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L11 13.293V1.5a.5.5 0 0 1 .5-.5Z";
+
+    protected override string IconGeometry20 { get; }
+        = ""; 
+
+    protected override string IconGeometry24 { get; }
+        = ""; 
+
+    protected override string IconGeometry32 { get; }
+        = "";
 }

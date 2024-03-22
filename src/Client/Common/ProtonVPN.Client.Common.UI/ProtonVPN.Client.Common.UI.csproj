@@ -13,6 +13,7 @@
     <ItemGroup>
         <Content Remove="Assets\Icons\Base\CustomPathIcon.cs" />
         <Content Remove="Assets\Icons\Base\IconUserControl.cs" />
+        <Content Remove="Assets\Icons\Base\PathIconSize.cs" />
         <Content Remove="Assets\Icons\IconUserControl.xaml.cs" />
         <Content Remove="Assets\Icons\LatencyHigh.xaml" />
         <Content Remove="Assets\Icons\LatencyHigh.xaml.cs" />
@@ -57,6 +58,7 @@
         <Content Remove="Assets\Icons\PathIcons\BagPercent.cs" />
         <Content Remove="Assets\Icons\PathIcons\Bell.cs" />
         <Content Remove="Assets\Icons\PathIcons\Bolt.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BoltFilled.cs" />
         <Content Remove="Assets\Icons\PathIcons\Bookmark.cs" />
         <Content Remove="Assets\Icons\PathIcons\BookmarkFilled.cs" />
         <Content Remove="Assets\Icons\PathIcons\BrandAmex.cs" />
@@ -65,6 +67,7 @@
         <Content Remove="Assets\Icons\PathIcons\BrandBitcoin.cs" />
         <Content Remove="Assets\Icons\PathIcons\BrandBrave.cs" />
         <Content Remove="Assets\Icons\PathIcons\BrandChrome.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandEdge.cs" />
         <Content Remove="Assets\Icons\PathIcons\BrandFirefox.cs" />
         <Content Remove="Assets\Icons\PathIcons\BrandLinux.cs" />
         <Content Remove="Assets\Icons\PathIcons\BrandMac.cs" />
@@ -72,19 +75,25 @@
         <Content Remove="Assets\Icons\PathIcons\BrandPaypal.cs" />
         <Content Remove="Assets\Icons\PathIcons\BrandProton.cs" />
         <Content Remove="Assets\Icons\PathIcons\BrandProtonCalendar.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandProtonCalendarFilled.cs" />
         <Content Remove="Assets\Icons\PathIcons\BrandProtonDrive.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandProtonDriveFilled.cs" />
         <Content Remove="Assets\Icons\PathIcons\BrandProtonMail.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandProtonMailFilled.cs" />
         <Content Remove="Assets\Icons\PathIcons\BrandProtonPass.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandProtonPassFilled.cs" />
         <Content Remove="Assets\Icons\PathIcons\BrandProtonVpn.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandProtonVpnFilled.cs" />
         <Content Remove="Assets\Icons\PathIcons\BrandTor.cs" />
         <Content Remove="Assets\Icons\PathIcons\BrandTwitter.cs" />
         <Content Remove="Assets\Icons\PathIcons\BrandVisa.cs" />
         <Content Remove="Assets\Icons\PathIcons\BrandWindows.cs" />
-        <Content Remove="Assets\Icons\PathIcons\BrandWireGuard.cs" />
+        <Content Remove="Assets\Icons\PathIcons\BrandWireguard.cs" />
         <Content Remove="Assets\Icons\PathIcons\Briefcase.cs" />
         <Content Remove="Assets\Icons\PathIcons\Broom.cs" />
         <Content Remove="Assets\Icons\PathIcons\Bug.cs" />
         <Content Remove="Assets\Icons\PathIcons\Buildings.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Cake.cs" />
         <Content Remove="Assets\Icons\PathIcons\Calendar3Day.cs" />
         <Content Remove="Assets\Icons\PathIcons\CalendarCells.cs" />
         <Content Remove="Assets\Icons\PathIcons\CalendarCheckmark.cs" />
@@ -116,6 +125,8 @@
         <Content Remove="Assets\Icons\PathIcons\Circle.cs" />
         <Content Remove="Assets\Icons\PathIcons\CircleFilled.cs" />
         <Content Remove="Assets\Icons\PathIcons\CircleHalfFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\CircleRadioEmpty.cs" />
+        <Content Remove="Assets\Icons\PathIcons\CircleRadioFilled.cs" />
         <Content Remove="Assets\Icons\PathIcons\CircleSlash.cs" />
         <Content Remove="Assets\Icons\PathIcons\CirclesLock.cs" />
         <Content Remove="Assets\Icons\PathIcons\Clock.cs" />
@@ -123,6 +134,7 @@
         <Content Remove="Assets\Icons\PathIcons\ClockPaperPlane.cs" />
         <Content Remove="Assets\Icons\PathIcons\ClockRotateLeft.cs" />
         <Content Remove="Assets\Icons\PathIcons\Cloud.cs" />
+        <Content Remove="Assets\Icons\PathIcons\CloudSlash.cs" />
         <Content Remove="Assets\Icons\PathIcons\Code.cs" />
         <Content Remove="Assets\Icons\PathIcons\CogWheel.cs" />
         <Content Remove="Assets\Icons\PathIcons\CogWheelFilled.cs" />
@@ -132,11 +144,12 @@
         <Content Remove="Assets\Icons\PathIcons\CrossCircle.cs" />
         <Content Remove="Assets\Icons\PathIcons\CrossCircleFilled.cs" />
         <Content Remove="Assets\Icons\PathIcons\CrossSmall.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Diamond.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Dots.cs" />
         <Content Remove="Assets\Icons\PathIcons\Drive.cs" />
         <Content Remove="Assets\Icons\PathIcons\Earth.cs" />
         <Content Remove="Assets\Icons\PathIcons\EarthFilled.cs" />
         <Content Remove="Assets\Icons\PathIcons\Emoji.cs" />
-        <Content Remove="Assets\Icons\PathIcons\EmptyCircle.cs" />
         <Content Remove="Assets\Icons\PathIcons\Envelope.cs" />
         <Content Remove="Assets\Icons\PathIcons\EnvelopeArrowUpAndRight.cs" />
         <Content Remove="Assets\Icons\PathIcons\EnvelopeCross.cs" />
@@ -187,6 +200,7 @@
         <Content Remove="Assets\Icons\PathIcons\HouseFilled.cs" />
         <Content Remove="Assets\Icons\PathIcons\Image.cs" />
         <Content Remove="Assets\Icons\PathIcons\Inbox.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Infinite.cs" />
         <Content Remove="Assets\Icons\PathIcons\InfoCircle.cs" />
         <Content Remove="Assets\Icons\PathIcons\InfoCircleFilled.cs" />
         <Content Remove="Assets\Icons\PathIcons\Key.cs" />
@@ -200,6 +214,8 @@
         <Content Remove="Assets\Icons\PathIcons\Link.cs" />
         <Content Remove="Assets\Icons\PathIcons\LinkPen.cs" />
         <Content Remove="Assets\Icons\PathIcons\LinkSlash.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ListArrowDown.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ListArrowUp.cs" />
         <Content Remove="Assets\Icons\PathIcons\ListBullets.cs" />
         <Content Remove="Assets\Icons\PathIcons\ListNumbers.cs" />
         <Content Remove="Assets\Icons\PathIcons\Lock.cs" />
@@ -235,13 +251,18 @@
         <Content Remove="Assets\Icons\PathIcons\PaperClip.cs" />
         <Content Remove="Assets\Icons\PathIcons\PaperClipVertical.cs" />
         <Content Remove="Assets\Icons\PathIcons\PaperPlane.cs" />
+        <Content Remove="Assets\Icons\PathIcons\PaperPlaneClock.cs" />
         <Content Remove="Assets\Icons\PathIcons\PaperPlaneHorizontal.cs" />
         <Content Remove="Assets\Icons\PathIcons\Pause.cs" />
         <Content Remove="Assets\Icons\PathIcons\PauseFilled.cs" />
         <Content Remove="Assets\Icons\PathIcons\Pen.cs" />
         <Content Remove="Assets\Icons\PathIcons\Pencil.cs" />
+        <Content Remove="Assets\Icons\PathIcons\PenSlash.cs" />
         <Content Remove="Assets\Icons\PathIcons\PenSquare.cs" />
         <Content Remove="Assets\Icons\PathIcons\Phone.cs" />
+        <Content Remove="Assets\Icons\PathIcons\PinAngled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\PinAngledFilled.cs" />
+        <Content Remove="Assets\Icons\PathIcons\PinAngledSlash.cs" />
         <Content Remove="Assets\Icons\PathIcons\PinFilled.cs" />
         <Content Remove="Assets\Icons\PathIcons\PinSlashFilled.cs" />
         <Content Remove="Assets\Icons\PathIcons\Placeholder.cs" />
@@ -260,18 +281,23 @@
         <Content Remove="Assets\Icons\PathIcons\Robot.cs" />
         <Content Remove="Assets\Icons\PathIcons\Rocket.cs" />
         <Content Remove="Assets\Icons\PathIcons\Servers.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ServersFilled.cs" />
         <Content Remove="Assets\Icons\PathIcons\Shield.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Shield2.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Shield2CheckFilled.cs" />
         <Content Remove="Assets\Icons\PathIcons\ShieldFilled.cs" />
         <Content Remove="Assets\Icons\PathIcons\ShieldHalfFilled.cs" />
-        <Content Remove="Assets\Icons\PathIcons\SidePanelLeft.cs" />
-        <Content Remove="Assets\Icons\PathIcons\SidePanelRight.cs" />
+        <Content Remove="Assets\Icons\PathIcons\SizeBigToSmall.cs" />
+        <Content Remove="Assets\Icons\PathIcons\SizeSmallToBig.cs" />
         <Content Remove="Assets\Icons\PathIcons\Sliders.cs" />
-        <Content Remove="Assets\Icons\PathIcons\SpeechBubble.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Spam.cs" />
         <Content Remove="Assets\Icons\PathIcons\Squares.cs" />
+        <Content Remove="Assets\Icons\PathIcons\SquaresInSquare.cs" />
         <Content Remove="Assets\Icons\PathIcons\Star.cs" />
         <Content Remove="Assets\Icons\PathIcons\StarFilled.cs" />
         <Content Remove="Assets\Icons\PathIcons\StarSlash.cs" />
         <Content Remove="Assets\Icons\PathIcons\Storage.cs" />
+        <Content Remove="Assets\Icons\PathIcons\Strikethrough.cs" />
         <Content Remove="Assets\Icons\PathIcons\Sun.cs" />
         <Content Remove="Assets\Icons\PathIcons\SwipeLeft.cs" />
         <Content Remove="Assets\Icons\PathIcons\SwitchOff.cs" />
@@ -308,6 +334,7 @@
         <Content Remove="Assets\Icons\PathIcons\UsersPlus.cs" />
         <Content Remove="Assets\Icons\PathIcons\Vault.cs" />
         <Content Remove="Assets\Icons\PathIcons\Wallet.cs" />
+        <Content Remove="Assets\Icons\PathIcons\WebOnlyDrawerCogWheel.cs" />
         <Content Remove="Assets\Icons\PathIcons\WindowImage.cs" />
         <Content Remove="Assets\Icons\PathIcons\WindowTerminal.cs" />
         <Content Remove="Assets\Icons\PathIcons\Wrench.cs" />
@@ -622,6 +649,7 @@
         <None Remove="Gallery\Controls\SampleControl.xaml" />
         <None Remove="Gallery\Controls\TypographyControl.xaml" />
         <None Remove="Gallery\GalleryStyles.xaml" />
+        <None Remove="Gallery\Pages\IconsPage.xaml" />
         <None Remove="Gallery\Pages\InputsPage.xaml" />
         <None Remove="Gallery\Pages\MapPage.xaml" />
         <None Remove="Gallery\Pages\OtherControlsPage.xaml" />
@@ -1714,6 +1742,11 @@
         <Content Update="Assets\Illustrations\worldwide-coverage.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Gallery\Pages\IconsPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
     </ItemGroup>
     <ItemGroup>
       <Page Update="Styles\Controls\ProgressRingStyles.xaml">

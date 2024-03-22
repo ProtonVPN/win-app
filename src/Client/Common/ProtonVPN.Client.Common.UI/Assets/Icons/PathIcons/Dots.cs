@@ -21,8 +21,17 @@ using ProtonVPN.Client.Common.UI.Assets.Icons.Base;
 
 namespace ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 
-public class EmptyCircle : CustomPathIcon
+public class Dots : CustomPathIcon
 {
-    protected override string IconGeometry { get; }
-        = "M8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12Zm0 1A7 7 0 1 0 8 1a7 7 0 0 0 0 14Z";
+    protected override string IconGeometry16 { get; }
+        = "M6 3a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm0 4a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm-1 5a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm5-9a1 1 0 1 0 0 2 1 1 0 0 0 0-2ZM9 8a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm1 3a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z";
+
+    protected override string IconGeometry20 { get; }
+        = ""; 
+
+    protected override string IconGeometry24 { get; }
+        = ""; 
+
+    protected override string IconGeometry32 { get; }
+        = "";
 }
