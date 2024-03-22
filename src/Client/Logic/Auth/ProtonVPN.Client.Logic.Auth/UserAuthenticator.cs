@@ -63,6 +63,7 @@ public class UserAuthenticator : IUserAuthenticator
     public bool IsLoggingIn { get; private set; }
     public bool IsLoggedIn { get; private set; }
     public bool? IsAutoLogin { get; private set; }
+    public bool IsLoggingOut { get; private set; }
 
     public UserAuthenticator(
         ILogger logger,
@@ -253,6 +254,7 @@ public class UserAuthenticator : IUserAuthenticator
     {
         if (IsLoggedIn || IsLoggingIn)
         {
+            IsLoggingOut = true;
             _eventMessageSender.Send(new LoggingOutMessage() { Reason = reason });
 
             if (!_connectionManager.IsDisconnected)
@@ -271,6 +273,7 @@ public class UserAuthenticator : IUserAuthenticator
             IsLoggingIn = false;
             IsLoggedIn = false;
             IsAutoLogin = null;
+            IsLoggingOut = false;
 
             _eventMessageSender.Send(new LoggedOutMessage() { Reason = reason });
         }
@@ -278,6 +281,11 @@ public class UserAuthenticator : IUserAuthenticator
 
     private async void OnTokenExpiredAsync(object? sender, EventArgs e)
     {
+        if (IsLoggingOut)
+        {
+            return;
+        }
+
         if (!IsLoggedIn)
         {
             await CreateUnauthSessionAsync();
