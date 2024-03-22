@@ -246,5 +246,6 @@ public sealed partial class TwoFactorForm
                 textBox.Text = string.Empty;
             }
         }
+        TwoFactorCode = GetTwoFactorCode();
     }
 }
