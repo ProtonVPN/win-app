@@ -175,7 +175,7 @@
     <value>Momentálne nie sú pre váš výber k dispozícii žiadne servery. Vyberte inú možnosť.</value>
   </data>
   <data name="Connection_Error_NoTapAdapters">
-    <value>Chýbajúce sieťový adaptér.</value>
+    <value>Chýbajúci sieťový adaptér.</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>Nahlásiť problém</value>
@@ -205,7 +205,7 @@
     <value>View possible solutions</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
-    <value>Proton VPN sa nemohla pripojiť, pretože sieťový adaptér WireGuard je už používaný. Odpojte prosím všetky aktívne siete VPN a skúste to znova. Prípadne môžete protokoly prepínať aj v pokročilých nastaveniach.</value>
+    <value>Proton VPN sa nemohla pripojiť, pretože sieťový adaptér WireGuard sa už používa. Odpojte prosím všetky aktívne VPN pripojenia a skúste to znova. Prípadne môžete protokoly prepínať aj v pokročilých nastaveniach.</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Auto-selected from</value>
@@ -1433,13 +1433,13 @@ Vysoká latencia môže spomaliť vaše pripojenie.</value>
     <value>Protokol je súbor pokynov, ktorými sa zariadenie riadi pri pripájaní a komunikácii so serverom.</value>
   </data>
   <data name="Dialogs_Protocol_SwitchHeader">
-    <value>Prepnúť protokol VPN</value>
+    <value>Prepnúť VPN protokol</value>
   </data>
   <data name="Dialogs_Protocol_Title">
-    <value>Čo to je protokol VPN?</value>
+    <value>Čo to je VPN protokol?</value>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Email">
-    <value>E-mail</value>
+    <value>Email</value>
     <comment>The label for user e-mail address in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Email_Description">
@@ -2039,7 +2039,7 @@ zastavených</value>
     <value>Zahodiť</value>
   </data>
   <data name="Settings_Common_Discard_Title">
-    <value>Discard settings changes?</value>
+    <value>Zrušiť zmeny nastavení?</value>
   </data>
   <data name="Settings_Connection">
     <value>Pripojenie</value>

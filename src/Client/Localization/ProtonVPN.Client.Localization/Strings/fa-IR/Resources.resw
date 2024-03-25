@@ -2193,13 +2193,13 @@ Secure Core</value>
     <value>Customize your connection by deciding which apps and IP addresses are protected by VPN.</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Inverse">
-    <value>Inverse</value>
+    <value>معکوس</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Inverse_Description">
     <value>Only selected apps and IP addresses connect via VPN, all other traffic is unprotected</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Add">
-    <value>Add IP</value>
+    <value>افزودن IP</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Header">
     <value>Selected IP addresses ({0})</value>
@@ -2218,19 +2218,19 @@ Secure Core</value>
     <value>Selected apps and IP addresses are excluded from VPN connection</value>
   </data>
   <data name="Settings_General">
-    <value>General</value>
+    <value>عمومی</value>
   </data>
   <data name="Settings_General_AutoStartup">
-    <value>Auto startup</value>
+    <value>راه‌اندازی خودکار</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect">
-    <value>Auto connect</value>
+    <value>اتصال خودکار</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
     <value>You will be connected to a server as soon as Proton VPN opens</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
-    <value>Fastest connection</value>
+    <value>سریع‌ترین اتصال</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Latest">
     <value>آخرین اتصال</value>
@@ -2281,16 +2281,16 @@ Secure Core</value>
     <value>Network drivers can impact your connection speed. The new TUN adapter provides higher speed and falls back on the TAP adapter if it encounters any connectivity problems.</value>
   </data>
   <data name="Settings_General_Theme">
-    <value>Theme</value>
+    <value>ظاهر</value>
   </data>
   <data name="Settings_General_Theme_Dark">
-    <value>Dark</value>
+    <value>تاریک</value>
   </data>
   <data name="Settings_General_Theme_Default">
-    <value>Default</value>
+    <value>پیش‌فرض</value>
   </data>
   <data name="Settings_General_Theme_Light">
-    <value>Light</value>
+    <value>روشن</value>
   </data>
   <data name="Settings_Improve">
     <value>Improve Proton</value>
@@ -2299,10 +2299,10 @@ Secure Core</value>
     <value>به ما برای مبارزه با سانسور کمک کنید</value>
   </data>
   <data name="Settings_OperatingSystemVersion">
-    <value>Operating System version</value>
+    <value>نسخه سیستم عامل</value>
   </data>
   <data name="Settings_Page_Title">
-    <value>Settings</value>
+    <value>تنظیمات</value>
   </data>
   <data name="Settings_Protocols_Explanation">
     <value>A VPN protocol determines how data moves between a VPN server and your device.</value>
@@ -2320,7 +2320,7 @@ Secure Core</value>
     <value>OpenVPN</value>
   </data>
   <data name="Settings_Protocols_Recommended">
-    <value>Recommended</value>
+    <value>توصیه شده</value>
   </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>Auto-selects the best protocol for your connection.</value>
@@ -2329,10 +2329,10 @@ Secure Core</value>
     <value>Smart</value>
   </data>
   <data name="Settings_Protocols_TcpCategory">
-    <value>Reliability (TCP)</value>
+    <value>پایداری (TCP)</value>
   </data>
   <data name="Settings_Protocols_UdpCategory">
-    <value>Speed (UDP)</value>
+    <value>سرعت (UDP)</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
     <value>Fast, secure, and efficient. WireGuard is more battery-efficient than other protocols.</value>
@@ -2386,13 +2386,13 @@ Secure Core</value>
     <value>گزارش اشکال</value>
   </data>
   <data name="Settings_Support_SupportCenter">
-    <value>Support center</value>
+    <value>مرکز پشتیبانی</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>Increase your connection speed by up to 400% with performance enhancing technologies.</value>
   </data>
   <data name="Tray_Actions_ExitApplication">
-    <value>Exit</value>
+    <value>خروج</value>
   </data>
   <data name="Tray_Actions_OpenApplication">
     <value>Open {0}</value>

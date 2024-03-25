@@ -1474,10 +1474,12 @@ Latências altas podem reduzir a velocidade da conexão.</value>
     <value>Privacidade avançada</value>
   </data>
   <data name="Dialogs_SecureCore_Description">
-    <value>O Secure Core conecta você ao seu servidor de destino através de um segundo servidor VPN de segurança máxima.</value>
+    <value>O Secure Core conecta você ao seu servidor de destino através de um segundo servidor VPN de segurança máxima.
+
+Esse nível mais alto de proteção pode causar maior latência e velocidades mais lentas.</value>
   </data>
   <data name="Dialogs_SecureCore_HighPrivacy">
-    <value>Latência alta</value>
+    <value>Privacidade alta</value>
   </data>
   <data name="Dialogs_SecureCore_HigherLatency">
     <value>Latência alta</value>

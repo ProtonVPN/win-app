@@ -2021,7 +2021,7 @@ dihentikan</value>
     <value>Server DNS khusus</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
-    <value>Anda tidak akan dapat menggunakan NetShield ketika terhubung dengan server DNS khusus.</value>
+    <value>Anda tidak akan dapat menggunakan NetShield pada saat Anda terhubung ke server DNS khusus.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title">
     <value>Aktifkan server DNS khusus?</value>
