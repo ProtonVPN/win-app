@@ -24,11 +24,11 @@ using Newtonsoft.Json.Linq;
 
 namespace ProtonVPN.UI.Tests.ApiClient
 {
-    public class ProtonTestApiClient
+    public class ProdTestApiClient
     {
         private readonly HttpClient _client;
 
-        public ProtonTestApiClient()
+        public ProdTestApiClient()
         {
             _client = new HttpClient
             {

@@ -85,7 +85,7 @@ public class PerformanceTestHelper
     public async Task<string> GetRandomSpecificPaidServerAsync()
     {
         JToken randomServer = null;
-        JArray logicals = await new ProtonTestApiClient().GetLogicalServers();
+        JArray logicals = await new ProdTestApiClient().GetLogicalServers();
         List<JToken> filteredServers = logicals.Where(
             s => (int)s["Status"] == 1 &&
             (int)s["Tier"] == 2 &&
