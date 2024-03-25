@@ -104,7 +104,7 @@ public class TestSession
             LaunchDevelopmentApp();
             return;
         }
-        
+
         string installedClientPath = Path.Combine(GetProtonClientFolder(), CLIENT_NAME);
         ProcessStartInfo startInfo = new ProcessStartInfo(installedClientPath)
         {

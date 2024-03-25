@@ -18,6 +18,9 @@
  */
 
 using System;
+using System.Threading;
+using FlaUI.Core.Input;
+using FlaUI.Core.WindowsAPI;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots.Login;
@@ -48,6 +51,30 @@ public partial class LoginRobot
         HelpButton.Invoke();
         CommonActions.Wait(TimeSpan.FromSeconds(1));
         ReportIssueMenuItem.Click();
+        return this;
+    }
+
+    public LoginRobot WaitUntilCaptchaIsDisplayed()
+    {
+        //We have a very limited ability to use WebView, that is why we are using static pauses and keyboard strokes.
+        WaitUntilElementExistsByAutomationId("WebView2", TestConstants.ShortTimeout);
+        Thread.Sleep(10000);
+
+        Keyboard.Type(VirtualKeyShort.TAB);
+        Thread.Sleep(300);
+        Keyboard.Type(VirtualKeyShort.ENTER);
+
+        Thread.Sleep(3000);
+
+        Keyboard.Type(VirtualKeyShort.TAB);
+        Thread.Sleep(300);
+        Keyboard.Type(VirtualKeyShort.ENTER);
+
+        Thread.Sleep(1000);
+
+        Keyboard.Type(VirtualKeyShort.TAB);
+        Thread.Sleep(300);
+        Keyboard.Type(VirtualKeyShort.ENTER);
         return this;
     }
 }

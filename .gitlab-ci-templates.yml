@@ -1,7 +1,5 @@
 .test_execution_script:
   stage: ui-test
-  dependencies:
-    - build-installer
   tags:
     - redesign
   script:
@@ -10,10 +8,6 @@
     - dotnet build src/Tests/ProtonVPN.UI.Tests/ProtonVPN.UI.Tests.csproj --arch x64 -o src/bin
     - VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /Settings:ci/test-scripts/TestRun/test-run-settings.xml /TestCaseFilter:"Category=${CATEGORY}"
     - ci\test-scripts\uninstall-app.ps1
-  except:
-    - /^debug.*$/
-    - release/9.9.9
-    - master
   artifacts:
     when: always
     name: "result-ui"

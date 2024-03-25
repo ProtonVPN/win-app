@@ -70,8 +70,35 @@ build-bti:
 
 ui-test:
   extends: .test_execution_script
+  dependencies:
+    - build-installer
+  except:
+    - /^debug.*$/
+    - release/9.9.9
+    - master
   variables:
     CATEGORY: "UI"
+    
+bti-test:
+  extends: .test_execution_script
+  needs:
+    - build-BTI-installer
+  dependencies:
+    - build-BTI-installer
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      when: never
+    - if: '$CI_COMMIT_BRANCH =~ /^release.*$/'
+      when: never
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: never
+    - if: $BTI_SCHEDULED == "true"
+      when: always
+    - when: manual
+  tags:
+    - BTI
+  variables:
+    CATEGORY: "BTI"
 
 tests:
   stage: test
@@ -84,7 +111,7 @@ tests:
     - src\bin\ProtonVPN.Builds.ConsoleJob.exe
     - dotnet restore ProtonVpn.sln
     - dotnet build ProtonVpn.sln
-    - coverlet src\bin --target "dotnet" --targetargs "test src\bin\*.Tests.dll -l ""console;verbosity=normal"" --filter ""TestCategory!=UI&TestCategory!=Connection&TestCategory!=Performance"" --no-restore --no-build" --format cobertura --output .\coverage-reports --exclude "[*.Tests*]*" --exclude "[ProtonVPN.MarkupValidator]*" --exclude "[TestTools*]*" --exclude "[*.Installers]*"
+    - coverlet src\bin --target "dotnet" --targetargs "test src\bin\*.Tests.dll -l ""console;verbosity=normal"" --filter ""TestCategory!=UI&TestCategory!=Connection&TestCategory!=Performance&TestCategory!=BTI"" --no-restore --no-build" --format cobertura --output .\coverage-reports --exclude "[*.Tests*]*" --exclude "[ProtonVPN.MarkupValidator]*" --exclude "[TestTools*]*" --exclude "[*.Installers]*"
     - powershell -Command "(gc coverage-reports.cobertura.xml) -replace '\\', '/' | Out-File -encoding UTF8 cobertura.xml"
     - ReportGenerator.exe "-reports:cobertura.xml" "-targetdir:.\code-coverage-report-html"
   artifacts:
