@@ -18,7 +18,6 @@
  */
 
 using System;
-using System.IO;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.ApiClient;
@@ -70,7 +69,8 @@ public class SplitTunnelingPerformanceTest : TestSession
         _settingsRobot.DoNavigateToSplitTunnelingSettingsPage()
             .EnableSplitTunneling()
             .ExcludeApp("Microsoft Edge")
-            .ExcludeIp("212.102.35.236");
+            .ExcludeIp("212.102.35.236")
+            .DoApplyChanges();
 
         _shellRobot.DoNavigateToHomePage();
         _homeRobot.DoConnect();

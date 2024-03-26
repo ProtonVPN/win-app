@@ -71,7 +71,6 @@ public class LokiApiClient
     {
         string jsonContent = JsonConvert.SerializeObject(requestBody);
         var httpContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-        Console.WriteLine(jsonContent);
         HttpResponseMessage response = await _httpClient.PostAsync(_lokiPushEndpoint, httpContent);
 
         response.EnsureSuccessStatusCode();
