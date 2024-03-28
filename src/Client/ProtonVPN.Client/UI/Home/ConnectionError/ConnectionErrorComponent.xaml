@@ -28,22 +28,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
-    <InfoBar AutomationProperties.AutomationId="ConnectionErrorPanel"
-             BorderBrush="{ThemeResource SignalDangerColorBrush}"
-             Background="{ThemeResource BackgroundNormColorBrush}"
-             Canvas.ZIndex="1"
-             CornerRadius="8"
-             IsClosable="True"
-             IsIconVisible="True"
-             IsOpen="{x:Bind ViewModel.HasConnectionError}"
+    <InfoBar AutomationProperties.AutomationId="ConnectionErrorPanel" 
+             IsOpen="{x:Bind ViewModel.HasConnectionError, Mode=TwoWay}"
              CloseButtonCommand="{x:Bind ViewModel.CloseErrorCommand}"
              Message="{x:Bind ViewModel.ConnectionErrorMessage}"
              Severity="Error">
         <InfoBar.ActionButton>
             <custom:GhostButton AutomationProperties.AutomationId="ActionButton"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Center"
-                                Margin="0,3,0,0"
                                 Style="{StaticResource PrimaryGhostButtonStyle}"
                                 Content="{x:Bind ViewModel.ActionButtonTitle}"
                                 Command="{x:Bind ViewModel.TriggerActionButtonCommand, Mode=OneTime}"

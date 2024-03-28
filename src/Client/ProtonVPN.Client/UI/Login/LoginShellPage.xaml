@@ -33,12 +33,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <InfoBar Width="{StaticResource LoginPageContentWidth}"
                  Margin="0,32,0,0"
-                 BorderBrush="{ThemeResource SignalDangerColorBrush}"
-                 Background="{ThemeResource BackgroundNormColorBrush}"
-                 Canvas.ZIndex="1"
-                 CornerRadius="8"
-                 IsClosable="True"
-                 IsIconVisible="True"
                  IsOpen="{x:Bind ViewModel.HasError, Mode=OneWay}"
                  Message="{x:Bind ViewModel.ErrorMessage, Mode=OneWay}"
                  Severity="Error" />

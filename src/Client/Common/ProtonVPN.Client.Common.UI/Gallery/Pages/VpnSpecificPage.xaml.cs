@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Collections.ObjectModel;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
@@ -26,6 +27,8 @@ namespace ProtonVPN.Client.Common.UI.Gallery.Pages;
 public sealed partial class VpnSpecificPage
 {
     internal ObservableCollection<FakeIntent> FakeIntents { get; }
+
+    internal ObservableCollection<InfoBarSeverity> InfoBarSeverities { get; } = new ObservableCollection<InfoBarSeverity>(Enum.GetValues<InfoBarSeverity>());
 
     public VpnSpecificPage()
     {
@@ -62,6 +65,14 @@ public sealed partial class VpnSpecificPage
         };
 
         InitializeComponent();
+    }
+
+    private void OnSeveritySelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        InfoBarSeverity severity = (InfoBarSeverity)cboxInfoBarSeverity.SelectedItem;
+
+        infobar1.Severity = severity;
+        infobar2.Severity = severity;
     }
 }
 

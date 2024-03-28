@@ -47,15 +47,15 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
     private readonly IReportIssueViewNavigator _reportIssueViewNavigator;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(HasConnectionError))]
     private string _connectionErrorMessage = string.Empty;
+
+    [ObservableProperty]
+    private bool _hasConnectionError;
 
     [ObservableProperty]
     private string _actionButtonTitle = string.Empty;
 
     private VpnError _vpnError = VpnError.None;
-
-    public bool HasConnectionError => !string.IsNullOrEmpty(ConnectionErrorMessage);
 
     public ConnectionErrorViewModel(
         ILocalizationProvider localizationProvider,
@@ -81,6 +81,7 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
 
             ConnectionErrorMessage = Localizer.GetVpnError(message.VpnError, _settings.IsPaid);
             ActionButtonTitle = Localizer.GetDisconnectErrorActionButtonTitle(message.VpnError);
+            HasConnectionError = !string.IsNullOrEmpty(ConnectionErrorMessage);
         });
     }
 
@@ -117,7 +118,7 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
     [RelayCommand]
     public void CloseError()
     {
-        ConnectionErrorMessage = string.Empty;
+        HasConnectionError = false;
     }
 
     public void Receive(ConnectionStatusChanged message)

@@ -26,13 +26,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:details="using:ProtonVPN.Client.UI.Home.Details"
-      xmlns:helpers="using:ProtonVPN.Client.Helpers"
       xmlns:map="using:ProtonVPN.Client.UI.Home.Map"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       xmlns:recents="using:ProtonVPN.Client.UI.Home.Recents"
       xmlns:selectors="using:ProtonVPN.Client.UI.Home.Selectors"
-      xmlns:status="using:ProtonVPN.Client.UI.Home.Status" 
+      xmlns:status="using:ProtonVPN.Client.UI.Home.Status"
+      xmlns:wrongCountryBanner="using:ProtonVPN.Client.UI.Home.UpsellBanner"
+      xmlns:banner="using:ProtonVPN.Client.UI.Upsell.Banner"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
       mc:Ignorable="d">
@@ -163,8 +164,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                        AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_VpnStatus_Landmark')}"
                                                        TabIndex="1" />
 
-                            <connectionError:ConnectionErrorComponent MaxWidth="{StaticResource MaximumHomePageContentWidth}"
-                                                                      Margin="16,56,16,0" />
+                            <StackPanel MaxWidth="{StaticResource MaximumHomePageContentWidth}"
+                                        Margin="16,60,16,0">
+                                <connectionError:ConnectionErrorComponent/>
+                                <banner:UpsellBannerComponent />
+                            </StackPanel>
                         </Grid>
 
                         <Border Height="{StaticResource MapOverlayGradientHeight}"
@@ -178,7 +182,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                     <ContentControl Grid.Row="1"
                                     MaxWidth="{StaticResource MaximumHomePageContentWidth}"
-                                    Margin="0,0,0,16"
+                                    Margin="16"
                                     HorizontalContentAlignment="Stretch"
                                     Content="{x:Bind ViewModel.IsPaidUser}"
                                     ContentTemplateSelector="{StaticResource ConnectionCardTemplateSelector}" 

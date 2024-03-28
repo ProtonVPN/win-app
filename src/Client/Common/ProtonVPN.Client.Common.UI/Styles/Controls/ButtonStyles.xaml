@@ -302,4 +302,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Setter.Value>
         </Setter>
     </Style>
+
+    <x:Double x:Key="CloseInfoBarButtonSize">24.0</x:Double>
+
+    <Style x:Key="CloseInfoBarButtonStyle" TargetType="Button" BasedOn="{StaticResource RowButtonStyle}">
+        <Style.Setters>
+            <Setter Property="MinHeight" Value="{StaticResource CloseInfoBarButtonSize}" />
+            <Setter Property="MinWidth" Value="{StaticResource CloseInfoBarButtonSize}" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="Padding" Value="0" />
+        </Style.Setters>
+    </Style>
 </ResourceDictionary>

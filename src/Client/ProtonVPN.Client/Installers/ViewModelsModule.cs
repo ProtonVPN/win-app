@@ -50,6 +50,7 @@ using ProtonVPN.Client.UI.Settings.Pages.About;
 using ProtonVPN.Client.UI.Settings.Pages.Advanced;
 using ProtonVPN.Client.UI.Tray;
 using ProtonVPN.Client.UI.Update;
+using ProtonVPN.Client.UI.Upsell.Banner;
 
 namespace ProtonVPN.Client.Installers;
 
@@ -114,6 +115,7 @@ public class ViewModelsModule : Module
         RegisterViewModel<NoSearchResultsViewModel>(builder);
         RegisterViewModel<SsoLoginOverlayViewModel>(builder);
         RegisterViewModel<ConnectionErrorViewModel>(builder);
+        RegisterViewModel<UpsellBannerViewModel>(builder);
         RegisterViewModel<DeveloperToolsViewModel>(builder);
         RegisterViewModel<UpdateViewModel>(builder);
         RegisterViewModel<LicensingViewModel>(builder);
