@@ -70,6 +70,9 @@
         <None Update="appsettings.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <Page Update="UI\Home\WrongCountryBanner\WrongCountryBannerComponent.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
         <Page Update="UI\Update\UpdateBoxComponent.xaml">
           <Generator>MSBuild:Compile</Generator>
         </Page>
@@ -203,6 +206,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <None Remove="UI\Home\UpsellBanner\UpsellBannerComponent.xaml" />
         <None Remove="UI\Settings\Pages\About\AboutPage.xaml" />
         <None Remove="Assets\protonvpn.ico" />
         <None Remove="UI\Account\AccountComponent.xaml" />
@@ -270,6 +274,7 @@
         <Folder Include="UI\Home\Map\" />
         <Folder Include="UI\Home\Help\" />
         <Folder Include="UI\Login\Forms\" />
+        <Folder Include="UI\Upsell\Banner\" />
     </ItemGroup>
 
     <ItemGroup>

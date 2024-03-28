@@ -622,6 +622,7 @@
         <None Remove="Assets\Illustrations\Light\welcome.png" />
         <None Remove="Assets\Illustrations\netshield-off.png" />
         <None Remove="Assets\Illustrations\netshield-on.png" />
+        <None Remove="Assets\Illustrations\netshield.png" />
         <None Remove="Assets\Illustrations\port-forwarding-off.png" />
         <None Remove="Assets\Illustrations\port-forwarding-on.png" />
         <None Remove="Assets\Illustrations\report-error.png" />
@@ -638,6 +639,7 @@
         <None Remove="Assets\Illustrations\vpn-tray-warning.ico" />
         <None Remove="Assets\Illustrations\world-map.svg" />
         <None Remove="Assets\Illustrations\worldwide-coverage.png" />
+        <None Remove="Assets\Illustrations\wrong-country.png" />
         <None Remove="Controls\CountryFlagControl.xaml" />
         <None Remove="Controls\DeviceLocationControl.xaml" />
         <None Remove="Controls\DualCommandsRowControl.xaml" />
@@ -1697,6 +1699,9 @@
         <Content Update="Assets\Illustrations\netshield-on.png">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Illustrations\netshield.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Illustrations\p2p-download.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -1740,6 +1745,9 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\worldwide-coverage.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\wrong-country.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
     </ItemGroup>

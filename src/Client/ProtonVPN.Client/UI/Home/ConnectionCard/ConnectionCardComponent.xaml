@@ -32,8 +32,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_ConnectionCard_Landmark')}"
              mc:Ignorable="d">
 
-    <StackPanel Padding="16,16,16,0"
-                Orientation="Vertical"
+    <StackPanel Orientation="Vertical"
                 Spacing="12">
         <Grid ColumnSpacing="12">
             <Grid.ColumnDefinitions>
