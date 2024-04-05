@@ -24,20 +24,35 @@ namespace ProtonVPN.Client.UI.Countries.Controls;
 
 public sealed partial class CountryListControl
 {
-    public static readonly DependencyProperty CountriesProperty = DependencyProperty.Register(
-        nameof(Countries),
-        typeof(AdvancedCollectionView),
-        typeof(CountryListControl),
-        new PropertyMetadata(null));
+    public static readonly DependencyProperty CountriesProperty =
+        DependencyProperty.Register(nameof(Countries), typeof(AdvancedCollectionView), typeof(CountryListControl), new PropertyMetadata(null));
 
-    public CountryListControl()
+    public static readonly DependencyProperty UpsellBannerProperty =
+        DependencyProperty.Register(nameof(UpsellBanner), typeof(FrameworkElement), typeof(CountryListControl), new PropertyMetadata(default));
+
+    public static readonly DependencyProperty IsUpsellBannerVisibleProperty =
+        DependencyProperty.Register(nameof(IsUpsellBannerVisible), typeof(bool), typeof(CountryListControl), new PropertyMetadata(default));
+
+    public bool IsUpsellBannerVisible
     {
-        InitializeComponent();
+        get => (bool)GetValue(IsUpsellBannerVisibleProperty);
+        set => SetValue(IsUpsellBannerVisibleProperty, value);
     }
 
     public AdvancedCollectionView Countries
     {
         get => (AdvancedCollectionView)GetValue(CountriesProperty);
         set => SetValue(CountriesProperty, value);
+    }
+
+    public FrameworkElement UpsellBanner
+    {
+        get => (FrameworkElement)GetValue(UpsellBannerProperty);
+        set => SetValue(UpsellBannerProperty, value);
+    }
+
+    public CountryListControl()
+    {
+        InitializeComponent();
     }
 }

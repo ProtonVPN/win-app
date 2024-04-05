@@ -21,33 +21,50 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 <countryControls:ItemsListControlBase x:Class="ProtonVPN.Client.UI.Countries.Controls.CityListControl"
                                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                                      xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
                                       xmlns:countries="using:ProtonVPN.Client.UI.Countries"
                                       xmlns:countryControls="using:ProtonVPN.Client.UI.Countries.Controls"
+                                      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
                                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                                       xmlns:icons="using:ProtonVPN.Client.Common.UI.Assets.Icons"
                                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                                       xmlns:pathIcons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
                                       x:DefaultBindMode="OneWay"
                                       mc:Ignorable="d">
-    <StackPanel Spacing="4">
+    <StackPanel>
         <countryControls:CountryFeatureTitleControl Title="{x:Bind Title}" />
 
         <ItemsRepeater ItemsSource="{x:Bind Cities}"
                        TabFocusNavigation="Local">
             <ItemsRepeater.ItemTemplate>
                 <DataTemplate x:DataType="countries:CityViewModel">
-                    <controls:DualCommandsRowControl Padding="12,0"
-                                                     PrimaryButtonAutomationId="{x:Bind ConnectButtonAutomationId}"
-                                                     PrimaryButtonAutomationName="{x:Bind Name}"
-                                                     PrimaryCommand="{x:Bind ConnectCommand}"
-                                                     PrimaryCommandText="{x:Bind Localizer.Get('Countries_Connect')}"
-                                                     SecondaryButtonAutomationId="{x:Bind ShowServersButtonAutomationId}"
-                                                     SecondaryCommandText="{x:Bind Localizer.GetPluralFormat('Countries_Server', Servers.Count)}">
+                    <custom:DualCommandsRow Padding="12,0"
+                                            IsContentEnabled="{x:Bind IsCityEnabled}"
+                                            PrimaryCommandToolTip="{x:Bind PaidCityWarningLabel}"
+                                            PrimaryCommandAutomationId="{x:Bind ConnectButtonAutomationId}"
+                                            PrimaryCommandAutomationName="{x:Bind Name}"
+                                            PrimaryCommand="{x:Bind ConnectCommand}"
+                                            SecondaryCommandAutomationId="{x:Bind ShowServersButtonAutomationId}"
+                                            SecondaryCommandText="{x:Bind Localizer.GetPluralFormat('Countries_Server', Servers.Count)}">
 
-                        <controls:DualCommandsRowControl.SecondaryCommandIcon>
+                        <custom:DualCommandsRow.PrimaryCommandContent>
+                            <Grid>
+                                <Image Height="20"
+                                       HorizontalAlignment="Center"
+                                       Source="{ThemeResource VpnPlusIllustrationSource}"
+                                       Visibility="{x:Bind IsFreeUser, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                                <Grid Visibility="{x:Bind IsFreeUser, Converter={StaticResource NotBooleanToVisibilityConverter}}">
+                                    <TextBlock Text="{x:Bind Localizer.Get('Common_Actions_Connect')}"
+                                               Visibility="{x:Bind IsActiveConnection, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+                                    <TextBlock Text="{x:Bind Localizer.Get('Common_Actions_Disconnect')}"
+                                               Visibility="{x:Bind IsActiveConnection, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                </Grid>
+                            </Grid>
+                        </custom:DualCommandsRow.PrimaryCommandContent>
+
+                        <custom:DualCommandsRow.SecondaryCommandIcon>
                             <pathIcons:ThreeDotsVertical Foreground="{ThemeResource TextWeakColorBrush}" />
-                        </controls:DualCommandsRowControl.SecondaryCommandIcon>
+                        </custom:DualCommandsRow.SecondaryCommandIcon>
 
                         <StackPanel Orientation="Horizontal"
                                     Spacing="8">
@@ -59,7 +76,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                              Visibility="{x:Bind IsActiveConnection, Converter={StaticResource BooleanToVisibilityConverter}}" />
                         </StackPanel>
 
-                        <controls:DualCommandsRowControl.SecondaryCommandFlyout>
+                        <custom:DualCommandsRow.SecondaryCommandFlyout>
                             <Flyout Placement="BottomEdgeAlignedRight">
                                 <StackPanel Width="286"
                                             Spacing="8">
@@ -82,8 +99,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     </ScrollViewer>
                                 </StackPanel>
                             </Flyout>
-                        </controls:DualCommandsRowControl.SecondaryCommandFlyout>
-                    </controls:DualCommandsRowControl>
+                        </custom:DualCommandsRow.SecondaryCommandFlyout>
+                    </custom:DualCommandsRow>
                 </DataTemplate>
             </ItemsRepeater.ItemTemplate>
         </ItemsRepeater>

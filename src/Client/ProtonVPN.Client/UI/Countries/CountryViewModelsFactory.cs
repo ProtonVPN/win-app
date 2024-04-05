@@ -18,10 +18,13 @@
  */
 
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Urls;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
@@ -35,6 +38,9 @@ public class CountryViewModelsFactory
     private readonly IConnectionManager _connectionManager;
     private readonly ILogger _logger;
     private readonly IIssueReporter _issueReporter;
+    private readonly IWebAuthenticator _webAuthenticator;
+    private readonly ISettings _settings;
+    private readonly IUrls _urls;
 
     public CountryViewModelsFactory(
         ILocalizationProvider localizer,
@@ -42,7 +48,10 @@ public class CountryViewModelsFactory
         IOverlayActivator overlayActivator,
         IConnectionManager connectionManager,
         ILogger logger,
-        IIssueReporter issueReporter)
+        IIssueReporter issueReporter,
+        IWebAuthenticator webAuthenticator,
+        ISettings settings,
+        IUrls urls)
     {
         _mainViewNavigator = mainViewNavigator;
         _overlayActivator = overlayActivator;
@@ -50,34 +59,39 @@ public class CountryViewModelsFactory
         _connectionManager = connectionManager;
         _logger = logger;
         _issueReporter = issueReporter;
+        _webAuthenticator = webAuthenticator;
+        _settings = settings;
+        _urls = urls;
     }
 
     public CountryViewModel GetCountryViewModel(string exitCountryCode, CountryFeature countryFeature, int itemCount)
     {
-        return new CountryViewModel(_localizer, _mainViewNavigator, _connectionManager, _logger, _issueReporter)
+        return new CountryViewModel(_localizer, _mainViewNavigator, _connectionManager, _logger, _issueReporter, _webAuthenticator, _settings, _urls)
         {
             EntryCountryCode = string.Empty,
             ExitCountryCode = exitCountryCode,
             IsUnderMaintenance = false,
             SecondaryActionLabel = _localizer.GetPluralFormat(GetCountrySecondaryActionLabel(countryFeature), itemCount),
-            CountryFeature = countryFeature
+            CountryFeature = countryFeature,
+            IsFastest = false,
         };
     }
 
     public CountryViewModel GetFastestCountryViewModel(CountryFeature countryFeature)
     {
-        return new CountryViewModel(_localizer, _mainViewNavigator, _connectionManager, _logger, _issueReporter)
+        return new CountryViewModel(_localizer, _mainViewNavigator, _connectionManager, _logger, _issueReporter, _webAuthenticator, _settings, _urls)
         {
             EntryCountryCode = string.Empty,
             ExitCountryCode = string.Empty,
             CountryFeature = countryFeature,
             SecondaryActionLabel = string.Empty,
+            IsFastest = true,
         };
     }
 
     public CityViewModel GetCityViewModel(City city, List<ServerViewModel> servers, CountryFeature countryFeature)
     {
-        return new(_localizer, _mainViewNavigator, _overlayActivator, _connectionManager, _logger, _issueReporter)
+        return new(_localizer, _mainViewNavigator, _overlayActivator, _connectionManager, _logger, _issueReporter, _settings, _webAuthenticator, _urls)
         {
             City = city,
             Servers = servers,
@@ -87,7 +101,7 @@ public class CountryViewModelsFactory
 
     public ServerViewModel GetServerViewModel(Server server)
     {
-        ServerViewModel serverViewModel = new(_localizer, _mainViewNavigator, _connectionManager, _logger, _issueReporter);
+        ServerViewModel serverViewModel = new(_localizer, _mainViewNavigator, _connectionManager, _logger, _issueReporter, _webAuthenticator, _settings, _urls);
 
         serverViewModel.CopyPropertiesFromServer(server);
 
@@ -96,13 +110,14 @@ public class CountryViewModelsFactory
 
     public CountryViewModel GetSecureCoreCountryViewModel(SecureCoreCountryPair countryPair)
     {
-        return new CountryViewModel(_localizer, _mainViewNavigator, _connectionManager, _logger, _issueReporter)
+        return new CountryViewModel(_localizer, _mainViewNavigator, _connectionManager, _logger, _issueReporter, _webAuthenticator, _settings, _urls)
         {
             EntryCountryCode = countryPair.EntryCountry,
             ExitCountryCode = countryPair.ExitCountry,
             IsUnderMaintenance = false,
             SecondaryActionLabel = string.Empty,
-            CountryFeature = CountryFeature.SecureCore
+            CountryFeature = CountryFeature.SecureCore,
+            IsFastest = false,
         };
     }
 

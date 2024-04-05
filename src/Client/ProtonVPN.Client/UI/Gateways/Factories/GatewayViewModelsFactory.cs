@@ -18,10 +18,13 @@
  */
 
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Urls;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Gateways.Items;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -36,6 +39,9 @@ public class GatewayViewModelsFactory
     private readonly IConnectionManager _connectionManager;
     private readonly ILogger _logger;
     private readonly IIssueReporter _issueReporter;
+    private readonly IWebAuthenticator _webAuthenticator;
+    private readonly ISettings _settings;
+    private readonly IUrls _urls;
 
     public GatewayViewModelsFactory(
         ILocalizationProvider localizer,
@@ -43,7 +49,10 @@ public class GatewayViewModelsFactory
         IOverlayActivator overlayActivator,
         IConnectionManager connectionManager,
         ILogger logger,
-        IIssueReporter issueReporter)
+        IIssueReporter issueReporter,
+        IWebAuthenticator webAuthenticator,
+        ISettings settings,
+        IUrls urls)
     {
         _mainViewNavigator = mainViewNavigator;
         _overlayActivator = overlayActivator;
@@ -51,13 +60,16 @@ public class GatewayViewModelsFactory
         _connectionManager = connectionManager;
         _logger = logger;
         _issueReporter = issueReporter;
+        _webAuthenticator = webAuthenticator;
+        _settings = settings;
+        _urls = urls;
     }
 
     public GatewayViewModel GetGatewayViewModel(string gatewayName, List<Server> servers)
     {
         List<B2BServerViewModel> gatewayServers = servers.Select(GetB2BServerViewModel).ToList();
 
-        return new GatewayViewModel(_localizer, _mainViewNavigator, _connectionManager, _overlayActivator, _logger, _issueReporter)
+        return new GatewayViewModel(_localizer, _mainViewNavigator, _connectionManager, _overlayActivator, _logger, _issueReporter, _webAuthenticator, _settings, _urls)
         {
             GatewayName = gatewayName,
             Servers = gatewayServers,
@@ -67,7 +79,7 @@ public class GatewayViewModelsFactory
 
     public B2BServerViewModel GetB2BServerViewModel(Server server)
     {
-        B2BServerViewModel serverViewModel = new(_localizer, _mainViewNavigator, _connectionManager, _logger, _issueReporter);
+        B2BServerViewModel serverViewModel = new(_localizer, _mainViewNavigator, _connectionManager, _logger, _issueReporter, _webAuthenticator, _settings, _urls);
 
         serverViewModel.CopyPropertiesFromServer(server);
 

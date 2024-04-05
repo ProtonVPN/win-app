@@ -80,6 +80,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/p2p-servers.png" />
     <BitmapImage x:Key="WorldwideCoverageIllustrationSource"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/worldwide-coverage.png" />
+    <BitmapImage x:Key="SecureCoreSmallIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/secure-core-small.png" />
+    <BitmapImage x:Key="P2PSmallIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/p2p-small.png" />
+    <BitmapImage x:Key="TorSmallIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/tor-small.png" />
     <BitmapImage x:Key="WrongCountryIllustrationSource"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/wrong-country.png" />
     <BitmapImage x:Key="NetShieldIllustrationSource"

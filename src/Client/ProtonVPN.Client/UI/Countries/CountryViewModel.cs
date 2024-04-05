@@ -20,11 +20,15 @@
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
+using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Urls;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -34,22 +38,24 @@ namespace ProtonVPN.Client.UI.Countries;
 public partial class CountryViewModel : LocationViewModelBase, IComparable, ISearchableItem
 {
     public required string ExitCountryCode { get; init; }
+    public required string EntryCountryCode { get; init; }
+    public required string SecondaryActionLabel { get; init; }
+    public required bool IsFastest { get; init; }
 
     public string ExitCountryName => Localizer.GetCountryName(ExitCountryCode);
-
-    public required string EntryCountryCode { get; init; }
-
     public string EntryCountryName => Localizer.GetCountryName(EntryCountryCode);
-
     public string ViaEntryCountryLabel => Localizer.GetFormat("Countries_ViaCountry", EntryCountryName);
 
     public string ConnectButtonAutomationName => IsSecureCore && !string.IsNullOrEmpty(EntryCountryCode)
         ? $"{ExitCountryName} {ViaEntryCountryLabel}"
         : ExitCountryName;
 
-    public required string SecondaryActionLabel { get; init; }
-    public bool IsUnderMaintenance { get; init; }
+    public string? PaidCountryWarningLabel => IsFreeUser ?
+        Localizer.Get(IsSecureCore && !string.IsNullOrEmpty(EntryCountryCode) ? "Countries_PaidServerWarning" : "Countries_PaidCountryWarning") :
+        null;
+
     public CountryFeature CountryFeature { get; init; }
+
     public bool IsSecureCore => CountryFeature == CountryFeature.SecureCore;
 
     public string ConnectButtonAutomationId => $"Connect_to_{ExitCountryCode}";
@@ -64,13 +70,26 @@ public partial class CountryViewModel : LocationViewModelBase, IComparable, ISea
     protected override ConnectionIntent ConnectionIntent => new(new CountryLocationIntent(ExitCountryCode),
         CountryFeature.GetFeatureIntent(EntryCountryCode));
 
+    protected override ModalSources UpsellModalSources => CountryFeature.GetUpsellModalSources();
+
     public CountryViewModel(
         ILocalizationProvider localizationProvider,
         IMainViewNavigator mainViewNavigator,
         IConnectionManager connectionManager,
         ILogger logger,
-        IIssueReporter issueReporter) :
-        base(localizationProvider, mainViewNavigator, connectionManager, logger, issueReporter)
+        IIssueReporter issueReporter,
+        IWebAuthenticator webAuthenticator,
+        ISettings settings,
+        IUrls urls) :
+        base(
+            localizationProvider,
+            mainViewNavigator,
+            connectionManager,
+            logger,
+            issueReporter,
+            webAuthenticator,
+            settings,
+            urls)
     {
     }
 

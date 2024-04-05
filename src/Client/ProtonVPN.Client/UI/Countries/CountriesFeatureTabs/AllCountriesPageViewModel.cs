@@ -19,12 +19,15 @@
 
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Urls;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Countries.Controls;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -48,11 +51,23 @@ public class AllCountriesPageViewModel : CountriesTabViewModelBase
         ILogger logger,
         IIssueReporter issueReporter,
         NoSearchResultsViewModel noSearchResultsViewModel,
-        CountryViewModelsFactory countryViewModelsFactory)
-        : base(mainViewNavigator, overlayActivator, serversLoader, countriesFeatureTabsViewNavigator,
-            localizationProvider, logger, issueReporter, noSearchResultsViewModel, countryViewModelsFactory)
-    {
-    }
+        ISettings settings,
+        CountryViewModelsFactory countryViewModelsFactory,
+        IUrls urls,
+        IWebAuthenticator webAuthenticator)
+        : base(mainViewNavigator, 
+               overlayActivator, 
+               serversLoader, 
+               countriesFeatureTabsViewNavigator,
+               localizationProvider, 
+               logger, 
+               issueReporter,
+               noSearchResultsViewModel,
+               settings, 
+               countryViewModelsFactory,
+               urls, 
+               webAuthenticator)
+    { }
 
     protected override IEnumerable<string> GetCountryCodes()
     {

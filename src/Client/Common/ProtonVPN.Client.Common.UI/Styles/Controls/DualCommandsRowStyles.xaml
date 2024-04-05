@@ -100,7 +100,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               ContentTemplateSelector="{TemplateBinding PrimaryCommandContentTemplateSelector}"
                                               FontSize="{StaticResource BodyStrongFontSize}"
                                               FontWeight="{StaticResource BodyStrongFontWeight}"
-                                              Foreground="{TemplateBinding Foreground}" />
+                                              Foreground="{TemplateBinding Foreground}"
+                                              Visibility="{Binding PrimaryCommandContent, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}" />
                         </ContentControl>
 
                         <ContentControl x:Name="SecondaryContainer"
@@ -139,7 +140,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <StateTrigger IsActive="{Binding IsPointerOver, ElementName=PrimaryButton}" />
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
-                                        <Setter Target="PrimaryContainer.Visibility" Value="Visible" />
+                                        <Setter Target="PrimaryContainer.Visibility" Value="{Binding PrimaryCommandContent, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}" />
                                         <Setter Target="SecondaryContainer.Opacity" Value="1" />
                                     </VisualState.Setters>
                                 </VisualState>
@@ -161,7 +162,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <StateTrigger IsActive="{Binding FocusState, ElementName=PrimaryButton, Converter={StaticResource FocusStateToBooleanConverter}}" />
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
-                                        <Setter Target="PrimaryContainer.Visibility" Value="Visible" />
+                                        <Setter Target="PrimaryContainer.Visibility" Value="{Binding PrimaryCommandContent, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}" />
                                         <Setter Target="SecondaryContainer.Opacity" Value="1" />
                                     </VisualState.Setters>
                                 </VisualState>

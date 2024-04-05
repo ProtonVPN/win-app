@@ -19,6 +19,4 @@
 
 namespace ProtonVPN.Client.Models.Navigation;
 
-public interface ICountriesFeatureTabsViewNavigator : IViewNavigator
-{
-}
+public interface ICountriesFeatureTabsViewNavigator : IViewNavigator;

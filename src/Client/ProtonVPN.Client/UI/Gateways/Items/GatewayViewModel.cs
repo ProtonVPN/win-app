@@ -19,6 +19,8 @@
 
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
@@ -26,6 +28,8 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Urls;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Countries;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
 using ProtonVPN.IssueReporting.Contracts;
@@ -54,14 +58,27 @@ public partial class GatewayViewModel : LocationViewModelBase, IComparable
 
     protected override ConnectionIntent ConnectionIntent => new(new GatewayLocationIntent(GatewayName), new B2BFeatureIntent());
 
+    protected override ModalSources UpsellModalSources => ModalSources.Undefined;
+
     public GatewayViewModel(
         ILocalizationProvider localizationProvider,
         IMainViewNavigator mainViewNavigator,
         IConnectionManager connectionManager,
         IOverlayActivator overlayActivator,
         ILogger logger,
-        IIssueReporter issueReporter) :
-        base(localizationProvider, mainViewNavigator, connectionManager, logger, issueReporter)
+        IIssueReporter issueReporter,
+        IWebAuthenticator webAuthenticator,
+        ISettings settings,
+        IUrls urls) :
+        base(
+            localizationProvider,
+            mainViewNavigator,
+            connectionManager,
+            logger,
+            issueReporter,
+            webAuthenticator,
+            settings,
+            urls)
     {
         _overlayActivator = overlayActivator;
     }
@@ -90,5 +107,60 @@ public partial class GatewayViewModel : LocationViewModelBase, IComparable
         }
 
         return string.Compare(GatewayName, gateway.GatewayName, StringComparison.OrdinalIgnoreCase);
+    }
+
+    public override bool Equals(object obj)
+    {
+        if (ReferenceEquals(this, obj))
+        {
+            return true;
+        }
+
+        if (ReferenceEquals(obj, null))
+        {
+            return false;
+        }
+
+        throw new NotImplementedException();
+    }
+
+    public override int GetHashCode()
+    {
+        throw new NotImplementedException();
+    }
+
+    public static bool operator ==(GatewayViewModel left, GatewayViewModel right)
+    {
+        if (ReferenceEquals(left, null))
+        {
+            return ReferenceEquals(right, null);
+        }
+
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(GatewayViewModel left, GatewayViewModel right)
+    {
+        return !(left == right);
+    }
+
+    public static bool operator <(GatewayViewModel left, GatewayViewModel right)
+    {
+        return ReferenceEquals(left, null) ? !ReferenceEquals(right, null) : left.CompareTo(right) < 0;
+    }
+
+    public static bool operator <=(GatewayViewModel left, GatewayViewModel right)
+    {
+        return ReferenceEquals(left, null) || left.CompareTo(right) <= 0;
+    }
+
+    public static bool operator >(GatewayViewModel left, GatewayViewModel right)
+    {
+        return !ReferenceEquals(left, null) && left.CompareTo(right) > 0;
+    }
+
+    public static bool operator >=(GatewayViewModel left, GatewayViewModel right)
+    {
+        return ReferenceEquals(left, null) ? ReferenceEquals(right, null) : left.CompareTo(right) >= 0;
     }
 }

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <!--
 Copyright (c) 2023 Proton AG
 
@@ -33,6 +32,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <controls:CountryFeatureTitleControl Title="{x:Bind Title}"
                                              InfoLabel="{x:Bind InfoLabel}"
                                              ShowInfoOverlayCommand="{x:Bind ShowInfoOverlayCommand, Mode=OneTime}" />
+
+        <ContentPresenter Content="{x:Bind UpsellBanner}"
+                          Visibility="{x:Bind IsUpsellBannerVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                          Margin="12,8,8,8" />
 
         <ItemsRepeater ItemsSource="{x:Bind Countries}"
                        TabFocusNavigation="Local">

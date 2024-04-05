@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <!--
 Copyright (c) 2023 Proton AG
 
@@ -34,7 +33,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                      InfoLabel="{x:Bind ViewModel.Localizer.Get('Countries_Info')}"
                                      ShowInfoOverlayCommand="{x:Bind ViewModel.ShowInfoOverlayCommand, Mode=OneTime}"
                                      Visibility="{x:Bind ViewModel.HasCountries, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                     Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_P2PCountries', ViewModel.TotalCountries)}" />
+                                     Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_P2PCountries', ViewModel.TotalCountries)}"
+                                     IsUpsellBannerVisible="{x:Bind ViewModel.IsUpsellBannerVisible}">
+            <controls:CountryListControl.UpsellBanner>
+                <controls:UpsellCountryBannerControl Image="{StaticResource P2PSmallIllustrationSource}"
+                                                     Description="{x:Bind ViewModel.Localizer.Get('FreeConnections_P2PUpsell')}"
+                                                     Command="{x:Bind ViewModel.UpgradePlanCommand}"/>
+            </controls:CountryListControl.UpsellBanner>
+        </controls:CountryListControl>
 
         <controls:CityListControl Cities="{x:Bind ViewModel.Cities}"
                                   Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_NumberOfCities', ViewModel.Cities.Count)}"

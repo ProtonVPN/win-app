@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <!--
 Copyright (c) 2023 Proton AG
 
@@ -31,18 +30,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
-    <custom:GhostButton IsEnabled="{x:Bind ServerViewModel.IsUnderMaintenance, Converter={StaticResource NotBooleanToBooleanConverter}}"
-                        AutomationProperties.Name="ServerConnectButton"
-                        AutomationProperties.AutomationId="{x:Bind ServerViewModel.ConnectButtonAutomationId}"
-                        Command="{x:Bind ServerViewModel.ConnectCommand}"
-                        HorizontalAlignment="Stretch"
-                        CornerRadius="8"
-                        Padding="8">
-        <custom:GhostButton.Style>
-            <Style TargetType="custom:GhostButton" BasedOn="{StaticResource SecondaryGhostButtonStyle}">
-                <Setter Property="Foreground" Value="{ThemeResource TextNormColorBrush}" />
-            </Style>
-        </custom:GhostButton.Style>
+    <custom:DualCommandsRow IsContentEnabled="{x:Bind ServerViewModel.IsEnabled}"
+                            PrimaryCommandAutomationName="ServerConnectButton"
+                            PrimaryCommandAutomationId="{x:Bind ServerViewModel.ConnectButtonAutomationId}"
+                            PrimaryCommandToolTip="{x:Bind ServerViewModel.PaidServerWarningLabel}"
+                            PrimaryCommand="{x:Bind ServerViewModel.ConnectCommand}"
+                            HorizontalContentAlignment="Stretch">
+
         <Grid ColumnSpacing="8"
               ColumnDefinitions="*,16,16,76">
             <StackPanel Grid.Column="0"
@@ -80,5 +74,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            Text="{x:Bind ServerViewModel.LoadPercent}" />
             </StackPanel>
         </Grid>
-    </custom:GhostButton>
+
+    </custom:DualCommandsRow>
 </UserControl>

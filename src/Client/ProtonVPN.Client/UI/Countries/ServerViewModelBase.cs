@@ -19,9 +19,12 @@
 
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
+using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Urls;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
@@ -35,11 +38,12 @@ public abstract class ServerViewModelBase : LocationViewModelBase
     public string Name { get; private set; } = string.Empty;
     public double Load { get; private set; }
     public string LoadPercent => $"{Load:P0}";
-    public bool IsUnderMaintenance { get; private set; }
 
     public string ConnectButtonAutomationId => $"Connect_to_{Name}";
     public virtual string ConnectButtonAutomationName => ExitCountryName;
     public string ActiveConnectionAutomationId => $"Active_connection_{Name}";
+
+    public string? PaidServerWarningLabel => IsFreeUser ? Localizer.Get("Countries_PaidServerWarning") : null;
 
     public override bool IsActiveConnection => ConnectionDetails != null
                                             && ConnectionDetails.ServerId == Id;
@@ -49,8 +53,19 @@ public abstract class ServerViewModelBase : LocationViewModelBase
         IMainViewNavigator mainViewNavigator,
         IConnectionManager connectionManager,
         ILogger logger,
-        IIssueReporter issueReporter) :
-        base(localizationProvider, mainViewNavigator, connectionManager, logger, issueReporter)
+        IIssueReporter issueReporter,
+        IWebAuthenticator webAuthenticator,
+        ISettings settings,
+        IUrls urls) :
+        base(
+            localizationProvider,
+            mainViewNavigator,
+            connectionManager,
+            logger,
+            issueReporter,
+            webAuthenticator,
+            settings,
+            urls)
     { }
 
     public virtual void CopyPropertiesFromServer(Server server)
@@ -60,5 +75,12 @@ public abstract class ServerViewModelBase : LocationViewModelBase
         Load = server.Load / 100d;
         IsUnderMaintenance = server.IsUnderMaintenance();
         ExitCountryCode = server.ExitCountry;
+    }
+
+    protected override void OnLanguageChanged()
+    {
+        base.OnLanguageChanged();
+
+        OnPropertyChanged(nameof(PaidServerWarningLabel));
     }
 }

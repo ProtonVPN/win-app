@@ -44,4 +44,6 @@ public interface IViewNavigator
         where TPageViewModel : PageViewModelBase;
 
     void CloseCurrentWindow();
+
+    void ResetContent();
 }

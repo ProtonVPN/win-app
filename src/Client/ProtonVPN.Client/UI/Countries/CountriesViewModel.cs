@@ -91,6 +91,8 @@ public partial class CountriesViewModel : NavigationPageViewModelBase, IEventMes
     {
         base.OnNavigatedFrom();
 
+        CountriesFeatureTabsViewNavigator.ResetContent();
+
         SearchQuery = string.Empty;
     }
 
@@ -104,10 +106,7 @@ public partial class CountriesViewModel : NavigationPageViewModelBase, IEventMes
 
     public void Receive(ServerListChangedMessage message)
     {
-        ExecuteOnUIThread(() =>
-        {
-            LoadFeatureTabPages();
-        });
+        ExecuteOnUIThread(LoadFeatureTabPages);
     }
 
     private void OnNavigated(object sender, NavigationEventArgs e)

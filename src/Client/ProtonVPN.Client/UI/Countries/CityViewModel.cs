@@ -19,12 +19,16 @@
 
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Urls;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.IssueReporting.Contracts;
@@ -46,22 +50,39 @@ public partial class CityViewModel : LocationViewModelBase, ISearchableItem
     public string ShowServersButtonAutomationId => $"Show_servers_{Name}";
     public string ActiveConnectionAutomationId => $"Active_connection_{Name}";
 
+    public string? PaidCityWarningLabel => IsFreeUser ? Localizer.Get("Countries_PaidCityWarning") : null;
+
     public override bool IsActiveConnection => ConnectionDetails != null 
                                             && !ConnectionDetails.IsGateway 
                                             && ConnectionDetails.ExitCountryCode == CountryCode 
                                             && ConnectionDetails.CityState == Name;
 
+    public bool IsCityEnabled => !IsFreeUser;
+
+    protected override ModalSources UpsellModalSources => CountryFeature.GetUpsellModalSources();
+
     protected override ConnectionIntent ConnectionIntent => new(new CityStateLocationIntent(CountryCode, Name),
         CountryFeature.GetFeatureIntent());
 
     public CityViewModel(
-        ILocalizationProvider localizationProvider, 
+        ILocalizationProvider localizationProvider,
         IMainViewNavigator mainViewNavigator,
         IOverlayActivator overlayActivator,
         IConnectionManager connectionManager,
         ILogger logger,
-        IIssueReporter issueReporter) :
-        base(localizationProvider, mainViewNavigator, connectionManager, logger, issueReporter)
+        IIssueReporter issueReporter,
+        ISettings settings,
+        IWebAuthenticator webAuthenticator,
+        IUrls urls) :
+        base(
+            localizationProvider,
+            mainViewNavigator,
+            connectionManager,
+            logger,
+            issueReporter,
+            webAuthenticator,
+            settings,
+            urls)
     {
         _overlayActivator = overlayActivator;
     }
