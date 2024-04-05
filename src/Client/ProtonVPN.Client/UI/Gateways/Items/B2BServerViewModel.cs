@@ -18,12 +18,16 @@
  */
 
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Urls;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Countries;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -37,13 +41,18 @@ public class B2BServerViewModel : ServerViewModelBase
     protected override ConnectionIntent ConnectionIntent =>
         new(new GatewayServerLocationIntent(Id, Name, ExitCountryCode, GatewayName), new B2BFeatureIntent());
 
+    protected override ModalSources UpsellModalSources => ModalSources.Undefined;
+
     public B2BServerViewModel(
         ILocalizationProvider localizationProvider,
         IMainViewNavigator mainViewNavigator,
         IConnectionManager connectionManager,
         ILogger logger,
-        IIssueReporter issueReporter)
-        : base(localizationProvider, mainViewNavigator, connectionManager, logger, issueReporter)
+        IIssueReporter issueReporter,
+        IWebAuthenticator webAuthenticator,
+        ISettings settings,
+        IUrls urls) :
+        base(localizationProvider, mainViewNavigator, connectionManager, logger, issueReporter, webAuthenticator, settings, urls)
     { }
 
     public override void CopyPropertiesFromServer(Server server)

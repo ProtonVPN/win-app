@@ -17,13 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Logging.Contracts;
-
 namespace ProtonVPN.Client.Models.Navigation;
 
 public class CountriesFeatureTabViewNavigator : ViewNavigatorBase, ICountriesFeatureTabsViewNavigator
 {
-    public CountriesFeatureTabViewNavigator(ILogger logger, IViewMapper viewMapper)
-        : base(logger, viewMapper)
+    public CountriesFeatureTabViewNavigator(IViewMapper viewMapper) : base(viewMapper)
     { }
 }

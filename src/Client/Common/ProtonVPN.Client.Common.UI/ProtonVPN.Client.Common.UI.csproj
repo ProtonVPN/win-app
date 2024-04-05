@@ -622,13 +622,16 @@
         <None Remove="Assets\Illustrations\Light\welcome.png" />
         <None Remove="Assets\Illustrations\netshield-off.png" />
         <None Remove="Assets\Illustrations\netshield-on.png" />
+        <None Remove="Assets\Illustrations\p2p-small.png" />
         <None Remove="Assets\Illustrations\netshield.png" />
         <None Remove="Assets\Illustrations\port-forwarding-off.png" />
         <None Remove="Assets\Illustrations\port-forwarding-on.png" />
         <None Remove="Assets\Illustrations\report-error.png" />
         <None Remove="Assets\Illustrations\report-success.png" />
+        <None Remove="Assets\Illustrations\secure-core-small.png" />
         <None Remove="Assets\Illustrations\split-tunneling-off.png" />
         <None Remove="Assets\Illustrations\split-tunneling-on.png" />
+        <None Remove="Assets\Illustrations\tor-small.png" />
         <None Remove="Assets\Illustrations\update-proton-vpn.png" />
         <None Remove="Assets\Illustrations\vpn-off.ico" />
         <None Remove="Assets\Illustrations\vpn-on.ico" />
@@ -1708,6 +1711,9 @@
         <Content Update="Assets\Illustrations\p2p-servers.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Illustrations\p2p-small.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Illustrations\port-forwarding-off.png">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -1723,6 +1729,9 @@
         <Content Update="Assets\Illustrations\secure-core-connection.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Illustrations\secure-core-small.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Illustrations\smart-routing.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -1736,6 +1745,9 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\standard-connection.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\tor-small.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\update-proton-vpn.png">

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <!--
 Copyright (c) 2023 Proton AG
 
@@ -25,15 +24,33 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
+             xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
              xmlns:icons="using:ProtonVPN.Client.Common.UI.Assets.Icons"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
-    <controls:DualCommandsRowControl Padding="12,0"
-                                     PrimaryButtonAutomationId="{x:Bind CountryViewModel.ConnectButtonAutomationId}"
-                                     PrimaryButtonAutomationName="{x:Bind CountryViewModel.ConnectButtonAutomationName}"
-                                     PrimaryCommand="{x:Bind CountryViewModel.ConnectCommand}"
-                                     PrimaryCommandText="{x:Bind CountryViewModel.Localizer.Get('Countries_Connect')}">
+    <custom:DualCommandsRow Padding="12,0"
+                            IsContentEnabled="{x:Bind CountryViewModel.IsEnabled}"
+                            PrimaryCommandToolTip="{x:Bind CountryViewModel.PaidCountryWarningLabel}"
+                            PrimaryCommandAutomationId="{x:Bind CountryViewModel.ConnectButtonAutomationId}"
+                            PrimaryCommandAutomationName="{x:Bind CountryViewModel.ConnectButtonAutomationName}"
+                            PrimaryCommand="{x:Bind CountryViewModel.ConnectCommand}">
+
+        <custom:DualCommandsRow.PrimaryCommandContent>
+            <Grid>
+                <Image Height="20"
+                       HorizontalAlignment="Center"
+                       Source="{ThemeResource VpnPlusIllustrationSource}"
+                       Visibility="{x:Bind CountryViewModel.IsFreeUser, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                <Grid Visibility="{x:Bind CountryViewModel.IsFreeUser, Converter={StaticResource NotBooleanToVisibilityConverter}}">
+                    <TextBlock Text="{x:Bind CountryViewModel.Localizer.Get('Common_Actions_Connect')}"
+                               Visibility="{x:Bind CountryViewModel.IsActiveConnection, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+                    <TextBlock Text="{x:Bind CountryViewModel.Localizer.Get('Common_Actions_Disconnect')}"
+                               Visibility="{x:Bind CountryViewModel.IsActiveConnection, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                </Grid>
+            </Grid>
+        </custom:DualCommandsRow.PrimaryCommandContent>
 
         <Grid ColumnSpacing="8" Margin="0,8">
             <Grid.ColumnDefinitions>
@@ -58,5 +75,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                  Visibility="{x:Bind CountryViewModel.IsActiveConnection, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </StackPanel>
         </Grid>
-    </controls:DualCommandsRowControl>
+    </custom:DualCommandsRow>
 </UserControl>

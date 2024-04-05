@@ -28,7 +28,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                x:DefaultBindMode="OneWay"
                                mc:Ignorable="d">
 
-    <StackPanel Spacing="4">
+    <StackPanel>
         <controls:CountryFeatureTitleControl Title="{x:Bind Title}"
                                              InfoLabel="{x:Bind InfoLabel}"
                                              ShowInfoOverlayCommand="{x:Bind ShowInfoOverlayCommand, Mode=OneTime}" />

@@ -34,7 +34,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                      InfoLabel="{x:Bind ViewModel.Localizer.Get('Countries_Info')}"
                                      ShowInfoOverlayCommand="{x:Bind ViewModel.ShowInfoOverlayCommand, Mode=OneTime}"
                                      Visibility="{x:Bind ViewModel.HasCountries, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                     Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_SecureCoreCountries', ViewModel.TotalCountries)}" />
+                                     Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_SecureCoreCountries', ViewModel.TotalCountries)}"
+                                     IsUpsellBannerVisible="{x:Bind ViewModel.IsUpsellBannerVisible}">
+            <controls:CountryListControl.UpsellBanner>
+                <controls:UpsellCountryBannerControl Image="{StaticResource SecureCoreSmallIllustrationSource}"
+                                                     Description="{x:Bind ViewModel.Localizer.Get('FreeConnections_SecureCoreUpsell')}"
+                                                     Command="{x:Bind ViewModel.UpgradePlanCommand}"/>
+            </controls:CountryListControl.UpsellBanner>
+        </controls:CountryListControl>
 
         <controls:SecureCoreCountryListControl SecureCoreCountries="{x:Bind ViewModel.SecureCoreCountries}"
                                                Visibility="{x:Bind ViewModel.HasSecureCoreCountries, Converter={StaticResource BooleanToVisibilityConverter}}"

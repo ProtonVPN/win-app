@@ -24,7 +24,6 @@ using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Helpers;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Models.Navigation;
 
@@ -32,13 +31,12 @@ namespace ProtonVPN.Client.Models.Navigation;
 // https://github.com/microsoft/TemplateStudio/blob/main/docs/WinUI/navigation.md
 public abstract class ViewNavigatorBase : IViewNavigator
 {
-    private readonly ILogger _logger;
     private readonly IViewMapper _viewMapper;
     private Window? _window;
     private Frame? _frame;
     private object? _lastParameterUsed;
 
-    private bool _isRegisteredToFrameEvents = false;
+    private bool _isRegisteredToFrameEvents;
 
     [MemberNotNullWhen(true, nameof(Frame), nameof(_frame))]
     public bool CanGoBack => Frame != null && Frame.CanGoBack;
@@ -69,9 +67,8 @@ public abstract class ViewNavigatorBase : IViewNavigator
 
     protected NavigationTransitionInfo NavigationTransition { get; set; }
 
-    public ViewNavigatorBase(ILogger logger, IViewMapper viewMapper)
+    protected ViewNavigatorBase(IViewMapper viewMapper)
     {
-        _logger = logger;
         _viewMapper = viewMapper;
 
         NavigationTransition = new DrillInNavigationTransitionInfo();
@@ -124,13 +121,21 @@ public abstract class ViewNavigatorBase : IViewNavigator
         _window?.Close();
     }
 
+    public void ResetContent()
+    {
+        if (_frame?.Content != null)
+        {
+            _frame.Content = null;
+        }
+    }
+
     private async Task<bool> NavigateToPageAsync(Type pageType, object? parameter, bool clearNavigation)
     {
         if (!CanNavigate)
         {
             return false;
         }
-
+        
         if (Frame.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(_lastParameterUsed)))
         {
             Frame.Tag = clearNavigation;

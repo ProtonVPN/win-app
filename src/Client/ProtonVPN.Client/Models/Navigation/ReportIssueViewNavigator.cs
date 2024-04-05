@@ -20,14 +20,12 @@
 using ProtonVPN.Client.UI.ReportIssue.Models;
 using ProtonVPN.Client.UI.ReportIssue.Results;
 using ProtonVPN.Client.UI.ReportIssue.Steps;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Models.Navigation;
 
 public class ReportIssueViewNavigator : ViewNavigatorBase, IReportIssueViewNavigator
 {
-    public ReportIssueViewNavigator(ILogger logger, IViewMapper viewMapper)
-        : base(logger, viewMapper)
+    public ReportIssueViewNavigator(IViewMapper viewMapper) : base(viewMapper)
     { }
 
     public async Task NavigateToCategorySelectionAsync()

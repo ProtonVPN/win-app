@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 
 namespace ProtonVPN.Client.UI.Countries;
@@ -36,5 +37,15 @@ public static class CountryFeatureExtensions
             default:
                 return null;
         }
+    }
+
+    public static ModalSources GetUpsellModalSources(this CountryFeature feature)
+    {
+        return feature switch
+        {
+            CountryFeature.P2P => ModalSources.P2P,
+            CountryFeature.SecureCore => ModalSources.SecureCore,
+            _ => ModalSources.Countries
+        };
     }
 }

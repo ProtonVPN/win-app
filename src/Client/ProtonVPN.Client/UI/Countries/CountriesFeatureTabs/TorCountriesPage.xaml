@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <!--
 Copyright (c) 2023 Proton AG
 
@@ -34,7 +33,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                      InfoLabel="{x:Bind ViewModel.Localizer.Get('Countries_Info')}"
                                      ShowInfoOverlayCommand="{x:Bind ViewModel.ShowInfoOverlayCommand, Mode=OneTime}"
                                      Visibility="{x:Bind ViewModel.HasCountries, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                     Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_TorCountries', ViewModel.TotalCountries)}" />
+                                     Title="{x:Bind ViewModel.Localizer.GetFormat('Countries_TorCountries', ViewModel.TotalCountries)}"
+                                     IsUpsellBannerVisible="{x:Bind ViewModel.IsUpsellBannerVisible}">
+            <controls:CountryListControl.UpsellBanner>
+                <controls:UpsellCountryBannerControl Image="{StaticResource TorSmallIllustrationSource}"
+                                                     Description="{x:Bind ViewModel.Localizer.Get('FreeConnections_TorUpsell')}"
+                                                     Command="{x:Bind ViewModel.UpgradePlanCommand}"/>
+            </controls:CountryListControl.UpsellBanner>
+        </controls:CountryListControl>
 
         <controls:ServerListControl Servers="{x:Bind ViewModel.Servers}"
                                     Visibility="{x:Bind ViewModel.HasServers, Converter={StaticResource BooleanToVisibilityConverter}}"

@@ -18,37 +18,43 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.WinUI.Collections;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Urls;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Countries.Controls;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Countries;
 
-public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICountriesFeatureTabsViewNavigator>, ICountriesTabViewModelBase
+public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICountriesFeatureTabsViewNavigator>, ICountriesTabViewModelBase,
+    IEventMessageReceiver<VpnPlanChangedMessage>
 {
     protected readonly IMainViewNavigator MainViewNavigator;
     protected readonly IOverlayActivator OverlayActivator;
     protected readonly IServersLoader ServersLoader;
     protected readonly NoSearchResultsViewModel NoSearchResultsViewModel;
-
-    private readonly CountryViewModelsFactory _countryViewModelsFactory;
+    protected readonly ISettings Settings;
 
     protected string LastSearchQuery = string.Empty;
+    private readonly CountryViewModelsFactory _countryViewModelsFactory;
+    private readonly IUrls _urls;
+    private readonly IWebAuthenticator _webAuthenticator;
 
-    public int TotalCountries => string.IsNullOrWhiteSpace(LastSearchQuery) ? Countries.Count - 1 : Countries.Count;
-    public bool HasCountries => TotalCountries > 0;
-    public bool HasCities => Cities.Count > 0;
-    public bool HasServers => Servers.Count > 0;
-    public bool HasSecureCoreCountries => SecureCoreCountries.Count > 0;
-    public bool HasItems => HasCountries || HasCities || HasServers || HasSecureCoreCountries;
+    [ObservableProperty]
+    private int _totalCountries;
 
     [ObservableProperty]
     private AdvancedCollectionView _countries = new();
@@ -62,8 +68,22 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICou
     [ObservableProperty]
     private AdvancedCollectionView _secureCoreCountries = new();
 
+    public bool HasCountries => TotalCountries > 0;
+    public bool HasCities => Cities.Count > 0;
+    public bool HasServers => Servers.Count > 0;
+    public bool HasSecureCoreCountries => SecureCoreCountries.Count > 0;
+    public bool HasItems => HasCountries || HasCities || HasServers || HasSecureCoreCountries;
+
+    public bool IsUpsellBannerVisible => !Settings.IsPaid;
+
+    public abstract IconElement? Icon { get; }
+
+    protected abstract CountryFeature CountryFeature { get; }
+
+    protected ModalSources UpsellModalSources => CountryFeature.GetUpsellModalSources();
+
     protected CountriesTabViewModelBase(
-        IMainViewNavigator mainViewNavigator,
+                    IMainViewNavigator mainViewNavigator,
         IOverlayActivator overlayActivator,
         IServersLoader serversLoader,
         ICountriesFeatureTabsViewNavigator countriesFeatureTabsViewNavigator,
@@ -71,17 +91,21 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICou
         ILogger logger,
         IIssueReporter issueReporter,
         NoSearchResultsViewModel noSearchResultsViewModel,
-        CountryViewModelsFactory countryViewModelsFactory) 
+        ISettings settings,
+        CountryViewModelsFactory countryViewModelsFactory,
+        IUrls urls,
+        IWebAuthenticator webAuthenticator)
         : base(countriesFeatureTabsViewNavigator, localizationProvider, logger, issueReporter)
     {
         MainViewNavigator = mainViewNavigator;
-        OverlayActivator = overlayActivator;    
+        OverlayActivator = overlayActivator;
         ServersLoader = serversLoader;
         NoSearchResultsViewModel = noSearchResultsViewModel;
+        Settings = settings;
         _countryViewModelsFactory = countryViewModelsFactory;
+        _urls = urls;
+        _webAuthenticator = webAuthenticator;
     }
-
-    public abstract IconElement? Icon { get; }
 
     public void LoadItems()
     {
@@ -107,13 +131,52 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICou
     public virtual void FilterItems(string query)
     {
         LastSearchQuery = query;
-       
+
         Countries.Filter = GetCountriesFilter(query);
         Cities.Filter = GetHiddenItemsFilter(query);
         Servers.Filter = GetHiddenItemsFilter(query);
         SecureCoreCountries.Filter = GetHiddenItemsFilter(query);
 
+        InvalidateCountriesNumber();
         NotifyPropertyChanges();
+    }
+
+    public override void OnNavigatedTo(object parameter)
+    {
+        base.OnNavigatedTo(parameter);
+
+        InvalidateUpsellBannerVisibility();
+
+        if (!string.IsNullOrEmpty(LastSearchQuery))
+        {
+            FilterItems(LastSearchQuery);
+        }
+    }
+
+    public void Receive(VpnPlanChangedMessage message)
+    {
+        ExecuteOnUIThread(InvalidateUpsellBannerVisibility);
+    }
+
+    protected abstract IEnumerable<string> GetCountryCodes();
+
+    protected abstract IEnumerable<City> GetCities();
+
+    protected abstract IEnumerable<Server> GetServers();
+
+    protected abstract IEnumerable<SecureCoreCountryPair> GetSecureCoreCountries();
+
+    protected abstract int GetCountryItemsCount(string countryCode);
+
+    protected bool MatchesSearchQuery(object o, string query)
+    {
+        return o is ISearchableItem item && item.MatchesSearchQuery(query);
+    }
+
+    [RelayCommand]
+    private async Task UpgradePlanAsync()
+    {
+        _urls.NavigateTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(UpsellModalSources));
     }
 
     private Predicate<object>? GetCountriesFilter(string query)
@@ -133,27 +196,19 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICou
         OnPropertyChanged(nameof(HasCities));
         OnPropertyChanged(nameof(HasServers));
         OnPropertyChanged(nameof(HasSecureCoreCountries));
-        OnPropertyChanged(nameof(TotalCountries));
     }
-
-    protected abstract IEnumerable<string> GetCountryCodes();
-
-    protected abstract IEnumerable<City> GetCities();
-
-    protected abstract IEnumerable<Server> GetServers();
-
-    protected abstract IEnumerable<SecureCoreCountryPair> GetSecureCoreCountries();
-
-    protected abstract int GetCountryItemsCount(string countryCode);
-
-    protected abstract CountryFeature CountryFeature { get; }
 
     private List<CountryViewModel> GetCountryViewModels()
     {
-        return GetCountryCodes()
-            .Select(GetCountryViewModel)
-            .Prepend(_countryViewModelsFactory.GetFastestCountryViewModel(CountryFeature))
-            .ToList();
+        IEnumerable<CountryViewModel> countries = GetCountryCodes()
+            .Select(GetCountryViewModel);
+
+        if (Settings.IsPaid)
+        {
+            countries = countries.Prepend(_countryViewModelsFactory.GetFastestCountryViewModel(CountryFeature));
+        }
+
+        return countries.ToList();
     }
 
     private CountryViewModel GetCountryViewModel(string countryCode)
@@ -185,18 +240,18 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICou
             .ToList();
     }
 
-    protected bool MatchesSearchQuery(object o, string query)
+    partial void OnCountriesChanged(AdvancedCollectionView? oldValue, AdvancedCollectionView newValue)
     {
-        return o is ISearchableItem item && item.MatchesSearchQuery(query);
+        InvalidateCountriesNumber();
     }
 
-    public override void OnNavigatedTo(object parameter)
+    private void InvalidateCountriesNumber()
     {
-        base.OnNavigatedTo(parameter);
+        TotalCountries = Countries.OfType<CountryViewModel>().Count(c => !c.IsFastest);
+    }
 
-        if (!string.IsNullOrEmpty(LastSearchQuery))
-        {
-            FilterItems(LastSearchQuery);
-        }
+    private void InvalidateUpsellBannerVisibility()
+    {
+        OnPropertyChanged(nameof(IsUpsellBannerVisible));
     }
 }

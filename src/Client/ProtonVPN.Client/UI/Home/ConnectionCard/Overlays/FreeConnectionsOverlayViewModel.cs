@@ -40,8 +40,8 @@ public partial class FreeConnectionsOverlayViewModel : OverlayViewModelBase,
     IEventMessageReceiver<ServerListChangedMessage>
 {
     private readonly IServersLoader _serversLoader;
-    private readonly IWebAuthenticator _webAuthenticator;
     private readonly IUrls _urls;
+    private readonly IWebAuthenticator _webAuthenticator;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(FreeCountriesCount))]
@@ -53,18 +53,19 @@ public partial class FreeConnectionsOverlayViewModel : OverlayViewModelBase,
         ILocalizationProvider localizationProvider,
         IOverlayActivator overlayActivator,
         IServersLoader serversLoader,
-        IWebAuthenticator webAuthenticator,
-        IUrls urls,
         ILogger logger,
-        IIssueReporter issueReporter)
+        IIssueReporter issueReporter,
+        IUrls urls,
+        IWebAuthenticator webAuthenticator)
         : base(localizationProvider,
             logger,
             issueReporter,
             overlayActivator)
     {
         _serversLoader = serversLoader;
-        _webAuthenticator = webAuthenticator;
         _urls = urls;
+        _webAuthenticator = webAuthenticator;
+
         _freeCountries = [];
 
         InvalidateFreeCountries();
@@ -73,12 +74,6 @@ public partial class FreeConnectionsOverlayViewModel : OverlayViewModelBase,
     public void Receive(ServerListChangedMessage message)
     {
         ExecuteOnUIThread(InvalidateFreeCountries);
-    }
-
-    [RelayCommand]
-    private async Task UpgradePlanAsync()
-    {
-        _urls.NavigateTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSources.Countries));
     }
 
     private void InvalidateFreeCountries()
@@ -93,10 +88,16 @@ public partial class FreeConnectionsOverlayViewModel : OverlayViewModelBase,
 
     private Country GetCountry(string countryCode)
     {
-        return new Country()
+        return new Country
         {
             Code = countryCode,
             Name = Localizer.GetCountryName(countryCode)
         };
+    }
+
+    [RelayCommand]
+    private async Task UpgradePlanAsync()
+    {
+        _urls.NavigateTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSources.Countries));
     }
 }

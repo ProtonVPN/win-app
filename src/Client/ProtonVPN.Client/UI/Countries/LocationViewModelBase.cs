@@ -20,10 +20,14 @@
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Urls;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Home;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -34,17 +38,28 @@ public abstract partial class LocationViewModelBase : ViewModelBase
 {
     protected readonly IMainViewNavigator MainViewNavigator;
     protected readonly IConnectionManager ConnectionManager;
+    private readonly IWebAuthenticator _webAuthenticator;
+    private readonly ISettings _settings;
+    private readonly IUrls _urls;
+
+    protected abstract ModalSources UpsellModalSources { get; }
 
     protected LocationViewModelBase(
         ILocalizationProvider localizationProvider,
         IMainViewNavigator mainViewNavigator,
         IConnectionManager connectionManager,
         ILogger logger,
-        IIssueReporter issueReporter)
+        IIssueReporter issueReporter,
+        IWebAuthenticator webAuthenticator,
+        ISettings settings,
+        IUrls urls)
         : base(localizationProvider, logger, issueReporter)
     {
         MainViewNavigator = mainViewNavigator;
         ConnectionManager = connectionManager;
+        _webAuthenticator = webAuthenticator;
+        _settings = settings;
+        _urls = urls;
 
         ConnectionDetails = ConnectionManager.CurrentConnectionDetails;
     }
@@ -53,11 +68,21 @@ public abstract partial class LocationViewModelBase : ViewModelBase
 
     public abstract bool IsActiveConnection { get; }
 
+    public bool IsFreeUser => !_settings.IsPaid;
+    public bool IsUnderMaintenance { get; set; }
+    public bool IsEnabled => !IsUnderMaintenance && !IsFreeUser;
+
     protected abstract ConnectionIntent ConnectionIntent { get; }
 
     [RelayCommand]
     public async Task ConnectAsync()
     {
+        if (IsFreeUser)
+        {
+            _urls.NavigateTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(UpsellModalSources));
+            return;
+        }
+
         await MainViewNavigator.NavigateToAsync<HomeViewModel>();
         await ConnectionManager.ConnectAsync(ConnectionIntent);
     }
