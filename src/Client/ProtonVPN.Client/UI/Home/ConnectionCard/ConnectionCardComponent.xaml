@@ -33,6 +33,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              mc:Ignorable="d">
 
     <StackPanel Orientation="Vertical"
+                Padding="16,0"
                 Spacing="12">
         <Grid ColumnSpacing="12">
             <Grid.ColumnDefinitions>
@@ -86,14 +87,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Spacing="4">
 
                         <toolkit:DockPanel LastChildFill="False">
-                            <pathicons:Wrench Grid.Column="4"
-                                              Margin="8,4,0,0"
-                                              VerticalAlignment="top"
-                                              toolkit:DockPanel.Dock="Right"
-                                              AutomationProperties.AutomationId="MaintenanceIcon"
-                                              Foreground="{ThemeResource TextWeakColorBrush}"
-                                              ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_Recents_ServerUnderMaintenance'), Mode=OneWay}"
-                                              Visibility="{x:Bind ViewModel.IsServerUnderMaintenance, Mode=OneWay}" />
                             <TextBlock AutomationProperties.AutomationId="ConnectionCardTitleLabel"
                                        Style="{StaticResource BodyStrongTextBlockStyle}"
                                        Text="{x:Bind ViewModel.Title}"
@@ -171,14 +164,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="MaintenanceStates">
-                <VisualState x:Name="UnderMaintenance">
-                    <VisualState.StateTriggers>
-                        <StateTrigger IsActive="{x:Bind ViewModel.IsServerUnderMaintenance, Mode=OneWay}" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="ShowConnectionDetailsButton.Opacity" Value="0.6" />
-                    </VisualState.Setters>
-                </VisualState>
                 <VisualState x:Name="Normal" />
             </VisualStateGroup>
             <VisualStateGroup x:Name="ConnectionStates">

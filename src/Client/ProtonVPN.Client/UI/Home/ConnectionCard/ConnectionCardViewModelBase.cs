@@ -44,6 +44,7 @@ public abstract partial class ConnectionCardViewModelBase : ViewModelBase,
     IEventMessageReceiver<VpnPlanChangedMessage>
 {
     protected readonly IConnectionManager ConnectionManager;
+
     private readonly HomeViewModel _homeViewModel;
 
     [ObservableProperty]
@@ -80,9 +81,6 @@ public abstract partial class ConnectionCardViewModelBase : ViewModelBase,
     [NotifyPropertyChangedFor(nameof(IsP2P))]
     [NotifyPropertyChangedFor(nameof(IsB2B))]
     private IConnectionIntent? _currentConnectionIntent;
-
-    [ObservableProperty]
-    private bool _isServerUnderMaintenance;
 
     public ConnectionDetails? CurrentConnectionDetails => ConnectionManager.CurrentConnectionDetails;
 
@@ -199,8 +197,7 @@ public abstract partial class ConnectionCardViewModelBase : ViewModelBase,
 
     private bool CanConnect()
     {
-        return CurrentConnectionStatus == ConnectionStatus.Disconnected
-            && !IsServerUnderMaintenance;
+        return CurrentConnectionStatus == ConnectionStatus.Disconnected;
     }
 
     [RelayCommand(CanExecute = nameof(CanCancelConnection))]

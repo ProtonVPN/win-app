@@ -27,7 +27,7 @@ public interface IRecentConnectionsProvider
 
     IRecentConnection? GetMostRecentConnection();
 
-    void SaveRecentConnections(List<IConnectionIntent> connectionIntents, IConnectionIntent? recentConnectionIntent = null);
+    void OverrideRecentConnections(List<IConnectionIntent> connectionIntents, IConnectionIntent? mostRecentConnectionIntent = null);
 
     void Pin(IRecentConnection recentConnection);
 

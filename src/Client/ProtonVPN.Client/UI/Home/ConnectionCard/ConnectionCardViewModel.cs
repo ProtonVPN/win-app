@@ -48,10 +48,7 @@ public class ConnectionCardViewModel : ConnectionCardViewModelBase,
 
     public void Receive(RecentConnectionsChanged message)
     {
-        ExecuteOnUIThread(() =>
-        {
-            InvalidateCurrentConnectionIntent();
-        });
+        ExecuteOnUIThread(InvalidateCurrentConnectionIntent);
     }
 
     protected override void InvalidateCurrentConnectionStatus()
@@ -62,11 +59,8 @@ public class ConnectionCardViewModel : ConnectionCardViewModelBase,
 
     private void InvalidateCurrentConnectionIntent()
     {
-        CurrentConnectionIntent =
-            ConnectionManager.CurrentConnectionIntent ??
-            _recentConnectionsProvider.GetMostRecentConnection()?.ConnectionIntent;
-
-        // TODO: Not sure if server under maintenance means something for an intent
-        //IsServerUnderMaintenance = mostRecentConnection?.IsServerUnderMaintenance ?? false;
+        CurrentConnectionIntent = ConnectionManager.IsDisconnected || ConnectionManager.CurrentConnectionIntent == null
+            ? _recentConnectionsProvider.GetMostRecentConnection()?.ConnectionIntent
+            : ConnectionManager.CurrentConnectionIntent;
     }
 }

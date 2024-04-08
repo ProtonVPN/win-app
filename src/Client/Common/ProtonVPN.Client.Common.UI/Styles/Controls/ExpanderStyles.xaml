@@ -19,11 +19,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons">
     <ResourceDictionary.ThemeDictionaries>
 
         <ResourceDictionary x:Key="Light">
-
             <StaticResource x:Key="ExpanderContentBackground" ResourceKey="TransparentColorBrush" />
             <StaticResource x:Key="ExpanderContentBorderBrush" ResourceKey="TransparentColorBrush" />
 
@@ -44,7 +44,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Dark">
-
             <StaticResource x:Key="ExpanderContentBackground" ResourceKey="TransparentColorBrush" />
             <StaticResource x:Key="ExpanderContentBorderBrush" ResourceKey="TransparentColorBrush" />
 
@@ -65,7 +64,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <Thickness x:Key="ExpanderHeaderPadding">20,4</Thickness>
+    <Thickness x:Key="ExpanderHeaderPadding">4,4</Thickness>
     <Thickness x:Key="ExpanderContentDownBorderThickness">1</Thickness>
     <Thickness x:Key="ExpanderContentPadding">0,0,0,0</Thickness>
     <x:Double x:Key="ExpanderMinHeight">24</x:Double>
@@ -78,6 +77,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Style x:Key="GhostExpanderHeaderButtonStyle" BasedOn="{StaticResource DefaultToggleButtonStyle}" TargetType="ToggleButton">
         <Setter Property="FontSize" Value="{StaticResource CaptionStrongFontSize}" />
         <Setter Property="FontWeight" Value="{StaticResource CaptionStrongFontWeight}" />
+        <Setter Property="Foreground" Value="{ThemeResource ExpanderHeaderForeground}" />
         <Setter Property="Margin" Value="16,0" />
         <Setter Property="Template">
             <Setter.Value>
@@ -100,16 +100,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <PathIcon x:Name="ExpandCollapseChevron"
-                                  Grid.Column="0"
-                                  VerticalAlignment="Center"
-                                  Data="M 0,0 L 4,4 0,8 z"
-                                  Foreground="{TemplateBinding Foreground}"
-                                  RenderTransformOrigin="0.5,0.5">
-                            <UIElement.RenderTransform>
-                                <RotateTransform x:Name="ExpandCollapseChevronRotateTransform" />
-                            </UIElement.RenderTransform>
-                        </PathIcon>
+                        <Grid Grid.Column="0"
+                              Margin="0,-4,0,0"
+                              VerticalAlignment="Center">
+                            <pathicons:ChevronRightFilled x:Name="ChevronRightIcon"
+                                                          Foreground="{TemplateBinding Foreground}"
+                                                          Visibility="{Binding IsChecked, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+                            <pathicons:ChevronDownFilled x:Name="ChevronDownIcon"
+                                                         Foreground="{TemplateBinding Foreground}"
+                                                         Visibility="{Binding IsChecked, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        </Grid>
 
                         <ContentPresenter x:Name="ContentPresenter"
                                           Grid.Column="1"
@@ -127,7 +127,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="ContentContainer.Background" Value="{ThemeResource ExpanderHeaderBackground}" />
                                         <Setter Target="ContentContainer.BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrush}" />
                                         <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource ExpanderHeaderForeground}" />
-                                        <Setter Target="ExpandCollapseChevron.Foreground" Value="{ThemeResource ExpanderHeaderForeground}" />
+                                        <Setter Target="ChevronRightIcon.Foreground" Value="{ThemeResource ExpanderHeaderForeground}" />
+                                        <Setter Target="ChevronDownIcon.Foreground" Value="{ThemeResource ExpanderHeaderForeground}" />
                                     </VisualState.Setters>
                                 </VisualState>
 
@@ -136,7 +137,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="ContentContainer.Background" Value="{ThemeResource ExpanderHeaderBackgroundPointerOver}" />
                                         <Setter Target="ContentContainer.BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrushPointerOver}" />
                                         <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource ExpanderHeaderForegroundPointerOver}" />
-                                        <Setter Target="ExpandCollapseChevron.Foreground" Value="{ThemeResource ExpanderHeaderForegroundPointerOver}" />
+                                        <Setter Target="ChevronRightIcon.Foreground" Value="{ThemeResource ExpanderHeaderForegroundPointerOver}" />
+                                        <Setter Target="ChevronDownIcon.Foreground" Value="{ThemeResource ExpanderHeaderForegroundPointerOver}" />
                                     </VisualState.Setters>
                                 </VisualState>
 
@@ -145,7 +147,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="ContentContainer.Background" Value="{ThemeResource ExpanderHeaderBackgroundPressed}" />
                                         <Setter Target="ContentContainer.BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrushPressed}" />
                                         <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource ExpanderHeaderForegroundPressed}" />
-                                        <Setter Target="ExpandCollapseChevron.Foreground" Value="{ThemeResource ExpanderHeaderForegroundPressed}" />
+                                        <Setter Target="ChevronRightIcon.Foreground" Value="{ThemeResource ExpanderHeaderForegroundPressed}" />
+                                        <Setter Target="ChevronDownIcon.Foreground" Value="{ThemeResource ExpanderHeaderForegroundPressed}" />
                                     </VisualState.Setters>
                                 </VisualState>
 
@@ -154,7 +157,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="ContentContainer.Background" Value="{ThemeResource ExpanderHeaderBackgroundDisabled}" />
                                         <Setter Target="ContentContainer.BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrushDisabled}" />
                                         <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource ExpanderHeaderForegroundDisabled}" />
-                                        <Setter Target="ExpandCollapseChevron.Foreground" Value="{ThemeResource ExpanderHeaderForegroundDisabled}" />
+                                        <Setter Target="ChevronRightIcon.Foreground" Value="{ThemeResource ExpanderHeaderForegroundDisabled}" />
+                                        <Setter Target="ChevronDownIcon.Foreground" Value="{ThemeResource ExpanderHeaderForegroundDisabled}" />
                                     </VisualState.Setters>
                                 </VisualState>
 
@@ -163,8 +167,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="ContentContainer.Background" Value="{ThemeResource ExpanderHeaderBackground}" />
                                         <Setter Target="ContentContainer.BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrush}" />
                                         <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource ExpanderHeaderForeground}" />
-                                        <Setter Target="ExpandCollapseChevron.Foreground" Value="{ThemeResource ExpanderHeaderForeground}" />
-                                        <Setter Target="ExpandCollapseChevronRotateTransform.Angle" Value="90" />
+                                        <Setter Target="ChevronRightIcon.Foreground" Value="{ThemeResource ExpanderHeaderForeground}" />
+                                        <Setter Target="ChevronDownIcon.Foreground" Value="{ThemeResource ExpanderHeaderForeground}" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="CheckedPointerOver">
@@ -172,8 +176,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="ContentContainer.Background" Value="{ThemeResource ExpanderHeaderBackgroundPointerOver}" />
                                         <Setter Target="ContentContainer.BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrushPointerOver}" />
                                         <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource ExpanderHeaderForegroundPointerOver}" />
-                                        <Setter Target="ExpandCollapseChevron.Foreground" Value="{ThemeResource ExpanderHeaderForegroundPointerOver}" />
-                                        <Setter Target="ExpandCollapseChevronRotateTransform.Angle" Value="90" />
+                                        <Setter Target="ChevronRightIcon.Foreground" Value="{ThemeResource ExpanderHeaderForegroundPointerOver}" />
+                                        <Setter Target="ChevronDownIcon.Foreground" Value="{ThemeResource ExpanderHeaderForegroundPointerOver}" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="CheckedPressed">
@@ -181,8 +185,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="ContentContainer.Background" Value="{ThemeResource ExpanderHeaderBackgroundPressed}" />
                                         <Setter Target="ContentContainer.BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrushPressed}" />
                                         <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource ExpanderHeaderForegroundPressed}" />
-                                        <Setter Target="ExpandCollapseChevron.Foreground" Value="{ThemeResource ExpanderHeaderForegroundPressed}" />
-                                        <Setter Target="ExpandCollapseChevronRotateTransform.Angle" Value="90" />
+                                        <Setter Target="ChevronRightIcon.Foreground" Value="{ThemeResource ExpanderHeaderForegroundPressed}" />
+                                        <Setter Target="ChevronDownIcon.Foreground" Value="{ThemeResource ExpanderHeaderForegroundPressed}" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="CheckedDisabled">
@@ -190,8 +194,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="ContentContainer.Background" Value="{ThemeResource ExpanderHeaderBackgroundDisabled}" />
                                         <Setter Target="ContentContainer.BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrushDisabled}" />
                                         <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource ExpanderHeaderForegroundDisabled}" />
-                                        <Setter Target="ExpandCollapseChevron.Foreground" Value="{ThemeResource ExpanderHeaderForegroundDisabled}" />
-                                        <Setter Target="ExpandCollapseChevronRotateTransform.Angle" Value="90" />
+                                        <Setter Target="ChevronRightIcon.Foreground" Value="{ThemeResource ExpanderHeaderForegroundDisabled}" />
+                                        <Setter Target="ChevronDownIcon.Foreground" Value="{ThemeResource ExpanderHeaderForegroundDisabled}" />
                                     </VisualState.Setters>
                                 </VisualState>
 

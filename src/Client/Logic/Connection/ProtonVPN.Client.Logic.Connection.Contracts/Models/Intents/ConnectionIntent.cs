@@ -19,6 +19,7 @@
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 
@@ -47,6 +48,21 @@ public class ConnectionIntent : IConnectionIntent
         // Check whether both location are identical and both feature are null or identical.
         return Location.IsSameAs(intent.Location)
             && ((Feature == null && intent.Feature == null) || Feature?.IsSameAs(intent.Feature) == true);
+    }
+
+    public bool HasNoServers(IEnumerable<Server> servers)
+    {
+        return !servers.Any(IsServerSupported);
+    }
+
+    private bool IsServerSupported(Server server)
+    {
+        return Location.IsSupported(server) && (Feature == null || Feature.IsSupported(server));
+    }
+
+    public bool AreAllServersUnderMaintenance(IEnumerable<Server> servers)
+    {
+        return servers.Where(IsServerSupported).All(server => server.IsUnderMaintenance());
     }
 
     public override string ToString()
