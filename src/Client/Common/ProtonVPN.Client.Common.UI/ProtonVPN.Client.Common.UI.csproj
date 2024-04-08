@@ -606,6 +606,36 @@
         <None Remove="Assets\Icons\ProtectedLock.xaml" />
         <None Remove="Assets\Icons\SecureCoreFlagOutline.xaml" />
         <None Remove="Assets\Icons\SecureCoreProtectedLock.xaml" />
+        <None Remove="Assets\Icons\Streaming\10play.png" />
+        <None Remove="Assets\Icons\Streaming\7plus.png" />
+        <None Remove="Assets\Icons\Streaming\abc.png" />
+        <None Remove="Assets\Icons\Streaming\audible.png" />
+        <None Remove="Assets\Icons\Streaming\bbc-iplayer.png" />
+        <None Remove="Assets\Icons\Streaming\cbs.png" />
+        <None Remove="Assets\Icons\Streaming\channel4.png" />
+        <None Remove="Assets\Icons\Streaming\dazn.png" />
+        <None Remove="Assets\Icons\Streaming\disney-hotstar.png" />
+        <None Remove="Assets\Icons\Streaming\disney-plus.png" />
+        <None Remove="Assets\Icons\Streaming\espn.png" />
+        <None Remove="Assets\Icons\Streaming\f1.png" />
+        <None Remove="Assets\Icons\Streaming\francetv.png" />
+        <None Remove="Assets\Icons\Streaming\fubo-tv.png" />
+        <None Remove="Assets\Icons\Streaming\hbo-max.png" />
+        <None Remove="Assets\Icons\Streaming\hotstar.png" />
+        <None Remove="Assets\Icons\Streaming\hulu.png" />
+        <None Remove="Assets\Icons\Streaming\itv.png" />
+        <None Remove="Assets\Icons\Streaming\iview.png" />
+        <None Remove="Assets\Icons\Streaming\mediaset.png" />
+        <None Remove="Assets\Icons\Streaming\netflix.png" />
+        <None Remove="Assets\Icons\Streaming\nowtv.png" />
+        <None Remove="Assets\Icons\Streaming\peacock.png" />
+        <None Remove="Assets\Icons\Streaming\pluto-tv.png" />
+        <None Remove="Assets\Icons\Streaming\prime-video.png" />
+        <None Remove="Assets\Icons\Streaming\rai.png" />
+        <None Remove="Assets\Icons\Streaming\rts.png" />
+        <None Remove="Assets\Icons\Streaming\sling.png" />
+        <None Remove="Assets\Icons\Streaming\syfy.png" />
+        <None Remove="Assets\Icons\Streaming\tf1.png" />
         <None Remove="Assets\Icons\UnprotectedLock.xaml" />
         <None Remove="Assets\Illustrations\Dark\free-countries.svg" />
         <None Remove="Assets\Illustrations\Dark\product-logo.svg" />
@@ -633,6 +663,26 @@
         <None Remove="Assets\Illustrations\split-tunneling-on.png" />
         <None Remove="Assets\Illustrations\tor-small.png" />
         <None Remove="Assets\Illustrations\update-proton-vpn.png" />
+        <None Remove="Assets\Illustrations\upsell-customisation-large.png" />
+        <None Remove="Assets\Illustrations\upsell-customisation-small.png" />
+        <None Remove="Assets\Illustrations\upsell-multiple-devices-large.png" />
+        <None Remove="Assets\Illustrations\upsell-multiple-devices-small.png" />
+        <None Remove="Assets\Illustrations\upsell-netshield-large.png" />
+        <None Remove="Assets\Illustrations\upsell-netshield-small.png" />
+        <None Remove="Assets\Illustrations\upsell-p2p-large.png" />
+        <None Remove="Assets\Illustrations\upsell-p2p-small.png" />
+        <None Remove="Assets\Illustrations\upsell-secure-core-large.png" />
+        <None Remove="Assets\Illustrations\upsell-secure-core-small.png" />
+        <None Remove="Assets\Illustrations\upsell-speed-large.png" />
+        <None Remove="Assets\Illustrations\upsell-speed-small.png" />
+        <None Remove="Assets\Illustrations\upsell-split-tunneling-large.png" />
+        <None Remove="Assets\Illustrations\upsell-split-tunneling-small.png" />
+        <None Remove="Assets\Illustrations\upsell-streaming-large.png" />
+        <None Remove="Assets\Illustrations\upsell-streaming-small.png" />
+        <None Remove="Assets\Illustrations\upsell-tor-large.png" />
+        <None Remove="Assets\Illustrations\upsell-tor-small.png" />
+        <None Remove="Assets\Illustrations\upsell-worldwide-coverage-large.png" />
+        <None Remove="Assets\Illustrations\upsell-worldwide-coverage-small.png" />
         <None Remove="Assets\Illustrations\vpn-off.ico" />
         <None Remove="Assets\Illustrations\vpn-on.ico" />
         <None Remove="Assets\Illustrations\vpn-tray-error.ico" />
@@ -662,6 +712,7 @@
         <None Remove="Gallery\Pages\VpnSpecificPage.xaml" />
         <None Remove="Styles\Brushes.xaml" />
         <None Remove="Styles\Colors.xaml" />
+        <None Remove="Styles\Controls\BulletHeaderedContentControlStyles.xaml" />
         <None Remove="Styles\Controls\ButtonStyles.xaml" />
         <None Remove="Styles\Controls\CheckBoxStyles.xaml" />
         <None Remove="Styles\Controls\ComboBoxStyles.xaml" />
@@ -674,6 +725,7 @@
         <None Remove="Styles\Controls\HyperlinkButtonStyles.xaml" />
         <None Remove="Styles\Controls\HyperlinkStyles.xaml" />
         <None Remove="Styles\Controls\InfoBarStyles.xaml" />
+        <None Remove="Styles\Controls\ListBoxStyles.xaml" />
         <None Remove="Styles\Controls\MessageContentDialogStyles.xaml" />
         <None Remove="Styles\Controls\NavigationViewStyles.xaml" />
         <None Remove="Styles\Controls\PageContentControlStyles.xaml" />
@@ -687,6 +739,8 @@
         <None Remove="Styles\Controls\TextBoxStyles.xaml" />
         <None Remove="Styles\Controls\ToggleSwitchStyles.xaml" />
         <None Remove="Styles\Controls\TooltipStyles.xaml" />
+        <None Remove="Styles\Controls\UpsellFeatureContentControlStyles.xaml" />
+        <None Remove="Styles\Controls\WindowContentControlStyles.xaml" />
         <None Remove="Styles\Converters.xaml" />
         <None Remove="Styles\Flags.xaml" />
         <None Remove="Styles\Icons.xaml" />
@@ -1657,6 +1711,96 @@
         <Content Update="Assets\Flags\ZW.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Icons\Streaming\10play.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\7plus.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\abc.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\audible.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\bbc-iplayer.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\cbs.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\channel4.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\dazn.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\disney-plus.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\disney-hotstar.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\espn.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\f1.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\francetv.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\fubo-tv.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\hbo-max.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\hotstar.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\hulu.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\itv.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\iview.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\mediaset.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\netflix.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\nowtv.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\peacock.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\pluto-tv.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\prime-video.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\rai.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\rts.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\sling.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\syfy.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\Streaming\tf1.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Illustrations\Dark\free-countries.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -1753,6 +1897,66 @@
         <Content Update="Assets\Illustrations\update-proton-vpn.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Illustrations\upsell-customisation-large.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\upsell-customisation-small.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\upsell-multiple-devices-large.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\upsell-multiple-devices-small.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\upsell-netshield-large.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\upsell-netshield-small.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\upsell-p2p-large.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\upsell-p2p-small.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\upsell-secure-core-large.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\upsell-secure-core-small.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\upsell-speed-large.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\upsell-speed-small.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\upsell-split-tunneling-large.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\upsell-split-tunneling-small.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\upsell-streaming-large.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\upsell-streaming-small.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\upsell-tor-large.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\upsell-tor-small.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\upsell-worldwide-coverage-large.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\upsell-worldwide-coverage-small.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Illustrations\world-map.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -1765,6 +1969,26 @@
     </ItemGroup>
     <ItemGroup>
       <Page Update="Gallery\Pages\IconsPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Styles\Controls\ListBoxStyles.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Styles\Controls\BulletHeaderedContentControlStyles.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Styles\Controls\UpsellFeatureContentControlStyles.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Styles\Controls\WindowContentControlStyles.xaml">
         <Generator>MSBuild:Compile</Generator>
       </Page>
     </ItemGroup>

@@ -23,13 +23,12 @@ using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
-using ProtonVPN.Client.Models.Urls;
+using ProtonVPN.Client.Models.Activation.Custom;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -41,11 +40,10 @@ public partial class UpsellBannerViewModel : ViewModelBase,
     IEventMessageReceiver<VpnPlanChangedMessage>,
     IEventMessageReceiver<ChangeServerAttemptInvalidatedMessage>
 {
-    private readonly IUrls _urls;
-    private readonly IWebAuthenticator _webAuthenticator;
     private readonly IConnectionManager _connectionManager;
     private readonly IChangeServerModerator _changeServerModerator;
     private readonly ISettings _settings;
+    private readonly IUpsellCarouselDialogActivator _upsellCarouselDialogActivator;
 
     public bool IsBannerVisible => !_settings.IsPaid &&
                                    _connectionManager.ConnectionStatus == ConnectionStatus.Connected;
@@ -68,18 +66,16 @@ public partial class UpsellBannerViewModel : ViewModelBase,
         ILocalizationProvider localizationProvider,
         ILogger logger,
         IIssueReporter issueReporter,
-        IUrls urls,
-        IWebAuthenticator webAuthenticator,
         IConnectionManager connectionManager,
         IChangeServerModerator changeServerModerator,
-        ISettings settings)
+        ISettings settings,
+        IUpsellCarouselDialogActivator upsellCarouselDialogActivator)
         : base(localizationProvider, logger, issueReporter)
     {
-        _urls = urls;
-        _webAuthenticator = webAuthenticator;
         _connectionManager = connectionManager;
         _changeServerModerator = changeServerModerator;
         _settings = settings;
+        _upsellCarouselDialogActivator = upsellCarouselDialogActivator;
     }
 
     public void Receive(ChangeServerAttemptInvalidatedMessage message)
@@ -98,10 +94,11 @@ public partial class UpsellBannerViewModel : ViewModelBase,
     }
 
     [RelayCommand]
-    public async Task UpgradeAsync()
+    public void Upgrade()
     {
-        // TODO: Show upsell carousel instead
-        _urls.NavigateTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSources.ChangeServer));
+        _upsellCarouselDialogActivator.ShowDialog(IsWrongCountryBannerVisible
+            ? ModalSources.Countries
+            : ModalSources.NetShield);
     }
 
     protected override void OnLanguageChanged()

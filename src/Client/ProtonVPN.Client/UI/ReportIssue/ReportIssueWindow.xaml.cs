@@ -25,8 +25,8 @@ namespace ProtonVPN.Client.UI.ReportIssue;
 
 public sealed partial class ReportIssueWindow
 {
-    private const int REPORT_ISSUE_WINDOW_WIDTH = 472;
-    private const int REPORT_ISSUE_WINDOW_HEIGHT = 610;
+    private const int REPORT_ISSUE_WINDOW_WIDTH = 456;
+    private const int REPORT_ISSUE_WINDOW_HEIGHT = 620;
 
     public ReportIssueWindow()
     {
@@ -42,7 +42,7 @@ public sealed partial class ReportIssueWindow
 
     private void OnActivated(object sender, WindowActivatedEventArgs args)
     {
-        WindowTitleBar.Opacity = args.WindowActivationState.GetTitleBarOpacity();
+        WindowContainer.TitleBarOpacity = args.WindowActivationState.GetTitleBarOpacity();
     }
 
     private void InvalidateWindowPosition()

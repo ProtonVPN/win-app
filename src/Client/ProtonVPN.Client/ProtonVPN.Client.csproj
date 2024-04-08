@@ -70,6 +70,45 @@
         <None Update="appsettings.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <Page Update="UI\Upsell\Carousel\Features\AdvancedSettingsUpsellFeaturePage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Upsell\Carousel\Features\SplitTunnelingUpsellFeaturePage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Upsell\Carousel\Features\MultipleDevicesUpsellFeaturePage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Upsell\Carousel\Features\TorUpsellFeaturePage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Upsell\Carousel\Features\P2PUpsellFeaturePage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Upsell\Carousel\Features\SecureCoreUpsellFeaturePage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Upsell\Carousel\Features\StreamingUpsellFeaturePage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Upsell\Carousel\Features\SpeedUpsellFeaturePage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Upsell\Carousel\Features\WorldwideCoverageUpsellFeaturePage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Upsell\Carousel\Features\NetShieldUpsellFeaturePage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Login\Forms\LoadingForm.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Upsell\Carousel\UpsellCarouselShellPage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Upsell\Carousel\UpsellCarouselWindow.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
         <Page Update="UI\Countries\Controls\UpsellCountryBannerControl.xaml">
           <Generator>MSBuild:Compile</Generator>
         </Page>
@@ -209,6 +248,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <None Remove="UI\Login\Forms\LoadingForm.xaml" />
         <None Remove="UI\Countries\Controls\UpsellCountryBannerControl.xaml" />
         <None Remove="UI\Home\UpsellBanner\UpsellBannerComponent.xaml" />
         <None Remove="UI\Settings\Pages\About\AboutPage.xaml" />
@@ -267,6 +307,18 @@
         <None Remove="UI\Tray\TrayIconComponent.xaml" />
         <None Remove="UI\Update\UpdateBoxComponent.xaml" />
         <None Remove="UI\Update\UpdateComponent.xaml" />
+        <None Remove="UI\Upsell\Carousel\Features\AdvancedSettingsUpsellFeaturePage.xaml" />
+        <None Remove="UI\Upsell\Carousel\Features\MultipleDevicesUpsellFeaturePage.xaml" />
+        <None Remove="UI\Upsell\Carousel\Features\NetShieldUpsellFeaturePage.xaml" />
+        <None Remove="UI\Upsell\Carousel\Features\P2PUpsellFeaturePage.xaml" />
+        <None Remove="UI\Upsell\Carousel\Features\SecureCoreUpsellFeaturePage.xaml" />
+        <None Remove="UI\Upsell\Carousel\Features\SpeedUpsellFeaturePage.xaml" />
+        <None Remove="UI\Upsell\Carousel\Features\SplitTunnelingUpsellFeaturePage.xaml" />
+        <None Remove="UI\Upsell\Carousel\Features\StreamingUpsellFeaturePage.xaml" />
+        <None Remove="UI\Upsell\Carousel\Features\TorUpsellFeaturePage.xaml" />
+        <None Remove="UI\Upsell\Carousel\Features\WorldwideCoverageUpsellFeaturePage.xaml" />
+        <None Remove="UI\Upsell\Carousel\UpsellCarouselShellPage.xaml" />
+        <None Remove="UI\Upsell\Carousel\UpsellCarouselWindow.xaml" />
     </ItemGroup>
 
     <ItemGroup>

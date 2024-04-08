@@ -1918,13 +1918,13 @@
     <value>Bypass firewalls to connect to P2P servers and devices in your local network.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Footer" xml:space="preserve">
-    <value>To use Port Forwarding, please connect to a server that supports P2P.</value>
+    <value>To use port forwarding, please connect to a server that supports P2P.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications" xml:space="preserve">
     <value>Notifications</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications_Description" xml:space="preserve">
-    <value>Get notified when the Port Forwarding number changes</value>
+    <value>Get notified when the port forwarding number changes</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_Add" xml:space="preserve">
     <value>Add app</value>
@@ -2453,6 +2453,167 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Settings_Common_Apply" xml:space="preserve">
     <value>Apply</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
+  </data>
+  <data name="Upsell_Carousel_Title" xml:space="preserve">
+    <value>Discover VPN Plus</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings" xml:space="preserve">
+    <value>Unlock advanced VPN customization</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_DNS" xml:space="preserve">
+    <value>Connect to VPN with your custom domain name server (DNS)</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_LAN" xml:space="preserve">
+    <value>Access devices on your local area network (LAN) while connected</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT" xml:space="preserve">
+    <value>Level up your gaming experience by switching to NAT type 2 (moderate)</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices" xml:space="preserve">
+    <value>Connect up to 10 devices at once</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms" xml:space="preserve">
+    <value>Use Proton VPN on different platforms</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Android" xml:space="preserve">
+    <value>Android and Android TV</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser" xml:space="preserve">
+    <value>Browser</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_iOS" xml:space="preserve">
+    <value>iOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Linux" xml:space="preserve">
+    <value>Linux</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_MacOS" xml:space="preserve">
+    <value>macOS</value>
+  </data>
+  <data name="Upsell_Carousel_Platforms_More" xml:space="preserve">
+    <value>+ more</value>
+    <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Windows" xml:space="preserve">
+    <value>Windows</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Privacy" xml:space="preserve">
+    <value>Security and privacy on all of your devices</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield" xml:space="preserve">
+    <value>Enjoy ad-free browsing</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Block" xml:space="preserve">
+    <value>Block ads and trackers with NetShield</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Protection" xml:space="preserve">
+    <value>Protect your device from malware</value>
+  </data>
+  <data name="Upsell_Carousel_P2P" xml:space="preserve">
+    <value>Unlock peer-to-peer downloads and file sharing (P2P)</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Discretion" xml:space="preserve">
+    <value>Hide your IP address from your service provider and peers</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_PortForwarding" xml:space="preserve">
+    <value>Supercharge P2P speeds with port forwarding</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Speed" xml:space="preserve">
+    <value>Increased upload and download speeds</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore" xml:space="preserve">
+    <value>Add another layer of protection to your connection</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Encryption" xml:space="preserve">
+    <value>Double your encryption with Secure Core</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Protection" xml:space="preserve">
+    <value>Protect yourself from network attacks</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Routing" xml:space="preserve">
+    <value>Route through ultra secure servers in Switzerland, Sweden, and Iceland</value>
+  </data>
+  <data name="Upsell_Carousel_Speed" xml:space="preserve">
+    <value>Browse at even higher speeds (up to 10 Gbps)</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Acceleration" xml:space="preserve">
+    <value>Increase your connection speeds by up to 400% with VPN Accelerator</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Access" xml:space="preserve">
+    <value>Access faster, less crowded servers</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling" xml:space="preserve">
+    <value>Get the best of both worlds</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Browsing" xml:space="preserve">
+    <value>Browse from two locations at once with split tunneling</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Configuration" xml:space="preserve">
+    <value>Allow trusted apps and IP addresses to connect directly to the internet, while protecting everything else with your VPN</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming" xml:space="preserve">
+    <value>Stream your favorite movies and TV shows</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Access" xml:space="preserve">
+    <value>Access geoblocked TV and movies from anywhere in the world</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_BBC" xml:space="preserve">
+    <value>BBC iPlayer</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Disney" xml:space="preserve">
+    <value>Disney+</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_HBO" xml:space="preserve">
+    <value>HBO Max</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Hulu" xml:space="preserve">
+    <value>Hulu</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Netflix" xml:space="preserve">
+    <value>Netflix</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_PrimeVideo" xml:space="preserve">
+    <value>Amazon Prime Video</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Speed" xml:space="preserve">
+    <value>Watch in 4K without buffering, slowdowns, or throttling</value>
+  </data>
+  <data name="Upsell_Carousel_Tor" xml:space="preserve">
+    <value>Access the Tor network for extra privacy</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Access" xml:space="preserve">
+    <value>Access hidden sites and onion sites</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Browsing" xml:space="preserve">
+    <value>Browse the Tor network using your regular browser</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Protection" xml:space="preserve">
+    <value>Protect your personal data while browsing</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage" xml:space="preserve">
+    <value>Access over {0} in {1}</value>
+    <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Audit" xml:space="preserve">
+    <value>Audited by independent security experts</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Censorship" xml:space="preserve">
+    <value>Bypass censorship with advanced security and privacy features</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_OpenSource" xml:space="preserve">
+    <value>Open source VPN</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_One" xml:space="preserve">
+    <value>{0} country</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other" xml:space="preserve">
+    <value>{0} countries</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_One" xml:space="preserve">
+    <value>{0} secure server</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other" xml:space="preserve">
+    <value>{0} secure servers</value>
   </data>
   <data name="Countries_PaidCountryWarning" xml:space="preserve">
     <value>Servers in this country are available with VPN Plus</value>

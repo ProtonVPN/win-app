@@ -33,7 +33,9 @@ using ProtonVPN.Logging.Contracts.Events.GuestHoleLogs;
 
 namespace ProtonVPN.Client.UI.Login;
 
-public partial class LoginShellViewModel : ShellViewModelBase<ILoginViewNavigator>, IEventMessageReceiver<LoginStateChangedMessage>, IEventMessageReceiver<LoggedOutMessage>
+public partial class LoginShellViewModel : ShellViewModelBase<ILoginViewNavigator>,
+    IEventMessageReceiver<LoginStateChangedMessage>, 
+    IEventMessageReceiver<LoggedOutMessage>
 {
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(HasError))]

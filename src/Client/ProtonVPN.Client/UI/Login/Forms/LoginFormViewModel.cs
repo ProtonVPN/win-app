@@ -32,6 +32,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models;
 using ProtonVPN.Client.Models.Activation;
+using ProtonVPN.Client.Models.Activation.Custom;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts.Messages;
@@ -54,8 +55,7 @@ public partial class LoginFormViewModel :
     private readonly IUrls _urls;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IUserAuthenticator _userAuthenticator;
-    private readonly IDialogActivator _dialogActivator;
-    private readonly IReportIssueViewNavigator _reportIssueViewNavigator;
+    private readonly IReportIssueDialogActivator _reportIssueDialogActivator;
     private readonly IFeatureFlagsObserver _featureFlagsObserver;
     private readonly IApiAvailabilityVerifier _apiAvailabilityVerifier;
     private readonly IGuestHoleActionExecutor _guestHoleActionExecutor;
@@ -118,8 +118,7 @@ public partial class LoginFormViewModel :
         IUserAuthenticator userAuthenticator,
         IApiAvailabilityVerifier apiAvailabilityVerifier,
         IGuestHoleActionExecutor guestHoleActionExecutor,
-        IDialogActivator dialogActivator,
-        IReportIssueViewNavigator reportIssueViewNavigator,
+        IReportIssueDialogActivator reportIssueDialogActivator,
         IFeatureFlagsObserver featureFlagsObserver,
         ILogger logger,
         IIssueReporter issueReporter,
@@ -131,8 +130,7 @@ public partial class LoginFormViewModel :
         _userAuthenticator = userAuthenticator;
         _apiAvailabilityVerifier = apiAvailabilityVerifier;
         _guestHoleActionExecutor = guestHoleActionExecutor;
-        _dialogActivator = dialogActivator;
-        _reportIssueViewNavigator = reportIssueViewNavigator;
+        _reportIssueDialogActivator = reportIssueDialogActivator;
         _featureFlagsObserver = featureFlagsObserver;
         _ssoLoginOverlayViewModel = ssoLoginOverlayViewModel;
     }
@@ -287,9 +285,7 @@ public partial class LoginFormViewModel :
     [RelayCommand]
     public async Task ReportAnIssueAsync()
     {
-        _dialogActivator.ShowDialog<ReportIssueShellViewModel>();
-
-        await _reportIssueViewNavigator.NavigateToCategorySelectionAsync();
+        await _reportIssueDialogActivator.ShowDialogAsync();
     }
 
     [RelayCommand(CanExecute = nameof(CanCreateAccount))]

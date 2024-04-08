@@ -126,6 +126,12 @@ public partial class HomeRobot
         return this;
     }
 
+    public HomeRobot DoOpenUpsellCarousel()
+    {
+        DiscoverVpnPlusButton.FocusAndClick();
+        return this;
+    }
+
     public HomeRobot RemoveRecent(string country)
     {
         MoveMouseToElement(PrimaryActionButton);

@@ -54,24 +54,10 @@ public class DialogActivator : WindowActivatorBase, IDialogActivator
         ShowDialog(dialogType);
     }
 
-    public void ShowDialog(string shellKey)
-    {
-        Type dialogType = _viewMapper.GetDialogType(shellKey);
-
-        ShowDialog(dialogType);
-    }
-
     public void CloseDialog<TPageViewModel>()
         where TPageViewModel : PageViewModelBase
     {
         Type dialogType = _viewMapper.GetDialogType<TPageViewModel>();
-
-        CloseDialog(dialogType);
-    }
-
-    public void CloseDialog(string shellKey)
-    {
-        Type dialogType = _viewMapper.GetDialogType(shellKey);
 
         CloseDialog(dialogType);
     }

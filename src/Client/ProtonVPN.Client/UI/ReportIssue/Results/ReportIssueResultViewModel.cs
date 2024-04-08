@@ -30,8 +30,6 @@ namespace ProtonVPN.Client.UI.ReportIssue.Results;
 
 public partial class ReportIssueResultViewModel : PageViewModelBase<IReportIssueViewNavigator>
 {
-    private readonly IDialogActivator _dialogActivator;
-
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(Header))]
     [NotifyPropertyChangedFor(nameof(Description))]
@@ -47,15 +45,13 @@ public partial class ReportIssueResultViewModel : PageViewModelBase<IReportIssue
         ? Localizer.Get("Dialogs_ReportIssue_Result_Success_Description")
         : Localizer.Get("Dialogs_ReportIssue_Result_Fail_Description");
 
-    public ReportIssueResultViewModel(IReportIssueViewNavigator viewNavigator,
+    public ReportIssueResultViewModel(
+        IReportIssueViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
-        IDialogActivator dialogActivator,
         ILogger logger,
         IIssueReporter issueReporter)
         : base(viewNavigator, localizationProvider, logger, issueReporter)
-    {
-        _dialogActivator = dialogActivator;
-    }
+    { }
 
     public override void OnNavigatedTo(object parameter)
     {
@@ -67,7 +63,7 @@ public partial class ReportIssueResultViewModel : PageViewModelBase<IReportIssue
     [RelayCommand(CanExecute = nameof(CanClose))]
     public void Close()
     {
-        _dialogActivator.CloseDialog<ReportIssueShellViewModel>();
+        ViewNavigator.CloseCurrentWindow();
     }
 
     public bool CanClose()

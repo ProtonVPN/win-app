@@ -40,6 +40,8 @@ using ProtonVPN.Client.UI.Login.Overlays;
 using ProtonVPN.Client.UI.Gateways;
 using ProtonVPN.Client.UI.Home.ConnectionCard.Overlays;
 using ProtonVPN.Client.UI.Settings.Pages.About;
+using ProtonVPN.Client.UI.Upsell.Carousel;
+using ProtonVPN.Client.UI.Upsell.Carousel.Features;
 
 namespace ProtonVPN.Client.Models.Navigation;
 
@@ -134,6 +136,18 @@ public class ViewMapper : IViewMapper
         ConfigurePage<LoginShellViewModel, LoginShellPage>();
         ConfigurePage<LoginFormViewModel, LoginForm>();
         ConfigurePage<TwoFactorFormViewModel, TwoFactorForm>();
+        ConfigurePage<LoadingFormViewModel, LoadingForm>();
+        ConfigurePage<UpsellCarouselShellViewModel, UpsellCarouselShellPage>();
+        ConfigurePage<AdvancedSettingsUpsellFeatureViewModel, AdvancedSettingsUpsellFeaturePage>();
+        ConfigurePage<MultipleDevicesUpsellFeatureViewModel, MultipleDevicesUpsellFeaturePage>();
+        ConfigurePage<NetShieldUpsellFeatureViewModel, NetShieldUpsellFeaturePage>();
+        ConfigurePage<P2PUpsellFeatureViewModel, P2PUpsellFeaturePage>();
+        ConfigurePage<SecureCoreUpsellFeatureViewModel, SecureCoreUpsellFeaturePage>();
+        ConfigurePage<SpeedUpsellFeatureViewModel, SpeedUpsellFeaturePage>();
+        ConfigurePage<SplitTunnelingUpsellFeatureViewModel, SplitTunnelingUpsellFeaturePage>();
+        ConfigurePage<StreamingUpsellFeatureViewModel, StreamingUpsellFeaturePage>();
+        ConfigurePage<TorUpsellFeatureViewModel, TorUpsellFeaturePage>();
+        ConfigurePage<WorldwideCoverageUpsellFeatureViewModel, WorldwideCoverageUpsellFeaturePage>();
         ConfigurePage<ReportIssueShellViewModel, ReportIssueShellPage>();
         ConfigurePage<CategorySelectionViewModel, CategorySelectionPage>();
         ConfigurePage<QuickFixesViewModel, QuickFixesPage>();
@@ -179,6 +193,7 @@ public class ViewMapper : IViewMapper
     protected void ConfigureDialogs()
     {
         ConfigureDialog<ReportIssueShellViewModel, ReportIssueWindow>();
+        ConfigureDialog<UpsellCarouselShellViewModel, UpsellCarouselWindow>();
     }
 
     private void ConfigurePage<VM, V>()

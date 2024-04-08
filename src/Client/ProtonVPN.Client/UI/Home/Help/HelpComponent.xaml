@@ -32,7 +32,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              mc:Ignorable="d">
 
     <custom:GhostButton x:Name="gbHelp"
-                        Margin="-4,-8"
+                        Margin="0,-4"
                         AutomationProperties.AutomationId="HelpButton"
                         Command="{x:Bind ViewModel.ReportIssueCommand, Mode=OneTime}"
                         Content="{x:Bind ViewModel.Localizer.Get('Home_Help_Title'), Mode=OneWay}">

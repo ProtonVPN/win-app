@@ -25,6 +25,7 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
@@ -42,10 +43,7 @@ namespace ProtonVPN.Client.Models.Activation;
 public class MainWindowActivator : 
     WindowActivatorBase, 
     IMainWindowActivator, 
-    IEventMessageReceiver<LoggingInMessage>, 
-    IEventMessageReceiver<LoggedInMessage>, 
-    IEventMessageReceiver<LoggingOutMessage>, 
-    IEventMessageReceiver<LoggedOutMessage>, 
+    IEventMessageReceiver<AuthenticationStatusChanged>,
     IEventMessageReceiver<ConnectionStatusChanged>
 {
     private const int LOGIN_WINDOW_WIDTH = 620;
@@ -61,7 +59,6 @@ public class MainWindowActivator :
     private readonly ISettings _settings;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IUIThreadDispatcher _uiThreadDispatcher;
-    private readonly ILocalizationProvider _localizationProvider;
 
     private bool _handleClosedEvents = true;
 
@@ -77,8 +74,7 @@ public class MainWindowActivator :
         IConnectionManager connectionManager,
         ISettings settings,
         IEventMessageSender eventMessageSender,
-        IUIThreadDispatcher uIThreadDispatcher,
-        ILocalizationProvider localizationProvider)
+        IUIThreadDispatcher uIThreadDispatcher)
         : base(logger, themeSelector)
     {
         _dialogActivator = dialogActivator;
@@ -91,7 +87,6 @@ public class MainWindowActivator :
         _settings = settings;
         _eventMessageSender = eventMessageSender;
         _uiThreadDispatcher = uIThreadDispatcher;
-        _localizationProvider = localizationProvider;
     }
 
     public void Initialize()
@@ -147,47 +142,16 @@ public class MainWindowActivator :
         _dialogActivator.ActivateAllDialogs();
     }
 
-    public void Receive(LoggingInMessage message)
+    public void Receive(AuthenticationStatusChanged message)
     {
         _uiThreadDispatcher.TryEnqueue(() =>
         {
-            App.MainWindow.SwitchToLoadingScreen(GetTranslationOrNull("Main_Loading_SigningIn"));
-        });
-    }
+            if (message.AuthenticationStatus is AuthenticationStatus.LoggingOut)
+            {
+                SaveWindowPosition();
+            }
 
-    private string? GetTranslationOrNull(string? translationKey)
-    {
-        return translationKey is null ? null : _localizationProvider.Get(translationKey);
-    }
 
-    public void Receive(LoggedInMessage message)
-    {
-        _uiThreadDispatcher.TryEnqueue(() =>
-        {
-            InvalidateWindowPosition();
-            InvalidateWindowContent();
-
-            InvalidateAppIcon();
-
-            // Apply theme based on user settings
-            InvalidateAppTheme();
-        });
-    }
-
-    public void Receive(LoggingOutMessage message)
-    {
-        _uiThreadDispatcher.TryEnqueue(() =>
-        {
-            App.MainWindow.SwitchToLoadingScreen(GetTranslationOrNull("Main_Loading_SigningOut"));
-
-            SaveWindowPosition();
-        });
-    }
-
-    public void Receive(LoggedOutMessage message)
-    {
-        _uiThreadDispatcher.TryEnqueue(() =>
-        {
             InvalidateWindowPosition();
             InvalidateWindowContent();
 
@@ -201,10 +165,7 @@ public class MainWindowActivator :
 
     public void Receive(ConnectionStatusChanged message)
     {
-        _uiThreadDispatcher.TryEnqueue(() =>
-        {
-            InvalidateAppIcon();
-        });
+        _uiThreadDispatcher.TryEnqueue(InvalidateAppIcon);
     }
 
     protected override void OnThemeChanged(ElementTheme theme)
@@ -251,25 +212,38 @@ public class MainWindowActivator :
 
     private void InvalidateAppTheme()
     {
+        // Theme is saved in user settings which cannot be retrieved until user logged in.
+        // When user is logged out, app applies the default theme (Dark)
+        // When user is logged in, app applies theme based on user preferences
         App.MainWindow.ApplyTheme(ThemeSelector.GetTheme().Theme);
     }
 
     private void InvalidateAppIcon()
     {
-        App.MainWindow.UpdateApplicationIcon(_userAuthenticator.IsLoggedIn && _connectionManager.IsConnected);
+        bool isProtected = _userAuthenticator.IsLoggedIn && _connectionManager.IsConnected;
+        App.MainWindow.UpdateApplicationIcon(isProtected);
     }
 
     private void InvalidateWindowContent()
     {
-        if (_userAuthenticator.IsLoggedIn)
+        switch (_userAuthenticator.AuthenticationStatus)
         {
-            _mainViewNavigator.NavigateToAsync<HomeViewModel>();
-            App.MainWindow.SwitchToMainShell();
-            return;
-        }
+            case AuthenticationStatus.LoggedIn:
+                _mainViewNavigator.NavigateToAsync<HomeViewModel>();
+                App.MainWindow.SwitchToMainShell();
+                break;
 
-        _loginViewNavigator.NavigateToLoginAsync();
-        App.MainWindow.SwitchToLoginShell();
+            case AuthenticationStatus.LoggingOut:
+            case AuthenticationStatus.LoggingIn:
+                _loginViewNavigator.NavigateToLoadingAsync();
+                App.MainWindow.SwitchToLoginShell();
+                break;
+
+            default:
+                _loginViewNavigator.NavigateToLoginAsync();
+                App.MainWindow.SwitchToLoginShell();
+                break;
+        }
     }
 
     private void InvalidateWindowPosition()
@@ -313,12 +287,15 @@ public class MainWindowActivator :
     {
         try
         {
-            if (_userAuthenticator.IsLoggedIn && App.MainWindow.WindowState == WindowState.Normal)
+            if (_userAuthenticator.AuthenticationStatus is AuthenticationStatus.LoggedIn or AuthenticationStatus.LoggingOut)
             {
-                _settings.WindowXPosition = App.MainWindow.AppWindow.Position.X;
-                _settings.WindowYPosition = App.MainWindow.AppWindow.Position.Y;
-                _settings.WindowWidth = Convert.ToInt32(App.MainWindow.Width);
-                _settings.WindowHeight = Convert.ToInt32(App.MainWindow.Height);
+                if (App.MainWindow.WindowState == WindowState.Normal)
+                {
+                    _settings.WindowXPosition = App.MainWindow.AppWindow.Position.X;
+                    _settings.WindowYPosition = App.MainWindow.AppWindow.Position.Y;
+                    _settings.WindowWidth = Convert.ToInt32(App.MainWindow.Width);
+                    _settings.WindowHeight = Convert.ToInt32(App.MainWindow.Height);
+                }
             }
         }
         catch (Exception ex)

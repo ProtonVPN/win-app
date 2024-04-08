@@ -19,7 +19,6 @@
 
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
-using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
@@ -28,8 +27,8 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Client.Models.Activation.Custom;
 using ProtonVPN.Client.Models.Navigation;
-using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.IssueReporting.Contracts;
@@ -68,10 +67,15 @@ public class ServerViewModel : ServerViewModelBase, ISearchableItem
         IConnectionManager connectionManager,
         ILogger logger,
         IIssueReporter issueReporter,
-        IWebAuthenticator webAuthenticator,
         ISettings settings,
-        IUrls urls) :
-        base(localizationProvider, mainViewNavigator, connectionManager, logger, issueReporter, webAuthenticator, settings, urls)
+        IUpsellCarouselDialogActivator upsellCarouselDialogActivator) :
+        base(localizationProvider, 
+             mainViewNavigator, 
+             connectionManager, 
+             logger, 
+             issueReporter,  
+             settings,
+             upsellCarouselDialogActivator)
     { }
 
     public bool MatchesSearchQuery(string query)

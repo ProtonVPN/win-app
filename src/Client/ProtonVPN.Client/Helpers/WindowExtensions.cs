@@ -41,7 +41,7 @@ public static class WindowExtensions
         window.AppWindow.TitleBar.InactiveBackgroundColor = Colors.Transparent;
 
         window.AppWindow.TitleBar.ForegroundColor = ResourceHelper.GetColor(theme, "TextNormColor");
-        window.AppWindow.TitleBar.InactiveForegroundColor = ResourceHelper.GetColor(theme, "TextWeakColor");
+        window.AppWindow.TitleBar.InactiveForegroundColor = ResourceHelper.GetColor(theme, "TextHintColor");
 
         window.AppWindow.TitleBar.ButtonBackgroundColor = ResourceHelper.GetColor(theme, "InteractionDefaultColor");
         window.AppWindow.TitleBar.ButtonHoverBackgroundColor = ResourceHelper.GetColor(theme, "InteractionDefaultHoverColor");
@@ -51,7 +51,7 @@ public static class WindowExtensions
         window.AppWindow.TitleBar.ButtonForegroundColor = ResourceHelper.GetColor(theme, "TextNormColor");
         window.AppWindow.TitleBar.ButtonHoverForegroundColor = ResourceHelper.GetColor(theme, "TextNormColor");
         window.AppWindow.TitleBar.ButtonPressedForegroundColor = ResourceHelper.GetColor(theme, "TextNormColor");
-        window.AppWindow.TitleBar.ButtonInactiveForegroundColor = ResourceHelper.GetColor(theme, "TextDisabledColor");
+        window.AppWindow.TitleBar.ButtonInactiveForegroundColor = ResourceHelper.GetColor(theme, "TextHintColor");
 
         if (window.Content is FrameworkElement element)
         {
@@ -93,14 +93,14 @@ public static class WindowExtensions
         contentDialog.FlowDirection = GetFlowDirection(language);
     }
 
-    public static void SetDragAreaFromTitleBar(this Window window, FrameworkElement titleBar)
+    public static void SetDragArea(this Window window, double width, double height)
     {
         double scaleAdjustment = window.GetDpiForWindow() / 96.0;
-        Point relativeFromWindow = titleBar.TransformToVisual(window.Content).TransformPoint(new Point(0, 0));
+        Point relativeFromWindow = new Point(1,1);
 
         RectInt32 dragRect;
-        dragRect.Height = (int)(titleBar.ActualHeight * scaleAdjustment);
-        dragRect.Width = (int)(titleBar.ActualWidth * scaleAdjustment);
+        dragRect.Height = (int)(height * scaleAdjustment);
+        dragRect.Width = (int)(width * scaleAdjustment);
         dragRect.X = (int)(relativeFromWindow.X * scaleAdjustment);
         dragRect.Y = (int)(relativeFromWindow.Y * scaleAdjustment);
 

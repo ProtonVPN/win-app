@@ -24,7 +24,7 @@ namespace ProtonVPN.UI.Tests.Robots.Shell;
 
 public partial class ShellRobot : UIActions
 {
-    protected Label ApplicationTitleLabel => ElementByAutomationId("ApplicationTitleLabel").AsLabel();
+    protected Label ApplicationTitleLabel => ElementByAutomationId("WindowTitleLabel").AsLabel();
     protected AutomationElement ApplicationIcon => ElementByAutomationId("ApplicationIcon");
 
     protected TitleBar ApplicationTitleBar => ElementByAutomationId("TitleBar").AsTitleBar();

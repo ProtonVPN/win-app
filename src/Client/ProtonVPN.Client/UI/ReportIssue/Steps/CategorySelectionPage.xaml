@@ -51,7 +51,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                       Padding="0,0,24,0"
                       VerticalScrollBarVisibility="Auto">
             <ItemsRepeater DataContext="{x:Bind ViewModel}"
-                           ItemsSource="{x:Bind ViewModel.Categories, Mode=OneTime}">
+                           ItemsSource="{x:Bind ViewModel.Categories, Mode=OneTime}"
+                           TabFocusNavigation="Cycle">
                 <ItemsRepeater.ItemTemplate>
                     <DataTemplate x:DataType="models:IssueCategory">
                         <Grid>

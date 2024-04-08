@@ -39,7 +39,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Page.Resources>
 
     <NavigationView x:Name="NavigationViewControl"
-                    Margin="0,45,-1,0"
+                    Margin="0,0,-1,0"
                     AlwaysShowHeader="False"
                     AutomationProperties.AutomationId="NavigationView"
                     AutomationProperties.LandmarkType="Navigation"
@@ -59,7 +59,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     OpenPaneLength="{x:Bind ViewModel.NavigationPaneWidth}"
                     PaneDisplayMode="Auto"
                     SelectedItem="{x:Bind ViewModel.SelectedNavigationPage}"
-                    SizeChanged="OnNavigationViewControlSizeChanged">
+                    SizeChanged="OnNavigationViewControlSizeChanged"
+                    TabNavigation="Cycle">
 
         <NavigationView.MenuItemTemplate>
             <DataTemplate x:DataType="bases:NavigationPageViewModelBase">

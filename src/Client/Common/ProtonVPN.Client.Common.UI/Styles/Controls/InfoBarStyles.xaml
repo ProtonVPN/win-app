@@ -206,7 +206,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     Command="{TemplateBinding CloseButtonCommand}"
                                     CommandParameter="{TemplateBinding CloseButtonCommandParameter}"
                                     Style="{TemplateBinding CloseButtonStyle}">
-                                <pathicons:Cross />
+                                <pathicons:Cross Size="Pixels20" />
                             </Button>
 
                         </Grid>

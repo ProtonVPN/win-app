@@ -91,6 +91,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Color x:Key="GradientConnectedPinStop1Color">#001C9C7C</Color>
             <Color x:Key="GradientConnectedPinStop2Color">#801C9C7C</Color>
             <Color x:Key="GradientConnectedPinStop3Color">#1C9C7C</Color>
+            <Color x:Key="GradientUpsellBackgroundStartColor">#FF11D8CC</Color>
+            <Color x:Key="GradientUpsellBackgroundEndColor">#006E4BFF</Color>
 
             <!--  Composite Colors  -->
 
@@ -103,6 +105,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Color x:Key="BackgroundWeakHoverColor">#EBE9E8</Color>
             <!--  BackgroundWeakColor + InteractionDefaultActiveColor  -->
             <Color x:Key="BackgroundWeakActiveColor">#E3E2E0</Color>
+
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Dark">
@@ -173,6 +176,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Color x:Key="GradientConnectedPinStop1Color">#0027DDB1</Color>
             <Color x:Key="GradientConnectedPinStop2Color">#8027DDB1</Color>
             <Color x:Key="GradientConnectedPinStop3Color">#27DDB1</Color>
+            <Color x:Key="GradientUpsellBackgroundStartColor">#FF11D8CC</Color>
+            <Color x:Key="GradientUpsellBackgroundEndColor">#006E4BFF</Color>
 
             <!--  Composite Colors  -->
 
@@ -185,6 +190,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Color x:Key="BackgroundWeakHoverColor">#33303E</Color>
             <!--  BackgroundWeakColor + InteractionDefaultActiveColor  -->
             <Color x:Key="BackgroundWeakActiveColor">#3D3A4A</Color>
+
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 </ResourceDictionary>

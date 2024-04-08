@@ -26,8 +26,10 @@ namespace ProtonVPN.Client.Common.UI.Assets.Icons.Base;
 
 public abstract class CustomPathIcon : PathIcon
 {
+    private const PathIconSize DEFAULT_ICON_SIZE = PathIconSize.Pixels16;
+
     public static readonly DependencyProperty SizeProperty =
-        DependencyProperty.Register(nameof(Size), typeof(PathIconSize), typeof(CustomPathIcon), new PropertyMetadata(PathIconSize.Pixels16, OnSizePropertyChanged));
+        DependencyProperty.Register(nameof(Size), typeof(PathIconSize), typeof(CustomPathIcon), new PropertyMetadata(DEFAULT_ICON_SIZE, OnSizePropertyChanged));
 
     public PathIconSize Size
     {
@@ -56,21 +58,26 @@ public abstract class CustomPathIcon : PathIcon
     private void InvalidateData()
     {
         Data = (Geometry)XamlBindingHelper.ConvertValue(typeof(Geometry), GetGeometry(Size));
+
+        double size = GetSizeInPixels(Size);
+
+        Width = size;
+        Height = size;
     }
 
     private string GetGeometry(PathIconSize size)
     {
-        string geometry = Size switch
+        string geometry = size switch
         {
             PathIconSize.Pixels16 => IconGeometry16,
             PathIconSize.Pixels20 => IconGeometry20,
             PathIconSize.Pixels24 => IconGeometry24,
             PathIconSize.Pixels32 => IconGeometry32,
-            _ => IconGeometry20,
+            _ => string.Empty,
         };
 
         return string.IsNullOrEmpty(geometry)
-            ? Size switch
+            ? size switch
             {
                 // If requested size is not available, fallback onto smaller size
                 PathIconSize.Pixels20 => GetGeometry(PathIconSize.Pixels16),
@@ -79,5 +86,17 @@ public abstract class CustomPathIcon : PathIcon
                 _ => string.Empty,
             }
             : geometry;
+    }
+
+    private double GetSizeInPixels(PathIconSize size)
+    {
+        return Size switch
+        {
+            PathIconSize.Pixels16 => 16.0,
+            PathIconSize.Pixels20 => 20.0,
+            PathIconSize.Pixels24 => 24.0,
+            PathIconSize.Pixels32 => 32.0,
+            _ => 0.0,
+        };
     }
 }

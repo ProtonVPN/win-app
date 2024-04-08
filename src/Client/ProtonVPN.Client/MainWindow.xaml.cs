@@ -24,11 +24,14 @@ using ProtonVPN.Client.Contracts;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.UI;
 using ProtonVPN.Client.UI.Login;
+using Windows.Foundation;
 
 namespace ProtonVPN.Client;
 
 public sealed partial class MainWindow
 {
+    private const double TITLE_BAR_HEIGHT = 36.0;
+
     private readonly IShellPage _shell;
     private readonly IShellPage _loginShell;
 
@@ -48,23 +51,9 @@ public sealed partial class MainWindow
         UpdateApplicationIcon(false);
     }
 
-    public void SwitchToLoadingScreen(string? loadingMessage = null)
-    {
-        Container.Content = null;
-
-        Container.Visibility = Visibility.Collapsed;
-        LoadingLogo.Visibility = Visibility.Visible;
-        LoadingMessage.Text = loadingMessage;
-
-        HideTitleBar();
-    }
-
     public void SwitchToLoginShell()
     {
         Container.Content = _loginShell;
-
-        LoadingLogo.Visibility = Visibility.Collapsed;
-        Container.Visibility = Visibility.Visible;
 
         HideTitleBar();
     }
@@ -72,9 +61,6 @@ public sealed partial class MainWindow
     public void SwitchToMainShell()
     {
         Container.Content = _shell;
-
-        LoadingLogo.Visibility = Visibility.Collapsed;
-        Container.Visibility = Visibility.Visible;
 
         ShowTitleBar();
     }
@@ -85,28 +71,29 @@ public sealed partial class MainWindow
             ? ResourceHelper.GetIcon("ProtonVpnProtectedApplicationIcon")
             : ResourceHelper.GetIcon("ProtonVpnUnprotectedApplicationIcon");
 
-        ApplicationIcon.Source = icon;
+        WindowContainer.IconSource = icon;
 
-        // Note: This doesn't work when the App is pinned to the task bar.
-        //       When pinned, the app simply use the default icon from the project properties.
-        //       Consider switching to badge to reflect the current connection status
+        // VPNWIN-1925 - This doesn't work when the App is pinned to the task bar.
+        // When pinned, the app simply use the default icon from the project properties.
+        // Consider switching to badge to reflect the current connection status
         AppWindow.SetIcon(icon.GetFullImagePath());
     }
 
     private void OnActivated(object sender, WindowActivatedEventArgs args)
     {
-        AppTitleBar.Opacity = args.WindowActivationState.GetTitleBarOpacity();
+        WindowContainer.TitleBarOpacity = args.WindowActivationState.GetTitleBarOpacity();
     }
 
-    private void OnAppTitleBarSizeChanged(object sender, SizeChangedEventArgs e)
+    protected override bool OnSizeChanged(Size newSize)
     {
-        this.SetDragAreaFromTitleBar(AppTitleBar);
+        this.SetDragArea(newSize.Width, TITLE_BAR_HEIGHT);
+
+        return base.OnSizeChanged(newSize);
     }
 
     private void HideTitleBar()
     {
-        ApplicationIcon.Visibility = Visibility.Collapsed;
-        AppTitleBarText.Visibility = Visibility.Collapsed;
+        WindowContainer.IsTitleBarVisible = false;
 
         IsMinimizable = false;
         IsMaximizable = false;
@@ -115,8 +102,7 @@ public sealed partial class MainWindow
 
     private void ShowTitleBar()
     {
-        ApplicationIcon.Visibility = Visibility.Visible;
-        AppTitleBarText.Visibility = Visibility.Visible;
+        WindowContainer.IsTitleBarVisible = true;
 
         IsMinimizable = true;
         IsMaximizable = true;
