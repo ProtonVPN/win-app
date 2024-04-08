@@ -24,6 +24,7 @@ using ProtonVPN.Client.Dispatching;
 using ProtonVPN.Client.Handlers;
 using ProtonVPN.Client.HumanVerification;
 using ProtonVPN.Client.Models.Activation;
+using ProtonVPN.Client.Models.Activation.Custom;
 using ProtonVPN.Client.Models.Clipboards;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Themes;
@@ -55,7 +56,10 @@ public class ClientModule : Module
         builder.RegisterType<ReportIssueViewNavigator>().As<IReportIssueViewNavigator>().SingleInstance();
         builder.RegisterType<CountriesFeatureTabViewNavigator>().As<ICountriesFeatureTabsViewNavigator>().SingleInstance();
         builder.RegisterType<CountryFeatureTabViewNavigator>().As<ICountryFeatureTabsViewNavigator>().SingleInstance();
+        builder.RegisterType<UpsellCarouselViewNavigator>().As<IUpsellCarouselViewNavigator>().SingleInstance();
         builder.RegisterType<DialogActivator>().As<IDialogActivator>().SingleInstance();
+        builder.RegisterType<ReportIssueDialogActivator>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<UpsellCarouselDialogActivator>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<OverlayActivator>().As<IOverlayActivator>().SingleInstance();
         builder.RegisterType<HumanVerifier>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<HumanVerificationConfig>().AsImplementedInterfaces().SingleInstance();

@@ -34,6 +34,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="Padding" Value="0,32,0,0" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Top" />
+        <Setter Property="TabNavigation" Value="Cycle"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:StepContentControl">

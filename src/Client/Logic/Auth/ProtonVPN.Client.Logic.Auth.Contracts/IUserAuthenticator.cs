@@ -25,6 +25,8 @@ namespace ProtonVPN.Client.Logic.Auth.Contracts;
 
 public interface IUserAuthenticator
 {
+    AuthenticationStatus AuthenticationStatus { get; }
+
     bool IsLoggedIn { get; }
     bool? IsAutoLogin { get; }
 

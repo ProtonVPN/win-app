@@ -20,13 +20,12 @@
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
+using ProtonVPN.Client.Models.Activation.Custom;
 using ProtonVPN.Client.Models.Navigation;
-using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Home;
 using ProtonVPN.IssueReporting.Contracts;
@@ -38,9 +37,8 @@ public abstract partial class LocationViewModelBase : ViewModelBase
 {
     protected readonly IMainViewNavigator MainViewNavigator;
     protected readonly IConnectionManager ConnectionManager;
-    private readonly IWebAuthenticator _webAuthenticator;
     private readonly ISettings _settings;
-    private readonly IUrls _urls;
+    private readonly IUpsellCarouselDialogActivator _upsellCarouselDialogActivator;
 
     protected abstract ModalSources UpsellModalSources { get; }
 
@@ -50,16 +48,14 @@ public abstract partial class LocationViewModelBase : ViewModelBase
         IConnectionManager connectionManager,
         ILogger logger,
         IIssueReporter issueReporter,
-        IWebAuthenticator webAuthenticator,
         ISettings settings,
-        IUrls urls)
+        IUpsellCarouselDialogActivator upsellCarouselDialogActivator)
         : base(localizationProvider, logger, issueReporter)
     {
         MainViewNavigator = mainViewNavigator;
         ConnectionManager = connectionManager;
-        _webAuthenticator = webAuthenticator;
         _settings = settings;
-        _urls = urls;
+        _upsellCarouselDialogActivator = upsellCarouselDialogActivator;
 
         ConnectionDetails = ConnectionManager.CurrentConnectionDetails;
     }
@@ -79,7 +75,7 @@ public abstract partial class LocationViewModelBase : ViewModelBase
     {
         if (IsFreeUser)
         {
-            _urls.NavigateTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(UpsellModalSources));
+            _upsellCarouselDialogActivator.ShowDialog(UpsellModalSources);
             return;
         }
 

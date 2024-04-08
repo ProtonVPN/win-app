@@ -26,11 +26,9 @@ using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
-using ProtonVPN.Client.Models.Activation;
-using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Activation.Custom;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.UI.ReportIssue;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
@@ -43,8 +41,7 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
 {
     private readonly IUrls _urls;
     private readonly ISettings _settings;
-    private readonly IDialogActivator _dialogActivator;
-    private readonly IReportIssueViewNavigator _reportIssueViewNavigator;
+    private readonly IReportIssueDialogActivator _reportIssueDialogActivator;
 
     [ObservableProperty]
     private string _connectionErrorMessage = string.Empty;
@@ -61,16 +58,14 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
         ILocalizationProvider localizationProvider,
         IUrls urls,
         ISettings settings,
-        IDialogActivator dialogActivator,
-        IReportIssueViewNavigator reportIssueViewNavigator,
+        IReportIssueDialogActivator reportIssueDialogActivator,
         ILogger logger,
         IIssueReporter issueReporter)
         : base(localizationProvider, logger, issueReporter)
     {
         _urls = urls;
         _settings = settings;
-        _dialogActivator = dialogActivator;
-        _reportIssueViewNavigator = reportIssueViewNavigator;
+        _reportIssueDialogActivator = reportIssueDialogActivator;
     }
 
     public void Receive(ConnectionErrorMessage message)
@@ -93,26 +88,23 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
             case VpnError.TlsCertificateError:
                 await ReportAnIssueAsync();
                 break;
+
             case VpnError.RpcServerUnavailable:
                 _urls.NavigateTo(_urls.RpcServerProblemUrl);
                 break;
+
             case VpnError.NoTapAdaptersError:
             case VpnError.TapAdapterInUseError:
             case VpnError.TapRequiresUpdateError:
                 _urls.NavigateTo(_urls.TroubleShootingUrl);
                 break;
+
             default:
                 await ReportAnIssueAsync();
                 break;
         }
 
         CloseError();
-    }
-
-    private async Task ReportAnIssueAsync()
-    {
-        _dialogActivator.ShowDialog<ReportIssueShellViewModel>();
-        await _reportIssueViewNavigator.NavigateToCategorySelectionAsync();
     }
 
     [RelayCommand]
@@ -135,5 +127,10 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
     public void Receive(LoggingOutMessage message)
     {
         ExecuteOnUIThread(CloseError);
+    }
+
+    private async Task ReportAnIssueAsync()
+    {
+        await _reportIssueDialogActivator.ShowDialogAsync();
     }
 }

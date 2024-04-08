@@ -20,6 +20,4 @@
 
 namespace ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 
-public class LoggingInMessage
-{
-}
+public class LoggingInMessage;

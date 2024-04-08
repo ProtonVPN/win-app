@@ -17,12 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-
-using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
-
 namespace ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 
-public class LoggingOutMessage
-{
-    public LogoutReason Reason { get; init; }
-}
+public class LoggingOutMessage;

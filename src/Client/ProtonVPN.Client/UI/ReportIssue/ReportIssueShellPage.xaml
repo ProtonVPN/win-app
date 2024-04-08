@@ -28,8 +28,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       NavigationCacheMode="Required"
       mc:Ignorable="d">
 
-    <custom:StepContentControl Width="328"
-                               Margin="0,64"
+    <custom:StepContentControl Margin="64,32,64,64"
                                CurrentStep="{x:Bind ViewModel.CurrentStep}"
                                Header="{x:Bind ViewModel.StepsHeader}"
                                IsHeaderVisible="{x:Bind ViewModel.IsHeaderVisible}"

@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
@@ -26,9 +25,7 @@ using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Feedback.Contracts;
 using ProtonVPN.Client.Mappers;
-using ProtonVPN.Client.Models.Activation;
-using ProtonVPN.Client.Models.Navigation;
-using ProtonVPN.Client.UI.ReportIssue;
+using ProtonVPN.Client.Models.Activation.Custom;
 using ProtonVPN.Client.UI.ReportIssue.Models;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -37,8 +34,7 @@ namespace ProtonVPN.Client.UI.Home.Help;
 
 public partial class HelpViewModel : ViewModelBase
 {
-    private readonly IDialogActivator _dialogActivator;
-    private readonly IReportIssueViewNavigator _reportIssueViewNavigator;
+    private readonly IReportIssueDialogActivator _reportIssueDialogActivator;
     private readonly IReportIssueDataProvider _dataProvider;
 
     public bool HasCategories => Categories.Any();
@@ -46,16 +42,14 @@ public partial class HelpViewModel : ViewModelBase
     public SmartObservableCollection<IssueCategory> Categories { get; }
 
     public HelpViewModel(
-        ILocalizationProvider localizationProvider, 
-        IDialogActivator dialogActivator, 
-        IReportIssueViewNavigator reportIssueViewNavigator, 
+        ILocalizationProvider localizationProvider,
+        IReportIssueDialogActivator reportIssueDialogActivator,
         IReportIssueDataProvider dataProvider,
         ILogger logger,
         IIssueReporter issueReporter)
         : base(localizationProvider, logger, issueReporter)
     {
-        _dialogActivator = dialogActivator;
-        _reportIssueViewNavigator = reportIssueViewNavigator;
+        _reportIssueDialogActivator = reportIssueDialogActivator;
         _dataProvider = dataProvider;
 
         Categories = new();
@@ -72,20 +66,16 @@ public partial class HelpViewModel : ViewModelBase
     [RelayCommand]
     public async Task OpenReportIssueDialogAsync(IssueCategory category)
     {
-        _dialogActivator.ShowDialog<ReportIssueShellViewModel>();
-
-        await _reportIssueViewNavigator.NavigateToCategoryAsync(category);
+        await _reportIssueDialogActivator.ShowDialogAsync(category);
     }
 
     [RelayCommand]
     public async Task ReportIssueAsync()
     {
-        // Flyouts are causing issues with resize (WinUI framework issue). 
+        // Flyouts are causing issues with resize (WinUI framework issue).
         // In the meanwhile, clicking on the help button will open the Report issue dialog directly.
 
-        _dialogActivator.ShowDialog<ReportIssueShellViewModel>();
-
-        await _reportIssueViewNavigator.NavigateToCategorySelectionAsync();
+        await _reportIssueDialogActivator.ShowDialogAsync();
     }
 
     private void OnCategoriesCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)

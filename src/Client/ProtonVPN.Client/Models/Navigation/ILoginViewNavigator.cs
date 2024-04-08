@@ -24,4 +24,6 @@ public interface ILoginViewNavigator : IViewNavigator
     Task NavigateToLoginAsync();
 
     Task NavigateToTwoFactorAsync();
+
+    Task NavigateToLoadingAsync();
 }

@@ -35,4 +35,9 @@ public class LoginViewNavigator : ViewNavigatorBase, ILoginViewNavigator
     {
         return NavigateToAsync<TwoFactorFormViewModel>();
     }
+
+    public Task NavigateToLoadingAsync()
+    {
+        return NavigateToAsync<LoadingFormViewModel>();
+    }
 }

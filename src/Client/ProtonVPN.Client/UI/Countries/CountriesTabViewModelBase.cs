@@ -24,14 +24,13 @@ using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Models.Activation;
+using ProtonVPN.Client.Models.Activation.Custom;
 using ProtonVPN.Client.Models.Navigation;
-using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Countries.Controls;
 using ProtonVPN.IssueReporting.Contracts;
@@ -47,11 +46,10 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICou
     protected readonly IServersLoader ServersLoader;
     protected readonly NoSearchResultsViewModel NoSearchResultsViewModel;
     protected readonly ISettings Settings;
+    private readonly IUpsellCarouselDialogActivator _upsellCarouselDialogActivator;
 
     protected string LastSearchQuery = string.Empty;
     private readonly CountryViewModelsFactory _countryViewModelsFactory;
-    private readonly IUrls _urls;
-    private readonly IWebAuthenticator _webAuthenticator;
 
     [ObservableProperty]
     private int _totalCountries;
@@ -93,8 +91,7 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICou
         NoSearchResultsViewModel noSearchResultsViewModel,
         ISettings settings,
         CountryViewModelsFactory countryViewModelsFactory,
-        IUrls urls,
-        IWebAuthenticator webAuthenticator)
+        IUpsellCarouselDialogActivator upsellCarouselDialogActivator)
         : base(countriesFeatureTabsViewNavigator, localizationProvider, logger, issueReporter)
     {
         MainViewNavigator = mainViewNavigator;
@@ -103,8 +100,7 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICou
         NoSearchResultsViewModel = noSearchResultsViewModel;
         Settings = settings;
         _countryViewModelsFactory = countryViewModelsFactory;
-        _urls = urls;
-        _webAuthenticator = webAuthenticator;
+        _upsellCarouselDialogActivator = upsellCarouselDialogActivator;
     }
 
     public void LoadItems()
@@ -174,9 +170,9 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICou
     }
 
     [RelayCommand]
-    private async Task UpgradePlanAsync()
+    private void UpgradePlan()
     {
-        _urls.NavigateTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(UpsellModalSources));
+        _upsellCarouselDialogActivator.ShowDialog(UpsellModalSources);
     }
 
     private Predicate<object>? GetCountriesFilter(string query)

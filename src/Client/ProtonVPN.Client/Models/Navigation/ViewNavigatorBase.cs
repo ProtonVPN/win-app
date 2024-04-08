@@ -131,7 +131,7 @@ public abstract class ViewNavigatorBase : IViewNavigator
 
     private async Task<bool> NavigateToPageAsync(Type pageType, object? parameter, bool clearNavigation)
     {
-        if (!CanNavigate)
+        if (!CanNavigate || _frame == null)
         {
             return false;
         }

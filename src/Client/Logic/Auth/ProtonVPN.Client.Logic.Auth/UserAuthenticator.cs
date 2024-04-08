@@ -60,10 +60,10 @@ public class UserAuthenticator : IUserAuthenticator
     private readonly IVpnPlanUpdater _vpnPlanUpdater;
     private AuthResponse _authResponse;
 
-    public bool IsLoggingIn { get; private set; }
-    public bool IsLoggedIn { get; private set; }
+    public AuthenticationStatus AuthenticationStatus { get; private set; }
+
+    public bool IsLoggedIn => AuthenticationStatus == AuthenticationStatus.LoggedIn;
     public bool? IsAutoLogin { get; private set; }
-    public bool IsLoggingOut { get; private set; }
 
     public UserAuthenticator(
         ILogger logger,
@@ -252,10 +252,9 @@ public class UserAuthenticator : IUserAuthenticator
 
     public async Task LogoutAsync(LogoutReason reason)
     {
-        if (IsLoggedIn || IsLoggingIn)
+        if (AuthenticationStatus is AuthenticationStatus.LoggedIn or AuthenticationStatus.LoggingIn)
         {
-            IsLoggingOut = true;
-            _eventMessageSender.Send(new LoggingOutMessage() { Reason = reason });
+            SetAuthenticationStatus(AuthenticationStatus.LoggingOut);
 
             if (!_connectionManager.IsDisconnected)
             {
@@ -270,18 +269,22 @@ public class UserAuthenticator : IUserAuthenticator
 
             ClearAuthSessionDetails();
 
-            IsLoggingIn = false;
-            IsLoggedIn = false;
             IsAutoLogin = null;
-            IsLoggingOut = false;
 
-            _eventMessageSender.Send(new LoggedOutMessage() { Reason = reason });
+            SetAuthenticationStatus(AuthenticationStatus.LoggedOut, reason);
         }
+    }
+
+    public bool HasAuthenticatedSessionData()
+    {
+        return !string.IsNullOrWhiteSpace(_settings.AccessToken) &&
+               !string.IsNullOrWhiteSpace(_settings.RefreshToken) &&
+               !string.IsNullOrWhiteSpace(_settings.UniqueSessionId);
     }
 
     private async void OnTokenExpiredAsync(object? sender, EventArgs e)
     {
-        if (IsLoggingOut)
+        if (AuthenticationStatus is AuthenticationStatus.LoggingOut)
         {
             return;
         }
@@ -326,9 +329,7 @@ public class UserAuthenticator : IUserAuthenticator
     {
         try
         {
-            IsLoggingIn = true;
-            IsLoggedIn = false;
-            _eventMessageSender.Send(new LoggingInMessage());
+            SetAuthenticationStatus(AuthenticationStatus.LoggingIn);
 
             if (!HasAuthenticatedSessionData())
             {
@@ -374,24 +375,15 @@ public class UserAuthenticator : IUserAuthenticator
 
         ClearUnauthSessionDetails();
 
-        IsLoggedIn = true;
-        IsLoggingIn = false;
         IsAutoLogin = isAutoLogin;
 
         await MigrateUserSettingsAsync();
 
-        _eventMessageSender.Send(new LoggedInMessage { IsAutoLogin = isAutoLogin });
+        SetAuthenticationStatus(AuthenticationStatus.LoggedIn);
 
         await RequestNewKeysAndCertificateOnLoginAsync(isAutoLogin);
 
         return AuthResult.Ok();
-    }
-
-    public bool HasAuthenticatedSessionData()
-    {
-        return !string.IsNullOrWhiteSpace(_settings.AccessToken) &&
-               !string.IsNullOrWhiteSpace(_settings.RefreshToken) &&
-               !string.IsNullOrWhiteSpace(_settings.UniqueSessionId);
     }
 
     private bool IsUnauthSessionCreated()
@@ -406,6 +398,32 @@ public class UserAuthenticator : IUserAuthenticator
         _settings.UnauthUniqueSessionId = null;
         _settings.UnauthAccessToken = null;
         _settings.UnauthRefreshToken = null;
+    }
+
+    private void SetAuthenticationStatus(AuthenticationStatus status, LogoutReason? logoutReason = null)
+    {
+        AuthenticationStatus = status;
+
+        _eventMessageSender.Send(new AuthenticationStatusChanged(status));
+
+        switch (status)
+        {
+            case AuthenticationStatus.LoggedIn:
+                _eventMessageSender.Send(new LoggedInMessage { IsAutoLogin = IsAutoLogin ?? false });
+                break;
+
+            case AuthenticationStatus.LoggedOut:
+                _eventMessageSender.Send(new LoggedOutMessage { Reason = logoutReason ?? LogoutReason.UserAction });
+                break;
+
+            case AuthenticationStatus.LoggingIn:
+                _eventMessageSender.Send(new LoggingInMessage());
+                break;
+
+            case AuthenticationStatus.LoggingOut:
+                _eventMessageSender.Send(new LoggingOutMessage());
+                break;
+        }
     }
 
     private async Task MigrateUserSettingsAsync()

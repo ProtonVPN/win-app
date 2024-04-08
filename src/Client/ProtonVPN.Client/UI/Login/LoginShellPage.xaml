@@ -20,8 +20,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
 <Page x:Class="ProtonVPN.Client.UI.Login.LoginShellPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       Margin="-1,0,0,0"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
@@ -31,35 +31,42 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Grid VerticalAlignment="Stretch"
           Background="{ThemeResource BackgroundNormColorBrush}">
 
-        <InfoBar Width="{StaticResource LoginPageContentWidth}"
-                 Margin="0,32,0,0"
-                 IsOpen="{x:Bind ViewModel.HasError, Mode=OneWay}"
-                 Message="{x:Bind ViewModel.ErrorMessage, Mode=OneWay}"
-                 Severity="Error" />
+        <Grid Margin="32">
+            <InfoBar Width="{StaticResource LoginPageContentWidth}"
+                     Margin="0,32,0,0"
+                     IsOpen="{x:Bind ViewModel.HasError, Mode=OneWay}"
+                     Message="{x:Bind ViewModel.ErrorMessage, Mode=OneWay}"
+                     Severity="Error" />
 
-        <NavigationView BackRequested="OnBackRequested"
-                        IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled, Converter={StaticResource BooleanToNavigationBackButtonVisibilityConverter}, Mode=OneWay}"
-                        IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
-                        IsPaneToggleButtonVisible="False"
-                        IsSettingsVisible="false"
-                        PaneDisplayMode="LeftMinimal">
-            
-            <StackPanel>
-                
-                <Image Source="{ThemeResource WelcomeIllustrationSource}" />
-                
-                <Image Width="173"
-                       HorizontalAlignment="Center"
-                       Source="{ThemeResource ProductLogoIllustrationSource}" />
-                
-                <Frame x:Name="NavigationFrame"
-                       MaxWidth="328"
-                       Margin="0,24,0,48"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Stretch" />
-                
-            </StackPanel>
-            
-        </NavigationView>
+            <NavigationView HorizontalAlignment="Center"
+                            BackRequested="OnBackRequested"
+                            IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled, Converter={StaticResource BooleanToNavigationBackButtonVisibilityConverter}, Mode=OneWay}"
+                            IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
+                            IsPaneToggleButtonVisible="False"
+                            IsSettingsVisible="false"
+                            PaneDisplayMode="LeftMinimal">
+
+                <StackPanel Margin="-32">
+
+                    <Image HorizontalAlignment="Center"
+                           Source="{ThemeResource WelcomeIllustrationSource}"
+                           Stretch="Uniform" 
+                           Width="620"/>
+
+                    <Image HorizontalAlignment="Center"
+                           Source="{ThemeResource ProductLogoIllustrationSource}"
+                           Stretch="None"/>
+
+                    <Frame x:Name="NavigationFrame"
+                           MaxWidth="{StaticResource LoginPageContentWidth}"
+                           Margin="0,24,0,48"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Stretch" />
+
+                </StackPanel>
+
+            </NavigationView>
+
+        </Grid>
     </Grid>
 </Page>

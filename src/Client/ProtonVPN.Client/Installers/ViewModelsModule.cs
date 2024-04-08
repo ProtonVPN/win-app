@@ -50,6 +50,9 @@ using ProtonVPN.Client.UI.Settings.Pages.About;
 using ProtonVPN.Client.UI.Settings.Pages.Advanced;
 using ProtonVPN.Client.UI.Tray;
 using ProtonVPN.Client.UI.Update;
+using ProtonVPN.Client.UI.Upsell.Carousel;
+using ProtonVPN.Client.UI.Upsell.Carousel.Features;
+using ProtonVPN.Client.UI.Upsell.Carousel.Features.Base;
 using ProtonVPN.Client.UI.Upsell.Banner;
 
 namespace ProtonVPN.Client.Installers;
@@ -61,6 +64,7 @@ public class ViewModelsModule : Module
         RegisterViewModel<ShellViewModel>(builder);
         RegisterViewModel<LoginShellViewModel>(builder);
         RegisterViewModel<ReportIssueShellViewModel>(builder);
+        RegisterViewModel<UpsellCarouselShellViewModel>(builder);
 
         RegisterViewModel<CategorySelectionViewModel>(builder);
         RegisterViewModel<QuickFixesViewModel>(builder);
@@ -112,6 +116,7 @@ public class ViewModelsModule : Module
         RegisterViewModel<AccountViewModel>(builder);
         RegisterViewModel<LoginFormViewModel>(builder);
         RegisterViewModel<TwoFactorFormViewModel>(builder);
+        RegisterViewModel<LoadingFormViewModel>(builder);
         RegisterViewModel<NoSearchResultsViewModel>(builder);
         RegisterViewModel<SsoLoginOverlayViewModel>(builder);
         RegisterViewModel<ConnectionErrorViewModel>(builder);
@@ -122,13 +127,30 @@ public class ViewModelsModule : Module
         RegisterViewModel<GalleryViewModel>(builder);
         RegisterViewModel<GalleryItemViewModel>(builder);
 
+        RegisterUpsellFeatureViewModel<WorldwideCoverageUpsellFeatureViewModel>(builder);
+        RegisterUpsellFeatureViewModel<SpeedUpsellFeatureViewModel>(builder);
+        RegisterUpsellFeatureViewModel<StreamingUpsellFeatureViewModel>(builder);
+        RegisterUpsellFeatureViewModel<NetShieldUpsellFeatureViewModel>(builder);
+        RegisterUpsellFeatureViewModel<SecureCoreUpsellFeatureViewModel>(builder);
+        RegisterUpsellFeatureViewModel<P2PUpsellFeatureViewModel>(builder);
+        RegisterUpsellFeatureViewModel<MultipleDevicesUpsellFeatureViewModel>(builder);
+        RegisterUpsellFeatureViewModel<TorUpsellFeatureViewModel>(builder);
+        RegisterUpsellFeatureViewModel<SplitTunnelingUpsellFeatureViewModel>(builder);
+        RegisterUpsellFeatureViewModel<AdvancedSettingsUpsellFeatureViewModel>(builder);
+
         RegisterViewModel<HumanVerificationViewModel>(builder).AutoActivate();
         RegisterViewModel<AboutViewModel>(builder).AutoActivate();
     }
 
-    private IRegistrationBuilder<TType, ConcreteReflectionActivatorData, SingleRegistrationStyle> RegisterViewModel<TType>(ContainerBuilder builder) 
+    private IRegistrationBuilder<TType, ConcreteReflectionActivatorData, SingleRegistrationStyle> RegisterViewModel<TType>(ContainerBuilder builder)
         where TType : notnull
     {
         return builder.RegisterType<TType>().AsSelf().As<IEventMessageReceiver>().SingleInstance();
+    }
+
+    private IRegistrationBuilder<TType, ConcreteReflectionActivatorData, SingleRegistrationStyle> RegisterUpsellFeatureViewModel<TType>(ContainerBuilder builder)
+    where TType : notnull
+    {
+        return builder.RegisterType<TType>().AsSelf().As<IEventMessageReceiver>().As<UpsellFeatureViewModelBase>().SingleInstance();
     }
 }

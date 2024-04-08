@@ -18,12 +18,11 @@
  */
 
 using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Models.Activation;
+using ProtonVPN.Client.Models.Activation.Custom;
 using ProtonVPN.Client.Models.Navigation;
-using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -38,9 +37,8 @@ public class CountryViewModelsFactory
     private readonly IConnectionManager _connectionManager;
     private readonly ILogger _logger;
     private readonly IIssueReporter _issueReporter;
-    private readonly IWebAuthenticator _webAuthenticator;
     private readonly ISettings _settings;
-    private readonly IUrls _urls;
+    private readonly IUpsellCarouselDialogActivator _upsellCarouselDialogActivator;
 
     public CountryViewModelsFactory(
         ILocalizationProvider localizer,
@@ -49,9 +47,8 @@ public class CountryViewModelsFactory
         IConnectionManager connectionManager,
         ILogger logger,
         IIssueReporter issueReporter,
-        IWebAuthenticator webAuthenticator,
         ISettings settings,
-        IUrls urls)
+        IUpsellCarouselDialogActivator upsellCarouselDialogActivator)
     {
         _mainViewNavigator = mainViewNavigator;
         _overlayActivator = overlayActivator;
@@ -59,14 +56,13 @@ public class CountryViewModelsFactory
         _connectionManager = connectionManager;
         _logger = logger;
         _issueReporter = issueReporter;
-        _webAuthenticator = webAuthenticator;
         _settings = settings;
-        _urls = urls;
+        _upsellCarouselDialogActivator = upsellCarouselDialogActivator;
     }
 
     public CountryViewModel GetCountryViewModel(string exitCountryCode, CountryFeature countryFeature, int itemCount)
     {
-        return new CountryViewModel(_localizer, _mainViewNavigator, _connectionManager, _logger, _issueReporter, _webAuthenticator, _settings, _urls)
+        return new CountryViewModel(_localizer, _mainViewNavigator, _connectionManager, _logger, _issueReporter, _settings, _upsellCarouselDialogActivator)
         {
             EntryCountryCode = string.Empty,
             ExitCountryCode = exitCountryCode,
@@ -79,7 +75,7 @@ public class CountryViewModelsFactory
 
     public CountryViewModel GetFastestCountryViewModel(CountryFeature countryFeature)
     {
-        return new CountryViewModel(_localizer, _mainViewNavigator, _connectionManager, _logger, _issueReporter, _webAuthenticator, _settings, _urls)
+        return new CountryViewModel(_localizer, _mainViewNavigator, _connectionManager, _logger, _issueReporter, _settings, _upsellCarouselDialogActivator)
         {
             EntryCountryCode = string.Empty,
             ExitCountryCode = string.Empty,
@@ -91,7 +87,7 @@ public class CountryViewModelsFactory
 
     public CityViewModel GetCityViewModel(City city, List<ServerViewModel> servers, CountryFeature countryFeature)
     {
-        return new(_localizer, _mainViewNavigator, _overlayActivator, _connectionManager, _logger, _issueReporter, _settings, _webAuthenticator, _urls)
+        return new(_localizer, _mainViewNavigator, _overlayActivator, _connectionManager, _logger, _issueReporter, _settings, _upsellCarouselDialogActivator)
         {
             City = city,
             Servers = servers,
@@ -101,7 +97,7 @@ public class CountryViewModelsFactory
 
     public ServerViewModel GetServerViewModel(Server server)
     {
-        ServerViewModel serverViewModel = new(_localizer, _mainViewNavigator, _connectionManager, _logger, _issueReporter, _webAuthenticator, _settings, _urls);
+        ServerViewModel serverViewModel = new(_localizer, _mainViewNavigator, _connectionManager, _logger, _issueReporter, _settings, _upsellCarouselDialogActivator);
 
         serverViewModel.CopyPropertiesFromServer(server);
 
@@ -110,7 +106,7 @@ public class CountryViewModelsFactory
 
     public CountryViewModel GetSecureCoreCountryViewModel(SecureCoreCountryPair countryPair)
     {
-        return new CountryViewModel(_localizer, _mainViewNavigator, _connectionManager, _logger, _issueReporter, _webAuthenticator, _settings, _urls)
+        return new CountryViewModel(_localizer, _mainViewNavigator, _connectionManager, _logger, _issueReporter, _settings, _upsellCarouselDialogActivator)
         {
             EntryCountryCode = countryPair.EntryCountry,
             ExitCountryCode = countryPair.ExitCountry,

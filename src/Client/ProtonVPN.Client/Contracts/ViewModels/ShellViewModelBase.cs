@@ -48,7 +48,12 @@ public abstract partial class ShellViewModelBase<TViewNavigator> : PageViewModel
     {
         ViewNavigator.Window = window;
         ViewNavigator.Frame = frame;
+
+        OnViewNavigatorInitialized();
     }
+
+    protected virtual void OnViewNavigatorInitialized()
+    { }
 
     private void OnNavigated(object sender, NavigationEventArgs e)
     {

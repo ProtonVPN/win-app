@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<Page x:Class="ProtonVPN.Client.UI.Upsell.Carousel.UpsellCarouselShellPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:base="using:ProtonVPN.Client.UI.Upsell.Carousel.Features.Base"
+      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+      x:DefaultBindMode="OneWay"
+      NavigationCacheMode="Required"
+      mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style x:Key="NavigationGhostButtonStyle" TargetType="custom:GhostButton" BasedOn="{StaticResource SecondaryGhostButtonStyle}">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Width" Value="32"/>
+            <Setter Property="Height" Value="32"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid RowDefinitions="Auto,*,Auto"
+          RowSpacing="32">
+
+        <ListBox Grid.Row="0"
+                 HorizontalAlignment="Center"
+                 ItemsSource="{x:Bind ViewModel.Features, Mode=OneTime}"
+                 SelectedItem="{x:Bind ViewModel.SelectedFeature, Mode=TwoWay}"
+                 Style="{StaticResource FeatureListBoxStyle}">
+            <ListBox.ItemTemplate>
+                <DataTemplate x:DataType="base:UpsellFeatureViewModelBase">
+                    <Image Width="40"
+                           Height="40"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Source="{x:Bind SmallIllustrationSource}"
+                           Stretch="Uniform" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Grid Grid.Row="1"
+              ColumnDefinitions="Auto,*,Auto"
+              ColumnSpacing="8">
+            <custom:GhostButton Grid.Column="0"
+                                Style="{StaticResource NavigationGhostButtonStyle}"
+                                AutomationProperties.AutomationId="MoveToPreviousUpsellFeatureButton"
+                                Command="{x:Bind ViewModel.MoveToPreviousFeatureCommand, Mode=OneTime}"
+                                Padding="0,3,4,5">
+                <custom:GhostButton.LeftIcon>
+                    <pathicons:ChevronLeft Size="Pixels24" />
+                </custom:GhostButton.LeftIcon>
+            </custom:GhostButton>
+
+            <Frame x:Name="NavigationFrame"
+                   Grid.Column="1"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch" />
+
+            <custom:GhostButton Grid.Column="2"
+                                Style="{StaticResource NavigationGhostButtonStyle}"
+                                AutomationProperties.AutomationId="MoveToNextUpsellFeatureButton"
+                                Command="{x:Bind ViewModel.MoveToNextFeatureCommand, Mode=OneTime}"
+                                Padding="2,3,2,5">
+                <custom:GhostButton.LeftIcon>
+                    <pathicons:ChevronRight Size="Pixels24"/>
+                </custom:GhostButton.LeftIcon>
+            </custom:GhostButton>
+        </Grid>
+
+        <Button Grid.Row="2"
+                HorizontalAlignment="Center"
+                AutomationProperties.AutomationId="UpsellUpgradeButton"
+                Command="{x:Bind ViewModel.UpgradeCommand}"
+                Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Upgrade')}"
+                Style="{StaticResource PrimaryButtonStyle}" />
+
+    </Grid>
+</Page>

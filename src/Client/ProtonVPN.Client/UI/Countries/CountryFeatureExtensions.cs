@@ -45,6 +45,7 @@ public static class CountryFeatureExtensions
         {
             CountryFeature.P2P => ModalSources.P2P,
             CountryFeature.SecureCore => ModalSources.SecureCore,
+            CountryFeature.Tor => ModalSources.Countries, // Tor is not a modal source option yet, redirect to countries
             _ => ModalSources.Countries
         };
     }

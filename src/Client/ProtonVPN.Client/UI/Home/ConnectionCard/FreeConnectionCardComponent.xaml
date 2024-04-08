@@ -34,6 +34,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <StackPanel Orientation="Vertical"
                 Spacing="12">
+        
         <Grid ColumnSpacing="12">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -165,6 +166,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         Visibility="{x:Bind ViewModel.IsConnected, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Grid>
         </Grid>
+
+        <custom:GhostButton x:Name="gbDiscoverVpnPlus"
+                            Margin="0,-4"
+                            HorizontalAlignment="Left"
+                            AutomationProperties.AutomationId="DiscoverVpnPlusButton"
+                            Command="{x:Bind ViewModel.DiscoverVpnPlusCommand, Mode=OneTime}"
+                            Content="{x:Bind ViewModel.Localizer.Get('Upsell_Carousel_Title'), Mode=OneWay}">
+            <custom:GhostButton.RightIcon>
+                <pathicons:ChevronRight />
+            </custom:GhostButton.RightIcon>
+        </custom:GhostButton>
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="MaintenanceStates">

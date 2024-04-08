@@ -55,6 +55,8 @@ public partial class HomeRobot : UIActions
     protected AutomationElement SecondaryActionButton => ElementByAutomationId("SecondaryButton");
     protected AutomationElement RemoveButton => ElementByName("Remove");
 
+    protected Button DiscoverVpnPlusButton => ElementByAutomationId("DiscoverVpnPlusButton").AsButton();
+
     protected AutomationElement GetRecentsCountry(string countryName)
     {
         return ElementByAutomationId("RecentsPane").FindFirstDescendant(cf => cf.ByName($"Connect to {countryName}"));

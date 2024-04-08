@@ -32,6 +32,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models.Activation;
+using ProtonVPN.Client.Models.Activation.Custom;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Client.Models.Urls;
@@ -59,8 +60,7 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
     private readonly ISettings _settings;
     private readonly ISettingsRestorer _settingsRestorer;
     private readonly IUrls _urls;
-    private readonly IDialogActivator _dialogActivator;
-    private readonly IReportIssueViewNavigator _reportIssueViewNavigator;
+    private readonly IReportIssueDialogActivator _reportIssueDialogActivator;
     private readonly IConnectionManager _connectionManager;
     private readonly IPortForwardingManager _portForwardingManager;
     private readonly Lazy<ObservableCollection<string>> _languages;
@@ -141,8 +141,7 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
         ISettings settings,
         ISettingsRestorer settingsRestorer,
         IUrls urls,
-        IDialogActivator dialogActivator,
-        IReportIssueViewNavigator reportIssueViewNavigator,
+        IReportIssueDialogActivator reportIssueDialogActivator,
         IConnectionManager connectionManager,
         IPortForwardingManager portForwardingManager,
         ILogger logger,
@@ -155,8 +154,7 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
         _settings = settings;
         _settingsRestorer = settingsRestorer;
         _urls = urls;
-        _dialogActivator = dialogActivator;
-        _reportIssueViewNavigator = reportIssueViewNavigator;
+        _reportIssueDialogActivator = reportIssueDialogActivator;
         _connectionManager = connectionManager;
         _portForwardingManager = portForwardingManager;
 
@@ -203,9 +201,7 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
     [RelayCommand]
     public async Task ReportIssueAsync()
     {
-        _dialogActivator.ShowDialog<ReportIssueShellViewModel>();
-
-        await _reportIssueViewNavigator.NavigateToCategorySelectionAsync();
+        await _reportIssueDialogActivator.ShowDialogAsync();
     }
 
     public void Receive(SettingChangedMessage message)
