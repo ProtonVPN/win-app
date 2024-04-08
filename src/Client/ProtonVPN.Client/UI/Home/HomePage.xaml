@@ -32,7 +32,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:recents="using:ProtonVPN.Client.UI.Home.Recents"
       xmlns:selectors="using:ProtonVPN.Client.UI.Home.Selectors"
       xmlns:status="using:ProtonVPN.Client.UI.Home.Status"
-      xmlns:wrongCountryBanner="using:ProtonVPN.Client.UI.Home.UpsellBanner"
       xmlns:banner="using:ProtonVPN.Client.UI.Upsell.Banner"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
@@ -158,14 +157,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                           ActiveCountryCode="{x:Bind ViewModel.ActiveCountryCode}"
                                           TabIndex="2" />
 
-                        <Grid Grid.Row="0">
+                        <Grid>
                             <status:VpnStatusComponent AutomationProperties.AutomationId="VpnStatusComponent"
                                                        AutomationProperties.LandmarkType="Custom"
                                                        AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_VpnStatus_Landmark')}"
                                                        TabIndex="1" />
 
                             <StackPanel MaxWidth="{StaticResource MaximumHomePageContentWidth}"
-                                        Margin="16,60,16,0">
+                                        Margin="0,60,0,0" 
+                                        Padding="16,0">
                                 <connectionError:ConnectionErrorComponent/>
                                 <banner:UpsellBannerComponent />
                             </StackPanel>
@@ -182,7 +182,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                     <ContentControl Grid.Row="1"
                                     MaxWidth="{StaticResource MaximumHomePageContentWidth}"
-                                    Margin="16"
+                                    Padding="0,0,0,16"
                                     HorizontalContentAlignment="Stretch"
                                     Content="{x:Bind ViewModel.IsPaidUser}"
                                     ContentTemplateSelector="{StaticResource ConnectionCardTemplateSelector}" 

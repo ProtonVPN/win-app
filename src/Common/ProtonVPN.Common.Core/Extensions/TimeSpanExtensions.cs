@@ -39,4 +39,9 @@ public static class TimeSpanExtensions
         TimeSpan randomInterval = interval * randomValue;
         return value + randomInterval;
     }
+
+    public static TimeSpan Min(TimeSpan value1, TimeSpan value2)
+    {
+        return TimeSpan.FromTicks(Math.Min(value1.Ticks, value2.Ticks));
+    }
 }

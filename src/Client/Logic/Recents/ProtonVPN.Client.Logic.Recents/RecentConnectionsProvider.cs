@@ -22,34 +22,51 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
 using ProtonVPN.Client.Logic.Recents.Files;
+using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Logic.Recents;
 
 public class RecentConnectionsProvider : IRecentConnectionsProvider,
     IEventMessageReceiver<ConnectionStatusChanged>,
-    IEventMessageReceiver<LoggedInMessage>
+    IEventMessageReceiver<LoggedInMessage>,
+    IEventMessageReceiver<LoggedOutMessage>,
+    IEventMessageReceiver<ServerListChangedMessage>
 {
     private const int MAXIMUM_RECENT_CONNECTIONS = 6;
 
+    private readonly ILogger _logger;
+    private readonly ISettings _settings;
+    private readonly IServersLoader _serversLoader;
     private readonly IConnectionManager _connectionManager;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IRecentsFileReaderWriter _recentsFileReaderWriter;
 
     private readonly object _lock = new();
+    private bool _areRecentsLoaded;
 
     private List<IRecentConnection> _recentConnections = new();
 
     public RecentConnectionsProvider(
+        ILogger logger,
+        ISettings settings,
+        IServersLoader serversLoader,
         IConnectionManager connectionManager,
         IEventMessageSender eventMessageSender,
         IRecentsFileReaderWriter recentsFileReaderWriter)
     {
+        _logger = logger;
+        _settings = settings;
+        _serversLoader = serversLoader;
         _connectionManager = connectionManager;
         _eventMessageSender = eventMessageSender;
         _recentsFileReaderWriter = recentsFileReaderWriter;
@@ -63,83 +80,69 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider,
 
     public IRecentConnection? GetMostRecentConnection()
     {
-        return _recentConnections.FirstOrDefault(c => c.IsActiveConnection)
-            ?? _recentConnections.FirstOrDefault();
+        IRecentConnection mostRecentConnection = 
+            _recentConnections.FirstOrDefault(c => c.IsActiveConnection) ?? 
+            _recentConnections.FirstOrDefault();
+
+        return mostRecentConnection == null || mostRecentConnection.IsServerUnderMaintenance 
+            ? null 
+            : mostRecentConnection;
+    }
+
+    public void OverrideRecentConnections(List<IConnectionIntent> connectionIntents, IConnectionIntent? mostRecentConnectionIntent = null)
+    {
+        lock (_lock)
+        {
+            _recentConnections.Clear();
+
+            foreach (IConnectionIntent connectionIntent in connectionIntents)
+            {
+                TryInsertRecentConnection(connectionIntent);
+            }
+
+            foreach (IRecentConnection recentConnection in _recentConnections)
+            {
+                TryPinRecentConnection(recentConnection);
+            }
+
+            TryInsertRecentConnection(mostRecentConnectionIntent ?? ConnectionIntent.Default);
+
+            SaveRecentConnections();
+        }
     }
 
     public void Pin(IRecentConnection recentConnection)
     {
-        if (recentConnection == null || recentConnection.IsPinned)
-        {
-            return;
-        }
-
         lock (_lock)
         {
-            recentConnection.IsPinned = true;
-            recentConnection.PinTime = DateTime.UtcNow;
+            if (TryPinRecentConnection(recentConnection))
+            {
+                SaveAndBroadcastRecentConnectionsChanges();
+            }
         }
-
-        SaveRecentsAndBroadcastChanges();
-    }
-
-    private void SaveRecentsAndBroadcastChanges()
-    {
-        SaveRecentsToFile();
-        BroadcastRecentConnectionsChanged();
-    }
-
-    private void SaveRecentsToFile()
-    {
-        List<IRecentConnection> recentConnections = _recentConnections.ToList();
-        Task.Run(() => _recentsFileReaderWriter.Save(recentConnections)).ConfigureAwait(false);
-    }
-
-    private void BroadcastRecentConnectionsChanged()
-    {
-        _eventMessageSender.Send(new RecentConnectionsChanged());
     }
 
     public void Unpin(IRecentConnection recentConnection)
     {
-        if (recentConnection == null || !recentConnection.IsPinned)
-        {
-            return;
-        }
-
         lock (_lock)
         {
-            recentConnection.IsPinned = false;
-            recentConnection.PinTime = null;
-
-            TrimRecentConnections();
+            if (TryUnpinRecentConnection(recentConnection))
+            {
+                TrimRecentConnections();
+                SaveAndBroadcastRecentConnectionsChanges();
+            }
         }
-
-        SaveRecentsAndBroadcastChanges();
     }
 
     public void Remove(IRecentConnection recentConnection)
     {
-        if (recentConnection == null)
-        {
-            return;
-        }
-
-        ConnectionDetails? connectionDetails = _connectionManager.CurrentConnectionDetails;
-
-        // The current connection cannot be removed, simply unpin it.
-        if (connectionDetails != null && recentConnection.ConnectionIntent.IsSameAs(connectionDetails.OriginalConnectionIntent))
-        {
-            Unpin(recentConnection);
-            return;
-        }
-
         lock (_lock)
         {
-            _recentConnections.Remove(recentConnection);
+            if (TryRemoveRecentConnection(recentConnection))
+            {
+                SaveAndBroadcastRecentConnectionsChanges();
+            }
         }
-
-        SaveRecentsAndBroadcastChanges();
     }
 
     public void Receive(ConnectionStatusChanged message)
@@ -155,19 +158,49 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider,
                     return;
                 }
 
-                if (!TryInsertRecentConnection(connectionIntent))
+                if (TryInsertRecentConnection(connectionIntent))
                 {
-                    return;
+                    TrimRecentConnections();
                 }
-
-                TrimRecentConnections();
             }
             finally
             {
-                SetActiveConnection(connectionIntent, _connectionManager.ConnectionStatus);
+                InvalidateActiveConnection();
 
-                SaveRecentsAndBroadcastChanges();
+                SaveAndBroadcastRecentConnectionsChanges();
             }
+        }
+    }
+
+    public void Receive(LoggedInMessage message)
+    {
+        lock (_lock)
+        {
+            LoadRecentConnections();
+
+            InvalidateActiveConnection();
+        }
+
+        _areRecentsLoaded = true;
+
+        BroadcastRecentConnectionsChanges();
+    }
+
+    public void Receive(LoggedOutMessage message)
+    {
+        _areRecentsLoaded = false;
+    }
+
+    public void Receive(ServerListChangedMessage message)
+    {
+        if (_areRecentsLoaded)
+        {
+            lock (_lock)
+            {
+                InvalidateRetiredAndUnderMaintenanceServers();
+            }
+
+            SaveAndBroadcastRecentConnectionsChanges();
         }
     }
 
@@ -190,69 +223,107 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider,
         return true;
     }
 
+    private bool TryRemoveRecentConnection(IRecentConnection recentConnection)
+    {
+        if (recentConnection == null)
+        {
+            return false;
+        }
+
+        // The current connection cannot be removed, simply unpin it.
+        if (recentConnection.IsActiveConnection)
+        {
+            return TryUnpinRecentConnection(recentConnection);
+        }
+
+        _recentConnections.Remove(recentConnection);
+
+        return true;
+    }
+
+    private bool TryPinRecentConnection(IRecentConnection recentConnection)
+    {
+        if (recentConnection == null || recentConnection.IsPinned)
+        {
+            return false;
+        }
+
+        recentConnection.IsPinned = true;
+        recentConnection.PinTime = DateTime.UtcNow;
+
+        return true;
+    }
+
+    private bool TryUnpinRecentConnection(IRecentConnection recentConnection)
+    {
+        if (recentConnection == null || !recentConnection.IsPinned)
+        {
+            return false;
+        }
+
+        recentConnection.IsPinned = false;
+        recentConnection.PinTime = null;
+
+        return true;
+    }
+
+    private void InvalidateActiveConnection()
+    {
+        ConnectionStatus currentConnectionStatus = _connectionManager.ConnectionStatus;
+        IConnectionIntent currentConnectionIntent = _connectionManager.CurrentConnectionIntent;
+
+        foreach (IRecentConnection connection in _recentConnections)
+        {
+            connection.IsActiveConnection = currentConnectionStatus == ConnectionStatus.Connected
+                                         && currentConnectionIntent != null
+                                         && currentConnectionIntent.IsSameAs(connection.ConnectionIntent);
+        }
+    }
+
+    private void InvalidateRetiredAndUnderMaintenanceServers()
+    {
+        List<Server> servers = _serversLoader.GetServers().ToList();
+        List<IRecentConnection> recentConnections = _recentConnections.ToList();
+
+        foreach (IRecentConnection connection in recentConnections)
+        {
+            if (connection.ConnectionIntent.HasNoServers(servers))
+            {
+                _logger.Info<AppLog>($"Recent connection {connection.ConnectionIntent} has been removed. All servers for this intent have been retired.");
+                _recentConnections.Remove(connection);
+                continue;
+            }
+
+            connection.IsServerUnderMaintenance = connection.ConnectionIntent.AreAllServersUnderMaintenance(servers);
+        }
+    }
+
+    private void SaveAndBroadcastRecentConnectionsChanges()
+    {
+        SaveRecentConnections();
+        BroadcastRecentConnectionsChanges();
+    }
+
+    private void LoadRecentConnections()
+    {
+        _recentConnections = _recentsFileReaderWriter.Read();
+    }
+
+    private void SaveRecentConnections()
+    {
+        _recentsFileReaderWriter.Save(_recentConnections.ToList());
+    }
+
+    private void BroadcastRecentConnectionsChanges()
+    {
+        _eventMessageSender.Send(new RecentConnectionsChanged());
+    }
+
     private void TrimRecentConnections()
     {
         while (_recentConnections.Count(c => !c.IsPinned) > MAXIMUM_RECENT_CONNECTIONS)
         {
             _recentConnections.Remove(_recentConnections.Last(c => !c.IsPinned));
         }
-    }
-
-    private void SetActiveConnection(IConnectionIntent activeIntent, ConnectionStatus connectionStatus)
-    {
-        foreach (IRecentConnection connection in _recentConnections)
-        {
-            connection.IsActiveConnection = activeIntent != null
-                                            && connectionStatus == ConnectionStatus.Connected
-                                            && activeIntent.IsSameAs(connection.ConnectionIntent);
-        }
-    }
-
-    public void Receive(LoggedInMessage message)
-    {
-        lock (_lock)
-        {
-            _recentConnections = _recentsFileReaderWriter.Read();
-        }
-
-        BroadcastRecentConnectionsChanged();
-    }
-
-    public void SaveRecentConnections(List<IConnectionIntent> connectionIntents, IConnectionIntent? recentConnectionIntent = null)
-    {
-        List<IRecentConnection> recentConnections = [];
-        foreach (IConnectionIntent connectionIntent in connectionIntents)
-        {
-            if (!recentConnections.Any(c => c.ConnectionIntent.IsSameAs(connectionIntent)))
-            {
-                InsertRecentConnection(recentConnections, connectionIntent);
-            }
-        }
-
-        if (recentConnectionIntent is not null)
-        {
-            IRecentConnection? duplicate = recentConnections.SingleOrDefault(c => c.ConnectionIntent.IsSameAs(recentConnectionIntent));
-            if (duplicate != null)
-            {
-                recentConnections.Remove(duplicate);
-            }
-
-            InsertRecentConnection(recentConnections, recentConnectionIntent);
-        }
-
-        if (recentConnections.Count > 0)
-        {
-            lock (_lock)
-            {
-                _recentConnections = recentConnections;
-            }
-
-            _recentsFileReaderWriter.Save(recentConnections);
-        }
-    }
-
-    private void InsertRecentConnection(List<IRecentConnection> recentConnections, IConnectionIntent connectionIntent)
-    {
-        recentConnections.Insert(0, new RecentConnection(connectionIntent) { IsPinned = true });
     }
 }

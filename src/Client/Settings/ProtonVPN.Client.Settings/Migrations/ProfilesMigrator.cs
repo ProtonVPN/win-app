@@ -54,9 +54,9 @@ public class ProfilesMigrator : IProfilesMigrator
         }
 
         List<IConnectionIntent> connectionIntents = MapProfilesToConnectionIntents(profiles);
-        IConnectionIntent? firstConnectionIntent = MapQuickConnectProfileToConnectionIntent(profiles, quickConnectProfileId);
+        IConnectionIntent? quickConnectionIntent = MapQuickConnectProfileToConnectionIntent(profiles, quickConnectProfileId);
 
-        _recentConnectionsProvider.SaveRecentConnections(connectionIntents, firstConnectionIntent);
+        _recentConnectionsProvider.OverrideRecentConnections(connectionIntents, quickConnectionIntent);
     }
 
     private List<IConnectionIntent> MapProfilesToConnectionIntents(List<LegacyProfile> profiles)

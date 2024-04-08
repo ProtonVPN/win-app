@@ -138,9 +138,15 @@ public class ServersUpdater : IServersUpdater, IServersCache, IEventMessageRecei
                 {
                     Server? server = servers.FirstOrDefault(s => s.Id == serverLoad.Id);
                     if (server != null)
-                    {
+                    { 
                         server.Load = serverLoad.Load;
                         server.Score = serverLoad.Score;
+
+                        // Server loads response does not give physical server details, so...
+                        // If the logical server only has one physical server, then the status of the logical and physical server are tied
+                        // If the status for the logical is down, it means that all physical servers for this logical are down
+                        // If the status for the logical is up, it means that at least one physical server is up, but we can't know which one(s)
+                        // -> in that case, we need to wait the update servers call to update the status properly
                         if (serverLoad.Status == 0 || server.Servers.Count <= 1)
                         {
                             foreach (PhysicalServer physicalServer in server.Servers)

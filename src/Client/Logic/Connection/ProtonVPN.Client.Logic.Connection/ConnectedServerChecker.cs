@@ -164,26 +164,26 @@ public class ConnectedServerChecker : PollingObserverBase,
 
     public void Receive(ConnectionStatusChanged message)
     {
-        SetTimer(message.ConnectionStatus);
+        SetTimer();
     }
 
     public void Receive(SettingChangedMessage message)
     {
         if (message.PropertyName == nameof(ISettings.IsFeatureConnectedServerCheckEnabled))
         {
-            SetTimer(_connectionManager.ConnectionStatus);
+            SetTimer();
         }
         else if (message.PropertyName == nameof(ISettings.ConnectedServerCheckInterval))
         {
             // If the interval changes, we need to stop the timer, change the interval and start the timer again
             StopTimer();
-            SetTimer(_connectionManager.ConnectionStatus);
+            SetTimer();
         }
     }
 
-    private void SetTimer(ConnectionStatus connectionStatus)
+    private void SetTimer()
     {
-        if (connectionStatus == ConnectionStatus.Connected && _settings.IsFeatureConnectedServerCheckEnabled)
+        if (_connectionManager.IsConnected && _settings.IsFeatureConnectedServerCheckEnabled)
         {
             StartTimer();
         }

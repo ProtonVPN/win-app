@@ -27,6 +27,7 @@ using ProtonVPN.Client.Logic.Connection.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Logic.Services.Contracts;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.Abstract;
 using ProtonVPN.EntityMapping.Contracts;
@@ -44,6 +45,7 @@ public class ConnectionManager : IInternalConnectionManager,
     IEventMessageReceiver<ConnectionCertificateUpdatedMessage>
 {
     private readonly ILogger _logger;
+    private readonly ISettings _settings;
     private readonly IVpnServiceCaller _vpnServiceCaller;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IEntityMapper _entityMapper;
@@ -66,6 +68,7 @@ public class ConnectionManager : IInternalConnectionManager,
 
     public ConnectionManager(
         ILogger logger,
+        ISettings settings,
         IVpnServiceCaller vpnServiceCaller,
         IEventMessageSender eventMessageSender,
         IEntityMapper entityMapper,
@@ -75,6 +78,7 @@ public class ConnectionManager : IInternalConnectionManager,
         IServersLoader serversLoader)
     {
         _logger = logger;
+        _settings = settings;
         _vpnServiceCaller = vpnServiceCaller;
         _eventMessageSender = eventMessageSender;
         _entityMapper = entityMapper;
@@ -84,15 +88,15 @@ public class ConnectionManager : IInternalConnectionManager,
         _serversLoader = serversLoader;
     }
 
-    public async Task ConnectAsync(IConnectionIntent? connectionIntent)
+    public async Task ConnectAsync(IConnectionIntent? connectionIntent = null)
     {
-        connectionIntent ??= ConnectionIntent.Default;
+        connectionIntent ??= _settings.IsPaid ? ConnectionIntent.Default : ConnectionIntent.FreeDefault;
 
         CurrentConnectionIntent = connectionIntent;
 
         _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Connection attempt to: {connectionIntent}.");
 
-        SetConnectionStatus(ConnectionStatus.Connecting);
+        SetConnectionStatus(ConnectionStatus.Connecting, forceSendStatusUpdate: true);
 
         ConnectionRequestIpcEntity request = await _connectionRequestCreator.CreateAsync(connectionIntent);
 
@@ -210,9 +214,9 @@ public class ConnectionManager : IInternalConnectionManager,
         return physicalServer => physicalServer.EntryIp == state.EndpointIp && physicalServer.Label == state.Label;
     }
 
-    private void SetConnectionStatus(ConnectionStatus connectionStatus, VpnErrorTypeIpcEntity error = VpnErrorTypeIpcEntity.None)
+    private void SetConnectionStatus(ConnectionStatus connectionStatus, VpnErrorTypeIpcEntity error = VpnErrorTypeIpcEntity.None, bool forceSendStatusUpdate = false)
     {
-        if (ConnectionStatus == connectionStatus && CurrentError == error)
+        if (ConnectionStatus == connectionStatus && CurrentError == error && !forceSendStatusUpdate)
         {
             return;
         }

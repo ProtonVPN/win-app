@@ -73,13 +73,20 @@ public partial class RecentsViewModel : ViewModelBase,
         foreach (IRecentConnection recentConnection in _recentConnectionsProvider.GetRecentConnections())
         {
             // Most recent connection will be displayed on the connection card instead (unless it is pinned)
-            if (mostRecentConnection != null && !mostRecentConnection.IsPinned && recentConnection == mostRecentConnection)
+            bool isMostRecentConnection = mostRecentConnection != null && recentConnection == mostRecentConnection;
+            if (isMostRecentConnection && !recentConnection.IsPinned)
             {
                 continue;
             }
 
-            RecentConnections.Add(new RecentItemViewModel(_connectionManager, _recentConnectionsProvider,
-                recentConnection, Localizer, Logger, IssueReporter));
+            RecentConnections.Add(
+                new RecentItemViewModel(
+                    _connectionManager, 
+                    _recentConnectionsProvider,
+                    recentConnection, 
+                    Localizer, 
+                    Logger, 
+                    IssueReporter));
         }
 
         OnPropertyChanged(nameof(HasRecentConnections));

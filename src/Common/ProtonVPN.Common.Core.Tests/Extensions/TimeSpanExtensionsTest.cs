@@ -112,4 +112,20 @@ public class TimeSpanExtensionsTest
             Assert.AreEqual(cornerCase.Item3, result);
         }
     }
+
+    [TestMethod]
+    [DataRow(5, 8, 5)]
+    [DataRow(5, 5, 5)]
+    [DataRow(0, -5, -5)]
+    [DataRow(2, -5, -5)]
+    [DataRow(-2, 5, -2)]
+    [DataRow(-2, -5, -5)]
+    public void TestMinTimeSpan(double intervalAInSeconds, double intervalBInSeconds, double expectedIntervalInSeconds)
+    {
+        TimeSpan intervalA = TimeSpan.FromSeconds(intervalAInSeconds);
+        TimeSpan intervalB = TimeSpan.FromSeconds(intervalBInSeconds);
+
+        TimeSpan result = TimeSpanExtensions.Min(intervalA, intervalB);
+        Assert.AreEqual(expectedIntervalInSeconds, result.TotalSeconds);
+    }
 }

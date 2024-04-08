@@ -24,6 +24,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts.Observers;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -43,7 +44,7 @@ public class ServersObserver :
 
     private DateTime _lastServerUpdate = DateTime.MinValue;
 
-    protected override TimeSpan PollingInterval => _config.ServerLoadUpdateInterval;
+    protected override TimeSpan PollingInterval => TimeSpanExtensions.Min(_config.ServerLoadUpdateInterval, _config.ServerUpdateInterval);
 
     public ServersObserver(ILogger logger,
         IIssueReporter issueReporter,

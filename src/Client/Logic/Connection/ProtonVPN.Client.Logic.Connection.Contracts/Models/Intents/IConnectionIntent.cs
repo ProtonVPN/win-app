@@ -19,6 +19,7 @@
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 
@@ -29,4 +30,8 @@ public interface IConnectionIntent
     IFeatureIntent? Feature { get; }
 
     bool IsSameAs(IConnectionIntent? intent);
+
+    bool HasNoServers(IEnumerable<Server> servers);
+
+    bool AreAllServersUnderMaintenance(IEnumerable<Server> servers);
 }
