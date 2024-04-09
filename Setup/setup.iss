@@ -21,7 +21,8 @@
 
 #define Hash ""
 #define VersionFolder "v" + MyAppVersion
-#define DisableAutoUpdateArg "-DisableAutoUpdate"
+#define DisableAutoUpdateInstallerArg "/DISABLEAUTOUPDATE"
+#define DisableAutoUpdateClientArg "-DisableAutoUpdate"
 #define RegistryRunPath "Software\Microsoft\Windows\CurrentVersion\Run"
 #define LegacyClientName "ProtonVPN"
 
@@ -322,7 +323,7 @@ end;
 
 procedure SetIsToDisableAutoUpdate();
 begin
-  IsToDisableAutoUpdate := Pos('{#DisableAutoUpdateArg}', GetCmdTail()) > 0;
+  IsToDisableAutoUpdate := Pos('{#DisableAutoUpdateInstallerArg}', GetCmdTail()) > 0;
   if IsToDisableAutoUpdate = true then begin
     Log('The app will be launched with auto updates disabled.');
   end;
@@ -435,7 +436,7 @@ begin
         launcherArgs := '-Language ' + langCode;
       end;
       if IsToDisableAutoUpdate = true then begin
-        launcherArgs := launcherArgs + ' {#DisableAutoUpdateArg}';
+        launcherArgs := launcherArgs + ' {#DisableAutoUpdateClientArg}';
       end;
       if IsVerySilent = false then begin
         ExecAsOriginalUser(ExpandConstant('{app}\{#LauncherExeName}'), launcherArgs, '', SW_SHOW, ewNoWait, res);
