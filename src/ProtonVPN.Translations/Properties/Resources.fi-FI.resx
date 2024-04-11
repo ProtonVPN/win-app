@@ -510,7 +510,7 @@
     <comment>The end of text for VPN server being connected to in Connecting overlay of main app window. It shall be translated as the text after imaginary placeholder {0} in the text string "Connecting to {0}". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_ConnectingTo_2_SecureCore">
-    <value>yhteys</value>
+    <value>-yhteys</value>
     <comment>The end of text for Secure Core VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "Creating {0} connection". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_1">
@@ -530,10 +530,10 @@
     <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Countries_lbl_One">
-    <value>{0} maassa</value>
+    <value>{0} maasta</value>
   </data>
   <data name="Countries_lbl_Other">
-    <value>{0} maassa</value>
+    <value>{0} maasta</value>
   </data>
   <data name="Country_val_AD">
     <value>Andorra</value>
@@ -1596,7 +1596,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
-    <value>Päivitä</value>
+    <value>Päivitä tilaus</value>
     <comment>The text on Upgrade button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_AllAdaptersInUse">
@@ -1686,7 +1686,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The ok button text in the Maximum Device Limit window when the user already has the highest subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Subtitle">
-    <value>Katkaise jonkin muun laitteen yhteys yhdistääksesi tämän laitteen.</value>
+    <value>Katkaise yhteys joltakin toiselta laitteeltasi yhdistääksesi tämän laitteen.</value>
     <comment>The subtitle of the Maximum Device Limit window when the user already has the highest subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Title">
@@ -1694,11 +1694,11 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The title of the Maximum Device Limit window</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade">
-    <value>Päivitä</value>
+    <value>Päivitä tilaus</value>
     <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle">
-    <value>Katkaise jonkin muun laitteen yhteys yhdistääksesi tämän laitteen tai päivitä Plus-tilaukseen yhdistääksesi samanaikaisesti 10 laitetta.</value>
+    <value>Katkaise yhteys joltakin toiselta laitteeltasi yhdistääksesi tämän laitteen tai päivitä Plus-tilaukseen yhdistääksesi samanaikaisesti jopa 10 laitetta.</value>
     <comment>The subtitle of the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_OutdatedApp_btn_Quit">
@@ -1770,7 +1770,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListTitle">
-    <value>Päivitä tilauksesi uudelleen nauttiaksesi kaikista ominaisuuksista:</value>
+    <value>Tilaa uudelleen nauttiaksesi kaikista ominaisuuksista:</value>
     <comment>The text right before the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Reconnected_Subtitle">
@@ -1930,7 +1930,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The description of error displayed in Login window</comment>
   </data>
   <data name="Login_btn_Authenticate">
-    <value>Todenna</value>
+    <value>Tunnistaudu</value>
   </data>
   <data name="Login_btn_Login">
     <value>Kirjaudu sisään</value>
@@ -1960,7 +1960,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The text displayed in login window when login takes longer than expected</comment>
   </data>
   <data name="Login_lbl_TwoFactorAuthCode">
-    <value>Kaksivaiheinen todennuskoodi</value>
+    <value>Toisen vaiheen todennuskoodi</value>
   </data>
   <data name="Login_lbl_Username">
     <value>Käyttäjätunnus</value>
@@ -1999,7 +1999,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page for resetting user password)</comment>
   </data>
   <data name="Login_msg_IncorrectTwoFactorCode">
-    <value>Virheellinen kaksivaiheinen todennuskoodi</value>
+    <value>Virheellinen toisen vaiheen todennuskoodi</value>
   </data>
   <data name="Login_msg_TwoFactorAuthFailed">
     <value>Virheelliset kirjautumistiedot. Yritä uudelleen.</value>
@@ -2130,11 +2130,11 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>Button displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network.</comment>
   </data>
   <data name="Notifications_InsecureWiFi_msg_Detected">
-    <value>Havaittiin suojaamaton Wi-Fi-verkko: {0}</value>
+    <value>Havaittiin suojaamaton Wi-Fi-yhteys: {0}</value>
     <comment>The message displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network. The {0} is a placeholder for Wi-Fi network name.</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Disconnect_Description">
-    <value>Katkaise jonkin muun laitteen yhteys yhdistääksesi tämän laitteen.</value>
+    <value>Katkaise yhteys joltakin toiselta laitteeltasi yhdistääksesi tämän laitteen.</value>
     <comment>The description of the Maximum Device Limit notification when the user already has the highest subscription plan</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Title">
@@ -2142,7 +2142,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The title of the Maximum Device Limit notification</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Upgrade_Description">
-    <value>Katkaise jonkin muun laitteen yhteys yhdistääksesi tämän laitteen tai päivitä Plus-tilaukseen yhdistääksesi samanaikaisesti 10 laitetta.</value>
+    <value>Katkaise yhteys joltakin toiselta laitteeltasi yhdistääksesi tämän laitteen tai päivitä Plus-tilaukseen yhdistääksesi samanaikaisesti jopa 10 laitetta.</value>
     <comment>The description of the Maximum Device Limit notification when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Description">
@@ -2190,7 +2190,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The description of onboarding step 1 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_2">
-    <value>Tallenna suosimasi asetukset ja palvelimet myöhempää käyttöä varten.</value>
+    <value>Tallenna usein käyttämäsi asetukset ja palvelimet myöhempää käyttöä varten.</value>
     <comment>The description of onboarding step 2 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_3">
@@ -2268,10 +2268,10 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The error message displayed in the Profile window when a profile name is already used by another profile</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameTooLong_One">
-    <value>Profiilin nimen enimmäispituus on {0} merkki. Valitse lyhyempi profiilin nimi.</value>
+    <value>Profiilin nimi voi sisältää enintään {0} merkin. Valitse lyhyempi nimi.</value>
   </data>
   <data name="Profiles_Profile_Error_msg_NameTooLong_Other">
-    <value>Profiilin nimen enimmäispituus on {0} merkkiä. Valitse lyhyempi profiilin nimi.</value>
+    <value>Profiilin nimi voi sisältää enintään {0} merkkiä. Valitse lyhyempi nimi.</value>
   </data>
   <data name="Profiles_Profile_Error_msg_ServerEmpty">
     <value>Valitse palvelin</value>
@@ -2470,7 +2470,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <value>Secure Core käytössä</value>
   </data>
   <data name="QuickSettings_btn_Upgrade">
-    <value>PÄIVITÄ</value>
+    <value>PÄIVITÄ TILAUS</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
     <value>Tappokytkin suojaa IP-osoitettasi estämällä Internet-yhteyden, jos VPN-yhteys katkeaa odottamattomasti.</value>
@@ -2594,7 +2594,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The label for server status in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_ViaCountry">
-    <value>Maan {0} kautta maahan {1}</value>
+    <value>Maasta {0} maahan {1}</value>
     <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_UpsellBanner">
@@ -2612,7 +2612,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The text on Disconnect button in Server list in Countries tab of Sidebar in main app window (disconnects from the VPN server)</comment>
   </data>
   <data name="Servers_btn_Upgrade">
-    <value>Päivitä</value>
+    <value>Päivitä tilaus</value>
     <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
   </data>
   <data name="Servers_lbl_UpgradeToPlus">
@@ -2778,7 +2778,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The text displayed in Custom DNS Servers warning modal window when use is trying to turn the feature ON when NetShield feature is turned on as well</comment>
   </data>
   <data name="Settings_Connection_btn_Upgrade">
-    <value>Päivitä</value>
+    <value>Päivitä tilaus</value>
     <comment>The text on Upgrade button in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_CustomDnsServer">
@@ -3007,7 +3007,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The description of Secure Core feature displayed in a tooltip of ( i ) image next to Secure Core toggle switch label on Countries tab in Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Countries_msg_SecureCoreDisableConfirm">
-    <value>Secure Coren käytöstä poisto katkaisee nykyisen VPN-yhteyden. Haluatko jatkaa?</value>
+    <value>Secure Coren käytöstäpoisto katkaisee nykyisen VPN-yhteyden. Haluatko jatkaa?</value>
     <comment>The confirmation message displayed when switching off Secure Core toggle switch in Countries tab of Sidebar section of main app window while connected to VPN</comment>
   </data>
   <data name="Sidebar_Countries_msg_SecureCoreEnableConfirm">
@@ -3148,19 +3148,19 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Selaa vieläkin korkeammilla nopeuksilla (jopa 10 Gbps)</value>
   </data>
   <data name="Upsell_Countries_AccessGeoblockedContent">
-    <value>Pääsy geoblokattuun sisältöön</value>
+    <value>Käytä alueellisesti estettyä sisältöä</value>
   </data>
   <data name="Upsell_Countries_ChooseAnyLocation">
     <value>Valitse mikä tahansa sijainti</value>
   </data>
   <data name="Upsell_Countries_HigherVpnSpeed">
-    <value>Vielä korkeampi VPN-nopeus</value>
+    <value>Entistä parempi VPN-nopeus</value>
   </data>
   <data name="Upsell_Countries_StreamMovies">
     <value>Suoratoista suosikkielokuviasi</value>
   </data>
   <data name="Upsell_Countries_Subtitle">
-    <value>Kun päivität Plus-tilaukseen</value>
+    <value>Päivittämällä Plus-tilaukseen</value>
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
@@ -3235,7 +3235,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Suojaa laitettasi haittaohjelmilta</value>
   </data>
   <data name="Upsell_Netshield_Subtitle">
-    <value>Kun päivität Plus-tilaukseen</value>
+    <value>Päivittämällä Plus-tilaukseen</value>
   </data>
   <data name="Upsell_Netshield_Title">
     <value>Nauti mainosvapaasta selauksesta NetShieldillä</value>
@@ -3245,7 +3245,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_btn_Upgrade">
-    <value>Päivitä</value>
+    <value>Päivitä tilaus</value>
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_msg">
@@ -3300,7 +3300,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Ohjaa tietoliikenteesi huipputurvallisten Sveitsissä, Ruotsissa ja Islannissa sijaitsevien palvelimien kautta</value>
   </data>
   <data name="Upsell_SecureCore_Subtitle">
-    <value>Kun päivität Plus-tilaukseen</value>
+    <value>Päivittämällä Plus-tilaukseen</value>
   </data>
   <data name="Upsell_SecureCore_Title">
     <value>Tuplaa salaus Secure Corella</value>
@@ -3321,7 +3321,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Hanki molempien parhaat puolet</value>
   </data>
   <data name="Upsell_btn_Upgrade">
-    <value>Päivitä</value>
+    <value>Päivitä tilaus</value>
     <comment>The text on Upgrade button in Upgrade Required Upsell window (opens web page for subscription plan upgrade)</comment>
   </data>
   <data name="VpnPlan_val_Free">

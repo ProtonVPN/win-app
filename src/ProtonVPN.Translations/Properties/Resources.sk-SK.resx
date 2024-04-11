@@ -490,7 +490,7 @@
     <comment>The title of Issue Report window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_AssigningIp">
-    <value>Prebieha priraďovanie IP</value>
+    <value>Priraďovanie IP</value>
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_Authenticating">
@@ -1619,7 +1619,7 @@ Podľa pokynov &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run T
     <value>Niektoré aplikácie, napríklad antivírusové programy alebo optimalizátory počítača, môžu narúšať systémové služby, ktoré Proton VPN vyžaduje na zabezpečenie vášho pripojenia. Kliknutím na tlačidlo Povoliť umožníte systému Windows znovu aktivovať služby Proton VPN.&lt;LineBreak/&gt;Ak problém pretrváva, skúste reštartovať počítač alebo preinštalovať Proton VPN.</value>
   </data>
   <data name="Dialogs_DisabledService_msg_Info">
-    <value>Niektoré súčasti Proton VPN môžu byť blokované alebo zakázané, čo vám znemožní pripojenie. Kliknutím na Povoliť to opravíte.&lt;LineBreak/&gt;Všimnite si, že táto operácia vyžaduje oprávnenie správcu.</value>
+    <value>Niektoré súčasti Proton VPN môžu byť blokované alebo zakázané, čo vám znemožní pripojenie. Kliknutím na Povoliť to opravíte.&lt;LineBreak/&gt;Upozorňujeme, že táto operácia vyžaduje oprávnenie správcu.</value>
   </data>
   <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
     <value>Zakázať kill switch</value>
@@ -1673,7 +1673,7 @@ Podľa pokynov &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run T
     <comment>The text on "Keep disabled" button in the Enable Smart Protocol window</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_msg">
-    <value>Proton VPN zistila, že vaša aktuálna sieť bráni pripojeniu k VPN. Zapnutím Smart Protocol môžete tieto obmedzenia obísť.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;Prečítajte si viac o Smart Protocol.&lt;/Hyperlink&gt;</value>
+    <value>Proton VPN zistil, že vaša aktuálna sieť bráni pripojeniu k VPN. Zapnutím Smart Protocol môžete tieto obmedzenia obísť.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;Prečítajte si viac o Smart Protocol.&lt;/Hyperlink&gt;</value>
     <comment>The message displayed in the Enable Smart Protocol window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about Smart Protocol.").</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_ttl">
@@ -1709,14 +1709,14 @@ Podľa pokynov &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run T
     <value>S funkciou Trvalý Kill Switch nebudete mať prístup k internetu, pokiaľ sa VPN z akéhokoľvek dôvodu odpojí.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
-    <value>Povoliť permanentne kill switch?</value>
+    <value>Povoliť Trvalý Kill Switch?</value>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok">
     <value>Rozumiem</value>
     <comment>The ok button text in the Maximum Device Limit window when the user already has the highest subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Subtitle">
-    <value>Prosím odpojte iné zariadenie na pripojenie tohto.</value>
+    <value>Ak chcete pripojiť toto zariadenie, odpojte iné zariadenie.</value>
     <comment>The subtitle of the Maximum Device Limit window when the user already has the highest subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Title">
@@ -1770,7 +1770,7 @@ Podľa pokynov &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run T
     <value>Zapnúť presmerovanie portov?</value>
   </data>
   <data name="Dialogs_Proxy_msg_ProxyDetected">
-    <value>Proton VPN zistil server proxy nakonfigurovaný vo vašej miestnej sieti. Proton VPN nemôže chrániť prevádzku, ktorá prechádza týmto proxy serverom. To znamená, že vaše pripojenie nebude úplne chránené podľa očakávania.</value>
+    <value>Proton VPN zistil vo vašej sieti nakonfigurovaný proxy server. Proton VPN nemôže chrániť sieťovú prevádzku, ktorá prechádza týmto proxy serverom. To znamená, že vaše pripojenie nebude úplne chránené podľa očakávania.</value>
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
@@ -1823,7 +1823,7 @@ Podľa pokynov &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run T
     <comment>The title of the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Upgrade">
-    <value>Navýšiť tarif znova</value>
+    <value>Navýšiť znova tarif</value>
     <comment>The upgrade button text in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_Troubleshoot_ttl">
@@ -1839,31 +1839,31 @@ Podľa pokynov &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run T
     <comment>The button displayed in Troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_AlternativeRouting">
-    <value>&lt;Bold&gt;Alternatívne smerovanie&lt;/Bold&gt; - V prípade, že sú stránky Proton blokované, toto nastavenie umožňuje aplikácii vyskúšať alternatívne sieťové smerovanie na Proton, čo môže byť užitočné pre obchádzanie brán firewall alebo problémom so sieťou. Pre väčšiu spoľahlivosť odporúčame ponechať toto nastavenie zapnuté. &lt;Hyperlink Command="{Binding AlternativeRoutingCommand}"&gt;Zistite viac&lt;/Hyperlink&gt;</value>
+    <value>&lt;Bold&gt;Alternatívne smerovanie&lt;/Bold&gt; - V prípade, že sú stránky Proton blokované, toto nastavenie umožňuje aplikácii vyskúšať alternatívne sieťové smerovanie na Proton, čo môže byť užitočné pre obchádzanie brán firewall alebo problémov so sieťou. Pre väčšiu spoľahlivosť odporúčame ponechať toto nastavenie zapnuté. &lt;Hyperlink Command="{Binding AlternativeRoutingCommand}"&gt;Zistiť viac&lt;/Hyperlink&gt;</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Antivirus">
-    <value>&lt;Bold&gt;Rušenie antivírusom&lt;/Bold&gt; - Dočasne deaktivujte alebo odinštalujte antivírusový softvér.</value>
+    <value>&lt;Bold&gt;Zásahy antivírusového programu&lt;/Bold&gt; - Dočasne deaktivujte alebo odinštalujte antivírusový softvér.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Firewall">
-    <value>&lt;Bold&gt;Rušenie proxy/firewallom&lt;/Bold&gt; - Zakážte všetky servery proxy alebo brány firewall alebo sa obráťte na správcu siete.</value>
+    <value>&lt;Bold&gt;Zasahovanie proxy servera/firewall brány&lt;/Bold&gt; - Zakážte všetky proxy servery alebo firewall brány, alebo sa obráťte na správcu siete.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_GovBlock">
-    <value>&lt;Bold&gt;Vládne blokovanie&lt;/Bold&gt; - Vaša krajina môže blokovať prístup k Protonu. Skúste použiť &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; k prístupu k Proton.</value>
+    <value>&lt;Bold&gt;Vládne blokovanie&lt;/Bold&gt; - Vaša krajina môže blokovať prístup k Protonu. Skúste použiť &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; k prístupu k Protonu.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_GovBlockDoH">
-    <value>&lt;Bold&gt;Vládne blokovanie&lt;/Bold&gt; - Vaša krajina môže blokovať prístup k Protonu. Skúste použiť &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; k prístupu k Proton.</value>
+    <value>&lt;Bold&gt;Vládne blokovanie&lt;/Bold&gt; - Vaša krajina môže blokovať prístup k Protonu. Skúste použiť &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; k prístupu k Protonu.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_IspProblem">
-    <value>&lt;Bold&gt;Problém poskytovateľa internetových služieb (ISP)&lt;/Bold&gt; - Skúste sa pripojiť k Proton z inej siete (alebo použite &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt;).</value>
+    <value>&lt;Bold&gt;Problém poskytovateľa internetových služieb (ISP)&lt;/Bold&gt; - Skúste sa pripojiť k Protonu z inej siete (alebo použite &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt;).</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_NoInternet">
-    <value>&lt;Bold&gt;Žiadne pripojenie na Internet&lt;/Bold&gt; - Skontrolujte, či vaše pripojenie na Internet funguje.</value>
+    <value>&lt;Bold&gt;Žiadne pripojenie na Internet&lt;/Bold&gt; - Skontrolujte, či funguje pripojenie na internet.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_ProtonDown">
@@ -1875,17 +1875,17 @@ Podľa pokynov &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run T
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Unknown">
-    <value>&lt;Bold&gt;Stále nemôžem nájsť riešenie&lt;/Bold&gt; - Kontaktujte nás priamo prostredníctvom nášho &lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;formulára podpory&lt;/Hyperlink&gt;, emailom (support@protonvpn.com), alebo na &lt;Hyperlink Command="{Binding ProtonTwitterCommand}" &gt;Twitter&lt;/Hyperlink&gt;.</value>
+    <value>&lt;Bold&gt;Stále nemôžeme nájsť riešenie&lt;/Bold&gt; - Kontaktujte nás priamo prostredníctvom nášho &lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;formulára podpory&lt;/Hyperlink&gt;, emailom (support@protonvpn.com), alebo na sieti &lt;Hyperlink Command="{Binding ProtonTwitterCommand}" &gt;Twitter&lt;/Hyperlink&gt;.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_TunInUse_btn_SwitchToTap">
     <value>Prepnúť na TAP</value>
   </data>
   <data name="Dialogs_TunInUse_msg">
-    <value>Proton VPN sa nemohla pripojiť, pretože sieťový adaptér TUN je už používaný. Odpojte prosím všetky aktívne siete VPN a skúste to znova. Prípadne prepnite na adaptér TAP (v pokročilých nastaveniach môžete zmeniť späť na TUN).</value>
+    <value>Proton VPN sa nemohol pripojiť, pretože sieťový adaptér TUN sa už používa. Odpojte prosím všetky aktívne VPN siete a skúste to znova. Prípadne prepnite na adaptér TAP (v pokročilých nastaveniach môžete zmeniť späť na TUN).</value>
   </data>
   <data name="Dialogs_WireGuardAdapterInUse_msg">
-    <value>Proton VPN sa nemohla pripojiť, pretože sieťový adaptér WireGuard je už používaný. Odpojte prosím všetky aktívne siete VPN a skúste to znova. Prípadne môžete protokoly prepínať aj v pokročilých nastaveniach.</value>
+    <value>Proton VPN sa nemohol pripojiť, pretože sieťový adaptér WireGuard sa už používa. Odpojte prosím všetky aktívne VPN siete a skúste to znova. Prípadne môžete protokoly prepínať aj v pokročilých nastaveniach.</value>
   </data>
   <data name="Dialogs_btn_Cancel">
     <value>Zrušiť</value>
@@ -2171,7 +2171,7 @@ Podľa pokynov &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run T
     <comment>The message displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network. The {0} is a placeholder for Wi-Fi network name.</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Disconnect_Description">
-    <value>Prosím odpojte iné zariadenie na pripojenie tohto.</value>
+    <value>Ak chcete pripojiť toto zariadenie, odpojte iné zariadenie.</value>
     <comment>The description of the Maximum Device Limit notification when the user already has the highest subscription plan</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Title">
@@ -2223,7 +2223,7 @@ Podľa pokynov &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run T
     <comment>The text of Next Tip button on Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_1">
-    <value>Automaticky pripojiť k serveru, ktorý Vám poskytne najrýchlejšie pripojenie.</value>
+    <value>Automaticky pripojiť k serveru, ktorý vám poskytne najrýchlejšie pripojenie.</value>
     <comment>The description of onboarding step 1 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_2">
@@ -2267,10 +2267,10 @@ Podľa pokynov &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run T
     <value>Nastavte toto číslo vo vašej aplikácii BitTorrent pre najvyššie rýchlosti.</value>
   </data>
   <data name="PortForwarding_lbl_ServerWarning">
-    <value>Pre použitie presmerovania portu, sa prosím &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;pripojte&lt;/Hyperlink&gt; k serveru, ktorý podporuje P2P.</value>
+    <value>Ak chcete použiť presmerovanie portov, &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;pripojte&lt;/Hyperlink&gt; sa prosím k serveru, ktorý podporuje P2P.</value>
   </data>
   <data name="ProfileConnector_msg_MissingAuthCert">
-    <value>Proton VPN sa nepodarilo načítať overovací certifikát kvôli problému so sieťou.</value>
+    <value>Protonu VPN sa nepodarilo načítať overovací certifikát kvôli problému so sieťou.</value>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">
     <value>Najrýchlejší dostupný server</value>
@@ -2329,7 +2329,7 @@ Podľa pokynov &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run T
     <comment>The watermark text displayed in empty Gateway combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Name_Watermark">
-    <value>Zadajte Názov Profilu</value>
+    <value>Zadajte názov profilu</value>
     <comment>Thw watermark text displayed in empty Name text box of Profile window</comment>
   </data>
   <data name="Profiles_Profile_Name_val_Fastest">
@@ -2337,7 +2337,7 @@ Podľa pokynov &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run T
     <comment>The name of Fastest profile</comment>
   </data>
   <data name="Profiles_Profile_Name_val_Random">
-    <value>Náhodne</value>
+    <value>Náhodný</value>
     <comment>The name of Random profile</comment>
   </data>
   <data name="Profiles_Profile_btn_Discard">
@@ -2369,7 +2369,7 @@ Podľa pokynov &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run T
     <comment>The label for Gateway combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Name">
-    <value>Názov</value>
+    <value>Názov:</value>
     <comment>The label for Name text box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Protocol">
@@ -2389,7 +2389,7 @@ Podľa pokynov &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run T
     <comment>The message displayed in Question dialog when cancelling changes in Profile window.</comment>
   </data>
   <data name="Profiles_Profile_ttl_Create">
-    <value>Vytvoriť Profil</value>
+    <value>Vytvoriť profil</value>
     <comment>The title of Profile window when creating new profile</comment>
   </data>
   <data name="Profiles_Profile_ttl_Edit">
@@ -2429,7 +2429,7 @@ Podľa pokynov &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run T
     <comment>The warning message displayed when trying to connect to profile with all servers offline</comment>
   </data>
   <data name="Profiles_msg_CountryOffline">
-    <value>Servery v tejto krajine sú momentálne nedostupné z dôvodu údržby. Vyberte inú krajinu.</value>
+    <value>Servery v tejto krajine sú momentálne nedostupné z dôvodu údržby. Vyberte prosím inú krajinu.</value>
     <comment>The message displayed when trying to connect to country with no servers available</comment>
   </data>
   <data name="Profiles_msg_DeleteConfirm">
@@ -2437,7 +2437,7 @@ Podľa pokynov &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run T
     <comment>The confirmation message displayed when deleting profile in Profiles window</comment>
   </data>
   <data name="Profiles_msg_NoServersAvailable">
-    <value>Momentálne nie sú pre váš výber k dispozícii žiadne servery. Vyberte inú možnosť.</value>
+    <value>Momentálne nie sú pre váš výber k dispozícii žiadne servery. Vyberte prosím inú možnosť.</value>
     <comment>The message displayed when trying to connect to a country or profile with no servers available</comment>
   </data>
   <data name="Profiles_ttl">

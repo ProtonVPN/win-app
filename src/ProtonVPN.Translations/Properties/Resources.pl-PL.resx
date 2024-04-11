@@ -1770,7 +1770,7 @@ Postępuj zgodnie z &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;
     <value>Włączyć przekierowanie portów?</value>
   </data>
   <data name="Dialogs_Proxy_msg_ProxyDetected">
-    <value>Proton VPN wykrył serwer proxy skonfigurowany w lokalnej sieci. Aplikacja Proton VPN nie może chronić ruchu, który przechodzi przez ten serwer. Oznacza to, że Twoje połączenie nie będzie całkowicie chronione.</value>
+    <value>Proton VPN wykrył serwer proxy skonfigurowany w sieci lokalnej. Aplikacja Proton VPN nie może chronić ruchu, który przechodzi przez ten serwer. Oznacza to, że Twoje połączenie nie będzie całkowicie chronione.</value>
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">

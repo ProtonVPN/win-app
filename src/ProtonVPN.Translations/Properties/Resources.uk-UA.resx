@@ -1596,7 +1596,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The "go to billing website" button text in the Delinquency window</comment>
   </data>
   <data name="Dialogs_Delinquency_Reconnected_Subtitle">
-    <value>Після оплати ви зможете знову отримати доступ до преміумфункцій. А зараз ми встановлюємо з'єднання з найшвидшим БЕЗПЛАТНИМ сервером.</value>
+    <value>Після оплати ви зможете знову отримати доступ до преміальних функцій. А зараз ми встановлюємо з'єднання з найшвидшим БЕЗПЛАТНИМ сервером.</value>
     <comment>The subtitle of the Delinquency window when the user is reconnected</comment>
   </data>
   <data name="Dialogs_Delinquency_Subtitle">
@@ -1907,7 +1907,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The text on NoThanks button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Ok">
-    <value>Гаразд</value>
+    <value>OK</value>
   </data>
   <data name="Dialogs_reconnection_FromServer">
     <value>Із сервера:</value>
@@ -2104,7 +2104,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>Змінюйте сервери без обмежень з VPN Plus</value>
   </data>
   <data name="Modal_ChangeServer_Title">
-    <value>Ви досягли максимальної кількості змін безплатних серверів.</value>
+    <value>Ви досягли максимальної кількості змін серверів Free.</value>
   </data>
   <data name="Modal_DiscourageSecureCore_ActivateSecureCore">
     <value>Активувати Secure Core</value>
@@ -2147,7 +2147,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The description of the Delinquency notification</comment>
   </data>
   <data name="Notifications_Delinquency_Reconnected_Description">
-    <value>Після оплати ви зможете знову отримати доступ до преміумфункцій. А зараз ми встановлюємо з'єднання з найшвидшим БЕЗПЛАТНИМ сервером.</value>
+    <value>Після оплати ви зможете знову отримати доступ до преміальних функцій. А зараз ми встановлюємо з'єднання з найшвидшим БЕЗПЛАТНИМ сервером.</value>
     <comment>The description of the Delinquency notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_Delinquency_Title">
@@ -2534,7 +2534,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>Оголошень заблоковано</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
-    <value>Рекламні вебсайти використовують куки та елементи стеження, щоб персоналізувати вас.</value>
+    <value>Рекламні вебсайти використовують файли cookie та елементи стеження, щоб персоналізувати вас.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
     <value>Заощаджено даних</value>
@@ -3288,11 +3288,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Розблокуйте розширені налаштування VPN</value>
   </data>
   <data name="Upsell_FreeConnections_Locations">
-    <value>Розташування безплатних серверів ({0})</value>
+    <value>Розташування серверів Free ({0})</value>
     <comment>{0} represents a number of free server locations.</comment>
   </data>
   <data name="Upsell_FreeConnections_Subtitle">
-    <value>Proton Free автоматично з'єднає вас із найшвидшим доступним сервером. Зазвичай – це найближчий до вашого розташування сервер.</value>
+    <value>Proton Free автоматично під'єднається до найшвидшого доступного сервера. Зазвичай – найближчий до вашого розташування.</value>
   </data>
   <data name="Upsell_FreeConnections_Title">
     <value>Безплатні з'єднання</value>

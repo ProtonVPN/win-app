@@ -1683,7 +1683,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle">
-    <value>Mohon putuskan perangkat lain untuk menyambungkan perangkat ini atau tingkatkan ke PLUS untuk meyambungkan hingga 5 perangkat sekaligus.</value>
+    <value>Silakan putuskan perangkat lain agar perangkat ini dapat terhubung, atau tingkatkan ke PLUS untuk dapat menghubungkan hingga 10 perangkat secara bersamaan.</value>
     <comment>The subtitle of the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_OutdatedApp_btn_Quit">
@@ -2124,7 +2124,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The title of the Maximum Device Limit notification</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Upgrade_Description">
-    <value>Mohon putuskan sambungan dari perangkat lain agar perangkat ini dapat tersambung atau tingkatkan akun Anda ke PLUS untuk dapat menyambungkan hingga 10 perangkat dalam satu waktu.</value>
+    <value>Silakan putuskan perangkat lain agar perangkat ini dapat terhubung, atau tingkatkan ke PLUS untuk dapat menghubungkan hingga 10 perangkat secara bersamaan.</value>
     <comment>The description of the Maximum Device Limit notification when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Description">
@@ -2226,7 +2226,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The description of Random default profile displayed in Profiles window</comment>
   </data>
   <data name="Profiles_Profile_Error_lbl_NotValid">
-    <value>Profil tidak bisa disimpan:</value>
+    <value>Profil tidak dapat disimpan:</value>
     <comment>The heading for list of validation errors in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_ColorEmpty">
@@ -2349,7 +2349,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The title of actions column in Profiles window</comment>
   </data>
   <data name="Profiles_col_Connection">
-    <value>Hubungan</value>
+    <value>Server Tujuan</value>
     <comment>The title of VPN connection description column in Profiles window</comment>
   </data>
   <data name="Profiles_col_Profile">
@@ -2673,7 +2673,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Driver Jaringan OpenVPN</value>
   </data>
   <data name="Settings_Advanced_lbl_NetworkDriver_info">
-    <value>Driver jaringan dapat mempengaruhi koneksi dan kecepatan Anda. Adapter TUN baru menyediakan kecepatan yang lebih tinggi, kembali ke adapter TAP jika Anda menemukan masalah pada konektivitas.</value>
+    <value>Driver jaringan dapat memengaruhi koneksi dan kecepatan Anda. Adapter TUN yang baru menyediakan kecepatan yang lebih tinggi, namun apabila koneksi Anda bermasalah, kembalilah ke adapter TAP yang lama.</value>
   </data>
   <data name="Settings_Advanced_lbl_NonStandardPorts">
     <value>Port non-standar</value>
@@ -2770,7 +2770,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>NAT Moderat</value>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat_Info">
-    <value>Pengaturan NAT moderat menonaktifkan pengacakan alamat IP lokal, yang dapat membuat Anda sedikit lebih rentan namun memungkinkan hubungan langsung antar aplikasi untuk berbagai program seperti game online.</value>
+    <value>NAT moderat menonaktifkan pengacakan alamat IP lokal, yang dapat membuat Anda lebih rentan namun memungkinkan aplikasi tertentu seperti game online untuk terhubung secara langsung ke internet.</value>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect">
     <value>Quick Connect</value>
@@ -3263,7 +3263,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Enkripsi berganda dengan Secure Core</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet1">
-    <value>Bagi lalu lintas Anda menjadi terowongan VPN dan non-VPN</value>
+    <value>Pisahkan lalu lintas jaringan Anda ke dalam tunnel VPN dan non-VPN</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet2">
     <value>Berikan izin kepada aplikasi dan alamat IP terpercaya untuk melewati VPN demi kecepatan yang lebih tinggi.</value>
@@ -3275,7 +3275,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Akses &lt;Bold&gt;split tunneling&lt;/Bold&gt; dengan VPN Plus</value>
   </data>
   <data name="Upsell_SplitTunneling_Title">
-    <value>Dapatkan yang terbaik</value>
+    <value>Dapatkan yang terbaik dari koneksi VPN dan non-VPN</value>
   </data>
   <data name="Upsell_btn_Upgrade">
     <value>Tingkatkan</value>

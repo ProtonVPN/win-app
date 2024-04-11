@@ -2488,7 +2488,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <value>Los sitios web de publicidad utilizan cookies y rastreadores para dirigirse a ti.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
-    <value>Datos guardados</value>
+    <value>Datos ahorrados</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
     <value>Tamaño estimado de anuncios, rastreadores y malware bloqueado por NetShield.</value>

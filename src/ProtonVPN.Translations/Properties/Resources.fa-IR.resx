@@ -134,7 +134,7 @@
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_UpdateStatus_val_None">
-    <value>Proton VPN به روز است</value>
+    <value>Proton VPN به‌روز است</value>
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_UpdateStatus_val_Ready">
@@ -210,7 +210,7 @@
     <value>در &lt;Bold&gt;{0}&lt;/Bold&gt; کشور</value>
   </data>
   <data name="Account_lbl_CurrentPlan">
-    <value>طرح جاری</value>
+    <value>اشتراک کنونی</value>
   </data>
   <data name="Account_lbl_Device_One">
     <value>دستگاه</value>
@@ -308,7 +308,7 @@
     <comment>The header of Help menu item in the main app window (opens help web page)</comment>
   </data>
   <data name="App_mnu_Logout">
-    <value>Sign out</value>
+    <value>خروج از حساب</value>
     <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
   </data>
   <data name="App_mnu_Profiles">
@@ -324,11 +324,11 @@
     <comment>The header of Settings menu item in the main app window (opens Settings window)</comment>
   </data>
   <data name="App_msg_LogoutConnectedConfirm">
-    <value>Signing out of the application will disconnect the active VPN connection. Do you want to continue?</value>
+    <value>با خروج از حساب در برنامه اتصال VPN فعال قطع می‌شود. آیا می‌خواهید ادامه دهید؟</value>
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
-    <value>To complete the update process, Proton VPN will temporarily disconnect and deactivate Permanent kill switch if any of these are active. Do you want to continue?</value>
+    <value>برای اتمام پروسه‌ی به‌روز رسانی، Proton VPN موقتاً قطع می‌شود و سوئیچ کشتار دائم اگه فعال باشد را غیرفعال می‌کند. آیا می‌خواهید ادامه دهید؟</value>
     <comment>The question displayed when trying to update the app while connected to VPN</comment>
   </data>
   <data name="App_ttl">
@@ -351,7 +351,7 @@
     <value>تماس با ما</value>
   </data>
   <data name="BugReport_btn_GetUpdates">
-    <value>بروزرسانی</value>
+    <value>به‌روزرسانی</value>
   </data>
   <data name="BugReport_btn_GotIt">
     <value>انجام شد</value>
@@ -518,7 +518,7 @@
     <comment>The beginning of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_1_SecureCore">
-    <value>The</value>
+    <value></value>
     <comment>The beginning of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_2">
@@ -1108,7 +1108,7 @@
     <comment>The name of MH country</comment>
   </data>
   <data name="Country_val_MK">
-    <value>Macedonia</value>
+    <value>مقدونیه</value>
     <comment>The name of MK country</comment>
   </data>
   <data name="Country_val_ML">
@@ -1543,7 +1543,7 @@
     <value>اختصاص اتصالات VPN</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_btn_LoginAgain">
-    <value>Sign in again</value>
+    <value>دوباره وارد حساب شوید</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info1">
     <value>برای آغاز سفر خود در Proton VPN لطفاً اتصال‌های VPN خود را به حساب کاربری خود یا هر حساب فرعی دیگری اختصاص دهید.</value>
@@ -1552,7 +1552,7 @@
     <value>این مرحله فقط چند دقیقه طول می‌کشد. پس از آن شما قادر خواهید بود تا وارد شوید و از همهٔ دستگاه‌های خود حفاظت کنید.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
-    <value>Thanks for upgrading</value>
+    <value>از ارتقای اشتراکتان متشکریم</value>
     <comment>The title to thank the user for upgrading to Professional/Visionary plan.</comment>
   </data>
   <data name="Dialogs_Bfe_msg_info">
@@ -1607,7 +1607,7 @@
     <comment>The message displayed in Disconnect modal window while trying to identify connection problem</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch">
-    <value>Kill switch is protecting your IP by blocking all connections. In case of trouble you can disable kill switch.</value>
+    <value>سوئیچ کشتار از نشانی IP شما با بستن اتصالات محافظت می‌کند. در صورت رویداد اشکال می‌توانید سوئیچ کشتار را غیرفعال کنید.</value>
     <comment>The text displayed in Disconnect modal window if the disconnect occurred with kill switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoServers">
@@ -1663,10 +1663,10 @@
     <value>خارج شدن از برنامه اتصال VPN شما را قطع می‌کند.</value>
   </data>
   <data name="Dialogs_Exit_msg_KillSwitchOn">
-    <value>Kill switch is blocking all connections to avoid leaking your data. Exiting the application will disable the kill switch.</value>
+    <value>سوئیچ کشتار تمامی اتصالات را می‌بندد تا اطلاعات شما نشت نشود. خروج از برنامه سوئیچ کشتار را غیرفعال می‌کند.</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch">
-    <value>Permanent kill switch is enabled. Exiting the application will block all the outgoing connections until Proton VPN is connected again.</value>
+    <value>سوئيچ کشتار دائمی فعال است. خروج از برنامه تمامی اتصالات برون‌ رو را مسدود می‌کند تا زمانی که Proton VPN دوباره وصل شود.</value>
   </data>
   <data name="Dialogs_HumanVerification_ttl">
     <value>تأیید ربات نبودن</value>
@@ -1675,10 +1675,10 @@
     <value>ساعت سیستم شما ناهماهنگ است، که میتواند از اتصال موفقیت آمیز VPN جلوگیری کند. لطفا برای اطلاعات بیشتر به &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;اینجا&lt;/Hyperlink&gt; مراجعه کنید.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>With Permanent kill switch, if the VPN is not connected for any reason, you won't be able to access the internet.</value>
+    <value>با سوئیچ کشتار دائمی، اگر VPN به هر دلیلی وصل نباشد، شما قادر به دسترسی به اینترنت نخواهید بود.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
-    <value>Enable Permanent kill switch?</value>
+    <value>سوئیچ کشتار دائمی فعال شود؟</value>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok">
     <value>فهمیدم</value>
@@ -1725,7 +1725,7 @@
     <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
-    <value>Note that the kill switch is enabled. Updating or quitting the application will disable it.</value>
+    <value>به یاد داشته باشید که سوئیچ کشتار فعال است. به‌روز رسانی یا خروج از برنامه آن را غیرفعال می‌کند.</value>
     <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
@@ -1752,7 +1752,7 @@
     <value>متوجه شدم</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
-    <value>For Split Tunneling to function properly, you must disable kill switch.</value>
+    <value>برای عملکرد درست تونل‌بندی بخشی، شما باید اول سوئیچ کشتار را غیرفعال کنید.</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1_One">
     <value>صدها سرور در {0} کشور</value>
@@ -1847,7 +1847,7 @@
     <value>ProtonVPN نمی تواند اتصال برقرار کند زیرا آداپتور شبکه TUN در حال استفاده است. لطفا هر گونه VPN فعال را قطع کنید و دوباره امتحان کنید. همچنین میتوانید به آداپتور TAP تغییر دهید (می توانید در تنظیمات پیشرفته به TUN تغییر دهید).</value>
   </data>
   <data name="Dialogs_WireGuardAdapterInUse_msg">
-    <value>Proton VPN could not connect because a WireGuard network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, you can switch protocols in the Advanced Settings.</value>
+    <value>Proton VPN قادر به اتصال نیست چون یک آداپتور شبکه WireGuard از پیش در حال استفاده است. لطفاً اتصالات VPN فعال را قطع کرده و دوباره امتحان کنید. درضمن، می‌توانید بین پروتوکول‌ها در تنظیمات پیشرفته تغییر دهید.</value>
   </data>
   <data name="Dialogs_btn_Cancel">
     <value>لغو</value>
@@ -1869,7 +1869,7 @@
     <comment>The text on NoThanks button in dialog windows</comment>
   </data>
   <data name="Dialogs_btn_Ok">
-    <value>OK</value>
+    <value>تأييد</value>
   </data>
   <data name="Dialogs_reconnection_FromServer">
     <value>از سرور:</value>
@@ -1909,7 +1909,7 @@
     <value>لطفاً نصب خود را تعمیر کنید.</value>
   </data>
   <data name="KillSwitch">
-    <value>Kill switch</value>
+    <value>سوئیچ کشتار</value>
     <comment>Title for the kill switch feature. This feature is available from the side bar as a quick settings.</comment>
   </data>
   <data name="License_ttl">
@@ -1917,11 +1917,11 @@
     <comment>The title of License window</comment>
   </data>
   <data name="Login_Error_msg_SessionExpired">
-    <value>Your session has expired. Please sign in again.</value>
+    <value>نشست شما منقضی شده است. لطفاً دوباره وارد شوید.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
-    <value>Invalid refresh token, please sign in again.</value>
+    <value>بلیت نوسازی نا معتبر است، لطفاً دوباره وارد شوید.</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">
@@ -1932,11 +1932,11 @@
     <value>احراز هویت</value>
   </data>
   <data name="Login_btn_Login">
-    <value>Sign in</value>
+    <value>ورود به حساب</value>
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
-    <value>Kill switch is currently active</value>
+    <value>سوئیچ کشتار در حال حاضر فعال است</value>
     <comment>The text displayed on the login window when user was force logged out while kill switch is active</comment>
   </data>
   <data name="Login_lbl_Password">
@@ -2063,10 +2063,10 @@
     <comment>The part of text displayed in a balloon above Secure Core Pin in Map. The full text is "(Secure Core) country name".</comment>
   </data>
   <data name="Modal_ChangeServer_Subtitle">
-    <value>Get unlimited changes with VPN Plus</value>
+    <value>با VPN Plus تغییرات نامحدود دریافت کنید</value>
   </data>
   <data name="Modal_ChangeServer_Title">
-    <value>You’ve reached the maximum number of Free server changes for now.</value>
+    <value>شما در حال حاضر به حداکثر تغییرات مجاز در سرورهای رایگان رسیده‌اید.</value>
   </data>
   <data name="Modal_DiscourageSecureCore_ActivateSecureCore">
     <value>فعال کردن Secure Core</value>
@@ -2075,7 +2075,7 @@
     <value>دوباره نشان نده</value>
   </data>
   <data name="Modal_DiscourageSecureCore_LearnMore">
-    <value>Learn more</value>
+    <value>بیشتر بدانید</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle">
     <value>فناوری Secure Core بالاترین سطح امنیت و حریم خصوصی را ارائه می‌دهد، اما ممکن است سرعت اینترنت شما را کاهش دهد. اگر به کارایی بیشتری احتیاج دارید، می‌توانید Secure Core را غیرفعال کنید.</value>
@@ -2084,22 +2084,22 @@
     <value>نکته‌ای دربارهٔ سرعت...</value>
   </data>
   <data name="Modals_Rescope_NewFreeCountries">
-    <value>New Free countries</value>
+    <value>کشورهای رایگان جدید</value>
   </data>
   <data name="Modals_Rescope_NewFreeCountriesDescription">
-    <value>There are now Free servers in Poland and Romania.</value>
+    <value>اکنون سرورهای رایگان در لهستان و رومانی موجود است.</value>
   </data>
   <data name="Modals_Rescope_ServerSelection">
-    <value>Changes to server selection</value>
+    <value>تغییرات به سرور انتخابی</value>
   </data>
   <data name="Modals_Rescope_ServerSelectionDescription">
-    <value>To prevent server crowding and ensure that everyone has access to fast and secure browsing, we removed manual country selection and made major improvements to automatic server selection.</value>
+    <value>برای جلوگیری از شلوغی سرورها و اطمینان به داشتن دسترسی همگانی به مرور سریع و امن، ما انتخاب دستی کشور را حذف کردیم و بهبودهای بزرگی به برگزینی خودکار سرور بخشیدیم.</value>
   </data>
   <data name="Modals_Rescope_Title">
-    <value>What’s new</value>
+    <value>تازه‌ها</value>
   </data>
   <data name="Modals_Rescope_btn_GotIt">
-    <value>Got it</value>
+    <value>متوجه شدم</value>
   </data>
   <data name="NetShield">
     <value>NetShield</value>
@@ -2157,7 +2157,7 @@
     <comment>The title of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_Update_lnk_Restart">
-    <value>Restart</value>
+    <value>شروع مجدد</value>
     <comment>The content of the button to automatically restart the application in order to install the latest version available. Appears in the about dialog.</comment>
   </data>
   <data name="Notifications_Update_lnk_WhatsNew">
@@ -2255,7 +2255,7 @@
     <comment>The error message displayed in the Profile window when a country is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_GatewayEmpty">
-    <value>Please select a gateway</value>
+    <value>لطفاً یک دروازه انتخاب کنید</value>
     <comment>The error message displayed in the Profile window when a gateway is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameEmpty">
@@ -2281,7 +2281,7 @@
     <comment>The watermark text displayed in empty Exit Country combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Gateway_Watermark">
-    <value>Select Gateway</value>
+    <value>دروازه‌ای انتخاب کنید</value>
     <comment>The watermark text displayed in empty Gateway combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Name_Watermark">
@@ -2321,7 +2321,7 @@
     <comment>The label for Exit Country combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Gateway">
-    <value>Gateway:</value>
+    <value>دروازه:</value>
     <comment>The label for Gateway combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Name">
@@ -2433,11 +2433,11 @@
     <comment>The label for Profiles list in combo box in Quick Launch window</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
-    <value>Kill switch Off</value>
+    <value>خاموش کردن سوئیچ کشتار</value>
     <comment>The text for the clickable option to disable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
-    <value>Kill switch On</value>
+    <value>روشن کردن سوئیچ کشتار</value>
     <comment>The text for the clickable option to enable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_LearnMore">
@@ -2453,7 +2453,7 @@
     <value>مسدود کردن بدافزار، آگهی &amp; ردیابها</value>
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
-    <value>Permanent kill switch</value>
+    <value>سوئیچ کشتار دائمی</value>
     <comment>The text for the clickable option to enable the kill switch feature permanently (even when the VPN app is not running).</comment>
   </data>
   <data name="QuickSettings_btn_PortForwardingOff">
@@ -2478,34 +2478,34 @@
     <value>اینترنت را بدون آگهی و بدافزار مرور کنید.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
-    <value>Ads blocked</value>
+    <value>تبلیغات مسدود شدند</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAds_One">
-    <value>Ad blocked</value>
+    <value>تبلیغ مسدود شد</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
-    <value>Advertisement websites use cookies and trackers to target you.</value>
+    <value>سايت‌های تبلیغاتی از کوکی‌ها و ردیاب‌ها برای هدف گرفتن شما استفاده می‌کنند.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
-    <value>Data saved</value>
+    <value>داده ذخیره شد</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
-    <value>Estimated size of ads, trackers, and malware that NetShield has blocked.</value>
+    <value>اندازه تخمینی تبلیغات، ردیاب‌ها و بدافزارهایی که NetShield مسدود کرد.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
-    <value>Trackers stopped</value>
+    <value>ردیاب‌ها خنثی شدند</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_One">
-    <value>Tracker stopped</value>
+    <value>ردیاب خنثی شد</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
-    <value>Trackers are third-party websites that collect, store, and sell information about your web activity.</value>
+    <value>ردیاب‌ها و سایت‌های شخص ثالث که اطلاعات در مورد فعالیت‌های وب شما را جمع‌آوری و ذخیره می‌کنند و می‌فروشند.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>اگر وبسایتها بار نمی‌شوند، غیرفعّال کردن NetShield را امتحان کنید</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
+    <value>با اجازه دادن به قابل دسترسی بودن برنامه‌های محلی از اینترنت به تورنت کردن و بازی کردن آنلاینتان سرعت ببخشید.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
     <value>حساس‌ترین داده‌های خود را از طریق امن‌ترین سرورهای ما در کشورهای دوستدار حریم خصوصی مسیرگذاری کنید.</value>
@@ -2523,7 +2523,7 @@
     <value>{0} سرور امن</value>
   </data>
   <data name="ServerType_val_B2B">
-    <value>Gateways</value>
+    <value>دروازه‌ها</value>
     <comment>The server type in Profile window</comment>
   </data>
   <data name="ServerType_val_None">
@@ -2543,7 +2543,7 @@
     <comment>The server type in Profile window</comment>
   </data>
   <data name="Servers_Fastest">
-    <value>Fastest</value>
+    <value>سریع‌ترین</value>
     <comment>The label for fastest server item in the country list</comment>
   </data>
   <data name="Servers_Feature_val_P2P">
@@ -2551,7 +2551,7 @@
     <comment>The name of P2P server feature</comment>
   </data>
   <data name="Servers_Feature_val_Plus">
-    <value>Plus server</value>
+    <value>سرور Plus</value>
     <comment>The name of Plus server feature</comment>
   </data>
   <data name="Servers_Feature_val_SecureCore">
@@ -2566,7 +2566,7 @@
     <comment>The name of Tor server feature</comment>
   </data>
   <data name="Servers_FreeConnections">
-    <value>Free connections (1)</value>
+    <value>اتصالات رایگان (۱)</value>
   </data>
   <data name="Servers_Load_lbl_IP">
     <value>IP سرور:</value>
@@ -2597,10 +2597,10 @@
     <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_UpsellBanner">
-    <value>Get worldwide coverage with VPN Plus</value>
+    <value>با VPN Plus پوشش جهانی بگیرید</value>
   </data>
   <data name="Servers_UpsellBanner_NotTheCountryYouWanted">
-    <value>Not the country you wanted? Upgrade to choose any server</value>
+    <value>کشور مدنظرتان نبود؟ برای انتخاب از تمامی سرورها اشتراکتان را ارتقا دهید</value>
   </data>
   <data name="Servers_btn_Connect">
     <value>اتصال</value>
@@ -2636,7 +2636,7 @@
     <value>بدایل در دسترس نبودن سرور RPC امکان اتاصل برای Proton VPN وجود ندارد. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;راه حل های احتمالی را ببینید&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Servers_msg_MissingServerPublicKey">
-    <value>Unfortunately, this server does not support WireGuard.</value>
+    <value>متأسفانه این سرور از WireGuard پشتیبانی نمی‌کند.</value>
   </data>
   <data name="Settings_Advanced_SplitTunnel_btn_AddApp">
     <value>افزودن برنامه</value>
@@ -2716,7 +2716,7 @@
     <value>TAP adapter</value>
   </data>
   <data name="Settings_Advanced_lbl_OpenVpnTun">
-    <value>TUN adapter</value>
+    <value>آداپتور TUN</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding">
     <value>هدایت درگاه</value>
@@ -2738,14 +2738,14 @@
     <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Tooltip">
-    <value>Speed up your torrenting and online gaming by allowing supported local apps to be reachable from the internet.</value>
+    <value>با اجازه دادن به قابل دسترسی بودن برنامه‌های محلی پشتیبانی شده از اینترنت به تورنت کردن و بازی کردن آنلاینتان سرعت ببخشید.</value>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel">
-    <value>Split Tunneling</value>
+    <value>تونل سازی بخشی</value>
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info">
-    <value>Exclude an application or an IP address from VPN traffic or include only specific apps. Cannot be switched on together with kill switch.</value>
+    <value>یک برنامه یا یک نشانی IP را از ترافیک VPN مستثنی کنید یا فقط برنامه‌های خاصی را شامل کنید. همزمان با سوئیچ کشتار قابل استفاده نیست.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_btn_LearnMore">
@@ -2799,7 +2799,7 @@
     <value>تنظیم NAT متوسط</value>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat_Info">
-    <value>Moderate NAT disables randomization of the local addresses mapping, which can slightly reduce your security, but allows techniques such as direct connections for applications like online games.</value>
+    <value>NAT متعادل تصادفی‌سازی نقشه‌بندی نشانی‌های محلی را غیرفعال می‌کند، که می‌تواند کمی امنیتتان را کاهش دهد، ولی به تکنیک‌هایی همچون اتصالات مستقیم برای برنامه‌هایی مثل بازی‌های آنلاین اجازه می‌دهد.</value>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect">
     <value>اتصال سریع</value>
@@ -2838,11 +2838,11 @@
     <comment>The title of Connection tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_AutoUpdate">
-    <value>Automatic updates</value>
+    <value>به‌روزرسانی‌های خودکار</value>
     <comment>The label for Automatic updates toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_AutoUpdate_Info">
-    <value>Automatically check for and install updates to Proton VPN.</value>
+    <value>به‌طور خودکار برای وجود به‌روزرسانی‌های Proton VPN و نصب آن چک کن.</value>
     <comment>The description of Automatic updates setting displayed in the tooltip of ( i ) image next to the label for Automatic updates toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_ConnectOnAppStart">
@@ -2907,15 +2907,15 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text of "Recommended" category text in the Profile sidebar, that has the predefined profiles below</comment>
   </data>
   <data name="Sidebar_B2BPopup_Desc">
-    <value>A VPN gateway is a secure connection that provides controlled access to your company's data and services through dedicated servers.</value>
+    <value>یک دروازهٔ VPN اتصالی امن است که دسترسی کنترل شده به اطلاعات و سرویس‌های کمپانی‌تان را از طریق سرورهای اختصاصی فراهم می‌کند.</value>
     <comment>Description of what a Gateway is, written inside the help popup when the Gateways info button is clicked.</comment>
   </data>
   <data name="Sidebar_B2BPopup_Title">
-    <value>What's a gateway?</value>
+    <value>دروازه چیست؟</value>
     <comment>Title of the help popup when the Gateways info button is clicked.</comment>
   </data>
   <data name="Sidebar_Connection_btn_ChangeServer">
-    <value>Change server</value>
+    <value>تغییر سرور</value>
   </data>
   <data name="Sidebar_Connection_btn_Connect">
     <value>اتصال سریع</value>
@@ -2942,11 +2942,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch">
-    <value>Kill switch activated!</value>
+    <value>سوئیچ کشتار فعال شد!</value>
     <comment>The text displayed in the sidebar when connection dropped and kill switch is turned on</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch_Info">
-    <value>Kill switch is blocking all connections to avoid leaking your data.</value>
+    <value>سوئیچ کشتار تمام اتصالات را مسدود می‌کند تا داده‌های شما نشت نشود.</value>
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">
@@ -2962,13 +2962,13 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>مکان‌های رایگان ({0})</value>
   </data>
   <data name="Sidebar_Countries_FreeServers">
-    <value>Free servers</value>
+    <value>سرورهای رایگان</value>
   </data>
   <data name="Sidebar_Countries_FreeServersInfo">
-    <value>Free servers have no data limit nor network throttling. The speed might be limited only due to the high number of users connected.</value>
+    <value>سرورهای رایگان هیچ محدودیت مصرف و یا محدودیت سرعت ندارند. محدودیت سرعت فقط ممکن است به دلیل تعداد زیاد کاربران فعال باشد.</value>
   </data>
   <data name="Sidebar_Countries_Information">
-    <value>Information</value>
+    <value>اطلاعات</value>
   </data>
   <data name="Sidebar_Countries_PlusLocationCount">
     <value>مکان‌های پلاس({0})</value>
@@ -3065,7 +3065,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of Profiles tab in the Sidebar of main app window</comment>
   </data>
   <data name="Sidebar_Separator_Others">
-    <value>Others</value>
+    <value>دیگران</value>
     <comment>When Port Forwarding is enabled, we show the P2P servers first and only then the others.</comment>
   </data>
   <data name="Sidebar_Servers_info_plus">
@@ -3134,28 +3134,28 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text button of the Auto Reconnection tooltip that opens the Notification Settings</comment>
   </data>
   <data name="Upsell_Accelerator_Bullet1">
-    <value>Access faster, less crowded servers.</value>
+    <value>دسترسی به سرورهای کم جمعیت‌تر و سریع‌تر.</value>
   </data>
   <data name="Upsell_Accelerator_Bullet2">
-    <value>Increase connection speeds by up to 400% with &lt;Bold&gt;VPN Accelerator&lt;/Bold&gt;.</value>
+    <value>با &lt;Bold&gt; شتاب‌دهنده‌ی VPN &lt;/Bold&gt; سرعت اتصالات را تا حد ۴۰۰٪ افرایش دهید.</value>
   </data>
   <data name="Upsell_Accelerator_Bullet3">
-    <value>Improved speed and stability when connected to distant servers.</value>
+    <value>سرعت و پایداری بهبود یافته هنگامی که به سرورهای دور وصل می‌شوید.</value>
   </data>
   <data name="Upsell_Accelerator_Title">
-    <value>Browse at even higher speeds (up to 10 Gbps)</value>
+    <value>مرور وب تا حتی سرعت‌های بیشتر (تا ۱۰ گیگابیت بر ثانیه)</value>
   </data>
   <data name="Upsell_Countries_AccessGeoblockedContent">
-    <value>Access geoblocked content</value>
+    <value>دسترسی به محتوای قفل محلی شده</value>
   </data>
   <data name="Upsell_Countries_ChooseAnyLocation">
-    <value>Choose any location</value>
+    <value>انتخاب هر مکانی</value>
   </data>
   <data name="Upsell_Countries_HigherVpnSpeed">
-    <value>Even higher VPN speed</value>
+    <value>سرعت VPN حتی بیشتر</value>
   </data>
   <data name="Upsell_Countries_StreamMovies">
-    <value>Stream your favorite movies</value>
+    <value>استریم کردن فیلم‌های موردعلاقه‌تان</value>
   </data>
   <data name="Upsell_Countries_Subtitle">
     <value>زمانی که شما به Plus ارتقا دهید</value>
@@ -3166,62 +3166,62 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
   <data name="Upsell_Country_Bullet1_One">
-    <value>Connect to {0} country</value>
+    <value>اتصال به کشور {0}</value>
   </data>
   <data name="Upsell_Country_Bullet1_Other">
-    <value>Connect to {0} countries</value>
+    <value>اتصال به کشورهای {0}</value>
   </data>
   <data name="Upsell_Country_Bullet2">
-    <value>Higher speeds (10 Gbps)</value>
+    <value>سرعت‌های بیشتر (۱۰ گیگابیت بر ثانیه)</value>
   </data>
   <data name="Upsell_Country_Bullet3">
-    <value>Stream your favorite movies</value>
+    <value>استریم کردن فیلم‌های موردعلاقه‌تان</value>
   </data>
   <data name="Upsell_Country_Bullet4">
-    <value>Protect up to 10 devices</value>
+    <value>محافظت از حداکثر ۱۰ تا دستگاه</value>
   </data>
   <data name="Upsell_Country_Bullet5">
-    <value>30-day money back guarantee</value>
+    <value>۳۰ روز ضمانت بازگشت پول</value>
   </data>
   <data name="Upsell_Country_Subtitle">
-    <value>Unlock &lt;Bold&gt;country selection&lt;/Bold&gt; with VPN Plus</value>
+    <value>قفل گشایی &lt;Bold&gt; کشورهای انتخابی &lt;/Bold&gt; با VPN Plus</value>
   </data>
   <data name="Upsell_Country_Title">
-    <value>Want to choose a specific country?</value>
+    <value>می‌خواهید یک کشور مدنظر را انتخاب کنید؟</value>
   </data>
   <data name="Upsell_CustomDns_Bullet1">
-    <value>Connect to VPN with your &lt;Bold&gt;custom domain name system (DNS)&lt;/Bold&gt;</value>
+    <value>به VPN با &lt;Bold&gt; سیستم نام دامنه سفارشی‌تان (DNS) &lt;/Bold&gt; وصل شوید</value>
   </data>
   <data name="Upsell_CustomDns_Bullet2">
-    <value>Save frequently used connections with &lt;Bold&gt;profiles&lt;/Bold&gt;</value>
+    <value>با &lt;Bold&gt; پروفایل‌ها &lt;/Bold&gt; اتصالات مکرر استفاده شده را ذخیره کنید</value>
   </data>
   <data name="Upsell_CustomDns_Bullet3">
-    <value>Get faster access to your profiles with &lt;Bold&gt;Quick Connect&lt;/Bold&gt;</value>
+    <value>با &lt;Bold&gt; اتصال سریع &lt;/Bold&gt; به پروفایل‌هایتان دسترسی سریع‌تر داشته باشید</value>
   </data>
   <data name="Upsell_CustomDns_Title">
-    <value>Unlock advanced VPN customization</value>
+    <value>قفل گشایی تنظیم پیشرفته VPN</value>
   </data>
   <data name="Upsell_FreeConnections_Locations">
-    <value>Free server locations ({0})</value>
+    <value>مکان‌های سرور رایگان ({0})</value>
     <comment>{0} represents a number of free server locations.</comment>
   </data>
   <data name="Upsell_FreeConnections_Subtitle">
-    <value>Proton Free automatically connects you to the fastest available server. This will normally be the closest server to your location.</value>
+    <value>Proton رایگان، به‌طور خودکار شما را به سریع‌ترین سرور در دسترس وصل می‌کند. این معمولاً نزدیک‌ترین سرور به مکان شما خواهد بود.</value>
   </data>
   <data name="Upsell_FreeConnections_Title">
-    <value>Free connections</value>
+    <value>اتصالات رایگان</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet1">
-    <value>Improve online gaming and video call performance</value>
+    <value>بهبود دادن به عملکرد بازی کردن آنلاین و تماس تصویری</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet2">
-    <value>NAT type 2 (moderate) optimizes speed and stability by enabling direct connections between devices</value>
+    <value>نوع NAT ۲ (متعادل) سرعت و پایداری را با فعال کردن اتصالات مستقیم بین دستگاه‌ها بهینه می‌کند</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
-    <value>Unlock &lt;Bold&gt;NAT type 2&lt;/Bold&gt; with VPN Plus</value>
+    <value>قفل‌گشایی &lt;Bold&gt; تیپ ۲ NAT &lt;/Bold&gt; با VPN Plus</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
-    <value>Level up your gaming experience</value>
+    <value>به تجربه بازی کردن خود بهبود ببخشید</value>
   </data>
   <data name="Upsell_Netshield_BlockAds">
     <value>مسدود کردن تبلیغات و ردیاب‌ها</value>
@@ -3255,38 +3255,38 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_Plan_Business_Info">
-    <value>Available with VPN Business.</value>
+    <value>قابل دسترسی با VPN Business.</value>
     <comment>The tooltip text of the business plan badge</comment>
   </data>
   <data name="Upsell_PortForwarding_Bullet1">
-    <value>Improve your peer-to-peer download speeds</value>
+    <value>به سرعت بارگیری‌های همتا به همتا خود بهبود ببخشید</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet2">
-    <value>Connect to online gaming servers and host multiplayer games</value>
+    <value>به سرورهای بازی‌های آنلاین متصل شوید و بازی‌های چندنفره میزبانی کنید</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet3">
-    <value>Set up remote access to devices on your local network</value>
+    <value>دسترسی از راه دور برای دستگاه‌های روی شبکه محلی‌تان باز کنید</value>
   </data>
   <data name="Upsell_PortForwarding_Subtitle">
-    <value>Unlock &lt;Bold&gt;port forwarding&lt;/Bold&gt; with VPN Plus</value>
+    <value>قفل‌گشایی &lt;Bold&gt; port forwarding &lt;/Bold&gt; با VPN Plus</value>
   </data>
   <data name="Upsell_PortForwarding_Title">
-    <value>Supercharge your P2P connections</value>
+    <value>به اتصالات P2P تان قدرت ببخشید</value>
   </data>
   <data name="Upsell_Profiles_Bullet1">
-    <value>Save your preferred server, city, or country.</value>
+    <value>سرور، شهر یا کشور ترجيحی‌تان را ذخیره کنید.</value>
   </data>
   <data name="Upsell_Profiles_Bullet2">
-    <value>Set custom protocols and premium VPN features.</value>
+    <value>تعیین پروتوکول‌های دستی و ویژگی‌های برتر VPN.</value>
   </data>
   <data name="Upsell_Profiles_Bullet3">
-    <value>Set up auto-connect for even faster access.</value>
+    <value>راه‌اندازی اتصال خودکار برای دسترسی سریع‌تر.</value>
   </data>
   <data name="Upsell_Profiles_Subtitle">
-    <value>Unlock &lt;Bold&gt;profiles&lt;/Bold&gt; with VPN Plus</value>
+    <value>قفل گشایی &lt;Bold&gt; پروفایل‌ها &lt;/Bold&gt; با VPN Plus</value>
   </data>
   <data name="Upsell_Profiles_Title">
-    <value>Get quick access to your frequent connections</value>
+    <value>گرفتن دسترسی فوری به اتصالات مکررتان</value>
   </data>
   <data name="Upsell_SecureCore_ExtraEncryption">
     <value>اضافه کردن یک لایه دیگر رمزنگاری به ارتباط VPN شما</value>
@@ -3304,19 +3304,19 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>با Secure Core دو بار رمزنگاری کنید</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet1">
-    <value>Split your traffic into VPN and non-VPN tunnels</value>
+    <value>ترافیکتان را به تونل‌های VPN و بدون VPN تقسیم کنید</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet2">
-    <value>Let trusted apps and IP addresses bypass VPN for faster speeds</value>
+    <value>اجازه دادن به برنامه‌های معتمد و نشانی‌های IP برای دور زدن VPN برای سرعت بیشتر</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet3">
-    <value>Access both home and local content when browsing from abroad</value>
+    <value>دسترسی به محتوای خانگی و محلی هنگام مرور از خارج کشور</value>
   </data>
   <data name="Upsell_SplitTunneling_Subtitle">
-    <value>Unlock &lt;Bold&gt;split tunneling&lt;/Bold&gt; with VPN Plus</value>
+    <value>قفل گشایی &lt;Bold&gt; تونل‌بندی بخشی &lt;/Bold&gt; با VPN Plus</value>
   </data>
   <data name="Upsell_SplitTunneling_Title">
-    <value>Get the best of both worlds</value>
+    <value>گرفتن بهترین‌های هر دو</value>
   </data>
   <data name="Upsell_btn_Upgrade">
     <value>ارتقاء</value>
