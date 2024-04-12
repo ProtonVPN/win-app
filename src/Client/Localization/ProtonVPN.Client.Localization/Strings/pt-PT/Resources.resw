@@ -1817,10 +1817,10 @@ parados</value>
     <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
   </data>
   <data name="Home_Update_Confirmation_Title">
-    <value>Actualizar o Proton VPN?</value>
+    <value>Atualizar o Proton VPN?</value>
   </data>
   <data name="Home_Update_UpdateAvailable">
-    <value>Actualização disponível</value>
+    <value>Atualização disponível</value>
   </data>
   <data name="Home_Update_UpdateReady">
     <value>Update ready</value>
@@ -2254,7 +2254,7 @@ parados</value>
     <value>Auto launch, auto connect</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
-    <value>Actualizações automáticas</value>
+    <value>Atualizações automáticas</value>
   </data>
   <data name="Settings_General_AutomaticUpdates_Description">
     <value>Automatically check and install Proton VPN updates</value>

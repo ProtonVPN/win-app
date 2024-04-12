@@ -121,52 +121,52 @@
     <value>Proton VPN Free</value>
   </data>
   <data name="Cities">
-    <value>Cities</value>
+    <value>城市</value>
   </data>
   <data name="Common_Actions_Add">
-    <value>Add</value>
+    <value>新增</value>
   </data>
   <data name="Common_Actions_Cancel">
-    <value>Cancel</value>
+    <value>取消</value>
   </data>
   <data name="Common_Actions_Close">
-    <value>Close</value>
+    <value>關閉</value>
   </data>
   <data name="Common_Actions_Connect">
-    <value>Connect</value>
+    <value>連線</value>
   </data>
   <data name="Common_Actions_ContactUs">
-    <value>Contact us</value>
+    <value>聯絡我們</value>
   </data>
   <data name="Common_Actions_Disconnect">
-    <value>Disconnect</value>
+    <value>中斷連線</value>
   </data>
   <data name="Common_Actions_Enable">
-    <value>Enable</value>
+    <value>啟用</value>
   </data>
   <data name="Common_Actions_Reconnect">
-    <value>Reconnect</value>
+    <value>重新連線</value>
   </data>
   <data name="Common_Actions_Remove">
-    <value>Remove</value>
+    <value>移除</value>
   </data>
   <data name="Common_Actions_Update">
-    <value>Update</value>
+    <value>更新</value>
   </data>
   <data name="Common_Actions_Upgrade">
-    <value>Upgrade</value>
+    <value>升級</value>
   </data>
   <data name="Common_Links_LearnMore">
-    <value>Learn more</value>
+    <value>了解更多</value>
   </data>
   <data name="Common_Message_Loading">
-    <value>Loading...</value>
+    <value>載入中‧‧‧</value>
   </data>
   <data name="Common_States_Off">
-    <value>Off</value>
+    <value>關閉</value>
   </data>
   <data name="Common_States_On">
-    <value>On</value>
+    <value>開啟</value>
   </data>
   <data name="Connection_Error_MissingAuthCertificate">
     <value>由於網路問題，Proton VPN 提取認證憑證失敗。</value>
@@ -224,7 +224,7 @@
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
   </data>
   <data name="Countries_All">
-    <value>All</value>
+    <value>全部</value>
   </data>
   <data name="Countries_Cities">
     <value>Cities</value>
@@ -246,7 +246,7 @@
     <value>未找到任何結果</value>
   </data>
   <data name="Countries_NumberOfCities">
-    <value>Cities ({0})</value>
+    <value>城市 ({0})</value>
     <comment>{0} represents the number of cities</comment>
   </data>
   <data name="Countries_NumberOfCountries">
@@ -254,22 +254,22 @@
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_NumberOfServers">
-    <value>Servers ({0})</value>
+    <value>伺服器 ({0})</value>
     <comment>{0} represents a number of servers</comment>
   </data>
   <data name="Countries_P2P">
     <value>P2P</value>
   </data>
   <data name="Countries_P2PCountries">
-    <value>P2P countries ({0})</value>
+    <value>P2P 國家 ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_P2P_Cities">
-    <value>P2P cities ({0})</value>
+    <value>P2P 城市 ({0})</value>
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
   <data name="Countries_Page_Title">
-    <value>Countries</value>
+    <value>國家</value>
   </data>
   <data name="Countries_SearchPlaceholder">
     <value>I want to browse from...</value>
@@ -1658,7 +1658,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>{0} is a placeholder for the username</comment>
   </data>
   <data name="Home_Account_Title">
-    <value>My account</value>
+    <value>我的帳號</value>
   </data>
   <data name="Home_ConnectionCard_ChangeServer">
     <value>Change server</value>
@@ -1942,10 +1942,10 @@ saved</value>
     <value>Free server</value>
   </data>
   <data name="Settings_About">
-    <value>About</value>
+    <value>關於</value>
   </data>
   <data name="Settings_About_Changelog">
-    <value>Changelog</value>
+    <value>更新日誌</value>
   </data>
   <data name="Settings_About_CurrentVersion">
     <value>目前版本</value>
@@ -1957,28 +1957,28 @@ saved</value>
     <value>Get the latest version</value>
   </data>
   <data name="Settings_About_LearnMore">
-    <value>Learn more</value>
+    <value>瞭解更多</value>
   </data>
   <data name="Settings_About_Licensing">
     <value>Licensing</value>
   </data>
   <data name="Settings_About_Loading">
-    <value>Loading</value>
+    <value>載入中</value>
   </data>
   <data name="Settings_About_NewVersion">
     <value>NEW</value>
   </data>
   <data name="Settings_About_Title">
-    <value>About</value>
+    <value>關於</value>
   </data>
   <data name="Settings_About_TryAgain">
-    <value>Try again</value>
+    <value>再試一次</value>
   </data>
   <data name="Settings_About_Update_Description">
     <value>Get the most from your VPN by updating to the latest version of the app.</value>
   </data>
   <data name="Settings_AppVersion">
-    <value>App version</value>
+    <value>應用程式版本</value>
   </data>
   <data name="Settings_Censorship_Footer">
     <value>這些統計資料不包含您的 IP 位址，且其無法用於識別您的身份。我們永遠不會將它們與第三方分享。</value>
@@ -1999,13 +1999,13 @@ saved</value>
     <value>Apply and reconnect</value>
   </data>
   <data name="Settings_Common_Discard">
-    <value>Discard</value>
+    <value>捨棄</value>
   </data>
   <data name="Settings_Common_Discard_Title">
-    <value>Discard settings changes?</value>
+    <value>捨棄剛變更的設定?</value>
   </data>
   <data name="Settings_Connection">
-    <value>Connection</value>
+    <value>連接</value>
   </data>
   <data name="Settings_Connection_AdvancedSettings">
     <value>進階設定</value>
@@ -2017,7 +2017,7 @@ saved</value>
     <value>If Proton services are blocked due to network restrictions, we'll try using alternative network routing to connect you to our sites.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
-    <value>Custom DNS servers</value>
+    <value>自訂 DNS 伺服器</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
     <value>You won't be able to use NetShield when connected with a custom DNS server.</value>
@@ -2029,7 +2029,7 @@ saved</value>
     <value>Connect to Proton VPN using your own domain name system (DNS). Only use DNS servers that you trust.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
-    <value>DNS servers ({0})</value>
+    <value>伺服器 ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark">
@@ -2073,19 +2073,19 @@ saved</value>
     <value>限制數據流入您的網路。此選項較為安全，惟點對點遊戲連線或會較困難。</value>
   </data>
   <data name="Settings_Connection_Protocol">
-    <value>Protocol</value>
+    <value>通訊協定</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN 加速器</value>
   </data>
   <data name="Settings_Features">
-    <value>Features</value>
+    <value>特色</value>
   </data>
   <data name="Settings_Features_KillSwitch">
     <value>Kill switch</value>
   </data>
   <data name="Settings_Features_KillSwitch_Advanced">
-    <value>Advanced</value>
+    <value>進階</value>
   </data>
   <data name="Settings_Features_KillSwitch_Advanced_Description">
     <value>Only allow internet access when connected to Proton VPN. Advanced kill switch will remain active even when you restart your device.</value>
@@ -2103,7 +2103,7 @@ saved</value>
     <value>When kill switch is on, you won't be able to connect to websites and apps excluded from your VPN connection through split tunneling.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Standard">
-    <value>Standard</value>
+    <value>標準</value>
   </data>
   <data name="Settings_Features_KillSwitch_Standard_Description">
     <value>Automatically disconnect from the internet if VPN connection is lost.</value>
@@ -2253,10 +2253,10 @@ saved</value>
     <value>Get early access and help us test new versions of Proton VPN</value>
   </data>
   <data name="Settings_General_Language">
-    <value>Language</value>
+    <value>語言</value>
   </data>
   <data name="Settings_General_Notifications">
-    <value>Notifications</value>
+    <value>通知</value>
   </data>
   <data name="Settings_General_Notifications_Description">
     <value>Get notified about on-going Proton VPN activities</value>
@@ -2268,16 +2268,16 @@ saved</value>
     <value>Network drivers can impact your connection speed. The new TUN adapter provides higher speed and falls back on the TAP adapter if it encounters any connectivity problems.</value>
   </data>
   <data name="Settings_General_Theme">
-    <value>Theme</value>
+    <value>佈景主題</value>
   </data>
   <data name="Settings_General_Theme_Dark">
-    <value>Dark</value>
+    <value>深色</value>
   </data>
   <data name="Settings_General_Theme_Default">
-    <value>Default</value>
+    <value>預設</value>
   </data>
   <data name="Settings_General_Theme_Light">
-    <value>Light</value>
+    <value>淺色</value>
   </data>
   <data name="Settings_Improve">
     <value>Improve Proton</value>
@@ -2289,7 +2289,7 @@ saved</value>
     <value>Operating System version</value>
   </data>
   <data name="Settings_Page_Title">
-    <value>Settings</value>
+    <value>設定</value>
   </data>
   <data name="Settings_Protocols_Explanation">
     <value>A VPN protocol determines how data moves between a VPN server and your device.</value>
@@ -2355,10 +2355,10 @@ saved</value>
     <value>WireGuard</value>
   </data>
   <data name="Settings_Support">
-    <value>Support</value>
+    <value>支援</value>
   </data>
   <data name="Settings_Support_DebugLogs">
-    <value>Debug logs</value>
+    <value>除錯日誌</value>
   </data>
   <data name="Settings_Support_DebugLogs_Application">
     <value>應用程式紀錄</value>
@@ -2367,13 +2367,13 @@ saved</value>
     <value>The logs folder could not be found.</value>
   </data>
   <data name="Settings_Support_DebugLogs_Service">
-    <value>Service logs</value>
+    <value>伺服器日誌</value>
   </data>
   <data name="Settings_Support_ReportIssue">
     <value>回報問題</value>
   </data>
   <data name="Settings_Support_SupportCenter">
-    <value>Support center</value>
+    <value>支援中心</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>Increase your connection speed by up to 400% with performance enhancing technologies.</value>

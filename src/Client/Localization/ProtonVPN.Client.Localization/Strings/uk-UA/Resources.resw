@@ -133,19 +133,19 @@
     <value>Закрити</value>
   </data>
   <data name="Common_Actions_Connect">
-    <value>Connect</value>
+    <value>З'єднатися</value>
   </data>
   <data name="Common_Actions_ContactUs">
     <value>Зв'язатися з нами</value>
   </data>
   <data name="Common_Actions_Disconnect">
-    <value>Disconnect</value>
+    <value>Від’єднатися</value>
   </data>
   <data name="Common_Actions_Enable">
     <value>Увімкнути</value>
   </data>
   <data name="Common_Actions_Reconnect">
-    <value>Reconnect</value>
+    <value>Повторно з'єднатися</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>Вилучити</value>
@@ -154,13 +154,13 @@
     <value>Оновити</value>
   </data>
   <data name="Common_Actions_Upgrade">
-    <value>Upgrade</value>
+    <value>Покращити</value>
   </data>
   <data name="Common_Links_LearnMore">
     <value>Докладніше</value>
   </data>
   <data name="Common_Message_Loading">
-    <value>Loading...</value>
+    <value>Завантаження...</value>
   </data>
   <data name="Common_States_Off">
     <value>Off</value>
@@ -1574,11 +1574,11 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Ласкаво просимо до Proton VPN</value>
   </data>
   <data name="Format_Milliseconds">
-    <value>{0}ms</value>
+    <value>{0} мс</value>
     <comment>Format a number as a time in milliseconds. {0} is a place holder for the number of milliseconds (eg. 46ms)</comment>
   </data>
   <data name="Format_Size_Bytes">
-    <value>{0} B</value>
+    <value>{0} Б</value>
     <comment>Format a size in Bytes. {0} is a place holder for the number of Bytes (eg. 30 B)</comment>
   </data>
   <data name="Format_Size_Exabytes">
@@ -1678,13 +1678,13 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
   </data>
   <data name="Gateways_Page_Title">
-    <value>Gateways</value>
+    <value>Мережеві шлюзи</value>
   </data>
   <data name="Gateways_Server">
     <value>Dedicated server</value>
   </data>
   <data name="Home_Account_SignOut">
-    <value>Sign out</value>
+    <value>Вийти</value>
   </data>
   <data name="Home_Account_SignOut_Confirmation_Message">
     <value>Ви будете від'єднані від VPN.</value>
@@ -1729,7 +1729,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Країна</value>
   </data>
   <data name="Home_ConnectionDetails_Download">
-    <value>Download</value>
+    <value>Завантажити</value>
   </data>
   <data name="Home_ConnectionDetails_Gateway">
     <value>Gateway</value>
@@ -1752,10 +1752,10 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Latency</value>
   </data>
   <data name="Home_ConnectionDetails_MyIp">
-    <value>My IP</value>
+    <value>Моя IP-адреса</value>
   </data>
   <data name="Home_ConnectionDetails_Protocol">
-    <value>Protocol</value>
+    <value>Протокол</value>
   </data>
   <data name="Home_ConnectionDetails_Server">
     <value>Сервер</value>
@@ -1834,7 +1834,7 @@ saved</value>
     <value>Recents</value>
   </data>
   <data name="Home_Recents_Unpin">
-    <value>Unpin</value>
+    <value>Відкріпити</value>
   </data>
   <data name="Home_Update_Confirmation_Message">
     <value>To complete the update process, Proton VPN will temporarily disconnect and deactivate Advanced Kill Switch if any of these are active. Do you want to continue?</value>
@@ -1900,7 +1900,7 @@ saved</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_Password">
-    <value>Password</value>
+    <value>Пароль</value>
   </data>
   <data name="Login_Form_ReportAnIssue">
     <value>Повідомити про проблему</value>
@@ -2006,7 +2006,7 @@ saved</value>
     <value>NEW</value>
   </data>
   <data name="Settings_About_Title">
-    <value>About</value>
+    <value>Про програму</value>
   </data>
   <data name="Settings_About_TryAgain">
     <value>Try again</value>
@@ -2110,13 +2110,13 @@ saved</value>
     <value>Restricts the data entering your network. This option is more secure, but can make peer-to-peer gaming connections more difficult.</value>
   </data>
   <data name="Settings_Connection_Protocol">
-    <value>Protocol</value>
+    <value>Протокол</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
   </data>
   <data name="Settings_Features">
-    <value>Features</value>
+    <value>Функції</value>
   </data>
   <data name="Settings_Features_KillSwitch">
     <value>Kill switch</value>
@@ -2416,7 +2416,7 @@ saved</value>
     <value>Increase your connection speed by up to 400% with performance enhancing technologies.</value>
   </data>
   <data name="Tray_Actions_ExitApplication">
-    <value>Exit</value>
+    <value>Вихід</value>
   </data>
   <data name="Tray_Actions_OpenApplication">
     <value>Open {0}</value>

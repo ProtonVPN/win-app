@@ -118,97 +118,97 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Account_VpnPlan_Free">
-    <value>Proton VPN Free</value>
+    <value>Brezplačen Proton VPN</value>
   </data>
   <data name="Cities">
-    <value>Kota</value>
+    <value>Mesta</value>
   </data>
   <data name="Common_Actions_Add">
-    <value>Tambahkan</value>
+    <value>Dodaj</value>
   </data>
   <data name="Common_Actions_Cancel">
-    <value>Batal</value>
+    <value>Prekliči</value>
   </data>
   <data name="Common_Actions_Close">
-    <value>Tutup</value>
+    <value>Zapri</value>
   </data>
   <data name="Common_Actions_Connect">
-    <value>Hubungkan</value>
+    <value>Poveži</value>
   </data>
   <data name="Common_Actions_ContactUs">
-    <value>Hubungi kami</value>
+    <value>Stopite v stik z nami</value>
   </data>
   <data name="Common_Actions_Disconnect">
-    <value>Putuskan</value>
+    <value>Prekini povezavo</value>
   </data>
   <data name="Common_Actions_Enable">
-    <value>Aktifkan</value>
+    <value>Omogoči</value>
   </data>
   <data name="Common_Actions_Reconnect">
-    <value>Hubungkan Ulang</value>
+    <value>Ponovno vzpostavite povezavo</value>
   </data>
   <data name="Common_Actions_Remove">
-    <value>Hapus</value>
+    <value>Odstrani</value>
   </data>
   <data name="Common_Actions_Update">
-    <value>Perbarui</value>
+    <value>Posodobi</value>
   </data>
   <data name="Common_Actions_Upgrade">
-    <value>Tingkatkan</value>
+    <value>Nadgradnja</value>
   </data>
   <data name="Common_Links_LearnMore">
-    <value>Pelajari lebih lanjut</value>
+    <value>Izvedi več</value>
   </data>
   <data name="Common_Message_Loading">
-    <value>Memuat...</value>
+    <value>Nalaganje ...</value>
   </data>
   <data name="Common_States_Off">
-    <value>Nonaktif</value>
+    <value>Izklopljeno</value>
   </data>
   <data name="Common_States_On">
-    <value>Aktif</value>
+    <value>Vklopljeno</value>
   </data>
   <data name="Connection_Error_MissingAuthCertificate">
-    <value>Proton VPN tidak dapat mengambil sertifikat autentikasi karena masalah jaringan.</value>
+    <value>Proton VPN ni uspel pridobiti potrdila o pristnosti zaradi težave z omrežjem.</value>
   </data>
   <data name="Connection_Error_NoServers">
-    <value>Tidak ada server yang tersedia untuk pilihan Anda saat ini. Silakan pilih opsi yang lain.</value>
+    <value>Za vaš izbor trenutno ni na voljo nobenega strežnika. Izberite drugo možnost.</value>
   </data>
   <data name="Connection_Error_NoTapAdapters">
-    <value>Adaptor jaringan tidak ditemukan.</value>
+    <value>Omrežna kartica manjka.</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
-    <value>Laporkan masalah</value>
+    <value>Prijava napake</value>
   </data>
   <data name="Connection_Error_RpcServerUnavailable">
-    <value>Proton VPN tidak dapat terhubung karena server RPC tidak tersedia pada sistem Anda.</value>
+    <value>Proton VPN se ne more povezati, ker strežnik RPC v vašem sistemu ni na voljo.</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
-    <value>Anda telah mencapai batas jumlah perangkat Anda. Silakan putuskan perangkat lain untuk menghubungkan perangkat ini atau tingkatkan akun Anda ke PLUS untuk menyambungkan hingga 10 perangkat secara bersamaan.</value>
+    <value>Dosegli ste največjo omejitev naprave. Prekinite povezavo z drugo napravo, da povežete to, ali nadgradite na PLUS, da omogočite povezavo do 10 naprav hkrati.</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedPaidUser">
-    <value>Anda telah mencapai batas jumlah perangkat Anda. Silakan putuskan perangkat lain untuk menghubungkan perangkat ini.</value>
+    <value>Dosegli ste največjo omejitev naprave. Odklopite drugo napravo, da povežete to.</value>
   </data>
   <data name="Connection_Error_TapAdapterInUse">
-    <value>Adaptor jaringan Anda sedang digunakan.</value>
+    <value>Vaša omrežna kartica je trenutno v uporabi.</value>
   </data>
   <data name="Connection_Error_TapRequiresUpdate">
-    <value>Versi adaptor jaringan telah usang.</value>
+    <value>Različica omrežne kartice je zastarela.</value>
   </data>
   <data name="Connection_Error_TlsCertificate">
-    <value>Terdapat masalah dalam proses validasi sertifikat server VPN, yang pada umumnya menandakan bahwa koneksi internet Anda sedang dibajak atau server yang hendak Anda tuju tidak diatur dengan benar. Dapatkan bantuan dari tim layanan dukungan kami dengan mengirimkan sebuah Laporan Masalah.</value>
+    <value>Prišlo je do težave pri preverjanju potrdila strežnika VPN, kar lahko pomeni, da je prišlo do poseganja v omrežno povezavo ali da ima strežnik, s katerim se poskušate povezati, težavo s konfiguracijo. Poiščite pomoč naše podpore strankam tako, da pošljete poročilo o težavi.</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>Kami tidak yakin akan apa yang terjadi. Silakan coba lagi atau hubungi tim layanan dukungan kami.</value>
+    <value>Ne vemo, kaj se je tukaj zgodilo. Poskusite znova ali se obrnite na našo ekipo za podporo strankam.</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
-    <value>Tampilkan solusi yang memungkinkan</value>
+    <value>Oglejte si možne rešitve</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
-    <value>Proton VPN tidak dapat terhubung karena adapter jaringan WireGuard telah digunakan. Silakan putuskan seluruh koneksi VPN yang sedang aktif dan coba lagi. Sebagai alternatif, cobalah untuk mengubah protokol jaringan melalui menu Pengaturan Lanjutan.</value>
+    <value>Proton VPN se ni mogel povezati, ker je omrežna kartica WireGuard že v uporabi. Prekinite povezavo vseh aktivnih VPN in poskusite znova. Druga možnost je, da protokole zamenjate v naprednih nastavitvah.</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
-    <value>Terpilih secara otomatis dari</value>
+    <value>Samodejno izbrano iz</value>
     <comment>Appears in the connection card for free users. A set of flags is displayed after the text (eg. Auto-selected from [us-flag] [jp-flag]...)</comment>
   </data>
   <data name="Connection_Intent_City_Server">
@@ -220,131 +220,149 @@
     <comment>Name of the server including country name. {0} is a placeholder for the country name. {1} is a placeholder for the number associated to the server (eg. Switzerland #20)</comment>
   </data>
   <data name="Connection_Via_SecureCore">
-    <value>via {0}</value>
+    <value>preko {0}</value>
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
   </data>
   <data name="Countries_All">
-    <value>Semua</value>
+    <value>Vse</value>
   </data>
   <data name="Countries_Cities">
-    <value>Kota</value>
+    <value>Mesta</value>
+  </data>
+  <data name="Countries_City_One">
+    <value>{0} mesto</value>
+  </data>
+  <data name="Countries_City_Two">
+    <value>{0} mesti</value>
+  </data>
+  <data name="Countries_City_Few">
+    <value>{0} mesta</value>
   </data>
   <data name="Countries_City_Other">
-    <value>{0} kota</value>
+    <value>{0} mest</value>
   </data>
   <data name="Countries_Connect">
-    <value>Hubungkan</value>
+    <value>Poveži</value>
     <comment>Connect button label on a country row in the countries tab</comment>
   </data>
   <data name="Countries_Fastest">
-    <value>Negara tercepat</value>
+    <value>Najhitrejša država</value>
   </data>
   <data name="Countries_Info">
-    <value>Informasi</value>
+    <value>Podrobnosti</value>
   </data>
   <data name="Countries_NoSearchResults">
-    <value>Tidak ada hasil yang ditemukan</value>
+    <value>Ni najdenih rezultatov</value>
   </data>
   <data name="Countries_NumberOfCities">
-    <value>Kota ({0})</value>
+    <value>Mesta ({0})</value>
     <comment>{0} represents the number of cities</comment>
   </data>
   <data name="Countries_NumberOfCountries">
-    <value>Negara ({0})</value>
+    <value>Države ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_NumberOfServers">
-    <value>Server ({0})</value>
+    <value>Strežniki ({0})</value>
     <comment>{0} represents a number of servers</comment>
   </data>
   <data name="Countries_P2P">
     <value>P2P</value>
   </data>
   <data name="Countries_P2PCountries">
-    <value>Negara P2P ({0})</value>
+    <value>Države P2P ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_P2P_Cities">
-    <value>Kota P2P ({0})</value>
+    <value>P2P mesta ({0})</value>
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
   <data name="Countries_Page_Title">
-    <value>Negara</value>
+    <value>Države</value>
   </data>
   <data name="Countries_SearchPlaceholder">
-    <value>Saya ingin menjelajah internet dari…</value>
+    <value>Želim brskati iz ...</value>
   </data>
   <data name="Countries_SecureCore">
     <value>Secure Core</value>
   </data>
   <data name="Countries_SecureCoreCountries">
-    <value>Negara Secure Core ({0})</value>
+    <value>„Secure Core” države({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_SecureCoreServers">
-    <value>Server Secure Core ({0})</value>
+    <value>Secure Core strežniki ({0})</value>
     <comment>{0} represents the number of severs</comment>
   </data>
+  <data name="Countries_Server_One">
+    <value>{0} strežnik</value>
+  </data>
+  <data name="Countries_Server_Two">
+    <value>{0} strežniki</value>
+  </data>
+  <data name="Countries_Server_Few">
+    <value>{0} strežniki</value>
+  </data>
   <data name="Countries_Server_Other">
-    <value>{0} server</value>
+    <value>{0} strežniki</value>
   </data>
   <data name="Countries_ServerLoad">
-    <value>Muatan server</value>
+    <value>Obremenitev strežnika</value>
   </data>
   <data name="Countries_SmartRouting">
-    <value>Smart Routing</value>
+    <value>Pametno usmerjanje</value>
   </data>
   <data name="Countries_SmartRouting_Description">
-    <value>Server yang melayani Anda secara fisik terletak di {0}, namun Anda akan terlihat seolah-olah Anda meramban dari {1}.</value>
+    <value>Strežniki se fizično nahajajo v {0}, vendar bo videti, kot da brskate iz {1}.</value>
     <comment>{0} and {1} represent country names.</comment>
   </data>
   <data name="Countries_Tor">
     <value>Tor</value>
   </data>
   <data name="Countries_TorCountries">
-    <value>Negara Tor ({0})</value>
+    <value>Države Tor ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_TorServers">
-    <value>Server Tor ({0})</value>
+    <value>Tor strežniki ({0})</value>
     <comment>{0} represents a number of tor servers in the country</comment>
   </data>
   <data name="Countries_TryDifferentKeyword">
-    <value>Silakan coba kata kunci pencarian lainnya</value>
+    <value>Poskusite z drugo ključno besedo</value>
   </data>
   <data name="Countries_ViaCountry">
-    <value>melalui {0}</value>
+    <value>preko {0}</value>
     <comment>{0} represents country name. For example: via Australia.</comment>
   </data>
   <data name="Country_Fastest">
-    <value>Negara tercepat</value>
+    <value>Najhitrejša država</value>
   </data>
   <data name="Country_val_AD">
-    <value>Andorra</value>
+    <value>Andora</value>
     <comment>The name of AD country</comment>
   </data>
   <data name="Country_val_AE">
-    <value>Uni Emirat Arab</value>
+    <value>Združeni arabski emirati</value>
     <comment>The name of AE country</comment>
   </data>
   <data name="Country_val_AF">
-    <value>Afghanistan</value>
+    <value>Afganistan</value>
     <comment>The name of AF country</comment>
   </data>
   <data name="Country_val_AG">
-    <value>Antigua dan Barbuda</value>
+    <value>Antigva in Barbuda</value>
     <comment>The name of AG country</comment>
   </data>
   <data name="Country_val_AI">
-    <value>Anguilla</value>
+    <value>Angvila</value>
     <comment>The name of AI country</comment>
   </data>
   <data name="Country_val_AL">
-    <value>Albania</value>
+    <value>Albanija</value>
     <comment>The name of AL country</comment>
   </data>
   <data name="Country_val_AM">
-    <value>Armenia</value>
+    <value>Armenija</value>
     <comment>The name of AM country</comment>
   </data>
   <data name="Country_val_AO">
@@ -352,7 +370,7 @@
     <comment>The name of AO country</comment>
   </data>
   <data name="Country_val_AQ">
-    <value>Antartika</value>
+    <value>Antarktika</value>
     <comment>The name of AQ country</comment>
   </data>
   <data name="Country_val_AR">
@@ -360,15 +378,15 @@
     <comment>The name of AR country</comment>
   </data>
   <data name="Country_val_AS">
-    <value>Samoa Amerika</value>
+    <value>Ameriška Samoa</value>
     <comment>The name of AS country</comment>
   </data>
   <data name="Country_val_AT">
-    <value>Austria</value>
+    <value>Avstrija</value>
     <comment>The name of AT country</comment>
   </data>
   <data name="Country_val_AU">
-    <value>Australia</value>
+    <value>Avstralija</value>
     <comment>The name of AU country</comment>
   </data>
   <data name="Country_val_AW">
@@ -376,15 +394,15 @@
     <comment>The name of AW country</comment>
   </data>
   <data name="Country_val_AX">
-    <value>Kepulauan Aland</value>
+    <value>Alandski otoki</value>
     <comment>The name of AX country</comment>
   </data>
   <data name="Country_val_AZ">
-    <value>Azerbaijan</value>
+    <value>Azerbajdžan</value>
     <comment>The name of AZ country</comment>
   </data>
   <data name="Country_val_BA">
-    <value>Bosnia dan Herzegovina</value>
+    <value>Bosna in Hercegovina</value>
     <comment>The name of BA country</comment>
   </data>
   <data name="Country_val_BB">
@@ -392,11 +410,11 @@
     <comment>The name of BB country</comment>
   </data>
   <data name="Country_val_BD">
-    <value>Bangladesh</value>
+    <value>Bangladeš</value>
     <comment>The name of BD country</comment>
   </data>
   <data name="Country_val_BE">
-    <value>Belgia</value>
+    <value>Belgija</value>
     <comment>The name of BE country</comment>
   </data>
   <data name="Country_val_BF">
@@ -404,11 +422,11 @@
     <comment>The name of BF country</comment>
   </data>
   <data name="Country_val_BG">
-    <value>Bulgaria</value>
+    <value>Bolgarija</value>
     <comment>The name of BG country</comment>
   </data>
   <data name="Country_val_BH">
-    <value>Bahrain</value>
+    <value>Bahrajn</value>
     <comment>The name of BH country</comment>
   </data>
   <data name="Country_val_BI">
@@ -420,47 +438,47 @@
     <comment>The name of BJ country</comment>
   </data>
   <data name="Country_val_BL">
-    <value>Saint Barthélemy</value>
+    <value>Sveti Bartolomej</value>
     <comment>The name of BL country</comment>
   </data>
   <data name="Country_val_BM">
-    <value>Bermuda</value>
+    <value>Bermudi</value>
     <comment>The name of BM country</comment>
   </data>
   <data name="Country_val_BN">
-    <value>Brunei Darussalam</value>
+    <value>Brunej</value>
     <comment>The name of BN country</comment>
   </data>
   <data name="Country_val_BO">
-    <value>Bolivia</value>
+    <value>Bolivija</value>
     <comment>The name of BO country</comment>
   </data>
   <data name="Country_val_BQ">
-    <value>Bonaire, Sint Eustatius dan Saba</value>
+    <value>Bonaire, Sveti Evstahij in Saba</value>
     <comment>The name of BQ country</comment>
   </data>
   <data name="Country_val_BR">
-    <value>Brazil</value>
+    <value>Brazilija</value>
     <comment>The name of BR country</comment>
   </data>
   <data name="Country_val_BS">
-    <value>Bahama</value>
+    <value>Bahami</value>
     <comment>The name of BS country</comment>
   </data>
   <data name="Country_val_BT">
-    <value>Bhutan</value>
+    <value>Butan</value>
     <comment>The name of BT country</comment>
   </data>
   <data name="Country_val_BV">
-    <value>Pulau Bouvet</value>
+    <value>Bouvetov otok</value>
     <comment>The name of BV country</comment>
   </data>
   <data name="Country_val_BW">
-    <value>Botswana</value>
+    <value>Bocvana</value>
     <comment>The name of BW country</comment>
   </data>
   <data name="Country_val_BY">
-    <value>Belarus</value>
+    <value>Belorusija</value>
     <comment>The name of BY country</comment>
   </data>
   <data name="Country_val_BZ">
@@ -472,15 +490,15 @@
     <comment>The name of CA country</comment>
   </data>
   <data name="Country_val_CC">
-    <value>Kepulauan Cocos (Keeling)</value>
+    <value>Kokosovi (Keelingovi) otoki</value>
     <comment>The name of CC country</comment>
   </data>
   <data name="Country_val_CD">
-    <value>Republik Demokratik Kongo</value>
+    <value>Kongo (Demokratična republika)</value>
     <comment>The name of CD country</comment>
   </data>
   <data name="Country_val_CF">
-    <value>Republik Afrika Tengah</value>
+    <value>Srednjeafriška republika</value>
     <comment>The name of CF country</comment>
   </data>
   <data name="Country_val_CG">
@@ -488,19 +506,19 @@
     <comment>The name of CG country</comment>
   </data>
   <data name="Country_val_CH">
-    <value>Swiss</value>
+    <value>Švica</value>
     <comment>The name of CH country</comment>
   </data>
   <data name="Country_val_CI">
-    <value>Pantai Gading</value>
+    <value>Slonokoščena obala</value>
     <comment>The name of CI country</comment>
   </data>
   <data name="Country_val_CK">
-    <value>Kepulauan Cook</value>
+    <value>Cookovi otoki</value>
     <comment>The name of CK country</comment>
   </data>
   <data name="Country_val_CL">
-    <value>Cili</value>
+    <value>Čile</value>
     <comment>The name of CL country</comment>
   </data>
   <data name="Country_val_CM">
@@ -508,15 +526,15 @@
     <comment>The name of CM country</comment>
   </data>
   <data name="Country_val_CN">
-    <value>Tiongkok</value>
+    <value>Kitajska</value>
     <comment>The name of CN country</comment>
   </data>
   <data name="Country_val_CO">
-    <value>Kolombia</value>
+    <value>Kolumbija</value>
     <comment>The name of CO country</comment>
   </data>
   <data name="Country_val_CR">
-    <value>Kosta Rika</value>
+    <value>Kostarika</value>
     <comment>The name of CR country</comment>
   </data>
   <data name="Country_val_CU">
@@ -524,7 +542,7 @@
     <comment>The name of CU country</comment>
   </data>
   <data name="Country_val_CV">
-    <value>Tanjung Verde</value>
+    <value>Zelenortski otoki</value>
     <comment>The name of CV country</comment>
   </data>
   <data name="Country_val_CW">
@@ -532,27 +550,27 @@
     <comment>The name of CW country</comment>
   </data>
   <data name="Country_val_CX">
-    <value>Pulau Christmas</value>
+    <value>Božični otok</value>
     <comment>The name of CX country</comment>
   </data>
   <data name="Country_val_CY">
-    <value>Siprus</value>
+    <value>Ciper</value>
     <comment>The name of CY country</comment>
   </data>
   <data name="Country_val_CZ">
-    <value>Ceko</value>
+    <value>Češka</value>
     <comment>The name of CZ country</comment>
   </data>
   <data name="Country_val_DE">
-    <value>Jerman</value>
+    <value>Nemčija</value>
     <comment>The name of DE country</comment>
   </data>
   <data name="Country_val_DJ">
-    <value>Djibouti</value>
+    <value>Džibuti</value>
     <comment>The name of DJ country</comment>
   </data>
   <data name="Country_val_DK">
-    <value>Denmark</value>
+    <value>Danska</value>
     <comment>The name of DK country</comment>
   </data>
   <data name="Country_val_DM">
@@ -560,63 +578,63 @@
     <comment>The name of DM country</comment>
   </data>
   <data name="Country_val_DO">
-    <value>Republik Dominika</value>
+    <value>Dominikanska republika</value>
     <comment>The name of DO country</comment>
   </data>
   <data name="Country_val_DZ">
-    <value>Aljazair</value>
+    <value>Alžirija</value>
     <comment>The name of DZ country</comment>
   </data>
   <data name="Country_val_EC">
-    <value>Ekuador</value>
+    <value>Ekvador</value>
     <comment>The name of EC country</comment>
   </data>
   <data name="Country_val_EE">
-    <value>Estonia</value>
+    <value>Estonija</value>
     <comment>The name of EE country</comment>
   </data>
   <data name="Country_val_EG">
-    <value>Mesir</value>
+    <value>Egipt</value>
     <comment>The name of EG country</comment>
   </data>
   <data name="Country_val_EH">
-    <value>Sahara Barat</value>
+    <value>Zahodna Sahara</value>
     <comment>The name of EH country</comment>
   </data>
   <data name="Country_val_ER">
-    <value>Eritrea</value>
+    <value>Eritreja</value>
     <comment>The name of ER country</comment>
   </data>
   <data name="Country_val_ES">
-    <value>Spanyol</value>
+    <value>Španija</value>
     <comment>The name of ES country</comment>
   </data>
   <data name="Country_val_ET">
-    <value>Ethiopia</value>
+    <value>Etiopija</value>
     <comment>The name of ET country</comment>
   </data>
   <data name="Country_val_FI">
-    <value>Finlandia</value>
+    <value>Finska</value>
     <comment>The name of FI country</comment>
   </data>
   <data name="Country_val_FJ">
-    <value>Fiji</value>
+    <value>Fidži</value>
     <comment>The name of FJ country</comment>
   </data>
   <data name="Country_val_FK">
-    <value>Kepulauan Falkland (Malvinas)</value>
+    <value>Falklandski otoki (Malvinas)</value>
     <comment>The name of FK country</comment>
   </data>
   <data name="Country_val_FM">
-    <value>Mikronesia</value>
+    <value>Mikronezija</value>
     <comment>The name of FM country</comment>
   </data>
   <data name="Country_val_FO">
-    <value>Kepulauan Faroe</value>
+    <value>Ferski otoki</value>
     <comment>The name of FO country</comment>
   </data>
   <data name="Country_val_FR">
-    <value>Perancis</value>
+    <value>Francija</value>
     <comment>The name of FR country</comment>
   </data>
   <data name="Country_val_GA">
@@ -624,7 +642,7 @@
     <comment>The name of GA country</comment>
   </data>
   <data name="Country_val_GB">
-    <value>Britania Raya</value>
+    <value>Združeno kraljestvo</value>
     <comment>The name of GB country</comment>
   </data>
   <data name="Country_val_GD">
@@ -632,11 +650,11 @@
     <comment>The name of GD country</comment>
   </data>
   <data name="Country_val_GE">
-    <value>Georgia</value>
+    <value>Gruzija</value>
     <comment>The name of GE country</comment>
   </data>
   <data name="Country_val_GF">
-    <value>Guyana Perancis</value>
+    <value>Francoska Gvajana</value>
     <comment>The name of GF country</comment>
   </data>
   <data name="Country_val_GG">
@@ -644,7 +662,7 @@
     <comment>The name of GG country</comment>
   </data>
   <data name="Country_val_GH">
-    <value>Ghana</value>
+    <value>Gana</value>
     <comment>The name of GH country</comment>
   </data>
   <data name="Country_val_GI">
@@ -652,47 +670,47 @@
     <comment>The name of GI country</comment>
   </data>
   <data name="Country_val_GL">
-    <value>Greenland</value>
+    <value>Grenlandija</value>
     <comment>The name of GL country</comment>
   </data>
   <data name="Country_val_GM">
-    <value>Gambia</value>
+    <value>Gambija</value>
     <comment>The name of GM country</comment>
   </data>
   <data name="Country_val_GN">
-    <value>Guinea</value>
+    <value>Gvineja</value>
     <comment>The name of GN country</comment>
   </data>
   <data name="Country_val_GP">
-    <value>Guadeloupe</value>
+    <value>Gvadelup</value>
     <comment>The name of GP country</comment>
   </data>
   <data name="Country_val_GQ">
-    <value>Guinea Ekuatorial</value>
+    <value>Ekvatorialna Gvineja</value>
     <comment>The name of GQ country</comment>
   </data>
   <data name="Country_val_GR">
-    <value>Yunani</value>
+    <value>Grčija</value>
     <comment>The name of GR country</comment>
   </data>
   <data name="Country_val_GS">
-    <value>Georgia Selatan dan Kepulauan Sandwich Selatan</value>
+    <value>Južna Georgija in Južni Sandwichevi otoki</value>
     <comment>The name of GS country</comment>
   </data>
   <data name="Country_val_GT">
-    <value>Guatemala</value>
+    <value>Gvatemala</value>
     <comment>The name of GT country</comment>
   </data>
   <data name="Country_val_GU">
-    <value>Guam</value>
+    <value>Gvam</value>
     <comment>The name of GU country</comment>
   </data>
   <data name="Country_val_GW">
-    <value>Guinea-Bissau</value>
+    <value>Gvineja Bissau</value>
     <comment>The name of GW country</comment>
   </data>
   <data name="Country_val_GY">
-    <value>Guyana</value>
+    <value>Gvajana</value>
     <comment>The name of GY country</comment>
   </data>
   <data name="Country_val_HK">
@@ -700,7 +718,7 @@
     <comment>The name of HK country</comment>
   </data>
   <data name="Country_val_HM">
-    <value>Pulau Heard dan Kepulauan McDonald</value>
+    <value>Heardov otok in McDonaldovi otoki</value>
     <comment>The name of HM country</comment>
   </data>
   <data name="Country_val_HN">
@@ -708,7 +726,7 @@
     <comment>The name of HN country</comment>
   </data>
   <data name="Country_val_HR">
-    <value>Kroasia</value>
+    <value>Hrvaška</value>
     <comment>The name of HR country</comment>
   </data>
   <data name="Country_val_HT">
@@ -716,31 +734,31 @@
     <comment>The name of HT country</comment>
   </data>
   <data name="Country_val_HU">
-    <value>Hungaria</value>
+    <value>Madžarska</value>
     <comment>The name of HU country</comment>
   </data>
   <data name="Country_val_ID">
-    <value>Indonesia</value>
+    <value>Indonezija</value>
     <comment>The name of ID country</comment>
   </data>
   <data name="Country_val_IE">
-    <value>Irlandia</value>
+    <value>Irska</value>
     <comment>The name of IE country</comment>
   </data>
   <data name="Country_val_IL">
-    <value>Israel</value>
+    <value>Izrael</value>
     <comment>The name of IL country</comment>
   </data>
   <data name="Country_val_IM">
-    <value>Pulau Mann</value>
+    <value>Otok Man</value>
     <comment>The name of IM country</comment>
   </data>
   <data name="Country_val_IN">
-    <value>India</value>
+    <value>Indija</value>
     <comment>The name of IN country</comment>
   </data>
   <data name="Country_val_IO">
-    <value>Teritori Samudera Hindia Inggris</value>
+    <value>Britansko ozemlje v Indijskem oceanu</value>
     <comment>The name of IO country</comment>
   </data>
   <data name="Country_val_IQ">
@@ -752,11 +770,11 @@
     <comment>The name of IR country</comment>
   </data>
   <data name="Country_val_IS">
-    <value>Islandia</value>
+    <value>Islandija</value>
     <comment>The name of IS country</comment>
   </data>
   <data name="Country_val_IT">
-    <value>Italia</value>
+    <value>Italija</value>
     <comment>The name of IT country</comment>
   </data>
   <data name="Country_val_JE">
@@ -764,27 +782,27 @@
     <comment>The name of JE country</comment>
   </data>
   <data name="Country_val_JM">
-    <value>Jamaika</value>
+    <value>Jamajka</value>
     <comment>The name of JM country</comment>
   </data>
   <data name="Country_val_JO">
-    <value>Yordania</value>
+    <value>Jordanija</value>
     <comment>The name of JO country</comment>
   </data>
   <data name="Country_val_JP">
-    <value>Jepang</value>
+    <value>Japonska</value>
     <comment>The name of JP country</comment>
   </data>
   <data name="Country_val_KE">
-    <value>Kenya</value>
+    <value>Kenija</value>
     <comment>The name of KE country</comment>
   </data>
   <data name="Country_val_KG">
-    <value>Kyrgyzstan</value>
+    <value>Kirgizistan</value>
     <comment>The name of KG country</comment>
   </data>
   <data name="Country_val_KH">
-    <value>Kamboja</value>
+    <value>Kambodža</value>
     <comment>The name of KH country</comment>
   </data>
   <data name="Country_val_KI">
@@ -792,31 +810,31 @@
     <comment>The name of KI country</comment>
   </data>
   <data name="Country_val_KM">
-    <value>Komoro</value>
+    <value>Komori</value>
     <comment>The name of KM country</comment>
   </data>
   <data name="Country_val_KN">
-    <value>Saint Kitts dan Nevis</value>
+    <value>Sveti Krištof in Nevis</value>
     <comment>The name of KN country</comment>
   </data>
   <data name="Country_val_KP">
-    <value>Korea Utara</value>
+    <value>Severna Koreja</value>
     <comment>The name of KP country</comment>
   </data>
   <data name="Country_val_KR">
-    <value>Korea Selatan</value>
+    <value>Južna Koreja</value>
     <comment>The name of KR country</comment>
   </data>
   <data name="Country_val_KW">
-    <value>Kuwait</value>
+    <value>Kuvajt</value>
     <comment>The name of KW country</comment>
   </data>
   <data name="Country_val_KY">
-    <value>Kepulauan Cayman</value>
+    <value>Kajmanji otoki</value>
     <comment>The name of KY country</comment>
   </data>
   <data name="Country_val_KZ">
-    <value>Kazakhstan</value>
+    <value>Kazahstan</value>
     <comment>The name of KZ country</comment>
   </data>
   <data name="Country_val_LA">
@@ -824,43 +842,43 @@
     <comment>The name of LA country</comment>
   </data>
   <data name="Country_val_LB">
-    <value>Lebanon</value>
+    <value>Libanon</value>
     <comment>The name of LB country</comment>
   </data>
   <data name="Country_val_LC">
-    <value>Saint Lucia</value>
+    <value>Sveta Lucija</value>
     <comment>The name of LC country</comment>
   </data>
   <data name="Country_val_LI">
-    <value>Liechtenstein</value>
+    <value>Lihtenštajn</value>
     <comment>The name of LI country</comment>
   </data>
   <data name="Country_val_LK">
-    <value>Sri Lanka</value>
+    <value>Šrilanka</value>
     <comment>The name of LK country</comment>
   </data>
   <data name="Country_val_LR">
-    <value>Liberia</value>
+    <value>Liberija</value>
     <comment>The name of LR country</comment>
   </data>
   <data name="Country_val_LS">
-    <value>Lesotho</value>
+    <value>Lesoto</value>
     <comment>The name of LS country</comment>
   </data>
   <data name="Country_val_LT">
-    <value>Lithuania</value>
+    <value>Litva</value>
     <comment>The name of LT country</comment>
   </data>
   <data name="Country_val_LU">
-    <value>Luxembourg</value>
+    <value>Luksemburg</value>
     <comment>The name of LU country</comment>
   </data>
   <data name="Country_val_LV">
-    <value>Latvia</value>
+    <value>Latvija</value>
     <comment>The name of LV country</comment>
   </data>
   <data name="Country_val_LY">
-    <value>Libya</value>
+    <value>Libija</value>
     <comment>The name of LY country</comment>
   </data>
   <data name="Country_val_MA">
@@ -872,15 +890,15 @@
     <comment>The name of MC country</comment>
   </data>
   <data name="Country_val_MD">
-    <value>Moldova</value>
+    <value>Moldavija</value>
     <comment>The name of MD country</comment>
   </data>
   <data name="Country_val_ME">
-    <value>Montenegro</value>
+    <value>Črna gora</value>
     <comment>The name of ME country</comment>
   </data>
   <data name="Country_val_MF">
-    <value>Saint Martin (Wilayah Perancis)</value>
+    <value>Sveti Martin (francoski del)</value>
     <comment>The name of MF country</comment>
   </data>
   <data name="Country_val_MG">
@@ -888,11 +906,11 @@
     <comment>The name of MG country</comment>
   </data>
   <data name="Country_val_MH">
-    <value>Kepulauan Marshall</value>
+    <value>Marshallovi otoki</value>
     <comment>The name of MH country</comment>
   </data>
   <data name="Country_val_MK">
-    <value>Makedonia</value>
+    <value>Makedonija</value>
     <comment>The name of MK country</comment>
   </data>
   <data name="Country_val_ML">
@@ -900,31 +918,31 @@
     <comment>The name of ML country</comment>
   </data>
   <data name="Country_val_MM">
-    <value>Myanmar</value>
+    <value>Mjanmar</value>
     <comment>The name of MM country</comment>
   </data>
   <data name="Country_val_MN">
-    <value>Mongolia</value>
+    <value>Mongolija</value>
     <comment>The name of MN country</comment>
   </data>
   <data name="Country_val_MO">
-    <value>Makau</value>
+    <value>Makav</value>
     <comment>The name of MO country</comment>
   </data>
   <data name="Country_val_MP">
-    <value>Kepulauan Mariana Utara</value>
+    <value>Severni Marijanski otoki</value>
     <comment>The name of MP country</comment>
   </data>
   <data name="Country_val_MQ">
-    <value>Martinique</value>
+    <value>Martinik</value>
     <comment>The name of MQ country</comment>
   </data>
   <data name="Country_val_MR">
-    <value>Mauritania</value>
+    <value>Mavretanija</value>
     <comment>The name of MR country</comment>
   </data>
   <data name="Country_val_MS">
-    <value>Montserrat</value>
+    <value>Monserat</value>
     <comment>The name of MS country</comment>
   </data>
   <data name="Country_val_MT">
@@ -932,23 +950,23 @@
     <comment>The name of MT country</comment>
   </data>
   <data name="Country_val_MU">
-    <value>Mauritius</value>
+    <value>Mavricij</value>
     <comment>The name of MU country</comment>
   </data>
   <data name="Country_val_MV">
-    <value>Maladewa</value>
+    <value>Maldivi</value>
     <comment>The name of MV country</comment>
   </data>
   <data name="Country_val_MW">
-    <value>Malawi</value>
+    <value>Malavi</value>
     <comment>The name of MW country</comment>
   </data>
   <data name="Country_val_MX">
-    <value>Meksiko</value>
+    <value>Mehika</value>
     <comment>The name of MX country</comment>
   </data>
   <data name="Country_val_MY">
-    <value>Malaysia</value>
+    <value>Malezija</value>
     <comment>The name of MY country</comment>
   </data>
   <data name="Country_val_MZ">
@@ -956,11 +974,11 @@
     <comment>The name of MZ country</comment>
   </data>
   <data name="Country_val_NA">
-    <value>Namibia</value>
+    <value>Namibija</value>
     <comment>The name of NA country</comment>
   </data>
   <data name="Country_val_NC">
-    <value>Kaledonia Baru</value>
+    <value>Nova Kaledonija</value>
     <comment>The name of NC country</comment>
   </data>
   <data name="Country_val_NE">
@@ -968,23 +986,23 @@
     <comment>The name of NE country</comment>
   </data>
   <data name="Country_val_NF">
-    <value>Pulau Norfolk</value>
+    <value>Otok Norfolk</value>
     <comment>The name of NF country</comment>
   </data>
   <data name="Country_val_NG">
-    <value>Nigeria</value>
+    <value>Nigerija</value>
     <comment>The name of NG country</comment>
   </data>
   <data name="Country_val_NI">
-    <value>Nikaragua</value>
+    <value>Nikaragva</value>
     <comment>The name of NI country</comment>
   </data>
   <data name="Country_val_NL">
-    <value>Belanda</value>
+    <value>Nizozemska</value>
     <comment>The name of NL country</comment>
   </data>
   <data name="Country_val_NO">
-    <value>Norwegia</value>
+    <value>Norveška</value>
     <comment>The name of NO country</comment>
   </data>
   <data name="Country_val_NP">
@@ -1000,7 +1018,7 @@
     <comment>The name of NU country</comment>
   </data>
   <data name="Country_val_NZ">
-    <value>Selandia Baru</value>
+    <value>Nova Zelandija</value>
     <comment>The name of NZ country</comment>
   </data>
   <data name="Country_val_OM">
@@ -1016,15 +1034,15 @@
     <comment>The name of PE country</comment>
   </data>
   <data name="Country_val_PF">
-    <value>Polinesia Perancis</value>
+    <value>Francoska Polinezija</value>
     <comment>The name of PF country</comment>
   </data>
   <data name="Country_val_PG">
-    <value>Papua Nugini</value>
+    <value>Papuanska Nova Gvineja</value>
     <comment>The name of PG country</comment>
   </data>
   <data name="Country_val_PH">
-    <value>Filipina</value>
+    <value>Filipini</value>
     <comment>The name of PH country</comment>
   </data>
   <data name="Country_val_PK">
@@ -1032,11 +1050,11 @@
     <comment>The name of PK country</comment>
   </data>
   <data name="Country_val_PL">
-    <value>Polandia</value>
+    <value>Poljska</value>
     <comment>The name of PL country</comment>
   </data>
   <data name="Country_val_PM">
-    <value>Saint Pierre dan Miquelon</value>
+    <value>Sveta Peter in Mihael</value>
     <comment>The name of PM country</comment>
   </data>
   <data name="Country_val_PN">
@@ -1044,7 +1062,7 @@
     <comment>The name of PN country</comment>
   </data>
   <data name="Country_val_PR">
-    <value>Puerto Riko</value>
+    <value>Portoriko</value>
     <comment>The name of PR country</comment>
   </data>
   <data name="Country_val_PS">
@@ -1052,51 +1070,51 @@
     <comment>The name of PS country</comment>
   </data>
   <data name="Country_val_PT">
-    <value>Portugal</value>
+    <value>Portugalska</value>
     <comment>The name of PT country</comment>
   </data>
   <data name="Country_val_PW">
-    <value>Palau</value>
+    <value>Palav</value>
     <comment>The name of PW country</comment>
   </data>
   <data name="Country_val_PY">
-    <value>Paraguay</value>
+    <value>Paragvaj</value>
     <comment>The name of PY country</comment>
   </data>
   <data name="Country_val_QA">
-    <value>Qatar</value>
+    <value>Katar</value>
     <comment>The name of QA country</comment>
   </data>
   <data name="Country_val_RE">
-    <value>Réunion</value>
+    <value>Reunion</value>
     <comment>The name of RE country</comment>
   </data>
   <data name="Country_val_RO">
-    <value>Romania</value>
+    <value>Romunija</value>
     <comment>The name of RO country</comment>
   </data>
   <data name="Country_val_RS">
-    <value>Serbia</value>
+    <value>Srbija</value>
     <comment>The name of RS country</comment>
   </data>
   <data name="Country_val_RU">
-    <value>Rusia</value>
+    <value>Rusija</value>
     <comment>The name of RU country</comment>
   </data>
   <data name="Country_val_RW">
-    <value>Rwanda</value>
+    <value>Ruanda</value>
     <comment>The name of RW country</comment>
   </data>
   <data name="Country_val_SA">
-    <value>Arab Saudi</value>
+    <value>Saudova Arabija</value>
     <comment>The name of SA country</comment>
   </data>
   <data name="Country_val_SB">
-    <value>Kepulauan Solomon</value>
+    <value>Salomonovi otoki</value>
     <comment>The name of SB country</comment>
   </data>
   <data name="Country_val_SC">
-    <value>Seychelles</value>
+    <value>Sejšeli</value>
     <comment>The name of SC country</comment>
   </data>
   <data name="Country_val_SD">
@@ -1104,27 +1122,27 @@
     <comment>The name of SD country</comment>
   </data>
   <data name="Country_val_SE">
-    <value>Swedia</value>
+    <value>Švedska</value>
     <comment>The name of SE country</comment>
   </data>
   <data name="Country_val_SG">
-    <value>Singapura</value>
+    <value>Singapur</value>
     <comment>The name of SG country</comment>
   </data>
   <data name="Country_val_SH">
-    <value>Saint Helena, Ascension dan Tristan da Cunha</value>
+    <value>Sveta Helena, Ascension in Tristan da Cunha</value>
     <comment>The name of SH country</comment>
   </data>
   <data name="Country_val_SI">
-    <value>Slovenia</value>
+    <value>Slovenija</value>
     <comment>The name of SI country</comment>
   </data>
   <data name="Country_val_SJ">
-    <value>Svalbard dan Jan Mayen</value>
+    <value>Svalbard in Jan Mayen</value>
     <comment>The name of SJ country</comment>
   </data>
   <data name="Country_val_SK">
-    <value>Slovakia</value>
+    <value>Slovaška</value>
     <comment>The name of SK country</comment>
   </data>
   <data name="Country_val_SL">
@@ -1140,47 +1158,47 @@
     <comment>The name of SN country</comment>
   </data>
   <data name="Country_val_SO">
-    <value>Somalia</value>
+    <value>Somalija</value>
     <comment>The name of SO country</comment>
   </data>
   <data name="Country_val_SR">
-    <value>Suriname</value>
+    <value>Surinam</value>
     <comment>The name of SR country</comment>
   </data>
   <data name="Country_val_SS">
-    <value>Sudan Selatan</value>
+    <value>Južni Sudan</value>
     <comment>The name of SS country</comment>
   </data>
   <data name="Country_val_ST">
-    <value>Sao Tome dan Principe</value>
+    <value>Sveti Tomaž in Princ</value>
     <comment>The name of ST country</comment>
   </data>
   <data name="Country_val_SV">
-    <value>El Salvador</value>
+    <value>Salvador</value>
     <comment>The name of SV country</comment>
   </data>
   <data name="Country_val_SX">
-    <value>Sint Maarten (Wilayah Belanda)</value>
+    <value>Sint Maarten (Nizozemski del)</value>
     <comment>The name of SX country</comment>
   </data>
   <data name="Country_val_SY">
-    <value>Republik Arab Suriah</value>
+    <value>Sirija Arabska republika</value>
     <comment>The name of SY country</comment>
   </data>
   <data name="Country_val_SZ">
-    <value>Eswatini</value>
+    <value>Esvatini</value>
     <comment>The name of SZ country</comment>
   </data>
   <data name="Country_val_TC">
-    <value>Kepulauan Turks dan Caicos</value>
+    <value>Otoki Turks in Caicos</value>
     <comment>The name of TC country</comment>
   </data>
   <data name="Country_val_TD">
-    <value>Chad</value>
+    <value>Čad</value>
     <comment>The name of TD country</comment>
   </data>
   <data name="Country_val_TF">
-    <value>Teritori Selatan Perancis</value>
+    <value>Francoska južna ozemlja</value>
     <comment>The name of TF country</comment>
   </data>
   <data name="Country_val_TG">
@@ -1188,11 +1206,11 @@
     <comment>The name of TG country</comment>
   </data>
   <data name="Country_val_TH">
-    <value>Thailand</value>
+    <value>Tajska</value>
     <comment>The name of TH country</comment>
   </data>
   <data name="Country_val_TJ">
-    <value>Tajikistan</value>
+    <value>Tadžikistan</value>
     <comment>The name of TJ country</comment>
   </data>
   <data name="Country_val_TK">
@@ -1200,7 +1218,7 @@
     <comment>The name of TK country</comment>
   </data>
   <data name="Country_val_TL">
-    <value>Timor-Leste</value>
+    <value>Vzhodni Timor</value>
     <comment>The name of TL country</comment>
   </data>
   <data name="Country_val_TM">
@@ -1208,7 +1226,7 @@
     <comment>The name of TM country</comment>
   </data>
   <data name="Country_val_TN">
-    <value>Tunisia</value>
+    <value>Tunizija</value>
     <comment>The name of TN country</comment>
   </data>
   <data name="Country_val_TO">
@@ -1216,11 +1234,11 @@
     <comment>The name of TO country</comment>
   </data>
   <data name="Country_val_TR">
-    <value>Turki</value>
+    <value>Turčija</value>
     <comment>The name of TR country</comment>
   </data>
   <data name="Country_val_TT">
-    <value>Trinidad dan Tobago</value>
+    <value>Trinidad in Tobago</value>
     <comment>The name of TT country</comment>
   </data>
   <data name="Country_val_TV">
@@ -1228,15 +1246,15 @@
     <comment>The name of TV country</comment>
   </data>
   <data name="Country_val_TW">
-    <value>Taiwan</value>
+    <value>Tajvan</value>
     <comment>The name of TW country</comment>
   </data>
   <data name="Country_val_TZ">
-    <value>Tanzania</value>
+    <value>Tanzanija</value>
     <comment>The name of TZ country</comment>
   </data>
   <data name="Country_val_UA">
-    <value>Ukraina</value>
+    <value>Ukrajina</value>
     <comment>The name of UA country</comment>
   </data>
   <data name="Country_val_UG">
@@ -1244,19 +1262,19 @@
     <comment>The name of UG country</comment>
   </data>
   <data name="Country_val_UK">
-    <value>Britania Raya</value>
+    <value>Združeno kraljestvo</value>
     <comment>The name of UK country</comment>
   </data>
   <data name="Country_val_UM">
-    <value>Kepulauan Terluar Kecil Amerika Serikat</value>
+    <value>Manjši zunanji otoki Združenih držav</value>
     <comment>The name of UM country</comment>
   </data>
   <data name="Country_val_US">
-    <value>Amerika Serikat</value>
+    <value>Združene države Amerike</value>
     <comment>The name of US country</comment>
   </data>
   <data name="Country_val_UY">
-    <value>Uruguay</value>
+    <value>Urugvaj</value>
     <comment>The name of UY country</comment>
   </data>
   <data name="Country_val_UZ">
@@ -1264,11 +1282,11 @@
     <comment>The name of UZ country</comment>
   </data>
   <data name="Country_val_VA">
-    <value>Kota Vatikan</value>
+    <value>Vatikanska mestna država</value>
     <comment>The name of VA country</comment>
   </data>
   <data name="Country_val_VC">
-    <value>Saint Vincent dan Grenadine</value>
+    <value>Sveti Vincencij in Grenadine</value>
     <comment>The name of VC country</comment>
   </data>
   <data name="Country_val_VE">
@@ -1276,11 +1294,11 @@
     <comment>The name of VE country</comment>
   </data>
   <data name="Country_val_VG">
-    <value>Kepulauan Virgin, Britania</value>
+    <value>Britanski Deviški otoki</value>
     <comment>The name of VG country</comment>
   </data>
   <data name="Country_val_VI">
-    <value>Kepulauan Virgin, AS</value>
+    <value>Ameriški Deviški otoki</value>
     <comment>The name of VI country</comment>
   </data>
   <data name="Country_val_VN">
@@ -1292,7 +1310,7 @@
     <comment>The name of VU country</comment>
   </data>
   <data name="Country_val_WF">
-    <value>Wallis dan Futuna</value>
+    <value>Wallis in Futuna</value>
     <comment>The name of WF country</comment>
   </data>
   <data name="Country_val_WS">
@@ -1300,7 +1318,7 @@
     <comment>The name of WS country</comment>
   </data>
   <data name="Country_val_YE">
-    <value>Yaman</value>
+    <value>Jemen</value>
     <comment>The name of YE country</comment>
   </data>
   <data name="Country_val_YT">
@@ -1308,234 +1326,252 @@
     <comment>The name of YT country</comment>
   </data>
   <data name="Country_val_ZA">
-    <value>Afrika Selatan</value>
+    <value>Južna Afrika</value>
     <comment>The name of ZA country</comment>
   </data>
   <data name="Country_val_ZM">
-    <value>Zambia</value>
+    <value>Zambija</value>
     <comment>The name of ZM country</comment>
   </data>
   <data name="Country_val_ZW">
-    <value>Zimbabwe</value>
+    <value>Zimbabve</value>
     <comment>The name of ZW country</comment>
   </data>
   <data name="Country_val_ZZ">
-    <value>Tidak Diketahui</value>
+    <value>Neznano</value>
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
-    <value>Dapatkan pengubahan server tanpa batas dengan VPN Plus.</value>
+    <value>Pridobite neomejene spremembe strežnika z VPN Plus.</value>
   </data>
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
-    <value>Anda telah mencapai batas pengubahan server Free untuk saat ini</value>
+    <value>Dosegli ste trenutno največje število brezplačnih sprememb strežnika</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_One">
+    <value>Proton Free vas samodejno poveže z najhitrejšim razpoložljivim brezplačnim strežnikom iz {0} proste države. To bo običajno najbližji strežnik vaši lokaciji.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_Two">
+    <value>Proton Free vas samodejno poveže z najhitrejšim razpoložljivim brezplačnim strežnikom iz {0} prostih držav. To bo običajno najbližji strežnik vaši lokaciji.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_Few">
+    <value>Proton Free vas samodejno poveže z najhitrejšim razpoložljivim brezplačnim strežnikom iz {0} prostih držav. To bo običajno najbližji strežnik vaši lokaciji.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
-    <value>Proton Free akan menghubungkan Anda secara otomatis ke server tercepat yang tersedia dari {0} negara gratis kami. Pada umumnya, server ini adalah server yang terletak paling dekat dengan lokasi Anda.</value>
+    <value>Proton Free vas samodejno poveže z najhitrejšim razpoložljivim brezplačnim strežnikom iz {0} prostih držav. To bo običajno najbližji strežnik vaši lokaciji.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_One">
+    <value>Država z brezplačnim strežnikom ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_Two">
+    <value>Državi z brezplačnim strežnikom ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_Few">
+    <value>Države z brezplačnim strežnikom ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Other">
-    <value>Negara server Free ({0})</value>
+    <value>Države z brezplačnim strežnikom ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Title">
-    <value>Koneksi Free</value>
+    <value>Brezplačne povezave</value>
   </data>
   <data name="Dialogs_FreeConnections_WorlwideCoverageUpsell">
-    <value>Dapatkan cakupan server di seluruh dunia dengan VPN Plus</value>
+    <value>Zagotovite si svetovno pokritost z VPN Plus</value>
   </data>
   <data name="Dialogs_Latency_Description">
-    <value>Latensi menunjukkan waktu yang dibutuhkan oleh suatu server membalas permintaan.
+    <value>Zakasnitev prikazuje, koliko časa potrebuje, da se strežnik odzove na zahteve.
 
-Latensi yang tinggi dapat memperlambat koneksi Anda.</value>
+Visoka zakasnitev lahko upočasni vašo povezavo.</value>
   </data>
   <data name="Dialogs_Latency_HighRange_Description">
-    <value>VPN dapat berjalan lebih lambat dari biasanya</value>
+    <value>VPN lahko deluje počasneje kot običajno</value>
   </data>
   <data name="Dialogs_Latency_HighRange_Title">
-    <value>Tinggi (150+ ms)</value>
+    <value>Visoko (150 ms+)</value>
   </data>
   <data name="Dialogs_Latency_LowRange_Description">
-    <value>Kecepatan kilat</value>
+    <value>Bliskovite hitrosti</value>
   </data>
   <data name="Dialogs_Latency_LowRange_Title">
-    <value>Rendah (1–50 ms)</value>
+    <value>Nizka (1 ms - 50 ms)</value>
   </data>
   <data name="Dialogs_Latency_MediumRange_Description">
-    <value>Tidak berpengaruh pada kecepatan VPN secara garis besar</value>
+    <value>Ni verjetnosti, da bi vplivalo na hitrost VPN</value>
   </data>
   <data name="Dialogs_Latency_MediumRange_Title">
-    <value>Sedang (50–150 ms)</value>
+    <value>Srednje (50 ms - 150 ms)</value>
   </data>
   <data name="Dialogs_Latency_Title">
-    <value>Apa itu latensi?</value>
+    <value>Kaj je zakasnitev?</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
-    <value>Cara torrent dengan P2P</value>
+    <value>Kako torrentati s P2P</value>
   </data>
   <data name="Dialogs_P2P_Title">
     <value>P2P</value>
   </data>
   <data name="Dialogs_P2P_WhatIsP2PServer">
-    <value>Apa itu server P2P?</value>
+    <value>Kaj je strežnik P2P?</value>
   </data>
   <data name="Dialogs_P2P_WhatIsP2PServer_Description">
-    <value>Server VPN P2P (peer-to-peer) membuka pemblokiran situs torrent.</value>
+    <value>P2P (peer-to-peer) strežniki VPN od blokirajo torrent strani.</value>
   </data>
   <data name="Dialogs_P2P_WhatIsTorrenting">
-    <value>Apa itu torrenting?</value>
+    <value>Kaj je torrenting?</value>
   </data>
   <data name="Dialogs_P2P_WhatIsTorrenting_Description">
-    <value>Torrent merupakan proses pembagian dan pengunduhan berkas besar melalui jaringan peer-to-peer (P2P).</value>
+    <value>Hitro deljenje in nalaganje velikih datotek prek omrežja enakovrednih (P2P).</value>
   </data>
   <data name="Dialogs_P2P_WhyUse">
-    <value>Mengapa menggunakan server P2P saat melakukan torrent?</value>
+    <value>Zakaj uporabljati strežnik P2P pri torrenting?</value>
   </data>
   <data name="Dialogs_P2P_WhyUse_Description">
-    <value>• Kecepatan unggah dan unduh yang ditingkatkan
-• Tanpa catatan aktivitas
-• Sembunyikan alamat IP Anda dari penyedia layanan dan komputer lain pada jaringan Anda</value>
+    <value>• Povečana hitrost nalaganja in prenosa
+• Ni dnevnikov dejavnosti
+• Skrijte svoj naslov IP pred ponudnikom storitev in P2P uporabniki</value>
   </data>
   <data name="Dialogs_Protocol_Description">
-    <value>Protokol merupakan serangkaian instruksi yang diikuti oleh perangkat Anda untuk dapat terhubung dan berkomunikasi dengan server.</value>
+    <value>Protokol je nabor navodil, ki jim vaša naprava sledi za povezavo in komunikacijo s strežnikom.</value>
   </data>
   <data name="Dialogs_Protocol_SwitchHeader">
-    <value>Ubah Protokol VPN</value>
+    <value>Preklopite protokol VPN</value>
   </data>
   <data name="Dialogs_Protocol_Title">
-    <value>Apa itu protokol VPN?</value>
+    <value>Kaj je protokol VPN?</value>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Email">
-    <value>Email</value>
+    <value>E-pošta</value>
     <comment>The label for user e-mail address in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Email_Description">
-    <value>contoh@domain.com</value>
+    <value>primer@domena.si</value>
     <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
-    <value>Kirim log error</value>
+    <value>Pošlji dnevnik z napakami</value>
     <comment>The label for the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description">
-    <value>Log error membantu kami dalam melihat apa yang salah dan tindakan apa saja yang menyebabkan masalah Anda. Kami hanya akan menggunakan log ini untuk membantu insinyur kami memperbaiki bug yang ada.</value>
+    <value>Dnevniki napak nam pokažejo, kaj je šlo narobe in katera dejanja so privedla do vaše težave. Uporabljali jih bomo le za pomoč našim inženirjem pri odpravljanju napak.</value>
     <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_Header">
-    <value>Masalah apa yang Anda hadapi?</value>
+    <value>Kaj je narobe?</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes">
-    <value>Solusi instan</value>
+    <value>Hitri popravki</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes_Footer">
-    <value>Tidak membantu?</value>
+    <value>Ni delovalo?</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes_Header">
-    <value>Tips berikut dapat membantu untuk menyelesaikan masalah Anda dengan cepat.</value>
+    <value>Ti nasveti vam lahko pomagajo rešiti vašo težavo hitreje.</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_DoneAction">
-    <value>Selesai</value>
+    <value>Končano</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Fail">
-    <value>Terdapat suatu kesalahan</value>
+    <value>Nekaj je šlo narobe</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Fail_Description">
-    <value>Kami tidak dapat mengirimkan laporan Anda. Silakan periksa koneksi Anda dan coba lagi.</value>
+    <value>Vašega poročila nismo mogli poslati. Preverite povezavo in poskusite znova.</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_RetryAction">
-    <value>Coba lagi</value>
+    <value>Poskusite ponovno</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Success">
-    <value>Laporan terkirim</value>
+    <value>Poročilo poslano</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Success_Description">
-    <value>Terima kasih atas masukan Anda. Kami akan menghubungi Anda kembali sesegera mungkin.</value>
+    <value>Hvala za vaše povratne informacije. Odgovorili vam bomo takoj, ko bomo lahko.</value>
   </data>
   <data name="Dialogs_ReportIssue_SendReport">
-    <value>Kirim laporan</value>
+    <value>Pošlji poročilo</value>
   </data>
   <data name="Dialogs_ReportIssue_Steps">
-    <value>Langkah {0} dari {1}</value>
+    <value>Korak {0} od {1}</value>
     <comment>Steps header for the Report an issue dialog. {0} is a placeholder for the current step. {1} is a placeholder for the total number of steps. (eg. Step 1 of 3)</comment>
   </data>
   <data name="Dialogs_ReportIssue_Title">
-    <value>Laporkan masalah</value>
+    <value>Prijava napake</value>
   </data>
   <data name="Dialogs_SecureCore_AdvancedPrivacy">
-    <value>Privasi lanjutan</value>
+    <value>Napredna zasebnost</value>
   </data>
   <data name="Dialogs_SecureCore_Description">
-    <value>Secure Core menghubungkan Anda ke server tujuan melalui server VPN kedua yang berkeamanan maksimum.
+    <value>Secure Core vas poveže z vašim ciljnim strežnikom prek drugega, maksimalno varnega strežnika VPN.
 
-Perlindungan tingkat tinggi ini dapat meningkatkan latensi dan menurunkan kecepatan.</value>
+Ta višja raven zaščite lahko povzroči večjo zakasnitev in nižje hitrosti.</value>
   </data>
   <data name="Dialogs_SecureCore_HighPrivacy">
-    <value>Privasi tinggi</value>
+    <value>Visoka zasebnost</value>
   </data>
   <data name="Dialogs_SecureCore_HigherLatency">
-    <value>Latensi tinggi</value>
+    <value>Večja zakasnitev</value>
   </data>
   <data name="Dialogs_SecureCore_LowerLatency">
-    <value>Latensi rendah</value>
+    <value>Manjša zakasnitev</value>
   </data>
   <data name="Dialogs_SecureCore_SecureCoreConnection">
-    <value>Koneksi VPN
-Secure Core</value>
+    <value>Secure Core
+VPN povezava</value>
   </data>
   <data name="Dialogs_SecureCore_StandardConnection">
-    <value>Koneksi VPN
-Standar</value>
+    <value>Standardna
+VPN povezava</value>
   </data>
   <data name="Dialogs_SecureCore_Title">
     <value>Secure Core</value>
   </data>
   <data name="Dialogs_ServerLoad_Description">
-    <value>Muatan server menunjukkan seberapa sibuk suatu server relatif terhadap kapasitas maksimumnya. 
+    <value>Obremenitev strežnika kaže, kako blizu je strežnik največjih zmogljivosti.
 
-Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
+Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
   </data>
   <data name="Dialogs_ServerLoad_HighRange_Description">
-    <value>VPN dapat berjalan lebih lambat dari biasanya</value>
+    <value>VPN lahko deluje počasneje kot običajno</value>
   </data>
   <data name="Dialogs_ServerLoad_HighRange_Title">
-    <value>Tinggi (91-100%)</value>
+    <value>Visoka (91-100 %)</value>
   </data>
   <data name="Dialogs_ServerLoad_LowRange_Description">
-    <value>Kecepatan kilat</value>
+    <value>Bliskovite hitrosti</value>
   </data>
   <data name="Dialogs_ServerLoad_LowRange_Title">
-    <value>Rendah (1-75%)</value>
+    <value>Nizka (1-75 %)</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Description">
-    <value>Tidak berpengaruh pada kecepatan VPN secara garis besar</value>
+    <value>Ni verjetnosti, da bi vplivalo na hitrost VPN</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Title">
-    <value>Sedang (76–90%)</value>
+    <value>Srednja (76-90 %)</value>
   </data>
   <data name="Dialogs_ServerLoad_Title">
-    <value>Apa itu muatan server?</value>
+    <value>Kaj je obremenitev strežnika?</value>
   </data>
   <data name="Dialogs_SmartRouting_Description">
-    <value>Smart Routing menggunakan server virtual untuk menyediakan VPN di negara dengan pembatasan internet yang ketat.
+    <value>Pametno usmerjanje uporablja virtualne strežnike za zagotavljanje pokritosti VPN v težko dostopnih državah.
 
-Pada saat Anda terhubung ke server dengan Smart Routing, Anda akan terlihat seolah-olah Anda sedang menjelajah dari negara tujuan Anda, meskipun server yang melayani Anda secara fisik berada di tempat lain.  
+Ko se povežete s strežnikom Smart Routing, se zdi, da brskate v ciljni državi, čeprav je fizični strežnik drugje.
 
-Smart Routing pada umumnya digunakan untuk menghindari undang-undang anti-privasi dan bentuk sensor lainnya.</value>
+Pametno usmerjanje se običajno uporablja za izogibanje zakonom proti zasebnosti in drugim oblikam cenzure.</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
   </data>
   <data name="Dialogs_Tor_Description">
-    <value>Hubungkan ke server Tor untuk mengakses layanan tersembunyi dan situs onion menggunakan browser mana pun.</value>
+    <value>Povežite se s strežnikom Tor za dostop do skritih storitev in Tor spletnih mest s katerim koli brskalnikom.</value>
   </data>
   <data name="Dialogs_Tor_LearnMore">
-    <value>Cara mengakses jaringan Tor</value>
+    <value>Kako dostopati do omrežja Tor</value>
   </data>
   <data name="Dialogs_Tor_Title">
     <value>Tor</value>
   </data>
   <data name="Dialogs_Welcome_Message">
-    <value>Kami sedang mempersiapkan pengalaman VPN Anda yang baru. Proses ini hanya akan memakan waktu sejenak.</value>
+    <value>Pripravljamo vašo novo izkušnjo z VPN. To traja le trenutek.</value>
   </data>
   <data name="Dialogs_Welcome_Title">
-    <value>Selamat datang di Proton VPN</value>
+    <value>Dobrodošli v Proton VPN</value>
   </data>
   <data name="Format_Milliseconds">
     <value>{0}ms</value>
@@ -1570,55 +1606,55 @@ Smart Routing pada umumnya digunakan untuk menghindari undang-undang anti-privas
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
-    <value>{0} B/dtk</value>
+    <value>{0} B/s</value>
     <comment>Format a speed in Bytes per second. {0} is a place holder for the number of Bytes per second (eg. 30 B/s)</comment>
   </data>
   <data name="Format_Speed_ExabytesPerSecond">
-    <value>{0} EB/dtk</value>
+    <value>{0} EB/s</value>
     <comment>Format a speed in Exabytes per second. {0} is a place holder for the number of Exabytes per second (eg. 30 EB/s)</comment>
   </data>
   <data name="Format_Speed_GigabytesPerSecond">
-    <value>{0} GB/dtk</value>
+    <value>{0} GB/s</value>
     <comment>Format a speed in Gigabytes per second. {0} is a place holder for the number of Gigabytes per second (eg. 30 GB/s)</comment>
   </data>
   <data name="Format_Speed_KilobytesPerSecond">
-    <value>{0} KB/dtk</value>
+    <value>{0} KB/s</value>
     <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
   </data>
   <data name="Format_Speed_MegabytesPerSecond">
-    <value>{0} MB/dtk</value>
+    <value>{0} MB/s</value>
     <comment>Format a speed in Megabytes per second. {0} is a place holder for the number of Megabytes per second (eg. 30 MB/s)</comment>
   </data>
   <data name="Format_Speed_PetabytesPerSecond">
-    <value>{0} PB/dtk</value>
+    <value>{0} PB/s</value>
     <comment>Format a speed in Petabytes per second. {0} is a place holder for the number of Petabytes per second (eg. 30 PB/s)</comment>
   </data>
   <data name="Format_Speed_TerabytesPerSecond">
-    <value>{0} TB/dtk</value>
+    <value>{0} TB/s</value>
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
   <data name="Format_Time_Day">
-    <value>{0} hari</value>
+    <value>{0} dan</value>
     <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
   </data>
   <data name="Format_Time_DayHours">
-    <value>{0} hari {1} jam</value>
+    <value>{0} dan {1} ur</value>
     <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
   </data>
   <data name="Format_Time_Days">
-    <value>{0} hari</value>
+    <value>{0} dnevi</value>
     <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
   </data>
   <data name="Format_Time_DaysHours">
-    <value>{0} hari {1} jam</value>
+    <value>{0} dni {1} ur</value>
     <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
   </data>
   <data name="Format_Time_Hours">
-    <value>{0} jam</value>
+    <value>{0} ur</value>
     <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_HoursMinutes">
-    <value>{0} jam {1} mnt</value>
+    <value>{0} ur {1} min</value>
     <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_HoursMinutesSeconds_Short">
@@ -1626,11 +1662,11 @@ Smart Routing pada umumnya digunakan untuk menghindari undang-undang anti-privas
     <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss -&gt; 01:05:36).</comment>
   </data>
   <data name="Format_Time_Minutes">
-    <value>{0} mnt</value>
+    <value>{0} min</value>
     <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_MinutesSeconds">
-    <value>{0} mnt {1} dtk</value>
+    <value>{0} min {1} sec</value>
     <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_MinutesSeconds_Short">
@@ -1638,300 +1674,300 @@ Smart Routing pada umumnya digunakan untuk menghindari undang-undang anti-privas
     <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss -&gt; 05:36).</comment>
   </data>
   <data name="Format_Time_Seconds">
-    <value>{0} dtk</value>
+    <value>{0} sec</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
   </data>
   <data name="Gateways_Page_Title">
-    <value>Gateway</value>
+    <value>Prehodi</value>
   </data>
   <data name="Gateways_Server">
-    <value>Server khusus</value>
+    <value>Namenski strežniki</value>
   </data>
   <data name="Home_Account_SignOut">
-    <value>Keluar</value>
+    <value>Odjavi se</value>
   </data>
   <data name="Home_Account_SignOut_Confirmation_Message">
-    <value>Anda akan terputus dari VPN.</value>
+    <value>Povezava z VPN bo prekinjena.</value>
   </data>
   <data name="Home_Account_SignOut_Confirmation_Title">
-    <value>Keluar dari {0}?</value>
+    <value>Odjaviti se iz {0}?</value>
     <comment>{0} is a placeholder for the username</comment>
   </data>
   <data name="Home_Account_Title">
-    <value>Akun saya</value>
+    <value>Moj račun</value>
   </data>
   <data name="Home_ConnectionCard_ChangeServer">
-    <value>Ubah server</value>
+    <value>Spremeni strežnik</value>
   </data>
   <data name="Home_ConnectionCard_Header_BrowseSafely">
-    <value>Menjelajah internet secara aman dari</value>
+    <value>Varno brskanje iz</value>
   </data>
   <data name="Home_ConnectionCard_Header_ConnectingTo">
-    <value>Menghubungkan ke...</value>
+    <value>Povezovanje z...</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
-    <value>Koneksi Free</value>
+    <value>Brezplačne povezave</value>
   </data>
   <data name="Home_ConnectionCard_Header_LastConnectedTo">
-    <value>Terakhir terhubung ke</value>
+    <value>Nazadnje povezan z</value>
   </data>
   <data name="Home_ConnectionCard_Header_Recommended">
-    <value>Direkomendasikan</value>
+    <value>Priporočeno</value>
   </data>
   <data name="Home_ConnectionCard_Landmark">
-    <value>Kartu koneksi</value>
+    <value>Priključna kartica</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_ConnectionDetails_City">
-    <value>Kota</value>
+    <value>Mesto</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectedFor">
-    <value>Terhubung selama</value>
+    <value>Povezan za</value>
     <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
   </data>
   <data name="Home_ConnectionDetails_Country">
-    <value>Negara</value>
+    <value>Država</value>
   </data>
   <data name="Home_ConnectionDetails_Download">
-    <value>Unduh</value>
+    <value>Prenašanje</value>
   </data>
   <data name="Home_ConnectionDetails_Gateway">
-    <value>Gateway</value>
+    <value>Prehod</value>
   </data>
   <data name="Home_ConnectionDetails_Hide">
-    <value>Sembunyikan rincian koneksi</value>
+    <value>Skrij podrobnosti povezave</value>
   </data>
   <data name="Home_ConnectionDetails_HideIP">
-    <value>Sembunyikan</value>
+    <value>Skrij</value>
     <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
   </data>
   <data name="Home_ConnectionDetails_HideIP_Description">
-    <value>Sembunyikan alamat IP pengguna</value>
+    <value>Skrij IP naslov uporabnika</value>
   </data>
   <data name="Home_ConnectionDetails_Landmark">
-    <value>Rincian koneksi</value>
+    <value>Podrobnosti povezave</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_ConnectionDetails_Latency">
-    <value>Latensi</value>
+    <value>Zakasnitev</value>
   </data>
   <data name="Home_ConnectionDetails_MyIp">
-    <value>IP saya</value>
+    <value>Moj IP</value>
   </data>
   <data name="Home_ConnectionDetails_Protocol">
     <value>Protokol</value>
   </data>
   <data name="Home_ConnectionDetails_Server">
-    <value>Server</value>
+    <value>Strežnik</value>
   </data>
   <data name="Home_ConnectionDetails_ServerLoad">
-    <value>Muatan server</value>
+    <value>Obremenitev strežnika</value>
   </data>
   <data name="Home_ConnectionDetails_Show">
-    <value>Tampilkan rincian koneksi</value>
+    <value>Prikaži podrobnosti povezave</value>
   </data>
   <data name="Home_ConnectionDetails_ShowIP">
-    <value>Tampilkan</value>
+    <value>Prikaži</value>
     <comment>Tooltip displayed when the user hover the button to show the User IP Address</comment>
   </data>
   <data name="Home_ConnectionDetails_ShowIP_Description">
-    <value>Tampilkan alamat IP pengguna</value>
+    <value>Pokaži IP naslov uporabnika</value>
   </data>
   <data name="Home_ConnectionDetails_Title">
-    <value>Rincian koneksi</value>
+    <value>Podrobnosti povezave</value>
   </data>
   <data name="Home_ConnectionDetails_Upload">
-    <value>Unggah</value>
+    <value>Nalaganje</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
-    <value>IP VPN</value>
+    <value>VPN IP</value>
   </data>
   <data name="Home_FreeConnections_About">
-    <value>Informasi lebih lanjut mengenai koneksi Free</value>
+    <value>Več informacij o brezplačnih povezavah</value>
   </data>
   <data name="Home_Help_Title">
-    <value>Bantuan</value>
+    <value>Pomoč</value>
   </data>
   <data name="Home_Map_Landmark">
-    <value>Peta</value>
+    <value>Zemljevid</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_NetShield_AdsBlocked">
-    <value>Iklan yang
-diblokir</value>
+    <value>Oglasi
+ blokirani</value>
     <comment>Use 
  to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
   </data>
   <data name="Home_NetShield_DataSaved">
-    <value>Data yang
-disimpan</value>
+    <value>Podatki
+shranjeni</value>
     <comment>Use 
  to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
   </data>
   <data name="Home_NetShield_Landmark">
-    <value>Statistik NetShield</value>
+    <value>Statistika NetShield</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_NetShield_TrackersStopped">
-    <value>Pelacak yang
-dihentikan</value>
+    <value>Sledilniki
+ustavljeni</value>
     <comment>Use 
  to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
   </data>
   <data name="Home_Page_Title">
-    <value>Beranda</value>
+    <value>Domov</value>
   </data>
   <data name="Home_Recents_Landmark">
-    <value>Koneksi terkini</value>
+    <value>Nedavne povezave</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_Recents_Pin">
-    <value>Sematkan</value>
+    <value>Pin</value>
   </data>
   <data name="Home_Recents_SecondaryActions_ToolTip">
-    <value>Tindakan</value>
+    <value>Dejanja</value>
   </data>
   <data name="Home_Recents_ServerUnderMaintenance">
-    <value>Server sedang dalam pemeliharaan</value>
+    <value>Strežnik je v vzdrževanju</value>
   </data>
   <data name="Home_Recents_Title">
-    <value>Terkini</value>
+    <value>Nedavne</value>
   </data>
   <data name="Home_Recents_Unpin">
-    <value>Lepas sematan</value>
+    <value>Odpni</value>
   </data>
   <data name="Home_Update_Confirmation_Message">
-    <value>Untuk menyelesaikan proses pembaruan, Proton VPN akan terputus untuk sementara dan seluruh kill switch lanjutan yang aktif akan dinonaktifkan. Apakah Anda ingin melanjutkan?</value>
+    <value>Za dokončanje postopka posodabljanja bo Proton VPN začasno prekinil povezavo in deaktiviral Advanced Kill Switch, če je kateri koli od teh aktiven. Želite nadaljevati?</value>
     <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
   </data>
   <data name="Home_Update_Confirmation_Title">
-    <value>Perbarui Proton VPN?</value>
+    <value>Posodobi Proton VPN?</value>
   </data>
   <data name="Home_Update_UpdateAvailable">
-    <value>Pembaruan tersedia</value>
+    <value>Na voljo je nadgradnja!</value>
   </data>
   <data name="Home_Update_UpdateReady">
-    <value>Pembaruan siap dipasang</value>
+    <value>Posodobitev je pripravljena</value>
   </data>
   <data name="Home_VpnStatus_Landmark">
-    <value>Status VPN</value>
+    <value>Stanje VPN</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_VpnStatus_Subtitle_Connecting">
-    <value>Melindungi identitas digital Anda</value>
+    <value>Zaščita vaše digitalne identitete</value>
   </data>
   <data name="Home_VpnStatus_Subtitle_Disconnected">
-    <value>Anda tidak terlindung</value>
+    <value>Ste nezaščiteni</value>
   </data>
   <data name="Home_VpnStatus_Title_Connected">
-    <value>Terlindung</value>
+    <value>Zaščiteni</value>
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
-    <value>Terjadi kesalahan saat menerima detail sesi. Silakan coba lagi.</value>
+    <value>Pri pridobivanju podrobnosti seje je prišlo do napake. Prosim poskusite ponovno.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
-    <value>Kode salah. Silakan coba lagi.</value>
+    <value>Napačna koda. Poskusite znova.</value>
   </data>
   <data name="Login_Error_SessionExpired">
-    <value>Masa berlaku sesi Anda telah berakhir. Silakan masuk kembali.</value>
+    <value>Vaša seja se je iztekla. Ponovno se prijavite.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_SsoAuthFailed">
-    <value>Autentikasi SSO gagal. Silakan coba lagi.</value>
+    <value>SSO preverjanje ni uspelo. Prosim poskusite ponovno.</value>
   </data>
   <data name="Login_Error_TwoFactorAuthFailed">
-    <value>Kredensial masuk salah. Silakan coba lagi.</value>
+    <value>Napačne poverilnice za prijavo. Poskusite znova.</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
-    <value>Autentikasi dua faktor gagal. Silakan masuk lagi.</value>
+    <value>Dvostopenjska avtentikacija ni uspela. Prosimo, prijavite se znova.</value>
   </data>
   <data name="Login_Form">
-    <value>Formulir masuk</value>
+    <value>Obrazec za prijavo</value>
   </data>
   <data name="Login_Form_CreateAccount">
-    <value>Buat akun</value>
+    <value>Ustvari račun</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="Login_Form_Email">
-    <value>Email</value>
+    <value>E-pošta</value>
   </data>
   <data name="Login_Form_ForgotUsername">
-    <value>Lupa nama pengguna</value>
+    <value>Pozabljeno uporabniško ime</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_Help">
-    <value>Bantuan</value>
+    <value>Pomoč</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_Password">
-    <value>Kata sandi</value>
+    <value>Geslo</value>
   </data>
   <data name="Login_Form_ReportAnIssue">
-    <value>Laporkan masalah</value>
+    <value>Prijava napake</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_ResetPassword">
-    <value>Atur ulang kata sandi</value>
+    <value>Ponastavitev gesla</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_SignIn">
-    <value>Masuk</value>
+    <value>Prijava</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="Login_Form_SignInWithPassword">
-    <value>Masuk dengan kata sandi</value>
+    <value>Prijava z geslom</value>
   </data>
   <data name="Login_Form_SignInWithSso">
-    <value>Masuk dengan SSO</value>
+    <value>Prijava s SSO</value>
   </data>
   <data name="Login_Form_TroubleSigningIn">
-    <value>Saya tidak dapat masuk</value>
+    <value>Imate težave s prijavo</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_Username">
-    <value>Email atau nama pengguna</value>
+    <value>E-pošta ali uporabniško ime</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate">
-    <value>Autentikasi</value>
+    <value>Preverjanje pristnosti</value>
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle">
-    <value>Masukkan kode yang tertera pada aplikasi autentikator Anda</value>
+    <value>Vnesite kodo iz aplikacije za preverjanje pristnosti</value>
   </data>
   <data name="Login_TwoFactorForm_Title">
-    <value>Autentikasi dua-faktor</value>
+    <value>Dvojno preverjanja pristnosti</value>
   </data>
   <data name="Login_TwoFactor_Digit1">
-    <value>Digit pertama</value>
+    <value>Prva številka</value>
   </data>
   <data name="Login_TwoFactor_Digit2">
-    <value>Digit kedua</value>
+    <value>Druga številka</value>
   </data>
   <data name="Login_TwoFactor_Digit3">
-    <value>Digit ketiga</value>
+    <value>Tretja številka</value>
   </data>
   <data name="Login_TwoFactor_Digit4">
-    <value>Digit keempat</value>
+    <value>Četrta številka</value>
   </data>
   <data name="Login_TwoFactor_Digit5">
-    <value>Digit kelima</value>
+    <value>Peta številka</value>
   </data>
   <data name="Login_TwoFactor_Digit6">
-    <value>Digit keenam</value>
+    <value>Šesta številka</value>
   </data>
   <data name="Main_Loading_SigningIn">
-    <value>Memasukkan Anda ke akun, mohon tunggu…</value>
+    <value>Prijavljanje. Prosimo, počakajte ...</value>
     <comment>Message in the loading screen when signing in or starting the app</comment>
   </data>
   <data name="Main_Loading_SigningOut">
-    <value>Mengeluarkan Anda dari akun, mohon tunggu…</value>
+    <value>Odjavljanje. Prosimo, počakajte ...</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Tentukan nomor port ini pada aplikasi BitTorrent Anda untuk kecepatan jelajah yang lebih tinggi.</value>
+    <value>Nastavite to številko v aplikaciji BitTorrent za večjo hitrost.</value>
   </data>
   <data name="Server_Fastest_Free">
-    <value>Server Free tercepat</value>
+    <value>Najhitrejši brezplačni strežnik</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
@@ -1940,414 +1976,414 @@ dihentikan</value>
     <value>Tor</value>
   </data>
   <data name="Server_Free">
-    <value>Server Free</value>
+    <value>Brezplačni strežnik</value>
   </data>
   <data name="Settings_About">
-    <value>Tentang</value>
+    <value>O nas</value>
   </data>
   <data name="Settings_About_Changelog">
-    <value>Riwayat perubahan</value>
+    <value>Dnevnik sprememb</value>
   </data>
   <data name="Settings_About_CurrentVersion">
-    <value>Versi saat ini</value>
+    <value>Trenutna različica</value>
   </data>
   <data name="Settings_About_FailedToFetch">
-    <value>Informasi riwayat perubahan gagal dimuat.</value>
+    <value>Pridobivanje dnevnika sprememb ni uspelo.</value>
   </data>
   <data name="Settings_About_GetLatestVersion">
-    <value>Dapatkan versi terbaru</value>
+    <value>Pridobite zadnjo različico</value>
   </data>
   <data name="Settings_About_LearnMore">
-    <value>Pelajari lebih lanjut</value>
+    <value>Več informacij</value>
   </data>
   <data name="Settings_About_Licensing">
-    <value>Lisensi</value>
+    <value>Licence</value>
   </data>
   <data name="Settings_About_Loading">
-    <value>Memuat</value>
+    <value>Nalaganje</value>
   </data>
   <data name="Settings_About_NewVersion">
-    <value>BARU</value>
+    <value>NOVO</value>
   </data>
   <data name="Settings_About_Title">
-    <value>Tentang</value>
+    <value>O programu</value>
   </data>
   <data name="Settings_About_TryAgain">
-    <value>Coba lagi</value>
+    <value>Poskusite ponovno</value>
   </data>
   <data name="Settings_About_Update_Description">
-    <value>Dapatkan yang terbaik dari VPN Anda dengan memperbarui aplikasi ke versi terbaru.</value>
+    <value>Da kar najbolje izkoristite VPN posodobite aplikacijo na najnovejšo različico.</value>
   </data>
   <data name="Settings_AppVersion">
-    <value>Versi aplikasi</value>
+    <value>Različica aplikacije</value>
   </data>
   <data name="Settings_Censorship_Footer">
-    <value>Statistik ini tidak mengandung alamat IP Anda dan tidak dapat digunakan untuk mengenali diri Anda. Kami tidak akan pernah membagikan statistik ini kepada pihak ketiga mana pun.</value>
+    <value>Ti statistični podatki ne vsebujejo vašega naslova IP in jih ni mogoče uporabiti za vašo identifikacijo. Nikoli jih ne bomo delili s tretjimi osebami. Več o tem</value>
   </data>
   <data name="Settings_Censorship_ShareCrashReports">
-    <value>Bagikan laporan crash anonim</value>
+    <value>Delite anonimna poročila o zrušitvah</value>
   </data>
   <data name="Settings_Censorship_ShareCrashReports_Description">
-    <value>Laporan crash membantu kami dalam memperbaiki bug, mendeteksi firewall, dan menangkal pemblokiran VPN.</value>
+    <value>Poročila o zrušitvah nam pomagajo odpraviti napake, zaznati požarne zidove in se izogniti blokadam VPN.</value>
   </data>
   <data name="Settings_Censorship_ShareStatistics">
-    <value>Bagikan statistik pemakaian anonim</value>
+    <value>Pošlji anonime podatke o uporabi?</value>
   </data>
   <data name="Settings_Censorship_ShareStatistics_Description">
-    <value>Statistik pemakaian membantu kami untuk menangkal pemblokiran VPN dan meningkatkan performa aplikasi.</value>
+    <value>Podatki o uporabi nam pomagajo premagati blokade VPN in izboljšati delovanje aplikacije.</value>
   </data>
   <data name="Settings_Common_ApplyAndReconnect">
-    <value>Terapkan dan hubungkan ulang</value>
+    <value>Prijavite se in znova povežite</value>
   </data>
   <data name="Settings_Common_Discard">
-    <value>Buang</value>
+    <value>Zavrzi</value>
   </data>
   <data name="Settings_Common_Discard_Title">
-    <value>Abaikan perubahan pengaturan?</value>
+    <value>Želite zavreči spremembe nastavitev?</value>
   </data>
   <data name="Settings_Connection">
-    <value>Koneksi</value>
+    <value>Povezava</value>
   </data>
   <data name="Settings_Connection_AdvancedSettings">
-    <value>Pengaturan lanjutan</value>
+    <value>Napredne nastavitve</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting">
-    <value>Pengalihan lalu lintas alternatif</value>
+    <value>Alternativno usmerjanje</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting_Description">
-    <value>Apabila layanan Proton diblokir karena pembatasan jaringan, kami akan mencoba untuk menghubungkan Anda ke situs kami melalui rute jaringan alternatif.</value>
+    <value>Če so storitve Proton blokirane zaradi omrežnih omejitev, bomo poskušali uporabiti alternativno omrežno usmerjanje, da vas povežemo z našimi spletnimi mesti.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
-    <value>Server DNS khusus</value>
+    <value>Strežniki DNS po meri</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
-    <value>Anda tidak akan dapat menggunakan NetShield pada saat Anda terhubung ke server DNS khusus.</value>
+    <value>NetShielda ne boste mogli uporabljati, ko ste povezani s strežnikom DNS po meri.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title">
-    <value>Aktifkan server DNS khusus?</value>
+    <value>Ali želite omogočiti strežnike DNS po meri?</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
-    <value>Menghubungkan aplikasi ke jaringan Proton VPN menggunakan sistem nama domain (DNS) Anda. Hanya gunakan server DNS yang Anda percayai.</value>
+    <value>Povežite se s Proton VPN z lastnim sistemom domenskih imen (DNS). Uporabljajte le strežnike DNS, ki jim zaupate.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
-    <value>Server DNS ({0})</value>
+    <value>DNS strežniki ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark">
-    <value>Tambahkan alamat IPv4</value>
+    <value>Dodaj IPv4 naslov</value>
     <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>Perlindungan kebocoran IPv6</value>
+    <value>Zaščita pred uhajanjem naslovov IPv6</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
-    <value>Mencegah kebocoran alamat IPv6.</value>
+    <value>Preprečite puščanje naslova IPv6.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
-    <value>Koneksi LAN</value>
+    <value>LAN povezave</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
-    <value>Memungkinkan Anda untuk terhubung ke printer, speaker, dan perangkat lainnya yang terdapat pada jaringan lokal milik perangkat Anda.</value>
+    <value>Omogoča vam povezavo s tiskalniki, zvočniki in drugimi napravami v lokalnem omrežju vaše naprave.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
-    <value>Jenis NAT</value>
+    <value>NAT tip</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Description">
-    <value>Anda tidak akan dapat menggunakan penerusan port dengan NAT Moderat.</value>
+    <value>Ne boste mogli uporabljati posredovanja vrat z zmernim NAT.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Title">
-    <value>Aktifkan NAT Moderat?</value>
+    <value>Omogoči zmerni NAT?</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Description">
-    <value>Pilih jenis terjemahan alamat jaringan (NAT) untuk koneksi Anda.</value>
+    <value>Izberite vrsto prevoda omrežnega naslova za svojo povezavo.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate">
-    <value>Moderat (Type 2)</value>
+    <value>Zmerno (tip 2)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
-    <value>Membatasi sebagian data yang memasuki jaringan Anda. Opsi ini merupakan opsi terbaik untuk permainan video online.</value>
+    <value>Nekatere omejitve podatkov, ki vstopajo v vaše omrežje. Ta možnost je najboljša za spletne video igre.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict">
-    <value>Ketat (Type 3)</value>
+    <value>Strogo (tip 3)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
-    <value>Membatasi seluruh data yang memasuki jaringan Anda. Opsi ini lebih aman, namun dapat mempersulit koneksi peer-to-peer antar aplikasi permainan.</value>
+    <value>Omejuje podatke, ki vstopajo v vaše omrežje. Ta možnost je bolj varna, vendar lahko oteži povezave P2P pri igranju iger.</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokol</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
-    <value>VPN Accelerator</value>
+    <value>VPN pospeševalnik</value>
   </data>
   <data name="Settings_Features">
-    <value>Fitur</value>
+    <value>Funkcije</value>
   </data>
   <data name="Settings_Features_KillSwitch">
-    <value>Kill switch</value>
+    <value>Stikalo za izklop</value>
   </data>
   <data name="Settings_Features_KillSwitch_Advanced">
-    <value>Lanjutan</value>
+    <value>Napredno</value>
   </data>
   <data name="Settings_Features_KillSwitch_Advanced_Description">
-    <value>Membatasi agar internet hanya tersedia pada saat Anda terhubung ke Proton VPN. Kill switch lanjutan akan tetap aktif bahkan ketika Anda memulai ulang perangkat Anda.</value>
+    <value>Dovolite dostop do interneta samo, ko ste povezani s Proton VPN. Napredno stikalo za izklop bo ostalo aktivno tudi, ko znova zaženete napravo.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Conflict_Description">
-    <value>Tindakan ini akan menonaktifkan split tunneling.</value>
+    <value>To bo onemogočilo deljeno tuneliranje.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Conflict_Title">
-    <value>Aktifkan kill switch?</value>
+    <value>Omogočiti stikalo za izklop?</value>
   </data>
   <data name="Settings_Features_KillSwitch_Description">
-    <value>Melindungi alamat IP Anda dengan memutuskan Anda dari internet apabila koneksi VPN hilang.</value>
+    <value>Ščiti vaš naslov IP tako, da prekine povezavo z internetom, če izgubite povezavo VPN.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Footer">
-    <value>Pada saat kill switch aktif, Anda tidak akan dapat terhubung ke situs web dan aplikasi yang tidak disertakan dalam koneksi VPN Anda melalui split tunneling.</value>
+    <value>Ko je stikalo za izklop vklopljeno, se ne boste mogli povezati s spletnimi mesti in aplikacijami, ki so izključene iz vaše povezave VPN prek deljenega tuneliranja.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Standard">
-    <value>Standar</value>
+    <value>Standardno</value>
   </data>
   <data name="Settings_Features_KillSwitch_Standard_Description">
-    <value>Memutuskan Anda dari internet secara otomatis apabila koneksi VPN hilang.</value>
+    <value>Samodejno prekini povezavo z internetom, če je povezava VPN izgubljena.</value>
   </data>
   <data name="Settings_Features_NetShield">
     <value>NetShield</value>
   </data>
   <data name="Settings_Features_NetShield_Conflict_Description">
-    <value>Anda tidak akan dapat terhubung ke server DNS khusus pada saat NetShield diaktifkan.</value>
+    <value>Ko je NetShield omogočen, se ne boste mogli povezati s strežnikom DNS po meri.</value>
   </data>
   <data name="Settings_Features_NetShield_Conflict_Title">
-    <value>Aktifkan NetShield?</value>
+    <value>Omogočiti NetShield?</value>
   </data>
   <data name="Settings_Features_NetShield_Description">
-    <value>Lindungi diri Anda dari iklan, malware, dan pelacak pada berbagai situs web dan aplikasi.</value>
+    <value>Zaščitite se pred oglasi, zlonamerno programsko opremo in sledilci na spletnih mestih in v aplikacijah.</value>
   </data>
   <data name="Settings_Features_NetShield_Footer">
-    <value>Beberapa situs web mungkin tidak akan termuat dengan benar ketika iklan dan pelacak diblokir.</value>
+    <value>Nekatera spletna mesta se morda ne bodo pravilno naložila, če so oglasi in sledilniki blokirani.</value>
   </data>
   <data name="Settings_Features_PortForwarding">
-    <value>Penerusan port</value>
+    <value>Posredovanje vrat</value>
   </data>
   <data name="Settings_Features_PortForwarding_ActivePort">
-    <value>Port yang aktif:</value>
+    <value>Aktivna vrata:</value>
   </data>
   <data name="Settings_Features_PortForwarding_ActivePort_Copy">
-    <value>Salin nomor port</value>
+    <value>Kopiraj številko vrat</value>
   </data>
   <data name="Settings_Features_PortForwarding_Conflict_Description">
-    <value>Anda tidak akan dapat menggunakan NAT Moderat pada saat penerusan port diaktifkan.</value>
+    <value>Ko je posredovanje vrat omogočeno, ne boste mogli uporabljati zmernega NAT.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Conflict_Title">
-    <value>Aktifkan penerusan port?</value>
+    <value>Omogoči posredovanje vrat?</value>
   </data>
   <data name="Settings_Features_PortForwarding_Description">
-    <value>Melewati firewall untuk menghubungkan Anda ke server dan perangkat P2P dalam jaringan lokal Anda.</value>
+    <value>Obiščite požarne zidove za povezavo s strežniki P2P in napravami v vašem lokalnem omrežju.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Footer">
-    <value>Untuk menggunakan Penerusan Port, silakan hubungkan diri Anda ke server yang mendukung P2P.</value>
+    <value>Če želite uporabiti posredovanje vrat, se povežite s strežnikom, ki podpira P2P.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Loading">
-    <value>Memuat...</value>
+    <value>Nalaganje ...</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications">
-    <value>Notifikasi</value>
+    <value>Obvestila</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications_Description">
-    <value>Dapatkan notifikasi pada saat nomor port pada prosedur Penerusan Port berubah</value>
+    <value>Prejmite obvestilo, ko se spremeni številka za posredovana vrata</value>
   </data>
   <data name="Settings_Features_SplitTunneling">
-    <value>Split tunneling</value>
+    <value>Razdeljeno tuneliranje</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_Add">
-    <value>Tambahkan aplikasi</value>
+    <value>Dodaj aplikacijo</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_FilesFilterName">
-    <value>Berkas aplikasi</value>
+    <value>Datoteke aplikacij</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_Header">
-    <value>Aplikasi terpilih ({0})</value>
+    <value>Izbrane aplikacije ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_Remove">
-    <value>Hapus aplikasi</value>
+    <value>Odstrani aplikacijo</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Conflict_Description">
-    <value>Tindakan ini akan menonaktifkan kill switch.</value>
+    <value>To bo onemogočilo stikalo za izklop.</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Conflict_Title">
-    <value>Aktifkan split tunneling?</value>
+    <value>Omogočiti razdeljeno tuneliranje?</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Description">
-    <value>Sesuaikan koneksi Anda dengan menentukan aplikasi dan alamat IP mana saja yang akan terlindung oleh VPN.</value>
+    <value>Prilagodite svojo povezavo tako, da se odločite, katere aplikacije in naslove IP so zaščiteni z VPN.</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Inverse">
-    <value>Berkebalikan</value>
+    <value>Obratno</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Inverse_Description">
-    <value>Hanya aplikasi dan alamat IP yang dipilih yang akan terhubung ke VPN, sedangkan lalu lintas lainnya tidak terlindung</value>
+    <value>Samo izbrane aplikacije in naslovi IP se povezujejo prek VPN, ves ostali promet je nezaščiten</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Add">
-    <value>Tambah IP</value>
+    <value>Dodajte IP</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Header">
-    <value>Alamat IP yang dipilih ({0})</value>
+    <value>Izbrani naslovi IP ({0})</value>
     <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Remove">
-    <value>Hapus IP</value>
+    <value>Odstrani IP</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Watermark">
-    <value>Tambah alamat IPv4</value>
+    <value>Dodaj IPv4 naslov</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Standard">
-    <value>Standar</value>
+    <value>Standardno</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Standard_Description">
-    <value>Aplikasi dan alamat IP yang terpilih dikecualikan dari koneksi VPN</value>
+    <value>Izbrane aplikacije in naslovi IP so izključeni iz povezave VPN</value>
   </data>
   <data name="Settings_General">
-    <value>Umum</value>
+    <value>Splošno</value>
   </data>
   <data name="Settings_General_AutoStartup">
-    <value>Pemulaian otomatis</value>
+    <value>Samodejni zagon</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect">
-    <value>Penghubungan otomatis</value>
+    <value>Samodejna povezava</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>Anda akan terhubung ke salah satu server segera setelah aplikasi Proton VPN diluncurkan</value>
+    <value>Povezani boste s strežnikom takoj, ko se odpre Proton VPN</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
-    <value>Koneksi tercepat</value>
+    <value>Najhitrejša povezava</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Latest">
-    <value>Terakhir terhubung</value>
+    <value>Zadnja povezava</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch">
-    <value>Peluncuran otomatis</value>
+    <value>Samodejni zagon</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Description">
-    <value>Proton VPN akan terbuka secara otomatis pada saat Anda masuk ke perangkat Anda</value>
+    <value>Proton VPN se bo samodejno odprl, ko se prijavite v svojo napravo</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Desktop">
-    <value>Buka di desktop</value>
+    <value>Odpri na namizju</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray">
-    <value>Kecilkan ke System Tray</value>
+    <value>Pomanjšaj v sistemski pladenj</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Taskbar">
-    <value>Kecilkan ke Taskbar</value>
+    <value>Pomanjšaj v opravilno vrstico</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Peluncuran otomatis, penghubungan otomatis</value>
+    <value>Samodejni zagon, samodejna povezava</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
-    <value>Pembaruan otomatis</value>
+    <value>Samodejne posodobitve</value>
   </data>
   <data name="Settings_General_AutomaticUpdates_Description">
-    <value>Periksa dan pasang pembaruan Proton VPN secara otomatis</value>
+    <value>Samodejno preverjanje in namestitev posodobitve Proton VPN</value>
   </data>
   <data name="Settings_General_BetaAccess">
-    <value>Akses Beta</value>
+    <value>Beta dostop</value>
   </data>
   <data name="Settings_General_BetaAccess_Description">
-    <value>Dapatkan akses dini dan bantu kami menguji versi Proton VPN yang baru</value>
+    <value>Zagotovite si zgodnji dostop in nam pomagajte preizkusiti nove različice Proton VPN</value>
   </data>
   <data name="Settings_General_Language">
-    <value>Bahasa</value>
+    <value>Jezik</value>
   </data>
   <data name="Settings_General_Notifications">
-    <value>Notifikasi</value>
+    <value>Obvestila</value>
   </data>
   <data name="Settings_General_Notifications_Description">
-    <value>Dapatkan notifikasi seputar aktivitas Proton VPN yang sedang berlangsung</value>
+    <value>Prejmite obvestila o tekočih dejavnostih Proton VPN</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver">
-    <value>Driver jaringan OpenVPN</value>
+    <value>Gonilnik za omrežje OpenVPN</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver_Description">
-    <value>Driver jaringan dapat memengaruhi kecepatan koneksi Anda. Adapter TUN yang baru menyediakan kecepatan yang lebih tinggi dan akan secara otomatis kembali ke adapter TAP apabila koneksi Anda bermasalah.</value>
+    <value>Omrežni gonilniki lahko vplivajo na hitrost vaše povezave. Novi adapter TUN zagotavlja višjo hitrost in se vrne na adapter TAP, če naleti na težave s povezljivostjo.</value>
   </data>
   <data name="Settings_General_Theme">
     <value>Tema</value>
   </data>
   <data name="Settings_General_Theme_Dark">
-    <value>Gelap</value>
+    <value>Temna</value>
   </data>
   <data name="Settings_General_Theme_Default">
-    <value>Bawaan</value>
+    <value>Privzeto</value>
   </data>
   <data name="Settings_General_Theme_Light">
-    <value>Terang</value>
+    <value>Svetla</value>
   </data>
   <data name="Settings_Improve">
-    <value>Tingkatkan Proton</value>
+    <value>Izboljšajte Proton</value>
   </data>
   <data name="Settings_Improve_Censorship">
-    <value>Bantu kami melawan sensor</value>
+    <value>Pomagajte nam v boju proti cenzuri</value>
   </data>
   <data name="Settings_OperatingSystemVersion">
-    <value>Versi Sistem Operasi</value>
+    <value>Različica operacijskega sistema</value>
   </data>
   <data name="Settings_Page_Title">
-    <value>Pengaturan</value>
+    <value>Nastavitve</value>
   </data>
   <data name="Settings_Protocols_Explanation">
-    <value>Protokol VPN menentukan bagaimana data antara server VPN dan perangkat Anda akan saling berpindah.</value>
+    <value>Protokol VPN določa, kako se podatki premikajo med strežnikom VPN in vašo napravo.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnTcp_Description">
-    <value>Mapan, teruji, dan aman. OpenVPN dapat diandalkan dalam kondisi jaringan yang buruk, namun pada umumnya tidak secepat protokol lainnya.</value>
+    <value>Uveljavljeno, dobro preizkušeno in varno. OpenVPN je zanesljiv v slabih omrežnih pogojih, vendar morda ni tako hiter kot drugi protokoli.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnTcp_Title">
     <value>OpenVPN</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Description">
-    <value>Mapan, teruji, dan aman. OpenVPN kurang efisien dalam penggunaan baterai dibanding sebagian protokol lainnya.</value>
+    <value>Uveljavljeno, dobro preizkušeno in varno. OpenVPN je manj učinkovit pri porabi baterije kot nekateri drugi protokoli.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
   </data>
   <data name="Settings_Protocols_Recommended">
-    <value>Direkomendasikan</value>
+    <value>Priporočeno</value>
   </data>
   <data name="Settings_Protocols_Smart_Description">
-    <value>Memilih protokol terbaik secara otomatis untuk koneksi Anda.</value>
+    <value>Samodejno izbere najboljši protokol za vašo povezavo.</value>
   </data>
   <data name="Settings_Protocols_Smart_Title">
     <value>Smart</value>
   </data>
   <data name="Settings_Protocols_TcpCategory">
-    <value>Keterandalan (TCP)</value>
+    <value>Zanesljivost (TCP)</value>
   </data>
   <data name="Settings_Protocols_UdpCategory">
-    <value>Kecepatan (UDP)</value>
+    <value>Hitrost (UDP)</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
-    <value>Cepat, aman, dan efisien. WireGuard lebih efisien dalam penggunaan baterai dibanding protokol lainnya.</value>
+    <value>Hitro, varno in učinkovito. WireGuard je bolj učinkovit pri porabi baterije kot drugi protokoli.</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>
   </data>
   <data name="Settings_RestoreDefault">
-    <value>Pulihkan ke pengaturan bawaan</value>
+    <value>Obnovi privzete nastavitve</value>
   </data>
   <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action">
-    <value>Pulihkan dan hubungkan ulang</value>
+    <value>Obnovite in ponovno povežite</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Action">
-    <value>Pulihkan ke pengaturan bawaan</value>
+    <value>Obnovi privzete nastavitve</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Message">
-    <value>Tindakan ini akan mengatur ulang pengaturan Proton VPN Anda ke pengaturan semula.</value>
+    <value>S tem boste nastavitve Proton VPN ponastavili na prvotno stanje.</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Title">
-    <value>Pulihkan ke pengaturan bawaan?</value>
+    <value>Obnoviti privzete nastavitve?</value>
   </data>
   <data name="Settings_SelectedProtocol_OpenVpnTcp">
-    <value>OpenVPN (TCP)</value>
+    <value>OdprtVPN (TCP)</value>
   </data>
   <data name="Settings_SelectedProtocol_OpenVpnUdp">
-    <value>OpenVPN (UDP)</value>
+    <value>OdprtVPN (UDP)</value>
   </data>
   <data name="Settings_SelectedProtocol_Smart">
     <value>Smart</value>
@@ -2356,41 +2392,41 @@ dihentikan</value>
     <value>WireGuard</value>
   </data>
   <data name="Settings_Support">
-    <value>Dukungan</value>
+    <value>Podpora</value>
   </data>
   <data name="Settings_Support_DebugLogs">
-    <value>Log debug</value>
+    <value>Dnevniki odpravljanja napak</value>
   </data>
   <data name="Settings_Support_DebugLogs_Application">
-    <value>Log aplikasi</value>
+    <value>Dnevniki aplikacij</value>
   </data>
   <data name="Settings_Support_DebugLogs_ErrorMessage">
-    <value>Folder log tidak dapat ditemukan.</value>
+    <value>Mape dnevnikov ni bilo mogoče najti.</value>
   </data>
   <data name="Settings_Support_DebugLogs_Service">
-    <value>Catatan layanan</value>
+    <value>Dnevniki storitev</value>
   </data>
   <data name="Settings_Support_ReportIssue">
-    <value>Laporkan masalah</value>
+    <value>Prijava napake</value>
   </data>
   <data name="Settings_Support_SupportCenter">
-    <value>Pusat bantuan</value>
+    <value>Center za podporo</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
-    <value>Tingkatkan kecepatan koneksi Anda hingga 400% dengan teknologi pemicu performa.</value>
+    <value>Povečajte svojo hitrost povezave do 400 % s tehnologijami za izboljšanje zmogljivosti.</value>
   </data>
   <data name="Tray_Actions_ExitApplication">
-    <value>Keluar</value>
+    <value>Izhod</value>
   </data>
   <data name="Tray_Actions_OpenApplication">
-    <value>Buka {0}</value>
+    <value>Odprto {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp">
-    <value>OpenVPN (TCP)</value>
+    <value>OdprtVPN (TCP)</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Udp">
-    <value>OpenVPN (UDP)</value>
+    <value>OdprtVPN (UDP)</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>
