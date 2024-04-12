@@ -1853,7 +1853,7 @@ dihentikan</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="Login_Form_Email">
-    <value>Surel</value>
+    <value>Email</value>
   </data>
   <data name="Login_Form_ForgotUsername">
     <value>Lupa nama pengguna</value>
@@ -1920,11 +1920,11 @@ dihentikan</value>
     <value>Digit keenam</value>
   </data>
   <data name="Main_Loading_SigningIn">
-    <value>Sedang masuk, mohon tunggu…</value>
+    <value>Memasukkan Anda ke akun, mohon tunggu…</value>
     <comment>Message in the loading screen when signing in or starting the app</comment>
   </data>
   <data name="Main_Loading_SigningOut">
-    <value>Sedang keluar, mohon tunggu…</value>
+    <value>Mengeluarkan Anda dari akun, mohon tunggu…</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
   <data name="Notifications_PortForwarding_Description">
@@ -2266,7 +2266,7 @@ dihentikan</value>
     <value>Driver jaringan OpenVPN</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver_Description">
-    <value>Driver jaringan dapat mempengaruhi koneksi dan kecepatan Anda. Adapter TUN baru menyediakan kecepatan yang lebih tinggi dan akan kembali ke adapter TAP jika Anda menemukan masalah konektivitas.</value>
+    <value>Driver jaringan dapat memengaruhi kecepatan koneksi Anda. Adapter TUN yang baru menyediakan kecepatan yang lebih tinggi dan akan secara otomatis kembali ke adapter TAP apabila koneksi Anda bermasalah.</value>
   </data>
   <data name="Settings_General_Theme">
     <value>Tema</value>

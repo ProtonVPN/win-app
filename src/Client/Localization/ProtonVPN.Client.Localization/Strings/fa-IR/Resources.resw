@@ -205,7 +205,7 @@
     <value>نشان دادن راه‌حل‌های ممکن</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
-    <value>Proton VPN قادر به اتصال نیست چون یک آداپتور شبکه WireGuard از پیش در حال استفاده است. لطفاً اتصالات VPN فعال را قطع کرده و دوباره امتحان کنید. درضمن، می‌توانید بین پروتوکول‌ها در تنظیمات پیشرفته تغییر دهید.</value>
+    <value>Proton VPN قادر به اتصال نیست چون یک آداپتور شبکه WireGuard از پیش در حال استفاده است. لطفاً اتصالات VPN فعال را قطع کرده و دوباره امتحان کنید. درضمن، می‌توانید بین پروتکل‌ها در تنظیمات پیشرفته تغییر دهید.</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>به‌طور خودکار انتخاب شده از</value>
@@ -1406,13 +1406,13 @@
 • نشانی IP تان را از ارائه دهنده سرویس و همتاهایتان مخفی کنید</value>
   </data>
   <data name="Dialogs_Protocol_Description">
-    <value>یک پروتوکول دسته‌ای از دستورالعمل‌هایی است که دستگاهتان برای اتصال و ارتباط با یک سرور دنبال می‌کند.</value>
+    <value>یک پروتکل دسته‌ای از دستورالعمل‌هایی است که دستگاهتان برای اتصال و ارتباط با یک سرور دنبال می‌کند.</value>
   </data>
   <data name="Dialogs_Protocol_SwitchHeader">
-    <value>تغییر پروتوکول VPN</value>
+    <value>تغییر پروتکل VPN</value>
   </data>
   <data name="Dialogs_Protocol_Title">
-    <value>پروتوکول VPN چیست؟</value>
+    <value>پروتکل VPN چیست؟</value>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Email">
     <value>ایمیل</value>
@@ -1731,7 +1731,7 @@ Secure Core</value>
     <value>IP من</value>
   </data>
   <data name="Home_ConnectionDetails_Protocol">
-    <value>پروتوکول</value>
+    <value>پروتکل</value>
   </data>
   <data name="Home_ConnectionDetails_Server">
     <value>سرور</value>
@@ -2086,7 +2086,7 @@ Secure Core</value>
     <value>داده‌هایی که وارد شبکه‌تان می‌شود را محدود می‌کند. این گزینه امن‌تر است، اما می‌تواند اتصالات همتا به همتا (P2P) بازی‌های آنلاین را دشوار کند.</value>
   </data>
   <data name="Settings_Connection_Protocol">
-    <value>پروتوکول</value>
+    <value>پروتکل</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>شتاب دهنده VPN</value>
@@ -2190,23 +2190,23 @@ Secure Core</value>
     <value>تونل‌بندی بخشی فعال شود؟</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Description">
-    <value>Customize your connection by deciding which apps and IP addresses are protected by VPN.</value>
+    <value>اتصالتان را با تصمیم بر این‌که چه برنامه‌ها و نشانی‌های IP با VPN محافظت شوند سفارشی کنید.</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Inverse">
     <value>معکوس</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Inverse_Description">
-    <value>Only selected apps and IP addresses connect via VPN, all other traffic is unprotected</value>
+    <value>فقط برنامه‌ها و نشانی‌های IP انتخاب شده از طریق VPN وصل می‌شوند، ترافیک‌های دیگه شبکه محافظت نمی‌شوند</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Add">
     <value>افزودن IP</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Header">
-    <value>Selected IP addresses ({0})</value>
+    <value>نشانی‌های IP انتخاب شده ({0})</value>
     <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Remove">
-    <value>Remove IP</value>
+    <value>حذف IP</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Watermark">
     <value>افزودن آدرس IPv4</value>
@@ -2215,7 +2215,7 @@ Secure Core</value>
     <value>استاندارد</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Standard_Description">
-    <value>Selected apps and IP addresses are excluded from VPN connection</value>
+    <value>برنامه‌ها و نشانی‌های IP انتخاب شده از اتصال VPN مستثنی می‌شوند</value>
   </data>
   <data name="Settings_General">
     <value>عمومی</value>
@@ -2227,7 +2227,7 @@ Secure Core</value>
     <value>اتصال خودکار</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>You will be connected to a server as soon as Proton VPN opens</value>
+    <value>شما به محض باز شدن Proton VPN به یک سرور وصل می‌شوید</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>سریع‌ترین اتصال</value>
@@ -2278,7 +2278,7 @@ Secure Core</value>
     <value>درایور شبکه OpenVPN</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver_Description">
-    <value>Network drivers can impact your connection speed. The new TUN adapter provides higher speed and falls back on the TAP adapter if it encounters any connectivity problems.</value>
+    <value>درایورهای شبکه می‌توانند روی سرعت اتصالتان تأثیر بگذارند. آداپتور TUN جدید سرعت بیشتر می‌دهد و در صورت بروز مشکلات اتصال به آداپتور TAP عقب‌نشینی می‌کند.</value>
   </data>
   <data name="Settings_General_Theme">
     <value>ظاهر</value>
@@ -2293,7 +2293,7 @@ Secure Core</value>
     <value>روشن</value>
   </data>
   <data name="Settings_Improve">
-    <value>Improve Proton</value>
+    <value>بهبود بخشیدن به Proton</value>
   </data>
   <data name="Settings_Improve_Censorship">
     <value>به ما برای مبارزه با سانسور کمک کنید</value>
@@ -2305,16 +2305,16 @@ Secure Core</value>
     <value>تنظیمات</value>
   </data>
   <data name="Settings_Protocols_Explanation">
-    <value>A VPN protocol determines how data moves between a VPN server and your device.</value>
+    <value>یک پروتکل VPN تشخیص می‌دهد چگونه داده‌ها بین یک سرور VPN و دستگاهتان تبادل شوند.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnTcp_Description">
-    <value>Established, well-tested, and secure. OpenVPN is reliable in poor network conditions, but may not be as fast as other protocols.</value>
+    <value>پا بر جا، آزمایش شده و امن. OpenVPN در شرایط نابه‌سامان شبکه‌ای قابل اطمینان است، ولی به سرعت پروتکل‌های دیگر نمی‌رسد.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnTcp_Title">
     <value>OpenVPN</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Description">
-    <value>Established, well-tested, and secure. OpenVPN is less battery-efficient than some other protocols.</value>
+    <value>پا بر جا، آزمایش شده و امن. OpenVPN در مصرف باتری به خوبی بعضی پروتکل‌های دیگر عمل نمی‌کند.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
@@ -2323,7 +2323,7 @@ Secure Core</value>
     <value>توصیه شده</value>
   </data>
   <data name="Settings_Protocols_Smart_Description">
-    <value>Auto-selects the best protocol for your connection.</value>
+    <value>به‌طور خودکار بهترین پروتکل را برای اتصالتان انتخاب می‌کند.</value>
   </data>
   <data name="Settings_Protocols_Smart_Title">
     <value>Smart</value>
@@ -2335,25 +2335,25 @@ Secure Core</value>
     <value>سرعت (UDP)</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
-    <value>Fast, secure, and efficient. WireGuard is more battery-efficient than other protocols.</value>
+    <value>سریع، امن و مؤثر. WireGuard نسبت به سایر پروتکل‌ها در مصرف باتری به‌صرفه‌تر است.</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>
   </data>
   <data name="Settings_RestoreDefault">
-    <value>Restore default settings</value>
+    <value>بازگردانی به تنظیمات پیش‌فرض‌</value>
   </data>
   <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action">
-    <value>Restore and reconnect</value>
+    <value>بازگردانی و اتصال دوباره</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Action">
-    <value>Restore default settings</value>
+    <value>بازگردانی به تنظیمات پیش‌فرض‌</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Message">
-    <value>This will reset your Proton VPN settings to their original state.</value>
+    <value>این گزینه تنظیمات Proton VPN تان را به حالت اولشان بازمی‌گرداند.</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Title">
-    <value>Restore default settings?</value>
+    <value>به تنظیمات پیش‌فرض بازگردانده شود؟</value>
   </data>
   <data name="Settings_SelectedProtocol_OpenVpnTcp">
     <value>OpenVPN (TCP)</value>
@@ -2377,10 +2377,10 @@ Secure Core</value>
     <value>لاگ‌های برنامه</value>
   </data>
   <data name="Settings_Support_DebugLogs_ErrorMessage">
-    <value>The logs folder could not be found.</value>
+    <value>پوشه‌ی لاگ‌ها پیدا نشد.</value>
   </data>
   <data name="Settings_Support_DebugLogs_Service">
-    <value>Service logs</value>
+    <value>لاگ‌های سرویس</value>
   </data>
   <data name="Settings_Support_ReportIssue">
     <value>گزارش اشکال</value>
@@ -2389,13 +2389,13 @@ Secure Core</value>
     <value>مرکز پشتیبانی</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
-    <value>Increase your connection speed by up to 400% with performance enhancing technologies.</value>
+    <value>سرعت اتصالتان را تا ۴۰۰٪ با فناوری‌های بهبود بخشی به عملکرد افزایش دهید.</value>
   </data>
   <data name="Tray_Actions_ExitApplication">
     <value>خروج</value>
   </data>
   <data name="Tray_Actions_OpenApplication">
-    <value>Open {0}</value>
+    <value>باز کردن {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp">

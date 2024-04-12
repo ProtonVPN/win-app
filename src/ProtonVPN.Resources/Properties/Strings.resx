@@ -219,4 +219,7 @@
   <data name="Language_ka-GE" xml:space="preserve">
     <value>Ქართული (beta)</value>
   </data>
+  <data name="Language_sl-SI" xml:space="preserve">
+    <value>Slovenščina</value>
+  </data>
 </root>

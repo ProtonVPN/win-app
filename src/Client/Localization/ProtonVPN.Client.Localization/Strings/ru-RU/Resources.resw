@@ -1348,16 +1348,16 @@
     <value>Вы достигли максимального количества бесплатных изменений сервера на данный момент</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
-    <value>Proton Free automatically connects you to the fastest available free server from our {0} free country. This will normally be the closest server to your location.</value>
+    <value>Proton Free автоматически подключает вас к самому быстрому бесплатному серверу из нашей {0} бесплатной страны. Обычно это ближайший к вашему местоположению сервер.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Few">
-    <value>Proton Free automatically connects you to the fastest available free server from our {0} free countries. This will normally be the closest server to your location.</value>
+    <value>Proton Free автоматически подключает вас к самому быстрому бесплатному серверу из наших {0} бесплатных стран. Обычно это ближайший к вашему местоположению сервер.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Many">
-    <value>Proton Free automatically connects you to the fastest available free server from our {0} free countries. This will normally be the closest server to your location.</value>
+    <value>Proton Free автоматически подключает вас к самому быстрому бесплатному серверу из наших {0} бесплатных стран. Обычно это ближайший к вашему местоположению сервер.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
-    <value>Proton Free automatically connects you to the fastest available free server from our {0} free countries. This will normally be the closest server to your location.</value>
+    <value>Proton Free автоматически подключает вас к самому быстрому бесплатному серверу из наших {0} бесплатных стран. Обычно это ближайший к вашему местоположению сервер.</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_One">
     <value>Страна с серверами Free ({0})</value>
@@ -1549,11 +1549,11 @@
     <value>Что такое нагрузка сервера?</value>
   </data>
   <data name="Dialogs_SmartRouting_Description">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
+    <value>Smart Routing использует виртуальные серверы для обеспечения покрытия VPN в труднодоступных странах.
 
-When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+Когда вы подключаетесь к серверу Smart Routing, создается впечатление, что вы находитесь в стране назначения, хотя физический сервер расположен в другом месте.  
 
-Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+Smart Routing обычно используется для обхода законов, вторгающихся в частную жизнь, и других форм цензуры.</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
@@ -1568,7 +1568,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Tor</value>
   </data>
   <data name="Dialogs_Welcome_Message">
-    <value>We're getting your new VPN experience ready. This should only take a moment.</value>
+    <value>Мы подготавливаем к работе ваш новый опыт работы с VPN. Это займет совсем немного времени.</value>
   </data>
   <data name="Dialogs_Welcome_Title">
     <value>Добро пожаловать в Proton VPN</value>
@@ -1783,7 +1783,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>VPN IP</value>
   </data>
   <data name="Home_FreeConnections_About">
-    <value>More information about free connections</value>
+    <value>Подробнее о бесплатных подключениях</value>
   </data>
   <data name="Home_Help_Title">
     <value>Помощь</value>
@@ -1837,7 +1837,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Открепить</value>
   </data>
   <data name="Home_Update_Confirmation_Message">
-    <value>To complete the update process, Proton VPN will temporarily disconnect and deactivate Advanced Kill Switch if any of these are active. Do you want to continue?</value>
+    <value>Чтобы завершить процесс обновления, Proton VPN временно отключит и деактивирует Advanced Kill Switch, если хоть что-то из этого активно. Вы хотите продолжить?</value>
     <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
   </data>
   <data name="Home_Update_Confirmation_Title">
@@ -1960,7 +1960,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Message in the loading screen when signing in or starting the app</comment>
   </data>
   <data name="Main_Loading_SigningOut">
-    <value>Signing out, please wait...</value>
+    <value>Выполняется вход, подождите…...</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
   <data name="Notifications_PortForwarding_Description">
@@ -1988,22 +1988,22 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Текущая версия</value>
   </data>
   <data name="Settings_About_FailedToFetch">
-    <value>Failed to load changelog information.</value>
+    <value>Не удалось загрузить информацию журнала изменений.</value>
   </data>
   <data name="Settings_About_GetLatestVersion">
-    <value>Get the latest version</value>
+    <value>Получить последнюю версию</value>
   </data>
   <data name="Settings_About_LearnMore">
     <value>Подробнее</value>
   </data>
   <data name="Settings_About_Licensing">
-    <value>Licensing</value>
+    <value>Лицензирование</value>
   </data>
   <data name="Settings_About_Loading">
     <value>Загрузка</value>
   </data>
   <data name="Settings_About_NewVersion">
-    <value>NEW</value>
+    <value>НОВОЕ</value>
   </data>
   <data name="Settings_About_Title">
     <value>О программе</value>
@@ -2012,7 +2012,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Повторите попытку</value>
   </data>
   <data name="Settings_About_Update_Description">
-    <value>Get the most from your VPN by updating to the latest version of the app.</value>
+    <value>Получите максимум от VPN, обновив приложение до последней версии.</value>
   </data>
   <data name="Settings_AppVersion">
     <value>Версия приложения</value>
@@ -2302,7 +2302,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Сетевой драйвер OpenVPN</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver_Description">
-    <value>Network drivers can impact your connection speed. The new TUN adapter provides higher speed and falls back on the TAP adapter if it encounters any connectivity problems.</value>
+    <value>Сетевые драйверы могут влиять на скорость соединения. Новый адаптер TUN обеспечивает более высокую скорость и при возникновении проблем с подключением переключается на адаптер TAP.</value>
   </data>
   <data name="Settings_General_Theme">
     <value>Тема</value>

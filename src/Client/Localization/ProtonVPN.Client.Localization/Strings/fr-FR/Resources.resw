@@ -187,7 +187,7 @@
     <value>Vous avez atteint la limite maximale d'appareils. Veuillez déconnecter un autre appareil pour connecter celui-ci ou passez à PLUS pour pouvoir connecter jusqu'à 10 appareils en même temps.</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedPaidUser">
-    <value>Vous avez atteint votre limite maximale d'appareils. Veuillez déconnecter un autre appareil pour connecter celui-ci.</value>
+    <value>Vous avez atteint le nombre maximum d'appareils connectés. Veuillez déconnecter un autre appareil pour connecter celui-ci.</value>
   </data>
   <data name="Connection_Error_TapAdapterInUse">
     <value>Votre carte réseau est en cours d'utilisation.</value>
@@ -1952,7 +1952,7 @@ bloqués</value>
     <value>Tor</value>
   </data>
   <data name="Server_Free">
-    <value>Serveur Free</value>
+    <value>Serveur gratuit</value>
   </data>
   <data name="Settings_About">
     <value>À propos</value>

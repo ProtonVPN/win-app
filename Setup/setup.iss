@@ -142,6 +142,7 @@ Name: "ru_RU"; MessagesFile: "compiler:Languages\Russian.isl"
 Name: "es_ES"; MessagesFile: "compiler:Languages\Spanish.isl"
 Name: "uk_UA"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 Name: "tr_TR"; MessagesFile: "compiler:Languages\Turkish.isl"
+Name: "sl_SI"; MessagesFile: "compiler:Languages\Slovenian.isl"
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{app}\{#VersionFolder}\ServiceData"
