@@ -116,6 +116,7 @@ Source: "..\{#SourcePath}\ja-JP\ProtonVPN.Translations.resources.dll"; DestDir: 
 Source: "..\{#SourcePath}\sk-SK\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\sk-SK"; Flags: signonce;
 Source: "..\{#SourcePath}\nn-NO\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\nn-NO"; Flags: signonce;
 Source: "..\{#SourcePath}\nb-NO\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\nb-NO"; Flags: signonce;
+Source: "..\{#SourcePath}\sl-SI\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\sl-SI"; Flags: signonce;
 
 Source: "..\{#SourcePath}\Resources\*.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
 Source: "..\{#SourcePath}\Resources\*.exe"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
@@ -159,6 +160,7 @@ Name: "ru_RU"; MessagesFile: "compiler:Languages\Russian.isl,Strings\Russian.isl
 Name: "es_ES"; MessagesFile: "compiler:Languages\Spanish.isl,Strings\Spanish.isl"
 Name: "uk_UA"; MessagesFile: "compiler:Languages\Ukrainian.isl,Strings\Ukrainian.isl"
 Name: "tr_TR"; MessagesFile: "compiler:Languages\Turkish.isl,Strings\Turkish.isl"
+Name: "sl_SI"; MessagesFile: "compiler:Languages\Slovenian.isl,Strings\Slovenian.isl"
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{app}\{#VersionFolder}\ServiceData"

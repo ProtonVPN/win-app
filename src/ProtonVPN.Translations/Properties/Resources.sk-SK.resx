@@ -2345,7 +2345,7 @@ Podľa pokynov &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run T
     <comment>The text on Discard button of discard changes Question dialog opened from Profile window</comment>
   </data>
   <data name="Profiles_Profile_btn_KeepEditing">
-    <value>Pokračovať v úprave</value>
+    <value>Pokračovať v úpravách</value>
     <comment>The text on Keep Editing button of discard changes Question dialog opened from Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Color">
@@ -2516,7 +2516,7 @@ Podľa pokynov &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run T
     <value>NAVÝŠIŤ</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>Zakáže internet ak sa VPN pripojenie preruší aby sa zabránilo nechcenému prezradeniu vašej IP.</value>
+    <value>Zakáže internet ak sa VPN pripojenie preruší z dôvodu zabránenia nechcenému prezradeniu vašej IP.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
     <value>Prehliadajte internet bez reklám a škodlivého softvéru.</value>
@@ -2534,10 +2534,10 @@ Podľa pokynov &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run T
     <value>Zablokovaných reklám</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
-    <value>Reklamné webové stránky používajú súbory cookie a sledovacie prvky, aby na vás mohli zacieliť.</value>
+    <value>Reklamné webové stránky používajú súbory cookie a sledovacie prvky, aby vás mohli zacieliť.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
-    <value>Ušetrených údajov</value>
+    <value>Ušetrených dát</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
     <value>Odhadované množstvo reklám, sledovačov a malvéru, ktoré NetShield zablokoval.</value>
