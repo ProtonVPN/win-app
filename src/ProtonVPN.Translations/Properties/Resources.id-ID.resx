@@ -1613,7 +1613,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The text displayed in Disconnect modal window if TAP error is detected</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TlsCertificateError">
-    <value>Terdapat masalah dalam proses validasi sertifikat server VPN, yang pada umumnya menandakan bahwa koneksi internet Anda sedang dibajak atau server yang hendak Anda tuju tidak diatur dengan benar. Dapatkan bantuan dari tim layanan dukungan kami dengan mengirimkan &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Issue Report"/&gt;&lt;/Hyperlink&gt;.</value>
+    <value>Terdapat masalah dalam memvalidasi sertifikat server VPN, yang dapat menandakan bahwa koneksi jaringan Anda sedang disusupi atau server yang ingin Anda tuju tidak diatur dengan benar. Dapatkan bantuan dari tim layanan dukungan kami dengan mengirimkan &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Issue Report"/&gt;&lt;/Hyperlink&gt;.</value>
     <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occurred</comment>
   </data>
   <data name="Dialogs_DoNotShowThisMessageAgain">
@@ -3111,7 +3111,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Akses konten yang terblokir wilayah</value>
   </data>
   <data name="Upsell_Countries_ChooseAnyLocation">
-    <value>Pilih lokasi mana pun</value>
+    <value>Pilih lokasi server di mana pun</value>
   </data>
   <data name="Upsell_Countries_HigherVpnSpeed">
     <value>Kecepatan VPN yang jauh lebih tinggi</value>

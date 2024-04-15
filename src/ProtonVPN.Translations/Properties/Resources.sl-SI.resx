@@ -502,7 +502,7 @@
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_Pinging">
-    <value>Čakanje na uporabno omrežje...</value>
+    <value>Čakanje na uporabno omrežje ...</value>
     <comment>The VPN status displayed in Pinging overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_RetrievingConfiguration">
@@ -942,7 +942,7 @@
     <comment>The name of GY country</comment>
   </data>
   <data name="Country_val_HK">
-    <value>Hong Kong</value>
+    <value>Hongkong</value>
     <comment>The name of HK country</comment>
   </data>
   <data name="Country_val_HM">
@@ -1406,11 +1406,11 @@
     <comment>The name of SV country</comment>
   </data>
   <data name="Country_val_SX">
-    <value>Sint Maarten (Nizozemski del)</value>
+    <value>Sveti Martin (nizozemski del)</value>
     <comment>The name of SX country</comment>
   </data>
   <data name="Country_val_SY">
-    <value>Sirija Arabska republika</value>
+    <value>Sirija</value>
     <comment>The name of SY country</comment>
   </data>
   <data name="Country_val_SZ">
@@ -1442,7 +1442,7 @@
     <comment>The name of TJ country</comment>
   </data>
   <data name="Country_val_TK">
-    <value>Tokelau</value>
+    <value>Tokelav</value>
     <comment>The name of TK country</comment>
   </data>
   <data name="Country_val_TL">
@@ -1510,7 +1510,7 @@
     <comment>The name of UZ country</comment>
   </data>
   <data name="Country_val_VA">
-    <value>Vatikanska mestna država</value>
+    <value>Vatikan</value>
     <comment>The name of VA country</comment>
   </data>
   <data name="Country_val_VC">
@@ -1992,7 +1992,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The label for Start with Windows toggle switch in Login window</comment>
   </data>
   <data name="Login_lbl_TakingLongerThanExpected">
-    <value>Povezava s Proton VPN v teku...</value>
+    <value>Povezava s Proton VPN v teku ...</value>
     <comment>The text displayed in login window when login takes longer than expected</comment>
   </data>
   <data name="Login_lbl_TwoFactorAuthCode">
@@ -2007,7 +2007,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page with information regarding login issues)</comment>
   </data>
   <data name="Login_lnk_CreateAccount">
-    <value>Ustvari račun</value>
+    <value>Ustvarite račun</value>
     <comment>The text of hyperlink for creating account in Login window</comment>
   </data>
   <data name="Login_lnk_ForgotUsername">
@@ -2515,7 +2515,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>NADGRADI</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>Onemogoči internet, če povezava VPN prekine, da prepreči nenamerno uhajanje IP-ja.</value>
+    <value>Ob prekinitvi VPN povezave onemogoči internet in prepreči nenamerno razkrivanje IP.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
     <value>Brskajte po internetu brez oglasov in zlonamerne programske opreme.</value>
