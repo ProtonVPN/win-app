@@ -121,16 +121,16 @@
     <value>Proton VPN Free</value>
   </data>
   <data name="Cities">
-    <value>Cities</value>
+    <value>Gradovi</value>
   </data>
   <data name="Common_Actions_Add">
-    <value>Add</value>
+    <value>Dodaj</value>
   </data>
   <data name="Common_Actions_Cancel">
-    <value>Cancel</value>
+    <value>Poništi</value>
   </data>
   <data name="Common_Actions_Close">
-    <value>Close</value>
+    <value>Zatvori</value>
   </data>
   <data name="Common_Actions_Connect">
     <value>Connect</value>
@@ -142,19 +142,19 @@
     <value>Disconnect</value>
   </data>
   <data name="Common_Actions_Enable">
-    <value>Enable</value>
+    <value>Omogući</value>
   </data>
   <data name="Common_Actions_Reconnect">
     <value>Reconnect</value>
   </data>
   <data name="Common_Actions_Remove">
-    <value>Remove</value>
+    <value>Ukloni</value>
   </data>
   <data name="Common_Actions_Update">
-    <value>Update</value>
+    <value>Ažuriraj</value>
   </data>
   <data name="Common_Actions_Upgrade">
-    <value>Upgrade</value>
+    <value>Nadogradi</value>
   </data>
   <data name="Common_Links_LearnMore">
     <value>Learn more</value>
@@ -163,10 +163,10 @@
     <value>Loading...</value>
   </data>
   <data name="Common_States_Off">
-    <value>Off</value>
+    <value>Isključeno</value>
   </data>
   <data name="Common_States_On">
-    <value>On</value>
+    <value>Oključeno</value>
   </data>
   <data name="Connection_Error_MissingAuthCertificate">
     <value>Proton VPN failed to fetch authentication certificate due to network issue.</value>
@@ -227,7 +227,7 @@
     <value>All</value>
   </data>
   <data name="Countries_Cities">
-    <value>Cities</value>
+    <value>Gradovi</value>
   </data>
   <data name="Countries_City_One">
     <value>{0} city</value>
@@ -239,14 +239,14 @@
     <value>{0} cities</value>
   </data>
   <data name="Countries_Connect">
-    <value>Connect</value>
+    <value>Poveži</value>
     <comment>Connect button label on a country row in the countries tab</comment>
   </data>
   <data name="Countries_Fastest">
     <value>Fastest country</value>
   </data>
   <data name="Countries_Info">
-    <value>Info</value>
+    <value>Informacije</value>
   </data>
   <data name="Countries_NoSearchResults">
     <value>Nema rezultata</value>
@@ -1427,7 +1427,7 @@ High latency can slow down your connection.</value>
     <value>What is a VPN protocol?</value>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Email">
-    <value>Email</value>
+    <value>E-pošta</value>
     <comment>The label for user e-mail address in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Email_Description">
@@ -1707,14 +1707,14 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_ConnectionDetails_City">
-    <value>City</value>
+    <value>Grad</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectedFor">
     <value>Connected for</value>
     <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
   </data>
   <data name="Home_ConnectionDetails_Country">
-    <value>Country</value>
+    <value>Država</value>
   </data>
   <data name="Home_ConnectionDetails_Download">
     <value>Download</value>
@@ -1726,7 +1726,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Hide connection details</value>
   </data>
   <data name="Home_ConnectionDetails_HideIP">
-    <value>Hide</value>
+    <value>Sakrij</value>
     <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
   </data>
   <data name="Home_ConnectionDetails_HideIP_Description">
@@ -1746,7 +1746,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Protocol</value>
   </data>
   <data name="Home_ConnectionDetails_Server">
-    <value>Server</value>
+    <value>Poslužitelj</value>
   </data>
   <data name="Home_ConnectionDetails_ServerLoad">
     <value>Server load</value>
@@ -1755,7 +1755,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Show connection details</value>
   </data>
   <data name="Home_ConnectionDetails_ShowIP">
-    <value>Show</value>
+    <value>Prikaži</value>
     <comment>Tooltip displayed when the user hover the button to show the User IP Address</comment>
   </data>
   <data name="Home_ConnectionDetails_ShowIP_Description">
@@ -1765,7 +1765,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Connection details</value>
   </data>
   <data name="Home_ConnectionDetails_Upload">
-    <value>Upload</value>
+    <value>Učitaj</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>VPN IP</value>
@@ -1774,7 +1774,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>More information about free connections</value>
   </data>
   <data name="Home_Help_Title">
-    <value>Help</value>
+    <value>Pomoć</value>
   </data>
   <data name="Home_Map_Landmark">
     <value>Map</value>
@@ -1877,7 +1877,7 @@ stopped</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="Login_Form_Email">
-    <value>Email</value>
+    <value>E-pošta</value>
   </data>
   <data name="Login_Form_ForgotUsername">
     <value>Zaboravili ste korisničko ime</value>
@@ -2024,7 +2024,7 @@ stopped</value>
     <value>Apply and reconnect</value>
   </data>
   <data name="Settings_Common_Discard">
-    <value>Discard</value>
+    <value>Odbaci</value>
   </data>
   <data name="Settings_Common_Discard_Title">
     <value>Discard settings changes?</value>
@@ -2293,7 +2293,7 @@ stopped</value>
     <value>Network drivers can impact your connection speed. The new TUN adapter provides higher speed and falls back on the TAP adapter if it encounters any connectivity problems.</value>
   </data>
   <data name="Settings_General_Theme">
-    <value>Theme</value>
+    <value>Tema</value>
   </data>
   <data name="Settings_General_Theme_Dark">
     <value>Dark</value>
@@ -2380,7 +2380,7 @@ stopped</value>
     <value>WireGuard</value>
   </data>
   <data name="Settings_Support">
-    <value>Support</value>
+    <value>Podrška</value>
   </data>
   <data name="Settings_Support_DebugLogs">
     <value>Debug logs</value>

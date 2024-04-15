@@ -295,16 +295,16 @@
     <comment>{0} represents the number of severs</comment>
   </data>
   <data name="Countries_Server_One">
-    <value>{0} strežnik</value>
+    <value>{0} server</value>
   </data>
   <data name="Countries_Server_Two">
-    <value>{0} strežniki</value>
+    <value>{0} servers</value>
   </data>
   <data name="Countries_Server_Few">
-    <value>{0} strežniki</value>
+    <value>{0} servers</value>
   </data>
   <data name="Countries_Server_Other">
-    <value>{0} strežniki</value>
+    <value>{0} servers</value>
   </data>
   <data name="Countries_ServerLoad">
     <value>Obremenitev strežnika</value>
@@ -714,7 +714,7 @@
     <comment>The name of GY country</comment>
   </data>
   <data name="Country_val_HK">
-    <value>Hong Kong</value>
+    <value>Hongkong</value>
     <comment>The name of HK country</comment>
   </data>
   <data name="Country_val_HM">
@@ -1178,11 +1178,11 @@
     <comment>The name of SV country</comment>
   </data>
   <data name="Country_val_SX">
-    <value>Sint Maarten (Nizozemski del)</value>
+    <value>Sveti Martin (nizozemski del)</value>
     <comment>The name of SX country</comment>
   </data>
   <data name="Country_val_SY">
-    <value>Sirija Arabska republika</value>
+    <value>Sirija</value>
     <comment>The name of SY country</comment>
   </data>
   <data name="Country_val_SZ">
@@ -1214,7 +1214,7 @@
     <comment>The name of TJ country</comment>
   </data>
   <data name="Country_val_TK">
-    <value>Tokelau</value>
+    <value>Tokelav</value>
     <comment>The name of TK country</comment>
   </data>
   <data name="Country_val_TL">
@@ -1282,7 +1282,7 @@
     <comment>The name of UZ country</comment>
   </data>
   <data name="Country_val_VA">
-    <value>Vatikanska mestna država</value>
+    <value>Vatikan</value>
     <comment>The name of VA country</comment>
   </data>
   <data name="Country_val_VC">
@@ -1395,7 +1395,7 @@ Visoka zakasnitev lahko upočasni vašo povezavo.</value>
     <value>Nizka (1 ms - 50 ms)</value>
   </data>
   <data name="Dialogs_Latency_MediumRange_Description">
-    <value>Ni verjetnosti, da bi vplivalo na hitrost VPN</value>
+    <value>Ni verjetno, da bi vplivalo na hitrost VPN</value>
   </data>
   <data name="Dialogs_Latency_MediumRange_Title">
     <value>Srednje (50 ms - 150 ms)</value>
@@ -1404,7 +1404,7 @@ Visoka zakasnitev lahko upočasni vašo povezavo.</value>
     <value>Kaj je zakasnitev?</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
-    <value>Kako torrentati s P2P</value>
+    <value>Kako uporabljati torrent s P2P</value>
   </data>
   <data name="Dialogs_P2P_Title">
     <value>P2P</value>
@@ -1413,7 +1413,7 @@ Visoka zakasnitev lahko upočasni vašo povezavo.</value>
     <value>Kaj je strežnik P2P?</value>
   </data>
   <data name="Dialogs_P2P_WhatIsP2PServer_Description">
-    <value>P2P (peer-to-peer) strežniki VPN od blokirajo torrent strani.</value>
+    <value>P2P (peer-to-peer) strežniki VPN odblokirajo torrent strani.</value>
   </data>
   <data name="Dialogs_P2P_WhatIsTorrenting">
     <value>Kaj je torrenting?</value>
@@ -1885,7 +1885,7 @@ ustavljeni</value>
     <value>Obrazec za prijavo</value>
   </data>
   <data name="Login_Form_CreateAccount">
-    <value>Ustvari račun</value>
+    <value>Ustvarite račun</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="Login_Form_Email">

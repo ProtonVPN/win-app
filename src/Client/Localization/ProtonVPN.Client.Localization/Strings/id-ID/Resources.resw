@@ -196,7 +196,7 @@
     <value>Versi adaptor jaringan telah usang.</value>
   </data>
   <data name="Connection_Error_TlsCertificate">
-    <value>Terdapat masalah dalam proses validasi sertifikat server VPN, yang pada umumnya menandakan bahwa koneksi internet Anda sedang dibajak atau server yang hendak Anda tuju tidak diatur dengan benar. Dapatkan bantuan dari tim layanan dukungan kami dengan mengirimkan sebuah Laporan Masalah.</value>
+    <value>Terdapat masalah dalam memvalidasi sertifikat server VPN, yang dapat menandakan bahwa koneksi jaringan Anda sedang disusupi atau server yang ingin Anda tuju tidak diatur dengan benar. Dapatkan bantuan dari tim layanan dukungan kami dengan mengirimkan Laporan Masalah.</value>
   </data>
   <data name="Connection_Error_Unknown">
     <value>Kami tidak yakin akan apa yang terjadi. Silakan coba lagi atau hubungi tim layanan dukungan kami.</value>
