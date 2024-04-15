@@ -22,6 +22,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Contracts;
 using ProtonVPN.Client.Helpers;
+using ProtonVPN.Client.Models.Icons;
 using ProtonVPN.Client.UI;
 using ProtonVPN.Client.UI.Login;
 using Windows.Foundation;
@@ -48,7 +49,7 @@ public sealed partial class MainWindow
         AppWindow.Title = App.APPLICATION_NAME;
         AppWindow.TitleBar.ExtendsContentIntoTitleBar = true;
 
-        UpdateApplicationIcon(false);
+        UpdateApplicationIcon(ApplicationIconSelector.LoggedOutIcon);
     }
 
     public void SwitchToLoginShell()
@@ -65,12 +66,8 @@ public sealed partial class MainWindow
         ShowTitleBar();
     }
 
-    public void UpdateApplicationIcon(bool isProtected)
+    public void UpdateApplicationIcon(ImageSource icon)
     {
-        ImageSource icon = isProtected
-            ? ResourceHelper.GetIcon("ProtonVpnProtectedApplicationIcon")
-            : ResourceHelper.GetIcon("ProtonVpnUnprotectedApplicationIcon");
-
         WindowContainer.IconSource = icon;
 
         // VPNWIN-1925 - This doesn't work when the App is pinned to the task bar.

@@ -27,10 +27,10 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
-using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Messages;
+using ProtonVPN.Client.Models.Icons;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Client.Settings.Contracts;
@@ -55,7 +55,7 @@ public class MainWindowActivator :
     private readonly ILoginViewNavigator _loginViewNavigator;
     private readonly IServiceManager _serviceManager;
     private readonly IUserAuthenticator _userAuthenticator;
-    private readonly IConnectionManager _connectionManager;
+    private readonly IApplicationIconSelector _applicationIconSelector;
     private readonly ISettings _settings;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IUIThreadDispatcher _uiThreadDispatcher;
@@ -71,7 +71,7 @@ public class MainWindowActivator :
         ILoginViewNavigator loginViewNavigator,
         IServiceManager serviceManager,
         IUserAuthenticator userAuthenticator,
-        IConnectionManager connectionManager,
+        IApplicationIconSelector applicationIconSelector,
         ISettings settings,
         IEventMessageSender eventMessageSender,
         IUIThreadDispatcher uIThreadDispatcher)
@@ -83,7 +83,7 @@ public class MainWindowActivator :
         _loginViewNavigator = loginViewNavigator;
         _serviceManager = serviceManager;
         _userAuthenticator = userAuthenticator;
-        _connectionManager = connectionManager;
+        _applicationIconSelector = applicationIconSelector;
         _settings = settings;
         _eventMessageSender = eventMessageSender;
         _uiThreadDispatcher = uIThreadDispatcher;
@@ -220,8 +220,7 @@ public class MainWindowActivator :
 
     private void InvalidateAppIcon()
     {
-        bool isProtected = _userAuthenticator.IsLoggedIn && _connectionManager.IsConnected;
-        App.MainWindow.UpdateApplicationIcon(isProtected);
+        App.MainWindow.UpdateApplicationIcon(_applicationIconSelector.Get());
     }
 
     private void InvalidateWindowContent()
