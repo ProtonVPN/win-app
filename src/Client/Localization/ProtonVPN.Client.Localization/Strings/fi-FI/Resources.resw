@@ -1398,7 +1398,7 @@ Korkea viive voi hidastaa yhteyttäsi.</value>
     <value>Suurten tiedostojen nopea jakaminen ja lataaminen P2P-verkon (peer-to-peer) välityksellä.</value>
   </data>
   <data name="Dialogs_P2P_WhyUse">
-    <value>Miksi käyttää P2P-palvelinta torrentoinnissa?</value>
+    <value>Miksi käyttää P2P-palvelinta torrentointiin?</value>
   </data>
   <data name="Dialogs_P2P_WhyUse_Description">
     <value>• Suuremmat lähetys- ja latausnopeudet
@@ -1479,7 +1479,7 @@ Korkea viive voi hidastaa yhteyttäsi.</value>
 Tämä korkeampi suojaustaso voi aiheuttaa suurempaa viivettä ja hitaampia nopeuksia.</value>
   </data>
   <data name="Dialogs_SecureCore_HighPrivacy">
-    <value>Korkea viive</value>
+    <value>Korkeampi yksityisyys</value>
   </data>
   <data name="Dialogs_SecureCore_HigherLatency">
     <value>Korkeampi viive</value>
@@ -1566,7 +1566,7 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
     <comment>Format a size in Gigabytes. {0} is a place holder for the number of Gigabytes (eg. 30 GB)</comment>
   </data>
   <data name="Format_Size_Kilobytes">
-    <value>{0} Kt</value>
+    <value>{0} kt</value>
     <comment>Format a size in Kilobytes. {0} is a place holder for the number of Kilobytes (eg. 30 KB)</comment>
   </data>
   <data name="Format_Size_Megabytes">
@@ -1594,7 +1594,7 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
     <comment>Format a speed in Gigabytes per second. {0} is a place holder for the number of Gigabytes per second (eg. 30 GB/s)</comment>
   </data>
   <data name="Format_Speed_KilobytesPerSecond">
-    <value>{0} Kt/s</value>
+    <value>{0} kt/s</value>
     <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
   </data>
   <data name="Format_Speed_MegabytesPerSecond">
@@ -1634,7 +1634,7 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
     <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_HoursMinutesSeconds_Short">
-    <value>hh\:mm\:ss</value>
+    <value>hh\.mm\.ss</value>
     <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss -&gt; 01:05:36).</comment>
   </data>
   <data name="Format_Time_Minutes">
@@ -1646,7 +1646,7 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
     <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_MinutesSeconds_Short">
-    <value>mm\:ss</value>
+    <value>mm\.ss</value>
     <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss -&gt; 05:36).</comment>
   </data>
   <data name="Format_Time_Seconds">
@@ -1817,7 +1817,7 @@ estetty</value>
     <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
   </data>
   <data name="Home_Update_Confirmation_Title">
-    <value>Päivitä Proton VPN?</value>
+    <value>Päivitetäänkö Proton VPN?</value>
   </data>
   <data name="Home_Update_UpdateAvailable">
     <value>Päivitys saatavilla</value>
@@ -1958,7 +1958,7 @@ estetty</value>
     <value>Tietoja</value>
   </data>
   <data name="Settings_About_Changelog">
-    <value>Muutosloki</value>
+    <value>Muutoshistoria</value>
   </data>
   <data name="Settings_About_CurrentVersion">
     <value>Nykyinen versio</value>
@@ -2107,7 +2107,7 @@ estetty</value>
     <value>Tämä poistaa jaetun tunneloinnin käytöstä.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Conflict_Title">
-    <value>Ota tappokytkin käyttöön?</value>
+    <value>Otetaanko tappokytkin käyttöön?</value>
   </data>
   <data name="Settings_Features_KillSwitch_Description">
     <value>Suojaa IP-osoitteesi katkaisemalla yhteyden Internetiin, jos VPN-yhteytesi katkeaa.</value>
@@ -2128,7 +2128,7 @@ estetty</value>
     <value>Et voi muodostaa yhteyttä mukautetulla DNS-palvelimella, kun NetShield on käytössä.</value>
   </data>
   <data name="Settings_Features_NetShield_Conflict_Title">
-    <value>Ota NetShield käyttöön?</value>
+    <value>Otetaanko NetShield käyttöön?</value>
   </data>
   <data name="Settings_Features_NetShield_Description">
     <value>Suojaa itsesi verkkosivustojen ja sovellusten mainoksilta, haittaohjelmilta ja seuraajilta.</value>
@@ -2149,7 +2149,7 @@ estetty</value>
     <value>Et voi käyttää kohtalaista NAT:ia kun porttiohjaus on käytössä.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Conflict_Title">
-    <value>Ota porttiohjaus käyttöön?</value>
+    <value>Otetaanko porttiohjaus käyttöön?</value>
   </data>
   <data name="Settings_Features_PortForwarding_Description">
     <value>Ohita palomuurit ja muodosta yhteys P2P-palvelimiin ja lähiverkkosi laitteisiin.</value>
@@ -2187,7 +2187,7 @@ estetty</value>
     <value>Tämä poistaa tappokytkimen käytöstä.</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Conflict_Title">
-    <value>Ota jaettu tunnelointi käyttöön?</value>
+    <value>Otetaanko jaettu tunnelointi käyttöön?</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Description">
     <value>Mukauta yhteyttäsi päättämällä, mitkä sovellukset ja IP-osoitteet suojataan VPN:llä.</value>
@@ -2353,7 +2353,7 @@ estetty</value>
     <value>Tämä palauttaa Proton VPN:n asetukset alkuperäiseen tilaansa.</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Title">
-    <value>Palauta oletusasetukset?</value>
+    <value>Palautetaanko oletusasetukset?</value>
   </data>
   <data name="Settings_SelectedProtocol_OpenVpnTcp">
     <value>OpenVPN (TCP)</value>

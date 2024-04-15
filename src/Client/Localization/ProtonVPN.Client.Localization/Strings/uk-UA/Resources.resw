@@ -230,16 +230,16 @@
     <value>Міста</value>
   </data>
   <data name="Countries_City_One">
-    <value>{0} city</value>
+    <value>{0} місто</value>
   </data>
   <data name="Countries_City_Few">
-    <value>{0} cities</value>
+    <value>{0} міста</value>
   </data>
   <data name="Countries_City_Many">
-    <value>{0} cities</value>
+    <value>{0} міст</value>
   </data>
   <data name="Countries_City_Other">
-    <value>{0} cities</value>
+    <value>{0} міст</value>
   </data>
   <data name="Countries_Connect">
     <value>Connect</value>
@@ -270,7 +270,7 @@
     <value>P2P</value>
   </data>
   <data name="Countries_P2PCountries">
-    <value>P2P countries ({0})</value>
+    <value>Країни P2P ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_P2P_Cities">
@@ -278,7 +278,7 @@
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
   <data name="Countries_Page_Title">
-    <value>Countries</value>
+    <value>Країни</value>
   </data>
   <data name="Countries_SearchPlaceholder">
     <value>I want to browse from...</value>
@@ -1476,7 +1476,7 @@ High latency can slow down your connection.</value>
     <value>We couldn't send your report. Please check your connection and try again.</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_RetryAction">
-    <value>Try again</value>
+    <value>Спробувати знову</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Success">
     <value>Report sent</value>
@@ -1495,7 +1495,7 @@ High latency can slow down your connection.</value>
     <value>Повідомити про проблему</value>
   </data>
   <data name="Dialogs_SecureCore_AdvancedPrivacy">
-    <value>Advanced privacy</value>
+    <value>Вдосконалена приватність</value>
   </data>
   <data name="Dialogs_SecureCore_Description">
     <value>Secure Core connects you to your destination server via a second, maximum security VPN server.
@@ -1503,13 +1503,13 @@ High latency can slow down your connection.</value>
 This higher level of protection may cause higher latency and slower speeds.</value>
   </data>
   <data name="Dialogs_SecureCore_HighPrivacy">
-    <value>High privacy</value>
+    <value>Високий рівень приватності</value>
   </data>
   <data name="Dialogs_SecureCore_HigherLatency">
-    <value>Higher latency</value>
+    <value>Вища затримка</value>
   </data>
   <data name="Dialogs_SecureCore_LowerLatency">
-    <value>Lower latency</value>
+    <value>Нижча затримка</value>
   </data>
   <data name="Dialogs_SecureCore_SecureCoreConnection">
     <value>Secure Core
@@ -1562,7 +1562,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Connect to a Tor server to access hidden services and onion sites using any browser.</value>
   </data>
   <data name="Dialogs_Tor_LearnMore">
-    <value>How to access the Tor network</value>
+    <value>Як отримати доступ до мережі Tor</value>
   </data>
   <data name="Dialogs_Tor_Title">
     <value>Tor</value>
@@ -1815,7 +1815,7 @@ saved</value>
  to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
   </data>
   <data name="Home_Page_Title">
-    <value>Home</value>
+    <value>Головна</value>
   </data>
   <data name="Home_Recents_Landmark">
     <value>Recent connections</value>
@@ -1825,7 +1825,7 @@ saved</value>
     <value>Pin</value>
   </data>
   <data name="Home_Recents_SecondaryActions_ToolTip">
-    <value>Actions</value>
+    <value>Дії</value>
   </data>
   <data name="Home_Recents_ServerUnderMaintenance">
     <value>Server is under maintenance</value>
@@ -1885,7 +1885,7 @@ saved</value>
     <value>Sign in form</value>
   </data>
   <data name="Login_Form_CreateAccount">
-    <value>Create account</value>
+    <value>Створити обліковий запис</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="Login_Form_Email">
@@ -1907,7 +1907,7 @@ saved</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_ResetPassword">
-    <value>Reset password</value>
+    <value>Скинути пароль</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_SignIn">
@@ -1938,22 +1938,22 @@ saved</value>
     <value>Двоетапна перевірка</value>
   </data>
   <data name="Login_TwoFactor_Digit1">
-    <value>First digit</value>
+    <value>Перша цифра</value>
   </data>
   <data name="Login_TwoFactor_Digit2">
-    <value>Second digit</value>
+    <value>Друга цифра</value>
   </data>
   <data name="Login_TwoFactor_Digit3">
-    <value>Third digit</value>
+    <value>Третя цифра</value>
   </data>
   <data name="Login_TwoFactor_Digit4">
-    <value>Fourth digit</value>
+    <value>Четверта цифра</value>
   </data>
   <data name="Login_TwoFactor_Digit5">
-    <value>Fifth digit</value>
+    <value>П'ята цифра</value>
   </data>
   <data name="Login_TwoFactor_Digit6">
-    <value>Sixth digit</value>
+    <value>Шоста цифра</value>
   </data>
   <data name="Main_Loading_SigningIn">
     <value>Signing in, please wait...</value>
