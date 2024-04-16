@@ -30,7 +30,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       xmlns:recents="using:ProtonVPN.Client.UI.Home.Recents"
-      xmlns:selectors="using:ProtonVPN.Client.UI.Home.Selectors"
+      xmlns:selectors="using:ProtonVPN.Client.UI.Home.ConnectionCard.Selectors"
       xmlns:status="using:ProtonVPN.Client.UI.Home.Status"
       xmlns:banner="using:ProtonVPN.Client.UI.Upsell.Banner"
       x:DefaultBindMode="OneWay"

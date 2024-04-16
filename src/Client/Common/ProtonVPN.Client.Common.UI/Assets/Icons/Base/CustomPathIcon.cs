@@ -26,7 +26,7 @@ namespace ProtonVPN.Client.Common.UI.Assets.Icons.Base;
 
 public abstract class CustomPathIcon : PathIcon
 {
-    private const PathIconSize DEFAULT_ICON_SIZE = PathIconSize.Pixels16;
+    private const PathIconSize DEFAULT_ICON_SIZE = PathIconSize.Pixels20;
 
     public static readonly DependencyProperty SizeProperty =
         DependencyProperty.Register(nameof(Size), typeof(PathIconSize), typeof(CustomPathIcon), new PropertyMetadata(DEFAULT_ICON_SIZE, OnSizePropertyChanged));

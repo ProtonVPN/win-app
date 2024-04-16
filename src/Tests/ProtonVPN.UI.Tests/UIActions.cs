@@ -19,8 +19,8 @@
 
 using System;
 using System.Runtime.InteropServices;
-using System.Xml.Linq;
 using FlaUI.Core.AutomationElements;
+using FlaUI.Core.Conditions;
 using FlaUI.Core.Input;
 using FlaUI.Core.Tools;
 using NUnit.Framework;
@@ -30,23 +30,12 @@ namespace ProtonVPN.UI.Tests;
 
 public class UIActions : TestSession
 {
-    protected dynamic WaitUntilElementExistsByName(string name, TimeSpan time)
-    {
-        WaitForElement(() =>
-        {
-            RefreshWindow();
-            return Window.FindFirstDescendant(cf => cf.ByName(name)) != null;
-        }, time, name);
-
-        return this;
-    }
-
     public dynamic WaitUntilElementExistsByAutomationId(string automationId, TimeSpan time)
     {
         WaitForElement(() =>
         {
             RefreshWindow();
-            return Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)) != null;
+            return FindFirstDescendant(cf => cf.ByAutomationId(automationId)) != null;
         }, time, automationId);
 
         return this;
@@ -59,6 +48,17 @@ public class UIActions : TestSession
             RefreshWindow();
             return Window.FindFirstByXPath(xpath) != null;
         }, time, xpath);
+
+        return this;
+    }
+
+    protected dynamic WaitUntilElementExistsByName(string name, TimeSpan time)
+    {
+        WaitForElement(() =>
+        {
+            RefreshWindow();
+            return FindFirstDescendant(cf => cf.ByName(name)) != null;
+        }, time, name);
 
         return this;
     }
@@ -83,7 +83,7 @@ public class UIActions : TestSession
     protected AutomationElement ElementByAutomationId(string automationId, TimeSpan? timeout = null)
     {
         WaitUntilElementExistsByAutomationId(automationId, timeout ?? TestConstants.VeryShortTimeout);
-        return Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId));
+        return FindFirstDescendant(cf => cf.ByAutomationId(automationId));
     }
 
     protected AutomationElement ElementByXpath(string xpath, TimeSpan? timeout = null)
@@ -95,13 +95,35 @@ public class UIActions : TestSession
     protected AutomationElement ElementByName(string name, TimeSpan? timeout = null)
     {
         WaitUntilElementExistsByName(name, timeout ?? TestConstants.VeryShortTimeout);
-        return Window.FindFirstDescendant(cf => cf.ByName(name));
+        return FindFirstDescendant(cf => cf.ByName(name));
+    }
+
+    private AutomationElement FindFirstDescendant(Func<ConditionFactory, ConditionBase> conditionFunc)
+    {
+        AutomationElement child = Window.FindFirstChild(conditionFunc);
+        if (child != null)
+        {
+            return child;
+        }
+
+        AutomationElement[] children = Window.FindAllChildren();
+        foreach (AutomationElement windowChild in children)
+        {
+            AutomationElement descendant = windowChild.FindFirstDescendant(conditionFunc);
+            if (descendant != null)
+            {
+                return descendant;
+            }
+        }
+
+        return null;
     }
 
     private void WaitForElement(Func<bool> function, TimeSpan time, string selector, string customMessage = null)
     {
         RetryResult<bool> retry = Retry.WhileFalse(
-            () => {
+            () =>
+            {
                 try
                 {
                     App.WaitWhileBusy();

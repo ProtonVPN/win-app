@@ -18,7 +18,9 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
+using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
@@ -45,6 +47,7 @@ public partial class TrayIconViewModel :
     private readonly IRecentConnectionsProvider _recentConnectionsProvider;
     private readonly IConnectionManager _connectionManager;
     private readonly IUserAuthenticator _userAuthenticator;
+    private readonly IOverlayActivator _overlayActivator;
     private readonly IApplicationIconSelector _applicationIconSelector;
 
     public ImageSource IconSource => _applicationIconSelector.Get();
@@ -62,6 +65,7 @@ public partial class TrayIconViewModel :
         IUserAuthenticator userAuthenticator,
         ILogger logger,
         IIssueReporter issueReporter,
+        IOverlayActivator overlayActivator,
         IApplicationIconSelector applicationIconSelector)
         : base(localizationProvider, logger, issueReporter)
     {
@@ -69,6 +73,7 @@ public partial class TrayIconViewModel :
         _recentConnectionsProvider = recentConnectionsProvider;
         _connectionManager = connectionManager;
         _userAuthenticator = userAuthenticator;
+        _overlayActivator = overlayActivator;
         _applicationIconSelector = applicationIconSelector;
     }
 
@@ -79,8 +84,27 @@ public partial class TrayIconViewModel :
     }
 
     [RelayCommand]
-    public void ExitApplication()
+    public async Task ExitApplicationAsync()
     {
+        if (!_connectionManager.IsDisconnected)
+        {
+            _mainWindowActivator.Activate();
+
+            ContentDialogResult result = await _overlayActivator.ShowMessageAsync(
+                new MessageDialogParameters
+                {
+                    Title = Localizer.Get("Exit_Confirmation_Title"),
+                    Message = Localizer.Get("Exit_Confirmation_Message"),
+                    PrimaryButtonText = Localizer.Get("Tray_Actions_ExitApplication"),
+                    CloseButtonText = Localizer.Get("Common_Actions_Cancel"),
+                });
+
+            if (result is not ContentDialogResult.Primary) // Cancel exit
+            {
+                return;
+            }
+        }
+
         _mainWindowActivator.Exit();
     }
 

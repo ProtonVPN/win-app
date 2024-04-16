@@ -32,6 +32,10 @@ public class NavigationTests : TestSession
 {
     private const string COUNTRIES_PAGE_TITLE = "Countries";
     private const string SETTINGS_PAGE_TITLE = "Settings";
+    private const string NETSHIELD_PAGE_TITLE = "NetShield";
+    private const string KILL_SWITCH_PAGE_TITLE = "Kill switch";
+    private const string PORT_FORWARDING_PAGE_TITLE = "Port forwarding";
+    private const string SPLIT_TUNNELING_PAGE_TITLE = "Split tunneling";
 
     private ShellRobot _shellRobot = new();
     private LoginRobot _loginRobot = new();
@@ -72,6 +76,14 @@ public class NavigationTests : TestSession
         _shellRobot
             .DoNavigateToCountriesPage()
             .VerifyCurrentPage(COUNTRIES_PAGE_TITLE, false)
+            .DoNavigateToNetShieldFeaturePage()
+            .VerifyCurrentPage(NETSHIELD_PAGE_TITLE, false)
+            .DoNavigateToKillSwitchFeaturePage()
+            .VerifyCurrentPage(KILL_SWITCH_PAGE_TITLE, false)
+            .DoNavigateToPortForwardingFeaturePage()
+            .VerifyCurrentPage(PORT_FORWARDING_PAGE_TITLE, false)
+            .DoNavigateToSplitTunnelingFeaturePage()
+            .VerifyCurrentPage(SPLIT_TUNNELING_PAGE_TITLE, false)
             .DoNavigateToSettingsPage()
             .VerifyCurrentPage(SETTINGS_PAGE_TITLE, false)
             .DoNavigateToHomePage();

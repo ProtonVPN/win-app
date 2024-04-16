@@ -21,12 +21,15 @@ using Autofac;
 using Autofac.Builder;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.UI;
-using ProtonVPN.Client.UI.Account;
 using ProtonVPN.Client.UI.Countries;
 using ProtonVPN.Client.UI.Countries.Controls;
 using ProtonVPN.Client.UI.Countries.CountriesFeatureTabs;
 using ProtonVPN.Client.UI.Countries.CountryFeatureTabs;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
+using ProtonVPN.Client.UI.Features.KillSwitch;
+using ProtonVPN.Client.UI.Features.NetShield;
+using ProtonVPN.Client.UI.Features.PortForwarding;
+using ProtonVPN.Client.UI.Features.SplitTunneling;
 using ProtonVPN.Client.UI.Gallery;
 using ProtonVPN.Client.UI.Gateways;
 using ProtonVPN.Client.UI.Home;
@@ -37,7 +40,6 @@ using ProtonVPN.Client.UI.Home.Details;
 using ProtonVPN.Client.UI.Home.Help;
 using ProtonVPN.Client.UI.Home.Recents;
 using ProtonVPN.Client.UI.Home.Status;
-using ProtonVPN.Client.UI.HumanVerification;
 using ProtonVPN.Client.UI.Login;
 using ProtonVPN.Client.UI.Login.Forms;
 using ProtonVPN.Client.UI.Login.Overlays;
@@ -54,6 +56,7 @@ using ProtonVPN.Client.UI.Upsell.Carousel;
 using ProtonVPN.Client.UI.Upsell.Carousel.Features;
 using ProtonVPN.Client.UI.Upsell.Carousel.Features.Base;
 using ProtonVPN.Client.UI.Upsell.Banner;
+using ProtonVPN.Client.UI.Sidebar;
 
 namespace ProtonVPN.Client.Installers;
 
@@ -113,7 +116,6 @@ public class ViewModelsModule : Module
         RegisterViewModel<KillSwitchViewModel>(builder);
         RegisterViewModel<NetShieldViewModel>(builder);
         RegisterViewModel<CountryTabViewModel>(builder);
-        RegisterViewModel<AccountViewModel>(builder);
         RegisterViewModel<LoginFormViewModel>(builder);
         RegisterViewModel<TwoFactorFormViewModel>(builder);
         RegisterViewModel<LoadingFormViewModel>(builder);
@@ -127,6 +129,21 @@ public class ViewModelsModule : Module
         RegisterViewModel<GalleryViewModel>(builder);
         RegisterViewModel<GalleryItemViewModel>(builder);
 
+        RegisterViewModel<SidebarHomeViewModel>(builder);
+        RegisterViewModel<SidebarGatewaysHeaderViewModel>(builder);
+        RegisterViewModel<SidebarGatewaysViewModel>(builder);
+        RegisterViewModel<SidebarConnectionsHeaderViewModel>(builder);
+        RegisterViewModel<SidebarCountriesViewModel>(builder);
+        RegisterViewModel<SidebarFeaturesHeaderViewModel>(builder);
+        RegisterViewModel<SidebarNetShieldViewModel>(builder);
+        RegisterViewModel<SidebarKillSwitchViewModel>(builder);
+        RegisterViewModel<SidebarPortForwardingViewModel>(builder);
+        RegisterViewModel<SidebarSplitTunnelingViewModel>(builder);
+        RegisterViewModel<SidebarGalleryViewModel>(builder);
+        RegisterViewModel<SidebarSettingsViewModel>(builder);
+        RegisterViewModel<SidebarSeparatorViewModel>(builder);
+        RegisterViewModel<SidebarAccountViewModel>(builder);
+
         RegisterUpsellFeatureViewModel<WorldwideCoverageUpsellFeatureViewModel>(builder);
         RegisterUpsellFeatureViewModel<SpeedUpsellFeatureViewModel>(builder);
         RegisterUpsellFeatureViewModel<StreamingUpsellFeatureViewModel>(builder);
@@ -138,7 +155,7 @@ public class ViewModelsModule : Module
         RegisterUpsellFeatureViewModel<SplitTunnelingUpsellFeatureViewModel>(builder);
         RegisterUpsellFeatureViewModel<AdvancedSettingsUpsellFeatureViewModel>(builder);
 
-        RegisterViewModel<HumanVerificationViewModel>(builder).AutoActivate();
+        RegisterViewModel<HumanVerificationOverlayViewModel>(builder).AutoActivate();
         RegisterViewModel<AboutViewModel>(builder).AutoActivate();
     }
 

@@ -53,6 +53,78 @@ public partial class ShellRobot
         return this;
     }
 
+    public ShellRobot DoNavigateToKillSwitchFeaturePage()
+    {
+        KillSwitchFeatureNavigationViewItem.FocusAndDoubleClick();
+
+        // Navigation triggers an animation that may occasionnally fails the tests. Wait for animation to complete before moving on.
+        this.Wait(TestConstants.DefaultAnimationDelay);
+
+        return this;
+    }
+
+    public ShellRobot DoNavigateToNetShieldFeaturePage()
+    {
+        NetShieldFeatureNavigationViewItem.FocusAndDoubleClick();
+
+        // Navigation triggers an animation that may occasionnally fails the tests. Wait for animation to complete before moving on.
+        this.Wait(TestConstants.DefaultAnimationDelay);
+
+        return this;
+    }
+
+    public ShellRobot DoNavigateToPortForwardingFeaturePage()
+    {
+        PortForwardingFeatureNavigationViewItem.FocusAndDoubleClick();
+
+        // Navigation triggers an animation that may occasionnally fails the tests. Wait for animation to complete before moving on.
+        this.Wait(TestConstants.DefaultAnimationDelay);
+
+        return this;
+    }
+
+    public ShellRobot DoNavigateToSplitTunnelingFeaturePage()
+    {
+        SplitTunnelingFeatureNavigationViewItem.FocusAndDoubleClick();
+
+        // Navigation triggers an animation that may occasionnally fails the tests. Wait for animation to complete before moving on.
+        this.Wait(TestConstants.DefaultAnimationDelay);
+
+        return this;
+    }
+
+    public ShellRobot DoOpenAccount()
+    {
+        AccountButton.Click();
+        this.Wait(TestConstants.DefaultAnimationDelay);
+        return this;
+    }
+
+    public ShellRobot DoCloseAccount()
+    {
+        AccountButton.Click();
+        this.Wait(TestConstants.DefaultAnimationDelay);
+        return this;
+    }
+
+    public ShellRobot DoSignOut()
+    {
+        SignOutButton.Invoke();
+        return this;
+    }
+
+    public ShellRobot DoGoToMyAccount()
+    {
+        GoToMyAccountButton.Invoke();
+        return this;
+    }
+
+    public ShellRobot DoExitApplication()
+    {
+        ExitButton.Invoke();
+        return this;
+    }
+
     public ShellRobot DoCollapseExpandSideBar()
     {
         NavigationHamburgerButton.Click();

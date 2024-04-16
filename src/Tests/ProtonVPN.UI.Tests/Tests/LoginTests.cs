@@ -22,6 +22,7 @@ using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.Robots.Home;
 using ProtonVPN.UI.Tests.Robots.Login;
+using ProtonVPN.UI.Tests.Robots.Shell;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Tests;
@@ -49,6 +50,7 @@ public class LoginTests : TestSession
     };
 
     private LoginRobot _loginRobot = new();
+    private ShellRobot _shellRobot = new();
     private HomeRobot _homeRobot = new();
 
     [SetUp]
@@ -84,9 +86,12 @@ public class LoginTests : TestSession
             .DoEnterTwoFactorCode(TestUserData.GetTwoFactorCode());
 
         _homeRobot
-            .DoWaitForVpnStatusSubtitleLabel()
+            .DoWaitForVpnStatusSubtitleLabel();
+
+        _shellRobot
+            .VerifyUserIsLoggedIn(TestUserData.TwoFactorUser, FREE_PLAN_NAME)
             .DoOpenAccount()
-            .VerifyUserIsLoggedIn(TestUserData.TwoFactorUser, FREE_PLAN_NAME);
+            .VerifyAccountMenu();
     }
 
     [Test]
@@ -113,9 +118,12 @@ public class LoginTests : TestSession
             .DoLogin(user);
 
         _homeRobot
-            .DoWaitForVpnStatusSubtitleLabel()
+            .DoWaitForVpnStatusSubtitleLabel();
+
+        _shellRobot
+            .VerifyUserIsLoggedIn(user, planName)
             .DoOpenAccount()
-            .VerifyUserIsLoggedIn(user, planName);
+            .VerifyAccountMenu();
     }
 
     [TearDown]

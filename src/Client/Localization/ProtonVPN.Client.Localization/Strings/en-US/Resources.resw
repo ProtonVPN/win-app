@@ -159,6 +159,9 @@
     <value>via {0}</value>
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
   </data>
+    <data name="Countries_Section_Header" xml:space="preserve">
+    <value>VPN connections</value>
+  </data>
   <data name="Countries_Page_Title" xml:space="preserve">
     <value>Countries</value>
   </data>
@@ -1567,7 +1570,7 @@
     <value>VPN Accelerator</value>
   </data>
   <data name="Settings_Features" xml:space="preserve">
-    <value>Features</value>
+    <value>VPN features</value>
   </data>
   <data name="Settings_Features_KillSwitch" xml:space="preserve">
     <value>Kill switch</value>
@@ -2301,6 +2304,12 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Tray_Actions_OpenApplication" xml:space="preserve">
     <value>Open {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+    <data name="Exit_Confirmation_Title" xml:space="preserve">
+    <value>Exit Proton VPN?</value>
+  </data>
+    <data name="Exit_Confirmation_Message" xml:space="preserve">
+    <value>You'll be disconnected from VPN.</value>
   </data>
   <data name="Common_Actions_Update" xml:space="preserve">
     <value>Update</value>

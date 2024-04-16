@@ -65,8 +65,9 @@ public class SplitTunnelingPerformanceTest : TestSession
         _homeRobot.DoDisconnect()
             .Wait(TestConstants.VeryShortTimeout);
 
-        _shellRobot.DoNavigateToSettingsPage();
-        _settingsRobot.DoNavigateToSplitTunnelingSettingsPage()
+        _shellRobot
+            .DoNavigateToSplitTunnelingFeaturePage();
+        _settingsRobot
             .EnableSplitTunneling()
             .ExcludeApp("Microsoft Edge")
             .ExcludeIp("212.102.35.236")

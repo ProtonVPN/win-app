@@ -67,9 +67,8 @@ public class NetshieldTests : TestSession
     public void NetshieldOff()
     {
         _shellRobot
-            .DoNavigateToSettingsPage();
+            .DoNavigateToNetShieldFeaturePage();
         _settingsRobot
-            .DoNavigateToNetShieldSettingsPage()
             .DoSelectNetshield()
             .DoApplyChanges();
         _shellRobot

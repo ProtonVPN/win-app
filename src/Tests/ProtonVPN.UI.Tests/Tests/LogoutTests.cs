@@ -52,7 +52,7 @@ public class LogoutTests : TestSession
     [Test]
     public void LogoutUser()
     {
-        _homeRobot
+        _shellRobot
             .DoOpenAccount()
             .DoSignOut();
 
@@ -71,11 +71,9 @@ public class LogoutTests : TestSession
 
         CommonAssertions.AssertIpAddressChanged(unprotectedIpAddress);
 
-        _homeRobot
-            .DoOpenAccount()
-            .DoSignOut();
-
         _shellRobot
+            .DoOpenAccount()
+            .DoSignOut()
             .VerifySignOutConfirmationMessage(TestUserData.PlusUser)
             .DoClickOverlayMessageCloseButton();
 
@@ -83,11 +81,9 @@ public class LogoutTests : TestSession
         _homeRobot
             .VerifyVpnStatusIsConnected();
 
-        _homeRobot
-            .DoOpenAccount()
-            .DoSignOut();
-
         _shellRobot
+            .DoOpenAccount()
+            .DoSignOut()
             .VerifySignOutConfirmationMessage(TestUserData.PlusUser)
             .DoClickOverlayMessagePrimaryButton()
             .Wait(TestConstants.DisconnectionDelay);

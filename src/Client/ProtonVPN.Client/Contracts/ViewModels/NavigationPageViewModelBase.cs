@@ -27,17 +27,16 @@ namespace ProtonVPN.Client.Contracts.ViewModels;
 
 public abstract class NavigationPageViewModelBase : PageViewModelBase<IMainViewNavigator>
 {
+    public virtual bool IsPageEnabled => true;
+
+    public abstract IconElement Icon { get; }
+
     protected NavigationPageViewModelBase(IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
         ILogger logger,
         IIssueReporter issueReporter)
         : base(viewNavigator, localizationProvider, logger, issueReporter)
-    {
-    }
-
-    public virtual bool IsPageEnabled => true;
-
-    public abstract IconElement Icon { get; }
+    { }
 
     public virtual bool IsHostFor(PageViewModelBase? page)
     {

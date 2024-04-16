@@ -20,7 +20,7 @@
 using ProtonVPN.Api.Contracts.HumanVerification;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Models.Activation;
-using ProtonVPN.Client.UI.HumanVerification;
+using ProtonVPN.Client.UI.Login.Overlays;
 
 namespace ProtonVPN.Client.HumanVerification;
 
@@ -40,7 +40,7 @@ public class HumanVerifier : IHumanVerifier, IEventMessageReceiver<ResponseToken
     public async Task<string> VerifyAsync(string token)
     {
         _eventMessageSender.Send(new RequestTokenMessage(token));
-        await _overlayActivator.ShowOverlayAsync<HumanVerificationViewModel>();
+        await _overlayActivator.ShowOverlayAsync<HumanVerificationOverlayViewModel>();
         return _resolvedToken;
     }
 

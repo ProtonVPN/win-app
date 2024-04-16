@@ -19,11 +19,20 @@
 
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Input;
 using ProtonVPN.Client.Contracts;
-using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.UI.Countries;
+using ProtonVPN.Client.UI.Features.KillSwitch;
+using ProtonVPN.Client.UI.Features.NetShield;
+using ProtonVPN.Client.UI.Features.PortForwarding;
+using ProtonVPN.Client.UI.Features.SplitTunneling;
+using ProtonVPN.Client.UI.Gallery;
+using ProtonVPN.Client.UI.Gateways;
+using ProtonVPN.Client.UI.Home;
 using ProtonVPN.Client.UI.Settings;
+using ProtonVPN.Client.UI.Sidebar.Bases;
 using Windows.System;
 
 namespace ProtonVPN.Client.UI;
@@ -95,27 +104,17 @@ public sealed partial class ShellPage : IShellPage
 
     private async void OnNavigationViewItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
     {
-        bool isNavigationCompleted = false;
+        NavigationViewItem? selectedItem = args.InvokedItemContainer as NavigationViewItem;
 
-        if (args.IsSettingsInvoked)
+        if (selectedItem?.Tag is SidebarInteractiveItemViewModelBase sidebarItem)
         {
-            isNavigationCompleted = await ViewModel.NavigateToAsync(typeof(SettingsViewModel).FullName!);
-        }
-        else
-        {
-            NavigationViewItem? selectedItem = args.InvokedItemContainer as NavigationViewItem;
-
-            if (selectedItem?.GetValue(NavigationHelper.NavigateToProperty) is string pageKey)
+            bool isNavigationCompleted = await sidebarItem.InvokeAsync();
+            if (!isNavigationCompleted)
             {
-                isNavigationCompleted = await ViewModel.NavigateToAsync(pageKey);
+                // Even though the navigation was canceled, the NavigationView still keep the clicked NavigationViewItem selected.
+                // Force selecting the proper item on the side bar, so it matches the actual page.
+                NavigationViewControl.SelectedItem = ViewModel.SelectedMenuItem;
             }
-        }
-
-        if (!isNavigationCompleted)
-        {
-            // Even though the navigation was canceled, the NavigationView still keep the clicked NavigationViewItem selected.
-            // Force selecting the proper item on the side bar, so it matches the actual page.
-            NavigationViewControl.SelectedItem = ViewModel.SelectedNavigationPage;
         }
     }
 

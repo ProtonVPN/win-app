@@ -28,7 +28,6 @@ using ProtonVPN.Client.UI.Dialogs.Overlays;
 using ProtonVPN.Client.UI.ReportIssue;
 using ProtonVPN.Client.UI.Gallery;
 using ProtonVPN.Client.UI.Home;
-using ProtonVPN.Client.UI.HumanVerification;
 using ProtonVPN.Client.UI.Login;
 using ProtonVPN.Client.UI.Settings;
 using ProtonVPN.Client.UI.Settings.Pages;
@@ -42,6 +41,10 @@ using ProtonVPN.Client.UI.Home.ConnectionCard.Overlays;
 using ProtonVPN.Client.UI.Settings.Pages.About;
 using ProtonVPN.Client.UI.Upsell.Carousel;
 using ProtonVPN.Client.UI.Upsell.Carousel.Features;
+using ProtonVPN.Client.UI.Features.NetShield;
+using ProtonVPN.Client.UI.Features.KillSwitch;
+using ProtonVPN.Client.UI.Features.PortForwarding;
+using ProtonVPN.Client.UI.Features.SplitTunneling;
 
 namespace ProtonVPN.Client.Models.Navigation;
 
@@ -180,7 +183,7 @@ public class ViewMapper : IViewMapper
         ConfigureOverlay<LatencyOverlayViewModel, LatencyOverlayDialog>();
         ConfigureOverlay<ProtocolOverlayViewModel, ProtocolOverlayDialog>();
         ConfigureOverlay<ServerLoadOverlayViewModel, ServerLoadOverlayDialog>();
-        ConfigureOverlay<HumanVerificationViewModel, HumanVerificationDialog>();
+        ConfigureOverlay<HumanVerificationOverlayViewModel, HumanVerificationOverlayDialog>();
         ConfigureOverlay<SsoLoginOverlayViewModel, SsoLoginOverlayDialog>();
         ConfigureOverlay<SecureCoreOverlayViewModel, SecureCoreOverlayDialog>();
         ConfigureOverlay<SmartRoutingOverlayViewModel, SmartRoutingOverlayDialog>();

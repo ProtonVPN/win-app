@@ -83,24 +83,6 @@ public partial class HomeRobot
         return this;
     }
 
-    public HomeRobot DoOpenAccount()
-    {
-        AccountButton.Click();
-        return this;
-    }
-
-    public HomeRobot DoCloseAccount()
-    {
-        AccountButton.Click();
-        return this;
-    }
-
-    public HomeRobot DoSignOut()
-    {
-        SignOutButton.Click();
-        return this;
-    }
-
     public HomeRobot DoReportBrowsingSpeedIssue()
     {
         HelpButton.FocusAndClick();

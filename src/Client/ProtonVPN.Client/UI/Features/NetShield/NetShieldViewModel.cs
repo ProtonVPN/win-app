@@ -1,0 +1,95 @@
+﻿/*
+ * Copyright (c) 2023 Proton AG
+ *
+ * This file is part of ProtonVPN.
+ *
+ * ProtonVPN is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ProtonVPN is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.UI.Xaml.Media;
+using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.Helpers;
+using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Models.Activation;
+using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Urls;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.UI.Settings.Pages.Entities;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
+
+namespace ProtonVPN.Client.UI.Features.NetShield;
+
+public partial class NetShieldViewModel : SettingsPageViewModelBase
+{
+    private readonly IUrls _urls;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(NetShieldFeatureIconSource))]
+    private bool _isNetShieldEnabled;
+
+    public override bool IsBackEnabled => false;
+
+    public override string? Title => Localizer.Get("Settings_Features_NetShield");
+
+    public ImageSource NetShieldFeatureIconSource => GetFeatureIconSource(IsNetShieldEnabled);
+
+    public string LearnMoreUrl => _urls.NetShieldLearnMore;
+
+    public NetShieldViewModel(
+        IMainViewNavigator viewNavigator,
+        ILocalizationProvider localizationProvider,
+        IOverlayActivator overlayActivator,
+        ISettings settings,
+        ISettingsConflictResolver settingsConflictResolver,
+        IConnectionManager connectionManager,
+        IUrls urls,
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(viewNavigator, 
+               localizationProvider, 
+               overlayActivator, 
+               settings, 
+               settingsConflictResolver, 
+               connectionManager,
+               logger,
+               issueReporter)
+    {
+        _urls = urls;
+    }
+
+    public static ImageSource GetFeatureIconSource(bool isEnabled)
+    {
+        return isEnabled
+            ? ResourceHelper.GetIllustration("NetShieldOnIllustrationSource")
+            : ResourceHelper.GetIllustration("NetShieldOffIllustrationSource");
+    }
+
+    protected override void SaveSettings()
+    {
+        Settings.IsNetShieldEnabled = IsNetShieldEnabled;
+    }
+
+    protected override void RetrieveSettings()
+    {
+        IsNetShieldEnabled = Settings.IsNetShieldEnabled;
+    }
+
+    protected override IEnumerable<ChangedSettingArgs> GetSettings()
+    {
+        yield return new(nameof(ISettings.IsNetShieldEnabled), IsNetShieldEnabled, Settings.IsNetShieldEnabled != IsNetShieldEnabled);
+    }
+}
