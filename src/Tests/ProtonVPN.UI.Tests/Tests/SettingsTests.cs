@@ -107,34 +107,6 @@ public class SettingsTests : TestSession
             .VerifyCurrentPage(SETTINGS_PAGE_TITLE, false);
 
         _settingsRobot
-            .DoNavigateToNetShieldSettingsPage();
-
-        _shellRobot
-            .VerifyCurrentPage(NETSHIELD_PAGE_TITLE, true)
-            .DoNavigateBackward();
-
-        _settingsRobot
-            .DoNavigateToKillSwitchSettingsPage();
-
-        _shellRobot
-            .VerifyCurrentPage(KILL_SWITCH_PAGE_TITLE, true)
-            .DoNavigateBackward();
-
-        _settingsRobot
-            .DoNavigateToPortForwardingSettingsPage();
-
-        _shellRobot
-            .VerifyCurrentPage(PORT_FORWARDING_PAGE_TITLE, true)
-            .DoNavigateBackward();
-
-        _settingsRobot
-            .DoNavigateToSplitTunnelingSettingsPage();
-
-        _shellRobot
-            .VerifyCurrentPage(SPLIT_TUNNELING_PAGE_TITLE, true)
-            .DoNavigateBackward();
-
-        _settingsRobot
             .DoNavigateToProtocolSettingsPage();
 
         _shellRobot

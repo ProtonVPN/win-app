@@ -93,6 +93,12 @@ public abstract partial class PageViewModelBase<TViewNavigator> : PageViewModelB
         return await ViewNavigator.NavigateToAsync(pageKey);
     }
 
+    public async Task<bool> NavigateToAsync<TPageViewModel>()
+        where TPageViewModel : PageViewModelBase
+    {
+        return await ViewNavigator.NavigateToAsync<TPageViewModel>();
+    }
+
     public virtual Task<bool> OnNavigatingFromAsync()
     {
         return Task.FromResult(true);

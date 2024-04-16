@@ -29,6 +29,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
       mc:Ignorable="d">
+    
     <Page.Resources>
         <Style x:Key="SettingsSectionHeaderTextBlockStyle" BasedOn="{StaticResource BodyStrongTextBlockStyle}" TargetType="TextBlock">
             <Setter Property="Margin" Value="2,21,0,11" />
@@ -47,74 +48,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <TextBlock Margin="2,7,0,11"
                        Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
-                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Features')}" />
-
-            <custom:FeatureSettingsCard AutomationProperties.AutomationId="NetShieldSettingsCard"
-                                        Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
-                                        CommandParameter="ProtonVPN.Client.UI.Settings.Pages.NetShieldViewModel"
-                                        Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_NetShield')}"
-                                        IsClickEnabled="True"
-                                        Style="{StaticResource FeatureSettingsCardStyle}">
-                <custom:FeatureSettingsCard.FeatureIcon>
-                    <Image Source="{x:Bind ViewModel.NetShieldFeatureIconSource}" />
-                </custom:FeatureSettingsCard.FeatureIcon>
-                <custom:FeatureSettingsCard.ActionIcon>
-                    <pathicons:ChevronRight />
-                </custom:FeatureSettingsCard.ActionIcon>
-                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
-                           Text="{x:Bind ViewModel.NetShieldFeatureState}" />
-            </custom:FeatureSettingsCard>
-
-            <custom:FeatureSettingsCard AutomationProperties.AutomationId="KillSwitchSettingsCard"
-                                        Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
-                                        CommandParameter="ProtonVPN.Client.UI.Settings.Pages.KillSwitchViewModel"
-                                        Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_KillSwitch')}"
-                                        IsClickEnabled="True"
-                                        Style="{StaticResource FeatureSettingsCardStyle}">
-                <custom:FeatureSettingsCard.FeatureIcon>
-                    <Image Source="{x:Bind ViewModel.KillSwitchFeatureIconSource}" />
-                </custom:FeatureSettingsCard.FeatureIcon>
-                <custom:FeatureSettingsCard.ActionIcon>
-                    <pathicons:ChevronRight />
-                </custom:FeatureSettingsCard.ActionIcon>
-                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
-                           Text="{x:Bind ViewModel.KillSwitchFeatureState}" />
-            </custom:FeatureSettingsCard>
-
-            <custom:FeatureSettingsCard AutomationProperties.AutomationId="PortForwardingSettingsCard"
-                                        Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
-                                        CommandParameter="ProtonVPN.Client.UI.Settings.Pages.PortForwardingViewModel"
-                                        Description="{x:Bind ViewModel.PortForwardingStatusMessage}"
-                                        Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding')}"
-                                        IsClickEnabled="True"
-                                        Style="{StaticResource FeatureSettingsCardStyle}">
-                <custom:FeatureSettingsCard.FeatureIcon>
-                    <Image Source="{x:Bind ViewModel.PortForwardingFeatureIconSource}" />
-                </custom:FeatureSettingsCard.FeatureIcon>
-                <custom:FeatureSettingsCard.ActionIcon>
-                    <pathicons:ChevronRight />
-                </custom:FeatureSettingsCard.ActionIcon>
-                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
-                           Text="{x:Bind ViewModel.PortForwardingFeatureState}" />
-            </custom:FeatureSettingsCard>
-
-            <custom:FeatureSettingsCard AutomationProperties.AutomationId="SplitTunnelingSettingsCard"
-                                        Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
-                                        CommandParameter="ProtonVPN.Client.UI.Settings.Pages.SplitTunnelingViewModel"
-                                        Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_SplitTunneling')}"
-                                        IsClickEnabled="True"
-                                        Style="{StaticResource FeatureSettingsCardStyle}">
-                <custom:FeatureSettingsCard.FeatureIcon>
-                    <Image Source="{x:Bind ViewModel.SplitTunnelingFeatureIconSource}" />
-                </custom:FeatureSettingsCard.FeatureIcon>
-                <custom:FeatureSettingsCard.ActionIcon>
-                    <pathicons:ChevronRight />
-                </custom:FeatureSettingsCard.ActionIcon>
-                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
-                           Text="{x:Bind ViewModel.SplitTunnelingFeatureState}" />
-            </custom:FeatureSettingsCard>
-
-            <TextBlock Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection')}" />
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="ProtocolSettingsCard"

@@ -81,9 +81,8 @@ public class CustomDnsTests : TestSession
             .VerifyVpnStatusIsConnected();
 
         _shellRobot
-            .DoNavigateToSettingsPage();
+            .DoNavigateToNetShieldFeaturePage();
         _settingsRobot
-            .DoNavigateToNetShieldSettingsPage()
             .VerifyNetshieldIsDisabled()
             .Wait(TestConstants.VeryShortTimeout);
         _settingsRobot

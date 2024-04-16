@@ -25,26 +25,6 @@ namespace ProtonVPN.UI.Tests.Robots.Settings;
 
 public partial class SettingsRobot
 {
-    public SettingsRobot DoNavigateToNetShieldSettingsPage()
-    {
-        return NavigateToSpecificSettingsPage(NetShieldSettingsCard);
-    }
-
-    public SettingsRobot DoNavigateToKillSwitchSettingsPage()
-    {
-        return NavigateToSpecificSettingsPage(KillSwitchSettingsCard);
-    }
-
-    public SettingsRobot DoNavigateToPortForwardingSettingsPage()
-    {
-        return NavigateToSpecificSettingsPage(PortForwardingSettingsCard);
-    }
-
-    public SettingsRobot DoNavigateToSplitTunnelingSettingsPage()
-    {
-        return NavigateToSpecificSettingsPage(SplitTunnelingSettingsCard);
-    }
-
     public SettingsRobot DoNavigateToProtocolSettingsPage()
     {
         return NavigateToSpecificSettingsPage(ProtocolSettingsCard);

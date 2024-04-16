@@ -23,7 +23,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom">
 
     <ResourceDictionary.ThemeDictionaries>
-        
+
         <ResourceDictionary x:Key="Light">
 
             <StaticResource x:Key="PrimaryGhostButtonIndicatorBrush" ResourceKey="PrimaryColorBrush" />
@@ -60,7 +60,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="SecondaryGhostButtonBorderBrushPressed" ResourceKey="TransparentColorBrush" />
             <StaticResource x:Key="SecondaryGhostButtonBorderBrushDisabled" ResourceKey="TransparentColorBrush" />
         </ResourceDictionary>
-        
+
         <ResourceDictionary x:Key="Dark">
 
             <StaticResource x:Key="PrimaryGhostButtonIndicatorBrush" ResourceKey="PrimaryColorBrush" />
@@ -128,17 +128,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
-                            <ContentPresenter Grid.Column="0"
-                                              x:Name="PART_LeftIconPresenter"
+                            <ContentPresenter x:Name="PART_LeftIconPresenter"
+                                              Grid.Column="0"
                                               Margin="{StaticResource GhostButtonContentSpacing}"
+                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                               AutomationProperties.AccessibilityView="Raw"
                                               Content="{TemplateBinding LeftIcon}"
                                               Foreground="{TemplateBinding Foreground}"
                                               HighContrastAdjustment="None"
                                               Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
 
-                            <ContentPresenter Grid.Column="1"
-                                              x:Name="PART_ContentPresenter"
+                            <ContentPresenter x:Name="PART_ContentPresenter"
+                                              Grid.Column="1"
                                               Margin="{StaticResource GhostButtonContentSpacing}"
                                               VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                               Content="{TemplateBinding Content}"
@@ -147,9 +148,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               Foreground="{TemplateBinding Foreground}"
                                               Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
 
-                            <ContentPresenter Grid.Column="2"
-                                              x:Name="PART_RightIconPresenter"
+                            <ContentPresenter x:Name="PART_RightIconPresenter"
+                                              Grid.Column="2"
                                               Margin="{StaticResource GhostButtonContentSpacing}"
+                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                               AutomationProperties.AccessibilityView="Raw"
                                               Content="{TemplateBinding RightIcon}"
                                               Foreground="{TemplateBinding Foreground}"
@@ -233,17 +235,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
-                            <ContentPresenter Grid.Column="0"
-                                              x:Name="PART_LeftIconPresenter"
+                            <ContentPresenter x:Name="PART_LeftIconPresenter"
+                                              Grid.Column="0"
                                               Margin="{StaticResource GhostButtonContentSpacing}"
+                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                               AutomationProperties.AccessibilityView="Raw"
                                               Content="{TemplateBinding LeftIcon}"
                                               Foreground="{TemplateBinding Foreground}"
                                               HighContrastAdjustment="None"
                                               Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
 
-                            <ContentPresenter Grid.Column="1"
-                                              x:Name="PART_ContentPresenter"
+                            <ContentPresenter x:Name="PART_ContentPresenter"
+                                              Grid.Column="1"
                                               Margin="{StaticResource GhostButtonContentSpacing}"
                                               VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                               Content="{TemplateBinding Content}"
@@ -252,9 +255,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               Foreground="{TemplateBinding Foreground}"
                                               Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
 
-                            <ContentPresenter Grid.Column="2"
-                                              x:Name="PART_RightIconPresenter"
+                            <ContentPresenter x:Name="PART_RightIconPresenter"
+                                              Grid.Column="2"
                                               Margin="{StaticResource GhostButtonContentSpacing}"
+                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                               AutomationProperties.AccessibilityView="Raw"
                                               Content="{TemplateBinding RightIcon}"
                                               Foreground="{TemplateBinding Foreground}"

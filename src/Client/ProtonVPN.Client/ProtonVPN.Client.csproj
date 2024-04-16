@@ -202,9 +202,6 @@
             <SubType>Designer</SubType>
             <Generator>MSBuild:Compile</Generator>
         </Page>
-        <Page Update="UI\Account\AccountComponent.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
         <Page Update="UI\Dialogs\Windows\ReportIssueShellPage.xaml">
             <Generator>MSBuild:Compile</Generator>
         </Page>
@@ -253,7 +250,6 @@
         <None Remove="UI\Home\UpsellBanner\UpsellBannerComponent.xaml" />
         <None Remove="UI\Settings\Pages\About\AboutPage.xaml" />
         <None Remove="Assets\protonvpn.ico" />
-        <None Remove="UI\Account\AccountComponent.xaml" />
         <None Remove="UI\Countries\Controls\CountryFeatureTitleControl.xaml" />
         <None Remove="UI\Countries\Controls\CountryListControl.xaml" />
         <None Remove="UI\Countries\Controls\CountryRowControl.xaml" />

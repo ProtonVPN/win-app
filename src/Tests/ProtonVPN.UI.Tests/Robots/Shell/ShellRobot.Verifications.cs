@@ -52,6 +52,10 @@ public partial class ShellRobot
 
         Assert.IsNotNull(HomeNavigationViewItem);
         Assert.IsNotNull(CountriesNavigationViewItem);
+        Assert.IsNotNull(KillSwitchFeatureNavigationViewItem);
+        Assert.IsNotNull(NetShieldFeatureNavigationViewItem);
+        Assert.IsNotNull(PortForwardingFeatureNavigationViewItem);
+        Assert.IsNotNull(SplitTunnelingFeatureNavigationViewItem);
         Assert.IsNotNull(SettingsNavigationViewItem);
 
         Assert.IsNotNull(NavigationHamburgerButton);
@@ -76,6 +80,21 @@ public partial class ShellRobot
     {
         Assert.IsNotNull(AccountButton);
 
+        return this;
+    }
+
+    public ShellRobot VerifyUserIsLoggedIn(TestUserData user, string planName)
+    {
+        Assert.IsNotNull(ElementByName(user.Username));
+        Assert.IsNotNull(ElementByName(planName));
+        return this;
+    }
+
+    public ShellRobot VerifyAccountMenu()
+    {
+        Assert.IsNotNull(GoToMyAccountButton);
+        Assert.IsNotNull(SignOutButton);
+        Assert.IsNotNull(ExitButton);
         return this;
     }
 

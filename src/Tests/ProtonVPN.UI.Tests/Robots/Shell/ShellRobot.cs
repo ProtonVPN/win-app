@@ -37,11 +37,19 @@ public partial class ShellRobot : UIActions
     protected Button NavigationHamburgerButton => ElementByAutomationId("TogglePaneButton").AsButton();
     protected Grid NavigationSideBar => ElementByAutomationId("PaneRoot").AsGrid();
 
-    protected Button HomeNavigationViewItem => NavigationView.FindFirstDescendant(c => c.ByAutomationId("NavigationViewItem").And(c.ByName("Home"))).AsButton();
-    protected Button CountriesNavigationViewItem => NavigationView.FindFirstDescendant(c => c.ByAutomationId("NavigationViewItem").And(c.ByName("Countries"))).AsButton();
-    protected Button SettingsNavigationViewItem => NavigationView.FindFirstDescendant(c => c.ByAutomationId("NavigationViewItem").And(c.ByName("Settings"))).AsButton();
+    protected Button HomeNavigationViewItem => NavigationView.FindFirstDescendant(c => c.ByAutomationId("Sidebar_Home")).AsButton();
+    protected Button GatewaysNavigationViewItem => NavigationView.FindFirstDescendant(c => c.ByAutomationId("Sidebar_Gateways")).AsButton();
+    protected Button CountriesNavigationViewItem => NavigationView.FindFirstDescendant(c => c.ByAutomationId("Sidebar_Countries_All")).AsButton();
+    protected Button SettingsNavigationViewItem => NavigationView.FindFirstDescendant(c => c.ByAutomationId("Sidebar_Settings")).AsButton();
+    protected Button KillSwitchFeatureNavigationViewItem => NavigationView.FindFirstDescendant(c => c.ByAutomationId("Sidebar_Features_KillSwitch")).AsButton();
+    protected Button NetShieldFeatureNavigationViewItem => NavigationView.FindFirstDescendant(c => c.ByAutomationId("Sidebar_Features_NetShield")).AsButton();
+    protected Button PortForwardingFeatureNavigationViewItem => NavigationView.FindFirstDescendant(c => c.ByAutomationId("Sidebar_Features_PortForwarding")).AsButton();
+    protected Button SplitTunnelingFeatureNavigationViewItem => NavigationView.FindFirstDescendant(c => c.ByAutomationId("Sidebar_Features_SplitTunneling")).AsButton();
 
-    protected Button AccountButton => ElementByAutomationId("AccountButton").AsButton();
+    protected Button AccountButton => NavigationView.FindFirstDescendant(c => c.ByAutomationId("Sidebar_Account")).AsButton();
+    protected MenuItem GoToMyAccountButton => ElementByAutomationId("Sidebar_Account_Link").AsMenuItem();
+    protected MenuItem SignOutButton => ElementByAutomationId("Sidebar_Account_SignOut").AsMenuItem();
+    protected MenuItem ExitButton => ElementByAutomationId("Sidebar_Account_Exit").AsMenuItem();
 
     protected Label ActivePageTitleLabel => NavigationView.FindFirstChild(c => c.ByControlType(ControlType.Text)).AsLabel();
 

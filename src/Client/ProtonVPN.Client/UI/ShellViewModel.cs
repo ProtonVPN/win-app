@@ -20,7 +20,6 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
@@ -28,12 +27,8 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.UI.Countries;
-using ProtonVPN.Client.UI.Gallery;
-using ProtonVPN.Client.UI.Gateways;
-using ProtonVPN.Client.UI.Home;
-using ProtonVPN.Client.UI.Settings;
-using ProtonVPN.Common.Legacy.Extensions;
+using ProtonVPN.Client.UI.Sidebar;
+using ProtonVPN.Client.UI.Sidebar.Bases;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
@@ -45,43 +40,70 @@ public partial class ShellViewModel : ShellViewModelBase<IMainViewNavigator>, IE
     private readonly ISettings _settings;
 
     [ObservableProperty]
-    private NavigationPageViewModelBase? _selectedNavigationPage;
-
-    [ObservableProperty]
-    private bool _isNavigationPaneOpened;
+    private SidebarItemViewModelBase? _selectedMenuItem;
 
     [ObservableProperty]
     private double _navigationPaneWidth;
 
+    public bool IsNavigationPaneOpened
+    {
+        get => _settings.IsNavigationPaneOpened;
+        set => _settings.IsNavigationPaneOpened = value;
+    }
+
     public override string Title => App.APPLICATION_NAME;
 
-    public ObservableCollection<NavigationPageViewModelBase> NavigationPages { get; }
+    public ObservableCollection<SidebarItemViewModelBase> MenuItems { get; }
 
-    public ShellViewModel(IMainViewNavigator viewNavigator,
+    public ObservableCollection<SidebarItemViewModelBase> FooterMenuItems { get; }
+
+    public ShellViewModel(
+        IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
         IEventMessageSender eventMessageSender,
-        HomeViewModel homeViewModel,
-        GatewaysViewModel gatewaysViewModel,
-        CountriesViewModel countriesViewModel,
         ISettings settings,
         ILogger logger,
         IIssueReporter issueReporter,
-        SettingsViewModel settingsViewModel,
-        Lazy<GalleryViewModel> galleryViewModel)
+        SidebarHomeViewModel sidebarHome,
+        SidebarGatewaysHeaderViewModel sidebarGatewaysHeader,
+        SidebarGatewaysViewModel sidebarGateways,
+        SidebarConnectionsHeaderViewModel sidebarConnectionsHeader,
+        SidebarCountriesViewModel sidebarCountries,
+        SidebarFeaturesHeaderViewModel sidebarFeaturesHeader,
+        SidebarNetShieldViewModel sidebarNetShield,
+        SidebarKillSwitchViewModel sidebarKillSwitch,
+        SidebarPortForwardingViewModel sidebarPortForwarding,
+        SidebarSplitTunnelingViewModel sidebarSplitTunneling,
+        SidebarGalleryViewModel sidebarGallery,
+        SidebarSettingsViewModel sidebarSettings,
+        SidebarSeparatorViewModel sidebarSeparator,
+        SidebarAccountViewModel sidebarAccount)
         : base(viewNavigator, localizationProvider, logger, issueReporter)
     {
         _eventMessageSender = eventMessageSender;
         _settings = settings;
 
-        NavigationPages = new ObservableCollection<NavigationPageViewModelBase>
+        MenuItems = new()
         {
-            homeViewModel,
-            gatewaysViewModel,
-            countriesViewModel,
-            settingsViewModel,
+            sidebarHome,
+            sidebarGatewaysHeader,
+            sidebarGateways,
+            sidebarConnectionsHeader,
+            sidebarCountries,
+            sidebarFeaturesHeader,
+            sidebarNetShield,
+            sidebarKillSwitch,
+            sidebarPortForwarding,
+            sidebarSplitTunneling
         };
 
-        AddDebugPages(galleryViewModel);
+        FooterMenuItems = new()
+        {
+            sidebarGallery,
+            sidebarSettings,
+            sidebarSeparator,
+            sidebarAccount
+        };
     }
 
     public void OnNavigationDisplayModeChanged(NavigationViewDisplayMode displayMode)
@@ -91,38 +113,15 @@ public partial class ShellViewModel : ShellViewModelBase<IMainViewNavigator>, IE
 
     public void Receive(LoggedInMessage message)
     {
-        ExecuteOnUIThread(() =>
-        {
-            IsNavigationPaneOpened = _settings.IsNavigationPaneOpened;
-        });
-    }
-
-    protected override void OnLanguageChanged()
-    {
-        base.OnLanguageChanged();
-
-        NavigationPages.ForEach(p => p.InvalidateTitle());
+        ExecuteOnUIThread(() => OnPropertyChanged(nameof(IsNavigationPaneOpened)));
     }
 
     protected override void OnNavigated()
     {
         base.OnNavigated();
 
-        SelectedNavigationPage = CurrentPage as NavigationPageViewModelBase
-                              ?? NavigationPages.FirstOrDefault(p => p.IsHostFor(CurrentPage));
+        SelectedMenuItem =
+            MenuItems.OfType<SidebarNavigationItemViewModelBase>().FirstOrDefault(p => p.IsHostFor(CurrentPage)) ??
+            FooterMenuItems.OfType<SidebarNavigationItemViewModelBase>().FirstOrDefault(p => p.IsHostFor(CurrentPage));
     }
-
-    private void AddDebugPages(Lazy<GalleryViewModel> galleryViewModel)
-    {
-        if (_settings.IsDebugModeEnabled)
-        {
-            NavigationPages.Add(galleryViewModel.Value);
-        }
-    }
-
-    partial void OnIsNavigationPaneOpenedChanged(bool value)
-    {
-        _settings.IsNavigationPaneOpened = value;
-    }
-
 }
