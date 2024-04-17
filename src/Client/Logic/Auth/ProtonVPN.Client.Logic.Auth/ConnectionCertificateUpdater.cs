@@ -21,14 +21,15 @@ using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
-using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.UserCertificateLogs;
 
 namespace ProtonVPN.Client.Logic.Auth;
 
-public class ConnectionCertificateUpdater : IConnectionCertificateUpdater, IEventMessageReceiver<LoggedInMessage>, IEventMessageReceiver<LoggingOutMessage>
+public class ConnectionCertificateUpdater : IConnectionCertificateUpdater,
+    IEventMessageReceiver<LoggedInMessage>,
+    IEventMessageReceiver<LoggingOutMessage>
 {
     private readonly IConfiguration _config;
     private readonly IConnectionCertificateManager _connectionCertificateManager;
@@ -50,11 +51,6 @@ public class ConnectionCertificateUpdater : IConnectionCertificateUpdater, IEven
     private void Timer_OnTick(object? sender)
     {
         _uiThreadDispatcher.TryEnqueue(() => _connectionCertificateManager.RequestNewCertificateAsync());
-    }
-
-     public async Task OnVpnPlanChangedAsync(VpnPlanChangedMessage message)
-    {
-        await _connectionCertificateManager.ForceRequestNewCertificateAsync();
     }
 
     public void Receive(LoggedInMessage message)

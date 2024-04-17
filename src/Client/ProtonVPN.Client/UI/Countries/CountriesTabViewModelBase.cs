@@ -72,7 +72,7 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICou
     public bool HasSecureCoreCountries => SecureCoreCountries.Count > 0;
     public bool HasItems => HasCountries || HasCities || HasServers || HasSecureCoreCountries;
 
-    public bool IsUpsellBannerVisible => !Settings.IsPaid;
+    public bool IsUpsellBannerVisible => !Settings.VpnPlan.IsPaid;
 
     public abstract IconElement? Icon { get; }
 
@@ -199,7 +199,7 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICou
         IEnumerable<CountryViewModel> countries = GetCountryCodes()
             .Select(GetCountryViewModel);
 
-        if (Settings.IsPaid)
+        if (Settings.VpnPlan.IsPaid)
         {
             countries = countries.Prepend(_countryViewModelsFactory.GetFastestCountryViewModel(CountryFeature));
         }

@@ -18,6 +18,7 @@
  */
 
 using Autofac;
+using ProtonVPN.Client.Logic.Users.Handlers;
 using ProtonVPN.Client.Logic.Users.Observers;
 
 namespace ProtonVPN.Client.Logic.Users.Installers;
@@ -26,6 +27,7 @@ public class UsersLogicModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
+        builder.RegisterType<VpnPlanChangedHandler>().AsImplementedInterfaces().AutoActivate().SingleInstance();
         builder.RegisterType<VpnPlanUpdater>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<VpnPlanObserver>().AsImplementedInterfaces().AutoActivate().SingleInstance();
     }

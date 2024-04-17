@@ -72,18 +72,6 @@ public abstract class PollingObserverBase : ObserverBase
         }
     }
 
-    protected void RestartTimerAndTriggerOnStart()
-    {
-        StopTimer();
-        StartTimerAndTriggerOnStart();
-    }
-
-    protected void RestartTimer()
-    {
-        StopTimer();
-        StartTimer();
-    }
-
     private void OnTimerElapsed(object? sender, EventArgs e)
     {
         TriggerAction.Run();

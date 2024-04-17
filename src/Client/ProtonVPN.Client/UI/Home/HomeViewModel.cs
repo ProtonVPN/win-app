@@ -76,7 +76,7 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
 
     public override bool IsBackEnabled => false;
 
-    public bool IsPaidUser => _settings.IsPaid;
+    public bool IsPaidUser => _settings.VpnPlan.IsPaid;
 
     public bool IsConnecting => _connectionManager.IsConnecting;
 

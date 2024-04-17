@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,23 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
-using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
-using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+namespace ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
 
-namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
-
-public class P2PFeatureIntent : FeatureIntentBase
+public interface IServersUpdater
 {
-    public override bool IsForPaidUsersOnly => true;
-
-    public override bool IsSupported(Server server)
-    {
-        return server.Features.IsSupported(ServerFeatures.P2P);
-    }
-
-    public override string ToString()
-    {
-        return "P2P";
-    }
+    Task UpdateAsync(ServersRequestParameter serversRequestParameter, bool isToReprocessServers = false);
+    Task ForceFullUpdateIfEmptyAsync();
+    Task ClearCacheAsync();
 }

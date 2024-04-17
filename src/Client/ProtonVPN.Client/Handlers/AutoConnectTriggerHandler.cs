@@ -105,7 +105,7 @@ public class AutoConnectTriggerHandler : IHandler,
 
     private async Task AutoConnectAsync()
     {
-        if (_settings.IsPaid)
+        if (_settings.VpnPlan.IsPaid)
         {
             switch (_settings.AutoConnectMode)
             {

@@ -26,4 +26,12 @@ public interface IServersCache
     IReadOnlyList<Server> Servers { get; }
     IReadOnlyList<string> CountryCodes { get; }
     IReadOnlyList<string> Gateways { get; }
+
+    bool HasAnyServers();
+
+    void LoadFromFileIfEmpty();
+    void ReprocessServers();
+    Task UpdateAsync();
+    Task UpdateLoadsAsync();
+    void Clear();
 }

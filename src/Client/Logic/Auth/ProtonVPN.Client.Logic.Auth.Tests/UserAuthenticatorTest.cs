@@ -31,7 +31,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
-using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
 using ProtonVPN.Client.Logic.Users.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Migrations;
@@ -54,7 +54,6 @@ public class UserAuthenticatorTest
     private IGuestHoleActionExecutor _guestHoleActionExecutor;
     private ITokenClient _tokenClient;
     private IConnectionManager _connectionManager;
-    private IServersLoader _serversLoader;
     private IServersUpdater _serversUpdater;
     private IUserSettingsMigrator _userSettingsMigrator;
     private IVpnPlanUpdater _vpnPlanUpdater;
@@ -70,7 +69,6 @@ public class UserAuthenticatorTest
         _guestHoleActionExecutor = Substitute.For<IGuestHoleActionExecutor>();
         _tokenClient = Substitute.For<ITokenClient>();
         _connectionManager = Substitute.For<IConnectionManager>();
-        _serversLoader = Substitute.For<IServersLoader>();
         _serversUpdater = Substitute.For<IServersUpdater>();
         _userSettingsMigrator = Substitute.For<IUserSettingsMigrator>();
         _vpnPlanUpdater = Substitute.For<IVpnPlanUpdater>();
@@ -87,7 +85,6 @@ public class UserAuthenticatorTest
         _guestHoleActionExecutor = null;
         _tokenClient = null;
         _connectionManager = null;
-        _serversLoader = null;
         _serversUpdater = null;
         _userSettingsMigrator = null;
         _vpnPlanUpdater = null;
@@ -151,7 +148,7 @@ public class UserAuthenticatorTest
     private UserAuthenticator GetUserAuthenticator()
     {
         return new(_logger, _apiClient, _connectionCertificateManager, _settings, _eventMessageSender,
-            _guestHoleActionExecutor, _tokenClient, _connectionManager, _serversLoader,
-            _serversUpdater, _userSettingsMigrator, _vpnPlanUpdater);
+            _guestHoleActionExecutor, _tokenClient, _connectionManager, _serversUpdater,
+            _userSettingsMigrator, _vpnPlanUpdater);
     }
 }

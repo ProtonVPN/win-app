@@ -25,6 +25,8 @@ namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
 public class FreeServerLocationIntent : LocationIntentBase
 {
+    public override bool IsForPaidUsersOnly => false;
+
     public FreeServerType Type { get; }
     public string? ExcludedLogicalServerId { get; }
 

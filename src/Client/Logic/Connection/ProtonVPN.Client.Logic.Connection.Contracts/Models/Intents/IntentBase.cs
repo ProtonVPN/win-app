@@ -23,6 +23,8 @@ namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 
 public abstract class IntentBase : IIntent
 {
+    public abstract bool IsForPaidUsersOnly { get; }
+
     public IEnumerable<Server> FilterServers(IEnumerable<Server> servers)
     {
         return servers.Where(IsSupported);

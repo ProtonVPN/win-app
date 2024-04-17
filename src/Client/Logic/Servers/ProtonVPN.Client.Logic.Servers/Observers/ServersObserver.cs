@@ -21,9 +21,9 @@ using ProtonVPN.Client.Common.Observers;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
-using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts.Observers;
+using ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
@@ -31,9 +31,7 @@ using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Logic.Servers.Observers;
 
-public class ServersObserver :
-    PollingObserverBase,
-    IServersObserver,
+public class ServersObserver : PollingObserverBase, IServersObserver,
     IEventMessageReceiver<LoggedInMessage>,
     IEventMessageReceiver<LoggedOutMessage>,
     IEventMessageReceiver<DeviceLocationChangedMessage>
@@ -41,8 +39,6 @@ public class ServersObserver :
     private readonly IServersUpdater _serversUpdater;
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IConfiguration _config;
-
-    private DateTime _lastServerUpdate = DateTime.MinValue;
 
     protected override TimeSpan PollingInterval => TimeSpanExtensions.Min(_config.ServerLoadUpdateInterval, _config.ServerUpdateInterval);
 
@@ -60,37 +56,25 @@ public class ServersObserver :
 
     public void Receive(LoggedInMessage message)
     {
-        // Reset flag to force servers update on login
-        _lastServerUpdate = DateTime.MinValue;
-
         StartTimerAndTriggerOnStart();
     }
 
-    public void Receive(LoggedOutMessage message)
+    public async void Receive(LoggedOutMessage message)
     {
         StopTimer();
+        await _serversUpdater.ClearCacheAsync();
     }
 
-    public void Receive(DeviceLocationChangedMessage message)
+    public async void Receive(DeviceLocationChangedMessage message)
     {
         if (_userAuthenticator.IsLoggedIn)
         {
-            RestartTimerAndTriggerOnStart();
+            await _serversUpdater.UpdateAsync(ServersRequestParameter.ForceLoadsUpdate);
         }
     }
 
     protected override async Task OnTriggerAsync()
     {
-        DateTime now = DateTime.UtcNow;
-        if (now - _lastServerUpdate >= _config.ServerUpdateInterval)
-        {
-            _lastServerUpdate = now;
-
-            await _serversUpdater.UpdateAsync();
-        }
-        else
-        {
-            await _serversUpdater.UpdateLoadsAsync();
-        }
+        await _serversUpdater.UpdateAsync(ServersRequestParameter.RequestIfOld);
     }
 }

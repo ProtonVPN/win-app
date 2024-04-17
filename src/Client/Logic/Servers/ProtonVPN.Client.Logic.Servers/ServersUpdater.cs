@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,237 +17,102 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Api.Contracts;
-using ProtonVPN.Api.Contracts.Servers;
-using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
-using ProtonVPN.Client.Logic.Servers.Contracts;
-using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
-using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
-using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
-using ProtonVPN.Client.Logic.Servers.Contracts.Models;
-using ProtonVPN.Client.Logic.Servers.Files;
-using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Models;
-using ProtonVPN.EntityMapping.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Logic.Servers;
 
-public class ServersUpdater : IServersUpdater, IServersCache, IEventMessageReceiver<LoggedOutMessage>
+public class ServersUpdater : IServersUpdater
 {
-    private readonly IApiClient _apiClient;
-    private readonly IEntityMapper _entityMapper;
-    private readonly IServersFileReaderWriter _serversFileReaderWriter;
-    private readonly IEventMessageSender _eventMessageSender;
-    private readonly ISettings _settings;
     private readonly ILogger _logger;
+    private readonly IServersCache _serversCache;
+    private readonly IConfiguration _config;
+    private readonly SemaphoreSlim _semaphore = new(1, 1);
 
-    private readonly ReaderWriterLockSlim _lock = new();
+    private DateTime _lastFullUpdateUtc = DateTime.MinValue;
+    private DateTime _lastLoadsUpdateUtc = DateTime.MinValue;
 
-    private IReadOnlyList<Server> _originalServers = new List<Server>();
-
-    private IReadOnlyList<Server> _filteredServers = new List<Server>();
-    public IReadOnlyList<Server> Servers => GetWithReadLock(() => _filteredServers);
-
-    private IReadOnlyList<string> _countryCodes = new List<string>();
-    public IReadOnlyList<string> CountryCodes => GetWithReadLock(() => _countryCodes);
-
-    private IReadOnlyList<string> _gateways = new List<string>();
-    public IReadOnlyList<string> Gateways => GetWithReadLock(() => _gateways);
-
-    public ServersUpdater(IApiClient apiClient,
-        IEntityMapper entityMapper,
-        IServersFileReaderWriter serversFileReaderWriter,
-        IEventMessageSender eventMessageSender, 
-        ISettings settings,
-        ILogger logger)
+    public ServersUpdater(ILogger logger,
+        IServersCache serversCache,
+        IConfiguration config)
     {
-        _apiClient = apiClient;
-        _entityMapper = entityMapper;
-        _serversFileReaderWriter = serversFileReaderWriter;
-        _eventMessageSender = eventMessageSender;
-        _settings = settings;
         _logger = logger;
+        _serversCache = serversCache;
+        _config = config;
     }
 
-    private T GetWithReadLock<T>(Func<T> func)
+    public async Task UpdateAsync(ServersRequestParameter parameter, bool isToReprocessServers = false)
     {
-        _lock.EnterReadLock();
+        await _semaphore.WaitAsync();
+
         try
         {
-            return func();
+            if (isToReprocessServers)
+            {
+                // Because the API requests can fail or take a long time, the current servers are reprocessed
+                // beforehand to ensure the user is seeing or not seeing the correct servers already
+                _serversCache.ReprocessServers();
+            }
+
+            DateTime utcNow = DateTime.UtcNow;
+
+            if (parameter == ServersRequestParameter.ForceFullUpdate ||
+                utcNow - _lastFullUpdateUtc >= _config.ServerUpdateInterval)
+            {
+                _lastFullUpdateUtc = utcNow;
+                _lastLoadsUpdateUtc = utcNow;
+                await _serversCache.UpdateAsync();
+            }
+            else if (parameter == ServersRequestParameter.ForceLoadsUpdate ||
+                utcNow - _lastLoadsUpdateUtc >= _config.MinimumServerLoadUpdateInterval)
+            {
+                _lastLoadsUpdateUtc = utcNow;
+                await _serversCache.UpdateLoadsAsync();
+            }
         }
         finally
         {
-            _lock.ExitReadLock();
+            _semaphore.Release();
         }
     }
 
-    public void LoadFromFileIfEmpty()
+    public async Task ForceFullUpdateIfEmptyAsync()
     {
-        if (!HasAnyServers())
-        {
-            _logger.Info<AppLog>("Loading servers from file as the user has none.");
-            IReadOnlyList<Server> servers = _serversFileReaderWriter.Read();
-            ProcessNewServers(servers);
-        }
-    }
-
-    public async Task UpdateAsync()
-    {
-        LoadFromFileIfEmpty();
-        try
-        {
-            DeviceLocation? currentLocation = _settings.DeviceLocation;
-
-            ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync(currentLocation?.IpAddress ?? string.Empty);
-            if (response.Success)
-            {
-                List<Server> servers = _entityMapper.Map<LogicalServerResponse, Server>(response.Value.Servers);
-                SaveToFile(servers);
-                ProcessNewServers(servers);
-            }
-        }
-        catch (Exception e)
-        {
-            _logger.Error<ApiErrorLog>("API: Get servers failed", e);
-        }
-    }
-
-    public async Task UpdateLoadsAsync()
-    {
-        if (!HasAnyServers())
-        {
-            return;
-        }
+        await _semaphore.WaitAsync();
+        bool hasServers;
 
         try
         {
-            DeviceLocation? currentLocation = _settings.DeviceLocation;
-
-            ApiResponseResult<ServersResponse> response = await _apiClient.GetServerLoadsAsync(currentLocation?.IpAddress ?? string.Empty);
-            if (response.Success)
-            {
-                List<Server> servers = Servers.ToList();
-                List<ServerLoad> serverLoads = _entityMapper.Map<LogicalServerResponse, ServerLoad>(response.Value.Servers);
-
-                foreach (ServerLoad serverLoad in serverLoads)
-                {
-                    Server? server = servers.FirstOrDefault(s => s.Id == serverLoad.Id);
-                    if (server != null)
-                    { 
-                        server.Load = serverLoad.Load;
-                        server.Score = serverLoad.Score;
-
-                        // Server loads response does not give physical server details, so...
-                        // If the logical server only has one physical server, then the status of the logical and physical server are tied
-                        // If the status for the logical is down, it means that all physical servers for this logical are down
-                        // If the status for the logical is up, it means that at least one physical server is up, but we can't know which one(s)
-                        // -> in that case, we need to wait the update servers call to update the status properly
-                        if (serverLoad.Status == 0 || server.Servers.Count <= 1)
-                        {
-                            foreach (PhysicalServer physicalServer in server.Servers)
-                            {
-                                physicalServer.Status = serverLoad.Status;
-                            }
-                            server.Status = serverLoad.Status;
-                        }
-                    }
-                }
-
-                SaveToFile(servers);
-                ProcessNewServers(servers);
-            }
-        }
-        catch (Exception e)
-        {
-            _logger.Error<ApiErrorLog>("API: Get servers load failed", e);
-        }
-    }
-
-    private void ProcessNewServers(IReadOnlyList<Server> servers)
-    {
-        if (servers is not null && servers.Any())
-        {
-            IReadOnlyList<string> countryCodes = GetCountryCodes(servers);
-            IReadOnlyList<string> gateways = GetGateways(servers);
-            IReadOnlyList<Server> filteredServers = GetFilteredServers(servers);
-
-            _lock.EnterWriteLock();
-            try
-            {
-                _originalServers = servers;
-                _filteredServers = filteredServers;
-                _countryCodes = countryCodes;
-                _gateways = gateways;
-            }
-            finally
-            {
-                _lock.ExitWriteLock();
-            }
-
-            _eventMessageSender.Send(new ServerListChangedMessage());
-        }
-    }
-
-    private IReadOnlyList<string> GetCountryCodes(IEnumerable<Server> servers)
-    {
-        return servers.Select(s => s.ExitCountry).Distinct().ToList();
-    }
-
-    private IReadOnlyList<string> GetGateways(IReadOnlyList<Server> servers)
-    {
-        return servers
-            .Where(s => s.Features.IsSupported(ServerFeatures.B2B) && !string.IsNullOrWhiteSpace(s.GatewayName))
-            .Select(s => s.GatewayName)
-            .Distinct()
-            .ToList();
-    }
-
-    private IReadOnlyList<Server> GetFilteredServers(IReadOnlyList<Server> servers)
-    {
-        List<Server> filteredServers = [];
-        foreach (Server server in servers)
-        {
-            // VPNWIN-2053 - Listen to changes to MaxTier setting and process the servers again through here
-            // (This should be done when we have a regular or triggered call to fetch user data)
-            if (_settings.MaxTier >= (sbyte)server.Tier)
-            {
-                filteredServers.Add(server);
-            }
-            else if (server.Tier <= ServerTiers.Plus)
-            {
-                filteredServers.Add(server.CopyWithoutPhysicalServers());
-            }
-        }
-        return filteredServers;
-    }
-
-    private void SaveToFile(IList<Server> servers)
-    {
-        _serversFileReaderWriter.Save(servers);
-    }
-
-    private bool HasAnyServers()
-    {
-        return Servers is not null && Servers.Count > 0;
-    }
-
-    public void Receive(LoggedOutMessage message)
-    {
-        _lock.EnterWriteLock();
-        try
-        {
-            _filteredServers = new List<Server>();
-            _countryCodes = new List<string>();
-            _gateways = new List<string>();
+            _serversCache.LoadFromFileIfEmpty();
+            hasServers = _serversCache.HasAnyServers();
         }
         finally
         {
-            _lock.ExitWriteLock();
+            _semaphore.Release();
+        }
+
+        if (!hasServers)
+        {
+            _logger.Info<AppLog>("Fetching servers as the user has none.");
+            await UpdateAsync(ServersRequestParameter.ForceFullUpdate);
+        }
+    }
+
+    public async Task ClearCacheAsync()
+    {
+        await _semaphore.WaitAsync();
+
+        try
+        {
+            _lastFullUpdateUtc = DateTime.MinValue;
+            _lastLoadsUpdateUtc = DateTime.MinValue;
+            _serversCache.Clear();
+        }
+        finally
+        {
+            _semaphore.Release();
         }
     }
 }

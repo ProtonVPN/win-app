@@ -27,6 +27,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Common.Core.Extensions;
@@ -75,7 +76,7 @@ public class ConnectedServerChecker : PollingObserverBase,
         if (IsTimerEnabled && await IsToReconnectAsync())
         {
             Logger.Info<ConnectTriggerLog>($"Refreshing the server list due to the current connected server being no longer available.");
-            await _serversUpdater.UpdateAsync();
+            await _serversUpdater.UpdateAsync(ServersRequestParameter.ForceFullUpdate);
             Logger.Info<ConnectTriggerLog>($"Reconnecting due to the current connected server being no longer available.");
             await _connectionManager.ReconnectAsync();
         }

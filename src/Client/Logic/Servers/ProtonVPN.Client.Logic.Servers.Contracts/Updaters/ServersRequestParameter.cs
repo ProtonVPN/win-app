@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Logic.Servers.Contracts;
+namespace ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
 
-public interface IServersUpdater
+public enum ServersRequestParameter
 {
-    void LoadFromFileIfEmpty();
-    Task UpdateAsync();
-    Task UpdateLoadsAsync();
+    RequestIfOld = 0,
+    ForceFullUpdate = 1,
+    ForceLoadsUpdate = 2
 }

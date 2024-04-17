@@ -32,7 +32,7 @@ public class SettingsCorrector : ISettingsCorrector
 
     public void Correct()
     {
-        if (!_settings.IsPaid)
+        if (!_settings.VpnPlan.IsPaid)
         {
             // We store setting values for free user as it was paid, but the real value returned
             // by ISettings will be not this one, but a correct one due to its implementation which
