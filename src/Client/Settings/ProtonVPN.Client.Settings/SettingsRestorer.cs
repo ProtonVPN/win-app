@@ -38,7 +38,7 @@ public class SettingsRestorer : ISettingsRestorer
     {
         // Note: Some settings should not be restored, such as Language, Theme, Share statistics...
 
-        _settings.IsNetShieldEnabled = DefaultSettings.IsNetShieldEnabled(_settings.IsPaid);
+        _settings.IsNetShieldEnabled = DefaultSettings.IsNetShieldEnabled(_settings.VpnPlan.IsPaid);
         _settings.IsKillSwitchEnabled = DefaultSettings.IsKillSwitchEnabled;
         _settings.KillSwitchMode = DefaultSettings.KillSwitchMode;
         _settings.IsPortForwardingEnabled = DefaultSettings.IsPortForwardingEnabled;
@@ -58,7 +58,7 @@ public class SettingsRestorer : ISettingsRestorer
         _settings.OpenVpnAdapter = DefaultSettings.OpenVpnAdapter;
         _settings.IsIpv6LeakProtectionEnabled = DefaultSettings.IsIpv6LeakProtectionEnabled;
         _settings.IsSmartReconnectEnabled = DefaultSettings.IsSmartReconnectEnabled;
-        _settings.AutoConnectMode = DefaultSettings.GetAutoConnectMode(_settings.IsPaid);
+        _settings.AutoConnectMode = DefaultSettings.GetAutoConnectMode(_settings.VpnPlan.IsPaid);
 
         _vpnServiceSettingsUpdater.SendAsync();
     }

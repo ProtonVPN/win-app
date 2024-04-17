@@ -30,6 +30,7 @@ public class VpnStateIpcEntityHandler : IEventMessageReceiver<VpnStateIpcEntity>
     private readonly ILogger _logger;
     private readonly IConnectionErrorHandler _connectionErrorHandler;
     private readonly IInternalConnectionManager _connectionManager;
+    private readonly SemaphoreSlim _semaphore = new(1, 1);
 
     public VpnStateIpcEntityHandler(ILogger logger,
         IConnectionErrorHandler connectionErrorHandler,
@@ -42,8 +43,21 @@ public class VpnStateIpcEntityHandler : IEventMessageReceiver<VpnStateIpcEntity>
 
     public async void Receive(VpnStateIpcEntity message)
     {
+        await _semaphore.WaitAsync();
+        try
+        {
+            await HandleAsync(message);
+        }
+        finally
+        {
+            _semaphore.Release();
+        }
+    }
+
+    private async Task HandleAsync(VpnStateIpcEntity message)
+    {
         ConnectionErrorHandlerResult connectionErrorHandlerResponse =
-            await _connectionErrorHandler.HandleAsync(message.Error);
+        await _connectionErrorHandler.HandleAsync(message.Error);
 
         if ((message.Error != VpnErrorTypeIpcEntity.None && connectionErrorHandlerResponse == ConnectionErrorHandlerResult.SameAsLast) ||
             (message.Error == VpnErrorTypeIpcEntity.NoneKeepEnabledKillSwitch && message.Status == VpnStatusIpcEntity.Disconnected))

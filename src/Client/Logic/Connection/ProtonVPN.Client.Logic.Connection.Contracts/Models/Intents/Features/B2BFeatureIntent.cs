@@ -25,6 +25,8 @@ namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 
 public class B2BFeatureIntent : FeatureIntentBase
 {
+    public override bool IsForPaidUsersOnly => false;
+
     public override bool IsSupported(Server server)
     {
         return server.Features.IsSupported(ServerFeatures.B2B);

@@ -42,7 +42,7 @@ public abstract class SidebarInteractiveItemViewModelBase : SidebarHeaderViewMod
 
     public string? ToolTip => IsSidebarOpened ? null : Header;
 
-    public bool IsRestricted => RequiresPaidAccess && !Settings.IsPaid;
+    public bool IsRestricted => RequiresPaidAccess && !Settings.VpnPlan.IsPaid;
 
     public bool IsSidebarOpened => Settings.IsNavigationPaneOpened;
 

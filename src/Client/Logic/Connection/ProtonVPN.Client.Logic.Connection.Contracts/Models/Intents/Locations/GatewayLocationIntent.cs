@@ -23,6 +23,8 @@ namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
 public class GatewayLocationIntent : LocationIntentBase
 {
+    public override bool IsForPaidUsersOnly => false;
+
     public string GatewayName { get; }
 
     public GatewayLocationIntent(string gatewayName)

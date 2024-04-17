@@ -52,9 +52,9 @@ public partial class SidebarAccountViewModel : SidebarInteractiveItemViewModelBa
 
     public string Username => Settings.Username ?? Settings.UserDisplayName ?? string.Empty;
 
-    public string VpnPlan => Localizer.GetVpnPlanName(Settings.VpnPlanTitle);
+    public string VpnPlan => Localizer.GetVpnPlanName(Settings.VpnPlan.Title);
 
-    public bool IsPaid => Settings.IsPaid;
+    public bool IsPaid => Settings.VpnPlan.IsPaid;
 
     public override string AutomationId => "Sidebar_Account";
 

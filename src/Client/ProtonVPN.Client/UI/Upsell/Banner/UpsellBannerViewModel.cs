@@ -45,7 +45,7 @@ public partial class UpsellBannerViewModel : ViewModelBase,
     private readonly ISettings _settings;
     private readonly IUpsellCarouselDialogActivator _upsellCarouselDialogActivator;
 
-    public bool IsBannerVisible => !_settings.IsPaid &&
+    public bool IsBannerVisible => !_settings.VpnPlan.IsPaid &&
                                    _connectionManager.ConnectionStatus == ConnectionStatus.Connected;
 
     public string Title => Localizer.Get(IsWrongCountryBannerVisible

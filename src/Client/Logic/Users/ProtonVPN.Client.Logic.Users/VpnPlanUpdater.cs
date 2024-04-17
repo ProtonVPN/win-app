@@ -20,6 +20,7 @@
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
@@ -36,6 +37,7 @@ public class VpnPlanUpdater : IVpnPlanUpdater
     private readonly ILogger _logger;
     private readonly IConfiguration _configuration;
     private readonly IEventMessageSender _eventMessageSender;
+    private readonly IConnectionCertificateManager _connectionCertificateManager;
     private readonly SemaphoreSlim _semaphore = new(1, 1);
 
     private DateTime _minimumRequestDateUtc = DateTime.MinValue;
@@ -44,13 +46,15 @@ public class VpnPlanUpdater : IVpnPlanUpdater
         ISettings settings,
         ILogger logger,
         IConfiguration configuration,
-        IEventMessageSender eventMessageSender)
+        IEventMessageSender eventMessageSender,
+        IConnectionCertificateManager connectionCertificateManager)
     {
         _apiClient = apiClient;
         _settings = settings;
         _logger = logger;
         _configuration = configuration;
         _eventMessageSender = eventMessageSender;
+        _connectionCertificateManager = connectionCertificateManager;
     }
 
     public async Task<ApiResponseResult<VpnInfoWrapperResponse>?> ForceUpdateAsync()
@@ -80,7 +84,7 @@ public class VpnPlanUpdater : IVpnPlanUpdater
 
                 if (response.Success)
                 {
-                    OnResponseSuccess(response.Value.Vpn);
+                    await OnResponseSuccessAsync(response.Value.Vpn);
                 }
                 else
                 {
@@ -107,24 +111,20 @@ public class VpnPlanUpdater : IVpnPlanUpdater
         return DateTime.UtcNow >= _minimumRequestDateUtc;
     }
 
-    private void OnResponseSuccess(VpnInfoResponse vpnInfoResponse)
+    private async Task OnResponseSuccessAsync(VpnInfoResponse vpnInfoResponse)
     {
-        VpnPlanChangedMessage message = new(vpnInfoResponse.PlanTitle, vpnInfoResponse.MaxTier);
+        VpnPlan oldPlan = _settings.VpnPlan;
+        VpnPlan newPlan = new(vpnInfoResponse.PlanTitle, vpnInfoResponse.MaxTier);
+        VpnPlanChangedMessage message = new(oldPlan: oldPlan, newPlan: newPlan);
 
-        if (HasAnyVpnPlanSettingChanged(message))
+        if (message.HasChanged())
         {
-            _settings.VpnPlanTitle = message.PlanTitle;
-            _settings.IsPaid = message.IsPaid;
-            _settings.MaxTier = message.MaxTier;
-
+            _settings.VpnPlan = newPlan;
             _eventMessageSender.Send(message);
         }
-    }
-
-    private bool HasAnyVpnPlanSettingChanged(VpnPlanChangedMessage message)
-    {
-        return _settings.VpnPlanTitle != message.PlanTitle ||
-               _settings.IsPaid != message.IsPaid ||
-               _settings.MaxTier != message.MaxTier;
+        else
+        {
+            await _connectionCertificateManager.RequestNewCertificateAsync(isToSendMessageIfCertificateIsNotRefreshed: true);
+        }
     }
 }

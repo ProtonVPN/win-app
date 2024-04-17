@@ -51,6 +51,7 @@ public interface IConfiguration : IStaticConfiguration
     TimeSpan ConnectionCertificateUpdateInterval { get; }
     TimeSpan ServerUpdateInterval { get; }
     TimeSpan ServerLoadUpdateInterval { get; }
+    TimeSpan MinimumServerLoadUpdateInterval { get; }
     TimeSpan AnnouncementUpdateInterval { get; }
     TimeSpan AlternativeRoutingCheckInterval { get; }
     TimeSpan UpdateCheckInterval { get; }

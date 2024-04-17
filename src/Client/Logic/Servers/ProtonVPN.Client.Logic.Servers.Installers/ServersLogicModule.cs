@@ -30,12 +30,13 @@ public class ServersLogicModule : Module
     protected override void Load(ContainerBuilder builder)
     {
         builder.RegisterType<ServersLoader>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<ServersUpdater>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ServersCache>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ServersFileReaderWriter>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<DeviceLocationObserver>().AsImplementedInterfaces().AutoActivate().SingleInstance();
         builder.RegisterType<ServersObserver>().AsImplementedInterfaces().AutoActivate().SingleInstance();
-
+        builder.RegisterType<ServersUpdater>().AsImplementedInterfaces().SingleInstance();
+        
         builder.RegisterAllMappersInAssembly<LogicalServerMapper>();
     }
 }

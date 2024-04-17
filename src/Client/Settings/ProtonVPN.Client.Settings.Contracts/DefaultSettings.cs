@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Helpers;
 using ProtonVPN.Client.Settings.Contracts.Models;
@@ -30,8 +31,6 @@ public static class DefaultSettings
     public static string Language = "en-US";
     public static VpnProtocol VpnProtocol = VpnProtocol.Smart;
     public static NatType NatType = NatType.Strict;
-    public static bool IsPaid = false;
-    public static sbyte MaxTier = 0;
     public static bool IsVpnAcceleratorEnabled = true;
     public static bool IsWindowMaximized = false;
     public static bool IsNavigationPaneOpened = true;
@@ -63,6 +62,7 @@ public static class DefaultSettings
     public static List<SplitTunnelingIpAddress> SplitTunnelingIpAddressesList = new();
     public static bool IsIpv6LeakProtectionEnabled = true;
     public static OpenVpnAdapter OpenVpnAdapter = OpenVpnAdapter.Tun;
+    public static VpnPlan VpnPlan = VpnPlan.Default;
     public static List<FeatureFlag> FeatureFlags = new();
     public static bool IsFeatureConnectedServerCheckEnabled = true;
     public static TimeSpan ConnectedServerCheckInterval = TimeSpan.FromMinutes(30);

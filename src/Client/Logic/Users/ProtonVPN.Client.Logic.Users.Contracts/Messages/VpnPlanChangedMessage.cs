@@ -21,14 +21,32 @@ namespace ProtonVPN.Client.Logic.Users.Contracts.Messages;
 
 public class VpnPlanChangedMessage
 {
-    public string PlanTitle { get; }
-    public bool IsPaid { get; }
-    public sbyte MaxTier { get; }
+    public VpnPlan OldPlan { get; }
+    public VpnPlan NewPlan { get; }
 
-    public VpnPlanChangedMessage(string planTitle, sbyte maxTier)
+    public VpnPlanChangedMessage(VpnPlan oldPlan, VpnPlan newPlan)
     {
-        PlanTitle = planTitle;
-        IsPaid = maxTier > 0;
-        MaxTier = maxTier;
+        OldPlan = oldPlan;
+        NewPlan = newPlan;
+    }
+
+    public bool HasChanged()
+    {
+        return !OldPlan.Equals(NewPlan);
+    }
+
+    public bool IsDowngrade()
+    {
+        return OldPlan.MaxTier > NewPlan.MaxTier;
+    }
+
+    public bool IsUpgrade()
+    {
+        return OldPlan.MaxTier < NewPlan.MaxTier;
+    }
+
+    public bool HasMaxTierChanged()
+    {
+        return OldPlan.MaxTier != NewPlan.MaxTier;
     }
 }

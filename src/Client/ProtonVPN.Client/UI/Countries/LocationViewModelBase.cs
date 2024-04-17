@@ -64,7 +64,7 @@ public abstract partial class LocationViewModelBase : ViewModelBase
 
     public abstract bool IsActiveConnection { get; }
 
-    public bool IsFreeUser => !_settings.IsPaid;
+    public bool IsFreeUser => !_settings.VpnPlan.IsPaid;
     public bool IsUnderMaintenance { get; set; }
     public bool IsEnabled => !IsUnderMaintenance && !IsFreeUser;
 

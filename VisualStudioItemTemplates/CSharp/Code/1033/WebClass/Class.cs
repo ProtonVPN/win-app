@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,9 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace $rootnamespace$
+namespace $rootnamespace$;
+
+public class $safeitemrootname$
 {
-	public class $safeitemrootname$
-	{
-	}
 }

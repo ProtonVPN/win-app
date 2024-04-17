@@ -25,6 +25,8 @@ namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 
 public class SecureCoreFeatureIntent : FeatureIntentBase
 {
+    public override bool IsForPaidUsersOnly => true;
+
     public string? EntryCountryCode { get; }
 
     public bool IsFastest => string.IsNullOrEmpty(EntryCountryCode);

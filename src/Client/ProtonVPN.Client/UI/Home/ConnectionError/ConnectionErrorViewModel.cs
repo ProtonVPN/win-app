@@ -74,7 +74,7 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
         {
             _vpnError = message.VpnError;
 
-            ConnectionErrorMessage = Localizer.GetVpnError(message.VpnError, _settings.IsPaid);
+            ConnectionErrorMessage = Localizer.GetVpnError(message.VpnError, _settings.VpnPlan.IsPaid);
             ActionButtonTitle = Localizer.GetDisconnectErrorActionButtonTitle(message.VpnError);
             HasConnectionError = !string.IsNullOrEmpty(ConnectionErrorMessage);
         });

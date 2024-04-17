@@ -190,7 +190,6 @@ public class GlobalSettingsMigrator : IGlobalSettingsMigrator
             { nameof(IUserSettings.IsAlternativeRoutingEnabled), GetSettingValue("DoHEnabled") },
             { nameof(IUserSettings.IsIpv6LeakProtectionEnabled), GetSettingValue("Ipv6LeakProtection") },
             { nameof(IUserSettings.IsNetShieldEnabled), GetUserSetting(username, "UserNetShieldEnabled") },
-            { nameof(IUserSettings.VpnPlanTitle), GetUserSetting(username, "UserVpnPlanName") },
 
             { nameof(IUserSettings.ConnectionKeyPair), GetConnectionKeyPair(username) },
             { nameof(IUserSettings.ConnectionCertificate), GetConnectionCertificate(username) },

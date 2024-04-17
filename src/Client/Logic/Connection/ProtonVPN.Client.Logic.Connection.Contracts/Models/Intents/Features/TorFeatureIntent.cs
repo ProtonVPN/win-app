@@ -25,6 +25,8 @@ namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 
 public class TorFeatureIntent : FeatureIntentBase
 {
+    public override bool IsForPaidUsersOnly => true;
+
     public override bool IsSupported(Server server)
     {
         return server.Features.IsSupported(ServerFeatures.Tor);

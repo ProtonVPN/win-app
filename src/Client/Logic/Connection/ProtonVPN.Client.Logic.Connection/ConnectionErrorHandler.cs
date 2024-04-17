@@ -24,6 +24,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Validators;
+using ProtonVPN.Client.Logic.Users.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
@@ -40,7 +41,7 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
     private readonly IConnectionCertificateManager _connectionCertificateManager;
     private readonly INetworkAdapterValidator _networkAdapterValidator;
     private readonly IConnectionManager _connectionManager;
-
+    private readonly IVpnPlanUpdater _vpnPlanUpdater;
     private VpnErrorTypeIpcEntity _error = VpnErrorTypeIpcEntity.None;
 
     public ConnectionErrorHandler(
@@ -49,7 +50,8 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
         IEventMessageSender eventMessageSender,
         IConnectionCertificateManager connectionCertificateManager,
         INetworkAdapterValidator networkAdapterValidator,
-        IConnectionManager connectionManager)
+        IConnectionManager connectionManager,
+        IVpnPlanUpdater vpnPlanUpdater)
     {
         _logger = logger;
         _entityMapper = entityMapper;
@@ -57,20 +59,27 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
         _connectionCertificateManager = connectionCertificateManager;
         _networkAdapterValidator = networkAdapterValidator;
         _connectionManager = connectionManager;
+        _vpnPlanUpdater = vpnPlanUpdater;
     }
 
     public async Task<ConnectionErrorHandlerResult> HandleAsync(VpnErrorTypeIpcEntity ipcError)
     {
+        VpnError error = _entityMapper.Map<VpnErrorTypeIpcEntity, VpnError>(ipcError);
+
         if (_error == ipcError)
         {
+            if (error == VpnError.CertificateExpired || error == VpnError.PlanNeedsToBeUpgraded || error.RequiresCertificateUpdate())
+            {
+                await _connectionCertificateManager.RequestNewCertificateAsync(isToSendMessageIfCertificateIsNotRefreshed: true);
+            }
             return ConnectionErrorHandlerResult.SameAsLast;
         }
 
-        ConnectionErrorHandlerResult response = ConnectionErrorHandlerResult.NoAction;
-        VpnError error = _entityMapper.Map<VpnErrorTypeIpcEntity, VpnError>(ipcError);
+        _error = ipcError;
+
         if (error == VpnError.NoTapAdaptersError)
         {
-            response = await HandleNoTapAdaptersErrorAsync();
+            return await HandleNoTapAdaptersErrorAsync();
         }
         else if (error == VpnError.CertificateExpired)
         {
@@ -79,29 +88,35 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
             // ConnectionManager will inform the service about updated certificate.
             return ConnectionErrorHandlerResult.NoAction;
         }
+        else if (error == VpnError.PlanNeedsToBeUpgraded)
+        {
+            await _vpnPlanUpdater.ForceUpdateAsync();
+            // No reconnect is asked directly here. If the VPN Plan is updated due to the line above,
+            // a VpnPlanChangedMessage should be triggered by it and handled by a class that reconnects.
+            return ConnectionErrorHandlerResult.NoAction;
+        }
         else if (error.RequiresCertificateUpdate())
         {
             await _connectionCertificateManager.ForceRequestNewKeyPairAndCertificateAsync();
-            response = await ReconnectAsync();
+            return await ReconnectAsync();
         }
         else if (error.RequiresInformingUser())
         {
-            response = SendConnectionErrorMessage(error);
+            return SendConnectionErrorMessage(error);
         }
         else if (error.RequiresReconnectWithoutLastServer())
         {
             // VPNWIN-2103 - Either 
             // (1) Reconnect without last server, or 
             // (2) Delete this separation between RequiresReconnectWithoutLastServer and RequiresReconnect
-            response = await ReconnectAsync();
+            return await ReconnectAsync();
         }
         else if (error.RequiresReconnect())
         {
-            response = await ReconnectAsync();
+            return await ReconnectAsync();
         }
 
-        _error = ipcError;
-        return response;
+        return ConnectionErrorHandlerResult.NoAction;
     }
 
     private async Task<ConnectionErrorHandlerResult> HandleNoTapAdaptersErrorAsync()

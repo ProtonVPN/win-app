@@ -144,7 +144,7 @@ public partial class AutoStartupViewModel : SettingsPageViewModelBase,
 
     private void InvalidateIsPaidUser()
     {
-        IsPaidUser = Settings.IsPaid;
+        IsPaidUser = Settings.VpnPlan.IsPaid;
     }
 
     private bool IsAutoLaunchMode(AutoLaunchMode autoLaunchMode)

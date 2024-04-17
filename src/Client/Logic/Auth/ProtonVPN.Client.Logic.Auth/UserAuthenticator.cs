@@ -29,7 +29,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
-using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
 using ProtonVPN.Client.Logic.Users.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Migrations;
@@ -54,7 +54,6 @@ public class UserAuthenticator : IUserAuthenticator
     private readonly IGuestHoleActionExecutor _guestHoleActionExecutor;
     private readonly ITokenClient _tokenClient;
     private readonly IConnectionManager _connectionManager;
-    private readonly IServersLoader _serversLoader;
     private readonly IServersUpdater _serversUpdater;
     private readonly IUserSettingsMigrator _userSettingsMigrator;
     private readonly IVpnPlanUpdater _vpnPlanUpdater;
@@ -74,7 +73,6 @@ public class UserAuthenticator : IUserAuthenticator
         IGuestHoleActionExecutor guestHoleActionExecutor,
         ITokenClient tokenClient,
         IConnectionManager connectionManager,
-        IServersLoader serversLoader,
         IServersUpdater serversUpdater,
         IUserSettingsMigrator userSettingsMigrator,
         IVpnPlanUpdater vpnPlanUpdater)
@@ -87,7 +85,6 @@ public class UserAuthenticator : IUserAuthenticator
         _guestHoleActionExecutor = guestHoleActionExecutor;
         _tokenClient = tokenClient;
         _connectionManager = connectionManager;
-        _serversLoader = serversLoader;
         _serversUpdater = serversUpdater;
         _userSettingsMigrator = userSettingsMigrator;
         _vpnPlanUpdater = vpnPlanUpdater;
@@ -428,14 +425,7 @@ public class UserAuthenticator : IUserAuthenticator
 
     private async Task MigrateUserSettingsAsync()
     {
-        _serversUpdater.LoadFromFileIfEmpty();
-
-        if (!_serversLoader.GetServers().Any())
-        {
-            _logger.Info<AppLog>("Fetching servers as the user has none.");
-            await _serversUpdater.UpdateAsync();
-        }
-
+        await _serversUpdater.ForceFullUpdateIfEmptyAsync();
         _userSettingsMigrator.Migrate();
     }
 

@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
@@ -102,10 +103,10 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userCache.SetValueType<OpenVpnAdapter>(value, SettingEncryption.Unencrypted);
     }
 
-    public string? VpnPlanTitle
+    public VpnPlan VpnPlan
     {
-        get => _userCache.GetReferenceType<string>(SettingEncryption.Encrypted);
-        set => _userCache.SetReferenceType(value, SettingEncryption.Encrypted);
+        get => _userCache.GetValueType<VpnPlan>(SettingEncryption.Encrypted) ?? DefaultSettings.VpnPlan;
+        set => _userCache.SetValueType<VpnPlan>(value, SettingEncryption.Encrypted);
     }
 
     public ConnectionAsymmetricKeyPair? ConnectionKeyPair
@@ -124,18 +125,6 @@ public class UserSettings : GlobalSettings, IUserSettings
     {
         get => _userCache.GetValueType<NatType>(SettingEncryption.Unencrypted) ?? DefaultSettings.NatType;
         set => _userCache.SetValueType<NatType>(value, SettingEncryption.Unencrypted);
-    }
-
-    public bool IsPaid
-    {
-        get => _userCache.GetValueType<bool>(SettingEncryption.Encrypted) ?? DefaultSettings.IsPaid;
-        set => _userCache.SetValueType<bool>(value, SettingEncryption.Encrypted);
-    }
-
-    public sbyte MaxTier
-    {
-        get => _userCache.GetValueType<sbyte>(SettingEncryption.Encrypted) ?? DefaultSettings.MaxTier;
-        set => _userCache.SetValueType<sbyte>(value, SettingEncryption.Encrypted);
     }
 
     public bool IsVpnAcceleratorEnabled
@@ -196,7 +185,7 @@ public class UserSettings : GlobalSettings, IUserSettings
     {
         get
         {
-            if (IsPaid)
+            if (VpnPlan.IsPaid)
             {
                 return _userCache.GetValueType<AutoConnectMode>(SettingEncryption.Unencrypted) ?? DefaultSettings.GetAutoConnectMode(true);
             }
@@ -210,7 +199,7 @@ public class UserSettings : GlobalSettings, IUserSettings
     {
         get
         {
-            if (IsPaid)
+            if (VpnPlan.IsPaid)
             {
                 return _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsNetShieldEnabled(true);
             }

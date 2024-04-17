@@ -38,6 +38,7 @@ public interface IConnectionManager
     bool HasError { get; }
 
     Task ConnectAsync(IConnectionIntent? connectionIntent = null);
+    Task<bool> ReconnectIfNotRecentlyReconnectedAsync();
     Task<bool> ReconnectAsync();
     Task DisconnectAsync();
 

@@ -71,7 +71,7 @@ public class UserSettingsLog : LogBase
         yield return new(nameof(ISettings.Language), _settings.Language);
         yield return new(nameof(ISettings.VpnProtocol), _settings.VpnProtocol);
         yield return new(nameof(ISettings.Username), _settings.Username);
-        yield return new(nameof(ISettings.VpnPlanTitle), _settings.VpnPlanTitle);
+        yield return new($"{nameof(ISettings.VpnPlan)}.{nameof(ISettings.VpnPlan.Title)}", _settings.VpnPlan.Title);
         yield return new($"{nameof(ISettings.ConnectionCertificate)}.{nameof(ConnectionCertificate.RequestUtcDate)}", _settings.ConnectionCertificate?.RequestUtcDate);
         yield return new($"{nameof(ISettings.ConnectionCertificate)}.{nameof(ConnectionCertificate.RefreshUtcDate)}", _settings.ConnectionCertificate?.RefreshUtcDate);
         yield return new($"{nameof(ISettings.ConnectionCertificate)}.{nameof(ConnectionCertificate.ExpirationUtcDate)}", _settings.ConnectionCertificate?.ExpirationUtcDate);

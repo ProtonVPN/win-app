@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Common.Core.Networking;
@@ -38,12 +39,10 @@ public interface IUserSettings
     bool IsConnectionDetailsPaneOpened { get; set; }
     VpnProtocol VpnProtocol { get; set; }
     OpenVpnAdapter OpenVpnAdapter { get; set; }
-    string? VpnPlanTitle { get; set; }
+    VpnPlan VpnPlan { get; set; }
     ConnectionAsymmetricKeyPair? ConnectionKeyPair { get; set; }
     ConnectionCertificate? ConnectionCertificate { get; set; }
     NatType NatType { get; set; }
-    bool IsPaid { get; set; }
-    sbyte MaxTier { get; set; }
     bool IsVpnAcceleratorEnabled { get; set; }
     bool IsNotificationEnabled { get; set; }
     bool IsShareStatisticsEnabled { get; set; }

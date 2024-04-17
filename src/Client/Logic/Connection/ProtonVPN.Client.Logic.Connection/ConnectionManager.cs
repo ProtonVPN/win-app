@@ -22,6 +22,8 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Logic.Connection.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts;
@@ -53,8 +55,10 @@ public class ConnectionManager : IInternalConnectionManager,
     private readonly IReconnectionRequestCreator _reconnectionRequestCreator;
     private readonly IDisconnectionRequestCreator _disconnectionRequestCreator;
     private readonly IServersLoader _serversLoader;
+    private readonly TimeSpan _reconnectInterval = TimeSpan.FromMinutes(1);
 
     private TrafficBytes _bytesTransferred = TrafficBytes.Zero;
+    private DateTime _minReconnectionDateUtc = DateTime.MinValue;
 
     public ConnectionStatus ConnectionStatus { get; private set; }
     public VpnErrorTypeIpcEntity CurrentError { get; private set; }
@@ -90,9 +94,8 @@ public class ConnectionManager : IInternalConnectionManager,
 
     public async Task ConnectAsync(IConnectionIntent? connectionIntent = null)
     {
-        connectionIntent ??= _settings.IsPaid ? ConnectionIntent.Default : ConnectionIntent.FreeDefault;
-
-        CurrentConnectionIntent = connectionIntent;
+        connectionIntent ??= _settings.VpnPlan.IsPaid ? ConnectionIntent.Default : ConnectionIntent.FreeDefault;
+        CurrentConnectionIntent = CreateNewIntentIfUserPlanIsFree(connectionIntent);
 
         _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Connection attempt to: {connectionIntent}.");
 
@@ -101,6 +104,24 @@ public class ConnectionManager : IInternalConnectionManager,
         ConnectionRequestIpcEntity request = await _connectionRequestCreator.CreateAsync(connectionIntent);
 
         await SendRequestIfValidAsync(request);
+    }
+
+    protected IConnectionIntent CreateNewIntentIfUserPlanIsFree(IConnectionIntent connectionIntent)
+    {
+        if (_settings.VpnPlan.IsPaid)
+        {
+            return connectionIntent;
+        }
+
+        ILocationIntent locationIntent = connectionIntent.Location.IsForPaidUsersOnly
+            ? new FreeServerLocationIntent()
+            : connectionIntent.Location;
+
+        IFeatureIntent? featureIntent = connectionIntent.Feature is null || connectionIntent.Feature.IsForPaidUsersOnly
+            ? null
+            : connectionIntent.Feature;
+
+        return new ConnectionIntent(locationIntent, featureIntent);
     }
 
     private async Task<bool> SendRequestIfValidAsync(ConnectionRequestIpcEntity request)
@@ -120,19 +141,47 @@ public class ConnectionManager : IInternalConnectionManager,
         }
     }
 
+    /// <returns>True if reconnecting. False if not.</returns>
+    public async Task<bool> ReconnectIfNotRecentlyReconnectedAsync()
+    {
+        if (DateTime.UtcNow > _minReconnectionDateUtc)
+        {
+            return await ReconnectAsync();
+        }
+
+        return false;
+    }
+
     /// <summary>Reconnects if the most recent action was a Connect and not a Disconnect.</summary>
     /// <returns>True if reconnecting. False if not.</returns>
     public async Task<bool> ReconnectAsync()
     {
+        _minReconnectionDateUtc = DateTime.UtcNow + _reconnectInterval;
+
         IConnectionIntent? connectionIntent = CurrentConnectionIntent;
-
-        _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Reconnection attempt to: {connectionIntent?.ToString() ?? "<no intent>"}.");
-
         if (connectionIntent is null)
         {
             await DisconnectAsync();
             return false;
         }
+
+        IConnectionIntent newConnectionIntent = CreateNewIntentIfUserPlanIsFree(connectionIntent);
+        if (newConnectionIntent is null)
+        {
+            await DisconnectAsync();
+            return false;
+        }
+
+        if (newConnectionIntent != connectionIntent)
+        {
+            _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] The reconnection attempt is changing the intent from " +
+                $"{connectionIntent?.ToString() ?? "<no intent>"} to {newConnectionIntent?.ToString() ?? "<no intent>"}.");
+            CurrentConnectionIntent = newConnectionIntent;
+            connectionIntent = newConnectionIntent;
+        }
+
+        _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Reconnection attempt to: {connectionIntent?.ToString() ?? "<no intent>"}.");
+
 
         SetConnectionStatus(ConnectionStatus.Connecting);
 
@@ -183,7 +232,12 @@ public class ConnectionManager : IInternalConnectionManager,
             Server? server = GetCurrentServer(message);
             PhysicalServer? physicalServer = server?.Servers.FirstOrDefault(FilterPhysicalServerByVpnState(message));
 
-            if (server is null || physicalServer is null)
+            if (server is not null && physicalServer is not null)
+            {
+                VpnProtocol vpnProtocol = _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(message.VpnProtocol);
+                CurrentConnectionDetails = new ConnectionDetails(connectionIntent, server, physicalServer, vpnProtocol);
+            }
+            else if (server is null)
             {
                 _logger.Error<AppLog>($"The status changed to Connected but the associated Server is null. Error: '{message.Error}' " +
                                       $"NetworkBlocked: '{message.NetworkBlocked}' " +
@@ -193,10 +247,9 @@ public class ConnectionManager : IInternalConnectionManager,
                 // VPNWIN-2105 - Either (1) Reconnect without last server, or (2) Delete this comment
                 await ReconnectAsync();
             }
-            else
+            else // Tier is too low for the connected server
             {
-                VpnProtocol vpnProtocol = _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(message.VpnProtocol);
-                CurrentConnectionDetails = new ConnectionDetails(connectionIntent, server, physicalServer, vpnProtocol);
+                await ReconnectIfNotRecentlyReconnectedAsync();
             }
         }
 
