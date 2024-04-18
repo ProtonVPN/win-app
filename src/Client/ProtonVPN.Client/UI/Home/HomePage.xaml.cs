@@ -25,10 +25,10 @@ namespace ProtonVPN.Client.UI.Home;
 public sealed partial class HomePage
 {
     private const double TIMER_INTERVAL_IN_MS = 500;
-    private const double INLINE_MODE_THRESHOLD_WIDTH = 625.0;
+    private const double INLINE_MODE_THRESHOLD_WIDTH = 750.0;
     private const double PANE_WIDTH_RATIO = 0.4;
-    private const double PANE_MIN_WIDTH = 250;
-    private const double PANE_MAX_WIDTH = 420;
+    private const double PANE_MIN_WIDTH = 300;
+    private const double PANE_MAX_WIDTH = 500;
 
     private DispatcherTimer _timer;
 

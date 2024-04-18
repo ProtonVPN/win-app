@@ -70,7 +70,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                 Command="{Binding MoveBackwardCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                                 Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <custom:GhostButton.LeftIcon>
-                                    <pathicons:ArrowLeft />
+                                    <pathicons:ArrowLeft Size="Pixels16" />
                                 </custom:GhostButton.LeftIcon>
                             </custom:GhostButton>
 
@@ -89,7 +89,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                 Command="{Binding MoveForwardCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                                 Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <custom:GhostButton.LeftIcon>
-                                    <pathicons:ArrowRight />
+                                    <pathicons:ArrowRight Size="Pixels16" />
                                 </custom:GhostButton.LeftIcon>
                             </custom:GhostButton>
 

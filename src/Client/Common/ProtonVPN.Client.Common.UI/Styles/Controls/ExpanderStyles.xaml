@@ -72,13 +72,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Thickness x:Key="ExpanderHeaderBorderThickness">0</Thickness>
 
     <Thickness x:Key="ToggleButtonBorderThemeThickness">0</Thickness>
-    <x:Double x:Key="ExpanderHeaderSpacing">8</x:Double>
+    <x:Double x:Key="ExpanderHeaderSpacing">4</x:Double>
 
     <Style x:Key="GhostExpanderHeaderButtonStyle" BasedOn="{StaticResource DefaultToggleButtonStyle}" TargetType="ToggleButton">
-        <Setter Property="FontSize" Value="{StaticResource CaptionStrongFontSize}" />
-        <Setter Property="FontWeight" Value="{StaticResource CaptionStrongFontWeight}" />
+        <Setter Property="FontSize" Value="{StaticResource BodyStrongFontSize}" />
+        <Setter Property="FontWeight" Value="{StaticResource BodyStrongFontWeight}" />
         <Setter Property="Foreground" Value="{ThemeResource ExpanderHeaderForeground}" />
-        <Setter Property="Margin" Value="16,0" />
+        <Setter Property="Margin" Value="28,0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
@@ -101,13 +101,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </Grid.ColumnDefinitions>
 
                         <Grid Grid.Column="0"
-                              Margin="0,-4,0,0"
                               VerticalAlignment="Center">
                             <pathicons:ChevronRightFilled x:Name="ChevronRightIcon"
                                                           Foreground="{TemplateBinding Foreground}"
+                                                          Size="Pixels16"
                                                           Visibility="{Binding IsChecked, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
                             <pathicons:ChevronDownFilled x:Name="ChevronDownIcon"
                                                          Foreground="{TemplateBinding Foreground}"
+                                                         Size="Pixels16"
                                                          Visibility="{Binding IsChecked, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" />
                         </Grid>
 

@@ -30,8 +30,8 @@ public interface IUserSettings
     string? Username { get; set; }
     string? UserDisplayName { get; set; }
     string Theme { get; set; }
-    int? WindowWidth { get; set; }
-    int? WindowHeight { get; set; }
+    int WindowWidth { get; set; }
+    int WindowHeight { get; set; }
     int? WindowXPosition { get; set; }
     int? WindowYPosition { get; set; }
     bool IsWindowMaximized { get; set; }

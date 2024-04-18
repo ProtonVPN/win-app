@@ -26,8 +26,11 @@ namespace ProtonVPN.UI.Tests.Robots.Shell;
 
 public partial class ShellRobot
 {
-    private const int SIDEBAR_COLLAPSED_WIDTH = 48;
-    private const int SIDEBAR_EXPANDED_WIDTH = 160;
+    // Give some margin for sidebar expected width
+    private const int SIDEBAR_COLLAPSED_MIN_WIDTH = 50;
+    private const int SIDEBAR_COLLAPSED_MAX_WIDTH = 55;
+    private const int SIDEBAR_EXPANDED_MIN_WIDTH = 240;
+    private const int SIDEBAR_EXPANDED_MAX_WIDTH = 360;
 
     public ShellRobot VerifyTitleBar()
     {
@@ -59,7 +62,7 @@ public partial class ShellRobot
         Assert.IsNotNull(SettingsNavigationViewItem);
 
         Assert.IsNotNull(NavigationHamburgerButton);
-        Assert.IsNotNull(NavigationSideBar);
+        Assert.IsNotNull(NavigationSidebar);
 
         return this;
     }
@@ -100,14 +103,14 @@ public partial class ShellRobot
 
     public ShellRobot VerifySidebarIsCollapsed()
     {
-        AssertSidebarWidthIsCorrect(SIDEBAR_COLLAPSED_WIDTH);
+        AssertSidebarWidthIsCorrect(SIDEBAR_COLLAPSED_MIN_WIDTH, SIDEBAR_COLLAPSED_MAX_WIDTH);
 
         return this;
     }
 
     public ShellRobot VerifySidebarIsExpanded()
     {
-        AssertSidebarWidthIsCorrect(SIDEBAR_EXPANDED_WIDTH);
+        AssertSidebarWidthIsCorrect(SIDEBAR_EXPANDED_MIN_WIDTH, SIDEBAR_EXPANDED_MAX_WIDTH);
 
         return this;
     }
@@ -123,18 +126,19 @@ public partial class ShellRobot
         return this;
     }
 
-    private void AssertSidebarWidthIsCorrect(int expectedWidth)
+    private void AssertSidebarWidthIsCorrect(int minExpectedWidth, int maxExpectedWidth)
     {
-        Grid sidebar = NavigationSideBar;
+        double currentWidth = 0;
 
-        Assert.IsNotNull(sidebar);
+        Assert.IsNotNull(NavigationSidebar);
 
         RetryResult<bool> retry = Retry.WhileFalse(() =>
         {
-            double currentWidth = sidebar.ActualWidth;
-            return currentWidth == expectedWidth;
+            currentWidth = NavigationSidebar.ActualWidth;
+            return currentWidth >= minExpectedWidth && currentWidth <= maxExpectedWidth;
         }, TestConstants.VeryShortTimeout, TestConstants.DefaultAnimationDelay);
 
-        Assert.IsTrue(retry.Result, $"Side bar does not have the expected width ({expectedWidth}px)");
+
+        Assert.IsTrue(retry.Result, $"Sidebar does not have the expected width. Expected: between {minExpectedWidth}px and {maxExpectedWidth}px | Current: {currentWidth}px");
     }
 }

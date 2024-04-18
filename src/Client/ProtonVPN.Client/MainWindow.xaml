@@ -26,16 +26,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
               xmlns:tray="using:ProtonVPN.Client.UI.Tray"
               xmlns:wex="using:WinUIEx"
-              Width="636"
-              Height="589"
-              MinWidth="424"
-              MinHeight="489"
+              MinWidth="518"
+              MinHeight="608"
               Activated="OnActivated"
               PersistenceId="MainWindow"
               mc:Ignorable="d">
 
     <!--  There's a consistent difference between the size defined here and the actual size  -->
-    <!--  Adds 16px to the width and 9px to the height to compensate  -->
+    <!--  Adds 16px to the width and 8px to the height to compensate  -->
 
     <Window.SystemBackdrop>
         <MicaBackdrop Kind="BaseAlt" />

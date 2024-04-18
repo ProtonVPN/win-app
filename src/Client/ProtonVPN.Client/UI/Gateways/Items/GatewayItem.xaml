@@ -72,9 +72,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                 InfoLabel="{x:Bind ViewModel.Localizer.Get('Countries_ServerLoad')}"
                                                                 ShowInfoOverlayCommand="{x:Bind ViewModel.ShowServerLoadOverlayCommand, Mode=OneTime}" />
 
-                    <ScrollViewer MaxHeight="180"
-                                  Margin="0,0,-12,0"
-                                  Padding="0,0,12,0">
+                    <ScrollViewer MaxHeight="180">
                         <ItemsControl ItemsSource="{x:Bind ViewModel.Servers}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate x:DataType="local:B2BServerViewModel">

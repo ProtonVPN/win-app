@@ -64,9 +64,9 @@ public class NavigationTests : TestSession
     public void SidebarInteraction()
     {
         _shellRobot
-            .DoCollapseExpandSideBar()
+            .DoCollapseExpandSidebar()
             .VerifySidebarIsCollapsed()
-            .DoCollapseExpandSideBar()
+            .DoCollapseExpandSidebar()
             .VerifySidebarIsExpanded();
     }
 
@@ -93,13 +93,13 @@ public class NavigationTests : TestSession
     public void PageNavigationWhenSidebarCollapsed()
     {
         _shellRobot
-            .DoCollapseExpandSideBar()
+            .DoCollapseExpandSidebar()
             .VerifySidebarIsCollapsed();
 
         PageNavigation();
 
         _shellRobot
-            .DoCollapseExpandSideBar()
+            .DoCollapseExpandSidebar()
             .VerifySidebarIsExpanded();
     }
 

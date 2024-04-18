@@ -23,7 +23,6 @@ using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Helpers;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
@@ -40,14 +39,16 @@ using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Models.Activation;
 
-public class MainWindowActivator : 
-    WindowActivatorBase, 
-    IMainWindowActivator, 
+public class MainWindowActivator :
+    WindowActivatorBase,
+    IMainWindowActivator,
     IEventMessageReceiver<AuthenticationStatusChanged>,
     IEventMessageReceiver<ConnectionStatusChanged>
 {
     private const int LOGIN_WINDOW_WIDTH = 620;
-    private const int LOGIN_WINDOW_HEIGHT = 640;
+    private const int LOGIN_WINDOW_HEIGHT = 700;
+
+    private const int WINDOW_TRANSITION_DELAY_IN_MS = 200;
 
     private readonly IDialogActivator _dialogActivator;
     private readonly IOverlayActivator _overlayActivator;
@@ -89,16 +90,14 @@ public class MainWindowActivator :
         _uiThreadDispatcher = uIThreadDispatcher;
     }
 
-    public void Initialize()
+    public async Task InitializeAsync()
     {
         Logger.Info<AppLog>("Initializing Main Window.");
 
         App.MainWindow.Closed += OnMainWindowClosed;
         App.MainWindow.WindowStateChanged += OnMainWindowStateChanged;
 
-        InvalidateWindowPosition();
-        InvalidateWindowContent();
-        InvalidateAppTheme();
+        await InvalidateWindowAsync();
         InvalidateFlowDirection();
 
         _eventMessageSender.Send(new ApplicationStartedMessage());
@@ -127,11 +126,6 @@ public class MainWindowActivator :
         _handleClosedEvents = false;
     }
 
-    private void InvalidateFlowDirection()
-    {
-        App.MainWindow.ApplyFlowDirection(_settings.Language);
-    }
-
     public void Activate()
     {
         Logger.Info<AppLog>("Activate application. Disable efficiency mode if enabled.");
@@ -144,23 +138,7 @@ public class MainWindowActivator :
 
     public void Receive(AuthenticationStatusChanged message)
     {
-        _uiThreadDispatcher.TryEnqueue(() =>
-        {
-            if (message.AuthenticationStatus is AuthenticationStatus.LoggingOut)
-            {
-                SaveWindowPosition();
-            }
-
-
-            InvalidateWindowPosition();
-            InvalidateWindowContent();
-
-            InvalidateAppIcon();
-
-            // Theme is saved in user settings which cannot be retrieved until user logged in.
-            // When user logged out, app applies the default theme (Dark)
-            InvalidateAppTheme();
-        });
+        _uiThreadDispatcher.TryEnqueue(async () => await InvalidateWindowAsync());
     }
 
     public void Receive(ConnectionStatusChanged message)
@@ -176,6 +154,11 @@ public class MainWindowActivator :
     protected override void OnLanguageChanged(string language)
     {
         InvalidateFlowDirection();
+    }
+
+    private void InvalidateFlowDirection()
+    {
+        App.MainWindow.ApplyFlowDirection(_settings.Language);
     }
 
     private void OnMainWindowClosed(object sender, WindowEventArgs args)
@@ -223,26 +206,62 @@ public class MainWindowActivator :
         App.MainWindow.UpdateApplicationIcon(_applicationIconSelector.Get());
     }
 
-    private void InvalidateWindowContent()
+    private async Task InvalidateWindowAsync()
     {
         switch (_userAuthenticator.AuthenticationStatus)
         {
             case AuthenticationStatus.LoggedIn:
-                _mainViewNavigator.NavigateToAsync<HomeViewModel>();
-                App.MainWindow.SwitchToMainShell();
+                InvalidateWindowPosition();
+                await Task.Delay(WINDOW_TRANSITION_DELAY_IN_MS);
+                await SwitchToAppAsync();
                 break;
 
             case AuthenticationStatus.LoggingOut:
+                SaveWindowPosition();
+                await SwitchToLoadingAsync();
+                await Task.Delay(WINDOW_TRANSITION_DELAY_IN_MS);
+                InvalidateWindowPosition();
+                break;
+
             case AuthenticationStatus.LoggingIn:
-                _loginViewNavigator.NavigateToLoadingAsync();
-                App.MainWindow.SwitchToLoginShell();
+                await SwitchToLoadingAsync();
+                await Task.Delay(WINDOW_TRANSITION_DELAY_IN_MS);
+                InvalidateWindowPosition();
+                break;
+
+            case AuthenticationStatus.LoggedOut:
+                InvalidateWindowPosition();
+                await Task.Delay(WINDOW_TRANSITION_DELAY_IN_MS);
+                await SwitchToLoginAsync();
                 break;
 
             default:
-                _loginViewNavigator.NavigateToLoginAsync();
-                App.MainWindow.SwitchToLoginShell();
-                break;
+                throw new InvalidOperationException($"Authentication status '{_userAuthenticator.AuthenticationStatus}' is not supported");
         }
+
+        InvalidateAppIcon();
+
+        // Theme is saved in user settings which cannot be retrieved until user logged in.
+        // When user logged out, app applies the default theme (Dark)
+        InvalidateAppTheme();
+    }
+
+    private async Task SwitchToAppAsync()
+    {
+        await _mainViewNavigator.NavigateToAsync<HomeViewModel>();
+        App.MainWindow.SwitchToMainShell();
+    }
+
+    private async Task SwitchToLoadingAsync()
+    {
+        await _loginViewNavigator.NavigateToLoadingAsync();
+        App.MainWindow.SwitchToLoginShell();
+    }
+
+    private async Task SwitchToLoginAsync()
+    {
+        await _loginViewNavigator.NavigateToLoginAsync();
+        App.MainWindow.SwitchToLoginShell();
     }
 
     private void InvalidateWindowPosition()
@@ -250,8 +269,8 @@ public class MainWindowActivator :
         WindowPositionParameters parameters = _userAuthenticator.IsLoggedIn
             ? new()
             {
-                Width = _settings.WindowWidth ?? App.MainWindow.Width,
-                Height = _settings.WindowHeight ?? App.MainWindow.Height,
+                Width = _settings.WindowWidth,
+                Height = _settings.WindowHeight,
                 XPosition = _settings.WindowXPosition,
                 YPosition = _settings.WindowYPosition,
                 IsMaximized = _settings.IsWindowMaximized

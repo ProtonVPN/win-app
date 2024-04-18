@@ -733,6 +733,7 @@
         <None Remove="Styles\Controls\ProgressBarStyles.xaml" />
         <None Remove="Styles\Controls\ProgressRingStyles.xaml" />
         <None Remove="Styles\Controls\RadioButtonStyles.xaml" />
+        <None Remove="Styles\Controls\ScrollViewerStyles.xaml" />
         <None Remove="Styles\Controls\SettingsCardStyles.xaml" />
         <None Remove="Styles\Controls\SettingsExpanderStyles.xaml" />
         <None Remove="Styles\Controls\StepContentControlStyles.xaml" />
@@ -1966,6 +1967,11 @@
         <Content Update="Assets\Illustrations\wrong-country.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Styles\Controls\ScrollViewerStyles.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
     </ItemGroup>
     <ItemGroup>
       <Page Update="Gallery\Pages\IconsPage.xaml">

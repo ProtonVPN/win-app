@@ -116,6 +116,26 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     TextStyle="{StaticResource BodyLargeTextBlockStyle}"
                                     TextWeight="{StaticResource BodyLargeFontWeight}" />
 
+        <!--  Body Medium Strong  -->
+        <controls:TypographyControl HorizontalAlignment="Stretch"
+                                    Background="Transparent"
+                                    Example="Body Medium Strong"
+                                    LineHeight="{StaticResource BodyMediumStrongLineHeight}"
+                                    Size="{StaticResource BodyMediumStrongFontSize}"
+                                    TextResourceName="BodyMediumStrongTextBlockStyle"
+                                    TextStyle="{StaticResource BodyMediumStrongTextBlockStyle}"
+                                    TextWeight="{StaticResource BodyMediumStrongFontWeight}" />
+
+        <!--  Body Medium  -->
+        <controls:TypographyControl HorizontalAlignment="Stretch"
+                                    Background="{ThemeResource InteractionDefaultHoverColorBrush}"
+                                    Example="Body Medium"
+                                    LineHeight="{StaticResource BodyMediumLineHeight}"
+                                    Size="{StaticResource BodyMediumFontSize}"
+                                    TextResourceName="BodyMediumTextBlockStyle"
+                                    TextStyle="{StaticResource BodyMediumTextBlockStyle}"
+                                    TextWeight="{StaticResource BodyMediumFontWeight}" />
+
         <!--  Body Strong  -->
         <controls:TypographyControl HorizontalAlignment="Stretch"
                                     Background="Transparent"

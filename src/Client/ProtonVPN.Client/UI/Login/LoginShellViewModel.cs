@@ -65,7 +65,6 @@ public partial class LoginShellViewModel : ShellViewModelBase<ILoginViewNavigato
 
             case LoginState.Success:
                 ClearErrorMessage();
-                await ViewNavigator.NavigateToLoginAsync();
                 break;
 
             case LoginState.TwoFactorRequired:

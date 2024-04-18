@@ -81,6 +81,26 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="FontWeight" Value="{StaticResource BodyLargeFontWeight}" />
     </Style>
 
+    <!--  Body Medium Strong  -->
+    <x:Double x:Key="BodyMediumStrongFontSize">16</x:Double>
+    <x:Double x:Key="BodyMediumStrongLineHeight">20</x:Double>
+    <FontWeight x:Key="BodyMediumStrongFontWeight">SemiBold</FontWeight>
+    <Style x:Key="BodyMediumStrongTextBlockStyle" BasedOn="{StaticResource DefaultTextBlockStyle}" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource BodyMediumStrongFontSize}" />
+        <Setter Property="LineHeight" Value="{StaticResource BodyMediumStrongLineHeight}" />
+        <Setter Property="FontWeight" Value="{StaticResource BodyMediumStrongFontWeight}" />
+    </Style>
+
+    <!--  Body Medium  -->
+    <x:Double x:Key="BodyMediumFontSize">16</x:Double>
+    <x:Double x:Key="BodyMediumLineHeight">20</x:Double>
+    <FontWeight x:Key="BodyMediumFontWeight">Normal</FontWeight>
+    <Style x:Key="BodyMediumTextBlockStyle" BasedOn="{StaticResource DefaultTextBlockStyle}" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource BodyMediumFontSize}" />
+        <Setter Property="LineHeight" Value="{StaticResource BodyMediumLineHeight}" />
+        <Setter Property="FontWeight" Value="{StaticResource BodyMediumFontWeight}" />
+    </Style>
+
     <!--  Body Strong  -->
     <x:Double x:Key="BodyStrongFontSize">14</x:Double>
     <x:Double x:Key="BodyStrongLineHeight">20</x:Double>

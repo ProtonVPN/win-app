@@ -19,19 +19,9 @@
 
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Input;
 using ProtonVPN.Client.Contracts;
 using ProtonVPN.Client.Models.Navigation;
-using ProtonVPN.Client.UI.Countries;
-using ProtonVPN.Client.UI.Features.KillSwitch;
-using ProtonVPN.Client.UI.Features.NetShield;
-using ProtonVPN.Client.UI.Features.PortForwarding;
-using ProtonVPN.Client.UI.Features.SplitTunneling;
-using ProtonVPN.Client.UI.Gallery;
-using ProtonVPN.Client.UI.Gateways;
-using ProtonVPN.Client.UI.Home;
-using ProtonVPN.Client.UI.Settings;
 using ProtonVPN.Client.UI.Sidebar.Bases;
 using Windows.System;
 
@@ -40,9 +30,9 @@ namespace ProtonVPN.Client.UI;
 public sealed partial class ShellPage : IShellPage
 {
     private const double TIMER_INTERVAL_IN_MS = 400;
-    private const double PANE_WIDTH_RATIO = 0.2;
-    private const double PANE_MIN_WIDTH = 160;
-    private const double PANE_MAX_WIDTH = 300;
+    private const double PANE_WIDTH_RATIO = 0.25;
+    private const double PANE_MIN_WIDTH = 250;
+    private const double PANE_MAX_WIDTH = 350;
 
     private DispatcherTimer _timer;
 
@@ -112,7 +102,7 @@ public sealed partial class ShellPage : IShellPage
             if (!isNavigationCompleted)
             {
                 // Even though the navigation was canceled, the NavigationView still keep the clicked NavigationViewItem selected.
-                // Force selecting the proper item on the side bar, so it matches the actual page.
+                // Force selecting the proper item on the sidebar, so it matches the actual page.
                 NavigationViewControl.SelectedItem = ViewModel.SelectedMenuItem;
             }
         }

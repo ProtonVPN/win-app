@@ -86,9 +86,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                                 InfoLabel="{x:Bind Localizer.Get('Countries_ServerLoad')}"
                                                                                 ShowInfoOverlayCommand="{x:Bind ShowServerLoadOverlayCommand, Mode=OneTime}" />
 
-                                    <ScrollViewer MaxHeight="180"
-                                                  Margin="0,0,-12,0"
-                                                  Padding="0,0,12,0">
+                                    <ScrollViewer MaxHeight="180">
                                         <ItemsControl ItemsSource="{x:Bind Servers}">
                                             <ItemsControl.ItemTemplate>
                                                 <DataTemplate x:DataType="countries:ServerViewModel">
