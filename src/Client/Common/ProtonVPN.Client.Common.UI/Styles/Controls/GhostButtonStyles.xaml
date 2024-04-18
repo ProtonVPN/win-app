@@ -209,8 +209,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="BorderBrush" Value="{ThemeResource SecondaryGhostButtonBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="FontSize" Value="{StaticResource CaptionStrongFontSize}" />
-        <Setter Property="FontWeight" Value="{StaticResource CaptionStrongFontWeight}" />
+        <Setter Property="FontSize" Value="{StaticResource BodyStrongFontSize}" />
+        <Setter Property="FontWeight" Value="{StaticResource BodyStrongFontWeight}" />
         <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
         <Setter Property="Padding" Value="{StaticResource GhostButtonPadding}" />
         <Setter Property="Template">

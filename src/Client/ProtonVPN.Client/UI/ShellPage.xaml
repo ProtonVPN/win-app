@@ -40,6 +40,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Thickness x:Key="NavigationViewItemOnLeftIconBoxMargin">2,0,0,0</Thickness>
         <CornerRadius x:Key="NavigationViewContentGridCornerRadius">8,0,0,0</CornerRadius>
 
+        <x:Double x:Key="NavigationPaneCompactWidth">52.0</x:Double>
+        <x:Double x:Key="NavigationPaneExpandedModeThresholdWidth">700.0</x:Double>
+
         <DataTemplate x:Key="SeparatorItemTemplate"
                       x:DataType="sidebar:SidebarSeparatorViewModel">
             <NavigationViewItemSeparator />
@@ -148,9 +151,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <NavigationViewItem Padding="0"
                                 Style="{StaticResource TransparentNavigationViewItemStyle}"
                                 ToolTipService.ToolTip="{x:Bind ToolTip}">
-                <custom:GhostButton MinWidth="36"
+                <custom:GhostButton MinWidth="44"
                                     Margin="4,1"
-                                    Padding="8"
+                                    Padding="10,6"
                                     VerticalContentAlignment="Top"
                                     AutomationProperties.AutomationControlType="MenuItem"
                                     AutomationProperties.AutomationId="{x:Bind AutomationId, Mode=OneTime}"
@@ -221,15 +224,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Page.Resources>
 
     <NavigationView x:Name="NavigationViewControl"
-                    Margin="0,0,-1,0"
+                    Margin="-1,0,-1,-1"
                     AlwaysShowHeader="False"
                     AutomationProperties.AutomationId="NavigationView"
                     AutomationProperties.LandmarkType="Navigation"
                     Canvas.ZIndex="0"
                     CompactModeThresholdWidth="0"
-                    CompactPaneLength="48"
+                    CompactPaneLength="{StaticResource NavigationPaneCompactWidth}"
                     DisplayModeChanged="OnNavigationViewDisplayModeChanged"
-                    ExpandedModeThresholdWidth="520"
+                    ExpandedModeThresholdWidth="{StaticResource NavigationPaneExpandedModeThresholdWidth}"
                     FooterMenuItemsSource="{x:Bind ViewModel.FooterMenuItems, Mode=OneTime}"
                     IsBackButtonVisible="Collapsed"
                     IsBackEnabled="{x:Bind ViewModel.IsBackEnabled}"
@@ -254,7 +257,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         </NavigationView.PaneFooter>
 
-        <Frame x:Name="NavigationFrame" />
+        <Frame x:Name="NavigationFrame" Margin="0,-1,0,0"/>
 
     </NavigationView>
 </Page>

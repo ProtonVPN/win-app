@@ -56,7 +56,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Grid>
         </custom:PageContentControl.PageHeader>
 
-        <Grid Margin="0,4,0,-24"
+        <Grid Margin="0,4,0,0"
               RowDefinitions="Auto,*">
 
             <Grid ColumnSpacing="8"
@@ -101,7 +101,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </DataTemplate>
                 </NavigationView.MenuItemTemplate>
 
-                <ScrollViewer Padding="0,4,12,0"
+                <ScrollViewer Margin="0"
                               HorizontalScrollBarVisibility="Disabled"
                               VerticalScrollBarVisibility="Auto">
                     <Frame x:Name="CountryFeatureTabFrame" />

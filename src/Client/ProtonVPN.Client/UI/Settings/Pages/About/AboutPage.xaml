@@ -37,7 +37,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
                                PageHeader="{x:Bind ViewModel.Title}">
 
-        <Grid Margin="0,4,0,-24"
+        <Grid Margin="0,4,0,0"
               RowDefinitions="Auto,*">
             <StackPanel Grid.Row="0">
                 <Grid ColumnDefinitions="Auto,*"
@@ -116,9 +116,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </StackPanel>
 
             <ScrollViewer Grid.Row="1"
+                          Margin="0"
                           VerticalScrollBarVisibility="Auto">
-                <ItemsRepeater ItemsSource="{x:Bind ViewModel.Releases}"
-                               Margin="0,0,20,0">
+                <ItemsRepeater ItemsSource="{x:Bind ViewModel.Releases}">
                     <ItemsRepeater.ItemTemplate>
                         <DataTemplate x:DataType="models:Release">
                             <StackPanel Spacing="4"

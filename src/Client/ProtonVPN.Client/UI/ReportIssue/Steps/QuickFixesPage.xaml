@@ -84,13 +84,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    TextWrapping="Wrap" />
 
         <ScrollViewer Grid.Row="2"
-                      Margin="0,12,-24,12"
-                      Padding="0,0,24,0"
                       IsTabStop="False"
                       VerticalScrollBarVisibility="Auto">
-
             <ItemsRepeater DataContext="{x:Bind ViewModel}"
-                           ItemsSource="{x:Bind ViewModel.Suggestions}">
+                           ItemsSource="{x:Bind ViewModel.Suggestions}"
+                           Margin="0,12">
                 <ItemsRepeater.ItemTemplate>
                     <DataTemplate x:DataType="models:IssueSuggestion">
                         <Grid>

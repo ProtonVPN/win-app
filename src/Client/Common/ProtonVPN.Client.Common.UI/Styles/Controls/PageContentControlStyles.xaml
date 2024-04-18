@@ -24,7 +24,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
                     xmlns:triggers="using:CommunityToolkit.WinUI">
 
-    <Thickness x:Key="PageContentControlPadding">16</Thickness>
+    <Thickness x:Key="PageContentControlPadding">28,16</Thickness>
     <Thickness x:Key="PageContentControlHeaderContainerMargin">0,16,0,11</Thickness>
 
     <Style BasedOn="{StaticResource DefaultPageContentControlStyle}" TargetType="custom:PageContentControl" />
@@ -47,15 +47,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           BorderBrush="{TemplateBinding BorderBrush}"
                           BorderThickness="{TemplateBinding BorderThickness}"
                           CornerRadius="{TemplateBinding CornerRadius}">
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" 
-                                              MaxWidth="{Binding MaxContentWidth, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
-                        </Grid.ColumnDefinitions>
                         
                         <Grid x:Name="PageContentContainer"
                               Padding="{TemplateBinding Padding}"
-                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              MaxWidth="{TemplateBinding MaxContentWidth}">
 
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -99,12 +95,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </Grid>
 
                             <ScrollViewer Grid.Row="1"
-                                          Margin="0,0,-12,0"
-                                          Padding="0,0,12,0"
                                           HorizontalScrollBarVisibility="Disabled"
                                           VerticalScrollBarVisibility="{Binding CanContentScroll, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToScrollBarVisibilityConverter}}">
-
-                                <ContentPresenter Margin="0,0,0,32" />
+                                <ContentPresenter Margin="0,0,0,16" />
                             </ScrollViewer>
                         </Grid>
 
@@ -151,14 +144,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           BorderThickness="{TemplateBinding BorderThickness}"
                           CornerRadius="{TemplateBinding CornerRadius}">
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" 
-                                              MaxWidth="{Binding MaxContentWidth, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
-                        </Grid.ColumnDefinitions>
-
                         <Grid x:Name="PageContentContainer"
                               Padding="{TemplateBinding Padding}"
-                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              MaxWidth="{TemplateBinding MaxContentWidth}">
 
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -213,12 +202,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </Grid>
 
                             <ScrollViewer Grid.Row="1"
-                                          Margin="0,0,-12,0"
-                                          Padding="0,0,12,0"
                                           HorizontalScrollBarVisibility="Disabled"
                                           VerticalScrollBarVisibility="{Binding CanContentScroll, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToScrollBarVisibilityConverter}}">
-
-                                <ContentPresenter Margin="0,0,0,32" />
+                                <ContentPresenter Margin="0,0,0,16" />
                             </ScrollViewer>
                         </Grid>
 

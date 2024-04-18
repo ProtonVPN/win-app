@@ -73,7 +73,7 @@ public sealed partial class MainWindow
         // VPNWIN-1925 - This doesn't work when the App is pinned to the task bar.
         // When pinned, the app simply use the default icon from the project properties.
         // Consider switching to badge to reflect the current connection status
-        AppWindow.SetIcon(icon.GetFullImagePath());
+        AppWindow?.SetIcon(icon.GetFullImagePath());
     }
 
     private void OnActivated(object sender, WindowActivatedEventArgs args)

@@ -27,11 +27,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <GridLength x:Key="TitleBarButtonsTotalLength">140.0</GridLength>
 
     <x:Double x:Key="DefaultTitleBarHeight">36.0</x:Double>
-    <Thickness x:Key="DefaultTitleBarPadding">16,10</Thickness>
+    <Thickness x:Key="DefaultTitleBarPadding">14,10</Thickness>
     <x:Double x:Key="DefaultTitleBarSpacing">8.0</x:Double>
 
     <x:Double x:Key="MainTitleBarHeight">36.0</x:Double>
-    <Thickness x:Key="MainTitleBarPadding">16,10</Thickness>
+    <Thickness x:Key="MainTitleBarPadding">19,10</Thickness>
     <x:Double x:Key="MainTitleBarSpacing">12.0</x:Double>
 
     <Style BasedOn="{StaticResource DefaultWindowContentControlStyle}" TargetType="custom:WindowContentControl" />

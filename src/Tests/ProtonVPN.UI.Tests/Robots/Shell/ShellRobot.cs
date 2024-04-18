@@ -35,7 +35,7 @@ public partial class ShellRobot : UIActions
     protected AutomationElement NavigationView => ElementByAutomationId("NavigationView");
 
     protected Button NavigationHamburgerButton => ElementByAutomationId("TogglePaneButton").AsButton();
-    protected Grid NavigationSideBar => ElementByAutomationId("PaneRoot").AsGrid();
+    protected Grid NavigationSidebar => ElementByAutomationId("PaneRoot").AsGrid();
 
     protected Button HomeNavigationViewItem => NavigationView.FindFirstDescendant(c => c.ByAutomationId("Sidebar_Home")).AsButton();
     protected Button GatewaysNavigationViewItem => NavigationView.FindFirstDescendant(c => c.ByAutomationId("Sidebar_Gateways")).AsButton();

@@ -32,16 +32,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_Recents_Landmark')}"
              mc:Ignorable="d">
 
-    <Expander Margin="0,8,0,0"
-              Padding="16,0"
+    <Expander Padding="{StaticResource HomePageContentPadding}"
               ExpandDirection="Down"
               Header="{x:Bind ViewModel.Localizer.Get('Home_Recents_Title')}"
               IsExpanded="{x:Bind ViewModel.IsRecentsComponentOpened, Mode=TwoWay}"
               Style="{StaticResource GhostExpanderStyle}"
               Visibility="{x:Bind ViewModel.HasRecentConnections}">
         <ScrollViewer MaxHeight="180"
-                      Margin="0,0,-12,0"
-                      Padding="0,0,12,0"
                       AutomationProperties.AutomationId="RecentsPane"
                       ScrollViewer.VerticalScrollBarVisibility="Auto">
             <ItemsControl IsTabStop="False"

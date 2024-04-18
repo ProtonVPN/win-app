@@ -44,7 +44,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StackPanel>
                 <connectionCard:ConnectionCardComponent AutomationProperties.AutomationId="ConnectionCardComponent"
                                                         AutomationProperties.LandmarkType="Custom"
-                                                        TabIndex="1"/>
+                                                        TabIndex="1"
+                                                        Margin="0,0,0,8"/>
                 <recents:RecentsComponent AutomationProperties.AutomationId="RecentsComponent"
                                           AutomationProperties.LandmarkType="Custom"
                                           TabIndex="2" />
@@ -74,9 +75,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    OpenPaneLength="{x:Bind ViewModel.ConnectionDetailsPaneWidth, Mode=OneWay}"
                    PaneBackground="{ThemeResource PaneOverlayBackgroundColorBrush}"
                    PanePlacement="Right">
+            
             <SplitView.Pane>
-
-                <Grid Margin="16,20"
+                <Grid Margin="28,20"
                       AutomationProperties.LandmarkType="Custom"
                       AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Landmark')}"
                       RowSpacing="16"
@@ -134,7 +135,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </SplitView.Pane>
 
             <custom:PageContentControl x:Name="PageContainer"
-                                       Padding="0,0,0,-32"
+                                       Padding="0,0,0,-16"
                                        CanContentScroll="False"
                                        IsBackButtonVisible="False"
                                        IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
@@ -165,7 +166,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                             <StackPanel MaxWidth="{StaticResource MaximumHomePageContentWidth}"
                                         Margin="0,60,0,0" 
-                                        Padding="16,0">
+                                        Padding="{StaticResource HomePageContentPadding}">
                                 <connectionError:ConnectionErrorComponent/>
                                 <banner:UpsellBannerComponent />
                             </StackPanel>
@@ -173,7 +174,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                         <Border Height="{StaticResource MapOverlayGradientHeight}"
                                 VerticalAlignment="Bottom"
-                                Background="{ThemeResource ReverseGradientFadingColorBrush}" />
+                                Background="{ThemeResource ReverseGradientFadingColorBrush}"
+                                IsHitTestVisible="False"/>
                     </Grid>
 
                     <Border Grid.Row="1"
@@ -182,7 +184,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                     <ContentControl Grid.Row="1"
                                     MaxWidth="{StaticResource MaximumHomePageContentWidth}"
-                                    Padding="0,0,0,16"
+                                    Margin="0,0,0,16"
                                     HorizontalContentAlignment="Stretch"
                                     Content="{x:Bind ViewModel.IsPaidUser}"
                                     ContentTemplateSelector="{StaticResource ConnectionCardTemplateSelector}" 

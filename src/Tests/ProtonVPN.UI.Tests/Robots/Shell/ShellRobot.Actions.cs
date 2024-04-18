@@ -125,7 +125,7 @@ public partial class ShellRobot
         return this;
     }
 
-    public ShellRobot DoCollapseExpandSideBar()
+    public ShellRobot DoCollapseExpandSidebar()
     {
         NavigationHamburgerButton.Click();
         return this;

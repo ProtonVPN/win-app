@@ -99,8 +99,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Grid.RowDefinitions>
 
         <ScrollViewer Grid.Row="0"
-                      Margin="0,0,-24,0"
-                      Padding="0,0,24,0"
                       IsTabStop="False"
                       VerticalScrollBarVisibility="Auto">
 

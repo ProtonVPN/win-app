@@ -73,7 +73,7 @@ public class Bootstrapper : IBootstrapper
 
             _globalSettingsMigrator.Migrate();
 
-            HandleMainWindow();
+            await HandleMainWindowAsync();
             _updatesManager.Initialize();
 
             await Task.WhenAll(
@@ -86,9 +86,9 @@ public class Bootstrapper : IBootstrapper
         }
     }
 
-    private void HandleMainWindow()
+    private async Task HandleMainWindowAsync()
     {
-        _mainWindowActivator.Initialize();
+        await _mainWindowActivator.InitializeAsync();
 
         if (!_userAuthenticator.HasAuthenticatedSessionData() || 
             !_globalSettings.IsAutoLaunchEnabled || 

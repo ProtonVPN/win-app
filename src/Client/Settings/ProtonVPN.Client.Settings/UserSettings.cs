@@ -49,15 +49,15 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userCache.SetReferenceType(value, SettingEncryption.Unencrypted);
     }
 
-    public int? WindowWidth
+    public int WindowWidth
     {
-        get => _userCache.GetValueType<int>(SettingEncryption.Unencrypted);
+        get => _userCache.GetValueType<int>(SettingEncryption.Unencrypted) ?? DefaultSettings.WindowWidth;
         set => _userCache.SetValueType<int>(value, SettingEncryption.Unencrypted);
     }
 
-    public int? WindowHeight
+    public int WindowHeight
     {
-        get => _userCache.GetValueType<int>(SettingEncryption.Unencrypted);
+        get => _userCache.GetValueType<int>(SettingEncryption.Unencrypted) ?? DefaultSettings.WindowHeight;
         set => _userCache.SetValueType<int>(value, SettingEncryption.Unencrypted);
     }
 
