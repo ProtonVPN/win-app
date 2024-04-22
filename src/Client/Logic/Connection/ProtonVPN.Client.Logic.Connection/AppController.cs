@@ -93,6 +93,6 @@ public class AppController : IAppController
             $"[Malware: '{netShieldStatistic.NumOfMaliciousUrlsBlocked}']" +
             $"[Trackers: '{netShieldStatistic.NumOfTrackingUrlsBlocked}']");
 
-        // VPNWIN-1768 - Should invoke something
+        _uiThreadDispatcher.TryEnqueue(() => _eventMessageSender.Send(netShieldStatistic));
     }
 }

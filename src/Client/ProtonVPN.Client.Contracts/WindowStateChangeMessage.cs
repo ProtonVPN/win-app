@@ -17,21 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Localization.Contracts;
+namespace ProtonVPN.Client.Contracts;
 
-public interface ILocalizationProvider
+public class WindowStateChangeMessage
 {
-    string Get(string resourceKey);
-
-    string GetFormat(string resourceKey, object arg0);
-
-    string GetFormat(string resourceKey, object arg0, object arg1);
-
-    string GetFormat(string resourceKey, object arg0, object arg1, object arg2);
-
-    string GetFormat(string resourceKey, params object[] args);
-
-    string GetPlural(string resourceKey, long number);
-
-    string GetPluralFormat(string resourceKey, long number);
+    public required bool IsActive { get; init; }
 }

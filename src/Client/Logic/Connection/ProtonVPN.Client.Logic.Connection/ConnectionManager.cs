@@ -283,7 +283,7 @@ public class ConnectionManager : IInternalConnectionManager,
 
     public void Receive(ConnectionDetailsIpcEntity message)
     {
-        _eventMessageSender.Send(new ConnectionDetailsChanged()
+        _eventMessageSender.Send(new ConnectionDetailsChanged
         {
             ClientCountryCode = message.ClientCountryIsoCode,
             ClientIpAddress = message.ClientIpAddress,

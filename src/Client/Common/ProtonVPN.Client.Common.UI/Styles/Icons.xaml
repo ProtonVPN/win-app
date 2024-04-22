@@ -103,4 +103,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <BitmapImage x:Key="StreamingTF1Icon"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Icons/Streaming/tf1.png" />
 
+    <BitmapImage x:Key="AdsIcon"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Icons/NetShield/ads-blocked.png" />
+    <BitmapImage x:Key="TrackersIcon"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Icons/NetShield/trackers-stopped.png" />
+    <BitmapImage x:Key="DataIcon"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Icons/NetShield/data-saved.png" />
+
 </ResourceDictionary>

@@ -31,18 +31,16 @@ namespace ProtonVPN.Client.Models.Activation;
 public class DialogActivator : WindowActivatorBase, IDialogActivator
 {
     private readonly IViewMapper _viewMapper;
-    private readonly IOverlayActivator _overlayActivator;
     private readonly ISettings _settings;
 
     private bool _handleClosedEvents = true;
 
     private List<ActiveDialog> _activeDialogs = new();
 
-    public DialogActivator(ILogger logger, IViewMapper viewMapper, IThemeSelector themeSelector, IOverlayActivator overlayActivator, ISettings settings)
+    public DialogActivator(ILogger logger, IViewMapper viewMapper, IThemeSelector themeSelector, ISettings settings)
         : base(logger, themeSelector)
     {
         _viewMapper = viewMapper;
-        _overlayActivator = overlayActivator;
         _settings = settings;
     }
 

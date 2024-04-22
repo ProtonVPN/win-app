@@ -17,21 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Localization.Contracts;
+namespace ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 
-public interface ILocalizationProvider
+public class NetShieldStatsChanged
 {
-    string Get(string resourceKey);
-
-    string GetFormat(string resourceKey, object arg0);
-
-    string GetFormat(string resourceKey, object arg0, object arg1);
-
-    string GetFormat(string resourceKey, object arg0, object arg1, object arg2);
-
-    string GetFormat(string resourceKey, params object[] args);
-
-    string GetPlural(string resourceKey, long number);
-
-    string GetPluralFormat(string resourceKey, long number);
+    public required long NumOfMaliciousUrlsBlocked { get; init; }
+    public required long NumOfAdvertisementUrlsBlocked { get; init; }
+    public required long NumOfTrackingUrlsBlocked { get; init; }
 }

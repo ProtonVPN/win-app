@@ -63,12 +63,12 @@ public class LocalizationProvider : ILocalizationProvider
         return Safe(resourceKey, value => string.Format(value, args));
     }
 
-    public string GetPlural(string resourceKey, int number)
+    public string GetPlural(string resourceKey, long number)
     {
         return _stringLocalizer.GetPlural(resourceKey, number);
     }
 
-    public string GetPluralFormat(string resourceKey, int number)
+    public string GetPluralFormat(string resourceKey, long number)
     {
         return string.Format(GetPlural(resourceKey, number), number);
     }
