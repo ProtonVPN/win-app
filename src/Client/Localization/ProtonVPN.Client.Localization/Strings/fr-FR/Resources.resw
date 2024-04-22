@@ -1753,7 +1753,7 @@ Smart Routing est généralement utilisé pour contourner les lois de privation 
     <value>Informations de connexion</value>
   </data>
   <data name="Home_ConnectionDetails_Upload">
-    <value>Importer</value>
+    <value>Chargement</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>Adresse IP du VPN</value>

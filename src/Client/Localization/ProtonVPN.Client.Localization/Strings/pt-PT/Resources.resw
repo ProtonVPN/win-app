@@ -121,13 +121,13 @@
     <value>Proton VPN Free</value>
   </data>
   <data name="Cities">
-    <value>Cities</value>
+    <value>Cidades</value>
   </data>
   <data name="Common_Actions_Add">
     <value>Adicionar</value>
   </data>
   <data name="Common_Actions_Cancel">
-    <value>Cancel</value>
+    <value>Cancelar</value>
   </data>
   <data name="Common_Actions_Close">
     <value>Fechar</value>
@@ -142,19 +142,19 @@
     <value>Disconnect</value>
   </data>
   <data name="Common_Actions_Enable">
-    <value>Enable</value>
+    <value>Ativar</value>
   </data>
   <data name="Common_Actions_Reconnect">
     <value>Voltar a ligar</value>
   </data>
   <data name="Common_Actions_Remove">
-    <value>Remove</value>
+    <value>Remover</value>
   </data>
   <data name="Common_Actions_Update">
-    <value>Update</value>
+    <value>Atualizar</value>
   </data>
   <data name="Common_Actions_Upgrade">
-    <value>Upgrade</value>
+    <value>Alterar a subscrição</value>
   </data>
   <data name="Common_Links_LearnMore">
     <value>Learn more</value>
@@ -227,7 +227,7 @@
     <value>Todos</value>
   </data>
   <data name="Countries_Cities">
-    <value>Cities</value>
+    <value>Cidades</value>
   </data>
   <data name="Countries_City_One">
     <value>{0} city</value>
@@ -243,7 +243,7 @@
     <value>Fastest country</value>
   </data>
   <data name="Countries_Info">
-    <value>Info</value>
+    <value>Informação</value>
   </data>
   <data name="Countries_NoSearchResults">
     <value>Não foram encontrados resultados.</value>
@@ -1626,7 +1626,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
   </data>
   <data name="Format_Time_Hours">
-    <value>{0} hr</value>
+    <value>{0} h</value>
     <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_HoursMinutes">
@@ -1695,7 +1695,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_ConnectionDetails_City">
-    <value>City</value>
+    <value>Cidade</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectedFor">
     <value>Connected for</value>
@@ -1734,7 +1734,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Protocolo</value>
   </data>
   <data name="Home_ConnectionDetails_Server">
-    <value>Server</value>
+    <value>Servidor</value>
   </data>
   <data name="Home_ConnectionDetails_ServerLoad">
     <value>Server load</value>
@@ -1756,7 +1756,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Upload</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
-    <value>VPN IP</value>
+    <value>IP da VPN</value>
   </data>
   <data name="Home_FreeConnections_About">
     <value>More information about free connections</value>
@@ -1887,7 +1887,7 @@ parados</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_SignIn">
-    <value>Sign in</value>
+    <value>Iniciar sessão</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="Login_Form_SignInWithPassword">
@@ -1979,7 +1979,7 @@ parados</value>
     <value>Loading</value>
   </data>
   <data name="Settings_About_NewVersion">
-    <value>NEW</value>
+    <value>NOVO</value>
   </data>
   <data name="Settings_About_Title">
     <value>About</value>
@@ -2012,7 +2012,7 @@ parados</value>
     <value>Apply and reconnect</value>
   </data>
   <data name="Settings_Common_Discard">
-    <value>Discard</value>
+    <value>Descartar</value>
   </data>
   <data name="Settings_Common_Discard_Title">
     <value>Discard settings changes?</value>
@@ -2170,7 +2170,7 @@ parados</value>
     <value>Tunelamento dividido</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_Add">
-    <value>Add app</value>
+    <value>Adicionar a aplicação</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_FilesFilterName">
     <value>App files</value>
@@ -2199,7 +2199,7 @@ parados</value>
     <value>Only selected apps and IP addresses connect via VPN, all other traffic is unprotected</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Add">
-    <value>Add IP</value>
+    <value>Adicionar IP</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Header">
     <value>Selected IP addresses ({0})</value>
@@ -2368,7 +2368,7 @@ parados</value>
     <value>WireGuard</value>
   </data>
   <data name="Settings_Support">
-    <value>Support</value>
+    <value>Apoio ao cliente</value>
   </data>
   <data name="Settings_Support_DebugLogs">
     <value>Debug logs</value>
