@@ -104,10 +104,10 @@ public class PerformanceTests : TestSession
           .DoNavigateToCountriesPage()
           .VerifyCurrentPage("Countries", false);
 
-        _countriesRobot.SearchFor("France")
-            .DoConnect("FR");
+        _countriesRobot.SearchFor("Germany")
+            .DoConnect("DE");
         _homeRobot.VerifyVpnStatusIsConnected()
-            .Wait(TestConstants.VeryShortTimeout);
+            .Wait(TestConstants.ShortTimeout);
 
         PerformanceTestHelper.AddNetworkSpeedToMetrics("download_speed_connected", "upload_speed_connected");
 
