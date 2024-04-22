@@ -1416,13 +1416,13 @@ Visoka zakasnitev lahko upočasni vašo povezavo.</value>
     <value>P2P (peer-to-peer) strežniki VPN odblokirajo torrent strani.</value>
   </data>
   <data name="Dialogs_P2P_WhatIsTorrenting">
-    <value>Kaj je torrenting?</value>
+    <value>Kaj je uporaba torrentov?</value>
   </data>
   <data name="Dialogs_P2P_WhatIsTorrenting_Description">
     <value>Hitro deljenje in nalaganje velikih datotek prek omrežja enakovrednih (P2P).</value>
   </data>
   <data name="Dialogs_P2P_WhyUse">
-    <value>Zakaj uporabljati strežnik P2P pri torrenting?</value>
+    <value>Zakaj uporabljati strežnik P2P pri uporabi torrentov?</value>
   </data>
   <data name="Dialogs_P2P_WhyUse_Description">
     <value>• Povečana hitrost nalaganja in prenosa
@@ -1666,7 +1666,7 @@ Pametno usmerjanje se običajno uporablja za izogibanje zakonom proti zasebnosti
     <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_MinutesSeconds">
-    <value>{0} min {1} sec</value>
+    <value>{0} min {1} sek</value>
     <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_MinutesSeconds_Short">
@@ -1674,7 +1674,7 @@ Pametno usmerjanje se običajno uporablja za izogibanje zakonom proti zasebnosti
     <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss -&gt; 05:36).</comment>
   </data>
   <data name="Format_Time_Seconds">
-    <value>{0} sec</value>
+    <value>{0} sek</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
   </data>
   <data name="Gateways_Page_Title">
@@ -1703,10 +1703,10 @@ Pametno usmerjanje se običajno uporablja za izogibanje zakonom proti zasebnosti
     <value>Varno brskanje iz</value>
   </data>
   <data name="Home_ConnectionCard_Header_ConnectingTo">
-    <value>Povezovanje z...</value>
+    <value>Povezovanje z ...</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
-    <value>Brezplačne povezave</value>
+    <value>Brezplačna povezava</value>
   </data>
   <data name="Home_ConnectionCard_Header_LastConnectedTo">
     <value>Nazadnje povezan z</value>
@@ -1863,7 +1863,7 @@ ustavljeni</value>
     <value>Zaščiteni</value>
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
-    <value>Pri pridobivanju podrobnosti seje je prišlo do napake. Prosim poskusite ponovno.</value>
+    <value>Pri pridobivanju podrobnosti seje je prišlo do napake. Poskusite ponovno.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Napačna koda. Poskusite znova.</value>
@@ -1873,7 +1873,7 @@ ustavljeni</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_SsoAuthFailed">
-    <value>SSO preverjanje ni uspelo. Prosim poskusite ponovno.</value>
+    <value>SSO preverjanje ni uspelo. Poskusite ponovno.</value>
   </data>
   <data name="Login_Error_TwoFactorAuthFailed">
     <value>Napačne poverilnice za prijavo. Poskusite znova.</value>
@@ -2018,7 +2018,7 @@ ustavljeni</value>
     <value>Različica aplikacije</value>
   </data>
   <data name="Settings_Censorship_Footer">
-    <value>Ti statistični podatki ne vsebujejo vašega naslova IP in jih ni mogoče uporabiti za vašo identifikacijo. Nikoli jih ne bomo delili s tretjimi osebami. Več o tem</value>
+    <value>Ti statistični podatki ne vsebujejo vašega naslova IP in jih ni mogoče uporabiti za vašo identifikacijo. Nikoli jih ne bomo delili s tretjimi osebami.</value>
   </data>
   <data name="Settings_Censorship_ShareCrashReports">
     <value>Delite anonimna poročila o zrušitvah</value>

@@ -1753,7 +1753,7 @@ El enrutamiento inteligente se usa normalmente para evitar las leyes contra la p
     <value>Detalles de conexión</value>
   </data>
   <data name="Home_ConnectionDetails_Upload">
-    <value>Cargar</value>
+    <value>Carga</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>IP de VPN</value>
