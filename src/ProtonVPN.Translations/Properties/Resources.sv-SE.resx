@@ -3263,7 +3263,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Förbättra din nedladdningshastighet för P2P</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet2">
-    <value>Connect to online gaming servers and host multiplayer games</value>
+    <value>Anslut till aktiva spel-servrar och var värd för flerspelarspel</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet3">
     <value>Ställ in fjärråtkomst till enheter på ditt lokala nätverk</value>
