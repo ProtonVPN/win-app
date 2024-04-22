@@ -23,6 +23,8 @@ variables:
   TRANSFER_METER_FREQUENCY: "2s"
   ARTIFACT_COMPRESSION_LEVEL: "fastest"
   CACHE_COMPRESSION_LEVEL: "fastest"
+  NEXUS_GROUP: "/Vpn/Windows/SLI/Latest/Stable"
+  NEXUS_REPO: "test-productivity-builds-distribution"
 
 stages:
   - release
@@ -30,7 +32,7 @@ stages:
   - build
   - test
   - build-installer
-  - internal-beta
+  - publish
   - ui-test
   - publish-to-slack
   - mirror
@@ -148,7 +150,7 @@ build-BTI-installer:
     BUILD_PATH: BTI/publish
 
 prepare-internal-beta-release:
-  stage: internal-beta
+  stage: publish
   tags:
     - windows-dot-net
   when: manual
@@ -158,6 +160,34 @@ prepare-internal-beta-release:
   only:
     - /^release.*$/
     
+publish nexus:
+  stage: publish
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_COMMIT_BRANCH =~ /^release\/\d+\.\d+\.\d+/
+      when: always
+    - when: never
+  tags:
+    - shared-medium
+  image: $CI_REGISTRY/tpe/test-scripts
+  allow_failure: true
+  dependencies:
+    - build-installer
+  script:
+    # Delete old assets
+    - /usr/local/bin/nexus/delete_asset_on_nexus.py
+      --repository $NEXUS_REPO
+      --group $NEXUS_GROUP
+    # Upload release build
+    - /usr/local/bin/nexus/upload_to_nexus.py
+      --path "Setup/Installers/ProtonVPN_*.exe"
+      --repository $NEXUS_REPO
+      --group $NEXUS_GROUP
+      --filename "vpn_windows_latest.exe"
+
 mirror:
   stage: mirror
   tags:
