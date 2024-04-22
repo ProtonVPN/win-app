@@ -53,7 +53,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Grid>
 
         <StackPanel x:Name="RootContainer"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Stretch"
                     Orientation="Vertical"
                     Spacing="8">
             <StackPanel Margin="0,18,0,8"
@@ -82,7 +82,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            Visibility="{x:Bind ViewModel.IsTitleVisible, Mode=OneWay}" />
             </StackPanel>
 
-            <Grid>
+            <Grid MaxWidth="{StaticResource MaximumHomePageContentWidth}">
                 <StackPanel x:Name="VpnStatusDetails"
                             Opacity="1"
                             Orientation="Vertical"
@@ -114,8 +114,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </StackPanel>
 
                 <Border x:Name="NetShieldStats"
-                        Padding="8"
-                        HorizontalAlignment="Center"
+                        Padding="12"
+                        Margin="16,0"
+                        HorizontalAlignment="Stretch"
                         AutomationProperties.LandmarkType="Custom"
                         AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_NetShield_Landmark')}"
                         Background="{StaticResource VpnStatusDetailsBackgroundBrush}"
@@ -127,7 +128,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <TranslateTransform x:Name="NetShieldStatsTranslateTransform" />
                     </UIElement.RenderTransform>
 
-                    <netShieldStats:NetShieldStatsComponent HorizontalAlignment="Center" />
+                    <netShieldStats:NetShieldStatsComponent />
                 </Border>
             </Grid>
         </StackPanel>

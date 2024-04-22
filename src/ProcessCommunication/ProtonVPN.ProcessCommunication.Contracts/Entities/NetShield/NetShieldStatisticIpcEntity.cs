@@ -19,21 +19,20 @@
 
 using System.Runtime.Serialization;
 
-namespace ProtonVPN.ProcessCommunication.Contracts.Entities.NetShield
+namespace ProtonVPN.ProcessCommunication.Contracts.Entities.NetShield;
+
+[DataContract]
+public class NetShieldStatisticIpcEntity
 {
-    [DataContract]
-    public class NetShieldStatisticIpcEntity
-    {
-        [DataMember(Order = 1, IsRequired = true)]
-        public long NumOfMaliciousUrlsBlocked { get; set; }
+    [DataMember(Order = 1, IsRequired = true)]
+    public long NumOfMaliciousUrlsBlocked { get; set; }
 
-        [DataMember(Order = 2, IsRequired = true)]
-        public long NumOfAdvertisementUrlsBlocked { get; set; }
+    [DataMember(Order = 2, IsRequired = true)]
+    public long NumOfAdvertisementUrlsBlocked { get; set; }
 
-        [DataMember(Order = 3, IsRequired = true)]
-        public long NumOfTrackingUrlsBlocked { get; set; }
+    [DataMember(Order = 3, IsRequired = true)]
+    public long NumOfTrackingUrlsBlocked { get; set; }
 
-        [DataMember(Order = 4, IsRequired = true)]
-        public DateTime TimestampUtc { get; set; }
-    }
+    [DataMember(Order = 4, IsRequired = true)]
+    public DateTime TimestampUtc { get; set; }
 }

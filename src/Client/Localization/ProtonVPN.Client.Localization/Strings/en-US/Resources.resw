@@ -1429,21 +1429,36 @@
     <value>Map</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
-  <data name="Home_NetShield_AdsBlocked" xml:space="preserve">
-    <value>Ads\nblocked</value>
-    <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  <data name="Home_NetShield_Title" xml:space="preserve">
+    <value>NetShield stats</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_One" xml:space="preserve">
+    <value>Ad blocked</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Other" xml:space="preserve">
+    <value>Ads blocked</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Description" xml:space="preserve">
+    <value>Ads are promotional banners or pop-ups that appear on websites and apps.</value>
   </data>
   <data name="Home_NetShield_DataSaved" xml:space="preserve">
-    <value>Data\nsaved</value>
-    <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+    <value>Data saved</value>
+  </data>
+  <data name="Home_NetShield_DataSaved_Description" xml:space="preserve">
+    <value>Estimated data saved by blocking unwanted ads, trackers, and malware.</value>
   </data>
   <data name="Home_NetShield_Landmark" xml:space="preserve">
     <value>NetShield statistics</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
-  <data name="Home_NetShield_TrackersStopped" xml:space="preserve">
-    <value>Trackers\nstopped</value>
-    <comment>Use \n to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  <data name="Home_NetShield_TrackersStopped_One" xml:space="preserve">
+    <value>Tracker stopped</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Other" xml:space="preserve">
+    <value>Trackers stopped</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Description" xml:space="preserve">
+    <value>Trackers are cookies and third-party websites that collect, store, and sell information about your web activity.</value>
   </data>
   <data name="Home_Page_Title" xml:space="preserve">
     <value>Home</value>

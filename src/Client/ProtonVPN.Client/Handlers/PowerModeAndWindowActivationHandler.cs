@@ -18,11 +18,12 @@
  */
 
 using Microsoft.UI.Xaml;
+using ProtonVPN.Client.Contracts;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts;
-using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
@@ -37,6 +38,8 @@ public class PowerModeAndWindowActivationHandler : IHandler, IEventMessageReceiv
     private readonly IVpnServiceCaller _vpnServiceCaller;
     private readonly IConnectionCertificateManager _connectionCertificateManager;
     private readonly IUserAuthenticator _userAuthenticator;
+    private readonly INetShieldStatsObserver _netShieldStatsObserver;
+    private readonly IEventMessageSender _eventMessageSender;
     private readonly IVpnPlanUpdater _vpnPlanUpdater;
 
     public PowerModeAndWindowActivationHandler(ILogger logger,
@@ -45,6 +48,8 @@ public class PowerModeAndWindowActivationHandler : IHandler, IEventMessageReceiv
         IConnectionCertificateManager connectionCertificateManager,
         IUserAuthenticator userAuthenticator,
         IPowerEventNotifier powerEventNotifier,
+        INetShieldStatsObserver netShieldStatsObserver,
+        IEventMessageSender eventMessageSender,
         IVpnPlanUpdater vpnPlanUpdater)
     {
         _logger = logger;
@@ -52,6 +57,8 @@ public class PowerModeAndWindowActivationHandler : IHandler, IEventMessageReceiv
         _vpnServiceCaller = vpnServiceCaller;
         _connectionCertificateManager = connectionCertificateManager;
         _userAuthenticator = userAuthenticator;
+        _netShieldStatsObserver = netShieldStatsObserver;
+        _eventMessageSender = eventMessageSender;
         _vpnPlanUpdater = vpnPlanUpdater;
 
         powerEventNotifier.OnResume += OnResume;
@@ -62,7 +69,7 @@ public class PowerModeAndWindowActivationHandler : IHandler, IEventMessageReceiv
         if (_userAuthenticator.IsLoggedIn)
         {
             _logger.Info<AppLog>("Resuming from sleep while logged in");
-            OnTrigger();
+            OnResumeOrWindowActivation();
         }
         else
         {
@@ -70,7 +77,7 @@ public class PowerModeAndWindowActivationHandler : IHandler, IEventMessageReceiv
         }
     }
 
-    private void OnTrigger()
+    private void OnResumeOrWindowActivation()
     {
         _vpnServiceCaller.RepeatStateAsync();
         if (_settings.IsPortForwardingEnabled)
@@ -89,11 +96,26 @@ public class PowerModeAndWindowActivationHandler : IHandler, IEventMessageReceiv
 
     private void OnActivationStateChange(object sender, WindowActivatedEventArgs args)
     {
-        if (args.WindowActivationState is not WindowActivationState.Deactivated &&
-            _userAuthenticator.IsLoggedIn)
+        if (!_userAuthenticator.IsLoggedIn)
+        {
+            return;
+        }
+
+        if (args.WindowActivationState is WindowActivationState.Deactivated)
+        {
+            _logger.Debug<AppLog>("Window deactivated while logged in.");
+            SendWindowStateChangeMessage(false);
+        }
+        else
         {
             _logger.Debug<AppLog>($"Window activated while logged in (State: {args.WindowActivationState})");
-            OnTrigger();
+            OnResumeOrWindowActivation();
+            SendWindowStateChangeMessage(true);
         }
+    }
+
+    private void SendWindowStateChangeMessage(bool isActive)
+    {
+        _eventMessageSender.Send(new WindowStateChangeMessage { IsActive = isActive });
     }
 }

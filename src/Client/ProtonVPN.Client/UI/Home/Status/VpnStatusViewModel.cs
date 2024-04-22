@@ -27,6 +27,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -35,7 +36,8 @@ namespace ProtonVPN.Client.UI.Home.Status;
 
 public partial class VpnStatusViewModel : ViewModelBase,
     IEventMessageReceiver<ConnectionStatusChanged>,
-    IEventMessageReceiver<DeviceLocationChangedMessage>
+    IEventMessageReceiver<DeviceLocationChangedMessage>,
+    IEventMessageReceiver<SettingChangedMessage>
 {
     private readonly IConnectionManager _connectionManager;
     private readonly ISettings _settings;
@@ -60,10 +62,6 @@ public partial class VpnStatusViewModel : ViewModelBase,
     private string? _ipAddress;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(IsNetShieldStatVisible))]
-    private bool _isNetShieldStatEnabled;
-
-    [ObservableProperty]
     private bool _isSecureCoreConnection;
 
     public string Country => Localizer.GetCountryName(CountryCode);
@@ -74,7 +72,7 @@ public partial class VpnStatusViewModel : ViewModelBase,
 
     public bool IsDisconnected => CurrentConnectionStatus == ConnectionStatus.Disconnected;
 
-    public bool IsNetShieldStatVisible => IsConnected && IsNetShieldStatEnabled;
+    public bool IsNetShieldStatVisible => IsConnected && _settings.IsNetShieldEnabled;
 
     public bool IsTitleVisible => !string.IsNullOrEmpty(Title);
 
@@ -109,8 +107,6 @@ public partial class VpnStatusViewModel : ViewModelBase,
         _connectionManager = connectionManager;
         _settings = settings;
 
-        _isNetShieldStatEnabled = false;
-
         InvalidateCurrentConnectionStatus();
         InvalidateDeviceLocation();
     }
@@ -123,6 +119,14 @@ public partial class VpnStatusViewModel : ViewModelBase,
     public void Receive(DeviceLocationChangedMessage message)
     {
         ExecuteOnUIThread(InvalidateDeviceLocation);
+    }
+
+    public void Receive(SettingChangedMessage message)
+    {
+        if (message.PropertyName == nameof(ISettings.IsNetShieldEnabled))
+        {
+            OnPropertyChanged(nameof(IsNetShieldStatVisible));
+        }
     }
 
     protected override void OnLanguageChanged()

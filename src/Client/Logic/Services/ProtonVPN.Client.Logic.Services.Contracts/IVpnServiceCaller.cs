@@ -32,6 +32,7 @@ public interface IVpnServiceCaller
     Task DisconnectAsync(DisconnectionRequestIpcEntity connectionRequest);
 
     Task<Result<TrafficBytesIpcEntity>> GetTrafficBytesAsync();
+    Task RequestNetShieldStatsAsync();
 
     Task UpdateConnectionCertificateAsync(ConnectionCertificateIpcEntity certificate);
 

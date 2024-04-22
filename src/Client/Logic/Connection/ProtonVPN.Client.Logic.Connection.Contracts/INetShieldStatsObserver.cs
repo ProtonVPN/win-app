@@ -17,6 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Messages;
+namespace ProtonVPN.Client.Logic.Connection.Contracts;
 
-public class ApplicationStartedMessage;
+public interface INetShieldStatsObserver;

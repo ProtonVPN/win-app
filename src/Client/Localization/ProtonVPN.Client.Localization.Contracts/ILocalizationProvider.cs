@@ -31,7 +31,7 @@ public interface ILocalizationProvider
 
     string GetFormat(string resourceKey, params object[] args);
 
-    string GetPlural(string resourceKey, int number);
+    string GetPlural(string resourceKey, long number);
 
-    string GetPluralFormat(string resourceKey, int number);
+    string GetPluralFormat(string resourceKey, long number);
 }

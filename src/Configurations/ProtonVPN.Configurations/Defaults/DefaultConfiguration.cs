@@ -174,6 +174,7 @@ public static class DefaultConfiguration
     public static TimeSpan VpnStatePollingInterval => TimeSpan.FromSeconds(3);
     public static TimeSpan VpnPlanRequestInterval => TimeSpan.FromHours(12);
     public static TimeSpan VpnPlanMinimumRequestInterval => TimeSpan.FromMinutes(5);
+    public static TimeSpan NetShieldStatisticRequestInterval => TimeSpan.FromSeconds(60);
 
     public static IOpenVpnConfigurations OpenVpn => DefaultOpenVpnConfigurationsFactory.Create(
         baseFolder: _baseVersionDirectory.Value,

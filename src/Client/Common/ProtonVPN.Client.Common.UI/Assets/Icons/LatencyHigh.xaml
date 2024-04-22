@@ -26,9 +26,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                       xmlns:base="using:ProtonVPN.Client.Common.UI.Assets.Icons.Base"
                       mc:Ignorable="d">
 
-    <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             Stretch="Uniform">
+    <Viewbox Stretch="Uniform">
         <Canvas Width="24"
                 Height="24">
             <Path Data="M19.875 20.6992C21.5087 18.8482 22.5 16.4168 22.5 13.7539C22.5 7.95492 17.799 3.25391 12 3.25391C6.20101 3.25391 1.5 7.95492 1.5 13.7539C1.5 16.4168 2.4913 18.8482 4.125 20.6992"

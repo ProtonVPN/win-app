@@ -391,6 +391,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Logic.User
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Client.Logic.Users.Tests", "src\Client\Logic\Users\ProtonVPN.Client.Logic.Users.Tests\ProtonVPN.Client.Logic.Users.Tests.csproj", "{72E5BF04-1832-4061-B94D-2D46CABC17FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Client.Contracts", "src\Client\ProtonVPN.Client.Contracts\ProtonVPN.Client.Contracts.csproj", "{A670E541-3910-408C-AE17-8BD75F2449AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1583,6 +1585,14 @@ Global
 		{72E5BF04-1832-4061-B94D-2D46CABC17FE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{72E5BF04-1832-4061-B94D-2D46CABC17FE}.Release|x64.ActiveCfg = Release|Any CPU
 		{72E5BF04-1832-4061-B94D-2D46CABC17FE}.Release|x64.Build.0 = Release|Any CPU
+		{A670E541-3910-408C-AE17-8BD75F2449AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A670E541-3910-408C-AE17-8BD75F2449AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A670E541-3910-408C-AE17-8BD75F2449AD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A670E541-3910-408C-AE17-8BD75F2449AD}.Debug|x64.Build.0 = Debug|Any CPU
+		{A670E541-3910-408C-AE17-8BD75F2449AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A670E541-3910-408C-AE17-8BD75F2449AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A670E541-3910-408C-AE17-8BD75F2449AD}.Release|x64.ActiveCfg = Release|Any CPU
+		{A670E541-3910-408C-AE17-8BD75F2449AD}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1742,6 +1752,7 @@ Global
 		{2CA26BEA-C671-44C0-BFA5-7DF2AE9C0FFC} = {BE2BAA32-0CFB-455C-9E64-81880D1AD219}
 		{6A964726-F347-4CC4-9AB0-74721B6DA827} = {BE2BAA32-0CFB-455C-9E64-81880D1AD219}
 		{B0112A8B-5CEF-4AAF-87EC-B7A084094302} = {BE2BAA32-0CFB-455C-9E64-81880D1AD219}
+		{A670E541-3910-408C-AE17-8BD75F2449AD} = {313DCA3D-B3E4-4E06-9B5C-516E2C06154A}
 		{72E5BF04-1832-4061-B94D-2D46CABC17FE} = {BE2BAA32-0CFB-455C-9E64-81880D1AD219}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
