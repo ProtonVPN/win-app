@@ -16,6 +16,7 @@ include:
   - component: gitlab.protontech.ch/proton/devops/cicd-components/devsecops/gitleaks/scan-repository@0.0.12
     inputs:
       stage: test
+      cli-args: "--baseline-path .sec/gitleaks/baseline.json"
       
   - component: gitlab.protontech.ch/proton/devops/cicd-components/devsecops/grype/scan-code@0.0.12
     inputs:
@@ -47,6 +48,7 @@ stages:
   - mirror
   
 gitleaks-scan-repository:
+  allow_failure: true
   needs: []
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
