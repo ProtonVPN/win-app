@@ -70,8 +70,22 @@ internal partial class VpnService : ServiceBase
 
         _cancellationTokenSource = new CancellationTokenSource();
         CancellationToken = _cancellationTokenSource.Token;
+        CanHandleSessionChangeEvent = true;
 
         InitializeComponent();
+    }
+
+    protected override void OnSessionChange(SessionChangeDescription changeDescription)
+    {
+        _logger.Info<AppServiceStopLog>($"Session changed, reason: {changeDescription.Reason}");
+
+        if (changeDescription.Reason == SessionChangeReason.SessionLogoff)
+        {
+            _logger.Info<AppServiceStopLog>("Stopping the service due to SessionLogoff.");
+            Stop();
+        }
+
+        base.OnSessionChange(changeDescription);
     }
 
     protected override void OnStart(string[] args)
