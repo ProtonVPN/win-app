@@ -12,7 +12,16 @@ include:
     file: '/windows-config.yml'
     
   - local: '/.gitlab-ci-templates.yml'
-
+  
+  - component: gitlab.protontech.ch/proton/devops/cicd-components/devsecops/gitleaks/scan-repository@0.0.12
+    inputs:
+      stage: test
+      
+  - component: gitlab.protontech.ch/proton/devops/cicd-components/devsecops/grype/scan-code@0.0.12
+    inputs:
+      stage: test
+      cli-args: "-c .grype"
+      
 variables:
   PUBLIC_REPO_URL: git@github.com:ProtonVPN/win-app.git
   SCREENSHOT_PATH: src/bin/TestFailureData/
@@ -36,6 +45,19 @@ stages:
   - ui-test
   - publish-to-slack
   - mirror
+  
+gitleaks-scan-repository:
+  needs: []
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: never
+    - when: always
+
+grype-scan-code-dependencies:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: never
+    - when: always
 
 build-release:
   extends: .build-script
