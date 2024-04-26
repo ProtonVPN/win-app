@@ -191,6 +191,7 @@ public class ViewMapper : IViewMapper
         ConfigureOverlay<TorOverlayViewModel, TorOverlayDialog>();
         ConfigureOverlay<FreeConnectionsOverlayViewModel, FreeConnectionsOverlayDialog>();
         ConfigureOverlay<ChangeServerOverlayViewModel, ChangeServerOverlayDialog>();
+        ConfigureOverlay<TroubleshootingOverlayViewModel, TroubleshootingOverlayDialog>();
     }
 
     protected void ConfigureDialogs()

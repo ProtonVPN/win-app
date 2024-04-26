@@ -128,6 +128,7 @@ public class ViewModelsModule : Module
         RegisterViewModel<LicensingViewModel>(builder);
         RegisterViewModel<GalleryViewModel>(builder);
         RegisterViewModel<GalleryItemViewModel>(builder);
+        RegisterViewModel<TroubleshootingOverlayViewModel>(builder);
 
         RegisterViewModel<SidebarHomeViewModel>(builder);
         RegisterViewModel<SidebarGatewaysHeaderViewModel>(builder);

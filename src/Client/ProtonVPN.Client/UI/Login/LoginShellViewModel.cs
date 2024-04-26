@@ -25,7 +25,9 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.UI.Dialogs.Overlays;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
@@ -37,6 +39,8 @@ public partial class LoginShellViewModel : ShellViewModelBase<ILoginViewNavigato
     IEventMessageReceiver<LoginStateChangedMessage>, 
     IEventMessageReceiver<LoggedOutMessage>
 {
+    private readonly IOverlayActivator _overlayActivator;
+
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(HasError))]
     private string _errorMessage;
@@ -49,9 +53,11 @@ public partial class LoginShellViewModel : ShellViewModelBase<ILoginViewNavigato
         ILoginViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
         ILogger logger,
+        IOverlayActivator overlayActivator,
         IIssueReporter issueReporter)
         : base(viewNavigator, localizationProvider, logger, issueReporter)
     {
+        _overlayActivator = overlayActivator;
         _errorMessage = string.Empty;
     }
 
@@ -127,8 +133,8 @@ public partial class LoginShellViewModel : ShellViewModelBase<ILoginViewNavigato
                 break;
 
             case AuthError.GuestHoleFailed:
-                // VPNWIN-1982 - Show troubleshooting dialog
                 Logger.Error<GuestHoleLog>("Failed to authenticate using guest hole.");
+                _overlayActivator.ShowOverlayAsync<TroubleshootingOverlayViewModel>();
                 break;
 
             case AuthError.SsoAuthFailed:
