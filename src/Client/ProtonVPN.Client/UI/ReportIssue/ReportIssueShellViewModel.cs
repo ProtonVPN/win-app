@@ -18,7 +18,6 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Navigation;

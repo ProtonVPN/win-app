@@ -76,6 +76,10 @@ public class Urls : IUrls
 
     public string TroubleShootingUrl => "https://protonvpn.com/support/windows-vpn-issues";
 
+    public string ProtonStatusPageUrl => "https://protonstatus.com";
+
+    public string SupportFormUrl => "https://protonvpn.com/support-form";
+
     public void NavigateTo(string url)
     {
         try

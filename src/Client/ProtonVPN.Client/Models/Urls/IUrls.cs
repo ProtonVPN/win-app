@@ -43,6 +43,8 @@ public interface IUrls
     string TorLearnMore { get; }
     string RpcServerProblemUrl { get; }
     string TroubleShootingUrl { get; }
+    string ProtonStatusPageUrl { get; }
+    string SupportFormUrl { get; }
 
     void NavigateTo(string url);
 }

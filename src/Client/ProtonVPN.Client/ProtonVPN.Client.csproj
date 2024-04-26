@@ -70,6 +70,10 @@
         <None Update="appsettings.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <Page Update="UI\Dialogs\Overlays\TroubleshootingOverlayDialog.xaml">
+          <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+          <SubType>Designer</SubType>
+        </Page>
         <Page Update="UI\Upsell\Carousel\Features\AdvancedSettingsUpsellFeaturePage.xaml">
           <Generator>MSBuild:Compile</Generator>
         </Page>
@@ -245,6 +249,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <None Remove="UI\Dialogs\Overlays\TroubleshootingOverlayDialog.xaml" />
         <None Remove="UI\Login\Forms\LoadingForm.xaml" />
         <None Remove="UI\Countries\Controls\UpsellCountryBannerControl.xaml" />
         <None Remove="UI\Home\UpsellBanner\UpsellBannerComponent.xaml" />

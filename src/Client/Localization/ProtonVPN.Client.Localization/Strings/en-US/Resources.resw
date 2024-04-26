@@ -2648,4 +2648,37 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Countries_PaidServerWarning" xml:space="preserve">
     <value>Server available with VPN Plus</value>
   </data>
+  <data name="Dialogs_Troubleshooting_Title" xml:space="preserve">
+    <value>Connection help</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Description" xml:space="preserve">
+    <value>These quick fixes may help you connect to Proton.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet" xml:space="preserve">
+    <value>Check your internet connection</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet_Description" xml:space="preserve">
+    <value>Make sure you're online, and that your connection is stable.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork" xml:space="preserve">
+    <value>Use a different network</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork_Description" xml:space="preserve">
+    <value>Try switching Wi-Fi networks, or use mobile data.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus" xml:space="preserve">
+    <value>Turn off antivirus or firewall software</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus_Description" xml:space="preserve">
+    <value>These programs can interfere with VPN connections.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage" xml:space="preserve">
+    <value>Check our status page</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage_Description" xml:space="preserve">
+    <value>Just to be sure that Proton services are running as normal.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DidNotWork" xml:space="preserve">
+    <value>Didn't work?</value>
+  </data>
 </root>
