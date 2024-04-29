@@ -425,7 +425,7 @@
     <comment>The label for the username in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_UsernamePlaceholder">
-    <value>Tu usuario de Proton si ya tienes una cuenta.</value>
+    <value>El nombre de usuario de Proton si ya tienes una cuenta.</value>
     <comment>The watermark text displayed in empty username text box in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_WhatIsTheIssue">

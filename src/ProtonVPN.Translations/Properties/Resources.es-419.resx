@@ -391,7 +391,7 @@
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_IncludeLogsInfo">
-    <value>Al proporcionar los datos siguientes, nuestro equipo puede identificar su problema y una solución posible con más probabibilidad y menor tiempo:
+    <value>Al proporcionar los datos siguientes, nuestro equipo puede identificar el problema y una solución posible con más probabibilidad y menor tiempo:
 • Registro de instalación de controladores
 • Lista de aplicaciones instaladas
 • Aplicación Proton VPN y registros de servicio Proton VPN
@@ -400,7 +400,7 @@
     <comment>The text inside info tooltip in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_LogsDescription">
-    <value>Los registros de errores nos ayudan a llegar al fondo de su problema. Si no los incluye, es posible que no podamos investigar por completo.</value>
+    <value>Los registros de errores nos ayudan a llegar al fondo del problema. Si no los incluye, es posible que no podamos investigar por completo.</value>
   </data>
   <data name="BugReport_lbl_LogsTooltip">
     <value>Un registro es un tipo de archivo que nos muestra las acciones que realizó y que provocaron un error. Solo los usaremos para ayudar a nuestros ingenieros a corregir errores.</value>
@@ -409,13 +409,13 @@
     <value>Actualizar Proton VPN</value>
   </data>
   <data name="BugReport_lbl_NewVersionInfo">
-    <value>¡Es posible que esta versión de Proton VPN ya haya resuelto su problema!</value>
+    <value>¡Es posible que esta versión de Proton VPN ya haya resuelto el problema!</value>
   </data>
   <data name="BugReport_lbl_QuickSolutions">
     <value>Arreglos rápidos</value>
   </data>
   <data name="BugReport_lbl_QuickSolutionsInfo">
-    <value>Estos consejos podrían ayudarle a resolver su problema más rápido.</value>
+    <value>Estos consejos podrían ayudarle a resolver el problema más rápido.</value>
   </data>
   <data name="BugReport_lbl_Step">
     <value>Paso</value>
@@ -425,7 +425,7 @@
     <comment>The label for the username in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_UsernamePlaceholder">
-    <value>Su usuario de Proton, en caso de que ya tenga una cuenta.</value>
+    <value>El nombre de usuario de Proton si ya tiene una cuenta.</value>
     <comment>The watermark text displayed in empty username text box in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_WhatIsTheIssue">
@@ -450,7 +450,7 @@
     <comment>The message displayed in Issue Report window while sending the report</comment>
   </data>
   <data name="BugReport_msg_SendingFailed">
-    <value>Su reporte no fue enviado</value>
+    <value>El reporte no fue enviado</value>
     <comment>The message displayed in Issue Report window when sending Issue report fails</comment>
   </data>
   <data name="BugReport_msg_SendingInfo">
@@ -1546,10 +1546,10 @@
     <value>Iniciar sesión de nuevo</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info1">
-    <value>Para empezar su viaje en Proton VPN, asigne conexiones VPN a su cuenta o cualquier otra subcuenta.</value>
+    <value>Para empezar su viaje en Proton VPN, asigne conexiones VPN a la cuenta o cualquier otra subcuenta.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info2">
-    <value>Este paso le llevará sólo unos minutos. Después de eso podrá iniciar sesión y proteger todos sus dispositivos.</value>
+    <value>Este paso le llevará sólo unos minutos. Después de eso podrá iniciar sesión y proteger todos los dispositivos.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
     <value>Gracias por actualizar</value>
@@ -1573,7 +1573,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The subtitle of the Delinquency window</comment>
   </data>
   <data name="Dialogs_Delinquency_Title">
-    <value>Su cuenta VPN tiene facturas pendientes</value>
+    <value>La cuenta VPN tiene facturas pendientes</value>
     <comment>The title of the Delinquency window</comment>
   </data>
   <data name="Dialogs_DisabledService_btn_Enable">
@@ -1586,7 +1586,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <value>Mostrar menos</value>
   </data>
   <data name="Dialogs_DisabledService_msg_ExtraInfo">
-    <value>Algunas aplicaciones como antivirus u optimizadores de PC pueden interferir con los servicios del sistema que Proton VPN requiere para asegurar su conexión. Al hacer clic en Activar, permite que Windows reactive los Servicios de Proton VPN.&lt;LineBreak/&gt;Si el problema persiste, intente reiniciar su PC o reinstalar Proton VPN.</value>
+    <value>Algunas aplicaciones como antivirus u optimizadores de PC pueden interferir con los servicios del sistema que Proton VPN requiere para asegurar la conexión. Al hacer clic en Activar, permite que Windows reactive los Servicios de Proton VPN.&lt;LineBreak/&gt;Si el problema persiste, intente reiniciar el PC o reinstalar Proton VPN.</value>
   </data>
   <data name="Dialogs_DisabledService_msg_Info">
     <value>Algunos componentes de Proton VPN pueden estar bloqueados o desactivados, lo que le impide conectarse. Haga clic en Activar para resolverlo.&lt;LineBreak/&gt;Tome en cuenta que esta operación requiere privilegios de administrador.</value>
@@ -1612,7 +1612,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The text displayed in Disconnect modal window if the disconnect occurred with kill switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoServers">
-    <value>No hay servidores disponibles ahora mismo para su selección. Seleccione una opción diferente.</value>
+    <value>No hay servidores disponibles ahora mismo para la selección. Seleccione una opción diferente.</value>
     <comment>The error description displayed in Disconnect modal window if disconnected because there are no servers available to connect to</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoTap">
@@ -1643,7 +1643,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The text on "Keep disabled" button in the Enable Smart Protocol window</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_msg">
-    <value>Proton VPN detectó que su red actual está impidiendo una conexión a la VPN. Activar Smart Protocol puede evitar estas limitaciones.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;Leer más acerca de Smart Protocol.&lt;/Hyperlink&gt;</value>
+    <value>Proton VPN detectó que la red actual está impidiendo una conexión a la VPN. Activar Smart Protocol puede evitar estas limitaciones.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;Leer más acerca de Smart Protocol.&lt;/Hyperlink&gt;</value>
     <comment>The message displayed in the Enable Smart Protocol window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about Smart Protocol.").</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_ttl">
@@ -1673,7 +1673,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <value>Verificación humana</value>
   </data>
   <data name="Dialogs_IncorrectSystemTime_msg">
-    <value>El reloj de su sistema parece no estar sincronizado lo que podría evitar que la VPN se conecte correctamente. Consulte &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;aquí&lt;/Hyperlink&gt; para más información.</value>
+    <value>El reloj del sistema parece no estar sincronizado lo que podría evitar que la VPN se conecte correctamente. Consulte &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;aquí&lt;/Hyperlink&gt; para más información.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
     <value>Con el interruptor de bloqueo permanente, si la VPN no está conectada por alguna razón, no podrá acceder a Internet.</value>
@@ -1730,7 +1730,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
-    <value>Su conexión fue desactivada porque está usando un servidor que no admite el tráfico peer-to-peer (P2P). P2P no es compatible con servidores gratuitos. Use un servidor diferente para P2P.</value>
+    <value>La conexión fue desactivada porque está usando un servidor que no admite el tráfico peer-to-peer (P2P). P2P no es compatible con servidores gratuitos. Use un servidor diferente para P2P.</value>
     <comment>The warning message displayed when P2P traffic is detected on servers not allowing it.</comment>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_msg">
@@ -1740,7 +1740,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <value>¿Activar el reenvío de puertos?</value>
   </data>
   <data name="Dialogs_Proxy_msg_ProxyDetected">
-    <value>Proton VPN ha detectado un servidor proxy configurado en su red local. La aplicación Proton VPN no puede proteger el tráfico que pasa por este proxy. Esto significa que su conexión no estará completamente protegida como se esperaba.</value>
+    <value>Proton VPN ha detectado un servidor proxy configurado en la red local. La aplicación Proton VPN no puede proteger el tráfico que pasa por este proxy. Esto significa que la conexión no estará completamente protegida como se esperaba.</value>
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
@@ -1770,19 +1770,19 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListTitle">
-    <value>Mejore su plan de nuevo para disfrutar de todas las funciones:</value>
+    <value>Mejore el plan de nuevo para disfrutar de todas las funciones:</value>
     <comment>The text right before the subscriber benefits list in the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Reconnected_Subtitle">
-    <value>Su suscripción ha pasado a un nivel inferior, volveremos a reconectar al servidor más rápido disponible.</value>
+    <value>La suscripción ha pasado a un nivel inferior, volveremos a reconectar al servidor más rápido disponible.</value>
     <comment>The subtitle of the Subscription Expired window when the user is reconnected</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Subtitle">
-    <value>Su suscripción ha pasado a un nivel inferior.</value>
+    <value>La suscripción ha pasado a un nivel inferior.</value>
     <comment>The subtitle of the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Title">
-    <value>Su suscripción de VPN ha expirado</value>
+    <value>La suscripción de VPN ha expirado</value>
     <comment>The title of the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Upgrade">
@@ -1806,11 +1806,11 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Antivirus">
-    <value>&lt;Bold&gt;Interferencia de antivirus&lt;/Bold&gt; - Desactive o borre temporalmente su software antivirus.</value>
+    <value>&lt;Bold&gt;Interferencia de antivirus&lt;/Bold&gt; - Desactive o borre temporalmente el software antivirus.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Firewall">
-    <value>&lt;Bold&gt;Interferencia de Proxy/Firewall&lt;/Bold&gt; - Desactive cualquier proxy o firewall, o contacte a su administrador de red.</value>
+    <value>&lt;Bold&gt;Interferencia de Proxy/Firewall&lt;/Bold&gt; - Desactive cualquier proxy o firewall, o contacte el administrador de red.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_GovBlock">
@@ -1826,7 +1826,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_NoInternet">
-    <value>&lt;Bold&gt;Sin conexión a Internet&lt;/Bold&gt; - Asegúrese de que su conexión a Internet está funcionando.</value>
+    <value>&lt;Bold&gt;Sin conexión a Internet&lt;/Bold&gt; - Asegúrese de que la conexión a Internet está funcionando.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_ProtonDown">
@@ -1834,7 +1834,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Title">
-    <value>Problemas potenciales que podrían causar que su conexión agotara el tiempo de conexión y su solución</value>
+    <value>Problemas potenciales que podrían causar que la conexión agotara el tiempo de conexión y su solución</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Unknown">
@@ -1901,7 +1901,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <value>A la aplicación le falta un archivo requerido</value>
   </data>
   <data name="ErrorWindow_lbl_MissingInfo">
-    <value>Algunas aplicaciones de su PC podrían haber borrado algunos archivos o impedido que se instalaran correctamente.</value>
+    <value>Algunas aplicaciones del PC podrían haber borrado algunos archivos o impedido que se instalaran correctamente.</value>
   </data>
   <data name="ErrorWindow_lbl_Repair">
     <value>Reparar</value>
@@ -1918,11 +1918,11 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The title of License window</comment>
   </data>
   <data name="Login_Error_msg_SessionExpired">
-    <value>Su sesión ha expirado. Inicie sesión de nuevo.</value>
+    <value>La sesión ha expirado. Inicie sesión de nuevo.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
-    <value>El token de actualización es inválido. Inicie sesión de nuevo.</value>
+    <value>El token de actualización no es válido. Inicie sesión de nuevo.</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">
@@ -2114,11 +2114,11 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The description of the Delinquency notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_Delinquency_Title">
-    <value>Su cuenta VPN tiene facturas pendientes</value>
+    <value>La cuenta VPN tiene facturas pendientes</value>
     <comment>The title of the Delinquency notification</comment>
   </data>
   <data name="Notifications_EnableSmartProtocol_msg">
-    <value>Proton VPN detectó que su red actual está impidiendo una conexión a la VPN. Activar Smart Protocol podría eludir estas limitaciones.</value>
+    <value>Proton VPN detectó que la red actual está impidiendo una conexión a la VPN. Activar Smart Protocol podría eludir estas limitaciones.</value>
     <comment>The message displayed in the Enable Smart Protocol notification.</comment>
   </data>
   <data name="Notifications_EnableSmartProtocol_ttl">
@@ -2146,15 +2146,15 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The description of the Maximum Device Limit notification when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Description">
-    <value>Su suscripción ha pasado a un nivel inferior. Mejore su plan de nuevo para disfrutar de todas las funciones.</value>
+    <value>La suscripción ha pasado a un nivel inferior. Mejore el plan de nuevo para disfrutar de todas las funciones.</value>
     <comment>The description of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Reconnected_Description">
-    <value>Su suscripción ha pasado a un nivel inferior, así que estamos volviendo a conectar al servidor más rápido disponible. Mejore su plan de nuevo para disfrutar de todas las funciones.</value>
+    <value>La suscripción ha pasado a un nivel inferior, así que estamos volviendo a conectar al servidor más rápido disponible. Mejore el plan de nuevo para disfrutar de todas las funciones.</value>
     <comment>The description of the Subscription Expired notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Title">
-    <value>Su suscripción de VPN ha expirado</value>
+    <value>La suscripción de VPN ha expirado</value>
     <comment>The title of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_Update_lnk_Restart">
@@ -2194,11 +2194,11 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The description of onboarding step 2 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_3">
-    <value>Elija qué país y servidor quiere utilizar para su dirección IP final.</value>
+    <value>Elija qué país y servidor quiere utilizar para la dirección IP final.</value>
     <comment>The description of onboarding step 3 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_4">
-    <value>Adapte su conexión VPN a su actividad en línea con las funciones especiales de Proton VPN para una mejor velocidad y protección de la privacidad.</value>
+    <value>Adapte la conexión VPN a su actividad en línea con las funciones especiales de Proton VPN para una mejor velocidad y protección de la privacidad.</value>
     <comment>The description of onboarding step 4 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_ttl_Step_1">
@@ -2227,7 +2227,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <value>Clic para copiar este número de puerto.</value>
   </data>
   <data name="PortForwarding_lbl_Info">
-    <value>Configure este número en su aplicación BitTorrent para una mayor velocidad.</value>
+    <value>Configure este número en la aplicación BitTorrent para una mayor velocidad.</value>
   </data>
   <data name="PortForwarding_lbl_ServerWarning">
     <value>Para usar el enrutamiento de puertos, &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;conéctese&lt;/Hyperlink&gt; a un servidor que admita P2P.</value>
@@ -2394,7 +2394,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The confirmation message displayed when deleting profile in Profiles window</comment>
   </data>
   <data name="Profiles_msg_NoServersAvailable">
-    <value>No hay servidores disponibles ahora mismo para su selección. Seleccione una opción diferente.</value>
+    <value>No hay servidores disponibles ahora mismo para la selección. Seleccione una opción diferente.</value>
     <comment>The message displayed when trying to connect to a country or profile with no servers available</comment>
   </data>
   <data name="Profiles_ttl">
@@ -2509,7 +2509,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <value>Acelere sus descargas de torrents y juegos en línea al permitir que las aplicaciones locales admitidas sean accesibles desde internet.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
-    <value>Envía sus datos más sensibles a través de nuestros servidores más seguros en países que no tengan privacidad.</value>
+    <value>Envía los datos más sensibles a través de nuestros servidores más seguros en países que no tengan privacidad.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreWarning">
     <value>Secure Core podría reducir la velocidad de la VPN</value>
@@ -2634,13 +2634,13 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The message displayed when connecting to server which was removed and doesn't exist anymore</comment>
   </data>
   <data name="Servers_msg_CantConnect_RpcServerUnavailable">
-    <value>Proton VPN no se puede conectar porque el servidor RPC no está disponible en su sistema. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;Ver soluciones posibles&lt;/Hyperlink&gt;</value>
+    <value>Proton VPN no se puede conectar porque el servidor RPC no está disponible en el sistema. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;Ver soluciones posibles&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Servers_msg_MissingServerPublicKey">
     <value>Desafortunadamente, este servidor no soporta WireGuard.</value>
   </data>
   <data name="Settings_Advanced_SplitTunnel_btn_AddApp">
-    <value>Añadir app</value>
+    <value>Añadir aplicación</value>
     <comment>The text on Add App button in Settings window Advanced tab Split Tunneling section (opens a window for selecting custom app to add)</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Apps">
@@ -2648,11 +2648,11 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The label for application list in Settings window Advanced tab Split Tunneling section</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Exclude">
-    <value>Excluir apps/IPs de usar el túnel VPN</value>
+    <value>Excluir aplicaciones/IPs de usar el túnel VPN</value>
     <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Include">
-    <value>Solo las apps/IPs incluidas irán por el túnel VPN</value>
+    <value>Solo las aplicaciones/IPs incluidas irán por el túnel VPN</value>
     <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Ip">
@@ -2703,7 +2703,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <value>Controlador de red OpenVPN</value>
   </data>
   <data name="Settings_Advanced_lbl_NetworkDriver_info">
-    <value>Los controladores de red pueden afectar su conexión y velocidad. El nuevo adaptador TUN proporciona mayor velocidad, recurriendo al adaptador TAP si se produce algún problema de conectividad.</value>
+    <value>Los controladores de red pueden afectar la conexión y velocidad. El nuevo adaptador TUN proporciona mayor velocidad, recurriendo al adaptador TAP si se produce algún problema de conectividad.</value>
   </data>
   <data name="Settings_Advanced_lbl_NonStandardPorts">
     <value>Puertos no estándar</value>
@@ -2735,7 +2735,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <value>Sea notificado cuando cambie el número de reenvío de puerto</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Info">
-    <value>Acelere su descarga de torrents y juegos en línea permitiendo que las aplicaciones locales compatibles estén accesibles desde Internet. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Más información&lt;/Hyperlink&gt;</value>
+    <value>Acelere la descarga de torrents y juegos en línea permitiendo que las aplicaciones locales compatibles estén accesibles desde Internet. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Más información&lt;/Hyperlink&gt;</value>
     <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Tooltip">
@@ -2847,7 +2847,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The description of Automatic updates setting displayed in the tooltip of ( i ) image next to the label for Automatic updates toggle switch in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_ConnectOnAppStart">
-    <value>Conectar al iniciar la app</value>
+    <value>Conectar al iniciar la aplicación</value>
     <comment>The label for Connect on boot combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_ConnectOnAppStart_Info">
@@ -2908,7 +2908,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text of "Recommended" category text in the Profile sidebar, that has the predefined profiles below</comment>
   </data>
   <data name="Sidebar_B2BPopup_Desc">
-    <value>Una puerta de enlace VPN es una conexión segura que proporciona acceso controlado a los datos y servicios de su empresa mediante servidores dedicados.</value>
+    <value>Una puerta de enlace VPN es una conexión segura que proporciona acceso controlado a los datos y servicios de su empresa con servidores dedicados.</value>
     <comment>Description of what a Gateway is, written inside the help popup when the Gateways info button is clicked.</comment>
   </data>
   <data name="Sidebar_B2BPopup_Title">
@@ -2939,7 +2939,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text displayed on Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_IP_Unknown_Info">
-    <value>No se puede obtener la dirección IP por problemas de red o restricciones de su ISP.</value>
+    <value>No se puede obtener la dirección IP por problemas de red o restricciones del ISP.</value>
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch">
@@ -2947,7 +2947,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text displayed in the sidebar when connection dropped and kill switch is turned on</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch_Info">
-    <value>El interruptor de bloqueo está bloqueando todas las conexiones para evitar que se filtren sus datos.</value>
+    <value>El interruptor de bloqueo está bloqueando todas las conexiones para evitar que se filtren los datos.</value>
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">
@@ -3002,7 +3002,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The label of Secure Core toggle switch on Countries tab of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Countries_lbl_SecureCore_Info">
-    <value>Proporciona protección adicional contra el compromiso del servidor VPN mediante el enrutamiento a través de nuestra red segura</value>
+    <value>Proporciona protección adicional contra el compromiso del servidor VPN con el enrutamiento a través de nuestra red segura</value>
     <comment>The description of Secure Core feature displayed in a tooltip of ( i ) image next to Secure Core toggle switch label on Countries tab in Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Countries_msg_SecureCoreDisableConfirm">
@@ -3051,7 +3051,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Tor</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor_Desc">
-    <value>Envía su tráfico de internet a través de la red Tor. Más lento, pero más privado.</value>
+    <value>Envía el tráfico de internet a través de la red Tor. Más lento, pero más privado.</value>
   </data>
   <data name="Sidebar_Profiles_btn_Create">
     <value>Crear perfil</value>
@@ -3222,7 +3222,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Desbloquee &lt;Bold&gt;NAT Tipo 2&lt;/Bold&gt; con VPN Plus</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
-    <value>Mejore su experiencia de juego</value>
+    <value>Mejore la experiencia de juego</value>
   </data>
   <data name="Upsell_Netshield_BlockAds">
     <value>Bloquear anuncios y rastreadores</value>
@@ -3231,7 +3231,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Navegue a las velocidades máximas</value>
   </data>
   <data name="Upsell_Netshield_ProtectFromMalware">
-    <value>Proteja su dispositivo de malware</value>
+    <value>Proteja el dispositivo de malware</value>
   </data>
   <data name="Upsell_Netshield_Subtitle">
     <value>Cuando actualice a Plus</value>
@@ -3266,7 +3266,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Conéctese a servidores de juegos en línea y aloje juegos multijugador</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet3">
-    <value>Configure el acceso remoto a dispositivos en su red local</value>
+    <value>Configure el acceso remoto a dispositivos en la red local</value>
   </data>
   <data name="Upsell_PortForwarding_Subtitle">
     <value>Desbloquee la &lt;Bold&gt;redirección de puertos&lt;/Bold&gt; con VPN Plus</value>
@@ -3290,7 +3290,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Obtenga acceso rápido a sus conexiones frecuentes</value>
   </data>
   <data name="Upsell_SecureCore_ExtraEncryption">
-    <value>Añada otra capa de cifrado a su conexión VPN</value>
+    <value>Añada otra capa de cifrado a la conexión VPN</value>
   </data>
   <data name="Upsell_SecureCore_NetworkAttacks">
     <value>Protéjase de los ataques de red</value>
@@ -3305,10 +3305,10 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Duplique el cifrado con Secure Core</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet1">
-    <value>Divida su tráfico en túneles VPN y no VPN</value>
+    <value>Divida el tráfico en túneles VPN y no VPN</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet2">
-    <value>Permita que las app de confianza y direcciones IP eviten la VPN para velocidades rápidas</value>
+    <value>Permita que las aplicación de confianza y direcciones IP eviten la VPN para velocidades rápidas</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet3">
     <value>Acceda a contenido de su hogar y local cuando navegue desde el extranjero</value>

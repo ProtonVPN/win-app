@@ -419,7 +419,7 @@
 • Dnevnik namestitve gonilnikov
 • Seznam nameščenih aplikacij
 • Dnevniki aplikacije Proton VPN in storitve Proton VPN
-• Seznam omrežnih adapterjev
+• Seznam omrežnih kartic
 • Informacije o usmerjevalni tabeli</value>
     <comment>The text inside info tooltip in Issue Report window</comment>
   </data>
@@ -1630,7 +1630,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The text on Upgrade button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_AllAdaptersInUse">
-    <value>Vaš omrežni vmesnik je trenutno v uporabi.</value>
+    <value>Vaša omrežna kartica je trenutno v uporabi.</value>
     <comment>The error description displayed in Disconnect modal window if all TAP adapters are in use</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_Identifying">
@@ -1646,7 +1646,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The error description displayed in Disconnect modal window if disconnected because there are no servers available to connect to</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoTap">
-    <value>Omrežni adapter manjka.</value>
+    <value>Omrežna kartica manjka.</value>
     <comment>The error description displayed in Disconnect modal window if TAP adapter is not installed</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_OldVersion">
@@ -1881,10 +1881,10 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>Preklopite na TAP adapter</value>
   </data>
   <data name="Dialogs_TunInUse_msg">
-    <value>Proton VPN se ni mogel povezati, ker je omrežni adapter TUN že v uporabi. Prekinite povezavo vseh aktivnih VPN-jev in poskusite znova. Druga možnost je, da preklopite na adapter TAP (lahko spremenite nazaj na TUN v naprednih nastavitvah).</value>
+    <value>Proton VPN se ni mogel povezati, ker je omrežna kartica TUN že v uporabi. Prekinite povezavo vseh aktivnih VPN-jev in poskusite znova. Druga možnost je, da preklopite na kartico TAP (lahko spremenite nazaj na TUN v naprednih nastavitvah).</value>
   </data>
   <data name="Dialogs_WireGuardAdapterInUse_msg">
-    <value>Proton VPN se ni mogel povezati, ker je omrežni adapter WireGuard že v uporabi. Prekinite povezavo vseh aktivnih VPN-jev in poskusite znova. Druga možnost je, da protokole zamenjate v naprednih nastavitvah.</value>
+    <value>Proton VPN se ni mogel povezati, ker je omrežna kartica WireGuard že v uporabi. Prekinite povezavo vseh aktivnih VPN-jev in poskusite znova. Druga možnost je, da protokole zamenjate v naprednih nastavitvah.</value>
   </data>
   <data name="Dialogs_btn_Cancel">
     <value>Prekliči</value>
@@ -3363,7 +3363,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Shranite želeni strežnik, mesto ali državo.</value>
   </data>
   <data name="Upsell_Profiles_Bullet2">
-    <value>Nastavite protokole po meri in vrhunske funkcije VPN.</value>
+    <value>Nastavite protokole po meri in premijske funkcije VPN.</value>
   </data>
   <data name="Upsell_Profiles_Bullet3">
     <value>Nastavite samodejno povezavo za še hitrejši dostop.</value>

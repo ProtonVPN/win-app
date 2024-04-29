@@ -1999,7 +1999,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page for resetting user password)</comment>
   </data>
   <data name="Login_msg_IncorrectTwoFactorCode">
-    <value>Virheellinen toisen vaiheen todennuskoodi</value>
+    <value>Virheellinen toisen vaiheen vahvistuskoodi</value>
   </data>
   <data name="Login_msg_TwoFactorAuthFailed">
     <value>Virheelliset kirjautumistiedot. Yritä uudelleen.</value>
@@ -2233,7 +2233,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <value>Käyttääksesi porttiohjausta, &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;yhdistä&lt;/Hyperlink&gt; palvelimeen, joka tukee P2P-tiedostonjakoa.</value>
   </data>
   <data name="ProfileConnector_msg_MissingAuthCert">
-    <value>Proton VPN ei voinut noutaa todennusvarmennetta verkko-ongelman vuoksi.</value>
+    <value>Proton VPN epäonnistui todennusvarmenteen noudossa verkko-ongelman vuoksi.</value>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">
     <value>Nopein käytettävissä oleva palvelin</value>
@@ -2623,7 +2623,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The label displayed before entry country name in Server list of Countries tab of Sidebar section of main app window when Secure Core mode is enabled</comment>
   </data>
   <data name="Servers_msg_CantConnect_CertificateExpired">
-    <value>Proton VPN ei voinut päivittää päätelaitteen todennusvarmennetta.</value>
+    <value>Proton VPN ei voinut päivittää päätteen todennusvarmennetta.</value>
   </data>
   <data name="Servers_msg_CantConnect_Maintenance">
     <value>Palvelin johon yrität yhdistää on huollossa. Valitse eri palvelin tai profiili.</value>
