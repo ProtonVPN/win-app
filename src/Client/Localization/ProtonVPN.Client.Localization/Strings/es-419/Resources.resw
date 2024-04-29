@@ -172,7 +172,7 @@
     <value>Proton VPN no pudo obtener el certificado de autenticación debido a un problema de red.</value>
   </data>
   <data name="Connection_Error_NoServers">
-    <value>No hay servidores disponibles ahora mismo para su selección. Seleccione una opción diferente.</value>
+    <value>No hay servidores disponibles ahora mismo para la selección. Seleccione una opción diferente.</value>
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>Falta el adaptador de red.</value>
@@ -181,7 +181,7 @@
     <value>Notificar un problema</value>
   </data>
   <data name="Connection_Error_RpcServerUnavailable">
-    <value>Proton VPN no se puede conectarse porque el servidor RPC no está disponible en su sistema.</value>
+    <value>Proton VPN no se puede conectarse porque el servidor RPC no está disponible en el sistema.</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
     <value>Ha alcanzado el límite máximo de dispositivos. Desconecte otro dispositivo para conectar este o actualice a un plan PLUS para conectar hasta 10 dispositivos al mismo tiempo.</value>
@@ -1356,7 +1356,7 @@
   <data name="Dialogs_Latency_Description">
     <value>La latencia muestra cuánto tarda un servidor en responder a las solicitudes.
 
-La latencia alta puede ralentizar su conexión.</value>
+La latencia alta puede ralentizar la conexión.</value>
   </data>
   <data name="Dialogs_Latency_HighRange_Description">
     <value>La VPN puede funcionar más lenta de lo normal</value>
@@ -1403,10 +1403,10 @@ La latencia alta puede ralentizar su conexión.</value>
   <data name="Dialogs_P2P_WhyUse_Description">
     <value>• Mayores velocidades de carga y descarga
 • Sin registros de actividad
-• Oculta su dirección IP de su proveedor de servicios y de sus pares</value>
+• Oculta la dirección IP del proveedor de servicios y de sus pares</value>
   </data>
   <data name="Dialogs_Protocol_Description">
-    <value>Un protocolo es un conjunto de instrucciones que su dispositivo sigue para conectarse y comunicarse con un servidor.</value>
+    <value>Un protocolo es un conjunto de instrucciones que el dispositivo sigue para conectarse y comunicarse con un servidor.</value>
   </data>
   <data name="Dialogs_Protocol_SwitchHeader">
     <value>Cambiar protocolo VPN</value>
@@ -1440,7 +1440,7 @@ La latencia alta puede ralentizar su conexión.</value>
     <value>¿No funcionó?</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes_Header">
-    <value>Estos consejos podrían ayudarle a resolver su problema más rápido.</value>
+    <value>Estos consejos podrían ayudarle a resolver el problema más rápido.</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_DoneAction">
     <value>Hecho</value>
@@ -1501,7 +1501,7 @@ estándar</value>
   <data name="Dialogs_ServerLoad_Description">
     <value>La carga del servidor muestra qué tan cerca está un servidor de su capacidad máxima.
 
-Una carga alta del servidor puede ralentizar su conexión.</value>
+Una carga alta del servidor puede ralentizar la conexión.</value>
   </data>
   <data name="Dialogs_ServerLoad_HighRange_Description">
     <value>La VPN puede funcionar más lenta de lo normal</value>
@@ -1718,7 +1718,7 @@ Smart Routing normalmente se usa para librarse de leyes anti privacidad y otras 
     <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
   </data>
   <data name="Home_ConnectionDetails_HideIP_Description">
-    <value>Oculte su dirección IP</value>
+    <value>Oculte la dirección IP</value>
   </data>
   <data name="Home_ConnectionDetails_Landmark">
     <value>Detalles de la conexión</value>
@@ -1845,7 +1845,7 @@ detenidos</value>
     <value>Código incorrecto. Vuelva a intentarlo.</value>
   </data>
   <data name="Login_Error_SessionExpired">
-    <value>Su sesión ha expirado. Inicie sesión de nuevo.</value>
+    <value>La sesión ha expirado. Inicie sesión de nuevo.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_SsoAuthFailed">
@@ -1868,7 +1868,7 @@ detenidos</value>
     <value>Correo</value>
   </data>
   <data name="Login_Form_ForgotUsername">
-    <value>¿Olvidó su nombre de usuario?</value>
+    <value>¿Olvidó el nombre de usuario?</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_Help">
@@ -1891,7 +1891,7 @@ detenidos</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="Login_Form_SignInWithPassword">
-    <value>Iniciar sesión con su contraseña</value>
+    <value>Iniciar sesión con la contraseña</value>
   </data>
   <data name="Login_Form_SignInWithSso">
     <value>Iniciar sesión con SSO</value>
@@ -1908,7 +1908,7 @@ detenidos</value>
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle">
-    <value>Ingrese el código de su app de autenticación</value>
+    <value>Ingrese el código de la aplicación de autenticación</value>
   </data>
   <data name="Login_TwoFactorForm_Title">
     <value>Autenticación de dos factores</value>
@@ -1940,7 +1940,7 @@ detenidos</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Configure este número en su aplicación BitTorrent para una mayor velocidad.</value>
+    <value>Configure este número en la aplicación BitTorrent para una mayor velocidad.</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Servidor gratuito más rápido</value>
@@ -1988,13 +1988,13 @@ detenidos</value>
     <value>Reintentar</value>
   </data>
   <data name="Settings_About_Update_Description">
-    <value>Aproveche al máximo su VPN actualizando a la última versión de la app.</value>
+    <value>Aproveche al máximo su VPN actualizando a la última versión de la aplicación.</value>
   </data>
   <data name="Settings_AppVersion">
-    <value>Versión de la app</value>
+    <value>Versión de la aplicación</value>
   </data>
   <data name="Settings_Censorship_Footer">
-    <value>Estas estadísticas no contienen su dirección IP y no pueden usarse para identificarle. Nunca las compartiremos con terceros.</value>
+    <value>Estas estadísticas no contienen la dirección IP y no pueden usarse para identificarle. Nunca las compartiremos con terceros.</value>
   </data>
   <data name="Settings_Censorship_ShareCrashReports">
     <value>Compartir reportes de error anónimos</value>
@@ -2059,7 +2059,7 @@ detenidos</value>
     <value>Conexiones LAN</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
-    <value>Le permite conectarse a impresoras, altavoces y otros dispositivos en su red local.</value>
+    <value>Le permite conectarse a impresoras, altavoces y otros dispositivos en la red local.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>Tipo de NAT</value>
@@ -2071,13 +2071,13 @@ detenidos</value>
     <value>¿Activar NAT moderada?</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Description">
-    <value>Seleccione un tipo de traducción de dirección de red para su conexión.</value>
+    <value>Seleccione un tipo de traducción de dirección de red para la conexión.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate">
     <value>Moderada (tipo 2)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
-    <value>Alguna restricción en los datos que entran en su red. Esta opción es mejor para juegos en línea.</value>
+    <value>Alguna restricción en los datos que entran en la red. Esta opción es mejor para juegos en línea.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict">
     <value>Estricta (tipo 3)</value>
@@ -2101,7 +2101,7 @@ detenidos</value>
     <value>Avanzado</value>
   </data>
   <data name="Settings_Features_KillSwitch_Advanced_Description">
-    <value>Solo permite el acceso a internet cuando esté conectado a Proton VPN. El interruptor de bloqueo avanzado permanecerá activo incluso cuando reinicie su dispositivo.</value>
+    <value>Solo permite el acceso a internet cuando esté conectado a Proton VPN. El interruptor de bloqueo avanzado permanecerá activo incluso cuando reinicie el dispositivo.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Conflict_Description">
     <value>Esto desactivará el túnel dividido.</value>
@@ -2110,10 +2110,10 @@ detenidos</value>
     <value>¿Activar el interruptor de bloqueo?</value>
   </data>
   <data name="Settings_Features_KillSwitch_Description">
-    <value>Protege su dirección IP al desconectarle de Internet si pierde la conexión VPN.</value>
+    <value>Protege la dirección IP al desconectarle de Internet si pierde la conexión VPN.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Footer">
-    <value>Cuando el interruptor de bloqueo está activado, no podrá conectarse a sitios web ni aplicaciones excluidas de su conexión VPN a través de un túnel dividido.</value>
+    <value>Cuando el interruptor de bloqueo está activado, no podrá conectarse a sitios web ni aplicaciones excluidas de la conexión VPN a través de un túnel dividido.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Standard">
     <value>Estándar</value>
@@ -2131,7 +2131,7 @@ detenidos</value>
     <value>¿Activar NetShield?</value>
   </data>
   <data name="Settings_Features_NetShield_Description">
-    <value>Protéjase de los anuncios, malware y rastreadores en sitios web y apps.</value>
+    <value>Protéjase de los anuncios, malware y rastreadores en sitios web y aplicaciones.</value>
   </data>
   <data name="Settings_Features_NetShield_Footer">
     <value>Algunos sitios web podrían no cargarse bien cuando se bloquean los anuncios y rastreadores.</value>
@@ -2152,7 +2152,7 @@ detenidos</value>
     <value>¿Activar el reenvío de puertos?</value>
   </data>
   <data name="Settings_Features_PortForwarding_Description">
-    <value>Evada los firewalls para conectarse a servidores P2P y dispositivos en su red local.</value>
+    <value>Evada los firewalls para conectarse a servidores P2P y dispositivos en la red local.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Footer">
     <value>Para usar el reenvío de puertos conéctese a un servidor que admita P2P.</value>
@@ -2170,10 +2170,10 @@ detenidos</value>
     <value>Túnel dividido</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_Add">
-    <value>Añadir app</value>
+    <value>Añadir aplicación</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_FilesFilterName">
-    <value>Archivos de la app</value>
+    <value>Archivos de la aplicación</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_Header">
@@ -2181,7 +2181,7 @@ detenidos</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_Remove">
-    <value>Quitar app</value>
+    <value>Quitar aplicación</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Conflict_Description">
     <value>Esto desactivará el interruptor de bloqueo.</value>
@@ -2190,13 +2190,13 @@ detenidos</value>
     <value>¿Activar el túnel dividido?</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Description">
-    <value>Personalice su conexión al decidir cuáles apps y direcciones IP serán protegidas con VPN.</value>
+    <value>Personalice la conexión al decidir cuáles aplicaciones y direcciones IP serán protegidas con VPN.</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Inverse">
     <value>Inverso</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Inverse_Description">
-    <value>Solo las apps y direcciones IP seleccionadas se conectan mediante VPN, el resto del tráfico está desprotegido.</value>
+    <value>Solo las aplicaciones y direcciones IP seleccionadas se conectan con VPN, el resto del tráfico está desprotegido.</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Add">
     <value>Añadir IP</value>
@@ -2215,7 +2215,7 @@ detenidos</value>
     <value>Estándar</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Standard_Description">
-    <value>Las apps y direcciones IP seleccionadas están excluidas de la conexión VPN</value>
+    <value>Las aplicaciones y direcciones IP seleccionadas están excluidas de la conexión VPN</value>
   </data>
   <data name="Settings_General">
     <value>General</value>
@@ -2239,7 +2239,7 @@ detenidos</value>
     <value>Inicio automático</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Description">
-    <value>Proton VPN se abrirá automáticamente cuando inicie sesión en su dispositivo</value>
+    <value>Proton VPN se abrirá automáticamente cuando inicie sesión en el dispositivo</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Desktop">
     <value>Abrir en escritorio</value>
@@ -2305,7 +2305,7 @@ detenidos</value>
     <value>Ajustes</value>
   </data>
   <data name="Settings_Protocols_Explanation">
-    <value>Un protocolo VPN determina cómo se mueven los datos entre un servidor VPN y su dispositivo.</value>
+    <value>Un protocolo VPN determina cómo se mueven los datos entre un servidor VPN y el dispositivo.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnTcp_Description">
     <value>Establecido, comprobado y seguro. OpenVPN es confiable en condiciones de red pobres pero podría no ser rápido como otros protocolos.</value>
@@ -2323,7 +2323,7 @@ detenidos</value>
     <value>Recomendado</value>
   </data>
   <data name="Settings_Protocols_Smart_Description">
-    <value>Selecciona automáticamente el mejor protocolo para su conexión.</value>
+    <value>Selecciona automáticamente el mejor protocolo para la conexión.</value>
   </data>
   <data name="Settings_Protocols_Smart_Title">
     <value>Smart</value>
@@ -2389,7 +2389,7 @@ detenidos</value>
     <value>Centro de soporte</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
-    <value>Aumente la velocidad de su conexión hasta 400% con tecnologías que mejoran el rendimiento.</value>
+    <value>Aumente la velocidad de la conexión hasta 400% con tecnologías que mejoran el rendimiento.</value>
   </data>
   <data name="Tray_Actions_ExitApplication">
     <value>Salir</value>

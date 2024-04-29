@@ -1849,13 +1849,13 @@ estetty</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_SsoAuthFailed">
-    <value>SSO-todennus epäonnistui. Yritä uudelleen.</value>
+    <value>Kertakirjautuminen epäonnistui. Yritä uudelleen.</value>
   </data>
   <data name="Login_Error_TwoFactorAuthFailed">
     <value>Virheelliset kirjautumistiedot. Yritä uudelleen.</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
-    <value>Kaksivaiheinen todennus epäonnistui. Kirjaudu uudelleen.</value>
+    <value>Kaksivaiheinen tunnistautuminen epäonnistui. Kirjaudu uudelleen.</value>
   </data>
   <data name="Login_Form">
     <value>Kirjautumislomake</value>
@@ -1911,7 +1911,7 @@ estetty</value>
     <value>Syötä todennussovelluksen näyttämä koodi</value>
   </data>
   <data name="Login_TwoFactorForm_Title">
-    <value>Kaksivaiheinen todennus</value>
+    <value>Kaksivaiheinen tunnistautuminen</value>
   </data>
   <data name="Login_TwoFactor_Digit1">
     <value>Ensimmäinen numero</value>
