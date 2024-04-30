@@ -24,6 +24,8 @@ namespace ProtonVPN.Vpn.Common;
 
 public class VpnState
 {
+    public static VpnState Default => new(VpnStatus.Disconnected, VpnProtocol.Smart);
+
     public VpnStatus Status { get; }
     public VpnError Error { get; }
     public string LocalIp { get; }

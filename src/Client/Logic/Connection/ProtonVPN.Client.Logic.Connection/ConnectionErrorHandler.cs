@@ -43,6 +43,7 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
     private readonly IConnectionManager _connectionManager;
     private readonly IVpnPlanUpdater _vpnPlanUpdater;
     private VpnErrorTypeIpcEntity _error = VpnErrorTypeIpcEntity.None;
+    private VpnStatusIpcEntity _status = VpnStatusIpcEntity.Disconnected;
 
     public ConnectionErrorHandler(
         ILogger logger,
@@ -62,12 +63,14 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
         _vpnPlanUpdater = vpnPlanUpdater;
     }
 
-    public async Task<ConnectionErrorHandlerResult> HandleAsync(VpnErrorTypeIpcEntity ipcError)
+    public async Task<ConnectionErrorHandlerResult> HandleAsync(VpnStateIpcEntity vpnState)
     {
-        VpnError error = _entityMapper.Map<VpnErrorTypeIpcEntity, VpnError>(ipcError);
+        VpnError error = _entityMapper.Map<VpnErrorTypeIpcEntity, VpnError>(vpnState.Error);
 
-        if (_error == ipcError)
+        if (_error == vpnState.Error && _status == vpnState.Status)
         {
+            // If there is a certificate error, check if the certificate is old and refresh if old, regardless if the error is repeating.
+            // And always send the certificate to the service to ensure it is up-to-date with the most recent certificate, regardless if updated or not.
             if (error == VpnError.CertificateExpired || error == VpnError.PlanNeedsToBeUpgraded || error.RequiresCertificateUpdate())
             {
                 await _connectionCertificateManager.RequestNewCertificateAsync(isToSendMessageIfCertificateIsNotRefreshed: true);
@@ -75,7 +78,22 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
             return ConnectionErrorHandlerResult.SameAsLast;
         }
 
-        _error = ipcError;
+        _error = vpnState.Error;
+        _status = vpnState.Status;
+
+        // If the service disconnects and it is not the user intent, reconnect.
+        if (vpnState.Status == VpnStatusIpcEntity.Disconnected &&
+            vpnState.Error == VpnErrorTypeIpcEntity.None &&
+            _connectionManager.CurrentConnectionIntent is not null)
+        {
+            return await ReconnectAsync();
+        }
+
+        // For the lines below this if-block, only address the error if the error is not the same, regardless if the status changed or not.
+        if (_error == vpnState.Error)
+        {
+            return ConnectionErrorHandlerResult.SameAsLast;
+        }
 
         if (error == VpnError.NoTapAdaptersError)
         {
