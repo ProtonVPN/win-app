@@ -56,8 +56,7 @@ public class VpnStateIpcEntityHandler : IEventMessageReceiver<VpnStateIpcEntity>
 
     private async Task HandleAsync(VpnStateIpcEntity message)
     {
-        ConnectionErrorHandlerResult connectionErrorHandlerResponse =
-        await _connectionErrorHandler.HandleAsync(message.Error);
+        ConnectionErrorHandlerResult connectionErrorHandlerResponse = await _connectionErrorHandler.HandleAsync(message);
 
         if ((message.Error != VpnErrorTypeIpcEntity.None && connectionErrorHandlerResponse == ConnectionErrorHandlerResult.SameAsLast) ||
             (message.Error == VpnErrorTypeIpcEntity.NoneKeepEnabledKillSwitch && message.Status == VpnStatusIpcEntity.Disconnected))

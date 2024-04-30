@@ -93,6 +93,7 @@ internal partial class VpnService : ServiceBase
         try
         {
             _grpcServer.CreateAndStart();
+            _vpnConnection.Disconnect();
         }
         catch (Exception ex)
         {

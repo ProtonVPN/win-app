@@ -24,5 +24,5 @@ namespace ProtonVPN.Client.Logic.Connection.Contracts;
 
 public interface IConnectionErrorHandler
 {
-    Task<ConnectionErrorHandlerResult> HandleAsync(VpnErrorTypeIpcEntity ipcError);
+    Task<ConnectionErrorHandlerResult> HandleAsync(VpnStateIpcEntity vpnState);
 }

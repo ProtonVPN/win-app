@@ -152,7 +152,7 @@ public static class DefaultConfiguration
 
     public static bool IsCertificateValidationEnabled => true;
 
-    public static TimeSpan ServiceCheckInterval => TimeSpan.FromSeconds(30);
+    public static TimeSpan ServiceCheckInterval => TimeSpan.FromSeconds(10);
     public static TimeSpan ClientConfigUpdateInterval => TimeSpan.FromHours(12);
     public static TimeSpan FeatureFlagsUpdateInterval => TimeSpan.FromHours(2);
     public static TimeSpan ConnectionCertificateUpdateInterval => TimeSpan.FromMinutes(5);

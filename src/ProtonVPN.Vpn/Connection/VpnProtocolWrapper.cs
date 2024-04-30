@@ -67,6 +67,8 @@ internal class VpnProtocolWrapper : ISingleVpnConnection
     {
         if (VpnConnection == null)
         {
+            _openVpnConnection.Disconnect(error);
+            _wireGuardConnection.Disconnect(error);
             OnStateChanged(this, new EventArgs<VpnState>(new VpnState(VpnStatus.Disconnected, _vpnProtocol)));
         }
         else

@@ -53,7 +53,7 @@ namespace ProtonVPN.Service.ProcessCommunication
         private readonly IPortMappingProtocolClient _portMappingProtocolClient;
         private readonly INetShieldStatisticEventManager _netShieldStatisticEventManager;
 
-        private VpnState _vpnState;
+        private VpnState _vpnState = VpnState.Default;
         private PortForwardingState _portForwardingState;
         private ConnectionDetails _connectionDetails;
         private NetShieldStatistic _netShieldStatistic;
@@ -130,18 +130,14 @@ namespace ProtonVPN.Service.ProcessCommunication
 
         public async Task SendCurrentVpnStateAsync()
         {
-            VpnState vpnState = _vpnState;
-            if (vpnState is not null)
-            {
-                await SendStateChangeAsync(vpnState);
-            }
+            await SendStateChangeAsync(_vpnState);
         }
 
         private async void OnVpnStateChanged(object sender, EventArgs<VpnState> e)
         {
             VpnState state = e.Data;
             _logger.Info<AppServiceLog>($"VPN state changed - {GetVpnStatusLogMessage(state)}");
-            _vpnState = state;
+            _vpnState = state ?? VpnState.Default;
             await SendStateChangeAsync(state);
         }
 
@@ -246,7 +242,7 @@ namespace ProtonVPN.Service.ProcessCommunication
 
         public async void OnServiceSettingsChanged(MainSettingsIpcEntity settings)
         {
-            VpnState vpnState = _vpnState ?? new VpnState(VpnStatus.Disconnected, VpnProtocol.Smart);
+            VpnState vpnState = _vpnState;
             if (vpnState.Status == VpnStatus.Disconnected)
             {
                 _logger.Info<ProcessCommunicationLog>($"Sending VPN Service Settings Change. " +
