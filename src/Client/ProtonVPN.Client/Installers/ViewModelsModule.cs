@@ -125,24 +125,10 @@ public class ViewModelsModule : Module
         RegisterViewModel<GalleryItemViewModel>(builder);
         RegisterViewModel<TroubleshootingOverlayViewModel>(builder);
 
-        RegisterViewModel<UI.Gateways.GatewaysViewModel>(builder); // legacy
-        RegisterViewModel<UI.Countries.CountriesViewModel>(builder); // legacy
-        RegisterViewModel<UI.Countries.CountryTabViewModel>(builder); // legacy
-        RegisterViewModel<UI.Countries.CountriesFeatureTabs.AllCountriesPageViewModel>(builder); // legacy
-        RegisterViewModel<UI.Countries.CountriesFeatureTabs.SecureCoreCountriesPageViewModel>(builder); // legacy
-        RegisterViewModel<UI.Countries.CountriesFeatureTabs.P2PCountriesPageViewModel>(builder); // legacy
-        RegisterViewModel<UI.Countries.CountriesFeatureTabs.TorCountriesPageViewModel>(builder); // legacy
-        RegisterViewModel<UI.Countries.CountryFeatureTabs.SecureCoreCountryPageViewModel>(builder); // legacy
-        RegisterViewModel<UI.Countries.CountryFeatureTabs.TorServersPageViewModel>(builder); // legacy
-        RegisterViewModel<UI.Countries.CountryFeatureTabs.CitiesPageViewModel>(builder); // legacy
-        RegisterViewModel<UI.Countries.CountryFeatureTabs.P2PCitiesPageViewModel>(builder); // legacy
-        RegisterViewModel<UI.Countries.Controls.NoSearchResultsViewModel>(builder); // legacy
-
         RegisterViewModel<SidebarHomeViewModel>(builder);
         RegisterViewModel<SidebarGatewaysHeaderViewModel>(builder);
         RegisterViewModel<SidebarGatewaysViewModel>(builder);
         RegisterViewModel<SidebarConnectionsHeaderViewModel>(builder);
-        RegisterViewModel<SidebarCountriesLegacyViewModel>(builder);
         RegisterViewModel<SidebarCountriesViewModel>(builder);
         RegisterViewModel<SidebarP2PCountriesViewModel>(builder);
         RegisterViewModel<SidebarSecureCoreCountriesViewModel>(builder);

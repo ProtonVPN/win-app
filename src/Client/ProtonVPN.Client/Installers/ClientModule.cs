@@ -31,8 +31,6 @@ using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.UI.Connections.Common.Factories;
-using ProtonVPN.Client.UI.Countries;
-using ProtonVPN.Client.UI.Gateways.Factories;
 using ProtonVPN.Client.UI.Settings.Pages.About;
 using ProtonVPN.Common.Legacy.OS.DeviceIds;
 using ProtonVPN.Common.Legacy.OS.Net.NetworkInterface;
@@ -56,8 +54,6 @@ public class ClientModule : Module
         builder.RegisterType<MainViewNavigator>().As<IMainViewNavigator>().SingleInstance();
         builder.RegisterType<LoginViewNavigator>().As<ILoginViewNavigator>().SingleInstance();
         builder.RegisterType<ReportIssueViewNavigator>().As<IReportIssueViewNavigator>().SingleInstance();
-        builder.RegisterType<CountriesFeatureTabViewNavigator>().As<ICountriesFeatureTabsViewNavigator>().SingleInstance();
-        builder.RegisterType<CountryFeatureTabViewNavigator>().As<ICountryFeatureTabsViewNavigator>().SingleInstance();
         builder.RegisterType<UpsellCarouselViewNavigator>().As<IUpsellCarouselViewNavigator>().SingleInstance();
         builder.RegisterType<DialogActivator>().As<IDialogActivator>().SingleInstance();
         builder.RegisterType<ReportIssueDialogActivator>().AsImplementedInterfaces().SingleInstance();
@@ -74,8 +70,6 @@ public class ClientModule : Module
         builder.RegisterType<SystemState>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<SystemProcesses>().As<IOsProcesses>().SingleInstance();
 
-        builder.RegisterType<CountryViewModelsFactory>().SingleInstance();
-        builder.RegisterType<GatewayViewModelsFactory>().SingleInstance();
         builder.RegisterType<ReleaseViewModelFactory>().SingleInstance();
         builder.RegisterType<LocationItemFactory>().SingleInstance();
 

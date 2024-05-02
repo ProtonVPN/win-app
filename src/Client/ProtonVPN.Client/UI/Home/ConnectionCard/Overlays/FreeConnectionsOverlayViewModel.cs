@@ -58,9 +58,9 @@ public partial class FreeConnectionsOverlayViewModel : OverlayViewModelBase,
         IUrls urls,
         IWebAuthenticator webAuthenticator)
         : base(localizationProvider,
-            logger,
-            issueReporter,
-            overlayActivator)
+               logger,
+               issueReporter,
+               overlayActivator)
     {
         _serversLoader = serversLoader;
         _urls = urls;

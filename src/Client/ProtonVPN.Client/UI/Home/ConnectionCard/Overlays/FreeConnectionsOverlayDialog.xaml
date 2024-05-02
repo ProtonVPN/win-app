@@ -26,7 +26,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                xmlns:models="using:ProtonVPN.Client.Models"
                xmlns:toolkit="using:CommunityToolkit.WinUI.Controls" 
-               xmlns:countries="using:ProtonVPN.Client.UI.Countries.Controls"
                Title="{x:Bind ViewModel.Localizer.Get('Dialogs_FreeConnections_Title')}"
                x:DefaultBindMode="OneWay"
                CloseButtonCommand="{x:Bind ViewModel.CloseOverlayCommand}"
@@ -69,9 +68,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-        <countries:UpsellCountryBannerControl Margin="0,12,0,0"  
-                                              Image="{StaticResource WorldwideCoverageIllustrationSource}"
-                                              Description="{x:Bind ViewModel.Localizer.Get('FreeConnections_WorldwideCoverageUpsell')}"
-                                              Command="{x:Bind ViewModel.UpgradePlanCommand}"/>
+        <controls:UpsellBannerControl Margin="0,12,0,0"  
+                                      Image="{StaticResource WorldwideCoverageIllustrationSource}"
+                                      Description="{x:Bind ViewModel.Localizer.Get('FreeConnections_WorldwideCoverageUpsell')}"
+                                      Command="{x:Bind ViewModel.UpgradePlanCommand}"/>
     </StackPanel>
 </ContentDialog>

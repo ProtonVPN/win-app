@@ -166,18 +166,6 @@ public class ViewMapper : IViewMapper
         ConfigurePage<AboutViewModel, AboutPage>();
         ConfigurePage<LicensingViewModel, LicensingPage>();
 
-        ConfigurePage<UI.Gateways.GatewaysViewModel, UI.Gateways.GatewaysPage>(); // legacy
-        ConfigurePage<UI.Countries.CountriesViewModel, UI.Countries.CountriesPage>(); // legacy
-        ConfigurePage<UI.Countries.CountryTabViewModel, UI.Countries.CountryPage>(); // legacy
-        ConfigurePage<UI.Countries.CountriesFeatureTabs.AllCountriesPageViewModel, UI.Countries.CountriesFeatureTabs.AllCountriesPage>(); // legacy
-        ConfigurePage<UI.Countries.CountriesFeatureTabs.SecureCoreCountriesPageViewModel, UI.Countries.CountriesFeatureTabs.SecureCoreCountriesPage>(); // legacy
-        ConfigurePage<UI.Countries.CountriesFeatureTabs.P2PCountriesPageViewModel, UI.Countries.CountriesFeatureTabs.P2PCountriesPage>(); // legacy
-        ConfigurePage<UI.Countries.CountriesFeatureTabs.TorCountriesPageViewModel, UI.Countries.CountriesFeatureTabs.TorCountriesPage>(); // legacy
-        ConfigurePage<UI.Countries.CountryFeatureTabs.CitiesPageViewModel, UI.Countries.CountryFeatureTabs.CitiesPage>(); // legacy
-        ConfigurePage<UI.Countries.CountryFeatureTabs.P2PCitiesPageViewModel, UI.Countries.CountryFeatureTabs.P2PCitiesPage>(); // legacy
-        ConfigurePage<UI.Countries.CountryFeatureTabs.SecureCoreCountryPageViewModel, UI.Countries.CountryFeatureTabs.SecureCoreCountryPage>(); // legacy
-        ConfigurePage<UI.Countries.CountryFeatureTabs.TorServersPageViewModel, UI.Countries.CountryFeatureTabs.TorServersPage>(); // legacy
-
         ConfigureDebugPages();
     }
 
