@@ -692,6 +692,7 @@
         <None Remove="Controls\DualCommandsRowControl.xaml" />
         <None Remove="Controls\ServerLoadControl.xaml" />
         <None Remove="Assets\Icons\ActiveDot.xaml" />
+        <None Remove="Controls\UpsellBannerControl.xaml" />
         <None Remove="Gallery\Controls\ColorsControl.xaml" />
         <None Remove="Gallery\Controls\MapConnectionControl.xaml" />
         <None Remove="Gallery\Controls\MapPinControl.xaml" />
@@ -1965,6 +1966,11 @@
         <Content Update="Assets\Illustrations\wrong-country.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Controls\UpsellBannerControl.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
     </ItemGroup>
     <ItemGroup>
       <Page Update="Styles\Controls\PageHeaderContentControlStyles.xaml">

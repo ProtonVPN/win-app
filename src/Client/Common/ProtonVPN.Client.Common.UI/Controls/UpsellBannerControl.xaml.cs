@@ -22,21 +22,18 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
+namespace ProtonVPN.Client.Common.UI.Controls;
 
-namespace ProtonVPN.Client.UI.Countries.Controls;
-
-public sealed partial class UpsellCountryBannerControl : UserControl
+public sealed partial class UpsellBannerControl : UserControl
 {
     public static readonly DependencyProperty CommandProperty =
-        DependencyProperty.Register(nameof(Command), typeof(ICommand), typeof(UpsellCountryBannerControl), new PropertyMetadata(default));
+    DependencyProperty.Register(nameof(Command), typeof(ICommand), typeof(UpsellBannerControl), new PropertyMetadata(default));
 
     public static readonly DependencyProperty ImageProperty =
-        DependencyProperty.Register(nameof(Image), typeof(ImageSource), typeof(UpsellCountryBannerControl), new PropertyMetadata(default));
+        DependencyProperty.Register(nameof(Image), typeof(ImageSource), typeof(UpsellBannerControl), new PropertyMetadata(default));
 
     public static readonly DependencyProperty DescriptionProperty =
-        DependencyProperty.Register(nameof(Description), typeof(string), typeof(UpsellCountryBannerControl), new PropertyMetadata(default));
+        DependencyProperty.Register(nameof(Description), typeof(string), typeof(UpsellBannerControl), new PropertyMetadata(default));
 
     public ICommand Command
     {
@@ -56,7 +53,7 @@ public sealed partial class UpsellCountryBannerControl : UserControl
         set => SetValue(DescriptionProperty, value);
     }
 
-    public UpsellCountryBannerControl()
+    public UpsellBannerControl()
     {
         InitializeComponent();
     }
