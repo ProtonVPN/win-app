@@ -41,6 +41,7 @@ public class ConnectedServerChecker : PollingObserverBase,
     IEventMessageReceiver<ConnectionStatusChanged>,
     IEventMessageReceiver<SettingChangedMessage>
 {
+    private readonly ILogger _logger;
     private readonly ISettings _settings;
     private readonly IConnectionManager _connectionManager;
     private readonly IServersLoader _serversLoader;
@@ -58,6 +59,7 @@ public class ConnectedServerChecker : PollingObserverBase,
         IServersUpdater serversUpdater) 
         : base(logger, issueReporter)
     {
+        _logger = logger;
         _settings = settings;
         _connectionManager = connectionManager;
         _serversLoader = serversLoader;
@@ -65,7 +67,7 @@ public class ConnectedServerChecker : PollingObserverBase,
         _serversUpdater = serversUpdater;
     }
 
-    protected async override Task OnTriggerAsync()
+    protected override async Task OnTriggerAsync()
     {
         await CheckIfCurrentServerIsOnlineAsync();
     }
@@ -135,6 +137,9 @@ public class ConnectedServerChecker : PollingObserverBase,
                     $"Reconnecting. (Physical Server ID '{physicalServerId}')");
                 MarkServerAsUnderMaintenance(server, result.Value.Server);
             }
+
+            _logger.Info<AppLog>($"Current server {server.Name} load: {server.Load}, score: {server.Score}.");
+
             return isServerUnderMaintenance;
         }
         catch (Exception ex)
