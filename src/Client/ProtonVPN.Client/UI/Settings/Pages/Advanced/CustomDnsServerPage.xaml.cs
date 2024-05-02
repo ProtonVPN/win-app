@@ -21,11 +21,18 @@ namespace ProtonVPN.Client.UI.Settings.Pages.Advanced;
 
 public sealed partial class CustomDnsServersPage
 {
+    public CustomDnsServersViewModel ViewModel { get; }
+
     public CustomDnsServersPage()
     {
         ViewModel = App.GetService<CustomDnsServersViewModel>();
         InitializeComponent();
+
+        ViewModel.ResetContentScrollRequested += OnResetContentScrollRequested;
     }
 
-    public CustomDnsServersViewModel ViewModel { get; }
+    private void OnResetContentScrollRequested(object? sender, EventArgs e)
+    {
+        PageContentHost.ResetContentScroll();
+    }
 }

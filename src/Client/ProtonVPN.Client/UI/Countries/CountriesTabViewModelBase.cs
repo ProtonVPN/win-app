@@ -137,9 +137,9 @@ public abstract partial class CountriesTabViewModelBase : PageViewModelBase<ICou
         NotifyPropertyChanges();
     }
 
-    public override void OnNavigatedTo(object parameter)
+    public override void OnNavigatedTo(object parameter, bool isBackNavigation)
     {
-        base.OnNavigatedTo(parameter);
+        base.OnNavigatedTo(parameter, isBackNavigation);
 
         InvalidateUpsellBannerVisibility();
 

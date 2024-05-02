@@ -77,9 +77,9 @@ public partial class ContactFormViewModel : PageViewModelBase<IReportIssueViewNa
         ViewNavigator.Window.Closed += OnReportIssueWindowClosed;
     }
 
-    public override void OnNavigatedTo(object parameter)
+    public override void OnNavigatedTo(object parameter, bool isBackNavigation)
     {
-        base.OnNavigatedTo(parameter);
+        base.OnNavigatedTo(parameter, isBackNavigation);
 
         Category = parameter as IssueCategory;
     }

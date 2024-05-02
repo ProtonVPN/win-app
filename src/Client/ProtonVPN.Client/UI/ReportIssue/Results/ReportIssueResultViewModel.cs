@@ -53,9 +53,9 @@ public partial class ReportIssueResultViewModel : PageViewModelBase<IReportIssue
         : base(viewNavigator, localizationProvider, logger, issueReporter)
     { }
 
-    public override void OnNavigatedTo(object parameter)
+    public override void OnNavigatedTo(object parameter, bool isBackNavigation)
     {
-        base.OnNavigatedTo(parameter);
+        base.OnNavigatedTo(parameter, isBackNavigation);
 
         IsReportSent = Convert.ToBoolean(parameter);
     }

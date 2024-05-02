@@ -21,11 +21,18 @@ namespace ProtonVPN.Client.UI.Features.NetShield;
 
 public sealed partial class NetShieldPage
 {
+    public NetShieldViewModel ViewModel { get; }
+
     public NetShieldPage()
     {
         ViewModel = App.GetService<NetShieldViewModel>();
         InitializeComponent();
+
+        ViewModel.ResetContentScrollRequested += OnResetContentScrollRequested;
     }
 
-    public NetShieldViewModel ViewModel { get; }
+    private void OnResetContentScrollRequested(object? sender, EventArgs e)
+    {
+        PageContentHost.ResetContentScroll();
+    }
 }

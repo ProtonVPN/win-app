@@ -64,11 +64,11 @@ public partial class TorServersPageViewModel : CountryTabViewModelBase
         _serversLoader = serversLoader;
     }
 
-    public override void OnNavigatedTo(object parameter)
+    public override void OnNavigatedTo(object parameter, bool isBackNavigation)
     {
         CurrentCountryCode = parameter as string ?? string.Empty;
 
-        base.OnNavigatedTo(parameter);
+        base.OnNavigatedTo(parameter, isBackNavigation);
     }
 
     [RelayCommand]

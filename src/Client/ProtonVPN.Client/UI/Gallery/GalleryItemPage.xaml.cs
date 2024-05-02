@@ -21,9 +21,6 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace ProtonVPN.Client.UI.Gallery;
 
-/// <summary>
-/// An empty page that can be used on its own or navigated to within a Frame.
-/// </summary>
 public sealed partial class GalleryItemPage : Page
 {
     public GalleryItemViewModel ViewModel { get; }
@@ -32,5 +29,12 @@ public sealed partial class GalleryItemPage : Page
     {
         ViewModel = App.GetService<GalleryItemViewModel>();
         InitializeComponent();
+
+        ViewModel.ResetContentScrollRequested += OnResetContentScrollRequested;
+    }
+
+    private void OnResetContentScrollRequested(object? sender, EventArgs e)
+    {
+        PageContentHost.ResetContentScroll();
     }
 }

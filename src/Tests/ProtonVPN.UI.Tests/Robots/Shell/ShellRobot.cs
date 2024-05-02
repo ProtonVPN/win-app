@@ -39,7 +39,10 @@ public partial class ShellRobot : UIActions
 
     protected Button HomeNavigationViewItem => NavigationView.FindFirstDescendant(c => c.ByAutomationId("Sidebar_Home")).AsButton();
     protected Button GatewaysNavigationViewItem => NavigationView.FindFirstDescendant(c => c.ByAutomationId("Sidebar_Gateways")).AsButton();
-    protected Button CountriesNavigationViewItem => NavigationView.FindFirstDescendant(c => c.ByAutomationId("Sidebar_Countries_All")).AsButton();
+    protected Button CountriesNavigationViewItem => NavigationView.FindFirstDescendant(c => c.ByAutomationId("Sidebar_Countries")).AsButton();
+    protected Button P2PCountriesNavigationViewItem => NavigationView.FindFirstDescendant(c => c.ByAutomationId("Sidebar_Countries_P2P")).AsButton();
+    protected Button SecureCoreCountriesNavigationViewItem => NavigationView.FindFirstDescendant(c => c.ByAutomationId("Sidebar_Countries_SecureCore")).AsButton();
+    protected Button TorCountriesNavigationViewItem => NavigationView.FindFirstDescendant(c => c.ByAutomationId("Sidebar_Countries_Tor")).AsButton();
     protected Button SettingsNavigationViewItem => NavigationView.FindFirstDescendant(c => c.ByAutomationId("Sidebar_Settings")).AsButton();
     protected Button KillSwitchFeatureNavigationViewItem => NavigationView.FindFirstDescendant(c => c.ByAutomationId("Sidebar_Features_KillSwitch")).AsButton();
     protected Button NetShieldFeatureNavigationViewItem => NavigationView.FindFirstDescendant(c => c.ByAutomationId("Sidebar_Features_NetShield")).AsButton();

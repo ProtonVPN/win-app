@@ -43,6 +43,7 @@ public interface IServersLoader
 
     IEnumerable<SecureCoreCountryPair> GetSecureCoreCountryPairs();
     IEnumerable<SecureCoreCountryPair> GetSecureCoreCountryPairsByExitCountryCode(string exitCountryCode);
+    IEnumerable<Server> GetServersBySecureCoreCountryPair(SecureCoreCountryPair countryPair);
 
     IEnumerable<string> GetGateways();
     IEnumerable<Server> GetServersByGateway(string gatewayName);

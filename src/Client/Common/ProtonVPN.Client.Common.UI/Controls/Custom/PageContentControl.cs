@@ -25,6 +25,7 @@ using Windows.UI.Text;
 namespace ProtonVPN.Client.Common.UI.Controls.Custom;
 
 [TemplatePart(Name = "PART_HeaderContainer", Type = typeof(Panel))]
+[TemplatePart(Name = "PART_ScrollViewer", Type = typeof(ScrollViewer))]
 public class PageContentControl : ContentControl
 {
     public static readonly DependencyProperty PageHeaderProperty =
@@ -61,6 +62,7 @@ public class PageContentControl : ContentControl
         DependencyProperty.Register(nameof(PageHeaderLineHeight), typeof(double), typeof(PageContentControl), new PropertyMetadata(default));
 
     protected Panel PART_HeaderContainer;
+    protected ScrollViewer PART_ScrollViewer;
 
     public double PageHeaderFontSize
     {
@@ -144,6 +146,8 @@ public class PageContentControl : ContentControl
         PART_HeaderContainer = GetTemplateChild("PART_HeaderContainer") as Panel;
         InvalidateHeaderVisibility();
 
+        PART_ScrollViewer = GetTemplateChild("PART_ScrollViewer") as ScrollViewer;
+
         // Auto focus when page is loaded
         Focus(FocusState.Programmatic);
     }
@@ -173,6 +177,15 @@ public class PageContentControl : ContentControl
         if (d is PageContentControl control)
         {
             control.InvalidateHeaderVisibility();
+        }
+    }
+
+    public void ResetContentScroll()
+    {
+        if (PART_ScrollViewer != null && CanContentScroll)
+        {
+            PART_ScrollViewer.ScrollToVerticalOffset(0);
+            PART_ScrollViewer.ScrollToHorizontalOffset(0);
         }
     }
 }

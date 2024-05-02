@@ -70,6 +70,36 @@
         <None Update="appsettings.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <Page Update="UI\Connections\Gateways\GatewaysPage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Connections\Common\Controls\CountryPageControl.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Connections\P2P\P2PCountryPage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Connections\Countries\CountryPage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Connections\Bases\LocationItemsControl.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Connections\Bases\CountriesPageControl.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Connections\Tor\TorCountriesPage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Connections\SecureCore\SecureCoreCountriesPage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Connections\P2P\P2PCountriesPage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Connections\Countries\CountriesPage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
         <Page Update="UI\Dialogs\Overlays\TroubleshootingOverlayDialog.xaml">
           <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
           <SubType>Designer</SubType>
@@ -249,6 +279,16 @@
     </ItemGroup>
 
     <ItemGroup>
+        <None Remove="UI\Connections\Bases\CountriesPageControl.xaml" />
+        <None Remove="UI\Connections\Bases\LocationItemsControl.xaml" />
+        <None Remove="UI\Connections\Common\Controls\CountryPageControl.xaml" />
+        <None Remove="UI\Connections\Countries\CountriesPage.xaml" />
+        <None Remove="UI\Connections\Countries\CountryPage.xaml" />
+        <None Remove="UI\Connections\Gateways\GatewaysPage.xaml" />
+        <None Remove="UI\Connections\P2P\P2PCountriesPage.xaml" />
+        <None Remove="UI\Connections\P2P\P2PCountryPage.xaml" />
+        <None Remove="UI\Connections\SecureCore\SecureCoreCountriesPage.xaml" />
+        <None Remove="UI\Connections\Tor\TorCountriesPage.xaml" />
         <None Remove="UI\Dialogs\Overlays\TroubleshootingOverlayDialog.xaml" />
         <None Remove="UI\Login\Forms\LoadingForm.xaml" />
         <None Remove="UI\Countries\Controls\UpsellCountryBannerControl.xaml" />

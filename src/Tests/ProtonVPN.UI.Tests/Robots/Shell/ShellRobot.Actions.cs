@@ -43,6 +43,36 @@ public partial class ShellRobot
         return this;
     }
 
+    public ShellRobot DoNavigateToP2PCountriesPage()
+    {
+        P2PCountriesNavigationViewItem.FocusAndDoubleClick();
+
+        // Navigation triggers an animation that may occasionnally fails the tests. Wait for animation to complete before moving on.
+        this.Wait(TestConstants.DefaultAnimationDelay);
+
+        return this;
+    }
+
+    public ShellRobot DoNavigateToSecureCoreCountriesPage()
+    {
+        SecureCoreCountriesNavigationViewItem.FocusAndDoubleClick();
+
+        // Navigation triggers an animation that may occasionnally fails the tests. Wait for animation to complete before moving on.
+        this.Wait(TestConstants.DefaultAnimationDelay);
+
+        return this;
+    }
+
+    public ShellRobot DoNavigateToTorCountriesPage()
+    {
+        TorCountriesNavigationViewItem.FocusAndDoubleClick();
+
+        // Navigation triggers an animation that may occasionnally fails the tests. Wait for animation to complete before moving on.
+        this.Wait(TestConstants.DefaultAnimationDelay);
+
+        return this;
+    }
+
     public ShellRobot DoNavigateToSettingsPage()
     {
         SettingsNavigationViewItem.FocusAndDoubleClick();

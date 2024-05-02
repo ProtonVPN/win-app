@@ -27,5 +27,12 @@ public sealed partial class KillSwitchPage
     {
         ViewModel = App.GetService<KillSwitchViewModel>();
         InitializeComponent();
+
+        ViewModel.ResetContentScrollRequested += OnResetContentScrollRequested;
+    }
+
+    private void OnResetContentScrollRequested(object? sender, EventArgs e)
+    {
+        PageContentHost.ResetContentScroll();
     }
 }

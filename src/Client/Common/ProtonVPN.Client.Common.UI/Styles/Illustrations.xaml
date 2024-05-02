@@ -94,25 +94,35 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/netshield.png" />
 
     <BitmapImage x:Key="WorldwideCoverageUpsellSmallIllustrationSource"
-                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-worldwide-coverage-small.png" />
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-worldwide-coverage-small.png" 
+                 DecodePixelHeight="40" DecodePixelWidth="40"/>
     <BitmapImage x:Key="SpeedUpsellSmallIllustrationSource"
-                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-speed-small.png" />
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-speed-small.png" 
+                 DecodePixelHeight="40" DecodePixelWidth="40"/>
     <BitmapImage x:Key="StreamingUpsellSmallIllustrationSource"
-                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-streaming-small.png" />
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-streaming-small.png" 
+                 DecodePixelHeight="40" DecodePixelWidth="40"/>
     <BitmapImage x:Key="NetShieldUpsellSmallIllustrationSource"
-                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-netshield-small.png" />
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-netshield-small.png" 
+                 DecodePixelHeight="40" DecodePixelWidth="40"/>
     <BitmapImage x:Key="SecureCoreUpsellSmallIllustrationSource"
-                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-secure-core-small.png" />
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-secure-core-small.png" 
+                 DecodePixelHeight="40" DecodePixelWidth="40"/>
     <BitmapImage x:Key="P2PUpsellSmallIllustrationSource"
-                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-p2p-small.png" />
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-p2p-small.png" 
+                 DecodePixelHeight="40" DecodePixelWidth="40"/>
     <BitmapImage x:Key="MultipleDevicesUpsellSmallIllustrationSource"
-                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-multiple-devices-small.png" />
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-multiple-devices-small.png" 
+                 DecodePixelHeight="40" DecodePixelWidth="40"/>
     <BitmapImage x:Key="TorUpsellSmallIllustrationSource"
-                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-tor-small.png" />
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-tor-small.png" 
+                 DecodePixelHeight="40" DecodePixelWidth="40"/>
     <BitmapImage x:Key="SplitTunnelingUpsellSmallIllustrationSource"
-                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-split-tunneling-small.png" />
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-split-tunneling-small.png" 
+                 DecodePixelHeight="40" DecodePixelWidth="40"/>
     <BitmapImage x:Key="AdvancedSettingsUpsellSmallIllustrationSource"
-                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-customisation-small.png" />
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-customisation-small.png" 
+                 DecodePixelHeight="40" DecodePixelWidth="40"/>
 
     <BitmapImage x:Key="WorldwideCoverageUpsellLargeIllustrationSource"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-worldwide-coverage-large.png" />
@@ -141,4 +151,25 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/update-proton-vpn.png" />
     <SvgImageSource x:Key="FreeConnectionFlagsIllustrationSource"
                     UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/free-connection-flags.svg" />
+
+    <BitmapImage x:Key="KillSwitchFeatureIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/feature-kill-switch.png" />
+    <BitmapImage x:Key="NetShieldFeatureIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-netshield-small.png" />
+    <BitmapImage x:Key="PortForwardingFeatureIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/feature-port-forwarding.png" />
+    <BitmapImage x:Key="SplitTunnelingFeatureIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-split-tunneling-small.png" />
+
+    <BitmapImage x:Key="AllCountriesIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-worldwide-coverage-small.png" />
+    <BitmapImage x:Key="SecureCoreCountriesIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-secure-core-small.png" />
+    <BitmapImage x:Key="P2PCountriesIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-p2p-small.png" />
+    <BitmapImage x:Key="TorCountriesIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-tor-small.png" />
+    <BitmapImage x:Key="GatewaysIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/gateways.png" />
+
 </ResourceDictionary>

@@ -78,9 +78,9 @@ public partial class CountriesViewModel : NavigationPageViewModelBase, IEventMes
         };
     }
 
-    public override void OnNavigatedTo(object parameter)
+    public override void OnNavigatedTo(object parameter, bool isBackNavigation)
     {
-        base.OnNavigatedTo(parameter);
+        base.OnNavigatedTo(parameter, isBackNavigation);
 
         LoadFeatureTabPages();
 

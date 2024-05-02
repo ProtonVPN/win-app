@@ -30,27 +30,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       NavigationCacheMode="Required"
       mc:Ignorable="d">
 
-    <custom:SettingsPageContentControl ApplyCommand="{x:Bind ViewModel.ApplyCommand, Mode=OneTime}"
+    <custom:SettingsPageContentControl x:Name="PageContentHost"
+                                       ApplyCommand="{x:Bind ViewModel.ApplyCommand, Mode=OneTime}"
                                        ApplyCommandText="{x:Bind ViewModel.ApplyCommandText}"
                                        BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
                                        IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
                                        IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}">
 
         <custom:PageContentControl.PageHeader>
-            <Grid ColumnDefinitions="Auto,*"
-                  ColumnSpacing="16">
-                <Image Grid.Column="0"
-                       Width="32"
-                       Height="32"
-                       Margin="0,-4,0,0"
-                       VerticalAlignment="Top"
-                       Source="{x:Bind ViewModel.PortForwardingFeatureIconSource}" />
-                <TextBlock Grid.Column="1"
-                           VerticalAlignment="Top"
-                           Style="{StaticResource SubtitleTextBlockStyle}"
-                           Text="{x:Bind ViewModel.Title}"
-                           TextWrapping="Wrap" />
-            </Grid>
+            <custom:PageHeaderContentControl IllustrationSource="{StaticResource PortForwardingFeatureIllustrationSource}"
+                                             Header="{x:Bind ViewModel.Title}"
+                                             Content="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding_Description')}"/>
         </custom:PageContentControl.PageHeader>
 
         <StackPanel x:Name="ContentArea">

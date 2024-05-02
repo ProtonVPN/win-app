@@ -44,6 +44,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ControlTemplate TargetType="custom:PageContentControl">
 
                     <Grid x:Name="PageContainer"
+                          Background="{TemplateBinding Background}"
                           BorderBrush="{TemplateBinding BorderBrush}"
                           BorderThickness="{TemplateBinding BorderThickness}"
                           CornerRadius="{TemplateBinding CornerRadius}">
@@ -76,7 +77,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                     CommandParameter="{Binding BackCommandParameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                                     Visibility="{Binding IsBackButtonVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <custom:GhostButton.LeftIcon>
-                                        <pathicons:ArrowLeft />
+                                        <pathicons:ArrowLeft Size="Pixels16" />
                                     </custom:GhostButton.LeftIcon>
                                 </custom:GhostButton>
 
@@ -94,7 +95,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   OpticalMarginAlignment="TrimSideBearings" />
                             </Grid>
 
-                            <ScrollViewer Grid.Row="1"
+                            <ScrollViewer x:Name="PART_ScrollViewer"
+                                          Grid.Row="1"
                                           HorizontalScrollBarVisibility="Disabled"
                                           VerticalScrollBarVisibility="{Binding CanContentScroll, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToScrollBarVisibilityConverter}}">
                                 <ContentPresenter Margin="0,0,0,16" />
@@ -173,7 +175,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                     CommandParameter="{Binding BackCommandParameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                                     Visibility="{Binding IsBackButtonVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <custom:GhostButton.LeftIcon>
-                                        <pathicons:ArrowLeft />
+                                        <pathicons:ArrowLeft Size="Pixels16" />
                                     </custom:GhostButton.LeftIcon>
                                 </custom:GhostButton>
 

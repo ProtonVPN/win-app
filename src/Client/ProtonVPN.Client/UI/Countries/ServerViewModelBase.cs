@@ -42,7 +42,7 @@ public abstract class ServerViewModelBase : LocationViewModelBase
     public virtual string ConnectButtonAutomationName => ExitCountryName;
     public string ActiveConnectionAutomationId => $"Active_connection_{Name}";
 
-    public string? PaidServerWarningLabel => IsFreeUser ? Localizer.Get("Countries_PaidServerWarning") : null;
+    public string? PaidServerWarningLabel => IsFreeUser ? Localizer.Get("Connections_Server_Restricted") : null;
 
     public override bool IsActiveConnection => ConnectionDetails != null
                                             && ConnectionDetails.ServerId == Id;

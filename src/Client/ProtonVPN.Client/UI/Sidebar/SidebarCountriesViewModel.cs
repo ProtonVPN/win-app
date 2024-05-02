@@ -22,20 +22,20 @@ using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.UI.Countries;
+using ProtonVPN.Client.UI.Connections.Countries;
 using ProtonVPN.Client.UI.Sidebar.Bases;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Sidebar;
 
-public class SidebarCountriesViewModel : SidebarNavigationItemViewModelBase<CountriesViewModel>
+public class SidebarCountriesViewModel : SidebarNavigationItemViewModelBase<CountriesPageViewModel>
 {
     public override IconElement? Icon { get; } = new Earth();
 
     public override string Header => Localizer.Get("Countries_Page_Title");
 
-    public override string AutomationId => "Sidebar_Countries_All";
+    public override string AutomationId => "Sidebar_Countries";
 
     public override bool RequiresPaidAccess => true;
 

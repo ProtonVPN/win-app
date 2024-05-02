@@ -27,5 +27,12 @@ public sealed partial class LicensingPage
     {
         ViewModel = App.GetService<LicensingViewModel>();
         InitializeComponent();
+
+        ViewModel.ResetContentScrollRequested += OnResetContentScrollRequested;
+    }
+
+    private void OnResetContentScrollRequested(object? sender, EventArgs e)
+    {
+        PageContentHost.ResetContentScroll();
     }
 }

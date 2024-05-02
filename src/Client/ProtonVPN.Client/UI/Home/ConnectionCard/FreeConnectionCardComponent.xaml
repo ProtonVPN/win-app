@@ -76,7 +76,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Style="{StaticResource ConnectionCardGhostButtonStyle}"
                                 TabIndex="2">
                 <toolkit:DockPanel>
-                    <controls:CountryFlagControl Width="30"
+                    <controls:CountryFlagControl Width="36"
                                                  Margin="4,0,0,0"
                                                  VerticalAlignment="Top"
                                                  toolkit:DockPanel.Dock="Left"
@@ -88,20 +88,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Orientation="Vertical"
                                 Spacing="4">
 
-                        <toolkit:DockPanel LastChildFill="False">
-                            <TextBlock AutomationProperties.AutomationId="ConnectionCardTitleLabel"
-                                       Style="{StaticResource BodyStrongTextBlockStyle}"
-                                       Text="{x:Bind ViewModel.Title}"
-                                       TextTrimming="CharacterEllipsis"
-                                       TextWrapping="WrapWholeWords" />
-                        </toolkit:DockPanel>
+                        <TextBlock AutomationProperties.AutomationId="ConnectionCardTitleLabel"
+                                    Style="{StaticResource BodyLargeStrongTextBlockStyle}"
+                                    Text="{x:Bind ViewModel.Title}"
+                                    TextTrimming="CharacterEllipsis"
+                                    TextWrapping="WrapWholeWords" />
 
                         <toolkit:WrapPanel HorizontalSpacing="6"
                                            Orientation="Horizontal"
                                            VerticalSpacing="4">
                             <TextBlock AutomationProperties.AutomationId="ConnectionCardSubtitleLabel"
                                        Foreground="{ThemeResource TextWeakColorBrush}"
-                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Style="{StaticResource BodyTextBlockStyle}"
                                        Text="{x:Bind ViewModel.Subtitle}"
                                        TextTrimming="CharacterEllipsis"
                                        TextWrapping="WrapWholeWords"
@@ -114,7 +112,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        VerticalAlignment="Center"
                                        Source="{ThemeResource FreeConnectionFlagsIllustrationSource}" />
                                 <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
-                                           Style="{StaticResource CaptionTextBlockStyle}"
+                                           Style="{StaticResource BodyTextBlockStyle}"
                                            Text="{x:Bind ViewModel.FormattedFreeCountriesCount}"
                                            TextTrimming="CharacterEllipsis" />
                             </StackPanel>
@@ -188,7 +186,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Setter Target="ShowConnectionDetailsButton.Command" Value="{x:Bind ViewModel.ShowAboutFreeConnectionsCommand, Mode=OneTime}" />
                         <Setter Target="ShowConnectionDetailsButton.RightIcon">
                             <Setter.Value>
-                                <pathicons:InfoCircle />
+                                <pathicons:InfoCircle Size="Pixels24"/>
                             </Setter.Value>
                         </Setter>
                     </VisualState.Setters>
@@ -202,7 +200,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Setter Target="ShowConnectionDetailsButton.Command" Value="{x:Bind ViewModel.ShowConnectionDetailsCommand, Mode=OneTime}" />
                         <Setter Target="ShowConnectionDetailsButton.RightIcon">
                             <Setter.Value>
-                                <pathicons:ChevronRight />
+                                <pathicons:ChevronRight Size="Pixels24"/>
                             </Setter.Value>
                         </Setter>
                     </VisualState.Setters>

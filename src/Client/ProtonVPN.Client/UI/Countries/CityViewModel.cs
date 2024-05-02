@@ -49,7 +49,7 @@ public partial class CityViewModel : LocationViewModelBase, ISearchableItem
     public string ShowServersButtonAutomationId => $"Show_servers_{Name}";
     public string ActiveConnectionAutomationId => $"Active_connection_{Name}";
 
-    public string? PaidCityWarningLabel => IsFreeUser ? Localizer.Get("Countries_PaidCityWarning") : null;
+    public string? PaidCityWarningLabel => IsFreeUser ? Localizer.Get("Connections_City_Restricted") : null;
 
     public override bool IsActiveConnection => ConnectionDetails != null 
                                             && !ConnectionDetails.IsGateway 

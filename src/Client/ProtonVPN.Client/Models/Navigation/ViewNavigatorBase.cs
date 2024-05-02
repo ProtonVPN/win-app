@@ -177,7 +177,7 @@ public abstract class ViewNavigatorBase : IViewNavigator
 
             if (frame.GetPageViewModel() is INavigationAware navigationAware)
             {
-                navigationAware.OnNavigatedTo(e.Parameter);
+                navigationAware.OnNavigatedTo(e.Parameter, e.NavigationMode == NavigationMode.Back);
             }
 
             Navigated?.Invoke(sender, e);

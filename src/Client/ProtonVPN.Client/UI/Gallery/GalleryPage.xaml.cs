@@ -23,11 +23,18 @@ namespace ProtonVPN.Client.UI.Gallery;
 
 public sealed partial class GalleryPage : Page
 {
+    public GalleryViewModel ViewModel { get; }
+
     public GalleryPage()
     {
         ViewModel = App.GetService<GalleryViewModel>();
         InitializeComponent();
+
+        ViewModel.ResetContentScrollRequested += OnResetContentScrollRequested;
     }
 
-    public GalleryViewModel ViewModel { get; }
+    private void OnResetContentScrollRequested(object? sender, EventArgs e)
+    {
+        PageContentHost.ResetContentScroll();
+    }
 }

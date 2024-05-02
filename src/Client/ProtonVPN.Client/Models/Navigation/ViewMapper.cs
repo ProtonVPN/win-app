@@ -21,9 +21,7 @@ using System.Diagnostics;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Contracts.ViewModels;
-using ProtonVPN.Client.UI.Countries;
-using ProtonVPN.Client.UI.Countries.CountriesFeatureTabs;
-using ProtonVPN.Client.UI.Countries.CountryFeatureTabs;
+
 using ProtonVPN.Client.UI.Dialogs.Overlays;
 using ProtonVPN.Client.UI.ReportIssue;
 using ProtonVPN.Client.UI.Gallery;
@@ -36,7 +34,6 @@ using ProtonVPN.Client.UI.ReportIssue.Steps;
 using ProtonVPN.Client.UI.ReportIssue.Results;
 using ProtonVPN.Client.UI.Login.Forms;
 using ProtonVPN.Client.UI.Login.Overlays;
-using ProtonVPN.Client.UI.Gateways;
 using ProtonVPN.Client.UI.Home.ConnectionCard.Overlays;
 using ProtonVPN.Client.UI.Settings.Pages.About;
 using ProtonVPN.Client.UI.Upsell.Carousel;
@@ -45,6 +42,11 @@ using ProtonVPN.Client.UI.Features.NetShield;
 using ProtonVPN.Client.UI.Features.KillSwitch;
 using ProtonVPN.Client.UI.Features.PortForwarding;
 using ProtonVPN.Client.UI.Features.SplitTunneling;
+using ProtonVPN.Client.UI.Connections.Countries;
+using ProtonVPN.Client.UI.Connections.P2P;
+using ProtonVPN.Client.UI.Connections.SecureCore;
+using ProtonVPN.Client.UI.Connections.Tor;
+using ProtonVPN.Client.UI.Connections.Gateways;
 
 namespace ProtonVPN.Client.Models.Navigation;
 
@@ -121,9 +123,13 @@ public class ViewMapper : IViewMapper
     protected void ConfigurePages()
     {
         ConfigurePage<HomeViewModel, HomePage>();
-        ConfigurePage<CountriesViewModel, CountriesPage>();
-        ConfigurePage<GatewaysViewModel, GatewaysPage>();
-        ConfigurePage<CountryTabViewModel, CountryPage>();
+        ConfigurePage<GatewaysPageViewModel, GatewaysPage>();
+        ConfigurePage<CountriesPageViewModel, CountriesPage>();
+        ConfigurePage<CountryPageViewModel, CountryPage>();
+        ConfigurePage<P2PCountriesPageViewModel, P2PCountriesPage>();
+        ConfigurePage<P2PCountryPageViewModel, P2PCountryPage>();
+        ConfigurePage<SecureCoreCountriesPageViewModel, SecureCoreCountriesPage>();
+        ConfigurePage<TorCountriesPageViewModel, TorCountriesPage>();
         ConfigurePage<NetShieldViewModel, NetShieldPage>();
         ConfigurePage<KillSwitchViewModel, KillSwitchPage>();
         ConfigurePage<PortForwardingViewModel, PortForwardingPage>();
@@ -156,17 +162,21 @@ public class ViewMapper : IViewMapper
         ConfigurePage<QuickFixesViewModel, QuickFixesPage>();
         ConfigurePage<ContactFormViewModel, ContactFormPage>();
         ConfigurePage<ReportIssueResultViewModel, ReportIssueResultPage>();
-        ConfigurePage<AllCountriesPageViewModel, AllCountriesPage>();
-        ConfigurePage<CitiesPageViewModel, CitiesPage>();
-        ConfigurePage<P2PCitiesPageViewModel, P2PCitiesPage>();
-        ConfigurePage<SecureCoreCountriesPageViewModel, SecureCoreCountriesPage>();
-        ConfigurePage<SecureCoreCountryPageViewModel, SecureCoreCountryPage>();
-        ConfigurePage<TorServersPageViewModel, TorServersPage>();
-        ConfigurePage<P2PCountriesPageViewModel, P2PCountriesPage>();
-        ConfigurePage<TorCountriesPageViewModel, TorCountriesPage>();
         ConfigurePage<DeveloperToolsViewModel, DeveloperToolsPage>();
         ConfigurePage<AboutViewModel, AboutPage>();
         ConfigurePage<LicensingViewModel, LicensingPage>();
+
+        ConfigurePage<UI.Gateways.GatewaysViewModel, UI.Gateways.GatewaysPage>(); // legacy
+        ConfigurePage<UI.Countries.CountriesViewModel, UI.Countries.CountriesPage>(); // legacy
+        ConfigurePage<UI.Countries.CountryTabViewModel, UI.Countries.CountryPage>(); // legacy
+        ConfigurePage<UI.Countries.CountriesFeatureTabs.AllCountriesPageViewModel, UI.Countries.CountriesFeatureTabs.AllCountriesPage>(); // legacy
+        ConfigurePage<UI.Countries.CountriesFeatureTabs.SecureCoreCountriesPageViewModel, UI.Countries.CountriesFeatureTabs.SecureCoreCountriesPage>(); // legacy
+        ConfigurePage<UI.Countries.CountriesFeatureTabs.P2PCountriesPageViewModel, UI.Countries.CountriesFeatureTabs.P2PCountriesPage>(); // legacy
+        ConfigurePage<UI.Countries.CountriesFeatureTabs.TorCountriesPageViewModel, UI.Countries.CountriesFeatureTabs.TorCountriesPage>(); // legacy
+        ConfigurePage<UI.Countries.CountryFeatureTabs.CitiesPageViewModel, UI.Countries.CountryFeatureTabs.CitiesPage>(); // legacy
+        ConfigurePage<UI.Countries.CountryFeatureTabs.P2PCitiesPageViewModel, UI.Countries.CountryFeatureTabs.P2PCitiesPage>(); // legacy
+        ConfigurePage<UI.Countries.CountryFeatureTabs.SecureCoreCountryPageViewModel, UI.Countries.CountryFeatureTabs.SecureCoreCountryPage>(); // legacy
+        ConfigurePage<UI.Countries.CountryFeatureTabs.TorServersPageViewModel, UI.Countries.CountryFeatureTabs.TorServersPage>(); // legacy
 
         ConfigureDebugPages();
     }

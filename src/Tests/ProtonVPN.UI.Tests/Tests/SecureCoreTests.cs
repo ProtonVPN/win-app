@@ -33,8 +33,9 @@ namespace ProtonVPN.UI.Tests.Tests;
 public class SecureCoreTests : TestSession
 {
     private const string COUNTRY = "Australia";
-    private const string EXIT_COUNTRY = "Switzerland";
+    private const string ENTRY_COUNTRY = "Switzerland";
     private const string COUNTRY_CODE = "AU";
+    private const string ENTRY_COUNTRY_CODE = "CH";
 
     private ShellRobot _shellRobot = new();
     private HomeRobot _homeRobot = new();
@@ -56,9 +57,7 @@ public class SecureCoreTests : TestSession
             .VerifyConnectionCardIsInInitalState();
 
         _shellRobot
-            .DoNavigateToCountriesPage();
-        _countriesRobot
-            .DoNavigateToSecureCore();
+            .DoNavigateToSecureCoreCountriesPage();
     }
 
     [Test]
@@ -74,8 +73,9 @@ public class SecureCoreTests : TestSession
             .VerifyConnectionCardIsConnected(COUNTRY);
 
         _shellRobot
-            .DoNavigateToCountriesPage();
-        _countriesRobot.DoNavigateToSecureCore()
+            .DoNavigateToSecureCoreCountriesPage();
+
+        _countriesRobot
             .Wait(TestConstants.DefaultAnimationDelay)
             .VerifyActiveConnection(COUNTRY_CODE);
     }
@@ -85,19 +85,21 @@ public class SecureCoreTests : TestSession
     {
         _countriesRobot
             .DoNavigateToCountry(COUNTRY_CODE)
-            .DoConnectSecureCore(EXIT_COUNTRY, COUNTRY);
+            .DoConnectSecureCore(ENTRY_COUNTRY_CODE, COUNTRY_CODE);
 
         _homeRobot
             .VerifyVpnStatusIsConnecting()
-            .VerifyConnectionCardIsConnecting(COUNTRY, $"via {EXIT_COUNTRY}")
+            .VerifyConnectionCardIsConnecting(COUNTRY, $"via {ENTRY_COUNTRY}")
             .VerifyVpnStatusIsConnected()
-            .VerifyConnectionCardIsConnected(COUNTRY, $"via {EXIT_COUNTRY}");
+            .VerifyConnectionCardIsConnected(COUNTRY, $"via {ENTRY_COUNTRY}");
 
         _shellRobot
-             .DoNavigateToCountriesPage();
+            .DoNavigateToSecureCoreCountriesPage();
+
         _countriesRobot
-            .DoNavigateToSecureCore()
-            .VerifyActiveConnection(COUNTRY_CODE);
+            .VerifyActiveConnection(COUNTRY_CODE)
+            .DoNavigateToCountry(COUNTRY_CODE)
+            .VerifyActiveConnection(ENTRY_COUNTRY_CODE, COUNTRY_CODE);
     }
 
     [TearDown]

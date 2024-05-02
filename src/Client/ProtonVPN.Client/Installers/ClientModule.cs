@@ -30,6 +30,7 @@ using ProtonVPN.Client.Models.Icons;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Client.Models.Urls;
+using ProtonVPN.Client.UI.Connections.Common.Factories;
 using ProtonVPN.Client.UI.Countries;
 using ProtonVPN.Client.UI.Gateways.Factories;
 using ProtonVPN.Client.UI.Settings.Pages.About;
@@ -76,6 +77,7 @@ public class ClientModule : Module
         builder.RegisterType<CountryViewModelsFactory>().SingleInstance();
         builder.RegisterType<GatewayViewModelsFactory>().SingleInstance();
         builder.RegisterType<ReleaseViewModelFactory>().SingleInstance();
+        builder.RegisterType<LocationItemFactory>().SingleInstance();
 
         RegisterHandlers(builder);
 

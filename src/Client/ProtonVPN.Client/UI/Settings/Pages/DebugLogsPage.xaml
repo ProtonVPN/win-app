@@ -30,7 +30,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       NavigationCacheMode="Required"
       mc:Ignorable="d">
 
-    <custom:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
+    <custom:PageContentControl x:Name="PageContentHost"
+                               BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
                                IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
                                IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
                                PageHeader="{x:Bind ViewModel.Title}">

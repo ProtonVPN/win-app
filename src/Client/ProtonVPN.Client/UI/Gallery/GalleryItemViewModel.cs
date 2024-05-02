@@ -45,9 +45,9 @@ public partial class GalleryItemViewModel : PageViewModelBase<IMainViewNavigator
 
     public override string? Title => PageName;
 
-    public override void OnNavigatedTo(object parameter)
+    public override void OnNavigatedTo(object parameter, bool isBackNavigation)
     {
-        base.OnNavigatedTo(parameter);
+        base.OnNavigatedTo(parameter, isBackNavigation);
 
         PageName = parameter?.ToString();
 
