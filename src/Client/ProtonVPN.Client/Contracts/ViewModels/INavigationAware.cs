@@ -37,5 +37,6 @@ public interface INavigationAware
     /// Called when parent frame navigates to this page.
     /// </summary>
     /// <param name="parameter">Can be used to pass any type of argument</param>
-    void OnNavigatedTo(object parameter);
+    /// <param name="isBackNavigation">Indicates whether the user navigated to this page using the back button</param>
+    void OnNavigatedTo(object parameter, bool isBackNavigation);
 }

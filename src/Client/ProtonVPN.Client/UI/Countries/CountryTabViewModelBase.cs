@@ -72,9 +72,9 @@ public abstract partial class CountryTabViewModelBase : PageViewModelBase<IViewN
         Items.SortDescriptions.AddRange(GetSortDescriptions());
     }
 
-    public override void OnNavigatedTo(object parameter)
+    public override void OnNavigatedTo(object parameter, bool isBackNavigation)
     {
-        base.OnNavigatedTo(parameter);
+        base.OnNavigatedTo(parameter, isBackNavigation);
 
         LoadItems(CurrentCountryCode);
     }

@@ -29,27 +29,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       NavigationCacheMode="Required"
       mc:Ignorable="d">
 
-    <custom:SettingsPageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
+    <custom:SettingsPageContentControl x:Name="PageContentHost"
+                                       BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
                                        IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
                                        IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
                                        ApplyCommand="{x:Bind ViewModel.ApplyCommand, Mode=OneTime}"
                                        ApplyCommandText="{x:Bind ViewModel.ApplyCommandText}">
 
         <custom:PageContentControl.PageHeader>
-            <Grid ColumnDefinitions="Auto,*"
-                  ColumnSpacing="16">
-                <Image Grid.Column="0"
-                       Width="32"
-                       Height="32"
-                       Margin="0,-2,0,0"
-                       VerticalAlignment="Top"
-                       Source="{x:Bind ViewModel.NetShieldFeatureIconSource}" />
-                <TextBlock Grid.Column="1"
-                           VerticalAlignment="Top"
-                           Text="{x:Bind ViewModel.Title}"
-                           Style="{StaticResource SubtitleTextBlockStyle}"
-                           TextWrapping="Wrap"/>
-            </Grid>
+            <custom:PageHeaderContentControl IllustrationSource="{StaticResource NetShieldFeatureIllustrationSource}"
+                                             Header="{x:Bind ViewModel.Title}"
+                                             Content="{x:Bind ViewModel.Localizer.Get('Settings_Features_NetShield_Description')}"/>
         </custom:PageContentControl.PageHeader>
 
         <StackPanel x:Name="ContentArea">

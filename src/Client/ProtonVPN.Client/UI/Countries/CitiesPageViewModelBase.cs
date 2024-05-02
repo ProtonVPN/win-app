@@ -72,11 +72,11 @@ public abstract partial class CitiesPageViewModelBase : CountryTabViewModelBase
             new ConnectionIntent(new CityStateLocationIntent(CurrentCountryCode, cityViewModel.Name)));
     }
 
-    public override void OnNavigatedTo(object parameter)
+    public override void OnNavigatedTo(object parameter, bool isBackNavigation)
     {
         CurrentCountryCode = parameter as string ?? string.Empty;
 
-        base.OnNavigatedTo(parameter);
+        base.OnNavigatedTo(parameter, isBackNavigation);
     }
 
     protected override IList GetItems()

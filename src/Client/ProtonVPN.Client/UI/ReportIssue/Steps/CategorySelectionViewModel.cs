@@ -51,9 +51,9 @@ public partial class CategorySelectionViewModel : PageViewModelBase<IReportIssue
         Categories = new();
     }
 
-    public override async void OnNavigatedTo(object parameter)
+    public override async void OnNavigatedTo(object parameter, bool isBackNavigation)
     {
-        base.OnNavigatedTo(parameter);
+        base.OnNavigatedTo(parameter, isBackNavigation);
 
         await InvalidateCategoriesAsync();
     }

@@ -2058,11 +2058,20 @@
   <data name="Countries_P2P" xml:space="preserve">
     <value>P2P</value>
   </data>
+  <data name="Countries_P2P_Description" xml:space="preserve">
+    <value>Securely share and download files over peer-to-peer (P2P) networks.</value>
+  </data>
   <data name="Countries_SecureCore" xml:space="preserve">
     <value>Secure Core</value>
   </data>
+  <data name="Countries_SecureCore_Description" xml:space="preserve">
+    <value>Add another layer of encryption to your VPN connection.</value>
+  </data>
   <data name="Countries_Tor" xml:space="preserve">
     <value>Tor</value>
+  </data>
+  <data name="Countries_Tor_Description" xml:space="preserve">
+    <value>Use the Tor network over your VPN connection for extra privacy.</value>
   </data>
   <data name="Countries_Cities" xml:space="preserve">
     <value>Cities</value>
@@ -2302,6 +2311,9 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   </data>
   <data name="Gateways_Page_Title" xml:space="preserve">
     <value>Gateways</value>
+  </data>  
+  <data name="Gateways_Page_Description" xml:space="preserve">
+    <value>Connect to a Gateway to access your organization's VPN.</value>
   </data>
   <data name="Gateways_Server" xml:space="preserve">
     <value>Dedicated server</value>
@@ -2372,19 +2384,19 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   </data>
   <data name="Dialogs_FreeConnections_Description_One" xml:space="preserve">
     <value>Proton Free automatically connects you to the fastest available free server from our {0} free country. This will normally be the closest server to your location.</value>
-    <comment>{0} is a placeholder for the number of free countries available (eg. 1 free country). This string is used when the number is 0 or 1.</comment>
+    <comment>{0} is a placeholder for the number of free countries available (eg. 1 free country). This string is used when the number is 1.</comment>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other" xml:space="preserve">
     <value>Proton Free automatically connects you to the fastest available free server from our {0} free countries. This will normally be the closest server to your location.</value>
-    <comment>{0} is a placeholder for the number of free countries available (eg. 5 free countries). This string is used when there are 2 or more countries available.</comment>
+    <comment>{0} is a placeholder for the number of free countries available (eg. 5 free countries).This string is used when the number is different than 1.</comment>
   </data>
   <data name="Dialogs_FreeConnections_Header_One" xml:space="preserve">
     <value>Free server country ({0})</value>
-    <comment>{0} is a placeholder for the number of free countries available (eg. Free server country (1)). This string is used when the number is 0 or 1.</comment>
+    <comment>{0} is a placeholder for the number of free countries available (eg. Free server country (1)). This string is used when the number is 1.</comment>
   </data>
   <data name="Dialogs_FreeConnections_Header_Other" xml:space="preserve">
     <value>Free server countries ({0})</value>
-    <comment>{0} is a placeholder for the number of free countries available (eg. Free server countries (5)). This string is used when there are 2 or more countries available.</comment>
+    <comment>{0} is a placeholder for the number of free countries available (eg. Free server countries (5)). This string is used when the number is different than 1.</comment>
   </data>
   <data name="Dialogs_FreeConnections_Title" xml:space="preserve">
     <value>Free connections</value>
@@ -2639,15 +2651,6 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other" xml:space="preserve">
     <value>{0} secure servers</value>
   </data>
-  <data name="Countries_PaidCountryWarning" xml:space="preserve">
-    <value>Servers in this country are available with VPN Plus</value>
-  </data>
-  <data name="Countries_PaidCityWarning" xml:space="preserve">
-    <value>Servers in this city are available with VPN Plus</value>
-  </data>
-  <data name="Countries_PaidServerWarning" xml:space="preserve">
-    <value>Server available with VPN Plus</value>
-  </data>
   <data name="Dialogs_Troubleshooting_Title" xml:space="preserve">
     <value>Connection help</value>
   </data>
@@ -2680,5 +2683,142 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   </data>
   <data name="Dialogs_Troubleshooting_DidNotWork" xml:space="preserve">
     <value>Didn't work?</value>
+  </data>
+
+  <data name="Connections_Countries_One" xml:space="preserve">
+    <value>Country ({0})</value>
+    <comment>{0} is a placeholder for the number of countries (eg. Country (1)). This string is used when the number is 1.</comment>
+  </data>
+  <data name="Connections_Countries_Other" xml:space="preserve">
+    <value>Countries ({0})</value>
+    <comment>{0} is a placeholder for the number of countries (eg. Countries (5)). This string is used when the number is different than 1.</comment>
+  </data>
+  <data name="Connections_Cities_One" xml:space="preserve">
+    <value>City ({0})</value>
+    <comment>{0} is a placeholder for the number of cities (eg. City (1)). This string is used when the number is 1.</comment>
+  </data>
+  <data name="Connections_Cities_Other" xml:space="preserve">
+    <value>Cities ({0})</value>
+    <comment>{0} is a placeholder for the number of cities (eg. Cities (5)). This string is used when the number is different than 1.</comment>
+  </data>
+  <data name="Connections_Servers_One" xml:space="preserve">
+    <value>Server ({0})</value>
+    <comment>{0} is a placeholder for the number of servers (eg. Server (1)). This string is used when the number is 1.</comment>
+  </data>
+  <data name="Connections_Servers_Other" xml:space="preserve">
+    <value>Servers ({0})</value>
+    <comment>{0} is a placeholder for the number of servers (eg. Servers (5)). This string is used when the number is different than 1.</comment>
+  </data>
+  <data name="Connections_P2P_Countries_One" xml:space="preserve">
+    <value>P2P country ({0})</value>
+    <comment>{0} is a placeholder for the number of countries (eg. P2P country (1)). This string is used when the number is 1.</comment>
+  </data>
+  <data name="Connections_P2P_Countries_Other" xml:space="preserve">
+    <value>P2P countries ({0})</value>
+    <comment>{0} is a placeholder for the number of countries (eg. P2P countries (5)). This string is used when the number is different than 1.</comment>
+  </data>
+  <data name="Connections_P2P_Cities_One" xml:space="preserve">
+    <value>P2P city ({0})</value>
+    <comment>{0} is a placeholder for the number of cities (eg. P2P city (1)). This string is used when the number is 1.</comment>
+  </data>
+  <data name="Connections_P2P_Cities_Other" xml:space="preserve">
+    <value>P2P cities ({0})</value>
+    <comment>{0} is a placeholder for the number of cities (eg. P2P cities (5)). This string is used when the number is different than 1.</comment>
+  </data>
+  <data name="Connections_P2P_Servers_One" xml:space="preserve">
+    <value>P2P server ({0})</value>
+    <comment>{0} is a placeholder for the number of servers (eg. P2P server (1)). This string is used when the number is 1.</comment>
+  </data>
+  <data name="Connections_P2P_Servers_Other" xml:space="preserve">
+    <value>P2P servers ({0})</value>
+    <comment>{0} is a placeholder for the number of servers (eg. P2P servers (5)). This string is used when the number is different than 1.</comment>
+  </data>
+  <data name="Connections_SecureCore_Countries_One" xml:space="preserve">
+    <value>Secure Core country ({0})</value>
+    <comment>{0} is a placeholder for the number of countries (eg. Secure Core country (1)). This string is used when the number is 1.</comment>
+  </data>
+  <data name="Connections_SecureCore_Countries_Other" xml:space="preserve">
+    <value>Secure Core countries ({0})</value>
+    <comment>{0} is a placeholder for the number of countries (eg. Secure Core countries (5)). This string is used when the number is different than 1.</comment>
+  </data>
+  <data name="Connections_SecureCore_Servers_One" xml:space="preserve">
+    <value>Secure Core server ({0})</value>
+    <comment>{0} is a placeholder for the number of servers (eg. Secure Core server (1)). This string is used when the number is 1.</comment>
+  </data>
+  <data name="Connections_SecureCore_Servers_Other" xml:space="preserve">
+    <value>Secure Core servers ({0})</value>
+    <comment>{0} is a placeholder for the number of servers (eg. Secure Core servers (5)). This string is used when the number is different than 1.</comment>
+  </data>
+  <data name="Connections_Tor_Countries_One" xml:space="preserve">
+    <value>Tor country ({0})</value>
+    <comment>{0} is a placeholder for the number of countries (eg. Tor country (1)). This string is used when the number is 1.</comment>
+  </data>
+  <data name="Connections_Tor_Countries_Other" xml:space="preserve">
+    <value>Tor countries ({0})</value>
+    <comment>{0} is a placeholder for the number of countries (eg. Tor countries (5)). This string is used when the number is different than 1.</comment>
+  </data>
+  <data name="Connections_Tor_Servers_One" xml:space="preserve">
+    <value>Tor server ({0})</value>
+    <comment>{0} is a placeholder for the number of servers (eg. Tor server (1)). This string is used when the number is 1.</comment>
+  </data>
+  <data name="Connections_Tor_Servers_Other" xml:space="preserve">
+    <value>Tor servers ({0})</value>
+    <comment>{0} is a placeholder for the number of servers (eg. Tor servers (5)). This string is used when the number is different than 1.</comment>
+  </data>
+    <data name="Connections_SeeCities_One" xml:space="preserve">
+    <value>See city ({0})</value>
+    <comment>{0} is a placeholder for the number of cities (eg. See city (1)). This string is used when the number is 1.</comment>
+  </data>
+  <data name="Connections_SeeCities_Other" xml:space="preserve">
+    <value>See cities ({0})</value>
+    <comment>{0} is a placeholder for the number of cities (eg. See cities (5)). This string is used when the number is different than 1.</comment>
+  </data>
+  <data name="Connections_SeeServers_One" xml:space="preserve">
+    <value>See server ({0})</value>
+    <comment>{0} is a placeholder for the number of servers (eg. See server (1)). This string is used when the number is 1.</comment>
+  </data>
+  <data name="Connections_SeeServers_Other" xml:space="preserve">
+    <value>See servers ({0})</value>
+    <comment>{0} is a placeholder for the number of servers (eg. See servers (5)). This string is used when the number is different than 1.</comment>
+  </data>
+  <data name="Connections_Gateways_One" xml:space="preserve">
+    <value>Gateway ({0})</value>
+    <comment>{0} is a placeholder for the number of gateways (eg. Gateway (1)). This string is used when the number is 1.</comment>
+  </data>
+  <data name="Connections_Gateways_Other" xml:space="preserve">
+    <value>Gateways ({0})</value>
+    <comment>{0} is a placeholder for the number of gateways (eg. Gateways (5)). This string is used when the number is different than 1.</comment>
+  </data>
+  <data name="Connections_Gateways_Servers_One" xml:space="preserve">
+    <value>Dedicated server ({0})</value>
+    <comment>{0} is a placeholder for the number of servers (eg. Dedicated server (1)). This string is used when the number is 1.</comment>
+  </data>
+  <data name="Connections_Gateways_Servers_Other" xml:space="preserve">
+    <value>Dedicated servers ({0})</value>
+    <comment>{0} is a placeholder for the number of servers (eg. Dedicated servers (5)). This string is used when the number is different than 1.</comment>
+  </data>
+  <data name="Connections_Country_UnderMaintenance" xml:space="preserve">
+    <value>All servers in this country are under maintenance</value>
+  </data>  
+  <data name="Connections_Country_Restricted" xml:space="preserve">
+    <value>Servers in this country are available with VPN Plus</value>
+  </data>
+  <data name="Connections_City_UnderMaintenance" xml:space="preserve">
+    <value>All servers in this city are under maintenance</value>
+  </data>
+  <data name="Connections_City_Restricted" xml:space="preserve">
+    <value>Servers in this city are available with VPN Plus</value>
+  </data>
+  <data name="Connections_Server_UnderMaintenance" xml:space="preserve">
+    <value>This server is under maintenance</value>
+  </data>
+  <data name="Connections_Server_Restricted" xml:space="preserve">
+    <value>Server available with VPN Plus</value>
+  </data>
+  <data name="Connections_Gateway_UnderMaintenance" xml:space="preserve">
+    <value>All servers in this gateway are under maintenance</value>
+  </data>  
+  <data name="Connections_Gateway_Restricted" xml:space="preserve">
+    <value>Servers in this gateway are available with VPN Plus</value>
   </data>
 </root>

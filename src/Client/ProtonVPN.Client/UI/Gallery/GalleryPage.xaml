@@ -34,7 +34,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style>
     </Page.Resources>
 
-    <custom:PageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand}"
+    <custom:PageContentControl x:Name="PageContentHost"
+                               BackCommand="{x:Bind ViewModel.GoBackCommand}"
                                IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
                                IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed, Mode=OneWay}"
                                PageHeader="{x:Bind ViewModel.Title}"

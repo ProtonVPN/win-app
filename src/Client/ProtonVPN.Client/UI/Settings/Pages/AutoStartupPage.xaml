@@ -38,7 +38,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style>
     </Page.Resources>
 
-    <custom:SettingsPageContentControl BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
+    <custom:SettingsPageContentControl x:Name="PageContentHost"
+                                       BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
                                        IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
                                        IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
                                        ApplyCommand="{x:Bind ViewModel.ApplyCommand, Mode=OneTime}"

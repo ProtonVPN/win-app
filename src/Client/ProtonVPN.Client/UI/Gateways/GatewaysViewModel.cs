@@ -68,9 +68,9 @@ public partial class GatewaysViewModel :
         _gatewayViewModelsFactory = gatewayViewModelsFactory;
     }
 
-    public override void OnNavigatedTo(object parameter)
+    public override void OnNavigatedTo(object parameter, bool isBackNavigation)
     {
-        base.OnNavigatedTo(parameter);
+        base.OnNavigatedTo(parameter, isBackNavigation);
 
         LoadItems();
     }

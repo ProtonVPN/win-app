@@ -21,11 +21,18 @@ namespace ProtonVPN.Client.UI.Settings.Pages;
 
 public sealed partial class ProtocolPage
 {
+    public ProtocolViewModel ViewModel { get; }
+
     public ProtocolPage()
     {
         ViewModel = App.GetService<ProtocolViewModel>();
         InitializeComponent();
+
+        ViewModel.ResetContentScrollRequested += OnResetContentScrollRequested;
     }
 
-    public ProtocolViewModel ViewModel { get; }
+    private void OnResetContentScrollRequested(object? sender, EventArgs e)
+    {
+        PageContentHost.ResetContentScroll();
+    }
 }

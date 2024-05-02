@@ -27,5 +27,12 @@ public sealed partial class AboutPage
     {
         ViewModel = App.GetService<AboutViewModel>();
         InitializeComponent();
+
+        ViewModel.ResetContentScrollRequested += OnResetContentScrollRequested;
+    }
+
+    private void OnResetContentScrollRequested(object? sender, EventArgs e)
+    {
+        PageContentHost.ResetContentScroll();
     }
 }

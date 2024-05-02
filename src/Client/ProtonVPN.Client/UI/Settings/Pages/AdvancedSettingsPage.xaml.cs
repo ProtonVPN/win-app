@@ -21,11 +21,18 @@ namespace ProtonVPN.Client.UI.Settings.Pages;
 
 public sealed partial class AdvancedSettingsPage
 {
+    public AdvancedSettingsViewModel ViewModel { get; }
+
     public AdvancedSettingsPage()
     {
         ViewModel = App.GetService<AdvancedSettingsViewModel>();
         InitializeComponent();
+
+        ViewModel.ResetContentScrollRequested += OnResetContentScrollRequested;
     }
 
-    public AdvancedSettingsViewModel ViewModel { get; }
+    private void OnResetContentScrollRequested(object? sender, EventArgs e)
+    {
+        PageContentHost.ResetContentScroll();
+    }
 }

@@ -217,9 +217,9 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
         _connectionDetailsViewModel.IsActive = false;
     }
 
-    public override void OnNavigatedTo(object parameter)
+    public override void OnNavigatedTo(object parameter, bool isBackNavigation)
     {
-        base.OnNavigatedTo(parameter);
+        base.OnNavigatedTo(parameter, isBackNavigation);
 
         _connectionDetailsViewModel.IsActive = IsConnectionDetailsPaneOpened;
     }

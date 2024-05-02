@@ -21,11 +21,18 @@ namespace ProtonVPN.Client.UI.Features.PortForwarding;
 
 public sealed partial class PortForwardingPage
 {
+    public PortForwardingViewModel ViewModel { get; }
+
     public PortForwardingPage()
     {
         ViewModel = App.GetService<PortForwardingViewModel>();
         InitializeComponent();
+
+        ViewModel.ResetContentScrollRequested += OnResetContentScrollRequested;
     }
 
-    public PortForwardingViewModel ViewModel { get; }
+    private void OnResetContentScrollRequested(object? sender, EventArgs e)
+    {
+        PageContentHost.ResetContentScroll();
+    }
 }

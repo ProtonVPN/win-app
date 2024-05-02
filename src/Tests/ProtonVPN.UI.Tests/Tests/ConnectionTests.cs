@@ -167,7 +167,6 @@ public class ConnectionTests : TestSession
     [Test]
     public void ConnectToSpecificServer()
     {
-
         NavigateToServers(COUNTRY_CODE, CITY);
 
         ServerConnectButton serverConnectButton = _countriesRobot.GetServerConnectButton();

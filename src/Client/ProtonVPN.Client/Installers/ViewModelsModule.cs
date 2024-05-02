@@ -21,17 +21,12 @@ using Autofac;
 using Autofac.Builder;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.UI;
-using ProtonVPN.Client.UI.Countries;
-using ProtonVPN.Client.UI.Countries.Controls;
-using ProtonVPN.Client.UI.Countries.CountriesFeatureTabs;
-using ProtonVPN.Client.UI.Countries.CountryFeatureTabs;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
 using ProtonVPN.Client.UI.Features.KillSwitch;
 using ProtonVPN.Client.UI.Features.NetShield;
 using ProtonVPN.Client.UI.Features.PortForwarding;
 using ProtonVPN.Client.UI.Features.SplitTunneling;
 using ProtonVPN.Client.UI.Gallery;
-using ProtonVPN.Client.UI.Gateways;
 using ProtonVPN.Client.UI.Home;
 using ProtonVPN.Client.UI.Home.ConnectionCard;
 using ProtonVPN.Client.UI.Home.ConnectionCard.Overlays;
@@ -57,6 +52,11 @@ using ProtonVPN.Client.UI.Upsell.Carousel.Features;
 using ProtonVPN.Client.UI.Upsell.Carousel.Features.Base;
 using ProtonVPN.Client.UI.Upsell.Banner;
 using ProtonVPN.Client.UI.Sidebar;
+using ProtonVPN.Client.UI.Connections.Gateways;
+using ProtonVPN.Client.UI.Connections.Countries;
+using ProtonVPN.Client.UI.Connections.P2P;
+using ProtonVPN.Client.UI.Connections.SecureCore;
+using ProtonVPN.Client.UI.Connections.Tor;
 
 namespace ProtonVPN.Client.Installers;
 
@@ -92,16 +92,13 @@ public class ViewModelsModule : Module
         RegisterViewModel<FreeConnectionCardViewModel>(builder);
         RegisterViewModel<HelpViewModel>(builder);
         RegisterViewModel<SettingsViewModel>(builder);
-        RegisterViewModel<CountriesViewModel>(builder);
-        RegisterViewModel<GatewaysViewModel>(builder);
-        RegisterViewModel<AllCountriesPageViewModel>(builder);
-        RegisterViewModel<SecureCoreCountriesPageViewModel>(builder);
-        RegisterViewModel<SecureCoreCountryPageViewModel>(builder);
-        RegisterViewModel<TorServersPageViewModel>(builder);
+        RegisterViewModel<GatewaysPageViewModel>(builder);
+        RegisterViewModel<CountriesPageViewModel>(builder);
+        RegisterViewModel<CountryPageViewModel>(builder);
         RegisterViewModel<P2PCountriesPageViewModel>(builder);
+        RegisterViewModel<P2PCountryPageViewModel>(builder);
+        RegisterViewModel<SecureCoreCountriesPageViewModel>(builder);
         RegisterViewModel<TorCountriesPageViewModel>(builder);
-        RegisterViewModel<CitiesPageViewModel>(builder);
-        RegisterViewModel<P2PCitiesPageViewModel>(builder);
         RegisterViewModel<HomeViewModel>(builder);
         RegisterViewModel<TrayIconViewModel>(builder);
         RegisterViewModel<CensorshipViewModel>(builder);
@@ -115,11 +112,9 @@ public class ViewModelsModule : Module
         RegisterViewModel<PortForwardingViewModel>(builder);
         RegisterViewModel<KillSwitchViewModel>(builder);
         RegisterViewModel<NetShieldViewModel>(builder);
-        RegisterViewModel<CountryTabViewModel>(builder);
         RegisterViewModel<LoginFormViewModel>(builder);
         RegisterViewModel<TwoFactorFormViewModel>(builder);
         RegisterViewModel<LoadingFormViewModel>(builder);
-        RegisterViewModel<NoSearchResultsViewModel>(builder);
         RegisterViewModel<SsoLoginOverlayViewModel>(builder);
         RegisterViewModel<ConnectionErrorViewModel>(builder);
         RegisterViewModel<UpsellBannerViewModel>(builder);
@@ -130,11 +125,28 @@ public class ViewModelsModule : Module
         RegisterViewModel<GalleryItemViewModel>(builder);
         RegisterViewModel<TroubleshootingOverlayViewModel>(builder);
 
+        RegisterViewModel<UI.Gateways.GatewaysViewModel>(builder); // legacy
+        RegisterViewModel<UI.Countries.CountriesViewModel>(builder); // legacy
+        RegisterViewModel<UI.Countries.CountryTabViewModel>(builder); // legacy
+        RegisterViewModel<UI.Countries.CountriesFeatureTabs.AllCountriesPageViewModel>(builder); // legacy
+        RegisterViewModel<UI.Countries.CountriesFeatureTabs.SecureCoreCountriesPageViewModel>(builder); // legacy
+        RegisterViewModel<UI.Countries.CountriesFeatureTabs.P2PCountriesPageViewModel>(builder); // legacy
+        RegisterViewModel<UI.Countries.CountriesFeatureTabs.TorCountriesPageViewModel>(builder); // legacy
+        RegisterViewModel<UI.Countries.CountryFeatureTabs.SecureCoreCountryPageViewModel>(builder); // legacy
+        RegisterViewModel<UI.Countries.CountryFeatureTabs.TorServersPageViewModel>(builder); // legacy
+        RegisterViewModel<UI.Countries.CountryFeatureTabs.CitiesPageViewModel>(builder); // legacy
+        RegisterViewModel<UI.Countries.CountryFeatureTabs.P2PCitiesPageViewModel>(builder); // legacy
+        RegisterViewModel<UI.Countries.Controls.NoSearchResultsViewModel>(builder); // legacy
+
         RegisterViewModel<SidebarHomeViewModel>(builder);
         RegisterViewModel<SidebarGatewaysHeaderViewModel>(builder);
         RegisterViewModel<SidebarGatewaysViewModel>(builder);
         RegisterViewModel<SidebarConnectionsHeaderViewModel>(builder);
+        RegisterViewModel<SidebarCountriesLegacyViewModel>(builder);
         RegisterViewModel<SidebarCountriesViewModel>(builder);
+        RegisterViewModel<SidebarP2PCountriesViewModel>(builder);
+        RegisterViewModel<SidebarSecureCoreCountriesViewModel>(builder);
+        RegisterViewModel<SidebarTorCountriesViewModel>(builder);
         RegisterViewModel<SidebarFeaturesHeaderViewModel>(builder);
         RegisterViewModel<SidebarNetShieldViewModel>(builder);
         RegisterViewModel<SidebarKillSwitchViewModel>(builder);

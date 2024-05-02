@@ -50,7 +50,7 @@ public partial class CountryViewModel : LocationViewModelBase, IComparable, ISea
         : ExitCountryName;
 
     public string? PaidCountryWarningLabel => IsFreeUser ?
-        Localizer.Get(IsSecureCore && !string.IsNullOrEmpty(EntryCountryCode) ? "Countries_PaidServerWarning" : "Countries_PaidCountryWarning") :
+        Localizer.Get(IsSecureCore && !string.IsNullOrEmpty(EntryCountryCode) ? "Connections_Server_Restricted" : "Connections_Country_Restricted") :
         null;
 
     public CountryFeature CountryFeature { get; init; }

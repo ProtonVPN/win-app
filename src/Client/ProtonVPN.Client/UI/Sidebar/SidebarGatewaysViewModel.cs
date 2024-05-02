@@ -25,14 +25,14 @@ using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.UI.Gateways;
+using ProtonVPN.Client.UI.Connections.Gateways;
 using ProtonVPN.Client.UI.Sidebar.Bases;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Sidebar;
 
-public class SidebarGatewaysViewModel : SidebarNavigationItemViewModelBase<GatewaysViewModel>,
+public class SidebarGatewaysViewModel : SidebarNavigationItemViewModelBase<GatewaysPageViewModel>,
     IEventMessageReceiver<ServerListChangedMessage>
 {
     private readonly IServersLoader _serversLoader;

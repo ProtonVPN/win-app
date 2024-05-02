@@ -641,7 +641,10 @@
         <None Remove="Assets\Illustrations\Dark\product-logo.svg" />
         <None Remove="Assets\Illustrations\Dark\vpn-plus.svg" />
         <None Remove="Assets\Illustrations\Dark\welcome.png" />
+        <None Remove="Assets\Illustrations\feature-kill-switch.png" />
+        <None Remove="Assets\Illustrations\feature-port-forwarding.png" />
         <None Remove="Assets\Illustrations\free-connection-flags.svg" />
+        <None Remove="Assets\Illustrations\gateways.png" />
         <None Remove="Assets\Illustrations\kill-switch-off.png" />
         <None Remove="Assets\Illustrations\kill-switch-on-level-1.png" />
         <None Remove="Assets\Illustrations\kill-switch-on-level-2.png" />
@@ -729,6 +732,7 @@
         <None Remove="Styles\Controls\MessageContentDialogStyles.xaml" />
         <None Remove="Styles\Controls\NavigationViewStyles.xaml" />
         <None Remove="Styles\Controls\PageContentControlStyles.xaml" />
+        <None Remove="Styles\Controls\PageHeaderContentControlStyles.xaml" />
         <None Remove="Styles\Controls\PivotStyles.xaml" />
         <None Remove="Styles\Controls\ProgressBarStyles.xaml" />
         <None Remove="Styles\Controls\ProgressRingStyles.xaml" />
@@ -1814,10 +1818,19 @@
         <Content Update="Assets\Illustrations\Dark\welcome.png">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Illustrations\feature-kill-switch.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\feature-port-forwarding.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Icons\NetShield\data-saved.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\free-connection-flags.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\gateways.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\kill-switch-off.png">
@@ -1976,6 +1989,11 @@
         <Content Update="Assets\Illustrations\wrong-country.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Styles\Controls\PageHeaderContentControlStyles.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
     </ItemGroup>
     <ItemGroup>
       <Page Update="Styles\Controls\ScrollViewerStyles.xaml">

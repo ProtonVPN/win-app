@@ -77,7 +77,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 TabIndex="2"
                                 ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Show')}">
                 <toolkit:DockPanel>
-                    <controls:CountryFlagControl Width="30"
+                    <controls:CountryFlagControl Width="36"
                                                  Margin="4,0,0,0"
                                                  VerticalAlignment="Top"
                                                  toolkit:DockPanel.Dock="Left"
@@ -89,20 +89,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Orientation="Vertical"
                                 Spacing="4">
 
-                        <toolkit:DockPanel LastChildFill="False">
-                            <TextBlock AutomationProperties.AutomationId="ConnectionCardTitleLabel"
-                                       Style="{StaticResource BodyStrongTextBlockStyle}"
-                                       Text="{x:Bind ViewModel.Title}"
-                                       TextTrimming="CharacterEllipsis"
-                                       TextWrapping="WrapWholeWords" />
-                        </toolkit:DockPanel>
+                        <TextBlock AutomationProperties.AutomationId="ConnectionCardTitleLabel"
+                                   Style="{StaticResource BodyLargeStrongTextBlockStyle}"
+                                   Text="{x:Bind ViewModel.Title}"
+                                   TextTrimming="CharacterEllipsis"
+                                   TextWrapping="WrapWholeWords" />
 
                         <toolkit:WrapPanel HorizontalSpacing="6"
                                            Orientation="Horizontal"
                                            VerticalSpacing="4">
                             <TextBlock AutomationProperties.AutomationId="ConnectionCardSubtitleLabel"
                                        Foreground="{ThemeResource TextWeakColorBrush}"
-                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Style="{StaticResource BodyTextBlockStyle}"
                                        Text="{x:Bind ViewModel.Subtitle}"
                                        TextTrimming="CharacterEllipsis"
                                        TextWrapping="WrapWholeWords"
@@ -110,7 +108,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                             <TextBlock VerticalAlignment="Center"
                                        Foreground="{ThemeResource TextWeakColorBrush}"
-                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Style="{StaticResource BodyTextBlockStyle}"
                                        Text="•"
                                        Visibility="{x:Bind ViewModel.HasSubtitleAndFeature}" />
 
@@ -120,7 +118,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <pathicons:BrandTor Foreground="{ThemeResource TextWeakColorBrush}" />
                                 <TextBlock AutomationProperties.AutomationId="ConnectionCardFeatureTorLabel"
                                            Foreground="{ThemeResource TextWeakColorBrush}"
-                                           Style="{StaticResource CaptionTextBlockStyle}"
+                                           Style="{StaticResource BodyTextBlockStyle}"
                                            Text="{x:Bind ViewModel.Localizer.Get('Server_Feature_Tor')}"
                                            TextTrimming="CharacterEllipsis"
                                            TextWrapping="WrapWholeWords" />
@@ -132,7 +130,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <pathicons:ArrowRightArrowLeft Foreground="{ThemeResource TextWeakColorBrush}" />
                                 <TextBlock AutomationProperties.AutomationId="ConnectionCardFeatureP2PLabel"
                                            Foreground="{ThemeResource TextWeakColorBrush}"
-                                           Style="{StaticResource CaptionTextBlockStyle}"
+                                           Style="{StaticResource BodyTextBlockStyle}"
                                            Text="{x:Bind ViewModel.Localizer.Get('Server_Feature_P2P')}"
                                            TextTrimming="CharacterEllipsis"
                                            TextWrapping="WrapWholeWords" />
@@ -177,7 +175,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <VisualState.Setters>
                         <Setter Target="ShowConnectionDetailsButton.RightIcon">
                             <Setter.Value>
-                                <pathicons:ChevronRight />
+                                <pathicons:ChevronRight Size="Pixels24"/>
                             </Setter.Value>
                         </Setter>
                     </VisualState.Setters>

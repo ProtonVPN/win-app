@@ -778,7 +778,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <map:CountryPin x:Name="Pin"
                                 IsConnected="{x:Bind IsConnected}"
-                                IsConnecting="{x:Bind IsConnecting}">
+                                IsConnecting="{x:Bind IsConnecting}"
+                                Visibility="{x:Bind IsCountryPinVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <map:CountryPin.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform x:Name="PinScaleTransform" />

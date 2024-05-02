@@ -31,6 +31,9 @@ namespace ProtonVPN.UI.Tests.Tests;
 public class NavigationTests : TestSession
 {
     private const string COUNTRIES_PAGE_TITLE = "Countries";
+    private const string SECURE_CORE_COUNTRIES_PAGE_TITLE = "Secure Core";
+    private const string P2P_COUNTRIES_PAGE_TITLE = "P2P";
+    private const string TOR_COUNTRIES_PAGE_TITLE = "Tor";
     private const string SETTINGS_PAGE_TITLE = "Settings";
     private const string NETSHIELD_PAGE_TITLE = "NetShield";
     private const string KILL_SWITCH_PAGE_TITLE = "Kill switch";
@@ -76,6 +79,12 @@ public class NavigationTests : TestSession
         _shellRobot
             .DoNavigateToCountriesPage()
             .VerifyCurrentPage(COUNTRIES_PAGE_TITLE, false)
+            .DoNavigateToSecureCoreCountriesPage()
+            .VerifyCurrentPage(SECURE_CORE_COUNTRIES_PAGE_TITLE, false)
+            .DoNavigateToP2PCountriesPage()
+            .VerifyCurrentPage(P2P_COUNTRIES_PAGE_TITLE, false)
+            .DoNavigateToTorCountriesPage()
+            .VerifyCurrentPage(TOR_COUNTRIES_PAGE_TITLE, false)
             .DoNavigateToNetShieldFeaturePage()
             .VerifyCurrentPage(NETSHIELD_PAGE_TITLE, false)
             .DoNavigateToKillSwitchFeaturePage()

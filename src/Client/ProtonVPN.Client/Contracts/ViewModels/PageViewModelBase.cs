@@ -36,6 +36,8 @@ public abstract partial class PageViewModelBase : ActivatableViewModelBase, IEve
 
     public virtual bool IsBackEnabled => true;
 
+    public event EventHandler ResetContentScrollRequested;
+
     public Type PageType => GetType();
 
     public virtual string? Title { get; }
@@ -59,6 +61,11 @@ public abstract partial class PageViewModelBase : ActivatableViewModelBase, IEve
     protected override void OnLanguageChanged()
     {
         InvalidateTitle();
+    }
+
+    protected void RequestResetContentScroll()
+    {
+        ExecuteOnUIThread(() => ResetContentScrollRequested?.Invoke(this, EventArgs.Empty));        
     }
 }
 
@@ -109,10 +116,15 @@ public abstract partial class PageViewModelBase<TViewNavigator> : PageViewModelB
         IsActive = false;
     }
 
-    public virtual void OnNavigatedTo(object parameter)
+    public virtual void OnNavigatedTo(object parameter, bool isBackNavigation)
     {
         IsActive = true;
 
         InvalidateAllProperties();
+
+        if (!isBackNavigation)
+        {
+            RequestResetContentScroll();
+        }
     }
 }

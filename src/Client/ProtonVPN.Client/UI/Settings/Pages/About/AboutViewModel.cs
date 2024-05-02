@@ -90,9 +90,9 @@ public partial class AboutViewModel : PageViewModelBase<IMainViewNavigator>,
         }
     }
 
-    public override void OnNavigatedTo(object parameter)
+    public override void OnNavigatedTo(object parameter, bool isBackNavigation)
     {
-        base.OnNavigatedTo(parameter);
+        base.OnNavigatedTo(parameter, isBackNavigation);
 
         StartCheckingForUpdate();
     }

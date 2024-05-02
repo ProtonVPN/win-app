@@ -24,7 +24,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Thickness x:Key="RowContentMargin">12,0</Thickness>
     <Thickness x:Key="PrimaryContainerMargin">-4,0,12,0</Thickness>
-    <Thickness x:Key="SecondaryCommandContentMargin">8,-5</Thickness>
+    <Thickness x:Key="SecondaryCommandContentMargin">12,-5,8,-5</Thickness>
     <x:Double x:Key="SecondaryCommandContentSpacing">8</x:Double>
 
     <Style BasedOn="{StaticResource DualCommandsRowStyle}" TargetType="custom:DualCommandsRow" />

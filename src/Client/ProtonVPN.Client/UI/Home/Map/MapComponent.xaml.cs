@@ -71,6 +71,18 @@ public sealed partial class MapComponent
         typeof(MapComponent),
         new PropertyMetadata(default, OnActiveFillColorBrushChanged));
 
+    public static readonly DependencyProperty IsCountryPinVisibleProperty = DependencyProperty.Register(
+        nameof(IsCountryPinVisible),
+        typeof(bool),
+        typeof(MapComponent),
+        new PropertyMetadata(true));
+
+    public bool IsCountryPinVisible
+    {
+        get => (bool)GetValue(IsCountryPinVisibleProperty);
+        set => SetValue(IsCountryPinVisibleProperty, value);
+    }
+
     public string ActiveCountryCode
     {
         get => (string)GetValue(ActiveCountryCodeProperty);
