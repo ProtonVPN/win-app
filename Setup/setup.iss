@@ -82,17 +82,8 @@ Source: "..\{#SourcePath}\ProtonVPNService.exe"; DestDir: "{app}\{#VersionFolder
 Source: "..\{#SourcePath}\en-us\Microsoft.ui.xaml.dll.mui"; DestDir: "{app}\{#VersionFolder}\en-us";
 Source: "..\{#SourcePath}\fr-FR\Microsoft.ui.xaml.dll.mui"; DestDir: "{app}\{#VersionFolder}\fr-FR";
 
-Source: "..\{#SourcePath}\Resources\GoSrp.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\{#SourcePath}\Resources\libcrypto-1_1-x64.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\{#SourcePath}\Resources\libpkcs11-helper-1.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\{#SourcePath}\Resources\libssl-1_1-x64.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\{#SourcePath}\Resources\LocalAgent.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\{#SourcePath}\Resources\ProtonVPN.InstallActions.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\{#SourcePath}\Resources\ProtonVPN.InstallActions.x86.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\{#SourcePath}\Resources\ProtonVPN.IPFilter.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\{#SourcePath}\Resources\ProtonVPN.NetworkUtil.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\{#SourcePath}\Resources\vcruntime140.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
-Source: "..\{#SourcePath}\Resources\openvpn.exe"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
+Source: "..\{#SourcePath}\Resources\*.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
+Source: "..\{#SourcePath}\Resources\*.exe"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
 Source: "..\{#SourcePath}\Resources\config.ovpn"; DestDir: "{app}\{#VersionFolder}\Resources";
 
 Source: "..\src\ProtonVPN.Vpn\Resources\wireguard.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
