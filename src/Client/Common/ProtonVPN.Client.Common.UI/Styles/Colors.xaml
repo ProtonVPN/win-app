@@ -158,7 +158,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <!--  Backdrop  -->
             <Color x:Key="BackdropNormColor">#7A000000</Color>
             <!--  VPN  -->
-            <Color x:Key="VpnGreenColor">#27DDB1</Color>
+            <Color x:Key="VpnGreenColor">#2CFFCC</Color>
             <!--  Gradient  -->
             <Color x:Key="GradientFadingStartColor">#FF16141C</Color>
             <Color x:Key="GradientFadingEndColor">#0016141C</Color>
@@ -166,16 +166,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Color x:Key="GradientUnprotectedEndColor">#00F7607B</Color>
             <Color x:Key="GradientConnectingStartColor">#7FFFFFFF</Color>
             <Color x:Key="GradientConnectingEndColor">#00FFFFFF</Color>
-            <Color x:Key="GradientProtectedStartColor">#7F27DDB1</Color>
-            <Color x:Key="GradientProtectedEndColor">#0027DDB1</Color>
+            <Color x:Key="GradientProtectedStartColor">#7F2CFFCC</Color>
+            <Color x:Key="GradientProtectedEndColor">#002CFFCC</Color>
             <Color x:Key="GradientConnectionLineStartColor">#8A6EFF</Color>
-            <Color x:Key="GradientConnectionLineEndColor">#27DDB1</Color>
+            <Color x:Key="GradientConnectionLineEndColor">#2CFFCC</Color>
             <Color x:Key="GradientDisconnectedPinStop1Color">#00F7607B</Color>
             <Color x:Key="GradientDisconnectedPinStop2Color">#80F7607B</Color>
             <Color x:Key="GradientDisconnectedPinStop3Color">#F7607B</Color>
-            <Color x:Key="GradientConnectedPinStop1Color">#0027DDB1</Color>
-            <Color x:Key="GradientConnectedPinStop2Color">#8027DDB1</Color>
-            <Color x:Key="GradientConnectedPinStop3Color">#27DDB1</Color>
+            <Color x:Key="GradientConnectedPinStop1Color">#002CFFCC</Color>
+            <Color x:Key="GradientConnectedPinStop2Color">#802CFFCC</Color>
+            <Color x:Key="GradientConnectedPinStop3Color">#2CFFCC</Color>
             <Color x:Key="GradientUpsellBackgroundStartColor">#FF11D8CC</Color>
             <Color x:Key="GradientUpsellBackgroundEndColor">#006E4BFF</Color>
 

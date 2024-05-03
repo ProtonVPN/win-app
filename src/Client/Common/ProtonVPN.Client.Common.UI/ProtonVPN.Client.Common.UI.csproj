@@ -338,14 +338,8 @@
         <Content Remove="Assets\Icons\PathIcons\WindowImage.cs" />
         <Content Remove="Assets\Icons\PathIcons\WindowTerminal.cs" />
         <Content Remove="Assets\Icons\PathIcons\Wrench.cs" />
-        <Content Remove="Assets\Icons\ProtectedLock.xaml" />
-        <Content Remove="Assets\Icons\ProtectedLock.xaml.cs" />
         <Content Remove="Assets\Icons\SecureCoreFlagOutline.xaml" />
         <Content Remove="Assets\Icons\SecureCoreFlagOutline.xaml.cs" />
-        <Content Remove="Assets\Icons\SecureCoreProtectedLock.xaml" />
-        <Content Remove="Assets\Icons\SecureCoreProtectedLock.xaml.cs" />
-        <Content Remove="Assets\Icons\UnprotectedLock.xaml" />
-        <Content Remove="Assets\Icons\UnprotectedLock.xaml.cs" />
     </ItemGroup>
     <ItemGroup>
         <None Remove="Assets\Flags\AD.svg" />
@@ -603,9 +597,7 @@
         <None Remove="Assets\Icons\LatencyLow.xaml" />
         <None Remove="Assets\Icons\LatencyMedium.xaml" />
         <None Remove="Assets\Icons\LoadingLogo.xaml" />
-        <None Remove="Assets\Icons\ProtectedLock.xaml" />
         <None Remove="Assets\Icons\SecureCoreFlagOutline.xaml" />
-        <None Remove="Assets\Icons\SecureCoreProtectedLock.xaml" />
         <None Remove="Assets\Icons\Streaming\10play.png" />
         <None Remove="Assets\Icons\Streaming\7plus.png" />
         <None Remove="Assets\Icons\Streaming\abc.png" />
@@ -636,7 +628,6 @@
         <None Remove="Assets\Icons\Streaming\sling.png" />
         <None Remove="Assets\Icons\Streaming\syfy.png" />
         <None Remove="Assets\Icons\Streaming\tf1.png" />
-        <None Remove="Assets\Icons\UnprotectedLock.xaml" />
         <None Remove="Assets\Illustrations\Dark\free-countries.svg" />
         <None Remove="Assets\Illustrations\Dark\product-logo.svg" />
         <None Remove="Assets\Illustrations\Dark\vpn-plus.svg" />
@@ -883,21 +874,6 @@
     </ItemGroup>
     <ItemGroup>
         <Page Update="Assets\Icons\SecureCoreFlagOutline.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-    </ItemGroup>
-    <ItemGroup>
-        <Page Update="Assets\Icons\SecureCoreProtectedLock.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-    </ItemGroup>
-    <ItemGroup>
-        <Page Update="Assets\Icons\ProtectedLock.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-    </ItemGroup>
-    <ItemGroup>
-        <Page Update="Assets\Icons\UnprotectedLock.xaml">
             <Generator>MSBuild:Compile</Generator>
         </Page>
     </ItemGroup>
