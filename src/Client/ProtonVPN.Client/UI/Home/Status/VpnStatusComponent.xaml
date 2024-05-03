@@ -26,6 +26,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:icons="using:ProtonVPN.Client.Common.UI.Assets.Icons"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:netShieldStats="using:ProtonVPN.Client.UI.Home.Status"
+             xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
              mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -56,37 +57,50 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     HorizontalAlignment="Stretch"
                     Orientation="Vertical"
                     Spacing="8">
-            <StackPanel Margin="0,18,0,8"
+            <StackPanel Margin="0,18,0,16"
                         HorizontalAlignment="Center"
                         Orientation="Horizontal">
+
                 <Grid AutomationProperties.AutomationId="ProtectionIconContainer">
-                    <icons:UnprotectedLock x:Name="VpnStatusIconDisconnected"
-                                           Foreground="{ThemeResource SignalDangerColorBrush}"
-                                           Visibility="{x:Bind ViewModel.IsDisconnected, Mode=OneWay}" />
+
+                    <pathicons:LockOpenFilled2 x:Name="VpnStatusIconDisconnected"
+                                               Foreground="{ThemeResource SignalDangerColorBrush}"
+                                               Size="Pixels32"
+                                               Visibility="{x:Bind ViewModel.IsDisconnected, Mode=OneWay}" />
+
                     <ProgressRing x:Name="VpnStatusIconConnecting"
-                                  Width="24"
-                                  Height="24"
+                                  Width="32"
+                                  Height="32"
                                   IsActive="{x:Bind ViewModel.IsConnecting, Mode=OneWay}" />
+
                     <Grid Visibility="{x:Bind ViewModel.IsConnected, Mode=OneWay}">
-                        <icons:ProtectedLock x:Name="VpnStatusIconConnected"
-                                             Foreground="{ThemeResource VpnGreenColorBrush}" />
-                        <icons:SecureCoreProtectedLock x:Name="VpnStatusSecureCoreIconConnected"
-                                                       Foreground="{ThemeResource VpnGreenColorBrush}" />
+
+                        <pathicons:LockFilled x:Name="VpnStatusIconConnected"
+                                              Foreground="{ThemeResource VpnGreenColorBrush}"
+                                              Size="Pixels32" />
+
+                        <pathicons:LocksFilled x:Name="VpnStatusSecureCoreIconConnected"
+                                               Foreground="{ThemeResource VpnGreenColorBrush}"
+                                               Size="Pixels32" />
+
                     </Grid>
                 </Grid>
+
                 <TextBlock x:Name="VpnStatusTitle"
-                           Margin="8,0,0,0"
+                           Margin="12,2,0,0"
+                           VerticalAlignment="Center"
                            AutomationProperties.AutomationId="VpnStatusTitleLabel"
-                           Style="{StaticResource BodyLargeStrongTextBlockStyle}"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
                            Text="{x:Bind ViewModel.Title, Mode=OneWay}"
                            Visibility="{x:Bind ViewModel.IsTitleVisible, Mode=OneWay}" />
+
             </StackPanel>
 
             <Grid MaxWidth="{StaticResource MaximumHomePageContentWidth}">
                 <StackPanel x:Name="VpnStatusDetails"
                             Opacity="1"
                             Orientation="Vertical"
-                            Spacing="8"
+                            Spacing="12"
                             Visibility="{Binding Opacity, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource OpacityToVisibilityConverter}}">
 
                     <UIElement.RenderTransform>
@@ -96,7 +110,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <TextBlock x:Name="VpnStatusSubtitle"
                                HorizontalAlignment="Center"
                                AutomationProperties.AutomationId="VpnStatusSubtitleLabel"
-                               Style="{StaticResource BodyStrongTextBlockStyle}"
+                               Style="{StaticResource BodyLargeStrongTextBlockStyle}"
                                Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}" />
 
                     <Border x:Name="DeviceLocation"
@@ -114,8 +128,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </StackPanel>
 
                 <Border x:Name="NetShieldStats"
-                        Padding="12"
                         Margin="16,0"
+                        Padding="12"
                         HorizontalAlignment="Stretch"
                         AutomationProperties.LandmarkType="Custom"
                         AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_NetShield_Landmark')}"
