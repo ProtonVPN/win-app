@@ -40,6 +40,10 @@ public static class VpnErrorExtensions
 
     public static bool IsNetworkAdapterError(this VpnError error)
     {
-        return error is VpnError.TapAdapterInUseError or VpnError.NoTapAdaptersError or VpnError.TapRequiresUpdateError;
+        return error is
+            VpnError.TapAdapterInUseError or
+            VpnError.NoTapAdaptersError or
+            VpnError.TapRequiresUpdateError or
+            VpnError.WireGuardAdapterInUseError;
     }
 }
