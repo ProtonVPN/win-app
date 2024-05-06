@@ -78,9 +78,6 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
             return ConnectionErrorHandlerResult.SameAsLast;
         }
 
-        _error = vpnState.Error;
-        _status = vpnState.Status;
-
         // If the service disconnects and it is not the user intent, reconnect.
         if (vpnState.Status == VpnStatusIpcEntity.Disconnected &&
             vpnState.Error == VpnErrorTypeIpcEntity.None &&
@@ -95,41 +92,50 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
             return ConnectionErrorHandlerResult.SameAsLast;
         }
 
+        _error = vpnState.Error;
+        _status = vpnState.Status;
+
         if (error == VpnError.NoTapAdaptersError)
         {
             return await HandleNoTapAdaptersErrorAsync();
         }
-        else if (error == VpnError.CertificateExpired)
+
+        if (error == VpnError.CertificateExpired)
         {
             await _connectionCertificateManager.RequestNewCertificateAsync(isToSendMessageIfCertificateIsNotRefreshed: true);
             // No need to reconnect, if the certificate was updated successfully,
             // ConnectionManager will inform the service about updated certificate.
             return ConnectionErrorHandlerResult.NoAction;
         }
-        else if (error == VpnError.PlanNeedsToBeUpgraded)
+
+        if (error == VpnError.PlanNeedsToBeUpgraded)
         {
             await _vpnPlanUpdater.ForceUpdateAsync();
             // No reconnect is asked directly here. If the VPN Plan is updated due to the line above,
             // a VpnPlanChangedMessage should be triggered by it and handled by a class that reconnects.
             return ConnectionErrorHandlerResult.NoAction;
         }
-        else if (error.RequiresCertificateUpdate())
+
+        if (error.RequiresCertificateUpdate())
         {
             await _connectionCertificateManager.ForceRequestNewKeyPairAndCertificateAsync();
             return await ReconnectAsync();
         }
-        else if (error.RequiresInformingUser())
+
+        if (error.RequiresInformingUser())
         {
             return SendConnectionErrorMessage(error);
         }
-        else if (error.RequiresReconnectWithoutLastServer())
+
+        if (error.RequiresReconnectWithoutLastServer())
         {
             // VPNWIN-2103 - Either 
             // (1) Reconnect without last server, or 
             // (2) Delete this separation between RequiresReconnectWithoutLastServer and RequiresReconnect
             return await ReconnectAsync();
         }
-        else if (error.RequiresReconnect())
+
+        if (error.RequiresReconnect())
         {
             return await ReconnectAsync();
         }
