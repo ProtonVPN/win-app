@@ -2155,7 +2155,7 @@ ustavljeni</value>
     <value>Omogočiti NetShield?</value>
   </data>
   <data name="Settings_Features_NetShield_Description">
-    <value>Zaščitite se pred oglasi, zlonamerno programsko opremo in sledilci na spletnih mestih in v aplikacijah.</value>
+    <value>Zaščitite se pred oglasi, zlonamerno programsko opremo in sledilniki na spletnih straneh in v aplikacijah.</value>
   </data>
   <data name="Settings_Features_NetShield_Footer">
     <value>Nekatera spletna mesta se morda ne bodo pravilno naložila, če so oglasi in sledilniki blokirani.</value>

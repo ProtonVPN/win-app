@@ -163,10 +163,10 @@
     <value>Завантаження...</value>
   </data>
   <data name="Common_States_Off">
-    <value>Off</value>
+    <value>Вимкнути</value>
   </data>
   <data name="Common_States_On">
-    <value>On</value>
+    <value>Увімкнути</value>
   </data>
   <data name="Connection_Error_MissingAuthCertificate">
     <value>Proton VPN не вдалося одержати сертифікат автентифікацій через проблему мережі.</value>
@@ -181,13 +181,13 @@
     <value>Повідомити про проблему</value>
   </data>
   <data name="Connection_Error_RpcServerUnavailable">
-    <value>Proton VPN can't connect because the RPC server is unavailable on your system.</value>
+    <value>Proton VPN не може під'єднатися, оскільки сервер RPC недоступний у вашій системі.</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
-    <value>You have reached your maximum device limit. Please disconnect another device to connect this one or upgrade to PLUS to get up to 10 devices connected at the same time.</value>
+    <value>Ви досягли максимального ліміту пристроїв. Будь ласка, від'єднайте інший пристрій, щоб під'єднати цей, або перейдіть на версію PLUS, щоб з'єднати до 10 пристроїв одночасно.</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedPaidUser">
-    <value>You have reached your maximum device limit. Please disconnect another device to connect this one.</value>
+    <value>Ви досягли максимального ліміту пристроїв. Будь ласка, від'єднайте інший пристрій, щоб під'єднати цей.</value>
   </data>
   <data name="Connection_Error_TapAdapterInUse">
     <value>Ваш мережевий адаптер зараз використовується.</value>
@@ -196,19 +196,19 @@
     <value>Версія мережевого адаптера застаріла.</value>
   </data>
   <data name="Connection_Error_TlsCertificate">
-    <value>There's a problem validating the VPN server certificate, which might indicate that the network connection is being tampered with or the server you are trying to connect to has a configuration problem. Get help from our customer support by sending an Issue Report.</value>
+    <value>Виникла проблема з перевіркою сертифіката VPN-сервера, що може свідчити про те, що мережеве з'єднання намагаються підмінити або сервер, до якого ви намагаєтеся під'єднатися, має проблеми з конфігурацією. Зверніться за допомогою до нашої служби підтримки, надіславши Звіт про проблему.</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>We're not sure what happened here. Please try again or contact our customer support team.</value>
+    <value>Ми не впевнені, що тут сталося. Будь ласка, спробуйте ще раз або зверніться до нашої служби підтримки.</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
-    <value>View possible solutions</value>
+    <value>Перегляд можливих рішень</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
     <value>Proton VPN не може під'єднатися, оскільки мережевий адаптер WireGuard зараз використовується. Від'єднайте будь-які активні VPN і повторіть спробу. Або ж ви можете змінити протокол у розширених налаштуваннях.</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
-    <value>Auto-selected from</value>
+    <value>Автоматично вибрано з</value>
     <comment>Appears in the connection card for free users. A set of flags is displayed after the text (eg. Auto-selected from [us-flag] [jp-flag]...)</comment>
   </data>
   <data name="Connection_Intent_City_Server">
@@ -220,7 +220,7 @@
     <comment>Name of the server including country name. {0} is a placeholder for the country name. {1} is a placeholder for the number associated to the server (eg. Switzerland #20)</comment>
   </data>
   <data name="Connection_Via_SecureCore">
-    <value>via {0}</value>
+    <value>через {0}</value>
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
   </data>
   <data name="Countries_All">
@@ -242,20 +242,20 @@
     <value>{0} міст</value>
   </data>
   <data name="Countries_Connect">
-    <value>Connect</value>
+    <value>З'єднатися</value>
     <comment>Connect button label on a country row in the countries tab</comment>
   </data>
   <data name="Countries_Fastest">
     <value>Найшвидша країна</value>
   </data>
   <data name="Countries_Info">
-    <value>Info</value>
+    <value>Інформація</value>
   </data>
   <data name="Countries_NoSearchResults">
     <value>Нічого не знайдено</value>
   </data>
   <data name="Countries_NumberOfCities">
-    <value>Cities ({0})</value>
+    <value>Міста ({0})</value>
     <comment>{0} represents the number of cities</comment>
   </data>
   <data name="Countries_NumberOfCountries">
@@ -263,7 +263,7 @@
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_NumberOfServers">
-    <value>Servers ({0})</value>
+    <value>Сервери ({0})</value>
     <comment>{0} represents a number of servers</comment>
   </data>
   <data name="Countries_P2P">
@@ -274,14 +274,14 @@
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_P2P_Cities">
-    <value>P2P cities ({0})</value>
+    <value>Міста P2P ({0})</value>
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
   <data name="Countries_Page_Title">
     <value>Країни</value>
   </data>
   <data name="Countries_SearchPlaceholder">
-    <value>I want to browse from...</value>
+    <value>Я хочу переглядати з...</value>
   </data>
   <data name="Countries_SecureCore">
     <value>Secure Core</value>
@@ -291,7 +291,7 @@
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_SecureCoreServers">
-    <value>Secure Core servers ({0})</value>
+    <value>Сервери Secure Core ({0})</value>
     <comment>{0} represents the number of severs</comment>
   </data>
   <data name="Countries_Server_One">
@@ -307,31 +307,31 @@
     <value>{0} серверів</value>
   </data>
   <data name="Countries_ServerLoad">
-    <value>Server load</value>
+    <value>Навантаження сервера</value>
   </data>
   <data name="Countries_SmartRouting">
     <value>Smart routing</value>
   </data>
   <data name="Countries_SmartRouting_Description">
-    <value>Servers are physically located in {0}, but you'll appear to be browsing from {1}.</value>
+    <value>Сервери фізично розташовані в {0}, але вам буде здаватися, що ви переглядаєте сторінки з {1}.</value>
     <comment>{0} and {1} represent country names.</comment>
   </data>
   <data name="Countries_Tor">
     <value>Tor</value>
   </data>
   <data name="Countries_TorCountries">
-    <value>Tor countries ({0})</value>
+    <value>Країни Tor ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_TorServers">
-    <value>Tor servers ({0})</value>
+    <value>Сервери Tor ({0})</value>
     <comment>{0} represents a number of tor servers in the country</comment>
   </data>
   <data name="Countries_TryDifferentKeyword">
     <value>Спробуйте інше ключове слово</value>
   </data>
   <data name="Countries_ViaCountry">
-    <value>via {0}</value>
+    <value>через {0}</value>
     <comment>{0} represents country name. For example: via Australia.</comment>
   </data>
   <data name="Country_Fastest">
@@ -1298,7 +1298,7 @@
     <comment>The name of VG country</comment>
   </data>
   <data name="Country_val_VI">
-    <value>Virgin Islands, USA</value>
+    <value>Віргінські Острови, США</value>
     <comment>The name of VI country</comment>
   </data>
   <data name="Country_val_VN">
@@ -1342,34 +1342,34 @@
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
-    <value>Get unlimited server changes with VPN Plus.</value>
+    <value>Отримуйте необмежену кількість змін серверів з VPN Plus.</value>
   </data>
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
-    <value>You've reached the maximum number of free server changes for now</value>
+    <value>Ви досягли максимальної кількості безплатних змін серверів на цей момент</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
-    <value>Proton Free automatically connects you to the fastest available free server from our {0} free country. This will normally be the closest server to your location.</value>
+    <value>Proton Free автоматично з'єднує вас з найшвидшим доступним безплатним сервером з нашої {0} вільної країни. Зазвичай це буде найближчий до вас сервер.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Few">
-    <value>Proton Free automatically connects you to the fastest available free server from our {0} free countries. This will normally be the closest server to your location.</value>
+    <value>Proton Free автоматично з'єднує вас з найшвидшим доступним безплатним сервером з наших {0} вільних країн. Зазвичай це буде найближчий до вас сервер.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Many">
-    <value>Proton Free automatically connects you to the fastest available free server from our {0} free countries. This will normally be the closest server to your location.</value>
+    <value>Proton Free автоматично з'єднує вас з найшвидшим доступним безплатним сервером з наших {0} вільних країн. Зазвичай це буде найближчий до вас сервер.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
-    <value>Proton Free automatically connects you to the fastest available free server from our {0} free countries. This will normally be the closest server to your location.</value>
+    <value>Proton Free автоматично з'єднує вас з найшвидшим доступним безплатним сервером з наших {0} вільних країн. Зазвичай це буде найближчий до вас сервер.</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_One">
-    <value>Free server country ({0})</value>
+    <value>Країна вільного сервера ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Few">
-    <value>Free server countries ({0})</value>
+    <value>Країни вільного сервера ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Many">
-    <value>Free server countries ({0})</value>
+    <value>Країни вільного сервера ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Other">
-    <value>Free server countries ({0})</value>
+    <value>Країни вільного сервера ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Title">
     <value>Безплатні з'єднання</value>
@@ -1378,65 +1378,65 @@
     <value>Користуйтеся світовим покриттям з VPN Plus</value>
   </data>
   <data name="Dialogs_Latency_Description">
-    <value>Latency shows how long it takes for a server to respond to requests.
+    <value>Затримка показує, скільки часу потрібно серверу, щоб відповісти на запит.
 
-High latency can slow down your connection.</value>
+Висока затримка може сповільнити ваше з'єднання.</value>
   </data>
   <data name="Dialogs_Latency_HighRange_Description">
     <value>VPN може працювати повільніше</value>
   </data>
   <data name="Dialogs_Latency_HighRange_Title">
-    <value>High (150ms+)</value>
+    <value>Висока (150 мс +)</value>
   </data>
   <data name="Dialogs_Latency_LowRange_Description">
     <value>Блискавична швидкість</value>
   </data>
   <data name="Dialogs_Latency_LowRange_Title">
-    <value>Low (1ms - 50ms)</value>
+    <value>Низька (1 мс - 50 мс)</value>
   </data>
   <data name="Dialogs_Latency_MediumRange_Description">
     <value>Майже не впливає на швидкість VPN</value>
   </data>
   <data name="Dialogs_Latency_MediumRange_Title">
-    <value>Medium (50ms - 150ms)</value>
+    <value>Середня (50 мс - 150 мс)</value>
   </data>
   <data name="Dialogs_Latency_Title">
-    <value>What is latency?</value>
+    <value>Що таке затримка?</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
-    <value>How to torrent with P2P</value>
+    <value>Як користуватися торентами за допомогою P2P</value>
   </data>
   <data name="Dialogs_P2P_Title">
     <value>P2P</value>
   </data>
   <data name="Dialogs_P2P_WhatIsP2PServer">
-    <value>What is a P2P server?</value>
+    <value>Що таке P2P-сервер?</value>
   </data>
   <data name="Dialogs_P2P_WhatIsP2PServer_Description">
-    <value>P2P (peer-to-peer) VPN servers unblock torrent sites.</value>
+    <value>P2P (пірингові) VPN-сервери розблоковують торент сайти.</value>
   </data>
   <data name="Dialogs_P2P_WhatIsTorrenting">
-    <value>What is torrenting?</value>
+    <value>Що таке торент?</value>
   </data>
   <data name="Dialogs_P2P_WhatIsTorrenting_Description">
-    <value>The fast sharing and downloading of large files over a peer-to-peer (P2P) network.</value>
+    <value>Швидкий обмін та завантаження великих файлів через пірингову (P2P) мережу.</value>
   </data>
   <data name="Dialogs_P2P_WhyUse">
-    <value>Why use a P2P server when torrenting?</value>
+    <value>Навіщо використовувати P2P-сервер під час користування торентом?</value>
   </data>
   <data name="Dialogs_P2P_WhyUse_Description">
-    <value>• Increased upload and download speeds
-• No activity logs
-• Hide your IP address from your service provider and peers</value>
+    <value>• Збільшити швидкість вивантаження та завантаження
+• Немає журналів активності
+• Приховати свою IP-адресу від провайдера та інших користувачів</value>
   </data>
   <data name="Dialogs_Protocol_Description">
     <value>Протокол – це набір інструкцій, яких дотримується ваш пристрій для з'єднання й обміну даними з сервером.</value>
   </data>
   <data name="Dialogs_Protocol_SwitchHeader">
-    <value>Switch VPN Protocol</value>
+    <value>Перемкнути протокол VPN</value>
   </data>
   <data name="Dialogs_Protocol_Title">
-    <value>What is a VPN protocol?</value>
+    <value>Що таке протокол VPN?</value>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Email">
     <value>Е-пошта</value>
@@ -1451,44 +1451,44 @@ High latency can slow down your connection.</value>
     <comment>The label for the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description">
-    <value>Error logs show us what went wrong, and which actions led to your issue. We'll only ever use them to help our engineers fix bugs.</value>
+    <value>Журнали помилок показують нам, що пішло не так і які дії призвели до вашої проблеми. Ми будемо використовувати їх лише для того, щоб допомогти нашим інженерам виправити помилки.</value>
     <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_Header">
     <value>Що сталося?</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes">
-    <value>Quick fixes</value>
+    <value>Швидкі виправлення</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes_Footer">
-    <value>Didn't work?</value>
+    <value>Не працює?</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes_Header">
     <value>Ці поради можуть допомогти швидше розвʼязати вашу проблему.</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_DoneAction">
-    <value>Done</value>
+    <value>Готово</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Fail">
     <value>Виникла проблема</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Fail_Description">
-    <value>We couldn't send your report. Please check your connection and try again.</value>
+    <value>Ми не змогли надіслати звіт. Будь ласка, перевірте ваше з'єднання та спробуйте ще раз.</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_RetryAction">
     <value>Спробувати знову</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Success">
-    <value>Report sent</value>
+    <value>Звіт надіслано</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Success_Description">
-    <value>Thanks for your feedback. We'll get back to you as soon as we can.</value>
+    <value>Дякуємо за ваш відгук. Ми зв'яжемося з вами, як тільки зможемо.</value>
   </data>
   <data name="Dialogs_ReportIssue_SendReport">
-    <value>Send report</value>
+    <value>Надіслати звіт</value>
   </data>
   <data name="Dialogs_ReportIssue_Steps">
-    <value>Step {0} of {1}</value>
+    <value>Крок {0} із {1}</value>
     <comment>Steps header for the Report an issue dialog. {0} is a placeholder for the current step. {1} is a placeholder for the total number of steps. (eg. Step 1 of 3)</comment>
   </data>
   <data name="Dialogs_ReportIssue_Title">
@@ -1498,9 +1498,9 @@ High latency can slow down your connection.</value>
     <value>Вдосконалена приватність</value>
   </data>
   <data name="Dialogs_SecureCore_Description">
-    <value>Secure Core connects you to your destination server via a second, maximum security VPN server.
+    <value>Secure Core з'єднує вас із сервером призначення через другий, максимально захищений VPN-сервер.
 
-This higher level of protection may cause higher latency and slower speeds.</value>
+Цей вищий рівень захисту може спричинити більшу затримку та повільнішу швидкість роботи.</value>
   </data>
   <data name="Dialogs_SecureCore_HighPrivacy">
     <value>Високий рівень приватності</value>
@@ -1513,53 +1513,53 @@ This higher level of protection may cause higher latency and slower speeds.</val
   </data>
   <data name="Dialogs_SecureCore_SecureCoreConnection">
     <value>Secure Core
-VPN connection</value>
+VPN-з'єднання</value>
   </data>
   <data name="Dialogs_SecureCore_StandardConnection">
-    <value>Standard
-VPN connection</value>
+    <value>Стандартне
+VPN-з'єднання</value>
   </data>
   <data name="Dialogs_SecureCore_Title">
     <value>Secure Core</value>
   </data>
   <data name="Dialogs_ServerLoad_Description">
-    <value>Server load shows how close a server is to its maximum capacity.
+    <value>Навантаження на сервер показує, наскільки сервер близький до своєї максимальної потужності.
 
-A high server load can slow down your connection.</value>
+Високе навантаження на сервер може сповільнити ваше з'єднання.</value>
   </data>
   <data name="Dialogs_ServerLoad_HighRange_Description">
     <value>VPN може працювати повільніше</value>
   </data>
   <data name="Dialogs_ServerLoad_HighRange_Title">
-    <value>High (91-100%)</value>
+    <value>Високе (91–100%)</value>
   </data>
   <data name="Dialogs_ServerLoad_LowRange_Description">
     <value>Блискавична швидкість</value>
   </data>
   <data name="Dialogs_ServerLoad_LowRange_Title">
-    <value>Low (1-75%)</value>
+    <value>Низьке (1–75%)</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Description">
     <value>Майже не впливає на швидкість VPN</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Title">
-    <value>Medium (76-90%)</value>
+    <value>Середнє (76-90%)</value>
   </data>
   <data name="Dialogs_ServerLoad_Title">
     <value>Що таке навантаження сервера?</value>
   </data>
   <data name="Dialogs_SmartRouting_Description">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
+    <value>Smart Routing використовує віртуальні сервери для забезпечення VPN-покриття у важкодоступних країнах.
 
-When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+Коли ви підключаєтеся до сервера Smart Routing, вам буде здаватися, що ви переглядаєте веб-сторінки в країні призначення, навіть якщо фізичний сервер знаходиться в іншому місці.  
 
-Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+Smart Routing зазвичай використовується для того, щоб обійти закони про недоторканність приватного життя та інші форми цензури.</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
   </data>
   <data name="Dialogs_Tor_Description">
-    <value>Connect to a Tor server to access hidden services and onion sites using any browser.</value>
+    <value>Під'єднайтесь до Tor-сервера, щоб отримати доступ до прихованих сервісів і сайтів за допомогою будь-якого браузера.</value>
   </data>
   <data name="Dialogs_Tor_LearnMore">
     <value>Як отримати доступ до мережі Tor</value>
@@ -1568,7 +1568,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Tor</value>
   </data>
   <data name="Dialogs_Welcome_Message">
-    <value>We're getting your new VPN experience ready. This should only take a moment.</value>
+    <value>Ми готуємо ваш новий досвід роботи з VPN. Це займе лише мить.</value>
   </data>
   <data name="Dialogs_Welcome_Title">
     <value>Ласкаво просимо до Proton VPN</value>
@@ -1582,106 +1582,106 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Format a size in Bytes. {0} is a place holder for the number of Bytes (eg. 30 B)</comment>
   </data>
   <data name="Format_Size_Exabytes">
-    <value>{0} EB</value>
+    <value>{0} ЕБ</value>
     <comment>Format a size in Exabytes. {0} is a place holder for the number of Exabytes (eg. 30 EB)</comment>
   </data>
   <data name="Format_Size_Gigabytes">
-    <value>{0} GB</value>
+    <value>{0} ГБ</value>
     <comment>Format a size in Gigabytes. {0} is a place holder for the number of Gigabytes (eg. 30 GB)</comment>
   </data>
   <data name="Format_Size_Kilobytes">
-    <value>{0} KB</value>
+    <value>{0} КБ</value>
     <comment>Format a size in Kilobytes. {0} is a place holder for the number of Kilobytes (eg. 30 KB)</comment>
   </data>
   <data name="Format_Size_Megabytes">
-    <value>{0} MB</value>
+    <value>{0} МБ</value>
     <comment>Format a size in Megabytes. {0} is a place holder for the number of Megabytes (eg. 30 MB)</comment>
   </data>
   <data name="Format_Size_Petabytes">
-    <value>{0} PB</value>
+    <value>{0} ПБ</value>
     <comment>Format a size in Petabytes. {0} is a place holder for the number of Petabytes (eg. 30 PB)</comment>
   </data>
   <data name="Format_Size_Terabytes">
-    <value>{0} TB</value>
+    <value>{0} ТБ</value>
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
-    <value>{0} B/s</value>
+    <value>{0} Б/с</value>
     <comment>Format a speed in Bytes per second. {0} is a place holder for the number of Bytes per second (eg. 30 B/s)</comment>
   </data>
   <data name="Format_Speed_ExabytesPerSecond">
-    <value>{0} EB/s</value>
+    <value>{0} ЕБ/с</value>
     <comment>Format a speed in Exabytes per second. {0} is a place holder for the number of Exabytes per second (eg. 30 EB/s)</comment>
   </data>
   <data name="Format_Speed_GigabytesPerSecond">
-    <value>{0} GB/s</value>
+    <value>{0} ГБ/с</value>
     <comment>Format a speed in Gigabytes per second. {0} is a place holder for the number of Gigabytes per second (eg. 30 GB/s)</comment>
   </data>
   <data name="Format_Speed_KilobytesPerSecond">
-    <value>{0} KB/s</value>
+    <value>{0} КБ/с</value>
     <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
   </data>
   <data name="Format_Speed_MegabytesPerSecond">
-    <value>{0} MB/s</value>
+    <value>{0} МБ/с</value>
     <comment>Format a speed in Megabytes per second. {0} is a place holder for the number of Megabytes per second (eg. 30 MB/s)</comment>
   </data>
   <data name="Format_Speed_PetabytesPerSecond">
-    <value>{0} PB/s</value>
+    <value>{0} ПБ/с</value>
     <comment>Format a speed in Petabytes per second. {0} is a place holder for the number of Petabytes per second (eg. 30 PB/s)</comment>
   </data>
   <data name="Format_Speed_TerabytesPerSecond">
-    <value>{0} TB/s</value>
+    <value>{0} ТБ/с</value>
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
   <data name="Format_Time_Day">
-    <value>{0} day</value>
+    <value>{0} день</value>
     <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
   </data>
   <data name="Format_Time_DayHours">
-    <value>{0} day {1} hr</value>
+    <value>{0} день {1} год</value>
     <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
   </data>
   <data name="Format_Time_Days">
-    <value>{0} days</value>
+    <value>{0} днів</value>
     <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
   </data>
   <data name="Format_Time_DaysHours">
-    <value>{0} days {1} hr</value>
+    <value>{0} дні {1} год</value>
     <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
   </data>
   <data name="Format_Time_Hours">
-    <value>{0} hr</value>
+    <value>{0} год</value>
     <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_HoursMinutes">
-    <value>{0} hr {1} min</value>
+    <value>{0} год {1} хв</value>
     <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_HoursMinutesSeconds_Short">
-    <value>hh\:mm\:ss</value>
+    <value>гг\:хвхв\:сс</value>
     <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss -&gt; 01:05:36).</comment>
   </data>
   <data name="Format_Time_Minutes">
-    <value>{0} min</value>
+    <value>{0} хв</value>
     <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_MinutesSeconds">
-    <value>{0} min {1} sec</value>
+    <value>{0} хв {1} с</value>
     <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_MinutesSeconds_Short">
-    <value>mm\:ss</value>
+    <value>хвхв\:сс</value>
     <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss -&gt; 05:36).</comment>
   </data>
   <data name="Format_Time_Seconds">
-    <value>{0} sec</value>
+    <value>{0} сек</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
   </data>
   <data name="Gateways_Page_Title">
     <value>Мережеві шлюзи</value>
   </data>
   <data name="Gateways_Server">
-    <value>Dedicated server</value>
+    <value>Виділений сервер</value>
   </data>
   <data name="Home_Account_SignOut">
     <value>Вийти</value>
@@ -1690,14 +1690,14 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Ви будете від'єднані від VPN.</value>
   </data>
   <data name="Home_Account_SignOut_Confirmation_Title">
-    <value>Sign out from {0}?</value>
+    <value>Вийти з {0}?</value>
     <comment>{0} is a placeholder for the username</comment>
   </data>
   <data name="Home_Account_Title">
-    <value>My account</value>
+    <value>Мій обліковий запис</value>
   </data>
   <data name="Home_ConnectionCard_ChangeServer">
-    <value>Change server</value>
+    <value>Змінити сервер</value>
   </data>
   <data name="Home_ConnectionCard_Header_BrowseSafely">
     <value>Безпечний перегляд з</value>
@@ -1712,17 +1712,17 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Востаннє під'єднано до</value>
   </data>
   <data name="Home_ConnectionCard_Header_Recommended">
-    <value>Recommended</value>
+    <value>Рекомендовано</value>
   </data>
   <data name="Home_ConnectionCard_Landmark">
-    <value>Connection card</value>
+    <value>Контактна картка</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_ConnectionDetails_City">
     <value>Місто</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectedFor">
-    <value>Connected for</value>
+    <value>Тривалість з'єднання</value>
     <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
   </data>
   <data name="Home_ConnectionDetails_Country">
@@ -1732,24 +1732,24 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Завантажити</value>
   </data>
   <data name="Home_ConnectionDetails_Gateway">
-    <value>Gateway</value>
+    <value>Шлюз</value>
   </data>
   <data name="Home_ConnectionDetails_Hide">
-    <value>Hide connection details</value>
+    <value>Приховати деталі з'єднання</value>
   </data>
   <data name="Home_ConnectionDetails_HideIP">
     <value>Сховати</value>
     <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
   </data>
   <data name="Home_ConnectionDetails_HideIP_Description">
-    <value>Hide user IP address</value>
+    <value>Приховати IP-адресу користувача</value>
   </data>
   <data name="Home_ConnectionDetails_Landmark">
     <value>Подробиці з'єднання</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_ConnectionDetails_Latency">
-    <value>Latency</value>
+    <value>Затримка</value>
   </data>
   <data name="Home_ConnectionDetails_MyIp">
     <value>Моя IP-адреса</value>
@@ -1761,17 +1761,17 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Сервер</value>
   </data>
   <data name="Home_ConnectionDetails_ServerLoad">
-    <value>Server load</value>
+    <value>Навантаження сервера</value>
   </data>
   <data name="Home_ConnectionDetails_Show">
-    <value>Show connection details</value>
+    <value>Показати деталі підключення</value>
   </data>
   <data name="Home_ConnectionDetails_ShowIP">
     <value>Показати</value>
     <comment>Tooltip displayed when the user hover the button to show the User IP Address</comment>
   </data>
   <data name="Home_ConnectionDetails_ShowIP_Description">
-    <value>Show user IP address</value>
+    <value>Показати IP-адресу користувача</value>
   </data>
   <data name="Home_ConnectionDetails_Title">
     <value>Подробиці з'єднання</value>
@@ -1783,29 +1783,29 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>VPN IP</value>
   </data>
   <data name="Home_FreeConnections_About">
-    <value>More information about free connections</value>
+    <value>Докладніше про безплатні з'єднання</value>
   </data>
   <data name="Home_Help_Title">
     <value>Допомога</value>
   </data>
   <data name="Home_Map_Landmark">
-    <value>Map</value>
+    <value>Карта</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_NetShield_AdsBlocked">
-    <value>Ads
-blocked</value>
+    <value>Оголошень
+заблоковано</value>
     <comment>Use 
  to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
   </data>
   <data name="Home_NetShield_DataSaved">
-    <value>Data
-saved</value>
+    <value>Дані
+збережено</value>
     <comment>Use 
  to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
   </data>
   <data name="Home_NetShield_Landmark">
-    <value>NetShield statistics</value>
+    <value>Статистика NetShield</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_NetShield_TrackersStopped">
@@ -1818,26 +1818,26 @@ saved</value>
     <value>Головна</value>
   </data>
   <data name="Home_Recents_Landmark">
-    <value>Recent connections</value>
+    <value>Недавні з'єднання</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_Recents_Pin">
-    <value>Pin</value>
+    <value>Прикріпити</value>
   </data>
   <data name="Home_Recents_SecondaryActions_ToolTip">
     <value>Дії</value>
   </data>
   <data name="Home_Recents_ServerUnderMaintenance">
-    <value>Server is under maintenance</value>
+    <value>Сервер знаходиться на обслуговуванні</value>
   </data>
   <data name="Home_Recents_Title">
-    <value>Recents</value>
+    <value>Нещодавні</value>
   </data>
   <data name="Home_Recents_Unpin">
     <value>Відкріпити</value>
   </data>
   <data name="Home_Update_Confirmation_Message">
-    <value>To complete the update process, Proton VPN will temporarily disconnect and deactivate Advanced Kill Switch if any of these are active. Do you want to continue?</value>
+    <value>Щоб завершити процес оновлення, Proton VPN тимчасово відключить і деактивує Advanced Kill Switch, якщо будь-який з них активний. Чи бажаєте ви продовжити?</value>
     <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
   </data>
   <data name="Home_Update_Confirmation_Title">
@@ -1847,10 +1847,10 @@ saved</value>
     <value>Доступне оновлення</value>
   </data>
   <data name="Home_Update_UpdateReady">
-    <value>Update ready</value>
+    <value>Оновлення готове</value>
   </data>
   <data name="Home_VpnStatus_Landmark">
-    <value>VPN status</value>
+    <value>Статус VPN</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_VpnStatus_Subtitle_Connecting">
@@ -1860,10 +1860,10 @@ saved</value>
     <value>Ви незахищені</value>
   </data>
   <data name="Home_VpnStatus_Title_Connected">
-    <value>Protected</value>
+    <value>Захищено</value>
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
-    <value>An error occured when retrieving the session details. Please try again.</value>
+    <value>Виникла помилка при отриманні даних про сесію. Будь ласка, спробуйте ще раз.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Неправильний код. Повторіть спробу.</value>
@@ -1873,16 +1873,16 @@ saved</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_SsoAuthFailed">
-    <value>SSO Authentication failed. Please try again.</value>
+    <value>Помилка автентифікації SSO. Будь ласка, спробуйте ще раз.</value>
   </data>
   <data name="Login_Error_TwoFactorAuthFailed">
     <value>Неправильні дані входу. Спробуйте ще раз.</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
-    <value>Two factor authentication failed. Please sign in again.</value>
+    <value>Помилка двофакторної аутентифікації. Будь ласка, увійдіть знову.</value>
   </data>
   <data name="Login_Form">
-    <value>Sign in form</value>
+    <value>Форма входу</value>
   </data>
   <data name="Login_Form_CreateAccount">
     <value>Створити обліковий запис</value>
@@ -1911,7 +1911,7 @@ saved</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_SignIn">
-    <value>Sign in</value>
+    <value>Увійти</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="Login_Form_SignInWithPassword">
@@ -1928,7 +1928,7 @@ saved</value>
     <value>Е-пошта чи ім'я користувача</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate">
-    <value>Authenticate</value>
+    <value>Автентифікація</value>
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle">
@@ -1956,11 +1956,11 @@ saved</value>
     <value>Шоста цифра</value>
   </data>
   <data name="Main_Loading_SigningIn">
-    <value>Signing in, please wait...</value>
+    <value>Виконується вхід, будь ласка, зачекайте...</value>
     <comment>Message in the loading screen when signing in or starting the app</comment>
   </data>
   <data name="Main_Loading_SigningOut">
-    <value>Signing out, please wait...</value>
+    <value>Виконується вихід, будь ласка, зачекайте...</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
   <data name="Notifications_PortForwarding_Description">
@@ -1976,46 +1976,46 @@ saved</value>
     <value>Tor</value>
   </data>
   <data name="Server_Free">
-    <value>Free server</value>
+    <value>Free сервер</value>
   </data>
   <data name="Settings_About">
     <value>Про програму</value>
   </data>
   <data name="Settings_About_Changelog">
-    <value>Changelog</value>
+    <value>Список змін</value>
   </data>
   <data name="Settings_About_CurrentVersion">
     <value>Поточна версія</value>
   </data>
   <data name="Settings_About_FailedToFetch">
-    <value>Failed to load changelog information.</value>
+    <value>Не вдалося завантажити інформацію про список змін.</value>
   </data>
   <data name="Settings_About_GetLatestVersion">
-    <value>Get the latest version</value>
+    <value>Отримати останню версію</value>
   </data>
   <data name="Settings_About_LearnMore">
-    <value>Learn more</value>
+    <value>Докладніше</value>
   </data>
   <data name="Settings_About_Licensing">
-    <value>Licensing</value>
+    <value>Ліцензування</value>
   </data>
   <data name="Settings_About_Loading">
-    <value>Loading</value>
+    <value>Завантаження</value>
   </data>
   <data name="Settings_About_NewVersion">
-    <value>NEW</value>
+    <value>НОВА</value>
   </data>
   <data name="Settings_About_Title">
     <value>Про програму</value>
   </data>
   <data name="Settings_About_TryAgain">
-    <value>Try again</value>
+    <value>Спробувати знову</value>
   </data>
   <data name="Settings_About_Update_Description">
-    <value>Get the most from your VPN by updating to the latest version of the app.</value>
+    <value>Отримайте максимум від вашої VPN, оновивши додаток до останньої версії.</value>
   </data>
   <data name="Settings_AppVersion">
-    <value>App version</value>
+    <value>Версія програми</value>
   </data>
   <data name="Settings_Censorship_Footer">
     <value>Ця статистика не містить вашої IP-адреси та не може бути використана для вашої ідентифікації. Ми ніколи не передаємо ці дані третім сторонам.</value>
@@ -2033,16 +2033,16 @@ saved</value>
     <value>Дані про використання допомагають нам обходити блокування VPN і вдосконалювати швидкодію програми.</value>
   </data>
   <data name="Settings_Common_ApplyAndReconnect">
-    <value>Apply and reconnect</value>
+    <value>Застосувати та відновити підключення</value>
   </data>
   <data name="Settings_Common_Discard">
-    <value>Discard</value>
+    <value>Відхилити</value>
   </data>
   <data name="Settings_Common_Discard_Title">
-    <value>Discard settings changes?</value>
+    <value>Скасувати зміни налаштувань?</value>
   </data>
   <data name="Settings_Connection">
-    <value>Connection</value>
+    <value>З'єднання</value>
   </data>
   <data name="Settings_Connection_AdvancedSettings">
     <value>Додаткові налаштування</value>
@@ -2051,22 +2051,22 @@ saved</value>
     <value>Альтернативна маршрутизація</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting_Description">
-    <value>If Proton services are blocked due to network restrictions, we'll try using alternative network routing to connect you to our sites.</value>
+    <value>Якщо послуги Proton заблоковані через мережеві обмеження, ми спробуємо використати альтернативний мережевий маршрут, щоб під'єднати вас до наших сайтів.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
-    <value>Custom DNS servers</value>
+    <value>Користувацькі DNS сервери</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
-    <value>You won't be able to use NetShield when connected with a custom DNS server.</value>
+    <value>Ви не зможете використовувати NetShield при підключенні до власного DNS-сервера.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title">
-    <value>Enable custom DNS servers?</value>
+    <value>Увімкнути власні DNS сервери?</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
-    <value>Connect to Proton VPN using your own domain name system (DNS). Only use DNS servers that you trust.</value>
+    <value>Під'єднайтесь до Proton VPN, використовуючи власну систему доменних імен (DNS). Використовуйте лише ті DNS-сервери, яким ви довіряєте.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
-    <value>DNS servers ({0})</value>
+    <value>DNS сервери ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark">
@@ -2074,7 +2074,7 @@ saved</value>
     <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>IPv6 leak protection</value>
+    <value>Захист від витоку IPv6</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
     <value>Запобігати витоку адрес IPv6.</value>
@@ -2083,31 +2083,31 @@ saved</value>
     <value>LAN-з'єднання</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
-    <value>Allows you to connect to printers, speakers, and other devices in your device's local network.</value>
+    <value>Дозволяє під'єднуватись до принтерів, динаміків та інших пристроїв у локальній мережі вашого пристрою.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
-    <value>NAT type</value>
+    <value>NAT тип</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Description">
-    <value>You won't be able to use port forwarding with Moderate NAT.</value>
+    <value>Ви не зможете використовувати переадресацію портів з помірним NAT.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Title">
     <value>Увімкнути помірне NAT?</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Description">
-    <value>Select a network address translation type for your connection.</value>
+    <value>Виберіть тип трансляції мережевої адреси для вашого з'єднання.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate">
-    <value>Moderate (type 2)</value>
+    <value>Модерувати (тип 2)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
-    <value>Some restriction on data entering your network. This option is best for online video gaming.</value>
+    <value>Деяке обмеження на вхід даних у вашу мережу. Цей варіант найкраще підходить для онлайн-відеоігор.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict">
-    <value>Strict (type 3)</value>
+    <value>Суворий (тип 3)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
-    <value>Restricts the data entering your network. This option is more secure, but can make peer-to-peer gaming connections more difficult.</value>
+    <value>Обмежує доступ до даних у вашій мережі. Цей варіант безпечніший, але може ускладнити з'єднання в пірингових іграх.</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Протокол</value>
@@ -2119,73 +2119,73 @@ saved</value>
     <value>Функції</value>
   </data>
   <data name="Settings_Features_KillSwitch">
-    <value>Kill switch</value>
+    <value>Kill Switch</value>
   </data>
   <data name="Settings_Features_KillSwitch_Advanced">
-    <value>Advanced</value>
+    <value>Розширено</value>
   </data>
   <data name="Settings_Features_KillSwitch_Advanced_Description">
-    <value>Only allow internet access when connected to Proton VPN. Advanced kill switch will remain active even when you restart your device.</value>
+    <value>Дозволяти доступ до інтернету тільки при підключенні до Proton VPN. Удосконалений вимикач залишається активним навіть після перезавантаження пристрою.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Conflict_Description">
-    <value>This will disable split tunneling.</value>
+    <value>Це унеможливить роздільне прокладання тунелів.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Conflict_Title">
-    <value>Enable kill switch?</value>
+    <value>Увімкнути Kill Switch?</value>
   </data>
   <data name="Settings_Features_KillSwitch_Description">
-    <value>Protects your IP address by disconnecting you from the internet if you lose your VPN connection.</value>
+    <value>Захищає вашу IP-адресу, відключаючи вас від інтернету, якщо ви втрачаєте VPN-з'єднання.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Footer">
-    <value>When kill switch is on, you won't be able to connect to websites and apps excluded from your VPN connection through split tunneling.</value>
+    <value>Коли ввімкнено kill switch, ви не зможете підключатися до вебсайтів і програм, виключених з вашого VPN-з'єднання за допомогою роздільного тунелювання.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Standard">
-    <value>Standard</value>
+    <value>Стандартний</value>
   </data>
   <data name="Settings_Features_KillSwitch_Standard_Description">
-    <value>Automatically disconnect from the internet if VPN connection is lost.</value>
+    <value>Автоматично відключається від інтернету, якщо VPN-з'єднання втрачено.</value>
   </data>
   <data name="Settings_Features_NetShield">
     <value>NetShield</value>
   </data>
   <data name="Settings_Features_NetShield_Conflict_Description">
-    <value>You won't be able to connect with a custom DNS server when NetShield is enabled.</value>
+    <value>Якщо увімкнено NetShield, ви не зможете з'єднатися з користувацьким DNS-сервером.</value>
   </data>
   <data name="Settings_Features_NetShield_Conflict_Title">
-    <value>Enable NetShield?</value>
+    <value>Увімкнути NetShiel?</value>
   </data>
   <data name="Settings_Features_NetShield_Description">
-    <value>Protect yourself from ads, malware, and trackers on websites and apps.</value>
+    <value>Захистіть себе від реклами, шкідливих програм і трекерів на вебсайтах і в додатках.</value>
   </data>
   <data name="Settings_Features_NetShield_Footer">
-    <value>Some websites may not load properly when ads and trackers are blocked.</value>
+    <value>Деякі вебсайти можуть не завантажуватися належним чином, коли реклама та трекери заблоковані.</value>
   </data>
   <data name="Settings_Features_PortForwarding">
-    <value>Port forwarding</value>
+    <value>Переспрямування портів</value>
   </data>
   <data name="Settings_Features_PortForwarding_ActivePort">
-    <value>Active port:</value>
+    <value>Активний порт:</value>
   </data>
   <data name="Settings_Features_PortForwarding_ActivePort_Copy">
-    <value>Copy port number</value>
+    <value>Копіювати номер порту</value>
   </data>
   <data name="Settings_Features_PortForwarding_Conflict_Description">
-    <value>You won't be able to use Moderate NAT when port forwarding is enabled.</value>
+    <value>Ви не зможете використовувати помірний NAT, якщо увімкнено переадресацію портів.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Conflict_Title">
-    <value>Enable port forwarding?</value>
+    <value>Увімкнути пересилання порту?</value>
   </data>
   <data name="Settings_Features_PortForwarding_Description">
-    <value>Bypass firewalls to connect to P2P servers and devices in your local network.</value>
+    <value>Обхід брандмауерів для підключення до P2P-серверів і пристроїв у вашій локальній мережі.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Footer">
-    <value>To use Port Forwarding, please connect to a server that supports P2P.</value>
+    <value>Для використання переадресації портів, будь ласка, під'єднайтеся до сервера, який підтримує P2P.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Loading">
-    <value>Loading...</value>
+    <value>Завантаження...</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications">
-    <value>Notifications</value>
+    <value>Сповіщення</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications_Description">
     <value>Отримувати сповіщення, коли кількість портів переспрямування змінюється</value>
@@ -2194,115 +2194,115 @@ saved</value>
     <value>Роздільне тунелювання</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_Add">
-    <value>Add app</value>
+    <value>Додати застосунок</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_FilesFilterName">
-    <value>App files</value>
+    <value>Файли додатка</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_Header">
-    <value>Selected apps ({0})</value>
+    <value>Вибрані додатки ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_Remove">
-    <value>Remove app</value>
+    <value>Вилучити додаток</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Conflict_Description">
-    <value>This will disable kill switch.</value>
+    <value>Це призведе до вимкнення kill switch.</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Conflict_Title">
-    <value>Enable split tunneling?</value>
+    <value>Увімкнути розділення тунелю?</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Description">
-    <value>Customize your connection by deciding which apps and IP addresses are protected by VPN.</value>
+    <value>Налаштуйте своє з'єднання, вирішивши, які програми та IP-адреси будуть захищені VPN.</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Inverse">
-    <value>Inverse</value>
+    <value>Зворотний</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Inverse_Description">
-    <value>Only selected apps and IP addresses connect via VPN, all other traffic is unprotected</value>
+    <value>Тільки вибрані програми та IP-адреси під'єднаються через VPN, весь інший трафік є незахищеним</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Add">
-    <value>Add IP</value>
+    <value>Додати IP</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Header">
-    <value>Selected IP addresses ({0})</value>
+    <value>Обрані IP-адреси ({0})</value>
     <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Remove">
-    <value>Remove IP</value>
+    <value>Вилучити IP</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Watermark">
     <value>Додати адресу IPv4</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Standard">
-    <value>Standard</value>
+    <value>Стандартний</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Standard_Description">
-    <value>Selected apps and IP addresses are excluded from VPN connection</value>
+    <value>Вибрані програми та IP-адреси виключаються з VPN-з'єднання</value>
   </data>
   <data name="Settings_General">
-    <value>General</value>
+    <value>Загальні</value>
   </data>
   <data name="Settings_General_AutoStartup">
-    <value>Auto startup</value>
+    <value>Автоматичний запуск</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect">
-    <value>Auto connect</value>
+    <value>Автоз'єднання</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>You will be connected to a server as soon as Proton VPN opens</value>
+    <value>Ви будете під'єднані до сервера, як тільки Proton VPN відкриється</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
-    <value>Fastest connection</value>
+    <value>Найшвидше з'єднання</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Latest">
-    <value>Last connected</value>
+    <value>Останнє підключення</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch">
-    <value>Auto launch</value>
+    <value>Автоматичний запуск</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Description">
-    <value>Proton VPN will automatically open when you sign in to your device</value>
+    <value>Proton VPN автоматично відкриється під час входу на ваш пристрій</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Desktop">
-    <value>Open on desktop</value>
+    <value>Відкрити на комп'ютері</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray">
-    <value>Minimize to System Tray</value>
+    <value>Згорнути до системного трею</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Taskbar">
-    <value>Minimize to Taskbar</value>
+    <value>Згорнути до панелі завдань</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Auto launch, auto connect</value>
+    <value>Автоматичний запуск, автоматичне з’єднання</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>Автоматичні оновлення</value>
   </data>
   <data name="Settings_General_AutomaticUpdates_Description">
-    <value>Automatically check and install Proton VPN updates</value>
+    <value>Автоматична перевірка та встановлення оновлень Proton VPN</value>
   </data>
   <data name="Settings_General_BetaAccess">
-    <value>Beta access</value>
+    <value>Бета доступ</value>
   </data>
   <data name="Settings_General_BetaAccess_Description">
-    <value>Get early access and help us test new versions of Proton VPN</value>
+    <value>Отримайте ранній доступ та допоможіть нам протестувати нові версії Proton VPN</value>
   </data>
   <data name="Settings_General_Language">
-    <value>Language</value>
+    <value>Мова</value>
   </data>
   <data name="Settings_General_Notifications">
-    <value>Notifications</value>
+    <value>Сповіщення</value>
   </data>
   <data name="Settings_General_Notifications_Description">
-    <value>Get notified about on-going Proton VPN activities</value>
+    <value>Отримуйте сповіщення про поточні активності Proton VPN</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver">
-    <value>OpenVPN network driver</value>
+    <value>Мережний драйвер OpenVPN</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver_Description">
-    <value>Network drivers can impact your connection speed. The new TUN adapter provides higher speed and falls back on the TAP adapter if it encounters any connectivity problems.</value>
+    <value>Мережеві драйвери можуть впливати на швидкість з'єднання. Новий TUN-адаптер забезпечує вищу швидкість і перемикається на TAP-адаптер, якщо виникають проблеми зі з'єднанням.</value>
   </data>
   <data name="Settings_General_Theme">
     <value>Тема</value>
@@ -2311,55 +2311,55 @@ saved</value>
     <value>Темна</value>
   </data>
   <data name="Settings_General_Theme_Default">
-    <value>Default</value>
+    <value>Типовий</value>
   </data>
   <data name="Settings_General_Theme_Light">
-    <value>Light</value>
+    <value>Світла</value>
   </data>
   <data name="Settings_Improve">
-    <value>Improve Proton</value>
+    <value>Покращити Proton</value>
   </data>
   <data name="Settings_Improve_Censorship">
     <value>Допоможіть нам протистояти цензурі</value>
   </data>
   <data name="Settings_OperatingSystemVersion">
-    <value>Operating System version</value>
+    <value>Версія операційної системи</value>
   </data>
   <data name="Settings_Page_Title">
-    <value>Settings</value>
+    <value>Налаштування</value>
   </data>
   <data name="Settings_Protocols_Explanation">
     <value>A VPN protocol determines how data moves between a VPN server and your device.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnTcp_Description">
-    <value>Established, well-tested, and secure. OpenVPN is reliable in poor network conditions, but may not be as fast as other protocols.</value>
+    <value>Налагоджений, перевірений і безпечний. OpenVPN надійний в поганих умовах мережі, але може бути не таким швидким, як інші протоколи.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnTcp_Title">
     <value>OpenVPN</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Description">
-    <value>Established, well-tested, and secure. OpenVPN is less battery-efficient than some other protocols.</value>
+    <value>Налагоджений, перевірений і безпечний. OpenVPN менш енергоефективний, ніж деякі інші протоколи.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
   </data>
   <data name="Settings_Protocols_Recommended">
-    <value>Recommended</value>
+    <value>Рекомендовано</value>
   </data>
   <data name="Settings_Protocols_Smart_Description">
-    <value>Auto-selects the best protocol for your connection.</value>
+    <value>Автоматично вибирає найкращий протокол для вашого з'єднання.</value>
   </data>
   <data name="Settings_Protocols_Smart_Title">
     <value>Smart</value>
   </data>
   <data name="Settings_Protocols_TcpCategory">
-    <value>Reliability (TCP)</value>
+    <value>Надійність (TCP)</value>
   </data>
   <data name="Settings_Protocols_UdpCategory">
-    <value>Speed (UDP)</value>
+    <value>Швидкість (UDP)</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
-    <value>Fast, secure, and efficient. WireGuard is more battery-efficient than other protocols.</value>
+    <value>Швидко, безпечно та ефективно. WireGuard є більш енергоефективним, ніж інші протоколи.</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>
@@ -2368,13 +2368,13 @@ saved</value>
     <value>Відновити типові налаштування</value>
   </data>
   <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action">
-    <value>Restore and reconnect</value>
+    <value>Відновити та повторно під'єднатися</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Action">
     <value>Відновити типові налаштування</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Message">
-    <value>This will reset your Proton VPN settings to their original state.</value>
+    <value>Це призведе до скидання налаштувань Proton VPN до початкового стану.</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Title">
     <value>Відновити типові налаштування?</value>
@@ -2392,34 +2392,34 @@ saved</value>
     <value>WireGuard</value>
   </data>
   <data name="Settings_Support">
-    <value>Support</value>
+    <value>Підтримка</value>
   </data>
   <data name="Settings_Support_DebugLogs">
-    <value>Debug logs</value>
+    <value>Журнали налагодження</value>
   </data>
   <data name="Settings_Support_DebugLogs_Application">
     <value>Журнали програми</value>
   </data>
   <data name="Settings_Support_DebugLogs_ErrorMessage">
-    <value>The logs folder could not be found.</value>
+    <value>Не вдалося знайти теку журналів.</value>
   </data>
   <data name="Settings_Support_DebugLogs_Service">
-    <value>Service logs</value>
+    <value>Сервісні журнали</value>
   </data>
   <data name="Settings_Support_ReportIssue">
     <value>Повідомити про проблему</value>
   </data>
   <data name="Settings_Support_SupportCenter">
-    <value>Support center</value>
+    <value>Центр підтримки</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
-    <value>Increase your connection speed by up to 400% with performance enhancing technologies.</value>
+    <value>Збільште швидкість з'єднання до 400% за допомогою технологій, що підвищують продуктивність.</value>
   </data>
   <data name="Tray_Actions_ExitApplication">
     <value>Вихід</value>
   </data>
   <data name="Tray_Actions_OpenApplication">
-    <value>Open {0}</value>
+    <value>Відкрити {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp">

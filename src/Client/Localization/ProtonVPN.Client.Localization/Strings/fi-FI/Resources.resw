@@ -139,13 +139,13 @@
     <value>Ota yhteyttä</value>
   </data>
   <data name="Common_Actions_Disconnect">
-    <value>Katkaise yhteys</value>
+    <value>Katkaise</value>
   </data>
   <data name="Common_Actions_Enable">
-    <value>Ota käyttöön</value>
+    <value>Käytä</value>
   </data>
   <data name="Common_Actions_Reconnect">
-    <value>Uudelleenyhdistä</value>
+    <value>Yhdistä uudelleen</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>Poista</value>
@@ -181,13 +181,13 @@
     <value>Ilmoita ongelmasta</value>
   </data>
   <data name="Connection_Error_RpcServerUnavailable">
-    <value>Proton VPN ei voi muodostaa yhteyttä, koska RPC-palvelin ei ole käytettävissä järjestelmälläsi.</value>
+    <value>Proton VPN ei voi muodostaa yhteyttä, koska RPC-palvelinta ei tavoiteta järjestelmästäsi.</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
-    <value>Olet saavuttanut laitteiden enimmäismäärän. Katkaise jonkin muun laitteen yhteys yhdistääksesi tämän laitteen, tai päivitä Plus-tilaukseen yhdistääksesi samanaikaisesti 10 laitetta.</value>
+    <value>Olet saavuttanut tilaukseesi sisältyvän laitteiden enimmäismäärän. Katkaise jonkin muun laitteesi yhteys yhdistääksesi tämän laitteen tai päivitä Plus-tilaukseen yhdistääksesi samanaikaisesti 10 laitetta.</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedPaidUser">
-    <value>Olet saavuttanut laitteiden enimmäismäärän. Katkaise jonkin muun laitteen yhteys yhdistääksesi tämän laitteen.</value>
+    <value>Olet saavuttanut tilaukseesi sisältyvän laitteiden enimmäismäärän. Katkaise jonkin muun laitteen yhteys yhdistääksesi tämän laitteen.</value>
   </data>
   <data name="Connection_Error_TapAdapterInUse">
     <value>Verkkosovittimesi on jo käytössä.</value>
@@ -196,16 +196,16 @@
     <value>Verkkosovittimen versio on vanhentunut.</value>
   </data>
   <data name="Connection_Error_TlsCertificate">
-    <value>VPN-palvelimen varmenteen vahvistuksessa on ongelma, joka saattaa viitata siihen, että verkkoyhteyttä on peukaloitu tai palvelimella on asetusongelma. Pyydä apua asiakastuesta lähettämällä ongelmaraportti.</value>
+    <value>VPN-palvelimen varmenteen vahvistuksessa on ongelma, joka saattaa viitata verkkoyhteyden peukalointiin tai tavoittelemasi palvelimen asetusongelmaan. Saat apua asiakaspalvelustamme lähettämällä ongelmaraportin.</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>Emme ole varmoja, mitä tässä tapahtui. Yritä uudelleen tai ota yhteyttä asiakaspalveluumme.</value>
+    <value>Emme ole varmoja, mitä tapahtui. Yritä uudelleen tai ota yhteyttä asiakaspalveluumme.</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
-    <value>Näytä mahdolliset ratkaisut</value>
+    <value>Näytä mahdollisia ratkaisuja</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
-    <value>Proton VPN ei voi yhdistää, koska WireGuard-verkkosovitin on jo käytössä. Katkaise kaikki aktiiviset VPN-yhteydet ja yritä uudelleen. Vaihtoehtoisesti voit muuttaa protokollia lisäasetuksista.</value>
+    <value>Proton VPN ei voi yhdistää, koska WireGuard-verkkosovitin on jo käytössä. Katkaise kaikki aktiiviset VPN-yhteydet ja yritä uudelleen. Vaihtoehtoisesti voit vaihtaa protokollaa lisäasetuksista.</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Valittu automaattisesti seuraavista</value>
@@ -1333,7 +1333,7 @@
     <value>Hanki rajattomasti palvelinvaihtoja VPN Plus -tilauksella.</value>
   </data>
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
-    <value>Olet saavuttanut tällä erää käytettävissä olevan ilmaisten palvelinvaihdosten enimmäismäärän</value>
+    <value>Olet saavuttanut tällä erää käytettävissä olevan ilmaisten palvelinvaihdosten enimmäismäärän.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free yhdistää sinut automaattisesti nopeimpaan saatavilla olevaan ilmaiseen palvelimeen {0} ilmaisessa maassa. Yleensä tämä on lähinnä sijaintiasi oleva palvelin.</value>
@@ -1342,10 +1342,10 @@
     <value>Proton Free yhdistää sinut automaattisesti nopeimpaan saatavilla olevaan ilmaiseen palvelimeen {0} ilmaisessa maassa. Yleensä tämä on lähinnä sijaintiasi oleva palvelin.</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_One">
-    <value>Ilmainen palvelinmaa ({0})</value>
+    <value>Ilmaispalvelinmaa ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Other">
-    <value>Ilmaiset palvelinmaat ({0})</value>
+    <value>Ilmaispalvelinmaat ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Title">
     <value>Ilmaisyhteydet</value>
@@ -1359,7 +1359,7 @@
 Korkea viive voi hidastaa yhteyttäsi.</value>
   </data>
   <data name="Dialogs_Latency_HighRange_Description">
-    <value>VPN voi olla normaalia hitaampi</value>
+    <value>VPN voi olla tavallista hitaampi</value>
   </data>
   <data name="Dialogs_Latency_HighRange_Title">
     <value>Korkea (yli 150 ms)</value>
@@ -1371,7 +1371,7 @@ Korkea viive voi hidastaa yhteyttäsi.</value>
     <value>Matala (1 ms - 50 ms)</value>
   </data>
   <data name="Dialogs_Latency_MediumRange_Description">
-    <value>Ei todennäköisesti vaikuta VPN:n nopeuteen</value>
+    <value>Tuskin vaikuttaa VPN:n nopeuteen</value>
   </data>
   <data name="Dialogs_Latency_MediumRange_Title">
     <value>Keskitasoinen (50 ms - 150 ms)</value>
@@ -1395,7 +1395,7 @@ Korkea viive voi hidastaa yhteyttäsi.</value>
     <value>Mitä on torrentointi?</value>
   </data>
   <data name="Dialogs_P2P_WhatIsTorrenting_Description">
-    <value>Suurten tiedostojen nopea jakaminen ja lataaminen P2P-verkon (peer-to-peer) välityksellä.</value>
+    <value>Suurten tiedostojen nopea jakaminen ja lataaminen vertaisverkon (P2P) välityksellä.</value>
   </data>
   <data name="Dialogs_P2P_WhyUse">
     <value>Miksi käyttää P2P-palvelinta torrentointiin?</value>
@@ -1403,10 +1403,10 @@ Korkea viive voi hidastaa yhteyttäsi.</value>
   <data name="Dialogs_P2P_WhyUse_Description">
     <value>• Suuremmat lähetys- ja latausnopeudet
 • Ei toimintalokeja
-• Piilota IP-osoitteesi palveluntarjoajaltasi ja vertaisverkoilta</value>
+• Piilota IP-osoitteesi palveluntarjoajaltasi ja vertaiskäyttäjiltä</value>
   </data>
   <data name="Dialogs_Protocol_Description">
-    <value>Protokolla on joukko ohjeita, joita laitteesi noudattaa palvelimeen yhdistämisessä ja sen kanssa kommunikoidessa.</value>
+    <value>Protokolla on joukko ohjeita, joita laitteesi noudattaa yhdistäessään palvelimeen ja viestiessään sen kanssa.</value>
   </data>
   <data name="Dialogs_Protocol_SwitchHeader">
     <value>Vaihda VPN-protokollaa</value>
@@ -1427,7 +1427,7 @@ Korkea viive voi hidastaa yhteyttäsi.</value>
     <comment>The label for the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description">
-    <value>Virhelokit kertovat, mikä meni pieleen ja mitkä vaiheet johtivat ongelmaasi. Niitä käytetään vain auttamaan insinöörejämme vikojen korjaamisessa.</value>
+    <value>Virhelokit kertovat, mikä meni pieleen ja mitkä vaiheet johtivat ongelmaasi. Tiedoilla autetaan vain kehittäjiämme korjaamaan vikoja.</value>
     <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_Header">
@@ -1437,7 +1437,7 @@ Korkea viive voi hidastaa yhteyttäsi.</value>
     <value>Nopeita korjauksia</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes_Footer">
-    <value>Eikö ratkaisua löytynyt?</value>
+    <value>Eikö ratkaisu toiminut?</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes_Header">
     <value>Nämä vinkit voivat auttaa ratkaisemaan ongelman nopeammin.</value>
@@ -1458,7 +1458,7 @@ Korkea viive voi hidastaa yhteyttäsi.</value>
     <value>Raportti on lähetetty</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Success_Description">
-    <value>Kiitos palautteestasi, otamme yhteyttä niin pian kuin voimme!</value>
+    <value>Kiitos palautteestasi. Palaamme asiaan mahdollisimman pian.</value>
   </data>
   <data name="Dialogs_ReportIssue_SendReport">
     <value>Lähetä raportti</value>
@@ -1474,12 +1474,12 @@ Korkea viive voi hidastaa yhteyttäsi.</value>
     <value>Edistynyt yksityisyys</value>
   </data>
   <data name="Dialogs_SecureCore_Description">
-    <value>Secure Core yhdistää sinut kohdepalvelimeesi toisen, mahdollisimman turvallisen VPN-palvelimen kautta.
+    <value>Secure Core yhdistää sinut kohdepalvelimeesi toisen, huipputurvallisen VPN-palvelimen välityksellä.
 
-Tämä korkeampi suojaustaso voi aiheuttaa suurempaa viivettä ja hitaampia nopeuksia.</value>
+Tämä korkeampi suojaustaso voi kasvattaa viivettä ja hidastaa nopeuksia.</value>
   </data>
   <data name="Dialogs_SecureCore_HighPrivacy">
-    <value>Korkeampi yksityisyys</value>
+    <value>Korkea yksityisyys</value>
   </data>
   <data name="Dialogs_SecureCore_HigherLatency">
     <value>Korkeampi viive</value>
@@ -1499,12 +1499,12 @@ VPN-yhteys</value>
     <value>Secure Core</value>
   </data>
   <data name="Dialogs_ServerLoad_Description">
-    <value>Palvelimen kuormitus osoittaa, kuinka lähellä palvelin on sen enimmäiskapasiteettia.
+    <value>Palvelimen kuormitus kertoo, miten lähellä palvelin on sen enimmäiskapasiteettia.
 
-Palvelimen korkea kuormitus voi hidastaa yhteyttäsi.</value>
+Korkea kuormitus voi hidastaa yhteyttäsi.</value>
   </data>
   <data name="Dialogs_ServerLoad_HighRange_Description">
-    <value>VPN voi olla normaalia hitaampi</value>
+    <value>VPN voi olla tavallista hitaampi</value>
   </data>
   <data name="Dialogs_ServerLoad_HighRange_Title">
     <value>Korkea (91-100 %)</value>
@@ -1516,18 +1516,18 @@ Palvelimen korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Matala (1-75 %)</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Description">
-    <value>Ei todennäköisesti vaikuta VPN:n nopeuteen</value>
+    <value>Tuskin vaikuttaa VPN:n nopeuteen</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Title">
     <value>Keskitasoinen (76 - 90 %)</value>
   </data>
   <data name="Dialogs_ServerLoad_Title">
-    <value>Mitä on palvelimen kuormitus?</value>
+    <value>Mitä palvelimen kuormitus tarkoittaa?</value>
   </data>
   <data name="Dialogs_SmartRouting_Description">
-    <value>Smart Routing käyttää virtuaalipalvelimia VPN-verkon kattavuuden tarjoamiseksi vaikeasti saavutettavissa maissa.
+    <value>Smart Routing käyttää virtuaalipalvelimia VPN-verkon laajentamiseksi vaikeasti tavoitettaviin maihin.
 
-Kun muodostat yhteyden Smart Routing -palvelimeen, näytät selaavasi kohdemaastasi, vaikka fyysinen palvelin sijaitsee muualla.  
+Kun yhdistätä Smart Routing -palvelimeen, näytät selaavasi kohdemaastasi, vaikka fyysinen palvelin sijaitsee muualla.
 
 Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja muunlaisen sensuurin kiertämiseen.</value>
   </data>
@@ -1538,7 +1538,7 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
     <value>Yhdistä Tor-palvelimeen ja käytä piilotettuja palveluita ja onion-sivustoja millä tahansa selaimella.</value>
   </data>
   <data name="Dialogs_Tor_LearnMore">
-    <value>Miten pääset Tor-verkkoon</value>
+    <value>Miten Tor-verkkoa käytetään</value>
   </data>
   <data name="Dialogs_Tor_Title">
     <value>Tor</value>
@@ -1657,7 +1657,7 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
     <value>Yhdyskäytävät</value>
   </data>
   <data name="Gateways_Server">
-    <value>Oma Palvelin</value>
+    <value>Oma palvelin</value>
   </data>
   <data name="Home_Account_SignOut">
     <value>Kirjaudu ulos</value>
@@ -1666,7 +1666,7 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
     <value>VPN-yhteytesi katkaistaan.</value>
   </data>
   <data name="Home_Account_SignOut_Confirmation_Title">
-    <value>Kirjaudu ulos kohteesta {0}?</value>
+    <value>Kirjaudutaanko ulos tililtä {0}?</value>
     <comment>{0} is a placeholder for the username</comment>
   </data>
   <data name="Home_Account_Title">
@@ -1685,10 +1685,10 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
     <value>Ilmaisyhteys</value>
   </data>
   <data name="Home_ConnectionCard_Header_LastConnectedTo">
-    <value>Edellinen yhteys</value>
+    <value>Viimeksi yhteydessä palvelimeen</value>
   </data>
   <data name="Home_ConnectionCard_Header_Recommended">
-    <value>Suositellut</value>
+    <value>Suositus</value>
   </data>
   <data name="Home_ConnectionCard_Landmark">
     <value>Yhteyskortti</value>
@@ -1756,7 +1756,7 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
     <value>Lähetys</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
-    <value>VPN:n IP-osoite</value>
+    <value>VPN:n IP</value>
   </data>
   <data name="Home_FreeConnections_About">
     <value>Lisätietoja ilmaisista yhteyksistä</value>
@@ -1813,7 +1813,7 @@ estetty</value>
     <value>Irrota</value>
   </data>
   <data name="Home_Update_Confirmation_Message">
-    <value>Päivitysprosessin viimeistelemiseksi Proton VPN katkaisee yhteyden hetkeksi ja poistaa pysyvän tappokytkimen käytöstä. Haluatko jatkaa?</value>
+    <value>Päivitysprosessin viimeistelemiseksi Proton VPN katkaisee yhteyden hetkeksi ja poistaa edistyneen tappokytkimen käytöstä. Haluatko jatkaa?</value>
     <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
   </data>
   <data name="Home_Update_Confirmation_Title">
@@ -1823,14 +1823,14 @@ estetty</value>
     <value>Päivitys saatavilla</value>
   </data>
   <data name="Home_Update_UpdateReady">
-    <value>Päivitys valmis</value>
+    <value>Päivitys on valmis</value>
   </data>
   <data name="Home_VpnStatus_Landmark">
     <value>VPN:n tila</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_VpnStatus_Subtitle_Connecting">
-    <value>Digitaalisen identiteettisi suojaaminen</value>
+    <value>Suojataan digitaalista identiteettiäsi</value>
   </data>
   <data name="Home_VpnStatus_Subtitle_Disconnected">
     <value>Sinua ei ole suojattu</value>
@@ -1839,7 +1839,7 @@ estetty</value>
     <value>Suojattu</value>
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
-    <value>Istunnon tietoja haettaessa tapahtui virhe. Yritä uudelleen.</value>
+    <value>Virhe noudettaessa istunnon tietoja. Yritä uudelleen.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Virheellinen koodi. Yritä uudelleen.</value>
@@ -1868,7 +1868,7 @@ estetty</value>
     <value>Sähköpostiosoite</value>
   </data>
   <data name="Login_Form_ForgotUsername">
-    <value>Käyttäjätunnus unohtunut</value>
+    <value>Unohditko käyttäjätunnuksesi</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_Help">
@@ -1940,7 +1940,7 @@ estetty</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Määritä tämä numero BitTorrent-sovellukseesi suurempaa nopeutta varten.</value>
+    <value>Määritä tämä numero BitTorrent-sovellukseesi korkeampaa nopeutta varten.</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Nopein ilmainen palvelin</value>
@@ -1964,7 +1964,7 @@ estetty</value>
     <value>Nykyinen versio</value>
   </data>
   <data name="Settings_About_FailedToFetch">
-    <value>Muutoslokitietojen lataaminen epäonnistui.</value>
+    <value>Muutoshistorian lataus epäonnistui.</value>
   </data>
   <data name="Settings_About_GetLatestVersion">
     <value>Hanki uusin versio</value>
@@ -1988,7 +1988,7 @@ estetty</value>
     <value>Yritä uudelleen</value>
   </data>
   <data name="Settings_About_Update_Description">
-    <value>Ota VPN:stä kaikki irti päivittämällä sovelluksen uusimpaan versioon.</value>
+    <value>Ota VPN:stä kaikki irti päivittämällä sovellus uusimpaan versioon.</value>
   </data>
   <data name="Settings_AppVersion">
     <value>Sovelluksen versio</value>
@@ -2003,7 +2003,7 @@ estetty</value>
     <value>Virheraportit auttavat meitä korjaaman vikoja, havaitsemaan palomuureja ja kiertämään VPN-estoja.</value>
   </data>
   <data name="Settings_Censorship_ShareStatistics">
-    <value>Jaa anonyymejä käyttötietoja</value>
+    <value>Jaa anonyymejä käyttötilastoja</value>
   </data>
   <data name="Settings_Censorship_ShareStatistics_Description">
     <value>Käyttötilastot auttavat meitä kiertämään VPN-estoja ja parantamaan sovelluksen suorituskykyä.</value>
@@ -2015,31 +2015,31 @@ estetty</value>
     <value>Hylkää</value>
   </data>
   <data name="Settings_Common_Discard_Title">
-    <value>Hylkää asetusten muutokset?</value>
+    <value>Hylätäänkö asetusmuutokset?</value>
   </data>
   <data name="Settings_Connection">
     <value>Yhteys</value>
   </data>
   <data name="Settings_Connection_AdvancedSettings">
-    <value>Edistyneet asetukset</value>
+    <value>Lisäasetukset</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting">
     <value>Vaihtoehtoinen reititys</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting_Description">
-    <value>Jos Proton-palvelut on estetty verkkorajoitusten takia, yritämme käyttää vaihtoehtoista verkkoreititystä, jotta voit silti muodostaa yhteyden sivustoihimme.</value>
+    <value>Jos Protonin palveluita ei verkon rajoitusten vuoksi tavoiteta, pyritään ne tavoittamaan vaihtoehtoisen verkkoreitityksen avulla.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
     <value>Omat DNS-palvelimet</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
-    <value>Et voi käyttää NetShieldiä, kun olet yhteydessä mukautettuun DNS-palvelimeen.</value>
+    <value>Et voi käyttää NetShieldiä, jos käytät omia DNS-palvelimiasi.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title">
-    <value>Ota mukautetut DNS-palvelimet käyttöön?</value>
+    <value>Otetaanko omat DNS-palvelimet käyttöön?</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
-    <value>Muodosta yhteys Proton VPN:ään omaa verkkotunnusjärjestelmääsi (DNS) käyttäen. Käytä vain DNS-palvelimia, joihin luotat.</value>
+    <value>Yhdistä Proton VPN omilla DNS-nimipalvelimillasi. Käytä vain DNS-palvelimia, joihin luotat.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>DNS-palvelimet ({0})</value>
@@ -2059,31 +2059,31 @@ estetty</value>
     <value>LAN-yhteydet</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
-    <value>Sallii yhteyden muodostamisen tulostimiin, kaiuttimiin ja muihin lähiverkossasi oleviin laitteisiin.</value>
+    <value>Sallii yhteydet tulostimiin, kaiuttimiin ja muihin lähiverkossasi oleviin laitteisiin.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>NAT-tyyppi</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Description">
-    <value>Et voi käyttää porttiohjausta kohtalaisen NAT:n kanssa.</value>
+    <value>Et voi käyttää porttiohjausta keskitasoisen NAT:n kanssa.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Title">
-    <value>Ota Keskitason NAT käyttöön?</value>
+    <value>Otetaanko keskitasoinen NAT käyttöön?</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Description">
-    <value>Valitse NAT-tyyppi yhteydellesi.</value>
+    <value>Valitse yhteytesi osoitteenmuunnoksen (NAT) tyyppi.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate">
     <value>Keskitasoinen (tyyppi 2)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
-    <value>Joitakin rajoituksia verkkoon saapuvalle tiedonsiirrolle. Tämä vaihtoehto sopii parhaiten verkkopelaamiseen.</value>
+    <value>Rajoittaa verkkoosi saapuvaa tiedonsiirtoa jonkin verran. Tämä vaihtoehto sopii verkkopelaamiseen parhaiten.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict">
     <value>Tiukka (tyyppi 3)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
-    <value>Rajoittaa verkkoosi tulevaa tiedonsiirtoa. Tämä vaihtoehto on turvallisempi, mutta se voi hankaloittaa vertaisverkkopeliyhteyksiä.</value>
+    <value>Rajoittaa verkkoosi saapuvaa tiedonsiirtoa. Tämä vaihtoehto on turvallisempi, mutta saattaa hankaloittaa laitteiden välisiä peliyhteyksiä.</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokolla</value>
@@ -2098,7 +2098,7 @@ estetty</value>
     <value>Tappokytkin</value>
   </data>
   <data name="Settings_Features_KillSwitch_Advanced">
-    <value>Lisätoiminnot</value>
+    <value>Edistynyt</value>
   </data>
   <data name="Settings_Features_KillSwitch_Advanced_Description">
     <value>Pääsy Internetiin sallitaan vain silloin, kun yhteys Proton VPN:ään on muodostettu. Edistynyt tappokytkin pysyy käytössä, vaikka käynnistät laitteesi uudelleen.</value>
@@ -2110,7 +2110,7 @@ estetty</value>
     <value>Otetaanko tappokytkin käyttöön?</value>
   </data>
   <data name="Settings_Features_KillSwitch_Description">
-    <value>Suojaa IP-osoitteesi katkaisemalla yhteyden Internetiin, jos VPN-yhteytesi katkeaa.</value>
+    <value>Suojaa IP-osoittettasi estämällä yhteydet Internetiin VPN-yhteytesi katketessa odottamattomasti.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Footer">
     <value>Kun tappokytkin on käytössä, et voi muodostaa yhteyttä verkkosivustoihin tai sovelluksiin, jotka on suljettu VPN-yhteyden ulkopuolelle jaetun tunneloinnin avulla.</value>
@@ -2119,22 +2119,22 @@ estetty</value>
     <value>Vakio</value>
   </data>
   <data name="Settings_Features_KillSwitch_Standard_Description">
-    <value>Katkaisee Internet-yhteytesi automaattisesti, jos VPN-yhteys katkeaa.</value>
+    <value>Estää pääsyn Internetiin automaattisesti VPN-yhteyden katketessa odottamattomasti.</value>
   </data>
   <data name="Settings_Features_NetShield">
     <value>NetShield</value>
   </data>
   <data name="Settings_Features_NetShield_Conflict_Description">
-    <value>Et voi muodostaa yhteyttä mukautetulla DNS-palvelimella, kun NetShield on käytössä.</value>
+    <value>Et voi muodostaa yhteyttä omilla DNS-palvelimilla, kun NetShield on käytössä.</value>
   </data>
   <data name="Settings_Features_NetShield_Conflict_Title">
     <value>Otetaanko NetShield käyttöön?</value>
   </data>
   <data name="Settings_Features_NetShield_Description">
-    <value>Suojaa itsesi verkkosivustojen ja sovellusten mainoksilta, haittaohjelmilta ja seuraajilta.</value>
+    <value>Suojaudu verkkosivustojen ja sovellusten mainoksilta, haittaohjelmilta ja seurannoilta.</value>
   </data>
   <data name="Settings_Features_NetShield_Footer">
-    <value>Jotkin verkkosivustot eivät ehkä lataudu kunnolla, kun mainokset ja seuraajat on estetty.</value>
+    <value>Jotkin verkkosivustot eivät ehkä lataudu oikein, kun mainokset ja seurannat on estetty.</value>
   </data>
   <data name="Settings_Features_PortForwarding">
     <value>Porttiohjaus</value>
@@ -2146,16 +2146,16 @@ estetty</value>
     <value>Kopioi portin numero</value>
   </data>
   <data name="Settings_Features_PortForwarding_Conflict_Description">
-    <value>Et voi käyttää kohtalaista NAT:ia kun porttiohjaus on käytössä.</value>
+    <value>Et voi käyttää keskitasoista NAT:ia porttiohjauksen ollessa käytössä.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Conflict_Title">
     <value>Otetaanko porttiohjaus käyttöön?</value>
   </data>
   <data name="Settings_Features_PortForwarding_Description">
-    <value>Ohita palomuurit ja muodosta yhteys P2P-palvelimiin ja lähiverkkosi laitteisiin.</value>
+    <value>Ohita palomuurit yhdistääksesi P2P-palvelimiin ja lähiverkkosi laitteisiin.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Footer">
-    <value>Jos haluat käyttää porttiohjausta, muodosta yhteys P2P:tä tukevaan palvelimeen.</value>
+    <value>Käyttääksesi porttiohjausta, yhdistä P2P-tuelliseen palvelimeen.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Loading">
     <value>Ladataan...</value>
@@ -2164,7 +2164,7 @@ estetty</value>
     <value>Ilmoitukset</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications_Description">
-    <value>Ilmoita porttiohjauksen portin vaihtumisesta</value>
+    <value>Ilmoita porttiohjauksen portin vaihtumisesta.</value>
   </data>
   <data name="Settings_Features_SplitTunneling">
     <value>Jaettu tunnelointi</value>
@@ -2190,13 +2190,13 @@ estetty</value>
     <value>Otetaanko jaettu tunnelointi käyttöön?</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Description">
-    <value>Mukauta yhteyttäsi päättämällä, mitkä sovellukset ja IP-osoitteet suojataan VPN:llä.</value>
+    <value>Mukauta yhteyttäsi määrittämällä, mitkä sovellukset ja IP-osoitteet suojataan VPN:llä.</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Inverse">
     <value>Käänteinen</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Inverse_Description">
-    <value>Vain valitut sovellukset ja IP-osoitteet muodostavat yhteyden VPN:n kautta, kaikki muu tietoliikenne on suojaamatonta</value>
+    <value>Vain valitut sovellukset ja IP-osoitteet muodostavat yhteyden VPN:n välityksellä. Kaikki muu tietoliikenne on suojaamatonta.</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Add">
     <value>Lisää IP-osoite</value>
@@ -2221,49 +2221,49 @@ estetty</value>
     <value>Yleiset</value>
   </data>
   <data name="Settings_General_AutoStartup">
-    <value>Automaattikäynnistys</value>
+    <value>Käynnistä automaattisesti</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect">
-    <value>Automaattiyhdistys</value>
+    <value>Yhdistä automaattisesti</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>Sinut yhdistetään palvelimeen heti kun Proton VPN avautuu</value>
+    <value>Sinut yhdistetään palvelimeen heti kun Proton VPN avautuu.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>Nopein yhteys</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Latest">
-    <value>Viimeisin yhteys</value>
+    <value>Edellinen yhteys</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch">
-    <value>Automaattikäynnistys</value>
+    <value>Käynnistä automaattisesti</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Description">
-    <value>Proton VPN avautuu automaattisesti, kun kirjaudut sisään laitteellesi.</value>
+    <value>Proton VPN käynnistyy automaattisesti, kun kirjaudut laitteellesi.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Desktop">
     <value>Avaa työpöydällä</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray">
-    <value>Pienennä ilmoitusalueelle</value>
+    <value>Pienennä ilmaisinalueelle</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Taskbar">
     <value>Pienennä tehtäväpalkkiiin</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Automaattikäynnistys, automaattiyhdistys</value>
+    <value>Automaattinen käynnistys ja yhdistys</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
-    <value>Automaattiset päivitykset</value>
+    <value>Automaattinen päivitys</value>
   </data>
   <data name="Settings_General_AutomaticUpdates_Description">
-    <value>Tarkista ja asenna Proton VPN:n päivitykset automaattisesti</value>
+    <value>Tarkasta ja asenna Proton VPN:n päivitykset automaattisesti.</value>
   </data>
   <data name="Settings_General_BetaAccess">
-    <value>Beta-pääsy</value>
+    <value>Beta-käyttö</value>
   </data>
   <data name="Settings_General_BetaAccess_Description">
-    <value>Hanki varhainen pääsy ja auta meitä testaamaan Proton VPN:n uusia versioita</value>
+    <value>Hanki varhainen käyttöoikeus ja auta meitä testaamaan Proton VPN:n uusia versioita.</value>
   </data>
   <data name="Settings_General_Language">
     <value>Kieli</value>
@@ -2272,13 +2272,13 @@ estetty</value>
     <value>Ilmoitukset</value>
   </data>
   <data name="Settings_General_Notifications_Description">
-    <value>Saat ilmoituksen ajankohtaisista Proton VPN -tapahtumista</value>
+    <value>Saat ilmoituksen ajankohtaisista Proton VPN -tapahtumista.</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver">
     <value>OpenVPN-verkkoajuri</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver_Description">
-    <value>Verkkoajurit voivat vaikuttaa yhteysnopeuteesi. Uusi TUN-sovitin on nopeampi ja yhteysongelmien ilmetessä se voi turvautua TAP-sovittimeen.</value>
+    <value>Verkkoajurit voivat vaikuttaa yhteysnopeuteesi. Uusi TUN-sovitin tarjoaa paremman hopeuden ja voi tarvittaessa käyttää TAP-sovitinta varmistuksena, jos yhteydessä ilmenee ongelmia.</value>
   </data>
   <data name="Settings_General_Theme">
     <value>Teema</value>
@@ -2314,7 +2314,7 @@ estetty</value>
     <value>OpenVPN</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Description">
-    <value>Vakiintunut, hyvin testattu ja turvallinen. OpenVPN ei käytä yhtä paljon akkua kuin jotkin muut protokollat.</value>
+    <value>Vakiintunut, hyvin testattu ja turvallinen. OpenVPN:n virrankulutus ei ole yhtä hyvä kuin joidenkin muiden protokollien.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
@@ -2323,19 +2323,19 @@ estetty</value>
     <value>Suositus</value>
   </data>
   <data name="Settings_Protocols_Smart_Description">
-    <value>Valitsee yhteydellesi parhaan protokollan automaattisesti.</value>
+    <value>Valitsee automaattisesti yhteydellesi sopivimman protokollan.</value>
   </data>
   <data name="Settings_Protocols_Smart_Title">
     <value>Smart</value>
   </data>
   <data name="Settings_Protocols_TcpCategory">
-    <value>Luotettavuus (TCP)</value>
+    <value>Luotettava (TCP)</value>
   </data>
   <data name="Settings_Protocols_UdpCategory">
-    <value>Nopeus (UDP)</value>
+    <value>Nopea (UDP)</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
-    <value>Nopea, turvallinen ja tehokas. WireGuard käyttää vähemmän akkua kuin muut protokollat.</value>
+    <value>Nopea, turvallinen ja tehokas. WireGuard kuluttaa muita protokollia vähemmän virtaa.</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>
@@ -2350,7 +2350,7 @@ estetty</value>
     <value>Palauta oletusasetukset</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Message">
-    <value>Tämä palauttaa Proton VPN:n asetukset alkuperäiseen tilaansa.</value>
+    <value>Tämä palauttaa Proton VPN:n alkuperäiset asetukset.</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Title">
     <value>Palautetaanko oletusasetukset?</value>
@@ -2371,10 +2371,10 @@ estetty</value>
     <value>Tuki</value>
   </data>
   <data name="Settings_Support_DebugLogs">
-    <value>Vianmäärityslokit</value>
+    <value>Vianselvityslokit</value>
   </data>
   <data name="Settings_Support_DebugLogs_Application">
-    <value>Sovelluksen lokitiedot</value>
+    <value>Sovelluslokit</value>
   </data>
   <data name="Settings_Support_DebugLogs_ErrorMessage">
     <value>Lokikansiota ei löytynyt.</value>

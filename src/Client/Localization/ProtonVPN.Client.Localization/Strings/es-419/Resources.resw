@@ -1461,7 +1461,7 @@ La latencia alta puede ralentizar la conexión.</value>
     <value>Gracias por sus comentarios. Le contactaremos tan pronto podamos.</value>
   </data>
   <data name="Dialogs_ReportIssue_SendReport">
-    <value>Enviar reporte</value>
+    <value>Enviar informe</value>
   </data>
   <data name="Dialogs_ReportIssue_Steps">
     <value>Paso {0} de {1}</value>
@@ -1997,10 +1997,10 @@ detenidos</value>
     <value>Estas estadísticas no contienen la dirección IP y no pueden usarse para identificarle. Nunca las compartiremos con terceros.</value>
   </data>
   <data name="Settings_Censorship_ShareCrashReports">
-    <value>Compartir reportes de error anónimos</value>
+    <value>Compartir informes de error anónimos</value>
   </data>
   <data name="Settings_Censorship_ShareCrashReports_Description">
-    <value>Los reportes de error nos ayuda a corregir errores, detectar firewalls y evitar bloqueos de VPN.</value>
+    <value>Los informes de error nos ayuda a corregir errores, detectar firewalls y evitar bloqueos de VPN.</value>
   </data>
   <data name="Settings_Censorship_ShareStatistics">
     <value>Compartir estadísticas de uso anónimas</value>
