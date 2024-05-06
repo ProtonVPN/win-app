@@ -305,7 +305,7 @@
     <comment>The title of Account window</comment>
   </data>
   <data name="Api_error_Timeout">
-    <value>Vaša zahteva ni uspela. Prosim poskusite ponovno.</value>
+    <value>Vaša zahteva ni uspela. Poskusite ponovno.</value>
   </data>
   <data name="App_mnu_About">
     <value>O programu</value>
@@ -424,7 +424,7 @@
     <comment>The text inside info tooltip in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_LogsDescription">
-    <value>Dnevniške datoteke nam pomagajo priti do jedra vaše težave. Če jih ne vključite, morda ne bomo mogli temeljito preiskati.</value>
+    <value>Dnevniške datoteke z napakami nam pomagajo priti do jedra vaše težave. Če jih ne vključite, morda ne bomo mogli izvesti temeljite preiskave.</value>
   </data>
   <data name="BugReport_lbl_LogsTooltip">
     <value>Dnevnik je vrsta datoteke, ki nam prikazuje dejanja, ki ste jih izvedli in so povzročila napako. Uporabljali jih bomo samo za pomoč našim inženirjem pri odpravljanju napak.</value>
@@ -1587,7 +1587,7 @@
   </data>
   <data name="Dialogs_Bfe_msg_info">
     <value>Ena od storitev, ki jih zahteva Proton VPN (Base Filtering Engine), se ne izvaja.&lt;LineBreak/&gt;
-Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these"/&gt;&lt;/Hyperlink&gt; navodilom, in jo znova omogočite in poskusite znova.</value>
+Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="tem"/&gt;&lt;/Hyperlink&gt; navodilom, in jo znova omogočite in poskusite znova.</value>
     <comment>The text on Base Filtering Engine dialog window</comment>
   </data>
   <data name="Dialogs_Delinquency_GoToBilling">
@@ -1595,11 +1595,11 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The "go to billing website" button text in the Delinquency window</comment>
   </data>
   <data name="Dialogs_Delinquency_Reconnected_Subtitle">
-    <value>Po plačilu boste lahko znova dostopali do premium funkcij. Trenutno se ponovno povezujemo z najhitrejšim BREZPLAČNIM strežnikom, ki je na voljo.</value>
+    <value>Po plačilu boste lahko znova dostopali do premijskih funkcij. Trenutno se ponovno povezujemo z najhitrejšim BREZPLAČNIM strežnikom, ki je na voljo.</value>
     <comment>The subtitle of the Delinquency window when the user is reconnected</comment>
   </data>
   <data name="Dialogs_Delinquency_Subtitle">
-    <value>Po plačilu čakajočih računov boste lahko znova dostopali do premium funkcij.</value>
+    <value>Po plačilu čakajočih računov boste lahko znova dostopali do premijskih funkcij.</value>
     <comment>The subtitle of the Delinquency window</comment>
   </data>
   <data name="Dialogs_Delinquency_Title">
@@ -1634,7 +1634,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The error description displayed in Disconnect modal window if all TAP adapters are in use</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_Identifying">
-    <value>Prepoznavanje težave...</value>
+    <value>Prepoznavanje težave ...</value>
     <comment>The message displayed in Disconnect modal window while trying to identify connection problem</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch">
@@ -1658,7 +1658,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The text displayed in Disconnect modal window if TAP error is detected</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TlsCertificateError">
-    <value>Prišlo je do težave pri preverjanju potrdila strežnika VPN, kar lahko pomeni, da je prišlo do poseganja v omrežno povezavo ali da ima strežnik, s katerim se poskušate povezati, težavo s konfiguracijo. Poiščite pomoč naše podpore strankam tako, da pošljete na&lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Issue Report"/&gt;&lt;/Hyperlink&gt;.</value>
+    <value>Prišlo je do težave pri preverjanju potrdila strežnika VPN, kar lahko pomeni, da je prišlo do poseganja v omrežno povezavo ali da ima strežnik, s katerim se poskušate povezati, težavo s konfiguracijo. Poiščite pomoč naše podpore strankam tako, da pošljete &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="poročilo o težavi"/&gt;&lt;/Hyperlink&gt;.</value>
     <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occurred</comment>
   </data>
   <data name="Dialogs_DoNotShowThisMessageAgain">
@@ -1818,7 +1818,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The subtitle of the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Title">
-    <value>Vaša izbrana naročnina VPN je potekela</value>
+    <value>Vaš naročniški paket VPN je potekel</value>
     <comment>The title of the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Upgrade">
@@ -1862,7 +1862,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_NoInternet">
-    <value>&lt;Bold&gt;Ni internetne povezave&lt;/Bold&gt; - Preverite, ali vaša internetna povezava deluje.</value>
+    <value>&lt;Bold&gt;Ni internetne povezave&lt;/Bold&gt;. Preverite, ali vaša internetna povezava deluje.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_ProtonDown">
@@ -1937,7 +1937,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>V aplikaciji manjka zahtevana datoteka</value>
   </data>
   <data name="ErrorWindow_lbl_MissingInfo">
-    <value>Nekatere aplikacije v vašem računalniku so morda odstranile nekatere datoteke ali preprečile njihovo uspešno namestitev.</value>
+    <value>Nekatere aplikacije v vašem računalniku so morda odstranile nekatere datoteke ali preprečile njihovo namestitev.</value>
   </data>
   <data name="ErrorWindow_lbl_Repair">
     <value>Popravi</value>
@@ -2118,7 +2118,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>Secure Core ponuja najvišjo raven varnosti in zasebnosti, vendar lahko zmanjša hitrost interneta. Če potrebujete več zmogljivosti, lahko onemogočite Secure Core.</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Title">
-    <value>Opomba o hitrosti…</value>
+    <value>Opomba o hitrosti …</value>
   </data>
   <data name="Modals_Rescope_NewFreeCountries">
     <value>Nove brezplačne države</value>
@@ -2142,11 +2142,11 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>NetShield</value>
   </data>
   <data name="Notifications_Delinquency_Description">
-    <value>Po plačilu čakajočih računov boste lahko znova dostopali do premium funkcij.</value>
+    <value>Po plačilu čakajočih računov boste lahko znova dostopali do premijskih funkcij.</value>
     <comment>The description of the Delinquency notification</comment>
   </data>
   <data name="Notifications_Delinquency_Reconnected_Description">
-    <value>Po plačilu boste lahko znova dostopali do premium funkcij. Trenutno se ponovno povezujemo z najhitrejšim BREZPLAČNIM strežnikom, ki je na voljo.</value>
+    <value>Po plačilu boste lahko znova dostopali do premijskih funkcij. Trenutno se ponovno povezujemo z najhitrejšim BREZPLAČNIM strežnikom, ki je na voljo.</value>
     <comment>The description of the Delinquency notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_Delinquency_Title">
@@ -2190,7 +2190,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The description of the Subscription Expired notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Title">
-    <value>Vaša izbrana naročnina Proton VPN je potekela</value>
+    <value>Vaš naročniški paket VPN je potekel</value>
     <comment>The title of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_Update_lnk_Restart">
@@ -2266,7 +2266,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>Nastavite to številko v aplikaciji BitTorrent za večjo hitrost.</value>
   </data>
   <data name="PortForwarding_lbl_ServerWarning">
-    <value>Če želite uporabiti posredovanje vrat, &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;connect&lt;/Hyperlink&gt; na strežnik, ki podpira P2P.</value>
+    <value>Če želite uporabiti posredovanje vrat, &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;se povežite&lt;/Hyperlink&gt; na strežnik, ki podpira P2P.</value>
   </data>
   <data name="ProfileConnector_msg_MissingAuthCert">
     <value>Proton VPN ni uspel pridobiti potrdila o pristnosti zaradi težave z omrežjem.</value>
@@ -2284,19 +2284,19 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The heading for list of validation errors in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_ColorEmpty">
-    <value>Prosimo izberite barvo</value>
+    <value>Izberite barvo.</value>
     <comment>The error message displayed in the Profile window when a color is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_CountryEmpty">
-    <value>Izberite državo</value>
+    <value>Izberite državo.</value>
     <comment>The error message displayed in the Profile window when a country is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_GatewayEmpty">
-    <value>Izberite prehod</value>
+    <value>Izberite prehod.</value>
     <comment>The error message displayed in the Profile window when a gateway is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameEmpty">
-    <value>Izberite ime profila</value>
+    <value>Izberite ime profila.</value>
     <comment>The error message displayed in the Profile window when a profile name is empty</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameExists">
@@ -2316,7 +2316,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>Največja dolžina imena profila je {0} simbolov. Izberite krajše ime profila.</value>
   </data>
   <data name="Profiles_Profile_Error_msg_ServerEmpty">
-    <value>Izberite strežnik</value>
+    <value>Izberite strežnik.</value>
     <comment>The error message displayed in the Profile window when a server is not selected</comment>
   </data>
   <data name="Profiles_Profile_ExitCountry_Watermark">
@@ -2623,14 +2623,14 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>Pretakanje</value>
   </data>
   <data name="Servers_Feature_val_Tor">
-    <value>Tor server</value>
+    <value>Tor strežnik</value>
     <comment>The name of Tor server feature</comment>
   </data>
   <data name="Servers_FreeConnections">
     <value>Brezplačne povezave (1)</value>
   </data>
   <data name="Servers_Load_lbl_IP">
-    <value>IP stežnika:</value>
+    <value>IP strežnika:</value>
     <comment>The label for server IP address in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_IPAutoAssigned">
@@ -3162,7 +3162,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="TextBoxPlaceholder">
-    <value>Začnite tipkati...</value>
+    <value>Začnite tipkati ...</value>
     <comment>The text displayed as a placeholder on any text box all over the application</comment>
   </data>
   <data name="TimeUnit_val_Day_One">
@@ -3288,7 +3288,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Odklenite napredno prilagoditev VPN</value>
   </data>
   <data name="Upsell_FreeConnections_Locations">
-    <value>Lokacije brezplačnih serverjev ({0})</value>
+    <value>Lokacije brezplačnih strežnikov ({0})</value>
     <comment>{0} represents a number of free server locations.</comment>
   </data>
   <data name="Upsell_FreeConnections_Subtitle">
@@ -3333,7 +3333,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_msg">
-    <value>Imate napredne ali profesionalne računalniške potrebe, ki zahtevajo nestandardna vrata? Nadgradite na VPN Plus za dostop do te in drugih premium funkcij.</value>
+    <value>Imate napredne ali profesionalne računalniške potrebe, ki zahtevajo nestandardna vrata? Nadgradite na VPN Plus za dostop do te in drugih premijskih funkcij.</value>
     <comment>The text in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_ttl">

@@ -364,7 +364,7 @@
     <comment>The text on Retry button in Issue Report window (retries sending after failure)</comment>
   </data>
   <data name="BugReport_btn_Send">
-    <value>Enviar reporte</value>
+    <value>Enviar informe</value>
     <comment>The text on Send button in Issue Report window (sends the Issue report)</comment>
   </data>
   <data name="BugReport_btn_Troubleshoot">
@@ -446,11 +446,11 @@
     <value>Correo inválido</value>
   </data>
   <data name="BugReport_msg_Sending">
-    <value>Enviando reporte...</value>
+    <value>Enviando informe...</value>
     <comment>The message displayed in Issue Report window while sending the report</comment>
   </data>
   <data name="BugReport_msg_SendingFailed">
-    <value>El reporte no fue enviado</value>
+    <value>El informe no fue enviado</value>
     <comment>The message displayed in Issue Report window when sending Issue report fails</comment>
   </data>
   <data name="BugReport_msg_SendingInfo">
@@ -1628,7 +1628,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The text displayed in Disconnect modal window if TAP error is detected</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TlsCertificateError">
-    <value>Hay un problema al validar el certificado del servidor VPN, lo que podría indicar que la conexión de red está siendo alterada o que el servidor al que está intentando conectarse tiene un problema de configuración. Obtenga ayuda de nuestro servicio de atención al cliente enviando un &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Reporte de problema"/&gt;&lt;/Hyperlink&gt;.</value>
+    <value>Hay un problema al validar el certificado del servidor VPN, lo que podría indicar que la conexión de red está siendo alterada o que el servidor al que está intentando conectarse tiene un problema de configuración. Obtenga ayuda de nuestro servicio de atención al cliente enviando un &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Informe de problema"/&gt;&lt;/Hyperlink&gt;.</value>
     <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occurred</comment>
   </data>
   <data name="Dialogs_DoNotShowThisMessageAgain">

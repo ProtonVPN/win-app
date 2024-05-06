@@ -1600,7 +1600,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <comment>The subtitle of the Delinquency window when the user is reconnected</comment>
   </data>
   <data name="Dialogs_Delinquency_Subtitle">
-    <value>Ви зможете знову отримати доступ до преміумфункцій після оплати.</value>
+    <value>Ви зможете знову отримати доступ до преміальних функцій після оплати.</value>
     <comment>The subtitle of the Delinquency window</comment>
   </data>
   <data name="Dialogs_Delinquency_Title">
@@ -2143,7 +2143,7 @@ Text="these"/&gt;&lt;/Hyperlink&gt; інструкції, щоб увімкну�
     <value>NetShield</value>
   </data>
   <data name="Notifications_Delinquency_Description">
-    <value>Ви зможете знову отримати доступ до преміумфункцій після оплати.</value>
+    <value>Ви зможете знову отримати доступ до преміальних функцій після оплати.</value>
     <comment>The description of the Delinquency notification</comment>
   </data>
   <data name="Notifications_Delinquency_Reconnected_Description">
@@ -3333,7 +3333,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_msg">
-    <value>Маєте додаткові чи професійні обчислювальні потреби, які потребують нестандартних портів? Передплатіть VPN Plus, щоб отримати доступ до цієї та інших преміумфункцій.</value>
+    <value>Маєте додаткові чи професійні обчислювальні потреби, які потребують нестандартних портів? Передплатіть VPN Plus, щоб отримати доступ до цієї та інших преміальних функцій.</value>
     <comment>The text in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_ttl">

@@ -2233,7 +2233,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <value>Käyttääksesi porttiohjausta, &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;yhdistä&lt;/Hyperlink&gt; palvelimeen, joka tukee P2P-tiedostonjakoa.</value>
   </data>
   <data name="ProfileConnector_msg_MissingAuthCert">
-    <value>Proton VPN epäonnistui todennusvarmenteen noudossa verkko-ongelman vuoksi.</value>
+    <value>Proton VPN ei voinut noutaa todennusvarmennetta verkko-ongelman vuoksi.</value>
   </data>
   <data name="Profiles_Profile_Description_val_Fastest">
     <value>Nopein käytettävissä oleva palvelin</value>
@@ -2798,10 +2798,10 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The description of Default Protocol settings displayed in the tooltip of ( i ) image next to the label for Default Protocol combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat">
-    <value>Keskitason NAT</value>
+    <value>Keskitasoinen NAT</value>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat_Info">
-    <value>Keskitason (eli tyypin 2) NAT, poistaa paikallisten osoitteiden sekoitetun määrityksen käytöstä. Tämä voi heikentää suojaustasi hieman, mutta mahdollistaa esimerkiksi suorien yhteyksien kaltaiset tekniikat mm. verkkopeleille.</value>
+    <value>Keskitasoinen (eli tyypin 2) NAT, poistaa paikallisten osoitteiden sekoituksen käytöstä. Tämä voi heikentää suojaustasi hieman, mutta mahdollistaa esimerkiksi suorien yhteyksien kaltaiset tekniikat mm. verkkopeleille.</value>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect">
     <value>Pikayhteys</value>
