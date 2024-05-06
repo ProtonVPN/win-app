@@ -1813,7 +1813,7 @@ bloqués</value>
     <value>Désépingler</value>
   </data>
   <data name="Home_Update_Confirmation_Message">
-    <value>Pour finaliser la mise à jour, Proton VPN doit temporairement déconnecter et désactiver la fonction "Kill Switch" des connexions actives. Voulez-vous continuer ?</value>
+    <value>Pour finaliser la mise à jour, Proton VPN doit temporairement déconnecter et désactiver la fonction « Kill Switch »  des connexions actives. Voulez-vous continuer ?</value>
     <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
   </data>
   <data name="Home_Update_Confirmation_Title">

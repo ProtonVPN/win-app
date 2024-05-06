@@ -1777,7 +1777,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Szczegóły połączenia</value>
   </data>
   <data name="Home_ConnectionDetails_Upload">
-    <value>Przesyłanie</value>
+    <value>Wysyłanie</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>Adres IP VPN</value>
