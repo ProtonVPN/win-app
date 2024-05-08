@@ -32,140 +32,150 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_Recents_Landmark')}"
              mc:Ignorable="d">
 
+    <UserControl.Resources>
+
+        <DataTemplate x:Key="RecentItemTemplate"
+                      x:DataType="recents:RecentItemViewModel">
+
+            <custom:DualCommandsRow AutomationProperties.FullDescription="{x:Bind FullTitle}"
+                                    IsContentEnabled="{x:Bind IsServerAvailable}"
+                                    PrimaryCommand="{x:Bind ToggleConnectionCommand}"
+                                    PrimaryCommandAutomationName="{x:Bind PrimaryCommandDescription}"
+                                    PrimaryCommandContent="{x:Bind PrimaryCommandText}"
+                                    SecondaryCommandAutomationName="{x:Bind SecondaryCommandDescription}"
+                                    SecondaryCommandToolTip="{x:Bind SecondaryCommandToolTip}">
+
+                <custom:DualCommandsRow.SecondaryCommandIcon>
+                    <pathicons:ThreeDotsVertical />
+                </custom:DualCommandsRow.SecondaryCommandIcon>
+
+                <custom:DualCommandsRow.SecondaryCommandFlyout>
+                    <MenuFlyout Closing="OnActionsMenuFlyoutClosing"
+                                Placement="BottomEdgeAlignedRight">
+                        <MenuFlyoutItem Command="{x:Bind PinCommand}"
+                                        Text="{x:Bind Localizer.Get('Home_Recents_Pin')}"
+                                        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}">
+                            <MenuFlyoutItem.Icon>
+                                <pathicons:PinFilled />
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Command="{x:Bind UnpinCommand}"
+                                        Text="{x:Bind Localizer.Get('Home_Recents_Unpin')}"
+                                        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}">
+                            <MenuFlyoutItem.Icon>
+                                <pathicons:PinSlashFilled />
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Command="{x:Bind RemoveCommand}"
+                                        Text="{x:Bind Localizer.Get('Common_Actions_Remove')}">
+                            <MenuFlyoutItem.Icon>
+                                <pathicons:TrashCross />
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                    </MenuFlyout>
+                </custom:DualCommandsRow.SecondaryCommandFlyout>
+
+                <Grid HorizontalAlignment="Left"
+                      ColumnSpacing="12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <pathicons:PinFilled Foreground="{ThemeResource TextHintColorBrush}"
+                                             Visibility="{x:Bind IsPinned}" />
+                        <pathicons:ClockRotateLeft Foreground="{ThemeResource TextHintColorBrush}"
+                                                   Visibility="{x:Bind IsPinned, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+                    </Grid>
+
+                    <controls:CountryFlagControl Grid.Column="1"
+                                                 MinWidth="30"
+                                                 MinHeight="20"
+                                                 EntryCountryCode="{x:Bind EntryCountry}"
+                                                 ExitCountryCode="{x:Bind ExitCountry}"
+                                                 IsCompact="True"
+                                                 IsGateway="{x:Bind IsB2B}"
+                                                 IsSecureCore="{x:Bind IsSecureCore}" />
+
+                    <TextBlock Grid.Column="2"
+                               Foreground="{ThemeResource TextWeakColorBrush}"
+                               Style="{StaticResource BodyMediumTextBlockStyle}"
+                               TextTrimming="CharacterEllipsis"
+                               TextWrapping="NoWrap">
+                        <Run Foreground="{ThemeResource TextNormColorBrush}"
+                             Text="{x:Bind Title}" />
+                        <Run Text="{x:Bind Subtitle}" />
+                    </TextBlock>
+
+                    <StackPanel Grid.Column="3"
+                                Orientation="Horizontal">
+                        <TextBlock Margin="0,0,12,0"
+                                   VerticalAlignment="Center"
+                                   Foreground="{ThemeResource TextWeakColorBrush}"
+                                   Style="{StaticResource BodyMediumTextBlockStyle}"
+                                   Text="•"
+                                   Visibility="{x:Bind HasFeature}" />
+
+                        <StackPanel Orientation="Horizontal"
+                                    Spacing="6"
+                                    Visibility="{x:Bind IsTor}">
+                            <pathicons:BrandTor Margin="0,1,0,0"
+                                                Foreground="{ThemeResource TextWeakColorBrush}" />
+                            <TextBlock VerticalAlignment="Center"
+                                       Foreground="{ThemeResource TextWeakColorBrush}"
+                                       Style="{StaticResource BodyMediumTextBlockStyle}"
+                                       Text="{x:Bind Localizer.Get('Server_Feature_Tor')}"
+                                       TextTrimming="CharacterEllipsis"
+                                       TextWrapping="WrapWholeWords" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                    Spacing="6"
+                                    Visibility="{x:Bind IsP2P}">
+                            <pathicons:ArrowRightArrowLeft Margin="0,1,0,0"
+                                                           Foreground="{ThemeResource TextWeakColorBrush}" />
+                            <TextBlock VerticalAlignment="Center"
+                                       Foreground="{ThemeResource TextWeakColorBrush}"
+                                       Style="{StaticResource BodyMediumTextBlockStyle}"
+                                       Text="{x:Bind Localizer.Get('Server_Feature_P2P')}"
+                                       TextTrimming="CharacterEllipsis"
+                                       TextWrapping="WrapWholeWords" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <pathicons:Wrench Grid.Column="4"
+                                      Foreground="{ThemeResource TextWeakColorBrush}"
+                                      Visibility="{x:Bind IsServerAvailable, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+
+                    <icons:ActiveDot Grid.Column="5"
+                                     Width="16"
+                                     Height="16"
+                                     Visibility="{x:Bind IsActiveConnection, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                </Grid>
+            </custom:DualCommandsRow>
+
+        </DataTemplate>
+
+    </UserControl.Resources>
+
     <Expander Padding="{StaticResource HomePageContentPadding}"
               ExpandDirection="Down"
               Header="{x:Bind ViewModel.Localizer.Get('Home_Recents_Title')}"
               IsExpanded="{x:Bind ViewModel.IsRecentsComponentOpened, Mode=TwoWay}"
               Style="{StaticResource GhostExpanderStyle}"
               Visibility="{x:Bind ViewModel.HasRecentConnections}">
-        <ScrollViewer MaxHeight="180"
+        <ScrollViewer MaxHeight="230"
                       AutomationProperties.AutomationId="RecentsPane"
                       ScrollViewer.VerticalScrollBarVisibility="Auto">
             <ItemsControl IsTabStop="False"
-                          ItemsSource="{x:Bind ViewModel.RecentConnections}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate x:DataType="recents:RecentItemViewModel">
-                        <custom:DualCommandsRow Padding="12,0"
-                                                IsContentEnabled="{x:Bind IsServerAvailable}"
-                                                PrimaryCommand="{x:Bind ToggleConnectionCommand}"
-                                                PrimaryCommandContent="{x:Bind PrimaryCommandText}"
-                                                SecondaryCommandToolTip="{x:Bind SecondaryCommandToolTip}"
-                                                AutomationProperties.FullDescription="{x:Bind FullTitle}"
-                                                PrimaryCommandAutomationName="{x:Bind PrimaryCommandDescription}"
-                                                SecondaryCommandAutomationName="{x:Bind SecondaryCommandDescription}">
-
-                            <custom:DualCommandsRow.SecondaryCommandIcon>
-                                <pathicons:ThreeDotsVertical />
-                            </custom:DualCommandsRow.SecondaryCommandIcon>
-
-                            <custom:DualCommandsRow.SecondaryCommandFlyout>
-                                <MenuFlyout Closing="OnActionsMenuFlyoutClosing"
-                                            Placement="BottomEdgeAlignedRight">
-                                    <MenuFlyoutItem Command="{x:Bind PinCommand}"
-                                                    Text="{x:Bind Localizer.Get('Home_Recents_Pin')}"
-                                                    Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}">
-                                        <MenuFlyoutItem.Icon>
-                                            <pathicons:PinFilled />
-                                        </MenuFlyoutItem.Icon>
-                                    </MenuFlyoutItem>
-                                    <MenuFlyoutItem Command="{x:Bind UnpinCommand}"
-                                                    Text="{x:Bind Localizer.Get('Home_Recents_Unpin')}"
-                                                    Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}">
-                                        <MenuFlyoutItem.Icon>
-                                            <pathicons:PinSlashFilled />
-                                        </MenuFlyoutItem.Icon>
-                                    </MenuFlyoutItem>
-                                    <MenuFlyoutItem Command="{x:Bind RemoveCommand}"
-                                                    Text="{x:Bind Localizer.Get('Common_Actions_Remove')}">
-                                        <MenuFlyoutItem.Icon>
-                                            <pathicons:TrashCross />
-                                        </MenuFlyoutItem.Icon>
-                                    </MenuFlyoutItem>
-                                </MenuFlyout>
-                            </custom:DualCommandsRow.SecondaryCommandFlyout>
-
-                            <Grid HorizontalAlignment="Left"
-                                  ColumnSpacing="8">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-
-                                <Grid Grid.Column="0">
-                                    <pathicons:PinFilled Foreground="{ThemeResource TextHintColorBrush}"
-                                                         Visibility="{x:Bind IsPinned}" />
-                                    <pathicons:ClockRotateLeft Foreground="{ThemeResource TextHintColorBrush}"
-                                                               Visibility="{x:Bind IsPinned, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
-                                </Grid>
-
-                                <controls:CountryFlagControl Grid.Column="1"
-                                                             EntryCountryCode="{x:Bind EntryCountry}"
-                                                             ExitCountryCode="{x:Bind ExitCountry}"
-                                                             IsCompact="True"
-                                                             IsGateway="{x:Bind IsB2B}"
-                                                             IsSecureCore="{x:Bind IsSecureCore}" />
-
-                                <TextBlock Grid.Column="2"
-                                           Foreground="{ThemeResource TextWeakColorBrush}"
-                                           Style="{StaticResource BodyTextBlockStyle}"
-                                           TextTrimming="CharacterEllipsis"
-                                           TextWrapping="NoWrap">
-                                    <Run Foreground="{ThemeResource TextNormColorBrush}"
-                                         Text="{x:Bind Title}" />
-                                    <Run Text="{x:Bind Subtitle}" />
-                                </TextBlock>
-
-                                <StackPanel Grid.Column="3"
-                                            Orientation="Horizontal">
-                                    <TextBlock Margin="0,0,6,0"
-                                               VerticalAlignment="Center"
-                                               Foreground="{ThemeResource TextWeakColorBrush}"
-                                               Style="{StaticResource CaptionTextBlockStyle}"
-                                               Text="•"
-                                               Visibility="{x:Bind HasFeature}" />
-
-                                    <StackPanel Orientation="Horizontal"
-                                                Visibility="{x:Bind IsTor}">
-                                        <pathicons:BrandTor Foreground="{ThemeResource TextWeakColorBrush}" />
-                                        <TextBlock Margin="4,0,0,0"
-                                                   VerticalAlignment="Center"
-                                                   Foreground="{ThemeResource TextWeakColorBrush}"
-                                                   Style="{StaticResource CaptionTextBlockStyle}"
-                                                   Text="{x:Bind Localizer.Get('Server_Feature_Tor')}"
-                                                   TextTrimming="CharacterEllipsis"
-                                                   TextWrapping="WrapWholeWords" />
-                                    </StackPanel>
-
-                                    <StackPanel Orientation="Horizontal"
-                                                Visibility="{x:Bind IsP2P}">
-                                        <pathicons:ArrowRightArrowLeft Foreground="{ThemeResource TextWeakColorBrush}" />
-                                        <TextBlock Margin="4,0,0,0"
-                                                   VerticalAlignment="Center"
-                                                   Foreground="{ThemeResource TextWeakColorBrush}"
-                                                   Style="{StaticResource CaptionTextBlockStyle}"
-                                                   Text="{x:Bind Localizer.Get('Server_Feature_P2P')}"
-                                                   TextTrimming="CharacterEllipsis"
-                                                   TextWrapping="WrapWholeWords" />
-                                    </StackPanel>
-                                </StackPanel>
-
-                                <pathicons:Wrench Grid.Column="4"
-                                                  Foreground="{ThemeResource TextWeakColorBrush}"
-                                                  Visibility="{x:Bind IsServerAvailable, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
-
-                                <icons:ActiveDot Grid.Column="5"
-                                                 Width="16"
-                                                 Height="16"
-                                                 Visibility="{x:Bind IsActiveConnection, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                            </Grid>
-                        </custom:DualCommandsRow>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                          ItemTemplate="{StaticResource RecentItemTemplate}"
+                          ItemsSource="{x:Bind ViewModel.RecentConnections}" />
         </ScrollViewer>
     </Expander>
+
 </UserControl>

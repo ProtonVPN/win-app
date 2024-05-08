@@ -88,8 +88,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <DataTemplate x:Key="CountryLocationWithNavigationItemTemplate"
                       x:DataType="items:CountryLocationItemBase">
 
-            <custom:DualCommandsRow Padding="12,8"
-                                    IsContentEnabled="{x:Bind IsEnabled}"
+            <custom:DualCommandsRow IsContentEnabled="{x:Bind IsEnabled}"
                                     PrimaryCommand="{x:Bind ToggleConnectionCommand, Mode=OneTime}"
                                     PrimaryCommandAutomationId="{x:Bind PrimaryCommandAutomationId}"
                                     PrimaryCommandToolTip="{x:Bind ToolTip}"
@@ -147,8 +146,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <DataTemplate x:Key="CountryLocationWithFlyoutItemTemplate"
                       x:DataType="items:CountryLocationItemBase">
 
-            <custom:DualCommandsRow Padding="12,8"
-                                    IsContentEnabled="{x:Bind IsEnabled}"
+            <custom:DualCommandsRow IsContentEnabled="{x:Bind IsEnabled}"
                                     PrimaryCommand="{x:Bind ToggleConnectionCommand, Mode=OneTime}"
                                     PrimaryCommandAutomationId="{x:Bind PrimaryCommandAutomationId}"
                                     PrimaryCommandToolTip="{x:Bind ToolTip}"
@@ -218,8 +216,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <DataTemplate x:Key="GatewayLocationItemTemplate"
                       x:DataType="items:GatewayLocationItem">
 
-            <custom:DualCommandsRow Padding="12,8"
-                                    IsContentEnabled="{x:Bind IsEnabled}"
+            <custom:DualCommandsRow IsContentEnabled="{x:Bind IsEnabled}"
                                     PrimaryCommand="{x:Bind ToggleConnectionCommand, Mode=OneTime}"
                                     PrimaryCommandAutomationId="{x:Bind PrimaryCommandAutomationId}"
                                     PrimaryCommandToolTip="{x:Bind ToolTip}"
@@ -351,8 +348,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <DataTemplate x:Key="CityLocationItemTemplate"
                       x:DataType="items:CityLocationItemBase">
 
-            <custom:DualCommandsRow Padding="12,8"
-                                    IsContentEnabled="{x:Bind IsEnabled}"
+            <custom:DualCommandsRow IsContentEnabled="{x:Bind IsEnabled}"
                                     PrimaryCommand="{x:Bind ToggleConnectionCommand, Mode=OneTime}"
                                     PrimaryCommandAutomationId="{x:Bind PrimaryCommandAutomationId}"
                                     PrimaryCommandToolTip="{x:Bind ToolTip}"

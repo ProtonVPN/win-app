@@ -22,9 +22,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom">
 
-    <Thickness x:Key="RowContentMargin">12,0</Thickness>
-    <Thickness x:Key="PrimaryContainerMargin">-4,0,12,0</Thickness>
-    <Thickness x:Key="SecondaryCommandContentMargin">12,-5,8,-5</Thickness>
+    <Thickness x:Key="RowContentMargin">12</Thickness>
+    <Thickness x:Key="PrimaryContainerMargin">0,-1,12,0</Thickness>
+    <Thickness x:Key="SecondaryCommandContentMargin">12,-6,8,-5</Thickness>
     <x:Double x:Key="SecondaryCommandContentSpacing">8</x:Double>
 
     <Style BasedOn="{StaticResource DualCommandsRowStyle}" TargetType="custom:DualCommandsRow" />
@@ -80,8 +80,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                           ContentTemplate="{TemplateBinding ContentTemplate}"
                                           ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
                                           ContentTransitions="{TemplateBinding ContentTransitions}"
-                                          FontSize="{StaticResource BodyFontSize}"
-                                          FontWeight="{StaticResource BodyFontWeight}"
+                                          FontSize="{StaticResource BodyMediumFontSize}"
+                                          FontWeight="{StaticResource BodyMediumFontWeight}"
                                           Foreground="{TemplateBinding Foreground}"
                                           IsHitTestVisible="False"
                                           IsTabStop="False" />
@@ -98,8 +98,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <ContentPresenter Content="{TemplateBinding PrimaryCommandContent}"
                                               ContentTemplate="{TemplateBinding PrimaryCommandContentTemplate}"
                                               ContentTemplateSelector="{TemplateBinding PrimaryCommandContentTemplateSelector}"
-                                              FontSize="{StaticResource BodyStrongFontSize}"
-                                              FontWeight="{StaticResource BodyStrongFontWeight}"
+                                              FontSize="{StaticResource BodyMediumStrongFontSize}"
+                                              FontWeight="{StaticResource BodyMediumStrongFontWeight}"
                                               Foreground="{TemplateBinding Foreground}"
                                               Visibility="{Binding PrimaryCommandContent, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}" />
                         </ContentControl>
@@ -116,8 +116,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         Spacing="{StaticResource SecondaryCommandContentSpacing}">
                                 <TextBlock x:Name="SecondaryText"
                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                           FontSize="{StaticResource BodyFontSize}"
-                                           FontWeight="{StaticResource BodyFontWeight}"
+                                           FontSize="{StaticResource BodyMediumStrongFontSize}"
+                                           FontWeight="{StaticResource BodyMediumStrongFontWeight}"
                                            Foreground="{ThemeResource TextWeakColorBrush}"
                                            Text="{TemplateBinding SecondaryCommandText}"
                                            Visibility="{Binding SecondaryCommandText, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}" />
@@ -126,9 +126,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                   AutomationProperties.AccessibilityView="Raw"
                                                   Content="{TemplateBinding SecondaryCommandIcon}"
-                                                  Foreground="{TemplateBinding Foreground}"
+                                                  Foreground="{ThemeResource TextWeakColorBrush}"
+                                                  Margin="0,1,0,0"
                                                   HighContrastAdjustment="None"
-                                                  Opacity="0.65"
                                                   Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
                             </StackPanel>
                         </ContentControl>
@@ -151,7 +151,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <VisualState.Setters>
                                         <Setter Target="SecondaryContainer.Opacity" Value="1" />
                                         <Setter Target="SecondaryText.Foreground" Value="{ThemeResource TextNormColorBrush}" />
-                                        <Setter Target="SecondaryIcon.Opacity" Value="1" />
+                                        <Setter Target="SecondaryIcon.Foreground" Value="{ThemeResource TextNormColorBrush}" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="NoneHovered" />
@@ -173,7 +173,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <VisualState.Setters>
                                         <Setter Target="SecondaryContainer.Opacity" Value="1" />
                                         <Setter Target="SecondaryText.Foreground" Value="{ThemeResource TextNormColorBrush}" />
-                                        <Setter Target="SecondaryIcon.Opacity" Value="1" />
+                                        <Setter Target="SecondaryIcon.Foreground" Value="{ThemeResource TextNormColorBrush}" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="NoneFocused" />
