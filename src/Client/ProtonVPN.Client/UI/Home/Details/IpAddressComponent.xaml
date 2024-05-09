@@ -28,17 +28,29 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
+    <UserControl.Resources>
+        <Style x:Key="IpHeaderTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource CaptionTextBlockStyle}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="{ThemeResource TextWeakColorBrush}"/>
+        </Style>
+        <Style x:Key="IpValueTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyStrongTextBlockStyle}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="{ThemeResource TextNormColorBrush}"/>
+        </Style>
+    </UserControl.Resources>
+
     <Grid Padding="4,8"
-          BorderBrush="{ThemeResource BorderWeakColorBrush}"
-          BorderThickness="1"
+          Background="{ThemeResource BackgroundWeakColorBrush}"
           ColumnSpacing="8"
           CornerRadius="8"
           RowSpacing="4">
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -48,55 +60,57 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Grid.Column="0"
                     HorizontalAlignment="Center"
                     Orientation="Horizontal"
-                    Spacing="6">
-            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
-                       Style="{StaticResource CaptionTextBlockStyle}"
+                    Spacing="8">
+            
+            <TextBlock Style="{StaticResource IpHeaderTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_MyIp')}" />
+            
             <Grid Margin="-4">
+                
                 <custom:GhostButton AutomationProperties.AutomationId="ShowUserIpAddressButton"
                                     AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_ShowIP_Description')}"
                                     Command="{x:Bind ViewModel.ShowUserIPAddressCommand, Mode=OneTime}"
                                     ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_ShowIP')}"
                                     Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}">
                     <custom:GhostButton.LeftIcon>
-                        <pathicons:Eye />
+                        <pathicons:Eye Size="Pixels16"/>
                     </custom:GhostButton.LeftIcon>
                 </custom:GhostButton>
+                
                 <custom:GhostButton AutomationProperties.AutomationId="HideUserIpAddressButton"
                                     AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_HideIP_Description')}"
                                     Command="{x:Bind ViewModel.HideUserIPAddressCommand, Mode=OneTime}"
                                     ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_HideIP')}"
                                     Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}">
                     <custom:GhostButton.LeftIcon>
-                        <pathicons:EyeSlash />
+                        <pathicons:EyeSlash Size="Pixels16"/>
                     </custom:GhostButton.LeftIcon>
                 </custom:GhostButton>
+                
             </Grid>
+            
         </StackPanel>
 
         <TextBlock Grid.Row="1"
                    Grid.Column="0"
-                   HorizontalAlignment="Center"
-                   Style="{StaticResource CaptionStrongTextBlockStyle}"
+                   Style="{StaticResource IpValueTextBlockStyle}"
                    Text="{x:Bind ViewModel.UserIpAddress}" />
 
         <pathicons:ArrowRight Grid.Row="0"
                               Grid.RowSpan="2"
                               Grid.Column="1"
                               VerticalAlignment="Center"
+                              Size="Pixels16"
                               Foreground="{ThemeResource TextWeakColorBrush}" />
 
         <TextBlock Grid.Row="0"
                    Grid.Column="2"
-                   HorizontalAlignment="Center"
-                   Foreground="{ThemeResource TextWeakColorBrush}"
-                   Style="{StaticResource CaptionTextBlockStyle}"
+                   Style="{StaticResource IpHeaderTextBlockStyle}"
                    Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_VpnIp')}" />
 
         <TextBlock Grid.Row="1"
                    Grid.Column="2"
-                   HorizontalAlignment="Center"
-                   Style="{StaticResource CaptionStrongTextBlockStyle}"
+                   Style="{StaticResource IpValueTextBlockStyle}"
                    Text="{x:Bind ViewModel.ServerIpAddress}" />
     </Grid>
 </UserControl>

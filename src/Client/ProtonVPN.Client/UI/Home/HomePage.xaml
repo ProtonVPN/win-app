@@ -81,6 +81,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                       AutomationProperties.LandmarkType="Custom"
                       AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Landmark')}"
                       RowSpacing="16"
+                      ColumnSpacing="8"
                       TabIndex="5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -93,14 +94,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                     <TextBlock Grid.Row="0"
                                Grid.Column="0"
+                               VerticalAlignment="Center"
                                AutomationProperties.AutomationId="ConnectionDetailsTitle"
-                               Style="{StaticResource BodyStrongTextBlockStyle}"
+                               Style="{StaticResource BodyLargeStrongTextBlockStyle}"
                                TabIndex="6"
                                Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Title')}" />
 
                     <custom:GhostButton Grid.Row="0"
                                         Grid.Column="1"
-                                        Margin="-2"
+                                        Margin="0,2,-2,-2"
+                                        VerticalAlignment="Center"
                                         AutomationProperties.AutomationId="CloseConnectionDetailsButton"
                                         AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Hide')}"
                                         Command="{x:Bind ViewModel.CloseConnectionDetailsPaneCommand, Mode=OneTime}"
