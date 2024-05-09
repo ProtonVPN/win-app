@@ -1421,6 +1421,21 @@
   </data>
   <data name="Home_ConnectionDetails_VpnIp" xml:space="preserve">
     <value>VPN IP</value>
+  </data>  
+  <data name="Home_ConnectionDetails_VpnAccelerator" xml:space="preserve">
+    <value>Boosted by VPN Accelerator</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnAccelerator_ToolTip" xml:space="preserve">
+    <value>Advanced performance and stability technologies are boosting your VPN speed.</value>
+  </data>  
+  <data name="Home_ConnectionDetails_Volume_Download" xml:space="preserve">
+    <value>Download volume</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Upload" xml:space="preserve">
+    <value>Upload volume</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Total" xml:space="preserve">
+    <value>Total volume</value>
   </data>
   <data name="Home_Help_Title" xml:space="preserve">
     <value>Help</value>
@@ -2684,7 +2699,6 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Dialogs_Troubleshooting_DidNotWork" xml:space="preserve">
     <value>Didn't work?</value>
   </data>
-
   <data name="Connections_Countries_One" xml:space="preserve">
     <value>Country ({0})</value>
     <comment>{0} is a placeholder for the number of countries (eg. Country (1)). This string is used when the number is 1.</comment>

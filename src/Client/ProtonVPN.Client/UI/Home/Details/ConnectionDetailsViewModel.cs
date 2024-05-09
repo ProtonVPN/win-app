@@ -28,6 +28,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Models.Activation;
+using ProtonVPN.Client.UI.Dialogs.Overlays;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
@@ -107,9 +108,21 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase,
     }
 
     [RelayCommand]
-    public async Task OpenOverlayAsync(string dialogKey)
+    public async Task OpenServerLoadOverlayAsync()
     {
-        await _overlayActivator.ShowOverlayAsync(dialogKey);
+        await _overlayActivator.ShowOverlayAsync<ServerLoadOverlayViewModel>();
+    }
+
+    [RelayCommand]
+    public async Task OpenLatencyOverlayAsync()
+    {
+        await _overlayActivator.ShowOverlayAsync<LatencyOverlayViewModel>();
+    }
+
+    [RelayCommand]
+    public async Task OpenProtocolOverlayAsync()
+    {
+        await _overlayActivator.ShowOverlayAsync<ProtocolOverlayViewModel>();
     }
 
     public void Receive(ConnectionStatusChanged message)

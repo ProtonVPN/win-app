@@ -19,18 +19,23 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Home.Details;
 
-public partial class VpnSpeedViewModel : ViewModelBase
+public partial class VpnSpeedViewModel : ViewModelBase,
+    IEventMessageReceiver<SettingChangedMessage>
 {
     private readonly IConnectionManager _connectionManager;
+    private readonly ISettings _settings;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(FormattedDownloadSpeed))]
@@ -40,33 +45,67 @@ public partial class VpnSpeedViewModel : ViewModelBase
     [NotifyPropertyChangedFor(nameof(FormattedUploadSpeed))]
     private long _uploadSpeed;
 
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(FormattedDownloadVolume))]
+    [NotifyPropertyChangedFor(nameof(FormattedTotalVolume))]
+    private long _downloadVolume;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(FormattedUploadVolume))]
+    [NotifyPropertyChangedFor(nameof(FormattedTotalVolume))]
+    private long _uploadVolume;
+
     public string FormattedDownloadSpeed => Localizer.GetFormattedSpeed(DownloadSpeed);
 
     public string FormattedUploadSpeed => Localizer.GetFormattedSpeed(UploadSpeed);
 
-    public VpnSpeedViewModel(ILocalizationProvider localizationProvider,
+    public string FormattedDownloadVolume => Localizer.GetFormattedSize(DownloadVolume);
+
+    public string FormattedUploadVolume => Localizer.GetFormattedSize(UploadVolume);
+
+    public string FormattedTotalVolume => Localizer.GetFormattedSize(DownloadVolume + UploadVolume);
+
+    public bool IsVpnAcceleratorEnabled => _settings.IsVpnAcceleratorEnabled;
+
+    public VpnSpeedViewModel(
+        ILocalizationProvider localizationProvider,
         IConnectionManager connectionManager,
         ILogger logger,
-        IIssueReporter issueReporter)
+        IIssueReporter issueReporter,
+        ISettings settings)
         : base(localizationProvider, logger, issueReporter)
     {
         _connectionManager = connectionManager;
-
-        DownloadSpeed = 0;
-        UploadSpeed = 0;
+        _settings = settings;
     }
 
     public async void RefreshAsync()
     {
-        TrafficBytes trafficBytes = await _connectionManager.GetCurrentSpeedAsync();
+        TrafficBytes speed = await _connectionManager.GetCurrentSpeedAsync();
 
-        DownloadSpeed = (long)trafficBytes.BytesIn;
-        UploadSpeed = (long)trafficBytes.BytesOut;
+        DownloadSpeed = (long)speed.BytesIn;
+        UploadSpeed = (long)speed.BytesOut;
+
+        TrafficBytes volume = await _connectionManager.GetTrafficBytesAsync();
+
+        DownloadVolume = (long)volume.BytesIn;
+        UploadVolume = (long)volume.BytesOut;
+    }
+
+    public void Receive(SettingChangedMessage message)
+    {
+        if (message.PropertyName == nameof(ISettings.IsVpnAcceleratorEnabled))
+        {
+            ExecuteOnUIThread(() => OnPropertyChanged(nameof(IsVpnAcceleratorEnabled)));
+        }
     }
 
     protected override void OnLanguageChanged()
     {
         OnPropertyChanged(nameof(FormattedDownloadSpeed));
         OnPropertyChanged(nameof(FormattedUploadSpeed));
+        OnPropertyChanged(nameof(FormattedDownloadVolume));
+        OnPropertyChanged(nameof(FormattedUploadVolume));
+        OnPropertyChanged(nameof(FormattedTotalVolume));
     }
 }
