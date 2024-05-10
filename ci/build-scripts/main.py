@@ -9,7 +9,6 @@ import ssh
 import guest_hole_server_loader
 import slack
 import hashlib
-import localization
 from pathlib import Path
 
 def get_sha256(file_path):
@@ -61,20 +60,6 @@ if args.command == 'defaultConfig':
     f = open(configPath, "wt")
     f.write(data)
     f.close()
-
-elif args.command == 'lint-languages':
-    linter = Path('src', 'bin', 'ProtonVPN.MarkupValidator.exe')
-    sources_dir = Path('src', 'ProtonVPN.Translations', 'Properties')
-
-    (code, errors) = localization.lint(
-        linter=linter,
-        sources=sources_dir
-    )
-
-    if code > 0:
-        print('[ERROR][lint-languages] broken markup inside some files:')
-        print("\n".join([str(file) for file in errors]))
-    sys.exit(code)
 
 elif args.command == 'app-installer':
     build_path = os.environ.get('BUILD_PATH', '.\\src\\bin\\win-x64\\publish\\')
