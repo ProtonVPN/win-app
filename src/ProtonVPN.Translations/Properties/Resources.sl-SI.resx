@@ -186,7 +186,7 @@
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_AccountPlan">
-    <value>Vrsta naročnine:</value>
+    <value>Vrsta paketa:</value>
     <comment>The label for account plan name in Account window</comment>
   </data>
   <data name="Account_lbl_AccountType">
@@ -194,7 +194,7 @@
     <comment>The label for account type in Account window</comment>
   </data>
   <data name="Account_lbl_AllPlusFeatures">
-    <value>Funkcije naročnine Plus</value>
+    <value>Funkcije paketa Plus</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_Connection_One">
@@ -245,7 +245,7 @@
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_HighestSpeed">
-    <value>&lt;Bold&gt;Višje&lt;/Bold&gt; hitrosti (do 10 Gbps)</value>
+    <value>&lt;Bold&gt;Najvišja&lt;/Bold&gt; hitrost (do 10 Gb/s)</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_MediumSpeed">
@@ -286,7 +286,7 @@
     <value>&lt;Bold&gt;{0}&lt;/Bold&gt; strežniki</value>
   </data>
   <data name="Account_lbl_Servers_Other">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; strežniki</value>
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; strežnikov</value>
   </data>
   <data name="Account_lbl_Streaming">
     <value>Podpora pretočnim servisom</value>
@@ -1838,7 +1838,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="te
     <comment>The button displayed in Troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_AlternativeRouting">
-    <value>&lt;Bold&gt;Nadomestno usmerjanje&lt;/Bold&gt; - Če so spletna mesta Proton blokirana, ta nastavitev aplikaciji omogoča, da poskusi alternativno omrežno usmerjanje, da doseže Proton, kar je lahko uporabno za izogibanje požarnim zidom ali težavam z omrežjem. Za večjo zanesljivost priporočamo, da to nastavitev ohranite vključeno. &lt;Hyperlink Command="{Binding AlternativeRoutingCommand}"&gt;Več o tem&lt;/Hyperlink&gt;</value>
+    <value>&lt;Bold&gt;Nadomestno usmerjanje&lt;/Bold&gt; - Če so spletna mesta Proton blokirana, ta nastavitev aplikaciji omogoča, da poskusi alternativno omrežno usmerjanje, da doseže Proton, kar je lahko uporabno za izogibanje požarnim zidovom ali težavam z omrežjem. Za večjo zanesljivost priporočamo, da to nastavitev ohranite vključeno. &lt;Hyperlink Command="{Binding AlternativeRoutingCommand}"&gt;Več o tem&lt;/Hyperlink&gt;</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Antivirus">
@@ -1846,7 +1846,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="te
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Firewall">
-    <value>&lt;Bold&gt;Motnje strežnika proxy/požarni zid &lt;/Bold&gt; - Onemogočite vse strežnike proxy in požarne zidove ali se obrnite na skrbnika omrežja.</value>
+    <value>&lt;Bold&gt;Motnje zaradi strežnika proxy ali požarnega zidu &lt;/Bold&gt; - Onemogočite vse strežnike proxy in požarne zidove ali se obrnite na skrbnika omrežja.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_GovBlock">
@@ -1878,7 +1878,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="te
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_TunInUse_btn_SwitchToTap">
-    <value>Preklopite na TAP adapter</value>
+    <value>Preklopite na TAP</value>
   </data>
   <data name="Dialogs_TunInUse_msg">
     <value>Proton VPN se ni mogel povezati, ker je omrežna kartica TUN že v uporabi. Prekinite povezavo vseh aktivnih VPN-jev in poskusite znova. Druga možnost je, da preklopite na kartico TAP (lahko spremenite nazaj na TUN v naprednih nastavitvah).</value>
@@ -2763,7 +2763,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="te
     <value>Gonilnik za omrežje OpenVPN</value>
   </data>
   <data name="Settings_Advanced_lbl_NetworkDriver_info">
-    <value>Omrežni gonilnik lahko vpliva na povezavo in njeno hitrost. Novi TUN adapter zagotavlja večjo hitrost. V primeru težav s povezavo se vrnite na TAP adapter.</value>
+    <value>Omrežni gonilnik lahko vpliva na povezavo in njeno hitrost. Novi TUN adapter zagotavlja večjo hitrost. V primeru težav s povezavo se vrnite na kartico TAP.</value>
   </data>
   <data name="Settings_Advanced_lbl_NonStandardPorts">
     <value>Nestandardna vrata</value>
@@ -2774,10 +2774,10 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="te
     <comment>The description of Non-standard ports setting displayed in the tooltip of ( i ) image next to the label for Allow non-standard ports toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_OpenVpnTap">
-    <value>TAP adapter</value>
+    <value>Kartica TAP</value>
   </data>
   <data name="Settings_Advanced_lbl_OpenVpnTun">
-    <value>TUN adapter</value>
+    <value>Kartica TUN</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding">
     <value>Posredovanje vrat</value>
@@ -3223,7 +3223,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Izboljšana hitrost in stabilnost pri povezavi z oddaljenimi strežniki.</value>
   </data>
   <data name="Upsell_Accelerator_Title">
-    <value>Brskajte pri še višjih hitrostih (do 10 Gbps)</value>
+    <value>Brskajte pri še višjih hitrostih (do 10 Gb/s)</value>
   </data>
   <data name="Upsell_Countries_AccessGeoblockedContent">
     <value>Dostop do geografsko blokirane vsebine</value>
@@ -3258,7 +3258,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Povežite se z {0} državami</value>
   </data>
   <data name="Upsell_Country_Bullet2">
-    <value>Višje hitrosti (10 Gbps)</value>
+    <value>Višje hitrosti (10 Gb/s)</value>
   </data>
   <data name="Upsell_Country_Bullet3">
     <value>Pretakajte svoje najljubše filme</value>

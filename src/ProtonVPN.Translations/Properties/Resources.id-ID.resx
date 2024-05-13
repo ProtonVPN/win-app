@@ -397,7 +397,7 @@
     <value>Perbarui Proton VPN</value>
   </data>
   <data name="BugReport_lbl_NewVersionInfo">
-    <value>Masalah Anda mungkin sudah teratasi pada versi Proton VPN ini!</value>
+    <value>Versi Proton VPN ini mungkin telah mengatasi masalah Anda!</value>
   </data>
   <data name="BugReport_lbl_QuickSolutions">
     <value>Solusi instan</value>

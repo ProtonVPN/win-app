@@ -1673,7 +1673,7 @@
     <comment>The text on "Keep disabled" button in the Enable Smart Protocol window</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_msg">
-    <value>Proton VPN вызначыў, што ваша бягучая сетка блакіруе падключэнне да VPN. Уключэнне Smart Protocol можа дапамагчы абысці гэта абмежаванне.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;Даведацца больш пра Smart Protocol.&lt;/Hyperlink&gt;</value>
+    <value>Proton VPN вызначыў, што ваша бягучая сетка блакіруе падключэнне да VPN. Уключэнне Smart Protocol можа дапамагчы абысці гэта абмежаванне.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;Даведацца больш аб Smart Protocol.&lt;/Hyperlink&gt;</value>
     <comment>The message displayed in the Enable Smart Protocol window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about Smart Protocol.").</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_ttl">
@@ -2118,7 +2118,7 @@
     <value>Secure Core прапануе высокі ўзровень бяспекі і прыватнасці, але можа запаволіць ваша падключэнне. Калі вам неабходна большая прадукцыйнасць, рэкамендуецца адключыць Secure Core.</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Title">
-    <value>Нататка пра хуткасць...</value>
+    <value>Нататка аб хуткасці...</value>
   </data>
   <data name="Modals_Rescope_NewFreeCountries">
     <value>Новыя краіны з серверамі Free</value>
@@ -2554,7 +2554,7 @@
     <value>праграм сачэння спынены</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
-    <value>Праграмы сачэння (трэкеры) - гэта праграмнае забеспячэнне старонніх вэб-сайтаў, якія збіраюць, захоўваюць і прадаюць інфармацыю пра вашу дзейнасць у інтэрнэце.</value>
+    <value>Праграмы сачэння (трэкеры) - гэта праграмнае забеспячэнне старонніх вэб-сайтаў, якія збіраюць, захоўваюць і прадаюць інфармацыю аб вашай дзейнасці ў інтэрнэце.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>Паспрабуйце адключыць NetShield, калі вэб-сайты не загружаюцца</value>
