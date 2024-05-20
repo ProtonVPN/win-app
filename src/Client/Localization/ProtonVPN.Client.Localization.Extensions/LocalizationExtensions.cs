@@ -83,7 +83,7 @@ public static class LocalizationExtensions
         };
     }
     
-    public static string GetConnectionIntentSubtitle(this ILocalizationProvider localizer, IConnectionIntent? connectionIntent)
+    public static string GetConnectionIntentSubtitle(this ILocalizationProvider localizer, IConnectionIntent? connectionIntent, bool useDetailedSubtitle = false)
     {
         if (connectionIntent?.Feature is SecureCoreFeatureIntent secureCoreIntent)
         {
@@ -95,7 +95,8 @@ public static class LocalizationExtensions
             ServerLocationIntent serverIntent => localizer.GetFormat("Connection_Intent_City_Server", serverIntent.CityState, serverIntent.Number).Trim(),
             CityStateLocationIntent cityStateIntent => cityStateIntent.CityState,
             GatewayServerLocationIntent gatewayServerIntent => localizer.GetFormat("Connection_Intent_Country_Server", localizer.GetCountryName(gatewayServerIntent.CountryCode), gatewayServerIntent.Number).Trim(),
-            FreeServerLocationIntent freeServerIntent => localizer.Get("Connection_Intent_AutoSelected"),
+            FreeServerLocationIntent freeServerIntent => useDetailedSubtitle ? localizer.Get("Connection_Intent_AutoSelected") : string.Empty,
+            CountryLocationIntent countryIntent => useDetailedSubtitle && countryIntent.IsFastest ? localizer.Get("Settings_Connection_Default_Fastest_Description") : string.Empty,
             _ => string.Empty,
         };
     }

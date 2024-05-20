@@ -194,7 +194,6 @@ public class GlobalSettingsMigrator : IGlobalSettingsMigrator
             { nameof(IUserSettings.ConnectionKeyPair), GetConnectionKeyPair(username) },
             { nameof(IUserSettings.ConnectionCertificate), GetConnectionCertificate(username) },
 
-            { nameof(IUserSettings.AutoConnectMode), GetUserSetting(username, "UserQuickConnect") },
             { nameof(IUserSettings.IsAutoConnectEnabled), GetSettingValue("ConnectOnAppStart") },
 
             { nameof(IUserSettings.NatType), GetUserSetting(username, "UserModerateNat") },

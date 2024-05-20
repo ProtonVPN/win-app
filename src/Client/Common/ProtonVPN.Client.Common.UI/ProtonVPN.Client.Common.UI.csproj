@@ -462,6 +462,7 @@
         <None Remove="Assets\Flags\KY.svg" />
         <None Remove="Assets\Flags\KZ.svg" />
         <None Remove="Assets\Flags\LA.svg" />
+        <None Remove="Assets\Flags\Latest.svg" />
         <None Remove="Assets\Flags\LB.svg" />
         <None Remove="Assets\Flags\LC.svg" />
         <None Remove="Assets\Flags\LI.svg" />
@@ -628,6 +629,7 @@
         <None Remove="Assets\Icons\Streaming\sling.png" />
         <None Remove="Assets\Icons\Streaming\syfy.png" />
         <None Remove="Assets\Icons\Streaming\tf1.png" />
+        <None Remove="Assets\Illustrations\Dark\default-connection.svg" />
         <None Remove="Assets\Illustrations\Dark\free-countries.svg" />
         <None Remove="Assets\Illustrations\Dark\product-logo.svg" />
         <None Remove="Assets\Illustrations\Dark\vpn-plus.svg" />
@@ -640,6 +642,7 @@
         <None Remove="Assets\Illustrations\kill-switch-on-level-1.png" />
         <None Remove="Assets\Illustrations\kill-switch-on-level-2.png" />
         <None Remove="Assets\Illustrations\latency.png" />
+        <None Remove="Assets\Illustrations\Light\default-connection.svg" />
         <None Remove="Assets\Illustrations\Light\free-countries.svg" />
         <None Remove="Assets\Illustrations\Light\product-logo.svg" />
         <None Remove="Assets\Illustrations\Light\vpn-plus.svg" />
@@ -938,6 +941,9 @@
     </ItemGroup>
     <ItemGroup>
         <Content Update="Assets\Flags\Dark\Gateway.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Flags\Latest.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Flags\Light\Gateway.svg">
@@ -1783,6 +1789,9 @@
         <Content Update="Assets\Icons\Streaming\tf1.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Illustrations\Dark\default-connection.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Illustrations\Dark\free-countries.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -1820,6 +1829,9 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\latency.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Light\default-connection.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\Light\free-countries.svg">

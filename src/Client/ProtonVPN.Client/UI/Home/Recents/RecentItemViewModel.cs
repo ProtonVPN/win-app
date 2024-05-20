@@ -60,7 +60,7 @@ public partial class RecentItemViewModel : ViewModelBase
 
     public string Title => Localizer.GetConnectionIntentTitle(_recentConnection.ConnectionIntent);
 
-    public string Subtitle => Localizer.GetConnectionIntentSubtitle(_recentConnection.ConnectionIntent).FormatIfNotEmpty("- {0}");
+    public string Subtitle => Localizer.GetConnectionIntentSubtitle(_recentConnection.ConnectionIntent).FormatIfNotEmpty(" -  {0}");
 
     public string PrimaryCommandText => IsActiveConnection
         ? Localizer.Get("Common_Actions_Disconnect")

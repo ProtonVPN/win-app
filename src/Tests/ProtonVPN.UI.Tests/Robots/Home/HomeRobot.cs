@@ -48,6 +48,7 @@ public partial class HomeRobot : UIActions
     protected Button HelpButton => ElementByAutomationId("HelpButton").AsButton();
     protected MenuItem IssueCategoryMenuItem => ElementByAutomationId("IssueCategoryMenuItem").AsMenuItem();
 
+    protected AutomationElement RecentsComponent => ElementByAutomationId("RecentsComponent");
     protected AutomationElement RecentsTab => ElementByName("Recents");
     protected AutomationElement PrimaryActionButton => ElementByAutomationId("PrimaryButton");
     protected AutomationElement SecondaryActionButton => ElementByAutomationId("SecondaryButton");
@@ -55,8 +56,18 @@ public partial class HomeRobot : UIActions
 
     protected Button DiscoverVpnPlusButton => ElementByAutomationId("DiscoverVpnPlusButton").AsButton();
 
-    protected AutomationElement GetRecentsCountry(string countryName)
+    protected AutomationElement GetRecentRow(string countryName = null)
     {
-        return ElementByAutomationId("RecentsPane").FindFirstDescendant(cf => cf.ByName($"Connect to {countryName}"));
+        return RecentsComponent.FindFirstDescendant(cf => cf.ByName(countryName ?? "Fastest country"));
+    }
+
+    protected Button GetRecentRowPrimaryActionButton(string countryName = null)
+    {
+        return GetRecentRow(countryName).FindFirstDescendant(cf => cf.ByAutomationId("PrimaryButton")).AsButton();
+    }
+
+    protected Button GetRecentRowSecondaryActionButton(string countryName = null)
+    {
+        return GetRecentRow(countryName).FindFirstDescendant(cf => cf.ByAutomationId("SecondaryButton")).AsButton();
     }
 }

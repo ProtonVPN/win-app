@@ -1351,6 +1351,9 @@
   <data name="Home_ConnectionCard_Header_LastConnectedTo" xml:space="preserve">
     <value>Last connected to</value>
   </data>
+  <data name="Home_ConnectionCard_Header_DefaultConnection" xml:space="preserve">
+    <value>Default connection</value>
+  </data>
   <data name="Home_ConnectionCard_Header_Recommended" xml:space="preserve">
     <value>Recommended</value>
   </data>
@@ -1592,6 +1595,21 @@
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict_Description" xml:space="preserve">
     <value>Restricts the data entering your network. This option is more secure, but can make peer-to-peer gaming connections more difficult.</value>
+  </data>
+  <data name="Settings_Connection_Default" xml:space="preserve">
+    <value>Default connection</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest" xml:space="preserve">
+    <value>Fastest country</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest_Description" xml:space="preserve">
+    <value>The best server based on your location</value>
+  </data>
+  <data name="Settings_Connection_Default_Last" xml:space="preserve">
+    <value>Last connection</value>
+  </data>
+  <data name="Settings_Connection_Default_Last_Description" xml:space="preserve">
+    <value>Your most recently used connection</value>
   </data>
   <data name="Settings_Connection_Protocol" xml:space="preserve">
     <value>Protocol</value>
@@ -1867,7 +1885,7 @@
     <value>Auto connect</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description" xml:space="preserve">
-    <value>You will be connected to a server as soon as Proton VPN opens</value>
+    <value>Automatically connects to your default connection when Proton VPN opens.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest" xml:space="preserve">
     <value>Fastest connection</value>

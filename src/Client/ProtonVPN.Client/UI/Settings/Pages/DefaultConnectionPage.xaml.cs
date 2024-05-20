@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,10 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Settings.Contracts.Enums;
+using Microsoft.UI.Xaml.Controls;
 
-public enum AutoConnectMode
+namespace ProtonVPN.Client.UI.Settings.Pages;
+
+public sealed partial class DefaultConnectionPage
 {
-    LatestConnection,
-    FastestConnection
+    public DefaultConnectionViewModel ViewModel { get; }
+
+    public DefaultConnectionPage()
+    {
+        ViewModel = App.GetService<DefaultConnectionViewModel>();
+        InitializeComponent();
+
+        ViewModel.ResetContentScrollRequested += OnResetContentScrollRequested;
+    }
+
+    private void OnResetContentScrollRequested(object? sender, EventArgs e)
+    {
+        PageContentHost.ResetContentScroll();
+    }
 }

@@ -17,27 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Settings.Contracts;
+namespace ProtonVPN.Client.Settings.Contracts.Enums;
 
-namespace ProtonVPN.Client.Settings;
-
-public class SettingsCorrector : ISettingsCorrector
+public enum DefaultConnection
 {
-    private readonly ISettings _settings;
-
-    public SettingsCorrector(ISettings settings)
-    {
-        _settings = settings;
-    }
-
-    public void Correct()
-    {
-        if (!_settings.VpnPlan.IsPaid)
-        {
-            // We store setting values for free user as it was paid, but the real value returned
-            // by ISettings will be not this one, but a correct one due to its implementation which
-            // checks if the user is paid or free and returns the right value.
-            _settings.IsNetShieldEnabled = DefaultSettings.IsNetShieldEnabled(true);
-        }
-    }
+    Fastest,
+    Last
 }

@@ -87,11 +87,9 @@ public abstract partial class ConnectionCardViewModelBase : ViewModelBase,
     public string Header =>
         CurrentConnectionStatus switch
         {
-            ConnectionStatus.Disconnected => CurrentConnectionIntent is null
-                ? Localizer.Get("Home_ConnectionCard_Header_Recommended")
-                : CurrentConnectionIntent.Location is FreeServerLocationIntent
-                    ? Localizer.Get("Home_ConnectionCard_Header_FreeConnection")
-                    : Localizer.Get("Home_ConnectionCard_Header_LastConnectedTo"),                    
+            ConnectionStatus.Disconnected => CurrentConnectionIntent?.Location is FreeServerLocationIntent
+                ? Localizer.Get("Home_ConnectionCard_Header_FreeConnection")
+                : Localizer.Get("Home_ConnectionCard_Header_DefaultConnection"),                    
             ConnectionStatus.Connecting => Localizer.Get("Home_ConnectionCard_Header_ConnectingTo"),
             ConnectionStatus.Connected => Localizer.Get("Home_ConnectionCard_Header_BrowseSafely"),
             _ => string.Empty,
@@ -108,7 +106,7 @@ public abstract partial class ConnectionCardViewModelBase : ViewModelBase,
         CurrentConnectionStatus switch
         {
             ConnectionStatus.Connected => Localizer.GetConnectionDetailsSubtitle(CurrentConnectionDetails),
-            _ => Localizer.GetConnectionIntentSubtitle(CurrentConnectionIntent)
+            _ => Localizer.GetConnectionIntentSubtitle(CurrentConnectionIntent, useDetailedSubtitle: true)
         };
 
     public string? ExitCountry =>

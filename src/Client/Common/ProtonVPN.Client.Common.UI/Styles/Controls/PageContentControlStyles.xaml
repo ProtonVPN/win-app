@@ -36,9 +36,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="BorderThickness" Value="1,1,0,0" />
         <Setter Property="CornerRadius" Value="8,0,0,0" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-        <Setter Property="PageHeaderFontSize" Value="{StaticResource SubtitleFontSize}" />
-        <Setter Property="PageHeaderFontWeight" Value="{StaticResource SubtitleFontWeight}" />
-        <Setter Property="PageHeaderLineHeight" Value="{StaticResource SubtitleLineHeight}" />
+        <Setter Property="PageHeaderFontSize" Value="{StaticResource TitleFontSize}" />
+        <Setter Property="PageHeaderFontWeight" Value="{StaticResource TitleFontWeight}" />
+        <Setter Property="PageHeaderLineHeight" Value="{StaticResource TitleLineHeight}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:PageContentControl">
@@ -70,7 +70,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 </Grid.ColumnDefinitions>
 
                                 <custom:GhostButton Grid.Column="0"
-                                                    Margin="0,2,16,0"
+                                                    Margin="0,8,16,0"
                                                     VerticalAlignment="Top"
                                                     AutomationProperties.AutomationId="GoBackButton"
                                                     Command="{Binding BackCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
@@ -168,7 +168,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 </Grid.ColumnDefinitions>
 
                                 <custom:GhostButton Grid.Column="0"
-                                                    Margin="0,2,16,0"
+                                                    Margin="0,8,16,0"
                                                     VerticalAlignment="Top"
                                                     AutomationProperties.AutomationId="GoBackButton"
                                                     Command="{Binding BackCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
@@ -190,10 +190,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   FontWeight="{TemplateBinding PageHeaderFontWeight}"
                                                   LineHeight="{TemplateBinding PageHeaderLineHeight}"
                                                   TextWrapping="Wrap"
-                                                  OpticalMarginAlignment="TrimSideBearings" />
+                                                  OpticalMarginAlignment="TrimSideBearings" 
+                                                  MinHeight="32"/>
 
                                 <Button Grid.Column="2"
-                                        Margin="16,0,0,0"
+                                        Margin="16,6,0,0"
                                         VerticalAlignment="Top"
                                         AutomationProperties.AutomationId="ApplyButton"
                                         Command="{Binding ApplyCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"

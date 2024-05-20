@@ -60,6 +60,9 @@ public class RecentsTests : TestSession
     [Test, Order(0)]
     public void RecentIsAddedToTheList()
     {
+        _homeRobot
+            .VerifyRecentsDoesNotExist();
+
         _shellRobot
             .DoNavigateToCountriesPage();
 
@@ -96,8 +99,9 @@ public class RecentsTests : TestSession
     public void RemoveRecent()
     {
         _homeRobot
+            .RemoveRecent(FIRST_COUNTRY_NAME)
             .RemoveRecent(SECOND_COUNTRY_NAME)
-            .VerifyRecentsDoesNotExist(SECOND_COUNTRY_NAME);
+            .VerifyRecentsDoesNotExist();
     }
 
     [TearDown]

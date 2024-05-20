@@ -24,65 +24,43 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
-using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.UI.Settings.Pages.Entities;
-using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public partial class ProtocolViewModel : SettingsPageViewModelBase
+public partial class DefaultConnectionViewModel : SettingsPageViewModelBase
 {
-    private readonly IUrls _urls;
-
     [ObservableProperty]
-    [property: SettingName(nameof(ISettings.VpnProtocol))]
-    [NotifyPropertyChangedFor(nameof(IsSmartProtocol))]
-    [NotifyPropertyChangedFor(nameof(IsWireGuardUdpProtocol))]
-    [NotifyPropertyChangedFor(nameof(IsOpenVpnUdpProtocol))]
-    [NotifyPropertyChangedFor(nameof(IsOpenVpnTcpProtocol))]
-    private VpnProtocol _currentVpnProtocol;
+    [property: SettingName(nameof(ISettings.DefaultConnection))]
+    [NotifyPropertyChangedFor(nameof(IsFastestConnection))]
+    [NotifyPropertyChangedFor(nameof(IsLastConnection))]
+    private DefaultConnection _currentDefaultConnection;
 
-    public override string? Title => Localizer.Get("Settings_Connection_Protocol");
+    public override string Title => Localizer.Get("Settings_Connection_Default");
 
-    public string Recommended => Localizer.Get("Settings_Protocols_Recommended").ToUpperInvariant();
-
-    public bool IsSmartProtocol
+    public bool IsFastestConnection
     {
-        get => IsProtocol(VpnProtocol.Smart);
-        set => SetProtocol(value, VpnProtocol.Smart);
+        get => IsDefaultConnection(DefaultConnection.Fastest);
+        set => SetDefaultConnection(value, DefaultConnection.Fastest);
     }
 
-    public bool IsWireGuardUdpProtocol
+    public bool IsLastConnection
     {
-        get => IsProtocol(VpnProtocol.WireGuardUdp);
-        set => SetProtocol(value, VpnProtocol.WireGuardUdp);
+        get => IsDefaultConnection(DefaultConnection.Last);
+        set => SetDefaultConnection(value, DefaultConnection.Last);
     }
 
-    public bool IsOpenVpnUdpProtocol
-    {
-        get => IsProtocol(VpnProtocol.OpenVpnUdp);
-        set => SetProtocol(value, VpnProtocol.OpenVpnUdp);
-    }
-
-    public bool IsOpenVpnTcpProtocol
-    {
-        get => IsProtocol(VpnProtocol.OpenVpnTcp);
-        set => SetProtocol(value, VpnProtocol.OpenVpnTcp);
-    }
-
-    public string LearnMoreUrl => _urls.ProtocolsLearnMore;
-
-    public ProtocolViewModel(
+    public DefaultConnectionViewModel(
         IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
         IOverlayActivator overlayActivator,
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager,
-        IUrls urls,
         ILogger logger,
         IIssueReporter issueReporter)
         : base(viewNavigator,
@@ -93,42 +71,33 @@ public partial class ProtocolViewModel : SettingsPageViewModelBase
                connectionManager,
                logger,
                issueReporter)
-    {
-        _urls = urls;
-    }
-
-    protected override void OnLanguageChanged()
-    {
-        base.OnLanguageChanged();
-
-        OnPropertyChanged(nameof(Recommended));
-    }
+    { }
 
     protected override void SaveSettings()
     {
-        Settings.VpnProtocol = CurrentVpnProtocol;
+        Settings.DefaultConnection = CurrentDefaultConnection;
     }
 
     protected override void RetrieveSettings()
     {
-        CurrentVpnProtocol = Settings.VpnProtocol;
+        CurrentDefaultConnection = Settings.DefaultConnection;
     }
 
     protected override IEnumerable<ChangedSettingArgs> GetSettings()
     {
-        yield return new(nameof(ISettings.VpnProtocol), CurrentVpnProtocol, Settings.VpnProtocol != CurrentVpnProtocol);
+        yield return new(nameof(ISettings.DefaultConnection), CurrentDefaultConnection, Settings.DefaultConnection != CurrentDefaultConnection);
     }
 
-    private bool IsProtocol(VpnProtocol protocol)
+    private bool IsDefaultConnection(DefaultConnection defaultConnection)
     {
-        return CurrentVpnProtocol == protocol;
+        return CurrentDefaultConnection == defaultConnection;
     }
 
-    private void SetProtocol(bool value, VpnProtocol protocol)
+    private void SetDefaultConnection(bool value, DefaultConnection defaultConnection)
     {
         if (value)
         {
-            CurrentVpnProtocol = protocol;
+            CurrentDefaultConnection = defaultConnection;
         }
     }
 }

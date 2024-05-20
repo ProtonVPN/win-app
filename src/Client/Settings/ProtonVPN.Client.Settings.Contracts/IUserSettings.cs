@@ -52,7 +52,6 @@ public interface IUserSettings
     bool IsCustomDnsServersEnabled { get; set; }
     List<CustomDnsServer> CustomDnsServersList { get; set; }
     bool IsAutoConnectEnabled { get; set; }
-    AutoConnectMode AutoConnectMode { get; set; }
     bool IsNetShieldEnabled { get; set; }
     bool IsPortForwardingEnabled { get; set; }
     bool IsPortForwardingNotificationEnabled { get; set; }
@@ -65,4 +64,5 @@ public interface IUserSettings
     List<SplitTunnelingIpAddress> SplitTunnelingStandardIpAddressesList { get; set; }
     List<SplitTunnelingIpAddress> SplitTunnelingInverseIpAddressesList { get; set; }
     ChangeServerAttempts ChangeServerAttempts { get; set; }
+    DefaultConnection DefaultConnection { get; set; }
 }

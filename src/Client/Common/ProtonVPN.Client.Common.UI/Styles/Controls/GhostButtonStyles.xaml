@@ -100,7 +100,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </ResourceDictionary.ThemeDictionaries>
 
     <Thickness x:Key="GhostButtonPadding">2,4</Thickness>
-    <Thickness x:Key="GhostButtonContentSpacing">2,0</Thickness>
+    <Thickness x:Key="GhostButtonIconSpacing">2,0</Thickness>
+    <Thickness x:Key="GhostButtonContentSpacing">4,0</Thickness>
 
     <Style x:Key="PrimaryGhostButtonStyle" BasedOn="{StaticResource SecondaryGhostButtonStyle}" TargetType="custom:GhostButton">
         <Setter Property="Foreground" Value="{ThemeResource PrimaryGhostButtonForeground}" />
@@ -130,7 +131,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                             <ContentPresenter x:Name="PART_LeftIconPresenter"
                                               Grid.Column="0"
-                                              Margin="{StaticResource GhostButtonContentSpacing}"
+                                              Margin="{StaticResource GhostButtonIconSpacing}"
                                               VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                               AutomationProperties.AccessibilityView="Raw"
                                               Content="{TemplateBinding LeftIcon}"
@@ -150,7 +151,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                             <ContentPresenter x:Name="PART_RightIconPresenter"
                                               Grid.Column="2"
-                                              Margin="{StaticResource GhostButtonContentSpacing}"
+                                              Margin="{StaticResource GhostButtonIconSpacing}"
                                               VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                               AutomationProperties.AccessibilityView="Raw"
                                               Content="{TemplateBinding RightIcon}"
@@ -237,7 +238,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                             <ContentPresenter x:Name="PART_LeftIconPresenter"
                                               Grid.Column="0"
-                                              Margin="{StaticResource GhostButtonContentSpacing}"
+                                              Margin="{StaticResource GhostButtonIconSpacing}"
                                               VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                               AutomationProperties.AccessibilityView="Raw"
                                               Content="{TemplateBinding LeftIcon}"
@@ -257,7 +258,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                             <ContentPresenter x:Name="PART_RightIconPresenter"
                                               Grid.Column="2"
-                                              Margin="{StaticResource GhostButtonContentSpacing}"
+                                              Margin="{StaticResource GhostButtonIconSpacing}"
                                               VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                               AutomationProperties.AccessibilityView="Raw"
                                               Content="{TemplateBinding RightIcon}"

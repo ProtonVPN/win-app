@@ -58,7 +58,7 @@ public class SettingsRestorer : ISettingsRestorer
         _settings.OpenVpnAdapter = DefaultSettings.OpenVpnAdapter;
         _settings.IsIpv6LeakProtectionEnabled = DefaultSettings.IsIpv6LeakProtectionEnabled;
         _settings.IsSmartReconnectEnabled = DefaultSettings.IsSmartReconnectEnabled;
-        _settings.AutoConnectMode = DefaultSettings.GetAutoConnectMode(_settings.VpnPlan.IsPaid);
+        _settings.DefaultConnection = DefaultSettings.DefaultConnection;
 
         _vpnServiceSettingsUpdater.SendAsync();
     }

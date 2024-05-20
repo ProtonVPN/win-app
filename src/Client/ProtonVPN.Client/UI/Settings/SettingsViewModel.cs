@@ -75,6 +75,8 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
         set => _settings.Language = value;
     }
 
+    public string DefaultConnectionState => Localizer.Get($"Settings_Connection_Default_{_settings.DefaultConnection}");
+
     public string ConnectionProtocolState => Localizer.Get($"Settings_SelectedProtocol_{_settings.VpnProtocol}");
 
     public string VpnAcceleratorSettingsState => Localizer.GetToggleValue(_settings.IsVpnAcceleratorEnabled);
@@ -185,6 +187,10 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
         {
             switch (message.PropertyName)
             {
+                case nameof(ISettings.DefaultConnection):
+                    OnPropertyChanged(nameof(DefaultConnectionState));
+                    break;
+
                 case nameof(ISettings.VpnProtocol):
                     OnPropertyChanged(nameof(ConnectionProtocolState));
                     break;
@@ -224,6 +230,7 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
     {
         base.OnLanguageChanged();
 
+        OnPropertyChanged(nameof(DefaultConnectionState));
         OnPropertyChanged(nameof(ConnectionProtocolState));
         OnPropertyChanged(nameof(VpnAcceleratorSettingsState));
         OnPropertyChanged(nameof(SelectedLanguage));

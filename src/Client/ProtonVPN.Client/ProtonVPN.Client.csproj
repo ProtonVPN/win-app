@@ -73,6 +73,9 @@
         <Page Update="UI\Home\Details\Styles\ConnectionDetailsStyles.xaml">
           <Generator>MSBuild:Compile</Generator>
         </Page>
+        <Page Update="UI\Settings\Pages\DefaultConnectionPage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
         <Page Update="UI\Connections\Gateways\GatewaysPage.xaml">
           <Generator>MSBuild:Compile</Generator>
         </Page>
@@ -287,6 +290,7 @@
         <None Remove="UI\ReportIssue\Steps\ContactFormPage.xaml" />
         <None Remove="UI\ReportIssue\Steps\QuickFixesPage.xaml" />
         <None Remove="UI\Settings\Pages\About\LicensingPage.xaml" />
+        <None Remove="UI\Settings\Pages\DefaultConnectionPage.xaml" />
         <None Remove="UI\Settings\Pages\DeveloperToolsPage.xaml" />
         <None Remove="UI\Tray\TrayIconComponent.xaml" />
         <None Remove="UI\Update\UpdateBoxComponent.xaml" />
