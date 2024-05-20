@@ -316,7 +316,7 @@
     <comment>The header of Profiles menu item in the main app window (opens Profiles window)</comment>
   </data>
   <data name="App_mnu_ReportBug">
-    <value>Bir sorun bildir</value>
+    <value>Sorun bildireceğim</value>
     <comment>The header of Report an Issue menu item in the main app window (opens Issue Report window)</comment>
   </data>
   <data name="App_mnu_Settings">
@@ -462,7 +462,7 @@
     <comment>The message displayed in Issue Report window when sending completes</comment>
   </data>
   <data name="BugReport_ttl">
-    <value>Bir sorun bildirin</value>
+    <value>Sorun bildireceğim</value>
     <comment>The title of Issue Report window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_AssigningIp">
@@ -1986,11 +1986,11 @@
     <comment>The text of Need Help hyperlink of Login window (opens popup with more options)</comment>
   </data>
   <data name="Login_lnk_ReportAnIssue">
-    <value>Bir sorun bildirin</value>
+    <value>Sorun bildireceğim</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens report an issue modal window)</comment>
   </data>
   <data name="Login_lnk_ReportIssue">
-    <value>Bir sorun bildirin</value>
+    <value>Sorun bildireceğim</value>
     <comment>The text of hyperlink in Need Help popup of Login window (opens a modal to report a potential bug)</comment>
   </data>
   <data name="Login_lnk_ResetPassword">
@@ -2487,7 +2487,7 @@
     <value>Reklam siteleri sizi hedeflemek için çerezler ve izleyiciler kullanır.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
-    <value>Kazanılan veri</value>
+    <value>Veri kazanıldı</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
     <value>NetShield tarafından engellenen reklamların, izleyicilerin ve kötü amaçlı yazılımların öngörülen boyutu.</value>

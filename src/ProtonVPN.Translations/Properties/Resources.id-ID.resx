@@ -3174,10 +3174,10 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Tingkatkan performa game online dan panggilan video Anda</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet2">
-    <value>NAT Type 2 (moderat) mengoptimalkan kecepatan dan stabilitas koneksi Anda dengan mengukuhkan koneksi langsung antar perangkat</value>
+    <value>NAT tipe 2 (moderat) mengoptimalkan kecepatan dan stabilitas koneksi Anda dengan mengukuhkan koneksi langsung antar perangkat</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
-    <value>Akses &lt;Bold&gt;NAT Type 2&lt;/Bold&gt; dengan VPN Plus</value>
+    <value>Akses &lt;Bold&gt;NAT tipe 2&lt;/Bold&gt; dengan VPN Plus</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
     <value>Bawa pengalaman gaming Anda ke level selanjutnya</value>
