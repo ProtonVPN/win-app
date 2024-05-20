@@ -123,6 +123,10 @@
   <data name="Cities">
     <value>İller</value>
   </data>
+  <data name="Common_Actions_ActionsFor">
+    <value>{0} için işlemler</value>
+    <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
   <data name="Common_Actions_Add">
     <value>Ekle</value>
   </data>
@@ -135,11 +139,19 @@
   <data name="Common_Actions_Connect">
     <value>Bağlan</value>
   </data>
+  <data name="Common_Actions_ConnectTo">
+    <value>{0} ile bağlantı kur</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to Connect to something. {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
   <data name="Common_Actions_ContactUs">
     <value>Bizimle görüşün</value>
   </data>
   <data name="Common_Actions_Disconnect">
     <value>Bağlantıyı kes</value>
+  </data>
+  <data name="Common_Actions_DisconnectFrom">
+    <value>{0} bağlantısını kes</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Enable">
     <value>Aç</value>
@@ -168,7 +180,7 @@
   <data name="Common_States_On">
     <value>Açık</value>
   </data>
-  <data name="Connection_Error_MissingAuthCertificate">
+  <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN, ağ sorunu nedeniyle kimlik doğrulama sertifikasını alamadı.</value>
   </data>
   <data name="Connection_Error_NoServers">
@@ -178,7 +190,7 @@
     <value>Ağ bağdaştırıcısı eksik.</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
-    <value>Bir sorun bildirin</value>
+    <value>Sorun bildireceğim</value>
   </data>
   <data name="Connection_Error_RpcServerUnavailable">
     <value>Sisteminizde RPC sunucusu bulunmadığından Proton VPN bağlantı kuramıyor.</value>
@@ -222,6 +234,114 @@
   <data name="Connection_Via_SecureCore">
     <value>{0} üzerinden</value>
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
+  </data>
+  <data name="Connections_Cities_One">
+    <value>İl ({0})</value>
+  </data>
+  <data name="Connections_Cities_Other">
+    <value>İller ({0})</value>
+  </data>
+  <data name="Connections_City_Restricted">
+    <value>Bu ildeki sunucular VPN Plus tarifesi ile kullanılabilir</value>
+  </data>
+  <data name="Connections_City_UnderMaintenance">
+    <value>Bu ildeki tüm sunucularda bakım yapılıyor</value>
+  </data>
+  <data name="Connections_Countries_One">
+    <value>Ülke ({0})</value>
+  </data>
+  <data name="Connections_Countries_Other">
+    <value>Ülkeler ({0})</value>
+  </data>
+  <data name="Connections_Country_Restricted">
+    <value>Bu ülkedeki sunucular VPN Plus tarifesi ile kullanılabilir</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance">
+    <value>Bu ülkedeki tüm sunucularda bakım yapılıyor</value>
+  </data>
+  <data name="Connections_Gateway_Restricted">
+    <value>Bu ağ geçidindeki sunucular VPN Plus tarifesi ile kullanılabilir</value>
+  </data>
+  <data name="Connections_Gateway_UnderMaintenance">
+    <value>Bu ağ geçidindeki tüm sunucularda bakım yapılıyor</value>
+  </data>
+  <data name="Connections_Gateways_One">
+    <value>Ağ geçidi ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Other">
+    <value>Ağ geçitleri ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_One">
+    <value>Size ayrılmış sunucu ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Other">
+    <value>Size ayrılmış sunucular ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_One">
+    <value>P2P ili ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Other">
+    <value>P2P illeri ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_One">
+    <value>P2P ülkesi ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Other">
+    <value>P2P ülkeleri ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_One">
+    <value>P2P sunucusu ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_Other">
+    <value>P2P sunucuları ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_One">
+    <value>Secure Core ülkesi ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Other">
+    <value>Secure Core ülkeleri ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_One">
+    <value>Secure Core sunucusu ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Other">
+    <value>Secure Core sunucuları ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_One">
+    <value>İli görüntüle ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_Other">
+    <value>İlleri görüntüle ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_One">
+    <value>Sunucuyu görüntüle ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_Other">
+    <value>Sunucuları görüntüle ({0})</value>
+  </data>
+  <data name="Connections_Server_Restricted">
+    <value>Sunucu VPN Plus tarifesi ile kullanılabilir</value>
+  </data>
+  <data name="Connections_Server_UnderMaintenance">
+    <value>Bu sunucu bakımda</value>
+  </data>
+  <data name="Connections_Servers_One">
+    <value>Sunucu ({0})</value>
+  </data>
+  <data name="Connections_Servers_Other">
+    <value>Sunucular ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_One">
+    <value>Tor ülkesi ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Other">
+    <value>Tor ülkeleri ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_One">
+    <value>Tor sunucusu ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_Other">
+    <value>Tor sunucuları ({0})</value>
   </data>
   <data name="Countries_All">
     <value>Tümü</value>
@@ -271,11 +391,17 @@
     <value>P2P illeri ({0})</value>
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
+  <data name="Countries_P2P_Description">
+    <value>Dosyaları eşler arası (P2P) ağlar üzerinden güvenli bir şekilde paylaşın ve indirin.</value>
+  </data>
   <data name="Countries_Page_Title">
     <value>Ülkeler</value>
   </data>
   <data name="Countries_SearchPlaceholder">
     <value>Şuradan gezinmek istiyorum...</value>
+  </data>
+  <data name="Countries_Section_Header">
+    <value>VPN bağlantıları</value>
   </data>
   <data name="Countries_SecureCore">
     <value>Secure Core</value>
@@ -287,6 +413,9 @@
   <data name="Countries_SecureCoreServers">
     <value>Secure Core sunucuları ({0})</value>
     <comment>{0} represents the number of severs</comment>
+  </data>
+  <data name="Countries_SecureCore_Description">
+    <value>VPN bağlantınıze ek bir şifreleme düzeyi ekleyebilirsiniz.</value>
   </data>
   <data name="Countries_Server_One">
     <value>{0} sunucu</value>
@@ -314,6 +443,9 @@
   <data name="Countries_TorServers">
     <value>Tor sunucuları ({0})</value>
     <comment>{0} represents a number of tor servers in the country</comment>
+  </data>
+  <data name="Countries_Tor_Description">
+    <value>Ek gizlilik sağlamak için VPN bağlantınızı Tor ağından geçirin.</value>
   </data>
   <data name="Countries_TryDifferentKeyword">
     <value>Lütfen başka bir anahtar sözcük deneyin</value>
@@ -1350,9 +1482,6 @@
   <data name="Dialogs_FreeConnections_Title">
     <value>Free bağlantıları</value>
   </data>
-  <data name="Dialogs_FreeConnections_WorlwideCoverageUpsell">
-    <value>VPN Plus tarifesi ile tüm Dünya'ya erişin</value>
-  </data>
   <data name="Dialogs_Latency_Description">
     <value>Gecikme, bir sunucunun isteklere ne kadar zamanda yanıt verdiğini gösterir.
 
@@ -1468,7 +1597,7 @@ Yüksek gecikme değeri bağlantınızı yavaşlatabilir.</value>
     <comment>Steps header for the Report an issue dialog. {0} is a placeholder for the current step. {1} is a placeholder for the total number of steps. (eg. Step 1 of 3)</comment>
   </data>
   <data name="Dialogs_ReportIssue_Title">
-    <value>Bir sorun bildirin</value>
+    <value>Sorun bildireceğim</value>
   </data>
   <data name="Dialogs_SecureCore_AdvancedPrivacy">
     <value>Gelişmiş gizlilik</value>
@@ -1543,11 +1672,50 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
   <data name="Dialogs_Tor_Title">
     <value>Tor</value>
   </data>
+  <data name="Dialogs_Troubleshooting_Antivirus">
+    <value>Virus koruması veya güvenlik duvarı uygulamasını kapatın</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus_Description">
+    <value>Bu uygulamalar VPN bağlantılarına müdahale edebilir.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet">
+    <value>İnternet bağlantınızı denetleyin</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet_Description">
+    <value>Çevrim içi olduğunuzdan ve bağlantınızın kararlı olduğundan emin olun.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Description">
+    <value>Bu hızlı düzeltmeler Proton ile bağlantı kurmanıza yardımcı olabilir.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DidNotWork">
+    <value>İşe yaramadı mı?</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork">
+    <value>Farklı bir ağ kullanın</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
+    <value>Wi-Fi ağını değiştirmeyi veya mobil veri kullanmayı deneyin.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage">
+    <value>Durum sayfamıza bakın</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage_Description">
+    <value>Yalnızca Proton hizmetlerinin normal çalıştığından emin olmak için.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Title">
+    <value>Bağlantı yardımı</value>
+  </data>
   <data name="Dialogs_Welcome_Message">
     <value>Yeni VPN deneyiminizi hazırlıyoruz. Bu işlem biraz zaman alabilir.</value>
   </data>
   <data name="Dialogs_Welcome_Title">
     <value>Proton VPN hizmetine hoş geldiniz</value>
+  </data>
+  <data name="Exit_Confirmation_Message">
+    <value>VPN bağlantınız kesilecek.</value>
+  </data>
+  <data name="Exit_Confirmation_Title">
+    <value>Proton VPN uygulamasından çıkılsın mı?</value>
   </data>
   <data name="Format_Milliseconds">
     <value>{0}ms</value>
@@ -1635,7 +1803,7 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
   </data>
   <data name="Format_Time_HoursMinutesSeconds_Short">
     <value>hh\:mm\:ss</value>
-    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss -&gt; 01:05:36).</comment>
+    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
   <data name="Format_Time_Minutes">
     <value>{0} dk</value>
@@ -1647,11 +1815,26 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
   </data>
   <data name="Format_Time_MinutesSeconds_Short">
     <value>mm\:ss</value>
-    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss -&gt; 05:36).</comment>
+    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
   </data>
   <data name="Format_Time_Seconds">
     <value>{0} sn</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="FreeConnections_P2PUpsell">
+    <value>Dosyaları BitTorrent ve diğer dosya paylaşım iletişim kuralları üzerinden indirin</value>
+  </data>
+  <data name="FreeConnections_SecureCoreUpsell">
+    <value>VPN bağlantınıze ek bir şifreleme düzeyi ekleyebilirsiniz</value>
+  </data>
+  <data name="FreeConnections_TorUpsell">
+    <value>Ek gizlilik sağlamak için VPN bağlantınızı Tor ağından geçirin</value>
+  </data>
+  <data name="FreeConnections_WorldwideCoverageUpsell">
+    <value>VPN Plus tarifesi ile tüm Dünya'ya erişin</value>
+  </data>
+  <data name="Gateways_Page_Description">
+    <value>Kuruluşunuzun VPN hizmetine erişmek için bir ağ geçidine bağlanın.</value>
   </data>
   <data name="Gateways_Page_Title">
     <value>Ağ geçitleri</value>
@@ -1768,27 +1951,36 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
     <value>Harita</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
-  <data name="Home_NetShield_AdsBlocked">
-    <value>Engellenen
-reklam</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  <data name="Home_NetShield_AdsBlocked_One">
+    <value>Reklam engellendi</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Other">
+    <value>Reklam engellendi</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Description">
+    <value>Reklamlar, sitelerde ve uygulamalarda çıkan tanıtım bantları veya açılır pencerelerdir.</value>
   </data>
   <data name="Home_NetShield_DataSaved">
-    <value>Kazanılan
-veri</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+    <value>Veri kazanıldı</value>
+  </data>
+  <data name="Home_NetShield_DataSaved_Description">
+    <value>İstenmeyen reklamları, izleyicileri ve kötü amaçlı yazılımları engelleyerek kazanılan yaklaşık veri.</value>
   </data>
   <data name="Home_NetShield_Landmark">
     <value>NetShield istatistikleri</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
-  <data name="Home_NetShield_TrackersStopped">
-    <value>Durdurulan
-izleyiciler</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  <data name="Home_NetShield_Title">
+    <value>NetShield istatistikleri</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_One">
+    <value>İzleyici engellendi</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Other">
+    <value>İzleyici engellendi</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Description">
+    <value>İzleyiciler, İnternet üzerinde yaptığınız işlemler hakkında bilgi toplayıp kaydeden ve satan üçüncü taraf siteler ve çerezlerdir.</value>
   </data>
   <data name="Home_Page_Title">
     <value>Giriş</value>
@@ -1879,7 +2071,7 @@ izleyiciler</value>
     <value>Parola</value>
   </data>
   <data name="Login_Form_ReportAnIssue">
-    <value>Bir sorun bildirin</value>
+    <value>Sorun bildireceğim</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="Login_Form_ResetPassword">
@@ -2008,6 +2200,10 @@ izleyiciler</value>
   <data name="Settings_Censorship_ShareStatistics_Description">
     <value>Kullanım verileri VPN engellemelerini aşmamıza ve uygulamanın başarımını artırmamıza yardımcı olur.</value>
   </data>
+  <data name="Settings_Common_Apply">
+    <value>Uygula</value>
+    <comment>Apply action. Used to apply changes made on a settings page</comment>
+  </data>
   <data name="Settings_Common_ApplyAndReconnect">
     <value>Uygula ve yeniden bağlan</value>
   </data>
@@ -2027,7 +2223,7 @@ izleyiciler</value>
     <value>Alternatif yöneltme</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting_Description">
-    <value>Ağ kısıtlamaları nedeniyle Proton hizmetleri engelleniyorsa sitelerimize bağlanmanız için alternatif ağ yöneltmesini kullanmayı deneyeceğiz.</value>
+    <value>Ağ kısıtlamaları nedeniyle Proton hizmetleri engelleniyorsa sitelerimize bağlanmanız için alternatif ağ yöneltmesini kullanmayı deneriz.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
     <value>Özel DNS sunucuları</value>
@@ -2059,7 +2255,7 @@ izleyiciler</value>
     <value>Yerel ağ bağlantıları</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
-    <value>Aygıtınızın aynı yerel ağdaki yazıcı, hoparlörler gibi diğer aygıtlara bağlanmasını sağlar.</value>
+    <value>Aygıtınızın aynı yerel ağda bulunan yazıcı, hoparlörler gibi diğer aygıtlara bağlanmasını sağlar.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>NAT Type</value>
@@ -2092,7 +2288,7 @@ izleyiciler</value>
     <value>VPN Accelerator</value>
   </data>
   <data name="Settings_Features">
-    <value>Özellikler</value>
+    <value>VPN özellikleri</value>
   </data>
   <data name="Settings_Features_KillSwitch">
     <value>Bağlantı kesici</value>
@@ -2164,7 +2360,7 @@ izleyiciler</value>
     <value>Bildirimler</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications_Description">
-    <value>Yönlendirilen bağlantı noktası değiştirildiğinde bildirim alın</value>
+    <value>Yönlendirilen bağlantı noktasının numarası değiştiğinde bildirim alın</value>
   </data>
   <data name="Settings_Features_SplitTunneling">
     <value>Ayrılmış tünelleme</value>
@@ -2251,7 +2447,7 @@ izleyiciler</value>
     <value>Görev çubuğuna küçült</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Otomatik başlatma, otomatik bağlanma</value>
+    <value>Uygulamayı otomatik olarak başlamaya veya bağlanmaya ayarlayın</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>Otomatik güncellemeler</value>
@@ -2383,7 +2579,7 @@ izleyiciler</value>
     <value>Hizmet günlükleri</value>
   </data>
   <data name="Settings_Support_ReportIssue">
-    <value>Bir sorun bildirin</value>
+    <value>Sorun bildireceğim</value>
   </data>
   <data name="Settings_Support_SupportCenter">
     <value>Destek merkezi</value>
@@ -2391,12 +2587,195 @@ izleyiciler</value>
   <data name="Settings_VpnAccelerator_Description">
     <value>Başarımı artırıcı teknolojilerle bağlantı hızınızı %400 oranına kadar artırın.</value>
   </data>
+  <data name="SystemNotification_Connected">
+    <value>Korunuyorsunuz</value>
+  </data>
+  <data name="SystemNotification_ConnectedTo">
+    <value>{0} ile bağlantı kuruldu.</value>
+    <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
+  </data>
+  <data name="SystemNotification_Disconnected">
+    <value>Bağlantı kesildi</value>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>Çık</value>
   </data>
   <data name="Tray_Actions_OpenApplication">
     <value>{0} aç</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="UpsellBanner_NetShield_Description">
+    <value>Siteler ile uygulamalarda bulunabilecek reklamları, izleyicileri ve kötü amaçlı yazılımları engelleyin</value>
+  </data>
+  <data name="UpsellBanner_NetShield_Title">
+    <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Description">
+    <value>İstediğiniz sunucuyu seçebilmek için tarifenizi yükseltin.</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Title">
+    <value>İstediğiniz ülke değil mi?</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings">
+    <value>Gelişmiş VPN özelleştirmelerine erişin</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_DNS">
+    <value>Özel etki alanı adı sunucunuz (DNS) ile VPN bağlantısı kurun</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_LAN">
+    <value>Bağlıyken yerel alan ağınızdaki (LAN) aygıtlara erişin</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
+    <value>NAT Type 2 (orta) kullanarak oyun deneyiminizi iyileştirin</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices">
+    <value>Aynı anda 10 aygıta kadar bağlantı</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms">
+    <value>Farklı platformlarda Proton VPN kullanın</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
+    <value>Android ve Android TV</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser">
+    <value>Tarayıcı</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Linux">
+    <value>Linux</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_MacOS">
+    <value>macOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Windows">
+    <value>Windows</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_iOS">
+    <value>iOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Privacy">
+    <value>Tüm aygıtlarınızda güvenlik ve gizlilik</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield">
+    <value>Reklamsız gezinmenin tadını çıkarın</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Block">
+    <value>NetShield ile reklamları ve izleyicileri engelleyin</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Protection">
+    <value>Aygıtınızı kötü amaçlı yazılımlardan koruyun</value>
+  </data>
+  <data name="Upsell_Carousel_P2P">
+    <value>Eşler arası indirmeleri ve dosya paylaşımını kullanın (P2P)</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Discretion">
+    <value>IP adresinizi hizmet sağlayıcınızdan ve eşlerinizden gizleyin</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_PortForwarding">
+    <value>Bağlantı noktası yönlendirmesiyle P2P hızını arttırın</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Speed">
+    <value>Artırılmış yükleme ve indirme hızları</value>
+  </data>
+  <data name="Upsell_Carousel_Platforms_More">
+    <value>+ diğer</value>
+    <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_SecureCore">
+    <value>Bağlantınıze ek bir koruma düzeyi ekleyebilirsiniz</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Encryption">
+    <value>Secure Core ile şifrelemenizi ikiye katlayabilirsiniz</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Protection">
+    <value>Kendinizi ağ saldırılarından koruyun</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Routing">
+    <value>İsviçre, İsveç ve İzlanda'daki çok yüksek güvenlikli sunucuları kullanın</value>
+  </data>
+  <data name="Upsell_Carousel_Speed">
+    <value>Daha da yüksek hızlarda gezinin (10 Gb/sn değerine varan)</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Acceleration">
+    <value>VPN Accelerator ile bağlantı hızınızı %400 oranında artırın</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Access">
+    <value>Daha hızlı ve daha az kalabalık sunuculara erişin</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling">
+    <value>İki dünyanın da en iyisini edinin</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Browsing">
+    <value>Ayrılmış tünelleme ile aynı anda iki farklı konumdan gezinin</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Configuration">
+    <value>VPN ile kalan her şeyi korurken güvenilir uygulamaların ve IP adreslerinin doğrudan İnternet bağlantısı kurmasına izin verin</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming">
+    <value>Beğendiğiniz film ve TV dizilerinin yayın akışlarını izleyin</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Access">
+    <value>Coğrafi olarak engellenen TV dizileri ile filmlere dünyanın her yerinden erişin</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_BBC">
+    <value>BBC iPlayer</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Disney">
+    <value>Disney+</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_HBO">
+    <value>HBO Max</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Hulu">
+    <value>Hulu</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Netflix">
+    <value>Netflix</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_PrimeVideo">
+    <value>Amazon Prime Video</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Speed">
+    <value>Ön yükleme, yavaşlama veya yavaşlatma sorunları olmadan 4K kalitesinde izleyin</value>
+  </data>
+  <data name="Upsell_Carousel_Title">
+    <value>VPN Plus özelliklerini keşfedin</value>
+  </data>
+  <data name="Upsell_Carousel_Tor">
+    <value>Ek gizlilik için Tor ağına erişin</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Access">
+    <value>Gizli sitelere ve onion sitelerine erişin</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Browsing">
+    <value>Normal tarayıcınızı kullanarak Tor ağında gezinin</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Protection">
+    <value>Gezerken kişisel verilerinizi koruyun</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage">
+    <value>{0} ile {1} erişim</value>
+    <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Audit">
+    <value>Bağımsız güvenlik uzmanları tarafından denetlenmiştir</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
+    <value>Gelişmiş güvenlik ve gizlilik özellikleriyle engelleri aşın</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
+    <value>{0} ülke</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
+    <value>{0} ülke</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
+    <value>Açık kaynak kodlu VPN</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
+    <value>{0} güvenli sunucu</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
+    <value>{0} güvenli sunucu</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp">
     <value>OpenVPN (TCP)</value>

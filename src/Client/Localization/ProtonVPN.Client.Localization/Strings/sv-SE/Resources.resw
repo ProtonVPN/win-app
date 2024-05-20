@@ -123,6 +123,10 @@
   <data name="Cities">
     <value>Orter</value>
   </data>
+  <data name="Common_Actions_ActionsFor">
+    <value>Åtgärder för {0}</value>
+    <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
   <data name="Common_Actions_Add">
     <value>Lägg till</value>
   </data>
@@ -135,11 +139,19 @@
   <data name="Common_Actions_Connect">
     <value>Anslut</value>
   </data>
+  <data name="Common_Actions_ConnectTo">
+    <value>Anslut till {0}</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to Connect to something. {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
   <data name="Common_Actions_ContactUs">
     <value>Kontakta oss</value>
   </data>
   <data name="Common_Actions_Disconnect">
     <value>Koppla från</value>
+  </data>
+  <data name="Common_Actions_DisconnectFrom">
+    <value>Koppla från {0}</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Enable">
     <value>Aktivera</value>
@@ -168,7 +180,7 @@
   <data name="Common_States_On">
     <value>På</value>
   </data>
-  <data name="Connection_Error_MissingAuthCertificate">
+  <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN kunde inte hämta autentiseringscertifikat på grund av nätverksproblem.</value>
   </data>
   <data name="Connection_Error_NoServers">
@@ -223,6 +235,114 @@
     <value>via {0}</value>
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
   </data>
+  <data name="Connections_Cities_One">
+    <value>Ort ({0})</value>
+  </data>
+  <data name="Connections_Cities_Other">
+    <value>Orter ({0})</value>
+  </data>
+  <data name="Connections_City_Restricted">
+    <value>Servrar i dessa orter är tillgängliga med VPN Plus</value>
+  </data>
+  <data name="Connections_City_UnderMaintenance">
+    <value>Alla servrar i denna ort är under underhåll</value>
+  </data>
+  <data name="Connections_Countries_One">
+    <value>Land ({0})</value>
+  </data>
+  <data name="Connections_Countries_Other">
+    <value>Länder ({0})</value>
+  </data>
+  <data name="Connections_Country_Restricted">
+    <value>Servrar i detta land är tillgängliga med VPN Plus</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance">
+    <value>Alla servrar i detta land är under underhåll</value>
+  </data>
+  <data name="Connections_Gateway_Restricted">
+    <value>Servrar i denna gateway är tillgängliga med VPN Plus</value>
+  </data>
+  <data name="Connections_Gateway_UnderMaintenance">
+    <value>Alla servrar i denna gateway är under underhåll</value>
+  </data>
+  <data name="Connections_Gateways_One">
+    <value>Gateway ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Other">
+    <value>Gateways ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_One">
+    <value>Dedikerad server ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Other">
+    <value>Dedikerade servrar ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_One">
+    <value>P2P-ort ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Other">
+    <value>P2P-orter ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_One">
+    <value>P2P-land ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Other">
+    <value>P2P-länder ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_One">
+    <value>P2P-server ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_Other">
+    <value>P2P-servrar ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_One">
+    <value>Secure Core-land ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Other">
+    <value>Secure Core-länder ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_One">
+    <value>Secure Core-server ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Other">
+    <value>Secure Core-servrar ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_One">
+    <value>Se ort ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_Other">
+    <value>Se orter ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_One">
+    <value>Se server ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_Other">
+    <value>Se servrar ({0})</value>
+  </data>
+  <data name="Connections_Server_Restricted">
+    <value>Server tillgänglig med VPN Plus</value>
+  </data>
+  <data name="Connections_Server_UnderMaintenance">
+    <value>Denna server är under underhåll</value>
+  </data>
+  <data name="Connections_Servers_One">
+    <value>Server ({0})</value>
+  </data>
+  <data name="Connections_Servers_Other">
+    <value>Servrar ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_One">
+    <value>Tor-land ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Other">
+    <value>Tor-länder ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_One">
+    <value>Tor-server ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_Other">
+    <value>Tor-servrar ({0})</value>
+  </data>
   <data name="Countries_All">
     <value>Alla</value>
   </data>
@@ -271,11 +391,17 @@
     <value>P2P-orter ({0})</value>
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
+  <data name="Countries_P2P_Description">
+    <value>Dela och ladda ner filer på ett säkert sätt över peer-to-peer-nätverk (P2P).</value>
+  </data>
   <data name="Countries_Page_Title">
     <value>Länder</value>
   </data>
   <data name="Countries_SearchPlaceholder">
     <value>Jag vill surfa från...</value>
+  </data>
+  <data name="Countries_Section_Header">
+    <value>VPN-anslutningar</value>
   </data>
   <data name="Countries_SecureCore">
     <value>Secure Core</value>
@@ -287,6 +413,9 @@
   <data name="Countries_SecureCoreServers">
     <value>Secure Core-servrar ({0})</value>
     <comment>{0} represents the number of severs</comment>
+  </data>
+  <data name="Countries_SecureCore_Description">
+    <value>Lägg till ytterligare ett lager av kryptering till din VPN-anslutning.</value>
   </data>
   <data name="Countries_Server_One">
     <value>{0} server</value>
@@ -314,6 +443,9 @@
   <data name="Countries_TorServers">
     <value>Tor-servrar ({0})</value>
     <comment>{0} represents a number of tor servers in the country</comment>
+  </data>
+  <data name="Countries_Tor_Description">
+    <value>Använd Tor-nätverket över din VPN-anslutning för extra integritet.</value>
   </data>
   <data name="Countries_TryDifferentKeyword">
     <value>Prova ett annat nyckelord</value>
@@ -1350,9 +1482,6 @@
   <data name="Dialogs_FreeConnections_Title">
     <value>Gratis anslutningar</value>
   </data>
-  <data name="Dialogs_FreeConnections_WorlwideCoverageUpsell">
-    <value>Få världsomspännande täckning med VPN Plus</value>
-  </data>
   <data name="Dialogs_Latency_Description">
     <value>Latens visar hur lång tid det tar för en server att svara på förfrågningar.
 
@@ -1525,11 +1654,11 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Vad är serverbelastning?</value>
   </data>
   <data name="Dialogs_SmartRouting_Description">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
+    <value>Smart Routing använder virtuella servrar för att tillhandahålla VPN-täckning i svåråtkomliga länder.
 
-When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+När du ansluter till en Smart Routing-server verkar det som om du surfar i ditt destinationsland, även om den fysiska servern finns någon annanstans.  
 
-Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+Smart Routing används vanligtvis för att komma runt antiintegritetslagar och andra former av censur.</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
@@ -1543,11 +1672,50 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Dialogs_Tor_Title">
     <value>Tor</value>
   </data>
+  <data name="Dialogs_Troubleshooting_Antivirus">
+    <value>Turn off antivirus or firewall software</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus_Description">
+    <value>Dessa program kan störa VPN-anslutningar.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet">
+    <value>Kontrollera din Internetanslutning</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet_Description">
+    <value>Se till att du är online och att din anslutning är stabil.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Description">
+    <value>Dessa snabba lösningar kan hjälpa dig att ansluta till Proton.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DidNotWork">
+    <value>Fungerade det inte?</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork">
+    <value>Använd ett annat nätverk</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
+    <value>Prova att byta Wi-Fi-nätverk eller använd mobildata.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage">
+    <value>Kolla vår statussida</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage_Description">
+    <value>Bara för att vara säker på att Proton-tjänsterna fungerar som vanligt.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Title">
+    <value>Anslutningshjälp</value>
+  </data>
   <data name="Dialogs_Welcome_Message">
     <value>Vi förbereder din nya VPN-upplevelse. Detta bör bara ta en kort stund.</value>
   </data>
   <data name="Dialogs_Welcome_Title">
     <value>Välkommen till Proton VPN</value>
+  </data>
+  <data name="Exit_Confirmation_Message">
+    <value>Du kommer bli frånkopplad från VPN.</value>
+  </data>
+  <data name="Exit_Confirmation_Title">
+    <value>Avsluta Proton VPN?</value>
   </data>
   <data name="Format_Milliseconds">
     <value>{0}ms</value>
@@ -1635,7 +1803,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   </data>
   <data name="Format_Time_HoursMinutesSeconds_Short">
     <value>hh\:mm\:ss</value>
-    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss -&gt; 01:05:36).</comment>
+    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
   <data name="Format_Time_Minutes">
     <value>{0} min.</value>
@@ -1647,11 +1815,26 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   </data>
   <data name="Format_Time_MinutesSeconds_Short">
     <value>mm\:ss</value>
-    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss -&gt; 05:36).</comment>
+    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
   </data>
   <data name="Format_Time_Seconds">
     <value>{0} sek.</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="FreeConnections_P2PUpsell">
+    <value>Ladda ner filer via BitTorrent och andra fildelningsprotokoll</value>
+  </data>
+  <data name="FreeConnections_SecureCoreUpsell">
+    <value>Lägg till ytterligare ett lager av kryptering till din VPN-anslutning</value>
+  </data>
+  <data name="FreeConnections_TorUpsell">
+    <value>Använd Tor-nätverket över din VPN-anslutning för extra integritet</value>
+  </data>
+  <data name="FreeConnections_WorldwideCoverageUpsell">
+    <value>Få världsomspännande täckning med VPN Plus</value>
+  </data>
+  <data name="Gateways_Page_Description">
+    <value>Anslut till en gateway för att komma åt din organisations VPN.</value>
   </data>
   <data name="Gateways_Page_Title">
     <value>Gateways</value>
@@ -1768,27 +1951,36 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Karta</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
-  <data name="Home_NetShield_AdsBlocked">
-    <value>Annonser
-blockerade</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  <data name="Home_NetShield_AdsBlocked_One">
+    <value>Annons blockerad</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Other">
+    <value>Annonser blockerade</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Description">
+    <value>Annonser är reklambanners eller popup som visas på webbplatser och appar.</value>
   </data>
   <data name="Home_NetShield_DataSaved">
-    <value>Data
-sparad</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+    <value>Data sparad</value>
+  </data>
+  <data name="Home_NetShield_DataSaved_Description">
+    <value>Uppskattad data sparad genom att blockera oönskade annonser, spårare och skadlig kod.</value>
   </data>
   <data name="Home_NetShield_Landmark">
     <value>NetShield-statistik</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
-  <data name="Home_NetShield_TrackersStopped">
-    <value>Spårare
-stoppade</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  <data name="Home_NetShield_Title">
+    <value>NetShield-statistik</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_One">
+    <value>Spårare stoppad</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Other">
+    <value>Spårare stoppade</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Description">
+    <value>Spårare är cookies och tredjepartswebbplatser som samlar in, lagrar och säljer information om din webbaktivitet.</value>
   </data>
   <data name="Home_Page_Title">
     <value>Hem</value>
@@ -1813,7 +2005,7 @@ stoppade</value>
     <value>Lossa</value>
   </data>
   <data name="Home_Update_Confirmation_Message">
-    <value>To complete the update process, Proton VPN will temporarily disconnect and deactivate Advanced Kill Switch if any of these are active. Do you want to continue?</value>
+    <value>För att slutföra uppdateringsprocessen kommer Proton VPN temporärt att koppla från och inaktivera avancerad Kill Switch om någon av dessa är aktiva. Vill du fortsätta?</value>
     <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
   </data>
   <data name="Home_Update_Confirmation_Title">
@@ -2008,6 +2200,10 @@ stoppade</value>
   <data name="Settings_Censorship_ShareStatistics_Description">
     <value>Användningsdata hjälper oss att övervinna VPN-blockeringar och förbättra appens prestanda.</value>
   </data>
+  <data name="Settings_Common_Apply">
+    <value>Tillämpa</value>
+    <comment>Apply action. Used to apply changes made on a settings page</comment>
+  </data>
   <data name="Settings_Common_ApplyAndReconnect">
     <value>Tillämpa och anslut igen</value>
   </data>
@@ -2092,7 +2288,7 @@ stoppade</value>
     <value>VPN Accelerator</value>
   </data>
   <data name="Settings_Features">
-    <value>Funktioner</value>
+    <value>VPN-funktioner</value>
   </data>
   <data name="Settings_Features_KillSwitch">
     <value>Kill switch</value>
@@ -2251,7 +2447,7 @@ stoppade</value>
     <value>Minimera till aktivitetsfältet</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Automatisk start, automatisk anslutning</value>
+    <value>Ställ in appen att starta eller ansluta automatiskt</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>Automatiska uppdateringar</value>
@@ -2391,12 +2587,195 @@ stoppade</value>
   <data name="Settings_VpnAccelerator_Description">
     <value>Öka din anslutningshastighet med upp till 400 % med prestandaförbättrade teknologier.</value>
   </data>
+  <data name="SystemNotification_Connected">
+    <value>Du är nu skyddad</value>
+  </data>
+  <data name="SystemNotification_ConnectedTo">
+    <value>Ansluten till {0}.</value>
+    <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
+  </data>
+  <data name="SystemNotification_Disconnected">
+    <value>Frånkopplad</value>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>Avsluta</value>
   </data>
   <data name="Tray_Actions_OpenApplication">
     <value>Öppna {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="UpsellBanner_NetShield_Description">
+    <value>Blockera annonser, spårare och skadlig kod på webbplatser och appar</value>
+  </data>
+  <data name="UpsellBanner_NetShield_Title">
+    <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Description">
+    <value>Uppgradera för att välja vilken server som helst.</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Title">
+    <value>Inte det land du ville ha?</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings">
+    <value>Lås upp avancerad VPN-anpassning</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_DNS">
+    <value>Anslut till VPN med din anpassade domännamnsserver (DNS)</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_LAN">
+    <value>Kom åt enheter på ditt lokala nätverk (LAN) medan du är ansluten</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
+    <value>Level up your gaming experience by switching to NAT type 2 (moderate)</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices">
+    <value>Anslut upp till 10 enheter samtidigt</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms">
+    <value>Använd Proton VPN på olika plattformar</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
+    <value>Android och Android TV</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser">
+    <value>Webbläsare</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Linux">
+    <value>Linux</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_MacOS">
+    <value>macOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Windows">
+    <value>Windows</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_iOS">
+    <value>iOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Privacy">
+    <value>Säkerhet och integritet på alla dina enheter</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield">
+    <value>Njut av annonsfri surfning</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Block">
+    <value>Blockera annonser och spårare med NetShield</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Protection">
+    <value>Skydda din enhet från skadlig programvara</value>
+  </data>
+  <data name="Upsell_Carousel_P2P">
+    <value>Lås upp peer-to-peer-nedladdningar och fildelning (P2P)</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Discretion">
+    <value>Dölj din IP-adress från din tjänsteleverantör och andra användare</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_PortForwarding">
+    <value>Supercharge P2P speeds with port forwarding</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Speed">
+    <value>Ökad upp- och nedladdningshastighet</value>
+  </data>
+  <data name="Upsell_Carousel_Platforms_More">
+    <value>+ fler</value>
+    <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_SecureCore">
+    <value>Lägg till ytterligare ett lager av skydd till din anslutning</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Encryption">
+    <value>Dubbla din kryptering med Secure Core</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Protection">
+    <value>Skydda dig själv från nätverksattacker</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Routing">
+    <value>Dirigera genom ultrasäkra servrar i Schweiz, Sverige och Island</value>
+  </data>
+  <data name="Upsell_Carousel_Speed">
+    <value>Surfa med ännu högre hastigheter (upp till 10 Gbps)</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Acceleration">
+    <value>Öka dina anslutningshastigheter med upp till 400 % med VPN Accelerator</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Access">
+    <value>Åtkomst till snabbare, mindre belastade servrar</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling">
+    <value>Få det bästa av två världar</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Browsing">
+    <value>Surfa från två platser samtidigt med split tunneling</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Configuration">
+    <value>Tillåt betrodda appar och IP-adresser att ansluta direkt till Internet, samtidigt som du skyddar allt annat med ditt VPN</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming">
+    <value>Streama dina favoritfilmer och TV-program</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Access">
+    <value>Få åtkomst till geoblockerad TV och filmer från var som helst i världen</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_BBC">
+    <value>BBC iPlayer</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Disney">
+    <value>Disney+</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_HBO">
+    <value>HBO Max</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Hulu">
+    <value>Hulu</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Netflix">
+    <value>Netflix</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_PrimeVideo">
+    <value>Amazon Prime Video</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Speed">
+    <value>Watch in 4K without buffering, slowdowns, or throttling</value>
+  </data>
+  <data name="Upsell_Carousel_Title">
+    <value>Upptäck VPN Plus</value>
+  </data>
+  <data name="Upsell_Carousel_Tor">
+    <value>Kom åt Tor-nätverket för extra integritet</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Access">
+    <value>Kom åt dolda webbplatser och onion-webbplatser</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Browsing">
+    <value>Surfa i Tor-nätverket med din vanliga webbläsare</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Protection">
+    <value>Skydda dina personuppgifter när du surfar</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage">
+    <value>Åtkomst till över {0} i {1}</value>
+    <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Audit">
+    <value>Granskad av oberoende säkerhetsexperter</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
+    <value>Kringgå censur med avancerade säkerhets- och integritetsfunktioner</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
+    <value>{0} land</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
+    <value>{0} länder</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
+    <value>VPN med öppen källkod</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
+    <value>{0} säker server</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
+    <value>{0} säkra servrar</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp">
     <value>OpenVPN (TCP)</value>

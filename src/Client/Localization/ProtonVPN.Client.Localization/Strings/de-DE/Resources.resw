@@ -123,6 +123,10 @@
   <data name="Cities">
     <value>Städte</value>
   </data>
+  <data name="Common_Actions_ActionsFor">
+    <value>Aktionen für {0}</value>
+    <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
   <data name="Common_Actions_Add">
     <value>Hinzufügen</value>
   </data>
@@ -135,11 +139,19 @@
   <data name="Common_Actions_Connect">
     <value>Verbinden</value>
   </data>
+  <data name="Common_Actions_ConnectTo">
+    <value>Mit {0} verbinden</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to Connect to something. {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
   <data name="Common_Actions_ContactUs">
     <value>Kontaktiere uns</value>
   </data>
   <data name="Common_Actions_Disconnect">
     <value>Trennen</value>
+  </data>
+  <data name="Common_Actions_DisconnectFrom">
+    <value>Von {0} trennen</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Enable">
     <value>Aktivieren</value>
@@ -168,7 +180,7 @@
   <data name="Common_States_On">
     <value>Ein</value>
   </data>
-  <data name="Connection_Error_MissingAuthCertificate">
+  <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN konnte das Authentifizierungszertifikat aufgrund eines Netzwerkproblems nicht abrufen.</value>
   </data>
   <data name="Connection_Error_NoServers">
@@ -223,6 +235,114 @@
     <value>über {0}</value>
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
   </data>
+  <data name="Connections_Cities_One">
+    <value>Stadt ({0})</value>
+  </data>
+  <data name="Connections_Cities_Other">
+    <value>Städte ({0})</value>
+  </data>
+  <data name="Connections_City_Restricted">
+    <value>Server in dieser Stadt sind mit VPN Plus verfügbar</value>
+  </data>
+  <data name="Connections_City_UnderMaintenance">
+    <value>Alle Server in dieser Stadt werden gerade gewartet</value>
+  </data>
+  <data name="Connections_Countries_One">
+    <value>Land ({0})</value>
+  </data>
+  <data name="Connections_Countries_Other">
+    <value>Länder ({0})</value>
+  </data>
+  <data name="Connections_Country_Restricted">
+    <value>Server in diesem Land sind mit VPN Plus verfügbar</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance">
+    <value>Alle Server in diesem Land werden gerade gewartet</value>
+  </data>
+  <data name="Connections_Gateway_Restricted">
+    <value>Die Server dieses Gateways sind mit VPN Plus verfügbar</value>
+  </data>
+  <data name="Connections_Gateway_UnderMaintenance">
+    <value>Alle Server dieses Gateways werden gerade gewartet</value>
+  </data>
+  <data name="Connections_Gateways_One">
+    <value>Gateway ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Other">
+    <value>Gateways ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_One">
+    <value>Dedizierter Server ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Other">
+    <value>Dedizierter Server ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_One">
+    <value>P2P-Stadt ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Other">
+    <value>P2P-Städte ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_One">
+    <value>P2P-Land ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Other">
+    <value>P2P-Länder ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_One">
+    <value>P2P server ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_Other">
+    <value>P2P Server ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_One">
+    <value>Secure Core country ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Other">
+    <value>„Secure Core”-Länder ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_One">
+    <value>Secure Core-Server ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Other">
+    <value>Secure Core-Server ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_One">
+    <value>See city ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_Other">
+    <value>Siehe Orte ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_One">
+    <value>See server ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_Other">
+    <value>Siehe Server ({0})</value>
+  </data>
+  <data name="Connections_Server_Restricted">
+    <value>Server verfügbar mit VPN Plus</value>
+  </data>
+  <data name="Connections_Server_UnderMaintenance">
+    <value>Dieser Server wird gerade gewartet</value>
+  </data>
+  <data name="Connections_Servers_One">
+    <value>Server ({0})</value>
+  </data>
+  <data name="Connections_Servers_Other">
+    <value>Server ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_One">
+    <value>Tor country ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Other">
+    <value>Tor-Länder ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_One">
+    <value>Tor server ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_Other">
+    <value>Tor-Server ({0})</value>
+  </data>
   <data name="Countries_All">
     <value>Alle</value>
   </data>
@@ -271,11 +391,17 @@
     <value>P2P-Städte ({0})</value>
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
+  <data name="Countries_P2P_Description">
+    <value>Sicherer Austausch und Download von Dateien über Peer-to-Peer-Netzwerke (P2P).</value>
+  </data>
   <data name="Countries_Page_Title">
     <value>Länder</value>
   </data>
   <data name="Countries_SearchPlaceholder">
     <value>Ich möchte surfen von...</value>
+  </data>
+  <data name="Countries_Section_Header">
+    <value>VPN-Verbindungen</value>
   </data>
   <data name="Countries_SecureCore">
     <value>Secure Core</value>
@@ -287,6 +413,9 @@
   <data name="Countries_SecureCoreServers">
     <value>Secure Core-Server ({0})</value>
     <comment>{0} represents the number of severs</comment>
+  </data>
+  <data name="Countries_SecureCore_Description">
+    <value>Füge deiner VPN-Verbindung eine weitere Verschlüsselungsebene hinzu.</value>
   </data>
   <data name="Countries_Server_One">
     <value>{0} Server</value>
@@ -314,6 +443,9 @@
   <data name="Countries_TorServers">
     <value>Tor-Server ({0})</value>
     <comment>{0} represents a number of tor servers in the country</comment>
+  </data>
+  <data name="Countries_Tor_Description">
+    <value>Verwende das Tor-Netzwerk über deine VPN-Verbindung für mehr Privatsphäre.</value>
   </data>
   <data name="Countries_TryDifferentKeyword">
     <value>Bitte versuche es mit einem anderen Schlüsselwort</value>
@@ -1350,9 +1482,6 @@
   <data name="Dialogs_FreeConnections_Title">
     <value>Kostenlose Verbindungen</value>
   </data>
-  <data name="Dialogs_FreeConnections_WorlwideCoverageUpsell">
-    <value>Erhalte weltweite Abdeckung mit VPN Plus</value>
-  </data>
   <data name="Dialogs_Latency_Description">
     <value>Die Latenzzeit gibt an, wie lange es dauert, bis ein Server auf Anfragen reagiert.
 
@@ -1543,11 +1672,50 @@ Smart Routing wird in der Regel verwendet, um Datenschutzgesetze und andere Form
   <data name="Dialogs_Tor_Title">
     <value>Tor</value>
   </data>
+  <data name="Dialogs_Troubleshooting_Antivirus">
+    <value>Deaktiviere Antivirus- oder Firewall-Software</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus_Description">
+    <value>Diese Programme können die VPN-Verbindungen stören.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet">
+    <value>Prüfe deine Internetverbindung</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet_Description">
+    <value>Stelle sicher, dass du online bist und dass deine Verbindung stabil ist.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Description">
+    <value>Diese Sofortmaßnahmen können Ihnen helfen, eine Verbindung zu Proton herzustellen.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DidNotWork">
+    <value>Hat es nicht geklappt?</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork">
+    <value>Verwende ein anderes Netz</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
+    <value>Versuche, das Wi-Fi-Netzwerk zu wechseln, oder verwende mobile Daten.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage">
+    <value>Prüfe unsere Statusseite</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage_Description">
+    <value>Nur um sicher zu gehen, dass die Proton-Dienste wie gewohnt funktionieren.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Title">
+    <value>Hilfe zur Verbindung</value>
+  </data>
   <data name="Dialogs_Welcome_Message">
     <value>Wir bereiten dein neues VPN-Erlebnis vor. Dies sollte nur einen Moment dauern.</value>
   </data>
   <data name="Dialogs_Welcome_Title">
     <value>Willkommen bei Proton VPN</value>
+  </data>
+  <data name="Exit_Confirmation_Message">
+    <value>Du wirst vom VPN getrennt.</value>
+  </data>
+  <data name="Exit_Confirmation_Title">
+    <value>Proton VPN beenden?</value>
   </data>
   <data name="Format_Milliseconds">
     <value>{0}ms</value>
@@ -1635,7 +1803,7 @@ Smart Routing wird in der Regel verwendet, um Datenschutzgesetze und andere Form
   </data>
   <data name="Format_Time_HoursMinutesSeconds_Short">
     <value>hh\:mm\:ss</value>
-    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss -&gt; 01:05:36).</comment>
+    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
   <data name="Format_Time_Minutes">
     <value>{0} Min.</value>
@@ -1647,11 +1815,26 @@ Smart Routing wird in der Regel verwendet, um Datenschutzgesetze und andere Form
   </data>
   <data name="Format_Time_MinutesSeconds_Short">
     <value>mm\:ss</value>
-    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss -&gt; 05:36).</comment>
+    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
   </data>
   <data name="Format_Time_Seconds">
     <value>{0} Sek.</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="FreeConnections_P2PUpsell">
+    <value>Herunterladen von Dateien über BitTorrent und andere Dateifreigabeprotokolle</value>
+  </data>
+  <data name="FreeConnections_SecureCoreUpsell">
+    <value>Füge deiner VPN-Verbindung eine weitere Verschlüsselungsebene hinzu</value>
+  </data>
+  <data name="FreeConnections_TorUpsell">
+    <value>Verwende das Tor-Netzwerk über deine VPN-Verbindung für mehr Privatsphäre</value>
+  </data>
+  <data name="FreeConnections_WorldwideCoverageUpsell">
+    <value>Erhalte weltweite Abdeckung mit VPN Plus</value>
+  </data>
+  <data name="Gateways_Page_Description">
+    <value>Stelle eine Verbindung zu einem Gateway her, um auf das VPN deines Unternehmens zuzugreifen.</value>
   </data>
   <data name="Gateways_Page_Title">
     <value>Gateways</value>
@@ -1768,27 +1951,36 @@ Smart Routing wird in der Regel verwendet, um Datenschutzgesetze und andere Form
     <value>Karte</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
-  <data name="Home_NetShield_AdsBlocked">
-    <value>Werbungen
-blockiert</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  <data name="Home_NetShield_AdsBlocked_One">
+    <value>Werbeanzeige blockiert</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Other">
+    <value>Werbeanzeigen blockiert</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Description">
+    <value>Anzeigen sind Werbebanner oder Pop-ups, die auf Websites und in Apps erscheinen.</value>
   </data>
   <data name="Home_NetShield_DataSaved">
-    <value>Daten
-gespart</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+    <value>Daten gespart</value>
+  </data>
+  <data name="Home_NetShield_DataSaved_Description">
+    <value>Geschätzte Dateneinsparungen durch das Blockieren von unerwünschter Werbung, Trackern und Malware.</value>
   </data>
   <data name="Home_NetShield_Landmark">
     <value>NetShield-Statistiken</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
-  <data name="Home_NetShield_TrackersStopped">
-    <value>Tracker
-blockiert</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  <data name="Home_NetShield_Title">
+    <value>NetShield-Statistiken</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_One">
+    <value>Tracker gestoppt</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Other">
+    <value>Tracker gestoppt</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Description">
+    <value>Tracker sind Cookies und Websites von Drittanbietern, die Informationen über deine Webaktivitäten sammeln, speichern und verkaufen.</value>
   </data>
   <data name="Home_Page_Title">
     <value>Startseite</value>
@@ -2008,6 +2200,10 @@ blockiert</value>
   <data name="Settings_Censorship_ShareStatistics_Description">
     <value>Nutzungsdaten helfen uns, VPN-Sperren zu überwinden und die Leistung der App zu verbessern.</value>
   </data>
+  <data name="Settings_Common_Apply">
+    <value>Übernehmen</value>
+    <comment>Apply action. Used to apply changes made on a settings page</comment>
+  </data>
   <data name="Settings_Common_ApplyAndReconnect">
     <value>Anwenden und neu verbinden</value>
   </data>
@@ -2092,7 +2288,7 @@ blockiert</value>
     <value>VPN Accelerator</value>
   </data>
   <data name="Settings_Features">
-    <value>Funktionen</value>
+    <value>VPN-Funktionen</value>
   </data>
   <data name="Settings_Features_KillSwitch">
     <value>Kill Switch</value>
@@ -2251,7 +2447,7 @@ blockiert</value>
     <value>In die Taskleiste minimieren</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Automatischer Start, automatische Verbindung</value>
+    <value>Einstellen, dass die Anwendung automatisch gestartet oder verbunden wird</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>Automatische Updates</value>
@@ -2391,12 +2587,195 @@ blockiert</value>
   <data name="Settings_VpnAccelerator_Description">
     <value>Steigere deine Verbindungsgeschwindigkeit mit leistungssteigernden Technologien um bis zu 400 %.</value>
   </data>
+  <data name="SystemNotification_Connected">
+    <value>Du bist jetzt geschützt</value>
+  </data>
+  <data name="SystemNotification_ConnectedTo">
+    <value>Verbunden mit {0}.</value>
+    <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
+  </data>
+  <data name="SystemNotification_Disconnected">
+    <value>Getrennt</value>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>Beenden</value>
   </data>
   <data name="Tray_Actions_OpenApplication">
     <value>{0} öffnen</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="UpsellBanner_NetShield_Description">
+    <value>Blockiere Werbung, Tracker und Malware auf Websites und Apps.</value>
+  </data>
+  <data name="UpsellBanner_NetShield_Title">
+    <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Description">
+    <value>Upgrade, um einen beliebigen Server auszuwählen.</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Title">
+    <value>Nicht das Land, das du wolltest?</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings">
+    <value>Erweiterte VPN-Anpassung freischalten</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_DNS">
+    <value>Verbinde dich mit VPN mit deinem eigenen Domain Name Server (DNS)</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_LAN">
+    <value>Zugriff auf Geräte in deinem lokalen Netzwerk (LAN), während du verbunden bist</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
+    <value>Verbessere dein Spielerlebnis, indem du zu NAT Typ 2 (moderat) wechselst.</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices">
+    <value>Verbinde bis zu 10 Geräte gleichzeitig</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms">
+    <value>Verwende Proton VPN auf verschiedenen Plattformen</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
+    <value>Android und Android TV</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser">
+    <value>Browser</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Linux">
+    <value>Linux</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_MacOS">
+    <value>macOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Windows">
+    <value>Windows</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_iOS">
+    <value>iOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Privacy">
+    <value>Sicherheit und Datenschutz auf all deinen Geräten</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield">
+    <value>Genieße das Surfen ohne Werbung</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Block">
+    <value>Blockiere Werbung und Tracker mit NetShield</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Protection">
+    <value>Schütze dein Gerät vor Malware</value>
+  </data>
+  <data name="Upsell_Carousel_P2P">
+    <value>Schalte Peer-to-Peer-Downloads und File-Sharing (P2P) frei</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Discretion">
+    <value>Verstecke deine IP-Adresse vor deinem Dienstanbieter und anderen Nutzern</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_PortForwarding">
+    <value>Erhöhe die P2P-Geschwindigkeit mit Portweiterleitung</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Speed">
+    <value>Erhöhte Up- und Download-Geschwindigkeiten</value>
+  </data>
+  <data name="Upsell_Carousel_Platforms_More">
+    <value>+ mehr</value>
+    <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_SecureCore">
+    <value>Füge eine weitere Schutzschicht für deine Verbindung hinzu</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Encryption">
+    <value>Verdoppe deine Verschlüsselung mit Secure Core</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Protection">
+    <value>Schütze dich vor Netzwerkangriffen</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Routing">
+    <value>Route über extrem sichere Server in der Schweiz, Schweden und Island</value>
+  </data>
+  <data name="Upsell_Carousel_Speed">
+    <value>Surfen mit noch höherer Geschwindigkeit (bis zu 10 Gbit/s)</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Acceleration">
+    <value>Erhöhe deine Verbindungsgeschwindigkeit um bis zu 400% mit VPN Accelerator</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Access">
+    <value>Zugriff auf schnellere, weniger überlastete Server</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling">
+    <value>Erhalte das Beste aus beiden Welten</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Browsing">
+    <value>Von zwei Standorten aus gleichzeitig browsen mit Split-Tunneling.</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Configuration">
+    <value>Erlaube vertrauenswürdigen Anwendungen und IP-Adressen, sich direkt mit dem Internet zu verbinden, während du alles andere mit deinem VPN schützt.</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming">
+    <value>Streame deine Lieblingsfilme und TV-Sendungen</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Access">
+    <value>Greife von überall auf der Welt auf geoblockiertes Fernsehen und Filme zu</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_BBC">
+    <value>BBC iPlayer</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Disney">
+    <value>Disney+</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_HBO">
+    <value>HBO Max</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Hulu">
+    <value>Hulu</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Netflix">
+    <value>Netflix</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_PrimeVideo">
+    <value>Amazon Prime Video</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Speed">
+    <value>Schaue in 4K ohne Pufferung, Verlangsamung oder Drosselung</value>
+  </data>
+  <data name="Upsell_Carousel_Title">
+    <value>Entdecke VPN Plus</value>
+  </data>
+  <data name="Upsell_Carousel_Tor">
+    <value>Greife für mehr Privatsphäre auf das Tor-Netzwerk zu</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Access">
+    <value>Zugang zu versteckten Seiten und Zwiebel-Seiten</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Browsing">
+    <value>Durchsuche das Tor-Netzwerk mit deinem normalen Browser</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Protection">
+    <value>Schütze deine persönlichen Daten beim Surfen</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage">
+    <value>Greife auf über {0} in {1} zu</value>
+    <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Audit">
+    <value>Geprüft durch unabhängige Sicherheitsexperten</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
+    <value>Umgehe die Zensur mit erweiterten Sicherheits- und Datenschutzfunktionen</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
+    <value>{0} Land</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
+    <value>{0} Länder</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
+    <value>Quelloffenes VPN</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
+    <value>{0} sicherer Server</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
+    <value>{0} sichere Server</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp">
     <value>OpenVPN (TCP)</value>

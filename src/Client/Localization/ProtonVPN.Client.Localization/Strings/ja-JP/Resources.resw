@@ -123,6 +123,10 @@
   <data name="Cities">
     <value>都市</value>
   </data>
+  <data name="Common_Actions_ActionsFor">
+    <value>Actions for {0}</value>
+    <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
   <data name="Common_Actions_Add">
     <value>追加</value>
   </data>
@@ -135,11 +139,19 @@
   <data name="Common_Actions_Connect">
     <value>接続</value>
   </data>
+  <data name="Common_Actions_ConnectTo">
+    <value>{0} に接続します</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to Connect to something. {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
   <data name="Common_Actions_ContactUs">
     <value>お問い合わせ先</value>
   </data>
   <data name="Common_Actions_Disconnect">
     <value>接続解除</value>
+  </data>
+  <data name="Common_Actions_DisconnectFrom">
+    <value>{0} から切断する</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Enable">
     <value>有効</value>
@@ -168,7 +180,7 @@
   <data name="Common_States_On">
     <value>オン</value>
   </data>
-  <data name="Connection_Error_MissingAuthCertificate">
+  <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN はネットワークの問題によりクライアント証明書の取得に失敗しました。</value>
   </data>
   <data name="Connection_Error_NoServers">
@@ -223,6 +235,72 @@
     <value>{0} 経由</value>
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
   </data>
+  <data name="Connections_Cities_Other">
+    <value>都市 ({0})</value>
+  </data>
+  <data name="Connections_City_Restricted">
+    <value>この都市のサーバーは VPN Plus で利用できます</value>
+  </data>
+  <data name="Connections_City_UnderMaintenance">
+    <value>この都市のすべてのサーバーはメンテナンス中です</value>
+  </data>
+  <data name="Connections_Countries_Other">
+    <value>国 ({0})</value>
+  </data>
+  <data name="Connections_Country_Restricted">
+    <value>この国のサーバーは VPN Plus で利用できます</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance">
+    <value>この国のすべてのサーバーはメンテナンス中です</value>
+  </data>
+  <data name="Connections_Gateway_Restricted">
+    <value>このゲートウェイのサーバーは VPN Plus で利用できます</value>
+  </data>
+  <data name="Connections_Gateway_UnderMaintenance">
+    <value>このゲートウェイ内のすべてのサーバーはメンテナンス中です</value>
+  </data>
+  <data name="Connections_Gateways_Other">
+    <value>ゲートウェイ ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Other">
+    <value>専用サーバー ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Other">
+    <value>P2P 都市 ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Other">
+    <value>P2P対応国 ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_Other">
+    <value>P2P サーバー ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Other">
+    <value>Secure Core の国 ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Other">
+    <value>セキュアコアサーバー ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_Other">
+    <value>都市を表示 ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_Other">
+    <value>サーバー ({0}) を参照</value>
+  </data>
+  <data name="Connections_Server_Restricted">
+    <value>VPN Plusでサーバーが利用可能</value>
+  </data>
+  <data name="Connections_Server_UnderMaintenance">
+    <value>このサーバーはメンテナンス中です</value>
+  </data>
+  <data name="Connections_Servers_Other">
+    <value>サーバー ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Other">
+    <value>Tor対応国 ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_Other">
+    <value>Torサーバー ({0})</value>
+  </data>
   <data name="Countries_All">
     <value>すべて</value>
   </data>
@@ -268,11 +346,17 @@
     <value>P2P 都市 ({0})</value>
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
+  <data name="Countries_P2P_Description">
+    <value>ピアツーピア (P2P) ネットワーク上でファイルを安全に共有し、ダウンロードします。</value>
+  </data>
   <data name="Countries_Page_Title">
     <value>国</value>
   </data>
   <data name="Countries_SearchPlaceholder">
     <value>I want to browse from...</value>
+  </data>
+  <data name="Countries_Section_Header">
+    <value>VPN 接続</value>
   </data>
   <data name="Countries_SecureCore">
     <value>Secure Core</value>
@@ -284,6 +368,9 @@
   <data name="Countries_SecureCoreServers">
     <value>セキュアコアサーバー ({0})</value>
     <comment>{0} represents the number of severs</comment>
+  </data>
+  <data name="Countries_SecureCore_Description">
+    <value>VPN接続にもう1つの暗号化レイヤーを追加する.</value>
   </data>
   <data name="Countries_Server_Other">
     <value>{0} サーバー</value>
@@ -308,6 +395,9 @@
   <data name="Countries_TorServers">
     <value>Torサーバー ({0})</value>
     <comment>{0} represents a number of tor servers in the country</comment>
+  </data>
+  <data name="Countries_Tor_Description">
+    <value>VPN接続にTorネットワークを使用することで、プライバシーをさらに守ることができます.</value>
   </data>
   <data name="Countries_TryDifferentKeyword">
     <value>別のキーワードをお試しください</value>
@@ -1338,9 +1428,6 @@
   <data name="Dialogs_FreeConnections_Title">
     <value>無料接続</value>
   </data>
-  <data name="Dialogs_FreeConnections_WorlwideCoverageUpsell">
-    <value>VPN Plus で世界中をカバー</value>
-  </data>
   <data name="Dialogs_Latency_Description">
     <value>遅延は、サーバーがリクエストに応答するまでにかかる時間を示します。
 
@@ -1475,11 +1562,11 @@
   </data>
   <data name="Dialogs_SecureCore_SecureCoreConnection">
     <value>Secure Core
-VPN connection</value>
+VPN接続</value>
   </data>
   <data name="Dialogs_SecureCore_StandardConnection">
-    <value>Standard
-VPN connection</value>
+    <value>標準
+VPN 接続</value>
   </data>
   <data name="Dialogs_SecureCore_Title">
     <value>Secure Core</value>
@@ -1529,11 +1616,50 @@ Smart Routingは通常、反プライバシー法やその他の形式の検閲�
   <data name="Dialogs_Tor_Title">
     <value>Tor</value>
   </data>
+  <data name="Dialogs_Troubleshooting_Antivirus">
+    <value>ウイルス対策ソフトウェアまたはファイアウォール ソフトウェアをオフにする</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus_Description">
+    <value>これらのプログラムは VPN 接続を妨害する可能性があります。</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet">
+    <value>インターネット接続を確認してください</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet_Description">
+    <value>オンラインになっていて、接続が安定していることを確認してください。</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Description">
+    <value>これらのクイックフィックスは、Proton への接続に役立つ場合があります。</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DidNotWork">
+    <value>うまくいきませんでしたか？</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork">
+    <value>別のネットワークを使用する</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
+    <value>Wi-Fi ネットワークを切り替えるか、モバイル データを使用してみてください。</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage">
+    <value>ステータスページを確認してください</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage_Description">
+    <value>Proton サービスが通常どおり実行されていることを確認するためです。</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Title">
+    <value>接続ヘルプ</value>
+  </data>
   <data name="Dialogs_Welcome_Message">
     <value>新しいVPN体験の準備をしています。しばらくお待ちください。</value>
   </data>
   <data name="Dialogs_Welcome_Title">
     <value>Proton VPNへようこそ</value>
+  </data>
+  <data name="Exit_Confirmation_Message">
+    <value>VPN から切断されます。</value>
+  </data>
+  <data name="Exit_Confirmation_Title">
+    <value>Proton VPN を終了しますか?</value>
   </data>
   <data name="Format_Milliseconds">
     <value>{0} ms</value>
@@ -1621,7 +1747,7 @@ Smart Routingは通常、反プライバシー法やその他の形式の検閲�
   </data>
   <data name="Format_Time_HoursMinutesSeconds_Short">
     <value>hh\:mm\:ss</value>
-    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss -&gt; 01:05:36).</comment>
+    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
   <data name="Format_Time_Minutes">
     <value>{0} 分</value>
@@ -1633,11 +1759,26 @@ Smart Routingは通常、反プライバシー法やその他の形式の検閲�
   </data>
   <data name="Format_Time_MinutesSeconds_Short">
     <value>mm\:ss</value>
-    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss -&gt; 05:36).</comment>
+    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
   </data>
   <data name="Format_Time_Seconds">
     <value>{0} 秒</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="FreeConnections_P2PUpsell">
+    <value>BitTorrentやその他のファイル共有プロトコルでファイルをダウンロードする</value>
+  </data>
+  <data name="FreeConnections_SecureCoreUpsell">
+    <value>VPN接続にもう1つの暗号化レイヤーを追加する</value>
+  </data>
+  <data name="FreeConnections_TorUpsell">
+    <value>VPN接続にTorネットワークを使用することで、プライバシーをさらに守ることができます</value>
+  </data>
+  <data name="FreeConnections_WorldwideCoverageUpsell">
+    <value>VPN Plus で世界中をカバー</value>
+  </data>
+  <data name="Gateways_Page_Description">
+    <value>ゲートウェイに接続して組織の VPN にアクセスします。</value>
   </data>
   <data name="Gateways_Page_Title">
     <value>ゲートウェイ</value>
@@ -1745,7 +1886,7 @@ Smart Routingは通常、反プライバシー法やその他の形式の検閲�
     <value>VPN IP</value>
   </data>
   <data name="Home_FreeConnections_About">
-    <value>More information about free connections</value>
+    <value>無料接続の詳細情報</value>
   </data>
   <data name="Home_Help_Title">
     <value>ヘルプ</value>
@@ -1754,27 +1895,30 @@ Smart Routingは通常、反プライバシー法やその他の形式の検閲�
     <value>マップ</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
-  <data name="Home_NetShield_AdsBlocked">
-    <value>件の広告を
-ブロック</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  <data name="Home_NetShield_AdsBlocked_Other">
+    <value>件の広告をブロック</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Description">
+    <value>広告は、Web サイトやアプリに表示されるプロモーション バナーまたはポップアップです。</value>
   </data>
   <data name="Home_NetShield_DataSaved">
-    <value>のデータを
-節約</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+    <value>保存されたデータ</value>
+  </data>
+  <data name="Home_NetShield_DataSaved_Description">
+    <value>不要な広告、トラッカー、マルウェアをブロックすることで節約される推定データ。</value>
   </data>
   <data name="Home_NetShield_Landmark">
     <value>NetShield 統計</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
-  <data name="Home_NetShield_TrackersStopped">
-    <value>件のトラッカーを
-停止</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  <data name="Home_NetShield_Title">
+    <value>NetShield の統計</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Other">
+    <value>件のトラッカーを停止</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Description">
+    <value>トラッカーは、Web アクティビティに関する情報を収集、保存、販売する Cookie およびサードパーティ Web サイトです。</value>
   </data>
   <data name="Home_Page_Title">
     <value>ホーム</value>
@@ -1799,7 +1943,7 @@ Smart Routingは通常、反プライバシー法やその他の形式の検閲�
     <value>ピン留めを解除</value>
   </data>
   <data name="Home_Update_Confirmation_Message">
-    <value>To complete the update process, Proton VPN will temporarily disconnect and deactivate Advanced Kill Switch if any of these are active. Do you want to continue?</value>
+    <value>更新プロセスを完了するために、Proton VPN は、Advanced Kill Switch のいずれかがアクティブである場合、一時的に切断し、非アクティブにします。 続けたいですか？</value>
     <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
   </data>
   <data name="Home_Update_Confirmation_Title">
@@ -1918,11 +2062,11 @@ Smart Routingは通常、反プライバシー法やその他の形式の検閲�
     <value>6桁の数字</value>
   </data>
   <data name="Main_Loading_SigningIn">
-    <value>Signing in, please wait...</value>
+    <value>サインイン中です。お待ちください...</value>
     <comment>Message in the loading screen when signing in or starting the app</comment>
   </data>
   <data name="Main_Loading_SigningOut">
-    <value>Signing out, please wait...</value>
+    <value>サインアウトしています。お待ちください...</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
   <data name="Notifications_PortForwarding_Description">
@@ -1993,6 +2137,10 @@ Smart Routingは通常、反プライバシー法やその他の形式の検閲�
   </data>
   <data name="Settings_Censorship_ShareStatistics_Description">
     <value>使用状況データは VPN 検閲に打ち勝ち、アプリのパフォーマンスを改善するために使用されます。</value>
+  </data>
+  <data name="Settings_Common_Apply">
+    <value>適用</value>
+    <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
   <data name="Settings_Common_ApplyAndReconnect">
     <value>適用して再接続する</value>
@@ -2078,7 +2226,7 @@ Smart Routingは通常、反プライバシー法やその他の形式の検閲�
     <value>VPN Accelerator</value>
   </data>
   <data name="Settings_Features">
-    <value>機能</value>
+    <value>VPN機能</value>
   </data>
   <data name="Settings_Features_KillSwitch">
     <value>キルスイッチ</value>
@@ -2141,7 +2289,7 @@ Smart Routingは通常、反プライバシー法やその他の形式の検閲�
     <value>ファイアウォールをバイパスして、ローカル ネットワーク内の P2P サーバーおよびデバイスに接続します。</value>
   </data>
   <data name="Settings_Features_PortForwarding_Footer">
-    <value>ポート転送を使用するには、P2P をサポートするサーバーに接続してください。</value>
+    <value>ポートフォワーディングを使用するには、P2P をサポートするサーバーに接続してください。</value>
   </data>
   <data name="Settings_Features_PortForwarding_Loading">
     <value>読み込み中...</value>
@@ -2150,7 +2298,7 @@ Smart Routingは通常、反プライバシー法やその他の形式の検閲�
     <value>通知</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications_Description">
-    <value>ポート転送番号が変更されたときに通知する</value>
+    <value>ポート転送番号が変更されたときに通知を受け取る</value>
   </data>
   <data name="Settings_Features_SplitTunneling">
     <value>スプリットトンネル</value>
@@ -2237,7 +2385,7 @@ Smart Routingは通常、反プライバシー法やその他の形式の検閲�
     <value>タスクバーに最小化する</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>自動起動、自動接続</value>
+    <value>アプリが自動的に起動または接続されるように設定する</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>自動更新</value>
@@ -2377,12 +2525,189 @@ Smart Routingは通常、反プライバシー法やその他の形式の検閲�
   <data name="Settings_VpnAccelerator_Description">
     <value>パフォーマンス強化テクノロジーにより、接続速度が最大 400% 向上します。</value>
   </data>
+  <data name="SystemNotification_Connected">
+    <value>あなたは今保護されています</value>
+  </data>
+  <data name="SystemNotification_ConnectedTo">
+    <value>{0} に接続完了.</value>
+    <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
+  </data>
+  <data name="SystemNotification_Disconnected">
+    <value>切断されました</value>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>終了</value>
   </data>
   <data name="Tray_Actions_OpenApplication">
     <value>{0} を開く</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="UpsellBanner_NetShield_Description">
+    <value>ウェブサイトとアプリの広告、トラッカー、マルウェアをブロック</value>
+  </data>
+  <data name="UpsellBanner_NetShield_Title">
+    <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Description">
+    <value>アップグレードで好きなサーバーを選べる.</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Title">
+    <value>望んでいた国ではありませんか？</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings">
+    <value>高度な VPN カスタマイズを解除する</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_DNS">
+    <value>カスタム ドメイン ネーム サーバー (DNS) を使用して VPN に接続します</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_LAN">
+    <value>接続中にローカル エリア ネットワーク (LAN) 上のデバイスにアクセスする</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
+    <value>NAT タイプ 2 (中程度) に切り替えてゲーム体験をレベルアップします</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices">
+    <value>最大10台のデバイスを同時接続</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms">
+    <value>さまざまなプラットフォームで Proton VPN を使用する</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
+    <value>AndroidとAndroid TV</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser">
+    <value>ブラウザ</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Linux">
+    <value>Linux</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_MacOS">
+    <value>macOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Windows">
+    <value>Windows</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_iOS">
+    <value>iOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Privacy">
+    <value>すべてのデバイスのセキュリティとプライバシー</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield">
+    <value>広告なしのブラウジングをお楽しみください</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Block">
+    <value>NetShield で広告とトラッカーをブロックする</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Protection">
+    <value>マルウェアからデバイスを保護</value>
+  </data>
+  <data name="Upsell_Carousel_P2P">
+    <value>ピアツーピアのダウンロードとファイル共有 (P2P) のロックを解除します</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Discretion">
+    <value>サービスプロバイダーやピアから IP アドレスを隠します</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_PortForwarding">
+    <value>ポート転送で P2P 速度を向上</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Speed">
+    <value>アップロードとダウンロードの速度が向上しました</value>
+  </data>
+  <data name="Upsell_Carousel_Platforms_More">
+    <value>+ more</value>
+    <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_SecureCore">
+    <value>接続に別の保護層を追加します</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Encryption">
+    <value>Secure Core で暗号化を 2 倍にする</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Protection">
+    <value>ネットワーク攻撃から自分を保護</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Routing">
+    <value>スイス、スウェーデン、アイスランドにあるセキュアなサーバーを経由</value>
+  </data>
+  <data name="Upsell_Carousel_Speed">
+    <value>さらに高速なブラウジング(最大10Gbps)</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Acceleration">
+    <value>VPN Accelerator で接続速度を最大 400% 向上させます</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Access">
+    <value>より高速で混雑していないサーバーにアクセス</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling">
+    <value>両方の長所を生かす</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Browsing">
+    <value>スプリット トンネリングを使用して 2 つの場所から同時に参照</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Configuration">
+    <value>信頼できるアプリやIPアドレスがインターネットに直接接続できるようにし、それ以外はVPNで保護する。</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming">
+    <value>お気に入りの映画やテレビ番組をストリーミング</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Access">
+    <value>地理的に制限されたテレビや映画に世界中のどこからでもアクセスできます</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_BBC">
+    <value>BBC iPlayer</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Disney">
+    <value>Disney+</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_HBO">
+    <value>HBO Max</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Hulu">
+    <value>Hulu</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Netflix">
+    <value>Netflix</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_PrimeVideo">
+    <value>Amazon Prime Video</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Speed">
+    <value>バッファリング、速度低下、スロットルなしで 4K で視聴できます</value>
+  </data>
+  <data name="Upsell_Carousel_Title">
+    <value>VPN Plusを発見する</value>
+  </data>
+  <data name="Upsell_Carousel_Tor">
+    <value>Tor ネットワークにアクセスしてプライバシーをさらに強化</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Access">
+    <value>隠しサイトとオニオンサイトにアクセスする</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Browsing">
+    <value>通常のブラウザを使用して Tor ネットワークを参照します。</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Protection">
+    <value>閲覧中に個人データを保護する</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage">
+    <value>{1} の {0} 経由でアクセス</value>
+    <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Audit">
+    <value>独立したセキュリティ専門家による監査</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
+    <value>高度なセキュリティとプライバシー機能で検閲を回避</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
+    <value>{0} か国</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
+    <value>オープンソースVPN</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
+    <value>{0} 台の安全なサーバー</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp">
     <value>OpenVPN (TCP)</value>

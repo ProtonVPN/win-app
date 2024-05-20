@@ -123,6 +123,10 @@
   <data name="Cities">
     <value>Města</value>
   </data>
+  <data name="Common_Actions_ActionsFor">
+    <value>Akce pro {0}</value>
+    <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
   <data name="Common_Actions_Add">
     <value>Přidat</value>
   </data>
@@ -135,11 +139,19 @@
   <data name="Common_Actions_Connect">
     <value>Připojit</value>
   </data>
+  <data name="Common_Actions_ConnectTo">
+    <value>Připojit k {0}</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to Connect to something. {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
   <data name="Common_Actions_ContactUs">
     <value>Kontaktujte nás</value>
   </data>
   <data name="Common_Actions_Disconnect">
     <value>Odpojit</value>
+  </data>
+  <data name="Common_Actions_DisconnectFrom">
+    <value>Odpojit od {0}</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Enable">
     <value>Povolit</value>
@@ -168,7 +180,7 @@
   <data name="Common_States_On">
     <value>Zapnuto</value>
   </data>
-  <data name="Connection_Error_MissingAuthCertificate">
+  <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN se nepodařilo načíst ověřovací certifikát kvůli problému se sítí.</value>
   </data>
   <data name="Connection_Error_NoServers">
@@ -222,6 +234,198 @@
   <data name="Connection_Via_SecureCore">
     <value>přes {0}</value>
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
+  </data>
+  <data name="Connections_Cities_One">
+    <value>Město ({0})</value>
+  </data>
+  <data name="Connections_Cities_Few">
+    <value>Města ({0})</value>
+  </data>
+  <data name="Connections_Cities_Many">
+    <value>Města ({0})</value>
+  </data>
+  <data name="Connections_Cities_Other">
+    <value>Města ({0})</value>
+  </data>
+  <data name="Connections_City_Restricted">
+    <value>Servery v tomto městě jsou dostupné s VPN Plus</value>
+  </data>
+  <data name="Connections_City_UnderMaintenance">
+    <value>Na všech serverech v tomto městě probíhá údržba</value>
+  </data>
+  <data name="Connections_Countries_One">
+    <value>Země ({0})</value>
+  </data>
+  <data name="Connections_Countries_Few">
+    <value>Země ({0})</value>
+  </data>
+  <data name="Connections_Countries_Many">
+    <value>Země ({0})</value>
+  </data>
+  <data name="Connections_Countries_Other">
+    <value>Země ({0})</value>
+  </data>
+  <data name="Connections_Country_Restricted">
+    <value>Servery v této zemi jsou dostupné s VPN Plus</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance">
+    <value>Na všech serverech v této zemi probíhá údržba</value>
+  </data>
+  <data name="Connections_Gateway_Restricted">
+    <value>Servery v této bráně jsou dostupné s VPN Plus</value>
+  </data>
+  <data name="Connections_Gateway_UnderMaintenance">
+    <value>Na všech serverech v této bráně probíhá údržba</value>
+  </data>
+  <data name="Connections_Gateways_One">
+    <value>Brána ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Few">
+    <value>Brány ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Many">
+    <value>Brány ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Other">
+    <value>Brány ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_One">
+    <value>Dedikovaný server ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Few">
+    <value>Dedikované servery ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Many">
+    <value>Dedikované servery ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Other">
+    <value>Dedikované servery ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_One">
+    <value>P2P město ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Few">
+    <value>P2P města ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Many">
+    <value>P2P města ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Other">
+    <value>P2P města ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_One">
+    <value>P2P země ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Few">
+    <value>P2P země ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Many">
+    <value>P2P země ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Other">
+    <value>P2P země ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_One">
+    <value>P2P server ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_Few">
+    <value>P2P servery ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_Many">
+    <value>P2P servery ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_Other">
+    <value>P2P servery ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_One">
+    <value>Secure Core země ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Few">
+    <value>Secure Core země ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Many">
+    <value>Secure Core země ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Other">
+    <value>Secure Core země ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_One">
+    <value>Secure Core server ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Few">
+    <value>Secure Core servery ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Many">
+    <value>Secure Core servery ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Other">
+    <value>Secure Core servery ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_One">
+    <value>Ukázat město ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_Few">
+    <value>Ukázat města ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_Many">
+    <value>Ukázat města ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_Other">
+    <value>Ukázat města ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_One">
+    <value>Ukázat server ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_Few">
+    <value>Ukázat servery ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_Many">
+    <value>Ukázat servery ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_Other">
+    <value>Ukázat servery ({0})</value>
+  </data>
+  <data name="Connections_Server_Restricted">
+    <value>Server dostupný s VPN Plus</value>
+  </data>
+  <data name="Connections_Server_UnderMaintenance">
+    <value>Na tomto serveru probíhá údržba</value>
+  </data>
+  <data name="Connections_Servers_One">
+    <value>Server ({0})</value>
+  </data>
+  <data name="Connections_Servers_Few">
+    <value>Servery ({0})</value>
+  </data>
+  <data name="Connections_Servers_Many">
+    <value>Servery ({0})</value>
+  </data>
+  <data name="Connections_Servers_Other">
+    <value>Servery ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_One">
+    <value>Tor země ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Few">
+    <value>Tor země ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Many">
+    <value>Tor země ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Other">
+    <value>Tor země ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_One">
+    <value>Tor server ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_Few">
+    <value>Tor servery ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_Many">
+    <value>Tor servery ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_Other">
+    <value>Tor servery ({0})</value>
   </data>
   <data name="Countries_All">
     <value>Vše</value>
@@ -277,11 +481,17 @@
     <value>P2P města ({0})</value>
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
+  <data name="Countries_P2P_Description">
+    <value>Bezpečně sdílejte a stahujte soubory skrze peer-to-peer (P2P) sítě.</value>
+  </data>
   <data name="Countries_Page_Title">
     <value>Země</value>
   </data>
   <data name="Countries_SearchPlaceholder">
     <value>Chci procházet z...</value>
+  </data>
+  <data name="Countries_Section_Header">
+    <value>VPN připojení</value>
   </data>
   <data name="Countries_SecureCore">
     <value>Secure Core</value>
@@ -293,6 +503,9 @@
   <data name="Countries_SecureCoreServers">
     <value>Secure Core servery ({0})</value>
     <comment>{0} represents the number of severs</comment>
+  </data>
+  <data name="Countries_SecureCore_Description">
+    <value>Přidejte další úroveň šifrování vašemu VPN připojení.</value>
   </data>
   <data name="Countries_Server_One">
     <value>{0} server</value>
@@ -326,6 +539,9 @@
   <data name="Countries_TorServers">
     <value>Tor servery ({0})</value>
     <comment>{0} represents a number of tor servers in the country</comment>
+  </data>
+  <data name="Countries_Tor_Description">
+    <value>Zvyšte svoje soukromí přistupováním k Toru přes VPN.</value>
   </data>
   <data name="Countries_TryDifferentKeyword">
     <value>Prosím zkuste jiné klíčové slovo</value>
@@ -1374,9 +1590,6 @@
   <data name="Dialogs_FreeConnections_Title">
     <value>Připojení Free</value>
   </data>
-  <data name="Dialogs_FreeConnections_WorlwideCoverageUpsell">
-    <value>Získejte celosvětové pokrytí díky VPN Plus</value>
-  </data>
   <data name="Dialogs_Latency_Description">
     <value>Latence ukazuje, jak dlouho server odpovídá na vaše požadavky. 
 
@@ -1567,11 +1780,50 @@ Smart Routing se obvykle používá k obcházení zákonů potlačujících ochr
   <data name="Dialogs_Tor_Title">
     <value>Tor</value>
   </data>
+  <data name="Dialogs_Troubleshooting_Antivirus">
+    <value>Vypněte antivirový nebo firewall software</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus_Description">
+    <value>Tyto programy mohou mít interakci s VPN připojeními.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet">
+    <value>Zkontrolujte vaše připojení k internetu</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet_Description">
+    <value>Ujistěte se, že jste online, a že je vaše připojení stabilní.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Description">
+    <value>Tyto rychlé opravy vám mohou pomoci s připojením k Protonu.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DidNotWork">
+    <value>Nefungovalo to?</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork">
+    <value>Použijte jinou síť</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
+    <value>Zkuste změnit na jinou WiFi síť nebo použijte mobilní data.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage">
+    <value>Zkontrolujte naši stavovou stránku</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage_Description">
+    <value>Ujistěte se, že služby Protonu bez problému fungují.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Title">
+    <value>Pomoc s připojením</value>
+  </data>
   <data name="Dialogs_Welcome_Message">
     <value>Připravujeme pro vás VPN. Toto by mělo trvat jen chvíli.</value>
   </data>
   <data name="Dialogs_Welcome_Title">
     <value>Vítejte v Proton VPN</value>
+  </data>
+  <data name="Exit_Confirmation_Message">
+    <value>Budete odpojeni od VPN.</value>
+  </data>
+  <data name="Exit_Confirmation_Title">
+    <value>Ukončit Proton VPN?</value>
   </data>
   <data name="Format_Milliseconds">
     <value>{0} ms</value>
@@ -1659,7 +1911,7 @@ Smart Routing se obvykle používá k obcházení zákonů potlačujících ochr
   </data>
   <data name="Format_Time_HoursMinutesSeconds_Short">
     <value>hh\:mm\:ss</value>
-    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss -&gt; 01:05:36).</comment>
+    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
   <data name="Format_Time_Minutes">
     <value>{0} min.</value>
@@ -1671,11 +1923,26 @@ Smart Routing se obvykle používá k obcházení zákonů potlačujících ochr
   </data>
   <data name="Format_Time_MinutesSeconds_Short">
     <value>mm\:ss</value>
-    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss -&gt; 05:36).</comment>
+    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
   </data>
   <data name="Format_Time_Seconds">
     <value>{0} sek.</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="FreeConnections_P2PUpsell">
+    <value>Stahujte soubory přes BitTorrent a jiné protokoly ke sdílení souborů</value>
+  </data>
+  <data name="FreeConnections_SecureCoreUpsell">
+    <value>Přidejte další úroveň šifrování vašemu VPN připojení</value>
+  </data>
+  <data name="FreeConnections_TorUpsell">
+    <value>Zvyšte svoje soukromí přistupováním k Toru přes VPN</value>
+  </data>
+  <data name="FreeConnections_WorldwideCoverageUpsell">
+    <value>Získejte celosvětové pokrytí díky VPN Plus</value>
+  </data>
+  <data name="Gateways_Page_Description">
+    <value>Připojte se k bráně pro přístup k VPN vaší organizace.</value>
   </data>
   <data name="Gateways_Page_Title">
     <value>Brány</value>
@@ -1792,27 +2059,48 @@ Smart Routing se obvykle používá k obcházení zákonů potlačujících ochr
     <value>Mapa</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
-  <data name="Home_NetShield_AdsBlocked">
-    <value>Reklam
-zablokováno</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  <data name="Home_NetShield_AdsBlocked_One">
+    <value>Reklama zablokována</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Few">
+    <value>Reklam zablokováno</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Many">
+    <value>Reklam zablokováno</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Other">
+    <value>Reklam zablokováno</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Description">
+    <value>Reklamy jsou propagační plochy nebo vyskakovací okna objevující se na webových stránkách nebo v aplikacích.</value>
   </data>
   <data name="Home_NetShield_DataSaved">
-    <value>Dat
-uloženo</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+    <value>Ušetřená data</value>
+  </data>
+  <data name="Home_NetShield_DataSaved_Description">
+    <value>Odhadované množství dat ušetřené díky blokování nechtěné reklamy, sledovacích prvků a malware.</value>
   </data>
   <data name="Home_NetShield_Landmark">
     <value>NetShield statistika</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
-  <data name="Home_NetShield_TrackersStopped">
-    <value>Sledovacích prvků
-zastaveno</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  <data name="Home_NetShield_Title">
+    <value>Statistiky NetShield</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_One">
+    <value>Sledovací prvek zastaven</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Few">
+    <value>Sledovací prvky zastaveny</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Many">
+    <value>Sledovací prvky zastaveny</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Other">
+    <value>Sledovací prvky zastaveny</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Description">
+    <value>Sledovací prvky jsou cookies a webové stránky třetích stran, které sbírají, uchovávají a prodávají informace o vaší webové aktivitě.</value>
   </data>
   <data name="Home_Page_Title">
     <value>Domov</value>
@@ -2032,6 +2320,10 @@ zastaveno</value>
   <data name="Settings_Censorship_ShareStatistics_Description">
     <value>Údaje o používání nám pomáhají obcházet blokování VPN a vylepšovat výkon aplikace.</value>
   </data>
+  <data name="Settings_Common_Apply">
+    <value>Použít</value>
+    <comment>Apply action. Used to apply changes made on a settings page</comment>
+  </data>
   <data name="Settings_Common_ApplyAndReconnect">
     <value>Použít a znovu připojit</value>
   </data>
@@ -2116,7 +2408,7 @@ zastaveno</value>
     <value>VPN Accelerator</value>
   </data>
   <data name="Settings_Features">
-    <value>Funkce</value>
+    <value>VPN funkce</value>
   </data>
   <data name="Settings_Features_KillSwitch">
     <value>Kill Switch</value>
@@ -2179,7 +2471,7 @@ zastaveno</value>
     <value>Obejděte firewally a připojte se k P2P serverům a zařízením ve vaší místní síti.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Footer">
-    <value>Chcete-li použít přesměrování portů, připojte se k serveru, který podporuje P2P.</value>
+    <value>Pro použití přesměrování portů, se prosím připojte k serveru, který podporuje P2P.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Loading">
     <value>Načítání...</value>
@@ -2188,7 +2480,7 @@ zastaveno</value>
     <value>Upozornění</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications_Description">
-    <value>Dostat upozornění při změně čísla přesměrovaného portu</value>
+    <value>Získejte upozornění při změně čísla přesměrovaného portu</value>
   </data>
   <data name="Settings_Features_SplitTunneling">
     <value>Split tunneling</value>
@@ -2275,7 +2567,7 @@ zastaveno</value>
     <value>Minimalizovat do panelu úloh</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Automatické spuštění, automatické připojení</value>
+    <value>Nastavte aplikaci pro automatické spuštění nebo připojení</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>Automatické aktualizace</value>
@@ -2415,12 +2707,207 @@ zastaveno</value>
   <data name="Settings_VpnAccelerator_Description">
     <value>Zvyšte rychlost vašeho připojení až o 400% pomocí technologií zvyšujících výkon.</value>
   </data>
+  <data name="SystemNotification_Connected">
+    <value>Nyní jste chráněni</value>
+  </data>
+  <data name="SystemNotification_ConnectedTo">
+    <value>Připojeno k {0}.</value>
+    <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
+  </data>
+  <data name="SystemNotification_Disconnected">
+    <value>Odpojeno</value>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>Ukončit</value>
   </data>
   <data name="Tray_Actions_OpenApplication">
     <value>Otevřít {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="UpsellBanner_NetShield_Description">
+    <value>Blokujte reklamy, sledovací prvky a malware na webových stránkách a v aplikacích</value>
+  </data>
+  <data name="UpsellBanner_NetShield_Title">
+    <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Description">
+    <value>Navyšte tarif pro výběr libovolného serveru.</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Title">
+    <value>Chtěli jste jinou zemi?</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings">
+    <value>Odemkněte pokročilé přizpůsobení VPN</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_DNS">
+    <value>Připojte se k VPN pomocí vlastního doménového jmenného serveru (DNS)</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_LAN">
+    <value>Přistupujte k zařízením ve vaší místní síti (LAN) ve chvíli, kdy jste připojeni</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
+    <value>Zvyšte úroveň svých herních zážitků přechodem na NAT typu 2 (moderate)</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices">
+    <value>Připojte až 10 zařízení současně</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms">
+    <value>Používejte Proton VPN na různých platformách</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
+    <value>Android a Android TV</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser">
+    <value>Prohlížeč</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Linux">
+    <value>Linux</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_MacOS">
+    <value>macOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Windows">
+    <value>Windows</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_iOS">
+    <value>iOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Privacy">
+    <value>Bezpečnost a soukromí na všech vašich zařízeních</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield">
+    <value>Užijte si procházení internetu bez reklam</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Block">
+    <value>Blokování reklam a sledovacích prvků pomocí NetShield</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Protection">
+    <value>Chraňte své zařízení před malware</value>
+  </data>
+  <data name="Upsell_Carousel_P2P">
+    <value>Stahujte a sdílejte soubory peer-to-peer (P2P)</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Discretion">
+    <value>Skryjte svoji IP adresu před poskytovatelem internetu a ostatními</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_PortForwarding">
+    <value>Zvyšte výkon P2P přesměrováním portu</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Speed">
+    <value>Zvýšená rychlost nahrávání a stahování</value>
+  </data>
+  <data name="Upsell_Carousel_Platforms_More">
+    <value>+ další</value>
+    <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_SecureCore">
+    <value>Přidejte vašemu připojení další úroveň ochrany</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Encryption">
+    <value>Zdvojnásobte vaše šifrování pomocí Secure Core</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Protection">
+    <value>Chraňte se před síťovými útoky</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Routing">
+    <value>Směrování přes mimořádně zabezpečené servery ve Švýcarsku, Švédsku a Islandu</value>
+  </data>
+  <data name="Upsell_Carousel_Speed">
+    <value>Procházejte ještě vyšší rychlostí (až 10 Gb/s)</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Acceleration">
+    <value>Zvyšte rychlost vašeho připojení až o 400% pomocí funkce VPN Accelerator</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Access">
+    <value>Přístup k rychlejším a méně vytíženým serverům</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling">
+    <value>Získejte to nejlepší z obou světů</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Browsing">
+    <value>Procházení ze dvou míst najednou pomocí split tunneling</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Configuration">
+    <value>Umožněte důvěryhodným aplikacím a IP adresám připojit se přímo k internetu, zatímco vše ostatní chraňte pomocí sítě VPN.</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming">
+    <value>Streamujte vaše oblíbené filmy a seriály</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Access">
+    <value>Přistupujte ke geograficky blokované TV a filmům odkudkoli na světě</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_BBC">
+    <value>BBC iPlayer</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Disney">
+    <value>Disney+</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_HBO">
+    <value>HBO Max</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Hulu">
+    <value>Hulu</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Netflix">
+    <value>Netflix</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_PrimeVideo">
+    <value>Amazon Prime Video</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Speed">
+    <value>Sledujte ve 4K bez prodlev načítání do mezipaměti, bez zpomalení a škrcení rychlosti</value>
+  </data>
+  <data name="Upsell_Carousel_Title">
+    <value>Objevte VPN Plus</value>
+  </data>
+  <data name="Upsell_Carousel_Tor">
+    <value>Přistupujte k síti Tor a zvyšte své soukromí</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Access">
+    <value>Přistupujte ke skrytým stránkám a onion stránkám</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Browsing">
+    <value>Procházejte síť Tor pomocí běžného prohlížeče</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Protection">
+    <value>Chraňte své osobní údaje při procházení internetu</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage">
+    <value>Přístup k {0} v {1}</value>
+    <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Audit">
+    <value>Auditováno nezávislými bezpečnostními experty</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
+    <value>Obejděte cenzuru pomocí pokročilých funkcí bezpečnosti a ochrany soukromí</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
+    <value>{0} země</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Few">
+    <value>{0} země</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Many">
+    <value>{0} zemí</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
+    <value>{0} zemí</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
+    <value>VPN s otevřeným zdrojovým kódem</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
+    <value>{0} bezpečný server</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Few">
+    <value>{0} bezpečné servery</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Many">
+    <value>{0} bezpečných serverů</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
+    <value>{0} bezpečných serverů</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp">
     <value>OpenVPN (TCP)</value>

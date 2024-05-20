@@ -123,6 +123,10 @@
   <data name="Cities">
     <value>Orașe</value>
   </data>
+  <data name="Common_Actions_ActionsFor">
+    <value>Acțiuni pentru {0}</value>
+    <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
   <data name="Common_Actions_Add">
     <value>Adăugare</value>
   </data>
@@ -135,11 +139,19 @@
   <data name="Common_Actions_Connect">
     <value>Conectare</value>
   </data>
+  <data name="Common_Actions_ConnectTo">
+    <value>Conectare la {0}</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to Connect to something. {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
   <data name="Common_Actions_ContactUs">
     <value>Contactați-ne</value>
   </data>
   <data name="Common_Actions_Disconnect">
     <value>Deconectare</value>
+  </data>
+  <data name="Common_Actions_DisconnectFrom">
+    <value>Deconectare din {0}</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Enable">
     <value>Activare</value>
@@ -168,7 +180,7 @@
   <data name="Common_States_On">
     <value>Pornit</value>
   </data>
-  <data name="Connection_Error_MissingAuthCertificate">
+  <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN a eșuat să preia certificatul de autentificare datorită problemelor de rețea.</value>
   </data>
   <data name="Connection_Error_NoServers">
@@ -223,6 +235,156 @@
     <value>via {0}</value>
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
   </data>
+  <data name="Connections_Cities_One">
+    <value>Orașe ({0})</value>
+  </data>
+  <data name="Connections_Cities_Few">
+    <value>Orașe ({0})</value>
+  </data>
+  <data name="Connections_Cities_Other">
+    <value>Orașe ({0})</value>
+  </data>
+  <data name="Connections_City_Restricted">
+    <value>Serverele din acest oraș sunt disponibile cu VPN Plus.</value>
+  </data>
+  <data name="Connections_City_UnderMaintenance">
+    <value>Toate serverele din acest oraș sunt în mentenanță.</value>
+  </data>
+  <data name="Connections_Countries_One">
+    <value>Țări ({0})</value>
+  </data>
+  <data name="Connections_Countries_Few">
+    <value>Țări ({0})</value>
+  </data>
+  <data name="Connections_Countries_Other">
+    <value>Țări ({0})</value>
+  </data>
+  <data name="Connections_Country_Restricted">
+    <value>Serverele din această țară sunt disponibile cu VPN Plus.</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance">
+    <value>Toate serverele din această țară sunt în mentenanță.</value>
+  </data>
+  <data name="Connections_Gateway_Restricted">
+    <value>Serverele din acest port de acces sunt disponibile cu VPN Plus.</value>
+  </data>
+  <data name="Connections_Gateway_UnderMaintenance">
+    <value>Toate serverele din acest port de acces sunt în mentenanță.</value>
+  </data>
+  <data name="Connections_Gateways_One">
+    <value>Porți de acces ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Few">
+    <value>Porți de acces ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Other">
+    <value>Porți de acces ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_One">
+    <value>Servere dedicate ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Few">
+    <value>Servere dedicate ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Other">
+    <value>Servere dedicate ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_One">
+    <value>Orașe P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Few">
+    <value>Orașe P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Other">
+    <value>Orașe P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_One">
+    <value>Țări P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Few">
+    <value>Țări P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Other">
+    <value>Țări P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_One">
+    <value>Servere P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_Few">
+    <value>Servere P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_Other">
+    <value>Servere P2P ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_One">
+    <value>Țări cu Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Few">
+    <value>Țări cu Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Other">
+    <value>Țări cu Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_One">
+    <value>Servere Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Few">
+    <value>Servere Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Other">
+    <value>Servere Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_One">
+    <value>Afișare oraș ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_Few">
+    <value>Afișare orașe ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_Other">
+    <value>Afișare orașe ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_One">
+    <value>Afișare server ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_Few">
+    <value>Afișare servere ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_Other">
+    <value>Afișare servere ({0})</value>
+  </data>
+  <data name="Connections_Server_Restricted">
+    <value>Server disponibil cu VPN Plus</value>
+  </data>
+  <data name="Connections_Server_UnderMaintenance">
+    <value>Acest server se află în mentenanță.</value>
+  </data>
+  <data name="Connections_Servers_One">
+    <value>Servere ({0})</value>
+  </data>
+  <data name="Connections_Servers_Few">
+    <value>Servere ({0})</value>
+  </data>
+  <data name="Connections_Servers_Other">
+    <value>Servere ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_One">
+    <value>Țări Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Few">
+    <value>Țări Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Other">
+    <value>Țări Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_One">
+    <value>Servere Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_Few">
+    <value>Servere Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_Other">
+    <value>Servere Tor ({0})</value>
+  </data>
   <data name="Countries_All">
     <value>Toate</value>
   </data>
@@ -274,11 +436,17 @@
     <value>Orașe P2P ({0})</value>
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
+  <data name="Countries_P2P_Description">
+    <value>Partajați și descărcați în siguranță fișiere prin rețele persoană-la-persoană (P2P).</value>
+  </data>
   <data name="Countries_Page_Title">
     <value>Țări</value>
   </data>
   <data name="Countries_SearchPlaceholder">
     <value>Vreau să navighez din...</value>
+  </data>
+  <data name="Countries_Section_Header">
+    <value>Conexiuni VPN</value>
   </data>
   <data name="Countries_SecureCore">
     <value>Secure Core</value>
@@ -290,6 +458,9 @@
   <data name="Countries_SecureCoreServers">
     <value>Servere Secure Core ({0})</value>
     <comment>{0} represents the number of severs</comment>
+  </data>
+  <data name="Countries_SecureCore_Description">
+    <value>Adăugați încă un nivel de criptare a conexiunii VPN.</value>
   </data>
   <data name="Countries_Server_One">
     <value>{0} server</value>
@@ -320,6 +491,9 @@
   <data name="Countries_TorServers">
     <value>Servere Tor ({0})</value>
     <comment>{0} represents a number of tor servers in the country</comment>
+  </data>
+  <data name="Countries_Tor_Description">
+    <value>Utilizați rețeaua Tor prin conexiunea VPN pentru intimitate suplimentară.</value>
   </data>
   <data name="Countries_TryDifferentKeyword">
     <value>Încercați alt cuvânt cheie.</value>
@@ -1362,9 +1536,6 @@
   <data name="Dialogs_FreeConnections_Title">
     <value>Conexiuni gratuite</value>
   </data>
-  <data name="Dialogs_FreeConnections_WorlwideCoverageUpsell">
-    <value>Obțineți acoperire la nivel mondial cu VPN Plus</value>
-  </data>
   <data name="Dialogs_Latency_Description">
     <value>Latența arată cât durează ca un server să răspundă solicitărilor.
 
@@ -1555,11 +1726,50 @@ Smart Routing este de obicei folosit pentru a evita legile anticonfidențialitat
   <data name="Dialogs_Tor_Title">
     <value>Tor</value>
   </data>
+  <data name="Dialogs_Troubleshooting_Antivirus">
+    <value>Dezactivați programele antivirus și paravanele de protecție.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus_Description">
+    <value>Aceste programe pot interfera cu conexiunile VPN.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet">
+    <value>Verificați-vă conexiunea la internet</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet_Description">
+    <value>Asigurați-vă că aveți acces la internet și conexiunea este stabilă.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Description">
+    <value>Aceste remedieri rapide vă pot ajuta să vă conectați la Proton.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DidNotWork">
+    <value>Nu a funcționat?</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork">
+    <value>Folosiți o rețea diferită.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
+    <value>Încercați să schimbați rețeaua Wi-Fi sau folosiți datele mobile.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage">
+    <value>Verificați pagina de stare</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage_Description">
+    <value>Pentru a vă asigura ca serviciile Proton rulează normal.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Title">
+    <value>Ajutor conectare</value>
+  </data>
   <data name="Dialogs_Welcome_Message">
     <value>Vă pregătim noua experiență VPN. Acest lucru ar trebui să dureze doar un moment.</value>
   </data>
   <data name="Dialogs_Welcome_Title">
     <value>Bun venit la Proton VPN</value>
+  </data>
+  <data name="Exit_Confirmation_Message">
+    <value>Se va întrerupe conexiunea prin VPN.</value>
+  </data>
+  <data name="Exit_Confirmation_Title">
+    <value>Închideți Proton VPN?</value>
   </data>
   <data name="Format_Milliseconds">
     <value>{0} ms</value>
@@ -1647,7 +1857,7 @@ Smart Routing este de obicei folosit pentru a evita legile anticonfidențialitat
   </data>
   <data name="Format_Time_HoursMinutesSeconds_Short">
     <value>hh\:mm\:ss</value>
-    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss -&gt; 01:05:36).</comment>
+    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
   <data name="Format_Time_Minutes">
     <value>{0} min</value>
@@ -1659,11 +1869,26 @@ Smart Routing este de obicei folosit pentru a evita legile anticonfidențialitat
   </data>
   <data name="Format_Time_MinutesSeconds_Short">
     <value>mm\:ss</value>
-    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss -&gt; 05:36).</comment>
+    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
   </data>
   <data name="Format_Time_Seconds">
     <value>{0} sec</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="FreeConnections_P2PUpsell">
+    <value>Descărcați fișiere prin BitTorrent și alte protocoale de partajare fișiere</value>
+  </data>
+  <data name="FreeConnections_SecureCoreUpsell">
+    <value>Adăugați încă un nivel de criptare a conexiunii VPN</value>
+  </data>
+  <data name="FreeConnections_TorUpsell">
+    <value>Utilizați rețeaua Tor prin conexiunea VPN pentru intimitate suplimentară</value>
+  </data>
+  <data name="FreeConnections_WorldwideCoverageUpsell">
+    <value>Obțineți acoperire la nivel mondial cu VPN Plus</value>
+  </data>
+  <data name="Gateways_Page_Description">
+    <value>Conectați-vă la o poartă de acces pentru a accesa VPN-ul organizației.</value>
   </data>
   <data name="Gateways_Page_Title">
     <value>Porți de acces</value>
@@ -1780,27 +2005,42 @@ Smart Routing este de obicei folosit pentru a evita legile anticonfidențialitat
     <value>Harta</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
-  <data name="Home_NetShield_AdsBlocked">
-    <value>Reclame
-blocate</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  <data name="Home_NetShield_AdsBlocked_One">
+    <value>Reclamă blocată</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Few">
+    <value>Reclame blocate</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Other">
+    <value>Reclame blocate</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Description">
+    <value>Reclamele sunt bannere promoționale sau ferestre suprapuse care apar pe site-uri web și aplicații.</value>
   </data>
   <data name="Home_NetShield_DataSaved">
-    <value>Date
-salvate</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+    <value>Date salvate</value>
+  </data>
+  <data name="Home_NetShield_DataSaved_Description">
+    <value>Date salvate estimate prin blocarea reclamelor, instrumentelor de urmărire și a programelor malware nedorite.</value>
   </data>
   <data name="Home_NetShield_Landmark">
     <value>Statistici Netshield</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
-  <data name="Home_NetShield_TrackersStopped">
-    <value>urmăritori
-opriți</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  <data name="Home_NetShield_Title">
+    <value>Statistici NetShield</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_One">
+    <value>Urmăritor oprit</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Few">
+    <value>Urmăritori opriți</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Other">
+    <value>Urmăritori opriți</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Description">
+    <value>Urmăritorii și unele fișiere cookie sunt site-uri terțe care colectează, stochează și vă vând informațiile privind activitatea de pe internet.</value>
   </data>
   <data name="Home_Page_Title">
     <value>Început</value>
@@ -2020,6 +2260,10 @@ opriți</value>
   <data name="Settings_Censorship_ShareStatistics_Description">
     <value>Datele de utilizare ne ajută să depășim blocările VPN-ului și să îmbunătățim performanța aplicației.</value>
   </data>
+  <data name="Settings_Common_Apply">
+    <value>Aplicare</value>
+    <comment>Apply action. Used to apply changes made on a settings page</comment>
+  </data>
   <data name="Settings_Common_ApplyAndReconnect">
     <value>Aplicare și reconectare</value>
   </data>
@@ -2104,7 +2348,7 @@ opriți</value>
     <value>VPN Accelerator</value>
   </data>
   <data name="Settings_Features">
-    <value>Funcții</value>
+    <value>Funcții VPN</value>
   </data>
   <data name="Settings_Features_KillSwitch">
     <value>Blocare conexiune</value>
@@ -2176,7 +2420,7 @@ opriți</value>
     <value>Notificări</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications_Description">
-    <value>Primiți notificări când numărul porturilor redirecționate se modifică</value>
+    <value>Primiți notificări când numărul redirecționărilor de porturi se modifică.</value>
   </data>
   <data name="Settings_Features_SplitTunneling">
     <value>Divizare trafic</value>
@@ -2263,7 +2507,7 @@ opriți</value>
     <value>Minimizare în bara de sarcini</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Autopornire, autoconectare</value>
+    <value>Setare lansare sau conectare automată aplicație.</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>Actualizări automate</value>
@@ -2403,12 +2647,201 @@ opriți</value>
   <data name="Settings_VpnAccelerator_Description">
     <value>Măriți viteza de conectare cu până la 400% cu tehnologii de îmbunătățire a performanței.</value>
   </data>
+  <data name="SystemNotification_Connected">
+    <value>Protecția este activată</value>
+  </data>
+  <data name="SystemNotification_ConnectedTo">
+    <value>Conectat la {0}.</value>
+    <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
+  </data>
+  <data name="SystemNotification_Disconnected">
+    <value>Deconectat</value>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>Ieșire</value>
   </data>
   <data name="Tray_Actions_OpenApplication">
     <value>Deschidere {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="UpsellBanner_NetShield_Description">
+    <value>Blocați reclame, urmăritori și malware pe pagini web și aplicații</value>
+  </data>
+  <data name="UpsellBanner_NetShield_Title">
+    <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Description">
+    <value>Schimbați planul abonamentului pentru a alege orice server.</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Title">
+    <value>Nu este țara pe care o doriți?</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings">
+    <value>Deblocați personalizarea avansată pentru VPN</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_DNS">
+    <value>Conectați-vă la VPN cu sistemul propriu de nume de domenii (DNS)</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_LAN">
+    <value>Accesați dispozitivele din rețeaua locală (LAN) după ce v-ați conectat</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
+    <value>Creșteți-vă experiența de joc trecând la NAT tip 2 (moderat)</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices">
+    <value>Conectați până la 10 dispozitive simultan</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms">
+    <value>Folosiți Proton VPN pe platforme diferite</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
+    <value>Android și Android TV</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser">
+    <value>Navigator web</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Linux">
+    <value>Linux</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_MacOS">
+    <value>macOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Windows">
+    <value>Windows</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_iOS">
+    <value>iOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Privacy">
+    <value>Securitate și intimitate pe toate dispozitivele folosite</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield">
+    <value>Bucurați-vă de navigare pe internet fără reclame</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Block">
+    <value>Blocați reclamele și modulele de urmărire cu NetShield</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Protection">
+    <value>Protejați dispozitivul de programele malițioase</value>
+  </data>
+  <data name="Upsell_Carousel_P2P">
+    <value>Deblocați descărcările și partajarea fișierelor de la persoană-la-persoană (P2P)</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Discretion">
+    <value>Vă ascundeți adresa IP față de furnizorul de servicii și față de partenerii de transfer</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_PortForwarding">
+    <value>Măriți vitezele P2P cu redirecționarea portului</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Speed">
+    <value>Viteze de încărcare și descărcare crescute</value>
+  </data>
+  <data name="Upsell_Carousel_Platforms_More">
+    <value>+ mai multe</value>
+    <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_SecureCore">
+    <value>Adăugați încă un nivel de criptare conexiunii</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Encryption">
+    <value>Dublați-vă criptarea cu Secure Core</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Protection">
+    <value>Protejați-vă de atacurile din rețea</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Routing">
+    <value>Direcționați traficul prin serverele ultrasigure din Elveția, Suedia si Islanda</value>
+  </data>
+  <data name="Upsell_Carousel_Speed">
+    <value>Navigați pe web la viteze și mai mari (până la 10 Gbps)</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Acceleration">
+    <value>Creșteți-vă viteza conexiunii cu până la 400% cu VPN Accelerator</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Access">
+    <value>Accesați servere mai rapide, mai puțin aglomerate</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling">
+    <value>Obțineți maximum din ambele părți</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Browsing">
+    <value>Navigați pe web din două locuri deodată cu divizarea traficului</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Configuration">
+    <value>Permiteți aplicațiilor și adreselor IP de încredere să se conecteze direct la internet, protejând în același timp orice altceva prin VPN</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming">
+    <value>Vizionați filmele și emisiunile TV favorite</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Access">
+    <value>Accesați emisiunile TV și filmele blocate geografic de oriunde în lume</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_BBC">
+    <value>BBC iPlayer</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Disney">
+    <value>Disney+</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_HBO">
+    <value>HBO Max</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Hulu">
+    <value>Hulu</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Netflix">
+    <value>Netflix</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_PrimeVideo">
+    <value>Amazon Prime Video</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Speed">
+    <value>Vizionați la rezoluție 4K fără sacadare, încetinire sau limitare trafic</value>
+  </data>
+  <data name="Upsell_Carousel_Title">
+    <value>Descoperiți VPN Plus</value>
+  </data>
+  <data name="Upsell_Carousel_Tor">
+    <value>Accesați rețeaua Tor pentru o intimitate sporită</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Access">
+    <value>Accesați site-uri ascunse și site-uri onion</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Browsing">
+    <value>Navigați în rețeaua Tor folosind un navigator web obișnuit</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Protection">
+    <value>Protejați-vă datele personale în timpul navigării pe web</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage">
+    <value>Accesați peste {0} în {1}</value>
+    <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Audit">
+    <value>Auditat de experți independenți în securitate</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
+    <value>Depășiți cenzura cu securitate avansată și funcții de confidențialitate</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
+    <value>{0} țară</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Few">
+    <value>{0} țări</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
+    <value>{0} de țări</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
+    <value>VPN cu sursa publică</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
+    <value>{0} server securizat</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Few">
+    <value>{0} servere securizate</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
+    <value>{0} de servere securizate</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp">
     <value>OpenVPN (TCP)</value>
