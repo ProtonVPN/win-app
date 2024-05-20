@@ -123,6 +123,10 @@
   <data name="Cities">
     <value>Kaupungit</value>
   </data>
+  <data name="Common_Actions_ActionsFor">
+    <value>Toiminnot palvelimelle {0}</value>
+    <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
   <data name="Common_Actions_Add">
     <value>Lisää</value>
   </data>
@@ -135,11 +139,19 @@
   <data name="Common_Actions_Connect">
     <value>Yhdistä</value>
   </data>
+  <data name="Common_Actions_ConnectTo">
+    <value>Yhdistä palvelimeen {0}</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to Connect to something. {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
   <data name="Common_Actions_ContactUs">
     <value>Ota yhteyttä</value>
   </data>
   <data name="Common_Actions_Disconnect">
     <value>Katkaise</value>
+  </data>
+  <data name="Common_Actions_DisconnectFrom">
+    <value>Katkaise yhteys palvelimeen {0}</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Enable">
     <value>Käytä</value>
@@ -168,7 +180,7 @@
   <data name="Common_States_On">
     <value>Käytössä</value>
   </data>
-  <data name="Connection_Error_MissingAuthCertificate">
+  <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN ei voinut noutaa todennusvarmennetta verkko-ongelman vuoksi.</value>
   </data>
   <data name="Connection_Error_NoServers">
@@ -223,6 +235,114 @@
     <value>maan {0} kautta</value>
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
   </data>
+  <data name="Connections_Cities_One">
+    <value>Kaupunki ({0})</value>
+  </data>
+  <data name="Connections_Cities_Other">
+    <value>Kaupungit ({0})</value>
+  </data>
+  <data name="Connections_City_Restricted">
+    <value>Tämän kaupungin palvelimet käytettävissä VPN Plus -tilauksella</value>
+  </data>
+  <data name="Connections_City_UnderMaintenance">
+    <value>Kaikki tämän kaupungin palvelimet ovat huollossa</value>
+  </data>
+  <data name="Connections_Countries_One">
+    <value>Maa ({0})</value>
+  </data>
+  <data name="Connections_Countries_Other">
+    <value>Maat ({0})</value>
+  </data>
+  <data name="Connections_Country_Restricted">
+    <value>Tämän maan palvelimet ovat käytettävissä VPN Plus -tilauksella</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance">
+    <value>Kaikki tämän maan palvelimet ovat huollossa</value>
+  </data>
+  <data name="Connections_Gateway_Restricted">
+    <value>Tämän yhdyskäytävän palvelimet ovat käytettävissä VPN Plus -tilauksella</value>
+  </data>
+  <data name="Connections_Gateway_UnderMaintenance">
+    <value>Kaikki tämän yhdyskäytävän palvelimet ovat huollossa</value>
+  </data>
+  <data name="Connections_Gateways_One">
+    <value>Yhdyskäytävä ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Other">
+    <value>Yhdyskäytävät ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_One">
+    <value>Oma palvelin ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Other">
+    <value>Omat palvelimet ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_One">
+    <value>P2P-kaupunki ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Other">
+    <value>P2P-kaupungit ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_One">
+    <value>P2P-maa ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Other">
+    <value>P2P-maat ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_One">
+    <value>P2P-palvelin ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_Other">
+    <value>P2P-palvelimet ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_One">
+    <value>Secure Core -maa ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Other">
+    <value>Secure Core -maat ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_One">
+    <value>Secure Core -palvelin ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Other">
+    <value>Secure Core -palvelimet ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_One">
+    <value>Näytä kaupunki ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_Other">
+    <value>Näytä kaupungit ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_One">
+    <value>Näytä palvelin ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_Other">
+    <value>Näytä palvelimet ({0})</value>
+  </data>
+  <data name="Connections_Server_Restricted">
+    <value>Palvelin on käytettävissä VPN Plus -tilauksella</value>
+  </data>
+  <data name="Connections_Server_UnderMaintenance">
+    <value>Palvelin on huollossa</value>
+  </data>
+  <data name="Connections_Servers_One">
+    <value>Palvelin ({0})</value>
+  </data>
+  <data name="Connections_Servers_Other">
+    <value>Palvelimet ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_One">
+    <value>Tor-maa ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Other">
+    <value>Tor-maat ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_One">
+    <value>Tor-palvelin ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_Other">
+    <value>Tor-palvelimet ({0})</value>
+  </data>
   <data name="Countries_All">
     <value>Kaikki</value>
   </data>
@@ -268,14 +388,20 @@
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_P2P_Cities">
-    <value>P2P-kaupunkit ({0})</value>
+    <value>P2P-kaupungit ({0})</value>
     <comment>{0} represents a number of P2P cities in the country</comment>
+  </data>
+  <data name="Countries_P2P_Description">
+    <value>Jaa ja lataa tiedostoja turvallisesti vertaisverkoissa (P2P).</value>
   </data>
   <data name="Countries_Page_Title">
     <value>Maat</value>
   </data>
   <data name="Countries_SearchPlaceholder">
     <value>Haluan selata sijainnista...</value>
+  </data>
+  <data name="Countries_Section_Header">
+    <value>VPN-yhteydet</value>
   </data>
   <data name="Countries_SecureCore">
     <value>Secure Core</value>
@@ -287,6 +413,9 @@
   <data name="Countries_SecureCoreServers">
     <value>Secure Core -palvelimet ({0})</value>
     <comment>{0} represents the number of severs</comment>
+  </data>
+  <data name="Countries_SecureCore_Description">
+    <value>Lisää VPN-yhteyteesi yksi salauskerros lisää.</value>
   </data>
   <data name="Countries_Server_One">
     <value>{0} palvelin</value>
@@ -314,6 +443,9 @@
   <data name="Countries_TorServers">
     <value>Tor-palvelimet ({0})</value>
     <comment>{0} represents a number of tor servers in the country</comment>
+  </data>
+  <data name="Countries_Tor_Description">
+    <value>Käytä Tor-verkkoa VPN-yhteytesi välityksellä ja tehosta tietosuojaasi.</value>
   </data>
   <data name="Countries_TryDifferentKeyword">
     <value>Kokeile eri hakusanaa</value>
@@ -1350,9 +1482,6 @@
   <data name="Dialogs_FreeConnections_Title">
     <value>Ilmaisyhteydet</value>
   </data>
-  <data name="Dialogs_FreeConnections_WorlwideCoverageUpsell">
-    <value>Hanki maailmanlaajuinen kattavuus VPN Plus -tilauksella</value>
-  </data>
   <data name="Dialogs_Latency_Description">
     <value>Viive kertoo, kuinka kauan palvelimelta kestää vastata pyyntöihin. 
 
@@ -1365,7 +1494,7 @@ Korkea viive voi hidastaa yhteyttäsi.</value>
     <value>Korkea (yli 150 ms)</value>
   </data>
   <data name="Dialogs_Latency_LowRange_Description">
-    <value>Salamannopea</value>
+    <value>Salamannopeat nopeudet</value>
   </data>
   <data name="Dialogs_Latency_LowRange_Title">
     <value>Matala (1 ms - 50 ms)</value>
@@ -1543,11 +1672,50 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
   <data name="Dialogs_Tor_Title">
     <value>Tor</value>
   </data>
+  <data name="Dialogs_Troubleshooting_Antivirus">
+    <value>Sulje virustorjunta- tai palomuuriohjelmisto</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus_Description">
+    <value>Nämä sovellukset voivat häiritä VPN-yhteyksiä.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet">
+    <value>Tarkista Internet-yhteytesi</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet_Description">
+    <value>Varmista, että olet verkossa ja että yhteys on vakaa.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Description">
+    <value>Nämä pikaratkaisut voivat auttaa sinua Protoniin yhdistämisessä.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DidNotWork">
+    <value>Eikö ratkaisu toiminut?</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork">
+    <value>Käytä eri verkkoa</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
+    <value>Kokeile vaihtaa toiseen Wi-Fi-verkkoon tai käytä mobiiliverkkoa.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage">
+    <value>Tarkasta tilasivumme</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage_Description">
+    <value>Vain Protonin palveluiden normaalin toiminnan varmistamiseksi.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Title">
+    <value>Yhteysapua</value>
+  </data>
   <data name="Dialogs_Welcome_Message">
     <value>Valmistelemme uutta VPN-kokemustasi. Tämä kestää vain hetken.</value>
   </data>
   <data name="Dialogs_Welcome_Title">
     <value>Tervetuloa Proton VPN:ään</value>
+  </data>
+  <data name="Exit_Confirmation_Message">
+    <value>VPN-yhteytesi katkaistaan.</value>
+  </data>
+  <data name="Exit_Confirmation_Title">
+    <value>Poistu Proton VPN:stä?</value>
   </data>
   <data name="Format_Milliseconds">
     <value>{0} ms</value>
@@ -1635,7 +1803,7 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
   </data>
   <data name="Format_Time_HoursMinutesSeconds_Short">
     <value>hh\.mm\.ss</value>
-    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss -&gt; 01:05:36).</comment>
+    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
   <data name="Format_Time_Minutes">
     <value>{0} min</value>
@@ -1647,11 +1815,26 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
   </data>
   <data name="Format_Time_MinutesSeconds_Short">
     <value>mm\.ss</value>
-    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss -&gt; 05:36).</comment>
+    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
   </data>
   <data name="Format_Time_Seconds">
     <value>{0} s</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="FreeConnections_P2PUpsell">
+    <value>Lataa tiedostoja mm. BitTorrentin kaltaisilla tiedonsiirtoprotokollilla.</value>
+  </data>
+  <data name="FreeConnections_SecureCoreUpsell">
+    <value>Lisää VPN-yhteyteesi toinen salauskerros.</value>
+  </data>
+  <data name="FreeConnections_TorUpsell">
+    <value>Käytä Tor-verkkoa VPN-yhteytesi välityksellä ja tehosta tietosuojaasi.</value>
+  </data>
+  <data name="FreeConnections_WorldwideCoverageUpsell">
+    <value>Hanki maailmanlaajuinen kattavuus VPN Plus -tilauksella</value>
+  </data>
+  <data name="Gateways_Page_Description">
+    <value>Muodosta yhteys yhdyskäytävään käyttääksesi organisaatiosi VPN:ää.</value>
   </data>
   <data name="Gateways_Page_Title">
     <value>Yhdyskäytävät</value>
@@ -1768,27 +1951,36 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
     <value>Kartta</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
-  <data name="Home_NetShield_AdsBlocked">
-    <value>Mainosta
-estetty</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  <data name="Home_NetShield_AdsBlocked_One">
+    <value>Mainos estetty</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Other">
+    <value>Mainosta estetty</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Description">
+    <value>Mainokset ovat verkkosivustoilla ja sovelluksissa näkyviä mainosbannereita tai ponnahdusikkunoita.</value>
   </data>
   <data name="Home_NetShield_DataSaved">
-    <value>Tiedonsiirtoa
-säästetty</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+    <value>Tiedonsiirtoa säästetty</value>
+  </data>
+  <data name="Home_NetShield_DataSaved_Description">
+    <value>Arvio haluamattomien mainosten, jäljittäjien ja haittaohjelmien estämisellä säästetystä tietomäärästä.</value>
   </data>
   <data name="Home_NetShield_Landmark">
     <value>NetShield-tilastot</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
-  <data name="Home_NetShield_TrackersStopped">
-    <value>Seurantaa
-estetty</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  <data name="Home_NetShield_Title">
+    <value>NetShield-tilastot</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_One">
+    <value>Seuranta estetty</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Other">
+    <value>Seurantaa estetty</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Description">
+    <value>Seurannat ovat kolmannen osapuolen evästeitä ja verkkosivustoja, jotka keräävät, tallentavat ja myyvät tietoja verkkotoiminnastasi.</value>
   </data>
   <data name="Home_Page_Title">
     <value>Aloitus</value>
@@ -2008,6 +2200,10 @@ estetty</value>
   <data name="Settings_Censorship_ShareStatistics_Description">
     <value>Käyttötilastot auttavat meitä kiertämään VPN-estoja ja parantamaan sovelluksen suorituskykyä.</value>
   </data>
+  <data name="Settings_Common_Apply">
+    <value>Toteuta</value>
+    <comment>Apply action. Used to apply changes made on a settings page</comment>
+  </data>
   <data name="Settings_Common_ApplyAndReconnect">
     <value>Hyväksy ja yhdistä uudelleen</value>
   </data>
@@ -2092,7 +2288,7 @@ estetty</value>
     <value>VPN Accelerator</value>
   </data>
   <data name="Settings_Features">
-    <value>Ominaisuudet</value>
+    <value>VPN:n ominaisuudet</value>
   </data>
   <data name="Settings_Features_KillSwitch">
     <value>Tappokytkin</value>
@@ -2164,7 +2360,7 @@ estetty</value>
     <value>Ilmoitukset</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications_Description">
-    <value>Ilmoita porttiohjauksen portin vaihtumisesta.</value>
+    <value>Ilmoita porttiohjauksen portin vaihtumisesta</value>
   </data>
   <data name="Settings_Features_SplitTunneling">
     <value>Jaettu tunnelointi</value>
@@ -2251,7 +2447,7 @@ estetty</value>
     <value>Pienennä tehtäväpalkkiiin</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Automaattinen käynnistys ja yhdistys</value>
+    <value>Aseta sovellus käynnistymään tai muodostamaan yhteys automaattisesti</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>Automaattinen päivitys</value>
@@ -2391,12 +2587,195 @@ estetty</value>
   <data name="Settings_VpnAccelerator_Description">
     <value>Nopeuta yhteyttäsi jopa 400 % suorituskykyä parantavien tekniikoiden avulla.</value>
   </data>
+  <data name="SystemNotification_Connected">
+    <value>Olet nyt suojassa</value>
+  </data>
+  <data name="SystemNotification_ConnectedTo">
+    <value>Yhdistetty sijaintiin {0}.</value>
+    <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
+  </data>
+  <data name="SystemNotification_Disconnected">
+    <value>Ei yhdistetty</value>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>Sulje</value>
   </data>
   <data name="Tray_Actions_OpenApplication">
     <value>Avaa {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="UpsellBanner_NetShield_Description">
+    <value>Estä mainoksia, seurantoja ja haittaohjelmia verkkosivustoilla ja sovelluksissa</value>
+  </data>
+  <data name="UpsellBanner_NetShield_Title">
+    <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Description">
+    <value>Valitse mikä tahansa palvelin päivittämällä tilauksesi.</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Title">
+    <value>Eikö tämä ole haluamasi maa?</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings">
+    <value>Avaa edistyneet VPN-mukautukset</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_DNS">
+    <value>Muodosta VPN-yhteys omalla nimipalvelimellasi (DNS)</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_LAN">
+    <value>Käytä lähiverkon (LAN) laitteita, kun olet yhdistettynä</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
+    <value>Korota pelikokemustasi vaihtamalla käyttöön tyypin 2 NAT (keskitasoinen)</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices">
+    <value>Yhdistä enintään 10 laitetta samanaikaisesti</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms">
+    <value>Käytä Proton VPN:ää eri alustoilla</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
+    <value>Android ja Android TV</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser">
+    <value>Selain</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Linux">
+    <value>Linux</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_MacOS">
+    <value>macOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Windows">
+    <value>Windows</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_iOS">
+    <value>iOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Privacy">
+    <value>Tietoturvaa ja yksityisyyttä kaikilla laitteillasi</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield">
+    <value>Nauti mainosvapaasta selaamisesta</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Block">
+    <value>Estä mainokset ja seurannat NetShieldillä</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Protection">
+    <value>Suojaa laitettasi haittaohjelmilta</value>
+  </data>
+  <data name="Upsell_Carousel_P2P">
+    <value>Avaa vertaisverkon lataukset ja tiedostojaot (P2P)</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Discretion">
+    <value>Piilota IP-osoitteesi palveluntarjoajaltasi ja vertaisilta</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_PortForwarding">
+    <value>Tehosta P2P-nopeuksia portinohjauksella</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Speed">
+    <value>Korkeammat lähetys- ja latausnopeudet</value>
+  </data>
+  <data name="Upsell_Carousel_Platforms_More">
+    <value>+ enemmän</value>
+    <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_SecureCore">
+    <value>Lisää yhteyteesi toinen suojauskerros</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Encryption">
+    <value>Tuplaa salauksesi Secure Corella</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Protection">
+    <value>Suojaudu verkkohyökkäyksiltä</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Routing">
+    <value>Ohjaa tietoliikenteesi huipputurvallisten Sveitsissä, Ruotsissa ja Islannissa sijaitsevien palvelinten kautta</value>
+  </data>
+  <data name="Upsell_Carousel_Speed">
+    <value>Selaa vielä korkeammilla nopeuksilla (jopa 10 Gbps)</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Acceleration">
+    <value>Paranna yhteysnopeuksiasi jopa 400 % VPN Acceleratorilla</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Access">
+    <value>Käytä nopeampia, ruuhkattomampia palvelimia</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling">
+    <value>Hanki molempien parhaat puolet</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Browsing">
+    <value>Jaettu tunnelointi mahdollistaa saman aikaisen selauksen kahdesta eri sijainnista</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Configuration">
+    <value>Salli luotettujen sovellusten ja IP-osoitteiden yhdistää Internetiin suoraan, samalla kun kaikki muut suojataan VPN-yhteydellä.</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming">
+    <value>Suoratoista suosikkielokuviasi ja -sarjojasi</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Access">
+    <value>Katsele alueellisesti estettyjä sarjoja ja elokuvia missä tahansa</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_BBC">
+    <value>BBC iPlayer</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Disney">
+    <value>Disney+</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_HBO">
+    <value>HBO Max</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Hulu">
+    <value>Hulu</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Netflix">
+    <value>Netflix</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_PrimeVideo">
+    <value>Amazon Prime Video</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Speed">
+    <value>Katsele 4K-sisältöä ilman puskurointia, hidastelua tai nopeusrajoituksia</value>
+  </data>
+  <data name="Upsell_Carousel_Title">
+    <value>Tutustu VPN Plus -tilaukseen</value>
+  </data>
+  <data name="Upsell_Carousel_Tor">
+    <value>Käytä Tor-verkkoa yksityisyyden lisäämiseksi</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Access">
+    <value>Käytä piilotettuja sivustoja ja onion-sivustoja</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Browsing">
+    <value>Selaa Tor-verkkoa tavallisella selaimellasi</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Protection">
+    <value>Suojaa henkilökohtaisia tietojasi selaamisen aikana</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage">
+    <value>Käytä yli {0} {1}</value>
+    <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Audit">
+    <value>Itsenäisten tietoturva-asiantuntijoiden tarkastama</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
+    <value>Ohita sensuuri kehittyneillä tietoturva- ja yksityisyysominaisuuksilla</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
+    <value>{0} maasta</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
+    <value>{0} maasta</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
+    <value>Avoimen lähdekoodin VPN</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
+    <value>{0} turvallista palvelinta</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
+    <value>{0} turvallista palvelinta</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp">
     <value>OpenVPN (TCP)</value>

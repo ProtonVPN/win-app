@@ -123,6 +123,10 @@
   <data name="Cities">
     <value>도시</value>
   </data>
+  <data name="Common_Actions_ActionsFor">
+    <value>{0}개 동작</value>
+    <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
   <data name="Common_Actions_Add">
     <value>추가</value>
   </data>
@@ -135,11 +139,19 @@
   <data name="Common_Actions_Connect">
     <value>연결</value>
   </data>
+  <data name="Common_Actions_ConnectTo">
+    <value>{0}에 연결</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to Connect to something. {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
   <data name="Common_Actions_ContactUs">
     <value>문의</value>
   </data>
   <data name="Common_Actions_Disconnect">
     <value>연결 해제</value>
+  </data>
+  <data name="Common_Actions_DisconnectFrom">
+    <value>{0}에서 연결 해제</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Enable">
     <value>활성화</value>
@@ -168,7 +180,7 @@
   <data name="Common_States_On">
     <value>켜기</value>
   </data>
-  <data name="Connection_Error_MissingAuthCertificate">
+  <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN이 네트워크 문제로 인해 인증서를 불러오지 못했습니다.</value>
   </data>
   <data name="Connection_Error_NoServers">
@@ -223,6 +235,72 @@
     <value>{0} 경유중</value>
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
   </data>
+  <data name="Connections_Cities_Other">
+    <value>도시 ({0})</value>
+  </data>
+  <data name="Connections_City_Restricted">
+    <value>이 도시의 서버는 VPN Plus로 사용 가능합니다.</value>
+  </data>
+  <data name="Connections_City_UnderMaintenance">
+    <value>이 도시 내의 모든 서버는 유지 보수 상태입니다.</value>
+  </data>
+  <data name="Connections_Countries_Other">
+    <value>국가 ({0})</value>
+  </data>
+  <data name="Connections_Country_Restricted">
+    <value>이 국가의 서버는 VPN Plus로 사용 가능합니다.</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance">
+    <value>이 국가 내의 모든 서버는 유지 보수 상태입니다.</value>
+  </data>
+  <data name="Connections_Gateway_Restricted">
+    <value>이 게이트웨이의 서버는 VPN Plus로 사용 가능합니다.</value>
+  </data>
+  <data name="Connections_Gateway_UnderMaintenance">
+    <value>이 게이트웨이의 전체 서버가 유지 보수 중입니다.</value>
+  </data>
+  <data name="Connections_Gateways_Other">
+    <value>게이트웨이 ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Other">
+    <value>전용 서버 ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Other">
+    <value>P2P 도시 ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Other">
+    <value>P2P 국가 ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_Other">
+    <value>P2P 서버 ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Other">
+    <value>Secure Core 도시 ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Other">
+    <value>Secure Core 서버 ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_Other">
+    <value>도시 보기({0})</value>
+  </data>
+  <data name="Connections_SeeServers_Other">
+    <value>서버 보기({0})</value>
+  </data>
+  <data name="Connections_Server_Restricted">
+    <value>VPN Plus에서 사용할 수 있는 서버입니다</value>
+  </data>
+  <data name="Connections_Server_UnderMaintenance">
+    <value>이 서버는 점검 중입니다.</value>
+  </data>
+  <data name="Connections_Servers_Other">
+    <value>서버 ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Other">
+    <value>Tor 국가 ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_Other">
+    <value>Tor 서버 ({0})</value>
+  </data>
   <data name="Countries_All">
     <value>전체</value>
   </data>
@@ -268,11 +346,17 @@
     <value>P2P 도시 ({0})</value>
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
+  <data name="Countries_P2P_Description">
+    <value>피어 투 피어 (P2P) 네트워크에서 안전하게 파일을 공유하고 다운로드하세요.</value>
+  </data>
   <data name="Countries_Page_Title">
     <value>국가</value>
   </data>
   <data name="Countries_SearchPlaceholder">
     <value>다음에서 브라우징 하고자 합니다...</value>
+  </data>
+  <data name="Countries_Section_Header">
+    <value>VPN 연결</value>
   </data>
   <data name="Countries_SecureCore">
     <value>Secure Core</value>
@@ -284,6 +368,9 @@
   <data name="Countries_SecureCoreServers">
     <value>Secure Core 서버 ({0})</value>
     <comment>{0} represents the number of severs</comment>
+  </data>
+  <data name="Countries_SecureCore_Description">
+    <value>VPN 연결에 암호화 계층 추가.</value>
   </data>
   <data name="Countries_Server_Other">
     <value>{0}개 서버</value>
@@ -308,6 +395,9 @@
   <data name="Countries_TorServers">
     <value>Tor 서버 ({0})</value>
     <comment>{0} represents a number of tor servers in the country</comment>
+  </data>
+  <data name="Countries_Tor_Description">
+    <value>추가적인 개인 정보 보호를 위해 VPN 연결을 통해 Tor 네트워크를 사용하세요.</value>
   </data>
   <data name="Countries_TryDifferentKeyword">
     <value>다른 키워드를 입력해주세요</value>
@@ -1338,9 +1428,6 @@
   <data name="Dialogs_FreeConnections_Title">
     <value>무료 연결</value>
   </data>
-  <data name="Dialogs_FreeConnections_WorlwideCoverageUpsell">
-    <value>VPN Plus 전세계적 커버리지 받기</value>
-  </data>
   <data name="Dialogs_Latency_Description">
     <value>레이턴시는 서버가 요청에 응답하기까지 얼마나 걸리는가를 보여줍니다.
 
@@ -1531,11 +1618,50 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   <data name="Dialogs_Tor_Title">
     <value>Tor</value>
   </data>
+  <data name="Dialogs_Troubleshooting_Antivirus">
+    <value>안티바이러스나 방화벽 소프트웨어를 끄세요</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus_Description">
+    <value>이러한 프로그램은 VPN 연결과 충돌할 수 있습니다.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet">
+    <value>인터넷 연결 상태를 확인하세요</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet_Description">
+    <value>온라인이고, 연결이 안정적인지 확인해 주세요.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Description">
+    <value>이러한 간단한 해결책이 여러분이 Proton에 연결하는 데 도움이 될 수 있습니다.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DidNotWork">
+    <value>소용이 없었나요?</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork">
+    <value>다른 네트워크를 사용해 보세요</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
+    <value>Wi-Fi 네트워크를 변경하거나 모바일 데이터를 사용해 보세요.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage">
+    <value>저희의 상태 페이지를 확인하세요</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage_Description">
+    <value>Proton 서비스가 정상적으로 작동하고 있다는 것을 확인하기 위함입니다.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Title">
+    <value>연결 지원</value>
+  </data>
   <data name="Dialogs_Welcome_Message">
     <value>당신에게 새로운 VPN 경험을 위해 준비하고 있습니다. 이는 시간이 조금 걸릴 수 있습니다.</value>
   </data>
   <data name="Dialogs_Welcome_Title">
     <value>Proton VPN에 오신 것을 환영합니다</value>
+  </data>
+  <data name="Exit_Confirmation_Message">
+    <value>VPN 연결이 끊어질 것입니다.</value>
+  </data>
+  <data name="Exit_Confirmation_Title">
+    <value>Proton VPN을 종료합니까?</value>
   </data>
   <data name="Format_Milliseconds">
     <value>{0} ms</value>
@@ -1623,7 +1749,7 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   </data>
   <data name="Format_Time_HoursMinutesSeconds_Short">
     <value>hh\:mm\:ss</value>
-    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss -&gt; 01:05:36).</comment>
+    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
   <data name="Format_Time_Minutes">
     <value>{0}분</value>
@@ -1635,11 +1761,26 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   </data>
   <data name="Format_Time_MinutesSeconds_Short">
     <value>mm\:ss</value>
-    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss -&gt; 05:36).</comment>
+    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
   </data>
   <data name="Format_Time_Seconds">
     <value>{0}초</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="FreeConnections_P2PUpsell">
+    <value>BitTorrent와 다른 파일 공유 프로토콜로 파일을 다운로드하세요</value>
+  </data>
+  <data name="FreeConnections_SecureCoreUpsell">
+    <value>VPN 연결에 또다른 암호화가 한겹 더</value>
+  </data>
+  <data name="FreeConnections_TorUpsell">
+    <value>추가적인 개인 정보 보호를 위해 VPN 연결을 통해 Tor 네트워크를 사용하세요</value>
+  </data>
+  <data name="FreeConnections_WorldwideCoverageUpsell">
+    <value>VPN Plus로 전세계 커버리지 갖기</value>
+  </data>
+  <data name="Gateways_Page_Description">
+    <value>조직의 VPN으로 연결하려면 게이트웨이에 접속하세요.</value>
   </data>
   <data name="Gateways_Page_Title">
     <value>게이트웨이</value>
@@ -1756,27 +1897,30 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
     <value>지도</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
-  <data name="Home_NetShield_AdsBlocked">
-    <value>차단한
-광고들</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  <data name="Home_NetShield_AdsBlocked_Other">
+    <value>광고가 차단됨</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Description">
+    <value>광고는 웹사이트와 앱에서 나타나는 프로모션 배너 또는 팝업을 말합니다.</value>
   </data>
   <data name="Home_NetShield_DataSaved">
-    <value>절약한
-데이터</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+    <value>절약한 데이터</value>
+  </data>
+  <data name="Home_NetShield_DataSaved_Description">
+    <value>원하지 않는 광고, 트래커, 그리고 멀워어를 차단해 절약한 것으로 추정되는 데이터</value>
   </data>
   <data name="Home_NetShield_Landmark">
     <value>NetShield 통계</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
-  <data name="Home_NetShield_TrackersStopped">
-    <value>트래커
-멈춤</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  <data name="Home_NetShield_Title">
+    <value>NetShield 통계</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Other">
+    <value>트래커가 멈춤</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Description">
+    <value>트래커는 당신의 웹 활동에 대한 정보를 수집, 저장 및 판매하는 쿠키와 제3자 웹사이트입니다.</value>
   </data>
   <data name="Home_Page_Title">
     <value>홈</value>
@@ -1996,6 +2140,10 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   <data name="Settings_Censorship_ShareStatistics_Description">
     <value>사용 데이터는 VPN 차단을 무력화하고 앱 성능을 개선하는 데 도움이 됩니다.</value>
   </data>
+  <data name="Settings_Common_Apply">
+    <value>적용하기</value>
+    <comment>Apply action. Used to apply changes made on a settings page</comment>
+  </data>
   <data name="Settings_Common_ApplyAndReconnect">
     <value>적용 및 재연결</value>
   </data>
@@ -2080,7 +2228,7 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
     <value>VPN Accelerator</value>
   </data>
   <data name="Settings_Features">
-    <value>기능</value>
+    <value>VPN 기능</value>
   </data>
   <data name="Settings_Features_KillSwitch">
     <value>킬 스위치</value>
@@ -2143,7 +2291,7 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
     <value>방화벽을 우회하여 P2P 서버와 로컬 네트워크의 장치에 연결하십시오.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Footer">
-    <value>포트 포워딩을 사용하려면 P2P를 지원하는 서버에 연결하셔야 합니다.</value>
+    <value>포트 포워딩을 사용하려면 P2P를 지원하는 서버로 연결해 주세요.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Loading">
     <value>불러오는 중...</value>
@@ -2152,7 +2300,7 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
     <value>알림</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications_Description">
-    <value>포트포워딩 번호가 변경되면 알림을 받습니다</value>
+    <value>포트포워딩 번호가 변경되면 알림을 받게 됩니다</value>
   </data>
   <data name="Settings_Features_SplitTunneling">
     <value>분할 터널링</value>
@@ -2239,7 +2387,7 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
     <value>작업 표시줄로 최소화하기</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>자동 실행 및 연결</value>
+    <value>앱이 자동으로 실행되거나 접속하도록 설정합니다</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>자동 업데이트</value>
@@ -2379,12 +2527,189 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   <data name="Settings_VpnAccelerator_Description">
     <value>성능 강화 기술을 통해 연결 속도가 400%까지 빨라집니다.</value>
   </data>
+  <data name="SystemNotification_Connected">
+    <value>보호되고 있습니다</value>
+  </data>
+  <data name="SystemNotification_ConnectedTo">
+    <value>{0} 에 연결됨.</value>
+    <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
+  </data>
+  <data name="SystemNotification_Disconnected">
+    <value>연결이 끊어짐</value>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>닫기</value>
   </data>
   <data name="Tray_Actions_OpenApplication">
     <value>{0} 열기</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="UpsellBanner_NetShield_Description">
+    <value>웹사이트 및 앱에서 광고, 트래커와 멀웨어를 차단하세요</value>
+  </data>
+  <data name="UpsellBanner_NetShield_Title">
+    <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Description">
+    <value>모든 서버에 접근하기 위해 업그레이드.</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Title">
+    <value>원하신 국가가 아닌가요?</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings">
+    <value>향상된 VPN 사용자화를 잠금 해제하세요</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_DNS">
+    <value>커스텀 도메인 네임 서버 (DNS)를 사용하여 VPN에 접속하세요</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_LAN">
+    <value>접속한 그대로 로컬 영역 네트워크 (LAN)의 기기에 접근하세요</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
+    <value>NAT type 2 (일반형)으로 변경해 게이밍 경험의 레벨을 올려보세요</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices">
+    <value>동시에 10개 기기 연결</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms">
+    <value>Proton VPN을 다양한 플랫폼에서 사용하세요</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
+    <value>Android와 Android TV</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser">
+    <value>브라우저</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Linux">
+    <value>Linux</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_MacOS">
+    <value>macOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Windows">
+    <value>Windows</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_iOS">
+    <value>iOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Privacy">
+    <value>모든 기기에 보안과 프라이버시가</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield">
+    <value>광고 없는 브라우징을 즐기세요</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Block">
+    <value>NetShield로 광고와 멀웨어를 차단하세요</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Protection">
+    <value>멀웨어로부터 기기 보호</value>
+  </data>
+  <data name="Upsell_Carousel_P2P">
+    <value>피어 투 피어 다운로드와 파일 공유 (P2P)의 잠금을 해제하세요</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Discretion">
+    <value>귀하의 IP 주소를 서비스 제공자와 피어로부터 숨깁니다</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_PortForwarding">
+    <value>포트 포워딩으로 P2P 속도를 슈퍼차지하세요</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Speed">
+    <value>업로드와 다운로드 속도가 더욱 빠릅니다</value>
+  </data>
+  <data name="Upsell_Carousel_Platforms_More">
+    <value>+ 더 많음</value>
+    <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_SecureCore">
+    <value>접속에 또 다른 보호를 한겹 더해보세요</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Encryption">
+    <value>Secure Core로 두 배의 암호화를</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Protection">
+    <value>네트워크 공격으로부터의 보호</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Routing">
+    <value>스위스, 스웨덴과 아이슬란드의 아주 안전한 서버를 통해 라우팅하세요</value>
+  </data>
+  <data name="Upsell_Carousel_Speed">
+    <value>가장 빠른 속도로 브라우징하세요 (최대 10 Gbps)</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Acceleration">
+    <value>VPN Accelerator로 연결 속도를 최대 400%까지 올려보세요</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Access">
+    <value>빠르고, 더 여유있는 서버에 접근하세요</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling">
+    <value>하나로 두 가지 이득을 얻으세요</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Browsing">
+    <value>분할 터널링으로 두 위치를 하나로 연결하세요</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Configuration">
+    <value>VPN으로 다른 모든 것을 보호하면서 신뢰할 수 있는 앱과 IP 주소가 인터넷에 직접 연결되도록 허용하세요.</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming">
+    <value>선호하는 영화와 TV 쇼를 스트리밍하세요</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Access">
+    <value>세계 어디에서나 지역 차단이 이루어진 TV와 영화에 엑세스하세요</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_BBC">
+    <value>BBC iPlayer</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Disney">
+    <value>Disney+</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_HBO">
+    <value>HBO Max</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Hulu">
+    <value>Hulu</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Netflix">
+    <value>Netflix</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_PrimeVideo">
+    <value>Amazon Prime Video</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Speed">
+    <value>버퍼링, 속도 저하, 쓰로틀링 없이 4K로 시청하세요</value>
+  </data>
+  <data name="Upsell_Carousel_Title">
+    <value>VPN Plus 살펴보기</value>
+  </data>
+  <data name="Upsell_Carousel_Tor">
+    <value>추가적인 프라이버시를 위해 Tor 네트워크에 접근하세요</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Access">
+    <value>히든 사이트와 onion 사이트에 접근하세요</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Browsing">
+    <value>익숙한 브라우저로 Tor 네트워크를 탐색하세요</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Protection">
+    <value>브라우징하는 동안 개인 데이터를 보호하세요</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage">
+    <value>{1}에서 {0}에 액세스</value>
+    <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Audit">
+    <value>독립 보안 전문가에 의한 감사를 받음</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
+    <value>향상된 보안과 개인정보 보호 기능으로 검열을 벗어나세요</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
+    <value>{0} 국가</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
+    <value>오픈 소스 VPN</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
+    <value>{0} 보안 서버</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp">
     <value>OpenVPN (TCP)</value>

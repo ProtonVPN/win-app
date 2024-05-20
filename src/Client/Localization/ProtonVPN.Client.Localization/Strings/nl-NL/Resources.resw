@@ -123,6 +123,10 @@
   <data name="Cities">
     <value>Steden</value>
   </data>
+  <data name="Common_Actions_ActionsFor">
+    <value>Acties voor {0}</value>
+    <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
   <data name="Common_Actions_Add">
     <value>Toevoegen</value>
   </data>
@@ -135,11 +139,19 @@
   <data name="Common_Actions_Connect">
     <value>Verbinden</value>
   </data>
+  <data name="Common_Actions_ConnectTo">
+    <value>Verbind met {0}</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to Connect to something. {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
   <data name="Common_Actions_ContactUs">
     <value>Contacteer ons</value>
   </data>
   <data name="Common_Actions_Disconnect">
     <value>Verbreken</value>
+  </data>
+  <data name="Common_Actions_DisconnectFrom">
+    <value>Verbinding verbreken met {0}</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Enable">
     <value>Inschakelen</value>
@@ -168,7 +180,7 @@
   <data name="Common_States_On">
     <value>Aan</value>
   </data>
-  <data name="Connection_Error_MissingAuthCertificate">
+  <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN is er niet in geslaagd om het authenticatiecertificaat op te halen vanwege een netwerk probleem.</value>
   </data>
   <data name="Connection_Error_NoServers">
@@ -223,6 +235,114 @@
     <value>via {0}</value>
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
   </data>
+  <data name="Connections_Cities_One">
+    <value>Stad ({0})</value>
+  </data>
+  <data name="Connections_Cities_Other">
+    <value>Steden ({0})</value>
+  </data>
+  <data name="Connections_City_Restricted">
+    <value>Servers in deze stad zijn beschikbaar met VPN Plus</value>
+  </data>
+  <data name="Connections_City_UnderMaintenance">
+    <value>Alle servers in deze stad zijn in onderhoud</value>
+  </data>
+  <data name="Connections_Countries_One">
+    <value>Land ({0})</value>
+  </data>
+  <data name="Connections_Countries_Other">
+    <value>Landen ({0})</value>
+  </data>
+  <data name="Connections_Country_Restricted">
+    <value>Servers in dit land zijn beschikbaar met VPN Plus</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance">
+    <value>Alle servers in dit land worden onderhouden</value>
+  </data>
+  <data name="Connections_Gateway_Restricted">
+    <value>Servers in deze gateway zijn beschikbaar met VPN Plus</value>
+  </data>
+  <data name="Connections_Gateway_UnderMaintenance">
+    <value>Alle servers in deze gateway zijn in onderhoud</value>
+  </data>
+  <data name="Connections_Gateways_One">
+    <value>Gateway ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Other">
+    <value>Gateways ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_One">
+    <value>Toegewijde server ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Other">
+    <value>Toegewijde servers ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_One">
+    <value>P2P-stad ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Other">
+    <value>P2P steden ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_One">
+    <value>P2P land ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Other">
+    <value>P2P-landen ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_One">
+    <value>P2P-server ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_Other">
+    <value>P2P-servers ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_One">
+    <value>Secure Core land ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Other">
+    <value>Secure Core landen ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_One">
+    <value>Secure Core server ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Other">
+    <value>Secure Core-servers ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_One">
+    <value>Bekijk stad ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_Other">
+    <value>Bekijk steden ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_One">
+    <value>Bekijk server ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_Other">
+    <value>Bekijk servers ({0})</value>
+  </data>
+  <data name="Connections_Server_Restricted">
+    <value>Server beschikbaar met VPN Plus</value>
+  </data>
+  <data name="Connections_Server_UnderMaintenance">
+    <value>Deze server is in onderhoud</value>
+  </data>
+  <data name="Connections_Servers_One">
+    <value>Server ({0})</value>
+  </data>
+  <data name="Connections_Servers_Other">
+    <value>Servers ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_One">
+    <value>Tor-land ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Other">
+    <value>Tor-landen ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_One">
+    <value>Tor-server ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_Other">
+    <value>Tor servers ({0})</value>
+  </data>
   <data name="Countries_All">
     <value>Alle</value>
   </data>
@@ -271,11 +391,17 @@
     <value>P2P steden ({0})</value>
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
+  <data name="Countries_P2P_Description">
+    <value>Deel en download bestanden veilig via peer-to-peer (P2P) netwerken.</value>
+  </data>
   <data name="Countries_Page_Title">
     <value>Landen</value>
   </data>
   <data name="Countries_SearchPlaceholder">
     <value>Ik wil surfen van...</value>
+  </data>
+  <data name="Countries_Section_Header">
+    <value>VPN-verbindingen</value>
   </data>
   <data name="Countries_SecureCore">
     <value>Secure Core</value>
@@ -287,6 +413,9 @@
   <data name="Countries_SecureCoreServers">
     <value>Secure Core-servers ({0})</value>
     <comment>{0} represents the number of severs</comment>
+  </data>
+  <data name="Countries_SecureCore_Description">
+    <value>Voeg een extra laag encryptie toe aan uw VPN-verbinding.</value>
   </data>
   <data name="Countries_Server_One">
     <value>{0} server</value>
@@ -314,6 +443,9 @@
   <data name="Countries_TorServers">
     <value>Tor servers ({0})</value>
     <comment>{0} represents a number of tor servers in the country</comment>
+  </data>
+  <data name="Countries_Tor_Description">
+    <value>Gebruik het Tor netwerk via uw VPN-verbinding voor extra privacy.</value>
   </data>
   <data name="Countries_TryDifferentKeyword">
     <value>Probeer een ander sleutelwoord.</value>
@@ -1350,9 +1482,6 @@
   <data name="Dialogs_FreeConnections_Title">
     <value>Gratis verbindingen</value>
   </data>
-  <data name="Dialogs_FreeConnections_WorlwideCoverageUpsell">
-    <value>Krijg wereldwijde dekking met VPN Plus</value>
-  </data>
   <data name="Dialogs_Latency_Description">
     <value>Wachttijd laat zien hoe lang het duurt voor een server antwoordt op verzoeken.
 
@@ -1543,11 +1672,50 @@ Smart Routing wordt meestal gebruikt om anti-privacywetten en andere vormen van 
   <data name="Dialogs_Tor_Title">
     <value>Tor</value>
   </data>
+  <data name="Dialogs_Troubleshooting_Antivirus">
+    <value>Schakel antivirus of firewall software uit</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus_Description">
+    <value>Deze programma's kunnen VPN-verbindingen verstoren.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet">
+    <value>Controleer uw internetverbinding</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet_Description">
+    <value>Zorg ervoor dat u online bent, en dat uw verbinding stabiel is.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Description">
+    <value>Deze snelle oplossingen kunnen u helpen om verbinding te maken met Proton.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DidNotWork">
+    <value>Niet gelukt?</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork">
+    <value>Gebruik een ander netwerk</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
+    <value>Probeer van wifi-netwerken te wisselen of mobiele data te gebruiken.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage">
+    <value>Bekijk onze statuspagina</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage_Description">
+    <value>Om er zeker van te zijn dat de Proton-diensten normaal functioneren.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Title">
+    <value>Hulp bij verbinding</value>
+  </data>
   <data name="Dialogs_Welcome_Message">
     <value>We zorgen ervoor dat uw nieuwe VPN-ervaring klaar is. Dit kan even duren.</value>
   </data>
   <data name="Dialogs_Welcome_Title">
     <value>Welkom bij Proton VPN</value>
+  </data>
+  <data name="Exit_Confirmation_Message">
+    <value>U wordt van de VPN losgekoppeld.</value>
+  </data>
+  <data name="Exit_Confirmation_Title">
+    <value>Proton VPN verlaten?</value>
   </data>
   <data name="Format_Milliseconds">
     <value>{0}ms</value>
@@ -1635,7 +1803,7 @@ Smart Routing wordt meestal gebruikt om anti-privacywetten en andere vormen van 
   </data>
   <data name="Format_Time_HoursMinutesSeconds_Short">
     <value>hh\:mm\:ss</value>
-    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss -&gt; 01:05:36).</comment>
+    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
   <data name="Format_Time_Minutes">
     <value>{0} min</value>
@@ -1647,11 +1815,26 @@ Smart Routing wordt meestal gebruikt om anti-privacywetten en andere vormen van 
   </data>
   <data name="Format_Time_MinutesSeconds_Short">
     <value>mm\:ss</value>
-    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss -&gt; 05:36).</comment>
+    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
   </data>
   <data name="Format_Time_Seconds">
     <value>{0} sec</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="FreeConnections_P2PUpsell">
+    <value>Download bestanden via BitTorrent en andere bestanden delen protocollen</value>
+  </data>
+  <data name="FreeConnections_SecureCoreUpsell">
+    <value>Voeg een extra laag encryptie toe aan uw VPN-verbinding</value>
+  </data>
+  <data name="FreeConnections_TorUpsell">
+    <value>Gebruik het Tor netwerk via uw VPN-verbinding voor extra privacy</value>
+  </data>
+  <data name="FreeConnections_WorldwideCoverageUpsell">
+    <value>Krijg wereldwijde dekking met VPN Plus</value>
+  </data>
+  <data name="Gateways_Page_Description">
+    <value>Verbind met een Gateway om toegang te krijgen tot de VPN van uw organisatie.</value>
   </data>
   <data name="Gateways_Page_Title">
     <value>Toegangspoorten</value>
@@ -1768,27 +1951,36 @@ Smart Routing wordt meestal gebruikt om anti-privacywetten en andere vormen van 
     <value>Kaart</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
-  <data name="Home_NetShield_AdsBlocked">
-    <value>Advertenties
-geblokkeerd</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  <data name="Home_NetShield_AdsBlocked_One">
+    <value>Advertentie geblokkeerd</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Other">
+    <value>Advertenties geblokkeerd</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Description">
+    <value>Advertenties zijn promotie-banners of pop-ups die op websites en apps verschijnen.</value>
   </data>
   <data name="Home_NetShield_DataSaved">
-    <value>Data
-bespaard</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+    <value>Gegevens opgeslagen</value>
+  </data>
+  <data name="Home_NetShield_DataSaved_Description">
+    <value>Geschatte data gespaard door ongewenste advertenties, trackers en malware te blokkeren.</value>
   </data>
   <data name="Home_NetShield_Landmark">
     <value>NetShield statistieken</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
-  <data name="Home_NetShield_TrackersStopped">
-    <value>Trackers
-gestopt</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  <data name="Home_NetShield_Title">
+    <value>NetShield statistieken</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_One">
+    <value>Tracker gestopt</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Other">
+    <value>Trackers gestopt</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Description">
+    <value>Trackers zijn cookies en websites van derden die informatie over uw webactiviteit verzamelen, opslaan en verkopen.</value>
   </data>
   <data name="Home_Page_Title">
     <value>Thuis</value>
@@ -2008,6 +2200,10 @@ gestopt</value>
   <data name="Settings_Censorship_ShareStatistics_Description">
     <value>Gebruiksgegevens helpen ons om VPN-blokkering te omzeilen en de prestaties van de app te verbeteren.</value>
   </data>
+  <data name="Settings_Common_Apply">
+    <value>Toepassen</value>
+    <comment>Apply action. Used to apply changes made on a settings page</comment>
+  </data>
   <data name="Settings_Common_ApplyAndReconnect">
     <value>Pas toe en verbind opnieuw</value>
   </data>
@@ -2092,7 +2288,7 @@ gestopt</value>
     <value>VPN Accelerator</value>
   </data>
   <data name="Settings_Features">
-    <value>Functies</value>
+    <value>VPN-functies</value>
   </data>
   <data name="Settings_Features_KillSwitch">
     <value>IP-beveiliging</value>
@@ -2251,7 +2447,7 @@ gestopt</value>
     <value>Minimaliseren naar taakbalk</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Automatisch starten, automatisch verbinden</value>
+    <value>Stel de app in om automatisch op te starten of te verbinden</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>Automatische updates</value>
@@ -2391,12 +2587,195 @@ gestopt</value>
   <data name="Settings_VpnAccelerator_Description">
     <value>Verhoog uw verbindingssnelheid tot 400% met prestatieverhogende technologieën.</value>
   </data>
+  <data name="SystemNotification_Connected">
+    <value>U bent nu beschermd</value>
+  </data>
+  <data name="SystemNotification_ConnectedTo">
+    <value>Verbonden met {0}.</value>
+    <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
+  </data>
+  <data name="SystemNotification_Disconnected">
+    <value>Verbinding verbroken</value>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>Afsluiten</value>
   </data>
   <data name="Tray_Actions_OpenApplication">
     <value>Open {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="UpsellBanner_NetShield_Description">
+    <value>Blokkeer advertenties, trackers en malware op websites en apps</value>
+  </data>
+  <data name="UpsellBanner_NetShield_Title">
+    <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Description">
+    <value>Upgrade om elke server te kiezen.</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Title">
+    <value>Niet het land dat u wenste?</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings">
+    <value>Ontgrendel geavanceerde VPN-aanpassingen</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_DNS">
+    <value>Verbind met VPN met uw eigen domeinnaam server (DNS)</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_LAN">
+    <value>Toegang tot apparaten op uw lokaal netwerk (LAN) terwijl u geconnecteerd bent.</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
+    <value>Verbeter uw spelervaring door over te schakelen naar NAT type 2 (moderant)</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices">
+    <value>Verbind tot 10 apparaten tegelijkertijd</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms">
+    <value>Gebruik Proton VPN op verschillende platformen</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
+    <value>Android en Android TV</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser">
+    <value>Browser</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Linux">
+    <value>Linux</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_MacOS">
+    <value>macOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Windows">
+    <value>Windows</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_iOS">
+    <value>iOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Privacy">
+    <value>Veiligheid en privacy op al uw apparaten</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield">
+    <value>Geniet van advertentievrij browsen</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Block">
+    <value>Blokkeer advertenties en trackers met NetShield</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Protection">
+    <value>Bescherm uw apparaat tegen malware</value>
+  </data>
+  <data name="Upsell_Carousel_P2P">
+    <value>Ontgrendel peer-to-peer downloads en het delen van bestanden (P2P)</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Discretion">
+    <value>Verberg uw IP-adres van uw internet provider en andere gebruikers.</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_PortForwarding">
+    <value>Supercharge P2P snelheden met poort forwarding</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Speed">
+    <value>Verhoogde upload- en download snelheden</value>
+  </data>
+  <data name="Upsell_Carousel_Platforms_More">
+    <value>+ meer</value>
+    <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_SecureCore">
+    <value>Voeg een extra beschermingslaag toe aan uw verbinding</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Encryption">
+    <value>Verdubbel uw encryptie met Secure Core</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Protection">
+    <value>Bescherm uzelf van netwerkaanvallen</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Routing">
+    <value>Routeer via ultra beveiligde servers in Zwitserland, Zweden en IJsland</value>
+  </data>
+  <data name="Upsell_Carousel_Speed">
+    <value>Browse aan nog hogere snelheden (tot 10 Gbps)</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Acceleration">
+    <value>Verbeter uw verbindingssnelheid met tot wel 400% met VPN Accelerator</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Access">
+    <value>Toegang tot snellere, minder bevolkte servers</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling">
+    <value>Krijg het beste van beide werelden</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Browsing">
+    <value>Browse van twee locaties tegelijk met gesplitste tunnels</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Configuration">
+    <value>Sta vertrouwde applicaties en IP-adressen toe om direct te verbinden met het internet, terwijl uw VPN alle andere zaken beschermt</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming">
+    <value>Stream uw favoriete films en Tv-programma's</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Access">
+    <value>Krijg toegang tot TV en films die geoblocked zijn van overal ter wereld</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_BBC">
+    <value>BBC iPlayer</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Disney">
+    <value>Disney+</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_HBO">
+    <value>HBO Max</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Hulu">
+    <value>Hulu</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Netflix">
+    <value>Netflix</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_PrimeVideo">
+    <value>Amazon Prime Video</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Speed">
+    <value>Bekijk in 4K zonder buffering, vertragingen of beperking</value>
+  </data>
+  <data name="Upsell_Carousel_Title">
+    <value>Ontdek VPN Plus</value>
+  </data>
+  <data name="Upsell_Carousel_Tor">
+    <value>Krijg toegang tot het Tor netwerk voor extra privacy</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Access">
+    <value>Toegang tot verborgen sites en uien sites</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Browsing">
+    <value>Blader door het Tor-netwerk met behulp van uw normale browser</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Protection">
+    <value>Bescherm uw persoonlijke gegevens tijdens het browsen</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage">
+    <value>Toegang tot meer dan {0} in {1}</value>
+    <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Audit">
+    <value>Gecontroleerd door onafhankelijke beveiligingsexperts</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
+    <value>Omzeil censuur met geavanceerde beveiligings- en privacyfuncties</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
+    <value>{0} land</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
+    <value>{0} landen</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
+    <value>Open source VPN</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
+    <value>{0} beveiligde server</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
+    <value>{0} beveiligde servers</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp">
     <value>OpenVPN (TCP)</value>

@@ -123,6 +123,10 @@
   <data name="Cities">
     <value>Гарады</value>
   </data>
+  <data name="Common_Actions_ActionsFor">
+    <value>Дзеянні для {0}</value>
+    <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
   <data name="Common_Actions_Add">
     <value>Дадаць</value>
   </data>
@@ -135,11 +139,19 @@
   <data name="Common_Actions_Connect">
     <value>Падключыцца</value>
   </data>
+  <data name="Common_Actions_ConnectTo">
+    <value>Падключыцца да {0}</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to Connect to something. {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
   <data name="Common_Actions_ContactUs">
     <value>Звязацца з намі</value>
   </data>
   <data name="Common_Actions_Disconnect">
     <value>Адключыцца</value>
+  </data>
+  <data name="Common_Actions_DisconnectFrom">
+    <value>Адключыцца ад {0}</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Enable">
     <value>Уключыць</value>
@@ -168,8 +180,8 @@
   <data name="Common_States_On">
     <value>Уключана</value>
   </data>
-  <data name="Connection_Error_MissingAuthCertificate">
-    <value>Не ўдалося атрымаць сертыфікат аўтэнтыфікацыі Proton VPN па прычыне праблем з сеткай.</value>
+  <data name="Connection_Error_MissingConnectionCertificate">
+    <value>Proton VPN не ўдалося атрымаць сертыфікат аўтэнтыфікацыі па прычыне праблем з сеткай.</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>У цяперашні час няма сервераў для вашага выбару. Выберыце іншы параметр.</value>
@@ -199,7 +211,7 @@
     <value>Выяўлена праблема з праверкай сертыфіката сервера VPN, якая можа ўказваць на тое, што сеткавае падключэнне перахоплена або сервер да якога вы спрабуеце падключыцца мае праблемы з канфігурацыяй. Звярніцеся ў нашу службу падтрымкі, адправіўшы нам справаздачу з праблемай.</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>Мы пакуль не разумеем, што тут адбылося. Паспрабуйце яшчэ раз або звярніцеся ў нашу службу падтрымкі кліентаў.</value>
+    <value>Мы пакуль не разумеем, што тут адбылося. Паспрабуйце яшчэ раз або звярніцеся ў нашу каманду падтрымкі кліентаў.</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
     <value>Паглядзець магчымыя рашэнні</value>
@@ -222,6 +234,198 @@
   <data name="Connection_Via_SecureCore">
     <value>праз {0}</value>
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
+  </data>
+  <data name="Connections_Cities_One">
+    <value>Горад ({0})</value>
+  </data>
+  <data name="Connections_Cities_Few">
+    <value>Гарады ({0})</value>
+  </data>
+  <data name="Connections_Cities_Many">
+    <value>Гарадоў ({0})</value>
+  </data>
+  <data name="Connections_Cities_Other">
+    <value>Гарадоў ({0})</value>
+  </data>
+  <data name="Connections_City_Restricted">
+    <value>Серверы ў гэтым горадзе даступны з VPN Plus</value>
+  </data>
+  <data name="Connections_City_UnderMaintenance">
+    <value>Усе серверы ў гэтым горадзе на тэхнічным абслугоўванні</value>
+  </data>
+  <data name="Connections_Countries_One">
+    <value>Краіна ({0})</value>
+  </data>
+  <data name="Connections_Countries_Few">
+    <value>Краіны ({0})</value>
+  </data>
+  <data name="Connections_Countries_Many">
+    <value>Краін ({0})</value>
+  </data>
+  <data name="Connections_Countries_Other">
+    <value>Краін ({0})</value>
+  </data>
+  <data name="Connections_Country_Restricted">
+    <value>Серверы ў гэтай краіне даступны з VPN Plus</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance">
+    <value>Усе серверы ў гэтай краіне на тэхнічным абслугоўванні</value>
+  </data>
+  <data name="Connections_Gateway_Restricted">
+    <value>Серверы ў гэтым шлюзе даступны з VPN Plus</value>
+  </data>
+  <data name="Connections_Gateway_UnderMaintenance">
+    <value>Усе серверы ў гэтым шлюзе на тэхнічным абслугоўванні</value>
+  </data>
+  <data name="Connections_Gateways_One">
+    <value>Шлюз ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Few">
+    <value>Шлюзы ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Many">
+    <value>Шлюзоў ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Other">
+    <value>Шлюзоў ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_One">
+    <value>Вылучаны сервер ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Few">
+    <value>Вылучаныя серверы ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Many">
+    <value>Вылучаных сервераў ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Other">
+    <value>Вылучаных сервераў ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_One">
+    <value>Горад P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Few">
+    <value>Гарады P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Many">
+    <value>Гарадоў P2P({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Other">
+    <value>Гарадоў P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_One">
+    <value>Краіна P2P({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Few">
+    <value>Краіны P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Many">
+    <value>Краін P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Other">
+    <value>Краін P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_One">
+    <value>Сервер P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_Few">
+    <value>Серверы P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_Many">
+    <value>Сервераў P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_Other">
+    <value>Сервераў P2P ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_One">
+    <value>Краіна Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Few">
+    <value>Краіны Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Many">
+    <value>Краін Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Other">
+    <value>Краін Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_One">
+    <value>Сервер Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Few">
+    <value>Серверы Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Many">
+    <value>Сервераў Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Other">
+    <value>Сервераў Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_One">
+    <value>Паглядзець горад ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_Few">
+    <value>Паглядзець гарады ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_Many">
+    <value>Паглядзець гарадоў ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_Other">
+    <value>Паглядзець гарадоў ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_One">
+    <value>Паглядзець сервер ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_Few">
+    <value>Паглядзець серверы ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_Many">
+    <value>Паглядзець сервераў ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_Other">
+    <value>Паглядзець сервераў ({0})</value>
+  </data>
+  <data name="Connections_Server_Restricted">
+    <value>Серверы даступныя з VPN Plus</value>
+  </data>
+  <data name="Connections_Server_UnderMaintenance">
+    <value>Гэты сервер на тэхнічным абслугоўванні</value>
+  </data>
+  <data name="Connections_Servers_One">
+    <value>Сервер ({0})</value>
+  </data>
+  <data name="Connections_Servers_Few">
+    <value>Серверы ({0})</value>
+  </data>
+  <data name="Connections_Servers_Many">
+    <value>Серверы ({0})</value>
+  </data>
+  <data name="Connections_Servers_Other">
+    <value>Серверы ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_One">
+    <value>Краіна Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Few">
+    <value>Краіны Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Many">
+    <value>Краіны Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Other">
+    <value>Краіны Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_One">
+    <value>Сервер Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_Few">
+    <value>Серверы Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_Many">
+    <value>Серверы Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_Other">
+    <value>Серверы Tor ({0})</value>
   </data>
   <data name="Countries_All">
     <value>Усе</value>
@@ -277,11 +481,17 @@
     <value>Гарады P2P ({0})</value>
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
+  <data name="Countries_P2P_Description">
+    <value>Бяспечна абагульвайце і спампоўвайце файлы праз аднарангавыя сеткі (P2P)</value>
+  </data>
   <data name="Countries_Page_Title">
     <value>Краіны</value>
   </data>
   <data name="Countries_SearchPlaceholder">
     <value>Я хачу выходзіць у інтэрнэт з...</value>
+  </data>
+  <data name="Countries_Section_Header">
+    <value>Падключэнні па VPN</value>
   </data>
   <data name="Countries_SecureCore">
     <value>Secure Core</value>
@@ -293,6 +503,9 @@
   <data name="Countries_SecureCoreServers">
     <value>Серверы Secure Core ({0})</value>
     <comment>{0} represents the number of severs</comment>
+  </data>
+  <data name="Countries_SecureCore_Description">
+    <value>Дадайце яшчэ адзін слой шыфравання ў сваё падключэнне па VPN.</value>
   </data>
   <data name="Countries_Server_One">
     <value>{0} сервер</value>
@@ -326,6 +539,9 @@
   <data name="Countries_TorServers">
     <value>Серверы Tor ({0})</value>
     <comment>{0} represents a number of tor servers in the country</comment>
+  </data>
+  <data name="Countries_Tor_Description">
+    <value>Выкарыстоўвайце сетку Tor праз ваша падключэнне да VPN для дадатковай прыватнасці.</value>
   </data>
   <data name="Countries_TryDifferentKeyword">
     <value>Паспрабуйце іншае ключавое слова</value>
@@ -1374,9 +1590,6 @@
   <data name="Dialogs_FreeConnections_Title">
     <value>Бясплатныя падключэнні</value>
   </data>
-  <data name="Dialogs_FreeConnections_WorlwideCoverageUpsell">
-    <value>Тарыфны план VPN Plus забяспечвае пакрыццё ўсяго свету</value>
-  </data>
   <data name="Dialogs_Latency_Description">
     <value>Затрымка паказвае, які час патрабуецца серверу для таго, каб адказаць на запыт.
 
@@ -1567,11 +1780,50 @@ Smart Routing звычайна выкарыстоўваюць для абыхо�
   <data name="Dialogs_Tor_Title">
     <value>Tor</value>
   </data>
+  <data name="Dialogs_Troubleshooting_Antivirus">
+    <value>Выключыце антывірус або міжсеткавы экран</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus_Description">
+    <value>Гэтыя праграмы могуць канфліктаваць з падключэннямі па VPN</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet">
+    <value>Праверце сваё падключэнне да інтэрнэту</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet_Description">
+    <value>Пераканайцеся, што вы падключаны да інтэрнэту і ваша падключэнне з'яўляецца стабільным</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Description">
+    <value>Гэтыя хуткія выпраўленні дапамогуць вам падключыцца да Proton.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DidNotWork">
+    <value>Не працуе?</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork">
+    <value>Скарыстацца іншай сеткай</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
+    <value>Паспрабуйце пераключыцца на сетку Wi-Fi або выкарыстоўвайце мабільныя даныя.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage">
+    <value>Праверце статус старонкі</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage_Description">
+    <value>Спачатку пераканайцеся, што сэрвісы Proton працуюць у звычайным рэжыме.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Title">
+    <value>Дапамога па падключэнні</value>
+  </data>
   <data name="Dialogs_Welcome_Message">
     <value>Мы рыхтуем для вас новы досвед з VPN. Гэта зойме ўсяго некалькі хвілін.</value>
   </data>
   <data name="Dialogs_Welcome_Title">
     <value>Вітаем у Proton VPN</value>
+  </data>
+  <data name="Exit_Confirmation_Message">
+    <value>Вы будзеце адключаны ад VPN.</value>
+  </data>
+  <data name="Exit_Confirmation_Title">
+    <value>Выйсці з Proton VPN?</value>
   </data>
   <data name="Format_Milliseconds">
     <value>{0} мс</value>
@@ -1659,7 +1911,7 @@ Smart Routing звычайна выкарыстоўваюць для абыхо�
   </data>
   <data name="Format_Time_HoursMinutesSeconds_Short">
     <value>hh\:mm\:ss</value>
-    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss -&gt; 01:05:36).</comment>
+    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
   <data name="Format_Time_Minutes">
     <value>{0} хв</value>
@@ -1671,11 +1923,26 @@ Smart Routing звычайна выкарыстоўваюць для абыхо�
   </data>
   <data name="Format_Time_MinutesSeconds_Short">
     <value>mm\:ss</value>
-    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss -&gt; 05:36).</comment>
+    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
   </data>
   <data name="Format_Time_Seconds">
     <value>{0} сек</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="FreeConnections_P2PUpsell">
+    <value>Спампоўвайце файлы праз BitTorrent і іншыя пратаколы абагульвання файлаў</value>
+  </data>
+  <data name="FreeConnections_SecureCoreUpsell">
+    <value>Дадайце яшчэ адзін слой шыфравання ў ваша падключэнне па VPN</value>
+  </data>
+  <data name="FreeConnections_TorUpsell">
+    <value>Выкарыстоўвайце сетку Tor праз ваша падключэнне да VPN для дадатковай прыватнасці</value>
+  </data>
+  <data name="FreeConnections_WorldwideCoverageUpsell">
+    <value>Тарыфны план VPN Plus забяспечвае пакрыццё ўсяго свету</value>
+  </data>
+  <data name="Gateways_Page_Description">
+    <value>Падключыцца да шлюза, каб атрымаць доступ да VPN у сваёй арганізацыі.</value>
   </data>
   <data name="Gateways_Page_Title">
     <value>Шлюзы</value>
@@ -1783,7 +2050,7 @@ Smart Routing звычайна выкарыстоўваюць для абыхо�
     <value>IP VPN</value>
   </data>
   <data name="Home_FreeConnections_About">
-    <value>Больш звестак пра бясплатныя падключэнні</value>
+    <value>Больш звестак аб бясплатных падключэннях</value>
   </data>
   <data name="Home_Help_Title">
     <value>Даведка</value>
@@ -1792,27 +2059,48 @@ Smart Routing звычайна выкарыстоўваюць для абыхо�
     <value>Карта</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
-  <data name="Home_NetShield_AdsBlocked">
-    <value>рэкламы
-заблакіравана</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  <data name="Home_NetShield_AdsBlocked_One">
+    <value>рэклама заблакіравана</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Few">
+    <value>рэкламы заблакіраваны</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Many">
+    <value>рэклам заблакіраваны</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Other">
+    <value>рэклам заблакіраваны</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Description">
+    <value>Рэклама і рэкламныя банеры або ўсплывальныя вокны, якія з'яўляецца на вэб-сайтах і ў праграмах.</value>
   </data>
   <data name="Home_NetShield_DataSaved">
-    <value>захавана
-даных</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+    <value>захавана даных</value>
+  </data>
+  <data name="Home_NetShield_DataSaved_Description">
+    <value>Прыблізная колькасць захаваных даных пры блакіраванні непажаданай рэкламы, праграм сачэння і шкодных праграм.</value>
   </data>
   <data name="Home_NetShield_Landmark">
     <value>Статыстка NetShield</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
-  <data name="Home_NetShield_TrackersStopped">
-    <value>праграм сачэння
-спынена</value>
-    <comment>Use 
- to introduce a line break. If there are more than two words, try to equilibrate both lines length</comment>
+  <data name="Home_NetShield_Title">
+    <value>Статыстка NetShield</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_One">
+    <value>праграма сачэння спынена</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Few">
+    <value>праграмы сачэння спынены</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Many">
+    <value>праграм сачэння спынены</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Other">
+    <value>праграм сачэння спынены</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Description">
+    <value>Праграмы сачэння - гэта файлы cookies і староннія вэб-сайты, якія збіраюць, захоўваюць і прадаюць інфармацыю аб вашай дзейнасці ў інтэрнэце.</value>
   </data>
   <data name="Home_Page_Title">
     <value>Галоўная</value>
@@ -2006,7 +2294,7 @@ Smart Routing звычайна выкарыстоўваюць для абыхо�
     <value>НОВАЯ</value>
   </data>
   <data name="Settings_About_Title">
-    <value>Пра праграму</value>
+    <value>Аб праграме</value>
   </data>
   <data name="Settings_About_TryAgain">
     <value>Паспрабаваць яшчэ раз</value>
@@ -2031,6 +2319,10 @@ Smart Routing звычайна выкарыстоўваюць для абыхо�
   </data>
   <data name="Settings_Censorship_ShareStatistics_Description">
     <value>Даныя аб выкарыстанні дапамагаюць нам пераадольваць блакіроўкі VPN і паляпшаць прадукцыйнасць праграмы.</value>
+  </data>
+  <data name="Settings_Common_Apply">
+    <value>Ужыць</value>
+    <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
   <data name="Settings_Common_ApplyAndReconnect">
     <value>Ужыць і перападключыцца</value>
@@ -2116,7 +2408,7 @@ Smart Routing звычайна выкарыстоўваюць для абыхо�
     <value>VPN Accelerator</value>
   </data>
   <data name="Settings_Features">
-    <value>Функцыі</value>
+    <value>Функцыі VPN</value>
   </data>
   <data name="Settings_Features_KillSwitch">
     <value>Kill Switch</value>
@@ -2275,7 +2567,7 @@ Smart Routing звычайна выкарыстоўваюць для абыхо�
     <value>Згарнуць у панэль задач</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Аўтазапуск, аўтападключэнне</value>
+    <value>Задаць праграму для запуску або аўтаматычнага падключэння</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>Аўтаматычныя абнаўленні</value>
@@ -2296,7 +2588,7 @@ Smart Routing звычайна выкарыстоўваюць для абыхо�
     <value>Апавяшчэнні</value>
   </data>
   <data name="Settings_General_Notifications_Description">
-    <value>Атрымлівайце апавяшчэнні пра бягучую актыўнасць Proton VPN</value>
+    <value>Атрымлівайце апавяшчэнні аб бягучай актыўнасці Proton VPN</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver">
     <value>Сеткавы драйвер OpenVPN</value>
@@ -2415,12 +2707,207 @@ Smart Routing звычайна выкарыстоўваюць для абыхо�
   <data name="Settings_VpnAccelerator_Description">
     <value>Павялічце хуткасць свайго падключэння да 400% дзякуючы тэхналогіям павышэння прадукцыйнасці.</value>
   </data>
+  <data name="SystemNotification_Connected">
+    <value>Вы абаронены</value>
+  </data>
+  <data name="SystemNotification_ConnectedTo">
+    <value>Падключана да {0}.</value>
+    <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
+  </data>
+  <data name="SystemNotification_Disconnected">
+    <value>Адключана</value>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>Выхад</value>
   </data>
   <data name="Tray_Actions_OpenApplication">
     <value>Адкрыць {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="UpsellBanner_NetShield_Description">
+    <value>Блакіроўка рэкламы, праграм сачэння і шкодных праграм на вэб-сайтах і ў праграмах</value>
+  </data>
+  <data name="UpsellBanner_NetShield_Title">
+    <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Description">
+    <value>Палепшыць свой тарыфны план, каб выбіраць любы сервер.</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Title">
+    <value>Не тая краіна, якую хацелі?</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings">
+    <value>Разблакіруйце пашыраныя налады VPN</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_DNS">
+    <value>Падключайцеся да VPN з вашым карыстальніцкім серверам даменных імён (DNS)</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_LAN">
+    <value>Атрымайце доступ да прылад у сваёй лакальнай сетцы (LAN) пасля падключэння</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
+    <value>Павысьце свой досвед у відэагульнях пераключыўся на NAT type 2 (умераны)</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices">
+    <value>Падключайце да 10 прылад адначасова</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms">
+    <value>Выкарыстоўвайце Proton VPN на іншых платформах</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
+    <value>Android і Android TV</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser">
+    <value>Браўзер</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Linux">
+    <value>Linux</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_MacOS">
+    <value>macOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Windows">
+    <value>Windows</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_iOS">
+    <value>iOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Privacy">
+    <value>Бяспека і прыватнасць на ўсіх вашых прыладах</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield">
+    <value>Атрымлівайце асалоду ад прагляду старонак у інтэрнэце без рэкламы</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Block">
+    <value>Блакіруйце рэкламу і праграмы сачэння з дапамогай Netshield</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Protection">
+    <value>Абараняйце сваю прыладу ад шкодных праграм</value>
+  </data>
+  <data name="Upsell_Carousel_P2P">
+    <value>Разблакіруйце аднарангавае спампоўванне і абагульванне файлаў (P2P)</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Discretion">
+    <value>Хавайце свой IP-адрас ад вашага пастаўшчыка паслуг інтэрнэту і аднарангавых вузлоў</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_PortForwarding">
+    <value>Узмоцненая хуткасць P2P з перанакіраваннем партоў</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Speed">
+    <value>Павялічаныя хуткасці запампоўвання і спампоўвання</value>
+  </data>
+  <data name="Upsell_Carousel_Platforms_More">
+    <value>+ яшчэ</value>
+    <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_SecureCore">
+    <value>Дадайце яшчэ адзін слой бяспекі ў сваё злучэнне</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Encryption">
+    <value>Падвойце сваё шыфраванне з Secure Core</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Protection">
+    <value>Абараніце сябе ад сеткавых атак</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Routing">
+    <value>Перанакіроўвайце трафік праз звышабароненыя серверы ў Швейцарыі, Швецыі і Ісландыі</value>
+  </data>
+  <data name="Upsell_Carousel_Speed">
+    <value>Карыстайцеся інтэрнэтам на самай высокай хуткасці (да 10 Гбіт/с)</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Acceleration">
+    <value>Павялічце хуткасць свайго падключэння да 400% з дапамогай VPN Accelerator</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Access">
+    <value>Карыстайцеся самымі хуткімі і найменш нагружанымі серверамі</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling">
+    <value>Атрымлівайце лепшае ад абодвух светаў</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Browsing">
+    <value>Прагляд сайтаў з двух размяшчэнняў адначасова з дапамогай функцыі Split Tunneling.</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Configuration">
+    <value>Дазваляе давераным праграмам і IP-адрасам падключацца наўпрост да інтэрнэту (без VPN). Пры гэтым увесь астатні трафік будзе праходзіць праз VPN.</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming">
+    <value>Глядзіце свае абраныя фільмы і тэлеперадачы</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Access">
+    <value>Атрымлівайце доступ да тэлеперадач і фільмаў, якія заблакіраваны па геаграфічнай прыкмеце з любога пункту ў свеце</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_BBC">
+    <value>BBC iPlayer</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Disney">
+    <value>Disney+</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_HBO">
+    <value>HBO Max</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Hulu">
+    <value>Hulu</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Netflix">
+    <value>Netflix</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_PrimeVideo">
+    <value>Amazon Prime Video</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Speed">
+    <value>Глядзіце змесціва 4K без буферызацый, запаволення або абмежавання хуткасці</value>
+  </data>
+  <data name="Upsell_Carousel_Title">
+    <value>Пазнаёмцеся з VPN Plus</value>
+  </data>
+  <data name="Upsell_Carousel_Tor">
+    <value>Доступ да сеткі Tor для дадатковай прыватнасці</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Access">
+    <value>Доступ да схаванай сеткі і сайтаў onion</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Browsing">
+    <value>Праглядайце сетку Tor выкарыстоўваючы звычайны браўзер</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Protection">
+    <value>Абараняйце свае асабістыя даныя падчас прагляду</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage">
+    <value>Доступ праз {0} у {1}</value>
+    <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Audit">
+    <value>Праверана незалежнымі экспертамі ў галіне бяспекі</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
+    <value>Абыходзьце цэнзуру з пашыранымі функцыямі бяспекі і прыватнасці</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
+    <value>{0} краіна</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Few">
+    <value>{0} краіны</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Many">
+    <value>{0} краін</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
+    <value>{0} краін</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
+    <value>VPN з адкрытым зыходным кодам</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
+    <value>{0} бяспечны сервер</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Few">
+    <value>{0} бяспечныя серверы</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Many">
+    <value>{0} бяспечных сервераў</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
+    <value>{0} бяспечных сервераў</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp">
     <value>OpenVPN (TCP)</value>
