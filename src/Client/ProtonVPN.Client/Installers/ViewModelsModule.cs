@@ -107,6 +107,7 @@ public class ViewModelsModule : Module
         RegisterViewModel<DebugLogsViewModel>(builder);
         RegisterViewModel<AdvancedSettingsViewModel>(builder);
         RegisterViewModel<VpnAcceleratorViewModel>(builder);
+        RegisterViewModel<DefaultConnectionViewModel>(builder);
         RegisterViewModel<ProtocolViewModel>(builder);
         RegisterViewModel<SplitTunnelingViewModel>(builder);
         RegisterViewModel<PortForwardingViewModel>(builder);

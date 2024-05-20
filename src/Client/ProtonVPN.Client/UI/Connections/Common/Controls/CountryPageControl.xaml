@@ -62,9 +62,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    Style="{StaticResource MainPageContentControlStyle}">
 
             <custom:PageContentControl.PageHeader>
-                <Grid ColumnDefinitions="Auto,*"
-                      ColumnSpacing="12"
-                      Margin="0,1,0,0">
+                <Grid ColumnSpacing="12"
+                      Margin="0,8,0,0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
                     <controls:CountryFlagControl Grid.Column="0"
                                                  Width="30"
                                                  Height="20"

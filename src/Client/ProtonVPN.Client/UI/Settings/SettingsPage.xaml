@@ -32,7 +32,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     
     <Page.Resources>
         <Style x:Key="SettingsSectionHeaderTextBlockStyle" BasedOn="{StaticResource BodyStrongTextBlockStyle}" TargetType="TextBlock">
-            <Setter Property="Margin" Value="2,21,0,11" />
+            <Setter Property="Margin" Value="2,20,0,12" />
             <Setter Property="AutomationProperties.HeadingLevel" Value="Level2" />
         </Style>
     </Page.Resources>
@@ -46,9 +46,25 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <StackPanel x:Name="ContentArea">
 
-            <TextBlock Margin="2,7,0,11"
+            <TextBlock Margin="2,8,0,12"
                        Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection')}" />
+
+            <toolkit:SettingsCard AutomationProperties.AutomationId="DefaultConnectionSettingsCard"
+                                  Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
+                                  CommandParameter="ProtonVPN.Client.UI.Settings.Pages.DefaultConnectionViewModel"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default')}"
+                                  IsClickEnabled="True"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                <toolkit:SettingsCard.HeaderIcon>
+                    <pathicons:Bookmark />
+                </toolkit:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.ActionIcon>
+                    <pathicons:ChevronRight />
+                </toolkit:SettingsCard.ActionIcon>
+                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                           Text="{x:Bind ViewModel.DefaultConnectionState}" />
+            </toolkit:SettingsCard>
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="ProtocolSettingsCard"
                                   Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"

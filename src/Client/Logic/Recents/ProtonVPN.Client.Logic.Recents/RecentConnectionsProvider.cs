@@ -31,6 +31,7 @@ using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
@@ -87,6 +88,20 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider,
         return mostRecentConnection == null || mostRecentConnection.IsServerUnderMaintenance 
             ? null 
             : mostRecentConnection;
+    }
+
+    public IConnectionIntent GetDefaultConnection()
+    {
+        if (!_settings.VpnPlan.IsPaid)
+        {
+            return ConnectionIntent.FreeDefault;
+        }
+
+        return _settings.DefaultConnection switch
+        {
+            DefaultConnection.Last => GetMostRecentConnection()?.ConnectionIntent ?? ConnectionIntent.Default,
+            _ => ConnectionIntent.Default
+        };
     }
 
     public void OverrideRecentConnections(List<IConnectionIntent> connectionIntents, IConnectionIntent? mostRecentConnectionIntent = null)

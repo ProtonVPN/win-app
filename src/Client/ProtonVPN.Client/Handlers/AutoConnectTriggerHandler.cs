@@ -27,7 +27,6 @@ using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Enums;
 
 namespace ProtonVPN.Client.Handlers;
 
@@ -105,22 +104,8 @@ public class AutoConnectTriggerHandler : IHandler,
 
     private async Task AutoConnectAsync()
     {
-        if (_settings.VpnPlan.IsPaid)
-        {
-            switch (_settings.AutoConnectMode)
-            {
-                case AutoConnectMode.LatestConnection:
-                    await _connectionManager.ConnectAsync(_recentConnectionsProvider.GetMostRecentConnection()?.ConnectionIntent);
-                    break;
+        IConnectionIntent defaultConnectionIntent = _recentConnectionsProvider.GetDefaultConnection();
 
-                case AutoConnectMode.FastestConnection:
-                    await _connectionManager.ConnectAsync(ConnectionIntent.Default);
-                    break;
-            }
-        }
-        else
-        {
-            await _connectionManager.ConnectAsync(ConnectionIntent.FreeDefault);
-        }
+        await _connectionManager.ConnectAsync(defaultConnectionIntent);
     }
 }

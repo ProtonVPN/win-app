@@ -143,7 +143,6 @@ public class UserSettingsMigrator : IUserSettingsMigrator
         MigrateConnectionKeyPair(userSettings);
         MigrateConnectionCertificate(userSettings);
 
-        MigrateAutoConnectMode(userSettings);
         MigrateBoolUserSetting(userSettings, nameof(IUserSettings.IsAutoConnectEnabled), val => { _settings.IsAutoConnectEnabled = val; });
 
         MigrateNatType(userSettings);
@@ -238,18 +237,6 @@ public class UserSettingsMigrator : IUserSettingsMigrator
             catch
             {
             }
-        }
-    }
-
-    private void MigrateAutoConnectMode(Dictionary<string, string?> userSettings)
-    {
-        if (userSettings.TryGetValue(nameof(IUserSettings.AutoConnectMode), out string? rawSettingValue) && rawSettingValue is not null)
-        {
-            _settings.AutoConnectMode = rawSettingValue switch
-            {
-                "Fastest" => AutoConnectMode.FastestConnection,
-                _ => AutoConnectMode.LatestConnection,
-            };
         }
     }
 

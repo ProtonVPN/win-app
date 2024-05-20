@@ -100,7 +100,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <ItemsRepeater x:Name="PART_ItemsRepeater"
                                                Grid.Row="1"
                                                ItemTemplate="{TemplateBinding ItemTemplate}"
-                                               TabFocusNavigation="Local">
+                                               TabFocusNavigation="Local"> 
                                     <ItemsRepeater.Layout>
                                         <StackLayout Orientation="Vertical" />
                                     </ItemsRepeater.Layout>
@@ -125,7 +125,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="MinHeight" Value="{StaticResource ExpanderMinHeight}" />
         <Setter Property="Padding" Value="16" />
         <Setter Property="IsTabStop" Value="False" />
-        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="CornerRadius" Value="0,0,4,4" />
         <Setter Property="Template">

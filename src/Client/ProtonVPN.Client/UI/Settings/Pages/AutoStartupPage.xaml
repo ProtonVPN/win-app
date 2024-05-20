@@ -33,17 +33,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Style x:Key="AutoLaunchRadioButtonStyle" BasedOn="{StaticResource RadioButtonStyle}" TargetType="RadioButton">
             <Setter Property="GroupName" Value="AutoLaunchSetting" />
         </Style>
-        <Style x:Key="AutoConnectRadioButtonStyle" BasedOn="{StaticResource RadioButtonStyle}" TargetType="RadioButton">
-            <Setter Property="GroupName" Value="AutoConnectSetting" />
-        </Style>
     </Page.Resources>
 
     <custom:SettingsPageContentControl x:Name="PageContentHost"
+                                       ApplyCommand="{x:Bind ViewModel.ApplyCommand, Mode=OneTime}"
+                                       ApplyCommandText="{x:Bind ViewModel.ApplyCommandText}"
                                        BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
                                        IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
                                        IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
-                                       ApplyCommand="{x:Bind ViewModel.ApplyCommand, Mode=OneTime}"
-                                       ApplyCommandText="{x:Bind ViewModel.ApplyCommandText}"
                                        PageHeader="{x:Bind ViewModel.Title}">
 
         <StackPanel x:Name="ContentArea">
@@ -61,30 +58,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <RadioButton Content="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoLaunch_Desktop')}"
                                      IsChecked="{x:Bind ViewModel.IsAutoLaunchOpenOnDesktop, Mode=TwoWay}"
                                      Style="{StaticResource AutoLaunchRadioButtonStyle}" />
-                        <!-- <RadioButton Content="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoLaunch_Taskbar')}" -->
-                        <!--              IsChecked="{x:Bind ViewModel.IsAutoLaunchMinimizeToTaskbar, Mode=TwoWay}" -->
-                        <!--              Style="{StaticResource AutoLaunchRadioButtonStyle}" /> -->
+                        <!--  <RadioButton Content="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoLaunch_Taskbar')}"  -->
+                        <!--  IsChecked="{x:Bind ViewModel.IsAutoLaunchMinimizeToTaskbar, Mode=TwoWay}"  -->
+                        <!--  Style="{StaticResource AutoLaunchRadioButtonStyle}" />  -->
                     </StackPanel>
                 </toolkit:SettingsExpander.Items>
             </toolkit:SettingsExpander>
 
-            <toolkit:SettingsExpander Description="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoConnect_Description')}"
-                                      Header="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoConnect')}"
-                                      IsExpanded="{x:Bind ViewModel.IsAutoConnectCardExpanded}">
+            <toolkit:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoConnect_Description')}"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoConnect')}"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsAutoConnectEnabled, Mode=TwoWay}"
                               Style="{StaticResource ToggleSwitchStyle}" />
-                <toolkit:SettingsExpander.Items>
-                    <StackPanel Spacing="16"
-                                Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <RadioButton Content="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoConnect_Latest')}"
-                                     IsChecked="{x:Bind ViewModel.IsAutoConnectLatestConnection, Mode=TwoWay}"
-                                     Style="{StaticResource AutoConnectRadioButtonStyle}" />
-                        <RadioButton Content="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoConnect_Fastest')}"
-                                     IsChecked="{x:Bind ViewModel.IsAutoConnectFastestConnection, Mode=TwoWay}"
-                                     Style="{StaticResource AutoConnectRadioButtonStyle}" />
-                    </StackPanel>
-                </toolkit:SettingsExpander.Items>
-            </toolkit:SettingsExpander>
+            </toolkit:SettingsCard>
+
         </StackPanel>
     </custom:SettingsPageContentControl>
 </Page>

@@ -20,11 +20,8 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Common.Attributes;
 using ProtonVPN.Client.Contracts.ViewModels;
-using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Settings.Contracts;
@@ -35,9 +32,7 @@ using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public partial class AutoStartupViewModel : SettingsPageViewModelBase,
-    IEventMessageReceiver<VpnPlanChangedMessage>,
-    IEventMessageReceiver<LoggedInMessage>
+public partial class AutoStartupViewModel : SettingsPageViewModelBase
 {
     [ObservableProperty]
     private bool _isAutoLaunchEnabled;
@@ -50,20 +45,7 @@ public partial class AutoStartupViewModel : SettingsPageViewModelBase,
     private AutoLaunchMode _currentAutoLaunchMode;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(IsAutoConnectCardExpanded))]
     private bool _isAutoConnectEnabled;
-
-    public bool IsAutoConnectCardExpanded => IsPaidUser && IsAutoConnectEnabled;
-
-    [ObservableProperty]
-    [property: SettingName(nameof(ISettings.AutoConnectMode))]
-    [NotifyPropertyChangedFor(nameof(IsAutoConnectFastestConnection))]
-    [NotifyPropertyChangedFor(nameof(IsAutoConnectLatestConnection))]
-    private AutoConnectMode _currentAutoConnectMode;
-
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(IsAutoConnectCardExpanded))]
-    private bool _isPaidUser;
 
     public bool IsAutoLaunchOpenOnDesktop
     {
@@ -81,18 +63,6 @@ public partial class AutoStartupViewModel : SettingsPageViewModelBase,
     {
         get => IsAutoLaunchMode(AutoLaunchMode.MinimizeToTaskbar);
         set => SetAutoLaunchMode(value, AutoLaunchMode.MinimizeToTaskbar);
-    }
-
-    public bool IsAutoConnectFastestConnection
-    {
-        get => IsAutoConnectMode(AutoConnectMode.FastestConnection);
-        set => SetAutoConnectMode(value, AutoConnectMode.FastestConnection);
-    }
-
-    public bool IsAutoConnectLatestConnection
-    {
-        get => IsAutoConnectMode(AutoConnectMode.LatestConnection);
-        set => SetAutoConnectMode(value, AutoConnectMode.LatestConnection);
     }
 
     public override string Title => Localizer.Get("Settings_General_AutoStartup");
@@ -114,16 +84,13 @@ public partial class AutoStartupViewModel : SettingsPageViewModelBase,
             connectionManager,
             logger,
             issueReporter)
-    {
-        InvalidateIsPaidUser();
-    }
+    { }
 
     protected override void SaveSettings()
     {
         Settings.IsAutoLaunchEnabled = IsAutoLaunchEnabled;
         Settings.AutoLaunchMode = CurrentAutoLaunchMode;
         Settings.IsAutoConnectEnabled = IsAutoConnectEnabled;
-        Settings.AutoConnectMode = CurrentAutoConnectMode;
     }
 
     protected override void RetrieveSettings()
@@ -131,7 +98,6 @@ public partial class AutoStartupViewModel : SettingsPageViewModelBase,
         IsAutoLaunchEnabled = Settings.IsAutoLaunchEnabled;
         CurrentAutoLaunchMode = Settings.AutoLaunchMode;
         IsAutoConnectEnabled = Settings.IsAutoConnectEnabled;
-        CurrentAutoConnectMode = Settings.AutoConnectMode;
     }
 
     protected override IEnumerable<ChangedSettingArgs> GetSettings()
@@ -139,12 +105,6 @@ public partial class AutoStartupViewModel : SettingsPageViewModelBase,
         yield return new(nameof(ISettings.IsAutoLaunchEnabled), IsAutoLaunchEnabled, Settings.IsAutoLaunchEnabled != IsAutoLaunchEnabled);
         yield return new(nameof(ISettings.AutoLaunchMode), CurrentAutoLaunchMode, Settings.AutoLaunchMode != CurrentAutoLaunchMode);
         yield return new(nameof(ISettings.IsAutoConnectEnabled), IsAutoConnectEnabled, Settings.IsAutoConnectEnabled != IsAutoConnectEnabled);
-        yield return new(nameof(ISettings.AutoConnectMode), CurrentAutoConnectMode, Settings.AutoConnectMode != CurrentAutoConnectMode);
-    }
-
-    private void InvalidateIsPaidUser()
-    {
-        IsPaidUser = Settings.VpnPlan.IsPaid;
     }
 
     private bool IsAutoLaunchMode(AutoLaunchMode autoLaunchMode)
@@ -158,28 +118,5 @@ public partial class AutoStartupViewModel : SettingsPageViewModelBase,
         {
             CurrentAutoLaunchMode = autoLaunchMode;
         }
-    }
-
-    private bool IsAutoConnectMode(AutoConnectMode autoConnectMode)
-    {
-        return CurrentAutoConnectMode == autoConnectMode;
-    }
-
-    private void SetAutoConnectMode(bool value, AutoConnectMode autoConnectMode)
-    {
-        if (value)
-        {
-            CurrentAutoConnectMode = autoConnectMode;
-        }
-    }
-
-    public void Receive(VpnPlanChangedMessage message)
-    {
-        ExecuteOnUIThread(InvalidateIsPaidUser);
-    }
-
-    public void Receive(LoggedInMessage message)
-    {
-        ExecuteOnUIThread(InvalidateIsPaidUser);
     }
 }

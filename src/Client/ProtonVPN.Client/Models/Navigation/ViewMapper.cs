@@ -134,6 +134,7 @@ public class ViewMapper : IViewMapper
         ConfigurePage<KillSwitchViewModel, KillSwitchPage>();
         ConfigurePage<PortForwardingViewModel, PortForwardingPage>();
         ConfigurePage<SplitTunnelingViewModel, SplitTunnelingPage>();
+        ConfigurePage<DefaultConnectionViewModel, DefaultConnectionPage>();
         ConfigurePage<ProtocolViewModel, ProtocolPage>();
         ConfigurePage<VpnAcceleratorViewModel, VpnAcceleratorPage>();
         ConfigurePage<AdvancedSettingsViewModel, AdvancedSettingsPage>();

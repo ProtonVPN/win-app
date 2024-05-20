@@ -20,17 +20,22 @@
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Home.ConnectionCard;
 
 public class ConnectionCardViewModel : ConnectionCardViewModelBase,
-    IEventMessageReceiver<RecentConnectionsChanged>
+    IEventMessageReceiver<RecentConnectionsChanged>,
+    IEventMessageReceiver<SettingChangedMessage>
 {
     private readonly IRecentConnectionsProvider _recentConnectionsProvider;
+    private readonly ISettings _settings;
 
     public ConnectionCardViewModel(
         IConnectionManager connectionManager,
@@ -38,10 +43,12 @@ public class ConnectionCardViewModel : ConnectionCardViewModelBase,
         ILocalizationProvider localizationProvider,
         ILogger logger,
         IIssueReporter issueReporter,
+        ISettings settings,
         HomeViewModel homeViewModel)
         : base(connectionManager, localizationProvider, logger, issueReporter, homeViewModel)
     {
         _recentConnectionsProvider = recentConnectionsProvider;
+        _settings = settings;
 
         InvalidateCurrentConnectionStatus();
     }
@@ -49,6 +56,14 @@ public class ConnectionCardViewModel : ConnectionCardViewModelBase,
     public void Receive(RecentConnectionsChanged message)
     {
         ExecuteOnUIThread(InvalidateCurrentConnectionIntent);
+    }
+
+    public void Receive(SettingChangedMessage message)
+    {
+        if (message.PropertyName == nameof(ISettings.DefaultConnection))
+        {
+            ExecuteOnUIThread(InvalidateCurrentConnectionIntent);
+        }
     }
 
     protected override void InvalidateCurrentConnectionStatus()
@@ -59,8 +74,10 @@ public class ConnectionCardViewModel : ConnectionCardViewModelBase,
 
     private void InvalidateCurrentConnectionIntent()
     {
-        CurrentConnectionIntent = ConnectionManager.IsDisconnected || ConnectionManager.CurrentConnectionIntent == null
-            ? _recentConnectionsProvider.GetMostRecentConnection()?.ConnectionIntent
-            : ConnectionManager.CurrentConnectionIntent;
+        IConnectionIntent? currentConnectionIntent = ConnectionManager.CurrentConnectionIntent;
+
+        CurrentConnectionIntent = ConnectionManager.IsDisconnected || currentConnectionIntent == null
+            ? _recentConnectionsProvider.GetDefaultConnection()
+            : currentConnectionIntent;
     }
 }

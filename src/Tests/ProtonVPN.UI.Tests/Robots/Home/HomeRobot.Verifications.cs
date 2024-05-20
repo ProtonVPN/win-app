@@ -29,8 +29,7 @@ public partial class HomeRobot
     private const string CONNECTING_STATUS_SUBTITLE = "Protecting your digital identity";
     private const string PROTECTED_STATUS_TITLE = "Protected";
 
-    private const string CONNECTION_CARD_DEFAULT_HEADER = "Recommended";
-    private const string CONNECTION_CARD_DISCONNECTED_HEADER = "Last connected to";
+    private const string CONNECTION_CARD_DISCONNECTED_HEADER = "Default connection";
     private const string CONNECTION_CARD_CONNECTING_HEADER = "Connecting to...";
     private const string CONNECTION_CARD_CONNECTED_HEADER = "Browsing safely from";
     private const string CONNECTION_CARD_DEFAULT_FREE_HEADER = "Free connection";
@@ -69,7 +68,7 @@ public partial class HomeRobot
 
     public HomeRobot VerifyConnectionCardIsInInitalState()
     {
-        VerifyConnectionCardLabels(CONNECTION_CARD_DEFAULT_HEADER, CONNECTION_CARD_DEFAULT_TITLE);
+        VerifyConnectionCardLabels(CONNECTION_CARD_DISCONNECTED_HEADER, CONNECTION_CARD_DEFAULT_TITLE);
         Assert.IsNotNull(ConnectionCardConnectButton);
 
         return this;
@@ -167,14 +166,13 @@ public partial class HomeRobot
 
     public HomeRobot VerifyCountryIsInRecentsList(string country)
     {
-        Assert.IsNotNull(GetRecentsCountry(country));
+        Assert.IsNotNull(GetRecentRow(country));
         return this;
     }
 
-    public HomeRobot VerifyRecentsDoesNotExist(string country)
+    public HomeRobot VerifyRecentsDoesNotExist()
     {
         Assert.IsNull(Window.FindFirstDescendant(cf => cf.ByName("Recents")));
-        Assert.IsNull(Window.FindFirstDescendant(cf => cf.ByName($"{country} ")));
         return this;
     }
 

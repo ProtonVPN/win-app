@@ -68,6 +68,7 @@ public static class DefaultSettings
     public static List<FeatureFlag> FeatureFlags = new();
     public static bool IsFeatureConnectedServerCheckEnabled = true;
     public static TimeSpan ConnectedServerCheckInterval = TimeSpan.FromMinutes(30);
+    public static DefaultConnection DefaultConnection = DefaultConnection.Fastest;
 
     public static ChangeServerSettings ChangeServerSettings = new()
     {
@@ -81,11 +82,6 @@ public static class DefaultSettings
         LastAttemptUtcDate = DateTimeOffset.MinValue,
         AttemptsCount = 0
     };
-
-    public static AutoConnectMode GetAutoConnectMode(bool isPaidUser)
-    {
-        return isPaidUser ? AutoConnectMode.LatestConnection : AutoConnectMode.FastestConnection;
-    }
 
     public static bool IsNetShieldEnabled(bool isPaidUser)
     {

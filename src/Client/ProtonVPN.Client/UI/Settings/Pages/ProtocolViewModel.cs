@@ -85,11 +85,11 @@ public partial class ProtocolViewModel : SettingsPageViewModelBase
         IUrls urls,
         ILogger logger,
         IIssueReporter issueReporter)
-        : base(viewNavigator, 
-               localizationProvider, 
-               overlayActivator, 
-               settings, 
-               settingsConflictResolver, 
+        : base(viewNavigator,
+               localizationProvider,
+               overlayActivator,
+               settings,
+               settingsConflictResolver,
                connectionManager,
                logger,
                issueReporter)

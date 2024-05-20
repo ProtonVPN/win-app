@@ -181,20 +181,6 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
-    public AutoConnectMode AutoConnectMode
-    {
-        get
-        {
-            if (VpnPlan.IsPaid)
-            {
-                return _userCache.GetValueType<AutoConnectMode>(SettingEncryption.Unencrypted) ?? DefaultSettings.GetAutoConnectMode(true);
-            }
-
-            return DefaultSettings.GetAutoConnectMode(false);
-        }
-        set => _userCache.SetValueType<AutoConnectMode>(value, SettingEncryption.Unencrypted);
-    }
-
     public bool IsNetShieldEnabled
     {
         get
@@ -273,6 +259,20 @@ public class UserSettings : GlobalSettings, IUserSettings
     {
         get => _userCache.GetValueType<ChangeServerAttempts>(SettingEncryption.Encrypted) ?? DefaultSettings.ChangeServerAttempts;
         set => _userCache.SetValueType<ChangeServerAttempts>(value, SettingEncryption.Encrypted);
+    }
+
+    public DefaultConnection DefaultConnection
+    {
+        get
+        {
+            if (VpnPlan.IsPaid)
+            {
+                return _userCache.GetValueType<DefaultConnection>(SettingEncryption.Unencrypted) ?? DefaultSettings.DefaultConnection;
+            }
+
+            return DefaultSettings.DefaultConnection;
+        }
+        set => _userCache.SetValueType<DefaultConnection>(value, SettingEncryption.Unencrypted);
     }
 
     public UserSettings(IGlobalSettingsCache globalSettingsCache, IUserSettingsCache userSettingsCache)

@@ -37,7 +37,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <DataTemplate x:Key="RecentItemTemplate"
                       x:DataType="recents:RecentItemViewModel">
 
-            <custom:DualCommandsRow AutomationProperties.FullDescription="{x:Bind FullTitle}"
+            <custom:DualCommandsRow AutomationProperties.Name="{x:Bind FullTitle}"
+                                    AutomationProperties.FullDescription="{x:Bind FullTitle}"
                                     IsContentEnabled="{x:Bind IsServerAvailable}"
                                     PrimaryCommand="{x:Bind ToggleConnectionCommand}"
                                     PrimaryCommandAutomationName="{x:Bind PrimaryCommandDescription}"

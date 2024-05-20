@@ -28,6 +28,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Icons;
@@ -111,9 +112,9 @@ public partial class TrayIconViewModel :
     [RelayCommand(CanExecute = nameof(CanConnect))]
     public async Task ConnectAsync()
     {
-        IRecentConnection? mostRecentConnection = _recentConnectionsProvider.GetMostRecentConnection();
+        IConnectionIntent defaultConnectionIntent = _recentConnectionsProvider.GetDefaultConnection();
 
-        await _connectionManager.ConnectAsync(mostRecentConnection?.ConnectionIntent);
+        await _connectionManager.ConnectAsync(defaultConnectionIntent);
     }
 
     [RelayCommand(CanExecute = nameof(CanDisconnect))]

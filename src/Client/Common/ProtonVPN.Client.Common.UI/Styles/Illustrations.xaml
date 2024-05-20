@@ -30,6 +30,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             RasterizePixelWidth="173" RasterizePixelHeight="45"/>
             <SvgImageSource x:Key="VpnPlusIllustrationSource"
                             UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/vpn-plus.svg" />
+            <SvgImageSource x:Key="DefaultConnectionIllustrationSource"
+                            UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/default-connection.svg" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="Dark">
             <BitmapImage x:Key="WelcomeIllustrationSource"
@@ -39,6 +41,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             RasterizePixelWidth="173" RasterizePixelHeight="45"/>
             <SvgImageSource x:Key="VpnPlusIllustrationSource"
                             UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Dark/vpn-plus.svg" />
+            <SvgImageSource x:Key="DefaultConnectionIllustrationSource"
+                            UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Dark/default-connection.svg" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 

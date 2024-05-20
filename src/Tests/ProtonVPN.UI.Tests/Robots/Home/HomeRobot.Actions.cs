@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using FlaUI.Core.AutomationElements;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots.Home;
@@ -104,7 +105,8 @@ public partial class HomeRobot
 
     public HomeRobot DoClickOnRecentCountry(string country)
     {
-        PrimaryActionButton.Click();
+        Button recentRowPrimaryButton = GetRecentRowPrimaryActionButton(country);
+        recentRowPrimaryButton.Click();
         return this;
     }
 
@@ -116,8 +118,8 @@ public partial class HomeRobot
 
     public HomeRobot RemoveRecent(string country)
     {
-        MoveMouseToElement(PrimaryActionButton);
-        SecondaryActionButton.Click();
+        Button recentRowSecondaryButton = GetRecentRowSecondaryActionButton(country);
+        recentRowSecondaryButton.Click();
         RemoveButton.Click();
         return this;
     }
