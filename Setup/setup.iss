@@ -140,9 +140,6 @@ Name: "{commondesktop}\Proton VPN"; Filename: "{app}\{#LauncherExeName}"; Tasks:
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; 
 Name: "installProtonDrive"; Description: "{cm:InstallProtonDriveTitle}"; Check: ShouldDisplayProtonDriveCheckbox;
 
-[Run]
-Filename: "{app}\{#VersionFolder}\{#ProtonDriveDownloaderName}"; Parameters: "{code:GetDriveInstallPath}"; Tasks: installProtonDrive; Flags: postinstall nowait runascurrentuser skipifsilent;
-
 [Languages]
 Name: "en_US"; MessagesFile: "compiler:Default.isl,Strings\Default.isl"
 Name: "cs_CZ"; MessagesFile: "compiler:Languages\Czech.isl,Strings\Czech.isl"
@@ -212,6 +209,9 @@ external 'InstallCalloutDriver@files:ProtonVPN.InstallActions.x86.dll cdecl dela
 
 function UninstallService(name: String): Integer;
 external 'UninstallService@{%TEMP}\ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
+
+function LaunchUnelevatedProcess(processPath: String): Integer;
+external 'LaunchUnelevatedProcess@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
 
 function lstrlenW(lpString: Cardinal): Cardinal;
 external 'lstrlenW@kernel32.dll stdcall';
@@ -456,6 +456,9 @@ begin
       end;
       if IsVerySilent = false then begin
         ExecAsOriginalUser(ExpandConstant('{app}\{#LauncherExeName}'), launcherArgs, '', SW_SHOW, ewNoWait, res);
+        if WizardIsTaskSelected('installProtonDrive') then begin
+          LaunchUnelevatedProcess(ExpandConstant('{app}\{#VersionFolder}\{#ProtonDriveDownloaderName}'));
+        end;
       end;
     end;
   end

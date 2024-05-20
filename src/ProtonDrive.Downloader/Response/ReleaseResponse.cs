@@ -23,6 +23,7 @@ namespace ProtonDrive.Downloader.Response
     {
         public string CategoryName { get; set; }
         public string Version { get; set; }
+        public double RolloutRatio { get; set; }
         public FileResponse File { get; set; }
     }
 }

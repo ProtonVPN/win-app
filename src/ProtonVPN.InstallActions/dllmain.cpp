@@ -175,3 +175,8 @@ extern "C" EXPORT DWORD RemovePinnedIcons(const wchar_t* shortcut_path)
     Os::RemovePinnedIcons(shortcut_path);
     return 0;
 }
+
+extern "C" EXPORT DWORD LaunchUnelevatedProcess(const wchar_t* processPath)
+{
+    return Os::LaunchUnelevatedProcess(processPath).exitCode;
+}

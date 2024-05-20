@@ -58,9 +58,9 @@ namespace ProtonDrive.Downloader
                     if (File.Exists(pathToSave))
                     {
                         string hash = GetSHA512(pathToSave);
-                        if (hash == release.File.Sha512CheckSum)
+                        if (hash == release.File.Sha512Checksum)
                         {
-                            StartProcess(pathToSave, GetCommandLineArgs());
+                            StartProcess(pathToSave, release.File.SilentArguments);
                         }
                         else
                         {
@@ -77,18 +77,6 @@ namespace ProtonDrive.Downloader
             Close();
         }
 
-        private string GetCommandLineArgs()
-        {
-            string result = "/qn";
-            string installPath = GetInstallPath();
-            if (!string.IsNullOrEmpty(installPath))
-            {
-                result += $" APPDIR=\"{installPath}\"";
-            }
-
-            return result;
-        }
-
         private string GetPathToSave(ReleaseResponse release)
         {
             Uri fileUri = new(release.File.Url);
@@ -101,7 +89,9 @@ namespace ProtonDrive.Downloader
             string body = await response.Content.ReadAsStringAsync();
             ReleasesResponse releasesResponse = JsonConvert.DeserializeObject<ReleasesResponse>(body);
 
-            return releasesResponse?.Releases.Where(r => r.CategoryName == "Stable").MaxBy(GetVersion);
+            return releasesResponse?.Releases
+                .Where(r => r.CategoryName == "Stable" && r.RolloutRatio >= 1.0)
+                .MaxBy(GetVersion);
         }
 
         private Version GetVersion(ReleaseResponse response)
@@ -165,12 +155,6 @@ namespace ProtonDrive.Downloader
             };
 
             process.Start();
-        }
-
-        private string GetInstallPath()
-        {
-            string[] args = Environment.GetCommandLineArgs();
-            return args.Length >= 1 ? args[1] : string.Empty;
         }
 
         private string GetUserAgent()

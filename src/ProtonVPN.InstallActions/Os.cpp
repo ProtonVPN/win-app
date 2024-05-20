@@ -300,3 +300,68 @@ void Os::RemovePinnedIcons(PCWSTR shortcut_path)
 
     CoUninitialize();
 }
+
+// https://devblogs.microsoft.com/oldnewthing/20190425-00/?p=102443
+ProcessExecutionResult Os::LaunchUnelevatedProcess(const wchar_t* processPath)
+{
+    DWORD pid;
+    GetWindowThreadProcessId(GetShellWindow(), &pid);
+    HANDLE process = OpenProcess(PROCESS_CREATE_PROCESS, FALSE, pid);
+
+    SIZE_T size;
+    InitializeProcThreadAttributeList(nullptr, 1, 0, &size);
+    PPROC_THREAD_ATTRIBUTE_LIST p = reinterpret_cast<PPROC_THREAD_ATTRIBUTE_LIST>(new char[size]);
+
+    if (!InitializeProcThreadAttributeList(p, 1, 0, &size))
+    {
+        delete[] reinterpret_cast<char*>(p);
+        CloseHandle(process);
+
+        return ProcessExecutionResult::Failure(GetLastError());
+    }
+
+    if (!UpdateProcThreadAttribute(p,
+        0,
+        PROC_THREAD_ATTRIBUTE_PARENT_PROCESS,
+        &process,
+        sizeof(process),
+        nullptr,
+        nullptr))
+    {
+        delete[] reinterpret_cast<char*>(p);
+        CloseHandle(process);
+
+        return ProcessExecutionResult::Failure(GetLastError());
+    }
+
+    STARTUPINFOEX startupInfo = {};
+    startupInfo.lpAttributeList = p;
+    startupInfo.StartupInfo.cb = sizeof(startupInfo);
+    PROCESS_INFORMATION pi;
+
+    if (!CreateProcess(processPath,
+        wstring(processPath).data(),
+        nullptr,
+        nullptr,
+        FALSE,
+        CREATE_NEW_CONSOLE | EXTENDED_STARTUPINFO_PRESENT,
+        nullptr,
+        nullptr,
+        &startupInfo.StartupInfo,
+        &pi))
+    {
+        CloseHandle(pi.hProcess);
+        CloseHandle(pi.hThread);
+        delete[] reinterpret_cast<char*>(p);
+        CloseHandle(process);
+
+        return ProcessExecutionResult::Failure(GetLastError());
+    }
+
+    CloseHandle(pi.hProcess);
+    CloseHandle(pi.hThread);
+    delete[] reinterpret_cast<char*>(p);
+    CloseHandle(process);
+
+    return { {}, 0 };
+}
