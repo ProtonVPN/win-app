@@ -18,9 +18,13 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Extensions.Localization;
 using ProtonVPN.Client.Localization.Building;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Common.Core.Extensions;
 using ReswPlusLib;
 using WinUI3Localizer;
 
@@ -28,19 +32,39 @@ namespace ProtonVPN.Client.Localization;
 
 public class LocalizationProvider : ILocalizationProvider
 {
+    private readonly ISettings _settings;
     private readonly ILocalizer _localizer;
     private readonly IStringLocalizer _stringLocalizer;
+    private readonly Lazy<Dictionary<string, string>> _fallbackLanguageDictionary;
 
-    public LocalizationProvider(ILocalizerFactory localizerFactory)
+    public LocalizationProvider(ISettings settings, ILocalizerFactory localizerFactory)
     {
+        _settings = settings;
         _localizer = localizerFactory.GetOrCreate();
         _stringLocalizer = new StringLocalizer(this);
+
+        _fallbackLanguageDictionary = new Lazy<Dictionary<string, string>>(CreateFallbackLanguageDictionary);
+    }
+
+    // Only sets the fallback dictionary on Release so that missing translations are easier to detect when on Debug 
+    private Dictionary<string, string> CreateFallbackLanguageDictionary()
+    {
+        return _settings.IsDebugModeEnabled
+            ? new()
+            : _localizer.GetLanguageDictionaries()
+                .FirstOrDefault(ld => ld.Language.EqualsIgnoringCase(LocalizerFactory.DEFAULT_LANGUAGE))?
+                .GetItems()
+                .ToDictionary(i => i.Uid, i => i.Value) ?? new();
     }
 
     public string Get(string resourceKey)
     {
-        return _localizer.GetLocalizedString(resourceKey)
-            .Replace("\\n", Environment.NewLine);
+        string result = _localizer.GetLocalizedString(resourceKey);
+        if (result == resourceKey && _fallbackLanguageDictionary.Value.TryGetValue(resourceKey, out string value))
+        {
+            result = value;
+        }
+        return result.Replace("\\n", Environment.NewLine);
     }
 
     public string GetFormat(string resourceKey, object arg0)
