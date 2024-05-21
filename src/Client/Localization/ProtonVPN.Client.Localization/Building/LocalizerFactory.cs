@@ -29,6 +29,8 @@ namespace ProtonVPN.Client.Localization.Building;
 
 public class LocalizerFactory : ILocalizerFactory
 {
+    public const string DEFAULT_LANGUAGE = "en-US";
+
     private readonly SemaphoreSlim _semaphore = new(1, 1);
     private ILocalizer _localizer;
 
@@ -78,7 +80,7 @@ public class LocalizerFactory : ILocalizerFactory
 
         builder.SetOptions(options =>
         {
-            options.DefaultLanguage = "en-US";
+            options.DefaultLanguage = DEFAULT_LANGUAGE;
             options.UseUidWhenLocalizedStringNotFound = true;
         });
 
