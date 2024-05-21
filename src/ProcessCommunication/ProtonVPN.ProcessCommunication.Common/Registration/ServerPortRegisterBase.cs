@@ -34,7 +34,7 @@ public abstract class ServerPortRegisterBase
     protected ServerPortRegisterBase(IRegistryEditor registryEditor, ILogger logger)
     {
         _registryEditor = registryEditor;
-        _registryUri = new(PATH, GetKey());
+        _registryUri = RegistryUri.CreateLocalMachineUri(PATH, GetKey());
         Logger = logger;
     }
 

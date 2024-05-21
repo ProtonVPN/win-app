@@ -131,7 +131,7 @@ csharp_style_expression_bodied_constructors=false:warning
 csharp_style_expression_bodied_indexers=true:error
 
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_style_expression_bodied_methods
-csharp_style_expression_bodied_methods=false:warning
+csharp_style_expression_bodied_methods=none
 
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_style_expression_bodied_operators
 csharp_style_expression_bodied_operators=false:suggestion

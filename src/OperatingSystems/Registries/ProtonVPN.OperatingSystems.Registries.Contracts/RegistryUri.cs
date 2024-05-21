@@ -17,22 +17,31 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.OperatingSystems.Registries.Contracts
+using Microsoft.Win32;
+
+namespace ProtonVPN.OperatingSystems.Registries.Contracts;
+
+public class RegistryUri
 {
-    public class RegistryUri
+    public RegistryHive HiveKey { get; }
+    public string Path { get; }
+    public string Key { get; }
+
+    private RegistryUri(RegistryHive hiveKey, string path, string key)
     {
-        public string Path { get; }
-        public string Key { get; }
+        HiveKey = hiveKey;
+        Path = path;
+        Key = key;
+    }
 
-        public RegistryUri(string path, string key)
-        {
-            Path = path;
-            Key = key;
-        }
+    public static RegistryUri CreateLocalMachineUri(string path, string key)
+        => new(RegistryHive.LocalMachine, path: path, key: key);
 
-        public override string ToString()
-        {
-            return $"'{Path}':'{Key}'";
-        }
+    public static RegistryUri CreateCurrentUserUri(string path, string key)
+        => new(RegistryHive.CurrentUser, path: path, key: key);
+
+    public override string ToString()
+    {
+        return $"'{HiveKey}':'{Path}':'{Key}'";
     }
 }
