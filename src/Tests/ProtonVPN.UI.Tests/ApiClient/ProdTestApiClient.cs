@@ -19,30 +19,103 @@
 
 using System;
 using System.Net.Http;
+using System.Security;
+using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using ProtonVPN.UI.Tests.ApiClient.Prod;
 
-namespace ProtonVPN.UI.Tests.ApiClient
+namespace ProtonVPN.UI.Tests.ApiClient;
+
+public class ProdTestApiClient
 {
-    public class ProdTestApiClient
+    private readonly HttpClient _client;
+    public static string AcessToken;
+    public static string UID;
+
+    public ProdTestApiClient()
     {
-        private readonly HttpClient _client;
-
-        public ProdTestApiClient()
+        _client = new HttpClient
         {
-            _client = new HttpClient
-            {
-                BaseAddress = new Uri("https://api.protonvpn.ch")
-            };
+            BaseAddress = new Uri("https://api.protonvpn.ch")
+        };
+    }
+
+    public async Task<JArray> GetLogicalServersUnauthorizedAsync()
+    {
+        HttpResponseMessage response = await _client.GetAsync("/vpn/logicals");
+        response.EnsureSuccessStatusCode();
+        string responseBody = response.Content.ReadAsStringAsync().Result;
+        JObject json = JObject.Parse(responseBody);
+        return (JArray)json["LogicalServers"];
+    }
+
+    public async Task<JArray> GetLogicalServersLoggedInAsync()
+    {
+        HttpRequestMessage request = GetAuthorizedRequestMessage(HttpMethod.Get, "/vpn/logicals?SignServer=Server.EntryIP,Server.Label", AcessToken, UID);
+        HttpResponseMessage response = await _client.SendAsync(request);
+        response.EnsureSuccessStatusCode();
+        JObject logicals = JObject.Parse(await response.Content.ReadAsStringAsync());
+        return (JArray)logicals["LogicalServers"];
+    }
+
+    public async Task<AuthInfoResponse> GetAuthInfoAsync(AuthInfoRequest username)
+    {
+        string content = JsonSerializer.Serialize(username);
+        HttpResponseMessage response = await SendPostUnauthorizedAsync("/auth/v4/info", content);
+
+        AuthInfoResponse authResponse = JsonSerializer.Deserialize<AuthInfoResponse>(await response.Content.ReadAsStringAsync());
+        return authResponse;
+    }
+
+    public async Task<AuthResponse> GetAuthResponseAsync(AuthRequest body)
+    {
+        string content = JsonSerializer.Serialize(body);
+        HttpResponseMessage response = await SendPostUnauthorizedAsync("/auth", content);
+
+        AuthResponse authResponse = JsonSerializer.Deserialize<AuthResponse>(await response.Content.ReadAsStringAsync());
+        return authResponse;
+    }
+
+    private async Task<HttpResponseMessage> SendPostUnauthorizedAsync(string endpoint, string content)
+    {
+        HttpRequestMessage request = GetUnauthorizedRequestMessage(HttpMethod.Post, endpoint);
+
+        var jsonContent = new StringContent(
+            content,
+            Encoding.UTF8,
+            "application/json");
+        request.Content = jsonContent;
+
+        HttpResponseMessage response = await _client.SendAsync(request);
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception($"Api call to {_client.BaseAddress}{endpoint} failed. " +
+                $"It returned {response.StatusCode}: " +
+                $"\n" + await response.Content.ReadAsStringAsync());
         }
 
-        public async Task<JArray> GetLogicalServers()
-        {
-            HttpResponseMessage response = await _client.GetAsync("/vpn/logicals");
-            response.EnsureSuccessStatusCode();
-            string responseBody = response.Content.ReadAsStringAsync().Result;
-            JObject json = JObject.Parse(responseBody);
-            return (JArray)json["LogicalServers"];
-        }
+        return response;
+    }
+
+    private HttpRequestMessage GetUnauthorizedRequestMessage(HttpMethod method, string requestUri)
+    {
+        HttpRequestMessage request = new(method, requestUri);
+        request.Headers.Add("x-pm-apiversion", "3");
+        request.Headers.Add("x-pm-appversion", "windows-vpn@2.4.3-dev");
+        request.Headers.Add("x-pm-locale", "en");
+        request.Headers.Add("User-Agent", "ProtonVPN/2.4.3 (Microsoft Windows NT 10.0.19045.0)");
+
+        return request;
+    }
+
+    private HttpRequestMessage GetAuthorizedRequestMessage(HttpMethod method, string requestUri, string accessToken, string uniqueSessionId)
+    {
+        HttpRequestMessage request = new(method, requestUri);
+        request.Headers.Add("x-pm-uid", uniqueSessionId);
+        request.Headers.Add("Authorization", $"Bearer {accessToken}");
+
+        return request;
     }
 }

@@ -66,4 +66,10 @@ public class TestEnvironment : TestSession
     {
         return Environment.OSVersion.Version.Major;
     }
+
+    public static string GetProtonClientFolder()
+    {
+        string versionFolder = $"v{GetAppVersion()}";
+        return Path.Combine(TestConstants.AppFolderPath, versionFolder);
+    }
 }
