@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,8 +19,8 @@
 
 namespace ProtonVPN.Client.Localization.Contracts;
 
-public interface ILocalizationService
+public class Language
 {
-    IEnumerable<Language> GetAvailableLanguages();
-    Language GetLanguage(string language);
+    public required string Id { get; init; }
+    public required string Description { get; init; }
 }
