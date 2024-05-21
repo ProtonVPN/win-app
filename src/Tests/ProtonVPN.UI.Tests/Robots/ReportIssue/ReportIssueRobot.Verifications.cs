@@ -65,9 +65,9 @@ public partial class ReportIssueRobot
 
     public ReportIssueRobot VerifyReportIsSent()
     {
-        WaitUntilElementExistsByAutomationId("ReportImage", TestConstants.MediumTimeout);
-        WaitUntilElementExistsByName("Report sent", TestConstants.VeryShortTimeout);
-        WaitUntilElementExistsByName("Done", TestConstants.VeryShortTimeout);
+        WaitUntilElementExistsByAutomationId("ReportImage", TestConstants.ThirtySecondsTimeout);
+        WaitUntilElementExistsByName("Report sent", TestConstants.FiveSecondsTimeout);
+        WaitUntilElementExistsByName("Done", TestConstants.FiveSecondsTimeout);
         return this;
     }
 

@@ -82,19 +82,19 @@ public class UIActions : TestSession
 
     protected AutomationElement ElementByAutomationId(string automationId, TimeSpan? timeout = null)
     {
-        WaitUntilElementExistsByAutomationId(automationId, timeout ?? TestConstants.VeryShortTimeout);
+        WaitUntilElementExistsByAutomationId(automationId, timeout ?? TestConstants.FiveSecondsTimeout);
         return FindFirstDescendant(cf => cf.ByAutomationId(automationId));
     }
 
     protected AutomationElement ElementByXpath(string xpath, TimeSpan? timeout = null)
     {
-        WaitUntilElementExistsByXpath(xpath, timeout ?? TestConstants.VeryShortTimeout);
+        WaitUntilElementExistsByXpath(xpath, timeout ?? TestConstants.FiveSecondsTimeout);
         return Window.FindFirstByXPath(xpath);
     }
 
     protected AutomationElement ElementByName(string name, TimeSpan? timeout = null)
     {
-        WaitUntilElementExistsByName(name, timeout ?? TestConstants.VeryShortTimeout);
+        WaitUntilElementExistsByName(name, timeout ?? TestConstants.FiveSecondsTimeout);
         return FindFirstDescendant(cf => cf.ByName(name));
     }
 

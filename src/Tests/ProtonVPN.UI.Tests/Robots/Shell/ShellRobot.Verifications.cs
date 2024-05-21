@@ -69,7 +69,7 @@ public partial class ShellRobot
 
     public ShellRobot VerifyCurrentPage(string expectedPageName, bool hasBackButton)
     {
-        WaitUntilTextMatches(() => ActivePageTitleLabel, TestConstants.VeryShortTimeout, expectedPageName);
+        WaitUntilTextMatches(() => ActivePageTitleLabel, TestConstants.FiveSecondsTimeout, expectedPageName);
 
         if(hasBackButton)
         {
@@ -118,7 +118,7 @@ public partial class ShellRobot
     public ShellRobot VerifySignOutConfirmationMessage(TestUserData user)
     {        
         Assert.IsNotNull(OverlayMessage);
-        WaitUntilTextMatches(() => OverlayMessageTitle, TestConstants.VeryShortTimeout, $"Sign out from {user.Username}?");
+        WaitUntilTextMatches(() => OverlayMessageTitle, TestConstants.FiveSecondsTimeout, $"Sign out from {user.Username}?");
 
         Assert.IsNotNull(OverlayMessagePrimaryButton);
         Assert.IsNotNull(OverlayMessageCloseButton);
@@ -136,7 +136,7 @@ public partial class ShellRobot
         {
             currentWidth = NavigationSidebar.ActualWidth;
             return currentWidth >= minExpectedWidth && currentWidth <= maxExpectedWidth;
-        }, TestConstants.VeryShortTimeout, TestConstants.DefaultAnimationDelay);
+        }, TestConstants.FiveSecondsTimeout, TestConstants.DefaultAnimationDelay);
 
 
         Assert.IsTrue(retry.Result, $"Sidebar does not have the expected width. Expected: between {minExpectedWidth}px and {maxExpectedWidth}px | Current: {currentWidth}px");

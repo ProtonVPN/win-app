@@ -49,7 +49,7 @@ public class TestSession
     public static void RefreshWindow(TimeSpan? timeout = null)
     {
         Window = null;
-        TimeSpan refreshTimeout = timeout ?? TestConstants.MediumTimeout;
+        TimeSpan refreshTimeout = timeout ?? TestConstants.ThirtySecondsTimeout;
         RetryResult<Window> retry = Retry.WhileNull(() =>
         {
             try
@@ -119,8 +119,8 @@ public class TestSession
             App = Application.Launch(startInfo);
         }
 
-        RefreshWindow(TestConstants.LongTimeout);
-        Window.WaitUntilClickable(TestConstants.ShortTimeout);
+        RefreshWindow(TestConstants.OneMinuteTimeout);
+        Window.WaitUntilClickable(TestConstants.TenSecondsTimeout);
         Window.Focus();
     }
 

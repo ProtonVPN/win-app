@@ -80,7 +80,7 @@ public partial class HomeRobot
 
     public HomeRobot DoWaitForVpnStatusSubtitleLabel()
     {
-        VpnStatusSubtitleLabel.WaitUntilDisplayed(TestConstants.VeryShortTimeout);
+        VpnStatusSubtitleLabel.WaitUntilDisplayed(TestConstants.FiveSecondsTimeout);
         return this;
     }
 

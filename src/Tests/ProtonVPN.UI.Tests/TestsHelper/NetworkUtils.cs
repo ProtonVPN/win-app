@@ -43,7 +43,7 @@ public class NetworkUtils
                 dnsAddress = GetDnsAddressForAdapterByName(adapterName);
                 return dnsAddress;
             },
-            TestConstants.VeryShortTimeout, TestConstants.RetryInterval);
+            TestConstants.FiveSecondsTimeout, TestConstants.RetryInterval);
 
         if (!retry.Success)
         {
@@ -66,7 +66,7 @@ public class NetworkUtils
     {
         RetryResult<string> retry = Retry.WhileEmpty(
             () => GetExternalIpAddressAsync().Result,
-            TestConstants.ShortTimeout, TestConstants.RetryInterval);
+            TestConstants.TenSecondsTimeout, TestConstants.RetryInterval);
 
         return retry.Result;
     }

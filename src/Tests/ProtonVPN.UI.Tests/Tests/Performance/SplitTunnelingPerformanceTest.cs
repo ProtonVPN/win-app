@@ -63,7 +63,7 @@ public class SplitTunnelingPerformanceTest : TestSession
             .DoConnect()
             .VerifyAllStatesUntilConnected();
         _homeRobot.DoDisconnect()
-            .Wait(TestConstants.VeryShortTimeout);
+            .Wait(TestConstants.FiveSecondsTimeout);
 
         _shellRobot
             .DoNavigateToSplitTunnelingFeaturePage();
@@ -80,7 +80,7 @@ public class SplitTunnelingPerformanceTest : TestSession
         PerformanceTestHelper.StopMonitoring();
         _homeRobot.DoDisconnect()
             //This helps to avoid race conditions when sending API calls.
-            .Wait(TestConstants.VeryShortTimeout);
+            .Wait(TestConstants.FiveSecondsTimeout);
 
         PerformanceTestHelper.AddMetric("duration", PerformanceTestHelper.GetDuration);
     }

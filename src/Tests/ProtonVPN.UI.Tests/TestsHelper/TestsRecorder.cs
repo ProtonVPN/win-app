@@ -39,7 +39,7 @@ namespace ProtonVPN.UI.Tests.TestsHelper
 
             CreateTestFailureFolder();
             string pathToVideo = Path.Combine(ScreenshotDir, "TestRun.mp4");
-            Recorder = new VideoRecorder(new VideoRecorderSettings { VideoQuality = 26, ffmpegPath = TestConstants.PathToRecorder, TargetVideoPath = pathToVideo }, recorder =>
+            Recorder = new VideoRecorder(new VideoRecorderSettings { VideoQuality = 18, ffmpegPath = TestConstants.PathToRecorder, TargetVideoPath = pathToVideo }, recorder =>
             {
                 string testName = TestContext.CurrentContext.Test.MethodName;
                 CaptureImage img = Capture.Screen(1);

@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using FlaUI.Core.AutomationElements;
+
 namespace ProtonVPN.UI.Tests.Robots.Countries;
 
 public partial class CountriesRobot
@@ -35,7 +37,9 @@ public partial class CountriesRobot
 
     public CountriesRobot DoNavigateToCountry(string countryCode)
     {
-        GetNavigateToCountryButton(countryCode).FocusAndClick();
+        Button navigateToCountryButton = GetNavigateToCountryButton(countryCode);
+        navigateToCountryButton.ScrollIntoView();
+        navigateToCountryButton.Invoke();
         return this;
     }
 

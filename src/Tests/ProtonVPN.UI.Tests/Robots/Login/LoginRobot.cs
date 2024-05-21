@@ -27,7 +27,7 @@ public partial class LoginRobot : UIActions
     protected TextBox UsernameTextBox => ElementByAutomationId("UsernameTextBox").AsTextBox();
     protected TextBox PasswordBox => ElementByAutomationId("PasswordBox").AsTextBox();
     protected Button SignInButton => ElementByAutomationId("SignInButton").AsButton();
-    protected TextBox ErrorMessageTextBox => ElementByAutomationId("Message", TestConstants.MediumTimeout).AsTextBox();
+    protected TextBox ErrorMessageTextBox => ElementByAutomationId("Message", TestConstants.ThirtySecondsTimeout).AsTextBox();
     protected TextBox AuthenticateButton => ElementByAutomationId("AuthenticateButton").AsTextBox();
 
     protected Button HelpButton => ElementByAutomationId("HelpButton").AsButton();
@@ -35,6 +35,6 @@ public partial class LoginRobot : UIActions
     protected MenuItem ReportIssueMenuItem => HelpFlyoutMenu.FindFirstDescendant("ReportIssueMenuItem").AsMenuItem();
     protected TextBox TwoFactorInputField(string position)
     {
-        return ElementByName($"{position} digit", TestConstants.ShortTimeout).AsTextBox();
+        return ElementByName($"{position} digit", TestConstants.TenSecondsTimeout).AsTextBox();
     }
 }

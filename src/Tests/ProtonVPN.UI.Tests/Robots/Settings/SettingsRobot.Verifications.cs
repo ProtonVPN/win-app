@@ -96,7 +96,7 @@ public partial class SettingsRobot
             () => {
                 return DoesContainDnsAddress(dnsAddress);
             },
-            TestConstants.VeryShortTimeout, TestConstants.RetryInterval);
+            TestConstants.FiveSecondsTimeout, TestConstants.RetryInterval);
 
         if (!retry.Success)
         {
@@ -111,7 +111,7 @@ public partial class SettingsRobot
             () => {
                 return DoesContainDnsAddress(dnsAddress);
             },
-            TestConstants.VeryShortTimeout, TestConstants.RetryInterval);
+            TestConstants.FiveSecondsTimeout, TestConstants.RetryInterval);
 
         if (!retry.Success)
         {

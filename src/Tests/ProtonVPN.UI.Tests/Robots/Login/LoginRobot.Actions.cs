@@ -57,7 +57,7 @@ public partial class LoginRobot
     public LoginRobot WaitUntilCaptchaIsDisplayed()
     {
         //We have a very limited ability to use WebView, that is why we are using static pauses and keyboard strokes.
-        WaitUntilElementExistsByAutomationId("WebView2", TestConstants.ShortTimeout);
+        WaitUntilElementExistsByAutomationId("WebView2", TestConstants.TenSecondsTimeout);
         Thread.Sleep(10000);
 
         Keyboard.Type(VirtualKeyShort.TAB);
