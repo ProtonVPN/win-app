@@ -180,12 +180,12 @@ public partial class HomeRobot
     {
         if (!string.IsNullOrEmpty(expectedTitle))
         {
-            WaitUntilTextMatches(() => VpnStatusTitleLabel, TestConstants.MediumTimeout, expectedTitle);
+            WaitUntilTextMatches(() => VpnStatusTitleLabel, TestConstants.ThirtySecondsTimeout, expectedTitle);
         }
 
         if (!string.IsNullOrEmpty(expectedSubtitle))
         {
-            WaitUntilTextMatches(() => VpnStatusSubtitleLabel, TestConstants.MediumTimeout, expectedSubtitle);
+            WaitUntilTextMatches(() => VpnStatusSubtitleLabel, TestConstants.ThirtySecondsTimeout, expectedSubtitle);
         }
     }
 
@@ -193,17 +193,17 @@ public partial class HomeRobot
     {
         if (!string.IsNullOrEmpty(expectedHeader))
         {
-            WaitUntilTextMatches(() => ConnectionCardHeaderLabel, TestConstants.VeryShortTimeout, expectedHeader);
+            WaitUntilTextMatches(() => ConnectionCardHeaderLabel, TestConstants.FiveSecondsTimeout, expectedHeader);
         }
 
         if (!string.IsNullOrEmpty(expectedTitle))
         {
-            WaitUntilTextMatches(() => ConnectionCardTitleLabel, TestConstants.VeryShortTimeout, expectedTitle);
+            WaitUntilTextMatches(() => ConnectionCardTitleLabel, TestConstants.FiveSecondsTimeout, expectedTitle);
         }
 
         if (!string.IsNullOrEmpty(expectedSubtitle))
         {
-            WaitUntilTextMatches(() => ConnectionCardSubtitleLabel, TestConstants.VeryShortTimeout, expectedSubtitle);
+            WaitUntilTextMatches(() => ConnectionCardSubtitleLabel, TestConstants.FiveSecondsTimeout, expectedSubtitle);
         }
     }
 

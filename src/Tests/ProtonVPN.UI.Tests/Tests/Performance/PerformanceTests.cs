@@ -80,7 +80,7 @@ public class PerformanceTests : TestSession
             .DoConnect()
             .VerifyAllStatesUntilConnected();
         _homeRobot.DoDisconnect()
-            .Wait(TestConstants.VeryShortTimeout);
+            .Wait(TestConstants.FiveSecondsTimeout);
 
         _homeRobot.DoConnect();
         PerformanceTestHelper.StartMonitoring();
@@ -88,7 +88,7 @@ public class PerformanceTests : TestSession
         PerformanceTestHelper.StopMonitoring();
         _homeRobot.DoDisconnect()
             //This helps to avoid race conditions when sending API calls.
-            .Wait(TestConstants.VeryShortTimeout);
+            .Wait(TestConstants.FiveSecondsTimeout);
 
         PerformanceTestHelper.AddMetric("duration", PerformanceTestHelper.GetDuration);
     }
@@ -107,13 +107,13 @@ public class PerformanceTests : TestSession
         _countriesRobot.SearchFor("Germany")
             .DoConnect("DE");
         _homeRobot.VerifyVpnStatusIsConnected()
-            .Wait(TestConstants.ShortTimeout);
+            .Wait(TestConstants.TenSecondsTimeout);
 
         PerformanceTestHelper.AddNetworkSpeedToMetrics("download_speed_connected", "upload_speed_connected");
 
         _homeRobot.DoDisconnect()
             .VerifyVpnStatusIsDisconnected()
-            .Wait(TestConstants.VeryShortTimeout);
+            .Wait(TestConstants.FiveSecondsTimeout);
     }
 
     [Test, Order(3)]
@@ -132,7 +132,7 @@ public class PerformanceTests : TestSession
         _homeRobot.VerifyVpnStatusIsConnected();
         PerformanceTestHelper.StopMonitoring();
         _homeRobot.DoDisconnect()
-            .Wait(TestConstants.VeryShortTimeout);
+            .Wait(TestConstants.FiveSecondsTimeout);
     }
 
     [TearDown]

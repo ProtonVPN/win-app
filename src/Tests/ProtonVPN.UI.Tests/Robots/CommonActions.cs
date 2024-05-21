@@ -87,6 +87,7 @@ public static class CommonActions
 
         element.ScrollIntoView();
         element.Focus();
+        element.WaitUntilClickable(TestConstants.TenSecondsTimeout);
         element.Click();
     }
 

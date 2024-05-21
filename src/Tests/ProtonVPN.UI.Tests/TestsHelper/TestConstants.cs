@@ -29,10 +29,10 @@ public static class TestConstants
     public static TimeSpan DefaultNavigationDelay => TimeSpan.FromSeconds(1);
     //Useful to imitate user's delay and then check networking conditions
     public static TimeSpan DisconnectionDelay => TimeSpan.FromSeconds(2);
-    public static TimeSpan VeryShortTimeout => TimeSpan.FromSeconds(5);
-    public static TimeSpan ShortTimeout => TimeSpan.FromSeconds(10);
-    public static TimeSpan MediumTimeout => TimeSpan.FromSeconds(30);
-    public static TimeSpan LongTimeout => TimeSpan.FromSeconds(60);
+    public static TimeSpan FiveSecondsTimeout => TimeSpan.FromSeconds(5);
+    public static TimeSpan TenSecondsTimeout => TimeSpan.FromSeconds(10);
+    public static TimeSpan ThirtySecondsTimeout => TimeSpan.FromSeconds(30);
+    public static TimeSpan OneMinuteTimeout => TimeSpan.FromSeconds(60);
     public static TimeSpan RetryInterval => TimeSpan.FromMilliseconds(500);
     public static string AppFolderPath = @"C:\Program Files\Proton\VPN";
     public static string LauncherPath = @"C:\Program Files\Proton\VPN\ProtonVPN.Launcher.exe";

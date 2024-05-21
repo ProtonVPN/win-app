@@ -84,7 +84,7 @@ public class CustomDnsTests : TestSession
             .DoNavigateToNetShieldFeaturePage();
         _settingsRobot
             .VerifyNetshieldIsDisabled()
-            .Wait(TestConstants.VeryShortTimeout);
+            .Wait(TestConstants.FiveSecondsTimeout);
         _settingsRobot
             .VerifyNetshieldIsNotBlocking();
     }
