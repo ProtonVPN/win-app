@@ -105,7 +105,7 @@ public class TestSession
             return;
         }
 
-        string installedClientPath = Path.Combine(GetProtonClientFolder(), CLIENT_NAME);
+        string installedClientPath = Path.Combine(TestEnvironment.GetProtonClientFolder(), CLIENT_NAME);
         ProcessStartInfo startInfo = new ProcessStartInfo(installedClientPath)
         {
             Arguments = "-ExitAppOnClose"
@@ -167,13 +167,7 @@ public class TestSession
 
     protected static string GetServiceLogsPath()
     {
-        return Path.Combine(GetProtonClientFolder(), "ServiceData", "Logs", "service-logs.txt");
-    }
-
-    protected static string GetProtonClientFolder()
-    {
-        string versionFolder = $"v{TestEnvironment.GetAppVersion()}";
-        return Path.Combine(TestConstants.AppFolderPath, versionFolder);
+        return Path.Combine(TestEnvironment.GetProtonClientFolder(), "ServiceData", "Logs", "service-logs.txt");
     }
 
     private static void LaunchDevelopmentApp()

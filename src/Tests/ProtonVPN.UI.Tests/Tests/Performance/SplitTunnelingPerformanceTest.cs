@@ -36,7 +36,7 @@ public class SplitTunnelingPerformanceTest : TestSession
 {
     private string _runId;
     private string _measurementGroup;
-    private string _workflow = "split_tunneling_measurement";
+    private const string WORKFLOW = "split_tunneling_measurement";
 
     private LoginRobot _loginRobot = new();
     private HomeRobot _homeRobot = new();
@@ -90,9 +90,9 @@ public class SplitTunnelingPerformanceTest : TestSession
     {
         Cleanup();
         PerformanceTestHelper.AddTestStatusMetric();
-        await _lokiApiClient.PushCollectedMetricsAsync(PerformanceTestHelper.MetricsList, _runId, _measurementGroup, _workflow);
+        await _lokiApiClient.PushCollectedMetricsAsync(PerformanceTestHelper.MetricsList, _runId, _measurementGroup, WORKFLOW);
         PerformanceTestHelper.Reset();
-        await _lokiApiClient.PushLogsAsync(TestConstants.ClientLogsPath, _runId, "windows_client_logs", _workflow);
-        await _lokiApiClient.PushLogsAsync(GetServiceLogsPath(), _runId, "windows_service_logs", _workflow);
+        await _lokiApiClient.PushLogsAsync(TestConstants.ClientLogsPath, _runId, "windows_client_logs", WORKFLOW);
+        await _lokiApiClient.PushLogsAsync(GetServiceLogsPath(), _runId, "windows_service_logs", WORKFLOW);
     }
 }

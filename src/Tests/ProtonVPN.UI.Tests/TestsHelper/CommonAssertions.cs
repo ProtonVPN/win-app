@@ -17,11 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Net;
 using System.Net.Sockets;
-using System.Security.Policy;
-using System.Threading.Tasks;
 using FlaUI.Core.Tools;
 using NUnit.Framework;
 

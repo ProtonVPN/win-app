@@ -36,7 +36,7 @@ public class PerformanceTests : TestSession
 {
     private string _runId;
     private string _measurementGroup;
-    private string _workflow = "main_measurements";
+    private const string WORKFLOW = "main_measurements";
 
     private LoginRobot _loginRobot = new();
     private HomeRobot _homeRobot = new();
@@ -139,7 +139,7 @@ public class PerformanceTests : TestSession
     public async Task TestCleanup()
     {
         PerformanceTestHelper.AddTestStatusMetric();
-        await _lokiApiClient.PushCollectedMetricsAsync(PerformanceTestHelper.MetricsList, _runId, _measurementGroup, _workflow);
+        await _lokiApiClient.PushCollectedMetricsAsync(PerformanceTestHelper.MetricsList, _runId, _measurementGroup, WORKFLOW);
         PerformanceTestHelper.Reset();
     }
 
@@ -147,7 +147,7 @@ public class PerformanceTests : TestSession
     public async Task OneTimeTearDownAsync()
     {
         Cleanup();
-        await _lokiApiClient.PushLogsAsync(TestConstants.ClientLogsPath, _runId, "windows_client_logs", _workflow);
-        await _lokiApiClient.PushLogsAsync(GetServiceLogsPath(), _runId, "windows_service_logs", _workflow);
+        await _lokiApiClient.PushLogsAsync(TestConstants.ClientLogsPath, _runId, "windows_client_logs", WORKFLOW);
+        await _lokiApiClient.PushLogsAsync(GetServiceLogsPath(), _runId, "windows_service_logs", WORKFLOW);
     }
 }
