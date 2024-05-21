@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using CommunityToolkit.WinUI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
@@ -24,17 +25,19 @@ using ProtonVPN.Client.Contracts;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Sidebar.Bases;
 using Windows.System;
+using DispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue;
+using DispatcherQueueTimer = Microsoft.UI.Dispatching.DispatcherQueueTimer;
 
 namespace ProtonVPN.Client.UI;
 
 public sealed partial class ShellPage : IShellPage
 {
-    private const double TIMER_INTERVAL_IN_MS = 400;
-    private const double PANE_WIDTH_RATIO = 0.25;
+    private const double EXPANDED_MODE_WIDTH_THRESHOLD = 700.0;
+    private const double WIDTH_THRESHOLD = 1400;
     private const double PANE_MIN_WIDTH = 250;
     private const double PANE_MAX_WIDTH = 350;
 
-    private DispatcherTimer _timer;
+    private readonly DispatcherQueueTimer _timer = DispatcherQueue.GetForCurrentThread().CreateTimer();
 
     public ShellViewModel ViewModel { get; }
 
@@ -43,13 +46,7 @@ public sealed partial class ShellPage : IShellPage
         ViewModel = App.GetService<ShellViewModel>();
         InitializeComponent();
 
-        _timer = new DispatcherTimer
-        {
-            Interval = TimeSpan.FromMilliseconds(TIMER_INTERVAL_IN_MS),
-        };
-        _timer.Tick += OnTimerTick;
-
-        InvalidatePaneLayout();
+        InvalidatePaneLayout(NavigationViewControl.ActualWidth);
     }
 
     public void Initialize(Window window)
@@ -80,13 +77,6 @@ public sealed partial class ShellPage : IShellPage
         args.Handled = result;
     }
 
-    private void OnTimerTick(object? sender, object e)
-    {
-        _timer.Stop();
-
-        InvalidatePaneLayout();
-    }
-
     private void OnNavigationViewDisplayModeChanged(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args)
     {
         ViewModel.OnNavigationDisplayModeChanged(args.DisplayMode);
@@ -110,19 +100,27 @@ public sealed partial class ShellPage : IShellPage
 
     private void OnNavigationViewControlSizeChanged(object sender, SizeChangedEventArgs e)
     {
-        if (!_timer.IsEnabled)
-        {
-            // Delay InvalidatePaneLayout to prevent a glitch with the split view control
-            _timer.Start();
-        }
+        TriggerInvalidatePaneLayout(e.NewSize.Width);
     }
 
-    private void InvalidatePaneLayout()
+    private void TriggerInvalidatePaneLayout(double totalWidth)
     {
-        double actualWidth = NavigationViewControl.ActualWidth;
+        // Resizing the panel while transitioning to compact mode makes all menu items to disappear.
+        // Similarly, editing the pane width while the panel is collapsed creates a glitch effect.
+        // In both cases, adding a delay before setting the width prevent these issues.
+        TimeSpan delay = totalWidth < EXPANDED_MODE_WIDTH_THRESHOLD || !ViewModel.IsNavigationPaneOpened
+            ? TimeSpan.FromMilliseconds(500)
+            : TimeSpan.Zero;
 
-        double paneWidth = Math.Min(PANE_MAX_WIDTH, Math.Max(PANE_MIN_WIDTH, actualWidth * PANE_WIDTH_RATIO));
+        _timer.Debounce(
+            () => InvalidatePaneLayout(totalWidth),
+            delay);
+    }
 
-        ViewModel.NavigationPaneWidth = paneWidth;
+    private void InvalidatePaneLayout(double totalWidth)
+    {
+        ViewModel.NavigationPaneWidth = totalWidth <= WIDTH_THRESHOLD
+            ? PANE_MIN_WIDTH
+            : PANE_MAX_WIDTH;
     }
 }
