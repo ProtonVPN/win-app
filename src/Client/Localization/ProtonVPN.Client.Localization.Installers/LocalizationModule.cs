@@ -19,7 +19,7 @@
 
 using Autofac;
 using ProtonVPN.Client.Localization.Building;
-using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Localization.Languages;
 
 namespace ProtonVPN.Client.Localization.Installers;
 
@@ -27,8 +27,9 @@ public class LocalizationModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
-        builder.RegisterType<LocalizerFactory>().As<ILocalizerFactory>().SingleInstance();
+        builder.RegisterType<LocalizerFactory>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<LocalizationService>().AsImplementedInterfaces().AutoActivate().SingleInstance();
-        builder.RegisterType<LocalizationProvider>().As<ILocalizationProvider>().SingleInstance();
+        builder.RegisterType<LocalizationProvider>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<LanguageFactory>().AsImplementedInterfaces().SingleInstance();        
     }
 }

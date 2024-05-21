@@ -148,6 +148,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <pathicons:Language />
                 </toolkit:SettingsCard.HeaderIcon>
                 <ComboBox x:Name="cbLanguage"
+                          DisplayMemberPath="Description"
                           ItemsSource="{x:Bind ViewModel.Languages}"
                           SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}"/>
             </toolkit:SettingsCard>

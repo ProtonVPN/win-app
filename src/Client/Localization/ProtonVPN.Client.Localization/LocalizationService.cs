@@ -22,6 +22,7 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Building;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Contracts.Messages;
+using ProtonVPN.Client.Localization.Languages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using WinUI3Localizer;
@@ -32,14 +33,17 @@ public class LocalizationService : ILocalizationService, IEventMessageReceiver<S
 {
     private readonly IEventMessageSender _eventMessageSender;
     private readonly ISettings _settings;
+    private readonly ILanguageFactory _languageFactory;
     private readonly ILocalizer _localizer;
 
     public LocalizationService(IEventMessageSender eventMessageSender,
-        ISettings settings, ILocalizerFactory localizerFactory)
+        ISettings settings,
+        ILanguageFactory languageFactory,
+        ILocalizerFactory localizerFactory)
     {
         _eventMessageSender = eventMessageSender;
         _settings = settings;
-
+        _languageFactory = languageFactory;
         _localizer = localizerFactory.GetOrCreate();
         _localizer.SetLanguage(settings.Language);
     }
@@ -50,9 +54,14 @@ public class LocalizationService : ILocalizationService, IEventMessageReceiver<S
         _eventMessageSender.Send(new LanguageChangedMessage(language));
     }
 
-    public IEnumerable<string> GetAvailableLanguages()
+    public IEnumerable<Language> GetAvailableLanguages()
     {
-        return _localizer.GetAvailableLanguages();
+        return _languageFactory.GetAvailableLanguages();
+    }
+
+    public Language GetLanguage(string language)
+    {
+        return _languageFactory.GetLanguage(language);
     }
 
     public void Receive(SettingChangedMessage message)

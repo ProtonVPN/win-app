@@ -39,6 +39,7 @@ using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
+using Language = ProtonVPN.Client.Localization.Contracts.Language;
 
 namespace ProtonVPN.Client.UI.Settings;
 
@@ -55,8 +56,7 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
     private readonly IUrls _urls;
     private readonly IReportIssueDialogActivator _reportIssueDialogActivator;
     private readonly IConnectionManager _connectionManager;
-    private readonly IPortForwardingManager _portForwardingManager;
-    private readonly Lazy<ObservableCollection<string>> _languages;
+    private readonly Lazy<ObservableCollection<Language>> _languages;
 
     public bool IsToShowDeveloperTools => _settings.IsDebugModeEnabled;
 
@@ -69,10 +69,10 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
         set => _themeSelector.SetTheme(value);
     }
 
-    public string SelectedLanguage
+    public Language SelectedLanguage
     {
-        get => _settings.Language;
-        set => _settings.Language = value;
+        get => _localizationService.GetLanguage(_settings.Language);
+        set => _settings.Language = value.Id;
     }
 
     public string DefaultConnectionState => Localizer.Get($"Settings_Connection_Default_{_settings.DefaultConnection}");
@@ -101,7 +101,7 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
 
     public ObservableCollection<ApplicationElementTheme> Themes { get; }
 
-    public ObservableCollection<string> Languages => _languages.Value;
+    public ObservableCollection<Language> Languages => _languages.Value;
 
     public override bool IsBackEnabled => false;
 
@@ -120,7 +120,6 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
         IUrls urls,
         IReportIssueDialogActivator reportIssueDialogActivator,
         IConnectionManager connectionManager,
-        IPortForwardingManager portForwardingManager,
         ILogger logger,
         IIssueReporter issueReporter)
         : base(viewNavigator, localizationProvider, logger, issueReporter)
@@ -133,10 +132,9 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
         _urls = urls;
         _reportIssueDialogActivator = reportIssueDialogActivator;
         _connectionManager = connectionManager;
-        _portForwardingManager = portForwardingManager;
 
-        _languages = new Lazy<ObservableCollection<string>>(
-            () => new ObservableCollection<string>(_localizationService.GetAvailableLanguages()));
+        _languages = new Lazy<ObservableCollection<Language>>(
+            () => new ObservableCollection<Language>(_localizationService.GetAvailableLanguages()));
 
         Themes = new ObservableCollection<ApplicationElementTheme>(_themeSelector.GetAvailableThemes());
     }

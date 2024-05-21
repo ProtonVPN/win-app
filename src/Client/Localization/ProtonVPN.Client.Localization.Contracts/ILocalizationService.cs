@@ -21,5 +21,6 @@ namespace ProtonVPN.Client.Localization.Contracts;
 
 public interface ILocalizationService
 {
-    IEnumerable<string> GetAvailableLanguages();
+    IEnumerable<Language> GetAvailableLanguages();
+    Language GetLanguage(string language);
 }
