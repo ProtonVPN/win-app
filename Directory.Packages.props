@@ -13,13 +13,13 @@
     <PackageVersion Include="CommunityToolkit.Labs.WinUI.SettingsControls" Version="0.0.17" />
     <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.2.2" />
     <PackageVersion Include="CommunityToolkit.WinUI" Version="7.1.2" />
-    <PackageVersion Include="CommunityToolkit.WinUI.Collections" Version="8.0.230907" />
-    <PackageVersion Include="CommunityToolkit.WinUI.Controls.HeaderedControls" Version="8.0.230907" />
-    <PackageVersion Include="CommunityToolkit.WinUI.Controls.Primitives" Version="8.0.230907" />
-    <PackageVersion Include="CommunityToolkit.WinUI.Controls.RangeSelector" Version="8.0.230907" />
-    <PackageVersion Include="CommunityToolkit.WinUI.Controls.SettingsControls" Version="8.0.230907" />
-    <PackageVersion Include="CommunityToolkit.WinUI.Converters" Version="8.0.230907" />
-    <PackageVersion Include="CommunityToolkit.WinUI.Triggers" Version="8.0.230907" />
+    <PackageVersion Include="CommunityToolkit.WinUI.Collections" Version="8.0.240109" />
+    <PackageVersion Include="CommunityToolkit.WinUI.Controls.HeaderedControls" Version="8.0.240109" />
+    <PackageVersion Include="CommunityToolkit.WinUI.Controls.Primitives" Version="8.0.240109" />
+    <PackageVersion Include="CommunityToolkit.WinUI.Controls.RangeSelector" Version="8.0.240109" />
+    <PackageVersion Include="CommunityToolkit.WinUI.Controls.SettingsControls" Version="8.0.240109" />
+    <PackageVersion Include="CommunityToolkit.WinUI.Converters" Version="8.0.240109" />
+    <PackageVersion Include="CommunityToolkit.WinUI.Triggers" Version="8.0.240109" />
     <PackageVersion Include="coverlet.collector" Version="3.2.0" />
     <PackageVersion Include="DeviceId.Windows.Wmi" Version="6.1.0" />
     <PackageVersion Include="DnsClient" Version="1.7.0" />
@@ -41,9 +41,9 @@
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageVersion Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.1.3" />
     <PackageVersion Include="Microsoft.UI.Xaml" Version="2.8.4" />
-    <PackageVersion Include="Microsoft.Windows.Compatibility" Version="7.0.1" />
+    <PackageVersion Include="Microsoft.Windows.Compatibility" Version="7.0.6" />
     <PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.2428" />
-    <PackageVersion Include="Microsoft.WindowsAppSDK" Version="1.5.240227000" />
+    <PackageVersion Include="Microsoft.WindowsAppSDK" Version="1.5.240428000" />
     <PackageVersion Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
     <PackageVersion Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
     <PackageVersion Include="MSTest.TestAdapter" Version="3.0.4" />

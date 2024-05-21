@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using CommunityToolkit.WinUI;
+using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
@@ -24,13 +26,12 @@ namespace ProtonVPN.Client.UI.Home;
 
 public sealed partial class HomePage
 {
-    private const double TIMER_INTERVAL_IN_MS = 500;
-    private const double INLINE_MODE_THRESHOLD_WIDTH = 750.0;
-    private const double PANE_WIDTH_RATIO = 0.3;
+    private const double INLINE_MODE_WIDTH_THRESHOLD = 750.0;
+    private const double WIDTH_THRESHOLD = 1400;
     private const double PANE_MIN_WIDTH = 300;
     private const double PANE_MAX_WIDTH = 500;
 
-    private DispatcherTimer _timer;
+    private readonly DispatcherQueueTimer _timer = DispatcherQueue.GetForCurrentThread().CreateTimer();
 
     public HomeViewModel ViewModel { get; }
 
@@ -39,41 +40,31 @@ public sealed partial class HomePage
         ViewModel = App.GetService<HomeViewModel>();
         InitializeComponent();
 
-        _timer = new DispatcherTimer
-        {
-            Interval = TimeSpan.FromMilliseconds(TIMER_INTERVAL_IN_MS),
-        };
-        _timer.Tick += OnTimerTick;
-
-        InvalidatePaneLayout();
-    }
-
-    private void OnTimerTick(object? sender, object e)
-    {
-        _timer.Stop();
-
-        InvalidatePaneLayout();
+        InvalidatePaneLayout(SplitViewArea.ActualWidth);
     }
 
     private void OnSplitViewAreaSizeChanged(object sender, SizeChangedEventArgs e)
     {
-        if (!_timer.IsEnabled)
-        {
-            // Delay InvalidatePaneLayout to prevent a glitch with the split view control
-            _timer.Start();
-        }
+        TriggerInvalidatePaneLayout(e.NewSize.Width);
     }
 
-    private void InvalidatePaneLayout()
+    private void TriggerInvalidatePaneLayout(double totalWidth)
     {
-        double actualWidth = SplitViewArea.ActualWidth;
+        // Glitch happens if resizing the pane while resizing the split view.
+        // Debouncing the call fixes the issue (even with no delay)
+        _timer.Debounce(
+            () => InvalidatePaneLayout(totalWidth),
+            TimeSpan.Zero);
+    }
 
-        ViewModel.ConnectionDetailsPaneDisplayMode = actualWidth >= INLINE_MODE_THRESHOLD_WIDTH
+    private void InvalidatePaneLayout(double totalWidth)
+    {
+        ViewModel.ConnectionDetailsPaneDisplayMode = totalWidth >= INLINE_MODE_WIDTH_THRESHOLD
             ? SplitViewDisplayMode.Inline
             : SplitViewDisplayMode.Overlay;
 
-        double paneWidth = Math.Min(PANE_MAX_WIDTH, Math.Max(PANE_MIN_WIDTH, actualWidth * PANE_WIDTH_RATIO));
-
-        ViewModel.ConnectionDetailsPaneWidth = paneWidth;
+        ViewModel.ConnectionDetailsPaneWidth = totalWidth <= WIDTH_THRESHOLD
+            ? PANE_MIN_WIDTH
+            : PANE_MAX_WIDTH;
     }
 }

@@ -81,7 +81,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </custom:GhostButton.LeftIcon>
                         </custom:GhostButton>
                     </StackPanel>
-
                 </custom:SidebarNavigationViewItem.OnHoverContent>
             </custom:SidebarNavigationViewItem>
         </DataTemplate>
