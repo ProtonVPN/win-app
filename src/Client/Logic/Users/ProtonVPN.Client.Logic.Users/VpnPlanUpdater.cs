@@ -84,7 +84,7 @@ public class VpnPlanUpdater : IVpnPlanUpdater
 
                 if (response.Success)
                 {
-                    await OnResponseSuccessAsync(response.Value.Vpn);
+                    OnResponseSuccess(response.Value.Vpn);
                 }
                 else
                 {
@@ -111,7 +111,7 @@ public class VpnPlanUpdater : IVpnPlanUpdater
         return DateTime.UtcNow >= _minimumRequestDateUtc;
     }
 
-    private async Task OnResponseSuccessAsync(VpnInfoResponse vpnInfoResponse)
+    private void OnResponseSuccess(VpnInfoResponse vpnInfoResponse)
     {
         VpnPlan oldPlan = _settings.VpnPlan;
         VpnPlan newPlan = new(vpnInfoResponse.PlanTitle, vpnInfoResponse.MaxTier);
@@ -121,10 +121,6 @@ public class VpnPlanUpdater : IVpnPlanUpdater
         {
             _settings.VpnPlan = newPlan;
             _eventMessageSender.Send(message);
-        }
-        else
-        {
-            await _connectionCertificateManager.RequestNewCertificateAsync(isToSendMessageIfCertificateIsNotRefreshed: true);
         }
     }
 }

@@ -19,6 +19,7 @@
 
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
@@ -27,13 +28,18 @@ using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Logic.Users.Handlers;
 
-public class VpnPlanChangedHandler : IEventMessageReceiver<VpnPlanChangedMessage>
+public class VpnPlanChangedHandler :
+    IEventMessageReceiver<VpnPlanChangedMessage>,
+    IEventMessageReceiver<LoggedInMessage>
 {
     private readonly ILogger _logger;
     private readonly IServersUpdater _serversUpdater;
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IConnectionManager _connectionManager;
     private readonly IConnectionCertificateManager _connectionCertificateManager;
+
+    private bool _hasVpnPlanChanged;
+    private bool _isDowngrade;
 
     public VpnPlanChangedHandler(ILogger logger,
         IServersUpdater serversUpdater,
@@ -50,19 +56,41 @@ public class VpnPlanChangedHandler : IEventMessageReceiver<VpnPlanChangedMessage
 
     public async void Receive(VpnPlanChangedMessage message)
     {
+        bool isDowngrade = message.IsDowngrade();
+
         if (_userAuthenticator.IsLoggedIn)
         {
-            _logger.Info<AppLog>("Requesting new certificate after VPN plan change.");
-            await _connectionCertificateManager.ForceRequestNewCertificateAsync();
+            await HandleVpnPlanChangeAsync(isDowngrade);
+        }
+        else
+        {
+            _hasVpnPlanChanged = true;
+            _isDowngrade = isDowngrade;
+        }
+    }
 
-            _logger.Info<AppLog>("Reprocessing current servers and fetching new servers after VPN plan change.");
-            await _serversUpdater.UpdateAsync(ServersRequestParameter.ForceFullUpdate, isToReprocessServers: true);
+    private async Task HandleVpnPlanChangeAsync(bool isDowngrade)
+    {
+        _logger.Info<AppLog>("Requesting new certificate after VPN plan change.");
+        await _connectionCertificateManager.ForceRequestNewCertificateAsync();
 
-            if (message.IsDowngrade())
-            {
-                _logger.Info<AppLog>("Reconnecting due to VPN plan downgrade.");
-                await _connectionManager.ReconnectIfNotRecentlyReconnectedAsync();
-            }
+        _logger.Info<AppLog>("Reprocessing current servers and fetching new servers after VPN plan change.");
+        await _serversUpdater.UpdateAsync(ServersRequestParameter.ForceFullUpdate, isToReprocessServers: true);
+
+        if (isDowngrade)
+        {
+            _logger.Info<AppLog>("Reconnecting due to VPN plan downgrade.");
+            await _connectionManager.ReconnectIfNotRecentlyReconnectedAsync();
+        }
+    }
+
+    public async void Receive(LoggedInMessage message)
+    {
+        if (_hasVpnPlanChanged)
+        {
+            await HandleVpnPlanChangeAsync(_isDowngrade);
+            _hasVpnPlanChanged = false;
+            _isDowngrade = false;
         }
     }
 }

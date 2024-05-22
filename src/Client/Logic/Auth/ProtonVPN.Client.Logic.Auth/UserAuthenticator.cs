@@ -376,9 +376,9 @@ public class UserAuthenticator : IUserAuthenticator
 
         await MigrateUserSettingsAsync();
 
-        SetAuthenticationStatus(AuthenticationStatus.LoggedIn);
+        DeleteKeyPairIfNotAutoLogin(isAutoLogin);
 
-        await RequestNewKeysAndCertificateOnLoginAsync(isAutoLogin);
+        SetAuthenticationStatus(AuthenticationStatus.LoggedIn);
 
         return AuthResult.Ok();
     }
@@ -436,15 +436,11 @@ public class UserAuthenticator : IUserAuthenticator
         _settings.UnauthRefreshToken = response.RefreshToken;
     }
 
-    private async Task RequestNewKeysAndCertificateOnLoginAsync(bool isAutoLogin)
+    private void DeleteKeyPairIfNotAutoLogin(bool isAutoLogin)
     {
-        if (isAutoLogin)
+        if (!isAutoLogin)
         {
-            await _connectionCertificateManager.RequestNewCertificateAsync(isToSendMessageIfCertificateIsNotRefreshed: true);
-        }
-        else
-        {
-            await _connectionCertificateManager.ForceRequestNewKeyPairAndCertificateAsync();
+            _connectionCertificateManager.DeleteKeyPairAndCertificate();
         }
     }
 

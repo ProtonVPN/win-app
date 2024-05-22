@@ -47,7 +47,7 @@ public class Server
 
     public bool IsAvailable()
     {
-        return !IsUnderMaintenance() && Servers.Any(s => !s.IsUnderMaintenance());
+        return !IsUnderMaintenance() && Servers is not null && Servers.Any(s => !s.IsUnderMaintenance());
     }
 
     public Server CopyWithoutPhysicalServers()
