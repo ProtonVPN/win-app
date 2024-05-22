@@ -18,10 +18,10 @@
  */
 
 using System.Collections.ObjectModel;
-using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Recents.Contracts;
@@ -36,14 +36,18 @@ namespace ProtonVPN.Client.UI.Home.Recents;
 
 public partial class RecentsViewModel : ViewModelBase,
     IEventMessageReceiver<RecentConnectionsChanged>,
+    IEventMessageReceiver<LoggedInMessage>,
     IEventMessageReceiver<SettingChangedMessage>
 {
     private readonly IRecentConnectionsProvider _recentConnectionsProvider;
     private readonly IConnectionManager _connectionManager;
     private readonly ISettings _settings;
 
-    [ObservableProperty]
-    private bool _isRecentsComponentOpened;
+    public bool IsRecentsComponentOpened
+    {
+        get => _settings.IsRecentsPaneOpened;
+        set => _settings.IsRecentsPaneOpened = value;
+    }
 
     public ObservableCollection<RecentItemViewModel> RecentConnections { get; } = new();
 
@@ -69,12 +73,26 @@ public partial class RecentsViewModel : ViewModelBase,
         ExecuteOnUIThread(InvalidateRecentConnections);
     }
 
+    public void Receive(LoggedInMessage message)
+    {
+        ExecuteOnUIThread(() => OnPropertyChanged(nameof(IsRecentsComponentOpened)));
+    }
+
     public void Receive(SettingChangedMessage message)
     {
-        if (message.PropertyName == nameof(ISettings.DefaultConnection))
+        ExecuteOnUIThread(() =>
         {
-            ExecuteOnUIThread(InvalidateRecentConnections);
-        }
+            switch (message.PropertyName)
+            {
+                case nameof(ISettings.DefaultConnection):
+                    InvalidateRecentConnections();
+                    break;
+
+                case nameof(ISettings.IsRecentsPaneOpened):
+                    OnPropertyChanged(nameof(IsRecentsComponentOpened));
+                    break;
+            }
+        });
     }
 
     public void InvalidateRecentConnections()

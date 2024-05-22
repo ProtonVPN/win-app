@@ -36,6 +36,7 @@ public interface IUserSettings
     int? WindowYPosition { get; set; }
     bool IsWindowMaximized { get; set; }
     bool IsNavigationPaneOpened { get; set; }
+    bool IsRecentsPaneOpened { get; set; }
     bool IsConnectionDetailsPaneOpened { get; set; }
     VpnProtocol VpnProtocol { get; set; }
     OpenVpnAdapter OpenVpnAdapter { get; set; }
