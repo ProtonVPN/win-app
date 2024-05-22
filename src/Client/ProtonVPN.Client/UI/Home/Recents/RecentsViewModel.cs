@@ -23,6 +23,7 @@ using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
@@ -87,8 +88,11 @@ public partial class RecentsViewModel : ViewModelBase,
             if (_settings.DefaultConnection == DefaultConnection.Last)
             {
                 // Most recent connection will be displayed on the connection card instead (unless it is pinned)
+                // We also want to show all recents in case the user upgraded to a paid plan and is still connected to a free server.
+                // In this case the connection card displays free server, but we want to display all recents below.
                 bool isMostRecentConnection = mostRecentConnection != null && recentConnection == mostRecentConnection;
-                if (isMostRecentConnection && !recentConnection.IsPinned)
+                bool isFreeServerIntent = _connectionManager.CurrentConnectionDetails?.OriginalConnectionIntent.Location is FreeServerLocationIntent;
+                if (isMostRecentConnection && !recentConnection.IsPinned && !isFreeServerIntent)
                 {
                     continue;
                 }
