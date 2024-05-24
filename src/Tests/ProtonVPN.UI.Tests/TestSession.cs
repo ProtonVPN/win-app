@@ -124,7 +124,7 @@ public class TestSession
         Window.Focus();
     }
 
-    protected static void KillProtonVpnProcess()
+    protected static void CloseProtonVPN()
     {
         Process.GetProcesses()
             .Where(process => process.ProcessName.StartsWith("ProtonVPN"))
@@ -161,7 +161,7 @@ public class TestSession
         if (!TestEnvironment.AreTestsRunningLocally() && TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
         {
             string testName = TestContext.CurrentContext.Test.MethodName;
-            TestsRecorder.SaveScreenshotAndLogs(testName, GetServiceLogsPath());
+            ArtifactsHelper.SaveScreenshotAndLogs(testName, GetServiceLogsPath());
         }
     }
 
