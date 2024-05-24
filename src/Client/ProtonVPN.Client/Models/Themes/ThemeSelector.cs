@@ -19,6 +19,7 @@
 
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
@@ -29,18 +30,23 @@ public class ThemeSelector : IThemeSelector, IEventMessageReceiver<SettingChange
 {
     private readonly ISettings _settings;
     private readonly IEventMessageSender _eventMessageSender;
+    private readonly ILocalizationProvider _localizer;
 
-    private readonly IList<ApplicationElementTheme> _themes = new List<ApplicationElementTheme>()
-    {
-        new(ElementTheme.Light),
-        new(ElementTheme.Dark),
-        new(ElementTheme.Default)
-    };
+    private readonly IList<ApplicationElementTheme> _themes;
 
-    public ThemeSelector(ISettings settings, IEventMessageSender eventMessageSender)
+    public ThemeSelector(ISettings settings, IEventMessageSender eventMessageSender,
+        ILocalizationProvider localizer)
     {
         _settings = settings;
         _eventMessageSender = eventMessageSender;
+        _localizer = localizer;
+
+        _themes =
+        [
+            new(ElementTheme.Light, _localizer),
+            new(ElementTheme.Dark, _localizer),
+            new(ElementTheme.Default, _localizer)
+        ];
     }
 
     public IList<ApplicationElementTheme> GetAvailableThemes()
@@ -60,13 +66,16 @@ public class ThemeSelector : IThemeSelector, IEventMessageReceiver<SettingChange
             string themeString = (string)message.NewValue;
             ApplicationElementTheme theme = ConvertStringToApplicationElementTheme(themeString);
 
-            _eventMessageSender.Send(new ThemeChangedMessage(theme));
+            _eventMessageSender.Send(new ThemeChangedMessage(theme.Theme));
         }
     }
 
     public void SetTheme(ApplicationElementTheme theme)
     {
-        _settings.Theme = theme.Theme.ToString();
+        if (theme is not null)
+        {
+            _settings.Theme = theme.Theme.ToString();
+        }
     }
 
     private ApplicationElementTheme ConvertStringToApplicationElementTheme(string? theme)

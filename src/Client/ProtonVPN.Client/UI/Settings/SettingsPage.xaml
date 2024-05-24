@@ -161,7 +161,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <pathicons:CircleHalfFilled />
                 </toolkit:SettingsCard.HeaderIcon>
                 <ComboBox x:Name="themeMode"
-                          DisplayMemberPath="Theme"
+                          DisplayMemberPath="TranslatedName"
                           ItemsSource="{x:Bind ViewModel.Themes}"
                           SelectedItem="{x:Bind ViewModel.SelectedTheme, Mode=TwoWay}" />
             </toolkit:SettingsCard>
