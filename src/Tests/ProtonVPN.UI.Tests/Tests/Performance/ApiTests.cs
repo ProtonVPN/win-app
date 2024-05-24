@@ -73,14 +73,23 @@ public class ApiTests
 
     private async Task PushServerMaintenanceStatsAsync(string username, SecureString password, int serverTier)
     {
+        int totalIndividualServers = 0;
+        int onlineIndividualServers = 0;
+
         await _userAuthenticator.CreateSessionAsync(username, password);
+
         JArray logicalServers = await _prodTestApiClient.GetLogicalServersLoggedInAsync();
-
         JArray totalServersByTier = new JArray(logicalServers.Where(server => (int)server["Tier"] == serverTier));
-        JArray onlineServers = new JArray(totalServersByTier.Where(server => (int)server["Status"] == 1));
-        double onlineServerPercentage = (double)onlineServers.Count / totalServersByTier.Count * 100;
 
-        PerformanceTestHelper.AddMetric("total_servers", totalServersByTier.Count.ToString());
-        PerformanceTestHelper.AddMetric("online_servers", onlineServers.Count.ToString());
+        foreach (JObject server in totalServersByTier)
+        {
+            JArray serversArray = (JArray)server["Servers"];
+            totalIndividualServers += serversArray.Count;
+            onlineIndividualServers += serversArray.Count(s => (int)s["Status"] == 1);
+        }
+        Console.WriteLine(totalIndividualServers.ToString());
+        Console.WriteLine(onlineIndividualServers.ToString());
+        PerformanceTestHelper.AddMetric("total_servers", totalIndividualServers.ToString());
+        PerformanceTestHelper.AddMetric("online_servers", onlineIndividualServers.ToString());
     }
 }
