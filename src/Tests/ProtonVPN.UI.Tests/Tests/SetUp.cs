@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Diagnostics;
+using System.Linq;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestsHelper;
 
@@ -28,14 +30,17 @@ public class SetUp : TestSession
     [OneTimeSetUp]
     public void TestInitialize()
     {
-        KillProtonVpnProcess();
-        TestsRecorder.StartVideoCapture();
+        ArtifactsHelper.ClearEventViewerLogs();
+        CloseProtonVPN();
+        ArtifactsHelper.CreateTestFailureFolder();
+        ArtifactsHelper.StartVideoCapture();
     }
 
     [OneTimeTearDown]
     public void TestFinalTearDown()
     {
-        KillProtonVpnProcess();
-        TestsRecorder.StopRecording();
+        CloseProtonVPN();
+        ArtifactsHelper.StopRecording();
+        ArtifactsHelper.SaveEventViewerLogs();
     }
 }
