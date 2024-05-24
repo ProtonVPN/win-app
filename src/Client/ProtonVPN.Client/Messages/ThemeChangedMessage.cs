@@ -17,15 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Models.Themes;
+using Microsoft.UI.Xaml;
 
 namespace ProtonVPN.Client.Messages;
 
 public class ThemeChangedMessage
 {
-    public ApplicationElementTheme Theme { get; }
+    public ElementTheme Theme { get; }
 
-    public ThemeChangedMessage(ApplicationElementTheme theme)
+    public ThemeChangedMessage(ElementTheme theme)
     {
         Theme = theme;
     }

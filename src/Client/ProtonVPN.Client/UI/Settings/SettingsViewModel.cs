@@ -99,7 +99,7 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
         set => _settings.AreAutomaticUpdatesEnabled = value;
     }
 
-    public ObservableCollection<ApplicationElementTheme> Themes { get; }
+    public ObservableCollection<ApplicationElementTheme> Themes => new(_themeSelector.GetAvailableThemes());
 
     public ObservableCollection<Language> Languages => _languages.Value;
 
@@ -135,8 +135,6 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
 
         _languages = new Lazy<ObservableCollection<Language>>(
             () => new ObservableCollection<Language>(_localizationService.GetAvailableLanguages()));
-
-        Themes = new ObservableCollection<ApplicationElementTheme>(_themeSelector.GetAvailableThemes());
     }
 
     [RelayCommand]
@@ -234,5 +232,7 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
         OnPropertyChanged(nameof(SelectedLanguage));
         OnPropertyChanged(nameof(SelectedTheme));
         OnPropertyChanged(nameof(ClientVersionDescription));
+        OnPropertyChanged(nameof(Themes));
+        OnPropertyChanged(nameof(SelectedTheme));
     }
 }

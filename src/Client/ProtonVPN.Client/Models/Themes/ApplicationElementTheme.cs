@@ -18,12 +18,16 @@
  */
 
 using Microsoft.UI.Xaml;
+using ProtonVPN.Client.Localization.Contracts;
 
 namespace ProtonVPN.Client.Models.Themes;
 
 public class ApplicationElementTheme
 {
+    private readonly ILocalizationProvider _localizer;
+
     public ElementTheme Theme { get; }
+    public string TranslatedName => _localizer.Get($"Settings_Theme_{Theme}");
 
     public ApplicationTheme ApplicationTheme => Theme switch
     {
@@ -32,8 +36,9 @@ public class ApplicationElementTheme
         _ => Application.Current.RequestedTheme,
     };
 
-    public ApplicationElementTheme(ElementTheme theme)
+    public ApplicationElementTheme(ElementTheme theme, ILocalizationProvider localizer)
     {
         Theme = theme;
+        _localizer = localizer;
     }
 }
