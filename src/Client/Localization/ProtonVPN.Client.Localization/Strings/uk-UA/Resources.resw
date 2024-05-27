@@ -2486,7 +2486,7 @@ Smart Routing зазвичай використовується для того,
     <value>Роздільне тунелювання</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_Add">
-    <value>Додати застосунок</value>
+    <value>Додати програму</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_FilesFilterName">
     <value>Файли додатка</value>

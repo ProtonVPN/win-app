@@ -2671,7 +2671,7 @@ Smart Routing används vanligtvis för att komma runt antiintegritetslagar och a
     <value>Dölj din IP-adress från din tjänsteleverantör och andra användare</value>
   </data>
   <data name="Upsell_Carousel_P2P_PortForwarding">
-    <value>Supercharge P2P speeds with port forwarding</value>
+    <value>Öka P2P-hastigheter med vidarebefordring av port</value>
   </data>
   <data name="Upsell_Carousel_P2P_Speed">
     <value>Ökad upp- och nedladdningshastighet</value>
