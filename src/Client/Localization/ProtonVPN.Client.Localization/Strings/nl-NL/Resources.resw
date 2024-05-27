@@ -284,7 +284,7 @@
     <value>P2P steden ({0})</value>
   </data>
   <data name="Connections_P2P_Countries_One">
-    <value>P2P land ({0})</value>
+    <value>P2P-land ({0})</value>
   </data>
   <data name="Connections_P2P_Countries_Other">
     <value>P2P-landen ({0})</value>

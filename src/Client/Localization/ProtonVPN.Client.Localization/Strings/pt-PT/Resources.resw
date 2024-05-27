@@ -124,7 +124,7 @@
     <value>Cidades</value>
   </data>
   <data name="Common_Actions_ActionsFor">
-    <value>Actions for {0}</value>
+    <value>Ações para {0}</value>
     <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Add">
@@ -144,10 +144,10 @@
     <comment>Used for accessibility purposes (Narrator) to describe the action to Connect to something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_ContactUs">
-    <value>Contact us</value>
+    <value>Contacte-nos</value>
   </data>
   <data name="Common_Actions_Disconnect">
-    <value>Disconnect</value>
+    <value>Desligar</value>
   </data>
   <data name="Common_Actions_DisconnectFrom">
     <value>Disconnect from {0}</value>
@@ -172,7 +172,7 @@
     <value>Saiba mais</value>
   </data>
   <data name="Common_Message_Loading">
-    <value>Loading...</value>
+    <value>A carregar...</value>
   </data>
   <data name="Common_States_Off">
     <value>Desligado</value>
@@ -214,7 +214,7 @@
     <value>We're not sure what happened here. Please try again or contact our customer support team.</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
-    <value>View possible solutions</value>
+    <value>Ver as soluções possíveis</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
     <value>O Proton VPN não consegue conectar-se à VPN porque um outro adaptador de rede WireGuard está em utilização. Desligue quaisquer VPN que tenha ativa e tente novamente. Em alternativa, pode mudar o protocolo nas definições avançadas.</value>
@@ -248,7 +248,7 @@
     <value>All servers in this city are under maintenance</value>
   </data>
   <data name="Connections_Countries_One">
-    <value>Country ({0})</value>
+    <value>País ({0})</value>
   </data>
   <data name="Connections_Countries_Other">
     <value>Países ({0})</value>
@@ -290,34 +290,34 @@
     <value>Países P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_One">
-    <value>P2P server ({0})</value>
+    <value>Servidor P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>P2P servers ({0})</value>
+    <value>Servidores P2P ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_One">
-    <value>Secure Core country ({0})</value>
+    <value>País Secure Core ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_Other">
     <value>Países do Secure Core ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_One">
-    <value>Secure Core server ({0})</value>
+    <value>Servidor Secure Core ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>Secure Core servers ({0})</value>
+    <value>Servidores Secure Core ({0})</value>
   </data>
   <data name="Connections_SeeCities_One">
-    <value>See city ({0})</value>
+    <value>Ver cidade ({0})</value>
   </data>
   <data name="Connections_SeeCities_Other">
-    <value>See cities ({0})</value>
+    <value>Ver cidades ({0})</value>
   </data>
   <data name="Connections_SeeServers_One">
-    <value>See server ({0})</value>
+    <value>Ver servidor ({0})</value>
   </data>
   <data name="Connections_SeeServers_Other">
-    <value>See servers ({0})</value>
+    <value>Ver servidores ({0})</value>
   </data>
   <data name="Connections_Server_Restricted">
     <value>Server available with VPN Plus</value>
@@ -338,10 +338,10 @@
     <value>Países Tor ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_One">
-    <value>Tor server ({0})</value>
+    <value>Servidor Tor ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
-    <value>Tor servers ({0})</value>
+    <value>Servidores Tor ({0})</value>
   </data>
   <data name="Countries_All">
     <value>Todos</value>
@@ -360,7 +360,7 @@
     <comment>Connect button label on a country row in the countries tab</comment>
   </data>
   <data name="Countries_Fastest">
-    <value>Fastest country</value>
+    <value>País mais rápido</value>
   </data>
   <data name="Countries_Info">
     <value>Informação</value>
@@ -388,7 +388,7 @@
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_P2P_Cities">
-    <value>P2P cities ({0})</value>
+    <value>Cidade P2P ({0})</value>
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
   <data name="Countries_P2P_Description">
@@ -455,7 +455,7 @@
     <comment>{0} represents country name. For example: via Australia.</comment>
   </data>
   <data name="Country_Fastest">
-    <value>Fastest country</value>
+    <value>País mais rápido</value>
   </data>
   <data name="Country_val_AD">
     <value>Andorra</value>
@@ -1491,7 +1491,7 @@ High latency can slow down your connection.</value>
     <value>VPN may run slower than normal</value>
   </data>
   <data name="Dialogs_Latency_HighRange_Title">
-    <value>High (150ms+)</value>
+    <value>Alta (150ms+)</value>
   </data>
   <data name="Dialogs_Latency_LowRange_Description">
     <value>Lightning fast speeds</value>
@@ -1593,7 +1593,7 @@ High latency can slow down your connection.</value>
     <value>Enviar o relatório</value>
   </data>
   <data name="Dialogs_ReportIssue_Steps">
-    <value>Step {0} of {1}</value>
+    <value>Passo {0} de {1}</value>
     <comment>Steps header for the Report an issue dialog. {0} is a placeholder for the current step. {1} is a placeholder for the total number of steps. (eg. Step 1 of 3)</comment>
   </data>
   <data name="Dialogs_ReportIssue_Title">
@@ -1611,10 +1611,10 @@ This higher level of protection may cause higher latency and slower speeds.</val
     <value>Privacidade alta</value>
   </data>
   <data name="Dialogs_SecureCore_HigherLatency">
-    <value>Higher latency</value>
+    <value>Latência mais alta</value>
   </data>
   <data name="Dialogs_SecureCore_LowerLatency">
-    <value>Lower latency</value>
+    <value>Latência mais baixa</value>
   </data>
   <data name="Dialogs_SecureCore_SecureCoreConnection">
     <value>Secure Core
@@ -1636,7 +1636,7 @@ A high server load can slow down your connection.</value>
     <value>VPN may run slower than normal</value>
   </data>
   <data name="Dialogs_ServerLoad_HighRange_Title">
-    <value>High (91-100%)</value>
+    <value>Alta (91-100%)</value>
   </data>
   <data name="Dialogs_ServerLoad_LowRange_Description">
     <value>Lightning fast speeds</value>
@@ -1648,10 +1648,10 @@ A high server load can slow down your connection.</value>
     <value>Unlikely to affect VPN speed</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Title">
-    <value>Medium (76-90%)</value>
+    <value>Média (76 – 90%)</value>
   </data>
   <data name="Dialogs_ServerLoad_Title">
-    <value>What is server load?</value>
+    <value>O que é a carga do servidor?</value>
   </data>
   <data name="Dialogs_SmartRouting_Description">
     <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
@@ -1691,7 +1691,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Não funcionou?</value>
   </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork">
-    <value>Use a different network</value>
+    <value>Utilizar uma rede diferente</value>
   </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
     <value>Try switching Wi-Fi networks, or use mobile data.</value>
@@ -1703,7 +1703,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Just to be sure that Proton services are running as normal.</value>
   </data>
   <data name="Dialogs_Troubleshooting_Title">
-    <value>Connection help</value>
+    <value>Ajuda da conexão</value>
   </data>
   <data name="Dialogs_Welcome_Message">
     <value>We're getting your new VPN experience ready. This should only take a moment.</value>
@@ -1853,13 +1853,13 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>{0} is a placeholder for the username</comment>
   </data>
   <data name="Home_Account_Title">
-    <value>My account</value>
+    <value>A minha conta</value>
   </data>
   <data name="Home_ConnectionCard_ChangeServer">
     <value>Alterar servidor</value>
   </data>
   <data name="Home_ConnectionCard_Header_BrowseSafely">
-    <value>Browsing safely from</value>
+    <value>Navegação segura desde</value>
   </data>
   <data name="Home_ConnectionCard_Header_ConnectingTo">
     <value>A ligar a...</value>
@@ -1874,14 +1874,14 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Recomendado</value>
   </data>
   <data name="Home_ConnectionCard_Landmark">
-    <value>Connection card</value>
+    <value>Cartão de conexão</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_ConnectionDetails_City">
     <value>Cidade</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectedFor">
-    <value>Connected for</value>
+    <value>Ligado por</value>
     <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
   </data>
   <data name="Home_ConnectionDetails_Country">
@@ -1901,10 +1901,10 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
   </data>
   <data name="Home_ConnectionDetails_HideIP_Description">
-    <value>Hide user IP address</value>
+    <value>Oculte o endereço IP do utilizador</value>
   </data>
   <data name="Home_ConnectionDetails_Landmark">
-    <value>Connection details</value>
+    <value>Detalhes da ligação</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_ConnectionDetails_Latency">
@@ -1930,13 +1930,13 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Tooltip displayed when the user hover the button to show the User IP Address</comment>
   </data>
   <data name="Home_ConnectionDetails_ShowIP_Description">
-    <value>Show user IP address</value>
+    <value>Mostrar o endereço IP do utilizador</value>
   </data>
   <data name="Home_ConnectionDetails_Title">
-    <value>Connection details</value>
+    <value>Detalhes da ligação</value>
   </data>
   <data name="Home_ConnectionDetails_Upload">
-    <value>Carregar</value>
+    <value>Enviar</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>IP da VPN</value>
@@ -1961,17 +1961,17 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Ads are promotional banners or pop-ups that appear on websites and apps.</value>
   </data>
   <data name="Home_NetShield_DataSaved">
-    <value>Data saved</value>
+    <value>Dados economizados</value>
   </data>
   <data name="Home_NetShield_DataSaved_Description">
     <value>Estimated data saved by blocking unwanted ads, trackers, and malware.</value>
   </data>
   <data name="Home_NetShield_Landmark">
-    <value>NetShield statistics</value>
+    <value>Estatísticas NetShield</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_NetShield_Title">
-    <value>NetShield stats</value>
+    <value>Estatísticas NetShield</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_One">
     <value>Rastreador parado</value>
@@ -2015,10 +2015,10 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Atualização disponível</value>
   </data>
   <data name="Home_Update_UpdateReady">
-    <value>Update ready</value>
+    <value>A atualização está pronta.</value>
   </data>
   <data name="Home_VpnStatus_Landmark">
-    <value>VPN status</value>
+    <value>Estado da VPN</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_VpnStatus_Subtitle_Connecting">
@@ -2050,7 +2050,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Two factor authentication failed. Please sign in again.</value>
   </data>
   <data name="Login_Form">
-    <value>Sign in form</value>
+    <value>Formulário de início de sessão</value>
   </data>
   <data name="Login_Form_CreateAccount">
     <value>Criar uma conta</value>
@@ -2165,10 +2165,10 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Saiba mais</value>
   </data>
   <data name="Settings_About_Licensing">
-    <value>Licensing</value>
+    <value>Licença</value>
   </data>
   <data name="Settings_About_Loading">
-    <value>Loading</value>
+    <value>A carregar</value>
   </data>
   <data name="Settings_About_NewVersion">
     <value>NOVO</value>
@@ -2214,7 +2214,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Discard settings changes?</value>
   </data>
   <data name="Settings_Connection">
-    <value>Connection</value>
+    <value>Ligação</value>
   </data>
   <data name="Settings_Connection_AdvancedSettings">
     <value>Definições avançadas</value>
@@ -2246,7 +2246,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>IPv6 leak protection</value>
+    <value>Proteção contra fugas IPv6</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
     <value>Impedir a fuga do endereço de IPv6.</value>
@@ -2276,7 +2276,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Some restriction on data entering your network. This option is best for online video gaming.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict">
-    <value>Strict (type 3)</value>
+    <value>Estrito (tipo 3)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
     <value>Restricts the data entering your network. This option is more secure, but can make peer-to-peer gaming connections more difficult.</value>
@@ -2333,7 +2333,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Some websites may not load properly when ads and trackers are blocked.</value>
   </data>
   <data name="Settings_Features_PortForwarding">
-    <value>Port forwarding</value>
+    <value>Encaminhamento de portas</value>
   </data>
   <data name="Settings_Features_PortForwarding_ActivePort">
     <value>Porta ativa:</value>
@@ -2354,7 +2354,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>To use port forwarding, please connect to a server that supports P2P.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Loading">
-    <value>Loading...</value>
+    <value>A carregar...</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications">
     <value>Notificações</value>
@@ -2369,7 +2369,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Adicionar a aplicação</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_FilesFilterName">
-    <value>Arquivos do aplicativo</value>
+    <value>Arquivos da aplicação</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_Header">
@@ -2377,7 +2377,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_Remove">
-    <value>Remove app</value>
+    <value>Remover a aplicação</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Conflict_Description">
     <value>This will disable kill switch.</value>
@@ -2438,7 +2438,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Proton VPN will automatically open when you sign in to your device</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Desktop">
-    <value>Open on desktop</value>
+    <value>Abrir no desktop</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray">
     <value>Minimize to System Tray</value>
@@ -2495,7 +2495,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Ajude-nos a combater a censura</value>
   </data>
   <data name="Settings_OperatingSystemVersion">
-    <value>Operating System version</value>
+    <value>Versão do sistema operativo</value>
   </data>
   <data name="Settings_Page_Title">
     <value>Definições</value>
@@ -2537,13 +2537,13 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>WireGuard</value>
   </data>
   <data name="Settings_RestoreDefault">
-    <value>Restore default settings</value>
+    <value>Restaurar as definições padrão</value>
   </data>
   <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action">
     <value>Restore and reconnect</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Action">
-    <value>Restore default settings</value>
+    <value>Restaurar as definições padrão</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Message">
     <value>This will reset your Proton VPN settings to their original state.</value>
@@ -2567,7 +2567,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Apoio ao cliente</value>
   </data>
   <data name="Settings_Support_DebugLogs">
-    <value>Debug logs</value>
+    <value>Registos de depuração</value>
   </data>
   <data name="Settings_Support_DebugLogs_Application">
     <value>Registos da aplicação</value>
@@ -2582,7 +2582,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Reportar um problema</value>
   </data>
   <data name="Settings_Support_SupportCenter">
-    <value>Support center</value>
+    <value>Centro de suporte</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>Increase your connection speed by up to 400% with performance enhancing technologies.</value>
@@ -2656,7 +2656,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Security and privacy on all of your devices</value>
   </data>
   <data name="Upsell_Carousel_NetShield">
-    <value>Enjoy ad-free browsing</value>
+    <value>Desfrute de uma navegação sem anúncios</value>
   </data>
   <data name="Upsell_Carousel_NetShield_Block">
     <value>Block ads and trackers with NetShield</value>
@@ -2677,7 +2677,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Increased upload and download speeds</value>
   </data>
   <data name="Upsell_Carousel_Platforms_More">
-    <value>+ more</value>
+    <value>+ mais</value>
     <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
   </data>
   <data name="Upsell_Carousel_SecureCore">
@@ -2738,7 +2738,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Watch in 4K without buffering, slowdowns, or throttling</value>
   </data>
   <data name="Upsell_Carousel_Title">
-    <value>Discover VPN Plus</value>
+    <value>Descubra VPN Plus</value>
   </data>
   <data name="Upsell_Carousel_Tor">
     <value>Access the Tor network for extra privacy</value>
@@ -2769,7 +2769,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>{0} países</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
-    <value>Open source VPN</value>
+    <value>VPN de código aberto</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
     <value>{0} servidor seguro</value>

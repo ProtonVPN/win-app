@@ -254,13 +254,13 @@
     <value>Pays ({0})</value>
   </data>
   <data name="Connections_Country_Restricted">
-    <value>Les serveurs de ce pays sont disponibles avec VPN Plus</value>
+    <value>Les serveurs de ce pays sont disponibles avec VPN Plus.</value>
   </data>
   <data name="Connections_Country_UnderMaintenance">
-    <value>Tous les serveurs de ce pays sont en maintenance</value>
+    <value>Tous les serveurs de ce pays sont en maintenance.</value>
   </data>
   <data name="Connections_Gateway_Restricted">
-    <value>Les serveurs de cette passerelle sont disponibles avec VPN Plus</value>
+    <value>Les serveurs de cette passerelle sont disponibles avec VPN Plus.</value>
   </data>
   <data name="Connections_Gateway_UnderMaintenance">
     <value>Tous les serveurs de cette passerelle sont en maintenance.</value>
@@ -323,7 +323,7 @@
     <value>Serveur disponible avec VPN Plus</value>
   </data>
   <data name="Connections_Server_UnderMaintenance">
-    <value>Ce serveur en maintenance.</value>
+    <value>Ce serveur est en maintenance.</value>
   </data>
   <data name="Connections_Servers_One">
     <value>Serveur ({0})</value>
@@ -1462,10 +1462,10 @@
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
-    <value>Changer de serveur de façon illimité avec l'offre VPN Plus.</value>
+    <value>Changez de serveur autant de fois que vous le souhaitez avec VPN Plus.</value>
   </data>
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
-    <value>Vous avez atteint le nombre de changements maximal de serveurs Free pour le moment</value>
+    <value>Vous avez atteint le nombre maximum de changements de serveurs gratuits pour l'instant.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free vous connecte automatiquement au serveur gratuit le plus rapide dans {0} pays disponible. C'est en général le serveur le plus proche de votre localisation.</value>
@@ -1617,12 +1617,12 @@ Ce niveau de protection plus élevé peut entraîner une latence plus importante
     <value>Latence plus faible</value>
   </data>
   <data name="Dialogs_SecureCore_SecureCoreConnection">
-    <value>Connexion VPN
-Secure Core</value>
+    <value>Secure Core
+Connexion VPN</value>
   </data>
   <data name="Dialogs_SecureCore_StandardConnection">
-    <value>Connexion VPN
-standard</value>
+    <value>Standard
+Connexion VPN</value>
   </data>
   <data name="Dialogs_SecureCore_Title">
     <value>Secure Core</value>
@@ -1694,13 +1694,13 @@ Smart Routing est généralement utilisé pour contourner les lois de privation 
     <value>Utilisez un autre réseau.</value>
   </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
-    <value>Essayez un autre réseau Wi-Fi ou utilisez les données mobiles.</value>
+    <value>Essayez un autre réseau wifi ou utilisez les données mobiles.</value>
   </data>
   <data name="Dialogs_Troubleshooting_StatusPage">
     <value>Vérifiez l'état des services.</value>
   </data>
   <data name="Dialogs_Troubleshooting_StatusPage_Description">
-    <value>Assurez vous d'abord que les services Proton fonctionnent normalement.</value>
+    <value>Assurez-vous d'abord que les services Proton fonctionnent normalement.</value>
   </data>
   <data name="Dialogs_Troubleshooting_Title">
     <value>Aide pour la connexion</value>
@@ -2623,7 +2623,7 @@ Smart Routing est généralement utilisé pour contourner les lois de privation 
     <value>Connectez-vous au VPN avec votre système de nom de domaine personnalisé (DNS).</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
-    <value>Accédez aux appareils de votre réseau local (LAN) lorsque vous êtes connectés.</value>
+    <value>Accéder aux appareils de votre réseau local (LAN) tout en étant connecté.</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
     <value>Améliorez votre expérience de jeu en utilisant un NAT de type 2 (modéré).</value>
@@ -2632,7 +2632,7 @@ Smart Routing est généralement utilisé pour contourner les lois de privation 
     <value>Connectez jusqu'à 10 appareils en même temps.</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Platforms">
-    <value>Utilisez Proton VPN sur plusieurs plateformes.</value>
+    <value>Utilisez Proton VPN sur différentes plateformes.</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
     <value>Android et Android TV</value>
