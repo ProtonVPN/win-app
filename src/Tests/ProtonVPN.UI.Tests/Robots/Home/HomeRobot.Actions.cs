@@ -106,7 +106,7 @@ public partial class HomeRobot
     public HomeRobot DoClickOnRecentCountry(string country)
     {
         Button recentRowPrimaryButton = GetRecentRowPrimaryActionButton(country);
-        recentRowPrimaryButton.Click();
+        recentRowPrimaryButton.Invoke();
         return this;
     }
 
@@ -119,7 +119,7 @@ public partial class HomeRobot
     public HomeRobot RemoveRecent(string country)
     {
         Button recentRowSecondaryButton = GetRecentRowSecondaryActionButton(country);
-        recentRowSecondaryButton.Click();
+        recentRowSecondaryButton.Invoke();
         RemoveButton.Click();
         return this;
     }

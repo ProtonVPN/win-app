@@ -25,7 +25,7 @@ public partial class CountriesRobot
 {
     public CountriesRobot DoConnect(string item)
     {
-        GetConnectButton(item).FocusAndClick();
+        GetConnectButton(item).Invoke();
         return this;
     }
 
@@ -45,7 +45,7 @@ public partial class CountriesRobot
 
     public CountriesRobot DoShowServers(string city)
     {
-        GetShowServersButton(city).FocusAndClick();
+        GetShowServersButton(city).Invoke();
         return this;
     }
 
