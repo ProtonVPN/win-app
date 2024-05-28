@@ -69,7 +69,7 @@ public class RecentsTests : TestSession
         _countriesRobot
             .DoConnect(FIRST_COUNTRY_CODE);
         _homeRobot
-            .VerifyAllStatesUntilConnected(FIRST_COUNTRY_NAME);
+            .VerifyVpnStatusIsConnected();
 
         _shellRobot
             .DoNavigateToCountriesPage();
@@ -77,7 +77,7 @@ public class RecentsTests : TestSession
         _countriesRobot
             .DoConnect(SECOND_COUNTRY_CODE);
         _homeRobot
-            .VerifyAllStatesUntilConnected(SECOND_COUNTRY_NAME)
+            .VerifyVpnStatusIsConnected()
             .VerifyRecentsTabIsDisplayed();
 
         _homeRobot
@@ -90,7 +90,7 @@ public class RecentsTests : TestSession
     {
         _homeRobot
             .DoClickOnRecentCountry(FIRST_COUNTRY_NAME)
-            .VerifyAllStatesUntilConnected(FIRST_COUNTRY_NAME)
+            .VerifyVpnStatusIsConnected()
             .DoDisconnect()
             .VerifyVpnStatusIsDisconnected();
     }

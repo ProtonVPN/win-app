@@ -122,6 +122,7 @@ public partial class SettingsRobot
 
     public SettingsRobot VerifyNetshieldIsNotBlocking()
     {
+        NetworkUtils.FlushDns();
         CommonAssertions.AssertDnsIsResolved(NETSHIELD_NO_BLOCK);
         CommonAssertions.AssertDnsIsResolved(NETSHIELD_MALWARE_ENDPOINT);
         CommonAssertions.AssertDnsIsResolved(NETSHIELD_ADS_ENDPOINT);
@@ -130,6 +131,7 @@ public partial class SettingsRobot
 
     public SettingsRobot VerifyNetshieldIsBlocking()
     {
+        NetworkUtils.FlushDns();
         CommonAssertions.AssertDnsIsResolved(NETSHIELD_NO_BLOCK);
         CommonAssertions.AssertDnsIsNotResolved(NETSHIELD_MALWARE_ENDPOINT);
         CommonAssertions.AssertDnsIsNotResolved(NETSHIELD_ADS_ENDPOINT);

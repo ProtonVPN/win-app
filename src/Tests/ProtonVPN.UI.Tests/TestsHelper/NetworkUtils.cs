@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -52,6 +53,11 @@ public class NetworkUtils
         return dnsAddress;
     }
 
+    public static void FlushDns()
+    {
+        DnsFlushResolverCache();
+    }
+
     public static IPAddress GetDefaultGatewayAddress()
     {
         return NetworkInterface
@@ -65,10 +71,10 @@ public class NetworkUtils
     public static string GetIpAddress()
     {
         RetryResult<string> retry = Retry.WhileEmpty(
-            () => GetExternalIpAddressAsync().Result,
-            TestConstants.TenSecondsTimeout, TestConstants.RetryInterval);
-
-        return retry.Result;
+            () => {
+                return GetExternalIpAddressAsync().Result; },
+            TestConstants.ThirtySecondsTimeout, TestConstants.RetryInterval, ignoreException: true);
+        return retry.Result ?? throw new HttpRequestException("Failed to get IP Address.");
     }
 
     private static async Task<string> GetExternalIpAddressAsync()

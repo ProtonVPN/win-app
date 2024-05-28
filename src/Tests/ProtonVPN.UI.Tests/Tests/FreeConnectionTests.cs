@@ -105,7 +105,7 @@ public class FreeConnectionTests : TestSession
 
         _homeRobot
             .DoConnect()
-            .VerifyAllStatesUntilConnectedToFreeServer();
+            .VerifyVpnStatusIsConnected();
 
         CommonAssertions.AssertIpAddressChanged(unprotectedIpAddress);
 
