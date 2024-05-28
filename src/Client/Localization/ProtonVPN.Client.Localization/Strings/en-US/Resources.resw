@@ -1295,21 +1295,21 @@
     <value>{0} TB/s</value>
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
-  <data name="Format_Time_Day" xml:space="preserve">
+  <data name="Format_Time_Day_One" xml:space="preserve">
     <value>{0} day</value>
-    <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
+    <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day).</comment>
   </data>
-  <data name="Format_Time_DayHours" xml:space="preserve">
-    <value>{0} day {1} hr</value>
-    <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_Days" xml:space="preserve">
+  <data name="Format_Time_Day_Other" xml:space="preserve">
     <value>{0} days</value>
-    <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
+    <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days).</comment>
   </data>
-  <data name="Format_Time_DaysHours" xml:space="preserve">
+  <data name="Format_Time_DayHour_One" xml:space="preserve">
+    <value>{0} day {1} hr</value>
+    <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr or 1 day 1 hr). For hours, use abbreviation, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_DayHour_Other" xml:space="preserve">
     <value>{0} days {1} hr</value>
-    <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
+    <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr or 7 days 1 hr). For hours, use abbreviation, no pluralization.</comment>
   </data>
   <data name="Format_Time_Hours" xml:space="preserve">
     <value>{0} hr</value>
