@@ -148,12 +148,9 @@ public static class LocalizationExtensions
             TimeSpan when time < TimeSpan.FromDays(1) => time.Minutes == 0
                 ? localizer.GetFormat("Format_Time_Hours", time.Hours)
                 : localizer.GetFormat("Format_Time_HoursMinutes", time.Hours, time.Minutes),
-            TimeSpan when time < TimeSpan.FromDays(2) => time.Hours == 0
-                ? localizer.GetFormat("Format_Time_Day", time.Days)
-                : localizer.GetFormat("Format_Time_DayHours", time.Days, time.Hours),
             _ => time.Hours == 0
-                ? localizer.GetFormat("Format_Time_Days", time.Days)
-                : localizer.GetFormat("Format_Time_DaysHours", time.Days, time.Hours),
+                ? localizer.GetPluralFormat("Format_Time_Day", time.Days)
+                : string.Format(localizer.GetPlural("Format_Time_DayHour", time.Days), time.Days, time.Hours),
         };
     }
 
