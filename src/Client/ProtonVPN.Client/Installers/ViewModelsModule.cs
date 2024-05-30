@@ -21,6 +21,11 @@ using Autofac;
 using Autofac.Builder;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.UI;
+using ProtonVPN.Client.UI.Connections.Countries;
+using ProtonVPN.Client.UI.Connections.Gateways;
+using ProtonVPN.Client.UI.Connections.P2P;
+using ProtonVPN.Client.UI.Connections.SecureCore;
+using ProtonVPN.Client.UI.Connections.Tor;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
 using ProtonVPN.Client.UI.Features.KillSwitch;
 using ProtonVPN.Client.UI.Features.NetShield;
@@ -45,18 +50,12 @@ using ProtonVPN.Client.UI.Settings;
 using ProtonVPN.Client.UI.Settings.Pages;
 using ProtonVPN.Client.UI.Settings.Pages.About;
 using ProtonVPN.Client.UI.Settings.Pages.Advanced;
+using ProtonVPN.Client.UI.Sidebar;
 using ProtonVPN.Client.UI.Tray;
-using ProtonVPN.Client.UI.Update;
+using ProtonVPN.Client.UI.Upsell.Banner;
 using ProtonVPN.Client.UI.Upsell.Carousel;
 using ProtonVPN.Client.UI.Upsell.Carousel.Features;
 using ProtonVPN.Client.UI.Upsell.Carousel.Features.Base;
-using ProtonVPN.Client.UI.Upsell.Banner;
-using ProtonVPN.Client.UI.Sidebar;
-using ProtonVPN.Client.UI.Connections.Gateways;
-using ProtonVPN.Client.UI.Connections.Countries;
-using ProtonVPN.Client.UI.Connections.P2P;
-using ProtonVPN.Client.UI.Connections.SecureCore;
-using ProtonVPN.Client.UI.Connections.Tor;
 
 namespace ProtonVPN.Client.Installers;
 
@@ -120,7 +119,6 @@ public class ViewModelsModule : Module
         RegisterViewModel<ConnectionErrorViewModel>(builder);
         RegisterViewModel<UpsellBannerViewModel>(builder);
         RegisterViewModel<DeveloperToolsViewModel>(builder);
-        RegisterViewModel<UpdateViewModel>(builder);
         RegisterViewModel<LicensingViewModel>(builder);
         RegisterViewModel<GalleryViewModel>(builder);
         RegisterViewModel<GalleryItemViewModel>(builder);
@@ -140,6 +138,7 @@ public class ViewModelsModule : Module
         RegisterViewModel<SidebarPortForwardingViewModel>(builder);
         RegisterViewModel<SidebarSplitTunnelingViewModel>(builder);
         RegisterViewModel<SidebarGalleryViewModel>(builder);
+        RegisterViewModel<SidebarUpdateViewModel>(builder);
         RegisterViewModel<SidebarSettingsViewModel>(builder);
         RegisterViewModel<SidebarSeparatorViewModel>(builder);
         RegisterViewModel<SidebarAccountViewModel>(builder);

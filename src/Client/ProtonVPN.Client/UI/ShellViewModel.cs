@@ -78,6 +78,7 @@ public partial class ShellViewModel : ShellViewModelBase<IMainViewNavigator>, IE
         SidebarPortForwardingViewModel sidebarPortForwarding,
         SidebarSplitTunnelingViewModel sidebarSplitTunneling,
         SidebarGalleryViewModel sidebarGallery,
+        SidebarUpdateViewModel sidebarUpdate,
         SidebarSettingsViewModel sidebarSettings,
         SidebarSeparatorViewModel sidebarSeparator,
         SidebarAccountViewModel sidebarAccount)
@@ -106,6 +107,7 @@ public partial class ShellViewModel : ShellViewModelBase<IMainViewNavigator>, IE
         FooterMenuItems = new()
         {
             sidebarGallery,
+            sidebarUpdate,
             sidebarSettings,
             sidebarSeparator,
             sidebarAccount
