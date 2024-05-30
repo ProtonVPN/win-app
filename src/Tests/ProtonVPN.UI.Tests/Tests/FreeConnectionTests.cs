@@ -142,7 +142,6 @@ public class FreeConnectionTests : TestSession
         _homeRobot
             .DoConnect()
             .VerifyAllStatesUntilConnectedToFreeServer()
-            .DoOpenConnectionDetails()
             .VerifyConnectionDetailsIsOpened();
 
         // VPNWIN-2095 - Latency is kept hidden as it is not implemented yet. 

@@ -101,6 +101,7 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
         _themeSelector = themeSelector;
         _connectionDetailsViewModel = connectionDetailsViewModel;
 
+        _reopenDetailsPaneAutomatically = _settings.IsConnectionDetailsPaneOpened;
         InvalidateActiveCountryCode();
     }
 
@@ -142,12 +143,11 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
                 case ConnectionStatus.Connected:
                 case ConnectionStatus.Connecting:
                     if (_reopenDetailsPaneAutomatically &&
-                    ConnectionDetailsPaneDisplayMode.IsInline() &&
-                    !IsConnectionDetailsPaneOpened)
+                        ConnectionDetailsPaneDisplayMode.IsInline() &&
+                        !IsConnectionDetailsPaneOpened)
                     {
                         OpenConnectionDetailsPane();
                     }
-
                     if (_connectionManager.ConnectionStatus == ConnectionStatus.Connected)
                     {
                         string? countryCode = _connectionManager.CurrentConnectionDetails?.ExitCountryCode;
@@ -156,7 +156,6 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
                             ActiveCountryCode = countryCode;
                         }
                     }
-
                     break;
 
                 case ConnectionStatus.Disconnected:
