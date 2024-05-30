@@ -189,7 +189,6 @@ public class ConnectionTests : TestSession
         _homeRobot
             .DoConnect()
             .VerifyAllStatesUntilConnected()
-            .DoOpenConnectionDetails()
             .VerifyConnectionDetailsIsOpened();
 
         // VPNWIN-2095 - Latency is kept hidden as it is not implemented yet. 
@@ -224,7 +223,6 @@ public class ConnectionTests : TestSession
         _homeRobot
             .DoConnect()
             .VerifyAllStatesUntilConnected()
-            .DoOpenConnectionDetails()
             .VerifyConnectionDetailsIsOpened();
 
         _homeRobot
