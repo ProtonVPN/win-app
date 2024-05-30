@@ -17,15 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.UI.Update;
+using ProtonVPN.Client.UI.Sidebar;
 
-public sealed partial class UpdateComponent
+namespace ProtonVPN.Client.UI.Settings.Pages.About;
+
+public sealed partial class UpdateBannerComponent
 {
-    public UpdateViewModel ViewModel { get; }
+    public SidebarUpdateViewModel ViewModel { get; }
 
-    public UpdateComponent()
+    public UpdateBannerComponent()
     {
-        ViewModel = App.GetService<UpdateViewModel>();
+        ViewModel = App.GetService<SidebarUpdateViewModel>();
         InitializeComponent();
     }
 }

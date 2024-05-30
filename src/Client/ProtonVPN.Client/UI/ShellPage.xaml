@@ -27,7 +27,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       xmlns:selectors="using:ProtonVPN.Client.UI.Sidebar.Selectors"
       xmlns:sidebar="using:ProtonVPN.Client.UI.Sidebar"
-      xmlns:update="using:ProtonVPN.Client.UI.Update"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required">
 
@@ -65,6 +64,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               Content="{x:Bind Status}"
                                               Header="{x:Bind Header}"
                                               Icon="{x:Bind Icon}"
+                                              IsEnabled="{x:Bind IsEnabled}"
                                               SelectsOnInvoked="{x:Bind IsRestricted, Converter={StaticResource NotBooleanToBooleanConverter}}"
                                               Tag="{x:Bind}"
                                               ToolTipService.ToolTip="{x:Bind ToolTip}"
@@ -93,6 +93,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               Content="{x:Bind Status}"
                                               Header="{x:Bind Header}"
                                               Icon="{x:Bind Icon}"
+                                              IsEnabled="{x:Bind IsEnabled}"
                                               SelectsOnInvoked="{x:Bind IsRestricted, Converter={StaticResource NotBooleanToBooleanConverter}}"
                                               Tag="{x:Bind}"
                                               ToolTipService.ToolTip="{x:Bind ToolTip}"
@@ -113,6 +114,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               Content="{x:Bind Status}"
                                               Header="{x:Bind Header}"
                                               Icon="{x:Bind Icon}"
+                                              IsEnabled="{x:Bind IsEnabled}"
                                               SelectsOnInvoked="True"
                                               Tag="{x:Bind}"
                                               ToolTipService.ToolTip="{x:Bind ToolTip}"
@@ -133,6 +135,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               Content="{x:Bind Status}"
                                               Header="{x:Bind Header}"
                                               Icon="{x:Bind Icon}"
+                                              IsEnabled="{x:Bind IsEnabled}"
                                               SelectsOnInvoked="False"
                                               Tag="{x:Bind}"
                                               ToolTipService.ToolTip="{x:Bind ToolTip}"
@@ -148,8 +151,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <DataTemplate x:Key="AccountItemTemplate"
                       x:DataType="sidebar:SidebarAccountViewModel">
             <NavigationViewItem Padding="0"
+                                IsEnabled="{x:Bind IsEnabled}"
                                 Style="{StaticResource TransparentNavigationViewItemStyle}"
-                                ToolTipService.ToolTip="{x:Bind ToolTip}">
+                                ToolTipService.ToolTip="{x:Bind ToolTip}"
+                                Visibility="{x:Bind IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <custom:GhostButton MinWidth="44"
                                     Margin="4,1"
                                     Padding="10,6"
@@ -181,26 +186,26 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </custom:GhostButton.RightIcon>
                     <Button.Flyout>
                         <MenuFlyout Placement="TopEdgeAlignedLeft">
-                            <MenuFlyoutItem Command="{x:Bind GoToMyAccountCommand, Mode=OneTime}"
-                                            Text="{x:Bind Localizer.Get('Home_Account_Title')}"
-                                            AutomationProperties.AutomationControlType="MenuItem"
-                                            AutomationProperties.AutomationId="Sidebar_Account_Link">
+                            <MenuFlyoutItem AutomationProperties.AutomationControlType="MenuItem"
+                                            AutomationProperties.AutomationId="Sidebar_Account_Link"
+                                            Command="{x:Bind GoToMyAccountCommand, Mode=OneTime}"
+                                            Text="{x:Bind Localizer.Get('Home_Account_Title')}">
                                 <MenuFlyoutItem.Icon>
                                     <pathicons:User />
                                 </MenuFlyoutItem.Icon>
                             </MenuFlyoutItem>
-                            <MenuFlyoutItem Command="{x:Bind SignOutCommand, Mode=OneTime}"
-                                            Text="{x:Bind Localizer.Get('Home_Account_SignOut')}"
-                                            AutomationProperties.AutomationControlType="MenuItem"
-                                            AutomationProperties.AutomationId="Sidebar_Account_SignOut">
+                            <MenuFlyoutItem AutomationProperties.AutomationControlType="MenuItem"
+                                            AutomationProperties.AutomationId="Sidebar_Account_SignOut"
+                                            Command="{x:Bind SignOutCommand, Mode=OneTime}"
+                                            Text="{x:Bind Localizer.Get('Home_Account_SignOut')}">
                                 <MenuFlyoutItem.Icon>
                                     <pathicons:ArrowOutFromRectangle />
                                 </MenuFlyoutItem.Icon>
                             </MenuFlyoutItem>
-                            <MenuFlyoutItem Command="{x:Bind ExitApplicationCommand, Mode=OneTime}"
-                                            Text="{x:Bind Localizer.Get('Tray_Actions_ExitApplication')}"
-                                            AutomationProperties.AutomationControlType="MenuItem"
-                                            AutomationProperties.AutomationId="Sidebar_Account_Exit">
+                            <MenuFlyoutItem AutomationProperties.AutomationControlType="MenuItem"
+                                            AutomationProperties.AutomationId="Sidebar_Account_Exit"
+                                            Command="{x:Bind ExitApplicationCommand, Mode=OneTime}"
+                                            Text="{x:Bind Localizer.Get('Tray_Actions_ExitApplication')}">
                                 <MenuFlyoutItem.Icon>
                                     <pathicons:CrossBig />
                                 </MenuFlyoutItem.Icon>
@@ -250,13 +255,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <NavigationView.PaneFooter>
 
-            <StackPanel Spacing="4">
-                <update:UpdateComponent />
-            </StackPanel>
+            <StackPanel Spacing="4" />
 
         </NavigationView.PaneFooter>
 
-        <Frame x:Name="NavigationFrame" Margin="0,-1,0,0"/>
+        <Frame x:Name="NavigationFrame"
+               Margin="0,-1,0,0" />
 
     </NavigationView>
 </Page>

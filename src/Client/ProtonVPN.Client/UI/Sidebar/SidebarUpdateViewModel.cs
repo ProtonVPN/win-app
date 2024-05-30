@@ -21,18 +21,15 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Models;
-using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
-using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Updates.Contracts;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
-using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.Client.UI.Sidebar.Bases;
 using ProtonVPN.Common.Legacy.OS.Processes;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
@@ -41,47 +38,57 @@ using ProtonVPN.Logging.Contracts.Events.AppUpdateLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.Update.Contracts;
 
-namespace ProtonVPN.Client.UI.Update;
+namespace ProtonVPN.Client.UI.Sidebar;
 
-public partial class UpdateViewModel : ViewModelBase,
-    IEventMessageReceiver<ClientUpdateStateChangedMessage>,
-    IEventMessageReceiver<ConnectionStatusChanged>,
-    IEventMessageReceiver<SettingChangedMessage>
+public partial class SidebarUpdateViewModel : SidebarInteractiveItemViewModelBase,
+    IEventMessageReceiver<ClientUpdateStateChangedMessage>
 {
     private const int APP_EXIT_TIMEOUT_IN_SECONDS = 3;
 
     private readonly IOsProcesses _osProcesses;
     private readonly IMainWindowActivator _mainWindowActivator;
-    private readonly ISettings _settings;
     private readonly IConfiguration _config;
     private readonly IVpnServiceSettingsUpdater _vpnServiceSettingsUpdater;
     private readonly IOverlayActivator _overlayActivator;
+    private readonly IConnectionManager _connectionManager;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsEnabled))]
+    [NotifyPropertyChangedFor(nameof(Header))]
+    [NotifyPropertyChangedFor(nameof(Status))]
+    [NotifyCanExecuteChangedFor(nameof(UpdateCommand))]
+    private AppUpdateStateContract? _updateState;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsVisible))]
+    private bool _isUpdateAvailable;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsEnabled))]
+    [NotifyPropertyChangedFor(nameof(Status))]
     [NotifyCanExecuteChangedFor(nameof(UpdateCommand))]
     private bool _isUpdating;
 
-    [ObservableProperty]
-    private bool _isToShowUpdateComponent;
-
-    [ObservableProperty]
-    private bool _isToShowUpdateButtonLabel = true;
-
-    [ObservableProperty]
-    private string _updateButtonLabel = string.Empty;
-
-    private ConnectionStatus _connectionStatus;
-    private AppUpdateStateContract? _clientUpdateState;
-
-    private bool IsToShowConfirmationDialog => _connectionStatus != ConnectionStatus.Disconnected ||
-                                               _settings.KillSwitchMode == KillSwitchMode.Advanced;
-
-    public IconElement Icon => new ImageIcon
+    public override IconElement? Icon { get; } = new ImageIcon
     {
         Source = ResourceHelper.GetIllustration("UpdateProtonVpnIllustrationSource")
     };
 
-    public UpdateViewModel(
+    public override string Header => Localizer.Get(UpdateState?.Status == AppUpdateStatus.AutoUpdated
+        ? "Home_Update_UpdateReady"
+        : "Home_Update_UpdateAvailable");
+
+    public override bool IsVisible => IsUpdateAvailable;
+
+    public override bool IsEnabled => !IsUpdating && UpdateState != null && UpdateState.IsReady;
+
+    public override string Status => IsUpdating
+        ? Localizer.Get("Common_States_Updating")
+        : GetUpdateVersion();
+
+    public override string AutomationId => "Sidebar_Update";
+
+    public SidebarUpdateViewModel(
         ILocalizationProvider localizationProvider,
         ILogger logger,
         IIssueReporter issueReporter,
@@ -90,36 +97,53 @@ public partial class UpdateViewModel : ViewModelBase,
         ISettings settings,
         IConfiguration config,
         IVpnServiceSettingsUpdater vpnServiceSettingsUpdater,
-        IOverlayActivator overlayActivator)
-        : base(localizationProvider, logger, issueReporter)
+        IOverlayActivator overlayActivator,
+        IConnectionManager connectionManager)
+        : base(localizationProvider, logger, issueReporter, settings)
     {
         _osProcesses = osProcesses;
         _mainWindowActivator = mainWindowActivator;
-        _settings = settings;
         _config = config;
         _vpnServiceSettingsUpdater = vpnServiceSettingsUpdater;
         _overlayActivator = overlayActivator;
+        _connectionManager = connectionManager;
     }
 
-    [RelayCommand(CanExecute = nameof(CanUpdate))]
-    public async Task UpdateAsync()
+    public override async Task<bool> InvokeAsync()
     {
         if (!await IsAllowedToDisconnectAsync())
         {
-            return;
+            return false;
         }
 
         await UpdateInternalAsync();
+        return true;
+    }
+
+    public void Receive(ClientUpdateStateChangedMessage message)
+    {
+        ExecuteOnUIThread(() =>
+        {
+            UpdateState = message.State;
+            IsUpdateAvailable = message.IsUpdateAvailable;
+        });
+    }
+
+    [RelayCommand(CanExecute = nameof(CanUpdate))]
+    private async Task UpdateAsync()
+    {
+        await InvokeAsync();
     }
 
     private bool CanUpdate()
     {
-        return !IsUpdating && _clientUpdateState != null && _clientUpdateState.IsReady;
+        return IsEnabled;
     }
 
     private async Task<bool> IsAllowedToDisconnectAsync()
     {
-        if (IsToShowConfirmationDialog)
+        bool isConfirmationNeeded = !_connectionManager.IsDisconnected || Settings.KillSwitchMode == KillSwitchMode.Advanced;
+        if (isConfirmationNeeded)
         {
             MessageDialogParameters parameters = new()
             {
@@ -128,7 +152,7 @@ public partial class UpdateViewModel : ViewModelBase,
                 PrimaryButtonText = Localizer.Get("Common_Actions_Update"),
                 CloseButtonText = Localizer.Get("Common_Actions_Cancel"),
             };
-            
+
             ContentDialogResult result = await _overlayActivator.ShowMessageAsync(parameters);
             if (result is not ContentDialogResult.Primary)
             {
@@ -141,7 +165,7 @@ public partial class UpdateViewModel : ViewModelBase,
 
     private async Task UpdateInternalAsync()
     {
-        if (_clientUpdateState?.Status == AppUpdateStatus.AutoUpdated)
+        if (UpdateState?.Status == AppUpdateStatus.AutoUpdated)
         {
             RestartApp();
         }
@@ -161,7 +185,7 @@ public partial class UpdateViewModel : ViewModelBase,
 
     private async Task UpdateManuallyAsync()
     {
-        if (_clientUpdateState == null)
+        if (UpdateState == null)
         {
             return;
         }
@@ -170,20 +194,20 @@ public partial class UpdateViewModel : ViewModelBase,
 
         LogUpdateStartingMessage();
 
-        if (_settings.KillSwitchMode == KillSwitchMode.Advanced)
+        if (Settings.KillSwitchMode == KillSwitchMode.Advanced)
         {
             await _vpnServiceSettingsUpdater.SendAsync(KillSwitchModeIpcEntity.Off);
         }
 
         try
         {
-            _osProcesses.ElevatedProcess(_clientUpdateState.FilePath, _clientUpdateState.FileArguments).Start();
+            _osProcesses.ElevatedProcess(UpdateState.FilePath, UpdateState.FileArguments).Start();
             _mainWindowActivator.Exit();
         }
         catch (System.ComponentModel.Win32Exception)
         {
             // Privileges were not granted
-            if (_settings.KillSwitchMode == KillSwitchMode.Advanced)
+            if (Settings.KillSwitchMode == KillSwitchMode.Advanced)
             {
                 await _vpnServiceSettingsUpdater.SendAsync(KillSwitchModeIpcEntity.Hard);
             }
@@ -204,7 +228,7 @@ public partial class UpdateViewModel : ViewModelBase,
     private string GetUpdateFileName()
     {
         string fileName;
-        string filePath = _clientUpdateState?.FilePath ?? string.Empty;
+        string filePath = UpdateState?.FilePath ?? string.Empty;
         try
         {
             fileName = Path.GetFileNameWithoutExtension(filePath);
@@ -218,36 +242,15 @@ public partial class UpdateViewModel : ViewModelBase,
         return fileName;
     }
 
-    public void Receive(ClientUpdateStateChangedMessage message)
+    private string GetUpdateVersion()
     {
-        ExecuteOnUIThread(() =>
-        {
-            _clientUpdateState = message.State;
-            IsToShowUpdateComponent = message.IsUpdateAvailable;
-            if (message.IsUpdateAvailable)
-            {
-                UpdateButtonLabel = Localizer.Get(message.State?.Status == AppUpdateStatus.AutoUpdated
-                    ? "Home_Update_UpdateReady"
-                    : "Home_Update_UpdateAvailable");
-            }
+        string? version = UpdateState?.Version?.ToString();
 
-            UpdateCommand.NotifyCanExecuteChanged();
-        });
-    }
-
-    public void Receive(ConnectionStatusChanged message)
-    {
-        ExecuteOnUIThread(() =>
+        if (string.IsNullOrEmpty(version) || version.StartsWith("0"))
         {
-            _connectionStatus = message.ConnectionStatus;
-        });
-    }
-
-    public void Receive(SettingChangedMessage message)
-    {
-        if (message.PropertyName == nameof(ISettings.IsNavigationPaneOpened) && message.NewValue is not null)
-        {
-            IsToShowUpdateButtonLabel = (bool)message.NewValue;
+            return string.Empty;
         }
+
+        return version;
     }
 }

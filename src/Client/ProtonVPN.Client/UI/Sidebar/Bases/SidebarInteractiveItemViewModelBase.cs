@@ -46,6 +46,8 @@ public abstract class SidebarInteractiveItemViewModelBase : SidebarHeaderViewMod
 
     public bool IsSidebarOpened => Settings.IsNavigationPaneOpened;
 
+    public virtual bool IsEnabled => true;
+
     public ISettings Settings { get; }
 
     protected SidebarInteractiveItemViewModelBase(

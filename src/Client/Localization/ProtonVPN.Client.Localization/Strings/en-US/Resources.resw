@@ -147,6 +147,9 @@
   <data name="Common_States_On" xml:space="preserve">
     <value>On</value>
   </data>
+  <data name="Common_States_Updating" xml:space="preserve">
+    <value>Updating...</value>
+  </data>
   <data name="Connection_Intent_City_Server" xml:space="preserve">
     <value>{0} #{1}</value>
     <comment>Name of the server including city name. {0} is a placeholder for the city name. {1} is a placeholder for the number associated to the server (eg. Zurich #20)</comment>
