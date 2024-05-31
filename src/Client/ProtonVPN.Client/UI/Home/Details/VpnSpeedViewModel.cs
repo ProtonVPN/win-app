@@ -22,7 +22,9 @@ using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Common.Core.Networking;
@@ -32,7 +34,9 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.UI.Home.Details;
 
 public partial class VpnSpeedViewModel : ViewModelBase,
-    IEventMessageReceiver<SettingChangedMessage>
+    IEventMessageReceiver<SettingChangedMessage>,
+    IEventMessageReceiver<LoggedInMessage>,
+    IEventMessageReceiver<VpnPlanChangedMessage>
 {
     private readonly IConnectionManager _connectionManager;
     private readonly ISettings _settings;
@@ -65,7 +69,7 @@ public partial class VpnSpeedViewModel : ViewModelBase,
 
     public string FormattedTotalVolume => Localizer.GetFormattedSize(DownloadVolume + UploadVolume);
 
-    public bool IsVpnAcceleratorEnabled => _settings.IsVpnAcceleratorEnabled;
+    public bool IsVpnAcceleratorTaglineVisible => _settings.IsVpnAcceleratorEnabled && _settings.VpnPlan.IsPaid;
 
     public VpnSpeedViewModel(
         ILocalizationProvider localizationProvider,
@@ -96,8 +100,18 @@ public partial class VpnSpeedViewModel : ViewModelBase,
     {
         if (message.PropertyName == nameof(ISettings.IsVpnAcceleratorEnabled))
         {
-            ExecuteOnUIThread(() => OnPropertyChanged(nameof(IsVpnAcceleratorEnabled)));
+            ExecuteOnUIThread(() => OnPropertyChanged(nameof(IsVpnAcceleratorTaglineVisible)));
         }
+    }
+
+    public void Receive(LoggedInMessage message)
+    {
+        ExecuteOnUIThread(() => OnPropertyChanged(nameof(IsVpnAcceleratorTaglineVisible)));
+    }
+
+    public void Receive(VpnPlanChangedMessage message)
+    {
+        ExecuteOnUIThread(() => OnPropertyChanged(nameof(IsVpnAcceleratorTaglineVisible)));
     }
 
     protected override void OnLanguageChanged()

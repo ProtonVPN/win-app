@@ -108,7 +108,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
               ColumnSpacing="6"
               CornerRadius="8"
               ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_VpnAccelerator_ToolTip')}"
-              Visibility="{x:Bind ViewModel.IsVpnAcceleratorEnabled}">
+              Visibility="{x:Bind ViewModel.IsVpnAcceleratorTaglineVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />

@@ -40,18 +40,18 @@ public static class WindowExtensions
         window.AppWindow.TitleBar.BackgroundColor = Colors.Transparent;
         window.AppWindow.TitleBar.InactiveBackgroundColor = Colors.Transparent;
 
-        window.AppWindow.TitleBar.ForegroundColor = ResourceHelper.GetColor(theme, "TextNormColor");
-        window.AppWindow.TitleBar.InactiveForegroundColor = ResourceHelper.GetColor(theme, "TextHintColor");
+        window.AppWindow.TitleBar.ForegroundColor = ResourceHelper.GetColor("TextNormColor", theme);
+        window.AppWindow.TitleBar.InactiveForegroundColor = ResourceHelper.GetColor("TextHintColor", theme);
 
-        window.AppWindow.TitleBar.ButtonBackgroundColor = ResourceHelper.GetColor(theme, "InteractionDefaultColor");
-        window.AppWindow.TitleBar.ButtonHoverBackgroundColor = ResourceHelper.GetColor(theme, "InteractionDefaultHoverColor");
-        window.AppWindow.TitleBar.ButtonPressedBackgroundColor = ResourceHelper.GetColor(theme, "InteractionDefaultActiveColor");
-        window.AppWindow.TitleBar.ButtonInactiveBackgroundColor = ResourceHelper.GetColor(theme, "InteractionDefaultColor");
+        window.AppWindow.TitleBar.ButtonBackgroundColor = ResourceHelper.GetColor("InteractionDefaultColor", theme);
+        window.AppWindow.TitleBar.ButtonHoverBackgroundColor = ResourceHelper.GetColor("InteractionDefaultHoverColor", theme);
+        window.AppWindow.TitleBar.ButtonPressedBackgroundColor = ResourceHelper.GetColor("InteractionDefaultActiveColor", theme);
+        window.AppWindow.TitleBar.ButtonInactiveBackgroundColor = ResourceHelper.GetColor("InteractionDefaultColor", theme);
 
-        window.AppWindow.TitleBar.ButtonForegroundColor = ResourceHelper.GetColor(theme, "TextNormColor");
-        window.AppWindow.TitleBar.ButtonHoverForegroundColor = ResourceHelper.GetColor(theme, "TextNormColor");
-        window.AppWindow.TitleBar.ButtonPressedForegroundColor = ResourceHelper.GetColor(theme, "TextNormColor");
-        window.AppWindow.TitleBar.ButtonInactiveForegroundColor = ResourceHelper.GetColor(theme, "TextHintColor");
+        window.AppWindow.TitleBar.ButtonForegroundColor = ResourceHelper.GetColor("TextNormColor", theme);
+        window.AppWindow.TitleBar.ButtonHoverForegroundColor = ResourceHelper.GetColor("TextNormColor", theme);
+        window.AppWindow.TitleBar.ButtonPressedForegroundColor = ResourceHelper.GetColor("TextNormColor", theme);
+        window.AppWindow.TitleBar.ButtonInactiveForegroundColor = ResourceHelper.GetColor("TextHintColor", theme);
 
         if (window.Content is FrameworkElement element)
         {

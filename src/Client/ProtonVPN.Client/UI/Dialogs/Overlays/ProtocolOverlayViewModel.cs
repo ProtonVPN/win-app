@@ -26,6 +26,7 @@ using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.Client.UI.Settings.Pages;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
@@ -60,11 +61,11 @@ public partial class ProtocolOverlayViewModel : OverlayViewModelBase, IEventMess
     }
 
     [RelayCommand]
-    public async Task NavigateToAsync(string pageKey)
+    public async Task NavigateToProtocolPageAsync()
     {
         CloseOverlay();
 
-        await _viewNavigator.NavigateToAsync(pageKey);
+        await _viewNavigator.NavigateToAsync<ProtocolViewModel>();
     }
 
     public void Receive(SettingChangedMessage message)

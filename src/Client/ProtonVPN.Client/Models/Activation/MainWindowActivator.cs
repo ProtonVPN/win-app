@@ -249,7 +249,9 @@ public class MainWindowActivator :
 
     private async Task SwitchToAppAsync()
     {
-        await _mainViewNavigator.NavigateToAsync<HomeViewModel>();
+        // Navigation might be blocked or require confirmation (eg. unsaved changes on settings page).
+        // On login, we want to force the navigation to the home page and bypass any check or confirmation.
+        await _mainViewNavigator.NavigateToAsync<HomeViewModel>(forceNavigation: true);
         App.MainWindow.SwitchToMainShell();
     }
 

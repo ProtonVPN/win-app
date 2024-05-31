@@ -19,26 +19,41 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Common.Attributes;
+using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.UI.Settings.Pages.Advanced;
 using ProtonVPN.Client.UI.Settings.Pages.Entities;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Client.Models.Activation.Custom;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public partial class AdvancedSettingsViewModel : SettingsPageViewModelBase
+public partial class AdvancedSettingsViewModel : SettingsPageViewModelBase,
+    IEventMessageReceiver<LoggedInMessage>,
+    IEventMessageReceiver<VpnPlanChangedMessage>
 {
-    private readonly IUrls _urls;
+    public List<OpenVpnAdapter> OpenVpnAdapters =
+    [
+        OpenVpnAdapter.Tap,
+        OpenVpnAdapter.Tun
+    ];
 
+    private readonly IUrls _urls;
+    private readonly IUpsellCarouselDialogActivator _upsellCarouselDialogActivator;
     [ObservableProperty]
     private bool _isAlternativeRoutingEnabled;
 
@@ -56,15 +71,11 @@ public partial class AdvancedSettingsViewModel : SettingsPageViewModelBase
 
     public override string? Title => Localizer.Get("Settings_Connection_AdvancedSettings");
 
+    public bool IsPaidUser => Settings.VpnPlan.IsPaid;
+
     public string CustomDnsServersSettingsState => Localizer.GetToggleValue(Settings.IsCustomDnsServersEnabled);
 
     public string NatTypeLearnMoreUrl => _urls.NatTypeLearnMore;
-
-    public List<OpenVpnAdapter> OpenVpnAdapters =
-    [
-        OpenVpnAdapter.Tap,
-        OpenVpnAdapter.Tun
-    ];
 
     public bool IsStrictNatType
     {
@@ -87,17 +98,29 @@ public partial class AdvancedSettingsViewModel : SettingsPageViewModelBase
         IUrls urls,
         IConnectionManager connectionManager,
         ILogger logger,
-        IIssueReporter issueReporter)
-        : base(viewNavigator, 
-               localizationProvider, 
-               overlayActivator, 
-               settings, 
-               settingsConflictResolver, 
+        IIssueReporter issueReporter,
+        IUpsellCarouselDialogActivator upsellCarouselDialogActivator)
+        : base(viewNavigator,
+               localizationProvider,
+               overlayActivator,
+               settings,
+               settingsConflictResolver,
                connectionManager,
                logger,
                issueReporter)
     {
         _urls = urls;
+        _upsellCarouselDialogActivator = upsellCarouselDialogActivator;
+    }
+
+    public void Receive(LoggedInMessage message)
+    {
+        ExecuteOnUIThread(InvalidateAllProperties);
+    }
+
+    public void Receive(VpnPlanChangedMessage message)
+    {
+        ExecuteOnUIThread(InvalidateAllProperties);
     }
 
     protected override void OnSettingsChanged(string propertyName)
@@ -141,6 +164,24 @@ public partial class AdvancedSettingsViewModel : SettingsPageViewModelBase
         yield return new(nameof(ISettings.OpenVpnAdapter), SelectedOpenVpnAdapter, Settings.OpenVpnAdapter != SelectedOpenVpnAdapter);
         yield return new(nameof(ISettings.IsIpv6LeakProtectionEnabled), IsIpv6LeakProtectionEnabled,
             Settings.IsIpv6LeakProtectionEnabled != IsIpv6LeakProtectionEnabled);
+    }
+
+    [RelayCommand]
+    private async Task NavigateToCustomDnsServersPageAsync()
+    {
+        if (!IsPaidUser)
+        {
+            _upsellCarouselDialogActivator.ShowDialog(ModalSources.CustomDns);
+            return;
+        }
+
+        await ViewNavigator.NavigateToAsync<CustomDnsServersViewModel>();
+    }
+
+    [RelayCommand]
+    private void TriggerNatTypeUpsellProcess()
+    {
+        _upsellCarouselDialogActivator.ShowDialog(ModalSources.ModerateNat);
     }
 
     private bool IsNatType(NatType natType)

@@ -99,10 +99,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             Grid.Column="1"
                                             HorizontalAlignment="Right"
                                             VerticalAlignment="Center"
-                                            Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
-                                            CommandParameter="ProtonVPN.Client.UI.Settings.Pages.About.LicensingViewModel"
-                                            Content="{x:Bind ViewModel.Localizer.Get('Settings_About_LearnMore')}"
-                                            Style="{StaticResource PrimaryGhostButtonStyle}" />
+                                            Style="{StaticResource PrimaryGhostButtonStyle}"
+                                            Command="{x:Bind ViewModel.NavigateToLicensingPageCommand, Mode=OneTime}"
+                                            Content="{x:Bind ViewModel.Localizer.Get('Settings_About_LearnMore')}" />
                     </Grid>
                 </Grid>
 
