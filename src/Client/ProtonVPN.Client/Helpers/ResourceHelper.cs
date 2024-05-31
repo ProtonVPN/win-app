@@ -26,56 +26,42 @@ namespace ProtonVPN.Client.Helpers;
 
 public static class ResourceHelper
 {
-    public static Color GetColor(ElementTheme theme, string resourceKey)
+    private const string COLORS_DICTIONARY = "Styles/Colors.xaml";
+    private const string ILLUSTRATIONS_DICTIONARY = "Styles/Illustrations.xaml";
+    private const string ICONS_DICTIONARY = "Styles/Icons.xaml";
+
+    public static Color GetColor(string resourceKey, ElementTheme theme)
     {
-        string? themeKey = theme switch
-        {
-            ElementTheme.Light or ElementTheme.Dark => theme.ToString(),
-            _ => Application.Current?.RequestedTheme.ToString()
-        };
+        string dictionaryName = COLORS_DICTIONARY;
 
-        if (themeKey is null)
-        {
-            return default;
-        }
+        return TryGetResource<Color?>(dictionaryName, resourceKey, theme)
+            ?? TryGetResource<Color?>(dictionaryName, resourceKey)
+            ?? throw new ArgumentException($"Resource '{resourceKey}' not found in {dictionaryName}");
+    }
 
-        ResourceDictionary? colorsDictionary = Application.Current?.Resources
-            .MergedDictionaries.FirstOrDefault(md => md.Source.AbsoluteUri.EndsWith("Styles/Colors.xaml"));
+    public static ImageSource GetIllustration(string resourceKey, ElementTheme theme)
+    {
+        string dictionaryName = ILLUSTRATIONS_DICTIONARY;
 
-        ResourceDictionary? themeDictionary = colorsDictionary?.ThemeDictionaries[themeKey] as ResourceDictionary;
-
-        if (themeDictionary == null || !themeDictionary.ContainsKey(resourceKey))
-        {
-            return default;
-        }
-
-        return (Color)themeDictionary[resourceKey];
+        return TryGetResource<ImageSource>(dictionaryName, resourceKey, theme)
+            ?? TryGetResource<ImageSource>(dictionaryName, resourceKey)
+            ?? throw new ArgumentException($"Resource '{resourceKey}' not found in {dictionaryName}");
     }
 
     public static ImageSource GetIllustration(string resourceKey)
     {
-        ResourceDictionary? illustrationsDictionary = Application.Current?.Resources
-            .MergedDictionaries.FirstOrDefault(md => md.Source.AbsoluteUri.EndsWith("Styles/Illustrations.xaml"));
+        string dictionaryName = ILLUSTRATIONS_DICTIONARY;
 
-        if (illustrationsDictionary == null || !illustrationsDictionary.ContainsKey(resourceKey))
-        {
-            throw new ArgumentException($"Illustration '{resourceKey}' not found");
-        }
-
-        return (ImageSource)illustrationsDictionary[resourceKey];
+        return TryGetResource<ImageSource>(dictionaryName, resourceKey)
+            ?? throw new ArgumentException($"Resource '{resourceKey}' not found in {dictionaryName}");
     }
 
     public static ImageSource GetIcon(string resourceKey)
     {
-        ResourceDictionary? iconsDictionary = Application.Current?.Resources
-            .MergedDictionaries.FirstOrDefault(md => md.Source.AbsoluteUri.EndsWith("Styles/Icons.xaml"));
+        string dictionaryName = ICONS_DICTIONARY;
 
-        if (iconsDictionary == null || !iconsDictionary.ContainsKey(resourceKey))
-        {
-            throw new ArgumentException($"Icon '{resourceKey}' not found");
-        }
-
-        return (ImageSource)iconsDictionary[resourceKey];
+        return TryGetResource<ImageSource>(dictionaryName, resourceKey)
+            ?? throw new ArgumentException($"Resource '{resourceKey}' not found in {dictionaryName}");
     }
 
     public static string GetFullImagePath(this ImageSource imageSource)
@@ -86,5 +72,55 @@ public static class ResourceHelper
         }
 
         return string.Empty;
+    }
+
+    private static string GetThemeKey(ElementTheme theme)
+    {
+        return theme switch
+        {
+            ElementTheme.Light or ElementTheme.Dark => theme.ToString(),
+            _ => Application.Current?.RequestedTheme.ToString() ?? string.Empty
+        };
+    }
+
+    private static ResourceDictionary? GetResourceDictionary(string dictionaryName)
+    {
+        return Application.Current?.Resources
+            .MergedDictionaries.FirstOrDefault(md => md.Source.AbsoluteUri.EndsWith(dictionaryName));
+    }
+
+    private static ResourceDictionary? GetResourceDictionary(string dictionaryName, ElementTheme theme)
+    {
+        ResourceDictionary? dictionary = GetResourceDictionary(dictionaryName);
+
+        string themeKey = GetThemeKey(theme);
+
+        return string.IsNullOrEmpty(themeKey) || dictionary?.ThemeDictionaries == null || !dictionary.ThemeDictionaries.ContainsKey(themeKey)
+            ? dictionary
+            : dictionary.ThemeDictionaries[themeKey] as ResourceDictionary;
+    }
+
+    private static TResource? TryGetResource<TResource>(string dictionaryName, string resourceKey)
+    {
+        ResourceDictionary? dictionary = GetResourceDictionary(dictionaryName);
+
+        return dictionary.TryGetResource<TResource>(resourceKey);
+    }
+
+    private static TResource? TryGetResource<TResource>(string dictionaryName, string resourceKey, ElementTheme theme)
+    {
+        ResourceDictionary? dictionary = GetResourceDictionary(dictionaryName, theme);
+
+        return dictionary.TryGetResource<TResource>(resourceKey);
+    }
+
+    private static TResource? TryGetResource<TResource>(this ResourceDictionary? dictionary, string resourceKey)
+    {
+        if (dictionary == null || !dictionary.ContainsKey(resourceKey))
+        {
+            return default;
+        }
+
+        return (TResource)dictionary[resourceKey];
     }
 }

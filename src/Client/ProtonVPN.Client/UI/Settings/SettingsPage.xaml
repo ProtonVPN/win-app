@@ -29,7 +29,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
       mc:Ignorable="d">
-    
+
     <Page.Resources>
         <Style x:Key="SettingsSectionHeaderTextBlockStyle" BasedOn="{StaticResource BodyStrongTextBlockStyle}" TargetType="TextBlock">
             <Setter Property="Margin" Value="2,20,0,12" />
@@ -51,11 +51,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection')}" />
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="DefaultConnectionSettingsCard"
-                                  Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
-                                  CommandParameter="ProtonVPN.Client.UI.Settings.Pages.DefaultConnectionViewModel"
+                                  Command="{x:Bind ViewModel.NavigateToDefaultConnectionPageCommand, Mode=OneTime}"
                                   Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default')}"
                                   IsClickEnabled="True"
-                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                                  Style="{StaticResource DefaultSettingsCardStyle}"
+                                  Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <toolkit:SettingsCard.HeaderIcon>
                     <pathicons:Bookmark />
                 </toolkit:SettingsCard.HeaderIcon>
@@ -67,8 +67,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </toolkit:SettingsCard>
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="ProtocolSettingsCard"
-                                  Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
-                                  CommandParameter="ProtonVPN.Client.UI.Settings.Pages.ProtocolViewModel"
+                                  Command="{x:Bind ViewModel.NavigateToProtocolPageCommand, Mode=OneTime}"
                                   Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Protocol')}"
                                   IsClickEnabled="True"
                                   Style="{StaticResource DefaultSettingsCardStyle}">
@@ -83,8 +82,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </toolkit:SettingsCard>
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="VpnAcceleratorSettingsCard"
-                                  Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
-                                  CommandParameter="ProtonVPN.Client.UI.Settings.Pages.VpnAcceleratorViewModel"
+                                  Command="{x:Bind ViewModel.NavigateToVpnAcceleratorPageCommand, Mode=OneTime}"
                                   Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_VpnAccelerator')}"
                                   IsClickEnabled="True"
                                   Style="{StaticResource DefaultSettingsCardStyle}">
@@ -94,13 +92,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <toolkit:SettingsCard.ActionIcon>
                     <pathicons:ChevronRight />
                 </toolkit:SettingsCard.ActionIcon>
-                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
-                           Text="{x:Bind ViewModel.VpnAcceleratorSettingsState}" />
+                <Grid>
+                    <Image Height="24"
+                           Source="{ThemeResource VpnPlusIllustrationSource}"
+                           Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+                    <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                               Text="{x:Bind ViewModel.VpnAcceleratorSettingsState}"
+                               Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                </Grid>
             </toolkit:SettingsCard>
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="AdvancedSettingsCard"
-                                  Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
-                                  CommandParameter="ProtonVPN.Client.UI.Settings.Pages.AdvancedSettingsViewModel"
+                                  Command="{x:Bind ViewModel.NavigateToAdvancedSettingsPageCommand, Mode=OneTime}"
                                   Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_AdvancedSettings')}"
                                   IsClickEnabled="True"
                                   Style="{StaticResource DefaultSettingsCardStyle}">
@@ -116,8 +119,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Text="{x:Bind ViewModel.Localizer.Get('Settings_General')}" />
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="AutoStartupSettingsCard"
-                                  Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
-                                  CommandParameter="ProtonVPN.Client.UI.Settings.Pages.AutoStartupViewModel"
+                                  Command="{x:Bind ViewModel.NavigateToAutoStartupPageCommand, Mode=OneTime}"
                                   Description="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_Description')}"
                                   Header="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup')}"
                                   IsClickEnabled="True"
@@ -150,7 +152,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ComboBox x:Name="cbLanguage"
                           DisplayMemberPath="Description"
                           ItemsSource="{x:Bind ViewModel.Languages}"
-                          SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}"/>
+                          SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}" />
             </toolkit:SettingsCard>
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="ThemesSettingsCard"
@@ -220,8 +222,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </toolkit:SettingsCard>
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="DebugLogsSettingsCard"
-                                  Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
-                                  CommandParameter="ProtonVPN.Client.UI.Settings.Pages.DebugLogsViewModel"
+                                  Command="{x:Bind ViewModel.NavigateToDebugLogsPageCommand, Mode=OneTime}"
                                   Header="{x:Bind ViewModel.Localizer.Get('Settings_Support_DebugLogs')}"
                                   IsClickEnabled="True"
                                   Style="{StaticResource DefaultSettingsCardStyle}">
@@ -234,10 +235,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </toolkit:SettingsCard>
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="AboutSettingsCard"
-                                  Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
-                                  CommandParameter="ProtonVPN.Client.UI.Settings.Pages.About.AboutViewModel"
-                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_About_Title')}"
+                                  Command="{x:Bind ViewModel.NavigateToAboutPageCommand, Mode=OneTime}"
                                   Description="{x:Bind ViewModel.ClientVersionDescription}"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_About_Title')}"
                                   IsClickEnabled="True"
                                   Style="{StaticResource DefaultSettingsCardStyle}">
                 <toolkit:SettingsCard.HeaderIcon>
@@ -249,8 +249,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </toolkit:SettingsCard>
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="DeveloperToolsSettingsCard"
-                                  Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
-                                  CommandParameter="ProtonVPN.Client.UI.Settings.Pages.DeveloperToolsViewModel"
+                                  Command="{x:Bind ViewModel.NavigateToDeveloperToolsPageCommand, Mode=OneTime}"
                                   Header="Developer tools"
                                   IsClickEnabled="True"
                                   Style="{StaticResource DefaultSettingsCardStyle}"
@@ -267,8 +266,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Improve')}" />
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="CensorshipSettingsCard"
-                                  Command="{x:Bind ViewModel.NavigateToCommand, Mode=OneTime}"
-                                  CommandParameter="ProtonVPN.Client.UI.Settings.Pages.CensorshipViewModel"
+                                  Command="{x:Bind ViewModel.NavigateToCensorshipPageCommand, Mode=OneTime}"
                                   Header="{x:Bind ViewModel.Localizer.Get('Settings_Improve_Censorship')}"
                                   IsClickEnabled="True"
                                   Style="{StaticResource DefaultSettingsCardStyle}">

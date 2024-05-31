@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <!--
 Copyright (c) 2023 Proton AG
 
@@ -20,12 +20,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
 <Page x:Class="ProtonVPN.Client.UI.Settings.Pages.AdvancedSettingsPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+      xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
       mc:Ignorable="d">
@@ -37,11 +37,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Page.Resources>
 
     <custom:SettingsPageContentControl x:Name="PageContentHost"
+                                       ApplyCommand="{x:Bind ViewModel.ApplyCommand, Mode=OneTime}"
+                                       ApplyCommandText="{x:Bind ViewModel.ApplyCommandText}"
                                        BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
                                        IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
                                        IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
-                                       ApplyCommand="{x:Bind ViewModel.ApplyCommand, Mode=OneTime}"
-                                       ApplyCommandText="{x:Bind ViewModel.ApplyCommandText}"
                                        PageHeader="{x:Bind ViewModel.Title}">
 
         <StackPanel x:Name="ContentArea">
@@ -56,8 +56,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </toolkit:SettingsCard>
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="CustomDnsServersSettingsCard"
-                                  Command="{x:Bind ViewModel.NavigateToCommand}"
-                                  CommandParameter="ProtonVPN.Client.UI.Settings.Pages.Advanced.CustomDnsServersViewModel"
+                                  Command="{x:Bind ViewModel.NavigateToCustomDnsServersPageCommand}"
                                   Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers_Description')}"
                                   Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers')}"
                                   IsClickEnabled="True"
@@ -65,14 +64,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <toolkit:SettingsCard.ActionIcon>
                     <pathicons:ChevronRight />
                 </toolkit:SettingsCard.ActionIcon>
-                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
-                           Text="{x:Bind ViewModel.CustomDnsServersSettingsState}" />
+                <Grid>
+                    <Image Height="24"
+                           Source="{ThemeResource VpnPlusIllustrationSource}"
+                           Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+                    <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                               Text="{x:Bind ViewModel.CustomDnsServersSettingsState}"
+                               Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                </Grid>
             </toolkit:SettingsCard>
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="NatTypeSettingsCard"
                                   Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType')}"
                                   IsTabStop="False"
-                                  Style="{StaticResource VerticalSettingsCardStyle}">
+                                  Style="{StaticResource VerticalSettingsCardStyle}"
+                                  Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <toolkit:SettingsCard.Description>
                     <TextBlock TextWrapping="Wrap">
                         <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType_Description')}" />
@@ -110,9 +116,31 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </StackPanel>
             </toolkit:SettingsCard>
 
+            <toolkit:SettingsCard AutomationProperties.AutomationId="FreeNatTypeSettingsCard"
+                                  Command="{x:Bind ViewModel.TriggerNatTypeUpsellProcessCommand}"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType')}"
+                                  IsClickEnabled="True"
+                                  Style="{StaticResource DefaultSettingsCardStyle}"
+                                  Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource NotBooleanToVisibilityConverter}}">
+                <toolkit:SettingsCard.Description>
+                    <TextBlock TextWrapping="Wrap">
+                        <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType_Description')}" />
+                        <Hyperlink NavigateUri="{x:Bind ViewModel.NatTypeLearnMoreUrl, Mode=OneTime}"
+                                   ToolTipService.ToolTip="{x:Bind ViewModel.NatTypeLearnMoreUrl, Mode=OneTime}">
+                            <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
+                        </Hyperlink>
+                    </TextBlock>
+                </toolkit:SettingsCard.Description>
+                <toolkit:SettingsCard.ActionIcon>
+                    <pathicons:ChevronRight />
+                </toolkit:SettingsCard.ActionIcon>
+                <Image Height="24"
+                       Source="{ThemeResource VpnPlusIllustrationSource}" />
+            </toolkit:SettingsCard>
+
             <toolkit:SettingsCard AutomationProperties.AutomationId="OpenVpnNetworkDriverSettingsCard"
-                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_General_OpenVpnNetworkDriver')}"
                                   Description="{x:Bind ViewModel.Localizer.Get('Settings_General_OpenVpnNetworkDriver_Description')}"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_General_OpenVpnNetworkDriver')}"
                                   IsTabStop="False"
                                   Style="{StaticResource DefaultSettingsCardStyle}">
                 <ComboBox ItemsSource="{x:Bind ViewModel.OpenVpnAdapters}"

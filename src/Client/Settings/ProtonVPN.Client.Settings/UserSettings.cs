@@ -129,13 +129,29 @@ public class UserSettings : GlobalSettings, IUserSettings
 
     public NatType NatType
     {
-        get => _userCache.GetValueType<NatType>(SettingEncryption.Unencrypted) ?? DefaultSettings.NatType;
+        get
+        {
+            if (VpnPlan.IsPaid)
+            {
+                return _userCache.GetValueType<NatType>(SettingEncryption.Unencrypted) ?? DefaultSettings.NatType;
+            }
+
+            return DefaultSettings.NatType;
+        }
         set => _userCache.SetValueType<NatType>(value, SettingEncryption.Unencrypted);
     }
 
     public bool IsVpnAcceleratorEnabled
     {
-        get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsVpnAcceleratorEnabled;
+        get
+        {
+            if (VpnPlan.IsPaid)
+            {
+                return _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsVpnAcceleratorEnabled;
+            }
+
+            return DefaultSettings.IsVpnAcceleratorEnabled;
+        }
         set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
@@ -171,7 +187,15 @@ public class UserSettings : GlobalSettings, IUserSettings
 
     public bool IsCustomDnsServersEnabled
     {
-        get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsCustomDnsServersEnabled;
+        get
+        {
+            if (VpnPlan.IsPaid)
+            {
+                return _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsCustomDnsServersEnabled;
+            }
+
+            return DefaultSettings.IsCustomDnsServersEnabled;
+        }
         set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
@@ -203,7 +227,15 @@ public class UserSettings : GlobalSettings, IUserSettings
 
     public bool IsPortForwardingEnabled
     {
-        get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsPortForwardingEnabled;
+        get
+        {
+            if (VpnPlan.IsPaid)
+            {
+                return _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsPortForwardingEnabled;
+            }
+
+            return DefaultSettings.IsPortForwardingEnabled;
+        }
         set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
@@ -215,7 +247,15 @@ public class UserSettings : GlobalSettings, IUserSettings
 
     public bool IsSplitTunnelingEnabled
     {
-        get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsSplitTunnelingEnabled;
+        get
+        {
+            if (VpnPlan.IsPaid)
+            {
+                return _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsSplitTunnelingEnabled;
+            }
+
+            return DefaultSettings.IsSplitTunnelingEnabled;
+        }
         set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 

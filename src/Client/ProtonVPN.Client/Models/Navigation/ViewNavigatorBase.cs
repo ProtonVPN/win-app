@@ -101,19 +101,19 @@ public abstract class ViewNavigatorBase : IViewNavigator
         return false;
     }
 
-    public Task<bool> NavigateToAsync(string pageKey, object? parameter = null, bool clearNavigation = false)
+    public Task<bool> NavigateToAsync(string pageKey, object? parameter = null, bool clearNavigation = false, bool forceNavigation = false)
     {
         Type pageType = _viewMapper.GetPageType(pageKey);
 
-        return NavigateToPageAsync(pageType, parameter, clearNavigation);
+        return NavigateToPageAsync(pageType, parameter, clearNavigation, forceNavigation);
     }
 
-    public Task<bool> NavigateToAsync<TPageViewModel>(object? parameter = null, bool clearNavigation = false)
+    public Task<bool> NavigateToAsync<TPageViewModel>(object? parameter = null, bool clearNavigation = false, bool forceNavigation = false)
         where TPageViewModel : PageViewModelBase
     {
         Type pageType = _viewMapper.GetPageType<TPageViewModel>();
 
-        return NavigateToPageAsync(pageType, parameter, clearNavigation);
+        return NavigateToPageAsync(pageType, parameter, clearNavigation, forceNavigation);
     }
 
     public void CloseCurrentWindow()
@@ -129,7 +129,7 @@ public abstract class ViewNavigatorBase : IViewNavigator
         }
     }
 
-    private async Task<bool> NavigateToPageAsync(Type pageType, object? parameter, bool clearNavigation)
+    private async Task<bool> NavigateToPageAsync(Type pageType, object? parameter, bool clearNavigation, bool forceNavigation)
     {
         if (!CanNavigate || _frame == null)
         {
@@ -142,7 +142,7 @@ public abstract class ViewNavigatorBase : IViewNavigator
 
             INavigationAware? vmBeforeNavigation = Frame.GetPageViewModel() as INavigationAware;
 
-            if (vmBeforeNavigation != null)
+            if (vmBeforeNavigation != null && !forceNavigation)
             {
                 bool continueNavigation = await vmBeforeNavigation.OnNavigatingFromAsync();
                 if (!continueNavigation)

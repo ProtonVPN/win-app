@@ -20,11 +20,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
 <ContentDialog x:Class="ProtonVPN.Client.UI.Dialogs.Overlays.ProtocolOverlayDialog"
                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-               xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
                xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+               xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
                Title="{x:Bind ViewModel.Localizer.Get('Dialogs_Protocol_Title')}"
                x:DefaultBindMode="OneWay"
                CloseButtonCommand="{x:Bind ViewModel.CloseOverlayCommand}"
@@ -43,12 +43,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Dialogs_Protocol_SwitchHeader')}" />
             <toolkit:SettingsCard AutomationProperties.AutomationId="ProtocolSettingsCard"
-                               Command="{x:Bind ViewModel.NavigateToCommand}"
-                               CommandParameter="ProtonVPN.Client.UI.Settings.Pages.ProtocolViewModel"
-                               Content="{x:Bind ViewModel.CurrentProtocol}"
-                               Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Protocol')}"
-                               IsClickEnabled="True"
-                               Style="{StaticResource DefaultSettingsCardStyle}">
+                                  Command="{x:Bind ViewModel.NavigateToProtocolPageCommand}"
+                                  Content="{x:Bind ViewModel.CurrentProtocol}"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Protocol')}"
+                                  IsClickEnabled="True"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
                 <toolkit:SettingsCard.HeaderIcon>
                     <pathicons:Servers />
                 </toolkit:SettingsCard.HeaderIcon>
@@ -61,7 +60,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <HyperlinkButton HorizontalAlignment="Center"
                          AutomationProperties.AutomationId="LearnMoreHyperlinkButton"
                          Content="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}"
-                         NavigateUri="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}" 
+                         NavigateUri="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}"
                          ToolTipService.ToolTip="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}" />
     </StackPanel>
 </ContentDialog>

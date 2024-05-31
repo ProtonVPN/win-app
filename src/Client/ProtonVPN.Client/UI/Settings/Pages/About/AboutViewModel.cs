@@ -105,6 +105,12 @@ public partial class AboutViewModel : PageViewModelBase<IMainViewNavigator>,
         }
 
         _updatesManager.CheckForUpdate(true);
+    }    
+    
+    [RelayCommand]
+    private async Task NavigateToLicensingPageAsync()
+    {
+        await ViewNavigator.NavigateToAsync<LicensingViewModel>();
     }
 
     [RelayCommand]
