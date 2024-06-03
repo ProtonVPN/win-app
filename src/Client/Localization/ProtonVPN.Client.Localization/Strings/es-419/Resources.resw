@@ -180,6 +180,9 @@
   <data name="Common_States_On">
     <value>Activado</value>
   </data>
+  <data name="Common_States_Updating">
+    <value>Actualizando...</value>
+  </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN no pudo obtener el certificado de autenticación debido a un problema de red.</value>
   </data>
@@ -1777,21 +1780,17 @@ Smart Routing normalmente se usa para librarse de leyes anti privacidad y otras 
     <value>{0} TB/s</value>
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
-  <data name="Format_Time_Day">
+  <data name="Format_Time_Day_One">
     <value>{0} día</value>
-    <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
   </data>
-  <data name="Format_Time_DayHours">
-    <value>{0} día {1} h</value>
-    <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_Days">
+  <data name="Format_Time_Day_Other">
     <value>{0} días</value>
-    <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
   </data>
-  <data name="Format_Time_DaysHours">
+  <data name="Format_Time_DayHour_One">
+    <value>{0} día {1} h</value>
+  </data>
+  <data name="Format_Time_DayHour_Other">
     <value>{0} días {1} h</value>
-    <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
   </data>
   <data name="Format_Time_Hours">
     <value>{0} h</value>
@@ -1863,6 +1862,9 @@ Smart Routing normalmente se usa para librarse de leyes anti privacidad y otras 
   </data>
   <data name="Home_ConnectionCard_Header_ConnectingTo">
     <value>Conectando a...</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_DefaultConnection">
+    <value>Conexión por defecto</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
     <value>Conexión gratuita</value>
@@ -1937,6 +1939,21 @@ Smart Routing normalmente se usa para librarse de leyes anti privacidad y otras 
   </data>
   <data name="Home_ConnectionDetails_Upload">
     <value>Carga</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Download">
+    <value>Volumen de descarga</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Total">
+    <value>Volumen total</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Upload">
+    <value>Volumen de carga</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnAccelerator">
+    <value>Potenciado por VPN Accelerator</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnAccelerator_ToolTip">
+    <value>Las tecnologías avanzadas de rendimiento y estabilidad potencian su velocidad VPN.</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>IP de VPN</value>
@@ -2281,6 +2298,21 @@ Smart Routing normalmente se usa para librarse de leyes anti privacidad y otras 
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
     <value>Restringe los datos que entran en la red. Esta opción es más segura pero puede dificultar más las conexiones de juegos por pares.</value>
   </data>
+  <data name="Settings_Connection_Default">
+    <value>Conexión por defecto</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest">
+    <value>País más rápido</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest_Description">
+    <value>El mejor servidor basado en su ubicación</value>
+  </data>
+  <data name="Settings_Connection_Default_Last">
+    <value>Última conexión</value>
+  </data>
+  <data name="Settings_Connection_Default_Last_Description">
+    <value>Su conexión más usada últimamente</value>
+  </data>
   <data name="Settings_Connection_Protocol">
     <value>Protocolo</value>
   </data>
@@ -2423,7 +2455,7 @@ Smart Routing normalmente se usa para librarse de leyes anti privacidad y otras 
     <value>Conectar automáticamente</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>Se le conectará a un servidor tan pronto Proton VPN se inicie</value>
+    <value>Conecta automáticamente a su conexión por defecto cuando Proton VPN se inicia.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>Conexión más rápida</value>
@@ -2583,6 +2615,15 @@ Smart Routing normalmente se usa para librarse de leyes anti privacidad y otras 
   </data>
   <data name="Settings_Support_SupportCenter">
     <value>Centro de soporte</value>
+  </data>
+  <data name="Settings_Theme_Dark">
+    <value>Oscuro</value>
+  </data>
+  <data name="Settings_Theme_Default">
+    <value>Por defecto</value>
+  </data>
+  <data name="Settings_Theme_Light">
+    <value>Claro</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>Aumente la velocidad de la conexión hasta 400% con tecnologías que mejoran el rendimiento.</value>

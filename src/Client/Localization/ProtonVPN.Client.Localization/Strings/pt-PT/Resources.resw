@@ -180,6 +180,9 @@
   <data name="Common_States_On">
     <value>Ligado</value>
   </data>
+  <data name="Common_States_Updating">
+    <value>Updating...</value>
+  </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>O Proton VPN não conseguiu obter o certificado de autenticação devido a problemas de rede.</value>
   </data>
@@ -272,10 +275,10 @@
     <value>Gateways ({0})</value>
   </data>
   <data name="Connections_Gateways_Servers_One">
-    <value>Dedicated server ({0})</value>
+    <value>Servidor dedicado ({0})</value>
   </data>
   <data name="Connections_Gateways_Servers_Other">
-    <value>Dedicated servers ({0})</value>
+    <value>Servidores dedicados ({0})</value>
   </data>
   <data name="Connections_P2P_Cities_One">
     <value>Cidade P2P ({0})</value>
@@ -411,7 +414,7 @@
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_SecureCoreServers">
-    <value>Secure Core servers ({0})</value>
+    <value>Servidores Secure Core ({0})</value>
     <comment>{0} represents the number of severs</comment>
   </data>
   <data name="Countries_SecureCore_Description">
@@ -1474,10 +1477,10 @@
     <value>Proton Free automatically connects you to the fastest available free server from our {0} free countries. This will normally be the closest server to your location.</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_One">
-    <value>Free server country ({0})</value>
+    <value>País com servidor gratuito ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Other">
-    <value>Free server countries ({0})</value>
+    <value>Países com servidores gratuitos ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Title">
     <value>Conexões gratuitas</value>
@@ -1667,7 +1670,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Connect to a Tor server to access hidden services and onion sites using any browser.</value>
   </data>
   <data name="Dialogs_Tor_LearnMore">
-    <value>How to access the Tor network</value>
+    <value>Como acessar a rede Tor</value>
   </data>
   <data name="Dialogs_Tor_Title">
     <value>Tor</value>
@@ -1777,28 +1780,24 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>{0} TB/seg</value>
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
-  <data name="Format_Time_Day">
-    <value>{0} dia</value>
-    <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
+  <data name="Format_Time_Day_One">
+    <value>{0} day</value>
   </data>
-  <data name="Format_Time_DayHours">
+  <data name="Format_Time_Day_Other">
+    <value>{0} days</value>
+  </data>
+  <data name="Format_Time_DayHour_One">
     <value>{0} day {1} hr</value>
-    <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
   </data>
-  <data name="Format_Time_Days">
-    <value>{0} dias</value>
-    <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
-  </data>
-  <data name="Format_Time_DaysHours">
+  <data name="Format_Time_DayHour_Other">
     <value>{0} days {1} hr</value>
-    <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
   </data>
   <data name="Format_Time_Hours">
     <value>{0} h</value>
     <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_HoursMinutes">
-    <value>{0} hr {1} min</value>
+    <value>{0} h {1} min</value>
     <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_HoursMinutesSeconds_Short">
@@ -1810,7 +1809,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_MinutesSeconds">
-    <value>{0} min {1} sec</value>
+    <value>{0} min {1} s</value>
     <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_MinutesSeconds_Short">
@@ -1864,6 +1863,9 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Home_ConnectionCard_Header_ConnectingTo">
     <value>A ligar a...</value>
   </data>
+  <data name="Home_ConnectionCard_Header_DefaultConnection">
+    <value>Default connection</value>
+  </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
     <value>Ligação gratuita</value>
   </data>
@@ -1894,7 +1896,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Gateway</value>
   </data>
   <data name="Home_ConnectionDetails_Hide">
-    <value>Hide connection details</value>
+    <value>Ocultar os detalhes da ligação</value>
   </data>
   <data name="Home_ConnectionDetails_HideIP">
     <value>Ocultar</value>
@@ -1937,6 +1939,21 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   </data>
   <data name="Home_ConnectionDetails_Upload">
     <value>Enviar</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Download">
+    <value>Download volume</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Total">
+    <value>Total volume</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Upload">
+    <value>Upload volume</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnAccelerator">
+    <value>Boosted by VPN Accelerator</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnAccelerator_ToolTip">
+    <value>Advanced performance and stability technologies are boosting your VPN speed.</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>IP da VPN</value>
@@ -2135,7 +2152,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Introduza este número na sua aplicação BitTorrent para aumentar a velocidade.</value>
   </data>
   <data name="Server_Fastest_Free">
-    <value>Fastest free server</value>
+    <value>Servidor gratuito mais rápido</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
@@ -2159,7 +2176,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Failed to load changelog information.</value>
   </data>
   <data name="Settings_About_GetLatestVersion">
-    <value>Get the latest version</value>
+    <value>Obter a versão mais recente</value>
   </data>
   <data name="Settings_About_LearnMore">
     <value>Saiba mais</value>
@@ -2205,7 +2222,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
   <data name="Settings_Common_ApplyAndReconnect">
-    <value>Apply and reconnect</value>
+    <value>Aplicar e religar</value>
   </data>
   <data name="Settings_Common_Discard">
     <value>Descartar</value>
@@ -2281,6 +2298,21 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
     <value>Restricts the data entering your network. This option is more secure, but can make peer-to-peer gaming connections more difficult.</value>
   </data>
+  <data name="Settings_Connection_Default">
+    <value>Default connection</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest">
+    <value>Fastest country</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest_Description">
+    <value>The best server based on your location</value>
+  </data>
+  <data name="Settings_Connection_Default_Last">
+    <value>Last connection</value>
+  </data>
+  <data name="Settings_Connection_Default_Last_Description">
+    <value>Your most recently used connection</value>
+  </data>
   <data name="Settings_Connection_Protocol">
     <value>Protocolo</value>
   </data>
@@ -2303,7 +2335,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>This will disable split tunneling.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Conflict_Title">
-    <value>Enable kill switch?</value>
+    <value>Ativar o kill switch?</value>
   </data>
   <data name="Settings_Features_KillSwitch_Description">
     <value>Protects your IP address by disconnecting you from the internet if you lose your VPN connection.</value>
@@ -2373,7 +2405,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_Header">
-    <value>Selected apps ({0})</value>
+    <value>Aplicações selecionadas ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
   <data name="Settings_Features_SplitTunneling_Apps_Remove">
@@ -2423,7 +2455,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Ligação automática</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>You will be connected to a server as soon as Proton VPN opens</value>
+    <value>Automatically connects to your default connection when Proton VPN opens.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>Fastest connection</value>
@@ -2444,7 +2476,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Minimize to System Tray</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Taskbar">
-    <value>Minimize to Taskbar</value>
+    <value>Minimizar para a barra de tarefas</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
     <value>Set the app to launch or connect automatically</value>
@@ -2471,7 +2503,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Get notified about on-going Proton VPN activities</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver">
-    <value>OpenVPN network driver</value>
+    <value>Controlador de rede OpenVPN</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver_Description">
     <value>Network drivers can impact your connection speed. The new TUN adapter provides higher speed and falls back on the TAP adapter if it encounters any connectivity problems.</value>
@@ -2540,7 +2572,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Restaurar as definições padrão</value>
   </data>
   <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action">
-    <value>Restore and reconnect</value>
+    <value>Restaurar e religar</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Action">
     <value>Restaurar as definições padrão</value>
@@ -2584,11 +2616,20 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Settings_Support_SupportCenter">
     <value>Centro de suporte</value>
   </data>
+  <data name="Settings_Theme_Dark">
+    <value>Dark</value>
+  </data>
+  <data name="Settings_Theme_Default">
+    <value>Default</value>
+  </data>
+  <data name="Settings_Theme_Light">
+    <value>Light</value>
+  </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>Increase your connection speed by up to 400% with performance enhancing technologies.</value>
   </data>
   <data name="SystemNotification_Connected">
-    <value>You are now protected</value>
+    <value>Está agora protegido.</value>
   </data>
   <data name="SystemNotification_ConnectedTo">
     <value>Ligado a {0}.</value>
@@ -2635,7 +2676,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Use Proton VPN on different platforms</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
-    <value>Android and Android TV</value>
+    <value>Android e Android TV</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser">
     <value>Navegador</value>

@@ -180,6 +180,9 @@
   <data name="Common_States_On">
     <value>Pornit</value>
   </data>
+  <data name="Common_States_Updating">
+    <value>Updating...</value>
+  </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN a eșuat să preia certificatul de autentificare datorită problemelor de rețea.</value>
   </data>
@@ -1831,21 +1834,23 @@ Smart Routing este de obicei folosit pentru a evita legile anticonfidențialitat
     <value>{0} TiB/s</value>
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
-  <data name="Format_Time_Day">
-    <value>{0} zi</value>
-    <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
+  <data name="Format_Time_Day_One">
+    <value>{0} day</value>
   </data>
-  <data name="Format_Time_DayHours">
-    <value>{0} zi {1} h</value>
-    <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
+  <data name="Format_Time_Day_Few">
+    <value>{0} days</value>
   </data>
-  <data name="Format_Time_Days">
-    <value>{0} zile</value>
-    <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
+  <data name="Format_Time_Day_Other">
+    <value>{0} days</value>
   </data>
-  <data name="Format_Time_DaysHours">
-    <value>{0} zile {1} h</value>
-    <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
+  <data name="Format_Time_DayHour_One">
+    <value>{0} day {1} hr</value>
+  </data>
+  <data name="Format_Time_DayHour_Few">
+    <value>{0} days {1} hr</value>
+  </data>
+  <data name="Format_Time_DayHour_Other">
+    <value>{0} days {1} hr</value>
   </data>
   <data name="Format_Time_Hours">
     <value>{0} h</value>
@@ -1917,6 +1922,9 @@ Smart Routing este de obicei folosit pentru a evita legile anticonfidențialitat
   </data>
   <data name="Home_ConnectionCard_Header_ConnectingTo">
     <value>Se conectează la...</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_DefaultConnection">
+    <value>Default connection</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
     <value>Conexiune gratuită</value>
@@ -1991,6 +1999,21 @@ Smart Routing este de obicei folosit pentru a evita legile anticonfidențialitat
   </data>
   <data name="Home_ConnectionDetails_Upload">
     <value>Încărcare</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Download">
+    <value>Download volume</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Total">
+    <value>Total volume</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Upload">
+    <value>Upload volume</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnAccelerator">
+    <value>Boosted by VPN Accelerator</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnAccelerator_ToolTip">
+    <value>Advanced performance and stability technologies are boosting your VPN speed.</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>IP VPN</value>
@@ -2341,6 +2364,21 @@ Smart Routing este de obicei folosit pentru a evita legile anticonfidențialitat
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
     <value>Restricționează datele care intră în rețeaua proprie. Această opțiune este mai sigură, dar poate face mai dificilă conexiunile jocurilor cu utilizatori multipli.</value>
   </data>
+  <data name="Settings_Connection_Default">
+    <value>Default connection</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest">
+    <value>Fastest country</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest_Description">
+    <value>The best server based on your location</value>
+  </data>
+  <data name="Settings_Connection_Default_Last">
+    <value>Last connection</value>
+  </data>
+  <data name="Settings_Connection_Default_Last_Description">
+    <value>Your most recently used connection</value>
+  </data>
   <data name="Settings_Connection_Protocol">
     <value>Protocol</value>
   </data>
@@ -2483,7 +2521,7 @@ Smart Routing este de obicei folosit pentru a evita legile anticonfidențialitat
     <value>Autoconectare</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>Se va conecta la un server imediat ce se deschide Proton VPN</value>
+    <value>Automatically connects to your default connection when Proton VPN opens.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>Cea mai rapidă conexiune</value>
@@ -2643,6 +2681,15 @@ Smart Routing este de obicei folosit pentru a evita legile anticonfidențialitat
   </data>
   <data name="Settings_Support_SupportCenter">
     <value>Centrul de asistență</value>
+  </data>
+  <data name="Settings_Theme_Dark">
+    <value>Dark</value>
+  </data>
+  <data name="Settings_Theme_Default">
+    <value>Default</value>
+  </data>
+  <data name="Settings_Theme_Light">
+    <value>Light</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>Măriți viteza de conectare cu până la 400% cu tehnologii de îmbunătățire a performanței.</value>
