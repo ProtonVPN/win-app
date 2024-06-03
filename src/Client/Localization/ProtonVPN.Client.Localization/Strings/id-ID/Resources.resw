@@ -180,6 +180,9 @@
   <data name="Common_States_On">
     <value>Aktif</value>
   </data>
+  <data name="Common_States_Updating">
+    <value>Memperbarui...</value>
+  </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN tidak dapat mengambil sertifikat autentikasi karena masalah jaringan.</value>
   </data>
@@ -1723,21 +1726,11 @@ Smart Routing pada umumnya digunakan untuk menghindari undang-undang anti-privas
     <value>{0} TB/dtk</value>
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
-  <data name="Format_Time_Day">
-    <value>{0} hari</value>
-    <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
+  <data name="Format_Time_Day_Other">
+    <value>{0} days</value>
   </data>
-  <data name="Format_Time_DayHours">
-    <value>{0} hari {1} jam</value>
-    <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_Days">
-    <value>{0} hari</value>
-    <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
-  </data>
-  <data name="Format_Time_DaysHours">
-    <value>{0} hari {1} jam</value>
-    <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
+  <data name="Format_Time_DayHour_Other">
+    <value>{0} days {1} hr</value>
   </data>
   <data name="Format_Time_Hours">
     <value>{0} jam</value>
@@ -1809,6 +1802,9 @@ Smart Routing pada umumnya digunakan untuk menghindari undang-undang anti-privas
   </data>
   <data name="Home_ConnectionCard_Header_ConnectingTo">
     <value>Menghubungkan ke...</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_DefaultConnection">
+    <value>Koneksi bawaan</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
     <value>Koneksi Free</value>
@@ -1883,6 +1879,21 @@ Smart Routing pada umumnya digunakan untuk menghindari undang-undang anti-privas
   </data>
   <data name="Home_ConnectionDetails_Upload">
     <value>Unggah</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Download">
+    <value>Volume unduh</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Total">
+    <value>Volume total</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Upload">
+    <value>Volume unggah</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnAccelerator">
+    <value>Boosted by VPN Accelerator</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnAccelerator_ToolTip">
+    <value>Advanced performance and stability technologies are boosting your VPN speed.</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>IP VPN</value>
@@ -2221,6 +2232,21 @@ Smart Routing pada umumnya digunakan untuk menghindari undang-undang anti-privas
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
     <value>Membatasi data yang memasuki jaringan Anda. Opsi ini lebih aman, namun dapat mempersulit koneksi peer-to-peer antar aplikasi permainan.</value>
   </data>
+  <data name="Settings_Connection_Default">
+    <value>Koneksi bawaan</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest">
+    <value>Negara tercepat</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest_Description">
+    <value>Server terbaik berdasarkan lokasi Anda</value>
+  </data>
+  <data name="Settings_Connection_Default_Last">
+    <value>Koneksi terakhir</value>
+  </data>
+  <data name="Settings_Connection_Default_Last_Description">
+    <value>Koneksi yang terakhir Anda gunakan</value>
+  </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokol</value>
   </data>
@@ -2363,7 +2389,7 @@ Smart Routing pada umumnya digunakan untuk menghindari undang-undang anti-privas
     <value>Penghubungan otomatis</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>Anda akan terhubung ke salah satu server segera setelah aplikasi Proton VPN diluncurkan</value>
+    <value>Menghubungkan Anda secara otomatis ke koneksi bawaan Anda ketika Proton VPN terbuka.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>Koneksi tercepat</value>
@@ -2523,6 +2549,15 @@ Smart Routing pada umumnya digunakan untuk menghindari undang-undang anti-privas
   </data>
   <data name="Settings_Support_SupportCenter">
     <value>Pusat bantuan</value>
+  </data>
+  <data name="Settings_Theme_Dark">
+    <value>Gelap</value>
+  </data>
+  <data name="Settings_Theme_Default">
+    <value>Bawaan</value>
+  </data>
+  <data name="Settings_Theme_Light">
+    <value>Terang</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>Tingkatkan kecepatan koneksi Anda hingga 400% dengan teknologi pemicu performa.</value>

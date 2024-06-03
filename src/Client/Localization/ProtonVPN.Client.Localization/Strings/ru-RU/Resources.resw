@@ -180,6 +180,9 @@
   <data name="Common_States_On">
     <value>Вкл.</value>
   </data>
+  <data name="Common_States_Updating">
+    <value>Updating...</value>
+  </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN не смог получить сертификат аутентификации из-за проблемы с сетью.</value>
   </data>
@@ -278,16 +281,16 @@
     <value>All servers in this gateway are under maintenance</value>
   </data>
   <data name="Connections_Gateways_One">
-    <value>Gateway ({0})</value>
+    <value>Шлюз ({0})</value>
   </data>
   <data name="Connections_Gateways_Few">
-    <value>Gateways ({0})</value>
+    <value>Шлюза ({0})</value>
   </data>
   <data name="Connections_Gateways_Many">
-    <value>Gateways ({0})</value>
+    <value>Шлюзов ({0})</value>
   </data>
   <data name="Connections_Gateways_Other">
-    <value>Gateways ({0})</value>
+    <value>Шлюзов ({0})</value>
   </data>
   <data name="Connections_Gateways_Servers_One">
     <value>Dedicated server ({0})</value>
@@ -1796,7 +1799,7 @@ Smart Routing обычно используется для обхода зако
     <value>These quick fixes may help you connect to Proton.</value>
   </data>
   <data name="Dialogs_Troubleshooting_DidNotWork">
-    <value>Didn't work?</value>
+    <value>Не работает?</value>
   </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork">
     <value>Use a different network</value>
@@ -1885,21 +1888,29 @@ Smart Routing обычно используется для обхода зако
     <value>{0} ТБ/c.</value>
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
-  <data name="Format_Time_Day">
-    <value>{0} день</value>
-    <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
+  <data name="Format_Time_Day_One">
+    <value>{0} day</value>
   </data>
-  <data name="Format_Time_DayHours">
-    <value>{0} день {1} ч.</value>
-    <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
+  <data name="Format_Time_Day_Few">
+    <value>{0} days</value>
   </data>
-  <data name="Format_Time_Days">
-    <value>{0} дней</value>
-    <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
+  <data name="Format_Time_Day_Many">
+    <value>{0} days</value>
   </data>
-  <data name="Format_Time_DaysHours">
-    <value>{0} дней {1} ч.</value>
-    <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
+  <data name="Format_Time_Day_Other">
+    <value>{0} days</value>
+  </data>
+  <data name="Format_Time_DayHour_One">
+    <value>{0} day {1} hr</value>
+  </data>
+  <data name="Format_Time_DayHour_Few">
+    <value>{0} days {1} hr</value>
+  </data>
+  <data name="Format_Time_DayHour_Many">
+    <value>{0} days {1} hr</value>
+  </data>
+  <data name="Format_Time_DayHour_Other">
+    <value>{0} days {1} hr</value>
   </data>
   <data name="Format_Time_Hours">
     <value>{0} ч.</value>
@@ -1971,6 +1982,9 @@ Smart Routing обычно используется для обхода зако
   </data>
   <data name="Home_ConnectionCard_Header_ConnectingTo">
     <value>Подключение к...</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_DefaultConnection">
+    <value>Default connection</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
     <value>Free подключение</value>
@@ -2046,6 +2060,21 @@ Smart Routing обычно используется для обхода зако
   <data name="Home_ConnectionDetails_Upload">
     <value>Загрузить</value>
   </data>
+  <data name="Home_ConnectionDetails_Volume_Download">
+    <value>Download volume</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Total">
+    <value>Total volume</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Upload">
+    <value>Upload volume</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnAccelerator">
+    <value>Boosted by VPN Accelerator</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnAccelerator_ToolTip">
+    <value>Advanced performance and stability technologies are boosting your VPN speed.</value>
+  </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>VPN IP</value>
   </data>
@@ -2075,7 +2104,7 @@ Smart Routing обычно используется для обхода зако
     <value>Ads are promotional banners or pop-ups that appear on websites and apps.</value>
   </data>
   <data name="Home_NetShield_DataSaved">
-    <value>Data saved</value>
+    <value>Экономия трафика</value>
   </data>
   <data name="Home_NetShield_DataSaved_Description">
     <value>Estimated data saved by blocking unwanted ads, trackers, and malware.</value>
@@ -2085,7 +2114,7 @@ Smart Routing обычно используется для обхода зако
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_NetShield_Title">
-    <value>NetShield stats</value>
+    <value>Статистика NetShield</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_One">
     <value>Трекер заблокирован</value>
@@ -2321,7 +2350,7 @@ Smart Routing обычно используется для обхода зако
     <value>Данные об использовании помогают нам преодолевать блокировки VPN и повышать производительность приложения.</value>
   </data>
   <data name="Settings_Common_Apply">
-    <value>Apply</value>
+    <value>Применить</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
   <data name="Settings_Common_ApplyAndReconnect">
@@ -2400,6 +2429,21 @@ Smart Routing обычно используется для обхода зако
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
     <value>Ограничивает поступление данных в сеть. Этот вариант более безопасен, но может затруднить одноранговые игровые соединения.</value>
+  </data>
+  <data name="Settings_Connection_Default">
+    <value>Default connection</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest">
+    <value>Fastest country</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest_Description">
+    <value>The best server based on your location</value>
+  </data>
+  <data name="Settings_Connection_Default_Last">
+    <value>Last connection</value>
+  </data>
+  <data name="Settings_Connection_Default_Last_Description">
+    <value>Your most recently used connection</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Протокол</value>
@@ -2543,7 +2587,7 @@ Smart Routing обычно используется для обхода зако
     <value>Автоподключение</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>Вы будете подключены к серверу сразу после запуска Proton VPN</value>
+    <value>Automatically connects to your default connection when Proton VPN opens.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>Самое быстрое подключение</value>
@@ -2704,11 +2748,20 @@ Smart Routing обычно используется для обхода зако
   <data name="Settings_Support_SupportCenter">
     <value>Справочный центр</value>
   </data>
+  <data name="Settings_Theme_Dark">
+    <value>Dark</value>
+  </data>
+  <data name="Settings_Theme_Default">
+    <value>Default</value>
+  </data>
+  <data name="Settings_Theme_Light">
+    <value>Light</value>
+  </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>Увеличьте скорость подключения до 400% благодаря технологиям повышения производительности.</value>
   </data>
   <data name="SystemNotification_Connected">
-    <value>You are now protected</value>
+    <value>Теперь вы защищены</value>
   </data>
   <data name="SystemNotification_ConnectedTo">
     <value>Подключено к {0}.</value>
@@ -2758,7 +2811,7 @@ Smart Routing обычно используется для обхода зако
     <value>Android and Android TV</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser">
-    <value>Browser</value>
+    <value>Браузер</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Platforms_Linux">
     <value>Linux</value>
@@ -2773,13 +2826,13 @@ Smart Routing обычно используется для обхода зако
     <value>iOS</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Privacy">
-    <value>Security and privacy on all of your devices</value>
+    <value>Безопасность и конфиденциальность на всех ваших устройствах</value>
   </data>
   <data name="Upsell_Carousel_NetShield">
     <value>Пользуйтесь просмотром веб-страниц без рекламы</value>
   </data>
   <data name="Upsell_Carousel_NetShield_Block">
-    <value>Block ads and trackers with NetShield</value>
+    <value>Блокируйте рекламу и трекеры с помощью NetShield</value>
   </data>
   <data name="Upsell_Carousel_NetShield_Protection">
     <value>Защитите свое устройство от вредоносных программ</value>

@@ -180,6 +180,9 @@
   <data name="Common_States_On">
     <value>Ein</value>
   </data>
+  <data name="Common_States_Updating">
+    <value>Wird aktualisiert...</value>
+  </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN konnte das Authentifizierungszertifikat aufgrund eines Netzwerkproblems nicht abrufen.</value>
   </data>
@@ -290,13 +293,13 @@
     <value>P2P-Länder ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_One">
-    <value>P2P server ({0})</value>
+    <value>P2P-Server ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>P2P Server ({0})</value>
+    <value>P2P-Server ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_One">
-    <value>Secure Core country ({0})</value>
+    <value>„Secure Core”-Land ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_Other">
     <value>„Secure Core”-Länder ({0})</value>
@@ -332,13 +335,13 @@
     <value>Server ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_One">
-    <value>Tor country ({0})</value>
+    <value>Tor-Land ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_Other">
     <value>Tor-Länder ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_One">
-    <value>Tor server ({0})</value>
+    <value>Tor-Server ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
     <value>Tor-Server ({0})</value>
@@ -1777,21 +1780,17 @@ Smart Routing wird in der Regel verwendet, um Datenschutzgesetze und andere Form
     <value>{0} TB/s</value>
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
-  <data name="Format_Time_Day">
+  <data name="Format_Time_Day_One">
     <value>{0} Tag</value>
-    <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
   </data>
-  <data name="Format_Time_DayHours">
-    <value>{0} Tag {1} Std.</value>
-    <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_Days">
+  <data name="Format_Time_Day_Other">
     <value>{0} Tage</value>
-    <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
   </data>
-  <data name="Format_Time_DaysHours">
+  <data name="Format_Time_DayHour_One">
+    <value>{0} Tag {1} Std.</value>
+  </data>
+  <data name="Format_Time_DayHour_Other">
     <value>{0} Tage {1} Std.</value>
-    <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
   </data>
   <data name="Format_Time_Hours">
     <value>{0} Std.</value>
@@ -1863,6 +1862,9 @@ Smart Routing wird in der Regel verwendet, um Datenschutzgesetze und andere Form
   </data>
   <data name="Home_ConnectionCard_Header_ConnectingTo">
     <value>Verbinden mit...</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_DefaultConnection">
+    <value>Standardverbindung</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
     <value>Kostenlose Verbindungen</value>
@@ -1937,6 +1939,21 @@ Smart Routing wird in der Regel verwendet, um Datenschutzgesetze und andere Form
   </data>
   <data name="Home_ConnectionDetails_Upload">
     <value>Hochladen</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Download">
+    <value>Downloadmenge</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Total">
+    <value>Gesamtmenge</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Upload">
+    <value>Uploadmenge</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnAccelerator">
+    <value>Verstärkt durch VPN Accelerator</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnAccelerator_ToolTip">
+    <value>Advanced performance and stability technologies are boosting your VPN speed.</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>VPN IP</value>
@@ -2281,6 +2298,21 @@ Smart Routing wird in der Regel verwendet, um Datenschutzgesetze und andere Form
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
     <value>Schränkt den Datenverkehr in deinem Netzwerk ein. Diese Option ist sicherer, kann aber Peer-to-Peer Videospiel-Verbindungen erschweren.</value>
   </data>
+  <data name="Settings_Connection_Default">
+    <value>Standardverbindung</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest">
+    <value>Schnellstes Land</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest_Description">
+    <value>Der beste Server für deinen Standort</value>
+  </data>
+  <data name="Settings_Connection_Default_Last">
+    <value>Letzte Verbindung</value>
+  </data>
+  <data name="Settings_Connection_Default_Last_Description">
+    <value>Deine zuletzt verwendete Verbindung</value>
+  </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokoll</value>
   </data>
@@ -2423,7 +2455,7 @@ Smart Routing wird in der Regel verwendet, um Datenschutzgesetze und andere Form
     <value>Automatisch verbinden</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>Du wirst mit einem Server verbunden, sobald Proton VPN geöffnet wird.</value>
+    <value>Verbindet sich automatisch mit deiner Standardverbindung, wenn Proton VPN geöffnet wird.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>Schnellste Verbindung</value>
@@ -2583,6 +2615,15 @@ Smart Routing wird in der Regel verwendet, um Datenschutzgesetze und andere Form
   </data>
   <data name="Settings_Support_SupportCenter">
     <value>Hilfecenter</value>
+  </data>
+  <data name="Settings_Theme_Dark">
+    <value>Dunkel</value>
+  </data>
+  <data name="Settings_Theme_Default">
+    <value>Standard</value>
+  </data>
+  <data name="Settings_Theme_Light">
+    <value>Hell</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>Steigere deine Verbindungsgeschwindigkeit mit leistungssteigernden Technologien um bis zu 400 %.</value>

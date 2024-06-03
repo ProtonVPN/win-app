@@ -124,7 +124,7 @@
     <value>ქალაქები</value>
   </data>
   <data name="Common_Actions_ActionsFor">
-    <value>Actions for {0}</value>
+    <value>ქმედებები {0}-სთვის</value>
     <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Add">
@@ -140,7 +140,7 @@
     <value>დაკავშირება</value>
   </data>
   <data name="Common_Actions_ConnectTo">
-    <value>Connect to {0}</value>
+    <value>{0}-სთან დაკავშირება</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to Connect to something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_ContactUs">
@@ -150,7 +150,7 @@
     <value>გათიშვა</value>
   </data>
   <data name="Common_Actions_DisconnectFrom">
-    <value>Disconnect from {0}</value>
+    <value>გათიშვა {0}-დან</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Enable">
@@ -179,6 +179,9 @@
   </data>
   <data name="Common_States_On">
     <value>ჩართ</value>
+  </data>
+  <data name="Common_States_Updating">
+    <value>Updating...</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN-მა ქსელის პრობლემის გამო ავთენტიკაციის სერტიფიკატი ვერ გამოითხოვა.</value>
@@ -236,10 +239,10 @@
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
   </data>
   <data name="Connections_Cities_One">
-    <value>City ({0})</value>
+    <value>ქალაქი ({0})</value>
   </data>
   <data name="Connections_Cities_Other">
-    <value>ქალაქები ({0})</value>
+    <value>ქალაქი ({0})</value>
   </data>
   <data name="Connections_City_Restricted">
     <value>Servers in this city are available with VPN Plus</value>
@@ -248,10 +251,10 @@
     <value>ამ ქალაქში ყველა სერვერი ტექმომსახურებაზეა</value>
   </data>
   <data name="Connections_Countries_One">
-    <value>Country ({0})</value>
+    <value>ქვეყანა ({0})</value>
   </data>
   <data name="Connections_Countries_Other">
-    <value>ქვეყნები ({0})</value>
+    <value>ქვეყანა ({0})</value>
   </data>
   <data name="Connections_Country_Restricted">
     <value>Servers in this country are available with VPN Plus</value>
@@ -266,82 +269,82 @@
     <value>All servers in this gateway are under maintenance</value>
   </data>
   <data name="Connections_Gateways_One">
-    <value>Gateway ({0})</value>
+    <value>კარიბჭე ({0})</value>
   </data>
   <data name="Connections_Gateways_Other">
-    <value>Gateways ({0})</value>
+    <value>კარიბჭე ({0})</value>
   </data>
   <data name="Connections_Gateways_Servers_One">
-    <value>Dedicated server ({0})</value>
+    <value>გამოყოფილი სერვერი ({0})</value>
   </data>
   <data name="Connections_Gateways_Servers_Other">
-    <value>Dedicated servers ({0})</value>
+    <value>გამოყოფილი სერვერი ({0})</value>
   </data>
   <data name="Connections_P2P_Cities_One">
-    <value>P2P city ({0})</value>
+    <value>P2P ქალაქი ({0})</value>
   </data>
   <data name="Connections_P2P_Cities_Other">
-    <value>P2P ქალაქები ({0})</value>
+    <value>P2P ქალაქი ({0})</value>
   </data>
   <data name="Connections_P2P_Countries_One">
-    <value>P2P country ({0})</value>
+    <value>P2P ქვეყანა ({0})</value>
   </data>
   <data name="Connections_P2P_Countries_Other">
-    <value>P2P ქვეყნები ({0})</value>
+    <value>P2P ქვეყანა ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_One">
-    <value>P2P server ({0})</value>
+    <value>P2P სერვერი ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>P2P servers ({0})</value>
+    <value>P2P სერვერი ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_One">
-    <value>Secure Core country ({0})</value>
+    <value>Secure Core-ის ქვეყანა ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_Other">
-    <value>Secure Core-ის ქვეყნები ({0})</value>
+    <value>Secure Core-ის ქვეყანა ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_One">
-    <value>Secure Core server ({0})</value>
+    <value>Secure Core-ის სერვერი ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>Secure Core-ის სერვერები ({0})</value>
+    <value>Secure Core-ის სერვერი ({0})</value>
   </data>
   <data name="Connections_SeeCities_One">
-    <value>See city ({0})</value>
+    <value>ქალაქის ნახვა ({0})</value>
   </data>
   <data name="Connections_SeeCities_Other">
-    <value>See cities ({0})</value>
+    <value>ქალაქის ნახვა ({0})</value>
   </data>
   <data name="Connections_SeeServers_One">
-    <value>See server ({0})</value>
+    <value>სერვერის ნახვა ({0})</value>
   </data>
   <data name="Connections_SeeServers_Other">
-    <value>See servers ({0})</value>
+    <value>სერვერის ნახვა ({0})</value>
   </data>
   <data name="Connections_Server_Restricted">
-    <value>Server available with VPN Plus</value>
+    <value>სერვერი ხელმისაწვდომია VPN Plus-ით</value>
   </data>
   <data name="Connections_Server_UnderMaintenance">
-    <value>This server is under maintenance</value>
+    <value>ეს სერვერი ტექმომსახურებაშია</value>
   </data>
   <data name="Connections_Servers_One">
-    <value>Server ({0})</value>
+    <value>სერვერი ({0})</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>სერვერები ({0})</value>
+    <value>სერვერი ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_One">
-    <value>Tor country ({0})</value>
+    <value>Tor-ის ქვეყანა ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_Other">
-    <value>Tor ქვეყნები ({0})</value>
+    <value>Tor-ის ქვეყანა ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_One">
-    <value>Tor server ({0})</value>
+    <value>Tor-ის სერვერი ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
-    <value>Tor-ის სერვერები ({0})</value>
+    <value>Tor-ის სერვერი ({0})</value>
   </data>
   <data name="Countries_All">
     <value>ყველა</value>
@@ -1671,7 +1674,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>Tor</value>
   </data>
   <data name="Dialogs_Troubleshooting_Antivirus">
-    <value>Turn off antivirus or firewall software</value>
+    <value>გამორთეთ ანტივირუსი ან ბრანდმაუერის პროგრამა</value>
   </data>
   <data name="Dialogs_Troubleshooting_Antivirus_Description">
     <value>These programs can interfere with VPN connections.</value>
@@ -1686,22 +1689,22 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>These quick fixes may help you connect to Proton.</value>
   </data>
   <data name="Dialogs_Troubleshooting_DidNotWork">
-    <value>Didn't work?</value>
+    <value>არ იმუშავა?</value>
   </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork">
-    <value>Use a different network</value>
+    <value>გამოიყენეთ სხვა ქსელი</value>
   </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
     <value>Try switching Wi-Fi networks, or use mobile data.</value>
   </data>
   <data name="Dialogs_Troubleshooting_StatusPage">
-    <value>Check our status page</value>
+    <value>შეამოწმეთ ჩვენი სტატუსის გვერდი</value>
   </data>
   <data name="Dialogs_Troubleshooting_StatusPage_Description">
     <value>Just to be sure that Proton services are running as normal.</value>
   </data>
   <data name="Dialogs_Troubleshooting_Title">
-    <value>Connection help</value>
+    <value>მიერთების დახმარება</value>
   </data>
   <data name="Dialogs_Welcome_Message">
     <value>მიმდინარეობს თქვენი VPN მიერთების მორგება. ამას რამდენიმე წუთი შეიძლება, დასჭირდეს.</value>
@@ -1713,7 +1716,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>VPN გაითიშება.</value>
   </data>
   <data name="Exit_Confirmation_Title">
-    <value>Exit Proton VPN?</value>
+    <value>გავიდე Proton VPN-დან?</value>
   </data>
   <data name="Format_Milliseconds">
     <value>{0}მწმ</value>
@@ -1775,21 +1778,17 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>{0} ტბ/წმ</value>
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
-  <data name="Format_Time_Day">
-    <value>{0} დღე</value>
-    <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
+  <data name="Format_Time_Day_One">
+    <value>{0} day</value>
   </data>
-  <data name="Format_Time_DayHours">
-    <value>{0} დღე {1} სთ</value>
-    <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
+  <data name="Format_Time_Day_Other">
+    <value>{0} days</value>
   </data>
-  <data name="Format_Time_Days">
-    <value>{0} დღე</value>
-    <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
+  <data name="Format_Time_DayHour_One">
+    <value>{0} day {1} hr</value>
   </data>
-  <data name="Format_Time_DaysHours">
-    <value>{0} დღე {1} სთ</value>
-    <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
+  <data name="Format_Time_DayHour_Other">
+    <value>{0} days {1} hr</value>
   </data>
   <data name="Format_Time_Hours">
     <value>{0} სთ</value>
@@ -1861,6 +1860,9 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
   </data>
   <data name="Home_ConnectionCard_Header_ConnectingTo">
     <value>დაკავშირება...</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_DefaultConnection">
+    <value>Default connection</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
     <value>უფასო მიერთება</value>
@@ -1936,6 +1938,21 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
   <data name="Home_ConnectionDetails_Upload">
     <value>ატვირთვა</value>
   </data>
+  <data name="Home_ConnectionDetails_Volume_Download">
+    <value>Download volume</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Total">
+    <value>Total volume</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Upload">
+    <value>Upload volume</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnAccelerator">
+    <value>Boosted by VPN Accelerator</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnAccelerator_ToolTip">
+    <value>Advanced performance and stability technologies are boosting your VPN speed.</value>
+  </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>VPN IP</value>
   </data>
@@ -1959,7 +1976,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>Ads are promotional banners or pop-ups that appear on websites and apps.</value>
   </data>
   <data name="Home_NetShield_DataSaved">
-    <value>Data saved</value>
+    <value>მინაცემები შენახულია</value>
   </data>
   <data name="Home_NetShield_DataSaved_Description">
     <value>Estimated data saved by blocking unwanted ads, trackers, and malware.</value>
@@ -1969,7 +1986,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_NetShield_Title">
-    <value>NetShield stats</value>
+    <value>NetShield-ის სტატისტიკა</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_One">
     <value>შეჩერებული ტრეკერი</value>
@@ -2199,7 +2216,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>გამოყენების მონაცემები გვეხმარება VPN ბლოკების დაძლევაში და აპლიკაციის მუშაობის გაუმჯობესებაში.</value>
   </data>
   <data name="Settings_Common_Apply">
-    <value>Apply</value>
+    <value>გადატარება</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
   <data name="Settings_Common_ApplyAndReconnect">
@@ -2279,6 +2296,21 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
     <value>ზღუდავს თქვენს ქსელში შემომავალ ინფორმაციას. ეს პარამეტრი ფრო დაცულია, მაგრამ გამჭოლი მიერთების გამომყენებელი თამაშების მუშაობა უფრო ძნელი იქნება.</value>
   </data>
+  <data name="Settings_Connection_Default">
+    <value>Default connection</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest">
+    <value>Fastest country</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest_Description">
+    <value>The best server based on your location</value>
+  </data>
+  <data name="Settings_Connection_Default_Last">
+    <value>Last connection</value>
+  </data>
+  <data name="Settings_Connection_Default_Last_Description">
+    <value>Your most recently used connection</value>
+  </data>
   <data name="Settings_Connection_Protocol">
     <value>პროტოკოლი</value>
   </data>
@@ -2286,7 +2318,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>VPN Accelerator</value>
   </data>
   <data name="Settings_Features">
-    <value>VPN features</value>
+    <value>VPN-ის ფუნქციები</value>
   </data>
   <data name="Settings_Features_KillSwitch">
     <value>Kill switch</value>
@@ -2349,7 +2381,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>აუარეთ გვერდი ბარნდმაუერებს, რომ მიუერთდეთ P2P სერვერებს და მოწყობილობებს თქვენს ლოკალურ ქსელში.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Footer">
-    <value>To use port forwarding, please connect to a server that supports P2P.</value>
+    <value>იმისათვის, რომ გამოიყენოთ პორტის გადამისამართება, დაუკავშირდით სერვერს, რომელსაც P2P-ის მხარდაჭერა გააჩნია</value>
   </data>
   <data name="Settings_Features_PortForwarding_Loading">
     <value>ჩატვირთვა...</value>
@@ -2421,7 +2453,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>ავტომატური დაკავშირება</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>მიუერთდებით სერვერს მაშინვე, როცა Proton VPN გაიხსნება</value>
+    <value>Automatically connects to your default connection when Proton VPN opens.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>უსწრაფესი შეერთება</value>
@@ -2582,18 +2614,27 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
   <data name="Settings_Support_SupportCenter">
     <value>მხარდაჭერის ცენტრი</value>
   </data>
+  <data name="Settings_Theme_Dark">
+    <value>Dark</value>
+  </data>
+  <data name="Settings_Theme_Default">
+    <value>Default</value>
+  </data>
+  <data name="Settings_Theme_Light">
+    <value>Light</value>
+  </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>გაზარდეთ თქვენი მიერთების სიჩქარე 400%-ით წარმადობის გაუმჯობესების ტექნოლოგიების საშუალებით.</value>
   </data>
   <data name="SystemNotification_Connected">
-    <value>You are now protected</value>
+    <value>ახლა დაცული ბრძანდებით</value>
   </data>
   <data name="SystemNotification_ConnectedTo">
     <value>დაკავშირებულია {0}-სთან.</value>
     <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
   </data>
   <data name="SystemNotification_Disconnected">
-    <value>Disconnected</value>
+    <value>გათიშულია</value>
   </data>
   <data name="Tray_Actions_ExitApplication">
     <value>გასვლა</value>
@@ -2630,13 +2671,13 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>მიუერთეთ 10-მდე მოწყობილობა</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Platforms">
-    <value>Use Proton VPN on different platforms</value>
+    <value>გამოიყენეთ Proton VPN სხვადასხვა პლატფორმებზე</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
-    <value>Android and Android TV</value>
+    <value>Android და Android TV</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser">
-    <value>Browser</value>
+    <value>ბრაუზერი</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Platforms_Linux">
     <value>Linux</value>
@@ -2657,7 +2698,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>ისიამოვნეთ ურელამო ინტერნეტით</value>
   </data>
   <data name="Upsell_Carousel_NetShield_Block">
-    <value>Block ads and trackers with NetShield</value>
+    <value>დაბლოკეთ რეკლამა და ტრეკერები NetShield-ით</value>
   </data>
   <data name="Upsell_Carousel_NetShield_Protection">
     <value>დაიცავით თქვენი მოწყობილობა მავნე პროგრამებისგან</value>
@@ -2675,14 +2716,14 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>გაზრდილი ატვირთვის და გადმოწერის სიჩქარეები</value>
   </data>
   <data name="Upsell_Carousel_Platforms_More">
-    <value>+ more</value>
+    <value>+ კიდევ</value>
     <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
   </data>
   <data name="Upsell_Carousel_SecureCore">
     <value>Add another layer of protection to your connection</value>
   </data>
   <data name="Upsell_Carousel_SecureCore_Encryption">
-    <value>Double your encryption with Secure Core</value>
+    <value>გაიორმაგეთ შიფრაცია Secure Core-სთან ერთად</value>
   </data>
   <data name="Upsell_Carousel_SecureCore_Protection">
     <value>დაიცავით თავი ქსელური შეტევებისგან</value>
@@ -2709,7 +2750,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>სანდო აპებს და IP მისამართებს შეგიძლიათ, ინტერნეტთან პირდაპირი წვდომა მისცეთ მაშინ, როცა ყველაფერ დანარჩენს VPN-ით დაიცავთ</value>
   </data>
   <data name="Upsell_Carousel_Streaming">
-    <value>Stream your favorite movies and TV shows</value>
+    <value>დასტრიმეთ თქვენს საყვარელ ფილმები და სერიალები</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Access">
     <value>Access geoblocked TV and movies from anywhere in the world</value>
@@ -2739,23 +2780,23 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>აღმოაჩინეთ VPN Plus</value>
   </data>
   <data name="Upsell_Carousel_Tor">
-    <value>Access the Tor network for extra privacy</value>
+    <value>წვდომა Tor-ის ქსელთან დამატებითი კონფიდენციალობისთვის</value>
   </data>
   <data name="Upsell_Carousel_Tor_Access">
-    <value>Access hidden sites and onion sites</value>
+    <value>წვდომა დამალულ საიტებთამ და onion საიტებთან</value>
   </data>
   <data name="Upsell_Carousel_Tor_Browsing">
     <value>Browse the Tor network using your regular browser</value>
   </data>
   <data name="Upsell_Carousel_Tor_Protection">
-    <value>Protect your personal data while browsing</value>
+    <value>დაიცავით თქვენი პირადი მონაცემები ინტერნეტში მუშაობისას</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage">
     <value>მიიღეთ წვდომა {0}-ზე {1}-ში</value>
     <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Audit">
-    <value>Audited by independent security experts</value>
+    <value>აუდიტი დამოუკიდებელი უსაფრთხოების ექსპერტებისგან</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
     <value>Bypass censorship with advanced security and privacy features</value>
@@ -2767,7 +2808,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>{0} ქვეყანა</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
-    <value>Open source VPN</value>
+    <value>ღია კოდის მქონე VPN</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
     <value>{0} დაცული სერვერი</value>

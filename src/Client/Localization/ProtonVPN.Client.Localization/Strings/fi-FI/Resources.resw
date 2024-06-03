@@ -124,7 +124,7 @@
     <value>Kaupungit</value>
   </data>
   <data name="Common_Actions_ActionsFor">
-    <value>Toiminnot palvelimelle {0}</value>
+    <value>Toiminnot kohteelle {0}</value>
     <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Add">
@@ -140,7 +140,7 @@
     <value>Yhdistä</value>
   </data>
   <data name="Common_Actions_ConnectTo">
-    <value>Yhdistä palvelimeen {0}</value>
+    <value>Yhdistä kohteeseen {0}</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to Connect to something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_ContactUs">
@@ -150,7 +150,7 @@
     <value>Katkaise</value>
   </data>
   <data name="Common_Actions_DisconnectFrom">
-    <value>Katkaise yhteys palvelimeen {0}</value>
+    <value>Katkaise yhteys kohteeseen {0}</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Enable">
@@ -179,6 +179,9 @@
   </data>
   <data name="Common_States_On">
     <value>Käytössä</value>
+  </data>
+  <data name="Common_States_Updating">
+    <value>Päivitetään...</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN ei voinut noutaa todennusvarmennetta verkko-ongelman vuoksi.</value>
@@ -415,7 +418,7 @@
     <comment>{0} represents the number of severs</comment>
   </data>
   <data name="Countries_SecureCore_Description">
-    <value>Lisää VPN-yhteyteesi yksi salauskerros lisää.</value>
+    <value>Lisää VPN-yhteyteesi toinen salauskerros.</value>
   </data>
   <data name="Countries_Server_One">
     <value>{0} palvelin</value>
@@ -1563,7 +1566,7 @@ Korkea viive voi hidastaa yhteyttäsi.</value>
     <value>Mikä on ongelmana?</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes">
-    <value>Nopeita korjauksia</value>
+    <value>Pikaratkaisut</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes_Footer">
     <value>Eikö ratkaisu toiminut?</value>
@@ -1685,7 +1688,7 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
     <value>Varmista, että olet verkossa ja että yhteys on vakaa.</value>
   </data>
   <data name="Dialogs_Troubleshooting_Description">
-    <value>Nämä pikaratkaisut voivat auttaa sinua Protoniin yhdistämisessä.</value>
+    <value>Nämä pikaratkaisut voivat auttaa yhdistämään Protoniin.</value>
   </data>
   <data name="Dialogs_Troubleshooting_DidNotWork">
     <value>Eikö ratkaisu toiminut?</value>
@@ -1694,7 +1697,7 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
     <value>Käytä eri verkkoa</value>
   </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
-    <value>Kokeile vaihtaa toiseen Wi-Fi-verkkoon tai käytä mobiiliverkkoa.</value>
+    <value>Kokeile vaihtaa Wi-Fi-verkkoa tai käytä mobiiliverkkoa.</value>
   </data>
   <data name="Dialogs_Troubleshooting_StatusPage">
     <value>Tarkasta tilasivumme</value>
@@ -1712,10 +1715,10 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
     <value>Tervetuloa Proton VPN:ään</value>
   </data>
   <data name="Exit_Confirmation_Message">
-    <value>VPN-yhteytesi katkaistaan.</value>
+    <value>VPN-yhteytesi katkeaa.</value>
   </data>
   <data name="Exit_Confirmation_Title">
-    <value>Poistu Proton VPN:stä?</value>
+    <value>Suljetaanko Proton VPN?</value>
   </data>
   <data name="Format_Milliseconds">
     <value>{0} ms</value>
@@ -1777,21 +1780,17 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
     <value>{0} Tt/s</value>
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
-  <data name="Format_Time_Day">
+  <data name="Format_Time_Day_One">
     <value>{0} päivä</value>
-    <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
   </data>
-  <data name="Format_Time_DayHours">
-    <value>{0} päivä {1} t</value>
-    <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_Days">
+  <data name="Format_Time_Day_Other">
     <value>{0} päivää</value>
-    <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
   </data>
-  <data name="Format_Time_DaysHours">
+  <data name="Format_Time_DayHour_One">
+    <value>{0} päivä {1} t</value>
+  </data>
+  <data name="Format_Time_DayHour_Other">
     <value>{0} päivää {1} t</value>
-    <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
   </data>
   <data name="Format_Time_Hours">
     <value>{0} t</value>
@@ -1834,7 +1833,7 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
     <value>Hanki maailmanlaajuinen kattavuus VPN Plus -tilauksella</value>
   </data>
   <data name="Gateways_Page_Description">
-    <value>Muodosta yhteys yhdyskäytävään käyttääksesi organisaatiosi VPN:ää.</value>
+    <value>Yhdistä yhdyskäytävään käyttääksesi organisaatiosi VPN:ää.</value>
   </data>
   <data name="Gateways_Page_Title">
     <value>Yhdyskäytävät</value>
@@ -1864,11 +1863,14 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
   <data name="Home_ConnectionCard_Header_ConnectingTo">
     <value>Yhdistetään palvelimeen...</value>
   </data>
+  <data name="Home_ConnectionCard_Header_DefaultConnection">
+    <value>Oletusyhteys</value>
+  </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
     <value>Ilmaisyhteys</value>
   </data>
   <data name="Home_ConnectionCard_Header_LastConnectedTo">
-    <value>Viimeksi yhteydessä palvelimeen</value>
+    <value>Viimeksi yhteydessä kohteeseen</value>
   </data>
   <data name="Home_ConnectionCard_Header_Recommended">
     <value>Suositus</value>
@@ -1937,6 +1939,21 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
   </data>
   <data name="Home_ConnectionDetails_Upload">
     <value>Lähetys</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Download">
+    <value>Latausmäärä</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Total">
+    <value>Kokonaismäärä</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Upload">
+    <value>Lähetysmäärä</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnAccelerator">
+    <value>VPN Acceleratorin tehostama</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnAccelerator_ToolTip">
+    <value>Edistyneet suorituskyky- ja vakaustekniikat tehostavat VPN-yhteytesi nopeutta.</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>VPN:n IP</value>
@@ -2281,6 +2298,21 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
     <value>Rajoittaa verkkoosi saapuvaa tiedonsiirtoa. Tämä vaihtoehto on turvallisempi, mutta saattaa hankaloittaa laitteiden välisiä peliyhteyksiä.</value>
   </data>
+  <data name="Settings_Connection_Default">
+    <value>Oletusyhteys</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest">
+    <value>Nopein maa</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest_Description">
+    <value>Sijaintisi perusteella paras palvelin</value>
+  </data>
+  <data name="Settings_Connection_Default_Last">
+    <value>Edellinen yhteys</value>
+  </data>
+  <data name="Settings_Connection_Default_Last_Description">
+    <value>Viimeksi käyttämäsi yhteys</value>
+  </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokolla</value>
   </data>
@@ -2423,7 +2455,7 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
     <value>Yhdistä automaattisesti</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>Sinut yhdistetään palvelimeen heti kun Proton VPN avautuu.</value>
+    <value>Muodostaa automaattisesti yhteyden oletussijaintiisi kun Proton VPN käynnistyy.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>Nopein yhteys</value>
@@ -2583,6 +2615,15 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
   </data>
   <data name="Settings_Support_SupportCenter">
     <value>Tukikeskus</value>
+  </data>
+  <data name="Settings_Theme_Dark">
+    <value>Tumma</value>
+  </data>
+  <data name="Settings_Theme_Default">
+    <value>Oletus</value>
+  </data>
+  <data name="Settings_Theme_Light">
+    <value>Vaalea</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>Nopeuta yhteyttäsi jopa 400 % suorituskykyä parantavien tekniikoiden avulla.</value>
@@ -2757,7 +2798,7 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
     <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Audit">
-    <value>Itsenäisten tietoturva-asiantuntijoiden tarkastama</value>
+    <value>Riippumattomien tietoturva-asiantuntijoiden tarkastama</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
     <value>Ohita sensuuri kehittyneillä tietoturva- ja yksityisyysominaisuuksilla</value>

@@ -140,7 +140,7 @@
     <value>Connecter</value>
   </data>
   <data name="Common_Actions_ConnectTo">
-    <value>Se connecter au serveur {0}</value>
+    <value>Connexion à {0}</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to Connect to something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_ContactUs">
@@ -150,7 +150,7 @@
     <value>Déconnecter</value>
   </data>
   <data name="Common_Actions_DisconnectFrom">
-    <value>Se déconnecter de {0}</value>
+    <value>Déconnexion de {0}</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Enable">
@@ -180,6 +180,9 @@
   <data name="Common_States_On">
     <value>Activé</value>
   </data>
+  <data name="Common_States_Updating">
+    <value>Mise à jour...</value>
+  </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN n'a pas pu obtenir l'authentification du certificat suite à une erreur réseau.</value>
   </data>
@@ -196,7 +199,7 @@
     <value>Proton VPN ne peut pas se connecter parce que le serveur RPC n'est pas disponible sur votre système.</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
-    <value>Vous avez atteint la limite maximale d'appareils. Veuillez déconnecter un autre appareil pour connecter celui-ci ou passez à PLUS pour pouvoir connecter jusqu'à 10 appareils en même temps.</value>
+    <value>Vous avez atteint le nombre maximum d'appareils. Vous devez déconnecter un autre appareil pour connecter celui-ci ou bien passer à l'abonnement Plus pour pouvoir connecter jusqu'à 10 appareils en même temps.</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedPaidUser">
     <value>Vous avez atteint le nombre maximum d'appareils connectés. Veuillez déconnecter un autre appareil pour connecter celui-ci.</value>
@@ -208,10 +211,10 @@
     <value>La version de la carte réseau est obsolète.</value>
   </data>
   <data name="Connection_Error_TlsCertificate">
-    <value>Il y a un problème de validation du certificat du serveur VPN, ce qui peut indiquer que la connexion réseau est altérée ou que le serveur auquel vous essayez de vous connecter a un problème de configuration. Obtenez l'aide de notre service clientèle en envoyant un rapport de problème.</value>
+    <value>Il y a un problème de validation du certificat du serveur VPN, ce qui peut indiquer que la connexion réseau est altérée ou que le serveur auquel vous essayez de vous connecter a un problème de configuration. Signalez le problème à notre service client pour obtenir de l'aide.</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>Nous ne savons pas exactement ce qu'il s'est passé. Veuillez réessayer ou contacter notre équipe d'assistance à la clientèle.</value>
+    <value>Nous ne savons pas exactement ce qui s'est passé. Nous vous invitons à réessayer ou à contacter notre équipe d'assistance à la clientèle.</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
     <value>Voir les solutions possibles</value>
@@ -242,7 +245,7 @@
     <value>Villes ({0})</value>
   </data>
   <data name="Connections_City_Restricted">
-    <value>Les serveurs de cette ville sont disponibles avec VPN Plus</value>
+    <value>Les serveurs de cette ville sont disponibles avec VPN Plus.</value>
   </data>
   <data name="Connections_City_UnderMaintenance">
     <value>Tous les serveurs de cette ville sont en maintenance.</value>
@@ -430,7 +433,7 @@
     <value>Smart Routing</value>
   </data>
   <data name="Countries_SmartRouting_Description">
-    <value>Les serveurs sont physiquement situés à {0}, mais vous aurez l'air de naviguer à partir de {1}.</value>
+    <value>Le pays dans lequel les serveurs sont physiquement situés est {0}, mais le pays à partir duquel vous semblerez naviguer est {1}.</value>
     <comment>{0} and {1} represent country names.</comment>
   </data>
   <data name="Countries_Tor">
@@ -1471,13 +1474,13 @@
     <value>Proton Free vous connecte automatiquement au serveur gratuit le plus rapide dans {0} pays disponible. C'est en général le serveur le plus proche de votre localisation.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
-    <value>Proton Free vous connecte automatiquement au serveur gratuit le plus rapide parmi les {0} disponibles de votre Pays. C'est en général le serveur le plus proche de votre localisation.</value>
+    <value>Proton Free vous connecte automatiquement au serveur gratuit le plus rapide parmi les {0} disponibles de votre pays. C'est en général le serveur le plus proche de votre localisation.</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_One">
-    <value>Pays avec serveur gratuit ({0})</value>
+    <value>Pays avec des serveurs gratuits ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Other">
-    <value>Pays avec serveur gratuit ({0})</value>
+    <value>Pays avec des serveurs gratuits ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Title">
     <value>Connexions gratuites</value>
@@ -1532,10 +1535,10 @@ Une latence élevée peut ralentir votre connexion.</value>
   <data name="Dialogs_P2P_WhyUse_Description">
     <value>• Augmentation des vitesses de chargement et de téléchargement
 • Aucun journal d'activité
-• Cachez votre adresse IP à votre fournisseur d'accès et à vos pairs.</value>
+• Masquez votre adresse IP à votre fournisseur d'accès et à vos pairs</value>
   </data>
   <data name="Dialogs_Protocol_Description">
-    <value>Un protocole est un ensemble d'instructions que votre appareil suit pour se connecter à votre serveur et communiquer avec ce dernier.</value>
+    <value>Un protocole est un ensemble d'instructions que votre appareil suit pour se connecter et communiquer avec un serveur.</value>
   </data>
   <data name="Dialogs_Protocol_SwitchHeader">
     <value>Changement de protocole VPN</value>
@@ -1556,7 +1559,7 @@ Une latence élevée peut ralentir votre connexion.</value>
     <comment>The label for the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description">
-    <value>Les journaux d'erreurs nous indiquent ce qui n'a pas fonctionné et les actions qui ont conduit à votre problème. Ils sont utilisés uniquement pour aider nos ingénieurs à corriger les bogues.</value>
+    <value>Les journaux d'erreurs nous indiquent ce qui n'a pas fonctionné et les actions qui ont conduit à votre problème. Ils sont utilisés uniquement pour aider nos ingénieurs à corriger les bugs.</value>
     <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_Header">
@@ -1603,7 +1606,7 @@ Une latence élevée peut ralentir votre connexion.</value>
     <value>Protection avancée de la vie privée</value>
   </data>
   <data name="Dialogs_SecureCore_Description">
-    <value>La fonction Secure Core vous connecte à votre serveur de destination au travers d'un second serveur VPN avec une sécurité maximale.
+    <value>Secure Core vous connecte à votre serveur de destination à travers un second serveur VPN bénéficiant d'une sécurité maximale.
 
 Ce niveau de protection plus élevé peut entraîner une latence plus importante et des vitesses plus lentes.</value>
   </data>
@@ -1654,11 +1657,11 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
     <value>Qu'est-ce que la charge d'un serveur ?</value>
   </data>
   <data name="Dialogs_SmartRouting_Description">
-    <value>L'option Smart Routing utilise des serveurs virtuels pour fournir un acces VPN dans les pays difficiles d'accès.
+    <value>Smart Routing utilise des serveurs virtuels pour fournir une couverture VPN dans les pays difficiles d'accès.
 
-Lorsque vous vous connectez à un serveur Smart Routing, vous naviguerez sur internet comme depuis votre pays de destination, même si le serveur physique est situé ailleurs.  
+Quand vous vous connectez à un serveur Smart Routing, vous semblez naviguer dans votre pays de destination, même si le serveur physique est situé ailleurs.  
 
-Smart Routing est généralement utilisé pour contourner les lois de privation de la vie privée et les autres formes de censure.</value>
+Smart Routing est généralement utilisé pour déjouer les lois contre la protection de la vie privée et d'autres formes de censure.</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
@@ -1777,21 +1780,17 @@ Smart Routing est généralement utilisé pour contourner les lois de privation 
     <value>{0} To/s</value>
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
-  <data name="Format_Time_Day">
+  <data name="Format_Time_Day_One">
     <value>{0} jour</value>
-    <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
   </data>
-  <data name="Format_Time_DayHours">
-    <value>{0} jour {1} h</value>
-    <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_Days">
+  <data name="Format_Time_Day_Other">
     <value>{0} jours</value>
-    <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
   </data>
-  <data name="Format_Time_DaysHours">
+  <data name="Format_Time_DayHour_One">
+    <value>{0} jour {1} h</value>
+  </data>
+  <data name="Format_Time_DayHour_Other">
     <value>{0} jours {1} h</value>
-    <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
   </data>
   <data name="Format_Time_Hours">
     <value>{0} h</value>
@@ -1863,6 +1862,9 @@ Smart Routing est généralement utilisé pour contourner les lois de privation 
   </data>
   <data name="Home_ConnectionCard_Header_ConnectingTo">
     <value>Connexion à...</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_DefaultConnection">
+    <value>Connexion par défaut</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
     <value>Connexion gratuite</value>
@@ -1937,6 +1939,21 @@ Smart Routing est généralement utilisé pour contourner les lois de privation 
   </data>
   <data name="Home_ConnectionDetails_Upload">
     <value>Chargement</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Download">
+    <value>Volume de téléchargement</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Total">
+    <value>Volume total</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Upload">
+    <value>Volume d'importation</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnAccelerator">
+    <value>Boosté par VPN Accelerator</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnAccelerator_ToolTip">
+    <value>Les technologies avancées de performance et de stabilité améliorent la vitesse de votre VPN.</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>Adresse IP du VPN</value>
@@ -2156,7 +2173,7 @@ Smart Routing est généralement utilisé pour contourner les lois de privation 
     <value>Version actuelle</value>
   </data>
   <data name="Settings_About_FailedToFetch">
-    <value>Impossible de charger les listes de modifications</value>
+    <value>Les informations du journal des modifications n'ont pas pu être chargées.</value>
   </data>
   <data name="Settings_About_GetLatestVersion">
     <value>Obtenir la dernière version</value>
@@ -2180,7 +2197,7 @@ Smart Routing est généralement utilisé pour contourner les lois de privation 
     <value>Réessayer</value>
   </data>
   <data name="Settings_About_Update_Description">
-    <value>Tirez le meilleur parti de votre VPN en mettant à jour la dernière version de l'application</value>
+    <value>Mettez à jour avec la dernière version de l'application pour profiter de tous les avantages de votre VPN.</value>
   </data>
   <data name="Settings_AppVersion">
     <value>Version de l'application</value>
@@ -2281,6 +2298,21 @@ Smart Routing est généralement utilisé pour contourner les lois de privation 
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
     <value>Restreint les données entrant dans votre réseau. Cette option est plus sûre, mais peut compliquer les connexions P2P pour les jeux vidéo.</value>
   </data>
+  <data name="Settings_Connection_Default">
+    <value>Connexion par défaut</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest">
+    <value>Pays le plus rapide</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest_Description">
+    <value>Le meilleur serveur selon votre emplacement</value>
+  </data>
+  <data name="Settings_Connection_Default_Last">
+    <value>Dernière connexion</value>
+  </data>
+  <data name="Settings_Connection_Default_Last_Description">
+    <value>Votre connexion récente la plus utilisée</value>
+  </data>
   <data name="Settings_Connection_Protocol">
     <value>Protocole</value>
   </data>
@@ -2348,7 +2380,7 @@ Smart Routing est généralement utilisé pour contourner les lois de privation 
     <value>Activer le transfert de port ?</value>
   </data>
   <data name="Settings_Features_PortForwarding_Description">
-    <value>Contournez les pare-feu pour se connecter aux serveurs et appareils P2P de votre réseau local.</value>
+    <value>Contournez les pare-feux pour vous connecter aux serveurs P2P et aux appareils de votre réseau local.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Footer">
     <value>Pour utiliser le transfert de port, veuillez vous connecter à un serveur qui prend en charge le P2P.</value>
@@ -2392,7 +2424,7 @@ Smart Routing est généralement utilisé pour contourner les lois de privation 
     <value>Inverse</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Inverse_Description">
-    <value>Seules les applications et adresses IP sélectionnées se connectent par VPN. Tout le reste du trafic n'est pas protégé</value>
+    <value>Seules les applications et adresses IP sélectionnées se connectent par VPN. Tout le reste du trafic n'est pas protégé.</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Add">
     <value>Ajouter une adresse IP</value>
@@ -2423,7 +2455,7 @@ Smart Routing est généralement utilisé pour contourner les lois de privation 
     <value>Connexion automatique</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>Vous serez connecté à un serveur dès l'ouverture de Proton VPN</value>
+    <value>Se connecte automatiquement à votre connexion par défaut lorsque Proton VPN s'ouvre.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>Connexion la plus rapide</value>
@@ -2447,13 +2479,13 @@ Smart Routing est généralement utilisé pour contourner les lois de privation 
     <value>Réduire dans la barre des tâches</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Permettre a l'application de démarrer ou se connecter automatiquement</value>
+    <value>Configurer l'application pour qu'elle se lance ou se connecte automatiquement</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>Mises à jour automatiques</value>
   </data>
   <data name="Settings_General_AutomaticUpdates_Description">
-    <value>Vérification et installation automatique des mises à jour de Proton VPN</value>
+    <value>Vérifier et installer automatiquement les mises à jour de Proton VPN</value>
   </data>
   <data name="Settings_General_BetaAccess">
     <value>Accès à la version bêta</value>
@@ -2468,13 +2500,13 @@ Smart Routing est généralement utilisé pour contourner les lois de privation 
     <value>Notifications</value>
   </data>
   <data name="Settings_General_Notifications_Description">
-    <value>Recevez des informations sur les activités de Proton VPN</value>
+    <value>Recevez des notifications sur les activités Proton VPN en cours</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver">
-    <value>Pilote réseau pour OpenVPN</value>
+    <value>Pilote réseau OpenVPN</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver_Description">
-    <value>Les pilotes réseaux peuvent parfois impacter votre vitesse de connexion. La nouvelle interface TUN permet d'avoir la meilleure vitesse de connexion et bascule automatiquement sur l'interface TAP en cas de problème.</value>
+    <value>Les pilotes réseaux peuvent parfois impacter votre vitesse de connexion. Le nouvel adaptateur TUN offre une vitesse plus élevée et bascule automatiquement sur l'adaptateur TAP en cas de problème.</value>
   </data>
   <data name="Settings_General_Theme">
     <value>Thème</value>
@@ -2584,6 +2616,15 @@ Smart Routing est généralement utilisé pour contourner les lois de privation 
   <data name="Settings_Support_SupportCenter">
     <value>Espace Aide &amp; Support</value>
   </data>
+  <data name="Settings_Theme_Dark">
+    <value>Sombre</value>
+  </data>
+  <data name="Settings_Theme_Default">
+    <value>Par défaut</value>
+  </data>
+  <data name="Settings_Theme_Light">
+    <value>Clair</value>
+  </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>Augmentez votre vitesse de connexion jusqu'à 400 % grâce à des technologies d'amélioration des performances.</value>
   </data>
@@ -2659,41 +2700,41 @@ Smart Routing est généralement utilisé pour contourner les lois de privation 
     <value>Profitez d'une navigation sans publicité</value>
   </data>
   <data name="Upsell_Carousel_NetShield_Block">
-    <value>Bloquez les publicités et les traqueurs avec NetShield</value>
+    <value>Bloquez les publicités et les traqueurs avec NetShield.</value>
   </data>
   <data name="Upsell_Carousel_NetShield_Protection">
     <value>Protégez votre appareil contre les logiciels malveillants.</value>
   </data>
   <data name="Upsell_Carousel_P2P">
-    <value>Débloquez les téléchargements peer-to-peer (P2P) et le partage de fichiers</value>
+    <value>Débloquez les téléchargements peer-to-peer (P2P) et le partage de fichiers.</value>
   </data>
   <data name="Upsell_Carousel_P2P_Discretion">
-    <value>Masquez votre adresse IP à votre fournisseur de service et vos pairs</value>
+    <value>Masquez votre adresse IP à votre fournisseur de service et vos pairs.</value>
   </data>
   <data name="Upsell_Carousel_P2P_PortForwarding">
-    <value>Augmentez les vitesses VPN peer-to-peer avec la redirection de port</value>
+    <value>Augmentez les vitesses VPN peer-to-peer avec la redirection de port.</value>
   </data>
   <data name="Upsell_Carousel_P2P_Speed">
-    <value>Vitesse de chargement et téléchargement augmenté</value>
+    <value>Vitesses de chargement et de téléchargement augmentées</value>
   </data>
   <data name="Upsell_Carousel_Platforms_More">
     <value>+ plus</value>
     <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
   </data>
   <data name="Upsell_Carousel_SecureCore">
-    <value>Ajoutez une protection supplémentaire à votre connexion</value>
+    <value>Ajoutez une protection supplémentaire à votre connexion.</value>
   </data>
   <data name="Upsell_Carousel_SecureCore_Encryption">
-    <value>Doublez le chiffrement avec Secure Core</value>
+    <value>Doublez le chiffrement avec Secure Core.</value>
   </data>
   <data name="Upsell_Carousel_SecureCore_Protection">
-    <value>Protégez-vous des attaques réseau</value>
+    <value>Protégez-vous des attaques réseau.</value>
   </data>
   <data name="Upsell_Carousel_SecureCore_Routing">
-    <value>Passez par des serveurs ultra-sécurisés en Suisse, en Suède et en Islande</value>
+    <value>Passez par des serveurs ultra-sécurisés en Suisse, en Suède et en Islande.</value>
   </data>
   <data name="Upsell_Carousel_Speed">
-    <value>Naviguez à des vitesses encore plus élevées (jusqu'à 10 Gbit/s)</value>
+    <value>Naviguez à des vitesses encore plus élevées (jusqu'à 10 Gbit/s).</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
     <value>Augmentez votre vitesse de connexion jusqu'à 400 % avec VPN Accelerator.</value>
@@ -2702,16 +2743,16 @@ Smart Routing est généralement utilisé pour contourner les lois de privation 
     <value>Accédez à des serveurs plus rapides et moins occupés.</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling">
-    <value>Obtenez le meilleur des deux mondes</value>
+    <value>Obtenez le meilleur des deux mondes.</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling_Browsing">
     <value>Surfez à partir de deux endroits en même temps avec le Split tunneling.</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling_Configuration">
-    <value>Autorisez les applications et les adresses IP de confiance à se connecter directement à internet, en protégeant tout le reste avec votre VPN</value>
+    <value>Autorisez les applications et les adresses IP de confiance à se connecter directement à internet, en protégeant tout le reste avec votre VPN.</value>
   </data>
   <data name="Upsell_Carousel_Streaming">
-    <value>Regarder vos films et séries préférées</value>
+    <value>Regardez vos films et séries préférées en streaming.</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Access">
     <value>Accédez à des chaînes de télévision et films bloqués géographiquement depuis n'importe où dans le monde.</value>

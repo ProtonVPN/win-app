@@ -180,6 +180,9 @@
   <data name="Common_States_On">
     <value>På</value>
   </data>
+  <data name="Common_States_Updating">
+    <value>Oppdaterer...</value>
+  </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN klarte ikke å hente autentiseringssertifikat på grunn av nettverksproblem.</value>
   </data>
@@ -1777,21 +1780,17 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
     <value>{0} TB/s</value>
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
-  <data name="Format_Time_Day">
+  <data name="Format_Time_Day_One">
     <value>{0} dag</value>
-    <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
   </data>
-  <data name="Format_Time_DayHours">
-    <value>{0} dag {1} time(r)</value>
-    <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_Days">
+  <data name="Format_Time_Day_Other">
     <value>{0} dager</value>
-    <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
   </data>
-  <data name="Format_Time_DaysHours">
-    <value>{0} dager {1} time(r)</value>
-    <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
+  <data name="Format_Time_DayHour_One">
+    <value>{0} dag {1} t</value>
+  </data>
+  <data name="Format_Time_DayHour_Other">
+    <value>{0} dager {1} t</value>
   </data>
   <data name="Format_Time_Hours">
     <value>{0} time(r)</value>
@@ -1863,6 +1862,9 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
   </data>
   <data name="Home_ConnectionCard_Header_ConnectingTo">
     <value>Kobler til...</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_DefaultConnection">
+    <value>Standard forbindelse</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
     <value>Gratis forbindelse</value>
@@ -1937,6 +1939,21 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
   </data>
   <data name="Home_ConnectionDetails_Upload">
     <value>Opplasting</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Download">
+    <value>Last ned volum</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Total">
+    <value>Totalt volum</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Upload">
+    <value>Last opp volum</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnAccelerator">
+    <value>Styrket av VPN Accelerator</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnAccelerator_ToolTip">
+    <value>Avanserte ytelses- og stabilitetsteknologier øker VPN-hastigheten din.</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>VPN-IP</value>
@@ -2281,6 +2298,21 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
     <value>Begrenser dataene som kommer inn i nettverket. Dette alternativet er sikrere, men kan gjøre node-til-node-spilltilkoblinger vanskeligere.</value>
   </data>
+  <data name="Settings_Connection_Default">
+    <value>Standard forbindelse</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest">
+    <value>Raskeste land</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest_Description">
+    <value>Den beste tjeneren basert på plasseringen din</value>
+  </data>
+  <data name="Settings_Connection_Default_Last">
+    <value>Siste forbindelse</value>
+  </data>
+  <data name="Settings_Connection_Default_Last_Description">
+    <value>Den sist brukte tilkoblingen</value>
+  </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokoll</value>
   </data>
@@ -2423,7 +2455,7 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
     <value>Automatisk tilkobling</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>Du vil bli koblet til en tjener så snart Proton VPN åpnes</value>
+    <value>Kobles automatisk til standardtilkoblingen din når Proton VPN åpnes.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>Raskeste forbindelse</value>
@@ -2583,6 +2615,15 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
   </data>
   <data name="Settings_Support_SupportCenter">
     <value>Støttesenter</value>
+  </data>
+  <data name="Settings_Theme_Dark">
+    <value>Mørk</value>
+  </data>
+  <data name="Settings_Theme_Default">
+    <value>Standard</value>
+  </data>
+  <data name="Settings_Theme_Light">
+    <value>Lys</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>Øk tilkoblingshastigheten med opptil 400 % med ytelsesforbedrende teknologier.</value>

@@ -180,6 +180,9 @@
   <data name="Common_States_On">
     <value>Vklopljeno</value>
   </data>
+  <data name="Common_States_Updating">
+    <value>Updating...</value>
+  </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN ni uspel pridobiti potrdila o pristnosti zaradi težave z omrežjem.</value>
   </data>
@@ -508,16 +511,16 @@
     <value>Dodajte še eno plast šifriranja svoji VPN povezavi s Secure Core.</value>
   </data>
   <data name="Countries_Server_One">
-    <value>{0} server</value>
+    <value>{0} strežnik</value>
   </data>
   <data name="Countries_Server_Two">
-    <value>{0} servers</value>
+    <value>{0} strežnika</value>
   </data>
   <data name="Countries_Server_Few">
-    <value>{0} servers</value>
+    <value>{0} strežniki</value>
   </data>
   <data name="Countries_Server_Other">
-    <value>{0} servers</value>
+    <value>{0} strežnikov</value>
   </data>
   <data name="Countries_ServerLoad">
     <value>Obremenitev strežnika</value>
@@ -1885,21 +1888,29 @@ Pametno usmerjanje se običajno uporablja za izogibanje zakonom proti zasebnosti
     <value>{0} TB/s</value>
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
-  <data name="Format_Time_Day">
-    <value>{0} dan</value>
-    <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
+  <data name="Format_Time_Day_One">
+    <value>{0} day</value>
   </data>
-  <data name="Format_Time_DayHours">
-    <value>{0} dan {1} ur</value>
-    <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
+  <data name="Format_Time_Day_Two">
+    <value>{0} days</value>
   </data>
-  <data name="Format_Time_Days">
-    <value>{0} dnevi</value>
-    <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
+  <data name="Format_Time_Day_Few">
+    <value>{0} days</value>
   </data>
-  <data name="Format_Time_DaysHours">
-    <value>{0} dni {1} ur</value>
-    <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
+  <data name="Format_Time_Day_Other">
+    <value>{0} days</value>
+  </data>
+  <data name="Format_Time_DayHour_One">
+    <value>{0} day {1} hr</value>
+  </data>
+  <data name="Format_Time_DayHour_Two">
+    <value>{0} days {1} hr</value>
+  </data>
+  <data name="Format_Time_DayHour_Few">
+    <value>{0} days {1} hr</value>
+  </data>
+  <data name="Format_Time_DayHour_Other">
+    <value>{0} days {1} hr</value>
   </data>
   <data name="Format_Time_Hours">
     <value>{0} ur</value>
@@ -1971,6 +1982,9 @@ Pametno usmerjanje se običajno uporablja za izogibanje zakonom proti zasebnosti
   </data>
   <data name="Home_ConnectionCard_Header_ConnectingTo">
     <value>Povezovanje z ...</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_DefaultConnection">
+    <value>Default connection</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
     <value>Brezplačna povezava</value>
@@ -2045,6 +2059,21 @@ Pametno usmerjanje se običajno uporablja za izogibanje zakonom proti zasebnosti
   </data>
   <data name="Home_ConnectionDetails_Upload">
     <value>Nalaganje</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Download">
+    <value>Download volume</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Total">
+    <value>Total volume</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Upload">
+    <value>Upload volume</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnAccelerator">
+    <value>Boosted by VPN Accelerator</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnAccelerator_ToolTip">
+    <value>Advanced performance and stability technologies are boosting your VPN speed.</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>VPN IP</value>
@@ -2401,6 +2430,21 @@ Pametno usmerjanje se običajno uporablja za izogibanje zakonom proti zasebnosti
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
     <value>Omejuje podatke, ki vstopajo v vaše omrežje. Ta možnost je bolj varna, vendar lahko oteži povezave P2P pri igranju iger.</value>
   </data>
+  <data name="Settings_Connection_Default">
+    <value>Default connection</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest">
+    <value>Fastest country</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest_Description">
+    <value>The best server based on your location</value>
+  </data>
+  <data name="Settings_Connection_Default_Last">
+    <value>Last connection</value>
+  </data>
+  <data name="Settings_Connection_Default_Last_Description">
+    <value>Your most recently used connection</value>
+  </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokol</value>
   </data>
@@ -2543,7 +2587,7 @@ Pametno usmerjanje se običajno uporablja za izogibanje zakonom proti zasebnosti
     <value>Samodejna povezava</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>Povezani boste s strežnikom takoj, ko se odpre Proton VPN</value>
+    <value>Automatically connects to your default connection when Proton VPN opens.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>Najhitrejša povezava</value>
@@ -2703,6 +2747,15 @@ Pametno usmerjanje se običajno uporablja za izogibanje zakonom proti zasebnosti
   </data>
   <data name="Settings_Support_SupportCenter">
     <value>Center za podporo</value>
+  </data>
+  <data name="Settings_Theme_Dark">
+    <value>Dark</value>
+  </data>
+  <data name="Settings_Theme_Default">
+    <value>Default</value>
+  </data>
+  <data name="Settings_Theme_Light">
+    <value>Light</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>Povečajte svojo hitrost povezave do 400 % s tehnologijami za izboljšanje zmogljivosti.</value>

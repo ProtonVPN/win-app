@@ -180,6 +180,9 @@
   <data name="Common_States_On">
     <value>Ativado</value>
   </data>
+  <data name="Common_States_Updating">
+    <value>Atualizando...</value>
+  </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Não foi possível para Proton VPN buscar o certificado de autenticação devido a um problema de rede.</value>
   </data>
@@ -1621,8 +1624,8 @@ Esse nível mais alto de proteção pode causar maior latência e velocidades ma
 Conexão VPN</value>
   </data>
   <data name="Dialogs_SecureCore_StandardConnection">
-    <value>Padrão
-Conexão VPN</value>
+    <value>Conexão VPN 
+padrão</value>
   </data>
   <data name="Dialogs_SecureCore_Title">
     <value>Secure Core</value>
@@ -1777,21 +1780,17 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>{0} TB/s</value>
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
-  <data name="Format_Time_Day">
+  <data name="Format_Time_Day_One">
     <value>{0} dia</value>
-    <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day). This string can only be used for 1 day. Plural form is on a separate string.</comment>
   </data>
-  <data name="Format_Time_DayHours">
-    <value>{0} dia {1} h</value>
-    <comment>Format a time as a number of day and hours. {0} is a placeholder for the number of day and {1} for the number of hours (eg. 1 day 4 hr). This string can only be used for 1 day. For minutes, use abbreviation, no pluralization.</comment>
-  </data>
-  <data name="Format_Time_Days">
+  <data name="Format_Time_Day_Other">
     <value>{0} dias</value>
-    <comment>Format a time as a number of days. {0} is a placeholder for the number of days (eg. 3 days). This string can only be used for more than 1 day. Singular form is on a separate string.</comment>
   </data>
-  <data name="Format_Time_DaysHours">
+  <data name="Format_Time_DayHour_One">
+    <value>{0} dia {1} h</value>
+  </data>
+  <data name="Format_Time_DayHour_Other">
     <value>{0} dias {1} h</value>
-    <comment>Format a time as a number of days and hours. {0} is a placeholder for the number of days and {1} for the number of hours (eg. 2 days 4 hr). This string can only be used for more than 1 day. For minutes, use abbreviation, no pluralization.</comment>
   </data>
   <data name="Format_Time_Hours">
     <value>{0} h</value>
@@ -1863,6 +1862,9 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
   </data>
   <data name="Home_ConnectionCard_Header_ConnectingTo">
     <value>Conectando com...</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_DefaultConnection">
+    <value>Conexão padrão</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
     <value>Conexão gratuita</value>
@@ -1937,6 +1939,21 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
   </data>
   <data name="Home_ConnectionDetails_Upload">
     <value>Enviar</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Download">
+    <value>Download volume</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Total">
+    <value>Volume total</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Upload">
+    <value>Upload volume</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnAccelerator">
+    <value>Boosted by VPN Accelerator</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnAccelerator_ToolTip">
+    <value>Advanced performance and stability technologies are boosting your VPN speed.</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>IP VPN</value>
@@ -2281,6 +2298,21 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
     <value>Restringe a entrada de dados na sua rede. Esta opção é mais segura, mas pode dificultar as conexões de jogos ponta a ponta.</value>
   </data>
+  <data name="Settings_Connection_Default">
+    <value>Conexão padrão</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest">
+    <value>País mais rápido</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest_Description">
+    <value>O melhor servidor baseado na sua localização</value>
+  </data>
+  <data name="Settings_Connection_Default_Last">
+    <value>Última conexão</value>
+  </data>
+  <data name="Settings_Connection_Default_Last_Description">
+    <value>Your most recently used connection</value>
+  </data>
   <data name="Settings_Connection_Protocol">
     <value>Protocolo</value>
   </data>
@@ -2423,7 +2455,7 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Conexão automática</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>Você estará conectado a um servidor assim que o Proton VPN abrir</value>
+    <value>Automatically connects to your default connection when Proton VPN opens.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>Conexão mais rápida</value>
@@ -2583,6 +2615,15 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
   </data>
   <data name="Settings_Support_SupportCenter">
     <value>Centro de ajuda</value>
+  </data>
+  <data name="Settings_Theme_Dark">
+    <value>Escuro</value>
+  </data>
+  <data name="Settings_Theme_Default">
+    <value>Padrão</value>
+  </data>
+  <data name="Settings_Theme_Light">
+    <value>Claro</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>Aumente a velocidade da sua conexão em até 400% com tecnologias de melhoria de desempenho.</value>
