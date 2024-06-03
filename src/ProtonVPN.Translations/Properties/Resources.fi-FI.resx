@@ -379,7 +379,7 @@
     <comment>The label for user e-mail address in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_EmailPlaceholder">
-    <value>Sähköpostiosoitetta käytetään ongelmaasi liittyviin yhteydenottoihin.</value>
+    <value>Osoitetta käytetään ongelmaasi liittyviin yhteydenottoihin.</value>
     <comment>The watermark text displayed in empty user e-mail text box in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_HowToReproduce">
@@ -412,7 +412,7 @@
     <value>Tämä Proton VPN -versio on jo saattanut korjata ongelmasi!</value>
   </data>
   <data name="BugReport_lbl_QuickSolutions">
-    <value>Nopeita korjauksia</value>
+    <value>Pikaratkaisut</value>
   </data>
   <data name="BugReport_lbl_QuickSolutionsInfo">
     <value>Nämä vinkit voivat auttaa ratkaisemaan ongelman nopeammin.</value>
@@ -3291,7 +3291,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Pääset nopeasti käsiksi usein käyttämiisi yhteyksiin</value>
   </data>
   <data name="Upsell_SecureCore_ExtraEncryption">
-    <value>Lisää VPN-yhteyteesi yksi salauskerros lisää</value>
+    <value>Lisää VPN-yhteyteesi toinen salauskerros</value>
   </data>
   <data name="Upsell_SecureCore_NetworkAttacks">
     <value>Suojaudu verkkohyökkäyksiltä</value>
