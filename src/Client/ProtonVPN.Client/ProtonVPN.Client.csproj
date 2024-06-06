@@ -70,6 +70,9 @@
         <None Update="appsettings.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <Page Update="UI\Login\DisableKillSwitchBannerComponent.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
         <Page Update="UI\Settings\Pages\About\UpdateBannerComponent.xaml">
           <Generator>MSBuild:Compile</Generator>
         </Page>
@@ -254,6 +257,7 @@
         <None Remove="UI\Connections\Tor\TorCountriesPage.xaml" />
         <None Remove="UI\Dialogs\Overlays\TroubleshootingOverlayDialog.xaml" />
         <None Remove="UI\Home\Details\Styles\ConnectionDetailsStyles.xaml" />
+        <None Remove="UI\Login\DisableKillSwitchBannerComponent.xaml" />
         <None Remove="UI\Login\Forms\LoadingForm.xaml" />
         <None Remove="UI\Home\UpsellBanner\UpsellBannerComponent.xaml" />
         <None Remove="UI\Settings\Pages\About\AboutPage.xaml" />

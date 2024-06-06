@@ -37,6 +37,7 @@ public class ConnectionSettingChangeHandler : IHandler, IEventMessageReceiver<Se
         nameof(ISettings.IsPortForwardingEnabled),
         nameof(ISettings.IsVpnAcceleratorEnabled),
         nameof(ISettings.OpenVpnAdapter),
+        nameof(ISettings.IsKillSwitchEnabled),
     ];
 
     private readonly IVpnServiceSettingsUpdater _vpnServiceSettingsUpdater;

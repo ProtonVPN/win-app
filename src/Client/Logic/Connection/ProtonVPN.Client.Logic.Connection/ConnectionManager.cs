@@ -59,6 +59,7 @@ public class ConnectionManager : IInternalConnectionManager,
 
     private TrafficBytes _bytesTransferred = TrafficBytes.Zero;
     private DateTime _minReconnectionDateUtc = DateTime.MinValue;
+    private bool _isNetworkBlocked;
 
     public ConnectionStatus ConnectionStatus { get; private set; }
     public VpnErrorTypeIpcEntity CurrentError { get; private set; }
@@ -69,6 +70,7 @@ public class ConnectionManager : IInternalConnectionManager,
     public bool IsConnecting => ConnectionStatus == ConnectionStatus.Connecting;
     public bool IsConnected => ConnectionStatus == ConnectionStatus.Connected;
     public bool HasError => CurrentError is not VpnErrorTypeIpcEntity.None and not VpnErrorTypeIpcEntity.NoneKeepEnabledKillSwitch;
+    public bool IsNetworkBlocked => _isNetworkBlocked;
 
     public ConnectionManager(
         ILogger logger,
@@ -226,6 +228,8 @@ public class ConnectionManager : IInternalConnectionManager,
     {
         IConnectionIntent connectionIntent = CurrentConnectionIntent ?? ConnectionIntent.Default;
         ConnectionStatus connectionStatus = _entityMapper.Map<VpnStatusIpcEntity, ConnectionStatus>(message.Status);
+        bool isToForceStatusUpdate = _isNetworkBlocked != message.NetworkBlocked;
+        _isNetworkBlocked = message.NetworkBlocked;
 
         if (message.Status == VpnStatusIpcEntity.Connected)
         {
@@ -253,7 +257,7 @@ public class ConnectionManager : IInternalConnectionManager,
             }
         }
 
-        SetConnectionStatus(connectionStatus, message.Error);
+        SetConnectionStatus(connectionStatus, message.Error, isToForceStatusUpdate);
     }
 
     private Server? GetCurrentServer(VpnStateIpcEntity state)

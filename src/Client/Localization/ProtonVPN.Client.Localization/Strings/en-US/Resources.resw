@@ -1757,6 +1757,12 @@
   <data name="Login_Form_Username" xml:space="preserve">
     <value>Email or username</value>
   </data>
+  <data name="Login_Form_AdvancedKillSwitchDescription" xml:space="preserve">
+    <value>Kill switch is blocking any outgoing connections</value>
+  </data>
+  <data name="Login_Form_DisableKillSwitch" xml:space="preserve">
+    <value>Disable kill switch</value>
+  </data>
   <data name="Login_TwoFactorForm_Authenticate" xml:space="preserve">
     <value>Authenticate</value>
     <comment>Authenticate button inside two factor form during login</comment>
