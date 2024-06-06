@@ -36,6 +36,7 @@ public interface IConnectionManager
     bool IsConnecting { get; }
     bool IsConnected { get; }
     bool HasError { get; }
+    bool IsNetworkBlocked { get; }
 
     Task ConnectAsync(IConnectionIntent? connectionIntent = null);
     Task<bool> ReconnectIfNotRecentlyReconnectedAsync();

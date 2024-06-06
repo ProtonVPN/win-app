@@ -18,8 +18,8 @@
  */
 
 using ProtonVPN.Client.Common.Observers;
+using ProtonVPN.Client.Contracts;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Services.Contracts;
@@ -33,8 +33,7 @@ namespace ProtonVPN.Client.Logic.Connection;
 
 public class VpnStatePollingObserver : PollingObserverBase,
     IEventMessageReceiver<ConnectionStatusChanged>,
-    IEventMessageReceiver<LoggedInMessage>,
-    IEventMessageReceiver<LoggedOutMessage>
+    IEventMessageReceiver<ApplicationStartedMessage>
 {
     private readonly ISettings _settings;
     private readonly IConfiguration _configuration;
@@ -104,19 +103,11 @@ public class VpnStatePollingObserver : PollingObserverBase,
         }
     }
 
-    public void Receive(LoggedInMessage message)
+    public void Receive(ApplicationStartedMessage message)
     {
         lock (_timerLock)
         {
             SetAndRestartTimer(ConnectionStatus.Disconnected);
-        }
-    }
-
-    public void Receive(LoggedOutMessage message)
-    {
-        lock (_timerLock)
-        {
-            StopTimer();
         }
     }
 }

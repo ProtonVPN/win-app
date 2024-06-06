@@ -123,6 +123,7 @@ public class ViewModelsModule : Module
         RegisterViewModel<GalleryViewModel>(builder);
         RegisterViewModel<GalleryItemViewModel>(builder);
         RegisterViewModel<TroubleshootingOverlayViewModel>(builder);
+        RegisterViewModel<DisableKillSwitchBannerViewModel>(builder);
 
         RegisterViewModel<SidebarHomeViewModel>(builder);
         RegisterViewModel<SidebarGatewaysHeaderViewModel>(builder);
