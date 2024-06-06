@@ -30,6 +30,7 @@ using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
 using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
 using ProtonVPN.Logging.Contracts.Events.OperatingSystemLogs;
+using ProtonVPN.OperatingSystems.PowerEvents.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.Service.Firewall;
 using ProtonVPN.Vpn.Common;
@@ -46,9 +47,9 @@ internal partial class VpnService : ServiceBase
     private readonly IStaticConfiguration _staticConfig;
     private readonly IOsProcesses _osProcesses;
     private readonly IVpnConnection _vpnConnection;
+    private readonly IGrpcServer _grpcServer;
     private readonly Ipv6 _ipv6;
     private bool _isConnected;
-    private IGrpcServer _grpcServer;
 
     public VpnService(
         ILogger logger,
@@ -57,7 +58,8 @@ internal partial class VpnService : ServiceBase
         IOsProcesses osProcesses,
         IVpnConnection vpnConnection,
         Ipv6 ipv6,
-        IGrpcServer grpcServer)
+        IGrpcServer grpcServer,
+        IPowerEventNotifier powerEventNotifier)
     {
         _logger = logger;
         _issueReporter = issueReporter;
@@ -66,6 +68,8 @@ internal partial class VpnService : ServiceBase
         _vpnConnection = vpnConnection;
         _ipv6 = ipv6;
         _grpcServer = grpcServer;
+
+        powerEventNotifier.OnResume += OnPowerEventResume;
         _vpnConnection.StateChanged += OnVpnStateChanged;
 
         _cancellationTokenSource = new CancellationTokenSource();
@@ -142,6 +146,11 @@ internal partial class VpnService : ServiceBase
         }
 
         return true;
+    }
+
+    private void OnPowerEventResume(object sender, EventArgs e)
+    {
+        _logger.Info<OperatingSystemLog>($"{nameof(OnPowerEventResume)}");
     }
 
     private void StopWireGuardService()

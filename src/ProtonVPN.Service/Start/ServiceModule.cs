@@ -32,6 +32,7 @@ using ProtonVPN.EntityMapping.Installers;
 using ProtonVPN.Files.Installers;
 using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.OperatingSystems.Processes.Installers;
 using ProtonVPN.OperatingSystems.Registries.Installers;
 using ProtonVPN.ProcessCommunication.Installers;
 using ProtonVPN.ProcessCommunication.Service.Installers;
@@ -136,7 +137,8 @@ internal class ServiceModule : Module
                .RegisterAssemblyModule<ServiceProcessCommunicationModule>()
                .RegisterAssemblyModule<SerializationModule>()
                .RegisterAssemblyModule<FilesModule>()
-               .RegisterAssemblyModule<IssueReportingModule>();
+               .RegisterAssemblyModule<IssueReportingModule>()
+               .RegisterAssemblyModule<PowerEventsModule>();
     }
 
     private IVpnConnection GetVpnConnection(IComponentContext c, IVpnConnection connection)
