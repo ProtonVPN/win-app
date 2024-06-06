@@ -25,10 +25,13 @@ namespace ProtonVPN.OperatingSystems.PowerEvents;
 
 public class PowerEventNotifier : IPowerEventNotifier
 {
+    private readonly ILogger _logger;
+
     public event EventHandler OnResume;
 
     public PowerEventNotifier(ILogger logger)
     {
+        _logger = logger;
         try
         {
             SystemPowerNotifications.PowerModeChanged += OnPowerModeChanged;
@@ -41,6 +44,8 @@ public class PowerEventNotifier : IPowerEventNotifier
 
     private void OnPowerModeChanged(object sender, PowerNotificationArgs args)
     {
+        _logger.Debug<AppLog>($"Power mode changed to {args.Mode} (IsMonitorOn: {args.IsMonitorOn})");
+
         if (args.Mode == PowerBroadcastType.PBT_APMRESUMEAUTOMATIC)
         {
             OnResume?.Invoke(this, EventArgs.Empty);
