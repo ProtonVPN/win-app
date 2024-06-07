@@ -21,6 +21,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Models;
+using ProtonVPN.Client.Contracts;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
@@ -194,7 +195,7 @@ public partial class SidebarUpdateViewModel : SidebarInteractiveItemViewModelBas
 
         LogUpdateStartingMessage();
 
-        if (Settings.KillSwitchMode == KillSwitchMode.Advanced)
+        if (Settings.IsKillSwitchEnabled && Settings.KillSwitchMode == KillSwitchMode.Advanced)
         {
             await _vpnServiceSettingsUpdater.SendAsync(KillSwitchModeIpcEntity.Off);
         }
@@ -207,7 +208,7 @@ public partial class SidebarUpdateViewModel : SidebarInteractiveItemViewModelBas
         catch (System.ComponentModel.Win32Exception)
         {
             // Privileges were not granted
-            if (Settings.KillSwitchMode == KillSwitchMode.Advanced)
+            if (Settings.IsKillSwitchEnabled && Settings.KillSwitchMode == KillSwitchMode.Advanced)
             {
                 await _vpnServiceSettingsUpdater.SendAsync(KillSwitchModeIpcEntity.Hard);
             }

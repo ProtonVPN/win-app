@@ -17,6 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Contracts;
+namespace ProtonVPN.Client.Contracts.Messages;
 
-public class ApplicationStartedMessage;
+public class MainWindowStateChangedMessage
+{
+    public required bool IsMinimized { get; init; }
+}

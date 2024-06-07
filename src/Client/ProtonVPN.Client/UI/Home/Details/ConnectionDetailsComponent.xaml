@@ -62,21 +62,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <toolkit:HeaderedContentControl Header="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_ConnectedFor')}"
                                                 Style="{StaticResource ConnectionDetailsHeaderedContentControlStyle}"
-                                                Visibility="{x:Bind ViewModel.FormattedSessionLength, Converter={StaticResource NotNullToVisibilityConverter}}">
+                                                Visibility="{x:Bind ViewModel.SessionLength, Converter={StaticResource NotNullToVisibilityConverter}}">
                     <TextBlock Style="{StaticResource ConnectionDetailsTextBlockStyle}"
                                Text="{x:Bind ViewModel.FormattedSessionLength}" />
                 </toolkit:HeaderedContentControl>
 
                 <toolkit:HeaderedContentControl Header="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Gateway')}"
                                                 Style="{StaticResource ConnectionDetailsHeaderedContentControlStyle}"
-                                                Visibility="{x:Bind ViewModel.Gateway, Converter={StaticResource NotNullToVisibilityConverter}}">
+                                                Visibility="{x:Bind ViewModel.HasGateway, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <TextBlock Style="{StaticResource ConnectionDetailsTextBlockStyle}"
                                Text="{x:Bind ViewModel.Gateway}" />
                 </toolkit:HeaderedContentControl>
 
                 <toolkit:HeaderedContentControl Header="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Country')}"
                                                 Style="{StaticResource ConnectionDetailsHeaderedContentControlStyle}"
-                                                Visibility="{x:Bind ViewModel.Country, Converter={StaticResource NotNullToVisibilityConverter}}">
+                                                Visibility="{x:Bind ViewModel.HasCountry, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <toolkit:HeaderedContentControl.Content>
                         <StackPanel Orientation="Vertical">
                             <TextBlock Style="{StaticResource ConnectionDetailsTextBlockStyle}"
@@ -84,27 +84,27 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                                        Style="{StaticResource ConnectionDetailsTextBlockStyle}"
                                        Text="{x:Bind ViewModel.SecureCoreLabel}"
-                                       Visibility="{x:Bind ViewModel.SecureCoreLabel, Converter={StaticResource NotNullToVisibilityConverter}}" />
+                                       Visibility="{x:Bind ViewModel.IsSecureCore, Converter={StaticResource BooleanToVisibilityConverter}}" />
                         </StackPanel>
                     </toolkit:HeaderedContentControl.Content>
                 </toolkit:HeaderedContentControl>
 
                 <toolkit:HeaderedContentControl Header="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_City')}"
                                                 Style="{StaticResource ConnectionDetailsHeaderedContentControlStyle}"
-                                                Visibility="{x:Bind ViewModel.CurrentConnectionDetails.CityState, Converter={StaticResource NotNullToVisibilityConverter}}">
+                                                Visibility="{x:Bind ViewModel.HasCity, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <TextBlock Style="{StaticResource ConnectionDetailsTextBlockStyle}"
                                Text="{x:Bind ViewModel.CurrentConnectionDetails.CityState}" />
                 </toolkit:HeaderedContentControl>
 
                 <toolkit:HeaderedContentControl Header="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Server')}"
                                                 Style="{StaticResource ConnectionDetailsHeaderedContentControlStyle}"
-                                                Visibility="{x:Bind ViewModel.CurrentConnectionDetails.ServerName, Converter={StaticResource NotNullToVisibilityConverter}}">
+                                                Visibility="{x:Bind ViewModel.HasServer, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <TextBlock Style="{StaticResource ConnectionDetailsTextBlockStyle}"
                                Text="{x:Bind ViewModel.CurrentConnectionDetails.ServerName}" />
                 </toolkit:HeaderedContentControl>
 
                 <toolkit:HeaderedContentControl Style="{StaticResource ConnectionDetailsHeaderedContentControlStyle}"
-                                                Visibility="{x:Bind ViewModel.ServerLoad, Converter={StaticResource NotNullToVisibilityConverter}}">
+                                                Visibility="{x:Bind ViewModel.HasServer, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <toolkit:HeaderedContentControl.Header>
                         <StackPanel Orientation="Horizontal"
                                     Spacing="4">
@@ -127,7 +127,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </toolkit:HeaderedContentControl>
 
                 <toolkit:HeaderedContentControl Style="{StaticResource ConnectionDetailsHeaderedContentControlStyle}"
-                                                Visibility="{x:Bind ViewModel.ServerLatency, Converter={StaticResource NotNullToVisibilityConverter}}">
+                                                Visibility="{x:Bind ViewModel.HasServerLatency, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <toolkit:HeaderedContentControl.Header>
                         <StackPanel Orientation="Horizontal"
                                     Spacing="4">
@@ -146,7 +146,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </toolkit:HeaderedContentControl>
 
                 <toolkit:HeaderedContentControl Style="{StaticResource ConnectionDetailsHeaderedContentControlStyle}"
-                                                Visibility="{x:Bind ViewModel.VpnProtocol, Converter={StaticResource NotNullToVisibilityConverter}}">
+                                                Visibility="{x:Bind ViewModel.HasVpnProtocol, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <toolkit:HeaderedContentControl.Header>
                         <StackPanel Orientation="Horizontal"
                                     Spacing="4">

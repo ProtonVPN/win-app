@@ -46,6 +46,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <custom:WindowContentControl x:Name="WindowContainer"
                                  Title="{Binding ViewModel.Title, ElementName=Shell}">
 
+        <custom:WindowContentControl.Resources>
+            <Style TargetType="ScrollViewer" BasedOn="{StaticResource OffsetScrollViewer}" />
+        </custom:WindowContentControl.Resources>
+
         <reportissue:ReportIssueShellPage x:Name="Shell" />
 
     </custom:WindowContentControl>

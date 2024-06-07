@@ -21,6 +21,7 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
+using ProtonVPN.Client.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts;
@@ -111,24 +112,7 @@ public partial class SidebarAccountViewModel : SidebarInteractiveItemViewModelBa
     [RelayCommand]
     public async Task ExitApplicationAsync()
     {
-        if (!_connectionManager.IsDisconnected)
-        {
-            ContentDialogResult result = await _overlayActivator.ShowMessageAsync(
-                new MessageDialogParameters
-                {
-                    Title = Localizer.Get("Exit_Confirmation_Title"),
-                    Message = Localizer.Get("Exit_Confirmation_Message"),
-                    PrimaryButtonText = Localizer.Get("Tray_Actions_ExitApplication"),
-                    CloseButtonText = Localizer.Get("Common_Actions_Cancel"),
-                });
-
-            if (result is not ContentDialogResult.Primary) // Cancel exit
-            {
-                return;
-            }
-        }
-
-        _mainWindowActivator.Exit();
+        await _mainWindowActivator.TryExitAsync();
     }
 
     public override Task<bool> InvokeAsync()

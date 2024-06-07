@@ -19,14 +19,18 @@
 
 using H.NotifyIcon;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Contracts;
+using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Helpers;
+using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
+using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Messages;
@@ -51,6 +55,9 @@ public class MainWindowActivator :
 
     private const int WINDOW_TRANSITION_DELAY_IN_MS = 200;
 
+    private const int EXIT_DISCONNECTION_TIMEOUT_IN_MS = 5000;
+    private const int EXIT_DISCONNECTION_DELAY_IN_MS = 200;
+
     private readonly IDialogActivator _dialogActivator;
     private readonly IOverlayActivator _overlayActivator;
     private readonly IMainViewNavigator _mainViewNavigator;
@@ -61,8 +68,12 @@ public class MainWindowActivator :
     private readonly ISettings _settings;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IUIThreadDispatcher _uiThreadDispatcher;
+    private readonly IConnectionManager _connectionManager;
+    private readonly ILocalizationProvider _localizer;
 
     private bool _handleClosedEvents = true;
+
+    public bool IsWindowMinimized { get; private set; }
 
     public MainWindowActivator(
         ILogger logger,
@@ -76,7 +87,9 @@ public class MainWindowActivator :
         IApplicationIconSelector applicationIconSelector,
         ISettings settings,
         IEventMessageSender eventMessageSender,
-        IUIThreadDispatcher uIThreadDispatcher)
+        IUIThreadDispatcher uiThreadDispatcher,
+        IConnectionManager connectionManager,
+        ILocalizationProvider localizer)
         : base(logger, themeSelector)
     {
         _dialogActivator = dialogActivator;
@@ -88,7 +101,12 @@ public class MainWindowActivator :
         _applicationIconSelector = applicationIconSelector;
         _settings = settings;
         _eventMessageSender = eventMessageSender;
-        _uiThreadDispatcher = uIThreadDispatcher;
+        _uiThreadDispatcher = uiThreadDispatcher;
+        _connectionManager = connectionManager;
+        _localizer = localizer;
+
+        // Consider main window is minimized by default on start.
+        IsWindowMinimized = true;
     }
 
     public async Task InitializeAsync()
@@ -111,10 +129,49 @@ public class MainWindowActivator :
         App.MainWindow.Hide(enableEfficiencyMode: true);
 
         _dialogActivator.HideAllDialogs();
+
+        InvalidateWindowState(isWindowMinimized: true);
+    }
+
+    public async Task TryExitAsync()
+    {
+        if (!_connectionManager.IsDisconnected)
+        {
+            Activate(activateAllDialogs: false);
+
+            Logger.Info<AppLog>("Exiting application.");
+
+            ContentDialogResult result = await _overlayActivator.ShowMessageAsync(
+                new MessageDialogParameters
+                {
+                    Title = _localizer.Get("Exit_Confirmation_Title"),
+                    Message = _localizer.Get("Exit_Confirmation_Message"),
+                    PrimaryButtonText = _localizer.Get("Tray_Actions_ExitApplication"),
+                    CloseButtonText = _localizer.Get("Common_Actions_Cancel"),
+                });
+
+            if (result is not ContentDialogResult.Primary) // Cancel exit
+            {
+                return;
+            }
+
+            await _overlayActivator.ShowLoadingMessageAsync(
+                new MessageDialogParameters
+                {
+                    Title = _localizer.Get("Exit_Title"),
+                    Message = _localizer.Get("Exit_Message"),
+                    ShowLoadingAnimation = true
+                }, Task.WhenAny(_connectionManager.DisconnectAsync(), Task.Delay(EXIT_DISCONNECTION_TIMEOUT_IN_MS)));
+
+            // Keep a slight delay before exit so the app can process the Disconnected event message
+            await Task.Delay(EXIT_DISCONNECTION_DELAY_IN_MS);
+        }
+
+        Exit();
     }
 
     public void Exit()
-    {
+    { 
         Logger.Info<AppLog>("Exit application.");
 
         _handleClosedEvents = false;
@@ -127,14 +184,19 @@ public class MainWindowActivator :
         _handleClosedEvents = false;
     }
 
-    public void Activate()
+    public void Activate(bool activateAllDialogs = true)
     {
         Logger.Info<AppLog>("Activate application. Disable efficiency mode if enabled.");
 
         App.MainWindow.Show(disableEfficiencyMode: true);
         App.MainWindow.BringToFront();
 
-        _dialogActivator.ActivateAllDialogs();
+        if (activateAllDialogs)
+        {
+            _dialogActivator.ActivateAllDialogs();
+        }
+
+        InvalidateWindowState(isWindowMinimized: false);
     }
 
     public void Receive(AuthenticationStatusChanged message)
@@ -192,6 +254,15 @@ public class MainWindowActivator :
     private void OnMainWindowStateChanged(object? sender, WindowState e)
     {
         SaveWindowState();
+
+        InvalidateWindowState(isWindowMinimized: e == WindowState.Minimized);
+    }
+
+    private void InvalidateWindowState(bool isWindowMinimized)
+    {
+        IsWindowMinimized = isWindowMinimized;
+
+        _eventMessageSender.Send(new MainWindowStateChangedMessage() { IsMinimized = IsWindowMinimized });
     }
 
     private void InvalidateAppTheme()

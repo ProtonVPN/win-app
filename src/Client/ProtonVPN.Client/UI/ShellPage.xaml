@@ -260,7 +260,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </NavigationView.PaneFooter>
 
         <Frame x:Name="NavigationFrame"
-               Margin="0,-1,0,0" />
+               Margin="0,-1,0,0">
+            <Frame.Resources>
+                <Style TargetType="ScrollViewer" BasedOn="{StaticResource OffsetScrollViewer}" />
+            </Frame.Resources>
+        </Frame>
 
     </NavigationView>
 </Page>

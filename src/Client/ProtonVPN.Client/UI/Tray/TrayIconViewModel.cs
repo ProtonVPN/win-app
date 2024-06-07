@@ -18,9 +18,8 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
-using ProtonVPN.Client.Common.Models;
+using ProtonVPN.Client.Contracts;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
@@ -87,26 +86,7 @@ public partial class TrayIconViewModel :
     [RelayCommand]
     public async Task ExitApplicationAsync()
     {
-        if (!_connectionManager.IsDisconnected)
-        {
-            _mainWindowActivator.Activate();
-
-            ContentDialogResult result = await _overlayActivator.ShowMessageAsync(
-                new MessageDialogParameters
-                {
-                    Title = Localizer.Get("Exit_Confirmation_Title"),
-                    Message = Localizer.Get("Exit_Confirmation_Message"),
-                    PrimaryButtonText = Localizer.Get("Tray_Actions_ExitApplication"),
-                    CloseButtonText = Localizer.Get("Common_Actions_Cancel"),
-                });
-
-            if (result is not ContentDialogResult.Primary) // Cancel exit
-            {
-                return;
-            }
-        }
-
-        _mainWindowActivator.Exit();
+        await _mainWindowActivator.TryExitAsync();
     }
 
     [RelayCommand(CanExecute = nameof(CanConnect))]

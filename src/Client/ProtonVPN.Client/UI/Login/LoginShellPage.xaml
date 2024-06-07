@@ -76,8 +76,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            MaxWidth="{StaticResource LoginPageContentWidth}"
                            Margin="0,16,0,48"
                            HorizontalAlignment="Center"
-                           VerticalAlignment="Stretch"
-                           Grid.Row="2" />
+                           VerticalAlignment="Stretch" 
+                           Grid.Row="2">
+                        <Frame.Resources>
+                            <Style TargetType="ScrollViewer" BasedOn="{StaticResource OffsetScrollViewer}" />
+                        </Frame.Resources>
+                    </Frame>
+
                 </Grid>
 
             </NavigationView>

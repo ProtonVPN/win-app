@@ -200,7 +200,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Setter Target="ShowConnectionDetailsButton.Command" Value="{x:Bind ViewModel.ShowConnectionDetailsCommand, Mode=OneTime}" />
                         <Setter Target="ShowConnectionDetailsButton.RightIcon">
                             <Setter.Value>
-                                <pathicons:ChevronRight Size="Pixels24"/>
+                                <pathicons:ChevronRight Size="Pixels24" 
+                                                        Visibility="{x:Bind ViewModel.HomeViewModel.IsConnectionDetailsPaneOpened, Converter={StaticResource NotBooleanToVisibilityConverter}}"/>
                             </Setter.Value>
                         </Setter>
                     </VisualState.Setters>

@@ -37,8 +37,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <DataTemplate x:Key="RecentItemTemplate"
                       x:DataType="recents:RecentItemViewModel">
 
-            <custom:DualCommandsRow AutomationProperties.Name="{x:Bind FullTitle}"
-                                    AutomationProperties.FullDescription="{x:Bind FullTitle}"
+            <custom:DualCommandsRow AutomationProperties.FullDescription="{x:Bind FullTitle}"
+                                    AutomationProperties.Name="{x:Bind FullTitle}"
                                     IsContentEnabled="{x:Bind IsServerAvailable}"
                                     PrimaryCommand="{x:Bind ToggleConnectionCommand}"
                                     PrimaryCommandAutomationName="{x:Bind PrimaryCommandDescription}"
@@ -83,8 +83,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
                     <Grid Grid.Column="0">
@@ -114,49 +112,56 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </TextBlock>
 
                     <StackPanel Grid.Column="3"
-                                Orientation="Horizontal">
-                        <TextBlock Margin="0,0,12,0"
-                                   VerticalAlignment="Center"
-                                   Foreground="{ThemeResource TextWeakColorBrush}"
-                                   Style="{StaticResource BodyMediumTextBlockStyle}"
-                                   Text="•"
-                                   Visibility="{x:Bind HasFeature}" />
+                                Orientation="Horizontal"
+                                Spacing="12">
 
                         <StackPanel Orientation="Horizontal"
-                                    Spacing="6"
-                                    Visibility="{x:Bind IsTor}">
-                            <pathicons:BrandTor Margin="0,1,0,0"
-                                                Foreground="{ThemeResource TextWeakColorBrush}" />
+                                    Spacing="12"
+                                    Visibility="{x:Bind HasFeature}">
+                            
                             <TextBlock VerticalAlignment="Center"
                                        Foreground="{ThemeResource TextWeakColorBrush}"
                                        Style="{StaticResource BodyMediumTextBlockStyle}"
-                                       Text="{x:Bind Localizer.Get('Server_Feature_Tor')}"
-                                       TextTrimming="CharacterEllipsis"
-                                       TextWrapping="WrapWholeWords" />
+                                       Text="•" />
+
+                            <StackPanel Orientation="Horizontal"
+                                        Spacing="6"
+                                        Visibility="{x:Bind IsTor}">
+                                <pathicons:BrandTor Margin="0,1,0,0"
+                                                    Foreground="{ThemeResource TextWeakColorBrush}" />
+                                <TextBlock VerticalAlignment="Center"
+                                           Foreground="{ThemeResource TextWeakColorBrush}"
+                                           Style="{StaticResource BodyMediumTextBlockStyle}"
+                                           Text="{x:Bind Localizer.Get('Server_Feature_Tor')}"
+                                           TextTrimming="CharacterEllipsis"
+                                           TextWrapping="WrapWholeWords" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Spacing="6"
+                                        Visibility="{x:Bind IsP2P}">
+                                <pathicons:ArrowRightArrowLeft Margin="0,1,0,0"
+                                                               Foreground="{ThemeResource TextWeakColorBrush}" />
+                                <TextBlock VerticalAlignment="Center"
+                                           Foreground="{ThemeResource TextWeakColorBrush}"
+                                           Style="{StaticResource BodyMediumTextBlockStyle}"
+                                           Text="{x:Bind Localizer.Get('Server_Feature_P2P')}"
+                                           TextTrimming="CharacterEllipsis"
+                                           TextWrapping="WrapWholeWords" />
+                            </StackPanel>
+                            
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal"
-                                    Spacing="6"
-                                    Visibility="{x:Bind IsP2P}">
-                            <pathicons:ArrowRightArrowLeft Margin="0,1,0,0"
-                                                           Foreground="{ThemeResource TextWeakColorBrush}" />
-                            <TextBlock VerticalAlignment="Center"
-                                       Foreground="{ThemeResource TextWeakColorBrush}"
-                                       Style="{StaticResource BodyMediumTextBlockStyle}"
-                                       Text="{x:Bind Localizer.Get('Server_Feature_P2P')}"
-                                       TextTrimming="CharacterEllipsis"
-                                       TextWrapping="WrapWholeWords" />
-                        </StackPanel>
+                        <pathicons:Wrench Foreground="{ThemeResource TextWeakColorBrush}"
+                                          Margin="0,1,0,0"
+                                          Visibility="{x:Bind IsServerAvailable, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+
+                        <icons:ActiveDot Width="16"
+                                         Height="16"
+                                         Margin="0,1,0,0"
+                                         Visibility="{x:Bind IsActiveConnection, Converter={StaticResource BooleanToVisibilityConverter}}" />
                     </StackPanel>
 
-                    <pathicons:Wrench Grid.Column="4"
-                                      Foreground="{ThemeResource TextWeakColorBrush}"
-                                      Visibility="{x:Bind IsServerAvailable, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
-
-                    <icons:ActiveDot Grid.Column="5"
-                                     Width="16"
-                                     Height="16"
-                                     Visibility="{x:Bind IsActiveConnection, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 </Grid>
             </custom:DualCommandsRow>
 
