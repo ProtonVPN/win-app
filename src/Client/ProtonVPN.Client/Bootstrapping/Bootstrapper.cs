@@ -18,10 +18,10 @@
  */
 
 using Microsoft.UI.Xaml;
+using ProtonVPN.Client.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Logic.Updates.Contracts;
-using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Migrations;

@@ -45,8 +45,6 @@ public abstract partial class ConnectionCardViewModelBase : ViewModelBase,
 {
     protected readonly IConnectionManager ConnectionManager;
 
-    private readonly HomeViewModel _homeViewModel;
-
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(ConnectCommand))]
     [NotifyCanExecuteChangedFor(nameof(CancelConnectionCommand))]
@@ -81,6 +79,8 @@ public abstract partial class ConnectionCardViewModelBase : ViewModelBase,
     [NotifyPropertyChangedFor(nameof(IsP2P))]
     [NotifyPropertyChangedFor(nameof(IsB2B))]
     private IConnectionIntent? _currentConnectionIntent;
+
+    public HomeViewModel HomeViewModel { get; }
 
     public ConnectionDetails? CurrentConnectionDetails => ConnectionManager.CurrentConnectionDetails;
 
@@ -160,7 +160,7 @@ public abstract partial class ConnectionCardViewModelBase : ViewModelBase,
         : base(localizationProvider, logger, issueReporter)
     {
         ConnectionManager = connectionManager;
-        _homeViewModel = homeViewModel;
+        HomeViewModel = homeViewModel;
     }
 
     public void Receive(ConnectionStatusChanged message)
@@ -223,7 +223,7 @@ public abstract partial class ConnectionCardViewModelBase : ViewModelBase,
     [RelayCommand(CanExecute = nameof(CanShowConnectionDetails))]
     private void ShowConnectionDetails()
     {
-        _homeViewModel.ToggleConnectionDetailsPane();
+        HomeViewModel.ToggleConnectionDetailsPane();
     }
 
     private bool CanShowConnectionDetails()

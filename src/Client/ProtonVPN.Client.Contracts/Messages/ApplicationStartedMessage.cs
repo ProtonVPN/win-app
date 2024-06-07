@@ -17,9 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Contracts;
+namespace ProtonVPN.Client.Contracts.Messages;
 
-public class WindowStateChangeMessage
-{
-    public required bool IsActive { get; init; }
-}
+public class ApplicationStartedMessage;

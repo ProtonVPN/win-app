@@ -30,7 +30,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       NavigationCacheMode="Required"
       mc:Ignorable="d">
 
-    <Page.Resources>
+    <Page.Resources>    
         <Style x:Key="NavigationGhostButtonStyle" TargetType="custom:GhostButton" BasedOn="{StaticResource SecondaryGhostButtonStyle}">
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>

@@ -17,8 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml;
-using ProtonVPN.Client.Contracts;
+using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
@@ -31,7 +30,8 @@ using ProtonVPN.OperatingSystems.PowerEvents.Contracts;
 
 namespace ProtonVPN.Client.Handlers;
 
-public class PowerModeAndWindowActivationHandler : IHandler, IEventMessageReceiver<ApplicationStartedMessage>
+public class PowerModeAndWindowActivationHandler : IHandler,
+    IEventMessageReceiver<MainWindowStateChangedMessage>
 {
     private readonly ILogger _logger;
     private readonly ISettings _settings;
@@ -64,6 +64,20 @@ public class PowerModeAndWindowActivationHandler : IHandler, IEventMessageReceiv
         powerEventNotifier.OnResume += OnResume;
     }
 
+    public void Receive(MainWindowStateChangedMessage message)
+    {
+        if (!_userAuthenticator.IsLoggedIn)
+        {
+            return;
+        }
+
+        if (!message.IsMinimized)
+        {
+            _logger.Debug<AppLog>("Activating main window while logged in");
+            OnResumeOrWindowActivation();
+        }
+    }
+
     private void OnResume(object? sender, EventArgs e)
     {
         if (_userAuthenticator.IsLoggedIn)
@@ -87,35 +101,5 @@ public class PowerModeAndWindowActivationHandler : IHandler, IEventMessageReceiv
 
         _connectionCertificateManager.RequestNewCertificateAsync();
         _vpnPlanUpdater.UpdateAsync();
-    }
-
-    public void Receive(ApplicationStartedMessage message)
-    {
-        App.MainWindow.Activated += OnActivationStateChange;
-    }
-
-    private void OnActivationStateChange(object sender, WindowActivatedEventArgs args)
-    {
-        if (!_userAuthenticator.IsLoggedIn)
-        {
-            return;
-        }
-
-        if (args.WindowActivationState is WindowActivationState.Deactivated)
-        {
-            _logger.Debug<AppLog>("Window deactivated while logged in.");
-            SendWindowStateChangeMessage(false);
-        }
-        else
-        {
-            _logger.Debug<AppLog>($"Window activated while logged in (State: {args.WindowActivationState})");
-            OnResumeOrWindowActivation();
-            SendWindowStateChangeMessage(true);
-        }
-    }
-
-    private void SendWindowStateChangeMessage(bool isActive)
-    {
-        _eventMessageSender.Send(new WindowStateChangeMessage { IsActive = isActive });
     }
 }

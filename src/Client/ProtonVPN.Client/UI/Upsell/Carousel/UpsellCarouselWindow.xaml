@@ -48,6 +48,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                  IconSource="{ThemeResource VpnPlusIllustrationSource}"
                                  InnerBackground="{ThemeResource GradientUpsellBackgroundColorBrush}">
 
+        <custom:WindowContentControl.Resources>
+            <Style TargetType="ScrollViewer" BasedOn="{StaticResource OffsetScrollViewer}" />
+        </custom:WindowContentControl.Resources>
+
         <local:UpsellCarouselShellPage x:Name="Shell"
                                        Margin="20,40,20,48" />
 

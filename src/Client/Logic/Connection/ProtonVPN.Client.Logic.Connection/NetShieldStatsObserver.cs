@@ -19,13 +19,14 @@
 
 using ProtonVPN.Client.Common.Observers;
 using ProtonVPN.Client.Contracts;
+using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -37,9 +38,9 @@ namespace ProtonVPN.Client.Logic.Connection;
 public class NetShieldStatsObserver : PollingObserverBase,
     INetShieldStatsObserver,
     IEventMessageReceiver<ConnectionStatusChanged>,
-    IEventMessageReceiver<SettingChangedMessage>, 
+    IEventMessageReceiver<SettingChangedMessage>,
     IEventMessageReceiver<NetShieldStatisticIpcEntity>,
-    IEventMessageReceiver<WindowStateChangeMessage>
+    IEventMessageReceiver<MainWindowStateChangedMessage>
 {
     private const int TIMER_INTERVAL_IN_SECONDS = 20;
     private const int MINIMUM_REQUEST_TIMEOUT_IN_SECONDS = 20;
@@ -48,120 +49,55 @@ public class NetShieldStatsObserver : PollingObserverBase,
     private readonly IVpnServiceCaller _vpnServiceCaller;
     private readonly ISettings _settings;
     private readonly IEventMessageSender _eventMessageSender;
+    private readonly IConnectionManager _connectionManager;
+    private readonly IMainWindowActivator _mainWindowActivator;
 
     private readonly TimeSpan _requestTimeout;
     private readonly object _lock = new();
 
-    protected override TimeSpan PollingInterval => TimeSpan.FromSeconds(TIMER_INTERVAL_IN_SECONDS);
-
-    private bool _isConnected;
-    private bool _isMainAppWindowFocused = true;
     private DateTime _nextRequestDateUtc = DateTime.MinValue;
+
+    protected override TimeSpan PollingInterval => TimeSpan.FromSeconds(TIMER_INTERVAL_IN_SECONDS);
 
     public NetShieldStatsObserver(ILogger logger,
         IIssueReporter issuesIssueReporter,
         IVpnServiceCaller vpnServiceCaller,
         ISettings settings,
         IEventMessageSender eventMessageSender,
-        IConfiguration config) : base(logger, issuesIssueReporter)
+        IConfiguration config,
+        IConnectionManager connectionManager,
+        IMainWindowActivator mainWindowActivator)
+        : base(logger, issuesIssueReporter)
     {
         _logger = logger;
         _vpnServiceCaller = vpnServiceCaller;
         _settings = settings;
         _eventMessageSender = eventMessageSender;
+        _connectionManager = connectionManager;
+        _mainWindowActivator = mainWindowActivator;
 
         TimeSpan requestInterval = config.NetShieldStatisticRequestInterval;
         TimeSpan minimumRequestTimeout = TimeSpan.FromSeconds(MINIMUM_REQUEST_TIMEOUT_IN_SECONDS);
-        _requestTimeout = requestInterval > minimumRequestTimeout ? requestInterval : minimumRequestTimeout;
+        _requestTimeout = TimeSpanExtensions.Max(requestInterval, minimumRequestTimeout);
         _logger.Info<AppLog>($"NetShield Stats - Request timeout set to {_requestTimeout}.");
-    }
-
-    protected override async Task OnTriggerAsync()
-    {
-        RequestIfAllowed();
-    }
-
-    private void RequestIfAllowed()
-    {
-        bool isToRequest;
-        lock (_lock)
-        {
-            isToRequest = CanRequestNetShieldStats() && _nextRequestDateUtc <= DateTime.UtcNow;
-            if (isToRequest)
-            {
-                SetNextRequestDateUtc();
-            }
-        }
-
-        if (isToRequest)
-        {
-            _logger.Debug<AppLog>("NetShield Stats - Request made");
-            _vpnServiceCaller.RequestNetShieldStatsAsync();
-        }
-    }
-
-    private bool CanRequestNetShieldStats()
-    {
-        return _settings.IsNetShieldEnabled && _isConnected && _isMainAppWindowFocused;
-    }
-
-    private void SetNextRequestDateUtc()
-    {
-        _nextRequestDateUtc = DateTime.UtcNow + _requestTimeout;
     }
 
     public void Receive(ConnectionStatusChanged message)
     {
-        lock (_lock)
-        {
-            if (!_isConnected && message.ConnectionStatus == ConnectionStatus.Connected)
-            {
-                _logger.Debug<AppLog>("NetShield Stats - Connection established, resetting next request date");
-                SetNextRequestDateUtc();
-            }
-
-            _isConnected = message.ConnectionStatus == ConnectionStatus.Connected;
-            SwitchTimerIfNeeded();
-        }
-    }
-
-    private void SwitchTimerIfNeeded()
-    {
-        bool canRequestNetShieldStats = CanRequestNetShieldStats();
-        if (canRequestNetShieldStats && !IsTimerEnabled)
-        {
-            StartTimer();
-        }
-        else if (!canRequestNetShieldStats && IsTimerEnabled)
-        {
-            StopTimer();
-        }
+        InvalidateTimer();
     }
 
     public void Receive(SettingChangedMessage message)
     {
         if (message.PropertyName == nameof(ISettings.IsNetShieldEnabled))
         {
-            lock (_lock)
-            {
-                SwitchTimerIfNeeded();
-            }
+            InvalidateTimer();
         }
     }
 
-    public void Receive(WindowStateChangeMessage message)
+    public void Receive(MainWindowStateChangedMessage message)
     {
-        bool isToRequestImmediately;
-        lock (_lock)
-        {
-            isToRequestImmediately = !_isMainAppWindowFocused && message.IsActive;
-            _isMainAppWindowFocused = message.IsActive;
-            SwitchTimerIfNeeded();
-        }
-        if (isToRequestImmediately)
-        {
-            RequestIfAllowed();
-        }
+        InvalidateTimer();
     }
 
     public void Receive(NetShieldStatisticIpcEntity message)
@@ -172,5 +108,38 @@ public class NetShieldStatsObserver : PollingObserverBase,
             NumOfAdvertisementUrlsBlocked = message.NumOfAdvertisementUrlsBlocked,
             NumOfTrackingUrlsBlocked = message.NumOfTrackingUrlsBlocked,
         });
+    }
+
+    protected override async Task OnTriggerAsync()
+    {
+        DateTime utcNow = DateTime.UtcNow;
+
+        if (CanRequestNetShieldStats() && _nextRequestDateUtc <= utcNow)
+        {
+            _nextRequestDateUtc = utcNow + _requestTimeout;
+
+            _logger.Debug<AppLog>("NetShield Stats - Request made");
+            await _vpnServiceCaller.RequestNetShieldStatsAsync();
+        }
+    }
+
+    private bool CanRequestNetShieldStats()
+    {
+        return _settings.IsNetShieldEnabled && _connectionManager.IsConnected && !_mainWindowActivator.IsWindowMinimized;
+    }
+
+    private void InvalidateTimer()
+    {
+        lock (_lock)
+        {
+            if (CanRequestNetShieldStats())
+            {
+                StartTimerAndTriggerOnStart();
+            }
+            else
+            {
+                StopTimer();
+            }
+        }
     }
 }

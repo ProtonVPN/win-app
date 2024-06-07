@@ -44,4 +44,9 @@ public static class TimeSpanExtensions
     {
         return TimeSpan.FromTicks(Math.Min(value1.Ticks, value2.Ticks));
     }
+
+    public static TimeSpan Max(TimeSpan value1, TimeSpan value2)
+    {
+        return TimeSpan.FromTicks(Math.Max(value1.Ticks, value2.Ticks));
+    }
 }

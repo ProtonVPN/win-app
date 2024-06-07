@@ -17,12 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Models.Activation;
+namespace ProtonVPN.Client.Contracts;
 
 public interface IMainWindowActivator
 {
+    bool IsWindowMinimized { get; }
+
     Task InitializeAsync();
-    void Activate();
+    Task TryExitAsync();
+    void Activate(bool activateAllDialogs = true);
     void Hide();
     void Exit();
     void DisableHandleClosedEvents();

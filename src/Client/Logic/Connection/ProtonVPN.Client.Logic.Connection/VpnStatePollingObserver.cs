@@ -18,7 +18,7 @@
  */
 
 using ProtonVPN.Client.Common.Observers;
-using ProtonVPN.Client.Contracts;
+using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;

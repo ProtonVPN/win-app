@@ -20,6 +20,8 @@
 using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Contracts;
+using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
@@ -35,53 +37,75 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.UI.Home.Details;
 
 public partial class ConnectionDetailsViewModel : ActivatableViewModelBase,
-    IEventMessageReceiver<ConnectionStatusChanged>
+    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<MainWindowStateChangedMessage>
 {
     private const int REFRESH_TIMER_INTERVAL_IN_MS = 1000;
 
     private readonly IConnectionManager _connectionManager;
     private readonly IOverlayActivator _overlayActivator;
+    private readonly IMainWindowActivator _mainWindowActivator;
     private readonly VpnSpeedViewModel _vpnSpeedViewModel;
 
     private readonly DispatcherTimer _refreshTimer;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(SessionLength))]
-    [NotifyPropertyChangedFor(nameof(FormattedSessionLength))]
+    [NotifyPropertyChangedFor(nameof(HasGateway))]
     [NotifyPropertyChangedFor(nameof(Gateway))]
+    [NotifyPropertyChangedFor(nameof(HasCountry))]
     [NotifyPropertyChangedFor(nameof(Country))]
+    [NotifyPropertyChangedFor(nameof(IsSecureCore))]
     [NotifyPropertyChangedFor(nameof(SecureCoreLabel))]
+    [NotifyPropertyChangedFor(nameof(HasCity))]
+    [NotifyPropertyChangedFor(nameof(HasServer))]
     [NotifyPropertyChangedFor(nameof(ServerLoad))]
     [NotifyPropertyChangedFor(nameof(FormattedServerLoad))]
+    [NotifyPropertyChangedFor(nameof(HasServerLatency))]
     [NotifyPropertyChangedFor(nameof(ServerLatency))]
+    [NotifyPropertyChangedFor(nameof(HasVpnProtocol))]
     [NotifyPropertyChangedFor(nameof(VpnProtocol))]
     private ConnectionDetails? _currentConnectionDetails;
 
-    public TimeSpan? SessionLength => CurrentConnectionDetails is null
-        ? null
-        : DateTime.UtcNow - CurrentConnectionDetails.EstablishedConnectionTimeUtc;
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(FormattedSessionLength))]
+    private TimeSpan? _sessionLength;
 
-    public string? FormattedSessionLength => SessionLength is null
-        ? null
-        : Localizer.GetFormattedTime(SessionLength.Value);
+    public string? FormattedSessionLength => Localizer.GetFormattedTime(SessionLength ?? TimeSpan.Zero);
+
+    public bool HasGateway => CurrentConnectionDetails?.Server != null
+                           && CurrentConnectionDetails.IsGateway
+                           && !string.IsNullOrEmpty(CurrentConnectionDetails.GatewayName);
 
     public string? Gateway => CurrentConnectionDetails?.GatewayName;
 
-    public string? Country => string.IsNullOrEmpty(CurrentConnectionDetails?.ExitCountryCode)
-        ? null
-        : Localizer.GetCountryName(CurrentConnectionDetails.ExitCountryCode);
+    public bool HasCountry => CurrentConnectionDetails?.Server != null
+                           && !string.IsNullOrEmpty(CurrentConnectionDetails.ExitCountryCode);
+
+    public string? Country => Localizer.GetCountryName(CurrentConnectionDetails?.ExitCountryCode);
+
+    public bool IsSecureCore => CurrentConnectionDetails?.Server != null
+                             && CurrentConnectionDetails.IsSecureCore
+                             && !string.IsNullOrEmpty(CurrentConnectionDetails.EntryCountryCode);
 
     public string? SecureCoreLabel => string.IsNullOrEmpty(CurrentConnectionDetails?.EntryCountryCode)
         ? null
         : Localizer.GetSecureCoreLabel(CurrentConnectionDetails.EntryCountryCode);
 
+    public bool HasCity => CurrentConnectionDetails?.Server != null
+                        && !string.IsNullOrEmpty(CurrentConnectionDetails.CityState);
+
+    public bool HasServer => CurrentConnectionDetails?.Server != null
+                          && !string.IsNullOrEmpty(CurrentConnectionDetails.ServerName);
+
     public double ServerLoad => CurrentConnectionDetails?.ServerLoad ?? 0;
 
     public string FormattedServerLoad => $"{ServerLoad:P0}";
 
-    public string? ServerLatency => CurrentConnectionDetails?.ServerLatency is null
-        ? null
-        : Localizer.GetFormat("Format_Milliseconds", CurrentConnectionDetails.ServerLatency.Value.TotalMilliseconds);
+    public bool HasServerLatency => CurrentConnectionDetails?.ServerLatency != null;
+
+    public string? ServerLatency => Localizer.GetFormat("Format_Milliseconds", CurrentConnectionDetails?.ServerLatency?.TotalMilliseconds ?? 0);
+
+    public bool HasVpnProtocol => CurrentConnectionDetails?.Protocol != null;
 
     public string VpnProtocol => CurrentConnectionDetails is null
         ? string.Empty
@@ -93,11 +117,13 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase,
         IOverlayActivator overlayActivator,
         ILogger logger,
         IIssueReporter issueReporter,
+        IMainWindowActivator mainWindowActivator,
         VpnSpeedViewModel vpnSpeedViewModel)
         : base(localizationProvider, logger, issueReporter)
     {
         _connectionManager = connectionManager;
         _overlayActivator = overlayActivator;
+        _mainWindowActivator = mainWindowActivator;
         _vpnSpeedViewModel = vpnSpeedViewModel;
 
         _refreshTimer = new()
@@ -132,17 +158,24 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase,
             CurrentConnectionDetails = _connectionManager.IsConnected
                 ? _connectionManager.CurrentConnectionDetails
                 : null;
+
+            InvalidateSessionLength();
         });
+    }
+
+    public void Receive(MainWindowStateChangedMessage message)
+    {
+        ExecuteOnUIThread(InvalidateAutoRefreshTimer);
     }
 
     protected override void OnActivated()
     {
-        StartAutoRefresh();
+        InvalidateAutoRefreshTimer();
     }
 
     protected override void OnDeactivated()
     {
-        StopAutoRefresh();
+        InvalidateAutoRefreshTimer();
     }
 
     protected override void OnLanguageChanged()
@@ -154,12 +187,31 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase,
         OnPropertyChanged(nameof(VpnProtocol));
     }
 
+    private void InvalidateSessionLength()
+    {
+        SessionLength = CurrentConnectionDetails is null
+            ? null
+            : DateTime.UtcNow - CurrentConnectionDetails.EstablishedConnectionTimeUtc;
+    }
+
+    private void InvalidateAutoRefreshTimer()
+    {
+        if (IsActive && !_mainWindowActivator.IsWindowMinimized)
+        {
+            StartAutoRefresh();
+        }
+        else
+        {
+            StopAutoRefresh();
+        }
+    }
+
     private void StartAutoRefresh()
     {
-        Refresh();
-
         if (!_refreshTimer.IsEnabled)
         {
+            Refresh();
+
             _refreshTimer.Start();
         }
     }
@@ -174,7 +226,7 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase,
 
     private void Refresh()
     {
-        OnPropertyChanged(nameof(FormattedSessionLength));
+        InvalidateSessionLength();
 
         _vpnSpeedViewModel.RefreshAsync();
     }

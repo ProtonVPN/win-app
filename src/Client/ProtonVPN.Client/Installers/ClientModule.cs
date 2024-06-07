@@ -20,6 +20,7 @@
 using Autofac;
 using ProtonVPN.Client.Bootstrapping;
 using ProtonVPN.Client.Common.Dispatching;
+using ProtonVPN.Client.Contracts;
 using ProtonVPN.Client.Dispatching;
 using ProtonVPN.Client.Handlers;
 using ProtonVPN.Client.HumanVerification;
