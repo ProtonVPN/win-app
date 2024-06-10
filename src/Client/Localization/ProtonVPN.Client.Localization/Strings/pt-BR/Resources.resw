@@ -1941,19 +1941,19 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Enviar</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
-    <value>Download volume</value>
+    <value>Volumen de download</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Total">
     <value>Volume total</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Upload">
-    <value>Upload volume</value>
+    <value>Volume de envio:</value>
   </data>
   <data name="Home_ConnectionDetails_VpnAccelerator">
-    <value>Boosted by VPN Accelerator</value>
+    <value>Acelerado pelo VPN Accelerator</value>
   </data>
   <data name="Home_ConnectionDetails_VpnAccelerator_ToolTip">
-    <value>Advanced performance and stability technologies are boosting your VPN speed.</value>
+    <value>Tecnologias avançadas de performance e estabilidade estão amplificando a velocidade de sua VPN.</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>IP VPN</value>
@@ -2311,7 +2311,7 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Última conexão</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
-    <value>Your most recently used connection</value>
+    <value>Sua conexão mais usada recentemente</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protocolo</value>
@@ -2455,7 +2455,7 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Conexão automática</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>Automatically connects to your default connection when Proton VPN opens.</value>
+    <value>Conecta-se automaticamente a sua conexão padrão assim que o Proton VPN é aberto.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>Conexão mais rápida</value>

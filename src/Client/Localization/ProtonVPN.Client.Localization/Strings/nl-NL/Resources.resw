@@ -1781,16 +1781,16 @@ Smart Routing wordt meestal gebruikt om anti-privacywetten en andere vormen van 
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
   <data name="Format_Time_Day_One">
-    <value>{0} day</value>
+    <value>{0} dag</value>
   </data>
   <data name="Format_Time_Day_Other">
-    <value>{0} days</value>
+    <value>{0} dagen</value>
   </data>
   <data name="Format_Time_DayHour_One">
-    <value>{0} day {1} hr</value>
+    <value>{0} dag {1} u</value>
   </data>
   <data name="Format_Time_DayHour_Other">
-    <value>{0} days {1} hr</value>
+    <value>{0} dagen {1} u</value>
   </data>
   <data name="Format_Time_Hours">
     <value>{0} u</value>
@@ -2302,7 +2302,7 @@ Smart Routing wordt meestal gebruikt om anti-privacywetten en andere vormen van 
     <value>Default connection</value>
   </data>
   <data name="Settings_Connection_Default_Fastest">
-    <value>Fastest country</value>
+    <value>Snelste land</value>
   </data>
   <data name="Settings_Connection_Default_Fastest_Description">
     <value>The best server based on your location</value>

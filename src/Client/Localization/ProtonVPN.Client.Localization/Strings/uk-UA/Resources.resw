@@ -124,7 +124,7 @@
     <value>Міста</value>
   </data>
   <data name="Common_Actions_ActionsFor">
-    <value>Actions for {0}</value>
+    <value>Дії для {0}</value>
     <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Add">
@@ -140,7 +140,7 @@
     <value>З'єднатися</value>
   </data>
   <data name="Common_Actions_ConnectTo">
-    <value>Connect to {0}</value>
+    <value>Під'єднатися до {0}</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to Connect to something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_ContactUs">
@@ -150,7 +150,7 @@
     <value>Від’єднатися</value>
   </data>
   <data name="Common_Actions_DisconnectFrom">
-    <value>Disconnect from {0}</value>
+    <value>Від'єднатися від {0}</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Enable">
@@ -181,7 +181,7 @@
     <value>Увімкнути</value>
   </data>
   <data name="Common_States_Updating">
-    <value>Updating...</value>
+    <value>Оновлення...</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN не вдалося одержати сертифікат автентифікацій через проблему мережі.</value>
@@ -251,7 +251,7 @@
     <value>Міста ({0})</value>
   </data>
   <data name="Connections_City_Restricted">
-    <value>Servers in this city are available with VPN Plus</value>
+    <value>Сервери в цьому місті доступні з VPN Plus</value>
   </data>
   <data name="Connections_City_UnderMaintenance">
     <value>Усі сервери в цьому місті на обслуговуванні</value>
@@ -269,40 +269,40 @@
     <value>Країни ({0})</value>
   </data>
   <data name="Connections_Country_Restricted">
-    <value>Servers in this country are available with VPN Plus</value>
+    <value>Сервери в цій країні доступні з VPN Plus</value>
   </data>
   <data name="Connections_Country_UnderMaintenance">
     <value>Усі сервери в цій країні на обслуговуванні</value>
   </data>
   <data name="Connections_Gateway_Restricted">
-    <value>Servers in this gateway are available with VPN Plus</value>
+    <value>Сервери в цьому шлюзі доступні з VPN Plus</value>
   </data>
   <data name="Connections_Gateway_UnderMaintenance">
-    <value>All servers in this gateway are under maintenance</value>
+    <value>Всі сервери у цьому шлюзі знаходяться на обслуговуванні</value>
   </data>
   <data name="Connections_Gateways_One">
-    <value>Gateway ({0})</value>
+    <value>Шлюз ({0})</value>
   </data>
   <data name="Connections_Gateways_Few">
-    <value>Gateways ({0})</value>
+    <value>Шлюзів ({0})</value>
   </data>
   <data name="Connections_Gateways_Many">
-    <value>Gateways ({0})</value>
+    <value>Шлюзи ({0})</value>
   </data>
   <data name="Connections_Gateways_Other">
-    <value>Gateways ({0})</value>
+    <value>Шлюзи ({0})</value>
   </data>
   <data name="Connections_Gateways_Servers_One">
-    <value>Dedicated server ({0})</value>
+    <value>Виділений сервер ({0})</value>
   </data>
   <data name="Connections_Gateways_Servers_Few">
-    <value>Dedicated servers ({0})</value>
+    <value>Виділених серверів ({0})</value>
   </data>
   <data name="Connections_Gateways_Servers_Many">
-    <value>Dedicated servers ({0})</value>
+    <value>Виділені сервери ({0})</value>
   </data>
   <data name="Connections_Gateways_Servers_Other">
-    <value>Dedicated servers ({0})</value>
+    <value>Виділені сервери ({0})</value>
   </data>
   <data name="Connections_P2P_Cities_One">
     <value>P2P city ({0})</value>
@@ -329,16 +329,16 @@
     <value>Країни P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_One">
-    <value>P2P server ({0})</value>
+    <value>Сервер P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_Few">
-    <value>P2P servers ({0})</value>
+    <value>Серверів P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_Many">
-    <value>P2P servers ({0})</value>
+    <value>Сервери P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>P2P servers ({0})</value>
+    <value>Сервери P2P ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_One">
     <value>Secure Core country ({0})</value>
@@ -365,34 +365,34 @@
     <value>Сервери Secure Core ({0})</value>
   </data>
   <data name="Connections_SeeCities_One">
-    <value>See city ({0})</value>
+    <value>Див. місто ({0})</value>
   </data>
   <data name="Connections_SeeCities_Few">
-    <value>See cities ({0})</value>
+    <value>Див. міста ({0})</value>
   </data>
   <data name="Connections_SeeCities_Many">
-    <value>See cities ({0})</value>
+    <value>Див. міста ({0})</value>
   </data>
   <data name="Connections_SeeCities_Other">
-    <value>See cities ({0})</value>
+    <value>Див. міста ({0})</value>
   </data>
   <data name="Connections_SeeServers_One">
-    <value>See server ({0})</value>
+    <value>Див. сервер ({0})</value>
   </data>
   <data name="Connections_SeeServers_Few">
-    <value>See servers ({0})</value>
+    <value>Див. сервери ({0})</value>
   </data>
   <data name="Connections_SeeServers_Many">
-    <value>See servers ({0})</value>
+    <value>Див. сервери ({0})</value>
   </data>
   <data name="Connections_SeeServers_Other">
-    <value>See servers ({0})</value>
+    <value>Див. сервери ({0})</value>
   </data>
   <data name="Connections_Server_Restricted">
-    <value>Server available with VPN Plus</value>
+    <value>Сервер доступний з VPN Plus</value>
   </data>
   <data name="Connections_Server_UnderMaintenance">
-    <value>This server is under maintenance</value>
+    <value>Цей сервер знаходиться на обслуговуванні</value>
   </data>
   <data name="Connections_Servers_One">
     <value>Server ({0})</value>
@@ -485,7 +485,7 @@
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
   <data name="Countries_P2P_Description">
-    <value>Securely share and download files over peer-to-peer (P2P) networks.</value>
+    <value>Безпечно обмінюйтеся файлами та завантажуйте їх через пірингові (P2P) мережі.</value>
   </data>
   <data name="Countries_Page_Title">
     <value>Країни</value>
@@ -1784,37 +1784,37 @@ Smart Routing зазвичай використовується для того,
     <value>Tor</value>
   </data>
   <data name="Dialogs_Troubleshooting_Antivirus">
-    <value>Turn off antivirus or firewall software</value>
+    <value>Вимкніть програмне забезпечення антивірусу або брандмауера</value>
   </data>
   <data name="Dialogs_Troubleshooting_Antivirus_Description">
-    <value>These programs can interfere with VPN connections.</value>
+    <value>Ці програми можуть перешкоджати VPN-з'єднанням.</value>
   </data>
   <data name="Dialogs_Troubleshooting_CheckInternet">
     <value>Перевірте своє з'єднання з інтернетом</value>
   </data>
   <data name="Dialogs_Troubleshooting_CheckInternet_Description">
-    <value>Make sure you're online, and that your connection is stable.</value>
+    <value>Переконайтеся, що ви перебуваєте в мережі, і що ваше з'єднання стабільне.</value>
   </data>
   <data name="Dialogs_Troubleshooting_Description">
-    <value>These quick fixes may help you connect to Proton.</value>
+    <value>Ці швидкі виправлення можуть допомогти вам під'єднатися до Proton.</value>
   </data>
   <data name="Dialogs_Troubleshooting_DidNotWork">
-    <value>Didn't work?</value>
+    <value>Не спрацювало?</value>
   </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork">
-    <value>Use a different network</value>
+    <value>Використати іншу мережу</value>
   </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
-    <value>Try switching Wi-Fi networks, or use mobile data.</value>
+    <value>Спробуйте перемкнутися на мережу Wi-Fi або скористатися мобільним зв'язком.</value>
   </data>
   <data name="Dialogs_Troubleshooting_StatusPage">
-    <value>Check our status page</value>
+    <value>Перевірте нашу сторінку статусу</value>
   </data>
   <data name="Dialogs_Troubleshooting_StatusPage_Description">
-    <value>Just to be sure that Proton services are running as normal.</value>
+    <value>Просто щоб переконатися, що сервіси Proton працюють у звичайному режимі.</value>
   </data>
   <data name="Dialogs_Troubleshooting_Title">
-    <value>Connection help</value>
+    <value>Допомога зі з'єднанням</value>
   </data>
   <data name="Dialogs_Welcome_Message">
     <value>Ми готуємо ваш новий досвід роботи з VPN. Це займе лише мить.</value>
@@ -1826,7 +1826,7 @@ Smart Routing зазвичай використовується для того,
     <value>Ви будете від'єднані від VPN.</value>
   </data>
   <data name="Exit_Confirmation_Title">
-    <value>Exit Proton VPN?</value>
+    <value>Вийти з Proton VPN?</value>
   </data>
   <data name="Format_Milliseconds">
     <value>{0} мс</value>
@@ -1845,7 +1845,7 @@ Smart Routing зазвичай використовується для того,
     <comment>Format a size in Gigabytes. {0} is a place holder for the number of Gigabytes (eg. 30 GB)</comment>
   </data>
   <data name="Format_Size_Kilobytes">
-    <value>{0} КБ</value>
+    <value>{0} кБ</value>
     <comment>Format a size in Kilobytes. {0} is a place holder for the number of Kilobytes (eg. 30 KB)</comment>
   </data>
   <data name="Format_Size_Megabytes">
@@ -1873,7 +1873,7 @@ Smart Routing зазвичай використовується для того,
     <comment>Format a speed in Gigabytes per second. {0} is a place holder for the number of Gigabytes per second (eg. 30 GB/s)</comment>
   </data>
   <data name="Format_Speed_KilobytesPerSecond">
-    <value>{0} КБ/с</value>
+    <value>{0} кБ/с</value>
     <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
   </data>
   <data name="Format_Speed_MegabytesPerSecond">
@@ -1889,28 +1889,28 @@ Smart Routing зазвичай використовується для того,
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
   <data name="Format_Time_Day_One">
-    <value>{0} day</value>
+    <value>{0} день</value>
   </data>
   <data name="Format_Time_Day_Few">
-    <value>{0} days</value>
+    <value>{0} днів</value>
   </data>
   <data name="Format_Time_Day_Many">
-    <value>{0} days</value>
+    <value>{0} днів</value>
   </data>
   <data name="Format_Time_Day_Other">
-    <value>{0} days</value>
+    <value>{0} днів</value>
   </data>
   <data name="Format_Time_DayHour_One">
-    <value>{0} day {1} hr</value>
+    <value>{0} день {1} год</value>
   </data>
   <data name="Format_Time_DayHour_Few">
-    <value>{0} days {1} hr</value>
+    <value>{0} дні {1} год</value>
   </data>
   <data name="Format_Time_DayHour_Many">
-    <value>{0} days {1} hr</value>
+    <value>{0} дні {1} год</value>
   </data>
   <data name="Format_Time_DayHour_Other">
-    <value>{0} days {1} hr</value>
+    <value>{0} дні {1} год</value>
   </data>
   <data name="Format_Time_Hours">
     <value>{0} год</value>
@@ -1953,7 +1953,7 @@ Smart Routing зазвичай використовується для того,
     <value>Користуйтеся світовим покриттям з VPN Plus</value>
   </data>
   <data name="Gateways_Page_Description">
-    <value>Connect to a Gateway to access your organization's VPN.</value>
+    <value>Під'єднайтеся до шлюзу, щоб отримати доступ до VPN вашої організації.</value>
   </data>
   <data name="Gateways_Page_Title">
     <value>Мережеві шлюзи</value>
@@ -1984,7 +1984,7 @@ Smart Routing зазвичай використовується для того,
     <value>З'єднання з...</value>
   </data>
   <data name="Home_ConnectionCard_Header_DefaultConnection">
-    <value>Default connection</value>
+    <value>З'єднання за замовчуванням</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
     <value>Безплатне з'єднання</value>
@@ -2061,19 +2061,19 @@ Smart Routing зазвичай використовується для того,
     <value>Вивантажити</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
-    <value>Download volume</value>
+    <value>Завантажити обсяг</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Total">
-    <value>Total volume</value>
+    <value>Загальний обсяг</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Upload">
-    <value>Upload volume</value>
+    <value>Вивантажити обсяг</value>
   </data>
   <data name="Home_ConnectionDetails_VpnAccelerator">
-    <value>Boosted by VPN Accelerator</value>
+    <value>Прискорено завдяки VPN Accelerator</value>
   </data>
   <data name="Home_ConnectionDetails_VpnAccelerator_ToolTip">
-    <value>Advanced performance and stability technologies are boosting your VPN speed.</value>
+    <value>Передові технології продуктивності та стабільності підвищують швидкість вашої VPN.</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>VPN IP</value>
@@ -2101,20 +2101,20 @@ Smart Routing зазвичай використовується для того,
     <value>Заблокованих оголошень</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Description">
-    <value>Ads are promotional banners or pop-ups that appear on websites and apps.</value>
+    <value>Реклама - це рекламні банери або спливні вікна, які з'являються на вебсайтах і в додатках.</value>
   </data>
   <data name="Home_NetShield_DataSaved">
-    <value>Data saved</value>
+    <value>Дані збережено</value>
   </data>
   <data name="Home_NetShield_DataSaved_Description">
-    <value>Estimated data saved by blocking unwanted ads, trackers, and malware.</value>
+    <value>Орієнтовні дані, збережені завдяки блокуванню небажаної реклами, трекерів та шкідливого програмного забезпечення.</value>
   </data>
   <data name="Home_NetShield_Landmark">
     <value>Статистика NetShield</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_NetShield_Title">
-    <value>NetShield stats</value>
+    <value>Статистика NetShield</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_One">
     <value>Зупинений вистежувач</value>
@@ -2129,7 +2129,7 @@ Smart Routing зазвичай використовується для того,
     <value>Зупинені вистежувачі</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_Description">
-    <value>Trackers are cookies and third-party websites that collect, store, and sell information about your web activity.</value>
+    <value>Трекери - це файли cookie та сторонні вебсайти, які збирають, зберігають і продають інформацію про вашу вебактивність.</value>
   </data>
   <data name="Home_Page_Title">
     <value>Головна</value>
@@ -2350,7 +2350,7 @@ Smart Routing зазвичай використовується для того,
     <value>Дані про використання допомагають нам обходити блокування VPN і вдосконалювати швидкодію програми.</value>
   </data>
   <data name="Settings_Common_Apply">
-    <value>Apply</value>
+    <value>Застосувати</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
   <data name="Settings_Common_ApplyAndReconnect">
@@ -2431,19 +2431,19 @@ Smart Routing зазвичай використовується для того,
     <value>Обмежує доступ до даних у вашій мережі. Цей варіант безпечніший, але може ускладнити з'єднання в пірингових іграх.</value>
   </data>
   <data name="Settings_Connection_Default">
-    <value>Default connection</value>
+    <value>З'єднання за замовчуванням</value>
   </data>
   <data name="Settings_Connection_Default_Fastest">
-    <value>Fastest country</value>
+    <value>Найшвидша країна</value>
   </data>
   <data name="Settings_Connection_Default_Fastest_Description">
-    <value>The best server based on your location</value>
+    <value>Кращий сервер на основі вашого місцеперебування</value>
   </data>
   <data name="Settings_Connection_Default_Last">
-    <value>Last connection</value>
+    <value>Останнє з'єднання</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
-    <value>Your most recently used connection</value>
+    <value>Ваше нещодавно використане з'єднання</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Протокол</value>
@@ -2452,7 +2452,7 @@ Smart Routing зазвичай використовується для того,
     <value>VPN Accelerator</value>
   </data>
   <data name="Settings_Features">
-    <value>VPN features</value>
+    <value>Функції VPN</value>
   </data>
   <data name="Settings_Features_KillSwitch">
     <value>Kill Switch</value>
@@ -2515,7 +2515,7 @@ Smart Routing зазвичай використовується для того,
     <value>Обхід брандмауерів для підключення до P2P-серверів і пристроїв у вашій локальній мережі.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Footer">
-    <value>To use port forwarding, please connect to a server that supports P2P.</value>
+    <value>Для використання переадресації портів, будь ласка, під'єднайтеся до сервера, який підтримує P2P.</value>
   </data>
   <data name="Settings_Features_PortForwarding_Loading">
     <value>Завантаження...</value>
@@ -2524,7 +2524,7 @@ Smart Routing зазвичай використовується для того,
     <value>Сповіщення</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications_Description">
-    <value>Get notified when the port forwarding number changes</value>
+    <value>Отримуйте сповіщення про зміну номера переадресації порту</value>
   </data>
   <data name="Settings_Features_SplitTunneling">
     <value>Роздільне тунелювання</value>
@@ -2587,7 +2587,7 @@ Smart Routing зазвичай використовується для того,
     <value>Автоз'єднання</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>Automatically connects to your default connection when Proton VPN opens.</value>
+    <value>Автоматично підключається до вашого з'єднання за замовчуванням, коли відкривається Proton VPN.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>Найшвидше з'єднання</value>
@@ -2611,7 +2611,7 @@ Smart Routing зазвичай використовується для того,
     <value>Згорнути до панелі завдань</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Set the app to launch or connect automatically</value>
+    <value>Налаштуйте програму на автоматичний запуск або під'єднання</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>Автоматичні оновлення</value>
@@ -2695,7 +2695,7 @@ Smart Routing зазвичай використовується для того,
     <value>Швидкість (UDP)</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
-    <value>Швидко, безпечно та ефективно. WireGuard є більш енергоефективним, ніж інші протоколи.</value>
+    <value>Швидкий, безпечний та ефективний. WireGuard є більш енергоефективним, ніж інші протоколи.</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>
@@ -2749,26 +2749,26 @@ Smart Routing зазвичай використовується для того,
     <value>Центр підтримки</value>
   </data>
   <data name="Settings_Theme_Dark">
-    <value>Dark</value>
+    <value>Темна</value>
   </data>
   <data name="Settings_Theme_Default">
-    <value>Default</value>
+    <value>За замовчуванням</value>
   </data>
   <data name="Settings_Theme_Light">
-    <value>Light</value>
+    <value>Світла</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>Збільште швидкість з'єднання до 400% за допомогою технологій, що підвищують продуктивність.</value>
   </data>
   <data name="SystemNotification_Connected">
-    <value>You are now protected</value>
+    <value>Тепер ви захищені</value>
   </data>
   <data name="SystemNotification_ConnectedTo">
     <value>З'єднано з {0}.</value>
     <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
   </data>
   <data name="SystemNotification_Disconnected">
-    <value>Disconnected</value>
+    <value>Від'єднано</value>
   </data>
   <data name="Tray_Actions_ExitApplication">
     <value>Вихід</value>
@@ -2793,25 +2793,25 @@ Smart Routing зазвичай використовується для того,
     <value>Розблокуйте розширені налаштування VPN</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_DNS">
-    <value>Connect to VPN with your custom domain name server (DNS)</value>
+    <value>Під'єднайтеся до VPN за допомогою власного сервера доменних імен (DNS)</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
-    <value>Access devices on your local area network (LAN) while connected</value>
+    <value>Доступ до пристроїв у локальній мережі (LAN) під час під'єднання</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
-    <value>Level up your gaming experience by switching to NAT type 2 (moderate)</value>
+    <value>Покращуйте свій ігровий досвід, переключившись на тип NAT 2 (помірний)</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices">
     <value>Під'єднайте до 10 пристроїв одночасно</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Platforms">
-    <value>Use Proton VPN on different platforms</value>
+    <value>Використовувати Proton VPN на різних платформах</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
-    <value>Android and Android TV</value>
+    <value>Android та Android TV</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser">
-    <value>Browser</value>
+    <value>Браузер</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Platforms_Linux">
     <value>Linux</value>
@@ -2826,38 +2826,38 @@ Smart Routing зазвичай використовується для того,
     <value>iOS</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Privacy">
-    <value>Security and privacy on all of your devices</value>
+    <value>Безпека та конфіденційність на всіх ваших пристроях</value>
   </data>
   <data name="Upsell_Carousel_NetShield">
     <value>Насолоджуйтеся відсутністю реклами</value>
   </data>
   <data name="Upsell_Carousel_NetShield_Block">
-    <value>Block ads and trackers with NetShield</value>
+    <value>Блокувати рекламу і трекери з NetShield</value>
   </data>
   <data name="Upsell_Carousel_NetShield_Protection">
     <value>Захистіть свій пристрій від зловмисних програм</value>
   </data>
   <data name="Upsell_Carousel_P2P">
-    <value>Unlock peer-to-peer downloads and file sharing (P2P)</value>
+    <value>Розблокувати пірингові завантаження та обмін файлами (P2P)</value>
   </data>
   <data name="Upsell_Carousel_P2P_Discretion">
     <value>Приховайте вашу IP-адресу від постачальника послуг та однорангових вузлів</value>
   </data>
   <data name="Upsell_Carousel_P2P_PortForwarding">
-    <value>Supercharge P2P speeds with port forwarding</value>
+    <value>Підвищення швидкості P2P за допомогою переадресації портів</value>
   </data>
   <data name="Upsell_Carousel_P2P_Speed">
     <value>Збільшена швидкість завантаження і вивантаження</value>
   </data>
   <data name="Upsell_Carousel_Platforms_More">
-    <value>+ more</value>
+    <value>+ ще</value>
     <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
   </data>
   <data name="Upsell_Carousel_SecureCore">
-    <value>Add another layer of protection to your connection</value>
+    <value>Додайте ще один рівень захисту до вашого з'єднання</value>
   </data>
   <data name="Upsell_Carousel_SecureCore_Encryption">
-    <value>Double your encryption with Secure Core</value>
+    <value>Подвійте ваше шифрування за допомогою захищеного ядра</value>
   </data>
   <data name="Upsell_Carousel_SecureCore_Protection">
     <value>Захистіться від мережевих атак</value>
@@ -2869,7 +2869,7 @@ Smart Routing зазвичай використовується для того,
     <value>Користуйтеся інтернетом на ще вищій швидкості (10 Гбіт/с)</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
-    <value>Increase your connection speeds by up to 400% with VPN Accelerator</value>
+    <value>Збільште швидкість з'єднання до 400% за допомогою VPN Accelerator</value>
   </data>
   <data name="Upsell_Carousel_Speed_Access">
     <value>Користуйтеся швидшими, менш навантаженими серверами</value>
@@ -2884,10 +2884,10 @@ Smart Routing зазвичай використовується для того,
     <value>Дозвольте довіреним програмам та IP-адресам встановлювати пряме інтернет-з'єднання, одночасно захищаючи все інше за допомогою VPN</value>
   </data>
   <data name="Upsell_Carousel_Streaming">
-    <value>Stream your favorite movies and TV shows</value>
+    <value>Транслюйте ваші улюблені фільми та ТБ шоу</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Access">
-    <value>Access geoblocked TV and movies from anywhere in the world</value>
+    <value>Доступ до заблокованого телебачення та фільмів з будь-якої точки світу</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Platforms_BBC">
     <value>BBC iPlayer</value>
@@ -2908,32 +2908,32 @@ Smart Routing зазвичай використовується для того,
     <value>Amazon Prime Video</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Speed">
-    <value>Watch in 4K without buffering, slowdowns, or throttling</value>
+    <value>Дивіться в 4K без буферизації, уповільнення або динамічного масштабування частоти</value>
   </data>
   <data name="Upsell_Carousel_Title">
     <value>Ознайомтеся з VPN Plus</value>
   </data>
   <data name="Upsell_Carousel_Tor">
-    <value>Access the Tor network for extra privacy</value>
+    <value>Під'єднайтеся до мережі Tor для додаткової конфіденційності</value>
   </data>
   <data name="Upsell_Carousel_Tor_Access">
-    <value>Access hidden sites and onion sites</value>
+    <value>Доступ до прихованих сайтів та сайтів-цибулин</value>
   </data>
   <data name="Upsell_Carousel_Tor_Browsing">
-    <value>Browse the Tor network using your regular browser</value>
+    <value>Переглядайте мережу Tor за допомогою звичайного браузера</value>
   </data>
   <data name="Upsell_Carousel_Tor_Protection">
-    <value>Protect your personal data while browsing</value>
+    <value>Захистіть свої персональні дані під час перегляду вебсторінок</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage">
     <value>Доступ до понад {0} в {1}</value>
     <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Audit">
-    <value>Audited by independent security experts</value>
+    <value>Перевірено незалежними експертами з безпеки</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
-    <value>Bypass censorship with advanced security and privacy features</value>
+    <value>Обходьте цензуру за допомогою розширених функцій безпеки та конфіденційності</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
     <value>{0} країні</value>
@@ -2948,7 +2948,7 @@ Smart Routing зазвичай використовується для того,
     <value>{0} країнах</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
-    <value>Open source VPN</value>
+    <value>Відкритий вихідний код VPN</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
     <value>{0} захищений сервер</value>

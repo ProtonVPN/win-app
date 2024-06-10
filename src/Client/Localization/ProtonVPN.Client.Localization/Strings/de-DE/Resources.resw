@@ -278,7 +278,7 @@
     <value>Dedizierter Server ({0})</value>
   </data>
   <data name="Connections_Gateways_Servers_Other">
-    <value>Dedizierter Server ({0})</value>
+    <value>Dedizierte Server ({0})</value>
   </data>
   <data name="Connections_P2P_Cities_One">
     <value>P2P-Stadt ({0})</value>
@@ -311,13 +311,13 @@
     <value>Secure Core-Server ({0})</value>
   </data>
   <data name="Connections_SeeCities_One">
-    <value>See city ({0})</value>
+    <value>Siehe Ort ({0})</value>
   </data>
   <data name="Connections_SeeCities_Other">
     <value>Siehe Orte ({0})</value>
   </data>
   <data name="Connections_SeeServers_One">
-    <value>See server ({0})</value>
+    <value>Siehe Server ({0})</value>
   </data>
   <data name="Connections_SeeServers_Other">
     <value>Siehe Server ({0})</value>
@@ -410,7 +410,7 @@
     <value>Secure Core</value>
   </data>
   <data name="Countries_SecureCoreCountries">
-    <value>„Secure Core”-Länder ({0})</value>
+    <value>Secure Core-Länder ({0})</value>
     <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_SecureCoreServers">
@@ -1685,25 +1685,25 @@ Smart Routing wird in der Regel verwendet, um Datenschutzgesetze und andere Form
     <value>Prüfe deine Internetverbindung</value>
   </data>
   <data name="Dialogs_Troubleshooting_CheckInternet_Description">
-    <value>Stelle sicher, dass du online bist und dass deine Verbindung stabil ist.</value>
+    <value>Stelle sicher, dass du online bist und deine Verbindung stabil ist.</value>
   </data>
   <data name="Dialogs_Troubleshooting_Description">
-    <value>Diese Sofortmaßnahmen können Ihnen helfen, eine Verbindung zu Proton herzustellen.</value>
+    <value>Diese Sofortmaßnahmen können dir helfen, eine Verbindung zu Proton herzustellen.</value>
   </data>
   <data name="Dialogs_Troubleshooting_DidNotWork">
     <value>Hat es nicht geklappt?</value>
   </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork">
-    <value>Verwende ein anderes Netz</value>
+    <value>Verwende ein anderes Netzwerk</value>
   </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
-    <value>Versuche, das Wi-Fi-Netzwerk zu wechseln, oder verwende mobile Daten.</value>
+    <value>Versuche, das WLAN-Netzwerk zu wechseln, oder verwende mobile Daten.</value>
   </data>
   <data name="Dialogs_Troubleshooting_StatusPage">
     <value>Prüfe unsere Statusseite</value>
   </data>
   <data name="Dialogs_Troubleshooting_StatusPage_Description">
-    <value>Nur um sicher zu gehen, dass die Proton-Dienste wie gewohnt funktionieren.</value>
+    <value>Nur um sicherzugehen, dass die Proton-Dienste wie gewohnt funktionieren.</value>
   </data>
   <data name="Dialogs_Troubleshooting_Title">
     <value>Hilfe zur Verbindung</value>
@@ -1861,13 +1861,13 @@ Smart Routing wird in der Regel verwendet, um Datenschutzgesetze und andere Form
     <value>Sicheres Surfen von</value>
   </data>
   <data name="Home_ConnectionCard_Header_ConnectingTo">
-    <value>Verbinden mit...</value>
+    <value>Verbinde mit...</value>
   </data>
   <data name="Home_ConnectionCard_Header_DefaultConnection">
     <value>Standardverbindung</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
-    <value>Kostenlose Verbindungen</value>
+    <value>Kostenlose Verbindung</value>
   </data>
   <data name="Home_ConnectionCard_Header_LastConnectedTo">
     <value>Zuletzt verbunden mit</value>
@@ -1953,7 +1953,7 @@ Smart Routing wird in der Regel verwendet, um Datenschutzgesetze und andere Form
     <value>Verstärkt durch VPN Accelerator</value>
   </data>
   <data name="Home_ConnectionDetails_VpnAccelerator_ToolTip">
-    <value>Advanced performance and stability technologies are boosting your VPN speed.</value>
+    <value>Fortschrittliche Leistungs- und Stabilitätstechnologien beschleunigen deine VPN-Geschwindigkeit.</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>VPN IP</value>
@@ -2392,7 +2392,7 @@ Smart Routing wird in der Regel verwendet, um Datenschutzgesetze und andere Form
     <value>Benachrichtigungen</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications_Description">
-    <value>Erhalte Benachrichtigungen, wenn sich die Portweiterleitungsnummer ändert</value>
+    <value>Erhalte Benachrichtigungen, wenn sich die Portweiterleitungsnummer ändert.</value>
   </data>
   <data name="Settings_Features_SplitTunneling">
     <value>Split‐Tunneling</value>
@@ -2608,7 +2608,7 @@ Smart Routing wird in der Regel verwendet, um Datenschutzgesetze und andere Form
     <value>Der Protokoll-Ordner konnte nicht gefunden werden.</value>
   </data>
   <data name="Settings_Support_DebugLogs_Service">
-    <value>Serviceprotokolle</value>
+    <value>Dienstprotokolle</value>
   </data>
   <data name="Settings_Support_ReportIssue">
     <value>Ein Problem melden</value>
@@ -2725,7 +2725,7 @@ Smart Routing wird in der Regel verwendet, um Datenschutzgesetze und andere Form
     <value>Füge eine weitere Schutzschicht für deine Verbindung hinzu</value>
   </data>
   <data name="Upsell_Carousel_SecureCore_Encryption">
-    <value>Verdoppe deine Verschlüsselung mit Secure Core</value>
+    <value>Verdopple deine Verschlüsselung mit Secure Core</value>
   </data>
   <data name="Upsell_Carousel_SecureCore_Protection">
     <value>Schütze dich vor Netzwerkangriffen</value>
@@ -2785,10 +2785,10 @@ Smart Routing wird in der Regel verwendet, um Datenschutzgesetze und andere Form
     <value>Greife für mehr Privatsphäre auf das Tor-Netzwerk zu</value>
   </data>
   <data name="Upsell_Carousel_Tor_Access">
-    <value>Zugang zu versteckten Seiten und Zwiebel-Seiten</value>
+    <value>Zugang zu versteckten Websites und Onion-Websites</value>
   </data>
   <data name="Upsell_Carousel_Tor_Browsing">
-    <value>Durchsuche das Tor-Netzwerk mit deinem normalen Browser</value>
+    <value>Surfe durch das Tor-Netzwerk mit deinem normalen Browser</value>
   </data>
   <data name="Upsell_Carousel_Tor_Protection">
     <value>Schütze deine persönlichen Daten beim Surfen</value>
@@ -2810,7 +2810,7 @@ Smart Routing wird in der Regel verwendet, um Datenschutzgesetze und andere Form
     <value>{0} Länder</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
-    <value>Quelloffenes VPN</value>
+    <value>Open Source-VPN</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
     <value>{0} sicherer Server</value>

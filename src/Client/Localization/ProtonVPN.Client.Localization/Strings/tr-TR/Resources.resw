@@ -181,7 +181,7 @@
     <value>Açık</value>
   </data>
   <data name="Common_States_Updating">
-    <value>Updating...</value>
+    <value>Güncelleniyor...</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN, ağ sorunu nedeniyle kimlik doğrulama sertifikasını alamadı.</value>
@@ -1781,16 +1781,16 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
   <data name="Format_Time_Day_One">
-    <value>{0} day</value>
+    <value>{0} gün</value>
   </data>
   <data name="Format_Time_Day_Other">
-    <value>{0} days</value>
+    <value>{0} gün</value>
   </data>
   <data name="Format_Time_DayHour_One">
-    <value>{0} day {1} hr</value>
+    <value>{0} gün {1} saat</value>
   </data>
   <data name="Format_Time_DayHour_Other">
-    <value>{0} days {1} hr</value>
+    <value>{0} gün {1} saat</value>
   </data>
   <data name="Format_Time_Hours">
     <value>{0} sa</value>
@@ -1864,7 +1864,7 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
     <value>Bağlantı kuruluyor...</value>
   </data>
   <data name="Home_ConnectionCard_Header_DefaultConnection">
-    <value>Default connection</value>
+    <value>Varsayılan bağlantı</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
     <value>Ücretsiz bağlantı</value>
@@ -1941,19 +1941,19 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
     <value>Yükleme</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
-    <value>Download volume</value>
+    <value>İndirilen veri</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Total">
-    <value>Total volume</value>
+    <value>Toplam veri</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Upload">
-    <value>Upload volume</value>
+    <value>Yüklenen veri</value>
   </data>
   <data name="Home_ConnectionDetails_VpnAccelerator">
-    <value>Boosted by VPN Accelerator</value>
+    <value>VPN Accelerator ile güçlendirilmiş</value>
   </data>
   <data name="Home_ConnectionDetails_VpnAccelerator_ToolTip">
-    <value>Advanced performance and stability technologies are boosting your VPN speed.</value>
+    <value>VPN hızınızı artıran gelişmiş başarım ve kararlılık teknolojileri.</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>VPN IP adresi</value>
@@ -2299,19 +2299,19 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
     <value>Ağınıza giren verileri kısıtlar. Bu seçenek daha güvenlidir ancak eşler arası oyun bağlantılarında sorun çıkarabilir.</value>
   </data>
   <data name="Settings_Connection_Default">
-    <value>Default connection</value>
+    <value>Varsayılan bağlantı</value>
   </data>
   <data name="Settings_Connection_Default_Fastest">
-    <value>Fastest country</value>
+    <value>En hızlı ülke</value>
   </data>
   <data name="Settings_Connection_Default_Fastest_Description">
-    <value>The best server based on your location</value>
+    <value>Konumunuza uygun en iyi sunucu</value>
   </data>
   <data name="Settings_Connection_Default_Last">
-    <value>Last connection</value>
+    <value>Son bağlantı</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
-    <value>Your most recently used connection</value>
+    <value>Son kullandığınız bağlantı</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>İletişim kuralı</value>
@@ -2455,7 +2455,7 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
     <value>Otomatik bağlantı</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>Automatically connects to your default connection when Proton VPN opens.</value>
+    <value>Proton VPN açıldığında otomatik olarak varsayılan bağlantınızı kurar.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>En hızlı bağlantı</value>
@@ -2617,13 +2617,13 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
     <value>Destek merkezi</value>
   </data>
   <data name="Settings_Theme_Dark">
-    <value>Dark</value>
+    <value>Koyu</value>
   </data>
   <data name="Settings_Theme_Default">
-    <value>Default</value>
+    <value>Varsayılan</value>
   </data>
   <data name="Settings_Theme_Light">
-    <value>Light</value>
+    <value>Açık</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>Başarımı artırıcı teknolojilerle bağlantı hızınızı %400 oranına kadar artırın.</value>

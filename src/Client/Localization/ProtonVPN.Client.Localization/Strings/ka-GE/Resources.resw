@@ -181,7 +181,7 @@
     <value>ჩართ</value>
   </data>
   <data name="Common_States_Updating">
-    <value>Updating...</value>
+    <value>განახლება...</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN-მა ქსელის პრობლემის გამო ავთენტიკაციის სერტიფიკატი ვერ გამოითხოვა.</value>
@@ -245,7 +245,7 @@
     <value>ქალაქი ({0})</value>
   </data>
   <data name="Connections_City_Restricted">
-    <value>Servers in this city are available with VPN Plus</value>
+    <value>სერვერები ამ ქალაქში ხელმისაწვდომია VPN Plus-ით</value>
   </data>
   <data name="Connections_City_UnderMaintenance">
     <value>ამ ქალაქში ყველა სერვერი ტექმომსახურებაზეა</value>
@@ -257,16 +257,16 @@
     <value>ქვეყანა ({0})</value>
   </data>
   <data name="Connections_Country_Restricted">
-    <value>Servers in this country are available with VPN Plus</value>
+    <value>სერვერები ამ ქვეყანაში ხელმისაწვდომია VPN Plus-ით</value>
   </data>
   <data name="Connections_Country_UnderMaintenance">
     <value>ამ ქვეყანაში ყველა სერვერი ტექმომსახურებაზეა</value>
   </data>
   <data name="Connections_Gateway_Restricted">
-    <value>Servers in this gateway are available with VPN Plus</value>
+    <value>სერვერები ამ კარიბჭეში ხელმისაწვდომია VPN Plus-ით</value>
   </data>
   <data name="Connections_Gateway_UnderMaintenance">
-    <value>All servers in this gateway are under maintenance</value>
+    <value>ყველა სერვერი ამ კარიბჭეში ტექმომსახურებაშია</value>
   </data>
   <data name="Connections_Gateways_One">
     <value>კარიბჭე ({0})</value>
@@ -1677,7 +1677,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>გამორთეთ ანტივირუსი ან ბრანდმაუერის პროგრამა</value>
   </data>
   <data name="Dialogs_Troubleshooting_Antivirus_Description">
-    <value>These programs can interfere with VPN connections.</value>
+    <value>ამ პროგრამებს შეუძლიათ, VPN-ით მუშაობას ხელი შეუშალონ.</value>
   </data>
   <data name="Dialogs_Troubleshooting_CheckInternet">
     <value>შეამოწმეთ თქვენი შეერთება ინტერნეტთან</value>
@@ -1686,7 +1686,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>Make sure you're online, and that your connection is stable.</value>
   </data>
   <data name="Dialogs_Troubleshooting_Description">
-    <value>These quick fixes may help you connect to Proton.</value>
+    <value>ეს სწრაფი გზები, შეიძლება, Proton-თან დაკავშირებაში დაგეხმარონ.</value>
   </data>
   <data name="Dialogs_Troubleshooting_DidNotWork">
     <value>არ იმუშავა?</value>
@@ -1695,7 +1695,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>გამოიყენეთ სხვა ქსელი</value>
   </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
-    <value>Try switching Wi-Fi networks, or use mobile data.</value>
+    <value>სცადეთ, სხვა Wi-Fi ქსელზე გადახვიდეთ, ან გადაერთეთ მობილურ ინტერნეტზე.</value>
   </data>
   <data name="Dialogs_Troubleshooting_StatusPage">
     <value>შეამოწმეთ ჩვენი სტატუსის გვერდი</value>
@@ -1779,16 +1779,16 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
   <data name="Format_Time_Day_One">
-    <value>{0} day</value>
+    <value>{0} დღე</value>
   </data>
   <data name="Format_Time_Day_Other">
-    <value>{0} days</value>
+    <value>{0} დღე</value>
   </data>
   <data name="Format_Time_DayHour_One">
-    <value>{0} day {1} hr</value>
+    <value>{0} დღე {1} სთ</value>
   </data>
   <data name="Format_Time_DayHour_Other">
-    <value>{0} days {1} hr</value>
+    <value>{0} დღე {1} სთ</value>
   </data>
   <data name="Format_Time_Hours">
     <value>{0} სთ</value>
@@ -1862,7 +1862,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>დაკავშირება...</value>
   </data>
   <data name="Home_ConnectionCard_Header_DefaultConnection">
-    <value>Default connection</value>
+    <value>ნაგულისხმევი მიერთება</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
     <value>უფასო მიერთება</value>
@@ -1939,16 +1939,16 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>ატვირთვა</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
-    <value>Download volume</value>
+    <value>გადმოწერილი მოცულობა</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Total">
-    <value>Total volume</value>
+    <value>საერთო მოცულობა</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Upload">
-    <value>Upload volume</value>
+    <value>ატვირთული მოცულობა</value>
   </data>
   <data name="Home_ConnectionDetails_VpnAccelerator">
-    <value>Boosted by VPN Accelerator</value>
+    <value>აჩქარებულია VPN Accelerator-ით</value>
   </data>
   <data name="Home_ConnectionDetails_VpnAccelerator_ToolTip">
     <value>Advanced performance and stability technologies are boosting your VPN speed.</value>
@@ -2297,19 +2297,19 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>ზღუდავს თქვენს ქსელში შემომავალ ინფორმაციას. ეს პარამეტრი ფრო დაცულია, მაგრამ გამჭოლი მიერთების გამომყენებელი თამაშების მუშაობა უფრო ძნელი იქნება.</value>
   </data>
   <data name="Settings_Connection_Default">
-    <value>Default connection</value>
+    <value>ნაგულისხმევი მიერთება</value>
   </data>
   <data name="Settings_Connection_Default_Fastest">
-    <value>Fastest country</value>
+    <value>უსწრაფესი ქვეყანა</value>
   </data>
   <data name="Settings_Connection_Default_Fastest_Description">
-    <value>The best server based on your location</value>
+    <value>საუკეთესო სერვერი თქვენს მდებარეობაზე დაყრდნობით</value>
   </data>
   <data name="Settings_Connection_Default_Last">
-    <value>Last connection</value>
+    <value>ბოლო მიერთება</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
-    <value>Your most recently used connection</value>
+    <value>ბოლოს გამოყენებული მიერთება</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>პროტოკოლი</value>
@@ -2390,7 +2390,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>გაფრთხილებები</value>
   </data>
   <data name="Settings_Features_PortForwarding_Notifications_Description">
-    <value>Get notified when the port forwarding number changes</value>
+    <value>გაფრთხილება, როცა პორტის გადამისამართების რიცხვი შეიცვლება</value>
   </data>
   <data name="Settings_Features_SplitTunneling">
     <value>Split Tunneling</value>
@@ -2477,7 +2477,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>ჩაკეცვა ამოცანების პანელზე</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Set the app to launch or connect automatically</value>
+    <value>დააყენეთ, რომ ეს აპი ავტომატურად გაეშვას ან დაუკავშირდეს</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>ავტომატური განახლებები</value>
@@ -2615,13 +2615,13 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>მხარდაჭერის ცენტრი</value>
   </data>
   <data name="Settings_Theme_Dark">
-    <value>Dark</value>
+    <value>მუქი</value>
   </data>
   <data name="Settings_Theme_Default">
-    <value>Default</value>
+    <value>ნაგულისხმევი</value>
   </data>
   <data name="Settings_Theme_Light">
-    <value>Light</value>
+    <value>ღია</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>გაზარდეთ თქვენი მიერთების სიჩქარე 400%-ით წარმადობის გაუმჯობესების ტექნოლოგიების საშუალებით.</value>
@@ -2659,7 +2659,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>განბლოკეთ VPN-ის დამატებითი პარამეტრები</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_DNS">
-    <value>Connect to VPN with your custom domain name server (DNS)</value>
+    <value>მიუერთდით VPN სერვერს თქვენი საკუთარი დომენის სახელით სერვერით (DNS)</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
     <value>Access devices on your local area network (LAN) while connected</value>
@@ -2692,7 +2692,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>iOS</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Privacy">
-    <value>Security and privacy on all of your devices</value>
+    <value>უსაფრთხოება და კონფიდენციალობა ყველა თქვენს მოწყობილობაზე</value>
   </data>
   <data name="Upsell_Carousel_NetShield">
     <value>ისიამოვნეთ ურელამო ინტერნეტით</value>
@@ -2704,13 +2704,13 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>დაიცავით თქვენი მოწყობილობა მავნე პროგრამებისგან</value>
   </data>
   <data name="Upsell_Carousel_P2P">
-    <value>Unlock peer-to-peer downloads and file sharing (P2P)</value>
+    <value>განბლოკეთ პარტნიორიდან-პარტნიორამდე (P2P) გადმოწერები და ფაილების გაზიარება</value>
   </data>
   <data name="Upsell_Carousel_P2P_Discretion">
     <value>დამალეთ თქვენი IP მისამართი თქვენი ინტერნეტპროვაიდერისგან და პარტნორებისგან</value>
   </data>
   <data name="Upsell_Carousel_P2P_PortForwarding">
-    <value>Supercharge P2P speeds with port forwarding</value>
+    <value>ააჩქარეთ P2P პორტის გადამისამართებით</value>
   </data>
   <data name="Upsell_Carousel_P2P_Speed">
     <value>გაზრდილი ატვირთვის და გადმოწერის სიჩქარეები</value>
@@ -2720,7 +2720,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
   </data>
   <data name="Upsell_Carousel_SecureCore">
-    <value>Add another layer of protection to your connection</value>
+    <value>დაამატეთ თქვენს მიერთებას უსაფრთხოების კიდევ ერთი დონე</value>
   </data>
   <data name="Upsell_Carousel_SecureCore_Encryption">
     <value>გაიორმაგეთ შიფრაცია Secure Core-სთან ერთად</value>
@@ -2735,7 +2735,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>იმუშავეთ კიდევ უფრო სწრაფად (10 გბ/წმ-მდე)</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
-    <value>Increase your connection speeds by up to 400% with VPN Accelerator</value>
+    <value>გაზარდეთ თქვენი მიერთების სიჩქარე 400%-მდე VPN-ის ამაჩქარებელთან ერთად</value>
   </data>
   <data name="Upsell_Carousel_Speed_Access">
     <value>იქონიეთ წვდომა უფრო სწრაფ, ნაკლებად დატვირთულ სერვერებთან</value>
@@ -2750,7 +2750,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>სანდო აპებს და IP მისამართებს შეგიძლიათ, ინტერნეტთან პირდაპირი წვდომა მისცეთ მაშინ, როცა ყველაფერ დანარჩენს VPN-ით დაიცავთ</value>
   </data>
   <data name="Upsell_Carousel_Streaming">
-    <value>დასტრიმეთ თქვენს საყვარელ ფილმები და სერიალები</value>
+    <value>დასტრიმეთ თქვენი საყვარელი ფილმები და სერიალები</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Access">
     <value>Access geoblocked TV and movies from anywhere in the world</value>
@@ -2783,10 +2783,10 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>წვდომა Tor-ის ქსელთან დამატებითი კონფიდენციალობისთვის</value>
   </data>
   <data name="Upsell_Carousel_Tor_Access">
-    <value>წვდომა დამალულ საიტებთამ და onion საიტებთან</value>
+    <value>წვდომა დამალულ საიტებთან და onion საიტებთან</value>
   </data>
   <data name="Upsell_Carousel_Tor_Browsing">
-    <value>Browse the Tor network using your regular browser</value>
+    <value>იმუშავეთ Tor-ის ქსელში ჩვეულებრივი ბრაუზერით</value>
   </data>
   <data name="Upsell_Carousel_Tor_Protection">
     <value>დაიცავით თქვენი პირადი მონაცემები ინტერნეტში მუშაობისას</value>
@@ -2799,7 +2799,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>აუდიტი დამოუკიდებელი უსაფრთხოების ექსპერტებისგან</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
-    <value>Bypass censorship with advanced security and privacy features</value>
+    <value>დააღწიეთ თავი ცენზურას დამატებითი უსაფრთხოებისა და კონფიდენციალობის ფუნქციებით</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
     <value>{0} ქვეყანა</value>
