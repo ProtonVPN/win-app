@@ -114,7 +114,7 @@ public class VpnPlanUpdater : IVpnPlanUpdater
     private void OnResponseSuccess(VpnInfoResponse vpnInfoResponse)
     {
         VpnPlan oldPlan = _settings.VpnPlan;
-        VpnPlan newPlan = new(vpnInfoResponse.PlanTitle, vpnInfoResponse.MaxTier);
+        VpnPlan newPlan = new(vpnInfoResponse.PlanTitle, vpnInfoResponse.PlanName, vpnInfoResponse.MaxTier);
         VpnPlanChangedMessage message = new(oldPlan: oldPlan, newPlan: newPlan);
 
         if (message.HasChanged())

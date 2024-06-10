@@ -17,28 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Logic.Users.Contracts.Messages;
+namespace ProtonVPN.Client.Logic.Servers.Contracts;
 
-public readonly struct VpnPlan
+public interface IServerCountCache
 {
-    public static VpnPlan Default => new(null, null, 0);
-
-    public string? Title { get; }
-    public string? Name { get; }
-    public bool IsPaid { get; }
-    public sbyte MaxTier { get; }
-
-    public VpnPlan(string? title, string? name, sbyte maxTier)
-    {
-        Title = title;
-        Name = name;
-        IsPaid = maxTier > 0;
-        MaxTier = maxTier;
-    }
-
-    public bool IsPlus => Name is "vpnplus" or "vpn2022" or "vpnpass2023" or "vpn2024";
-
-    public bool IsUnlimited => Name == "bundle2022";
-
-    public bool IsB2B => Name is "vpnpro2023" or "vpnbiz2023" or "bundlepro2022";
+    int GetServerCount();
+    int GetCountryCount();
 }

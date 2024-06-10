@@ -36,6 +36,7 @@ public class ServersLogicModule : Module
         builder.RegisterType<DeviceLocationObserver>().AsImplementedInterfaces().AutoActivate().SingleInstance();
         builder.RegisterType<ServersObserver>().AsImplementedInterfaces().AutoActivate().SingleInstance();
         builder.RegisterType<ServersUpdater>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ServerCountCache>().AsImplementedInterfaces().SingleInstance();
         
         builder.RegisterAllMappersInAssembly<LogicalServerMapper>();
     }

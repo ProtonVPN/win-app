@@ -48,6 +48,7 @@ public class CustomDnsTests : TestSession
             .DoLogin(TestUserData.PlusUser);
 
         _homeRobot
+            .DoCloseWelcomeOverlay()
             .DoWaitForVpnStatusSubtitleLabel()
             .VerifyVpnStatusIsDisconnected()
             .VerifyConnectionCardIsInInitalState();

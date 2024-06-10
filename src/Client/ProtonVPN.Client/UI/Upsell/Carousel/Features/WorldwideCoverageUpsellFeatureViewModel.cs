@@ -33,16 +33,12 @@ namespace ProtonVPN.Client.UI.Upsell.Carousel.Features;
 public class WorldwideCoverageUpsellFeatureViewModel : UpsellFeatureViewModelBase,
     IEventMessageReceiver<ServerListChangedMessage>
 {
-    private const int SERVERS_ROUND_DOWN_THRESHOLD = 100;
-    private const int SERVERS_FALLBACK_COUNT = 4000;
-    private const int COUNTRIES_FALLBACK_COUNT = 85;
+    private readonly IServerCountCache _serverCountCache;
 
-    private readonly IServersLoader _serversLoader;
-
-    public override string? Title
+    public override string Title
         => Localizer.GetFormat("Upsell_Carousel_WorldwideCoverage",
-                Localizer.GetPluralFormat("Upsell_Carousel_WorldwideCoverage_Servers", GetServersCount()),
-                Localizer.GetPluralFormat("Upsell_Carousel_WorldwideCoverage_Countries", GetCountriesCount()));
+                Localizer.GetPluralFormat("Upsell_Carousel_WorldwideCoverage_Servers", _serverCountCache.GetServerCount()),
+                Localizer.GetPluralFormat("Upsell_Carousel_WorldwideCoverage_Countries", _serverCountCache.GetCountryCount()));
 
     public override ImageSource SmallIllustrationSource { get; } = ResourceHelper.GetIllustration("WorldwideCoverageUpsellSmallIllustrationSource");
 
@@ -52,32 +48,17 @@ public class WorldwideCoverageUpsellFeatureViewModel : UpsellFeatureViewModelBas
         ILocalizationProvider localizationProvider,
         ILogger logger,
         IIssueReporter issueReporter,
-        IServersLoader serversLoader)
+        IServerCountCache serverCountCache)
         : base(UpsellFeature.WorldwideCoverage,
                localizationProvider,
                logger,
                issueReporter)
     {
-        _serversLoader = serversLoader;
+        _serverCountCache = serverCountCache;
     }
 
     public void Receive(ServerListChangedMessage message)
     {
         ExecuteOnUIThread(() => OnPropertyChanged(nameof(Title)));
-    }
-
-    private int GetServersCount()
-    {
-        int serversCount = _serversLoader.GetServers().Count();
-        int roundedServersCount = serversCount - (serversCount % SERVERS_ROUND_DOWN_THRESHOLD);
-
-        return Math.Max(SERVERS_FALLBACK_COUNT, roundedServersCount);
-    }
-
-    private int GetCountriesCount()
-    {
-        int countriesCount = _serversLoader.GetCountryCodes().Count();
-
-        return Math.Max(COUNTRIES_FALLBACK_COUNT, countriesCount);
     }
 }

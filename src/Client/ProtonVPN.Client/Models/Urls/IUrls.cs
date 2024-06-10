@@ -41,10 +41,11 @@ public interface IUrls
     string SmartRoutingLearnMore { get; }
     string P2PLearnMore { get; }
     string TorLearnMore { get; }
-    string RpcServerProblemUrl { get; }
-    string TroubleShootingUrl { get; }
-    string ProtonStatusPageUrl { get; }
-    string SupportFormUrl { get; }
+    string RpcServerProblem { get; }
+    string Troubleshooting { get; }
+    string ProtonStatusPage { get; }
+    string SupportForm { get; }
+    string NoLogs { get; }
 
     void NavigateTo(string url);
 }

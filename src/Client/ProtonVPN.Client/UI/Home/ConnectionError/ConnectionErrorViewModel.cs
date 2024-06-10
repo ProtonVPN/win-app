@@ -90,13 +90,13 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
                 break;
 
             case VpnError.RpcServerUnavailable:
-                _urls.NavigateTo(_urls.RpcServerProblemUrl);
+                _urls.NavigateTo(_urls.RpcServerProblem);
                 break;
 
             case VpnError.NoTapAdaptersError:
             case VpnError.TapAdapterInUseError:
             case VpnError.TapRequiresUpdateError:
-                _urls.NavigateTo(_urls.TroubleShootingUrl);
+                _urls.NavigateTo(_urls.Troubleshooting);
                 break;
 
             default:

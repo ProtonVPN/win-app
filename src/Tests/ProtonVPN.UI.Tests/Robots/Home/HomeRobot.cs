@@ -55,6 +55,7 @@ public partial class HomeRobot : UIActions
     protected AutomationElement RemoveButton => ElementByName("Remove");
 
     protected Button DiscoverVpnPlusButton => ElementByAutomationId("DiscoverVpnPlusButton").AsButton();
+    protected Button GetStartedButton => ElementByAutomationId("GetStartedButton", TestConstants.ThirtySecondsTimeout).AsButton();
 
     protected AutomationElement GetRecentRow(string countryName = null)
     {

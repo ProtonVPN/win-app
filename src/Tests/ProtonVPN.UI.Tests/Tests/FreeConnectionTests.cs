@@ -53,6 +53,7 @@ public class FreeConnectionTests : TestSession
             .DoLogin(TestUserData.FreeUser);
 
         _homeRobot
+            .DoCloseWelcomeOverlay()
             .DoWaitForVpnStatusSubtitleLabel()
             .VerifyVpnStatusIsDisconnected()
             .VerifyConnectionCardIsInInitalStateForFreeUser();

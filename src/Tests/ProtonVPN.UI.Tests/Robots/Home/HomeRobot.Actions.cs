@@ -84,6 +84,12 @@ public partial class HomeRobot
         return this;
     }
 
+    public HomeRobot DoCloseWelcomeOverlay()
+    {
+        GetStartedButton.FocusAndClick();
+        return this;
+    }
+
     public HomeRobot DoReportBrowsingSpeedIssue()
     {
         HelpButton.FocusAndClick();

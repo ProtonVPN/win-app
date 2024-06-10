@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,36 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Models.Activation;
-using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
-namespace ProtonVPN.Client.UI.Dialogs.Overlays;
+namespace ProtonVPN.Client.UI.Dialogs.Overlays.Welcome;
 
-public partial class TroubleshootingOverlayViewModel : OverlayViewModelBase
+public class WelcomeToVpnUnlimitedOverlayViewModel : OverlayViewModelBase
 {
-    private readonly IUrls _urls;
-
-    public TroubleshootingOverlayViewModel(IUrls urls, ILocalizationProvider localizationProvider, ILogger logger,
+    public WelcomeToVpnUnlimitedOverlayViewModel(ILocalizationProvider localizationProvider, ILogger logger,
         IIssueReporter issueReporter, IOverlayActivator overlayActivator) : base(localizationProvider, logger,
         issueReporter, overlayActivator)
     {
-        _urls = urls;
-    }
-
-    [RelayCommand]
-    public void OpenStatusPage()
-    {
-        _urls.NavigateTo(_urls.ProtonStatusPage);
-    }
-
-    [RelayCommand]
-    public void ContactUs()
-    {
-        _urls.NavigateTo(_urls.SupportForm);
     }
 }

@@ -2744,6 +2744,59 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Dialogs_Troubleshooting_DidNotWork" xml:space="preserve">
     <value>Didn't work?</value>
   </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Title" xml:space="preserve">
+    <value>Welcome to VPN Plus</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely" xml:space="preserve">
+    <value>Browse freely from anywhere</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One" xml:space="preserve">
+    <value>Hide your virtual location and experience the internet from any one of our {0} available country.</value>
+    <comment>Description for welcome to VPN Plus popup. {0} is a placeholder for the number of countries (eg. one of our 1 available country).</comment>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other" xml:space="preserve">
+    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+    <comment>Description for welcome to VPN Plus popup. {0} is a placeholder for the number of countries (eg. one of our 80 available countries).</comment>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices" xml:space="preserve">
+    <value>Protect 10 devices at once</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description" xml:space="preserve">
+    <value>Extend VPN protection to your desktop, mobile, browser, TV, and more. </value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream" xml:space="preserve">
+    <value>Stream in high resolution</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream_Description" xml:space="preserve">
+    <value>Watch movies and TV shows from around the world, without compromising on speed or quality.</value>
+  </data>
+  <data name="Dialogs_Common_GetStarted" xml:space="preserve">
+    <value>Get started</value>
+  </data>
+  <data name="Dialogs_WelcomeToProton_Title" xml:space="preserve">
+    <value>Welcome to Proton VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_Description" xml:space="preserve">
+    <value>Browse privately, access blocked content, and enjoy digital freedom with no data or speed limits.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs" xml:space="preserve">
+    <value>Certified no-logs VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description" xml:space="preserve">
+    <value>Your activity is protected by Swiss privacy laws. We'll never track you online or share your information with third parties.</value>
+  </data>
+  <data name="Dialogs_WelcomeB2B_Description" xml:space="preserve">
+    <value>Simple. Seamless. Secure. Protect yourself online and securely access your organization's sites, software, and files.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Title" xml:space="preserve">
+    <value>Welcome to Proton Unlimited</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description" xml:space="preserve">
+    <value>Congratulations! You unlocked premium security and performance features on all Proton services.
+
+Enjoy the best of Proton privacy.</value>
+  </data>
+
   <data name="Connections_Countries_One" xml:space="preserve">
     <value>Country ({0})</value>
     <comment>{0} is a placeholder for the number of countries (eg. Country (1)). This string is used when the number is 1.</comment>

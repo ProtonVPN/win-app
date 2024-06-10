@@ -148,6 +148,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-split-tunneling-large.png" />
     <BitmapImage x:Key="AdvancedSettingsUpsellLargeIllustrationSource"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-customisation-large.png" />
+    <BitmapImage x:Key="WelcomeFreeHeaderIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/welcome-free-header.png" />
+    <BitmapImage x:Key="WelcomePlusHeaderIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/welcome-plus-header.png" />
+    <BitmapImage x:Key="WelcomeUnlimitedHeaderIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/welcome-unlimited-header.png" />
+    <BitmapImage x:Key="WelcomeB2BHeaderIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/welcome-b2b-header.png" />
+    <BitmapImage x:Key="CertifiedNoLogsIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/certified-no-logs.png" />
 
     <SvgImageSource x:Key="WorldMapIllustrationSource"
                     UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/world-map.svg" />

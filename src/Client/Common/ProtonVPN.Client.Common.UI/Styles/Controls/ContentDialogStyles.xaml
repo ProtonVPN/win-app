@@ -60,6 +60,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Thickness x:Key="ContentDialogTitleMargin">0,2,0,0</Thickness>
     <Thickness x:Key="ContentDialogContentMargin">0,-24,0,0</Thickness>
+    <Visibility x:Key="ContentDialogCloseButtonVisibility">Visible</Visibility>
 
     <Style BasedOn="{StaticResource OverlayContentDialogStyle}" TargetType="ContentDialog" />
 
@@ -73,7 +74,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="CloseButtonStyle" Value="{StaticResource SecondaryButtonStyle}" />
         <Setter Property="CornerRadius" Value="{StaticResource ContentDialogCornerRadius}" />
         <Setter Property="Padding" Value="{StaticResource ContentDialogPadding}" />
-        <Setter Property="Width" Value="{StaticResource ContentDialogWidth}" />
+        <Setter Property="Width" Value="{ThemeResource ContentDialogWidth}" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="AutomationProperties.AutomationId" Value="OverlayMessage" />
         <Setter Property="AutomationProperties.LandmarkType" Value="Custom" />
         <Setter Property="AutomationProperties.LocalizedLandmarkType" Value="{Binding Title, RelativeSource={RelativeSource Mode=Self}}" />
@@ -97,7 +99,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     Style="{StaticResource TransparentButtonStyle}" />
 
                             <Border x:Name="BackgroundElement"
-                                    Width="{StaticResource ContentDialogWidth}"
+                                    Width="{ThemeResource ContentDialogWidth}"
                                     Margin="{StaticResource ContentDialogMargin}"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
@@ -162,6 +164,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                             VerticalAlignment="Top"
                                                             AutomationProperties.AutomationId="CloseContentDialogButton"
                                                             Command="{TemplateBinding CloseButtonCommand}"
+                                                            Visibility="{ThemeResource ContentDialogCloseButtonVisibility}"
                                                             IsEnabled="True">
                                             <custom:GhostButton.LeftIcon>
                                                 <pathicons:Cross />
@@ -177,7 +180,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                       Padding="0,0,12,0"
                                                       HorizontalScrollBarVisibility="Disabled"
                                                       IsTabStop="False"
-                                                      VerticalScrollBarVisibility="Auto">
+                                                      VerticalScrollBarVisibility="{Binding (ScrollViewer.VerticalScrollBarVisibility), RelativeSource={RelativeSource Mode=TemplatedParent}}">
                                             <ContentPresenter x:Name="Content"
                                                               Content="{TemplateBinding Content}"
                                                               ContentTemplate="{TemplateBinding ContentTemplate}"

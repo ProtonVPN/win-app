@@ -42,6 +42,7 @@ using ProtonVPN.Client.UI.Features.NetShield;
 using ProtonVPN.Client.UI.Features.KillSwitch;
 using ProtonVPN.Client.UI.Features.PortForwarding;
 using ProtonVPN.Client.UI.Features.SplitTunneling;
+using ProtonVPN.Client.UI.Dialogs.Overlays.Welcome;
 using ProtonVPN.Client.UI.Connections.Countries;
 using ProtonVPN.Client.UI.Connections.P2P;
 using ProtonVPN.Client.UI.Connections.SecureCore;
@@ -191,6 +192,10 @@ public class ViewMapper : IViewMapper
         ConfigureOverlay<FreeConnectionsOverlayViewModel, FreeConnectionsOverlayDialog>();
         ConfigureOverlay<ChangeServerOverlayViewModel, ChangeServerOverlayDialog>();
         ConfigureOverlay<TroubleshootingOverlayViewModel, TroubleshootingOverlayDialog>();
+        ConfigureOverlay<WelcomeOverlayViewModel, WelcomeOverlayDialog>();
+        ConfigureOverlay<WelcomeToVpnPlusOverlayViewModel, WelcomeToVpnPlusOverlayDialog>();
+        ConfigureOverlay<WelcomeToVpnUnlimitedOverlayViewModel, WelcomeToVpnUnlimitedOverlayDialog>();
+        ConfigureOverlay<WelcomeToVpnB2BOverlayViewModel, WelcomeToVpnB2BOverlayDialog>();
     }
 
     protected void ConfigureDialogs()

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -25,28 +25,22 @@ using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
-namespace ProtonVPN.Client.UI.Dialogs.Overlays;
+namespace ProtonVPN.Client.UI.Dialogs.Overlays.Welcome;
 
-public partial class TroubleshootingOverlayViewModel : OverlayViewModelBase
+public partial class WelcomeOverlayViewModel : OverlayViewModelBase
 {
     private readonly IUrls _urls;
 
-    public TroubleshootingOverlayViewModel(IUrls urls, ILocalizationProvider localizationProvider, ILogger logger,
-        IIssueReporter issueReporter, IOverlayActivator overlayActivator) : base(localizationProvider, logger,
+    public WelcomeOverlayViewModel(ILocalizationProvider localizationProvider, ILogger logger,
+        IIssueReporter issueReporter, IOverlayActivator overlayActivator, IUrls urls) : base(localizationProvider, logger,
         issueReporter, overlayActivator)
     {
         _urls = urls;
     }
 
     [RelayCommand]
-    public void OpenStatusPage()
+    public void OpenNoLogsUrl()
     {
-        _urls.NavigateTo(_urls.ProtonStatusPage);
-    }
-
-    [RelayCommand]
-    public void ContactUs()
-    {
-        _urls.NavigateTo(_urls.SupportForm);
+        _urls.NavigateTo(_urls.NoLogs);
     }
 }

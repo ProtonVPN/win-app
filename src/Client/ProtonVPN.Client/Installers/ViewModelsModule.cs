@@ -27,6 +27,7 @@ using ProtonVPN.Client.UI.Connections.P2P;
 using ProtonVPN.Client.UI.Connections.SecureCore;
 using ProtonVPN.Client.UI.Connections.Tor;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
+using ProtonVPN.Client.UI.Dialogs.Overlays.Welcome;
 using ProtonVPN.Client.UI.Features.KillSwitch;
 using ProtonVPN.Client.UI.Features.NetShield;
 using ProtonVPN.Client.UI.Features.PortForwarding;
@@ -116,6 +117,10 @@ public class ViewModelsModule : Module
         RegisterViewModel<TwoFactorFormViewModel>(builder);
         RegisterViewModel<LoadingFormViewModel>(builder);
         RegisterViewModel<SsoLoginOverlayViewModel>(builder);
+        RegisterViewModel<WelcomeOverlayViewModel>(builder);
+        RegisterViewModel<WelcomeToVpnPlusOverlayViewModel>(builder);
+        RegisterViewModel<WelcomeToVpnUnlimitedOverlayViewModel>(builder);
+        RegisterViewModel<WelcomeToVpnB2BOverlayViewModel>(builder);
         RegisterViewModel<ConnectionErrorViewModel>(builder);
         RegisterViewModel<UpsellBannerViewModel>(builder);
         RegisterViewModel<DeveloperToolsViewModel>(builder);

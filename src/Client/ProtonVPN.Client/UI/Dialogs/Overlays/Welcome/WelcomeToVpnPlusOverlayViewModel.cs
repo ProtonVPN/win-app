@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,36 +17,32 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Models.Activation;
-using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
-namespace ProtonVPN.Client.UI.Dialogs.Overlays;
+namespace ProtonVPN.Client.UI.Dialogs.Overlays.Welcome;
 
-public partial class TroubleshootingOverlayViewModel : OverlayViewModelBase
+public class WelcomeToVpnPlusOverlayViewModel : OverlayViewModelBase, IEventMessageReceiver<ServerListChangedMessage>
 {
-    private readonly IUrls _urls;
+    private readonly IServerCountCache _serverCountCache;
+    
+    public int TotalCountries => _serverCountCache.GetCountryCount();
 
-    public TroubleshootingOverlayViewModel(IUrls urls, ILocalizationProvider localizationProvider, ILogger logger,
-        IIssueReporter issueReporter, IOverlayActivator overlayActivator) : base(localizationProvider, logger,
+    public WelcomeToVpnPlusOverlayViewModel(ILocalizationProvider localizationProvider, ILogger logger,
+        IIssueReporter issueReporter, IOverlayActivator overlayActivator, IServerCountCache serverCountCache) : base(localizationProvider, logger,
         issueReporter, overlayActivator)
     {
-        _urls = urls;
+        _serverCountCache = serverCountCache;
     }
 
-    [RelayCommand]
-    public void OpenStatusPage()
+    public void Receive(ServerListChangedMessage message)
     {
-        _urls.NavigateTo(_urls.ProtonStatusPage);
-    }
-
-    [RelayCommand]
-    public void ContactUs()
-    {
-        _urls.NavigateTo(_urls.SupportForm);
+        ExecuteOnUIThread(() => OnPropertyChanged(nameof(TotalCountries)));
     }
 }
