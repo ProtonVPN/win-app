@@ -17,17 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Autofac;
+using Microsoft.Toolkit.Uwp.Notifications;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Notifications.Contracts;
 
-namespace ProtonVPN.Client.Notifications.Installers;
+namespace ProtonVPN.Client.Notifications;
 
-public class NotificationsModule : Module
+public class NotificationActivationHandler
 {
-    protected override void Load(ContainerBuilder builder)
+    private readonly IEventMessageSender _eventMessageSender;
+
+    public NotificationActivationHandler(IEventMessageSender eventMessageSender)
     {
-        builder.RegisterType<PortForwardingNewPortNotificationSender>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<ConnectionStatusNotificationSender>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<SubscriptionExpiredNotificationSender>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<NotificationActivationHandler>().AsImplementedInterfaces().SingleInstance().AutoActivate();
+        _eventMessageSender = eventMessageSender;
+        ToastNotificationManagerCompat.OnActivated += OnActivated;
+    }
+
+    private void OnActivated(ToastNotificationActivatedEventArgsCompat e)
+    {
+        _eventMessageSender.Send(new NotificationActivationMessage { Argument = e.Argument });
     }
 }

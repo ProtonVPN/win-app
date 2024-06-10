@@ -17,17 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Autofac;
+namespace ProtonVPN.Client.Notifications.Contracts;
 
-namespace ProtonVPN.Client.Notifications.Installers;
-
-public class NotificationsModule : Module
+public class NotificationActivationMessage
 {
-    protected override void Load(ContainerBuilder builder)
-    {
-        builder.RegisterType<PortForwardingNewPortNotificationSender>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<ConnectionStatusNotificationSender>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<SubscriptionExpiredNotificationSender>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<NotificationActivationHandler>().AsImplementedInterfaces().SingleInstance().AutoActivate();
-    }
+    public required string Argument { get; init; }
 }

@@ -121,9 +121,4 @@ public partial class ChangeServerOverlayViewModel : OverlayViewModelBase,
     {
         _urls.NavigateTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSources.ChangeServer));
     }
-
-    private bool CanUpgradePlan()
-    {
-        return !_changeServerModerator.CanChangeServer();
-    }
 }

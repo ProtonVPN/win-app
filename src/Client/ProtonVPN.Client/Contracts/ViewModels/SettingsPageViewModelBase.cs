@@ -28,6 +28,7 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Settings.Contracts;
@@ -42,7 +43,8 @@ namespace ProtonVPN.Client.Contracts.ViewModels;
 
 public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMainViewNavigator>,
     IEventMessageReceiver<ConnectionStatusChanged>,
-    IEventMessageReceiver<SettingChangedMessage>
+    IEventMessageReceiver<SettingChangedMessage>,
+    IEventMessageReceiver<VpnPlanChangedMessage>
 {
     protected readonly IOverlayActivator OverlayActivator;
     protected readonly ISettings Settings;
@@ -53,7 +55,7 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
         ? "Common_Actions_Reconnect"
         : "Settings_Common_Apply");
 
-    public SettingsPageViewModelBase(IMainViewNavigator viewNavigator,
+    protected SettingsPageViewModelBase(IMainViewNavigator viewNavigator,
         ILocalizationProvider localizationProvider,
         IOverlayActivator overlayActivator,
         ISettings settings,
@@ -143,8 +145,13 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
         });
     }
 
-    public override async Task<bool> OnNavigatingFromAsync()
+    public override async Task<bool> OnNavigatingFromAsync(bool forceNavigation = false)
     {
+        if (forceNavigation)
+        {
+            return true;
+        }
+
         if (!CanApply()) // No changes made, simply leave page
         {
             return true;
@@ -236,5 +243,10 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
         base.OnLanguageChanged();
 
         OnPropertyChanged(nameof(ApplyCommandText));
+    }
+
+    public void Receive(VpnPlanChangedMessage message)
+    {
+        ExecuteOnUIThread(RetrieveSettings);
     }
 }

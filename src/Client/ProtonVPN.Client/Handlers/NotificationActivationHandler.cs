@@ -17,17 +17,23 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Autofac;
+using ProtonVPN.Client.Contracts;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Notifications.Contracts;
 
-namespace ProtonVPN.Client.Notifications.Installers;
+namespace ProtonVPN.Client.Handlers;
 
-public class NotificationsModule : Module
+public class NotificationActivationHandler : IHandler, IEventMessageReceiver<NotificationActivationMessage>
 {
-    protected override void Load(ContainerBuilder builder)
+    private readonly IMainWindowActivator _mainWindowActivator;
+
+    public NotificationActivationHandler(IMainWindowActivator mainWindowActivator)
     {
-        builder.RegisterType<PortForwardingNewPortNotificationSender>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<ConnectionStatusNotificationSender>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<SubscriptionExpiredNotificationSender>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<NotificationActivationHandler>().AsImplementedInterfaces().SingleInstance().AutoActivate();
+        _mainWindowActivator = mainWindowActivator;
+    }
+
+    public void Receive(NotificationActivationMessage message)
+    {
+        _mainWindowActivator.Activate();
     }
 }

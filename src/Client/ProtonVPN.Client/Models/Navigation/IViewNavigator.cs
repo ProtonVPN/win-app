@@ -36,7 +36,7 @@ public interface IViewNavigator
 
     event NavigatedEventHandler Navigated;
 
-    Task<bool> GoBackAsync();
+    Task<bool> GoBackAsync(bool forceNavigation = false);
 
     Task<bool> NavigateToAsync(string pageKey, object? parameter = null, bool clearNavigation = false, bool forceNavigation = false);
 
