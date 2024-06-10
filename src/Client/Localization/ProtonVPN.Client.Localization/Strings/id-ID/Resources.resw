@@ -1727,10 +1727,10 @@ Smart Routing pada umumnya digunakan untuk menghindari undang-undang anti-privas
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
   <data name="Format_Time_Day_Other">
-    <value>{0} days</value>
+    <value>{0} hari</value>
   </data>
   <data name="Format_Time_DayHour_Other">
-    <value>{0} days {1} hr</value>
+    <value>{0} hari {1} jam</value>
   </data>
   <data name="Format_Time_Hours">
     <value>{0} jam</value>
@@ -1890,10 +1890,10 @@ Smart Routing pada umumnya digunakan untuk menghindari undang-undang anti-privas
     <value>Volume unggah</value>
   </data>
   <data name="Home_ConnectionDetails_VpnAccelerator">
-    <value>Boosted by VPN Accelerator</value>
+    <value>Diperkuat dengan VPN Accelerator</value>
   </data>
   <data name="Home_ConnectionDetails_VpnAccelerator_ToolTip">
-    <value>Advanced performance and stability technologies are boosting your VPN speed.</value>
+    <value>Teknologi dengan performa dan stabilitas yang lebih maju memperkuat kecepatan VPN. </value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>IP VPN</value>

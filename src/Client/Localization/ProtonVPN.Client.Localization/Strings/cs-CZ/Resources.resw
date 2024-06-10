@@ -181,7 +181,7 @@
     <value>Zapnuto</value>
   </data>
   <data name="Common_States_Updating">
-    <value>Updating...</value>
+    <value>Aktualizuji...</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN se nepodařilo načíst ověřovací certifikát kvůli problému se sítí.</value>
@@ -1889,28 +1889,28 @@ Smart Routing se obvykle používá k obcházení zákonů potlačujících ochr
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
   <data name="Format_Time_Day_One">
-    <value>{0} day</value>
+    <value>{0} den</value>
   </data>
   <data name="Format_Time_Day_Few">
-    <value>{0} days</value>
+    <value>{0} dny</value>
   </data>
   <data name="Format_Time_Day_Many">
-    <value>{0} days</value>
+    <value>{0} dnů</value>
   </data>
   <data name="Format_Time_Day_Other">
-    <value>{0} days</value>
+    <value>{0} dnů</value>
   </data>
   <data name="Format_Time_DayHour_One">
-    <value>{0} day {1} hr</value>
+    <value>{0} den {1} h</value>
   </data>
   <data name="Format_Time_DayHour_Few">
-    <value>{0} days {1} hr</value>
+    <value>{0} dny {1} h</value>
   </data>
   <data name="Format_Time_DayHour_Many">
-    <value>{0} days {1} hr</value>
+    <value>{0} dnů {1} h</value>
   </data>
   <data name="Format_Time_DayHour_Other">
-    <value>{0} days {1} hr</value>
+    <value>{0} dnů {1} h</value>
   </data>
   <data name="Format_Time_Hours">
     <value>{0} hod.</value>
@@ -1984,7 +1984,7 @@ Smart Routing se obvykle používá k obcházení zákonů potlačujících ochr
     <value>Připojování k...</value>
   </data>
   <data name="Home_ConnectionCard_Header_DefaultConnection">
-    <value>Default connection</value>
+    <value>Výchozí připojení</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
     <value>Bezplatné připojení</value>
@@ -2073,7 +2073,7 @@ Smart Routing se obvykle používá k obcházení zákonů potlačujících ochr
     <value>Boosted by VPN Accelerator</value>
   </data>
   <data name="Home_ConnectionDetails_VpnAccelerator_ToolTip">
-    <value>Advanced performance and stability technologies are boosting your VPN speed.</value>
+    <value>Pokročilé technologie pro zvýšení výkonu a stability zvyšující rychlost VPN.</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>VPN IP</value>
@@ -2431,19 +2431,19 @@ Smart Routing se obvykle používá k obcházení zákonů potlačujících ochr
     <value>Omezuje data vstupující do vaší sítě. Tato volba je bezpečnější, ale může ztížit herní připojení typu peer-to-peer.</value>
   </data>
   <data name="Settings_Connection_Default">
-    <value>Default connection</value>
+    <value>Výchozí připojení</value>
   </data>
   <data name="Settings_Connection_Default_Fastest">
-    <value>Fastest country</value>
+    <value>Nejrychlejší země</value>
   </data>
   <data name="Settings_Connection_Default_Fastest_Description">
-    <value>The best server based on your location</value>
+    <value>Nejlepší server na základě vaší polohy</value>
   </data>
   <data name="Settings_Connection_Default_Last">
-    <value>Last connection</value>
+    <value>Poslední připojení</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
-    <value>Your most recently used connection</value>
+    <value>Vaše poslední použité připojení</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokol</value>
@@ -2587,7 +2587,7 @@ Smart Routing se obvykle používá k obcházení zákonů potlačujících ochr
     <value>Automatické připojení</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>Automatically connects to your default connection when Proton VPN opens.</value>
+    <value>Po otevření Proton VPN se automaticky připojí k vašemu výchozímu připojení.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>Nejrychlejší připojení</value>
@@ -2749,13 +2749,13 @@ Smart Routing se obvykle používá k obcházení zákonů potlačujících ochr
     <value>Centrum podpory</value>
   </data>
   <data name="Settings_Theme_Dark">
-    <value>Dark</value>
+    <value>Tmavý</value>
   </data>
   <data name="Settings_Theme_Default">
-    <value>Default</value>
+    <value>Výchozí</value>
   </data>
   <data name="Settings_Theme_Light">
-    <value>Light</value>
+    <value>Světlý</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>Zvyšte rychlost vašeho připojení až o 400% pomocí technologií zvyšujících výkon.</value>

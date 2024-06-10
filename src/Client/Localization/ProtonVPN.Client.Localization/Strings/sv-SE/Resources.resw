@@ -1676,7 +1676,7 @@ Smart Routing används vanligtvis för att komma runt antiintegritetslagar och a
     <value>Tor</value>
   </data>
   <data name="Dialogs_Troubleshooting_Antivirus">
-    <value>Turn off antivirus or firewall software</value>
+    <value>Stäng av antivirus- eller brandväggsprogram</value>
   </data>
   <data name="Dialogs_Troubleshooting_Antivirus_Description">
     <value>Dessa program kan störa VPN-anslutningar.</value>
@@ -2290,7 +2290,7 @@ Smart Routing används vanligtvis för att komma runt antiintegritetslagar och a
     <value>Moderate (type 2)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
-    <value>Some restriction on data entering your network. This option is best for online video gaming.</value>
+    <value>Vissa begränsningar för data som kommer in i ditt nätverk. Detta alternativ är bäst för videospel online.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict">
     <value>Strikt (typ 3)</value>

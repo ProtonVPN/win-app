@@ -1471,10 +1471,10 @@
     <value>Vous avez atteint le nombre maximum de changements de serveurs gratuits pour l'instant.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
-    <value>Proton Free vous connecte automatiquement au serveur gratuit le plus rapide dans {0} pays disponible. C'est en général le serveur le plus proche de votre localisation.</value>
+    <value>Proton Free vous connecte automatiquement au serveur gratuit le plus rapide dans {0} pays disponible. C'est en général le serveur le plus proche de votre localisation géographique.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
-    <value>Proton Free vous connecte automatiquement au serveur gratuit le plus rapide parmi les {0} disponibles de votre pays. C'est en général le serveur le plus proche de votre localisation.</value>
+    <value>Proton Free vous connecte automatiquement au serveur gratuit le plus rapide parmi les {0} disponibles de votre pays. C'est en général le serveur le plus proche de votre localisation géographique.</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_One">
     <value>Pays avec des serveurs gratuits ({0})</value>

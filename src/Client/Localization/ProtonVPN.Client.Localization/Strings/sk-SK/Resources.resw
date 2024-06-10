@@ -150,11 +150,11 @@
     <value>Odpojiť</value>
   </data>
   <data name="Common_Actions_DisconnectFrom">
-    <value>Odpojiť z lokality {0}</value>
+    <value>Odpojiť od {0}</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Enable">
-    <value>Zapnúť</value>
+    <value>Povoliť</value>
   </data>
   <data name="Common_Actions_Reconnect">
     <value>Znova pripojiť</value>
@@ -181,7 +181,7 @@
     <value>Zapnuté</value>
   </data>
   <data name="Common_States_Updating">
-    <value>Updating...</value>
+    <value>Aktualizácia...</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN sa nepodarilo načítať overovací certifikát kvôli problému so sieťou.</value>
@@ -1689,7 +1689,7 @@ Vysoká latencia môže spomaliť vaše pripojenie.</value>
     <value>Niečo sa pokazilo</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Fail_Description">
-    <value>Vašu správu sme nemohli odoslať. Skontrolujte prosím svoje pripojenie a skúste to znova.</value>
+    <value>Vašu správu sme nemohli odoslať. Skontrolujte svoje pripojenie a skúste to znova, prosím.</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_RetryAction">
     <value>Skúsiť znova</value>
@@ -1820,7 +1820,7 @@ Smart Routing sa zvyčajne používa na obchádzanie zákonov proti ochrane súk
     <value>Pripravujeme pre vás VPN. Malo by to trvať len chvíľu.</value>
   </data>
   <data name="Dialogs_Welcome_Title">
-    <value>Víta vás Proton VPN</value>
+    <value>Vitajte v Proton VPN</value>
   </data>
   <data name="Exit_Confirmation_Message">
     <value>Budete odpojení od VPN.</value>
@@ -1889,28 +1889,28 @@ Smart Routing sa zvyčajne používa na obchádzanie zákonov proti ochrane súk
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
   <data name="Format_Time_Day_One">
-    <value>{0} day</value>
+    <value>{0} deň</value>
   </data>
   <data name="Format_Time_Day_Few">
-    <value>{0} days</value>
+    <value>{0} dní</value>
   </data>
   <data name="Format_Time_Day_Many">
-    <value>{0} days</value>
+    <value>{0} dní</value>
   </data>
   <data name="Format_Time_Day_Other">
-    <value>{0} days</value>
+    <value>{0} dní</value>
   </data>
   <data name="Format_Time_DayHour_One">
-    <value>{0} day {1} hr</value>
+    <value>{0} deň {1} h</value>
   </data>
   <data name="Format_Time_DayHour_Few">
-    <value>{0} days {1} hr</value>
+    <value>{0} dní {1} h</value>
   </data>
   <data name="Format_Time_DayHour_Many">
-    <value>{0} days {1} hr</value>
+    <value>{0} dní {1} h</value>
   </data>
   <data name="Format_Time_DayHour_Other">
-    <value>{0} days {1} hr</value>
+    <value>{0} dní {1} h</value>
   </data>
   <data name="Format_Time_Hours">
     <value>{0} h</value>
@@ -1984,7 +1984,7 @@ Smart Routing sa zvyčajne používa na obchádzanie zákonov proti ochrane súk
     <value>Pripája sa ku...</value>
   </data>
   <data name="Home_ConnectionCard_Header_DefaultConnection">
-    <value>Default connection</value>
+    <value>Predvolené pripojenie</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
     <value>Bezplatné pripojenie</value>
@@ -2061,19 +2061,19 @@ Smart Routing sa zvyčajne používa na obchádzanie zákonov proti ochrane súk
     <value>Nahrať</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
-    <value>Download volume</value>
+    <value>Stiahnutý objem dát</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Total">
-    <value>Total volume</value>
+    <value>Celkový objem</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Upload">
-    <value>Upload volume</value>
+    <value>Nahraný objem dát</value>
   </data>
   <data name="Home_ConnectionDetails_VpnAccelerator">
-    <value>Boosted by VPN Accelerator</value>
+    <value>Zrýchlené pomocou VPN Accelerator</value>
   </data>
   <data name="Home_ConnectionDetails_VpnAccelerator_ToolTip">
-    <value>Advanced performance and stability technologies are boosting your VPN speed.</value>
+    <value>Pokročilé technológie na zvýšenie výkonu a stability zvyšujú rýchlosť siete VPN.</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>VPN IP</value>
@@ -2431,19 +2431,19 @@ Smart Routing sa zvyčajne používa na obchádzanie zákonov proti ochrane súk
     <value>Obmedzí údaje vstupujúce do siete. Táto možnosť je bezpečnejšia, ale môže sťažovať peer-to-peer hranie.</value>
   </data>
   <data name="Settings_Connection_Default">
-    <value>Default connection</value>
+    <value>Predvolené pripojenie</value>
   </data>
   <data name="Settings_Connection_Default_Fastest">
-    <value>Fastest country</value>
+    <value>Najrýchlejšia krajina</value>
   </data>
   <data name="Settings_Connection_Default_Fastest_Description">
-    <value>The best server based on your location</value>
+    <value>Najlepší server na základe vašej polohy</value>
   </data>
   <data name="Settings_Connection_Default_Last">
-    <value>Last connection</value>
+    <value>Posledné pripojenie</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
-    <value>Your most recently used connection</value>
+    <value>Vaše naposledy použité pripojenie</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokol</value>
@@ -2587,7 +2587,7 @@ Smart Routing sa zvyčajne používa na obchádzanie zákonov proti ochrane súk
     <value>Automaticky pripojiť</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>Automatically connects to your default connection when Proton VPN opens.</value>
+    <value>Po otvorení služby Proton VPN sa automaticky pripojí k vášmu predvolenému pripojeniu.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>Najrýchlejšie pripojenie</value>
@@ -2749,13 +2749,13 @@ Smart Routing sa zvyčajne používa na obchádzanie zákonov proti ochrane súk
     <value>Centrum podpory</value>
   </data>
   <data name="Settings_Theme_Dark">
-    <value>Dark</value>
+    <value>Tmavá</value>
   </data>
   <data name="Settings_Theme_Default">
-    <value>Default</value>
+    <value>Predvolená</value>
   </data>
   <data name="Settings_Theme_Light">
-    <value>Light</value>
+    <value>Svetlá</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>Zvýšte rýchlosť vášho pripojenia až o 400% pomocou technológií zvyšujúcich výkon.</value>

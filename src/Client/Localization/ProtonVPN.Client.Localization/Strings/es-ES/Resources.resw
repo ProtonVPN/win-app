@@ -2152,7 +2152,7 @@ El enrutamiento inteligente se usa normalmente para evitar las leyes contra la p
     <value>Establezca este número en su aplicación BitTorrent para obtener una mayor velocidad.</value>
   </data>
   <data name="Server_Fastest_Free">
-    <value>Servidor gratuito mais rápido</value>
+    <value>Servidor gratuito más rápido</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>

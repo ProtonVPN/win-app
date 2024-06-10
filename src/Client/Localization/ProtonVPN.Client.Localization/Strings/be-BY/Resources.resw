@@ -1901,16 +1901,16 @@ Smart Routing звычайна выкарыстоўваюць для абыхо�
     <value>{0} дзён</value>
   </data>
   <data name="Format_Time_DayHour_One">
-    <value>{0} day {1} hr</value>
+    <value>{0} дзень {1} гадз</value>
   </data>
   <data name="Format_Time_DayHour_Few">
-    <value>{0} days {1} hr</value>
+    <value>{0} дні {1} гадз</value>
   </data>
   <data name="Format_Time_DayHour_Many">
-    <value>{0} days {1} hr</value>
+    <value>{0} дзён {1} гадз</value>
   </data>
   <data name="Format_Time_DayHour_Other">
-    <value>{0} days {1} hr</value>
+    <value>{0} дзён {1} гадз</value>
   </data>
   <data name="Format_Time_Hours">
     <value>{0} гадз</value>
@@ -2070,10 +2070,10 @@ Smart Routing звычайна выкарыстоўваюць для абыхо�
     <value>Запампаваны аб'ём</value>
   </data>
   <data name="Home_ConnectionDetails_VpnAccelerator">
-    <value>Павялічана з дапамогай VPN Accelerator</value>
+    <value>Паскорана з дапамогай VPN Accelerator</value>
   </data>
   <data name="Home_ConnectionDetails_VpnAccelerator_ToolTip">
-    <value>Удасканаленая прадукцыйнасць і стабільнасць для павелічэння хуткасці вашага падключэння па VPN.</value>
+    <value>Удасканаленая прадукцыйнасць і стабільнасць для паскарэння хуткасці вашага падключэння па VPN.</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>IP VPN</value>

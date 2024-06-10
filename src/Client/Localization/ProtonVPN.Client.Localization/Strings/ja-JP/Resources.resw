@@ -181,7 +181,7 @@
     <value>オン</value>
   </data>
   <data name="Common_States_Updating">
-    <value>Updating...</value>
+    <value>更新中...</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN はネットワークの問題によりクライアント証明書の取得に失敗しました。</value>
@@ -1725,10 +1725,10 @@ Smart Routingは通常、反プライバシー法やその他の形式の検閲�
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
   <data name="Format_Time_Day_Other">
-    <value>{0} days</value>
+    <value>{0} 日</value>
   </data>
   <data name="Format_Time_DayHour_Other">
-    <value>{0} days {1} hr</value>
+    <value>{0} 日 {1} 時間</value>
   </data>
   <data name="Format_Time_Hours">
     <value>{0} 時間</value>
@@ -1802,7 +1802,7 @@ Smart Routingは通常、反プライバシー法やその他の形式の検閲�
     <value>接続中：...</value>
   </data>
   <data name="Home_ConnectionCard_Header_DefaultConnection">
-    <value>Default connection</value>
+    <value>デフォルト接続</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
     <value>無料接続</value>
@@ -1879,19 +1879,19 @@ Smart Routingは通常、反プライバシー法やその他の形式の検閲�
     <value>アップロード</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
-    <value>Download volume</value>
+    <value>ダウンロード量</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Total">
-    <value>Total volume</value>
+    <value>トータル量</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Upload">
-    <value>Upload volume</value>
+    <value>アップロード量</value>
   </data>
   <data name="Home_ConnectionDetails_VpnAccelerator">
-    <value>Boosted by VPN Accelerator</value>
+    <value>VPNアクセラレータによる強化</value>
   </data>
   <data name="Home_ConnectionDetails_VpnAccelerator_ToolTip">
-    <value>Advanced performance and stability technologies are boosting your VPN speed.</value>
+    <value>高度なパフォーマンスと安定性のテクノロジーにより、VPN の速度が向上します。</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>VPN IP</value>
@@ -2123,7 +2123,7 @@ Smart Routingは通常、反プライバシー法やその他の形式の検閲�
     <value>新規</value>
   </data>
   <data name="Settings_About_Title">
-    <value>About</value>
+    <value>詳細</value>
   </data>
   <data name="Settings_About_TryAgain">
     <value>再試行</value>
@@ -2231,19 +2231,19 @@ Smart Routingは通常、反プライバシー法やその他の形式の検閲�
     <value>ネットワークに入るデータを制限します。 このオプションはより安全ですが、ピアツーピア ゲーム接続がより困難になる可能性があります。</value>
   </data>
   <data name="Settings_Connection_Default">
-    <value>Default connection</value>
+    <value>デフォルト接続</value>
   </data>
   <data name="Settings_Connection_Default_Fastest">
-    <value>Fastest country</value>
+    <value>最速の国</value>
   </data>
   <data name="Settings_Connection_Default_Fastest_Description">
-    <value>The best server based on your location</value>
+    <value>あなたの所在地に基づいた最適なサーバー</value>
   </data>
   <data name="Settings_Connection_Default_Last">
-    <value>Last connection</value>
+    <value>最後の接続</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
-    <value>Your most recently used connection</value>
+    <value>最近使用した接続</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>プロトコル</value>
@@ -2387,7 +2387,7 @@ Smart Routingは通常、反プライバシー法やその他の形式の検閲�
     <value>自動接続</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>Automatically connects to your default connection when Proton VPN opens.</value>
+    <value>Proton VPN が開くと、デフォルトの接続に自動的に接続されます。</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>最速の接続</value>
@@ -2549,13 +2549,13 @@ Smart Routingは通常、反プライバシー法やその他の形式の検閲�
     <value>ヘルプ センター</value>
   </data>
   <data name="Settings_Theme_Dark">
-    <value>Dark</value>
+    <value>ダーク</value>
   </data>
   <data name="Settings_Theme_Default">
-    <value>Default</value>
+    <value>デフォルト</value>
   </data>
   <data name="Settings_Theme_Light">
-    <value>Light</value>
+    <value>ライト</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>パフォーマンス強化テクノロジーにより、接続速度が最大 400% 向上します。</value>
@@ -2650,7 +2650,7 @@ Smart Routingは通常、反プライバシー法やその他の形式の検閲�
     <value>アップロードとダウンロードの速度が向上しました</value>
   </data>
   <data name="Upsell_Carousel_Platforms_More">
-    <value>+ more</value>
+    <value>+もっとみる</value>
     <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
   </data>
   <data name="Upsell_Carousel_SecureCore">

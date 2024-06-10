@@ -150,7 +150,7 @@
     <value>Desligar</value>
   </data>
   <data name="Common_Actions_DisconnectFrom">
-    <value>Disconnect from {0}</value>
+    <value>Desconectar de {0}</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Enable">
@@ -181,7 +181,7 @@
     <value>Ligado</value>
   </data>
   <data name="Common_States_Updating">
-    <value>Updating...</value>
+    <value>A atualizar...</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>O Proton VPN não conseguiu obter o certificado de autenticação devido a problemas de rede.</value>
@@ -223,7 +223,7 @@
     <value>O Proton VPN não consegue conectar-se à VPN porque um outro adaptador de rede WireGuard está em utilização. Desligue quaisquer VPN que tenha ativa e tente novamente. Em alternativa, pode mudar o protocolo nas definições avançadas.</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
-    <value>Auto-selected from</value>
+    <value>Seleção automática de</value>
     <comment>Appears in the connection card for free users. A set of flags is displayed after the text (eg. Auto-selected from [us-flag] [jp-flag]...)</comment>
   </data>
   <data name="Connection_Intent_City_Server">
@@ -1497,7 +1497,7 @@ High latency can slow down your connection.</value>
     <value>Alta (150ms+)</value>
   </data>
   <data name="Dialogs_Latency_LowRange_Description">
-    <value>Lightning fast speeds</value>
+    <value>Velocidade ultrarrápida</value>
   </data>
   <data name="Dialogs_Latency_LowRange_Title">
     <value>Baixa (1ms - 50ms)</value>
@@ -1506,7 +1506,7 @@ High latency can slow down your connection.</value>
     <value>Unlikely to affect VPN speed</value>
   </data>
   <data name="Dialogs_Latency_MediumRange_Title">
-    <value>Medium (50ms - 150ms)</value>
+    <value>Média (50ms - 150ms)</value>
   </data>
   <data name="Dialogs_Latency_Title">
     <value>O que é a latência?</value>
@@ -1518,7 +1518,7 @@ High latency can slow down your connection.</value>
     <value>P2P</value>
   </data>
   <data name="Dialogs_P2P_WhatIsP2PServer">
-    <value>What is a P2P server?</value>
+    <value>O que é um servidor P2P?</value>
   </data>
   <data name="Dialogs_P2P_WhatIsP2PServer_Description">
     <value>P2P (peer-to-peer) VPN servers unblock torrent sites.</value>
@@ -1541,10 +1541,10 @@ High latency can slow down your connection.</value>
     <value>A protocol is a set of instructions your device follows to connect and communicate with a server.</value>
   </data>
   <data name="Dialogs_Protocol_SwitchHeader">
-    <value>Switch VPN Protocol</value>
+    <value>Alternar o protocolo VPN</value>
   </data>
   <data name="Dialogs_Protocol_Title">
-    <value>What is a VPN protocol?</value>
+    <value>O que é um protocolo VPN?</value>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Email">
     <value>E-mail</value>
@@ -1642,7 +1642,7 @@ A high server load can slow down your connection.</value>
     <value>Alta (91-100%)</value>
   </data>
   <data name="Dialogs_ServerLoad_LowRange_Description">
-    <value>Lightning fast speeds</value>
+    <value>Velocidades ultrarrápidas</value>
   </data>
   <data name="Dialogs_ServerLoad_LowRange_Title">
     <value>Baixa (1-75%)</value>
@@ -1781,16 +1781,16 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
   <data name="Format_Time_Day_One">
-    <value>{0} day</value>
+    <value>{0} dia</value>
   </data>
   <data name="Format_Time_Day_Other">
-    <value>{0} days</value>
+    <value>{0} dias</value>
   </data>
   <data name="Format_Time_DayHour_One">
-    <value>{0} day {1} hr</value>
+    <value>{0} dia {1} h</value>
   </data>
   <data name="Format_Time_DayHour_Other">
-    <value>{0} days {1} hr</value>
+    <value>{0} dias {1} h</value>
   </data>
   <data name="Format_Time_Hours">
     <value>{0} h</value>
@@ -1848,7 +1848,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>You'll be disconnected from VPN.</value>
   </data>
   <data name="Home_Account_SignOut_Confirmation_Title">
-    <value>Sign out from {0}?</value>
+    <value>Encerrar sessão de {0}?</value>
     <comment>{0} is a placeholder for the username</comment>
   </data>
   <data name="Home_Account_Title">
@@ -1864,7 +1864,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>A ligar a...</value>
   </data>
   <data name="Home_ConnectionCard_Header_DefaultConnection">
-    <value>Default connection</value>
+    <value>Ligação padrão</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
     <value>Ligação gratuita</value>
@@ -1941,13 +1941,13 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Enviar</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
-    <value>Download volume</value>
+    <value>Volume transferido</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Total">
-    <value>Total volume</value>
+    <value>Volume total</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Upload">
-    <value>Upload volume</value>
+    <value>Volume enviado</value>
   </data>
   <data name="Home_ConnectionDetails_VpnAccelerator">
     <value>Boosted by VPN Accelerator</value>
@@ -2003,7 +2003,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Início</value>
   </data>
   <data name="Home_Recents_Landmark">
-    <value>Recent connections</value>
+    <value>Ligações recentes</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_Recents_Pin">
@@ -2243,7 +2243,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>If Proton services are blocked due to network restrictions, we'll try using alternative network routing to connect you to our sites.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
-    <value>Custom DNS servers</value>
+    <value>Servidores DNS personalizados</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
     <value>You won't be able to use NetShield when connected with a custom DNS server.</value>
@@ -2299,16 +2299,16 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Restricts the data entering your network. This option is more secure, but can make peer-to-peer gaming connections more difficult.</value>
   </data>
   <data name="Settings_Connection_Default">
-    <value>Default connection</value>
+    <value>Ligação padrão</value>
   </data>
   <data name="Settings_Connection_Default_Fastest">
-    <value>Fastest country</value>
+    <value>País mais rápido</value>
   </data>
   <data name="Settings_Connection_Default_Fastest_Description">
     <value>The best server based on your location</value>
   </data>
   <data name="Settings_Connection_Default_Last">
-    <value>Last connection</value>
+    <value>Última ligação</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Your most recently used connection</value>
@@ -2458,7 +2458,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Automatically connects to your default connection when Proton VPN opens.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
-    <value>Fastest connection</value>
+    <value>Ligação mais rápida</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Latest">
     <value>Última ligação</value>
@@ -2617,13 +2617,13 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Centro de suporte</value>
   </data>
   <data name="Settings_Theme_Dark">
-    <value>Dark</value>
+    <value>Escuro</value>
   </data>
   <data name="Settings_Theme_Default">
-    <value>Default</value>
+    <value>Padrão</value>
   </data>
   <data name="Settings_Theme_Light">
-    <value>Light</value>
+    <value>Claro</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>Increase your connection speed by up to 400% with performance enhancing technologies.</value>

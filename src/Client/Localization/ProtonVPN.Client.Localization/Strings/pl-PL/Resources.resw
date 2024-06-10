@@ -1984,7 +1984,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Łączenie z...</value>
   </data>
   <data name="Home_ConnectionCard_Header_DefaultConnection">
-    <value>Default connection</value>
+    <value>Domyślne połączenie</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
     <value>Bezpłatne połączenie</value>
@@ -2431,7 +2431,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Ogranicza dane przychodzące. Ta opcja jest bezpieczniejsza, ale może utrudniać połączenia P2P.</value>
   </data>
   <data name="Settings_Connection_Default">
-    <value>Default connection</value>
+    <value>Domyślne połączenie</value>
   </data>
   <data name="Settings_Connection_Default_Fastest">
     <value>Najszybszy kraj</value>
@@ -2587,7 +2587,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Automatyczne połączenie</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>Automatically connects to your default connection when Proton VPN opens.</value>
+    <value>Automatyczne łączenie z domyślnym połączeniem po uruchomieniu aplikacji Proton VPN.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>Najszybsze połączenie</value>

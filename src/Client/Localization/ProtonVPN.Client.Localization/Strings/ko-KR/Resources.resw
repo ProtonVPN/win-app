@@ -181,7 +181,7 @@
     <value>켜기</value>
   </data>
   <data name="Common_States_Updating">
-    <value>Updating...</value>
+    <value>업데이트 중...</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN이 네트워크 문제로 인해 인증서를 불러오지 못했습니다.</value>
@@ -1727,10 +1727,10 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
   <data name="Format_Time_Day_Other">
-    <value>{0} days</value>
+    <value>{0}일</value>
   </data>
   <data name="Format_Time_DayHour_Other">
-    <value>{0} days {1} hr</value>
+    <value>{0}일 {1}시간</value>
   </data>
   <data name="Format_Time_Hours">
     <value>{0}시간</value>
@@ -1804,7 +1804,7 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
     <value>연결 중...</value>
   </data>
   <data name="Home_ConnectionCard_Header_DefaultConnection">
-    <value>Default connection</value>
+    <value>기본 연결</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
     <value>무료 연결</value>
@@ -1881,19 +1881,19 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
     <value>업로드</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
-    <value>Download volume</value>
+    <value>볼륨 다운로드</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Total">
-    <value>Total volume</value>
+    <value>총 볼륨</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Upload">
-    <value>Upload volume</value>
+    <value>볼륨 업로드</value>
   </data>
   <data name="Home_ConnectionDetails_VpnAccelerator">
-    <value>Boosted by VPN Accelerator</value>
+    <value>VPN Accelerator로 가속됨</value>
   </data>
   <data name="Home_ConnectionDetails_VpnAccelerator_ToolTip">
-    <value>Advanced performance and stability technologies are boosting your VPN speed.</value>
+    <value>향상된 성능과 안정된 기술이 VPN 속도를 가속화합니다.</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>VPN IP</value>
@@ -2233,19 +2233,19 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
     <value>네트워크에 들어오는 데이터를 통제합니다. 확실한 만큼 피어 투 피어 게이밍 접속이 어려워질 수 있습니다.</value>
   </data>
   <data name="Settings_Connection_Default">
-    <value>Default connection</value>
+    <value>기본 연결</value>
   </data>
   <data name="Settings_Connection_Default_Fastest">
-    <value>Fastest country</value>
+    <value>가장 빠른 국가</value>
   </data>
   <data name="Settings_Connection_Default_Fastest_Description">
-    <value>The best server based on your location</value>
+    <value>현재 회원님 위치에 기반한 최상의 서버</value>
   </data>
   <data name="Settings_Connection_Default_Last">
-    <value>Last connection</value>
+    <value>최근 연결</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
-    <value>Your most recently used connection</value>
+    <value>회원님이 주로 사용한 연결</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>프로토콜</value>
@@ -2389,7 +2389,7 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
     <value>자동 연결</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>Automatically connects to your default connection when Proton VPN opens.</value>
+    <value>Proton VPN을 열 때 기본 연결값으로 자동 연결합니다.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>가장 빠른 연결</value>
@@ -2551,13 +2551,13 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
     <value>지원 센터</value>
   </data>
   <data name="Settings_Theme_Dark">
-    <value>Dark</value>
+    <value>다크</value>
   </data>
   <data name="Settings_Theme_Default">
-    <value>Default</value>
+    <value>기본</value>
   </data>
   <data name="Settings_Theme_Light">
-    <value>Light</value>
+    <value>라이트</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>성능 강화 기술을 통해 연결 속도가 400%까지 빨라집니다.</value>

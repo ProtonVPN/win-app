@@ -181,7 +181,7 @@
     <value>Vklopljeno</value>
   </data>
   <data name="Common_States_Updating">
-    <value>Updating...</value>
+    <value>Posodabljanje ...</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN ni uspel pridobiti potrdila o pristnosti zaradi težave z omrežjem.</value>
@@ -1889,28 +1889,28 @@ Pametno usmerjanje se običajno uporablja za izogibanje zakonom proti zasebnosti
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
   <data name="Format_Time_Day_One">
-    <value>{0} day</value>
+    <value>{0} dan</value>
   </data>
   <data name="Format_Time_Day_Two">
-    <value>{0} days</value>
+    <value>{0} dni</value>
   </data>
   <data name="Format_Time_Day_Few">
-    <value>{0} days</value>
+    <value>{0} dni</value>
   </data>
   <data name="Format_Time_Day_Other">
-    <value>{0} days</value>
+    <value>{0} dni</value>
   </data>
   <data name="Format_Time_DayHour_One">
-    <value>{0} day {1} hr</value>
+    <value>{0} dan {1} u</value>
   </data>
   <data name="Format_Time_DayHour_Two">
-    <value>{0} days {1} hr</value>
+    <value>{0} dni {1} u</value>
   </data>
   <data name="Format_Time_DayHour_Few">
-    <value>{0} days {1} hr</value>
+    <value>{0} dni {1} u</value>
   </data>
   <data name="Format_Time_DayHour_Other">
-    <value>{0} days {1} hr</value>
+    <value>{0} dni {1} u</value>
   </data>
   <data name="Format_Time_Hours">
     <value>{0} ur</value>
@@ -1984,7 +1984,7 @@ Pametno usmerjanje se običajno uporablja za izogibanje zakonom proti zasebnosti
     <value>Povezovanje z ...</value>
   </data>
   <data name="Home_ConnectionCard_Header_DefaultConnection">
-    <value>Default connection</value>
+    <value>Privzeta povezava</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
     <value>Brezplačna povezava</value>
@@ -2061,19 +2061,19 @@ Pametno usmerjanje se običajno uporablja za izogibanje zakonom proti zasebnosti
     <value>Nalaganje</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
-    <value>Download volume</value>
+    <value>Velikost prenosa</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Total">
-    <value>Total volume</value>
+    <value>Skupna velikost</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Upload">
-    <value>Upload volume</value>
+    <value>Velikost nalaganja</value>
   </data>
   <data name="Home_ConnectionDetails_VpnAccelerator">
-    <value>Boosted by VPN Accelerator</value>
+    <value>Povečano z VPN Accelerator</value>
   </data>
   <data name="Home_ConnectionDetails_VpnAccelerator_ToolTip">
-    <value>Advanced performance and stability technologies are boosting your VPN speed.</value>
+    <value>Napredne tehnologije za zmogljivost in stabilnost povečujejo hitrost VPN.</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>VPN IP</value>
@@ -2431,19 +2431,19 @@ Pametno usmerjanje se običajno uporablja za izogibanje zakonom proti zasebnosti
     <value>Omejuje podatke, ki vstopajo v vaše omrežje. Ta možnost je bolj varna, vendar lahko oteži povezave P2P pri igranju iger.</value>
   </data>
   <data name="Settings_Connection_Default">
-    <value>Default connection</value>
+    <value>Privzeta povezava</value>
   </data>
   <data name="Settings_Connection_Default_Fastest">
-    <value>Fastest country</value>
+    <value>Najhitrejša država</value>
   </data>
   <data name="Settings_Connection_Default_Fastest_Description">
-    <value>The best server based on your location</value>
+    <value>Najboljši strežnik glede na vašo lokacijo</value>
   </data>
   <data name="Settings_Connection_Default_Last">
-    <value>Last connection</value>
+    <value>Zadnja povezava</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
-    <value>Your most recently used connection</value>
+    <value>Vaša nazadnje uporabljena povezava</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokol</value>
@@ -2587,7 +2587,7 @@ Pametno usmerjanje se običajno uporablja za izogibanje zakonom proti zasebnosti
     <value>Samodejna povezava</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>Automatically connects to your default connection when Proton VPN opens.</value>
+    <value>Samodejna povezava s privzeto povezavo ob zagonu Proton VPN.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>Najhitrejša povezava</value>
@@ -2749,13 +2749,13 @@ Pametno usmerjanje se običajno uporablja za izogibanje zakonom proti zasebnosti
     <value>Center za podporo</value>
   </data>
   <data name="Settings_Theme_Dark">
-    <value>Dark</value>
+    <value>Temna</value>
   </data>
   <data name="Settings_Theme_Default">
-    <value>Default</value>
+    <value>Privzeta</value>
   </data>
   <data name="Settings_Theme_Light">
-    <value>Light</value>
+    <value>Svetla</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>Povečajte svojo hitrost povezave do 400 % s tehnologijami za izboljšanje zmogljivosti.</value>

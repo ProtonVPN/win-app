@@ -1727,10 +1727,10 @@ VPN 連線</value>
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
   <data name="Format_Time_Day_Other">
-    <value>{0} days</value>
+    <value>{0} 天</value>
   </data>
   <data name="Format_Time_DayHour_Other">
-    <value>{0} days {1} hr</value>
+    <value>{0} 天 {1} 時</value>
   </data>
   <data name="Format_Time_Hours">
     <value>{0} 時</value>
@@ -2236,7 +2236,7 @@ VPN 連線</value>
     <value>Default connection</value>
   </data>
   <data name="Settings_Connection_Default_Fastest">
-    <value>Fastest country</value>
+    <value>最快的國家</value>
   </data>
   <data name="Settings_Connection_Default_Fastest_Description">
     <value>The best server based on your location</value>
