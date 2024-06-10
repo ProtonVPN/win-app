@@ -59,10 +59,11 @@ public class ConnectionTests : TestSession
         LaunchApp();
 
         _loginRobot
-            .Wait(TestConstants.StartupDelay)
+            .Wait(StartupDelay)
             .DoLogin(TestUserData.PlusUser);
 
         _homeRobot
+            .DoCloseWelcomeOverlay()
             .DoWaitForVpnStatusSubtitleLabel()
             .VerifyVpnStatusIsDisconnected()
             .VerifyConnectionCardIsInInitalState();

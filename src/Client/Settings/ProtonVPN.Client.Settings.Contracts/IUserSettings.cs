@@ -66,4 +66,8 @@ public interface IUserSettings
     List<SplitTunnelingIpAddress> SplitTunnelingInverseIpAddressesList { get; set; }
     ChangeServerAttempts ChangeServerAttempts { get; set; }
     DefaultConnection DefaultConnection { get; set; }
+    bool WasWelcomeOverlayDisplayed { get; set; }
+    bool WasWelcomePlusOverlayDisplayed { get; set; }
+    bool WasWelcomeUnlimitedOverlayDisplayed { get; set; }
+    bool WasWelcomeB2BOverlayDisplayed { get; set; }
 }

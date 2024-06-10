@@ -321,6 +321,30 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userCache.SetValueType<DefaultConnection>(value, SettingEncryption.Unencrypted);
     }
 
+    public bool WasWelcomeOverlayDisplayed
+    {
+        get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? false;
+        set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
+    public bool WasWelcomePlusOverlayDisplayed
+    {
+        get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? false;
+        set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
+    public bool WasWelcomeUnlimitedOverlayDisplayed
+    {
+        get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? false;
+        set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
+    public bool WasWelcomeB2BOverlayDisplayed
+    {
+        get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? false;
+        set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
     public UserSettings(IGlobalSettingsCache globalSettingsCache, IUserSettingsCache userSettingsCache)
             : base(globalSettingsCache)
     {

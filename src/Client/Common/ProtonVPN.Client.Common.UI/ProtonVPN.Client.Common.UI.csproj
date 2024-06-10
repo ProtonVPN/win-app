@@ -687,6 +687,9 @@
         <None Remove="Assets\Illustrations\vpn-tray-protected.ico" />
         <None Remove="Assets\Illustrations\vpn-tray-unprotected.ico" />
         <None Remove="Assets\Illustrations\vpn-tray-warning.ico" />
+        <None Remove="Assets\Illustrations\welcome-free-header.png" />
+        <None Remove="Assets\Illustrations\welcome-plus-header.png" />
+        <None Remove="Assets\Illustrations\welcome-unlimited-header.png" />
         <None Remove="Assets\Illustrations\world-map.svg" />
         <None Remove="Assets\Illustrations\worldwide-coverage.png" />
         <None Remove="Assets\Illustrations\wrong-country.png" />
@@ -1789,6 +1792,9 @@
         <Content Update="Assets\Icons\Streaming\tf1.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Illustrations\certified-no-logs.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Illustrations\Dark\default-connection.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -1967,6 +1973,18 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\upsell-worldwide-coverage-small.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\welcome-b2b-header.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\welcome-free-header.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\welcome-plus-header.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\welcome-unlimited-header.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\world-map.svg">

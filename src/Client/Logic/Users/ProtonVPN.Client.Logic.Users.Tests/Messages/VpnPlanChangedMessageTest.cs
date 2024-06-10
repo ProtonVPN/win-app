@@ -51,8 +51,8 @@ public class VpnPlanChangedMessageTest
     public void TestHasChanged(string oldPlanTitle, int oldPlanMaxTier,
         string newPlanTitle, int newPlanMaxTier, bool expectedResult)
     {
-        VpnPlan oldPlan = new(oldPlanTitle, (sbyte)oldPlanMaxTier);
-        VpnPlan newPlan = new(newPlanTitle, (sbyte)newPlanMaxTier);
+        VpnPlan oldPlan = new(oldPlanTitle, oldPlanTitle, (sbyte)oldPlanMaxTier);
+        VpnPlan newPlan = new(newPlanTitle, newPlanTitle, (sbyte)newPlanMaxTier);
         VpnPlanChangedMessage vpnPlanChangedMessage = new(oldPlan, newPlan);
 
         bool result = vpnPlanChangedMessage.HasChanged();
@@ -79,8 +79,8 @@ public class VpnPlanChangedMessageTest
     [DataRow(3, 3, false)]
     public void TestIsDowngrade(int oldPlanMaxTier, int newPlanMaxTier, bool expectedResult)
     {
-        VpnPlan oldPlan = new("test", (sbyte)oldPlanMaxTier);
-        VpnPlan newPlan = new("test", (sbyte)newPlanMaxTier);
+        VpnPlan oldPlan = new("test", "test", (sbyte)oldPlanMaxTier);
+        VpnPlan newPlan = new("test", "test", (sbyte)newPlanMaxTier);
         VpnPlanChangedMessage vpnPlanChangedMessage = new(oldPlan, newPlan);
 
         bool result = vpnPlanChangedMessage.IsDowngrade();
@@ -107,8 +107,8 @@ public class VpnPlanChangedMessageTest
     [DataRow(3, 3, false)]
     public void TestIsUpgrade(int oldPlanMaxTier, int newPlanMaxTier, bool expectedResult)
     {
-        VpnPlan oldPlan = new("test", (sbyte)oldPlanMaxTier);
-        VpnPlan newPlan = new("test", (sbyte)newPlanMaxTier);
+        VpnPlan oldPlan = new("test", "test", (sbyte)oldPlanMaxTier);
+        VpnPlan newPlan = new("test", "test", (sbyte)newPlanMaxTier);
         VpnPlanChangedMessage vpnPlanChangedMessage = new(oldPlan, newPlan);
 
         bool result = vpnPlanChangedMessage.IsUpgrade();
@@ -135,8 +135,8 @@ public class VpnPlanChangedMessageTest
     [DataRow(3, 3, false)]
     public void TestHasMaxTierChanged(int oldPlanMaxTier, int newPlanMaxTier, bool expectedResult)
     {
-        VpnPlan oldPlan = new("test", (sbyte)oldPlanMaxTier);
-        VpnPlan newPlan = new("test", (sbyte)newPlanMaxTier);
+        VpnPlan oldPlan = new("test", "test", (sbyte)oldPlanMaxTier);
+        VpnPlan newPlan = new("test", "test", (sbyte)newPlanMaxTier);
         VpnPlanChangedMessage vpnPlanChangedMessage = new(oldPlan, newPlan);
 
         bool result = vpnPlanChangedMessage.HasMaxTierChanged();

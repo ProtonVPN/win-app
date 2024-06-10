@@ -46,6 +46,7 @@ public class UpsellTests : TestSession
             .DoLogin(TestUserData.FreeUser);
 
         _homeRobot
+            .DoCloseWelcomeOverlay()
             .DoWaitForVpnStatusSubtitleLabel();
     }
 

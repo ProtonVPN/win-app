@@ -54,6 +54,7 @@ public class NavigationTests : TestSession
             .DoLogin(TestUserData.PlusUser);
 
         _homeRobot
+            .DoCloseWelcomeOverlay()
             .DoWaitForVpnStatusSubtitleLabel();
 
         _shellRobot

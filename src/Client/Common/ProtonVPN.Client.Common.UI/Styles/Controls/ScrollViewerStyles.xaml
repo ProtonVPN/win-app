@@ -8,16 +8,16 @@
     <Thickness x:Key="DefaultScrollViewerPadding">0,0,0,0</Thickness>
 
     <Style x:Key="DefaultScrollViewer" TargetType="ScrollViewer">
-        <Setter Property="Margin" Value="{StaticResource DefaultScrollViewerMargin}" />
-        <Setter Property="Padding" Value="{StaticResource DefaultScrollViewerPadding}" />
+        <Setter Property="Margin" Value="{ThemeResource DefaultScrollViewerMargin}" />
+        <Setter Property="Padding" Value="{ThemeResource DefaultScrollViewerPadding}" />
     </Style>
     
     <Thickness x:Key="OffsetScrollViewerMargin">0,0,-20,0</Thickness>
     <Thickness x:Key="OffsetScrollViewerPadding">0,0,20,0</Thickness>
 
     <Style x:Key="OffsetScrollViewer" TargetType="ScrollViewer" BasedOn="{StaticResource DefaultScrollViewer}" >
-        <Setter Property="Margin" Value="{StaticResource OffsetScrollViewerMargin}" />
-        <Setter Property="Padding" Value="{StaticResource OffsetScrollViewerPadding}" />
+        <Setter Property="Margin" Value="{ThemeResource OffsetScrollViewerMargin}" />
+        <Setter Property="Padding" Value="{ThemeResource OffsetScrollViewerPadding}" />
     </Style>
     
 </ResourceDictionary>

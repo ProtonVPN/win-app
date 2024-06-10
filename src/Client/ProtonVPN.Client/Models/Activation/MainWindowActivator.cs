@@ -324,6 +324,7 @@ public class MainWindowActivator :
         // On login, we want to force the navigation to the home page and bypass any check or confirmation.
         await _mainViewNavigator.NavigateToAsync<HomeViewModel>(forceNavigation: true);
         App.MainWindow.SwitchToMainShell();
+        _eventMessageSender.Send(new HomePageDisplayedAfterLoginMessage());
     }
 
     private async Task SwitchToLoadingAsync()

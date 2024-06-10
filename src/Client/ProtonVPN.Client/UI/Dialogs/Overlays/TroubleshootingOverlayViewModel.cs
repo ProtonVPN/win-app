@@ -41,12 +41,12 @@ public partial class TroubleshootingOverlayViewModel : OverlayViewModelBase
     [RelayCommand]
     public void OpenStatusPage()
     {
-        _urls.NavigateTo(_urls.ProtonStatusPageUrl);
+        _urls.NavigateTo(_urls.ProtonStatusPage);
     }
 
     [RelayCommand]
     public void ContactUs()
     {
-        _urls.NavigateTo(_urls.SupportFormUrl);
+        _urls.NavigateTo(_urls.SupportForm);
     }
 }

@@ -116,6 +116,16 @@
           <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
           <SubType>Designer</SubType>
         </Page>
+        <Page Update="UI\Dialogs\Overlays\Welcome\WelcomeToVpnUnlimitedOverlayDialog.xaml">
+          <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+          <SubType>Designer</SubType>
+        </Page>
+        <Page Update="UI\Dialogs\Overlays\Welcome\WelcomeOverlayDialog.xaml">
+          <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        </Page>
+        <Page Update="UI\Dialogs\Overlays\Welcome\WelcomeToVpnB2BOverlayDialog.xaml">
+          <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        </Page>
         <Page Update="UI\Upsell\Carousel\Features\AdvancedSettingsUpsellFeaturePage.xaml">
           <Generator>MSBuild:Compile</Generator>
         </Page>
@@ -217,6 +227,9 @@
         <Page Update="UI\Dialogs\Overlays\LatencyOverlayDialog.xaml">
             <Generator>MSBuild:Compile</Generator>
         </Page>
+        <Page Update="UI\Dialogs\Overlays\Welcome\WelcomeToVpnPlusOverlayDialog.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
         <Page Update="UI\Dialogs\ServerLoadInfoDialog.xaml">
             <Generator>MSBuild:Compile</Generator>
         </Page>
@@ -256,6 +269,9 @@
         <None Remove="UI\Connections\SecureCore\SecureCoreCountriesPage.xaml" />
         <None Remove="UI\Connections\Tor\TorCountriesPage.xaml" />
         <None Remove="UI\Dialogs\Overlays\TroubleshootingOverlayDialog.xaml" />
+        <None Remove="UI\Dialogs\Overlays\Welcome\WelcomeOverlayDialog.xaml" />
+        <None Remove="UI\Dialogs\Overlays\Welcome\WelcomeToVpnB2BOverlayDialog.xaml" />
+        <None Remove="UI\Dialogs\Overlays\Welcome\WelcomeToVpnUnlimitedOverlayDialog.xaml" />
         <None Remove="UI\Home\Details\Styles\ConnectionDetailsStyles.xaml" />
         <None Remove="UI\Login\DisableKillSwitchBannerComponent.xaml" />
         <None Remove="UI\Login\Forms\LoadingForm.xaml" />
@@ -269,6 +285,7 @@
         <None Remove="UI\Dialogs\Overlays\SecureCoreOverlayDialog.xaml" />
         <None Remove="UI\Dialogs\Overlays\SmartRoutingOverlayDialog.xaml" />
         <None Remove="UI\Dialogs\Overlays\TorOverlayDialog.xaml" />
+        <None Remove="UI\Dialogs\Overlays\Welcome\WelcomeToVpnPlusOverlayDialog.xaml" />
         <None Remove="UI\Dialogs\ServerLoadInfoDialog.xaml" />
         <None Remove="UI\Dialogs\Windows\ReportIssueShellPage.xaml" />
         <None Remove="UI\Dialogs\Windows\ReportIssueWindow.xaml" />

@@ -86,6 +86,7 @@ public class LoginTests : TestSession
             .DoEnterTwoFactorCode(TestUserData.GetTwoFactorCode());
 
         _homeRobot
+            .DoCloseWelcomeOverlay()
             .DoWaitForVpnStatusSubtitleLabel();
 
         _shellRobot
@@ -118,6 +119,7 @@ public class LoginTests : TestSession
             .DoLogin(user);
 
         _homeRobot
+            .DoCloseWelcomeOverlay()
             .DoWaitForVpnStatusSubtitleLabel();
 
         _shellRobot
