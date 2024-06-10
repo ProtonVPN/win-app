@@ -106,7 +106,7 @@ public abstract partial class PageViewModelBase<TViewNavigator> : PageViewModelB
         return await ViewNavigator.NavigateToAsync<TPageViewModel>();
     }
 
-    public virtual Task<bool> OnNavigatingFromAsync()
+    public virtual Task<bool> OnNavigatingFromAsync(bool forceNavigation = false)
     {
         return Task.FromResult(true);
     }

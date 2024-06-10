@@ -27,5 +27,7 @@ public class NotificationsModule : Module
     {
         builder.RegisterType<PortForwardingNewPortNotificationSender>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ConnectionStatusNotificationSender>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<SubscriptionExpiredNotificationSender>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<NotificationActivationHandler>().AsImplementedInterfaces().SingleInstance().AutoActivate();
     }
 }

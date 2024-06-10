@@ -19,6 +19,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
@@ -59,14 +60,14 @@ public partial class DisableKillSwitchBannerViewModel : ViewModelBase,
         loginViewNavigator.Navigated += OnLoginViewNavigated;
     }
 
-    private void OnLoginViewNavigated(object sender, Microsoft.UI.Xaml.Navigation.NavigationEventArgs e)
+    private void OnLoginViewNavigated(object sender, NavigationEventArgs e)
     {
         InvalidateKillSwitchNotification();
     }
 
     public void Receive(ConnectionStatusChanged message)
     {
-        InvalidateKillSwitchNotification();
+        ExecuteOnUIThread(InvalidateKillSwitchNotification);
     }
 
     private void InvalidateKillSwitchNotification()

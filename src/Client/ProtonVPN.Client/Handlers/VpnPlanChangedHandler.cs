@@ -17,40 +17,132 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using CommunityToolkit.WinUI;
+using Microsoft.UI.Dispatching;
+using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Dispatching;
+using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Handlers;
+using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
+using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.Models.Urls;
+using ProtonVPN.Client.Notifications.Contracts;
 using ProtonVPN.Client.UI.Home;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
-public class VpnPlanChangedHandler : IHandler, IEventMessageReceiver<VpnPlanChangedMessage>
+namespace ProtonVPN.Client.Handlers;
+
+public class VpnPlanChangedHandler : IHandler,
+    IEventMessageReceiver<VpnPlanChangedMessage>,
+    IEventMessageReceiver<ConnectionStatusChanged>
 {
+    private readonly DispatcherQueue _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
     private readonly ILogger _logger;
+    private readonly ILocalizationProvider _localizer;
+    private readonly IConnectionManager _connectionManager;
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IMainViewNavigator _mainViewNavigator;
+    private readonly IOverlayActivator _overlayActivator;
+    private readonly IWebAuthenticator _webAuthenticator;
+    private readonly IUrls _urls;
+    private readonly ISubscriptionExpiredNotificationSender _subscriptionExpiredNotificationSender;
     private readonly IUIThreadDispatcher _uiThreadDispatcher;
 
+    private bool _notifyOnNextConnection;
+
     public VpnPlanChangedHandler(ILogger logger,
+        ILocalizationProvider localizer,
+        IConnectionManager connectionManager,
         IUserAuthenticator userAuthenticator,
         IMainViewNavigator mainViewNavigator,
+        IOverlayActivator overlayActivator,
+        IWebAuthenticator webAuthenticator,
+        IUrls urls,
+        ISubscriptionExpiredNotificationSender subscriptionExpiredNotificationSender,
         IUIThreadDispatcher uiThreadDispatcher)
     {
         _logger = logger;
+        _localizer = localizer;
+        _connectionManager = connectionManager;
         _userAuthenticator = userAuthenticator;
         _mainViewNavigator = mainViewNavigator;
+        _overlayActivator = overlayActivator;
+        _webAuthenticator = webAuthenticator;
+        _urls = urls;
+        _subscriptionExpiredNotificationSender = subscriptionExpiredNotificationSender;
         _uiThreadDispatcher = uiThreadDispatcher;
     }
 
     public async void Receive(VpnPlanChangedMessage message)
     {
-        if (_userAuthenticator.IsLoggedIn && message.HasMaxTierChanged())
+        if (!_userAuthenticator.IsLoggedIn)
+        {
+            return;
+        }
+
+        if (message.HasMaxTierChanged())
         {
             _logger.Info<AppLog>("Navigating to Home page due to max tier change.");
-            _uiThreadDispatcher.TryEnqueue(() => _mainViewNavigator.NavigateToAsync<HomeViewModel>());
+            _uiThreadDispatcher.TryEnqueue(() => _mainViewNavigator.NavigateToAsync<HomeViewModel>(null, false, true));
+        }
+
+        if (message.IsDowngrade())
+        {
+            await HandlePlanDowngradeAsync();
+        }
+    }
+
+    private async Task HandlePlanDowngradeAsync()
+    {
+        if (_connectionManager.IsDisconnected)
+        {
+            await NotifyUserOfSubscriptionExpirationAsync();
+        }
+        else
+        {
+            _notifyOnNextConnection = true;
+        }
+    }
+
+    private async Task NotifyUserOfSubscriptionExpirationAsync()
+    {
+        _subscriptionExpiredNotificationSender.Send();
+        await _dispatcherQueue.EnqueueAsync(async () => ShowSubscriptionExpiredDialogAsync());
+    }
+
+    private async Task ShowSubscriptionExpiredDialogAsync()
+    {
+        ContentDialogResult result = await _overlayActivator.ShowMessageAsync(
+            new MessageDialogParameters
+            {
+                Title = _localizer.Get("Dialogs_Common_SubscriptionExpired"),
+                Message = _localizer.Get("Dialogs_Common_UpgradeToGetPlusFeatures"),
+                PrimaryButtonText = _localizer.Get("Common_Actions_Upgrade"),
+                CloseButtonText = _localizer.Get("Dialogs_SubscriptionExpired_MaybeLater"),
+            });
+
+        if (result is not ContentDialogResult.Primary) // Cancel exit
+        {
+            return;
+        }
+
+        _urls.NavigateTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSources.Downgrade));
+    }
+
+    public async void Receive(ConnectionStatusChanged message)
+    {
+        if (_notifyOnNextConnection && message.ConnectionStatus == ConnectionStatus.Connected)
+        {
+            _notifyOnNextConnection = false;
+            await NotifyUserOfSubscriptionExpirationAsync();
         }
     }
 }

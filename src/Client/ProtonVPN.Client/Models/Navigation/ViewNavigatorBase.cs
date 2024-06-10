@@ -76,7 +76,7 @@ public abstract class ViewNavigatorBase : IViewNavigator
 
     public event NavigatedEventHandler? Navigated;
 
-    public async Task<bool> GoBackAsync()
+    public async Task<bool> GoBackAsync(bool forceNavigation = false)
     {
         if (CanGoBack)
         {
@@ -84,7 +84,7 @@ public abstract class ViewNavigatorBase : IViewNavigator
 
             if (vmBeforeNavigation != null)
             {
-                bool continueNavigation = await vmBeforeNavigation.OnNavigatingFromAsync();
+                bool continueNavigation = await vmBeforeNavigation.OnNavigatingFromAsync(forceNavigation);
                 if (!continueNavigation)
                 {
                     return false;
@@ -144,7 +144,7 @@ public abstract class ViewNavigatorBase : IViewNavigator
 
             if (vmBeforeNavigation != null && !forceNavigation)
             {
-                bool continueNavigation = await vmBeforeNavigation.OnNavigatingFromAsync();
+                bool continueNavigation = await vmBeforeNavigation.OnNavigatingFromAsync(forceNavigation);
                 if (!continueNavigation)
                 {
                     return false;

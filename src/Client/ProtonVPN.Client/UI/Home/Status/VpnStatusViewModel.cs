@@ -26,6 +26,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts.Models;
@@ -37,7 +38,8 @@ namespace ProtonVPN.Client.UI.Home.Status;
 public partial class VpnStatusViewModel : ViewModelBase,
     IEventMessageReceiver<ConnectionStatusChanged>,
     IEventMessageReceiver<DeviceLocationChangedMessage>,
-    IEventMessageReceiver<SettingChangedMessage>
+    IEventMessageReceiver<SettingChangedMessage>,
+    IEventMessageReceiver<VpnPlanChangedMessage>
 {
     private readonly IConnectionManager _connectionManager;
     private readonly ISettings _settings;
@@ -150,5 +152,10 @@ public partial class VpnStatusViewModel : ViewModelBase,
 
         IpAddress = currentLocation?.IpAddress;
         CountryCode = currentLocation?.CountryCode;
+    }
+
+    public void Receive(VpnPlanChangedMessage message)
+    {
+        ExecuteOnUIThread(() => OnPropertyChanged(nameof(IsNetShieldStatVisible)));
     }
 }
