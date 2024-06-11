@@ -25,5 +25,11 @@ namespace ProtonVPN.Api.Contracts.VpnConfig
     {
         [JsonProperty(PropertyName = "UDP")]
         public int[] Udp { get; set; }
+
+        [JsonProperty(PropertyName = "TCP")]
+        public int[] Tcp { get; set; }
+
+        [JsonProperty(PropertyName = "TLS")]
+        public int[] Tls { get; set; }
     }
 }

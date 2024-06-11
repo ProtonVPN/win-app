@@ -95,7 +95,8 @@ Source: "tap\tapprotonvpn.cat"; DestDir: "{app}\{#VersionFolder}\Resources\tap"
 Source: "tap\tapprotonvpn.Sys"; DestDir: "{app}\{#VersionFolder}\Resources\tap";
 
 Source: "SplitTunnel\ProtonVPN.CalloutDriver.sys"; DestDir: "{app}\{#VersionFolder}\Resources"; AfterInstall: InstallNetworkDriver;
-Source: "tun\wintun.dll"; DestDir: "{app}\{#VersionFolder}\Resources";
+Source: "WireGuard\wintun.dll"; DestDir: "{app}\{#VersionFolder}";
+Source: "WireGuard\wireguard-tunnel-tcp.dll"; DestDir: "{app}\{#VersionFolder}";
 Source: "GuestHoleServers.json"; DestDir: "{app}\{#VersionFolder}\Resources";
 
 Source: "..\{#SourcePath}\Microsoft.UI.Xaml\Assets\*.png"; DestDir: "{app}\{#VersionFolder}\Microsoft.UI.Xaml\Assets";

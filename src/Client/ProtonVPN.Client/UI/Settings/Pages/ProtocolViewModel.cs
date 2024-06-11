@@ -41,6 +41,8 @@ public partial class ProtocolViewModel : SettingsPageViewModelBase
     [property: SettingName(nameof(ISettings.VpnProtocol))]
     [NotifyPropertyChangedFor(nameof(IsSmartProtocol))]
     [NotifyPropertyChangedFor(nameof(IsWireGuardUdpProtocol))]
+    [NotifyPropertyChangedFor(nameof(IsWireGuardTcpProtocol))]
+    [NotifyPropertyChangedFor(nameof(IsWireGuardTlsProtocol))]
     [NotifyPropertyChangedFor(nameof(IsOpenVpnUdpProtocol))]
     [NotifyPropertyChangedFor(nameof(IsOpenVpnTcpProtocol))]
     private VpnProtocol _currentVpnProtocol;
@@ -59,6 +61,18 @@ public partial class ProtocolViewModel : SettingsPageViewModelBase
     {
         get => IsProtocol(VpnProtocol.WireGuardUdp);
         set => SetProtocol(value, VpnProtocol.WireGuardUdp);
+    }
+
+    public bool IsWireGuardTcpProtocol
+    {
+        get => IsProtocol(VpnProtocol.WireGuardTcp);
+        set => SetProtocol(value, VpnProtocol.WireGuardTcp);
+    }
+
+    public bool IsWireGuardTlsProtocol
+    {
+        get => IsProtocol(VpnProtocol.WireGuardTls);
+        set => SetProtocol(value, VpnProtocol.WireGuardTls);
     }
 
     public bool IsOpenVpnUdpProtocol

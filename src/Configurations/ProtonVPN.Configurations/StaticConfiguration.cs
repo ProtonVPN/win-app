@@ -63,7 +63,7 @@ public class StaticConfiguration : IStaticConfiguration
         {
             OpenVpnAdapter.Tap => OpenVpn.TapAdapterId,
             OpenVpnAdapter.Tun => OpenVpn.TunAdapterId,
-            _ => WireGuard.TunAdapterHardwareId
+            _ => WireGuard.WintunAdapterHardwareId
         };
     }
 }

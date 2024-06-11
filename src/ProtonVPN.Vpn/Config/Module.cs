@@ -154,7 +154,8 @@ public class Module
                 new WireGuardService(logger, staticConfig, new SafeService(
                     new LoggingService(logger,
                         new SystemService(staticConfig.WireGuard.ServiceName, c.Resolve<IOsProcesses>())))),
-                new TrafficManager(staticConfig.WireGuard.ConfigFileName, logger),
+                new NtTrafficManager(staticConfig.WireGuard.ConfigFileName, logger),
+                new WintunTrafficManager(staticConfig.WireGuard.PipeName),
                 new StatusManager(logger, staticConfig.WireGuard.LogFilePath),
                 x25519KeyGenerator));
     }

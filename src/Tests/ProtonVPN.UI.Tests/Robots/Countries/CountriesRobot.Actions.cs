@@ -25,7 +25,9 @@ public partial class CountriesRobot
 {
     public CountriesRobot DoConnect(string item)
     {
-        GetConnectButton(item).Invoke();
+        Button connectButton = GetConnectButton(item);
+        connectButton.WaitUntilClickable();
+        connectButton.Invoke();
         return this;
     }
 

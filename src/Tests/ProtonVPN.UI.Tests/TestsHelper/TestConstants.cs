@@ -42,8 +42,10 @@ public static class TestConstants
     public static string UserStoragePath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Proton\Proton VPN");
     public enum Protocol
     {
-        Wireguard,
+        WireGuardUdp,
         OpenVpnUdp,
-        OpenVpnTcp
+        WireGuardTcp,
+        OpenVpnTcp,
+        WireGuardTls,
     }
 }

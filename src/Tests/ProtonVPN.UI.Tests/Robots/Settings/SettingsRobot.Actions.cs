@@ -133,8 +133,14 @@ public partial class SettingsRobot
     {
         switch(protocol)
         {
-            case Protocol.Wireguard:
-                WireGuardProtocolRadioButton.Click();
+            case Protocol.WireGuardUdp:
+                WireGuardUdpProtocolRadioButton.Click();
+                break;
+            case Protocol.WireGuardTcp:
+                WireGuardTcpProtocolRadioButton.Click();
+                break;
+            case Protocol.WireGuardTls:
+                WireGuardTlsProtocolRadioButton.Click();
                 break;
             case Protocol.OpenVpnUdp:
                 OpenVpnUdpProtocolRadioButton.Click();

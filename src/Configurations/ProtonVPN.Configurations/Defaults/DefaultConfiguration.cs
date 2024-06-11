@@ -129,8 +129,8 @@ public static class DefaultConfiguration
     /// <returns>C:\Users\{user}\AppData\Local\ProtonVPN</returns>
     public static string LegacyAppLocalData => Path.Combine(_localAppDataPath.Value, "ProtonVPN");
 
-    // C:\Program Files\Proton\VPN\v4.0.0\Resources\wintun.dll
-    public static string WintunDriverPath => Path.Combine(_resourcesFolderPath.Value, "wintun.dll");
+    // C:\Program Files\Proton\VPN\v4.0.0\wintun.dll
+    public static string WintunDriverPath => Path.Combine(_baseVersionDirectory.Value, "wintun.dll");
 
     public static string WintunAdapterName => "ProtonVPN TUN";
 

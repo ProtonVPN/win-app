@@ -1719,6 +1719,18 @@
   <data name="Settings_Protocols_WireGuardUdp_Title" xml:space="preserve">
     <value>WireGuard</value>
   </data>
+  <data name="Settings_Protocols_WireGuardTcp_Title" xml:space="preserve">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Description" xml:space="preserve">
+    <value>Fast, secure, and efficient. WireGuard is difficult to detect and block.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Title" xml:space="preserve">
+    <value>Stealth</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Description" xml:space="preserve">
+    <value>Overcomes VPN blocks by hiding your VPN connection from censors. This protocol is DPI (deep packet inspection) resistant, but may not be as fast as other protocols. Stealth is exclusive to Proton VPN.</value>
+  </data>
   <data name="Settings_RestoreDefault" xml:space="preserve">
     <value>Restore default settings</value>
   </data>
@@ -1732,7 +1744,13 @@
     <value>Smart</value>
   </data>
   <data name="Settings_SelectedProtocol_WireGuardUdp" xml:space="preserve">
-    <value>WireGuard</value>
+    <value>WireGuard (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTcp" xml:space="preserve">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTls" xml:space="preserve">
+    <value>Stealth</value>
   </data>
   <data name="Settings_Support" xml:space="preserve">
     <value>Support</value>
@@ -2280,7 +2298,13 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Smart</value>
   </data>
   <data name="VpnProtocol_WireGuard_Udp" xml:space="preserve">
-    <value>WireGuard</value>
+    <value>WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tcp" xml:space="preserve">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls" xml:space="preserve">
+    <value>Stealth</value>
   </data>
   <data name="Login_Form_Email" xml:space="preserve">
     <value>Email</value>

@@ -37,7 +37,7 @@ public class ClientConfigObserver :
     IEventMessageReceiver<LoggedInMessage>,
     IEventMessageReceiver<LoggedOutMessage>
 {
-    private readonly List<int> _unsupportedWireGuardPorts = new() { 53 };
+    private readonly List<int> _unsupportedWireGuardUdpPorts = [53];
 
     private readonly ISettings _settings;
     private readonly IApiClient _apiClient;
@@ -90,7 +90,9 @@ public class ClientConfigObserver :
     {
         _settings.OpenVpnTcpPorts = value.DefaultPorts.OpenVpn.Tcp;
         _settings.OpenVpnUdpPorts = value.DefaultPorts.OpenVpn.Udp;
-        _settings.WireGuardPorts = value.DefaultPorts.WireGuard.Udp.Where(IsWireGuardPortSupported).ToArray();
+        _settings.WireGuardUdpPorts = value.DefaultPorts.WireGuard.Udp.Where(IsWireGuardUdpPortSupported).ToArray();
+        _settings.WireGuardTcpPorts = value.DefaultPorts.WireGuard.Tcp;
+        _settings.WireGuardTlsPorts = value.DefaultPorts.WireGuard.Tls;
 
         if (value.FeatureFlags.ServerRefresh.HasValue)
         {
@@ -110,8 +112,8 @@ public class ClientConfigObserver :
         };
     }
 
-    private bool IsWireGuardPortSupported(int port)
+    private bool IsWireGuardUdpPortSupported(int port)
     {
-        return !_unsupportedWireGuardPorts.Contains(port);
+        return !_unsupportedWireGuardUdpPorts.Contains(port);
     }
 }

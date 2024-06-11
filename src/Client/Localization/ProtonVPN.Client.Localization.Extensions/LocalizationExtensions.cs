@@ -220,6 +220,8 @@ public static class LocalizationExtensions
             VpnProtocol.OpenVpnTcp => localizer.Get("VpnProtocol_OpenVPN_Tcp"),
             VpnProtocol.OpenVpnUdp => localizer.Get("VpnProtocol_OpenVPN_Udp"),
             VpnProtocol.WireGuardUdp => localizer.Get("VpnProtocol_WireGuard_Udp"),
+            VpnProtocol.WireGuardTcp => localizer.Get("VpnProtocol_WireGuard_Tcp"),
+            VpnProtocol.WireGuardTls => localizer.Get("VpnProtocol_WireGuard_Tls"),
             _ => string.Empty
         };
     }

@@ -26,7 +26,7 @@ public interface INetworkInterfaceLoader
 {
     INetworkInterface GetOpenVpnTapInterface();
     INetworkInterface GetOpenVpnTunInterface();
-    INetworkInterface GetWireGuardTunInterface();
+    INetworkInterface GetWireGuardInterface(VpnProtocol protocol);
 
     INetworkInterface GetByVpnProtocol(VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter);
     INetworkInterface GetByOpenVpnAdapter(OpenVpnAdapter? openVpnAdapter);
