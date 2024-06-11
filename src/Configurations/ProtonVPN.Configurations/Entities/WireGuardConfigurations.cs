@@ -26,8 +26,9 @@ public class WireGuardConfigurations : IWireGuardConfigurations
     public string ServiceName { get; set; } = string.Empty;
     public string ConfigFileName { get; set; } = string.Empty;
 
-    public string TunAdapterHardwareId { get; set; } = string.Empty;
-    public string TunAdapterGuid { get; set; } = string.Empty;
+    public string WintunAdapterHardwareId { get; set; } = string.Empty;
+    public Guid WintunAdapterGuid { get; set; }
+    public Guid NtAdapterGuid { get; set; }
     public string TunAdapterName { get; set; } = string.Empty;
 
     public string DefaultDnsServer { get; set; } = string.Empty;
@@ -36,4 +37,5 @@ public class WireGuardConfigurations : IWireGuardConfigurations
     public string ConfigFilePath { get; set; } = string.Empty;
     public string ServicePath { get; set; } = string.Empty;
     public string LogFilePath { get; set; } = string.Empty;
+    public string PipeName { get; set; } = string.Empty;
 }

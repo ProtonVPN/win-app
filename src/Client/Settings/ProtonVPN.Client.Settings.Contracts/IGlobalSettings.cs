@@ -37,7 +37,9 @@ public interface IGlobalSettings
     string? UnauthUniqueSessionId { get; set; }
     bool IsAutoLaunchEnabled { get; set; }
     AutoLaunchMode AutoLaunchMode { get; set; }
-    int[] WireGuardPorts { get; set; }
+    int[] WireGuardUdpPorts { get; set; }
+    int[] WireGuardTcpPorts { get; set; }
+    int[] WireGuardTlsPorts { get; set; }
     int[] OpenVpnTcpPorts { get; set; }
     int[] OpenVpnUdpPorts { get; set; }
     ConcurrentDictionary<string, DnsResponse>? DnsCache { get; set; } // VPNWIN-2098 - Move to its own file

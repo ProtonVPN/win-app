@@ -170,7 +170,9 @@ public class VpnEndpointScanner : IEndpointScanner
         switch (endpoint.VpnProtocol)
         {
             case VpnProtocol.OpenVpnTcp:
-                isAlive = await IsOpenVpnEndpointAliveAsync(endpoint, cancellationToken);
+            case VpnProtocol.WireGuardTcp:
+            case VpnProtocol.WireGuardTls:
+                isAlive = await IsTcpEndpointAliveAsync(endpoint, cancellationToken);
                 break;
             case VpnProtocol.OpenVpnUdp:
             case VpnProtocol.WireGuardUdp:
@@ -181,7 +183,7 @@ public class VpnEndpointScanner : IEndpointScanner
         return isAlive ? endpoint : VpnEndpoint.Empty;
     }
 
-    private async Task<bool> IsOpenVpnEndpointAliveAsync(VpnEndpoint endpoint, CancellationToken cancellationToken)
+    private async Task<bool> IsTcpEndpointAliveAsync(VpnEndpoint endpoint, CancellationToken cancellationToken)
     {
         return await IsEndpointAliveAsync(async timeoutTask => await _tcpPortScanner.Alive(endpoint, timeoutTask), cancellationToken);
     }

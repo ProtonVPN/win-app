@@ -96,9 +96,21 @@ public class GlobalSettings : IGlobalSettings
         set => _globalCache.SetValueType<AutoLaunchMode>(value, SettingEncryption.Unencrypted);
     }
 
-    public int[] WireGuardPorts
+    public int[] WireGuardUdpPorts
     {
-        get => _globalCache.GetReferenceType<int[]>(SettingEncryption.Unencrypted) ?? DefaultSettings.WireGuardPorts;
+        get => _globalCache.GetReferenceType<int[]>(SettingEncryption.Unencrypted) ?? DefaultSettings.WireGuardUdpPorts;
+        set => _globalCache.SetReferenceType(value, SettingEncryption.Unencrypted);
+    }
+
+    public int[] WireGuardTcpPorts
+    {
+        get => _globalCache.GetReferenceType<int[]>(SettingEncryption.Unencrypted) ?? DefaultSettings.WireGuardTcpPorts;
+        set => _globalCache.SetReferenceType(value, SettingEncryption.Unencrypted);
+    }
+
+    public int[] WireGuardTlsPorts
+    {
+        get => _globalCache.GetReferenceType<int[]>(SettingEncryption.Unencrypted) ?? DefaultSettings.WireGuardTlsPorts;
         set => _globalCache.SetReferenceType(value, SettingEncryption.Unencrypted);
     }
 

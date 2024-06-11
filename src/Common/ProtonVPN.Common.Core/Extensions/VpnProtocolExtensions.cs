@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,21 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Runtime.InteropServices;
+using ProtonVPN.Common.Core.Networking;
 
-namespace ProtonVPN.WireGuardService
+namespace ProtonVPN.Common.Core.Extensions;
+
+public static class VpnProtocolExtensions
 {
-    class Program
+    public static bool IsWireGuard(this VpnProtocol protocol)
     {
-        static void Main(string[] args)
-        {
-            if (args.Length == 1)
-            {
-                Run(args[0]);
-            }
-        }
+        return protocol is VpnProtocol.WireGuardUdp or VpnProtocol.WireGuardTcp or VpnProtocol.WireGuardTls;
+    }
 
-        [DllImport("tunnel.dll", EntryPoint = "WireGuardTunnelService", CallingConvention = CallingConvention.Cdecl)]
-        private static extern bool Run([MarshalAs(UnmanagedType.LPWStr)] string configFile);
+    public static bool IsOpenVpn(this VpnProtocol protocol)
+    {
+        return protocol is VpnProtocol.OpenVpnUdp or VpnProtocol.OpenVpnTcp;
     }
 }

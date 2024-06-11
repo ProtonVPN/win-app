@@ -27,8 +27,13 @@ namespace ProtonVPN.Client.Logic.Connection.RequestCreators;
 
 public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
 {
-    protected readonly IReadOnlyList<VpnProtocolIpcEntity> SmartPreferredProtocols =
-        [VpnProtocolIpcEntity.WireGuardUdp, VpnProtocolIpcEntity.OpenVpnUdp, VpnProtocolIpcEntity.OpenVpnTcp];
+    protected readonly IReadOnlyList<VpnProtocolIpcEntity> SmartPreferredProtocols = [
+        VpnProtocolIpcEntity.WireGuardUdp,
+        VpnProtocolIpcEntity.WireGuardTcp,
+        VpnProtocolIpcEntity.OpenVpnUdp,
+        VpnProtocolIpcEntity.OpenVpnTcp,
+        VpnProtocolIpcEntity.WireGuardTls,
+    ];
     
     protected ConnectionRequestCreatorBase(
         ISettings settings,
@@ -55,7 +60,9 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
                 : [settings.VpnProtocol],
             Ports = new Dictionary<VpnProtocolIpcEntity, int[]>
             {
-                { VpnProtocolIpcEntity.WireGuardUdp, Settings.WireGuardPorts },
+                { VpnProtocolIpcEntity.WireGuardUdp, Settings.WireGuardUdpPorts },
+                { VpnProtocolIpcEntity.WireGuardTcp, Settings.WireGuardTcpPorts },
+                { VpnProtocolIpcEntity.WireGuardTls, Settings.WireGuardTlsPorts },
                 { VpnProtocolIpcEntity.OpenVpnUdp, Settings.OpenVpnUdpPorts },
                 { VpnProtocolIpcEntity.OpenVpnTcp, Settings.OpenVpnTcpPorts },
             },

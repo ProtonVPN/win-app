@@ -25,4 +25,6 @@ public enum VpnProtocol
     OpenVpnTcp,
     OpenVpnUdp,
     WireGuardUdp,
+    WireGuardTcp,
+    WireGuardTls,
 }

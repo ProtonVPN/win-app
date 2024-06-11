@@ -70,9 +70,21 @@ public class ConnectionTests : TestSession
     }
 
     [Test]
-    public void ConnectViaWireguard()
+    public void ConnectViaWireGuardUdp()
     {
-        PerformProtocolConnectionTest(Protocol.Wireguard);
+        PerformProtocolConnectionTest(Protocol.WireGuardUdp);
+    }
+
+    [Test]
+    public void ConnectViaWireGuardTcp()
+    {
+        PerformProtocolConnectionTest(Protocol.WireGuardTcp);
+    }
+
+    [Test]
+    public void ConnectViaWireGuardTls()
+    {
+        PerformProtocolConnectionTest(Protocol.WireGuardTls);
     }
 
     [Test]

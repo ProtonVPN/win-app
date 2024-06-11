@@ -25,7 +25,6 @@ using System.Threading.Tasks;
 using System.Timers;
 using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Legacy.OS.Services;
 using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Configurations.Contracts;
@@ -48,8 +47,9 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
     private readonly IConfiguration _config;
     private readonly IGatewayCache _gatewayCache;
     private readonly Timer _serviceHealthCheckTimer = new();
-    private readonly IService _wireGuardService;
-    private readonly TrafficManager _trafficManager;
+    private readonly IWireGuardService _wireGuardService;
+    private readonly NtTrafficManager _ntTrafficManager;
+    private readonly WintunTrafficManager _wintunTrafficManager;
     private readonly StatusManager _statusManager;
     private readonly IX25519KeyGenerator _x25519KeyGenerator;
     private readonly SingleAction _connectAction;
@@ -68,8 +68,9 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         ILogger logger,
         IConfiguration config,
         IGatewayCache gatewayCache,
-        IService wireGuardService,
-        TrafficManager trafficManager,
+        IWireGuardService wireGuardService,
+        NtTrafficManager ntTrafficManager,
+        WintunTrafficManager wintunTrafficManager,
         StatusManager statusManager,
         IX25519KeyGenerator x25519KeyGenerator)
     {
@@ -77,11 +78,13 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         _config = config;
         _gatewayCache = gatewayCache;
         _wireGuardService = wireGuardService;
-        _trafficManager = trafficManager;
+        _ntTrafficManager = ntTrafficManager;
+        _wintunTrafficManager = wintunTrafficManager;
         _statusManager = statusManager;
         _x25519KeyGenerator = x25519KeyGenerator;
 
-        _trafficManager.TrafficSent += OnTrafficSent;
+        _ntTrafficManager.TrafficSent += OnTrafficSent;
+        _wintunTrafficManager.TrafficSent += OnTrafficSent;
         _statusManager.StateChanged += OnStateChanged;
         _connectAction = new SingleAction(ConnectAction);
         _connectAction.Completed += OnConnectActionCompleted;
@@ -153,7 +156,7 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         _logger.Info<AppServiceStartLog>("Starting service.");
         try
         {
-            await _wireGuardService.StartAsync(cancellationToken);
+            await _wireGuardService.StartAsync(cancellationToken, _vpnConfig.VpnProtocol);
         }
         catch (InvalidOperationException e)
         {
@@ -199,6 +202,7 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         Total = total;
     }
 
+
     private async Task EnsureServiceIsStopped(CancellationToken cancellationToken)
     {
         while (_wireGuardService.Exists() && !_wireGuardService.IsStopped())
@@ -241,11 +245,23 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         if (!_isConnected)
         {
             _isConnected = true;
-            _trafficManager.Start();
+            StartTrafficManager();
             _serviceHealthCheckTimer.Start();
             UpdateGatewayCache();
             _logger.Info<ConnectConnectedLog>("Connected state received and decorated by WireGuard.");
             InvokeStateChange(VpnStatus.Connected, state.Data.Error);
+        }
+    }
+
+    private void StartTrafficManager()
+    {
+        if (_vpnConfig.VpnProtocol == VpnProtocol.WireGuardUdp)
+        {
+            _ntTrafficManager.Start();
+        }
+        else
+        {
+            _wintunTrafficManager.Start();
         }
     }
 
@@ -260,7 +276,8 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
 
     private void StopServiceDependencies()
     {
-        _trafficManager.Stop();
+        _ntTrafficManager.Stop();
+        _wintunTrafficManager.Stop();
         _statusManager.Stop();
     }
 

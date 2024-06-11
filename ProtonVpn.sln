@@ -61,7 +61,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Translations", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.RestoreInternet", "src\ProtonVPN.RestoreInternet\ProtonVPN.RestoreInternet.csproj", "{8D07769D-0AAE-4224-AECB-DF68567F6B00}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.WireGuardService", "src\ProtonVPN.WireguardService\ProtonVPN.WireGuardService.csproj", "{A0A9C7B9-4A33-492E-BA54-8E8E600D3D66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.WireGuardService", "src\ProtonVPN.WireGuardService\ProtonVPN.WireGuardService.csproj", "{A0A9C7B9-4A33-492E-BA54-8E8E600D3D66}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.WireGuardDriver", "src\ProtonVPN.WireGuardDriver\ProtonVPN.WireGuardDriver.csproj", "{7882140D-32E1-4AB5-853D-F8DED5256DC2}"
 EndProject
@@ -393,7 +393,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Logic.User
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Contracts", "src\Client\ProtonVPN.Client.Contracts\ProtonVPN.Client.Contracts.csproj", "{A670E541-3910-408C-AE17-8BD75F2449AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Client.Localization.Tests", "src\Client\Localization\ProtonVPN.Client.Localization.Tests\ProtonVPN.Client.Localization.Tests.csproj", "{B0F8C07F-95E8-48C1-8652-7E9F55654F78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Localization.Tests", "src\Client\Localization\ProtonVPN.Client.Localization.Tests\ProtonVPN.Client.Localization.Tests.csproj", "{B0F8C07F-95E8-48C1-8652-7E9F55654F78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Logging.Events", "src\Logging\ProtonVPN.Logging.Events\ProtonVPN.Logging.Events.csproj", "{4ECB3EFD-BBEC-49E3-9250-38083F6E64C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1603,6 +1605,14 @@ Global
 		{B0F8C07F-95E8-48C1-8652-7E9F55654F78}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B0F8C07F-95E8-48C1-8652-7E9F55654F78}.Release|x64.ActiveCfg = Release|Any CPU
 		{B0F8C07F-95E8-48C1-8652-7E9F55654F78}.Release|x64.Build.0 = Release|Any CPU
+		{4ECB3EFD-BBEC-49E3-9250-38083F6E64C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ECB3EFD-BBEC-49E3-9250-38083F6E64C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ECB3EFD-BBEC-49E3-9250-38083F6E64C5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4ECB3EFD-BBEC-49E3-9250-38083F6E64C5}.Debug|x64.Build.0 = Debug|Any CPU
+		{4ECB3EFD-BBEC-49E3-9250-38083F6E64C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ECB3EFD-BBEC-49E3-9250-38083F6E64C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ECB3EFD-BBEC-49E3-9250-38083F6E64C5}.Release|x64.ActiveCfg = Release|Any CPU
+		{4ECB3EFD-BBEC-49E3-9250-38083F6E64C5}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1765,6 +1775,7 @@ Global
 		{72E5BF04-1832-4061-B94D-2D46CABC17FE} = {BE2BAA32-0CFB-455C-9E64-81880D1AD219}
 		{A670E541-3910-408C-AE17-8BD75F2449AD} = {313DCA3D-B3E4-4E06-9B5C-516E2C06154A}
 		{B0F8C07F-95E8-48C1-8652-7E9F55654F78} = {9E749180-43DB-4FCE-93CC-37334F3988E9}
+		{4ECB3EFD-BBEC-49E3-9250-38083F6E64C5} = {2A968101-45CA-421C-A546-00D681BF3C76}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5CFD3EA5-ADCA-48F0-9E3F-BBC76CCBF1C2}

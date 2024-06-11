@@ -34,7 +34,9 @@ namespace ProtonVPN.Vpn.WireGuard;
 
 public class StatusManager
 {
-    private const int SkipLogCharacters = 27;
+    private const int SKIP_LOG_CHARACTERS = 27;
+    private const string NT_HANDSHAKE_SUCCESS_MESSAGE = "Receiving handshake response from peer";
+    private const string WINTUN_HANDSHAKE_SUCCESS_MESSAGE = "Received handshake response";
 
     private readonly ILogger _logger;
     private readonly RingLogger _ringLogger;
@@ -46,7 +48,7 @@ public class StatusManager
     {
         _logger = logger;
         _ringLogger = new RingLogger(logPath);
-        _receiveLogsAction = new SingleAction(ReceiveLogsAction);
+        _receiveLogsAction = new SingleAction(ReceiveLogsActionAsync);
     }
 
     public event EventHandler<EventArgs<VpnState>> StateChanged;
@@ -65,7 +67,7 @@ public class StatusManager
         _ringLogger.Stop();
     }
 
-    private async Task ReceiveLogsAction(CancellationToken cancellationToken)
+    private async Task ReceiveLogsActionAsync(CancellationToken cancellationToken)
     {
         uint cursor = RingLogger.CursorAll;
 
@@ -76,7 +78,9 @@ public class StatusManager
             {
                 _logger.Info<ProtocolLog>(GetFormattedMessage(line));
 
-                if (line.Contains("Receiving handshake response from peer") && !_isHandshakeResponseHandled)
+                bool isHandshakeSuccess = line.Contains(NT_HANDSHAKE_SUCCESS_MESSAGE) ||
+                                          line.Contains(WINTUN_HANDSHAKE_SUCCESS_MESSAGE);
+                if (isHandshakeSuccess && !_isHandshakeResponseHandled)
                 {
                     _logger.Info<ConnectConnectedLog>("Invoking connected state after receiving successful handshake response.");
                     InvokeStateChange(VpnStatus.Connected);
@@ -121,8 +125,8 @@ public class StatusManager
 
     private string GetFormattedMessage(string message)
     {
-        return message.Length > SkipLogCharacters
-            ? message.Substring(SkipLogCharacters, message.Length - SkipLogCharacters).Trim()
+        return message.Length > SKIP_LOG_CHARACTERS
+            ? message.Substring(SKIP_LOG_CHARACTERS, message.Length - SKIP_LOG_CHARACTERS).Trim()
             : message;
     }
 }

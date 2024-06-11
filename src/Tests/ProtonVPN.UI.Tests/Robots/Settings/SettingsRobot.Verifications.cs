@@ -53,27 +53,37 @@ public partial class SettingsRobot
     public SettingsRobot VerifySmartProtocolIsChecked()
     {
         RadioButton smartProtocolRadioButton = SmartProtocolRadioButton;
-        RadioButton wireGuardProtocolRadioButton = WireGuardProtocolRadioButton;
+        RadioButton wireGuardUdpProtocolRadioButton = WireGuardUdpProtocolRadioButton;
 
         Assert.IsNotNull(smartProtocolRadioButton);
         Assert.IsTrue(smartProtocolRadioButton.IsChecked);
 
-        Assert.IsNotNull(wireGuardProtocolRadioButton);
-        Assert.IsFalse(wireGuardProtocolRadioButton.IsChecked);
+        Assert.IsNotNull(wireGuardUdpProtocolRadioButton);
+        Assert.IsFalse(wireGuardUdpProtocolRadioButton.IsChecked);
 
         return this;
     }
 
-    public SettingsRobot VerifyWireGuardProtocolIsChecked()
+    public SettingsRobot VerifyWireGuardUdpProtocolIsChecked()
     {
         RadioButton smartProtocolRadioButton = SmartProtocolRadioButton;
-        RadioButton wireGuardProtocolRadioButton = WireGuardProtocolRadioButton;
+        RadioButton wireGuardUdpProtocolRadioButton = WireGuardUdpProtocolRadioButton;
 
         Assert.IsNotNull(smartProtocolRadioButton);
         Assert.IsFalse(smartProtocolRadioButton.IsChecked);
 
-        Assert.IsNotNull(wireGuardProtocolRadioButton);
-        Assert.IsTrue(wireGuardProtocolRadioButton.IsChecked);
+        Assert.IsNotNull(wireGuardUdpProtocolRadioButton);
+        Assert.IsTrue(wireGuardUdpProtocolRadioButton.IsChecked);
+
+        return this;
+    }
+
+    public SettingsRobot VerifyWireGuardTlsProtocolIsChecked()
+    {
+        RadioButton wireGuardTlsProtocolRadioButton = WireGuardTlsProtocolRadioButton;
+
+        Assert.IsNotNull(wireGuardTlsProtocolRadioButton);
+        Assert.IsTrue(wireGuardTlsProtocolRadioButton.IsChecked);
 
         return this;
     }

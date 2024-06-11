@@ -28,13 +28,14 @@ public static class DefaultWireGuardConfigurationsFactory
 
     public static IWireGuardConfigurations Create(string baseDirectory, string commonAppDataProtonVpnPath)
     {
-        return new WireGuardConfigurations()
+        return new WireGuardConfigurations
         {
             ServiceName = "ProtonVPN WireGuard",
             ConfigFileName = WIREGUARD_CONFIG_FILENAME,
 
-            TunAdapterHardwareId = "Wintun",
-            TunAdapterGuid = "{EAB2262D-9AB1-5975-7D92-334D06F4972B}",
+            WintunAdapterHardwareId = "Wintun",
+            WintunAdapterGuid = Guid.Parse("{AC128890-BDB1-CE5C-D1DB-EFB01DE370B2}"),
+            NtAdapterGuid = Guid.Parse("{EAB2262D-9AB1-5975-7D92-334D06F4972B}"),
             TunAdapterName = "ProtonVPN",
 
             DefaultDnsServer = "10.2.0.1",
@@ -43,6 +44,7 @@ public static class DefaultWireGuardConfigurationsFactory
             ConfigFilePath = Path.Combine(commonAppDataProtonVpnPath, "WireGuard", $"{WIREGUARD_CONFIG_FILENAME}.conf"),
             ServicePath = Path.Combine(baseDirectory, "ProtonVPN.WireGuardService.exe"),
             LogFilePath = Path.Combine(commonAppDataProtonVpnPath, "WireGuard", "log.bin"),
+            PipeName = $"ProtectedPrefix\\Administrators\\WireGuard\\{WIREGUARD_CONFIG_FILENAME}",
         };
     }
 }

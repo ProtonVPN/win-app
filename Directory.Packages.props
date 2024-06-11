@@ -71,6 +71,7 @@
     <PackageVersion Include="System.ComponentModel.Composition" Version="7.0.0" />
     <PackageVersion Include="System.Configuration.ConfigurationManager" Version="7.0.0" />
     <PackageVersion Include="System.Diagnostics.DiagnosticSource" Version="7.0.2" />
+    <PackageVersion Include="System.Diagnostics.EventLog" Version="7.0.0" />
     <PackageVersion Include="System.Formats.Asn1" Version="7.0.0" />
     <PackageVersion Include="System.Management" Version="7.0.1" />
     <PackageVersion Include="System.Net.Http" Version="4.3.4" />

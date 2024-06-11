@@ -47,11 +47,11 @@ public class SettingsTests : TestSession
     private const string CUSTOM_DNS_SERVERS_PAGE_TITLE = "Custom DNS servers";
 
     private const string SMART_PROTOCOL = "Smart";
-    private const string WIREGUARD_PROTOCOL = "WireGuard";
+    private const string WIREGUARD_UDP_PROTOCOL = "WireGuard (UDP)";
+    private const string WIREGUARD_TLS_PROTOCOL = "Stealth";
 
     private ShellRobot _shellRobot = new();
     private HomeRobot _homeRobot = new();
-    private OverlaysRobot _overlaysRobot = new();
     private SettingsRobot _settingsRobot = new();
     private LoginRobot _loginRobot = new();
 
@@ -88,8 +88,8 @@ public class SettingsTests : TestSession
 
         _settingsRobot
             .VerifySmartProtocolIsChecked()
-            .DoSelectProtocol(Protocol.Wireguard)
-            .VerifyWireGuardProtocolIsChecked()
+            .DoSelectProtocol(Protocol.WireGuardUdp)
+            .VerifyWireGuardUdpProtocolIsChecked()
             .DoApplyChanges();
 
         _shellRobot
@@ -97,7 +97,23 @@ public class SettingsTests : TestSession
             .VerifyCurrentPage(SETTINGS_PAGE_TITLE, false);
 
         _settingsRobot
-            .VerifyProtocolSettingsCard(WIREGUARD_PROTOCOL);
+            .VerifyProtocolSettingsCard(WIREGUARD_UDP_PROTOCOL);
+
+        _settingsRobot
+            .DoNavigateToProtocolSettingsPage();
+
+        _settingsRobot
+            .VerifyWireGuardUdpProtocolIsChecked()
+            .DoSelectProtocol(Protocol.WireGuardTls)
+            .VerifyWireGuardTlsProtocolIsChecked()
+            .DoApplyChanges();
+
+        _shellRobot
+            .DoNavigateBackward()
+            .VerifyCurrentPage(SETTINGS_PAGE_TITLE, false);
+
+        _settingsRobot
+            .VerifyProtocolSettingsCard(WIREGUARD_TLS_PROTOCOL);
     }
 
     [Test]

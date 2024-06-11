@@ -25,4 +25,8 @@
         <PackageReference Include="System.Text.Encoding.CodePages" />
         <PackageReference Include="System.Text.Json" />
     </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\Configurations\ProtonVPN.Configurations\ProtonVPN.Configurations.csproj" />
+      <ProjectReference Include="..\Logging\ProtonVPN.Logging.Events\ProtonVPN.Logging.Events.csproj" />
+    </ItemGroup>
 </Project>

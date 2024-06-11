@@ -81,7 +81,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <TextBlock Style="{StaticResource ProtocolTypeTextBlockStyle}"
                                Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_UdpCategory')}" />
 
-                    <RadioButton AutomationProperties.AutomationId="WireGuardProtocolRadioButton"
+                    <RadioButton AutomationProperties.AutomationId="WireGuardUdpProtocolRadioButton"
                                  IsChecked="{x:Bind ViewModel.IsWireGuardUdpProtocol, Mode=TwoWay}"
                                  Style="{StaticResource ProtocolRadioButtonStyle}">
                         <StackPanel>
@@ -112,6 +112,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <TextBlock Style="{StaticResource ProtocolTypeTextBlockStyle}"
                                Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_TcpCategory')}" />
 
+                    <RadioButton AutomationProperties.AutomationId="WireGuardTcpProtocolRadioButton"
+                                 IsChecked="{x:Bind ViewModel.IsWireGuardTcpProtocol, Mode=TwoWay}"
+                                 Style="{StaticResource ProtocolRadioButtonStyle}">
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_WireGuardTcp_Title')}" />
+
+                            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_WireGuardTcp_Description')}"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </RadioButton>
+
                     <RadioButton AutomationProperties.AutomationId="OpenVpnTcpProtocolRadioButton"
                                  IsChecked="{x:Bind ViewModel.IsOpenVpnTcpProtocol, Mode=TwoWay}"
                                  Style="{StaticResource ProtocolRadioButtonStyle}">
@@ -122,6 +136,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                                        Style="{StaticResource CaptionTextBlockStyle}"
                                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_OpenVpnTcp_Description')}"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton AutomationProperties.AutomationId="WireGuardTlsProtocolRadioButton"
+                                 IsChecked="{x:Bind ViewModel.IsWireGuardTlsProtocol, Mode=TwoWay}"
+                                 Style="{StaticResource ProtocolRadioButtonStyle}">
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_WireGuardTls_Title')}" />
+
+                            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_WireGuardTls_Description')}"
                                        TextWrapping="Wrap" />
                         </StackPanel>
                     </RadioButton>

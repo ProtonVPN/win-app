@@ -24,8 +24,9 @@ public interface IWireGuardConfigurations
     string ServiceName { get; }
     string ConfigFileName { get; }
 
-    string TunAdapterHardwareId { get; }
-    string TunAdapterGuid { get; }
+    string WintunAdapterHardwareId { get; }
+    Guid WintunAdapterGuid { get; }
+    Guid NtAdapterGuid { get; }
     string TunAdapterName { get; }
 
     string DefaultDnsServer { get; }
@@ -34,4 +35,5 @@ public interface IWireGuardConfigurations
     string ConfigFilePath { get; }
     string ServicePath { get; }
     string LogFilePath { get; }
+    string PipeName { get; }
 }
