@@ -19,14 +19,12 @@
 
 using System;
 using System.Net.Http;
-using System.Security;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
-using ProtonVPN.UI.Tests.ApiClient.Prod;
 
-namespace ProtonVPN.UI.Tests.ApiClient;
+namespace ProtonVPN.UI.Tests.ApiClient.Prod;
 
 public class ProdTestApiClient
 {

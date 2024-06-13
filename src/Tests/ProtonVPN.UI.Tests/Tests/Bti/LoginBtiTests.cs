@@ -19,7 +19,7 @@
 
 using System.Threading.Tasks;
 using NUnit.Framework;
-using ProtonVPN.UI.Tests.ApiClient;
+using ProtonVPN.UI.Tests.ApiClient.TestEnv;
 using ProtonVPN.UI.Tests.Robots.Home;
 using ProtonVPN.UI.Tests.Robots.Login;
 using ProtonVPN.UI.Tests.TestsHelper;

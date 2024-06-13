@@ -73,7 +73,7 @@ public class TestSession
         try
         {
             Directory.Delete(TestConstants.UserStoragePath, true);
-            File.Delete(GetServiceLogsPath());
+            File.Delete(TestEnvironment.GetServiceLogsPath());
         }
         catch
         {
@@ -130,42 +130,13 @@ public class TestSession
             .ForEach(process => process.Kill());
     }
 
-    protected static void RestartFileExplorer()
-    {
-        foreach (Process exe in Process.GetProcesses())
-        {
-            if (exe.ProcessName == "explorer")
-            {
-                exe.Kill();
-            }
-        }
-    }
-
-    protected static void StartFileExplorer()
-    {
-        Process[] explorrerProcess = Process.GetProcessesByName("explorer");
-        if (explorrerProcess.Length == 0)
-        {
-            string explorer = string.Format("{0}\\{1}", Environment.GetEnvironmentVariable("WINDIR"), "explorer.exe");
-            Process process = new();
-            process.StartInfo.FileName = explorer;
-            process.StartInfo.UseShellExecute = true;
-            process.Start();
-        }
-    }
-
     protected static void SaveScreenshotAndLogsIfFailed()
     {
         if (!TestEnvironment.AreTestsRunningLocally() && TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
         {
             string testName = TestContext.CurrentContext.Test.MethodName;
-            ArtifactsHelper.SaveScreenshotAndLogs(testName, GetServiceLogsPath());
+            ArtifactsHelper.SaveScreenshotAndLogs(testName, TestEnvironment.GetServiceLogsPath());
         }
-    }
-
-    protected static string GetServiceLogsPath()
-    {
-        return Path.Combine(TestEnvironment.GetProtonClientFolder(), "ServiceData", "Logs", "service-logs.txt");
     }
 
     private static void LaunchDevelopmentApp()

@@ -24,19 +24,20 @@ using System.Security;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
-using ProtonVPN.UI.Tests.ApiClient;
+using ProtonVPN.UI.Tests.ApiClient.Prod;
+using ProtonVPN.UI.Tests.ApiClient.TestEnv;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Tests.Performance;
 
 [TestFixture]
-[Category("Performance")]
-public class ApiTests
+[Category("SLI")]
+public class ApiSLI
 {
     private TestUserAuthenticator _userAuthenticator = new();
     private ProdTestApiClient _prodTestApiClient = new();
     private const string WORKFLOW = "api_measurements";
-    private LokiApiClient _lokiApiClient = new();
+    private LokiPusher _lokiPusher = new();
     private string _measurementGroup;
     private string _runId;
 
@@ -67,7 +68,7 @@ public class ApiTests
     [TearDown]
     public async Task TestCleanup()
     {
-        await _lokiApiClient.PushCollectedMetricsAsync(PerformanceTestHelper.MetricsList, _runId, _measurementGroup, WORKFLOW);
+        await _lokiPusher.PushCollectedMetricsAsync(PerformanceTestHelper.MetricsList, _runId, _measurementGroup, WORKFLOW);
         PerformanceTestHelper.Reset();
     }
 
@@ -87,8 +88,6 @@ public class ApiTests
             totalIndividualServers += serversArray.Count;
             onlineIndividualServers += serversArray.Count(s => (int)s["Status"] == 1);
         }
-        Console.WriteLine(totalIndividualServers.ToString());
-        Console.WriteLine(onlineIndividualServers.ToString());
         PerformanceTestHelper.AddMetric("total_servers", totalIndividualServers.ToString());
         PerformanceTestHelper.AddMetric("online_servers", onlineIndividualServers.ToString());
     }

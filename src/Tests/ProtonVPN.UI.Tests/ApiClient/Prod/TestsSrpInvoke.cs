@@ -25,7 +25,7 @@ using System.Text;
 using ProtonVPN.Common.Legacy.Go;
 using ProtonVPN.UI.Tests.TestsHelper;
 
-namespace ProtonVPN.UI.Tests.ApiClient;
+namespace ProtonVPN.UI.Tests.ApiClient.Prod;
 
 public static class TestsSrpInvoke
 {

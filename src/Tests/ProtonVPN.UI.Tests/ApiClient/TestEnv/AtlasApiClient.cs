@@ -21,7 +21,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace ProtonVPN.UI.Tests.ApiClient;
+namespace ProtonVPN.UI.Tests.ApiClient.TestEnv;
 
 public class AtlasApiClient
 {
@@ -38,7 +38,7 @@ public class AtlasApiClient
 
         _client = new HttpClient(handler)
         {
-            BaseAddress = new Uri(Environment.GetEnvironmentVariable("BTI_ATLAS_CONTROLLER_IP"))
+            BaseAddress = new Uri(Environment.GetEnvironmentVariable("BTI_ATLAS_CONTROLLER_URL"))
         };
     }
 
@@ -55,7 +55,7 @@ public class AtlasApiClient
     private async Task PostAtlasEnvVarAsync(string query)
     {
         HttpResponseMessage response = await _client.PostAsync("/internal/system", new StringContent(query));
-        
+
         if (!response.IsSuccessStatusCode)
         {
             throw new Exception($"Failed to set Atlas Env Variable: \n {await response.Content.ReadAsStringAsync()}");

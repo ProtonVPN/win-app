@@ -20,9 +20,8 @@
 using System;
 using System.Security;
 using System.Threading.Tasks;
-using ProtonVPN.UI.Tests.ApiClient.Prod;
 
-namespace ProtonVPN.UI.Tests.ApiClient;
+namespace ProtonVPN.UI.Tests.ApiClient.Prod;
 
 public class TestUserAuthenticator
 {
