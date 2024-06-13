@@ -36,6 +36,7 @@
     - dotnet publish src/ProtonVPN.WireguardService/ProtonVPN.WireguardService.csproj -c ${TYPE} -r win-x64 --self-contained -o $BUILD_PATH
     - dotnet publish src/ProtonVPN.TlsVerify/ProtonVPN.TlsVerify.csproj -c ${TYPE} -r win-x64 --self-contained -o $BUILD_PATH
     - dotnet publish src/ProtonVPN.Launcher/ProtonVPN.Launcher.csproj -c ${TYPE} -r win-x64 --self-contained -o $BUILD_PATH
+    - dotnet publish src/ProtonVPN.RestoreInternet/ProtonVPN.RestoreInternet.csproj -c ${TYPE} -r win-x64 --self-contained -o $BUILD_PATH
     - dotnet publish src/ProtonDrive.Downloader/ProtonDrive.Downloader.csproj -c ${TYPE} -r win-x64 --self-contained -o $BUILD_PATH
     - msbuild src\ProtonVPN.NativeHost\NativeHost.vcxproj /p:Configuration=Release /p:Platform=x64
   artifacts:

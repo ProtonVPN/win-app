@@ -1,2 +1,3 @@
 ﻿[CustomMessages]
 InstallProtonDriveTitle=Установіть Proton Drive - Зашифроване хмарне сховище (Безплатно з Proton VPN)
+InstallingWebview2Runtime=Installing Web View 2 runtime...

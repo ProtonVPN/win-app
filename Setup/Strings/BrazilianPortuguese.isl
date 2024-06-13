@@ -1,2 +1,3 @@
 ﻿[CustomMessages]
 InstallProtonDriveTitle=Instale Proton Drive — Armazenamento de nuvem criptografado (Gratuito com Proton VPN)
+InstallingWebview2Runtime=Installing Web View 2 runtime...

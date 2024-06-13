@@ -57,7 +57,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.TlsVerify", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Translations", "src\ProtonVPN.Translations\ProtonVPN.Translations.csproj", "{2A00C747-8BC0-4EF1-A53E-37A7E156D910}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.RestoreInternet", "ProtonVPN.RestoreInternet\ProtonVPN.RestoreInternet.csproj", "{8D07769D-0AAE-4224-AECB-DF68567F6B00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.RestoreInternet", "src\ProtonVPN.RestoreInternet\ProtonVPN.RestoreInternet.csproj", "{8D07769D-0AAE-4224-AECB-DF68567F6B00}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Crypto", "src\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj", "{BA2D505E-CED3-4FCB-A463-DAF6B77C18DE}"
 EndProject

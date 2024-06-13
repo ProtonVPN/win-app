@@ -3,7 +3,7 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <OutputType>WinExe</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <OutputPath>..\src\bin\</OutputPath>
+    <OutputPath>..\bin\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
   <PropertyGroup>
@@ -12,10 +12,10 @@
   <PropertyGroup>
     <ApplicationIcon>protonvpn.ico</ApplicationIcon>
     <StartupObject>ProtonVPN.RestoreInternet.Program</StartupObject>
-    <BaseOutputPath>..\src\bin</BaseOutputPath>
+    <BaseOutputPath>..\bin</BaseOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\src\GlobalAssemblyInfo.cs">
+    <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
   </ItemGroup>

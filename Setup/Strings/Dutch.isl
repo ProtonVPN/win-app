@@ -1,2 +1,3 @@
 ﻿[CustomMessages]
 InstallProtonDriveTitle=Installeer Proton Drive - Versleutelde cloudopslag (Gratis met Proton VPN)
+InstallingWebview2Runtime=Installing Web View 2 runtime...

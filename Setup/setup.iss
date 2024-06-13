@@ -16,6 +16,7 @@
 #define NetworkDriverFileName "Resources\ProtonVPN.CalloutDriver.sys"
 
 #define ProtonDriveDownloaderName "ProtonDrive.Downloader.exe"
+#define Webview2InstallerName "MicrosoftEdgeWebview2Setup.exe"
 #define InstallLogPath "{app}\Install.log.txt"
 
 #define Hash ""
@@ -28,8 +29,6 @@
 #else
 #define OutputBaseSuffix ""
 #endif
-
-#include "CodeDependencies.iss"
 
 [Setup]
 AppName={#MyAppName}
@@ -118,8 +117,9 @@ Source: "..\{#SourcePath}\nn-NO\ProtonVPN.Translations.resources.dll"; DestDir: 
 Source: "..\{#SourcePath}\nb-NO\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\nb-NO"; Flags: signonce;
 Source: "..\{#SourcePath}\sl-SI\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\sl-SI"; Flags: signonce;
 
-Source: "..\{#SourcePath}\Resources\*.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
+Source: "..\{#SourcePath}\Resources\*.dll"; Excludes: "ProtonVPN.InstallActions.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
 Source: "..\{#SourcePath}\Resources\*.exe"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
+Source: "..\{#SourcePath}\Resources\ProtonVPN.InstallActions.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\ProtonVPN.Vpn\Resources\wireguard.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\src\ProtonVPN.Vpn\Resources\tunnel.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 
@@ -131,6 +131,7 @@ Source: "tap\tapprotonvpn.Sys"; DestDir: "{app}\{#VersionFolder}\Resources\tap";
 Source: "SplitTunnel\ProtonVPN.CalloutDriver.sys"; DestDir: "{app}\{#VersionFolder}\Resources"; AfterInstall: InstallNetworkDriver;
 Source: "tun\wintun.dll"; DestDir: "{app}\{#VersionFolder}\Resources";
 Source: "GuestHoleServers.json"; DestDir: "{app}\{#VersionFolder}\Resources";
+Source: "Dependencies\{#Webview2InstallerName}"; Flags: dontcopy;
 
 [Icons]
 Name: "{group}\Proton VPN"; Filename: "{app}\{#LauncherExeName}"
@@ -139,6 +140,7 @@ Name: "{commondesktop}\Proton VPN"; Filename: "{app}\{#LauncherExeName}"; Tasks:
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; 
 Name: "installProtonDrive"; Description: "{cm:InstallProtonDriveTitle}"; Check: ShouldDisplayProtonDriveCheckbox;
+Name: "installWebview2"; Description: "Install Microsoft Edge WebView2 runtime"; Check: ShouldDisplayWebview2Checkbox;
 
 [Languages]
 Name: "en_US"; MessagesFile: "compiler:Default.isl,Strings\Default.isl"
@@ -165,65 +167,74 @@ Type: filesandordirs; Name: "{app}\{#VersionFolder}\Resources"
 Type: files; Name: "{#InstallLogPath}"
 
 [Code]
-function InitLogger(logger: Longword): Integer;
-external 'InitLogger@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
-
-function InitLoggerUninstall(logger: Longword): Integer;
-external 'InitLogger@{%TEMP}\ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
-
-function UpdateTaskbarIconTarget(launcherPath: String): Integer;
-external 'UpdateTaskbarIconTarget@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
-
-function UninstallProduct(upgradeCode: String): Integer;
-external 'UninstallProduct@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
-
-function IsProductInstalled(upgradeCode: String): Integer;
-external 'IsProductInstalled@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
-
-function UninstallTapAdapter(tapFilesPath: String): Integer;
-external 'UninstallTapAdapter@ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
-
-function RemovePinnedIcons(shortcutPath: String): Integer;
-external 'RemovePinnedIcons@ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
-
-function RemoveWfpObjects(): Integer;
-external 'RemoveWfpObjects@ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
-
-function SaveOldUserConfigFolder(): Integer;
-external 'SaveOldUserConfigFolder@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
-
-function RestoreOldUserConfigFolder(applicationPath: String): Integer;
-external 'RestoreOldUserConfigFolder@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
-
-function InstallWindowsService(name, displayName, path: String): Integer;
-external 'InstallService@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
-
-function IsProcessRunning(processName: String): Boolean;
-external 'IsProcessRunning@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
-
-function IsProcessRunningByPath(processPath: String): Boolean;
-external 'IsProcessRunningByPath@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
-
-function InstallCalloutDriver(name, displayName, path: String): Integer;
-external 'InstallCalloutDriver@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
-
-function UninstallService(name: String): Integer;
-external 'UninstallService@{%TEMP}\ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
-
-function LaunchUnelevatedProcess(processPath: String): Integer;
-external 'LaunchUnelevatedProcess@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
-
 function lstrlenW(lpString: Cardinal): Cardinal;
 external 'lstrlenW@kernel32.dll stdcall';
 
 function lstrcpyW(lpStringDest: String; lpStringSrc: Cardinal): Integer;
 external 'lstrcpyW@kernel32.dll stdcall';
 
+function InitLogger(logger: Longword): Integer;
+external 'InitLogger@files:ProtonVPN.InstallActions.x86.dll cdecl';
+
+function UpdateTaskbarIconTarget(launcherPath: String): Integer;
+external 'UpdateTaskbarIconTarget@files:ProtonVPN.InstallActions.x86.dll cdecl';
+
+function UninstallProduct(upgradeCode: String): Integer;
+external 'UninstallProduct@files:ProtonVPN.InstallActions.x86.dll cdecl';
+
+function IsProductInstalled(upgradeCode: String): Integer;
+external 'IsProductInstalled@files:ProtonVPN.InstallActions.x86.dll cdecl';
+
+function SaveOldUserConfigFolder(): Integer;
+external 'SaveOldUserConfigFolder@files:ProtonVPN.InstallActions.x86.dll cdecl';
+
+function RestoreOldUserConfigFolder(applicationPath: String): Integer;
+external 'RestoreOldUserConfigFolder@files:ProtonVPN.InstallActions.x86.dll cdecl';
+
+function InstallWindowsService(name, displayName, path: String): Integer;
+external 'InstallService@files:ProtonVPN.InstallActions.x86.dll cdecl';
+
+function IsProcessRunning(processName: String): Boolean;
+external 'IsProcessRunning@files:ProtonVPN.InstallActions.x86.dll cdecl';
+
+function IsProcessRunningByPath(processPath: String): Boolean;
+external 'IsProcessRunningByPath@files:ProtonVPN.InstallActions.x86.dll cdecl';
+
+function InstallCalloutDriver(name, displayName, path: String): Integer;
+external 'InstallCalloutDriver@files:ProtonVPN.InstallActions.x86.dll cdecl';
+
+function LaunchUnelevatedProcess(processPath, args: String; isToWait: Boolean): Integer;
+external 'LaunchUnelevatedProcess@files:ProtonVPN.InstallActions.x86.dll cdecl';
+
+function UninstallService(name: String): Integer;
+external 'UninstallService@{app}\{#VersionFolder}\Resources\ProtonVPN.InstallActions.x86.dll cdecl uninstallonly';
+
+function InitLoggerUninstall(logger: Longword): Integer;
+external 'InitLogger@{app}\{#VersionFolder}\Resources\ProtonVPN.InstallActions.x86.dll cdecl uninstallonly';
+
+function UninstallTapAdapter(tapFilesPath: String): Integer;
+external 'UninstallTapAdapter@{app}\{#VersionFolder}\Resources\ProtonVPN.InstallActions.x86.dll cdecl uninstallonly';
+
+function RemovePinnedIcons(shortcutPath: String): Integer;
+external 'RemovePinnedIcons@{app}\{#VersionFolder}\Resources\ProtonVPN.InstallActions.x86.dll cdecl uninstallonly';
+
+function RemoveWfpObjects(): Integer;
+external 'RemoveWfpObjects@{app}\{#VersionFolder}\Resources\ProtonVPN.InstallActions.x86.dll cdecl uninstallonly';
+
 type
   TInt64Array = array of Int64;
 
 var
   IsToReboot, IsVerySilent, IsToDisableAutoUpdate: Boolean;
+  InstallationProgressLabel: TNewStaticText;
+
+procedure InitializeWizard;
+begin
+  InstallationProgressLabel := TNewStaticText.Create(WizardForm);
+  InstallationProgressLabel.Parent := WizardForm.InstallingPage;
+  InstallationProgressLabel.Top := ScaleY(100);
+  InstallationProgressLabel.Left := 0;
+end;
 
 function NeedRestart(): Boolean;
 begin
@@ -391,15 +402,13 @@ begin
   end;
 
   InitLogger(CreateCallback(@LogProc));
-  Dependency_AddWebView2;
   Result := true;
 end;
 
 function InitializeUninstall: Boolean;
 begin
-  Log('InitializeUninstall');
-  Result := FileCopy(ExpandConstant('{app}\{#VersionFolder}\Resources\ProtonVPN.InstallActions.x86.dll'), ExpandConstant('{%TEMP}\ProtonVPN.InstallActions.x86.dll'), False);
   InitLoggerUninstall(CreateCallback(@LogProc));
+  Result := True;
 end;
 
 function UninstallServiceInner(name: String): Integer;
@@ -444,7 +453,7 @@ begin
       exit;
     end;
     RestoreOldUserConfigFolder(ExpandConstant('{app}'));
-    if not IsToReboot or WizardForm.NoRadio.Checked = True then begin
+    if (not IsToReboot or WizardForm.NoRadio.Checked = True) and IsVerySilent = false then begin
       launcherArgs := '';
       if WizardSilent() = false then begin
         langCode := ActiveLanguage();
@@ -454,14 +463,22 @@ begin
       if IsToDisableAutoUpdate = true then begin
         launcherArgs := launcherArgs + ' /DisableAutoUpdate';
       end;
-      if IsVerySilent = false then begin
-        ExecAsOriginalUser(ExpandConstant('{app}\{#LauncherExeName}'), launcherArgs, '', SW_SHOW, ewNoWait, res);
-        if WizardIsTaskSelected('installProtonDrive') then begin
-          LaunchUnelevatedProcess(ExpandConstant('{app}\{#VersionFolder}\{#ProtonDriveDownloaderName}'));
-        end;
-      end;
+      ExecAsOriginalUser(ExpandConstant('{app}\{#LauncherExeName}'), launcherArgs, '', SW_SHOW, ewNoWait, res);
     end;
   end
+  else if CurStep = ssPostInstall then begin
+    if IsVerySilent = false then begin
+      if WizardIsTaskSelected('installWebview2') then begin
+        InstallationProgressLabel.Caption := CustomMessage('InstallingWebview2Runtime');
+        WizardForm.Refresh();
+        ExtractTemporaryFile('{#Webview2InstallerName}');
+        LaunchUnelevatedProcess(ExpandConstant('{tmp}\{#Webview2InstallerName}'), '/silent /install', True);
+      end;
+      if WizardIsTaskSelected('installProtonDrive') then begin
+        LaunchUnelevatedProcess(ExpandConstant('{app}\{#VersionFolder}\{#ProtonDriveDownloaderName}'), '', False);
+      end;
+    end;
+  end;
 end;
 
 procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
@@ -481,6 +498,7 @@ begin
     Log('TAP uninstallation returned: ' + IntToStr(res));
     res := RemoveWfpObjects();
     Log('RemoveWfpObjects returned: ' + IntToStr(res));
+    UnloadDLL(ExpandConstant('{app}\{#VersionFolder}\Resources\ProtonVPN.InstallActions.x86.dll'));
   end;
 end;
 
@@ -492,4 +510,9 @@ end;
 function ShouldDisplayProtonDriveCheckbox: Boolean;
 begin
   Result := IsProductInstalled('{F3B95BD2-1311-4B82-8B4A-B9EB7C0500ED}') = 0;
+end;
+
+function ShouldDisplayWebview2Checkbox: Boolean;
+begin
+  Result := not RegValueExists(HKLM, 'SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}', 'pv');
 end;

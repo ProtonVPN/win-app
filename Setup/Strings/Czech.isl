@@ -1,2 +1,3 @@
 ﻿[CustomMessages]
 InstallProtonDriveTitle=Nainstalujte si Proton Drive - Šifrované cloudové úložiště (zdarma s Proton VPN)
+InstallingWebview2Runtime=Installing Web View 2 runtime...
