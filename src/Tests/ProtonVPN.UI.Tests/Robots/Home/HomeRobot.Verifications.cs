@@ -176,6 +176,12 @@ public partial class HomeRobot
         return this;
     }
 
+    public HomeRobot VerifyProtocolExist(string protocolName)
+    {
+        WaitUntilElementExistsByName(protocolName, TestConstants.FiveSecondsTimeout);
+        return this;
+    }
+
     private void VerifyVpnStatusLabels(string expectedTitle = null, string expectedSubtitle = null)
     {
         if (!string.IsNullOrEmpty(expectedTitle))

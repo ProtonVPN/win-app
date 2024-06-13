@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.ApiClient.TestEnv;
@@ -27,6 +28,7 @@ using ProtonVPN.UI.Tests.Robots.Login;
 using ProtonVPN.UI.Tests.Robots.Settings;
 using ProtonVPN.UI.Tests.Robots.Shell;
 using ProtonVPN.UI.Tests.TestsHelper;
+using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
 
 namespace ProtonVPN.UI.Tests.Tests.Performance;
 
@@ -36,7 +38,7 @@ public class SplitTunnelingPerformanceTest : TestSession
 {
     private string _runId;
     private string _measurementGroup;
-    private const string WORKFLOW = "split_tunneling_measurement";
+    private string _workflow;
 
     private LoginRobot _loginRobot = new();
     private HomeRobot _homeRobot = new();
@@ -51,15 +53,17 @@ public class SplitTunnelingPerformanceTest : TestSession
     {
         LaunchApp();
         _runId = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+        _loginRobot.DoLogin(TestUserData.PlusUser);
+        _homeRobot.DoWaitForVpnStatusSubtitleLabel();
     }
 
     [Test]
     public void SplitTunnelingPerformance()
     {
+        _workflow = "split_tunneling_measurement";
         _measurementGroup = "split_tunneling_connect";
 
-        _loginRobot.DoLogin(TestUserData.PlusUser);
-        _homeRobot.DoWaitForVpnStatusSubtitleLabel()
+        _homeRobot
             .DoConnect()
             .VerifyAllStatesUntilConnected();
         _homeRobot.DoDisconnect()
@@ -85,13 +89,51 @@ public class SplitTunnelingPerformanceTest : TestSession
         PerformanceTestHelper.AddMetric("duration", PerformanceTestHelper.GetDuration);
     }
 
+    [Test]
+    public void WireguardTlsPerformance()
+    {
+        _workflow = "wireguard_tls_measurement";
+        _measurementGroup = "wireguard_tls";
+
+        _shellRobot
+            .DoNavigateToSettingsPage();
+        _settingsRobot
+            .DoNavigateToProtocolSettingsPage()
+            .DoSelectProtocol(Protocol.WireGuardTls)
+            .DoApplyChanges();
+        _shellRobot
+            .DoNavigateToHomePage();
+
+        _homeRobot.DoConnect()
+            .VerifyVpnStatusIsConnected()
+            .DoDisconnect()
+            //Imitate user's delay
+            .Wait(TestConstants.TenSecondsTimeout);
+
+
+        _homeRobot.DoConnect();
+        PerformanceTestHelper.StartMonitoring();
+        _homeRobot.VerifyVpnStatusIsConnected();
+        PerformanceTestHelper.StopMonitoring();
+
+        PerformanceTestHelper.AddMetric("duration", PerformanceTestHelper.GetDuration);
+
+        PerformanceTestHelper.StartMonitoring();
+        _homeRobot
+            .VerifyProtocolExist("Stealth");
+        PerformanceTestHelper.StopMonitoring();
+        _homeRobot.DoDisconnect();
+        //This helps to avoid race conditions when sending API calls.
+        Thread.Sleep(TestConstants.FiveSecondsTimeout);
+    }
+
     [TearDown]
     public async Task TestCleanup()
     {
         Cleanup();
         PerformanceTestHelper.AddTestStatusMetric();
-        await _lokiPusher.PushCollectedMetricsAsync(PerformanceTestHelper.MetricsList, _runId, _measurementGroup, WORKFLOW);
+        await _lokiPusher.PushCollectedMetricsAsync(PerformanceTestHelper.MetricsList, _runId, _measurementGroup, _workflow);
         PerformanceTestHelper.Reset();
-        await _lokiPusher.PushAllLogsAsync(_runId, WORKFLOW);
+        await _lokiPusher.PushAllLogsAsync(_runId, _workflow);
     }
 }
