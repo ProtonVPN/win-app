@@ -80,7 +80,7 @@ public class MainMeasurementsSLI : TestSession
             .DoConnect()
             .VerifyAllStatesUntilConnected();
         _homeRobot.DoDisconnect()
-            .Wait(TestConstants.FiveSecondsTimeout);
+            .Wait(TestConstants.TenSecondsTimeout);
 
         _homeRobot.DoConnect();
         PerformanceTestHelper.StartMonitoring();
