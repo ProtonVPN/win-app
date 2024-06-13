@@ -20,7 +20,7 @@
 using System;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using ProtonVPN.UI.Tests.ApiClient;
+using ProtonVPN.UI.Tests.ApiClient.TestEnv;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.Robots.Home;
 using ProtonVPN.UI.Tests.Robots.Login;
@@ -31,7 +31,7 @@ using ProtonVPN.UI.Tests.TestsHelper;
 namespace ProtonVPN.UI.Tests.Tests.Performance;
 
 [TestFixture]
-[Category("Performance")]
+[Category("SLI")]
 public class SplitTunnelingPerformanceTest : TestSession
 {
     private string _runId;
@@ -43,7 +43,7 @@ public class SplitTunnelingPerformanceTest : TestSession
     private ShellRobot _shellRobot = new();
     private SettingsRobot _settingsRobot = new();
 
-    private LokiApiClient _lokiApiClient = new();
+    private LokiPusher _lokiPusher = new();
 
 
     [SetUp]
@@ -90,9 +90,8 @@ public class SplitTunnelingPerformanceTest : TestSession
     {
         Cleanup();
         PerformanceTestHelper.AddTestStatusMetric();
-        await _lokiApiClient.PushCollectedMetricsAsync(PerformanceTestHelper.MetricsList, _runId, _measurementGroup, WORKFLOW);
+        await _lokiPusher.PushCollectedMetricsAsync(PerformanceTestHelper.MetricsList, _runId, _measurementGroup, WORKFLOW);
         PerformanceTestHelper.Reset();
-        await _lokiApiClient.PushLogsAsync(TestConstants.ClientLogsPath, _runId, "windows_client_logs", WORKFLOW);
-        await _lokiApiClient.PushLogsAsync(GetServiceLogsPath(), _runId, "windows_service_logs", WORKFLOW);
+        await _lokiPusher.PushAllLogsAsync(_runId, WORKFLOW);
     }
 }

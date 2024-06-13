@@ -17,46 +17,46 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Net.Http;
-using System;
-using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
-using System.Text;
-using System.IO;
-using System.Linq;
 using System.Collections.Generic;
+using System.IO;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+using System;
 using ProtonVPN.UI.Tests.TestsHelper;
+using System.Linq;
 
-namespace ProtonVPN.UI.Tests.ApiClient;
-public class LokiApiClient
+namespace ProtonVPN.UI.Tests.ApiClient.TestEnv;
+
+public class LokiPusher
 {
-    // Temporarily push to 2 endpoints. After environment is more stable, start pushing only to TPE endpoint.
-    private readonly string _lokiPushEndpoint = Environment.GetEnvironmentVariable("LOKI_ENDPOINT");
-    private readonly string _lokiPushEndpointTpe = Environment.GetEnvironmentVariable("LOKI_ENDPOINT_TPE");
+    private readonly string _lokiPushEndpoint = Environment.GetEnvironmentVariable("LOKI_ENDPOINT") + "loki/api/v1/push";
     private HttpClient _httpClient;
 
-    public LokiApiClient()
+    public LokiPusher()
     {
-        HttpClientHandler handler = new HttpClientHandler
-        {
-            ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
-        };
-        _httpClient = new HttpClient(handler);
+        _httpClient = new LokiApiClient().GetHttpClient();
     }
-
 
     public async Task PushCollectedMetricsAsync(List<JProperty> metrics, string runId, string measurementGroup, string workflow)
     {
         JArray fullMetrics = BaseMetricsJsonBody(GetMetadata(runId), metrics);
         JObject requestBody = BaseLokiRequestJsonBody(fullMetrics, GetMetricsLabels(measurementGroup, workflow));
-        await PushToLoki(requestBody);
+        await PushToLokiAsync(requestBody);
     }
 
     public async Task PushLogsAsync(string logsPath, string runId, string lokiLabel, string workflow)
     {
         JObject requestBody = AddLogsToRequestJson(logsPath, lokiLabel, workflow, GetMetadata(runId));
-        await PushToLoki(requestBody);
+        await PushToLokiAsync(requestBody);
+    }
+
+    public async Task PushAllLogsAsync(string runId, string workflow)
+    {
+        await PushLogsAsync(TestConstants.ClientLogsPath, runId, "windows_client_logs", workflow);
+        await PushLogsAsync(TestEnvironment.GetServiceLogsPath(), runId, "windows_service_logs", workflow);
     }
 
     private JObject AddLogsToRequestJson(string pathToLogs, string measurementGroup, string workflow, JObject metadata)
@@ -79,15 +79,12 @@ public class LokiApiClient
         return BaseLokiRequestJsonBody(logs, GetLogsLabels(workflow));
     }
 
-    private async Task PushToLoki(JObject requestBody)
+    private async Task PushToLokiAsync(JObject requestBody)
     {
         string jsonContent = JsonConvert.SerializeObject(requestBody);
         var httpContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
         HttpResponseMessage response = await _httpClient.PostAsync(_lokiPushEndpoint, httpContent);
-        HttpResponseMessage responseTpe = await _httpClient.PostAsync(_lokiPushEndpointTpe, httpContent);
-
         response.EnsureSuccessStatusCode();
-        responseTpe.EnsureSuccessStatusCode();
     }
 
     private string ConvertTimeToUnixNanosecond(string timestampString)

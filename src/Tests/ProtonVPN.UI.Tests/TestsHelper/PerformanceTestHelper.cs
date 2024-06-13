@@ -20,7 +20,7 @@
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
-using ProtonVPN.UI.Tests.ApiClient;
+using ProtonVPN.UI.Tests.ApiClient.Prod;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -75,11 +75,10 @@ public class PerformanceTestHelper
 
     public static void AddNetworkSpeedToMetrics(string downloadSpeedLabel, string uploadSpeedLabel)
     {
-        Console.WriteLine("Measuring Speed");
+        NetworkUtils.FlushDns();
         Dictionary<string, double> networkSpeedConnected = GetNetworkSpeed();
         AddMetric(downloadSpeedLabel, networkSpeedConnected["downloadSpeed"].ToString());
         AddMetric(uploadSpeedLabel, networkSpeedConnected["uploadSpeed"].ToString());
-        Console.WriteLine("Measuring Speed Ended");
     }
 
     public async Task<string> GetRandomSpecificPaidServerAsync()
@@ -128,7 +127,6 @@ public class PerformanceTestHelper
             {
                 string output = process.StandardOutput.ReadToEnd();
                 process.WaitForExit();
-                Console.WriteLine(output);
                 JObject result = JObject.Parse(output);
 
                 double downloadSpeedInBytes = (double)result["download"]["bandwidth"];

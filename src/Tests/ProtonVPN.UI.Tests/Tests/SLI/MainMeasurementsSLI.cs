@@ -20,7 +20,7 @@
 using System;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using ProtonVPN.UI.Tests.ApiClient;
+using ProtonVPN.UI.Tests.ApiClient.TestEnv;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.Robots.Countries;
 using ProtonVPN.UI.Tests.Robots.Home;
@@ -31,8 +31,8 @@ using ProtonVPN.UI.Tests.TestsHelper;
 namespace ProtonVPN.UI.Tests.Tests.Performance;
 
 [TestFixture]
-[Category("Performance")]
-public class PerformanceTests : TestSession
+[Category("SLI")]
+public class MainMeasurementsSLI : TestSession
 {
     private string _runId;
     private string _measurementGroup;
@@ -43,7 +43,7 @@ public class PerformanceTests : TestSession
     private ShellRobot _shellRobot = new();
     private CountriesRobot _countriesRobot = new();
 
-    private LokiApiClient _lokiApiClient = new();
+    private LokiPusher _lokiPusher = new();
     private PerformanceTestHelper _performanceTestHelper = new();
 
 
@@ -97,7 +97,6 @@ public class PerformanceTests : TestSession
     public async Task NetworkPerformance()
     {
         _measurementGroup = "network_speed";
-
         PerformanceTestHelper.AddNetworkSpeedToMetrics("download_speed_disconnected", "upload_speed_disconnected");
 
         _shellRobot
@@ -139,7 +138,7 @@ public class PerformanceTests : TestSession
     public async Task TestCleanup()
     {
         PerformanceTestHelper.AddTestStatusMetric();
-        await _lokiApiClient.PushCollectedMetricsAsync(PerformanceTestHelper.MetricsList, _runId, _measurementGroup, WORKFLOW);
+        await _lokiPusher.PushCollectedMetricsAsync(PerformanceTestHelper.MetricsList, _runId, _measurementGroup, WORKFLOW);
         PerformanceTestHelper.Reset();
     }
 
@@ -147,7 +146,6 @@ public class PerformanceTests : TestSession
     public async Task OneTimeTearDownAsync()
     {
         Cleanup();
-        await _lokiApiClient.PushLogsAsync(TestConstants.ClientLogsPath, _runId, "windows_client_logs", WORKFLOW);
-        await _lokiApiClient.PushLogsAsync(GetServiceLogsPath(), _runId, "windows_service_logs", WORKFLOW);
+        await _lokiPusher.PushAllLogsAsync(_runId, WORKFLOW);
     }
 }
