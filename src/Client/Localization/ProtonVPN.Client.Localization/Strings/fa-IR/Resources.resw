@@ -1720,6 +1720,12 @@ Secure Core</value>
   <data name="Exit_Confirmation_Title">
     <value>Exit Proton VPN?</value>
   </data>
+  <data name="Exit_Message">
+    <value>Disconnecting from VPN...</value>
+  </data>
+  <data name="Exit_Title">
+    <value>Exit Proton VPN</value>
+  </data>
   <data name="Format_Milliseconds">
     <value>{0} میلی‌ثانیه</value>
     <comment>Format a number as a time in milliseconds. {0} is a place holder for the number of milliseconds (eg. 46ms)</comment>
@@ -2069,9 +2075,15 @@ Secure Core</value>
   <data name="Login_Form">
     <value>فرم ورود به حساب</value>
   </data>
+  <data name="Login_Form_AdvancedKillSwitchDescription">
+    <value>Kill switch is blocking any outgoing connections</value>
+  </data>
   <data name="Login_Form_CreateAccount">
     <value>ساختن حساب</value>
     <comment>A button inside sign in form</comment>
+  </data>
+  <data name="Login_Form_DisableKillSwitch">
+    <value>غیرفعال کردن Kill Switch</value>
   </data>
   <data name="Login_Form_Email">
     <value>ایمیل</value>
