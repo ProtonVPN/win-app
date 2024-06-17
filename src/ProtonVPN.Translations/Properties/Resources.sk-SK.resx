@@ -3150,7 +3150,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>a viac</value>
   </data>
   <data name="StartMinimizedMode_val_Disabled">
-    <value>Zakázané</value>
+    <value>Deaktivované</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="StartMinimizedMode_val_ToSystray">
