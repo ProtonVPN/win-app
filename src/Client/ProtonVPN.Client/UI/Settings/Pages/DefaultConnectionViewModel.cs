@@ -73,12 +73,12 @@ public partial class DefaultConnectionViewModel : SettingsPageViewModelBase
                issueReporter)
     { }
 
-    protected override void SaveSettings()
+    protected override void OnSaveSettings()
     {
         Settings.DefaultConnection = CurrentDefaultConnection;
     }
 
-    protected override void RetrieveSettings()
+    protected override void OnRetrieveSettings()
     {
         CurrentDefaultConnection = Settings.DefaultConnection;
     }

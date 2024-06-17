@@ -86,6 +86,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    ToolTipService.ToolTip="{x:Bind ViewModel.NatTypeLearnMoreUrl, Mode=OneTime}">
                             <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
                         </Hyperlink>
+                        <Run />
                     </TextBlock>
                 </toolkit:SettingsCard.Description>
                 <StackPanel Spacing="16">
@@ -129,6 +130,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    ToolTipService.ToolTip="{x:Bind ViewModel.NatTypeLearnMoreUrl, Mode=OneTime}">
                             <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
                         </Hyperlink>
+                        <Run />
                     </TextBlock>
                 </toolkit:SettingsCard.Description>
                 <toolkit:SettingsCard.ActionIcon>

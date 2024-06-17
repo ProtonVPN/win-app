@@ -168,6 +168,9 @@
   <data name="Countries_Page_Title" xml:space="preserve">
     <value>Countries</value>
   </data>
+  <data name="Countries_Page_FreeUser_Description" xml:space="preserve">
+    <value>Unlock country selection with VPN Plus</value>
+  </data>
   <data name="Country_Fastest" xml:space="preserve">
     <value>Fastest country</value>
   </data>

@@ -154,7 +154,7 @@ public abstract class ConnectionsPageViewModelBase : PageViewModelBase<IMainView
         }
     }
 
-    protected void InvalidateRestrictions()
+    protected virtual void InvalidateRestrictions()
     {
         if (IsActive)
         {

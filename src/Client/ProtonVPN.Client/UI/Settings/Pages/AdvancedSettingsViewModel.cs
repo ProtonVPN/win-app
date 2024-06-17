@@ -140,7 +140,7 @@ public partial class AdvancedSettingsViewModel : SettingsPageViewModelBase,
         OnPropertyChanged(nameof(CustomDnsServersSettingsState));
     }
 
-    protected override void SaveSettings()
+    protected override void OnSaveSettings()
     {
         Settings.NatType = CurrentNatType;
         Settings.IsAlternativeRoutingEnabled = IsAlternativeRoutingEnabled;
@@ -148,7 +148,7 @@ public partial class AdvancedSettingsViewModel : SettingsPageViewModelBase,
         Settings.OpenVpnAdapter = SelectedOpenVpnAdapter;
     }
 
-    protected override void RetrieveSettings()
+    protected override void OnRetrieveSettings()
     {
         CurrentNatType = Settings.NatType;
         IsAlternativeRoutingEnabled = Settings.IsAlternativeRoutingEnabled;

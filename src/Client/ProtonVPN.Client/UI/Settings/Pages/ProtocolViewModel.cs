@@ -118,12 +118,12 @@ public partial class ProtocolViewModel : SettingsPageViewModelBase
         OnPropertyChanged(nameof(Recommended));
     }
 
-    protected override void SaveSettings()
+    protected override void OnSaveSettings()
     {
         Settings.VpnProtocol = CurrentVpnProtocol;
     }
 
-    protected override void RetrieveSettings()
+    protected override void OnRetrieveSettings()
     {
         CurrentVpnProtocol = Settings.VpnProtocol;
     }

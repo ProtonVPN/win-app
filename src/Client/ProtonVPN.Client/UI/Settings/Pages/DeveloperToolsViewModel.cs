@@ -64,12 +64,4 @@ public partial class DeveloperToolsViewModel : SettingsPageViewModelBase
     {
         return [];
     }
-
-    protected override void RetrieveSettings()
-    {
-    }
-
-    protected override void SaveSettings()
-    {
-    }
 }

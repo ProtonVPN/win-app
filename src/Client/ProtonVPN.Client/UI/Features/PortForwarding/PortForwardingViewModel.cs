@@ -134,13 +134,13 @@ public partial class PortForwardingViewModel : SettingsPageViewModelBase,
         return HasActivePortNumber;
     }
 
-    protected override void SaveSettings()
+    protected override void OnSaveSettings()
     {
         Settings.IsPortForwardingEnabled = IsPortForwardingEnabled;
         Settings.IsPortForwardingNotificationEnabled = IsPortForwardingNotificationEnabled;
     }
 
-    protected override void RetrieveSettings()
+    protected override void OnRetrieveSettings()
     {
         IsPortForwardingEnabled = Settings.IsPortForwardingEnabled;
         IsPortForwardingNotificationEnabled = Settings.IsPortForwardingNotificationEnabled;

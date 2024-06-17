@@ -234,7 +234,7 @@ public partial class SplitTunnelingViewModel : SettingsPageViewModelBase
         OnPropertyChanged(nameof(ActiveIpAddressesCount));
     }
 
-    protected override void SaveSettings()
+    protected override async Task OnSaveSettingsAsync()
     {
         Settings.IsSplitTunnelingEnabled = IsSplitTunnelingEnabled;
         Settings.SplitTunnelingMode = CurrentSplitTunnelingMode;
@@ -243,7 +243,7 @@ public partial class SplitTunnelingViewModel : SettingsPageViewModelBase
         Settings.SplitTunnelingStandardIpAddressesList = GetSplitTunnelingIpAddressesList(StandardIpAddresses);
         Settings.SplitTunnelingInverseIpAddressesList = GetSplitTunnelingIpAddressesList(InverseIpAddresses);
 
-        _vpnServiceSettingsUpdater.SendAsync();
+        await _vpnServiceSettingsUpdater.SendAsync();
     }
 
     private List<SplitTunnelingApp> GetSplitTunnelingAppsList(ObservableCollection<SplitTunnelingAppViewModel> apps)
@@ -256,7 +256,7 @@ public partial class SplitTunnelingViewModel : SettingsPageViewModelBase
         return ipAddresses.Select(ip => new SplitTunnelingIpAddress(ip.IpAddress, ip.IsActive)).ToList();
     }
 
-    protected override async void RetrieveSettings()
+    protected override async Task OnRetrieveSettingsAsync()
     {
         IsSplitTunnelingEnabled = Settings.IsSplitTunnelingEnabled;
         CurrentSplitTunnelingMode = Settings.SplitTunnelingMode;
