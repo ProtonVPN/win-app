@@ -113,13 +113,13 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
         OnPropertyChanged(nameof(ActiveCustomDnsServersCount));
     }
 
-    protected override void SaveSettings()
+    protected override void OnSaveSettings()
     {
         Settings.IsCustomDnsServersEnabled = IsCustomDnsServersEnabled;
         Settings.CustomDnsServersList = GetCustomDnsServersList();
     }
 
-    protected override void RetrieveSettings()
+    protected override void OnRetrieveSettings()
     {
         IsCustomDnsServersEnabled = Settings.IsCustomDnsServersEnabled;
 

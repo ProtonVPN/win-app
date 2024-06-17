@@ -26,6 +26,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Thickness x:Key="PageContentControlPadding">28,16</Thickness>
     <Thickness x:Key="PageContentControlHeaderContainerMargin">0,16,0,11</Thickness>
+    <Thickness x:Key="PageContentControlHeaderButtonMargin">16,6,0,0</Thickness>
 
     <Style BasedOn="{StaticResource DefaultPageContentControlStyle}" TargetType="custom:PageContentControl" />
 
@@ -194,7 +195,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   MinHeight="32"/>
 
                                 <Button Grid.Column="2"
-                                        Margin="16,6,0,0"
+                                        Margin="{ThemeResource PageContentControlHeaderButtonMargin}"
                                         VerticalAlignment="Top"
                                         AutomationProperties.AutomationId="ApplyButton"
                                         Command="{Binding ApplyCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"

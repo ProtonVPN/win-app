@@ -64,12 +64,12 @@ public partial class VpnAcceleratorViewModel : SettingsPageViewModelBase
         _urls = urls;
     }
 
-    protected override void SaveSettings()
+    protected override void OnSaveSettings()
     {
         Settings.IsVpnAcceleratorEnabled = IsVpnAcceleratorEnabled;
     }
 
-    protected override void RetrieveSettings()
+    protected override void OnRetrieveSettings()
     {
         IsVpnAcceleratorEnabled = Settings.IsVpnAcceleratorEnabled;
     }

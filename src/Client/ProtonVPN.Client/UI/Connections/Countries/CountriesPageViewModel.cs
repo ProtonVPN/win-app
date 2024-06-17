@@ -37,6 +37,10 @@ public class CountriesPageViewModel : CountriesPageViewModelBase
 {
     public override string? Title => Localizer.Get("Countries_Page_Title");
 
+    public override string Description => Settings.VpnPlan.IsPaid
+        ? string.Empty
+        : Localizer.Get("Countries_Page_FreeUser_Description");
+
     public override ImageSource IllustrationSource { get; } = ResourceHelper.GetIllustration("AllCountriesIllustrationSource");
 
     public CountriesPageViewModel(
@@ -68,5 +72,15 @@ public class CountriesPageViewModel : CountriesPageViewModelBase
                          .Select(LocationItemFactory.GetCountry);
 
         return countries.Concat([fastestCountry]);
+    }
+
+    protected override void InvalidateRestrictions()
+    {
+        base.InvalidateRestrictions();
+
+        if (IsActive)
+        {
+            OnPropertyChanged(nameof(Description));
+        }
     }
 }

@@ -110,15 +110,15 @@ public partial class KillSwitchViewModel : SettingsPageViewModelBase
         };
     }
 
-    protected override void SaveSettings()
+    protected override async Task OnSaveSettingsAsync()
     {
         Settings.IsKillSwitchEnabled = IsKillSwitchEnabled;
         Settings.KillSwitchMode = CurrentKillSwitchMode;
 
-        _vpnServiceSettingsUpdater.SendAsync();
+        await _vpnServiceSettingsUpdater.SendAsync();
     }
 
-    protected override void RetrieveSettings()
+    protected override void OnRetrieveSettings()
     {
         IsKillSwitchEnabled = Settings.IsKillSwitchEnabled;
         CurrentKillSwitchMode = Settings.KillSwitchMode;

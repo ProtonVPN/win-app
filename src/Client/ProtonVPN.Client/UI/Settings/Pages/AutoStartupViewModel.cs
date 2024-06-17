@@ -86,14 +86,14 @@ public partial class AutoStartupViewModel : SettingsPageViewModelBase
             issueReporter)
     { }
 
-    protected override void SaveSettings()
+    protected override void OnSaveSettings()
     {
         Settings.IsAutoLaunchEnabled = IsAutoLaunchEnabled;
         Settings.AutoLaunchMode = CurrentAutoLaunchMode;
         Settings.IsAutoConnectEnabled = IsAutoConnectEnabled;
     }
 
-    protected override void RetrieveSettings()
+    protected override void OnRetrieveSettings()
     {
         IsAutoLaunchEnabled = Settings.IsAutoLaunchEnabled;
         CurrentAutoLaunchMode = Settings.AutoLaunchMode;

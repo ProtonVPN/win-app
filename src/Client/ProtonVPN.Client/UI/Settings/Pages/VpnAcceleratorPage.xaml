@@ -48,6 +48,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    ToolTipService.ToolTip="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}">
                             <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
                         </Hyperlink>
+                        <Run />
                     </TextBlock>
                 </toolkit:SettingsCard.Description>
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsVpnAcceleratorEnabled, Mode=TwoWay}"

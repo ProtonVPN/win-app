@@ -19,6 +19,7 @@
 
 using System.ComponentModel;
 using System.Reflection;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Attributes;
@@ -51,6 +52,10 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
     protected readonly ISettingsConflictResolver SettingsConflictResolver;
     protected readonly IConnectionManager ConnectionManager;
 
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(ApplyCommand))]
+    private bool _isPageReady = false;
+
     public string ApplyCommandText => Localizer.Get(IsReconnectionRequired()
         ? "Common_Actions_Reconnect"
         : "Settings_Common_Apply");
@@ -79,7 +84,7 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
     {
         bool isReconnectionRequired = IsReconnectionRequired();
 
-        SaveSettings();
+        await SaveSettingsAsync();
 
         if (isReconnectionRequired)
         {
@@ -89,43 +94,7 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
 
     public bool CanApply()
     {
-        return HasChangedSettings();
-    }
-
-    private bool HasChangedSettings()
-    {
-        return GetChangedSettings().Any();
-    }
-
-    protected abstract IEnumerable<ChangedSettingArgs> GetSettings();
-
-    private bool IsReconnectionRequired()
-    {
-        if (ConnectionManager.IsDisconnected)
-        {
-            return false;
-        }
-
-        IEnumerable<ChangedSettingArgs> changedSettings = GetChangedSettings();
-        foreach (ChangedSettingArgs changedSetting in changedSettings)
-        {
-            if (RequiredReconnectionSettings.Contains(changedSetting.Name))
-            {
-                return true;
-            }
-
-            ISettingsConflict? conflict = SettingsConflictResolver.GetConflict(changedSetting.Name, changedSetting.NewValue);
-            if (conflict is not null && conflict.IsReconnectionRequired)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private IEnumerable<ChangedSettingArgs> GetChangedSettings()
-    {
-        return GetSettings().Where(s => s.HasChanged);
+        return IsPageReady && HasChangedSettings();
     }
 
     public void Receive(ConnectionStatusChanged message)
@@ -183,22 +152,71 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
         }
     }
 
-    public override void OnNavigatedTo(object parameter, bool isBackNavigation)
+    public override async void OnNavigatedTo(object parameter, bool isBackNavigation)
     {
         base.OnNavigatedTo(parameter, isBackNavigation);
 
-        RetrieveSettings();
+        await RetrieveSettingsAsync();
     }
+
+    public override void OnNavigatedFrom()
+    {
+        base.OnNavigatedFrom();
+
+        // Reset flag when navigating to another page
+        IsPageReady = false;
+    }
+
+    public void Receive(VpnPlanChangedMessage message)
+    {
+        ExecuteOnUIThread(async () => await RetrieveSettingsAsync());
+    }
+
+    protected abstract IEnumerable<ChangedSettingArgs> GetSettings();
 
     protected virtual void OnConnectionStatusChanged(ConnectionStatus connectionStatus)
     { }
-    
+
     protected virtual void OnSettingsChanged(string propertyName)
     { }
 
-    protected abstract void SaveSettings();
+    private async Task SaveSettingsAsync()
+    {
+        OnSaveSettings();
+        await OnSaveSettingsAsync();
+    }
 
-    protected abstract void RetrieveSettings();
+    protected virtual void OnSaveSettings()
+    { }
+
+    protected virtual Task OnSaveSettingsAsync()
+    {
+        return Task.CompletedTask;
+    }
+
+    private async Task RetrieveSettingsAsync()
+    {
+        try
+        {
+            // Keep flag off while retrieving settings
+            IsPageReady = false;
+
+            OnRetrieveSettings();
+            await OnRetrieveSettingsAsync();
+        }
+        finally
+        {
+            IsPageReady = true;
+        }
+    }
+
+    protected virtual void OnRetrieveSettings()
+    { }
+
+    protected virtual Task OnRetrieveSettingsAsync()
+    {
+        return Task.CompletedTask;
+    }
 
     protected override async void OnPropertyChanged(PropertyChangedEventArgs e)
     {
@@ -227,6 +245,47 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
         }
     }
 
+    protected override void OnLanguageChanged()
+    {
+        base.OnLanguageChanged();
+
+        OnPropertyChanged(nameof(ApplyCommandText));
+    }
+
+    private bool HasChangedSettings()
+    {
+        return GetChangedSettings().Any();
+    }
+
+    private bool IsReconnectionRequired()
+    {
+        if (ConnectionManager.IsDisconnected)
+        {
+            return false;
+        }
+
+        IEnumerable<ChangedSettingArgs> changedSettings = GetChangedSettings();
+        foreach (ChangedSettingArgs changedSetting in changedSettings)
+        {
+            if (RequiredReconnectionSettings.Contains(changedSetting.Name))
+            {
+                return true;
+            }
+
+            ISettingsConflict? conflict = SettingsConflictResolver.GetConflict(changedSetting.Name, changedSetting.NewValue);
+            if (conflict is not null && conflict.IsReconnectionRequired)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private IEnumerable<ChangedSettingArgs> GetChangedSettings()
+    {
+        return GetSettings().Where(s => s.HasChanged);
+    }
+
     private string GetSettingName(string propertyName)
     {
         PropertyInfo? propertyInfo = GetType()?.GetProperty(propertyName);
@@ -236,17 +295,5 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
             && !string.IsNullOrEmpty(attribute.SettingPropertyName)
             ? attribute.SettingPropertyName
             : propertyName;
-    }
-
-    protected override void OnLanguageChanged()
-    {
-        base.OnLanguageChanged();
-
-        OnPropertyChanged(nameof(ApplyCommandText));
-    }
-
-    public void Receive(VpnPlanChangedMessage message)
-    {
-        ExecuteOnUIThread(RetrieveSettings);
     }
 }

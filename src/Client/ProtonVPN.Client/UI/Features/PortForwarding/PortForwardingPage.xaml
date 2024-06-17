@@ -29,6 +29,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
       mc:Ignorable="d">
+    
+    <Page.Resources>
+        <Thickness x:Key="PageContentControlHeaderButtonMargin">16,16,0,0</Thickness>
+    </Page.Resources>
 
     <custom:SettingsPageContentControl x:Name="PageContentHost"
                                        ApplyCommand="{x:Bind ViewModel.ApplyCommand, Mode=OneTime}"
@@ -38,9 +42,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}">
 
         <custom:PageContentControl.PageHeader>
-            <custom:PageHeaderContentControl IllustrationSource="{StaticResource PortForwardingFeatureIllustrationSource}"
-                                             Header="{x:Bind ViewModel.Title}"
-                                             Content="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding_Description')}"/>
+            <custom:PageHeaderContentControl Header="{x:Bind ViewModel.Title}"
+                                             IllustrationSource="{StaticResource PortForwardingFeatureIllustrationSource}">
+
+                <TextBlock TextWrapping="Wrap">
+                    <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding_Description')}" />
+                    <Hyperlink NavigateUri="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}"
+                               ToolTipService.ToolTip="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}">
+                        <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
+                    </Hyperlink>
+                    <Run />
+                </TextBlock>
+            </custom:PageHeaderContentControl>
         </custom:PageContentControl.PageHeader>
 
         <StackPanel x:Name="ContentArea">
@@ -49,16 +62,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                       IsExpanded="{x:Bind ViewModel.IsExpanded}"
                                       IsTabStop="False"
                                       Style="{StaticResource SettingsExpanderStyle}">
-
-                <toolkit:SettingsExpander.Description>
-                    <TextBlock TextWrapping="Wrap">
-                        <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding_Description')}" />
-                        <Hyperlink NavigateUri="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}"
-                                   ToolTipService.ToolTip="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}">
-                            <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
-                        </Hyperlink>
-                    </TextBlock>
-                </toolkit:SettingsExpander.Description>
 
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsPortForwardingEnabled, Mode=TwoWay}"
                               Style="{StaticResource ToggleSwitchStyle}" />
@@ -108,6 +111,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsPortForwardingNotificationEnabled, Mode=TwoWay}"
                               Style="{StaticResource ToggleSwitchStyle}" />
             </toolkit:SettingsCard>
+
         </StackPanel>
+
     </custom:SettingsPageContentControl>
+
 </Page>

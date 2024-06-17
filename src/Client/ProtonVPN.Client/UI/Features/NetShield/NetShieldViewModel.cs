@@ -78,12 +78,12 @@ public partial class NetShieldViewModel : SettingsPageViewModelBase
             : ResourceHelper.GetIllustration("NetShieldOffIllustrationSource");
     }
 
-    protected override void SaveSettings()
+    protected override void OnSaveSettings()
     {
         Settings.IsNetShieldEnabled = IsNetShieldEnabled;
     }
 
-    protected override void RetrieveSettings()
+    protected override void OnRetrieveSettings()
     {
         IsNetShieldEnabled = Settings.IsNetShieldEnabled;
     }

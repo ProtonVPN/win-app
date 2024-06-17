@@ -66,13 +66,13 @@ public partial class CensorshipViewModel : SettingsPageViewModelBase
         _urls = urls;
     }
 
-    protected override void SaveSettings()
+    protected override void OnSaveSettings()
     {
         Settings.IsShareStatisticsEnabled = IsShareStatisticsEnabled;
         Settings.IsShareCrashReportsEnabled = IsShareCrashReportsEnabled;
     }
 
-    protected override void RetrieveSettings()
+    protected override void OnRetrieveSettings()
     {
         IsShareStatisticsEnabled = Settings.IsShareStatisticsEnabled;
         IsShareCrashReportsEnabled = Settings.IsShareCrashReportsEnabled;
