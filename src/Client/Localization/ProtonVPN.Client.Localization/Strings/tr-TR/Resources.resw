@@ -1720,6 +1720,12 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
   <data name="Exit_Confirmation_Title">
     <value>Proton VPN uygulamasından çıkılsın mı?</value>
   </data>
+  <data name="Exit_Message">
+    <value>VPN bağlantısı kesiliyor...</value>
+  </data>
+  <data name="Exit_Title">
+    <value>Proton VPN uygulamasından çıkılsın mı</value>
+  </data>
   <data name="Format_Milliseconds">
     <value>{0}ms</value>
     <comment>Format a number as a time in milliseconds. {0} is a place holder for the number of milliseconds (eg. 46ms)</comment>
@@ -2069,9 +2075,15 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
   <data name="Login_Form">
     <value>Oturum açma formu</value>
   </data>
+  <data name="Login_Form_AdvancedKillSwitchDescription">
+    <value>Bağlantı kesici dışarı giden tüm bağlantıları engelliyor</value>
+  </data>
   <data name="Login_Form_CreateAccount">
     <value>Hesap ekle</value>
     <comment>A button inside sign in form</comment>
+  </data>
+  <data name="Login_Form_DisableKillSwitch">
+    <value>Bağlantı kesiciyi kapat</value>
   </data>
   <data name="Login_Form_Email">
     <value>E-posta adresi</value>

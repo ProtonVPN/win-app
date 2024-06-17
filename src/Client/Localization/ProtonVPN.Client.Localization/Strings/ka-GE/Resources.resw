@@ -1683,7 +1683,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>შეამოწმეთ თქვენი შეერთება ინტერნეტთან</value>
   </data>
   <data name="Dialogs_Troubleshooting_CheckInternet_Description">
-    <value>Make sure you're online, and that your connection is stable.</value>
+    <value>დადრწმუნდით, რომ ქსელი ჩართულია და რომ მიერთება სტაბილურია.</value>
   </data>
   <data name="Dialogs_Troubleshooting_Description">
     <value>ეს სწრაფი გზები, შეიძლება, Proton-თან დაკავშირებაში დაგეხმარონ.</value>
@@ -1701,7 +1701,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>შეამოწმეთ ჩვენი სტატუსის გვერდი</value>
   </data>
   <data name="Dialogs_Troubleshooting_StatusPage_Description">
-    <value>Just to be sure that Proton services are running as normal.</value>
+    <value>უბრალოდ, რომ დავრწმუნდეთ, რომ Proton-ის ყველა სერვისი ნორმალურ მდგომარეობაშია.</value>
   </data>
   <data name="Dialogs_Troubleshooting_Title">
     <value>მიერთების დახმარება</value>
@@ -1717,6 +1717,12 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
   </data>
   <data name="Exit_Confirmation_Title">
     <value>გავიდე Proton VPN-დან?</value>
+  </data>
+  <data name="Exit_Message">
+    <value>VPN-დან გათიშვა...</value>
+  </data>
+  <data name="Exit_Title">
+    <value>გავიდე Proton VPN-დან</value>
   </data>
   <data name="Format_Milliseconds">
     <value>{0}მწმ</value>
@@ -1831,7 +1837,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>იქონიეთ წვდომა ყველაფერზე VPN Plus-თან ერთად</value>
   </data>
   <data name="Gateways_Page_Description">
-    <value>Connect to a Gateway to access your organization's VPN.</value>
+    <value>დაუკავშირდით კარიბჭეს თქვენი ორგანიზაციის VPN-თან წვდომისთვის.</value>
   </data>
   <data name="Gateways_Page_Title">
     <value>რაუტერები</value>
@@ -2067,9 +2073,15 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
   <data name="Login_Form">
     <value>შესვლის ფორმა</value>
   </data>
+  <data name="Login_Form_AdvancedKillSwitchDescription">
+    <value>Kill Switch -ი ყველა გამავალ შეერთებას ბლოკავს</value>
+  </data>
   <data name="Login_Form_CreateAccount">
     <value>ანგარიშის შექმნა</value>
     <comment>A button inside sign in form</comment>
+  </data>
+  <data name="Login_Form_DisableKillSwitch">
+    <value>Kill Switch-ის გამორთვა</value>
   </data>
   <data name="Login_Form_Email">
     <value>ელფოსტა</value>
@@ -2753,7 +2765,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>დასტრიმეთ თქვენი საყვარელი ფილმები და სერიალები</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Access">
-    <value>Access geoblocked TV and movies from anywhere in the world</value>
+    <value>იქონიეთ წვდომა გეოგრაფიული მდებარეობის მიხედვით დაბლოკილ TV-სთან და ფილმებთან, სადაც არ უნდა იყოთ</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Platforms_BBC">
     <value>BBC iPlayer</value>
@@ -2774,7 +2786,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>Amazon Prime Video</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Speed">
-    <value>Watch in 4K without buffering, slowdowns, or throttling</value>
+    <value>უყურეთ 4K-ში ბაფერინგის, შენელებების და სხვა პრობლემების გარეშე</value>
   </data>
   <data name="Upsell_Carousel_Title">
     <value>აღმოაჩინეთ VPN Plus</value>
