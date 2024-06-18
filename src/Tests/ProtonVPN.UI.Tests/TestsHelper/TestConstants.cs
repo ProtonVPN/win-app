@@ -33,7 +33,7 @@ public static class TestConstants
     public static TimeSpan TenSecondsTimeout => TimeSpan.FromSeconds(10);
     public static TimeSpan ThirtySecondsTimeout => TimeSpan.FromSeconds(30);
     public static TimeSpan OneMinuteTimeout => TimeSpan.FromSeconds(60);
-    public static TimeSpan RetryInterval => TimeSpan.FromMilliseconds(500);
+    public static TimeSpan RetryInterval => TimeSpan.FromMilliseconds(200);
     public static string AppFolderPath = @"C:\Program Files\Proton\VPN";
     public static string LauncherPath = @"C:\Program Files\Proton\VPN\ProtonVPN.Launcher.exe";
     public static string MapCountry = "CA";
