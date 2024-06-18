@@ -69,6 +69,15 @@ public class ServiceSettings : IServiceSettings
         }
     }
 
+    public bool IsShareCrashReportsEnabled
+    {
+        get
+        {
+            Load();
+            return _settings.IsShareCrashReportsEnabled;
+        }
+    }
+
     public VpnProtocol VpnProtocol
     {
         get

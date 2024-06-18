@@ -17,13 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.IssueReporting.Installers
+namespace ProtonVPN.IssueReporting.Installers;
+
+public static class IssueReportingInitializer
 {
-    public static class IssueReportingInitializer
+    public static void Run()
     {
-        public static void Run()
-        {
-            SentryInitializer.Run();
-        }
+        SentryInitializer.Run();
+    }
+
+    public static void SetEnabled(bool isEnabled)
+    {
+        SentryInitializer.SetEnabled(isEnabled);
     }
 }

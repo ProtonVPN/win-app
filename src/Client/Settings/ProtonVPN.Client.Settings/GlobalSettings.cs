@@ -198,6 +198,12 @@ public class GlobalSettings : IGlobalSettings
         set => _globalCache.SetValueType<ChangeServerSettings>(value, SettingEncryption.Encrypted);
     }
 
+    public bool IsShareCrashReportsEnabled
+    {
+        get => _globalCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsShareCrashReportsEnabled;
+        set => _globalCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
     public GlobalSettings(IGlobalSettingsCache globalSettingsCache)
     {
         _globalCache = globalSettingsCache;

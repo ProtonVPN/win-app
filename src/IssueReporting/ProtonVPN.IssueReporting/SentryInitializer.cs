@@ -33,6 +33,7 @@ namespace ProtonVPN.IssueReporting;
 
 public static class SentryInitializer
 {
+    private static bool _isEnabled;
     private static readonly ISentryDiagnosticLogger _sentryDiagnosticLogger = new SentryDiagnosticLogger();
     private static ILogger _logger;
 
@@ -49,6 +50,11 @@ public static class SentryInitializer
         SentrySdk.Init(options);
     }
 
+    public static void SetEnabled(bool isEnabled)
+    {
+        _isEnabled = isEnabled;
+    }
+
     private static SentryOptions GetSentryOptions()
     {
         SentryOptions options = new()
@@ -62,11 +68,19 @@ public static class SentryInitializer
             Debug = false,
             DiagnosticLogger = _sentryDiagnosticLogger,
             IsGlobalModeEnabled = true,
+            SendClientReports = false,
         };
 
         options.SetBeforeSend(e =>
         {
             LogSentryEvent(e);
+
+            if (!_isEnabled)
+            {
+                _logger?.Info<AppLog>("Dropping event, because the user has disabled sending crash reports.");
+                return null;
+            }
+
             e.SetTag("ProcessName", Process.GetCurrentProcess().ProcessName);
             e.User.Id = DeviceIdStaticBuilder.GetDeviceId();
             e.SetExtra("logs", GetLogs());

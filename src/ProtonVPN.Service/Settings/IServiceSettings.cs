@@ -29,6 +29,7 @@ public interface IServiceSettings
     KillSwitchMode KillSwitchMode { get; }
     SplitTunnelSettingsIpcEntity SplitTunnelSettings { get; }
     bool Ipv6LeakProtection { get; }
+    bool IsShareCrashReportsEnabled { get; }
     VpnProtocol VpnProtocol { get; }
     OpenVpnAdapter OpenVpnAdapter { get; }
 

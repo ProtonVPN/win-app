@@ -137,6 +137,8 @@ internal class Bootstrapper
             {
                 instance.OnServiceSettingsChanged(e);
             }
+
+            IssueReportingInitializer.SetEnabled(e.IsShareCrashReportsEnabled);
         };
     }
 

@@ -58,6 +58,7 @@ public class MainSettingsRequestCreator : IMainSettingsRequestCreator
             ModerateNat = _settings.NatType == NatType.Moderate,
             NetShieldMode = _settings.IsNetShieldEnabled ? 2 : 0,
             Ipv6LeakProtection = _settings.IsIpv6LeakProtectionEnabled,
+            IsShareCrashReportsEnabled = _settings.IsShareCrashReportsEnabled,
             PortForwarding = _settings.IsPortForwardingEnabled,
             SplitTcp = _settings.IsVpnAcceleratorEnabled,
             OpenVpnAdapter = _entityMapper.Map<OpenVpnAdapter, OpenVpnAdapterIpcEntity>(_settings.OpenVpnAdapter),

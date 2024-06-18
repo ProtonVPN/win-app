@@ -53,6 +53,7 @@ public interface IGlobalSettings
     bool IsFeatureConnectedServerCheckEnabled { get; set; }
     TimeSpan ConnectedServerCheckInterval { get; set; }
     ChangeServerSettings ChangeServerSettings { get; set; }
+    bool IsShareCrashReportsEnabled { get; set; }
 
     Dictionary<string, Dictionary<string, string?>>? LegacySettingsByUsername { get; set; }
 }
