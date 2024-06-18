@@ -167,12 +167,6 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
-    public bool IsShareCrashReportsEnabled
-    {
-        get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsShareCrashReportsEnabled;
-        set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
-    }
-
     public bool IsAlternativeRoutingEnabled
     {
         get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsAlternativeRoutingEnabled;

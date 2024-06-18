@@ -26,6 +26,7 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Migrations;
 using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
@@ -69,6 +70,8 @@ public class Bootstrapper : IBootstrapper
     {
         try
         {
+            IssueReportingInitializer.SetEnabled(_globalSettings.IsShareCrashReportsEnabled);
+
             ParseAndRunCommandLineArguments();
 
             _globalSettingsMigrator.Migrate();

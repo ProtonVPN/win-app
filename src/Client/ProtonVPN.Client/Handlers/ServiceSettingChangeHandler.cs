@@ -24,7 +24,7 @@ using ProtonVPN.Client.Settings.Contracts.Messages;
 
 namespace ProtonVPN.Client.Handlers;
 
-public class ConnectionSettingChangeHandler : IHandler, IEventMessageReceiver<SettingChangedMessage>
+public class ServiceSettingChangeHandler : IHandler, IEventMessageReceiver<SettingChangedMessage>
 {
     // Only individual settings used by MainSettingsRequestCreator. Groups of Settings should have a
     // single call made at the end of all changes (Ex.: KillSwitchViewModel, SplitTunnelingViewModel).
@@ -37,12 +37,12 @@ public class ConnectionSettingChangeHandler : IHandler, IEventMessageReceiver<Se
         nameof(ISettings.IsPortForwardingEnabled),
         nameof(ISettings.IsVpnAcceleratorEnabled),
         nameof(ISettings.OpenVpnAdapter),
-        nameof(ISettings.IsKillSwitchEnabled),
+        nameof(ISettings.IsShareCrashReportsEnabled),
     ];
 
     private readonly IVpnServiceSettingsUpdater _vpnServiceSettingsUpdater;
 
-    public ConnectionSettingChangeHandler(IVpnServiceSettingsUpdater vpnServiceSettingsUpdater)
+    public ServiceSettingChangeHandler(IVpnServiceSettingsUpdater vpnServiceSettingsUpdater)
     {
         _vpnServiceSettingsUpdater = vpnServiceSettingsUpdater;
     }
