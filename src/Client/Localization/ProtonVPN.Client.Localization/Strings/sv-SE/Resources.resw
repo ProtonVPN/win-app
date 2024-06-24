@@ -2308,7 +2308,7 @@ Smart Routing används vanligtvis för att komma runt antiintegritetslagar och a
     <value>Strikt (typ 3)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
-    <value>Restricts the data entering your network. This option is more secure, but can make peer-to-peer gaming connections more difficult.</value>
+    <value>Begränsar den data som ankommer till ditt nätverk. Detta alternativ är säkrare, men kan göra peer-to-peer spel-anslutningar svårare.</value>
   </data>
   <data name="Settings_Connection_Default">
     <value>Standardanslutning</value>
