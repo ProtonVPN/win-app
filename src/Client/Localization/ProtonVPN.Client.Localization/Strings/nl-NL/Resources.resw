@@ -2083,7 +2083,7 @@ Smart Routing wordt meestal gebruikt om anti-privacywetten en andere vormen van 
     <comment>A button inside sign in form</comment>
   </data>
   <data name="Login_Form_DisableKillSwitch">
-    <value>Schakel Kill Switch uit</value>
+    <value>Schakel IP-beveiliging uit</value>
   </data>
   <data name="Login_Form_Email">
     <value>E-mail</value>

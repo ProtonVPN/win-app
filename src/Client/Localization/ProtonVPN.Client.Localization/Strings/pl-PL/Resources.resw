@@ -2565,7 +2565,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Dostosuj połączenie, decydując, które aplikacje i adresy IP są chronione przez VPN.</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Inverse">
-    <value>Odwrotny</value>
+    <value>Odwrócony</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Inverse_Description">
     <value>Tylko wybrane aplikacje i adresy IP zostaną uwzględnione w połączeniu VPN. Pozostały ruch sieciowy będzie niechroniony</value>

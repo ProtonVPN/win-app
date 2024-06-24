@@ -395,7 +395,7 @@
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
   <data name="Countries_P2P_Description">
-    <value>Securely share and download files over peer-to-peer (P2P) networks.</value>
+    <value>უსაფრთხოთ გააზიარეთ და გადმოწერეთ ფაილები გამჭოლი (P2P) ქსელებიდან.</value>
   </data>
   <data name="Countries_Page_Title">
     <value>ქვეყნები</value>
@@ -1979,13 +1979,13 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>რეკლამა ბლოკირებულია</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Description">
-    <value>Ads are promotional banners or pop-ups that appear on websites and apps.</value>
+    <value>რეკლამა ბანერები ან მხტუნარა მენიუებია, რომლებიც ვებგვერდებზე და აპებში ჩანს.</value>
   </data>
   <data name="Home_NetShield_DataSaved">
     <value>მინაცემები შენახულია</value>
   </data>
   <data name="Home_NetShield_DataSaved_Description">
-    <value>Estimated data saved by blocking unwanted ads, trackers, and malware.</value>
+    <value>მონაცემების დაახლოებითი რაოდენობა, რომელიც დაიზოგა რეკლამების, ტრეკერების და მავნე პროგრამების დაბლოკვით.</value>
   </data>
   <data name="Home_NetShield_Landmark">
     <value>NetShield-ის სტატისტიკა</value>
@@ -2001,7 +2001,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>შეჩერებული ტრეკერი</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_Description">
-    <value>Trackers are cookies and third-party websites that collect, store, and sell information about your web activity.</value>
+    <value>ტრეკერები მესამე პირების ვებგვერდები და ქუქიებია, რომლებიც აგროვებენ და ყიდიან ინფორმაციას თქვენი ვებ-აქტივობების შესახებ.</value>
   </data>
   <data name="Home_Page_Title">
     <value>მთავარი</value>
@@ -2465,7 +2465,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>ავტომატური დაკავშირება</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>Automatically connects to your default connection when Proton VPN opens.</value>
+    <value>ავტომატურად მიუერთდება თქვენს ნაგულისხმევ მიერთებას Proton VPN-ის გახსნისას.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>უსწრაფესი შეერთება</value>
@@ -2674,10 +2674,10 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>მიუერთდით VPN სერვერს თქვენი საკუთარი დომენის სახელით სერვერით (DNS)</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
-    <value>Access devices on your local area network (LAN) while connected</value>
+    <value>იქონით წვდომა თქვენს ლოკალურ ქსელში (LAN) არსებულ მოწყობილობებზე, როცა მიერთებული ბრძანდებით</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
-    <value>Level up your gaming experience by switching to NAT type 2 (moderate)</value>
+    <value>ასწიეთ თქვენი თამაშების მიერთების დონე NAT type 2-ზე (საშუალო) გადართვით</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices">
     <value>მიუერთეთ 10-მდე მოწყობილობა</value>
