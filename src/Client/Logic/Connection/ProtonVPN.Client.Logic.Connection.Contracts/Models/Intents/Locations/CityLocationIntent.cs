@@ -21,30 +21,34 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
-public class CityStateLocationIntent : CountryLocationIntent
+public class CityLocationIntent : StateLocationIntent
 {
-    public string CityState { get; }
+    public string City { get; }
 
-    public CityStateLocationIntent(string countryCode, string cityState)
-        : base(countryCode)
+    public CityLocationIntent(string countryCode, string state, string city)
+        : base(countryCode, state)
     {
-        CityState = cityState;
+        City = city;
     }
+
+    public CityLocationIntent(string countryCode, string city)
+        : this(countryCode, null, city)
+    { }
 
     public override bool IsSameAs(ILocationIntent? intent)
     {
         return base.IsSameAs(intent)
-            && intent is CityStateLocationIntent cityStateIntent
-            && CityState == cityStateIntent.CityState;
+            && intent is CityLocationIntent cityIntent
+            && City == cityIntent.City;
     }
 
     public override bool IsSupported(Server server)
     {
-        return base.IsSupported(server) && server.City == CityState;
+        return base.IsSupported(server) && server.City == City;
     }
 
     public override string ToString()
     {
-        return $"{base.ToString()}{(string.IsNullOrEmpty(CityState) ? string.Empty : $" - {CityState}")}";
+        return $"{base.ToString()}{(string.IsNullOrEmpty(City) ? string.Empty : $" - {City}")}";
     }
 }

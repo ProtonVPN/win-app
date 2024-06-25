@@ -21,37 +21,30 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
-public class CountryLocationIntent : LocationIntentBase
+public class StateLocationIntent : CountryLocationIntent
 {
-    public override bool IsForPaidUsersOnly => true;
+    public string State { get; }
 
-    public string CountryCode { get; }
-
-    public bool IsFastest => string.IsNullOrEmpty(CountryCode);
-
-    public CountryLocationIntent(string countryCode)
+    public StateLocationIntent(string countryCode, string state)
+        : base(countryCode)
     {
-        CountryCode = countryCode.ToUpperInvariant();
+        State = state;
     }
-
-    public CountryLocationIntent()
-        : this(string.Empty)
-    { }
 
     public override bool IsSameAs(ILocationIntent? intent)
     {
         return base.IsSameAs(intent)
-            && intent is CountryLocationIntent countryIntent
-            && CountryCode == countryIntent.CountryCode;
+            && intent is StateLocationIntent stateIntent
+            && State == stateIntent.State;
     }
 
     public override bool IsSupported(Server server)
     {
-        return IsFastest || server.ExitCountry == CountryCode;
+        return base.IsSupported(server) && (State is null || server.State == State);
     }
 
     public override string ToString()
     {
-        return IsFastest ? "Fastest country" : $"Country {CountryCode}";
+        return $"{base.ToString()}{(string.IsNullOrEmpty(State) ? string.Empty : $" - {State}")}";
     }
 }

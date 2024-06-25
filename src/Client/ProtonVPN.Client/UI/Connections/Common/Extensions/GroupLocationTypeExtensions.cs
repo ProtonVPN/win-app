@@ -30,7 +30,9 @@ public static class GroupLocationTypeExtensions
         {
             GroupLocationType.Countries or
             GroupLocationType.Cities or
-            GroupLocationType.Servers => ModalSources.Countries,
+            GroupLocationType.States or
+            GroupLocationType.Servers or
+            GroupLocationType.FreeServers => ModalSources.Countries,
 
             GroupLocationType.SecureCoreCountries or
             GroupLocationType.SecureCoreCountryPairs or
@@ -38,6 +40,7 @@ public static class GroupLocationTypeExtensions
 
             GroupLocationType.P2PCountries or
             GroupLocationType.P2PCities or
+            GroupLocationType.P2PStates or
             GroupLocationType.P2PServers => ModalSources.P2P,
 
             GroupLocationType.TorCountries or
@@ -54,6 +57,7 @@ public static class GroupLocationTypeExtensions
             GroupLocationType.SecureCoreCountries or
             GroupLocationType.P2PCountries or
             GroupLocationType.P2PCities or
+            GroupLocationType.P2PStates or
             GroupLocationType.TorCountries => true,
 
             _ => false
@@ -65,6 +69,7 @@ public static class GroupLocationTypeExtensions
         return groupType switch
         {
             GroupLocationType.Servers or
+            GroupLocationType.FreeServers or
             GroupLocationType.P2PServers or
             GroupLocationType.TorServers or
             GroupLocationType.SecureCoreServers or

@@ -40,8 +40,10 @@ public class LocationIntentMapper : IMapper<ILocationIntent, SerializableLocatio
             {
                 ServerLocationIntent serverLocationIntent =>
                     _entityMapper.Map<ServerLocationIntent, SerializableLocationIntent>(serverLocationIntent),
-                CityStateLocationIntent cityStateLocationIntent =>
-                    _entityMapper.Map<CityStateLocationIntent, SerializableLocationIntent>(cityStateLocationIntent),
+                CityLocationIntent cityLocationIntent =>
+                    _entityMapper.Map<CityLocationIntent, SerializableLocationIntent>(cityLocationIntent),
+                StateLocationIntent stateLocationIntent =>
+                    _entityMapper.Map<StateLocationIntent, SerializableLocationIntent>(stateLocationIntent),
                 CountryLocationIntent countryLocationIntent =>
                     _entityMapper.Map<CountryLocationIntent, SerializableLocationIntent>(countryLocationIntent),
 
@@ -64,7 +66,8 @@ public class LocationIntentMapper : IMapper<ILocationIntent, SerializableLocatio
             : rightEntity.TypeName switch
             {
                 nameof(ServerLocationIntent) => _entityMapper.Map<SerializableLocationIntent, ServerLocationIntent>(rightEntity),
-                nameof(CityStateLocationIntent) => _entityMapper.Map<SerializableLocationIntent, CityStateLocationIntent>(rightEntity),
+                nameof(CityLocationIntent) => _entityMapper.Map<SerializableLocationIntent, CityLocationIntent>(rightEntity),
+                nameof(StateLocationIntent) => _entityMapper.Map<SerializableLocationIntent, StateLocationIntent>(rightEntity),
                 nameof(CountryLocationIntent) => _entityMapper.Map<SerializableLocationIntent, CountryLocationIntent>(rightEntity),
                 nameof(GatewayServerLocationIntent) => _entityMapper.Map<SerializableLocationIntent, GatewayServerLocationIntent>(rightEntity),
                 nameof(GatewayLocationIntent) => _entityMapper.Map<SerializableLocationIntent, GatewayLocationIntent>(rightEntity),

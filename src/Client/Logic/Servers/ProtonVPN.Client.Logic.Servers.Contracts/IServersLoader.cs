@@ -30,15 +30,26 @@ public interface IServersLoader
     IEnumerable<string> GetCountryCodesByFeatures(ServerFeatures serverFeatures);
     IEnumerable<string> GetFreeCountryCodes();
 
+    IEnumerable<State> GetStates();
+    IEnumerable<State> GetStatesByCountryCode(string countryCode);
+    IEnumerable<State> GetStatesByFeatures(ServerFeatures serverFeatures);
+    IEnumerable<State> GetStatesByFeaturesAndCountryCode(ServerFeatures serverFeatures, string countryCode);
+
     IEnumerable<City> GetCities();
     IEnumerable<City> GetCitiesByCountryCode(string countryCode);
+    IEnumerable<City> GetCitiesByState(State state);
     IEnumerable<City> GetCitiesByFeatures(ServerFeatures serverFeatures);
     IEnumerable<City> GetCitiesByFeaturesAndCountryCode(ServerFeatures serverFeatures, string countryCode);
+    IEnumerable<City> GetCitiesByFeaturesAndState(ServerFeatures serverFeatures, State state);
 
     IEnumerable<Server> GetServers();
+    IEnumerable<Server> GetFreeServers();
+    IEnumerable<Server> GetFreeServersByFeatures(ServerFeatures serverFeatures);
+    IEnumerable<Server> GetServersByState(State state);
     IEnumerable<Server> GetServersByCity(City city);
     IEnumerable<Server> GetServersByFeatures(ServerFeatures serverFeatures);
     IEnumerable<Server> GetServersByFeaturesAndCountryCode(ServerFeatures serverFeatures, string countryCode);
+    IEnumerable<Server> GetServersByFeaturesAndState(ServerFeatures serverFeatures, State state);
     IEnumerable<Server> GetServersByFeaturesAndCity(ServerFeatures serverFeatures, City city);
 
     IEnumerable<SecureCoreCountryPair> GetSecureCoreCountryPairs();

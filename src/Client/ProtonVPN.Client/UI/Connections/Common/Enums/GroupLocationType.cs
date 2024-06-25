@@ -22,12 +22,15 @@ namespace ProtonVPN.Client.UI.Connections.Common.Enums;
 public enum GroupLocationType
 {
     Countries,
+    States,
     Cities,
     Servers,
+    FreeServers,
     SecureCoreCountries,
     SecureCoreCountryPairs,
     SecureCoreServers,
     P2PCountries,
+    P2PStates,
     P2PCities,
     P2PServers,
     TorCountries,

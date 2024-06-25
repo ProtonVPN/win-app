@@ -48,16 +48,28 @@ public abstract class ServerListGeneratorBase
         return !server.Features.IsSupported(ServerFeatures.SecureCore | ServerFeatures.B2B | ServerFeatures.Tor);
     }
 
-    protected string? GetCity(List<Server> pickedServers, CityStateLocationIntent? cityStateLocationIntent)
+    protected string? GetCity(List<Server> pickedServers, CityLocationIntent? cityLocationIntent)
     {
-        string? intentCity = cityStateLocationIntent?.CityState;
+        string? intentCity = cityLocationIntent?.City;
         string? firstPickedServerCity = pickedServers.FirstOrDefault()?.City;
 
         return string.IsNullOrWhiteSpace(intentCity)
-            ? string.IsNullOrWhiteSpace(firstPickedServerCity) 
-                ? null 
+            ? string.IsNullOrWhiteSpace(firstPickedServerCity)
+                ? null
                 : firstPickedServerCity
             : intentCity;
+    }
+
+    protected string? GetState(List<Server> pickedServers, StateLocationIntent? stateLocationIntent)
+    {
+        string? intentState = stateLocationIntent?.State;
+        string? firstPickedServerState = pickedServers.FirstOrDefault()?.State;
+
+        return string.IsNullOrWhiteSpace(intentState)
+            ? string.IsNullOrWhiteSpace(firstPickedServerState)
+                ? null
+                : firstPickedServerState
+            : intentState;
     }
 
     protected string? GetExitCountry(List<Server> pickedServers, CountryLocationIntent? countryLocationIntent)

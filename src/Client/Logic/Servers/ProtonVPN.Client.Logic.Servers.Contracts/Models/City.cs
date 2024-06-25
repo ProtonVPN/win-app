@@ -22,5 +22,6 @@ namespace ProtonVPN.Client.Logic.Servers.Contracts.Models;
 public class City
 {
     public required string Name { get; init; }
+    public required string StateName { get; init; }
     public required string CountryCode { get; init; }
 }

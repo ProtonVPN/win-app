@@ -113,7 +113,7 @@ public class ProfilesMigrator : IProfilesMigrator
             }
             else
             {
-                locationIntent = new ServerLocationIntent(server.Id, server.Name, server.ExitCountry, server.City);
+                locationIntent = new ServerLocationIntent(server.Id, server.Name, server.ExitCountry, server.State, server.City);
             }
         }
 

@@ -176,7 +176,7 @@ public abstract partial class LocationItemBase : ObservableObject
         InvalidateIsUnderMaintenance();
     }
 
-    protected void GroupSubItems()
+    protected virtual void GroupSubItems()
     {
         SubGroups.Reset(
             SubItems.GroupBy(item => item.GroupType)

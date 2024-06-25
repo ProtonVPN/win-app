@@ -17,26 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+namespace ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
-namespace ProtonVPN.Client.Logic.Connection.Tests.Models.Intents.Locations;
-
-[TestClass]
-public class ServerLocationIntentTests
+public class State
 {
-    [DataRow("CH#35", 35)]
-    [DataRow("DE#53-TOR", 53)]
-    [DataRow("DE-TOR-53", 0)]
-    [DataRow("DE#TOR-53", 0)]
-    [DataRow("CH#0", 0)]
-    [DataRow("CH", 0)]
-    [DataRow("CH#", 0)]
-    [DataRow("#CH", 0)]
-    [TestMethod]
-    public void ServerLocationIntent_Number_ShouldBeValid(string name, int number)
-    {
-        ServerLocationIntent serverLocationIntent = new(string.Empty, name, string.Empty, string.Empty, string.Empty);
-
-        Assert.AreEqual(number, serverLocationIntent.Number);
-    }
+    public required string Name { get; init; }
+    public required string CountryCode { get; init; }
 }

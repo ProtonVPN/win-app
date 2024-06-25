@@ -52,8 +52,14 @@ public class CountryLocationItem : CountryLocationItemBase
 
     protected override IEnumerable<LocationItemBase> GetSubItems()
     {
-        return ServersLoader.GetCitiesByCountryCode(ExitCountryCode)
-                            .Select(LocationItemFactory.GetCity);
+        IEnumerable<LocationItemBase> states =
+            ServersLoader.GetStatesByCountryCode(ExitCountryCode)
+                         .Select(state => LocationItemFactory.GetState(state, showBaseLocation: true));
+
+        return states.Any()
+            ? states
+            : ServersLoader.GetCitiesByCountryCode(ExitCountryCode)
+                           .Select(city => LocationItemFactory.GetCity(city, showBaseLocation: true));
     }
 
     protected override async Task NavigateToCountryAsync()

@@ -64,7 +64,8 @@ public class RecentsFileReaderWriter : IRecentsFileReaderWriter
                 _userFileReaderWriter.ReadOrNew<List<SerializableRecentConnection>>(_fileReaderWriterParameters);
 
             List<IRecentConnection> recents =
-                _entityMapper.Map<SerializableRecentConnection, IRecentConnection>(serializableRecentConnections);
+                _entityMapper.Map<SerializableRecentConnection, IRecentConnection>(serializableRecentConnections)
+                             .Where(r => r != null).ToList();
 
             _logger.Info<AppLog>($"Read {recents.Count} recent connections from file.");
             return recents;

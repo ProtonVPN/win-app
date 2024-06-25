@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Configuration;
 using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
@@ -71,7 +70,13 @@ public class CountriesPageViewModel : CountriesPageViewModelBase
             ServersLoader.GetCountryCodes()
                          .Select(LocationItemFactory.GetCountry);
 
-        return countries.Concat([fastestCountry]);
+        IEnumerable<LocationItemBase> freeServers =
+            ServersLoader.GetFreeServers()
+                         .Select(LocationItemFactory.GetServer);
+
+        return countries
+            .Concat([fastestCountry])
+            .Concat(freeServers);
     }
 
     protected override void InvalidateRestrictions()

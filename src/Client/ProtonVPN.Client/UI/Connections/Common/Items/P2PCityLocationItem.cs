@@ -43,14 +43,16 @@ public class P2PCityLocationItem : CityLocationItemBase
         IMainViewNavigator mainViewNavigator,
         IUpsellCarouselDialogActivator upsellCarouselActivator,
         LocationItemFactory locationItemFactory,
-        City city)
+        City city,
+        bool showBaseLocation)
         : base(localizer,
                serversLoader,
                connectionManager,
                mainViewNavigator,
                upsellCarouselActivator,
                locationItemFactory,
-               city)
+               city,
+               showBaseLocation)
     { }
 
     protected override IEnumerable<LocationItemBase> GetSubItems()

@@ -74,10 +74,10 @@ public partial class HomeRobot
         return this;
     }
 
-    public HomeRobot VerifyConnectionCardIsDisconnected(string countryCode = null, string cityState = null, int? serverNumber = null)
+    public HomeRobot VerifyConnectionCardIsDisconnected(string countryCode = null, string stateOrCity = null, int? serverNumber = null)
     {
         string expectedTitle = GetExpectedConnectionCardTitle(countryCode);
-        string expectedSubtitle = GetExpectedConnectionCardSubtitle(cityState, serverNumber);
+        string expectedSubtitle = GetExpectedConnectionCardSubtitle(stateOrCity, serverNumber);
 
         VerifyConnectionCardLabels(CONNECTION_CARD_DISCONNECTED_HEADER, expectedTitle, expectedSubtitle);
         Assert.IsNotNull(ConnectionCardConnectButton);
@@ -85,10 +85,10 @@ public partial class HomeRobot
         return this;
     }
 
-    public HomeRobot VerifyConnectionCardIsConnecting(string countryCode = null, string cityState = null, int? serverNumber = null)
+    public HomeRobot VerifyConnectionCardIsConnecting(string countryCode = null, string stateOrCity = null, int? serverNumber = null)
     {
         string expectedTitle = GetExpectedConnectionCardTitle(countryCode);
-        string expectedSubtitle = GetExpectedConnectionCardSubtitle(cityState, serverNumber);
+        string expectedSubtitle = GetExpectedConnectionCardSubtitle(stateOrCity, serverNumber);
 
         VerifyConnectionCardLabels(CONNECTION_CARD_CONNECTING_HEADER, expectedTitle, expectedSubtitle);
         Assert.IsNotNull(ConnectionCardCancelButton);
@@ -104,10 +104,10 @@ public partial class HomeRobot
         return this;
     }
 
-    public HomeRobot VerifyConnectionCardIsConnected(string countryCode = null, string cityState = null, int? serverNumber = null)
+    public HomeRobot VerifyConnectionCardIsConnected(string countryCode = null, string stateOrCity = null, int? serverNumber = null)
     {
         string expectedTitle = GetExpectedConnectionCardTitle(countryCode);
-        string expectedSubtitle = GetExpectedConnectionCardSubtitle(cityState, serverNumber);
+        string expectedSubtitle = GetExpectedConnectionCardSubtitle(stateOrCity, serverNumber);
 
         VerifyConnectionCardLabels(CONNECTION_CARD_CONNECTED_HEADER, expectedTitle, expectedSubtitle);
         Assert.IsNotNull(ConnectionCardDisconnectButton);
@@ -140,12 +140,12 @@ public partial class HomeRobot
         return this;
     }
 
-    public HomeRobot VerifyAllStatesUntilConnected(string countryCode = null, string cityState = null, int? serverNumber = null)
+    public HomeRobot VerifyAllStatesUntilConnected(string countryCode = null, string stateOrCity = null, int? serverNumber = null)
     {
         VerifyVpnStatusIsConnecting();
-        VerifyConnectionCardIsConnecting(countryCode, cityState, serverNumber);
+        VerifyConnectionCardIsConnecting(countryCode, stateOrCity, serverNumber);
         VerifyVpnStatusIsConnected();
-        VerifyConnectionCardIsConnected(countryCode, cityState, serverNumber);
+        VerifyConnectionCardIsConnected(countryCode, stateOrCity, serverNumber);
         return this;
     }
 
@@ -220,16 +220,16 @@ public partial class HomeRobot
             : countryCode;
     }
 
-    private string GetExpectedConnectionCardSubtitle(string cityState = null, int? serverNumber = null)
+    private string GetExpectedConnectionCardSubtitle(string stateOrCity = null, int? serverNumber = null)
     {
         // Both city and server are null
-        if (string.IsNullOrEmpty(cityState) && serverNumber == null)
+        if (string.IsNullOrEmpty(stateOrCity) && serverNumber == null)
         {
             return null;
         }
 
         // Only city is null
-        if (string.IsNullOrEmpty(cityState))
+        if (string.IsNullOrEmpty(stateOrCity))
         {
             return $"Server #{serverNumber}";
         }
@@ -237,10 +237,10 @@ public partial class HomeRobot
         // Only server is null
         if (serverNumber == null)
         {
-            return cityState;
+            return stateOrCity;
         }
 
         // Both are set
-        return $"{cityState} #{serverNumber}";
+        return $"{stateOrCity} #{serverNumber}";
     }
 }

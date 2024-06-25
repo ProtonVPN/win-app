@@ -19,55 +19,48 @@
 
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Servers.Contracts;
-using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Models.Activation.Custom;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Connections.Common.Enums;
 using ProtonVPN.Client.UI.Connections.Common.Factories;
-using ProtonVPN.Client.UI.Connections.P2P;
 
 namespace ProtonVPN.Client.UI.Connections.Common.Items;
 
-public class P2PCountryLocationItem : CountryLocationItemBase
+public class StateLocationItem : StateLocationItemBase
 {
-    public override GroupLocationType GroupType => GroupLocationType.P2PCountries;
+    public override GroupLocationType GroupType => GroupLocationType.States;
 
-    protected override IFeatureIntent? FeatureIntent => new P2PFeatureIntent();
-
-    public P2PCountryLocationItem(
+    public StateLocationItem(
         ILocalizationProvider localizer,
         IServersLoader serversLoader,
         IConnectionManager connectionManager,
         IMainViewNavigator mainViewNavigator,
         IUpsellCarouselDialogActivator upsellCarouselActivator,
         LocationItemFactory locationItemFactory,
-        string exitCountryCode)
+        State state,
+        bool showBaseLocation)
         : base(localizer,
                serversLoader,
                connectionManager,
                mainViewNavigator,
                upsellCarouselActivator,
                locationItemFactory,
-               exitCountryCode,
-               false)
+               state,
+               showBaseLocation)
     { }
 
     protected override IEnumerable<LocationItemBase> GetSubItems()
     {
-        IEnumerable<LocationItemBase> states =
-            ServersLoader.GetStatesByFeaturesAndCountryCode(ServerFeatures.P2P, ExitCountryCode)
-                         .Select(state => LocationItemFactory.GetP2PState(state, showBaseLocation: true));
+        IEnumerable<LocationItemBase> cities =
+            ServersLoader.GetCitiesByState(State)
+                         .Select(city => LocationItemFactory.GetCity(city, showBaseLocation: true));
 
-        return states.Any()
-            ? states
-            : ServersLoader.GetCitiesByFeaturesAndCountryCode(ServerFeatures.P2P, ExitCountryCode)
-                           .Select(city => LocationItemFactory.GetP2PCity(city, showBaseLocation: true));
-    }
+        IEnumerable<LocationItemBase> servers =
+            ServersLoader.GetServersByState(State)
+                         .Select(LocationItemFactory.GetServer);
 
-    protected override async Task NavigateToCountryAsync()
-    {
-        await MainViewNavigator.NavigateToAsync<P2PCountryPageViewModel>(ExitCountryCode);
+        return cities.Concat(servers);
     }
 }

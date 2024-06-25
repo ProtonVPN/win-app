@@ -53,10 +53,18 @@ public class CountryPageViewModel : CountryPageViewModelBase
 
     protected override IEnumerable<LocationItemBase> GetItems()
     {
-        return string.IsNullOrEmpty(CountryCode)
-            ? Enumerable.Empty<LocationItemBase>()
-            : ServersLoader
-                .GetCitiesByCountryCode(CountryCode)
-                .Select(LocationItemFactory.GetCity);
+        if (string.IsNullOrEmpty(CountryCode))
+        {
+            return Enumerable.Empty<LocationItemBase>();
+        }
+
+        IEnumerable<LocationItemBase> states =
+            ServersLoader.GetStatesByCountryCode(CountryCode)
+                         .Select(state => LocationItemFactory.GetState(state, showBaseLocation: false));
+
+        return states.Any()
+            ? states
+            : ServersLoader.GetCitiesByCountryCode(CountryCode)
+                           .Select(city => LocationItemFactory.GetCity(city, showBaseLocation: false));
     }
 }

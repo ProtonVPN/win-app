@@ -35,6 +35,8 @@ public class LocationItemTemplateSelector : DataTemplateSelector
 
     public DataTemplate? CountryPairLocationItemTemplate { get; set; }
 
+    public DataTemplate? StateLocationItemTemplate { get; set; }
+
     public DataTemplate? CityLocationItemTemplate { get; set; }
 
     public DataTemplate? ServerLocationItemTemplate { get; set; }
@@ -50,6 +52,7 @@ public class LocationItemTemplateSelector : DataTemplateSelector
             SecureCoreCountryPairLocationItem => CountryPairLocationItemTemplate,
             GatewayLocationItem => GatewayLocationItemTemplate,
             GatewayServerLocationItem => GatewayServerLocationItemTemplate,
+            StateLocationItemBase => StateLocationItemTemplate,
             CityLocationItemBase => CityLocationItemTemplate,
             ServerLocationItemBase => ServerLocationItemTemplate,
             _ => throw new NotSupportedException($"Location item {item} is not recognized"),

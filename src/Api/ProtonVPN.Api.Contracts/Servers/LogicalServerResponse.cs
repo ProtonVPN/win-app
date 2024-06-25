@@ -29,6 +29,7 @@ namespace ProtonVPN.Api.Contracts.Servers
         public string Id { get; set; }
         public string Name { get; set; }
         public string City { get; set; }
+        public string State { get; set; }
         public string EntryCountry { get; set; }
         public string ExitCountry { get; set; }
         public string Domain { get; set; }
@@ -47,6 +48,7 @@ namespace ProtonVPN.Api.Contracts.Servers
             Id = string.Empty,
             Name = "Server removed",
             City = string.Empty,
+            State = string.Empty,
             EntryCountry = "ZZ",
             ExitCountry = "ZZ",
             Domain = string.Empty,

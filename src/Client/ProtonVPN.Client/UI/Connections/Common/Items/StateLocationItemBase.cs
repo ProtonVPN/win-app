@@ -32,24 +32,22 @@ using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Client.UI.Connections.Common.Items;
 
-public abstract class CityLocationItemBase : LocationItemBase
+public abstract class StateLocationItemBase : LocationItemBase
 {
-    public override string Header => City.Name;
-
+    public override string Header => State.Name; 
+    
     public string SubHeader => ShowBaseLocation
-        ? BelongsToState
-            ? $" -  {City.StateName}, {Localizer.GetCountryName(City.CountryCode)}"
-            : $" -  {Localizer.GetCountryName(City.CountryCode)}"
+        ? $" -  {Localizer.GetCountryName(State.CountryCode)}"
         : string.Empty;
 
     public override string? ToolTip =>
         IsRestricted
-            ? Localizer.Get("Connections_City_Restricted")
+            ? Localizer.Get("Connections_State_Restricted")
             : IsUnderMaintenance
-                ? Localizer.Get("Connections_City_UnderMaintenance")
+                ? Localizer.Get("Connections_State_UnderMaintenance")
                 : null;
 
-    public City City { get; }
+    public State State { get; }
 
     public bool ShowBaseLocation { get; }
 
@@ -57,23 +55,23 @@ public abstract class CityLocationItemBase : LocationItemBase
 
     public override object SecondSortProperty => SubHeader;
 
-    public bool BelongsToState => !string.IsNullOrEmpty(City.StateName);
+    protected int ServersItemsCount { get; private set; }
 
     public string SecondaryActionLabel =>
-        HasSubItems
-            ? Localizer.GetPluralFormat("Connections_SeeServers", SubItemsCount)
+        HasSubItems && ServersItemsCount > 0
+            ? Localizer.GetPluralFormat("Connections_SeeServers", ServersItemsCount)
             : string.Empty;
 
-    protected override ILocationIntent LocationIntent => new CityLocationIntent(City.CountryCode, City.StateName, City.Name);
+    protected override ILocationIntent LocationIntent => new StateLocationIntent(State.CountryCode, State.Name);
 
-    protected CityLocationItemBase(
+    protected StateLocationItemBase(
         ILocalizationProvider localizer,
         IServersLoader serversLoader,
         IConnectionManager connectionManager,
         IMainViewNavigator mainViewNavigator,
         IUpsellCarouselDialogActivator upsellCarouselActivator,
         LocationItemFactory locationItemFactory,
-        City city,
+        State state,
         bool showBaseLocation)
         : base(localizer,
                serversLoader,
@@ -82,7 +80,7 @@ public abstract class CityLocationItemBase : LocationItemBase
                upsellCarouselActivator,
                locationItemFactory)
     {
-        City = city;
+        State = state;
         ShowBaseLocation = showBaseLocation;
 
         FetchSubItems();
@@ -92,9 +90,8 @@ public abstract class CityLocationItemBase : LocationItemBase
     {
         IsActiveConnection = currentConnectionDetails is not null
                           && !currentConnectionDetails.IsGateway
-                          && City.CountryCode == currentConnectionDetails.ExitCountryCode
-                          && City.StateName == currentConnectionDetails.State
-                          && City.Name == currentConnectionDetails.City
+                          && State.CountryCode == currentConnectionDetails.ExitCountryCode
+                          && State.Name == currentConnectionDetails.State
                           && (FeatureIntent?.GetType().IsAssignableTo(currentConnectionDetails.OriginalConnectionIntent.Feature?.GetType()) ?? true);
 
         foreach (LocationItemBase item in SubItems)
@@ -109,9 +106,23 @@ public abstract class CityLocationItemBase : LocationItemBase
             || SubHeader.ContainsIgnoringCase(searchQuery);
     }
 
+    protected override void GroupSubItems()
+    {
+        // States have cities and servers as subitems. 
+        // Cities are only displayed as search results. Only display servers in flyout.
+        SubGroups.Reset(
+            SubItems.OfType<ServerLocationItemBase>()
+                    .GroupBy(item => item.GroupType)
+                    .Select(group => LocationItemFactory.GetGroup(group.Key, group)));
+    }
+
     protected override void OnSubItemsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
         base.OnSubItemsCollectionChanged(sender, e);
+
+        ServersItemsCount = SubItems
+            .OfType<ServerLocationItemBase>()
+            .Count(item => item.IsCounted);
 
         OnPropertyChanged(nameof(SecondaryActionLabel));
     }

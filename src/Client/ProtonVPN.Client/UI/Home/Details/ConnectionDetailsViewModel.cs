@@ -56,6 +56,7 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase,
     [NotifyPropertyChangedFor(nameof(Country))]
     [NotifyPropertyChangedFor(nameof(IsSecureCore))]
     [NotifyPropertyChangedFor(nameof(SecureCoreLabel))]
+    [NotifyPropertyChangedFor(nameof(HasState))]
     [NotifyPropertyChangedFor(nameof(HasCity))]
     [NotifyPropertyChangedFor(nameof(HasServer))]
     [NotifyPropertyChangedFor(nameof(ServerLoad))]
@@ -91,8 +92,11 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase,
         ? null
         : Localizer.GetSecureCoreLabel(CurrentConnectionDetails.EntryCountryCode);
 
+    public bool HasState => CurrentConnectionDetails?.Server != null
+                         && !string.IsNullOrEmpty(CurrentConnectionDetails.State);
+
     public bool HasCity => CurrentConnectionDetails?.Server != null
-                        && !string.IsNullOrEmpty(CurrentConnectionDetails.CityState);
+                        && !string.IsNullOrEmpty(CurrentConnectionDetails.City);
 
     public bool HasServer => CurrentConnectionDetails?.Server != null
                           && !string.IsNullOrEmpty(CurrentConnectionDetails.ServerName);

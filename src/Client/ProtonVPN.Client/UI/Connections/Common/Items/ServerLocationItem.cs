@@ -30,7 +30,9 @@ namespace ProtonVPN.Client.UI.Connections.Common.Items;
 
 public class ServerLocationItem : ServerLocationItemBase
 {
-    public override GroupLocationType GroupType => GroupLocationType.Servers;
+    public override GroupLocationType GroupType => IsFree 
+        ? GroupLocationType.FreeServers 
+        : GroupLocationType.Servers;
 
     public ServerLocationItem(
         ILocalizationProvider localizer,

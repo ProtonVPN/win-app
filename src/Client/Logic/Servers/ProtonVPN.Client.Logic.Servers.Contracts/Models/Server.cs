@@ -26,6 +26,7 @@ public class Server
     public required string Id { get; init; }
     public required string Name { get; init; }
     public required string City { get; init; }
+    public required string State { get; init; }
     public required string EntryCountry { get; init; }
     public required string ExitCountry { get; init; }
     public required string HostCountry { get; init; }
@@ -57,6 +58,7 @@ public class Server
             Id = Id,
             Name = Name,
             City = City,
+            State = State,
             EntryCountry = EntryCountry,
             ExitCountry = ExitCountry,
             HostCountry = HostCountry,

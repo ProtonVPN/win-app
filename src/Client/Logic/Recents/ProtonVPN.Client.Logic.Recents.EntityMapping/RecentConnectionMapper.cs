@@ -22,16 +22,21 @@ using ProtonVPN.Client.Logic.Connection.Contracts.SerializableEntities.Intents;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts.SerializableEntities;
 using ProtonVPN.EntityMapping.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
 
 namespace ProtonVPN.Client.Logic.Recents.EntityMapping;
 
 public class RecentConnectionMapper : IMapper<IRecentConnection, SerializableRecentConnection>
 {
     private readonly IEntityMapper _entityMapper;
+    private readonly ILogger _logger;
 
-    public RecentConnectionMapper(IEntityMapper entityMapper)
+    public RecentConnectionMapper(IEntityMapper entityMapper, ILogger logger)
     {
         _entityMapper = entityMapper;
+        _logger = logger;
     }
 
     public SerializableRecentConnection Map(IRecentConnection leftEntity)
@@ -59,23 +64,31 @@ public class RecentConnectionMapper : IMapper<IRecentConnection, SerializableRec
 
     public IRecentConnection Map(SerializableRecentConnection rightEntity)
     {
-        if (rightEntity is null)
+        try
         {
-            return null;
+            if (rightEntity is null)
+            {
+                return null;
+            }
+
+            IConnectionIntent connectionIntent =
+                _entityMapper.Map<SerializableConnectionIntent, IConnectionIntent>(rightEntity.ConnectionIntent);
+
+            if (connectionIntent is null)
+            {
+                return null;
+            }
+
+            return new RecentConnection(connectionIntent)
+            {
+                IsPinned = rightEntity.IsPinned,
+                PinTime = rightEntity.PinTime,
+            };
         }
-
-        IConnectionIntent connectionIntent =
-            _entityMapper.Map<SerializableConnectionIntent, IConnectionIntent>(rightEntity.ConnectionIntent);
-
-        if (connectionIntent is null)
+        catch (Exception ex)
         {
-            return null;
+            _logger.Error<AppLog>($"Failed to map recent connection.", ex);
         }
-
-        return new RecentConnection(connectionIntent)
-        {
-            IsPinned = rightEntity.IsPinned,
-            PinTime = rightEntity.PinTime,
-        };
+        return null;
     }
 }
