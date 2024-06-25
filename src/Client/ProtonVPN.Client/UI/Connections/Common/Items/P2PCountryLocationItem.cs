@@ -56,8 +56,14 @@ public class P2PCountryLocationItem : CountryLocationItemBase
 
     protected override IEnumerable<LocationItemBase> GetSubItems()
     {
-        return ServersLoader.GetCitiesByFeaturesAndCountryCode(ServerFeatures.P2P, ExitCountryCode)
-                            .Select(LocationItemFactory.GetP2PCity);
+        IEnumerable<LocationItemBase> states =
+            ServersLoader.GetStatesByFeaturesAndCountryCode(ServerFeatures.P2P, ExitCountryCode)
+                         .Select(state => LocationItemFactory.GetP2PState(state, showBaseLocation: true));
+
+        return states.Any()
+            ? states
+            : ServersLoader.GetCitiesByFeaturesAndCountryCode(ServerFeatures.P2P, ExitCountryCode)
+                           .Select(city => LocationItemFactory.GetP2PCity(city, showBaseLocation: true));
     }
 
     protected override async Task NavigateToCountryAsync()

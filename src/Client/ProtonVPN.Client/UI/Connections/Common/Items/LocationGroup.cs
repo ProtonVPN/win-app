@@ -40,12 +40,15 @@ public partial class LocationGroup : List<LocationItemBase>
         GroupType switch
         {
             GroupLocationType.Countries => "Connections_Countries",
+            GroupLocationType.States => "Connections_States",
             GroupLocationType.Cities => "Connections_Cities",
             GroupLocationType.Servers => "Connections_Servers",
+            GroupLocationType.FreeServers => "Connections_Free_Servers",
             GroupLocationType.SecureCoreCountries => "Connections_SecureCore_Countries",
             GroupLocationType.SecureCoreCountryPairs or
             GroupLocationType.SecureCoreServers => "Connections_SecureCore_Servers",
             GroupLocationType.P2PCountries => "Connections_P2P_Countries",
+            GroupLocationType.P2PStates => "Connections_P2P_States",
             GroupLocationType.P2PCities => "Connections_P2P_Cities",
             GroupLocationType.P2PServers => "Connections_P2P_Servers",
             GroupLocationType.TorCountries => "Connections_Tor_Countries",
@@ -83,6 +86,7 @@ public partial class LocationGroup : List<LocationItemBase>
                 break;
 
             case GroupLocationType.P2PCountries:
+            case GroupLocationType.P2PStates:
             case GroupLocationType.P2PCities:
             case GroupLocationType.P2PServers:
                 await _overlayActivator.ShowOverlayAsync<P2POverlayViewModel>();

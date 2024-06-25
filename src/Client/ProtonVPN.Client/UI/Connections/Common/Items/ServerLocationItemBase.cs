@@ -29,6 +29,7 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Models.Activation.Custom;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Connections.Common.Factories;
+using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Client.UI.Connections.Common.Items;
 
@@ -57,11 +58,13 @@ public abstract partial class ServerLocationItemBase : LocationItemBase
 
     public bool IsVirtual => Server.IsVirtual;
 
+    public bool IsFree => Server.Tier == ServerTiers.Free;
+
     public bool SupportsP2P => Server.Features.IsSupported(ServerFeatures.P2P);
 
     public bool SupportsTor => Server.Features.IsSupported(ServerFeatures.Tor);
 
-    protected override ILocationIntent LocationIntent => new ServerLocationIntent(Server.Id, Server.Name, Server.ExitCountry, Server.City);
+    protected override ILocationIntent LocationIntent => new ServerLocationIntent(Server.Id, Server.Name, Server.ExitCountry, Server.State, Server.City);
 
     protected ServerLocationItemBase(
         ILocalizationProvider localizer,
@@ -83,6 +86,13 @@ public abstract partial class ServerLocationItemBase : LocationItemBase
         Load = server.Load / 100d;
 
         InvalidateIsUnderMaintenance();
+    }
+
+    public override bool MatchesSearchQuery(string searchQuery)
+    {
+        return IsFree
+            ? !string.IsNullOrWhiteSpace(searchQuery) && Header.ContainsIgnoringCase(searchQuery)
+            : base.MatchesSearchQuery(searchQuery);
     }
 
     protected override void InvalidateIsUnderMaintenance()

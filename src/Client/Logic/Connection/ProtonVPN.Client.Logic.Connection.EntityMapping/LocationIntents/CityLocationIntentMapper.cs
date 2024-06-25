@@ -23,26 +23,28 @@ using ProtonVPN.EntityMapping.Contracts;
 
 namespace ProtonVPN.Client.Logic.Connection.EntityMapping.LocationIntents;
 
-public class CityStateLocationIntentMapper : IMapper<CityStateLocationIntent, SerializableLocationIntent>
+public class CityLocationIntentMapper : IMapper<CityLocationIntent, SerializableLocationIntent>
 {
-    public SerializableLocationIntent Map(CityStateLocationIntent leftEntity)
+    public SerializableLocationIntent Map(CityLocationIntent leftEntity)
     {
         return leftEntity is null
             ? null
             : new SerializableLocationIntent()
             {
-                TypeName = nameof(CityStateLocationIntent),
+                TypeName = nameof(CityLocationIntent),
                 CountryCode = leftEntity.CountryCode,
-                CityState = leftEntity.CityState,
+                State = leftEntity.State,
+                City = leftEntity.City,
             };
     }
 
-    public CityStateLocationIntent Map(SerializableLocationIntent rightEntity)
+    public CityLocationIntent Map(SerializableLocationIntent rightEntity)
     {
         return rightEntity is null
             ? null
-            : new CityStateLocationIntent(
+            : new CityLocationIntent(
                 countryCode: rightEntity.CountryCode,
-                cityState: rightEntity.CityState);
+                state: rightEntity.State,
+                city: rightEntity.City);
     }
 }

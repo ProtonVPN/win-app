@@ -70,7 +70,7 @@ public static class LocalizationExtensions
     {
         return connectionDetails?.OriginalConnectionIntent.Location switch
         {
-            CountryLocationIntent countryIntent => countryIntent.IsFastest 
+            CountryLocationIntent countryIntent => countryIntent.IsFastest
                 ? localizer.Get("Country_Fastest")
                 : localizer.GetCountryName(connectionDetails.ExitCountryCode),
             GatewayLocationIntent gatewayIntent => connectionDetails.GatewayName,
@@ -82,7 +82,7 @@ public static class LocalizationExtensions
             _ => localizer.Get("Country_Fastest")
         };
     }
-    
+
     public static string GetConnectionIntentSubtitle(this ILocalizationProvider localizer, IConnectionIntent? connectionIntent, bool useDetailedSubtitle = false)
     {
         if (connectionIntent?.Feature is SecureCoreFeatureIntent secureCoreIntent)
@@ -92,8 +92,9 @@ public static class LocalizationExtensions
 
         return connectionIntent?.Location switch
         {
-            ServerLocationIntent serverIntent => localizer.GetFormat("Connection_Intent_City_Server", serverIntent.CityState, serverIntent.Number).Trim(),
-            CityStateLocationIntent cityStateIntent => cityStateIntent.CityState,
+            ServerLocationIntent serverIntent => localizer.GetFormat("Connection_Intent_City_Server", GetStateOrCityName(serverIntent.State, serverIntent.City), serverIntent.Number).Trim(),
+            CityLocationIntent cityIntent => cityIntent.City,
+            StateLocationIntent stateIntent => stateIntent.State,
             GatewayServerLocationIntent gatewayServerIntent => localizer.GetFormat("Connection_Intent_Country_Server", localizer.GetCountryName(gatewayServerIntent.CountryCode), gatewayServerIntent.Number).Trim(),
             FreeServerLocationIntent freeServerIntent => useDetailedSubtitle ? localizer.Get("Connection_Intent_AutoSelected") : string.Empty,
             CountryLocationIntent countryIntent => useDetailedSubtitle && countryIntent.IsFastest ? localizer.Get("Settings_Connection_Default_Fastest_Description") : string.Empty,
@@ -113,8 +114,9 @@ public static class LocalizationExtensions
 
         return connectionDetails?.OriginalConnectionIntent.Location switch
         {
-            ServerLocationIntent serverIntent => localizer.GetFormat("Connection_Intent_City_Server", connectionDetails.CityState, connectionDetails.ServerNumber),
-            CityStateLocationIntent cityStateIntent => connectionDetails.CityState,
+            ServerLocationIntent serverIntent => localizer.GetFormat("Connection_Intent_City_Server", GetStateOrCityName(connectionDetails.State, connectionDetails.City), connectionDetails.ServerNumber),
+            CityLocationIntent cityIntent => connectionDetails.City,
+            StateLocationIntent stateIntent => connectionDetails.State,
             CountryLocationIntent countryIntent => countryIntent.IsFastest
                 ? localizer.GetCountryName(connectionDetails.ExitCountryCode)
                 : string.Empty,
@@ -260,5 +262,12 @@ public static class LocalizationExtensions
                 or VpnError.TapRequiresUpdateError => localizer.Get("Connection_Error_ViewPossibleSolutions"),
             _ => localizer.Get("Connection_Error_ReportAnIssue")
         };
+    }
+
+    private static string GetStateOrCityName(string state, string city)
+    {
+        return string.IsNullOrWhiteSpace(state)
+            ? city
+            : state;
     }
 }

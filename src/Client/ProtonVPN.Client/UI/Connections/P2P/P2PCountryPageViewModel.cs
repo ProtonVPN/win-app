@@ -54,10 +54,18 @@ public class P2PCountryPageViewModel : CountryPageViewModelBase
 
     protected override IEnumerable<LocationItemBase> GetItems()
     {
-        return string.IsNullOrEmpty(CountryCode)
-            ? Enumerable.Empty<LocationItemBase>()
-            : ServersLoader
-                .GetCitiesByFeaturesAndCountryCode(ServerFeatures.P2P, CountryCode)
-                .Select(LocationItemFactory.GetP2PCity);
+        if (string.IsNullOrEmpty(CountryCode))
+        {
+            return Enumerable.Empty<LocationItemBase>();
+        }
+
+        IEnumerable<LocationItemBase> states =
+            ServersLoader.GetStatesByFeaturesAndCountryCode(ServerFeatures.P2P, CountryCode)
+                         .Select(state => LocationItemFactory.GetP2PState(state, showBaseLocation: false));
+
+        return states.Any()
+            ? states
+            : ServersLoader.GetCitiesByFeaturesAndCountryCode(ServerFeatures.P2P, CountryCode)
+                           .Select(city => LocationItemFactory.GetP2PCity(city, showBaseLocation: false));
     }
 }

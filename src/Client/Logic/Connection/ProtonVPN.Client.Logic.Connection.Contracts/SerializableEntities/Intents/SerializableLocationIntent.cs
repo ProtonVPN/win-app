@@ -23,7 +23,8 @@ public class SerializableLocationIntent
 {
     public string? TypeName { get; set; }
     public string? CountryCode { get; set; }
-    public string? CityState { get; set; }
+    public string? State { get; set; }
+    public string? City { get; set; }
     public string? Id { get; set; }
     public string? Name { get; set; }
     public string? GatewayName { get; set; }

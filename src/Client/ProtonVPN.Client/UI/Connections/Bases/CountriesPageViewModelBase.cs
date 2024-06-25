@@ -93,7 +93,7 @@ public abstract partial class CountriesPageViewModelBase : ConnectionsPageViewMo
             }
         }
 
-        return items.Where(item => item.MatchesSearchQuery(SearchQuery));
+        return items.Where(item => item.MatchesSearchQuery(SearchQuery)).Distinct();
     }
 
     partial void OnSearchQueryChanged(string value)

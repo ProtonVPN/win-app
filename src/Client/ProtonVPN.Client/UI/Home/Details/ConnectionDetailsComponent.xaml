@@ -89,11 +89,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </toolkit:HeaderedContentControl.Content>
                 </toolkit:HeaderedContentControl>
 
+                <toolkit:HeaderedContentControl Header="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_State')}"
+                                                Style="{StaticResource ConnectionDetailsHeaderedContentControlStyle}"
+                                                Visibility="{x:Bind ViewModel.HasState, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBlock Style="{StaticResource ConnectionDetailsTextBlockStyle}"
+                               Text="{x:Bind ViewModel.CurrentConnectionDetails.State}" />
+                </toolkit:HeaderedContentControl>
+
                 <toolkit:HeaderedContentControl Header="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_City')}"
                                                 Style="{StaticResource ConnectionDetailsHeaderedContentControlStyle}"
                                                 Visibility="{x:Bind ViewModel.HasCity, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <TextBlock Style="{StaticResource ConnectionDetailsTextBlockStyle}"
-                               Text="{x:Bind ViewModel.CurrentConnectionDetails.CityState}" />
+                               Text="{x:Bind ViewModel.CurrentConnectionDetails.City}" />
                 </toolkit:HeaderedContentControl>
 
                 <toolkit:HeaderedContentControl Header="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Server')}"

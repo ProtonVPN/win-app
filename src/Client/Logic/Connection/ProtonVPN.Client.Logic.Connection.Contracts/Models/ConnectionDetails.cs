@@ -40,7 +40,8 @@ public class ConnectionDetails
     public string ExitCountryCode => Server.ExitCountry;
     public bool IsSecureCore => Server.Features.IsSupported(ServerFeatures.SecureCore);
     public string? EntryCountryCode => IsSecureCore ? Server.EntryCountry : null;
-    public string CityState => Server.City;
+    public string State => Server.State;
+    public string City => Server.City;
     public string ServerId => Server.Id;
     public string PhysicalServerId => PhysicalServer.Id;
     public int ServerNumber => Server.Name.GetServerNumber();

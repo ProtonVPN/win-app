@@ -1367,6 +1367,9 @@
     <value>Connection card</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
+  <data name="Home_ConnectionDetails_State" xml:space="preserve">
+    <value>State</value>
+  </data>
   <data name="Home_ConnectionDetails_City" xml:space="preserve">
     <value>City</value>
   </data>
@@ -2832,6 +2835,14 @@ Enjoy the best of Proton privacy.</value>
     <value>Countries ({0})</value>
     <comment>{0} is a placeholder for the number of countries (eg. Countries (5)). This string is used when the number is different than 1.</comment>
   </data>
+  <data name="Connections_States_One" xml:space="preserve">
+    <value>State ({0})</value>
+    <comment>{0} is a placeholder for the number of states (eg. State (1)). This string is used when the number is 1. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_States_Other" xml:space="preserve">
+    <value>States ({0})</value>
+    <comment>{0} is a placeholder for the number of states (eg. States (5)). This string is used when the number is different than 1. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
   <data name="Connections_Cities_One" xml:space="preserve">
     <value>City ({0})</value>
     <comment>{0} is a placeholder for the number of cities (eg. City (1)). This string is used when the number is 1.</comment>
@@ -2847,6 +2858,14 @@ Enjoy the best of Proton privacy.</value>
   <data name="Connections_Servers_Other" xml:space="preserve">
     <value>Servers ({0})</value>
     <comment>{0} is a placeholder for the number of servers (eg. Servers (5)). This string is used when the number is different than 1.</comment>
+  </data>  
+  <data name="Connections_Free_Servers_One" xml:space="preserve">
+    <value>Free server ({0})</value>
+    <comment>{0} is a placeholder for the number of free servers (eg. Free server (1)). This string is used when the number is 1.</comment>
+  </data>
+  <data name="Connections_Free_Servers_Other" xml:space="preserve">
+    <value>Free servers ({0})</value>
+    <comment>{0} is a placeholder for the number of free servers (eg. Free servers (5)). This string is used when the number is different than 1.</comment>
   </data>
   <data name="Connections_P2P_Countries_One" xml:space="preserve">
     <value>P2P country ({0})</value>
@@ -2855,6 +2874,14 @@ Enjoy the best of Proton privacy.</value>
   <data name="Connections_P2P_Countries_Other" xml:space="preserve">
     <value>P2P countries ({0})</value>
     <comment>{0} is a placeholder for the number of countries (eg. P2P countries (5)). This string is used when the number is different than 1.</comment>
+  </data>
+  <data name="Connections_P2P_States_One" xml:space="preserve">
+    <value>P2P state ({0})</value>
+    <comment>{0} is a placeholder for the number of states (eg. P2P state (1)). This string is used when the number is 1. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_P2P_States_Other" xml:space="preserve">
+    <value>P2P states ({0})</value>
+    <comment>{0} is a placeholder for the number of states (eg. P2P states (5)). This string is used when the number is different than 1. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_P2P_Cities_One" xml:space="preserve">
     <value>P2P city ({0})</value>
@@ -2904,6 +2931,14 @@ Enjoy the best of Proton privacy.</value>
     <value>Tor servers ({0})</value>
     <comment>{0} is a placeholder for the number of servers (eg. Tor servers (5)). This string is used when the number is different than 1.</comment>
   </data>
+  <data name="Connections_SeeStates_One" xml:space="preserve">
+    <value>See state ({0})</value>
+    <comment>{0} is a placeholder for the number of states (eg. See state (1)). This string is used when the number is 1. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_SeeStates_Other" xml:space="preserve">
+    <value>See states ({0})</value>
+    <comment>{0} is a placeholder for the number of states (eg. See states (5)). This string is used when the number is different than 1. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
   <data name="Connections_SeeCities_One" xml:space="preserve">
     <value>See city ({0})</value>
     <comment>{0} is a placeholder for the number of cities (eg. See city (1)). This string is used when the number is 1.</comment>
@@ -2941,6 +2976,14 @@ Enjoy the best of Proton privacy.</value>
   </data>
   <data name="Connections_Country_Restricted" xml:space="preserve">
     <value>Servers in this country are available with VPN Plus</value>
+  </data>
+  <data name="Connections_State_UnderMaintenance" xml:space="preserve">
+    <value>All servers in this state are under maintenance.</value>
+    <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_State_Restricted" xml:space="preserve">
+    <value>Servers in this state are available with VPN Plus.</value>
+    <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_City_UnderMaintenance" xml:space="preserve">
     <value>All servers in this city are under maintenance</value>

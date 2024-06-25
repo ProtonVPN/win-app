@@ -25,7 +25,7 @@ public class CountryLocationIntent : LocationIntentBase
 {
     public override bool IsForPaidUsersOnly => true;
 
-    public string? CountryCode { get; }
+    public string CountryCode { get; }
 
     public bool IsFastest => string.IsNullOrEmpty(CountryCode);
 

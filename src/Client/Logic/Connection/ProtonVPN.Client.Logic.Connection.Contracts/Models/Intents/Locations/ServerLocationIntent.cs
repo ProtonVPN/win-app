@@ -22,19 +22,23 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
-public class ServerLocationIntent : CityStateLocationIntent
+public class ServerLocationIntent : CityLocationIntent
 {
     public string Id { get; }
     public string Name { get; }
     public int Number { get; }
 
-    public ServerLocationIntent(string id, string name, string countryCode, string cityState)
-        : base(countryCode, cityState)
+    public ServerLocationIntent(string id, string name, string countryCode, string state, string city)
+        : base(countryCode, state, city)
     {
         Id = id;
         Name = name;
         Number = this.GetServerNumber();
     }
+
+    public ServerLocationIntent(string id, string name, string countryCode, string city)
+        : this(id, name, countryCode, null, city)
+    { }
 
     public override bool IsSameAs(ILocationIntent? intent)
     {

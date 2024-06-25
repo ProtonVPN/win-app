@@ -29,7 +29,7 @@ public class LocationIntentEqualityTests
     {
         ILocationIntent locationFastestCountry = new CountryLocationIntent();
         ILocationIntent locationCountry = new CountryLocationIntent("CH");
-        ILocationIntent locationCity = new CityStateLocationIntent("CH", "Geneva");
+        ILocationIntent locationCity = new CityLocationIntent("CH", "Geneva");
         ILocationIntent locationServer = new ServerLocationIntent("1", "CH#1", "CH", "Geneva");
 
         Assert.IsTrue(locationFastestCountry.IsSameAs(locationFastestCountry));
@@ -45,8 +45,8 @@ public class LocationIntentEqualityTests
         ILocationIntent locationFastestCountryB = new CountryLocationIntent();
         ILocationIntent locationCountryA = new CountryLocationIntent("CH");
         ILocationIntent locationCountryB = new CountryLocationIntent("CH");
-        ILocationIntent locationCityA = new CityStateLocationIntent("CH", "Geneva");
-        ILocationIntent locationCityB = new CityStateLocationIntent("CH", "Geneva");
+        ILocationIntent locationCityA = new CityLocationIntent("CH", "Geneva");
+        ILocationIntent locationCityB = new CityLocationIntent("CH", "Geneva");
         ILocationIntent locationServerA = new ServerLocationIntent("1", "CH#1", "CH", "Geneva");
         ILocationIntent locationServerB = new ServerLocationIntent("1", "CH#1", "CH", "Geneva");
 
@@ -95,10 +95,10 @@ public class LocationIntentEqualityTests
         Assert.IsFalse(locationCountryC.IsSameAs(locationCountryA));
         Assert.IsFalse(locationCountryC.IsSameAs(locationCountryB));
 
-        ILocationIntent locationCityA = new CityStateLocationIntent("CH", "Geneva");
-        ILocationIntent locationCityB = new CityStateLocationIntent("CH", "Zurich");
-        ILocationIntent locationCityC = new CityStateLocationIntent("FR", "Paris");
-        ILocationIntent locationCityD = new CityStateLocationIntent("US", "Paris");
+        ILocationIntent locationCityA = new CityLocationIntent("CH", "Geneva");
+        ILocationIntent locationCityB = new CityLocationIntent("CH", "Zurich");
+        ILocationIntent locationCityC = new CityLocationIntent("FR", "Paris");
+        ILocationIntent locationCityD = new CityLocationIntent("US", "Paris");
 
         Assert.IsFalse(locationCityA.IsSameAs(locationCityB));
         Assert.IsFalse(locationCityA.IsSameAs(locationCityC));
@@ -137,7 +137,7 @@ public class LocationIntentEqualityTests
     {
         ILocationIntent locationFastestCountry = new CountryLocationIntent();
         ILocationIntent locationCountry = new CountryLocationIntent("CH");
-        ILocationIntent locationCity = new CityStateLocationIntent("CH", "Geneva");
+        ILocationIntent locationCity = new CityLocationIntent("CH", "Geneva");
         ILocationIntent locationServer = new ServerLocationIntent("1", "CH#1", "CH", "Geneva");
 
         Assert.IsFalse(locationFastestCountry.IsSameAs(locationCountry));

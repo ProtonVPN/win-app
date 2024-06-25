@@ -26,5 +26,6 @@ public interface IIntent
     bool IsForPaidUsersOnly { get; }
 
     IEnumerable<Server> FilterServers(IEnumerable<Server> servers);
+
     bool IsSupported(Server server);
 }

@@ -35,7 +35,7 @@ public class ServerLocationIntentTests
     [TestMethod]
     public void ServerLocationIntent_Number_ShouldBeValid(string name, int number)
     {
-        ServerLocationIntent serverLocationIntent = new(string.Empty, name, string.Empty, string.Empty);
+        ServerLocationIntent serverLocationIntent = new(string.Empty, name, string.Empty, string.Empty, string.Empty);
 
         Assert.AreEqual(number, serverLocationIntent.Number);
     }

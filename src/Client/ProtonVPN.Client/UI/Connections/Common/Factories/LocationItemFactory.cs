@@ -64,9 +64,14 @@ public class LocationItemFactory
         return new CountryLocationItem(_localizer, _serversLoader, _connectionManager, _mainViewNavigator, _upsellCarouselActivator, this, exitCountryCode);
     }
 
-    public CityLocationItem GetCity(City city)
+    public StateLocationItem GetState(State state, bool showBaseLocation)
     {
-        return new CityLocationItem(_localizer, _serversLoader, _connectionManager, _mainViewNavigator, _upsellCarouselActivator, this, city);
+        return new StateLocationItem(_localizer, _serversLoader, _connectionManager, _mainViewNavigator, _upsellCarouselActivator, this, state, showBaseLocation);
+    }
+
+    public CityLocationItem GetCity(City city, bool showBaseLocation)
+    {
+        return new CityLocationItem(_localizer, _serversLoader, _connectionManager, _mainViewNavigator, _upsellCarouselActivator, this, city, showBaseLocation);
     }
 
     public ServerLocationItem GetServer(Server server)
@@ -94,9 +99,14 @@ public class LocationItemFactory
         return new P2PCountryLocationItem(_localizer, _serversLoader, _connectionManager, _mainViewNavigator, _upsellCarouselActivator, this, exitCountryCode);
     }
 
-    public P2PCityLocationItem GetP2PCity(City city)
+    public P2PStateLocationItem GetP2PState(State state, bool showBaseLocation)
     {
-        return new P2PCityLocationItem(_localizer, _serversLoader, _connectionManager, _mainViewNavigator, _upsellCarouselActivator, this, city);
+        return new P2PStateLocationItem(_localizer, _serversLoader, _connectionManager, _mainViewNavigator, _upsellCarouselActivator, this, state, showBaseLocation);
+    }
+
+    public P2PCityLocationItem GetP2PCity(City city, bool showBaseLocation)
+    {
+        return new P2PCityLocationItem(_localizer, _serversLoader, _connectionManager, _mainViewNavigator, _upsellCarouselActivator, this, city, showBaseLocation);
     }
 
     public P2PServerLocationItem GetP2PServer(Server server)

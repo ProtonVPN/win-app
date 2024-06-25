@@ -27,6 +27,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Models.Activation.Custom;
 using ProtonVPN.Client.Models.Navigation;
+using ProtonVPN.Client.UI.Connections.Common.Enums;
 using ProtonVPN.Client.UI.Connections.Common.Factories;
 
 namespace ProtonVPN.Client.UI.Connections.Common.Items;
@@ -48,13 +49,19 @@ public abstract partial class CountryLocationItemBase : LocationItemBase
 
     public override object SecondSortProperty => Header;
 
+    protected int StatesItemsCount { get; private set; }
+
+    protected int CitiesItemsCount { get; private set; }
+
     public string ExitCountryCode { get; }
 
     public bool IsSecureCore { get; }
 
     public virtual string SecondaryActionLabel =>
         HasSubItems
-            ? Localizer.GetPluralFormat("Connections_SeeCities", SubItemsCount)
+            ? StatesItemsCount > 0 
+                ? Localizer.GetPluralFormat("Connections_SeeStates", StatesItemsCount)
+                : Localizer.GetPluralFormat("Connections_SeeCities", CitiesItemsCount)
             : string.Empty;
 
     protected bool IsFastest => string.IsNullOrEmpty(ExitCountryCode);
@@ -108,6 +115,13 @@ public abstract partial class CountryLocationItemBase : LocationItemBase
     protected override void OnSubItemsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
         base.OnSubItemsCollectionChanged(sender, e);
+
+        StatesItemsCount = SubItems
+            .Count(item => item.IsCounted
+                        && item.GroupType is GroupLocationType.States or GroupLocationType.P2PStates);
+        CitiesItemsCount = SubItems
+            .Count(item => item.IsCounted
+                        && item.GroupType is GroupLocationType.Cities or GroupLocationType.P2PCities);
 
         OnPropertyChanged(nameof(SecondaryActionLabel));
     }

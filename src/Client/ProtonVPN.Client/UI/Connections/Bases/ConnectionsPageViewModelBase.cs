@@ -114,7 +114,7 @@ public abstract class ConnectionsPageViewModelBase : PageViewModelBase<IMainView
     protected virtual IEnumerable<LocationItemBase> FilterItems(IEnumerable<LocationItemBase> items)
     {
         // By default, no filters applied
-        return items;
+        return items.Distinct();
     }
 
     protected void FetchItems()
@@ -136,6 +136,7 @@ public abstract class ConnectionsPageViewModelBase : PageViewModelBase<IMainView
         _locationGroups.Reset(
             FilterItems(_locationItems)
                 .GroupBy(item => item.GroupType)
+                .OrderBy(group => group.Key)
                 .Select(group => LocationItemFactory.GetGroup(group.Key, group)));
 
         OnPropertyChanged(nameof(HasItems));

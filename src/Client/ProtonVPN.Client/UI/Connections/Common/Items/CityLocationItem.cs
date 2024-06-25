@@ -19,6 +19,7 @@
 
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Servers;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Models.Activation.Custom;
@@ -39,14 +40,16 @@ public class CityLocationItem : CityLocationItemBase
         IMainViewNavigator mainViewNavigator,
         IUpsellCarouselDialogActivator upsellCarouselActivator,
         LocationItemFactory locationItemFactory,
-        City city)
+        City city,
+        bool showBaseLocation)
         : base(localizer,
                serversLoader,
                connectionManager,
                mainViewNavigator,
                upsellCarouselActivator,
                locationItemFactory,
-               city)
+               city,
+               showBaseLocation)
     { }
 
     protected override IEnumerable<LocationItemBase> GetSubItems()

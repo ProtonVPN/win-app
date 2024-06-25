@@ -18,7 +18,6 @@
  */
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Connection.Contracts.ServerListGenerators;
 using ProtonVPN.Client.Logic.Servers.Contracts;
@@ -26,80 +25,72 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Logic.Connection.ServerListGenerators;
 
 public class SmartStandardServerListGenerator : ServerListGeneratorBase, ISmartStandardServerListGenerator
 {
     private const int MAX_GENERATED_INTENT_LOGICAL_SERVERS = 3;
-
-    protected override int MaxPhysicalServersPerLogical => 1;
+    private const int MAX_GENERATED_BASE_INTENT_LOGICAL_SERVERS = 1;
 
     private readonly ISettings _settings;
     private readonly IServersLoader _serversLoader;
+    private readonly ILogger _logger;
 
-    public SmartStandardServerListGenerator(ISettings settings,
-        IServersLoader serversLoader)
+    protected override int MaxPhysicalServersPerLogical => 1;
+
+    public SmartStandardServerListGenerator(
+        ISettings settings,
+        IServersLoader serversLoader,
+        ILogger logger)
     {
         _settings = settings;
         _serversLoader = serversLoader;
+        _logger = logger;
     }
 
     public IEnumerable<PhysicalServer> Generate(IConnectionIntent connectionIntent)
     {
-        List<Server> pickedServers = GenerateIntentServers(connectionIntent).ToList();
+        _logger.Debug<AppLog>($"Generating smart servers list for intent: {connectionIntent}");
 
-        string? city = GetCity(pickedServers, connectionIntent.Location as CityStateLocationIntent);
-        string? exitCountry = GetExitCountry(pickedServers, connectionIntent.Location as CountryLocationIntent);
-        IEnumerable<Server> unfilteredServers = GetUnfilteredServers();
-        
-        if (exitCountry is not null)
-        {
-            if (city is not null)
-            {
-                AddServerIfNotAlreadyListed(pickedServers, unfilteredServers,
-                    s => IsSameFeatureAndCountryAndCity(s, connectionIntent.Feature, exitCountry: exitCountry, city: city));
-            }
-            AddServerIfNotAlreadyListed(pickedServers, unfilteredServers,
-                s => IsSameFeatureAndCountryDifferentCity(s, connectionIntent.Feature, exitCountry: exitCountry, city: city));
-        }
+        IEnumerable<Server> availableServers = GetUnfilteredServers();
+        List<Server> pickedServers = new();
+
+        // Set how many logical servers matching the exact connection intent (feature + location) should be picked.
+        int numberOfServersToPick = MAX_GENERATED_INTENT_LOGICAL_SERVERS;
+
         if (connectionIntent.Feature is not null)
         {
-            AddServerIfNotAlreadyListed(pickedServers, unfilteredServers,
-                s => IsSameFeatureDifferentCountry(s, connectionIntent.Feature, exitCountry: exitCountry));
+            // (1.) Select all the servers that match the feature intent only (if defined)
+            IEnumerable<Server> featureMatchingServers = connectionIntent.Feature.FilterServers(availableServers);
+
+            // (1.a.) Pick servers from the feature matching servers list that also match the exact location intent.
+            // (1.b.) Then pick servers from the feature matching servers list that recursively match the base location intent (eg. server from the same city, server from the same country but different city...)
+            pickedServers.AddRange(FilterServersByLayer(connectionIntent.Location, featureMatchingServers, numberOfServersToPick));
+
+            // If any servers have been picked, reduce the number of servers to pick for the next step.
+            numberOfServersToPick = pickedServers.Any()
+                ? MAX_GENERATED_BASE_INTENT_LOGICAL_SERVERS
+                : MAX_GENERATED_INTENT_LOGICAL_SERVERS;
         }
-        if (exitCountry is not null)
-        {
-            if (city is not null)
-            {
-                AddServerIfNotAlreadyListed(pickedServers, unfilteredServers,
-                    s => IsStandardServerSameCity(s, exitCountry: exitCountry, city: city));
-            }
-            AddServerIfNotAlreadyListed(pickedServers, unfilteredServers,
-                s => IsStandardServerSameCountryDifferentCity(s, exitCountry: exitCountry, city: city));
-        }
-        AddServerIfNotAlreadyListed(pickedServers, unfilteredServers,
-            s => IsStandardServerDifferentCountry(s, exitCountry: exitCountry));
+
+        // (2.) Select all the standard servers (non B2B/Tor/SecureCore servers). Exclude all the servers that have already been picked.
+        IEnumerable<Server> standardServers = availableServers.Where(IsStandardServer).Except(pickedServers);
+
+        // (2.a.) Pick servers from the standard server list that also match the exact location intent.
+        // (2.b.) Then pick servers from the standard server list that recursively match the base location intent (eg. server from the same city, server from the same country but different city...)
+        pickedServers.AddRange(FilterServersByLayer(connectionIntent.Location, standardServers, numberOfServersToPick));
+
+        _logger.Debug<AppLog>($"Picked servers: {string.Join(", ", pickedServers.Select(s => s.Name))}");
 
         return SelectDistinctPhysicalServers(pickedServers);
     }
 
-    private IEnumerable<Server> GenerateIntentServers(IConnectionIntent connectionIntent)
+    private IEnumerable<Server> GetUnfilteredServers()
     {
-        IEnumerable<Server> servers = _serversLoader.GetServers();
-
-        if (connectionIntent.Location is not null)
-        {
-            servers = connectionIntent.Location.FilterServers(servers);
-        }
-
-        servers = connectionIntent.Feature is null
-            ? servers.Where(IsStandardServer)
-            : connectionIntent.Feature.FilterServers(servers);
-
-        return SortServers(servers)
-            .Where(s => s.IsAvailable())
-            .Take(MAX_GENERATED_INTENT_LOGICAL_SERVERS);
+        return SortServers(_serversLoader.GetServers().Where(s => s.IsAvailable()));
     }
 
     private IEnumerable<Server> SortServers(IEnumerable<Server> source)
@@ -109,44 +100,41 @@ public class SmartStandardServerListGenerator : ServerListGeneratorBase, ISmartS
             : source.OrderBy(s => s.Score);
     }
 
-    private IEnumerable<Server> GetUnfilteredServers()
+    /// <summary>
+    /// The 'smart' algorithm picks servers that match the location intent then incrementally decreases the strictness of the location intent.
+    /// </summary>
+    private IEnumerable<Server> FilterServersByLayer(ILocationIntent locationIntent, IEnumerable<Server> servers, int numberOfServersToPick)
     {
-        return SortServers(_serversLoader.GetServers().Where(s => s.IsAvailable()));
-    }
+        // (1.) Select all the servers that match the location intent and only pick the first # servers from that list.
+        IEnumerable<Server> supportedServers = servers.Where(locationIntent.IsSupported);
+        IEnumerable<Server> pickedServers = supportedServers.Take(numberOfServersToPick);
 
-    private bool IsSameFeatureAndCountryAndCity(Server server,
-        IFeatureIntent? featureIntent, string exitCountry, string city)
-    {
-        return (featureIntent is null ? IsStandardServer(server) : featureIntent.IsSupported(server))
-            && server.ExitCountry == exitCountry
-            && server.City == city;
-    }
+        // (2.) Create the base location intent from the current location intent.
+        ILocationIntent? baseLocationIntent = locationIntent switch
+        {
+            // Server -> City -> State -> Country -> Fastest country
+            ServerLocationIntent serverIntent => new CityLocationIntent(serverIntent.CountryCode!, serverIntent.State, serverIntent.City),
+            CityLocationIntent cityIntent => new StateLocationIntent(cityIntent.CountryCode!, cityIntent.State),
+            StateLocationIntent stateIntent => new CountryLocationIntent(stateIntent.CountryCode!),
+            CountryLocationIntent countryIntent when !countryIntent.IsFastest => new CountryLocationIntent(),
 
-    private bool IsSameFeatureAndCountryDifferentCity(Server server,
-        IFeatureIntent? featureIntent, string exitCountry, string? city)
-    {
-        return (featureIntent is null ? IsStandardServer(server) : featureIntent.IsSupported(server))
-            && server.ExitCountry == exitCountry
-            && server.City != city;
-    }
+            // Gateway server -> Gateway
+            GatewayServerLocationIntent gatewayServerIntent => new GatewayLocationIntent(gatewayServerIntent.Name),
 
-    private bool IsSameFeatureDifferentCountry(Server server, IFeatureIntent featureIntent, string? exitCountry)
-    {
-        return featureIntent.IsSupported(server) && server.ExitCountry != exitCountry;
-    }
+            _ => null,
+        };
 
-    private bool IsStandardServerSameCity(Server server, string exitCountry, string city)
-    {
-        return IsStandardServer(server) && server.ExitCountry == exitCountry && server.City == city;
-    }
+        // This is the exit condition for the recursive algorithm. Once the top most location intent is reached, its base intent will be null.
+        if (baseLocationIntent != null)
+        {
+            // (3.) Select all the servers that are not supported by the current location intent.
+            IEnumerable<Server> remainingServers = servers.Where(s => !locationIntent.IsSupported(s));
 
-    private bool IsStandardServerSameCountryDifferentCity(Server server,  string exitCountry, string? city)
-    {
-        return IsStandardServer(server) && server.ExitCountry == exitCountry && server.City != city;
-    }
+            // (4.) Recursively pick servers from the remaining servers list that match the base location intent. Concatenate the results to the picked servers list. 
+            pickedServers = pickedServers.Concat(
+                FilterServersByLayer(baseLocationIntent, remainingServers, MAX_GENERATED_BASE_INTENT_LOGICAL_SERVERS));
+        }
 
-    private bool IsStandardServerDifferentCountry(Server server, string? exitCountry)
-    {
-        return IsStandardServer(server) && server.ExitCountry != exitCountry;
+        return pickedServers;
     }
 }

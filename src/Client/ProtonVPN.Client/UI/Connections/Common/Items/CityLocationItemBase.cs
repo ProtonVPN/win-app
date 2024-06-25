@@ -19,6 +19,7 @@
 
 using System.Collections.Specialized;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
@@ -27,12 +28,19 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Models.Activation.Custom;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Connections.Common.Factories;
+using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Client.UI.Connections.Common.Items;
 
 public abstract class CityLocationItemBase : LocationItemBase
 {
     public override string Header => City.Name;
+
+    public string SubHeader => ShowBaseLocation
+        ? BelongsToState
+            ? $" -  {City.StateName}, {Localizer.GetCountryName(City.CountryCode)}"
+            : $" -  {Localizer.GetCountryName(City.CountryCode)}"
+        : string.Empty;
 
     public override string? ToolTip =>
         IsRestricted
@@ -43,16 +51,20 @@ public abstract class CityLocationItemBase : LocationItemBase
 
     public City City { get; }
 
+    public bool ShowBaseLocation { get; }
+
     public override object FirstSortProperty => Header;
 
-    public override object SecondSortProperty => string.Empty;
+    public override object SecondSortProperty => SubHeader;
+
+    public bool BelongsToState => !string.IsNullOrEmpty(City.StateName);
 
     public string SecondaryActionLabel =>
         HasSubItems
             ? Localizer.GetPluralFormat("Connections_SeeServers", SubItemsCount)
             : string.Empty;
 
-    protected override ILocationIntent LocationIntent => new CityStateLocationIntent(City.CountryCode, City.Name);
+    protected override ILocationIntent LocationIntent => new CityLocationIntent(City.CountryCode, City.StateName, City.Name);
 
     protected CityLocationItemBase(
         ILocalizationProvider localizer,
@@ -61,7 +73,8 @@ public abstract class CityLocationItemBase : LocationItemBase
         IMainViewNavigator mainViewNavigator,
         IUpsellCarouselDialogActivator upsellCarouselActivator,
         LocationItemFactory locationItemFactory,
-        City city)
+        City city,
+        bool showBaseLocation)
         : base(localizer,
                serversLoader,
                connectionManager,
@@ -70,6 +83,7 @@ public abstract class CityLocationItemBase : LocationItemBase
                locationItemFactory)
     {
         City = city;
+        ShowBaseLocation = showBaseLocation;
 
         FetchSubItems();
     }
@@ -79,13 +93,20 @@ public abstract class CityLocationItemBase : LocationItemBase
         IsActiveConnection = currentConnectionDetails is not null
                           && !currentConnectionDetails.IsGateway
                           && City.CountryCode == currentConnectionDetails.ExitCountryCode
-                          && City.Name == currentConnectionDetails.CityState
+                          && City.StateName == currentConnectionDetails.State
+                          && City.Name == currentConnectionDetails.City
                           && (FeatureIntent?.GetType().IsAssignableTo(currentConnectionDetails.OriginalConnectionIntent.Feature?.GetType()) ?? true);
 
         foreach (LocationItemBase item in SubItems)
         {
             item.InvalidateIsActiveConnection(currentConnectionDetails);
         }
+    }
+
+    public override bool MatchesSearchQuery(string searchQuery)
+    {
+        return base.MatchesSearchQuery(searchQuery)
+            || SubHeader.ContainsIgnoringCase(searchQuery);
     }
 
     protected override void OnSubItemsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)

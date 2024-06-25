@@ -33,7 +33,8 @@ public class ServerLocationIntentMapper : IMapper<ServerLocationIntent, Serializ
             {
                 TypeName = nameof(ServerLocationIntent),
                 CountryCode = leftEntity.CountryCode,
-                CityState = leftEntity.CityState,
+                State = leftEntity.State,
+                City = leftEntity.City,
                 Id = leftEntity.Id,
                 Name = leftEntity.Name,
             };
@@ -47,6 +48,7 @@ public class ServerLocationIntentMapper : IMapper<ServerLocationIntent, Serializ
                 id: rightEntity.Id,
                 name: rightEntity.Name,
                 countryCode: rightEntity.CountryCode,
-                cityState: rightEntity.CityState);
+                state: rightEntity.State,
+                city: rightEntity.City);
     }
 }

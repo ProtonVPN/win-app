@@ -42,6 +42,7 @@ public class LogicalServerMapper : IMapper<LogicalServerResponse, Server>
                 Id = leftEntity.Id,
                 Name = leftEntity.Name,
                 City = leftEntity.City,
+                State = leftEntity.State,
                 EntryCountry = leftEntity.EntryCountry,
                 ExitCountry = leftEntity.ExitCountry,
                 HostCountry = leftEntity.HostCountry,
