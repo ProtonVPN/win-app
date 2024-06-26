@@ -263,6 +263,11 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         }
     }
 
+    public void RequestConnectionDetails()
+    {
+        _eventReceiver.RequestConnectionDetails();
+    }
+
     private void OnLocalAgentErrorOccurred(object sender, LocalAgentErrorArgs e)
     {
         _logger.Info<LocalAgentErrorLog>($"Error event received {e.Error} {e.Description}");

@@ -25,5 +25,6 @@ namespace ProtonVPN.Vpn.Common
     {
         void SetFeatures(VpnFeatures vpnFeatures);
         void RequestNetShieldStats();
+        void RequestConnectionDetails();
     }
 }

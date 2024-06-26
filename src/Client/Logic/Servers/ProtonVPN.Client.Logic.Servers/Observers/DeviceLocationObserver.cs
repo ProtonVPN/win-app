@@ -18,7 +18,6 @@
  */
 
 using System.Net.NetworkInformation;
-using System.ServiceModel.Channels;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Geographical;
 using ProtonVPN.Client.Common.Observers;

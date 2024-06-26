@@ -107,7 +107,7 @@ public class VpnStatePollingObserver : PollingObserverBase,
     {
         lock (_timerLock)
         {
-            SetAndRestartTimer(ConnectionStatus.Disconnected);
+            StartTimerAndTriggerOnStart();
         }
     }
 }

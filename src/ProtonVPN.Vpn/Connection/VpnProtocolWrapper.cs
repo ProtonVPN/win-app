@@ -88,6 +88,11 @@ internal class VpnProtocolWrapper : ISingleVpnConnection
         VpnConnection?.RequestNetShieldStats();
     }
 
+    public void RequestConnectionDetails()
+    {
+        VpnConnection?.RequestConnectionDetails();
+    }
+
     private void OnStateChanged(object sender, EventArgs<VpnState> e)
     {
         StateChanged?.Invoke(this, e);

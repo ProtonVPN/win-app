@@ -96,6 +96,11 @@ public class BestPortWrapper : ISingleVpnConnection
         _origin.RequestNetShieldStats();
     }
 
+    public void RequestConnectionDetails()
+    {
+        _origin.RequestConnectionDetails();
+    }
+
     private async void ScanPorts(CancellationToken cancellationToken)
     {
         _logger.Info<ConnectScanLog>($"Starting port scanning of endpoint {_vpnEndpoint.Server.Ip} before connection.");

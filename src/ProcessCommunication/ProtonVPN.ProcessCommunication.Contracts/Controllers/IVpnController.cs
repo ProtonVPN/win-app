@@ -40,4 +40,5 @@ public interface IVpnController : IServiceController
     Task RepeatPortForwardingState();
 
     Task RequestNetShieldStats();
+    Task RequestConnectionDetails();
 }

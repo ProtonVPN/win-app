@@ -83,8 +83,8 @@ public class ViewModelsModule : Module
         RegisterViewModel<FreeConnectionsOverlayViewModel>(builder);
         RegisterViewModel<ChangeServerOverlayViewModel>(builder);
         RegisterViewModel<VpnSpeedViewModel>(builder);
-        RegisterViewModel<IpAddressViewModel>(builder);
-        RegisterViewModel<ConnectionDetailsViewModel>(builder);
+        RegisterViewModel<IpAddressViewModel>(builder).AutoActivate();
+        RegisterViewModel<ConnectionDetailsViewModel>(builder).AutoActivate();
         RegisterViewModel<RecentsViewModel>(builder);
         RegisterViewModel<VpnStatusViewModel>(builder);
         RegisterViewModel<NetShieldStatsViewModel>(builder);

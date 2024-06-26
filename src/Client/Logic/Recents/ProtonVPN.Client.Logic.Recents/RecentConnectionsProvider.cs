@@ -193,12 +193,23 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider,
         {
             LoadRecentConnections();
 
+            UpdateCurrentConnectionIntent();
             InvalidateActiveConnection();
         }
 
         _areRecentsLoaded = true;
 
         BroadcastRecentConnectionsChanges();
+    }
+
+    private void UpdateCurrentConnectionIntent()
+    {
+        // If the client is launched after a crash and there was previously an active VPN connection,
+        // we initialize the connection manager with the last connection intent from the recent active connection.
+        // This ensures that when the connection manager receives the connected state, it knows the last user intent
+        // and can therefore display the correct connection info in the connection details panel.
+        IRecentConnection? recentConnection = GetMostRecentConnection();
+        _connectionManager.InitializeAsync(recentConnection?.ConnectionIntent);
     }
 
     public void Receive(LoggedOutMessage message)
@@ -293,6 +304,8 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider,
                                          && currentConnectionIntent != null
                                          && currentConnectionIntent.IsSameAs(connection.ConnectionIntent);
         }
+
+        SaveRecentConnections();
     }
 
     private void InvalidateRetiredAndUnderMaintenanceServers()

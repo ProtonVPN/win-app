@@ -91,5 +91,10 @@ namespace ProtonVPN.Vpn.Connection
         {
             _taskQueue.Enqueue(_origin.RequestNetShieldStats);
         }
+
+        public void RequestConnectionDetails()
+        {
+            _taskQueue.Enqueue(_origin.RequestConnectionDetails);
+        }
     }
 }

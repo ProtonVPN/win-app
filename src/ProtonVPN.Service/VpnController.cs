@@ -143,5 +143,10 @@ namespace ProtonVPN.Service
         {
             _vpnConnection.RequestNetShieldStats();
         }
+
+        public async Task RequestConnectionDetails()
+        {
+            _vpnConnection.RequestConnectionDetails();
+        }
     }
 }
