@@ -23,6 +23,7 @@
 #define VersionFolder "v" + MyAppVersion
 #define DisableAutoUpdateInstallerArg "/DISABLEAUTOUPDATE"
 #define DisableAutoUpdateClientArg "-DisableAutoUpdate"
+#define ClearAppDataClientArg "-DoUninstallActions"
 #define RegistryRunPath "Software\Microsoft\Windows\CurrentVersion\Run"
 #define LegacyClientName "ProtonVPN"
 
@@ -144,47 +145,50 @@ Type: filesandordirs; Name: "{app}\{#VersionFolder}\Resources"
 Type: files; Name: "{#InstallLogPath}"
 
 [Code]
-function InitLogger(logger: Longword): Integer;
-external 'InitLogger@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
-
-function InitLoggerUninstall(logger: Longword): Integer;
-external 'InitLogger@{%TEMP}\ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
-
-function UpdateTaskbarIconTarget(launcherPath: String): Integer;
-external 'UpdateTaskbarIconTarget@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
-
-function UninstallProduct(upgradeCode: String): Integer;
-external 'UninstallProduct@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
-
-function UninstallTapAdapter(tapFilesPath: String): Integer;
-external 'UninstallTapAdapter@ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
-
-function RemovePinnedIcons(shortcutPath: String): Integer;
-external 'RemovePinnedIcons@ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
-
-function RemoveWfpObjects(): Integer;
-external 'RemoveWfpObjects@ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
-
-function InstallWindowsService(name, displayName, path: String): Integer;
-external 'InstallService@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
-
-function IsProcessRunning(processName: String): Boolean;
-external 'IsProcessRunning@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
-
-function IsProcessRunningByPath(processPath: String): Boolean;
-external 'IsProcessRunningByPath@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
-
-function InstallCalloutDriver(name, displayName, path: String): Integer;
-external 'InstallCalloutDriver@files:ProtonVPN.InstallActions.x86.dll cdecl delayload';
-
-function UninstallService(name: String): Integer;
-external 'UninstallService@{%TEMP}\ProtonVPN.InstallActions.x86.dll cdecl delayload uninstallonly';
-
 function lstrlenW(lpString: Cardinal): Cardinal;
 external 'lstrlenW@kernel32.dll stdcall';
 
 function lstrcpyW(lpStringDest: String; lpStringSrc: Cardinal): Integer;
 external 'lstrcpyW@kernel32.dll stdcall';
+
+function InitLogger(logger: Longword): Integer;
+external 'InitLogger@files:ProtonVPN.InstallActions.x86.dll cdecl';
+
+function UpdateTaskbarIconTarget(launcherPath: String): Integer;
+external 'UpdateTaskbarIconTarget@files:ProtonVPN.InstallActions.x86.dll cdecl';
+
+function UninstallProduct(upgradeCode: String): Integer;
+external 'UninstallProduct@files:ProtonVPN.InstallActions.x86.dll cdecl';
+
+function InstallWindowsService(name, displayName, path: String): Integer;
+external 'InstallService@files:ProtonVPN.InstallActions.x86.dll cdecl';
+
+function IsProcessRunning(processName: String): Boolean;
+external 'IsProcessRunning@files:ProtonVPN.InstallActions.x86.dll cdecl';
+
+function IsProcessRunningByPath(processPath: String): Boolean;
+external 'IsProcessRunningByPath@files:ProtonVPN.InstallActions.x86.dll cdecl';
+
+function InstallCalloutDriver(name, displayName, path: String): Integer;
+external 'InstallCalloutDriver@files:ProtonVPN.InstallActions.x86.dll cdecl';
+
+function LaunchUnelevatedProcess(processPath, args: String; isToWait: Boolean): Integer;
+external 'LaunchUnelevatedProcess@{app}\{#VersionFolder}\Resources\ProtonVPN.InstallActions.x86.dll cdecl uninstallonly';
+
+function UninstallService(name: String): Integer;
+external 'UninstallService@{app}\{#VersionFolder}\Resources\ProtonVPN.InstallActions.x86.dll cdecl uninstallonly';
+
+function InitLoggerUninstall(logger: Longword): Integer;
+external 'InitLogger@{app}\{#VersionFolder}\Resources\ProtonVPN.InstallActions.x86.dll cdecl uninstallonly';
+
+function UninstallTapAdapter(tapFilesPath: String): Integer;
+external 'UninstallTapAdapter@{app}\{#VersionFolder}\Resources\ProtonVPN.InstallActions.x86.dll cdecl uninstallonly';
+
+function RemovePinnedIcons(shortcutPath: String): Integer;
+external 'RemovePinnedIcons@{app}\{#VersionFolder}\Resources\ProtonVPN.InstallActions.x86.dll cdecl uninstallonly';
+
+function RemoveWfpObjects(): Integer;
+external 'RemoveWfpObjects@{app}\{#VersionFolder}\Resources\ProtonVPN.InstallActions.x86.dll cdecl uninstallonly';
 
 type
   TInt64Array = array of Int64;
@@ -457,5 +461,9 @@ begin
 
     Log('Trying to delete client startup record if exists');
     DeleteStartupApp(ExpandConstant('{#ClientName}'));
+
+    LaunchUnelevatedProcess(ExpandConstant('{app}\{#VersionFolder}\{#MyAppExeName}'), '{#ClearAppDataClientArg}', True);
+    
+    UnloadDLL(ExpandConstant('{app}\{#VersionFolder}\Resources\ProtonVPN.InstallActions.x86.dll'));
   end;
 end;

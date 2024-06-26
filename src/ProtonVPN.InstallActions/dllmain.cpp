@@ -144,3 +144,16 @@ extern "C" EXPORT DWORD RemovePinnedIcons(const wchar_t* shortcut_path)
     Os::RemovePinnedIcons(shortcut_path);
     return 0;
 }
+
+extern "C" EXPORT DWORD LaunchUnelevatedProcess(const wchar_t* process_path, const wchar_t* args, bool is_to_wait)
+{
+    wstring log_args = args != nullptr ? L" " + wstring(args) : L"";
+    LogMessage(wstring(L"Launching process ") + wstring(process_path) + log_args);
+    ProcessExecutionResult result = Os::LaunchUnelevatedProcess(process_path, args, is_to_wait);
+    if (!result.is_success())
+    {
+        LogMessage(wstring(result.output.begin(), result.output.end()), result.exitCode);
+    }
+
+    return result.exitCode;
+}
