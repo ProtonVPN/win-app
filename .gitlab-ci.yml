@@ -13,11 +13,11 @@ include:
     
   - local: '/.gitlab-ci-templates.yml'
   
-  - component: gitlab.protontech.ch/proton/devops/cicd-components/devsecops/gitleaks/scan-repository@0.0.12
+  - component: $CI_SERVER_HOST/proton/devops/cicd-components/devsecops/gitleaks/scan-repository@0.0.12
     inputs:
       stage: test
       
-  - component: gitlab.protontech.ch/proton/devops/cicd-components/devsecops/grype/scan-code@0.0.12
+  - component: $CI_SERVER_HOST/proton/devops/cicd-components/devsecops/grype/scan-code@0.0.12
     inputs:
       stage: test
       cli-args: "-c .grype"
@@ -286,7 +286,7 @@ i18n-commit-translations-redesign_2024:
     - git config --global core.autocrlf false
 
 create-release:
-  image: harbor.protontech.ch/docker.io/library/python:latest
+  image: $HARBOR_URL/docker.io/library/python:latest
   stage: release
   tags:
     - shared-small
