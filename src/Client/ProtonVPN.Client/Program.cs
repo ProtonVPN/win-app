@@ -38,9 +38,7 @@ public class Program
     [STAThread]
     static void Main(string[] args)
     {
-        // TODO: launch this process without admin privileges and /DoUninstallActions
-        // command line argument during the uninstallation of the app
-        if (args.ContainsIgnoringCase("/DoUninstallActions"))
+        if (args.ContainsIgnoringCase("-DoUninstallActions"))
         {
             UninstallActions.DeleteClientData();
             return;
