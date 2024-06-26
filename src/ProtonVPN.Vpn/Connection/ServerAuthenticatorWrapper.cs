@@ -84,6 +84,11 @@ namespace ProtonVPN.Vpn.Connection
             _origin.RequestNetShieldStats();
         }
 
+        public void RequestConnectionDetails()
+        {
+            _origin.RequestConnectionDetails();
+        }
+
         public void SetFeatures(VpnFeatures vpnFeatures)
         {
             _origin.SetFeatures(vpnFeatures);

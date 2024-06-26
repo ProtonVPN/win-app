@@ -45,4 +45,5 @@ public interface IConnectionManager
 
     Task<TrafficBytes> GetTrafficBytesAsync();
     Task<TrafficBytes> GetCurrentSpeedAsync();
+    Task InitializeAsync(IConnectionIntent? connectionIntent);
 }

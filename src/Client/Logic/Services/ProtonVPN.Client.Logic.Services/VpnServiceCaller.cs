@@ -61,6 +61,11 @@ public class VpnServiceCaller : ServiceCallerBase<IVpnController>, IVpnServiceCa
         return InvokeAsync(c => c.RequestNetShieldStats().Wrap());
     }
 
+    public Task RequestConnectionDetailsAsync()
+    {
+        return InvokeAsync(c => c.RequestConnectionDetails().Wrap());
+    }
+
     public Task UpdateConnectionCertificateAsync(ConnectionCertificateIpcEntity certificate)
     {
         return InvokeAsync(c => c.UpdateConnectionCertificate(certificate).Wrap());

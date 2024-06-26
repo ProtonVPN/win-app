@@ -236,6 +236,11 @@ internal class NetworkAdapterStatusWrapper : ISingleVpnConnection
         _origin.RequestNetShieldStats();
     }
 
+    public void RequestConnectionDetails()
+    {
+        _origin.RequestConnectionDetails();
+    }
+
     private void Origin_StateChanged(object sender, EventArgs<VpnState> e)
     {
         if (e.Data.Status == VpnStatus.Connected && e.Data.VpnProtocol.IsWireGuard())

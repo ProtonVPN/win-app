@@ -37,4 +37,5 @@ public interface IVpnConnection
     void Disconnect(VpnError error = VpnError.None);
     void SetFeatures(VpnFeatures vpnFeatures);
     void RequestNetShieldStats();
+    void RequestConnectionDetails();
 }

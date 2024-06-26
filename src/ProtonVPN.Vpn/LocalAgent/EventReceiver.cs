@@ -40,6 +40,7 @@ namespace ProtonVPN.Vpn.LocalAgent
         private readonly INetShieldStatisticEventManager _netShieldStatisticEventManager;
 
         private Task _loggerTask;
+        private ConnectionDetails _connectionDetails;
         private CancellationTokenSource _cancellationTokenSource;
 
         public EventReceiver(ILogger logger, INetShieldStatisticEventManager netShieldStatisticEventManager)
@@ -78,6 +79,11 @@ namespace ProtonVPN.Vpn.LocalAgent
             {
                 _cancellationTokenSource.Cancel();
             }
+        }
+
+        public void RequestConnectionDetails()
+        {
+            SendConnectionDetails(_connectionDetails);
         }
 
         private EventContract GetEventContract(string message)
@@ -151,13 +157,21 @@ namespace ProtonVPN.Vpn.LocalAgent
         {
             if (e.ConnectionDetails is not null)
             {
-                ConnectionDetailsChanged?.Invoke(this,
-                    new ConnectionDetails
-                    {
-                        ClientIpAddress = e.ConnectionDetails?.DeviceIp,
-                        ClientCountryIsoCode = e.ConnectionDetails?.DeviceCountry,
-                        ServerIpAddress = e.ConnectionDetails?.ServerIpv4,
-                    });
+                _connectionDetails = new ConnectionDetails
+                {
+                    ClientIpAddress = e.ConnectionDetails?.DeviceIp,
+                    ClientCountryIsoCode = e.ConnectionDetails?.DeviceCountry,
+                    ServerIpAddress = e.ConnectionDetails?.ServerIpv4,
+                };
+                SendConnectionDetails(_connectionDetails);
+            }
+        }
+
+        private void SendConnectionDetails(ConnectionDetails connectionDetails)
+        {
+            if (connectionDetails is not null)
+            {
+                ConnectionDetailsChanged?.Invoke(this, connectionDetails);
             }
         }
 

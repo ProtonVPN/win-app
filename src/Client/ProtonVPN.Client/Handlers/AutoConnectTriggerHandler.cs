@@ -21,6 +21,7 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
@@ -34,7 +35,8 @@ public class AutoConnectTriggerHandler : IHandler,
     IEventMessageReceiver<LoggedOutMessage>,
     IEventMessageReceiver<LoggedInMessage>,
     IEventMessageReceiver<ServerListChangedMessage>,
-    IEventMessageReceiver<RecentConnectionsChanged>
+    IEventMessageReceiver<RecentConnectionsChanged>,
+    IEventMessageReceiver<ConnectionStatusChanged>
 {
     private readonly IConnectionManager _connectionManager;
     private readonly IRecentConnectionsProvider _recentConnectionsProvider;
@@ -46,6 +48,7 @@ public class AutoConnectTriggerHandler : IHandler,
 
     private bool _isServersListReady;
     private bool _isRecentsListReady;
+    private bool _isConnectionStatusReady;
 
     public AutoConnectTriggerHandler(
         IConnectionManager connectionManager,
@@ -87,9 +90,16 @@ public class AutoConnectTriggerHandler : IHandler,
         TryAutoConnectAsync();
     }
 
+    public void Receive(ConnectionStatusChanged message)
+    {
+        _isConnectionStatusReady = true;
+
+        TryAutoConnectAsync();
+    }
+
     private async void TryAutoConnectAsync()
     {
-        if (_isHandled || !_isServersListReady || !_isRecentsListReady || !_userAuthenticator.IsLoggedIn)
+        if (_isHandled || !_isServersListReady || !_isRecentsListReady || !_userAuthenticator.IsLoggedIn || !_isConnectionStatusReady)
         {
             return;
         }

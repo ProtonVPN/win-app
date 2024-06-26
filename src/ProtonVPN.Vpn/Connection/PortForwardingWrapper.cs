@@ -82,6 +82,11 @@ namespace ProtonVPN.Vpn.Connection
             _origin.RequestNetShieldStats();
         }
 
+        public void RequestConnectionDetails()
+        {
+            _origin.RequestConnectionDetails();
+        }
+
         private bool IsToStopPortMappingProtocolClient(VpnFeatures vpnFeatures)
         {
             return !vpnFeatures.PortForwarding;

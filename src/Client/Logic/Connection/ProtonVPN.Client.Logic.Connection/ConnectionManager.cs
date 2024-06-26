@@ -60,6 +60,7 @@ public class ConnectionManager : IInternalConnectionManager,
     private TrafficBytes _bytesTransferred = TrafficBytes.Zero;
     private DateTime _minReconnectionDateUtc = DateTime.MinValue;
     private bool _isNetworkBlocked;
+    private bool _isConnectionStatusHandled;
 
     public ConnectionStatus ConnectionStatus { get; private set; }
     public VpnErrorTypeIpcEntity CurrentError { get; private set; }
@@ -228,7 +229,9 @@ public class ConnectionManager : IInternalConnectionManager,
     {
         IConnectionIntent connectionIntent = CurrentConnectionIntent ?? ConnectionIntent.Default;
         ConnectionStatus connectionStatus = _entityMapper.Map<VpnStatusIpcEntity, ConnectionStatus>(message.Status);
-        bool isToForceStatusUpdate = _isNetworkBlocked != message.NetworkBlocked;
+        bool isToForceStatusUpdate = _isNetworkBlocked != message.NetworkBlocked || !_isConnectionStatusHandled;
+
+        _isConnectionStatusHandled = true;
         _isNetworkBlocked = message.NetworkBlocked;
 
         if (message.Status == VpnStatusIpcEntity.Connected)
@@ -305,5 +308,11 @@ public class ConnectionManager : IInternalConnectionManager,
                 ExpirationDateUtc = message.Certificate.Value.ExpirationUtcDate.UtcDateTime
             });
         }
+    }
+
+    public async Task InitializeAsync(IConnectionIntent? connectionIntent)
+    {
+        CurrentConnectionIntent = connectionIntent;
+        await _vpnServiceCaller.RequestConnectionDetailsAsync();
     }
 }

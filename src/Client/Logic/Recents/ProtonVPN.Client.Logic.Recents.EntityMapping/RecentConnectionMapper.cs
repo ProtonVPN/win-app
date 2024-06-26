@@ -54,7 +54,7 @@ public class RecentConnectionMapper : IMapper<IRecentConnection, SerializableRec
             return null;
         }
 
-        return new SerializableRecentConnection()
+        return new SerializableRecentConnection
         {
             ConnectionIntent = connectionIntent,
             IsPinned = leftEntity.IsPinned,
