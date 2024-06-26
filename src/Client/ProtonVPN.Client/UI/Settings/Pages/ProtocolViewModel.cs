@@ -20,12 +20,15 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Common.Attributes;
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Client.UI.Settings.Pages.Entities;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.IssueReporting.Contracts;
@@ -33,8 +36,10 @@ using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Settings.Pages;
 
-public partial class ProtocolViewModel : SettingsPageViewModelBase
+public partial class ProtocolViewModel : SettingsPageViewModelBase,
+    IEventMessageReceiver<FeatureFlagsChangedMessage>
 {
+    private readonly IFeatureFlagsObserver _featureFlagsObserver;
     private readonly IUrls _urls;
 
     [ObservableProperty]
@@ -87,6 +92,8 @@ public partial class ProtocolViewModel : SettingsPageViewModelBase
         set => SetProtocol(value, VpnProtocol.OpenVpnTcp);
     }
 
+    public bool IsStealthVisible => _featureFlagsObserver.IsStealthEnabled;
+
     public string LearnMoreUrl => _urls.ProtocolsLearnMore;
 
     public ProtocolViewModel(
@@ -96,6 +103,7 @@ public partial class ProtocolViewModel : SettingsPageViewModelBase
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager,
+        IFeatureFlagsObserver featureFlagsObserver,
         IUrls urls,
         ILogger logger,
         IIssueReporter issueReporter)
@@ -109,6 +117,7 @@ public partial class ProtocolViewModel : SettingsPageViewModelBase
                issueReporter)
     {
         _urls = urls;
+        _featureFlagsObserver = featureFlagsObserver;
     }
 
     protected override void OnLanguageChanged()
@@ -144,5 +153,18 @@ public partial class ProtocolViewModel : SettingsPageViewModelBase
         {
             CurrentVpnProtocol = protocol;
         }
+    }
+
+    public void Receive(FeatureFlagsChangedMessage message)
+    {
+        ExecuteOnUIThread(() =>
+        {
+            OnPropertyChanged(nameof(IsStealthVisible));
+
+            if (IsActive && !IsStealthVisible && CurrentVpnProtocol == VpnProtocol.WireGuardTls)
+            {
+                CurrentVpnProtocol = VpnProtocol.Smart;
+            }
+        });
     }
 }

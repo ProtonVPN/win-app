@@ -141,6 +141,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </RadioButton>
 
                     <RadioButton AutomationProperties.AutomationId="WireGuardTlsProtocolRadioButton"
+                                 Visibility="{x:Bind ViewModel.IsStealthVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                                  IsChecked="{x:Bind ViewModel.IsWireGuardTlsProtocol, Mode=TwoWay}"
                                  Style="{StaticResource ProtocolRadioButtonStyle}">
                         <StackPanel>

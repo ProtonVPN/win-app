@@ -46,6 +46,8 @@ public class FeatureFlagsObserver :
 
     public bool IsSsoEnabled => IsFlagEnabled("ExternalSSO");
 
+    public bool IsStealthEnabled => IsFlagEnabled("Stealth");
+
     public FeatureFlagsObserver(
         ILogger logger,
         IIssueReporter issueReporter,
