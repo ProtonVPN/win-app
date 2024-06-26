@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.OS.Net;
 using ProtonVPN.Logging.Contracts;
@@ -40,7 +41,7 @@ public class NetworkSettings : IVpnStateAware
 
     public void OnVpnDisconnected(VpnState state)
     {
-        if (state.VpnProtocol != VpnProtocol.WireGuardUdp)
+        if (state.VpnProtocol.IsOpenVpn())
         {
             RestoreNetworkSettings(state.VpnProtocol, state.OpenVpnAdapter);
         }

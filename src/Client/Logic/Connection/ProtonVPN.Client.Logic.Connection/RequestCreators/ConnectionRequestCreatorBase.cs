@@ -19,6 +19,7 @@
 
 using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
@@ -27,20 +28,25 @@ namespace ProtonVPN.Client.Logic.Connection.RequestCreators;
 
 public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
 {
-    protected readonly IReadOnlyList<VpnProtocolIpcEntity> SmartPreferredProtocols = [
+    private readonly IFeatureFlagsObserver _featureFlagsObserver;
+
+    private readonly IReadOnlyList<VpnProtocolIpcEntity> _smartPreferredProtocols = [
         VpnProtocolIpcEntity.WireGuardUdp,
         VpnProtocolIpcEntity.WireGuardTcp,
         VpnProtocolIpcEntity.OpenVpnUdp,
         VpnProtocolIpcEntity.OpenVpnTcp,
         VpnProtocolIpcEntity.WireGuardTls,
     ];
-    
+
     protected ConnectionRequestCreatorBase(
         ISettings settings,
         IEntityMapper entityMapper,
+        IFeatureFlagsObserver featureFlagsObserver,
         IMainSettingsRequestCreator mainSettingsRequestCreator)
         : base(settings, entityMapper, mainSettingsRequestCreator)
-    { }
+    {
+        _featureFlagsObserver = featureFlagsObserver;
+    }
 
     protected abstract Task<VpnCredentialsIpcEntity> GetVpnCredentialsAsync();
 
@@ -56,19 +62,42 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
             PortForwarding = settings.PortForwarding,
             SplitTcp = settings.SplitTcp,
             PreferredProtocols = settings.VpnProtocol == VpnProtocolIpcEntity.Smart
-                ? SmartPreferredProtocols.ToList()
+                ? GetPreferredSmartProtocols()
                 : [settings.VpnProtocol],
-            Ports = new Dictionary<VpnProtocolIpcEntity, int[]>
-            {
-                { VpnProtocolIpcEntity.WireGuardUdp, Settings.WireGuardUdpPorts },
-                { VpnProtocolIpcEntity.WireGuardTcp, Settings.WireGuardTcpPorts },
-                { VpnProtocolIpcEntity.WireGuardTls, Settings.WireGuardTlsPorts },
-                { VpnProtocolIpcEntity.OpenVpnUdp, Settings.OpenVpnUdpPorts },
-                { VpnProtocolIpcEntity.OpenVpnTcp, Settings.OpenVpnTcpPorts },
-            },
+            Ports = GetPorts(),
             CustomDns = Settings.IsCustomDnsServersEnabled
                 ? Settings.CustomDnsServersList.Where(s => s.IsActive).Select(s => s.IpAddress).ToList()
                 : [],
         };
+    }
+
+    protected IList<VpnProtocolIpcEntity> GetPreferredSmartProtocols()
+    {
+        List<VpnProtocolIpcEntity> preferredProtocols = _smartPreferredProtocols.ToList();
+        if (!_featureFlagsObserver.IsStealthEnabled)
+        {
+            preferredProtocols.Remove(VpnProtocolIpcEntity.WireGuardTls);
+        }
+
+        return preferredProtocols;
+    }
+
+    private Dictionary<VpnProtocolIpcEntity, int[]> GetPorts()
+    {
+        Dictionary<VpnProtocolIpcEntity, int[]> ports = new()
+        {
+            { VpnProtocolIpcEntity.WireGuardUdp, Settings.WireGuardUdpPorts },
+            { VpnProtocolIpcEntity.WireGuardTcp, Settings.WireGuardTcpPorts },
+            { VpnProtocolIpcEntity.WireGuardTls, Settings.WireGuardTlsPorts },
+            { VpnProtocolIpcEntity.OpenVpnUdp, Settings.OpenVpnUdpPorts },
+            { VpnProtocolIpcEntity.OpenVpnTcp, Settings.OpenVpnTcpPorts },
+        };
+
+        if (!_featureFlagsObserver.IsStealthEnabled)
+        {
+            ports.Remove(VpnProtocolIpcEntity.WireGuardTls);
+        }
+
+        return ports;
     }
 }

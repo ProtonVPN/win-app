@@ -23,6 +23,7 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Legacy.Go;
@@ -233,7 +234,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         else
         {
             _tlsConnected = true;
-            if (_vpnConfig.VpnProtocol == VpnProtocol.WireGuardUdp)
+            if (_vpnConfig.VpnProtocol.IsWireGuard())
             {
                 _splitTunnelRouting.SetUpRoutingTable(_vpnConfig, _vpnState.Data.LocalIp);
             }
@@ -358,7 +359,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
 
         CloseTlsChannel();
         _eventReceiver.Stop();
-        if (_vpnConfig.VpnProtocol == VpnProtocol.WireGuardUdp)
+        if (_vpnConfig.VpnProtocol.IsWireGuard())
         {
             _splitTunnelRouting.DeleteRoutes(_vpnConfig);
         }

@@ -333,7 +333,7 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         }
 
         return new VpnState(status, error, _config.WireGuard.DefaultClientAddress,
-            _endpoint?.Server.Ip ?? string.Empty, VpnProtocol.WireGuardUdp,
+            _endpoint?.Server.Ip ?? string.Empty, _vpnConfig.VpnProtocol,
             _vpnConfig.PortForwarding, null, _endpoint?.Server.Label ?? string.Empty);
     }
 
