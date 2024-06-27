@@ -32,9 +32,4 @@ public struct TrafficBytes
     public ulong BytesOut { get; }
 
     public static TrafficBytes Zero { get; } = new(0, 0);
-
-    public static TrafficBytes operator -(TrafficBytes op1, TrafficBytes op2)
-    {
-        return new TrafficBytes(op1.BytesIn - op2.BytesIn, op1.BytesOut - op2.BytesOut);
-    }
 }

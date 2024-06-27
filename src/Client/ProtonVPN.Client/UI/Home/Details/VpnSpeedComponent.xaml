@@ -25,6 +25,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
              xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
+             xmlns:lvc="using:LiveChartsCore.SkiaSharpView.WinUI"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
@@ -93,13 +94,27 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         </Grid>
 
-        <!--  Placeholder for Speed graph (v2)  -->
-        <Border Height="152"
-                Background="{ThemeResource InteractionDefaultHoverColorBrush}"
-                BorderBrush="{ThemeResource BorderWeakColorBrush}"
-                BorderThickness="1"
-                Opacity="0.6"
-                Visibility="Collapsed" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       HorizontalAlignment="Right"
+                       Padding="0,0,12,0"
+                       Foreground="{ThemeResource TextWeakColor}"
+                       Style="{ThemeResource CaptionStrongTextBlockStyle}"
+                       Text="{x:Bind ViewModel.SpeedUnit}" />
+
+            <lvc:CartesianChart Grid.Row="1"
+                                Height="152"
+                                EasingFunction="{x:Null}"
+                                Series="{x:Bind ViewModel.Series}"
+                                XAxes="{x:Bind ViewModel.XAxes}"
+                                YAxes="{x:Bind ViewModel.YAxes}"
+                                DrawMargin="{x:Bind ViewModel.DrawMargin}" />
+        </Grid>
 
         <Grid Padding="8,4"
               HorizontalAlignment="Center"

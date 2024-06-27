@@ -330,6 +330,7 @@ internal class OpenVpnConnection : IAdapterSingleVpnConnection
             case VpnStatus.Disconnecting:
             case VpnStatus.Disconnected:
                 state = new VpnState(status, _disconnectError, _vpnConfig?.VpnProtocol ?? VpnProtocol.Smart);
+                Total = TrafficBytes.Zero;
                 break;
             default:
                 state = new VpnState(status, VpnError.None, _vpnConfig?.VpnProtocol ?? VpnProtocol.Smart);

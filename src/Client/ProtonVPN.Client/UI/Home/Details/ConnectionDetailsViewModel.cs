@@ -21,7 +21,6 @@ using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts;
-using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
@@ -37,8 +36,7 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.UI.Home.Details;
 
 public partial class ConnectionDetailsViewModel : ActivatableViewModelBase,
-    IEventMessageReceiver<ConnectionStatusChanged>,
-    IEventMessageReceiver<MainWindowStateChangedMessage>
+    IEventMessageReceiver<ConnectionStatusChanged>
 {
     private const int REFRESH_TIMER_INTERVAL_IN_MS = 1000;
 
@@ -164,22 +162,8 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase,
                 : null;
 
             InvalidateSessionLength();
+            InvalidateAutoRefreshTimer();
         });
-    }
-
-    public void Receive(MainWindowStateChangedMessage message)
-    {
-        ExecuteOnUIThread(InvalidateAutoRefreshTimer);
-    }
-
-    protected override void OnActivated()
-    {
-        InvalidateAutoRefreshTimer();
-    }
-
-    protected override void OnDeactivated()
-    {
-        InvalidateAutoRefreshTimer();
     }
 
     protected override void OnLanguageChanged()
@@ -200,31 +184,20 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase,
 
     private void InvalidateAutoRefreshTimer()
     {
-        if (IsActive && !_mainWindowActivator.IsWindowMinimized)
+        if (_connectionManager.IsConnected)
         {
-            StartAutoRefresh();
+            if (!_refreshTimer.IsEnabled)
+            {
+                Refresh();
+                _refreshTimer.Start();
+            }
         }
         else
         {
-            StopAutoRefresh();
-        }
-    }
-
-    private void StartAutoRefresh()
-    {
-        if (!_refreshTimer.IsEnabled)
-        {
-            Refresh();
-
-            _refreshTimer.Start();
-        }
-    }
-
-    private void StopAutoRefresh()
-    {
-        if (_refreshTimer.IsEnabled)
-        {
-            _refreshTimer.Stop();
+            if (_refreshTimer.IsEnabled)
+            {
+                _refreshTimer.Stop();
+            }
         }
     }
 
@@ -232,7 +205,7 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase,
     {
         InvalidateSessionLength();
 
-        _vpnSpeedViewModel.RefreshAsync();
+        _vpnSpeedViewModel.RefreshAsync(IsActive && !_mainWindowActivator.IsWindowMinimized);
     }
 
     private void OnRefreshTimerTick(object? sender, EventArgs e)

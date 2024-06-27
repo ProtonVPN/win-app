@@ -1298,6 +1298,38 @@
     <value>{0} TB/s</value>
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
+  <data name="Unit_BytesPerSecond" xml:space="preserve">
+    <value>B/s</value>
+    <comment>Unit for Bytes per second</comment>
+  </data>
+  <data name="Unit_ExabytesPerSecond" xml:space="preserve">
+    <value>EB/s</value>
+    <comment>Unit for Exabytes per second</comment>
+  </data>
+  <data name="Unit_GigabytesPerSecond" xml:space="preserve">
+    <value>GB/s</value>
+    <comment>Unit for Gigabytes per second</comment>
+  </data>
+  <data name="Unit_KilobytesPerSecond" xml:space="preserve">
+    <value>KB/s</value>
+    <comment>Unit for Kilobytes per second</comment>
+  </data>
+  <data name="Unit_MegabytesPerSecond" xml:space="preserve">
+    <value>MB/s</value>
+    <comment>Unit for Megabytes per second</comment>
+  </data>
+  <data name="Unit_PetabytesPerSecond" xml:space="preserve">
+    <value>PB/s</value>
+    <comment>Unit for Petabytes per second</comment>
+  </data>
+  <data name="Unit_TerabytesPerSecond" xml:space="preserve">
+    <value>TB/s</value>
+    <comment>Unit for Terabytes per second</comment>
+  </data>
+  <data name="Format_SpeedUnit" xml:space="preserve">
+    <value>Speed {0}</value>
+    <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
+  </data>
   <data name="Format_Time_Day_One" xml:space="preserve">
     <value>{0} day</value>
     <comment>Format a time as a number of day. {0} is a placeholder for the number of day (eg. 1 day).</comment>

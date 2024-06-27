@@ -49,4 +49,9 @@ public static class ByteConversionHelper
 
         return (Math.Sign(sizeInBytes) * Math.Round(result, rounding), (ByteMetrics)index);
     }
+
+    public static double GetScaleFactor(ByteMetrics metric)
+    {
+        return Math.Pow(1000, (int)metric);
+    }
 }

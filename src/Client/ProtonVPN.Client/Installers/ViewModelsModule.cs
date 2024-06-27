@@ -82,7 +82,7 @@ public class ViewModelsModule : Module
         RegisterViewModel<TorOverlayViewModel>(builder);
         RegisterViewModel<FreeConnectionsOverlayViewModel>(builder);
         RegisterViewModel<ChangeServerOverlayViewModel>(builder);
-        RegisterViewModel<VpnSpeedViewModel>(builder);
+        RegisterViewModel<VpnSpeedViewModel>(builder).AutoActivate();
         RegisterViewModel<IpAddressViewModel>(builder).AutoActivate();
         RegisterViewModel<ConnectionDetailsViewModel>(builder).AutoActivate();
         RegisterViewModel<RecentsViewModel>(builder);

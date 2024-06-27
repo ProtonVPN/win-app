@@ -209,6 +209,22 @@ public static class LocalizationExtensions
             _ => string.Empty,
         };
     }
+
+    public static string GetSpeedUnit(this ILocalizationProvider localizer, ByteMetrics metric)
+    {
+        return metric switch
+        {
+            ByteMetrics.Bytes => localizer.GetFormat("Unit_BytesPerSecond"),
+            ByteMetrics.Kilobytes => localizer.GetFormat("Unit_KilobytesPerSecond"),
+            ByteMetrics.Megabytes => localizer.GetFormat("Unit_MegabytesPerSecond"),
+            ByteMetrics.Gigabytes => localizer.GetFormat("Unit_GigabytesPerSecond"),
+            ByteMetrics.Terabytes => localizer.GetFormat("Unit_TerabytesPerSecond"),
+            ByteMetrics.Petabytes => localizer.GetFormat("Unit_PetabytesPerSecond"),
+            ByteMetrics.Exabytes => localizer.GetFormat("Unit_ExabytesPerSecond"),
+            _ => string.Empty,
+        };
+    }
+
     public static string GetVpnPlanName(this ILocalizationProvider localizer, string vpnPlan)
     {
         return string.IsNullOrEmpty(vpnPlan)

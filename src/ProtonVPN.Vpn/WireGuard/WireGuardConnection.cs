@@ -202,7 +202,6 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         Total = total;
     }
 
-
     private async Task EnsureServiceIsStopped(CancellationToken cancellationToken)
     {
         while (_wireGuardService.Exists() && !_wireGuardService.IsStopped())
@@ -236,6 +235,7 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
                 break;
             case VpnStatus.Disconnected:
                 OnVpnDisconnected(state);
+                Total = TrafficBytes.Zero;
                 break;
         }
     }

@@ -57,7 +57,7 @@ public class ConnectionManager : IInternalConnectionManager,
     private readonly IServersLoader _serversLoader;
     private readonly TimeSpan _reconnectInterval = TimeSpan.FromMinutes(1);
 
-    private TrafficBytes _bytesTransferred = TrafficBytes.Zero;
+    private TrafficBytes? _bytesTransferred;
     private DateTime _minReconnectionDateUtc = DateTime.MinValue;
     private bool _isNetworkBlocked;
     private bool _isConnectionStatusHandled;
@@ -217,8 +217,20 @@ public class ConnectionManager : IInternalConnectionManager,
     {
         TrafficBytes bytesTransferred = await GetTrafficBytesAsync();
 
-        ulong downloadSpeed = Math.Max(0, bytesTransferred.BytesIn - _bytesTransferred.BytesIn);
-        ulong uploadSpeed = Math.Max(0, bytesTransferred.BytesOut - _bytesTransferred.BytesOut);
+        // If the app starts after a crash and an active VPN connection, skip the first bytes
+        // as it will display a huge spike equal to the amount of data downloaded/uploaded.
+        if (_bytesTransferred is null)
+        {
+            _bytesTransferred = bytesTransferred;
+            return TrafficBytes.Zero;
+        }
+
+        ulong downloadSpeed = bytesTransferred.BytesIn >= _bytesTransferred.Value.BytesIn
+            ? bytesTransferred.BytesIn - _bytesTransferred.Value.BytesIn
+            : 0;
+        ulong uploadSpeed = bytesTransferred.BytesOut >= _bytesTransferred.Value.BytesOut
+            ? bytesTransferred.BytesOut - _bytesTransferred.Value.BytesOut
+            : 0;
 
         _bytesTransferred = bytesTransferred;
 
