@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,21 +19,8 @@
 
 namespace ProtonVPN.Client.Common.Models;
 
-public struct MessageDialogParameters
+public enum DialogMessageType
 {
-    public string? Title { get; set; }
-
-    public string? Message { get; set; }
-
-    public DialogMessageType MessageType { get; set; }
-
-    public string? PrimaryButtonText { get; set; }
-
-    public string? SecondaryButtonText { get; set; }
-
-    public string? CloseButtonText { get; set; }
-
-    public bool UseVerticalLayoutForButtons { get; set; }
-
-    public bool ShowLoadingAnimation { get; set; }
+    String,
+    RichText,
 }

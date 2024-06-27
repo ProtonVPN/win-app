@@ -25,6 +25,8 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Localization.Extensions;
@@ -262,6 +264,33 @@ public static class LocalizationExtensions
                 or VpnError.TapRequiresUpdateError => localizer.Get("Connection_Error_ViewPossibleSolutions"),
             _ => localizer.Get("Connection_Error_ReportAnIssue")
         };
+    }
+
+    public static string? GetExitOrSignOutConfirmationMessage(this ILocalizationProvider localizer, bool isDisconnected, ISettings settings)
+    {
+        bool isAdvancedKillSwitchActive = settings.IsKillSwitchEnabled &&
+                                          settings.KillSwitchMode == KillSwitchMode.Advanced;
+        if (!isDisconnected)
+        {
+            if (isAdvancedKillSwitchActive)
+            {
+                return CreateBulletPoints(true,
+                    localizer.Get("Common_Confirmation_YouWillBeDisconnected_Message"),
+                    localizer.Get("Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message"));
+            }
+
+            return localizer.Get("Common_Confirmation_YouWillBeDisconnected_Message");
+        }
+
+        return isAdvancedKillSwitchActive
+            ? localizer.Get("Common_Confirmation_KillSwitch_Message")
+            : null;
+    }
+
+    public static string CreateBulletPoints(bool isToAddEmptyLine, params string[] lines)
+    {
+        string separator = (isToAddEmptyLine ? $"{Environment.NewLine}" : null) + $"{Environment.NewLine}• ";
+        return "• " + string.Join(separator, lines);
     }
 
     private static string GetStateOrCityName(string state, string city)

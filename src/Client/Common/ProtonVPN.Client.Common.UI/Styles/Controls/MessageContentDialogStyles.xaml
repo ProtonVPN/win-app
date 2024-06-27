@@ -27,17 +27,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Style BasedOn="{StaticResource MessageContentDialogStyle}" TargetType="custom:MessageContentDialog" />
 
     <Style x:Key="MessageContentDialogStyle" BasedOn="{StaticResource OverlayContentDialogStyle}" TargetType="custom:MessageContentDialog">
-        <Setter Property="Foreground" Value="{ThemeResource ContentDialogForeground}" />
-        <Setter Property="Background" Value="{ThemeResource ContentDialogBackground}" />
-        <Setter Property="BorderThickness" Value="{ThemeResource ContentDialogBorderWidth}" />
-        <Setter Property="BorderBrush" Value="{ThemeResource ContentDialogBorderBrush}" />
-        <Setter Property="PrimaryButtonStyle" Value="{StaticResource PrimaryButtonStyle}" />
-        <Setter Property="SecondaryButtonStyle" Value="{StaticResource SecondaryButtonStyle}" />
-        <Setter Property="CloseButtonStyle" Value="{StaticResource SecondaryButtonStyle}" />
-        <Setter Property="CornerRadius" Value="{StaticResource ContentDialogCornerRadius}" />
-        <Setter Property="Padding" Value="{StaticResource ContentDialogPadding}" />
         <Setter Property="Width" Value="{StaticResource ContentDialogWidth}" />
-        <Setter Property="AutomationProperties.AutomationId" Value="OverlayMessage" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:MessageContentDialog">
@@ -104,6 +94,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                                     <Border Grid.Row="1"
                                             Margin="{ThemeResource ContentDialogContentMargin}"
+                                            Visibility="{Binding Content, ElementName=Content, Converter={StaticResource NotNullToVisibilityConverter}}"
                                             Padding="{TemplateBinding Padding}">
                                         <ScrollViewer x:Name="ContentScrollViewer"
                                                       Margin="0,0,-12,0"

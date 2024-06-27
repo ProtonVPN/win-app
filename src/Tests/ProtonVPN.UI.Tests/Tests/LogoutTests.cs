@@ -55,7 +55,9 @@ public class LogoutTests : TestSession
     {
         _shellRobot
             .DoOpenAccount()
-            .DoSignOut();
+            .DoSignOut()
+            .VerifySignOutConfirmationMessage(TestUserData.PlusUser)
+            .DoClickOverlayMessagePrimaryButton();
 
         _loginRobot
             .VerifyIsInLoginWindow();
