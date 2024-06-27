@@ -27,6 +27,7 @@ using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
@@ -38,6 +39,7 @@ using ProtonVPN.Client.Models.Icons;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.UI.Home;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
@@ -135,17 +137,19 @@ public class MainWindowActivator :
 
     public async Task TryExitAsync()
     {
-        if (!_connectionManager.IsDisconnected)
+        Activate(activateAllDialogs: false);
+
+        Logger.Info<AppLog>("Exiting application.");
+
+        string? confirmationMessage = _localizer.GetExitOrSignOutConfirmationMessage(_connectionManager.IsDisconnected, _settings);
+        if (!string.IsNullOrEmpty(confirmationMessage))
         {
-            Activate(activateAllDialogs: false);
-
-            Logger.Info<AppLog>("Exiting application.");
-
             ContentDialogResult result = await _overlayActivator.ShowMessageAsync(
                 new MessageDialogParameters
                 {
                     Title = _localizer.Get("Exit_Confirmation_Title"),
-                    Message = _localizer.Get("Exit_Confirmation_Message"),
+                    Message = confirmationMessage,
+                    MessageType = DialogMessageType.RichText,
                     PrimaryButtonText = _localizer.Get("Tray_Actions_ExitApplication"),
                     CloseButtonText = _localizer.Get("Common_Actions_Cancel"),
                 });
@@ -154,7 +158,10 @@ public class MainWindowActivator :
             {
                 return;
             }
+        }
 
+        if (!_connectionManager.IsDisconnected)
+        {
             await _overlayActivator.ShowLoadingMessageAsync(
                 new MessageDialogParameters
                 {

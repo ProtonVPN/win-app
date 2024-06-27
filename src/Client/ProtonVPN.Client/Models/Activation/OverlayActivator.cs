@@ -21,6 +21,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Common.UI.Controls.Custom;
+using ProtonVPN.Client.Common.UI.Helpers;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Models.Navigation;
@@ -227,7 +228,7 @@ public class OverlayActivator : WindowActivatorBase, IOverlayActivator
         MessageContentDialog dialog = new()
         {
             Title = parameters.Title,
-            Content = parameters.Message,
+            Content = GetContent(parameters),
             IsLoading = parameters.ShowLoadingAnimation,
             IsVerticalLayout = parameters.UseVerticalLayoutForButtons,
             PrimaryButtonText = parameters.PrimaryButtonText,
@@ -240,5 +241,15 @@ public class OverlayActivator : WindowActivatorBase, IOverlayActivator
         dialog.ApplyFlowDirection(_settings.Language);
 
         return dialog;
+    }
+
+    private object GetContent(MessageDialogParameters parameters)
+    {
+        if (parameters.MessageType == DialogMessageType.RichText && parameters.Message is not null)
+        {
+            return new RichTextBlock { Blocks = { RichTextHelper.ParseRichText(parameters.Message) } };
+        }
+
+        return parameters.Message ?? string.Empty;
     }
 }

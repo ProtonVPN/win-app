@@ -25,6 +25,8 @@ public struct MessageDialogParameters
 
     public string? Message { get; set; }
 
+    public DialogMessageType MessageType { get; set; }
+
     public string? PrimaryButtonText { get; set; }
 
     public string? SecondaryButtonText { get; set; }

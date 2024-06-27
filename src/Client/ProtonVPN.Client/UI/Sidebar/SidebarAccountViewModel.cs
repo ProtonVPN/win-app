@@ -38,6 +38,7 @@ namespace ProtonVPN.Client.UI.Sidebar;
 
 public partial class SidebarAccountViewModel : SidebarInteractiveItemViewModelBase
 {
+    private readonly ISettings _settings;
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IConnectionManager _connectionManager;
     private readonly IOverlayActivator _overlayActivator;
@@ -72,6 +73,7 @@ public partial class SidebarAccountViewModel : SidebarInteractiveItemViewModelBa
         IMainWindowActivator mainWindowActivator)
         : base(localizationProvider, logger, issueReporter, settings)
     {
+        _settings = settings;
         _userAuthenticator = userAuthenticator;
         _connectionManager = connectionManager;
         _overlayActivator = overlayActivator;
@@ -89,21 +91,19 @@ public partial class SidebarAccountViewModel : SidebarInteractiveItemViewModelBa
     [RelayCommand]
     public async Task SignOutAsync()
     {
-        if (!_connectionManager.IsDisconnected)
-        {
-            ContentDialogResult result = await _overlayActivator.ShowMessageAsync(
-                new MessageDialogParameters
-                {
-                    Title = Localizer.GetFormat("Home_Account_SignOut_Confirmation_Title", Username),
-                    Message = Localizer.Get("Home_Account_SignOut_Confirmation_Message"),
-                    PrimaryButtonText = Localizer.Get("Home_Account_SignOut"),
-                    CloseButtonText = Localizer.Get("Common_Actions_Cancel"),
-                });
-
-            if (result is not ContentDialogResult.Primary) // Cancel sign out
+        ContentDialogResult result = await _overlayActivator.ShowMessageAsync(
+            new MessageDialogParameters
             {
-                return;
-            }
+                Title = Localizer.GetFormat("Home_Account_SignOut_Confirmation_Title", Username),
+                Message = Localizer.GetExitOrSignOutConfirmationMessage(_connectionManager.IsDisconnected, _settings),
+                MessageType = DialogMessageType.RichText,
+                PrimaryButtonText = Localizer.Get("Home_Account_SignOut"),
+                CloseButtonText = Localizer.Get("Common_Actions_Cancel"),
+            });
+
+        if (result is not ContentDialogResult.Primary) // Cancel sign out
+        {
+            return;
         }
 
         await _userAuthenticator.LogoutAsync(LogoutReason.UserAction);
