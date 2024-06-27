@@ -53,6 +53,7 @@
         <PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" />
         <PackageReference Include="CommunityToolkit.WinUI.Converters" />
         <PackageReference Include="CommunityToolkit.WinUI.Triggers" />
+        <PackageReference Include="CSharpMarkup.WinUI.LiveChartsCore.SkiaSharpView" />
         <PackageReference Include="H.NotifyIcon.WinUI" />
         <PackageReference Include="Microsoft.Extensions.Hosting" />
         <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" />
