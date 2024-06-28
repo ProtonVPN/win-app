@@ -129,6 +129,24 @@ public partial class SettingsRobot
         return this;
     }
 
+    public SettingsRobot DoClickAutoLaunchCheckBox()
+    {
+        AutoLaunchButton.Click();
+        return this;
+    }
+
+    public SettingsRobot DoClickFastestConnectionOption()
+    {
+        FastestConnectionRadioButton.Click();
+        return this;
+    }
+
+    public SettingsRobot DoClickAutoConnectCheckBox()
+    {
+        AutoConnectButton.Click();
+        return this;
+    }
+
     public SettingsRobot DoSelectProtocol(Protocol protocol)
     {
         switch(protocol)

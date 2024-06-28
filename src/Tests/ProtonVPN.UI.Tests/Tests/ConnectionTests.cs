@@ -250,6 +250,51 @@ public class ConnectionTests : TestSession
             .VerifyCurrentPage(PROTOCOL_PAGE_TITLE, true);
     }
 
+    [Test]
+    public void LocalNetworkingIsReachableWhileConnected()
+    {
+        _homeRobot
+            .DoConnect()
+            .VerifyAllStatesUntilConnected()
+            .VerifyIfLocalNetworkingWorks(NetworkUtils.GetDefaultGatewayAddress().ToString());
+    }
+
+
+    [Test]
+    public void AutoConnectEnabled()
+    {
+        _shellRobot
+            .DoNavigateToSettingsPage();
+        _settingsRobot
+            .DoNavigateToAutoStartupSettingsPage()
+            .DoClickAutoLaunchCheckBox()
+            .DoApplyChanges();
+
+        App.Close();
+        LaunchApp(isFreshStart: false);
+
+        _homeRobot
+            .VerifyVpnStatusIsConnected();
+    }
+
+    [Test]
+    public void AutoConnectDisabled()
+    {
+        _shellRobot
+            .DoNavigateToSettingsPage();
+
+        _settingsRobot
+            .DoNavigateToAutoStartupSettingsPage()
+            .DoClickAutoLaunchCheckBox()
+            .DoClickAutoConnectCheckBox()
+            .DoApplyChanges();
+
+        App.Close();
+        LaunchApp(isFreshStart: false);
+
+        _homeRobot
+            .VerifyVpnStatusIsDisconnected();
+    }
 
     [TearDown]
     public void TestCleanup()

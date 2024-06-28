@@ -51,6 +51,7 @@ public partial class SettingsRobot : UIActions
     protected RadioButton WireGuardTlsProtocolRadioButton => ElementByAutomationId("WireGuardTlsProtocolRadioButton").AsRadioButton();
     protected RadioButton OpenVpnUdpProtocolRadioButton => ElementByAutomationId("OpenVpnUdpProtocolRadioButton").AsRadioButton();
     protected RadioButton OpenVpnTcpProtocolRadioButton => ElementByAutomationId("OpenVpnTcpProtocolRadioButton").AsRadioButton();
+    protected RadioButton FastestConnectionRadioButton => ElementByName("Fastest connection").AsRadioButton();
     protected ToggleButton NetshieldToggle => ElementByAutomationId("NetshieldToggle").AsToggleButton();
     protected Button PrimaryButton => ElementByAutomationId("PrimaryButton").AsButton();
     protected TextBox CustomDnsIpAddressTextBox => ElementByAutomationId("CustomDnsIpAddressBox").AsTextBox();
@@ -58,6 +59,8 @@ public partial class SettingsRobot : UIActions
     protected Button ApplyButton => ElementByAutomationId("ApplyButton").AsButton();
     protected Button TrashIconButton => ElementByAutomationId("TrashIcon").AsButton();
     protected Button SplitTunnelingButton => ElementByXpath("//Button[@Name='Split tunneling']").AsButton();
+    protected Button AutoLaunchButton => ElementByXpath("//Button[@Name='Auto launch']").AsButton();
+    protected Button AutoConnectButton => ElementByXpath("//Button[@Name='Auto connect']").AsButton();
     protected TextBox IpTextBlock => ElementByName("Add IPv4 address").AsTextBox();
     protected Button AddIpButton => ElementByAutomationId("AddIpAddressButton").AsButton();
     protected AutomationElement SplitTunnelingApp(string splitTunnelingAppName)

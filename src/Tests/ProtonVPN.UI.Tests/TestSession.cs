@@ -93,9 +93,12 @@ public class TestSession
         App.Close();
     }
 
-    protected static void LaunchApp()
+    protected static void LaunchApp(bool isFreshStart = true)
     {
-        DeleteProtonData();
+        if(isFreshStart)
+        {
+            DeleteProtonData();
+        }
 
         if (_isDevelopmentModeEnabled)
         {
