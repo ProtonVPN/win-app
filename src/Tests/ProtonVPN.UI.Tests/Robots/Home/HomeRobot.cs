@@ -53,6 +53,11 @@ public partial class HomeRobot : UIActions
     protected AutomationElement PrimaryActionButton => ElementByAutomationId("PrimaryButton");
     protected AutomationElement SecondaryActionButton => ElementByAutomationId("SecondaryButton");
     protected AutomationElement RemoveButton => ElementByName("Remove");
+    protected AutomationElement NotTheCountryWantedTitle => ElementByName("Not the country you wanted?", TestConstants.TenSecondsTimeout);
+    protected Label NetshieldLabel => ElementByName("NetShield").AsLabel();
+    protected Label BlockAdsLabel => ElementByName("Block ads, trackers, and malware on websites and apps").AsLabel();
+    protected AutomationElement UpgradeButton => ElementByName("Upgrade");
+    protected AutomationElement UpgradeToChooseServerLabel => ElementByName("Upgrade to choose any server.");
 
     protected Button DiscoverVpnPlusButton => ElementByAutomationId("DiscoverVpnPlusButton").AsButton();
     protected Button GetStartedButton => ElementByAutomationId("GetStartedButton", TestConstants.OneMinuteTimeout).AsButton();

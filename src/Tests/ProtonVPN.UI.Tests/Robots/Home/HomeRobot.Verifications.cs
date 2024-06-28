@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Net.NetworkInformation;
 using FlaUI.Core.AutomationElements;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -179,6 +180,29 @@ public partial class HomeRobot
     public HomeRobot VerifyProtocolExist(string protocolName)
     {
         WaitUntilElementExistsByName(protocolName, TestConstants.FiveSecondsTimeout);
+        return this;
+    }
+
+    public HomeRobot VerifyNotTheCountryWantedBannerIsDisplayed()
+    {
+        Assert.IsFalse(NotTheCountryWantedTitle.IsOffscreen);
+        Assert.IsFalse(UpgradeButton.IsOffscreen);
+        Assert.IsFalse(UpgradeToChooseServerLabel.IsOffscreen);
+        return this;
+    }
+
+    public HomeRobot VerifyNetshieldUpsellBannerDisplayed()
+    {
+        Assert.IsFalse(UpgradeButton.IsOffscreen);
+        Assert.IsFalse(BlockAdsLabel.IsOffscreen);
+        Assert.IsFalse(NetshieldLabel.IsOffscreen);
+        return this;
+    }
+
+    public HomeRobot VerifyIfLocalNetworkingWorks(string localIpAddress)
+    {
+        PingReply reply = new Ping().Send(localIpAddress);
+        Assert.That(reply.Status == IPStatus.Success, Is.True);
         return this;
     }
 

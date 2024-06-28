@@ -115,14 +115,15 @@ public class FreeConnectionTests : TestSession
         _homeRobot
             .DoChangeServer()
             .VerifyVpnStatusIsConnecting()
-            .VerifyVpnStatusIsConnected();
+            .VerifyVpnStatusIsConnected()
+            .VerifyNotTheCountryWantedBannerIsDisplayed();
 
         CommonAssertions.AssertIpAddressChanged(unprotectedIpAddress);
         CommonAssertions.AssertIpAddressChanged(protectedIpAddress);
 
         _homeRobot
             .DoChangeServer();
-        
+            
         _overlaysRobot
             .VerifyOverlayIsOpened(string.Empty, false)
             .VerifyChangeServerCountdownProgressRing()
@@ -142,7 +143,7 @@ public class FreeConnectionTests : TestSession
     {
         _homeRobot
             .DoConnect()
-            .VerifyAllStatesUntilConnectedToFreeServer()
+            .VerifyVpnStatusIsConnected()
             .VerifyConnectionDetailsIsOpened();
 
         // VPNWIN-2095 - Latency is kept hidden as it is not implemented yet. 
