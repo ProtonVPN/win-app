@@ -272,7 +272,10 @@ public class ConnectionManager : IInternalConnectionManager,
             }
         }
 
-        SetConnectionStatus(connectionStatus, message.Error, isToForceStatusUpdate);
+        if (message.Status != VpnStatusIpcEntity.ActionRequired)
+        {
+            SetConnectionStatus(connectionStatus, message.Error, isToForceStatusUpdate);
+        }
     }
 
     private Server? GetCurrentServer(VpnStateIpcEntity state)

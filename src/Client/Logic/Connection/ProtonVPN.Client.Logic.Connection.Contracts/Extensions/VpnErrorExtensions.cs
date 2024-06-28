@@ -48,7 +48,6 @@ public static class VpnErrorExtensions
         VpnError.PlanNeedsToBeUpgraded,
         VpnError.Unpaid,
         VpnError.PasswordChanged,
-        VpnError.ServerUnreachable,
         VpnError.ServerSessionError,
         VpnError.Unknown,
     ];
@@ -60,6 +59,7 @@ public static class VpnErrorExtensions
         VpnError.NoServerValidationPublicKey,
         VpnError.SessionBeingInstalled,
         VpnError.SystemErrorOnTheServer,
+        VpnError.ServerUnreachable,
     ];
 
     private static readonly List<VpnError> _errorsForCertificateUpdate =
