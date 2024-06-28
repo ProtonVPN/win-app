@@ -49,8 +49,8 @@ public class AltRoutingSLI : TestSession
     {
         _measurementGroup = "alt_routing_login";
 
-        await BtiController.SetScenarioAsync("reset");
-        await BtiController.SetScenarioAsync("enable/block_vpn_prod_api_endpoint");
+        BtiController.SetScenarioAsync("reset");
+        BtiController.SetScenarioAsync("enable/block_vpn_prod_api_endpoint");
 
         LaunchApp();
 
@@ -68,7 +68,7 @@ public class AltRoutingSLI : TestSession
         PerformanceTestHelper.AddTestStatusMetric();
         await _lokiPusher.PushCollectedMetricsAsync(PerformanceTestHelper.MetricsList, _runId, _measurementGroup, WORKFLOW);
         PerformanceTestHelper.Reset();
-        await BtiController.SetScenarioAsync("reset");
+        BtiController.SetScenarioAsync("reset");
     }
 
     [OneTimeTearDown]

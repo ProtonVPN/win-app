@@ -23,6 +23,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Microsoft.Win32;
+using Newtonsoft.Json.Linq;
 using ProtonVPN.Common.Core.Helpers;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
@@ -76,5 +77,16 @@ public class TestEnvironment : TestSession
     public static string GetServiceLogsPath()
     {
         return Path.Combine(GetProtonClientFolder(), "ServiceData", "Logs", "service-logs.txt");
+    }
+
+    public static string GetConnectionCertificate()
+    {
+        string directoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Proton\Proton VPN\Storage");
+        string filePath = Directory.GetFiles(directoryPath, "UserSettings.*.json").FirstOrDefault();
+        string jsonContent = File.ReadAllText(filePath);
+        JObject jsonObj = JObject.Parse(jsonContent);
+
+        JToken connectionCertificateToken = jsonObj.SelectToken("ConnectionCertificate");
+        return connectionCertificateToken.ToString();
     }
 }

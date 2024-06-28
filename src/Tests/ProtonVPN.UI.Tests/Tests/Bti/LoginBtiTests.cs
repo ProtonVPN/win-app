@@ -46,8 +46,8 @@ public class LoginBtiTests : TestSession
     {
         await _atlasApiClient.ForceCaptchaOnLoginAsync();
         _loginRobot.DoLogin(TestUserData.PlusUserBti)
-            .WaitUntilCaptchaIsDisplayed();
-        _homeRobot.DoCloseWelcomeOverlay();
+            .CompleteCaptcha();
+        _homeRobot.DoWaitForVpnStatusSubtitleLabel();
     }
 
     [TearDown]

@@ -92,7 +92,7 @@ public class UIActions : TestSession
         return WaitUntilElementExistsByName(name, timeout ?? TestConstants.FiveSecondsTimeout);
     }
 
-    private AutomationElement FindFirstDescendant(Func<ConditionFactory, ConditionBase> conditionFunc)
+    public AutomationElement FindFirstDescendant(Func<ConditionFactory, ConditionBase> conditionFunc)
     {
         AutomationElement child = Window.FindFirstChild(conditionFunc);
         if (child != null)
