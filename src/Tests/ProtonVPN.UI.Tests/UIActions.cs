@@ -21,7 +21,6 @@ using System;
 using System.Runtime.InteropServices;
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Conditions;
-using FlaUI.Core.Input;
 using FlaUI.Core.Tools;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -30,72 +29,67 @@ namespace ProtonVPN.UI.Tests;
 
 public class UIActions : TestSession
 {
-    public dynamic WaitUntilElementExistsByAutomationId(string automationId, TimeSpan time)
+    public AutomationElement WaitUntilElementExistsByAutomationId(string automationId, TimeSpan time)
     {
+        AutomationElement element = null;
         WaitForElement(() =>
         {
             RefreshWindow();
-            return FindFirstDescendant(cf => cf.ByAutomationId(automationId)) != null;
+            element = FindFirstDescendant(cf => cf.ByAutomationId(automationId));
+            return element != null;
         }, time, automationId);
 
-        return this;
+        return element;
     }
 
-    public dynamic WaitUntilElementExistsByXpath(string xpath, TimeSpan time)
+    public AutomationElement WaitUntilElementExistsByXpath(string xpath, TimeSpan time)
     {
+        AutomationElement element = null;
         WaitForElement(() =>
         {
             RefreshWindow();
-            return Window.FindFirstByXPath(xpath) != null;
+            element = Window.FindFirstByXPath(xpath);
+            return element != null;
         }, time, xpath);
 
-        return this;
+        return element;
     }
 
-    protected dynamic WaitUntilElementExistsByName(string name, TimeSpan time)
+    protected AutomationElement WaitUntilElementExistsByName(string name, TimeSpan time)
     {
+        AutomationElement element = null;
         WaitForElement(() =>
         {
             RefreshWindow();
-            return FindFirstDescendant(cf => cf.ByName(name)) != null;
+            element = FindFirstDescendant(cf => cf.ByName(name));
+            return element != null;
         }, time, name);
 
-        return this;
+        return element;
     }
 
-    protected dynamic WaitUntilTextMatches(Func<Label> getLabelMethod, TimeSpan time, string text)
+    protected void WaitUntilTextMatches(Func<Label> getLabelFunction, TimeSpan time, string text)
     {
         WaitForElement(() =>
         {
             RefreshWindow();
-            return getLabelMethod()?.Text.Equals(text) ?? false;
+            return getLabelFunction()?.Text.Equals(text) ?? false;
         }, time, text);
-        return this;
-    }
-
-    protected dynamic MoveMouseToElement(AutomationElement element, int offsetX = 0, int offsetY = 0)
-    {
-        Mouse.MovePixelsPerMillisecond = 100;
-        Mouse.MoveTo(element.GetClickablePoint().X + offsetX, element.GetClickablePoint().Y + offsetY);
-        return this;
     }
 
     protected AutomationElement ElementByAutomationId(string automationId, TimeSpan? timeout = null)
     {
-        WaitUntilElementExistsByAutomationId(automationId, timeout ?? TestConstants.FiveSecondsTimeout);
-        return FindFirstDescendant(cf => cf.ByAutomationId(automationId));
+        return WaitUntilElementExistsByAutomationId(automationId, timeout ?? TestConstants.FiveSecondsTimeout);;
     }
 
     protected AutomationElement ElementByXpath(string xpath, TimeSpan? timeout = null)
     {
-        WaitUntilElementExistsByXpath(xpath, timeout ?? TestConstants.FiveSecondsTimeout);
-        return Window.FindFirstByXPath(xpath);
+        return WaitUntilElementExistsByXpath(xpath, timeout ?? TestConstants.FiveSecondsTimeout);
     }
 
     protected AutomationElement ElementByName(string name, TimeSpan? timeout = null)
     {
-        WaitUntilElementExistsByName(name, timeout ?? TestConstants.FiveSecondsTimeout);
-        return FindFirstDescendant(cf => cf.ByName(name));
+        return WaitUntilElementExistsByName(name, timeout ?? TestConstants.FiveSecondsTimeout);
     }
 
     private AutomationElement FindFirstDescendant(Func<ConditionFactory, ConditionBase> conditionFunc)
