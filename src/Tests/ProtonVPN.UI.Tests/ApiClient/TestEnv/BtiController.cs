@@ -20,6 +20,8 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using FlaUI.Core.Tools;
+using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.ApiClient.TestEnv;
 
@@ -30,9 +32,27 @@ public class BtiController
         BaseAddress = new Uri(Environment.GetEnvironmentVariable("BTI_CONTROLLER_URL"))
     };
 
-    public static async Task SetScenarioAsync(string scenarioEndpoint)
+    public static void SetScenarioAsync(string scenarioEndpoint)
     {
-        HttpResponseMessage response = await _client.GetAsync(scenarioEndpoint);
-        response.EnsureSuccessStatusCode();
+        RetryResult<bool> retry = Retry.WhileFalse(
+            () => {
+                return SendScenario(scenarioEndpoint).Result;
+            },
+            TestConstants.ThirtySecondsTimeout, TestConstants.RetryInterval, ignoreException: true);
+    }
+
+    private static async Task<bool> SendScenario(string scenarioEndpoint)
+    {
+        try
+        {
+            HttpResponseMessage response = await _client.GetAsync(scenarioEndpoint);
+            response.EnsureSuccessStatusCode();
+
+            return true;
+        }
+        catch (HttpRequestException)
+        {
+            return false;
+        }
     }
 }

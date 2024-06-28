@@ -74,9 +74,16 @@ build-release:
   
 build-debug:
   extends: .build-script
-  except:
-    - master
-    - /^release.*$/
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      when: never
+    - if: '$CI_COMMIT_BRANCH =~ /^release.*$/'
+      when: never
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: never
+    - if: $BTI_SCHEDULED == "true"
+      when: never
+    - when: always
   variables:
     TYPE: Debug
     DEPENDENCIES: publish
@@ -86,10 +93,17 @@ build-bti:
   extends:
     - .build-bti-vars  
     - .build-script
-  except:
-    - master
-    - /^release.*$/
-  when: manual
+  allow_failure: true
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      when: never
+    - if: '$CI_COMMIT_BRANCH =~ /^release.*$/'
+      when: never
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: never
+    - if: $BTI_SCHEDULED == "true"
+      when: always
+    - when: manual
   variables:
     TYPE: Debug
     DEPENDENCIES: publish-BTI
@@ -103,6 +117,7 @@ ui-test:
     - /^debug.*$/
     - release/9.9.9
     - master
+    - schedules
   variables:
     CATEGORY: "UI"
     
@@ -124,8 +139,12 @@ bti-test:
     - when: manual
   tags:
     - BTI
-  variables:
-    CATEGORY: "BTI"
+  script:
+    - ci\test-scripts\uninstall-app.ps1
+    - ci\test-scripts\install-the-app.ps1
+    - dotnet build src/Tests/ProtonVPN.UI.Tests/ProtonVPN.UI.Tests.csproj --arch x64 -o src/bin
+    - ci\test-scripts\run-bti-tests.ps1 -Category "BTI"
+    - ci\test-scripts\uninstall-app.ps1
 
 tests:
   stage: test
@@ -154,6 +173,12 @@ tests:
 build-installer:
   tags:
     - windows-vpn-signer
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: never
+    - if: $BTI_SCHEDULED == "true"
+      when: never
+    - when: always
   dependencies:
     - build-debug
     - build-release
@@ -274,3 +299,15 @@ send-slack-notification:
   script:
     - python -m pip install -r ci\python-libs.txt
     - python ci\build-scripts\main.py send-slack-notification
+    
+report-test-failure:
+  stage: publish-to-slack
+  image: $CI_REGISTRY/tpe/test-scripts
+  tags:
+    - shared-medium
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: on_failure
+    - when: never
+  script:
+    - reporter.py --message "Scheduled BTI test job failed!" --slack-channel "$SLACK_REPORT_CHANNEL" --platform windows --job-name "Windows BTI"

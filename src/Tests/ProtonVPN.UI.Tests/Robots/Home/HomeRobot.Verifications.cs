@@ -19,6 +19,7 @@
 
 using System.Net.NetworkInformation;
 using FlaUI.Core.AutomationElements;
+using FlaUI.Core.Tools;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestsHelper;
 
@@ -174,6 +175,25 @@ public partial class HomeRobot
     public HomeRobot VerifyRecentsDoesNotExist()
     {
         Assert.IsNull(Window.FindFirstDescendant(cf => cf.ByName("Recents")));
+        return this;
+    }
+
+    public HomeRobot VerifyErrorMessageExists(string errorMessage)
+    {
+        WaitUntilElementExistsByName(errorMessage, TestConstants.FiveSecondsTimeout);
+        return this;
+    }
+
+    public HomeRobot VerifyUserIsNotReconnected()
+    {
+        RetryResult<AutomationElement> retry = Retry.WhileNull(
+        () =>
+        {
+            return FindFirstDescendant(cf => cf.ByName(CONNECTION_CARD_CONNECTING_HEADER));
+        },
+        TestConstants.TenSecondsTimeout, TestConstants.RetryInterval);
+
+        Assert.IsFalse(retry.Success);
         return this;
     }
 

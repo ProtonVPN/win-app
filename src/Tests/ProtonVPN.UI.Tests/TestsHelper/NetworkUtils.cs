@@ -68,21 +68,20 @@ public class NetworkUtils
             .FirstOrDefault(a => a != null);
     }
 
-    public static string GetIpAddress()
+    public static string GetIpAddress(string endpoint = "https://api.ipify.org/")
     {
         RetryResult<string> retry = Retry.WhileEmpty(
             () => {
-                return GetExternalIpAddressAsync().Result; },
+                return GetExternalIpAddressAsync(endpoint).Result; },
             TestConstants.ThirtySecondsTimeout, TestConstants.RetryInterval, ignoreException: true);
         return retry.Result ?? throw new HttpRequestException("Failed to get IP Address.");
     }
 
-    private static async Task<string> GetExternalIpAddressAsync()
+    private static async Task<string> GetExternalIpAddressAsync(string endpoint)
     {
         try
         {
-            string externalIpString = await _httpClient.GetStringAsync("https://api.ipify.org/");
-
+            string externalIpString = await _httpClient.GetStringAsync(endpoint);
             string ipAddress = externalIpString
                 .Replace("\\r\\n", "")
                 .Replace("\\n", "")
