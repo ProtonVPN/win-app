@@ -222,6 +222,9 @@ internal class LocalAgentWrapper : ISingleVpnConnection
             case LocalAgentState.ClientCertificateUnknownCA:
                 InvokeStateChange(VpnStatus.ActionRequired, VpnError.CertificateExpired);
                 break;
+            case LocalAgentState.ServerUnreachable:
+                _origin.Disconnect(VpnError.ServerUnreachable);
+                break;
         }
     }
 

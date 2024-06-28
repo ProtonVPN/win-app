@@ -151,11 +151,9 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
                                             "but currently an OpenVPN adapter is available. Requesting a reconnection.");
             return await ReconnectAsync();
         }
-        else
-        {
-            _logger.Warn<DisconnectLog>("Disconnected with NoTapAdaptersError and no OpenVPN adapter is available. Showing error modal.");
-            return SendConnectionErrorMessage(VpnError.NoTapAdaptersError);
-        }
+
+        _logger.Warn<DisconnectLog>("Disconnected with NoTapAdaptersError and no OpenVPN adapter is available. Showing error modal.");
+        return SendConnectionErrorMessage(VpnError.NoTapAdaptersError);
     }
 
     private ConnectionErrorHandlerResult SendConnectionErrorMessage(VpnError error)
