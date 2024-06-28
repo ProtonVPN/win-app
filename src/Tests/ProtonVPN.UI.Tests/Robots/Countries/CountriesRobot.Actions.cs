@@ -18,6 +18,7 @@
  */
 
 using FlaUI.Core.AutomationElements;
+using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots.Countries;
 
@@ -26,7 +27,7 @@ public partial class CountriesRobot
     public CountriesRobot DoConnect(string item)
     {
         Button connectButton = GetConnectButton(item);
-        connectButton.WaitUntilClickable();
+        connectButton.WaitUntilClickable(TestConstants.FiveSecondsTimeout);
         connectButton.Invoke();
         return this;
     }

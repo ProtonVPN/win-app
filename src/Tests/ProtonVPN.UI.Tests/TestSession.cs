@@ -39,7 +39,6 @@ public class TestSession
     protected static Application Service;
     protected static Window Window;
 
-    private const int MAX_APP_START_TRIES = 10;
     private const string CLIENT_NAME = "ProtonVPN.Client.exe";
 
     private static readonly bool _isDevelopmentModeEnabled = false;
