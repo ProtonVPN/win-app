@@ -244,6 +244,7 @@ namespace ProtonVPN.Map.Views
             _lastPoint = position;
 
             Scroll(ScrollViewer.HorizontalOffset - x, ScrollViewer.VerticalOffset - y);
+            ScrollViewer.UpdateLayout();
         }
 
         private void SetConnectionLinePosition()
