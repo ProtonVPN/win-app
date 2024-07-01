@@ -262,6 +262,12 @@
   <data name="Connections_Country_UnderMaintenance">
     <value>Alle tjenere i dette landet er under vedlikehold</value>
   </data>
+  <data name="Connections_Free_Servers_One">
+    <value>Free-tjener ({0})</value>
+  </data>
+  <data name="Connections_Free_Servers_Other">
+    <value>Free-tjenere ({0})</value>
+  </data>
   <data name="Connections_Gateway_Restricted">
     <value>Tjenere i denne mellomtjeneren er tilgjengelig med VPN Plus</value>
   </data>
@@ -298,6 +304,12 @@
   <data name="Connections_P2P_Servers_Other">
     <value>P2P-tjenere ({0})</value>
   </data>
+  <data name="Connections_P2P_States_One">
+    <value>P2P-stat ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_Other">
+    <value>P2P-stater ({0})</value>
+  </data>
   <data name="Connections_SecureCore_Countries_One">
     <value>Secure Core land ({0})</value>
   </data>
@@ -322,6 +334,12 @@
   <data name="Connections_SeeServers_Other">
     <value>Se tjenere ({0})</value>
   </data>
+  <data name="Connections_SeeStates_One">
+    <value>Vis stat ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_Other">
+    <value>Vis stater ({0})</value>
+  </data>
   <data name="Connections_Server_Restricted">
     <value>Tjener tilgjengelig med VPN Plus</value>
   </data>
@@ -333,6 +351,20 @@
   </data>
   <data name="Connections_Servers_Other">
     <value>Tjenere ({0})</value>
+  </data>
+  <data name="Connections_State_Restricted">
+    <value>Tjenere i denne staten kan brukes med VPN Plus.</value>
+    <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_State_UnderMaintenance">
+    <value>All tjenere i denne staten er under vedlikehold.</value>
+    <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_States_One">
+    <value>Stat ({0})</value>
+  </data>
+  <data name="Connections_States_Other">
+    <value>Stater ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_One">
     <value>Tor-land ({0})</value>
@@ -396,6 +428,9 @@
   </data>
   <data name="Countries_P2P_Description">
     <value>Del og last ned filer sikkert over node-til-node-nettverk (P2P).</value>
+  </data>
+  <data name="Countries_Page_FreeUser_Description">
+    <value>Lås opp valg av land med VPN Plus</value>
   </data>
   <data name="Countries_Page_Title">
     <value>Land</value>
@@ -1470,6 +1505,15 @@
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
     <value>Du har nådd maksimalt antall gratis tjenerbytter for nå</value>
   </data>
+  <data name="Dialogs_Common_GetStarted">
+    <value>Kom i gang</value>
+  </data>
+  <data name="Dialogs_Common_SubscriptionExpired">
+    <value>Abonnement utløpt</value>
+  </data>
+  <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
+    <value>Oppgrader for å få tilbake tilgang til Plus-tjenere og funksjoner.</value>
+  </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free kobler deg automatisk til den raskeste tilgjengelige tjeneren fra {0} gratis land. Dette vil normalt være den nærmeste tjeneren til din plassering.</value>
   </data>
@@ -1666,6 +1710,9 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
   </data>
+  <data name="Dialogs_SubscriptionExpired_MaybeLater">
+    <value>Kanskje senere</value>
+  </data>
   <data name="Dialogs_Tor_Description">
     <value>Koble til en Tor-tjener for å få tilgang til skjulte tjenester og onion-sider ved hjelp av hvilken som helst nettleser.</value>
   </data>
@@ -1707,6 +1754,53 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
   </data>
   <data name="Dialogs_Troubleshooting_Title">
     <value>Hjelp for tilkobling</value>
+  </data>
+  <data name="Dialogs_WelcomeB2B_Description">
+    <value>Enkelt. Sømløst. Trygt. Beskytt deg selv på nettet og få sikker tilgang til nettsider, programvarer og filer i organisasjonen din.</value>
+  </data>
+  <data name="Dialogs_WelcomeToProton_Title">
+    <value>Velkommen til Proton VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_Description">
+    <value>Surf privat, få tilgang til blokkert innhold og nyt digital frihet uten data eller fartsgrenser.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs">
+    <value>Sertifisert VPN uten loggføring</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
+    <value>Aktiviteten din er beskyttet av sveitsiske personvernlover. Vi vil aldri spore deg på nettet eller dele informasjonen din med tredjeparter.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
+    <value>Surf fritt fra hvor som helst</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
+    <value>Skjul din virtuelle plassering og opplev nettet fra {0} tilgjengelig land.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
+    <value>Skjul din virtuelle plassering og opplev internett fra et av våre {0} tilgjengelige land.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
+    <value>Beskytt opptil 10 enheter samtidig</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
+    <value>Utvid VPN-beskyttelsen til skrivebordet, mobilen, nettleseren, TV-en og mer. </value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream">
+    <value>Strøm med høy oppløsning</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
+    <value>Se filmer og TV-programmer fra hele verden uten å gå på kompromiss med hastighet eller kvalitet.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Title">
+    <value>Velkommen til VPN Plus</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description">
+    <value>Gratulerer! Du låste opp premium sikkerhets- og ytelsesfunksjoner på alle Proton-tjenester.
+
+Nyt det beste av Proton-personvern.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Title">
+    <value>Velkommen til Proton Unlimited</value>
   </data>
   <data name="Dialogs_Welcome_Message">
     <value>Vi gjør klar den nye VPN-opplevelsen din. Dette bør bare ta et øyeblikk.</value>
@@ -1940,6 +2034,9 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
   <data name="Home_ConnectionDetails_ShowIP_Description">
     <value>Vis IP-adresse til bruker</value>
   </data>
+  <data name="Home_ConnectionDetails_State">
+    <value>Stat</value>
+  </data>
   <data name="Home_ConnectionDetails_Title">
     <value>Forbindelsesdetaljer</value>
   </data>
@@ -2162,6 +2259,9 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
   </data>
   <data name="Notifications_PortForwarding_Description">
     <value>Sett dette nummeret i BitTorrent-appen din for større hastighet.</value>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Description_Connected">
+    <value>Planen din har blitt nedgradert til Proton Free, og vi kobler deg til den raskeste gratis serveren.</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Raskeste gratis tjener</value>
@@ -2574,6 +2674,18 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
   <data name="Settings_Protocols_UdpCategory">
     <value>Hastighet (UDP)</value>
   </data>
+  <data name="Settings_Protocols_WireGuardTcp_Description">
+    <value>Raskt, sikkert og effektivt. WireGuard er vanskelig å oppdage og blokkere.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Description">
+    <value>Overvinner VPN-blokkeringer ved å skjule VPN-tilkoblingen din fra sensorer. Denne protokollen er DPI (dyp pakkeinspeksjon) motstandsdyktig, men er kanskje ikke så rask som andre protokoller. Stealth er eksklusivt for Proton VPN.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Title">
+    <value>Stealth</value>
+  </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
     <value>Rask, sikker og effektiv. WireGuard er mer batterieffektiv enn andre protokoller.</value>
   </data>
@@ -2604,8 +2716,14 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
   <data name="Settings_SelectedProtocol_Smart">
     <value>Smart</value>
   </data>
+  <data name="Settings_SelectedProtocol_WireGuardTcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTls">
+    <value>Stealth</value>
+  </data>
   <data name="Settings_SelectedProtocol_WireGuardUdp">
-    <value>WireGuard</value>
+    <value>WireGuard (UDP)</value>
   </data>
   <data name="Settings_Support">
     <value>Brukerstøtte</value>
@@ -2839,7 +2957,13 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
   <data name="VpnProtocol_Smart">
     <value>Smart</value>
   </data>
+  <data name="VpnProtocol_WireGuard_Tcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls">
+    <value>Stealth</value>
+  </data>
   <data name="VpnProtocol_WireGuard_Udp">
-    <value>WireGuard</value>
+    <value>WireGuard (UDP)</value>
   </data>
 </root>

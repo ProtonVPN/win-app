@@ -262,6 +262,12 @@
   <data name="Connections_Country_UnderMaintenance">
     <value>Bu ülkedeki tüm sunucularda bakım yapılıyor</value>
   </data>
+  <data name="Connections_Free_Servers_One">
+    <value>Free sunucusu ({0})</value>
+  </data>
+  <data name="Connections_Free_Servers_Other">
+    <value>Free sunucuları ({0})</value>
+  </data>
   <data name="Connections_Gateway_Restricted">
     <value>Bu ağ geçidindeki sunucular VPN Plus tarifesi ile kullanılabilir</value>
   </data>
@@ -298,6 +304,12 @@
   <data name="Connections_P2P_Servers_Other">
     <value>P2P sunucuları ({0})</value>
   </data>
+  <data name="Connections_P2P_States_One">
+    <value>P2P eyaleti ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_Other">
+    <value>P2P eyaletleri ({0})</value>
+  </data>
   <data name="Connections_SecureCore_Countries_One">
     <value>Secure Core ülkesi ({0})</value>
   </data>
@@ -322,6 +334,12 @@
   <data name="Connections_SeeServers_Other">
     <value>Sunucuları görüntüle ({0})</value>
   </data>
+  <data name="Connections_SeeStates_One">
+    <value>({0}) Eyaletini gör</value>
+  </data>
+  <data name="Connections_SeeStates_Other">
+    <value>Eyaletleri görüntüle ({0})</value>
+  </data>
   <data name="Connections_Server_Restricted">
     <value>Sunucu VPN Plus tarifesi ile kullanılabilir</value>
   </data>
@@ -333,6 +351,20 @@
   </data>
   <data name="Connections_Servers_Other">
     <value>Sunucular ({0})</value>
+  </data>
+  <data name="Connections_State_Restricted">
+    <value>Bu eyaletteki sunucular VPN Plus tarifesi ile kullanılabilir.</value>
+    <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_State_UnderMaintenance">
+    <value>Bu eyaletteki tüm sunucularda bakım yapılıyor.</value>
+    <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_States_One">
+    <value>Eyalet ({0})</value>
+  </data>
+  <data name="Connections_States_Other">
+    <value>Eyaletler ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_One">
     <value>Tor ülkesi ({0})</value>
@@ -396,6 +428,9 @@
   </data>
   <data name="Countries_P2P_Description">
     <value>Dosyaları eşler arası (P2P) ağlar üzerinden güvenli bir şekilde paylaşın ve indirin.</value>
+  </data>
+  <data name="Countries_Page_FreeUser_Description">
+    <value>VPN Plus tarifesi ile tüm ülkelerden seçim yapın</value>
   </data>
   <data name="Countries_Page_Title">
     <value>Ülkeler</value>
@@ -1470,6 +1505,15 @@
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
     <value>Yapabileceğiniz en fazla ücretsiz sunucu değişikliği sayısına ulaştınız</value>
   </data>
+  <data name="Dialogs_Common_GetStarted">
+    <value>Başlayalım</value>
+  </data>
+  <data name="Dialogs_Common_SubscriptionExpired">
+    <value>Aboneliğin geçerlilik süresi dolmuş</value>
+  </data>
+  <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
+    <value>Plus sunucularına ve özelliklerine yeniden erişmek için tarifenizi yükseltin.</value>
+  </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free otomatik olarak {0} Free ülkemizdeki en hızlı Free sunucusuyla bağlantınızı kurar. Bu sunucu normalde konumunuza en yakın sunucudur.</value>
   </data>
@@ -1666,6 +1710,9 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
   </data>
+  <data name="Dialogs_SubscriptionExpired_MaybeLater">
+    <value>Belki daha sonra</value>
+  </data>
   <data name="Dialogs_Tor_Description">
     <value>Herhangi bir tarayıcı ile gizli hizmetlere ve onion sitelerine erişmek için bir Tor sunucusuna bağlanın.</value>
   </data>
@@ -1707,6 +1754,53 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
   </data>
   <data name="Dialogs_Troubleshooting_Title">
     <value>Bağlantı yardımı</value>
+  </data>
+  <data name="Dialogs_WelcomeB2B_Description">
+    <value>Basit. Sorunsuz. Güvenli. Çevrim içi olduğunuzda kendinizi koruyun ve kuruluşunuzun sitelerine, yazılımlarına ve dosyalarına güvenli bir şekilde erişin.</value>
+  </data>
+  <data name="Dialogs_WelcomeToProton_Title">
+    <value>Proton VPN hizmetine hoş geldiniz</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_Description">
+    <value>Gizliliğinizi koruyarak gezinin, engellenen içeriğe erişin ve veri ya da hız sınırlamaları olmadan dijital özgürlüğün tadını çıkarın.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs">
+    <value>Kayıt tutmadığı belgelenmiş VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
+    <value>Etkinliğiniz İsviçre gizlilik yasalarıyla korunur. Sizi asla çevrim içi olarak izlemeyeceğiz veya bilgilerinizi üçüncü taraflarla paylaşmayacağız.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
+    <value>Her yerden serbestçe gezinin</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
+    <value>Sanal konumunuzu gizleyin ve kullanabileceğiniz {0} ülkenin birinden İnternet deneyimini yaşayın.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
+    <value>Sanal konumunuzu gizleyin ve kullanabileceğiniz {0} ülkenin birinden İnternet deneyimini yaşayın.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
+    <value>Aynı anda 10 aygıtı koruyun</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
+    <value>VPN korumasını bilgisayar, mobil aygıt, tarayıcı, TV ve diğer ortamlara taşıyın. </value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream">
+    <value>Yayın akışlarını yüksek çözünürlükte izleyin</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
+    <value>Hızdan veya kaliteden ödün vermeden dünyanın dört bir yanındaki film ve TV dizilerini izleyin.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Title">
+    <value>VPN Plus tarifesine hoş geldiniz</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description">
+    <value>Tebrikler! Tüm Proton hizmetlerinin ücretli güvenlik ve başarım özelliklerini kullanabilirsiniz.
+
+En iyi Proton gizliliğinin tadını çıkarın.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Title">
+    <value>Proton Unlimited tarifesine hoş geldiniz</value>
   </data>
   <data name="Dialogs_Welcome_Message">
     <value>Yeni VPN deneyiminizi hazırlıyoruz. Bu işlem biraz zaman alabilir.</value>
@@ -1940,6 +2034,9 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
   <data name="Home_ConnectionDetails_ShowIP_Description">
     <value>Kullanıcı IP adresini görüntüle</value>
   </data>
+  <data name="Home_ConnectionDetails_State">
+    <value>Eyalet</value>
+  </data>
   <data name="Home_ConnectionDetails_Title">
     <value>Bağlantı bilgileri</value>
   </data>
@@ -2162,6 +2259,9 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
   </data>
   <data name="Notifications_PortForwarding_Description">
     <value>Daha yüksek hız elde etmek için BitTorrent uygulamasında bu numarayı ayarlayın.</value>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Description_Connected">
+    <value>Aboneliğiniz Proton Free tarifesine düşürüldü ve sizi yeniden en hızlı Free sunucusuna bağlıyoruz.</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>En hızlı Free sunucusu</value>
@@ -2574,6 +2674,18 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
   <data name="Settings_Protocols_UdpCategory">
     <value>Hız (UDP)</value>
   </data>
+  <data name="Settings_Protocols_WireGuardTcp_Description">
+    <value>Hızlı, güvenli ve etkili. WireGuard iletişim kuralının farkedilip engellenmesi zordur.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Description">
+    <value>VPN bağlantınızı sansür uygulamalarından gizleyerek VPN engellemelerini aşar. Bu iletişim kuralı DPİ (derin paket inceleme) uygulamalarına karşı dirençlidir ancak diğer iletişim kuralları kadar hızlı olmayabilir. Stealth, Proton VPN uygulamasına özel bir iletişim kuralıdır.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Title">
+    <value>Stealth</value>
+  </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
     <value>Hızlı, güvenli ve verimli. WireGuard diğer iletişim kurallarına göre daha az pil harcar.</value>
   </data>
@@ -2604,8 +2716,14 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
   <data name="Settings_SelectedProtocol_Smart">
     <value>Smart</value>
   </data>
+  <data name="Settings_SelectedProtocol_WireGuardTcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTls">
+    <value>Stealth</value>
+  </data>
   <data name="Settings_SelectedProtocol_WireGuardUdp">
-    <value>WireGuard</value>
+    <value>WireGuard (UDP)</value>
   </data>
   <data name="Settings_Support">
     <value>Destek</value>
@@ -2839,7 +2957,13 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
   <data name="VpnProtocol_Smart">
     <value>Smart</value>
   </data>
+  <data name="VpnProtocol_WireGuard_Tcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls">
+    <value>Stealth</value>
+  </data>
   <data name="VpnProtocol_WireGuard_Udp">
-    <value>WireGuard</value>
+    <value>WireGuard (UDP)</value>
   </data>
 </root>

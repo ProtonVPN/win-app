@@ -256,6 +256,9 @@
   <data name="Connections_Country_UnderMaintenance">
     <value>이 국가 내의 모든 서버는 유지 보수 상태입니다.</value>
   </data>
+  <data name="Connections_Free_Servers_Other">
+    <value>Free 서버 ({0})</value>
+  </data>
   <data name="Connections_Gateway_Restricted">
     <value>이 게이트웨이의 서버는 VPN Plus로 사용 가능합니다.</value>
   </data>
@@ -277,6 +280,9 @@
   <data name="Connections_P2P_Servers_Other">
     <value>P2P 서버 ({0})</value>
   </data>
+  <data name="Connections_P2P_States_Other">
+    <value>P2P 도시 ({0})</value>
+  </data>
   <data name="Connections_SecureCore_Countries_Other">
     <value>Secure Core 도시 ({0})</value>
   </data>
@@ -289,6 +295,9 @@
   <data name="Connections_SeeServers_Other">
     <value>서버 보기({0})</value>
   </data>
+  <data name="Connections_SeeStates_Other">
+    <value>See states ({0})</value>
+  </data>
   <data name="Connections_Server_Restricted">
     <value>VPN Plus에서 사용할 수 있는 서버입니다</value>
   </data>
@@ -297,6 +306,17 @@
   </data>
   <data name="Connections_Servers_Other">
     <value>서버 ({0})</value>
+  </data>
+  <data name="Connections_State_Restricted">
+    <value>Servers in this state are available with VPN Plus.</value>
+    <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_State_UnderMaintenance">
+    <value>All servers in this state are under maintenance.</value>
+    <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_States_Other">
+    <value>시/주 ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_Other">
     <value>Tor 국가 ({0})</value>
@@ -351,6 +371,9 @@
   </data>
   <data name="Countries_P2P_Description">
     <value>피어 투 피어 (P2P) 네트워크에서 안전하게 파일을 공유하고 다운로드하세요.</value>
+  </data>
+  <data name="Countries_Page_FreeUser_Description">
+    <value>국가 선택을 VPN Plus로 잠금 해제</value>
   </data>
   <data name="Countries_Page_Title">
     <value>국가</value>
@@ -1422,6 +1445,15 @@
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
     <value>무료 서버 변경 횟수의 최대치에 달했습니다</value>
   </data>
+  <data name="Dialogs_Common_GetStarted">
+    <value>Get started</value>
+  </data>
+  <data name="Dialogs_Common_SubscriptionExpired">
+    <value>구독 기간이 만료되었습니다.</value>
+  </data>
+  <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
+    <value>Upgrade to get access to Plus servers and features again.</value>
+  </data>
   <data name="Dialogs_FreeConnections_Description_Other">
     <value>Proton Free가 {0}개 무료 국가 내의 가능한 빠른 서버로 자동으로 연결해 줍니다. 사용자의 위치에서 가장 가까운 곳으로 연결됩니다.</value>
   </data>
@@ -1612,6 +1644,9 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
   </data>
+  <data name="Dialogs_SubscriptionExpired_MaybeLater">
+    <value>Maybe later</value>
+  </data>
   <data name="Dialogs_Tor_Description">
     <value>Tor 서버에 접속하면 히든 서비스와 어니언 사이트에 어느 브라우저를 사용해도 접근할 수 있습니다.</value>
   </data>
@@ -1653,6 +1688,50 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   </data>
   <data name="Dialogs_Troubleshooting_Title">
     <value>연결 지원</value>
+  </data>
+  <data name="Dialogs_WelcomeB2B_Description">
+    <value>Simple. Seamless. Secure. Protect yourself online and securely access your organization's sites, software, and files.</value>
+  </data>
+  <data name="Dialogs_WelcomeToProton_Title">
+    <value>Proton VPN에 오신 것을 환영합니다</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_Description">
+    <value>Browse privately, access blocked content, and enjoy digital freedom with no data or speed limits.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs">
+    <value>노-로그 인증을 받은 VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
+    <value>Your activity is protected by Swiss privacy laws. We'll never track you online or share your information with third parties.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
+    <value>Browse freely from anywhere</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
+    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
+    <value>Protect 10 devices at once</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
+    <value>Extend VPN protection to your desktop, mobile, browser, TV, and more. </value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream">
+    <value>Stream in high resolution</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
+    <value>Watch movies and TV shows from around the world, without compromising on speed or quality.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Title">
+    <value>VPN Plus에 오신 것을 환영합니다</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description">
+    <value>Congratulations! You unlocked premium security and performance features on all Proton services.
+
+Enjoy the best of Proton privacy.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Title">
+    <value>Proton Unlimited에 오신 것을 환영합니다</value>
   </data>
   <data name="Dialogs_Welcome_Message">
     <value>당신에게 새로운 VPN 경험을 위해 준비하고 있습니다. 이는 시간이 조금 걸릴 수 있습니다.</value>
@@ -1880,6 +1959,9 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   <data name="Home_ConnectionDetails_ShowIP_Description">
     <value>내 IP 주소 보이기</value>
   </data>
+  <data name="Home_ConnectionDetails_State">
+    <value>State</value>
+  </data>
   <data name="Home_ConnectionDetails_Title">
     <value>연결 세부사항</value>
   </data>
@@ -2096,6 +2178,9 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   </data>
   <data name="Notifications_PortForwarding_Description">
     <value>더 빠른 속도를 위해 BitTorrent 앱에서 이 번호로 설정하세요.</value>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Description_Connected">
+    <value>Your plan has been downgraded to Proton Free, and we're reconnecting you to the fastest free server.</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>가장 빠른 무료 서버</value>
@@ -2508,6 +2593,19 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   <data name="Settings_Protocols_UdpCategory">
     <value>속도 (UDP)</value>
   </data>
+  <data name="Settings_Protocols_WireGuardTcp_Description">
+    <value>빠르고, 안전하며 효율적입니다. WireGuard는 탐지하고 차단하기 어렵습니다.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Description">
+    <value>검열로부터 VPN 연결을 숨겨서 차단을 극복합니다. 이 프로토콜은 DPI(Deep Packet Insptection)에 내성이 있으나 다른 프로토콜만큼 빠르지는 않습니다.
+Stealth는 Proton VPN만의 기능입니다.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Title">
+    <value>Stealth</value>
+  </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
     <value>빠르고, 안전하며 효율적입니다. WireGuard는 다른 프로토콜보다 배터리 효율이 좋습니다.</value>
   </data>
@@ -2538,8 +2636,14 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   <data name="Settings_SelectedProtocol_Smart">
     <value>Smart</value>
   </data>
+  <data name="Settings_SelectedProtocol_WireGuardTcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTls">
+    <value>Stealth</value>
+  </data>
   <data name="Settings_SelectedProtocol_WireGuardUdp">
-    <value>WireGuard</value>
+    <value>WireGuard (UDP)</value>
   </data>
   <data name="Settings_Support">
     <value>지원</value>
@@ -2767,7 +2871,13 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   <data name="VpnProtocol_Smart">
     <value>Smart</value>
   </data>
+  <data name="VpnProtocol_WireGuard_Tcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls">
+    <value>Stealth</value>
+  </data>
   <data name="VpnProtocol_WireGuard_Udp">
-    <value>WireGuard</value>
+    <value>WireGuard (UDP)</value>
   </data>
 </root>

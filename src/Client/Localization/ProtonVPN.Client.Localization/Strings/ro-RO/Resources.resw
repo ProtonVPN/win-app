@@ -268,6 +268,15 @@
   <data name="Connections_Country_UnderMaintenance">
     <value>Toate serverele din această țară sunt în mentenanță.</value>
   </data>
+  <data name="Connections_Free_Servers_One">
+    <value>Free server ({0})</value>
+  </data>
+  <data name="Connections_Free_Servers_Few">
+    <value>Servere gratuite ({0})</value>
+  </data>
+  <data name="Connections_Free_Servers_Other">
+    <value>Servere gratuite ({0})</value>
+  </data>
   <data name="Connections_Gateway_Restricted">
     <value>Serverele din acest port de acces sunt disponibile cu VPN Plus.</value>
   </data>
@@ -319,6 +328,15 @@
   <data name="Connections_P2P_Servers_Other">
     <value>Servere P2P ({0})</value>
   </data>
+  <data name="Connections_P2P_States_One">
+    <value>P2P state ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_Few">
+    <value>Țări P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_Other">
+    <value>Țări P2P ({0})</value>
+  </data>
   <data name="Connections_SecureCore_Countries_One">
     <value>Țări cu Secure Core ({0})</value>
   </data>
@@ -355,6 +373,15 @@
   <data name="Connections_SeeServers_Other">
     <value>Afișare servere ({0})</value>
   </data>
+  <data name="Connections_SeeStates_One">
+    <value>See state ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_Few">
+    <value>See states ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_Other">
+    <value>See states ({0})</value>
+  </data>
   <data name="Connections_Server_Restricted">
     <value>Server disponibil cu VPN Plus</value>
   </data>
@@ -369,6 +396,23 @@
   </data>
   <data name="Connections_Servers_Other">
     <value>Servere ({0})</value>
+  </data>
+  <data name="Connections_State_Restricted">
+    <value>Servers in this state are available with VPN Plus.</value>
+    <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_State_UnderMaintenance">
+    <value>All servers in this state are under maintenance.</value>
+    <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_States_One">
+    <value>State ({0})</value>
+  </data>
+  <data name="Connections_States_Few">
+    <value>Țări ({0})</value>
+  </data>
+  <data name="Connections_States_Other">
+    <value>Țări ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_One">
     <value>Țări Tor ({0})</value>
@@ -441,6 +485,9 @@
   </data>
   <data name="Countries_P2P_Description">
     <value>Partajați și descărcați în siguranță fișiere prin rețele persoană-la-persoană (P2P).</value>
+  </data>
+  <data name="Countries_Page_FreeUser_Description">
+    <value>Deblocați selectarea țării cu VPN Plus</value>
   </data>
   <data name="Countries_Page_Title">
     <value>Țări</value>
@@ -1518,6 +1565,15 @@
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
     <value>Momentan ați atins numărul maxim de schimbări de servere gratuite.</value>
   </data>
+  <data name="Dialogs_Common_GetStarted">
+    <value>Get started</value>
+  </data>
+  <data name="Dialogs_Common_SubscriptionExpired">
+    <value>Abonamentul a expirat</value>
+  </data>
+  <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
+    <value>Upgrade to get access to Plus servers and features again.</value>
+  </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free vă conectează automat la cel mai rapid server din {0} țară disponibilă. Acesta va fi în mod normal cel mai apropiat server de locul de unde vă conectați.</value>
   </data>
@@ -1720,6 +1776,9 @@ Smart Routing este de obicei folosit pentru a evita legile anticonfidențialitat
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
   </data>
+  <data name="Dialogs_SubscriptionExpired_MaybeLater">
+    <value>Maybe later</value>
+  </data>
   <data name="Dialogs_Tor_Description">
     <value>Conectați-vă la un server Tor pentru a accesa servicii ascunse și site-uri de tip onion folosind orice navigator web.</value>
   </data>
@@ -1761,6 +1820,56 @@ Smart Routing este de obicei folosit pentru a evita legile anticonfidențialitat
   </data>
   <data name="Dialogs_Troubleshooting_Title">
     <value>Ajutor conectare</value>
+  </data>
+  <data name="Dialogs_WelcomeB2B_Description">
+    <value>Simple. Seamless. Secure. Protect yourself online and securely access your organization's sites, software, and files.</value>
+  </data>
+  <data name="Dialogs_WelcomeToProton_Title">
+    <value>Bun venit la Proton VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_Description">
+    <value>Browse privately, access blocked content, and enjoy digital freedom with no data or speed limits.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs">
+    <value>VPN certificat fără jurnalizare</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
+    <value>Your activity is protected by Swiss privacy laws. We'll never track you online or share your information with third parties.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
+    <value>Browse freely from anywhere</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
+    <value>Hide your virtual location and experience the internet from any one of our {0} available country.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Few">
+    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
+    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
+    <value>Protect 10 devices at once</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
+    <value>Extend VPN protection to your desktop, mobile, browser, TV, and more. </value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream">
+    <value>Stream in high resolution</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
+    <value>Watch movies and TV shows from around the world, without compromising on speed or quality.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Title">
+    <value>Bun venit la VPN Plus</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description">
+    <value>Congratulations! You unlocked premium security and performance features on all Proton services.
+
+Enjoy the best of Proton privacy.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Title">
+    <value>Bun venit la Proton Unlimited</value>
   </data>
   <data name="Dialogs_Welcome_Message">
     <value>Vă pregătim noua experiență VPN. Acest lucru ar trebui să dureze doar un moment.</value>
@@ -2000,6 +2109,9 @@ Smart Routing este de obicei folosit pentru a evita legile anticonfidențialitat
   <data name="Home_ConnectionDetails_ShowIP_Description">
     <value>Afișare adresă IP utilizator</value>
   </data>
+  <data name="Home_ConnectionDetails_State">
+    <value>State</value>
+  </data>
   <data name="Home_ConnectionDetails_Title">
     <value>Detalii conexiune</value>
   </data>
@@ -2228,6 +2340,9 @@ Smart Routing este de obicei folosit pentru a evita legile anticonfidențialitat
   </data>
   <data name="Notifications_PortForwarding_Description">
     <value>Setați acest număr în aplicația BitTorrent pentru o viteză sporită.</value>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Description_Connected">
+    <value>Your plan has been downgraded to Proton Free, and we're reconnecting you to the fastest free server.</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Cel mai rapid server gratuit</value>
@@ -2640,6 +2755,18 @@ Smart Routing este de obicei folosit pentru a evita legile anticonfidențialitat
   <data name="Settings_Protocols_UdpCategory">
     <value>Viteză (UDP)</value>
   </data>
+  <data name="Settings_Protocols_WireGuardTcp_Description">
+    <value>Rapid, sigur și eficient. WireGuard este greu de detectat și blocat.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Description">
+    <value>Ocolește blocarea VPN prin ascunderea conexiunii VPN față de cenzori. Acest protocol este rezistent la IPA (inspecția profundă a pachetelor), dar este posibil să nu fie la fel de rapid ca alte protocoale. Stealth este exclusiv pentru Proton VPN.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Title">
+    <value>Stealth</value>
+  </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
     <value>Rapid, sigur și eficient. WireGuard este mai eficient din punct de vedere al bateriei decât alte protocoale.</value>
   </data>
@@ -2670,8 +2797,14 @@ Smart Routing este de obicei folosit pentru a evita legile anticonfidențialitat
   <data name="Settings_SelectedProtocol_Smart">
     <value>Smart</value>
   </data>
+  <data name="Settings_SelectedProtocol_WireGuardTcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTls">
+    <value>Stealth</value>
+  </data>
   <data name="Settings_SelectedProtocol_WireGuardUdp">
-    <value>WireGuard</value>
+    <value>WireGuard (UDP)</value>
   </data>
   <data name="Settings_Support">
     <value>Asistență</value>
@@ -2911,7 +3044,13 @@ Smart Routing este de obicei folosit pentru a evita legile anticonfidențialitat
   <data name="VpnProtocol_Smart">
     <value>Smart</value>
   </data>
+  <data name="VpnProtocol_WireGuard_Tcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls">
+    <value>Stealth</value>
+  </data>
   <data name="VpnProtocol_WireGuard_Udp">
-    <value>WireGuard</value>
+    <value>WireGuard (UDP)</value>
   </data>
 </root>

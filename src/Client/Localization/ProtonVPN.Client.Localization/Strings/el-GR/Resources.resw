@@ -262,6 +262,12 @@
   <data name="Connections_Country_UnderMaintenance">
     <value>Όλοι οι διακομιστές σε αυτήν τη χώρα βρίσκονται υπό συντήρηση</value>
   </data>
+  <data name="Connections_Free_Servers_One">
+    <value>Δωρεάν διακομιστής ({0})</value>
+  </data>
+  <data name="Connections_Free_Servers_Other">
+    <value>Δωρεάν διακομιστές ({0})</value>
+  </data>
   <data name="Connections_Gateway_Restricted">
     <value>Οι διακομιστές σε αυτήν την πύλη είναι διαθέσιμοι με VPN Plus</value>
   </data>
@@ -298,6 +304,12 @@
   <data name="Connections_P2P_Servers_Other">
     <value>Διακομιστές P2P ({0})</value>
   </data>
+  <data name="Connections_P2P_States_One">
+    <value>Πολιτεία P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_Other">
+    <value>Πολιτείες P2P ({0})</value>
+  </data>
   <data name="Connections_SecureCore_Countries_One">
     <value>Χώρα Secure Core ({0})</value>
   </data>
@@ -322,6 +334,12 @@
   <data name="Connections_SeeServers_Other">
     <value>Δείτε διακομιστές ({0})</value>
   </data>
+  <data name="Connections_SeeStates_One">
+    <value>Δείτε πολιτεία ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_Other">
+    <value>Δείτε πολιτείες ({0})</value>
+  </data>
   <data name="Connections_Server_Restricted">
     <value>Διακομιστής διαθέσιμος με VPN Plus</value>
   </data>
@@ -333,6 +351,20 @@
   </data>
   <data name="Connections_Servers_Other">
     <value>Διακομιστές ({0})</value>
+  </data>
+  <data name="Connections_State_Restricted">
+    <value>Οι διακομιστές σε αυτήν την πολιτεία είναι διαθέσιμοι με VPN Plus.</value>
+    <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_State_UnderMaintenance">
+    <value>Όλοι οι διακομιστές σε αυτήν την πολιτεία βρίσκονται υπό συντήρηση.</value>
+    <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_States_One">
+    <value>Πολιτεία ({0})</value>
+  </data>
+  <data name="Connections_States_Other">
+    <value>Πολιτείες ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_One">
     <value>Tor χώρα ({0})</value>
@@ -396,6 +428,9 @@
   </data>
   <data name="Countries_P2P_Description">
     <value>Ασφαλής κοινή χρήση και λήψη αρχείων μέσω ομότιμων δικτύων (P2P).</value>
+  </data>
+  <data name="Countries_Page_FreeUser_Description">
+    <value>Ξεκλειδώστε την επιλογή χώρας με το VPN Plus</value>
   </data>
   <data name="Countries_Page_Title">
     <value>Χώρες</value>
@@ -1470,6 +1505,15 @@
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
     <value>Έχετε φτάσει τον μέγιστο αριθμό αλλαγών σε δωρεάν διακομιστές προς το παρόν</value>
   </data>
+  <data name="Dialogs_Common_GetStarted">
+    <value>Ας ξεκινήσουμε</value>
+  </data>
+  <data name="Dialogs_Common_SubscriptionExpired">
+    <value>Η συνδρομή έληξε</value>
+  </data>
+  <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
+    <value>Αναβαθμίστε για απόκτηση πρόσβασης ξανά στους διακομιστές και τις λειτουργίες του Plus.</value>
+  </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Το Proton Free σας συνδέει αυτόματα με τον ταχύτερο διαθέσιμο δωρεάν διακομιστή από τη {0} δωρεάν χώρα μας. Αυτός θα είναι συνήθως ο πλησιέστερος διακομιστής στην τοποθεσία σας.</value>
   </data>
@@ -1666,6 +1710,9 @@
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
   </data>
+  <data name="Dialogs_SubscriptionExpired_MaybeLater">
+    <value>Ίσως αργότερα</value>
+  </data>
   <data name="Dialogs_Tor_Description">
     <value>Συνδεθείτε σε έναν διακομιστή Tor για να αποκτήσετε πρόσβαση σε κρυφές υπηρεσίες και ιστότοπους onion χρησιμοποιώντας οποιοδήποτε πρόγραμμα περιήγησης.</value>
   </data>
@@ -1707,6 +1754,53 @@
   </data>
   <data name="Dialogs_Troubleshooting_Title">
     <value>Βοήθεια σύνδεσης</value>
+  </data>
+  <data name="Dialogs_WelcomeB2B_Description">
+    <value>Απλός. Απρόσκοπτη. Ασφαλής. Προστατευτείτε στο διαδίκτυο και αποκτήστε ασφαλή πρόσβαση στις τοποθεσίες, το λογισμικό και τα αρχεία του οργανισμού σας.</value>
+  </data>
+  <data name="Dialogs_WelcomeToProton_Title">
+    <value>Καλώς ήρθατε στο Proton VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_Description">
+    <value>Περιηγηθείτε ιδιωτικά, αποκτήστε πρόσβαση σε αποκλεισμένο περιεχόμενο και απολαύστε ψηφιακή ελευθερία χωρίς δεδομένα ή όρια ταχύτητας.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs">
+    <value>Πιστοποιημένο VPN χωρίς αρχεία καταγραφής</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
+    <value>Η δραστηριότητά σας προστατεύεται από τους Ελβετικούς νόμους περί απορρήτου. Δε θα σας παρακολουθούμε ποτέ στο διαδίκτυο ούτε θα μοιραστούμε τις πληροφορίες σας με τρίτους.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
+    <value>Περιηγηθείτε ελεύθερα από οπουδήποτε</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
+    <value>Κρύψτε την εικονική σας τοποθεσία και ζήστε την εμπειρία του διαδικτύου από οποιαδήποτε από τη {0} διαθέσιμη χώρα μας.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
+    <value>Κρύψτε την εικονική σας τοποθεσία και ζήστε την εμπειρία του διαδικτύου από οποιαδήποτε από τις {0} διαθέσιμες χώρες μας.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
+    <value>Προστατέψτε 10 συσκευές ταυτόχρονα</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
+    <value>Επεκτείνετε την προστασία VPN στον επιτραπέζιο υπολογιστή, το κινητό, το πρόγραμμα περιήγησης, την τηλεόρασή σας και πολλά άλλα. </value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream">
+    <value>Μεταδώστε ροή σε υψηλή ανάλυση</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
+    <value>Παρακολουθήστε ταινίες και τηλεοπτικές εκπομπές από όλο τον κόσμο, χωρίς συμβιβασμούς στην ταχύτητα ή την ποιότητα.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Title">
+    <value>Καλώς ήλθατε στο VPN Plus</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description">
+    <value>Συγχαρητήρια! Ξεκλειδώσατε κορυφαίες δυνατότητες ασφάλειας και απόδοσης σε όλες τις υπηρεσίες Proton.
+
+Απολαύστε το καλύτερο του απορρήτου Proton.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Title">
+    <value>Καλώς ήλθατε στο Proton Unlimited</value>
   </data>
   <data name="Dialogs_Welcome_Message">
     <value>Ετοιμάζουμε τη νέα σας εμπειρία VPN. Αυτό θα πρέπει να διαρκέσει μόνο μια στιγμή.</value>
@@ -1940,6 +2034,9 @@
   <data name="Home_ConnectionDetails_ShowIP_Description">
     <value>Εμφάνιση διεύθυνσης IP χρήστη</value>
   </data>
+  <data name="Home_ConnectionDetails_State">
+    <value>Πολιτεία</value>
+  </data>
   <data name="Home_ConnectionDetails_Title">
     <value>Λεπτομέρειες σύνδεσης</value>
   </data>
@@ -2162,6 +2259,9 @@
   </data>
   <data name="Notifications_PortForwarding_Description">
     <value>Για μεγαλύτερη ταχύτητα, ρυθμίστε αυτόν τον αριθμό στην εφαρμογή σας BitTorrent.</value>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Description_Connected">
+    <value>Το σχέδιό σας έχει υποβαθμιστεί σε Proton Free και σας επανασυνδέουμε στον ταχύτερο δωρεάν διακομιστή.</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Ο ταχύτερος δωρεάν διακομιστής</value>
@@ -2574,6 +2674,18 @@
   <data name="Settings_Protocols_UdpCategory">
     <value>Ταχύτητα (UDP)</value>
   </data>
+  <data name="Settings_Protocols_WireGuardTcp_Description">
+    <value>Γρήγορο, ασφαλές και αποτελεσματικό. Το WireGuard είναι δύσκολο να εντοπιστεί και να αποκλειστεί.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Description">
+    <value>Ξεπερνά τα μπλοκαρίσματα VPN κρύβοντας τη σύνδεσή σας VPN από τους λογοκριτές. Αυτό το πρωτόκολλο είναι ανθεκτικό στο DPI (deep packet inspection), αλλά μπορεί να μην είναι τόσο γρήγορο όσο άλλα πρωτόκολλα. Το Stealth είναι αποκλειστικό για το Proton VPN.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Title">
+    <value>Stealth</value>
+  </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
     <value>Γρήγορο, ασφαλές και αποτελεσματικό. Το WireGuard είναι πιο αποδοτικό για την μπαταρία από άλλα πρωτόκολλα.</value>
   </data>
@@ -2604,8 +2716,14 @@
   <data name="Settings_SelectedProtocol_Smart">
     <value>Smart</value>
   </data>
+  <data name="Settings_SelectedProtocol_WireGuardTcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTls">
+    <value>Stealth</value>
+  </data>
   <data name="Settings_SelectedProtocol_WireGuardUdp">
-    <value>WireGuard</value>
+    <value>WireGuard (UDP)</value>
   </data>
   <data name="Settings_Support">
     <value>Υποστήριξη</value>
@@ -2839,7 +2957,13 @@
   <data name="VpnProtocol_Smart">
     <value>Smart</value>
   </data>
+  <data name="VpnProtocol_WireGuard_Tcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls">
+    <value>Stealth</value>
+  </data>
   <data name="VpnProtocol_WireGuard_Udp">
-    <value>WireGuard</value>
+    <value>WireGuard (UDP)</value>
   </data>
 </root>

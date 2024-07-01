@@ -262,6 +262,12 @@
   <data name="Connections_Country_UnderMaintenance">
     <value>Todos os servidores do país estão em manutenção</value>
   </data>
+  <data name="Connections_Free_Servers_One">
+    <value>Servidor gratuito ({0})</value>
+  </data>
+  <data name="Connections_Free_Servers_Other">
+    <value>Servidores gratuitos ({0})</value>
+  </data>
   <data name="Connections_Gateway_Restricted">
     <value>Servidores neste gateway estão disponíveis com VPN Plus</value>
   </data>
@@ -298,6 +304,12 @@
   <data name="Connections_P2P_Servers_Other">
     <value>Servidores P2P ({0})</value>
   </data>
+  <data name="Connections_P2P_States_One">
+    <value>Estado P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_Other">
+    <value>Estados P2P ({0})</value>
+  </data>
   <data name="Connections_SecureCore_Countries_One">
     <value>País do Secure Core ({0})</value>
   </data>
@@ -322,6 +334,12 @@
   <data name="Connections_SeeServers_Other">
     <value>Ver servidores ({0})</value>
   </data>
+  <data name="Connections_SeeStates_One">
+    <value>Ver estado ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_Other">
+    <value>Ver estados ({0})</value>
+  </data>
   <data name="Connections_Server_Restricted">
     <value>Servidor disponível com VPN Plus</value>
   </data>
@@ -333,6 +351,20 @@
   </data>
   <data name="Connections_Servers_Other">
     <value>Servidores ({0})</value>
+  </data>
+  <data name="Connections_State_Restricted">
+    <value>Servidores nesse estado estão disponíveis com VPN Plus.</value>
+    <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_State_UnderMaintenance">
+    <value>Todos os servidores desse estado estão em manutenção.</value>
+    <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_States_One">
+    <value>Estado ({0})</value>
+  </data>
+  <data name="Connections_States_Other">
+    <value>Estados ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_One">
     <value>País Tor ({0})</value>
@@ -396,6 +428,9 @@
   </data>
   <data name="Countries_P2P_Description">
     <value>Compartilhe e baixe arquivos de forma segura por redes peer-to-peer (P2P).</value>
+  </data>
+  <data name="Countries_Page_FreeUser_Description">
+    <value>Desbloqueie a seleção de países com VPN Plus</value>
   </data>
   <data name="Countries_Page_Title">
     <value>Países</value>
@@ -1470,6 +1505,15 @@
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
     <value>Por enquanto, você alcançou o número máximo de mudanças de servidor grátis</value>
   </data>
+  <data name="Dialogs_Common_GetStarted">
+    <value>Começar</value>
+  </data>
+  <data name="Dialogs_Common_SubscriptionExpired">
+    <value>Assinatura expirada</value>
+  </data>
+  <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
+    <value>Faça upgrade para obter acesso a servidores e recursos novamente.</value>
+  </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free conecta você automaticamente ao servidor gratuito mais rápido disponível em nosso {0} país gratuito. Normalmente, este será o servidor mais próximo da sua localização</value>
   </data>
@@ -1666,6 +1710,9 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
   </data>
+  <data name="Dialogs_SubscriptionExpired_MaybeLater">
+    <value>Talvez mais tarde</value>
+  </data>
   <data name="Dialogs_Tor_Description">
     <value>Conecte-se a um servidor Tor para acessar serviços ocultos e sites da rede onion usando qualquer navegador.</value>
   </data>
@@ -1707,6 +1754,53 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
   </data>
   <data name="Dialogs_Troubleshooting_Title">
     <value>Ajuda de conexão</value>
+  </data>
+  <data name="Dialogs_WelcomeB2B_Description">
+    <value>Simple. Seamless. Secure. Protect yourself online and securely access your organization's sites, software, and files.</value>
+  </data>
+  <data name="Dialogs_WelcomeToProton_Title">
+    <value>Boas-vindas ao Proton VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_Description">
+    <value>Navegue com privacidade, acesse conteúdo bloqueado e desfrute da liberdade digital sem limite de dados ou velocidade.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs">
+    <value>VPN sem registros certificada</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
+    <value>Sua atividade é protegida pelas leis de privacidade suíças. Nunca rastrearemos você online nem compartilharemos suas informações com terceiros.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
+    <value>Navegue com liberade de qualquer lugar</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
+    <value>Hide your virtual location and experience the internet from any one of our {0} available country.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
+    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
+    <value>Proteja 10 dispositivos de uma só vez</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
+    <value>Extend VPN protection to your desktop, mobile, browser, TV, and more. </value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream">
+    <value>Streaming em alta resolução</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
+    <value>Watch movies and TV shows from around the world, without compromising on speed or quality.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Title">
+    <value>Boas-vindas ao VPN Plus</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description">
+    <value>Parabéns! Você desbloqueou recursos premium de segurança e desempenho em todos os serviços da Proton.
+
+Aproveite o melhor da privacidade da Proton.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Title">
+    <value>Boas-vindas à Proton Unlimited</value>
   </data>
   <data name="Dialogs_Welcome_Message">
     <value>Estamos preparando sua nova experiência de VPN. Isso deve levar apenas um momento.</value>
@@ -1940,6 +2034,9 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
   <data name="Home_ConnectionDetails_ShowIP_Description">
     <value>Mostrar endereço IP do usuário</value>
   </data>
+  <data name="Home_ConnectionDetails_State">
+    <value>Estado</value>
+  </data>
   <data name="Home_ConnectionDetails_Title">
     <value>Detalhes da conexão</value>
   </data>
@@ -2162,6 +2259,9 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
   </data>
   <data name="Notifications_PortForwarding_Description">
     <value>Defina este número em seu aplicativo BitTorrent para maior velocidade.</value>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Description_Connected">
+    <value>Your plan has been downgraded to Proton Free, and we're reconnecting you to the fastest free server.</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Servidor gratuito mais rápido</value>
@@ -2574,6 +2674,18 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
   <data name="Settings_Protocols_UdpCategory">
     <value>Velocidade (UDP)</value>
   </data>
+  <data name="Settings_Protocols_WireGuardTcp_Description">
+    <value>Rápido, seguro e eficiente. O WireGuard é difícil de detectar e bloquear.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Description">
+    <value>Overcomes VPN blocks by hiding your VPN connection from censors. This protocol is DPI (deep packet inspection) resistant, but may not be as fast as other protocols. Stealth is exclusive to Proton VPN.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Title">
+    <value>Stealth</value>
+  </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
     <value>Rápido, seguro e eficiente. WireGuard é mais eficiente em termos de bateria do que outros protocolos.</value>
   </data>
@@ -2604,8 +2716,14 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
   <data name="Settings_SelectedProtocol_Smart">
     <value>Smart</value>
   </data>
+  <data name="Settings_SelectedProtocol_WireGuardTcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTls">
+    <value>Stealth</value>
+  </data>
   <data name="Settings_SelectedProtocol_WireGuardUdp">
-    <value>WireGuard</value>
+    <value>WireGuard (UDP)</value>
   </data>
   <data name="Settings_Support">
     <value>Suporte</value>
@@ -2839,7 +2957,13 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
   <data name="VpnProtocol_Smart">
     <value>Smart</value>
   </data>
+  <data name="VpnProtocol_WireGuard_Tcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls">
+    <value>Stealth</value>
+  </data>
   <data name="VpnProtocol_WireGuard_Udp">
-    <value>WireGuard</value>
+    <value>WireGuard (UDP)</value>
   </data>
 </root>

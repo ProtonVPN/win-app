@@ -274,6 +274,18 @@
   <data name="Connections_Country_UnderMaintenance">
     <value>Все серверы в этой стране на техобслуживании</value>
   </data>
+  <data name="Connections_Free_Servers_One">
+    <value>Сервер Free ({0})</value>
+  </data>
+  <data name="Connections_Free_Servers_Few">
+    <value>Серверы Free ({0})</value>
+  </data>
+  <data name="Connections_Free_Servers_Many">
+    <value>Серверы Free ({0})</value>
+  </data>
+  <data name="Connections_Free_Servers_Other">
+    <value>Серверы Free ({0})</value>
+  </data>
   <data name="Connections_Gateway_Restricted">
     <value>Серверы в этом шлюзе доступны через VPN Plus</value>
   </data>
@@ -340,6 +352,18 @@
   <data name="Connections_P2P_Servers_Other">
     <value>Серверы P2P ({0})</value>
   </data>
+  <data name="Connections_P2P_States_One">
+    <value>Страна P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_Few">
+    <value>Страны P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_Many">
+    <value>Страны P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_Other">
+    <value>Страны P2P ({0})</value>
+  </data>
   <data name="Connections_SecureCore_Countries_One">
     <value>Страна с серверами Secure Core ({0})</value>
   </data>
@@ -388,6 +412,18 @@
   <data name="Connections_SeeServers_Other">
     <value>Посмотреть серверы ({0})</value>
   </data>
+  <data name="Connections_SeeStates_One">
+    <value>Посмотреть страну ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_Few">
+    <value>Посмотреть страны ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_Many">
+    <value>Посмотреть страны ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_Other">
+    <value>Посмотреть страны ({0})</value>
+  </data>
   <data name="Connections_Server_Restricted">
     <value>Сервер доступен с VPN Plus</value>
   </data>
@@ -405,6 +441,26 @@
   </data>
   <data name="Connections_Servers_Other">
     <value>Серверы ({0})</value>
+  </data>
+  <data name="Connections_State_Restricted">
+    <value>Серверы в этой стране доступны через VPN Plus.</value>
+    <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_State_UnderMaintenance">
+    <value>Все серверы в этом штате находятся на техническом обслуживании.</value>
+    <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_States_One">
+    <value>Страна ({0})</value>
+  </data>
+  <data name="Connections_States_Few">
+    <value>Страны ({0})</value>
+  </data>
+  <data name="Connections_States_Many">
+    <value>Страны ({0})</value>
+  </data>
+  <data name="Connections_States_Other">
+    <value>Страны ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_One">
     <value>Страна Tor ({0})</value>
@@ -486,6 +542,9 @@
   </data>
   <data name="Countries_P2P_Description">
     <value>Защищенно делитесь и скачивайте файлы по одноранговым (P2P) сетям.</value>
+  </data>
+  <data name="Countries_Page_FreeUser_Description">
+    <value>Разблокируйте выбор страны с помощью VPN Plus</value>
   </data>
   <data name="Countries_Page_Title">
     <value>Страны</value>
@@ -1566,6 +1625,15 @@
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
     <value>Вы достигли максимального количества бесплатных изменений сервера на данный момент</value>
   </data>
+  <data name="Dialogs_Common_GetStarted">
+    <value>Начать</value>
+  </data>
+  <data name="Dialogs_Common_SubscriptionExpired">
+    <value>Срок действия подписки истек</value>
+  </data>
+  <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
+    <value>Улучшите тариф, чтобы снова получить доступ к серверам и функциям Plus.</value>
+  </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free автоматически подключает вас к самому быстрому бесплатному серверу из нашей {0} бесплатной страны. Обычно это ближайший к вашему местоположению сервер.</value>
   </data>
@@ -1774,6 +1842,9 @@ Smart Routing обычно используется для обхода зако
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
   </data>
+  <data name="Dialogs_SubscriptionExpired_MaybeLater">
+    <value>Может быть позже</value>
+  </data>
   <data name="Dialogs_Tor_Description">
     <value>Подключайтесь к серверу Tor для доступа к скрытым сервисам и сайтам onion через любой браузер.</value>
   </data>
@@ -1816,6 +1887,59 @@ Smart Routing обычно используется для обхода зако
   <data name="Dialogs_Troubleshooting_Title">
     <value>Помощь по подключению</value>
   </data>
+  <data name="Dialogs_WelcomeB2B_Description">
+    <value>Простота. Безупречность. Защищенность. Защитите себя в Интернете и обеспечьте безопасный доступ к сайтам, программному обеспечению и файлам вашей организации.</value>
+  </data>
+  <data name="Dialogs_WelcomeToProton_Title">
+    <value>Добро пожаловать в Proton VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_Description">
+    <value>Просматривайте сайты в приватном режиме, получайте доступ к заблокированному содержимому и с удовольствием пользуйтесь цифровой свободой без ограничений объема данных и скорости.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs">
+    <value>Сертифицированный VPN без журналов</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
+    <value>Ваши действия защищены швейцарскими законами о защите частной жизни. Мы никогда не будем следить за вами в Интернете или передавать вашу информацию третьим лицам.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
+    <value>Свободно просматривайте веб-страницы отовсюду</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
+    <value>Скройте свое виртуальное местоположение и пользуйтесь Интернетом из любой из {0} доступных страны.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Few">
+    <value>Скройте свое виртуальное местоположение и пользуйтесь Интернетом из любой из {0} доступных стран.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Many">
+    <value>Скройте свое виртуальное местоположение и пользуйтесь Интернетом из любой из {0} доступных стран.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
+    <value>Скройте свое виртуальное местоположение и пользуйтесь Интернетом из любой из {0} доступных стран.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
+    <value>Защита 10 устройств одновременно</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
+    <value>Распространите защиту VPN на настольный компьютер, мобильный телефон, браузер, телевизор и многое другое. </value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream">
+    <value>Смотрите в высоком разрешении</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
+    <value>Смотрите фильмы и телепрограммы со всего мира без ущерба для скорости и качества.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Title">
+    <value>Добро пожаловать в VPN Plus</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description">
+    <value>Поздравляем! Вы разблокировали платные функции безопасности и производительности во всех службах Proton.
+
+Используйте с удовольствием все преимущества приватности Proton.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Title">
+    <value>Добро пожаловать в Proton Unlimited</value>
+  </data>
   <data name="Dialogs_Welcome_Message">
     <value>Мы подготавливаем к работе ваш новый опыт работы с VPN. Это займет совсем немного времени.</value>
   </data>
@@ -1829,7 +1953,7 @@ Smart Routing обычно используется для обхода зако
     <value>Выйти из Proton VPN?</value>
   </data>
   <data name="Exit_Message">
-    <value>Disconnecting from VPN...</value>
+    <value>Отключение от VPN...</value>
   </data>
   <data name="Exit_Title">
     <value>Выйти из Proton VPN</value>
@@ -2060,6 +2184,9 @@ Smart Routing обычно используется для обхода зако
   <data name="Home_ConnectionDetails_ShowIP_Description">
     <value>Показать IP-адрес пользователя</value>
   </data>
+  <data name="Home_ConnectionDetails_State">
+    <value>Страна</value>
+  </data>
   <data name="Home_ConnectionDetails_Title">
     <value>Информация о подключении</value>
   </data>
@@ -2208,7 +2335,7 @@ Smart Routing обычно используется для обхода зако
     <value>Форма для входа</value>
   </data>
   <data name="Login_Form_AdvancedKillSwitchDescription">
-    <value>Kill switch is blocking any outgoing connections</value>
+    <value>Kill Switch блокирует все исходящие подключения</value>
   </data>
   <data name="Login_Form_CreateAccount">
     <value>Создать аккаунт</value>
@@ -2294,6 +2421,9 @@ Smart Routing обычно используется для обхода зако
   </data>
   <data name="Notifications_PortForwarding_Description">
     <value>Установите это число в приложении BitTorrent для увеличения скорости.</value>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Description_Connected">
+    <value>Ваш тариф был переведен на более дешевый тариф Proton Free, и мы снова подключаем вас к самому быстрому бесплатному серверу.</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Самый быстрый бесплатный сервер</value>
@@ -2706,6 +2836,18 @@ Smart Routing обычно используется для обхода зако
   <data name="Settings_Protocols_UdpCategory">
     <value>Скорость (UDP)</value>
   </data>
+  <data name="Settings_Protocols_WireGuardTcp_Description">
+    <value>Быстрый, безопасный и эффективный WireGuard трудно обнаружить и заблокировать.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Description">
+    <value>Преодолевает блокировки VPN, скрывая ваше подключение к VPN от цензоров. Этот протокол устойчив к DPI (глубокой проверке пакетов), но может быть не таким быстрым, как другие протоколы. Stealth является уникальным для Proton VPN.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Title">
+    <value>Stealth</value>
+  </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
     <value>Быстрый, безопасный и эффективный. WireGuard более энергоэффективен, чем другие протоколы.</value>
   </data>
@@ -2736,8 +2878,14 @@ Smart Routing обычно используется для обхода зако
   <data name="Settings_SelectedProtocol_Smart">
     <value>Smart</value>
   </data>
+  <data name="Settings_SelectedProtocol_WireGuardTcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTls">
+    <value>Stealth</value>
+  </data>
   <data name="Settings_SelectedProtocol_WireGuardUdp">
-    <value>WireGuard</value>
+    <value>WireGuard (UDP)</value>
   </data>
   <data name="Settings_Support">
     <value>Поддержка</value>
@@ -2983,7 +3131,13 @@ Smart Routing обычно используется для обхода зако
   <data name="VpnProtocol_Smart">
     <value>Smart</value>
   </data>
+  <data name="VpnProtocol_WireGuard_Tcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls">
+    <value>Stealth</value>
+  </data>
   <data name="VpnProtocol_WireGuard_Udp">
-    <value>WireGuard</value>
+    <value>WireGuard (UDP)</value>
   </data>
 </root>
