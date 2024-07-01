@@ -3260,7 +3260,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The tooltip text of the business plan badge</comment>
   </data>
   <data name="Upsell_PortForwarding_Bullet1">
-    <value>Améliorez vos vitesses de téléchargement peer-to-peer.</value>
+    <value>Améliorez vos vitesses de téléchargement peer-to-peer (P2P).</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet2">
     <value>Connectez-vous à des serveurs de jeux en ligne et hébergez des jeux multijoueurs.</value>
