@@ -262,6 +262,12 @@
   <data name="Connections_Country_UnderMaintenance">
     <value>Kaikki tämän maan palvelimet ovat huollossa</value>
   </data>
+  <data name="Connections_Free_Servers_One">
+    <value>Ilmaispalvelin ({0})</value>
+  </data>
+  <data name="Connections_Free_Servers_Other">
+    <value>Ilmaispalvelimet ({0})</value>
+  </data>
   <data name="Connections_Gateway_Restricted">
     <value>Tämän yhdyskäytävän palvelimet ovat käytettävissä VPN Plus -tilauksella</value>
   </data>
@@ -298,6 +304,12 @@
   <data name="Connections_P2P_Servers_Other">
     <value>P2P-palvelimet ({0})</value>
   </data>
+  <data name="Connections_P2P_States_One">
+    <value>P2P-osavaltio ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_Other">
+    <value>P2P-osavaltiot ({0})</value>
+  </data>
   <data name="Connections_SecureCore_Countries_One">
     <value>Secure Core -maa ({0})</value>
   </data>
@@ -322,6 +334,12 @@
   <data name="Connections_SeeServers_Other">
     <value>Näytä palvelimet ({0})</value>
   </data>
+  <data name="Connections_SeeStates_One">
+    <value>Näytä osavaltio ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_Other">
+    <value>Näytä osavaltiot ({0})</value>
+  </data>
   <data name="Connections_Server_Restricted">
     <value>Palvelin on käytettävissä VPN Plus -tilauksella</value>
   </data>
@@ -333,6 +351,20 @@
   </data>
   <data name="Connections_Servers_Other">
     <value>Palvelimet ({0})</value>
+  </data>
+  <data name="Connections_State_Restricted">
+    <value>Tämän osavaltion palvelimet ovat käytettävissä VPN Plus -tilauksella.</value>
+    <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_State_UnderMaintenance">
+    <value>Kaikki tämän osavaltion palvelimet ovat huollossa.</value>
+    <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_States_One">
+    <value>Osavaltio ({0})</value>
+  </data>
+  <data name="Connections_States_Other">
+    <value>Osavaltiot ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_One">
     <value>Tor-maa ({0})</value>
@@ -396,6 +428,9 @@
   </data>
   <data name="Countries_P2P_Description">
     <value>Jaa ja lataa tiedostoja turvallisesti vertaisverkoissa (P2P).</value>
+  </data>
+  <data name="Countries_Page_FreeUser_Description">
+    <value>Avaa maavalinta VPN Plus -tilauksella</value>
   </data>
   <data name="Countries_Page_Title">
     <value>Maat</value>
@@ -1470,6 +1505,15 @@
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
     <value>Olet saavuttanut tällä erää käytettävissä olevan ilmaisten palvelinvaihdosten enimmäismäärän.</value>
   </data>
+  <data name="Dialogs_Common_GetStarted">
+    <value>Aloita</value>
+  </data>
+  <data name="Dialogs_Common_SubscriptionExpired">
+    <value>Tilaus on päättynyt</value>
+  </data>
+  <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
+    <value>Päivitä tilauksesi saadaksesi jälleen Plus-palvelimet ja -ominaisuudet käyttöösi.</value>
+  </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free yhdistää sinut automaattisesti nopeimpaan saatavilla olevaan ilmaiseen palvelimeen {0} ilmaisessa maassa. Yleensä tämä on lähinnä sijaintiasi oleva palvelin.</value>
   </data>
@@ -1666,6 +1710,9 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
   </data>
+  <data name="Dialogs_SubscriptionExpired_MaybeLater">
+    <value>Ehkä myöhemmin</value>
+  </data>
   <data name="Dialogs_Tor_Description">
     <value>Yhdistä Tor-palvelimeen ja käytä piilotettuja palveluita ja onion-sivustoja millä tahansa selaimella.</value>
   </data>
@@ -1707,6 +1754,53 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
   </data>
   <data name="Dialogs_Troubleshooting_Title">
     <value>Yhteysapua</value>
+  </data>
+  <data name="Dialogs_WelcomeB2B_Description">
+    <value>Simple. Seamless. Secure. Protect yourself online and securely access your organization's sites, software, and files.</value>
+  </data>
+  <data name="Dialogs_WelcomeToProton_Title">
+    <value>Tervetuloa Proton VPN:ään</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_Description">
+    <value>Selaa yksityisesti, käytä estettyö sisältöä ja nauti digitaalisesta vapaudesta, ilman data- tai nopeusrajoja.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs">
+    <value>Todistetusti lokivapaa VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
+    <value>Toimintasi on Sveitsin tietosuojalainsäädännön suojaama. Emme koskaan seuraa sinua verkossa tai jaa tietojasi ulkopuolisille tahoille.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
+    <value>Selaa vapaasti mistä tahansa</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
+    <value>Hide your virtual location and experience the internet from any one of our {0} available country.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
+    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
+    <value>Suojaa 10 laitetta samanaikaisesti</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
+    <value>Laajenna VPN-suojaus pöytäkoneellesi, mobiililaitteellesi, selaimellesi, televisiollesi ja muillekin laitteille. </value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream">
+    <value>Suoratoisto korkealla resoluutiolla</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
+    <value>Katso elokuvia ja TV-ohjelmia maailmanlaajuisesti, nopeudesta tai laadusta tinkimättä.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Title">
+    <value>Tervetuloa VPN Plus -tilaukseen</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description">
+    <value>Onnittelut! Avasit kaikkien Proton-palveluiden premium-tason suojaus- ja suorituskykyominaisuudet. 
+
+Nauti Proton-yksityisyyden parhaista puolista.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Title">
+    <value>Tervetuloa Proton Unlimitediin</value>
   </data>
   <data name="Dialogs_Welcome_Message">
     <value>Valmistelemme uutta VPN-kokemustasi. Tämä kestää vain hetken.</value>
@@ -1940,6 +2034,9 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
   <data name="Home_ConnectionDetails_ShowIP_Description">
     <value>Näytä käyttäjän IP-osoite</value>
   </data>
+  <data name="Home_ConnectionDetails_State">
+    <value>Osavaltio</value>
+  </data>
   <data name="Home_ConnectionDetails_Title">
     <value>Yhteyden tiedot</value>
   </data>
@@ -2162,6 +2259,9 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
   </data>
   <data name="Notifications_PortForwarding_Description">
     <value>Määritä tämä numero BitTorrent-sovellukseesi korkeampaa nopeutta varten.</value>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Description_Connected">
+    <value>Tilauksesi on alennettu Proton Free -tasolle, yhdistämme sinut uudelleen nopeimmalle ilmaispalvelimelle.</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Nopein ilmainen palvelin</value>
@@ -2574,6 +2674,18 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
   <data name="Settings_Protocols_UdpCategory">
     <value>Nopea (UDP)</value>
   </data>
+  <data name="Settings_Protocols_WireGuardTcp_Description">
+    <value>Nopea, turvallinen ja tehokas. WireGuardia on vaikea havaita ja estää.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Description">
+    <value>Overcomes VPN blocks by hiding your VPN connection from censors. This protocol is DPI (deep packet inspection) resistant, but may not be as fast as other protocols. Stealth is exclusive to Proton VPN.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Title">
+    <value>Stealth</value>
+  </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
     <value>Nopea, turvallinen ja tehokas. WireGuard kuluttaa muita protokollia vähemmän virtaa.</value>
   </data>
@@ -2604,8 +2716,14 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
   <data name="Settings_SelectedProtocol_Smart">
     <value>Smart</value>
   </data>
+  <data name="Settings_SelectedProtocol_WireGuardTcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTls">
+    <value>Stealth</value>
+  </data>
   <data name="Settings_SelectedProtocol_WireGuardUdp">
-    <value>WireGuard</value>
+    <value>WireGuard (UDP)</value>
   </data>
   <data name="Settings_Support">
     <value>Tuki</value>
@@ -2839,7 +2957,13 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
   <data name="VpnProtocol_Smart">
     <value>Smart</value>
   </data>
+  <data name="VpnProtocol_WireGuard_Tcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls">
+    <value>Stealth</value>
+  </data>
   <data name="VpnProtocol_WireGuard_Udp">
-    <value>WireGuard</value>
+    <value>WireGuard (UDP)</value>
   </data>
 </root>

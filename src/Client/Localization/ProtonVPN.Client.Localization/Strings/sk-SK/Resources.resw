@@ -274,6 +274,18 @@
   <data name="Connections_Country_UnderMaintenance">
     <value>Na všetkých serveroch v tejto krajine prebieha údržba</value>
   </data>
+  <data name="Connections_Free_Servers_One">
+    <value>Free server ({0})</value>
+  </data>
+  <data name="Connections_Free_Servers_Few">
+    <value>Bezplatné servery ({0})</value>
+  </data>
+  <data name="Connections_Free_Servers_Many">
+    <value>Bezplatné servery ({0})</value>
+  </data>
+  <data name="Connections_Free_Servers_Other">
+    <value>Bezplatné servery ({0})</value>
+  </data>
   <data name="Connections_Gateway_Restricted">
     <value>Servery v tejto bráne sú dostupné cez VPN Plus</value>
   </data>
@@ -340,6 +352,18 @@
   <data name="Connections_P2P_Servers_Other">
     <value>P2P servery ({0})</value>
   </data>
+  <data name="Connections_P2P_States_One">
+    <value>P2P state ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_Few">
+    <value>P2P štáty ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_Many">
+    <value>P2P štáty ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_Other">
+    <value>P2P štáty ({0})</value>
+  </data>
   <data name="Connections_SecureCore_Countries_One">
     <value>Krajina so Secure Core ({0})</value>
   </data>
@@ -388,6 +412,18 @@
   <data name="Connections_SeeServers_Other">
     <value>Zobraziť servery ({0})</value>
   </data>
+  <data name="Connections_SeeStates_One">
+    <value>See state ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_Few">
+    <value>See states ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_Many">
+    <value>See states ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_Other">
+    <value>See states ({0})</value>
+  </data>
   <data name="Connections_Server_Restricted">
     <value>Server je dostupný s VPN Plus</value>
   </data>
@@ -405,6 +441,26 @@
   </data>
   <data name="Connections_Servers_Other">
     <value>Servery ({0})</value>
+  </data>
+  <data name="Connections_State_Restricted">
+    <value>Servers in this state are available with VPN Plus.</value>
+    <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_State_UnderMaintenance">
+    <value>Na všetkých serveroch v tomto štáte prebieha údržba.</value>
+    <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_States_One">
+    <value>State ({0})</value>
+  </data>
+  <data name="Connections_States_Few">
+    <value>Štáty ({0})</value>
+  </data>
+  <data name="Connections_States_Many">
+    <value>Štáty ({0})</value>
+  </data>
+  <data name="Connections_States_Other">
+    <value>Štáty ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_One">
     <value>Tor krajina ({0})</value>
@@ -486,6 +542,9 @@
   </data>
   <data name="Countries_P2P_Description">
     <value>Bezpečne zdieľajte a sťahujte súbory cez peer-to-peer (P2P) siete.</value>
+  </data>
+  <data name="Countries_Page_FreeUser_Description">
+    <value>Odomknite výber krajiny s VPN Plus</value>
   </data>
   <data name="Countries_Page_Title">
     <value>Krajiny</value>
@@ -1566,6 +1625,15 @@
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
     <value>Momentálne ste dosiahli maximálny počet bezplatných zmien servera</value>
   </data>
+  <data name="Dialogs_Common_GetStarted">
+    <value>Get started</value>
+  </data>
+  <data name="Dialogs_Common_SubscriptionExpired">
+    <value>Predplatné vypršalo</value>
+  </data>
+  <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
+    <value>Upgrade to get access to Plus servers and features again.</value>
+  </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free vás automaticky pripojí k najrýchlejšiemu dostupnému bezplatnému serveru z našej {0} bezplatnej krajiny. Obvykle sa jedná o server, ktorý je najbližšie k vašej polohe.</value>
   </data>
@@ -1774,6 +1842,9 @@ Smart Routing sa zvyčajne používa na obchádzanie zákonov proti ochrane súk
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
   </data>
+  <data name="Dialogs_SubscriptionExpired_MaybeLater">
+    <value>Maybe later</value>
+  </data>
   <data name="Dialogs_Tor_Description">
     <value>Pripojte sa k serveru Tor a získajte prístup k skrytým službám a lokalitám typu onion pomocou ľubovoľného prehliadača.</value>
   </data>
@@ -1815,6 +1886,59 @@ Smart Routing sa zvyčajne používa na obchádzanie zákonov proti ochrane súk
   </data>
   <data name="Dialogs_Troubleshooting_Title">
     <value>Pomoc s pripojením</value>
+  </data>
+  <data name="Dialogs_WelcomeB2B_Description">
+    <value>Simple. Seamless. Secure. Protect yourself online and securely access your organization's sites, software, and files.</value>
+  </data>
+  <data name="Dialogs_WelcomeToProton_Title">
+    <value>Vitajte v Proton VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_Description">
+    <value>Browse privately, access blocked content, and enjoy digital freedom with no data or speed limits.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs">
+    <value>Certifikovaná VPN sieť bez logov</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
+    <value>Your activity is protected by Swiss privacy laws. We'll never track you online or share your information with third parties.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
+    <value>Browse freely from anywhere</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
+    <value>Hide your virtual location and experience the internet from any one of our {0} available country.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Few">
+    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Many">
+    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
+    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
+    <value>Protect 10 devices at once</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
+    <value>Extend VPN protection to your desktop, mobile, browser, TV, and more. </value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream">
+    <value>Stream in high resolution</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
+    <value>Watch movies and TV shows from around the world, without compromising on speed or quality.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Title">
+    <value>Vitajte vo VPN Plus</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description">
+    <value>Congratulations! You unlocked premium security and performance features on all Proton services.
+
+Enjoy the best of Proton privacy.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Title">
+    <value>Vitajte v Proton Unlimited</value>
   </data>
   <data name="Dialogs_Welcome_Message">
     <value>Pripravujeme pre vás VPN. Malo by to trvať len chvíľu.</value>
@@ -2060,6 +2184,9 @@ Smart Routing sa zvyčajne používa na obchádzanie zákonov proti ochrane súk
   <data name="Home_ConnectionDetails_ShowIP_Description">
     <value>Zobraziť IP adresu používateľa</value>
   </data>
+  <data name="Home_ConnectionDetails_State">
+    <value>State</value>
+  </data>
   <data name="Home_ConnectionDetails_Title">
     <value>Podrobnosti pripojenia</value>
   </data>
@@ -2294,6 +2421,9 @@ Smart Routing sa zvyčajne používa na obchádzanie zákonov proti ochrane súk
   </data>
   <data name="Notifications_PortForwarding_Description">
     <value>Nastavte toto číslo vo vašej aplikácii BitTorrent pre najvyššie rýchlosti.</value>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Description_Connected">
+    <value>Your plan has been downgraded to Proton Free, and we're reconnecting you to the fastest free server.</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Najrýchlejší bezplatný server</value>
@@ -2706,6 +2836,18 @@ Smart Routing sa zvyčajne používa na obchádzanie zákonov proti ochrane súk
   <data name="Settings_Protocols_UdpCategory">
     <value>Rýchlosť (UDP)</value>
   </data>
+  <data name="Settings_Protocols_WireGuardTcp_Description">
+    <value>Rýchly, bezpečný a efektívny. WireGuard je ťažké odhaliť a zablokovať.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Description">
+    <value>Prekonáva blokovanie VPN tým, že skrýva vaše pripojenie VPN pred cenzormi. Tento protokol je odolný voči DPI (hĺbková kontrola paketov), ale nemusí byť taký rýchly ako iné protokoly. Stealth je určený výhradne pre Proton VPN.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Title">
+    <value>Stealth</value>
+  </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
     <value>Rýchly, bezpečný a efektívny. WireGuard je energeticky účinnejší ako ostatné protokoly.</value>
   </data>
@@ -2736,8 +2878,14 @@ Smart Routing sa zvyčajne používa na obchádzanie zákonov proti ochrane súk
   <data name="Settings_SelectedProtocol_Smart">
     <value>Smart</value>
   </data>
+  <data name="Settings_SelectedProtocol_WireGuardTcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTls">
+    <value>Stealth</value>
+  </data>
   <data name="Settings_SelectedProtocol_WireGuardUdp">
-    <value>WireGuard</value>
+    <value>WireGuard (UDP)</value>
   </data>
   <data name="Settings_Support">
     <value>Podpora</value>
@@ -2983,7 +3131,13 @@ Smart Routing sa zvyčajne používa na obchádzanie zákonov proti ochrane súk
   <data name="VpnProtocol_Smart">
     <value>Smart</value>
   </data>
+  <data name="VpnProtocol_WireGuard_Tcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls">
+    <value>Stealth</value>
+  </data>
   <data name="VpnProtocol_WireGuard_Udp">
-    <value>WireGuard</value>
+    <value>WireGuard (UDP)</value>
   </data>
 </root>

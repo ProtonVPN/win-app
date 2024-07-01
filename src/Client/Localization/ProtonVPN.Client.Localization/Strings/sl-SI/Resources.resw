@@ -274,6 +274,18 @@
   <data name="Connections_Country_UnderMaintenance">
     <value>Vsi strežniki v tej državi so v vzdrževanju</value>
   </data>
+  <data name="Connections_Free_Servers_One">
+    <value>Free server ({0})</value>
+  </data>
+  <data name="Connections_Free_Servers_Two">
+    <value>Brezplačni strežniki ({0})</value>
+  </data>
+  <data name="Connections_Free_Servers_Few">
+    <value>Brezplačni strežniki ({0})</value>
+  </data>
+  <data name="Connections_Free_Servers_Other">
+    <value>Brezplačni strežniki ({0})</value>
+  </data>
   <data name="Connections_Gateway_Restricted">
     <value>Strežniki v tem prehodu so na voljo v paketu VPN Plus</value>
   </data>
@@ -340,6 +352,18 @@
   <data name="Connections_P2P_Servers_Other">
     <value>P2P strežniki ({0})</value>
   </data>
+  <data name="Connections_P2P_States_One">
+    <value>P2P state ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_Two">
+    <value>P2P države ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_Few">
+    <value>P2P države ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_Other">
+    <value>P2P države ({0})</value>
+  </data>
   <data name="Connections_SecureCore_Countries_One">
     <value>Secure Core država ({0})</value>
   </data>
@@ -388,6 +412,18 @@
   <data name="Connections_SeeServers_Other">
     <value>Glej strežnike ({0})</value>
   </data>
+  <data name="Connections_SeeStates_One">
+    <value>See state ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_Two">
+    <value>See states ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_Few">
+    <value>See states ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_Other">
+    <value>See states ({0})</value>
+  </data>
   <data name="Connections_Server_Restricted">
     <value>Strežnik je na voljo z VPN Plus</value>
   </data>
@@ -405,6 +441,26 @@
   </data>
   <data name="Connections_Servers_Other">
     <value>Strežniki ({0})</value>
+  </data>
+  <data name="Connections_State_Restricted">
+    <value>Servers in this state are available with VPN Plus.</value>
+    <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_State_UnderMaintenance">
+    <value>Vsi strežniki v tej državi so v vzdrževanju.</value>
+    <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_States_One">
+    <value>State ({0})</value>
+  </data>
+  <data name="Connections_States_Two">
+    <value>Države ({0})</value>
+  </data>
+  <data name="Connections_States_Few">
+    <value>Države ({0})</value>
+  </data>
+  <data name="Connections_States_Other">
+    <value>Države ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_One">
     <value>Tor država ({0})</value>
@@ -486,6 +542,9 @@
   </data>
   <data name="Countries_P2P_Description">
     <value>Varno delite in prenašajte datoteke prek omrežij enakovrednih (P2P).</value>
+  </data>
+  <data name="Countries_Page_FreeUser_Description">
+    <value>Odklenite izbrano državo z VPN Plus</value>
   </data>
   <data name="Countries_Page_Title">
     <value>Države</value>
@@ -1566,6 +1625,15 @@
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
     <value>Dosegli ste trenutno največje število brezplačnih sprememb strežnika</value>
   </data>
+  <data name="Dialogs_Common_GetStarted">
+    <value>Get started</value>
+  </data>
+  <data name="Dialogs_Common_SubscriptionExpired">
+    <value>Naročnina je potekla</value>
+  </data>
+  <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
+    <value>Upgrade to get access to Plus servers and features again.</value>
+  </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free vas samodejno poveže z najhitrejšim razpoložljivim brezplačnim strežnikom iz {0} proste države. To bo običajno najbližji strežnik vaši lokaciji.</value>
   </data>
@@ -1774,6 +1842,9 @@ Pametno usmerjanje se običajno uporablja za izogibanje zakonom proti zasebnosti
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
   </data>
+  <data name="Dialogs_SubscriptionExpired_MaybeLater">
+    <value>Maybe later</value>
+  </data>
   <data name="Dialogs_Tor_Description">
     <value>Povežite se s strežnikom Tor za dostop do skritih storitev in Tor spletnih mest s katerim koli brskalnikom.</value>
   </data>
@@ -1815,6 +1886,59 @@ Pametno usmerjanje se običajno uporablja za izogibanje zakonom proti zasebnosti
   </data>
   <data name="Dialogs_Troubleshooting_Title">
     <value>Pomoč pri povezovanju</value>
+  </data>
+  <data name="Dialogs_WelcomeB2B_Description">
+    <value>Simple. Seamless. Secure. Protect yourself online and securely access your organization's sites, software, and files.</value>
+  </data>
+  <data name="Dialogs_WelcomeToProton_Title">
+    <value>Dobrodošli v Proton VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_Description">
+    <value>Browse privately, access blocked content, and enjoy digital freedom with no data or speed limits.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs">
+    <value>Preverjeni VPN brez sledenja prijav</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
+    <value>Your activity is protected by Swiss privacy laws. We'll never track you online or share your information with third parties.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
+    <value>Browse freely from anywhere</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
+    <value>Hide your virtual location and experience the internet from any one of our {0} available country.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Two">
+    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Few">
+    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
+    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
+    <value>Protect 10 devices at once</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
+    <value>Extend VPN protection to your desktop, mobile, browser, TV, and more. </value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream">
+    <value>Stream in high resolution</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
+    <value>Watch movies and TV shows from around the world, without compromising on speed or quality.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Title">
+    <value>Dobrodošli pri Proton Plus</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description">
+    <value>Congratulations! You unlocked premium security and performance features on all Proton services.
+
+Enjoy the best of Proton privacy.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Title">
+    <value>Dobrodošli v Proton Unlimited</value>
   </data>
   <data name="Dialogs_Welcome_Message">
     <value>Pripravljamo vašo novo izkušnjo z VPN. To traja le trenutek.</value>
@@ -2060,6 +2184,9 @@ Pametno usmerjanje se običajno uporablja za izogibanje zakonom proti zasebnosti
   <data name="Home_ConnectionDetails_ShowIP_Description">
     <value>Pokaži IP naslov uporabnika</value>
   </data>
+  <data name="Home_ConnectionDetails_State">
+    <value>State</value>
+  </data>
   <data name="Home_ConnectionDetails_Title">
     <value>Podrobnosti povezave</value>
   </data>
@@ -2294,6 +2421,9 @@ Pametno usmerjanje se običajno uporablja za izogibanje zakonom proti zasebnosti
   </data>
   <data name="Notifications_PortForwarding_Description">
     <value>Nastavite to številko v aplikaciji BitTorrent za večjo hitrost.</value>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Description_Connected">
+    <value>Your plan has been downgraded to Proton Free, and we're reconnecting you to the fastest free server.</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Najhitrejši brezplačni strežnik</value>
@@ -2706,6 +2836,18 @@ Pametno usmerjanje se običajno uporablja za izogibanje zakonom proti zasebnosti
   <data name="Settings_Protocols_UdpCategory">
     <value>Hitrost (UDP)</value>
   </data>
+  <data name="Settings_Protocols_WireGuardTcp_Description">
+    <value>Fast, secure, and efficient. WireGuard is difficult to detect and block.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Description">
+    <value>Overcomes VPN blocks by hiding your VPN connection from censors. This protocol is DPI (deep packet inspection) resistant, but may not be as fast as other protocols. Stealth is exclusive to Proton VPN.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Title">
+    <value>Stealth</value>
+  </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
     <value>Hitro, varno in učinkovito. WireGuard je bolj učinkovit pri porabi baterije kot drugi protokoli.</value>
   </data>
@@ -2736,8 +2878,14 @@ Pametno usmerjanje se običajno uporablja za izogibanje zakonom proti zasebnosti
   <data name="Settings_SelectedProtocol_Smart">
     <value>Smart</value>
   </data>
+  <data name="Settings_SelectedProtocol_WireGuardTcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTls">
+    <value>Stealth</value>
+  </data>
   <data name="Settings_SelectedProtocol_WireGuardUdp">
-    <value>WireGuard</value>
+    <value>WireGuard (UDP)</value>
   </data>
   <data name="Settings_Support">
     <value>Podpora</value>
@@ -2983,7 +3131,13 @@ Pametno usmerjanje se običajno uporablja za izogibanje zakonom proti zasebnosti
   <data name="VpnProtocol_Smart">
     <value>Smart</value>
   </data>
+  <data name="VpnProtocol_WireGuard_Tcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls">
+    <value>Stealth</value>
+  </data>
   <data name="VpnProtocol_WireGuard_Udp">
-    <value>WireGuard</value>
+    <value>WireGuard (UDP)</value>
   </data>
 </root>

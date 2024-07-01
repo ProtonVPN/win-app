@@ -256,6 +256,9 @@
   <data name="Connections_Country_UnderMaintenance">
     <value>Seluruh server di negara ini sedang dalam pemeliharaan</value>
   </data>
+  <data name="Connections_Free_Servers_Other">
+    <value>Server Free ({0})</value>
+  </data>
   <data name="Connections_Gateway_Restricted">
     <value>Server di gateway ini tersedia dengan VPN Plus</value>
   </data>
@@ -277,6 +280,9 @@
   <data name="Connections_P2P_Servers_Other">
     <value>Server P2P ({0})</value>
   </data>
+  <data name="Connections_P2P_States_Other">
+    <value>Negara bagian P2P ({0})</value>
+  </data>
   <data name="Connections_SecureCore_Countries_Other">
     <value>Negara Secure Core ({0})</value>
   </data>
@@ -289,6 +295,9 @@
   <data name="Connections_SeeServers_Other">
     <value>Lihat server ({0})</value>
   </data>
+  <data name="Connections_SeeStates_Other">
+    <value>Lihat negara bagian ({0})</value>
+  </data>
   <data name="Connections_Server_Restricted">
     <value>Server tersedia dengan VPN Plus</value>
   </data>
@@ -297,6 +306,17 @@
   </data>
   <data name="Connections_Servers_Other">
     <value>Server ({0})</value>
+  </data>
+  <data name="Connections_State_Restricted">
+    <value>Server di negara bagian ini tersedia dengan VPN Plus.</value>
+    <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_State_UnderMaintenance">
+    <value>Seluruh server di negara bagian ini sedang dalam pemeliharaan.</value>
+    <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_States_Other">
+    <value>Negara bagian ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_Other">
     <value>Negara Tor ({0})</value>
@@ -351,6 +371,9 @@
   </data>
   <data name="Countries_P2P_Description">
     <value>Bagikan dan unduh berkas dengan aman melalui jaringan peer-to-peer (P2P).</value>
+  </data>
+  <data name="Countries_Page_FreeUser_Description">
+    <value>Akses fitur pemilihan negara dengan VPN Plus</value>
   </data>
   <data name="Countries_Page_Title">
     <value>Negara</value>
@@ -1422,6 +1445,15 @@
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
     <value>Anda telah mencapai batas pengubahan server Free untuk saat ini</value>
   </data>
+  <data name="Dialogs_Common_GetStarted">
+    <value>Mulai</value>
+  </data>
+  <data name="Dialogs_Common_SubscriptionExpired">
+    <value>Langganan berakhir</value>
+  </data>
+  <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
+    <value>Tingkatkan untuk kembali memperoleh akses ke berbagai server dan fitur Plus.</value>
+  </data>
   <data name="Dialogs_FreeConnections_Description_Other">
     <value>Proton Free akan menghubungkan Anda secara otomatis ke server tercepat yang tersedia dari {0} negara gratis kami. Pada umumnya, server ini adalah server yang terletak paling dekat dengan lokasi Anda.</value>
   </data>
@@ -1612,6 +1644,9 @@ Smart Routing pada umumnya digunakan untuk menghindari undang-undang anti-privas
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
   </data>
+  <data name="Dialogs_SubscriptionExpired_MaybeLater">
+    <value>Mungkin nanti</value>
+  </data>
   <data name="Dialogs_Tor_Description">
     <value>Hubungkan ke server Tor untuk mengakses layanan tersembunyi dan situs onion menggunakan browser mana pun.</value>
   </data>
@@ -1653,6 +1688,50 @@ Smart Routing pada umumnya digunakan untuk menghindari undang-undang anti-privas
   </data>
   <data name="Dialogs_Troubleshooting_Title">
     <value>Bantuan koneksi</value>
+  </data>
+  <data name="Dialogs_WelcomeB2B_Description">
+    <value>Sederhana. Terpadu. Aman. Lindungi diri Anda secara online dan akses berbagai situs, perangkat lunak, dan berkas milik organisasi Anda secara aman.</value>
+  </data>
+  <data name="Dialogs_WelcomeToProton_Title">
+    <value>Selamat datang di Proton VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_Description">
+    <value>Jelajahi internet secara privat, akses konten yang diblokir, dan nikmati kebebasan digital tanpa batasan data atau kecepatan.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs">
+    <value>VPN yang tersertifikasi tanpa log</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
+    <value>Aktivitas Anda dilindungi oleh undang-undang privasi Swiss. Kami tidak akan pernah melacak Anda secara online atau membagikan informasi pribadi Anda dengan pihak ketiga.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
+    <value>Jelajahi internet secara bebas dari mana saja</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
+    <value>Sembunyikan lokasi virtual Anda dan rasakan pengalaman berinternet dari salah satu dari {0} negara kami yang tersedia.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
+    <value>Lindungi 10 perangkat secara bersamaan</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
+    <value>Perluas perlindungan VPN Anda ke desktop, perangkat seluler, browser, TV, dan masih banyak lagi. </value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream">
+    <value>Tonton tayangan streaming pada resolusi tinggi</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
+    <value>Tonton berbagai film dan tayangan TV dari seluruh dunia tanpa mengorbankan kecepatan ataupun kualitas.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Title">
+    <value>Selamat datang di VPN Plus</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description">
+    <value>Selamat! Anda telah membuka akses menuju berbagai fitur keamanan dan performa premium pada seluruh layanan Proton.
+
+Nikmati yang terbaik dari rangkaian privasi Proton.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Title">
+    <value>Selamat datang di Proton Unlimited</value>
   </data>
   <data name="Dialogs_Welcome_Message">
     <value>Kami sedang mempersiapkan pengalaman VPN Anda yang baru. Proses ini hanya akan memakan waktu sejenak.</value>
@@ -1880,6 +1959,9 @@ Smart Routing pada umumnya digunakan untuk menghindari undang-undang anti-privas
   <data name="Home_ConnectionDetails_ShowIP_Description">
     <value>Tampilkan alamat IP pengguna</value>
   </data>
+  <data name="Home_ConnectionDetails_State">
+    <value>Negara bagian</value>
+  </data>
   <data name="Home_ConnectionDetails_Title">
     <value>Rincian koneksi</value>
   </data>
@@ -2096,6 +2178,9 @@ Smart Routing pada umumnya digunakan untuk menghindari undang-undang anti-privas
   </data>
   <data name="Notifications_PortForwarding_Description">
     <value>Tentukan nomor port ini pada aplikasi BitTorrent Anda untuk memperoleh kecepatan yang lebih.</value>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Description_Connected">
+    <value>Paket Anda telah diturunkan ke Proton Free, dan kami akan menghubungkan ulang Anda ke server gratis tercepat.</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Server Free tercepat</value>
@@ -2508,6 +2593,18 @@ Smart Routing pada umumnya digunakan untuk menghindari undang-undang anti-privas
   <data name="Settings_Protocols_UdpCategory">
     <value>Kecepatan (UDP)</value>
   </data>
+  <data name="Settings_Protocols_WireGuardTcp_Description">
+    <value>Cepat, aman, dan efisien. WireGuard sulit untuk dideteksi dan diblokir.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Description">
+    <value>Menangkal pemblokiran VPN dengan menyembunyikan koneksi VPN Anda dari sensor. Protokol ini tahan terhadap DPI (inspeksi paket mendalam/deep packet inspection), namun dapat tidak berfungsi secepat protokol lainnya. Stealth tersedia khusus pada Proton VPN.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Title">
+    <value>Stealth</value>
+  </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
     <value>Cepat, aman, dan efisien. WireGuard lebih efisien dalam penggunaan baterai dibanding protokol lainnya.</value>
   </data>
@@ -2538,8 +2635,14 @@ Smart Routing pada umumnya digunakan untuk menghindari undang-undang anti-privas
   <data name="Settings_SelectedProtocol_Smart">
     <value>Smart</value>
   </data>
+  <data name="Settings_SelectedProtocol_WireGuardTcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTls">
+    <value>Stealth</value>
+  </data>
   <data name="Settings_SelectedProtocol_WireGuardUdp">
-    <value>WireGuard</value>
+    <value>WireGuard (UDP)</value>
   </data>
   <data name="Settings_Support">
     <value>Dukungan</value>
@@ -2767,7 +2870,13 @@ Smart Routing pada umumnya digunakan untuk menghindari undang-undang anti-privas
   <data name="VpnProtocol_Smart">
     <value>Smart</value>
   </data>
+  <data name="VpnProtocol_WireGuard_Tcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls">
+    <value>Stealth</value>
+  </data>
   <data name="VpnProtocol_WireGuard_Udp">
-    <value>WireGuard</value>
+    <value>WireGuard (UDP)</value>
   </data>
 </root>

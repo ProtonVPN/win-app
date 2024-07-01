@@ -256,6 +256,9 @@
   <data name="Connections_Country_UnderMaintenance">
     <value>此國家所有伺服器俱在維護中</value>
   </data>
+  <data name="Connections_Free_Servers_Other">
+    <value>Free 伺服器 ({0} 個)</value>
+  </data>
   <data name="Connections_Gateway_Restricted">
     <value>Servers in this gateway are available with VPN Plus</value>
   </data>
@@ -277,6 +280,9 @@
   <data name="Connections_P2P_Servers_Other">
     <value>P2P servers ({0})</value>
   </data>
+  <data name="Connections_P2P_States_Other">
+    <value>P2P州 ({0})</value>
+  </data>
   <data name="Connections_SecureCore_Countries_Other">
     <value>雙重路由國家/地區 ({0})</value>
   </data>
@@ -289,6 +295,9 @@
   <data name="Connections_SeeServers_Other">
     <value>See servers ({0})</value>
   </data>
+  <data name="Connections_SeeStates_Other">
+    <value>See states ({0})</value>
+  </data>
   <data name="Connections_Server_Restricted">
     <value>Server available with VPN Plus</value>
   </data>
@@ -297,6 +306,17 @@
   </data>
   <data name="Connections_Servers_Other">
     <value>伺服器 ({0})</value>
+  </data>
+  <data name="Connections_State_Restricted">
+    <value>Servers in this state are available with VPN Plus.</value>
+    <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_State_UnderMaintenance">
+    <value>此省/州的所有伺服器均在維護中.</value>
+    <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_States_Other">
+    <value>州 ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_Other">
     <value>Tor 國家/地區 ({0})</value>
@@ -351,6 +371,9 @@
   </data>
   <data name="Countries_P2P_Description">
     <value>Securely share and download files over peer-to-peer (P2P) networks.</value>
+  </data>
+  <data name="Countries_Page_FreeUser_Description">
+    <value>使用VPN Plus解鎖選擇國家</value>
   </data>
   <data name="Countries_Page_Title">
     <value>國家</value>
@@ -1422,6 +1445,15 @@
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
     <value>您已達到免費版切換伺服器的次數上限</value>
   </data>
+  <data name="Dialogs_Common_GetStarted">
+    <value>Get started</value>
+  </data>
+  <data name="Dialogs_Common_SubscriptionExpired">
+    <value>Subscription expired</value>
+  </data>
+  <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
+    <value>Upgrade to get access to Plus servers and features again.</value>
+  </data>
   <data name="Dialogs_FreeConnections_Description_Other">
     <value>Proton Free 將自動連接至我們 {0} 個免費國家/地區中最快的伺服器，通常為距您最近的伺服器。</value>
   </data>
@@ -1612,6 +1644,9 @@ VPN 連線</value>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
   </data>
+  <data name="Dialogs_SubscriptionExpired_MaybeLater">
+    <value>Maybe later</value>
+  </data>
   <data name="Dialogs_Tor_Description">
     <value>連接至 Tor 伺服器，使用任何瀏覽器存取隱藏服務與 onion 網站。</value>
   </data>
@@ -1653,6 +1688,50 @@ VPN 連線</value>
   </data>
   <data name="Dialogs_Troubleshooting_Title">
     <value>Connection help</value>
+  </data>
+  <data name="Dialogs_WelcomeB2B_Description">
+    <value>Simple. Seamless. Secure. Protect yourself online and securely access your organization's sites, software, and files.</value>
+  </data>
+  <data name="Dialogs_WelcomeToProton_Title">
+    <value>歡迎使用 Proton VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_Description">
+    <value>Browse privately, access blocked content, and enjoy digital freedom with no data or speed limits.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs">
+    <value>驗證無紀錄的VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
+    <value>Your activity is protected by Swiss privacy laws. We'll never track you online or share your information with third parties.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
+    <value>Browse freely from anywhere</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
+    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
+    <value>Protect 10 devices at once</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
+    <value>Extend VPN protection to your desktop, mobile, browser, TV, and more. </value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream">
+    <value>Stream in high resolution</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
+    <value>Watch movies and TV shows from around the world, without compromising on speed or quality.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Title">
+    <value>歡迎至 VPN Plus</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description">
+    <value>Congratulations! You unlocked premium security and performance features on all Proton services.
+
+Enjoy the best of Proton privacy.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Title">
+    <value>歡迎至Proton Unlimited</value>
   </data>
   <data name="Dialogs_Welcome_Message">
     <value>我們正在為您準備全新的 VPN 體驗。只需稍等片刻即可完成。</value>
@@ -1880,6 +1959,9 @@ VPN 連線</value>
   <data name="Home_ConnectionDetails_ShowIP_Description">
     <value>顯示使用者 IP 位址</value>
   </data>
+  <data name="Home_ConnectionDetails_State">
+    <value>State</value>
+  </data>
   <data name="Home_ConnectionDetails_Title">
     <value>連線詳細資訊</value>
   </data>
@@ -2096,6 +2178,9 @@ VPN 連線</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
     <value>在您的 BitTorrent 應用程式設定此連接埠號以取得更快的速度。</value>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Description_Connected">
+    <value>Your plan has been downgraded to Proton Free, and we're reconnecting you to the fastest free server.</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>最快速的伺免費服器</value>
@@ -2508,6 +2593,18 @@ VPN 連線</value>
   <data name="Settings_Protocols_UdpCategory">
     <value>速度 (UDP)</value>
   </data>
+  <data name="Settings_Protocols_WireGuardTcp_Description">
+    <value>Fast, secure, and efficient. WireGuard is difficult to detect and block.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Description">
+    <value>Overcomes VPN blocks by hiding your VPN connection from censors. This protocol is DPI (deep packet inspection) resistant, but may not be as fast as other protocols. Stealth is exclusive to Proton VPN.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Title">
+    <value>Stealth</value>
+  </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
     <value>快速、安全且高效能。WireGuard 比其他通訊協定更節能。</value>
   </data>
@@ -2538,8 +2635,14 @@ VPN 連線</value>
   <data name="Settings_SelectedProtocol_Smart">
     <value>Smart</value>
   </data>
+  <data name="Settings_SelectedProtocol_WireGuardTcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTls">
+    <value>Stealth</value>
+  </data>
   <data name="Settings_SelectedProtocol_WireGuardUdp">
-    <value>WireGuard</value>
+    <value>WireGuard (UDP)</value>
   </data>
   <data name="Settings_Support">
     <value>支援</value>
@@ -2767,7 +2870,13 @@ VPN 連線</value>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>
   </data>
+  <data name="VpnProtocol_WireGuard_Tcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls">
+    <value>Stealth</value>
+  </data>
   <data name="VpnProtocol_WireGuard_Udp">
-    <value>WireGuard</value>
+    <value>WireGuard (UDP)</value>
   </data>
 </root>
