@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Logic.Services.Contracts;
@@ -62,8 +63,7 @@ public class GuestHoleConnector : IGuestHoleConnector
 
     public async Task DisconnectAsync()
     {
-        // VPNWIN-2106 - Use VpnError.NoneKeepEnabledKillSwitch for disconnect
-        DisconnectionRequestIpcEntity request = _disconnectionRequestCreator.Create();
+        DisconnectionRequestIpcEntity request = _disconnectionRequestCreator.Create(VpnError.NoneKeepEnabledKillSwitch);
 
         await _vpnServiceCaller.DisconnectAsync(request);
     }

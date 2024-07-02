@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,15 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Legacy.Abstract;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Auth;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 
-namespace ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
+namespace ProtonVPN.Client.Logic.Users.Contracts;
 
-public interface IGuestHoleActionExecutor
+public class VpnPlanChangeResult
 {
-    public Task<Result> ExecuteAsync(Func<Task> onConnectedFunc);
-
-    public bool IsActive();
-
-    public Task DisconnectAsync();
+    public required ApiResponseResult<VpnInfoWrapperResponse>? ApiResponse { get; init; }
+    public required VpnPlanChangedMessage? PlanChangeMessage { get; init; }
 }

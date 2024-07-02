@@ -46,7 +46,6 @@ namespace ProtonVPN.Api.Installers
             builder.RegisterType<ApiAppVersion>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<TokenClient>().As<ITokenClient>().SingleInstance();
             builder.RegisterType<ReportClientUriProvider>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<GuestHoleState>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ApiAvailabilityVerifier>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<HttpClients>().As<IHttpClients>().SingleInstance();
             builder.Register(c =>

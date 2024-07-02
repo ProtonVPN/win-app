@@ -43,7 +43,7 @@ public interface IGlobalSettings
     int[] OpenVpnTcpPorts { get; set; }
     int[] OpenVpnUdpPorts { get; set; }
     ConcurrentDictionary<string, DnsResponse>? DnsCache { get; set; } // VPNWIN-2098 - Move to its own file
-    bool IsDoHEnabled { get; set; }
+    bool IsAlternativeRoutingEnabled { get; set; }
     bool IsKillSwitchEnabled { get; set; }
     bool IsBetaAccessEnabled { get; set; }
     bool AreAutomaticUpdatesEnabled { get; set; }
@@ -54,6 +54,7 @@ public interface IGlobalSettings
     TimeSpan ConnectedServerCheckInterval { get; set; }
     ChangeServerSettings ChangeServerSettings { get; set; }
     bool IsShareCrashReportsEnabled { get; set; }
+    string? ActiveAlternativeApiBaseUrl { get; set; }
 
     Dictionary<string, Dictionary<string, string?>>? LegacySettingsByUsername { get; set; }
 }

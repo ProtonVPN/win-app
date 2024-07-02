@@ -47,7 +47,6 @@ public interface IUserSettings
     bool IsVpnAcceleratorEnabled { get; set; }
     bool IsNotificationEnabled { get; set; }
     bool IsShareStatisticsEnabled { get; set; }
-    bool IsAlternativeRoutingEnabled { get; set; }
     bool IsIpv6LeakProtectionEnabled { get; set; }
     bool IsCustomDnsServersEnabled { get; set; }
     List<CustomDnsServer> CustomDnsServersList { get; set; }

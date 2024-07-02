@@ -46,17 +46,37 @@ public class GuestHoleConnectionRequestCreator : ConnectionRequestCreatorBase, I
     public async Task<ConnectionRequestIpcEntity> CreateAsync(IEnumerable<GuestHoleServerContract> servers)
     {
         MainSettingsIpcEntity settings = GetSettings();
+        settings.OpenVpnAdapter = OpenVpnAdapterIpcEntity.Tap;
+        settings.VpnProtocol = VpnProtocolIpcEntity.Smart;
 
         ConnectionRequestIpcEntity request = new()
         {
             Config = GetVpnConfig(settings),
             Credentials = await GetVpnCredentialsAsync(),
-            Protocol = settings.VpnProtocol,
+            Protocol = VpnProtocolIpcEntity.Smart,
             Servers = GetVpnServers(servers),
             Settings = settings,
         };
 
         return request;
+    }
+
+    protected override VpnConfigIpcEntity GetVpnConfig(MainSettingsIpcEntity settings)
+    {
+        return new()
+        {
+            VpnProtocol = settings.VpnProtocol,
+            PreferredProtocols =
+            [
+                VpnProtocolIpcEntity.OpenVpnUdp,
+                VpnProtocolIpcEntity.OpenVpnTcp
+            ],
+            Ports =
+            {
+                { VpnProtocolIpcEntity.OpenVpnUdp, Settings.OpenVpnUdpPorts },
+                { VpnProtocolIpcEntity.OpenVpnTcp, Settings.OpenVpnTcpPorts },
+            },
+        };
     }
 
     protected override async Task<VpnCredentialsIpcEntity> GetVpnCredentialsAsync()

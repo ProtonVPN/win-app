@@ -17,21 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using ProtonVPN.Api.Contracts;
+using ProtonVPN.Common.Legacy.Abstract;
 
-namespace ProtonVPN.Api
+namespace ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
+
+public interface IGuestHoleManager
 {
-    public class GuestHoleState : IGuestHoleState
-    {
-        public event EventHandler<bool> GuestHoleStateChanged;
-
-        public void SetState(bool isActive)
-        {
-            IsActive = isActive;
-            GuestHoleStateChanged?.Invoke(this, isActive);
-        }
-
-        public bool IsActive { get; private set; }
-    }
+    public Task<T?> ExecuteAsync<T>(Func<Task<Result>> onConnectedFunc) where T : Result;
+    public Task DisconnectAsync();
+    bool IsActive { get; }
 }

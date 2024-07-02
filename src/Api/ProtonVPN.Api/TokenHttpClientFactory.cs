@@ -33,18 +33,18 @@ public class TokenHttpClientFactory : ITokenHttpClientFactory
     private readonly HttpMessageHandler _innerHandler;
 
     public TokenHttpClientFactory(IConfiguration config,
-        // VPNWIN-2102 - restore AlternativeHostHandler alternativeHostHandler,
+        AlternativeHostHandler alternativeHostHandler,
         RetryingHandler retryingHandler,
-        // VPNWIN-2102 - restore DnsHandler dnsHandler,
+        DnsHandler dnsHandler,
         LoggingHandlerBase loggingHandlerBase,
         TlsPinnedCertificateHandler tlsPinnedCertificateHandler)
     {
         _config = config;
 
         _innerHandler = new HttpMessageHandlerStackBuilder()
-            // VPNWIN-2102 - restore .AddDelegatingHandler(alternativeHostHandler)
+            .AddDelegatingHandler(alternativeHostHandler)
             .AddDelegatingHandler(retryingHandler)
-            // VPNWIN-2102 - restore .AddDelegatingHandler(dnsHandler)
+            .AddDelegatingHandler(dnsHandler)
             .AddDelegatingHandler(loggingHandlerBase)
             .AddLastHandler(tlsPinnedCertificateHandler)
             .Build();

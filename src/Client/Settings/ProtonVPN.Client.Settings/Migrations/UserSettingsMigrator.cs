@@ -136,7 +136,6 @@ public class UserSettingsMigrator : IUserSettingsMigrator
     {
         MigrateBoolUserSetting(userSettings, nameof(IUserSettings.IsNotificationEnabled), val => { _settings.IsNotificationEnabled = val; });
         MigrateBoolUserSetting(userSettings, nameof(IUserSettings.IsVpnAcceleratorEnabled), val => { _settings.IsVpnAcceleratorEnabled = val; });
-        MigrateBoolUserSetting(userSettings, nameof(IUserSettings.IsAlternativeRoutingEnabled), val => { _settings.IsAlternativeRoutingEnabled = val; });
         MigrateBoolUserSetting(userSettings, nameof(IUserSettings.IsIpv6LeakProtectionEnabled), val => { _settings.IsIpv6LeakProtectionEnabled = val; });
         MigrateBoolUserSetting(userSettings, nameof(IUserSettings.IsNetShieldEnabled), val => { _settings.IsNetShieldEnabled = val; });
 

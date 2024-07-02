@@ -26,33 +26,33 @@ namespace ProtonVPN.Client.Logic.Users.Tests.Messages;
 public class VpnPlanChangedMessageTest
 {
     [TestMethod]
-    [DataRow("old", 0, "new", 2, true)]
-    [DataRow("old", 2, "new", 0, true)]
-    [DataRow("old", 0, "new", 0, true)]
-    [DataRow("old", 1, "new", 1, true)]
-    [DataRow("old", 2, "new", 2, true)]
-    [DataRow("old", 3, "new", 3, true)]
-    [DataRow("same", 0, "same", 1, true)]
-    [DataRow("same", 0, "same", 2, true)]
-    [DataRow("same", 0, "same", 3, true)]
-    [DataRow("same", 1, "same", 0, true)]
-    [DataRow("same", 1, "same", 2, true)]
-    [DataRow("same", 1, "same", 3, true)]
-    [DataRow("same", 2, "same", 0, true)]
-    [DataRow("same", 2, "same", 1, true)]
-    [DataRow("same", 2, "same", 3, true)]
-    [DataRow("same", 3, "same", 0, true)]
-    [DataRow("same", 3, "same", 1, true)]
-    [DataRow("same", 3, "same", 2, true)]
-    [DataRow("same", 0, "same", 0, false)]
-    [DataRow("same", 1, "same", 1, false)]
-    [DataRow("same", 2, "same", 2, false)]
-    [DataRow("same", 3, "same", 3, false)]
-    public void TestHasChanged(string oldPlanTitle, int oldPlanMaxTier,
-        string newPlanTitle, int newPlanMaxTier, bool expectedResult)
+    [DataRow("old", "oldName", 0, "new", "newName", 2, true)]
+    [DataRow("old", "oldName", 2, "new", "newName", 0, true)]
+    [DataRow("old", "oldName", 0, "new", "newName", 0, true)]
+    [DataRow("old", "oldName", 1, "new", "newName", 1, true)]
+    [DataRow("old", "oldName", 2, "new", "newName", 2, true)]
+    [DataRow("old", "oldName", 3, "new", "newName", 3, true)]
+    [DataRow("same", "oldName", 0, "same", "oldName", 1, true)]
+    [DataRow("same", "oldName", 0, "same", "oldName", 2, true)]
+    [DataRow("same", "oldName", 0, "same", "oldName", 3, true)]
+    [DataRow("same", "oldName", 1, "same", "oldName", 0, true)]
+    [DataRow("same", "oldName", 1, "same", "oldName", 2, true)]
+    [DataRow("same", "oldName", 1, "same", "oldName", 3, true)]
+    [DataRow("same", "oldName", 2, "same", "oldName", 0, true)]
+    [DataRow("same", "oldName", 2, "same", "oldName", 1, true)]
+    [DataRow("same", "oldName", 2, "same", "oldName", 3, true)]
+    [DataRow("same", "oldName", 3, "same", "oldName", 0, true)]
+    [DataRow("same", "oldName", 3, "same", "oldName", 1, true)]
+    [DataRow("same", "oldName", 3, "same", "oldName", 2, true)]
+    [DataRow("same", "oldName", 0, "same", "oldName", 0, false)]
+    [DataRow("same", "oldName", 1, "same", "oldName", 1, false)]
+    [DataRow("same", "oldName", 2, "same", "oldName", 2, false)]
+    [DataRow("same", "oldName", 3, "same", "oldName", 3, false)]
+    public void TestHasChanged(string oldPlanTitle, string oldPlanName, int oldPlanMaxTier,
+        string newPlanTitle, string newPlanName, int newPlanMaxTier, bool expectedResult)
     {
-        VpnPlan oldPlan = new(oldPlanTitle, oldPlanTitle, (sbyte)oldPlanMaxTier);
-        VpnPlan newPlan = new(newPlanTitle, newPlanTitle, (sbyte)newPlanMaxTier);
+        VpnPlan oldPlan = new(oldPlanTitle, oldPlanName, (sbyte)oldPlanMaxTier);
+        VpnPlan newPlan = new(newPlanTitle, newPlanName, (sbyte)newPlanMaxTier);
         VpnPlanChangedMessage vpnPlanChangedMessage = new(oldPlan, newPlan);
 
         bool result = vpnPlanChangedMessage.HasChanged();

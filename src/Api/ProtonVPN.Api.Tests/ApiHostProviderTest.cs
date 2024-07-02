@@ -17,16 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Common.Legacy.Vpn;
+using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Configurations.Contracts.Entities;
-using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.Api.Tests;
 
@@ -37,13 +34,15 @@ public class ApiHostProviderTest
     private const string API_URL = "https://" + API_HOST;
     private const string PROXY_HOST = "alternative.api.url";
     private IConfiguration _config;
-    private IAppSettings _appSettings;
+    private ISettings _settings;
+    private IConnectionManager _connectionManager;
 
     [TestInitialize]
     public void Initialize()
     {
         _config = CreateConfiguration();
-        _appSettings = Substitute.For<IAppSettings>();
+        _settings = Substitute.For<ISettings>();
+        _connectionManager = Substitute.For<IConnectionManager>();
     }
 
     private IConfiguration CreateConfiguration()
@@ -59,68 +58,60 @@ public class ApiHostProviderTest
     public void Cleanup()
     {
         _config = null;
-        _appSettings = null;
+        _settings = null;
     }
 
     [TestMethod]
-    public async Task ItShouldReturnAlternativeApiHostWhenProxyIsActivated()
+    public void ItShouldReturnAlternativeApiHostWhenProxyIsActivated()
     {
         // Arrange
-        _appSettings.DoHEnabled.Returns(true);
-        _appSettings.LastPrimaryApiFailDateUtc.Returns(DateTime.UtcNow.Subtract(TimeSpan.FromHours(2)));
-        _appSettings.ActiveAlternativeApiBaseUrl.Returns(PROXY_HOST);
-        ApiHostProvider sut = new(_appSettings, _config);
-        await sut.OnVpnStateChanged(new VpnStateChangedEventArgs(new VpnState(VpnStatus.Disconnected), VpnError.None,
-            false));
+        _settings.IsAlternativeRoutingEnabled.Returns(true);
+        _settings.ActiveAlternativeApiBaseUrl.Returns(PROXY_HOST);
+        _connectionManager.IsDisconnected.Returns(true);
+        ApiHostProvider sut = new(_settings, _config, _connectionManager);
 
         // Assert
         sut.IsProxyActive().Should().BeTrue();
     }
 
     [TestMethod]
-    public async Task ProxyShouldBeDisabledWhenConnectedToVpn()
+    public void ProxyShouldBeDisabledWhenConnectedToVpn()
     {
         // Arrange
-        _appSettings.DoHEnabled.Returns(true);
-        _appSettings.LastPrimaryApiFailDateUtc.Returns(DateTime.UtcNow.Subtract(TimeSpan.FromHours(2)));
-        _appSettings.ActiveAlternativeApiBaseUrl.Returns(PROXY_HOST);
-        ApiHostProvider sut = new(_appSettings, _config);
-        await sut.OnVpnStateChanged(new VpnStateChangedEventArgs(new VpnState(VpnStatus.Connected), VpnError.None,
-            false));
+        _settings.IsAlternativeRoutingEnabled.Returns(true);
+        _settings.ActiveAlternativeApiBaseUrl.Returns(PROXY_HOST);
+        _connectionManager.IsDisconnected.Returns(false);
+        ApiHostProvider sut = new(_settings, _config, _connectionManager);
 
         // Assert
         sut.IsProxyActive().Should().BeFalse();
     }
 
     [TestMethod]
-    public async Task ProxyShouldBeDisabledAfter24Hours()
+    public void ProxyShouldBeDisabledWhenAlternativeHostIsEmpty()
     {
         // Arrange
-        _appSettings.DoHEnabled.Returns(true);
-        _appSettings.LastPrimaryApiFailDateUtc.Returns(DateTime.UtcNow.Subtract(TimeSpan.FromHours(25)));
-        _appSettings.ActiveAlternativeApiBaseUrl.Returns(PROXY_HOST);
-        ApiHostProvider sut = new(_appSettings, _config);
-        await sut.OnVpnStateChanged(new VpnStateChangedEventArgs(new VpnState(VpnStatus.Disconnected), VpnError.None,
-            false));
+        _settings.IsAlternativeRoutingEnabled.Returns(true);
+        _settings.ActiveAlternativeApiBaseUrl.Returns(string.Empty);
+        _connectionManager.IsDisconnected.Returns(true);
+        ApiHostProvider sut = new(_settings, _config, _connectionManager);
 
         // Assert
         sut.IsProxyActive().Should().BeFalse();
     }
 
     [TestMethod]
-    public async Task ItShouldReturnAlternativeHostWhenProxyIsActive()
+    public void ItShouldReturnAlternativeHostWhenProxyIsActive()
     {
         // Arrange
         _config.Urls.ApiUrl.Returns(API_URL);
-        _appSettings.ActiveAlternativeApiBaseUrl.Returns(PROXY_HOST);
-        _appSettings.DoHEnabled.Returns(true);
-        _appSettings.LastPrimaryApiFailDateUtc.Returns(DateTime.UtcNow.Subtract(TimeSpan.FromHours(2)));
-        ApiHostProvider sut = new(_appSettings, _config);
-        await sut.OnVpnStateChanged(new VpnStateChangedEventArgs(new VpnState(VpnStatus.Disconnected), VpnError.None,
-            false));
+        _settings.ActiveAlternativeApiBaseUrl.Returns(PROXY_HOST);
+        _settings.IsAlternativeRoutingEnabled.Returns(true);
+        _connectionManager.IsDisconnected.Returns(true);
+        ApiHostProvider sut = new(_settings, _config, _connectionManager);
 
         // Assert
-        sut.GetHost().Should().Be(PROXY_HOST);
+        sut.GetBaseUri().Should().Be($"https://{PROXY_HOST}/");
     }
 
     [TestMethod]
@@ -128,11 +119,11 @@ public class ApiHostProviderTest
     {
         // Arrange
         _config.Urls.ApiUrl.Returns(API_URL);
-        _appSettings.ActiveAlternativeApiBaseUrl.Returns(PROXY_HOST);
-        _appSettings.DoHEnabled.Returns(false);
-        ApiHostProvider sut = new(_appSettings, _config);
+        _settings.ActiveAlternativeApiBaseUrl.Returns(PROXY_HOST);
+        _settings.IsAlternativeRoutingEnabled.Returns(false);
+        ApiHostProvider sut = new(_settings, _config, _connectionManager);
 
         // Assert
-        sut.GetHost().Should().Be(API_HOST);
+        sut.GetBaseUri().Should().Be($"https://{API_HOST}/");
     }
 }

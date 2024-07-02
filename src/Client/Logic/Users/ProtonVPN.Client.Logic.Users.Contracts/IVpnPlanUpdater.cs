@@ -17,13 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Api.Contracts;
-using ProtonVPN.Api.Contracts.Auth;
-
 namespace ProtonVPN.Client.Logic.Users.Contracts;
 
 public interface IVpnPlanUpdater
 {
-    Task<ApiResponseResult<VpnInfoWrapperResponse>?> ForceUpdateAsync();
-    Task<ApiResponseResult<VpnInfoWrapperResponse>?> UpdateAsync();
+    Task<VpnPlanChangeResult> ForceUpdateAsync();
+    Task<VpnPlanChangeResult> UpdateAsync();
 }

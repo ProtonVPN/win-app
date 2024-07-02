@@ -167,12 +167,6 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
-    public bool IsAlternativeRoutingEnabled
-    {
-        get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsAlternativeRoutingEnabled;
-        set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
-    }
-
     public bool IsIpv6LeakProtectionEnabled
     {
         get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsIpv6LeakProtectionEnabled;

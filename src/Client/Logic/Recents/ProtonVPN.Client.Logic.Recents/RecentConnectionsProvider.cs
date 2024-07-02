@@ -17,10 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Api.Contracts;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
@@ -50,6 +52,7 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider,
     private readonly IServersLoader _serversLoader;
     private readonly IConnectionManager _connectionManager;
     private readonly IEventMessageSender _eventMessageSender;
+    private readonly IGuestHoleManager _guestHoleManager;
     private readonly IRecentsFileReaderWriter _recentsFileReaderWriter;
 
     private readonly object _lock = new();
@@ -63,6 +66,7 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider,
         IServersLoader serversLoader,
         IConnectionManager connectionManager,
         IEventMessageSender eventMessageSender,
+        IGuestHoleManager guestHoleManager,
         IRecentsFileReaderWriter recentsFileReaderWriter)
     {
         _logger = logger;
@@ -70,6 +74,7 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider,
         _serversLoader = serversLoader;
         _connectionManager = connectionManager;
         _eventMessageSender = eventMessageSender;
+        _guestHoleManager = guestHoleManager;
         _recentsFileReaderWriter = recentsFileReaderWriter;
     }
 
@@ -162,6 +167,11 @@ public class RecentConnectionsProvider : IRecentConnectionsProvider,
 
     public void Receive(ConnectionStatusChanged message)
     {
+        if (_guestHoleManager.IsActive)
+        {
+            return;
+        }
+
         lock (_lock)
         {
             IConnectionIntent connectionIntent = _connectionManager.CurrentConnectionIntent;

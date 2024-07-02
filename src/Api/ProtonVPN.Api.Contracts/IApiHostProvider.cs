@@ -17,11 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Api.Contracts
+using System;
+
+namespace ProtonVPN.Api.Contracts;
+
+public interface IApiHostProvider
 {
-    public interface IApiHostProvider
-    {
-        string GetHost();
-        bool IsProxyActive();
-    }
+    Uri GetBaseUri();
+    bool IsProxyActive();
 }

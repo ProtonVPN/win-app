@@ -42,6 +42,7 @@ using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using Windows.System;
+using ProtonVPN.Common.Legacy.Abstract;
 
 namespace ProtonVPN.Client.UI.Login.Forms;
 
@@ -56,7 +57,7 @@ public partial class LoginFormViewModel :
     private readonly IReportIssueDialogActivator _reportIssueDialogActivator;
     private readonly IFeatureFlagsObserver _featureFlagsObserver;
     private readonly IApiAvailabilityVerifier _apiAvailabilityVerifier;
-    private readonly IGuestHoleActionExecutor _guestHoleActionExecutor;
+    private readonly IGuestHoleManager _guestHoleManager;
 
     private readonly SsoLoginOverlayViewModel _ssoLoginOverlayViewModel;
 
@@ -115,7 +116,7 @@ public partial class LoginFormViewModel :
         IEventMessageSender eventMessageSender,
         IUserAuthenticator userAuthenticator,
         IApiAvailabilityVerifier apiAvailabilityVerifier,
-        IGuestHoleActionExecutor guestHoleActionExecutor,
+        IGuestHoleManager guestHoleManager,
         IReportIssueDialogActivator reportIssueDialogActivator,
         IFeatureFlagsObserver featureFlagsObserver,
         ILogger logger,
@@ -127,7 +128,7 @@ public partial class LoginFormViewModel :
         _eventMessageSender = eventMessageSender;
         _userAuthenticator = userAuthenticator;
         _apiAvailabilityVerifier = apiAvailabilityVerifier;
-        _guestHoleActionExecutor = guestHoleActionExecutor;
+        _guestHoleManager = guestHoleManager;
         _reportIssueDialogActivator = reportIssueDialogActivator;
         _featureFlagsObserver = featureFlagsObserver;
         _ssoLoginOverlayViewModel = ssoLoginOverlayViewModel;
@@ -151,7 +152,7 @@ public partial class LoginFormViewModel :
 
             if (result.Success)
             {
-                await HandleSuccessAsync();
+                HandleSuccess();
             }
             else
             {
@@ -195,13 +196,8 @@ public partial class LoginFormViewModel :
             : result;
     }
 
-    private async Task HandleSuccessAsync()
+    private void HandleSuccess()
     {
-        if (_guestHoleActionExecutor.IsActive())
-        {
-            await _guestHoleActionExecutor.DisconnectAsync();
-        }
-
         _eventMessageSender.Send(new LoginStateChangedMessage(LoginState.Success));
     }
 
@@ -299,7 +295,7 @@ public partial class LoginFormViewModel :
             }
             else
             {
-                await _guestHoleActionExecutor.ExecuteAsync(OpenCreateAccountPageAsync);
+                await _guestHoleManager.ExecuteAsync<Result>(OpenCreateAccountPageAsync);
             }
         }
         finally
@@ -308,9 +304,10 @@ public partial class LoginFormViewModel :
         }
     }
 
-    private async Task OpenCreateAccountPageAsync()
+    private async Task<Result> OpenCreateAccountPageAsync()
     {
         await Launcher.LaunchUriAsync(new Uri(_urls.CreateAccount));
+        return Result.Ok();
     }
 
     public void Receive(FeatureFlagsChangedMessage message)

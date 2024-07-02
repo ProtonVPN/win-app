@@ -139,6 +139,7 @@ public static class DefaultConfiguration
     public static string GuestHoleVpnUsername => "guest";
     public static string GuestHoleVpnPassword => "guest";
     public static string VpnUsernameSuffix => "+pw"; // p - proton, w - windows
+    public static string DoHVerifyApiHost => "verify-api.protonvpn.com";
 
     public static long BugReportingMaxFileSize => 488 * 1024;
     public static int MaxClientLogsAttached => 3;

@@ -132,9 +132,9 @@ public class GlobalSettings : IGlobalSettings
         set => _globalCache.SetReferenceType(value, SettingEncryption.Unencrypted);
     }
 
-    public bool IsDoHEnabled
+    public bool IsAlternativeRoutingEnabled
     {
-        get => _globalCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsDoHEnabled;
+        get => _globalCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsAlternativeRoutingEnabled;
         set => _globalCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
@@ -196,6 +196,12 @@ public class GlobalSettings : IGlobalSettings
     {
         get => _globalCache.GetValueType<ChangeServerSettings>(SettingEncryption.Encrypted) ?? DefaultSettings.ChangeServerSettings;
         set => _globalCache.SetValueType<ChangeServerSettings>(value, SettingEncryption.Encrypted);
+    }
+
+    public string? ActiveAlternativeApiBaseUrl
+    {
+        get => _globalCache.GetReferenceType<string>(SettingEncryption.Unencrypted);
+        set => _globalCache.SetReferenceType(value, SettingEncryption.Unencrypted);
     }
 
     public bool IsShareCrashReportsEnabled

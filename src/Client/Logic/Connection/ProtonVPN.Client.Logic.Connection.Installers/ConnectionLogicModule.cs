@@ -38,7 +38,7 @@ public class ConnectionLogicModule : Module
         builder.RegisterType<AppController>().As<IAppController>().SingleInstance();
         builder.RegisterType<GuestHoleServersFileStorage>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<GuestHoleConnector>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<GuestHoleActionExecutor>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<GuestHoleManager>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<NetworkAdapterValidator>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<VpnStateIpcEntityHandler>().AsImplementedInterfaces().AutoActivate().SingleInstance();
         builder.RegisterType<ConnectionErrorHandler>().AsImplementedInterfaces().SingleInstance();

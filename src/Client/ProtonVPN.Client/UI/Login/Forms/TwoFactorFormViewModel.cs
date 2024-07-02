@@ -38,7 +38,7 @@ public partial class TwoFactorFormViewModel : PageViewModelBase<ILoginViewNaviga
 {
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IUserAuthenticator _userAuthenticator;
-    private readonly IGuestHoleActionExecutor _guestHoleActionExecutor;
+    private readonly IGuestHoleManager _guestHoleManager;
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(AuthenticateCommand))]
@@ -54,14 +54,14 @@ public partial class TwoFactorFormViewModel : PageViewModelBase<ILoginViewNaviga
         ILocalizationProvider localizationProvider, 
         IEventMessageSender eventMessageSender,
         IUserAuthenticator userAuthenticator, 
-        IGuestHoleActionExecutor guestHoleActionExecutor,
+        IGuestHoleManager guestHoleManager,
         ILogger logger,
         IIssueReporter issueReporter) 
         : base(loginViewNavigator, localizationProvider, logger, issueReporter)
     {
         _eventMessageSender = eventMessageSender;
         _userAuthenticator = userAuthenticator;
-        _guestHoleActionExecutor = guestHoleActionExecutor;
+        _guestHoleManager = guestHoleManager;
     }
 
     [RelayCommand(CanExecute=nameof(CanAuthenticate))]
@@ -76,9 +76,9 @@ public partial class TwoFactorFormViewModel : PageViewModelBase<ILoginViewNaviga
             AuthResult result = await _userAuthenticator.SendTwoFactorCodeAsync(twoFactorCode);
             if (result.Success)
             {
-                if (_guestHoleActionExecutor.IsActive())
+                if (_guestHoleManager.IsActive)
                 {
-                    await _guestHoleActionExecutor.DisconnectAsync();
+                    await _guestHoleManager.DisconnectAsync();
                 }
 
                 _eventMessageSender.Send(new LoginStateChangedMessage(LoginState.Success));

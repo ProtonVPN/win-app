@@ -33,6 +33,7 @@ public partial class Configuration : StaticConfiguration, IConfiguration
     public string GuestHoleVpnUsername => Get();
     public string GuestHoleVpnPassword => Get();
     public string VpnUsernameSuffix => Get();
+    public string DoHVerifyApiHost => Get();
 
     public long BugReportingMaxFileSize => Get();
     public int MaxClientLogsAttached => Get();

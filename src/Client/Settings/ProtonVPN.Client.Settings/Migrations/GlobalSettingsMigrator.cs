@@ -187,7 +187,6 @@ public class GlobalSettingsMigrator : IGlobalSettingsMigrator
         {
             { nameof(IUserSettings.IsNotificationEnabled), GetSettingValue("ShowNotifications") },
             { nameof(IUserSettings.IsVpnAcceleratorEnabled), GetSettingValue("VpnAcceleratorEnabled") },
-            { nameof(IUserSettings.IsAlternativeRoutingEnabled), GetSettingValue("DoHEnabled") },
             { nameof(IUserSettings.IsIpv6LeakProtectionEnabled), GetSettingValue("Ipv6LeakProtection") },
             { nameof(IUserSettings.IsNetShieldEnabled), GetUserSetting(username, "UserNetShieldEnabled") },
 
@@ -445,6 +444,12 @@ public class GlobalSettingsMigrator : IGlobalSettingsMigrator
         if (areAutomaticUpdatesEnabled.HasValue)
         {
             _globalSettings.AreAutomaticUpdatesEnabled = areAutomaticUpdatesEnabled.Value;
+        }
+
+        bool? isAlternativeRoutingEnabled = IsGlobalSettingEnabled("DoHEnabled");
+        if (isAlternativeRoutingEnabled.HasValue)
+        {
+            _globalSettings.IsAlternativeRoutingEnabled = isAlternativeRoutingEnabled.Value;
         }
 
         MigrateKillSwitch();

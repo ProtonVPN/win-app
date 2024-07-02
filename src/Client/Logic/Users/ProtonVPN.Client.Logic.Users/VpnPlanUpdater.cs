@@ -20,7 +20,6 @@
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
@@ -37,7 +36,6 @@ public class VpnPlanUpdater : IVpnPlanUpdater
     private readonly ILogger _logger;
     private readonly IConfiguration _configuration;
     private readonly IEventMessageSender _eventMessageSender;
-    private readonly IConnectionCertificateManager _connectionCertificateManager;
     private readonly SemaphoreSlim _semaphore = new(1, 1);
 
     private DateTime _minimumRequestDateUtc = DateTime.MinValue;
@@ -46,32 +44,32 @@ public class VpnPlanUpdater : IVpnPlanUpdater
         ISettings settings,
         ILogger logger,
         IConfiguration configuration,
-        IEventMessageSender eventMessageSender,
-        IConnectionCertificateManager connectionCertificateManager)
+        IEventMessageSender eventMessageSender)
     {
         _apiClient = apiClient;
         _settings = settings;
         _logger = logger;
         _configuration = configuration;
         _eventMessageSender = eventMessageSender;
-        _connectionCertificateManager = connectionCertificateManager;
     }
 
-    public async Task<ApiResponseResult<VpnInfoWrapperResponse>?> ForceUpdateAsync()
+    public async Task<VpnPlanChangeResult> ForceUpdateAsync()
     {
         return await EnqueueRequestAsync(isToForceRequest: true);
     }
 
-    public async Task<ApiResponseResult<VpnInfoWrapperResponse>?> UpdateAsync()
+    public async Task<VpnPlanChangeResult> UpdateAsync()
     {
         return await EnqueueRequestAsync(isToForceRequest: false);
     }
 
-    private async Task<ApiResponseResult<VpnInfoWrapperResponse>?> EnqueueRequestAsync(bool isToForceRequest)
+    private async Task<VpnPlanChangeResult> EnqueueRequestAsync(bool isToForceRequest)
     {
         await _semaphore.WaitAsync();
 
         ApiResponseResult<VpnInfoWrapperResponse>? response = null;
+        VpnPlanChangedMessage? vpnPlanChangedMessage = null;
+
         try
         {
             if (isToForceRequest || IsToRequest())
@@ -84,7 +82,8 @@ public class VpnPlanUpdater : IVpnPlanUpdater
 
                 if (response.Success)
                 {
-                    OnResponseSuccess(response.Value.Vpn);
+                    vpnPlanChangedMessage = GetVpnPlanChangeMessage(response.Value.Vpn);
+                    OnResponseSuccess(vpnPlanChangedMessage);
                 }
                 else
                 {
@@ -103,7 +102,19 @@ public class VpnPlanUpdater : IVpnPlanUpdater
         {
             _semaphore.Release();
         }
-        return response;
+
+        return new VpnPlanChangeResult
+        {
+            ApiResponse = response,
+            PlanChangeMessage = vpnPlanChangedMessage
+        };
+    }
+
+    private VpnPlanChangedMessage GetVpnPlanChangeMessage(VpnInfoResponse vpnInfoResponse)
+    {
+        VpnPlan oldPlan = _settings.VpnPlan;
+        VpnPlan newPlan = new(vpnInfoResponse.PlanTitle, vpnInfoResponse.PlanName, vpnInfoResponse.MaxTier);
+        return new(oldPlan: oldPlan, newPlan: newPlan);
     }
 
     private bool IsToRequest()
@@ -111,15 +122,11 @@ public class VpnPlanUpdater : IVpnPlanUpdater
         return DateTime.UtcNow >= _minimumRequestDateUtc;
     }
 
-    private void OnResponseSuccess(VpnInfoResponse vpnInfoResponse)
+    private void OnResponseSuccess(VpnPlanChangedMessage message)
     {
-        VpnPlan oldPlan = _settings.VpnPlan;
-        VpnPlan newPlan = new(vpnInfoResponse.PlanTitle, vpnInfoResponse.PlanName, vpnInfoResponse.MaxTier);
-        VpnPlanChangedMessage message = new(oldPlan: oldPlan, newPlan: newPlan);
-
         if (message.HasChanged())
         {
-            _settings.VpnPlan = newPlan;
+            _settings.VpnPlan = message.NewPlan;
             _eventMessageSender.Send(message);
         }
     }

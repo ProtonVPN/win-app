@@ -19,7 +19,6 @@
 
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
@@ -28,18 +27,13 @@ using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Logic.Users.Handlers;
 
-public class VpnPlanChangedHandler :
-    IEventMessageReceiver<VpnPlanChangedMessage>,
-    IEventMessageReceiver<LoggedInMessage>
+public class VpnPlanChangedHandler : IEventMessageReceiver<VpnPlanChangedMessage>
 {
     private readonly ILogger _logger;
     private readonly IServersUpdater _serversUpdater;
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IConnectionManager _connectionManager;
     private readonly IConnectionCertificateManager _connectionCertificateManager;
-
-    private bool _hasVpnPlanChanged;
-    private bool _isDowngrade;
 
     public VpnPlanChangedHandler(ILogger logger,
         IServersUpdater serversUpdater,
@@ -56,16 +50,9 @@ public class VpnPlanChangedHandler :
 
     public async void Receive(VpnPlanChangedMessage message)
     {
-        bool isDowngrade = message.IsDowngrade();
-
         if (_userAuthenticator.IsLoggedIn)
         {
-            await HandleVpnPlanChangeAsync(isDowngrade);
-        }
-        else
-        {
-            _hasVpnPlanChanged = true;
-            _isDowngrade = isDowngrade;
+            await HandleVpnPlanChangeAsync(message.IsDowngrade());
         }
     }
 
@@ -81,16 +68,6 @@ public class VpnPlanChangedHandler :
         {
             _logger.Info<AppLog>("Reconnecting due to VPN plan downgrade.");
             await _connectionManager.ReconnectIfNotRecentlyReconnectedAsync();
-        }
-    }
-
-    public async void Receive(LoggedInMessage message)
-    {
-        if (_hasVpnPlanChanged)
-        {
-            await HandleVpnPlanChangeAsync(_isDowngrade);
-            _hasVpnPlanChanged = false;
-            _isDowngrade = false;
         }
     }
 }

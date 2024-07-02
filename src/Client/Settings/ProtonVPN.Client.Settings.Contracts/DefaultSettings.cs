@@ -46,7 +46,6 @@ public static class DefaultSettings
     public static bool IsAlternativeRoutingEnabled = true;
     public static bool IsCustomDnsServersEnabled = false;
     public static List<CustomDnsServer> CustomDnsServersList = [];
-    public static bool IsDoHEnabled = true;
     public static int[] WireGuardUdpPorts = [443, 88, 1224, 51820, 500, 4500];
     public static int[] WireGuardTcpPorts = [443];
     public static int[] WireGuardTlsPorts = [443];
