@@ -32,6 +32,7 @@ public interface IConfiguration : IStaticConfiguration
     string GuestHoleVpnUsername { get; }
     string GuestHoleVpnPassword { get; }
     string VpnUsernameSuffix { get; }
+    string DoHVerifyApiHost { get; }
 
     long BugReportingMaxFileSize { get; }
     int MaxClientLogsAttached { get; }

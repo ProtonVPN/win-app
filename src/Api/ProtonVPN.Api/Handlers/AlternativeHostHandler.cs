@@ -24,16 +24,16 @@ using System.Security.Authentication;
 using System.Threading;
 using System.Threading.Tasks;
 using Polly.Timeout;
-using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Exceptions;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.Extensions;
-using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Configurations.Contracts;
-using ProtonVPN.Core.Auth;
-using ProtonVPN.Core.Vpn;
 using ProtonVPN.Dns.Contracts;
 using ProtonVPN.Dns.Contracts.AlternativeRouting;
 using ProtonVPN.Dns.Contracts.Exceptions;
@@ -42,7 +42,11 @@ using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 
 namespace ProtonVPN.Api.Handlers;
 
-public class AlternativeHostHandler : DelegatingHandler, ILoggedInAware, ILogoutAware
+public class AlternativeHostHandler : DelegatingHandler,
+    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<LoggedInMessage>,
+    IEventMessageReceiver<LoggedOutMessage>,
+    IEventMessageReceiver<GuestHoleStatusChangedMessage>
 {
     public const string API_PING_TEST_PATH = "tests/ping";
     private const string NO_ALTERNATIVE_HOSTS_ERROR_MESSAGE = "No alternative hosts exist. Alternative routing failed.";
@@ -53,15 +57,14 @@ public class AlternativeHostHandler : DelegatingHandler, ILoggedInAware, ILogout
     private readonly IAlternativeRoutingHostGenerator _alternativeRoutingHostGenerator;
     private readonly IAlternativeHostsManager _alternativeHostsManager;
     private readonly ISettings _settings;
-    private readonly IGuestHoleState _guestHoleState;
     private readonly string _defaultApiHost;
     private readonly TimeSpan _alternativeRoutingCheckInterval;
     private readonly SemaphoreSlim _semaphore = new(1, 1);
 
+    private bool _isGuestHoleActive;
     private bool _isDisconnected = true;
     private bool _isUserLoggedIn;
     private DateTime? _lastAlternativeRoutingCheckDateUtc;
-    private string _activeAlternativeHost;
 
     public AlternativeHostHandler(
         ILogger logger,
@@ -69,7 +72,6 @@ public class AlternativeHostHandler : DelegatingHandler, ILoggedInAware, ILogout
         IAlternativeRoutingHostGenerator alternativeRoutingHostGenerator,
         IAlternativeHostsManager alternativeHostsManager,
         ISettings settings,
-        IGuestHoleState guestHoleState,
         IConfiguration config)
     {
         _logger = logger;
@@ -77,14 +79,13 @@ public class AlternativeHostHandler : DelegatingHandler, ILoggedInAware, ILogout
         _alternativeRoutingHostGenerator = alternativeRoutingHostGenerator;
         _alternativeHostsManager = alternativeHostsManager;
         _settings = settings;
-        _guestHoleState = guestHoleState;
         _defaultApiHost = new Uri(config.Urls.ApiUrl).Host;
         _alternativeRoutingCheckInterval = config.AlternativeRoutingCheckInterval;
     }
 
-    public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
+    public void Receive(ConnectionStatusChanged message)
     {
-        _isDisconnected = e.State.Status == VpnStatus.Disconnected;
+        _isDisconnected = message.ConnectionStatus == ConnectionStatus.Disconnected;
     }
 
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
@@ -121,13 +122,13 @@ public class AlternativeHostHandler : DelegatingHandler, ILoggedInAware, ILogout
 
     private bool IsAlternativeRoutingEnabled()
     {
-        return !_activeAlternativeHost.IsNullOrEmpty();
+        return !_settings.ActiveAlternativeApiBaseUrl.IsNullOrEmpty();
     }
 
     private async Task<HttpResponseMessage> SendRequestWithActiveAlternativeHostAsync(HttpRequestMessage request,
         CancellationToken cancellationToken)
     {
-        string alternativeHost = _activeAlternativeHost;
+        string alternativeHost = _settings.ActiveAlternativeApiBaseUrl;
         if (!alternativeHost.IsNullOrEmpty())
         {
             try
@@ -170,12 +171,12 @@ public class AlternativeHostHandler : DelegatingHandler, ILoggedInAware, ILogout
 
     private bool IsAlternativeRoutingAllowed()
     {
-        return _isDisconnected && !_guestHoleState.IsActive && IsAlternativeRoutingSettingEnabled();
+        return _isDisconnected && !_isGuestHoleActive && IsAlternativeRoutingSettingEnabled();
     }
 
     private bool IsAlternativeRoutingSettingEnabled()
     {
-        return _settings.IsDoHEnabled;
+        return _settings.IsAlternativeRoutingEnabled;
     }
 
     private async Task<HttpResponseMessage> TrySendRequestAsync(HttpRequestMessage request, CancellationToken cancellationToken)
@@ -309,7 +310,7 @@ public class AlternativeHostHandler : DelegatingHandler, ILoggedInAware, ILogout
         try
         {
             _lastAlternativeRoutingCheckDateUtc = null;
-            _activeAlternativeHost = null;
+            _settings.ActiveAlternativeApiBaseUrl = null;
         }
         finally
         {
@@ -399,7 +400,7 @@ public class AlternativeHostHandler : DelegatingHandler, ILoggedInAware, ILogout
         try
         {
             _lastAlternativeRoutingCheckDateUtc = DateTime.UtcNow;
-            _activeAlternativeHost = alternativeHost;
+            _settings.ActiveAlternativeApiBaseUrl = alternativeHost;
         }
         finally
         {
@@ -442,13 +443,18 @@ public class AlternativeHostHandler : DelegatingHandler, ILoggedInAware, ILogout
         request.RequestUri = uriBuilder.Uri;
     }
 
-    public void OnUserLoggedIn()
+    public void Receive(LoggedInMessage message)
     {
         _isUserLoggedIn = true;
     }
 
-    public void OnUserLoggedOut()
+    public void Receive(LoggedOutMessage message)
     {
         _isUserLoggedIn = false;
+    }
+
+    public void Receive(GuestHoleStatusChangedMessage message)
+    {
+        _isGuestHoleActive = message.IsActive;
     }
 }

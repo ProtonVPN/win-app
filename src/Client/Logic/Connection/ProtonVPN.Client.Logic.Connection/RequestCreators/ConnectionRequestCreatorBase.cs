@@ -50,7 +50,7 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
 
     protected abstract Task<VpnCredentialsIpcEntity> GetVpnCredentialsAsync();
 
-    protected VpnConfigIpcEntity GetVpnConfig(MainSettingsIpcEntity settings)
+    protected virtual VpnConfigIpcEntity GetVpnConfig(MainSettingsIpcEntity settings)
     {
         return new VpnConfigIpcEntity
         {

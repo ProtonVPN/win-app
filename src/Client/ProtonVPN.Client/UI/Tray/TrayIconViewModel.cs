@@ -26,6 +26,7 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Recents.Contracts;
@@ -48,6 +49,7 @@ public partial class TrayIconViewModel :
     private readonly IConnectionManager _connectionManager;
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IOverlayActivator _overlayActivator;
+    private readonly IGuestHoleManager _guestHoleManager;
     private readonly IApplicationIconSelector _applicationIconSelector;
 
     public ImageSource IconSource => _applicationIconSelector.Get();
@@ -66,6 +68,7 @@ public partial class TrayIconViewModel :
         ILogger logger,
         IIssueReporter issueReporter,
         IOverlayActivator overlayActivator,
+        IGuestHoleManager guestHoleManager,
         IApplicationIconSelector applicationIconSelector)
         : base(localizationProvider, logger, issueReporter)
     {
@@ -74,6 +77,7 @@ public partial class TrayIconViewModel :
         _connectionManager = connectionManager;
         _userAuthenticator = userAuthenticator;
         _overlayActivator = overlayActivator;
+        _guestHoleManager = guestHoleManager;
         _applicationIconSelector = applicationIconSelector;
     }
 

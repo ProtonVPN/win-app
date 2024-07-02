@@ -22,6 +22,7 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Settings.Contracts;
@@ -32,21 +33,24 @@ public class ConnectionStatusNotificationSender : IConnectionStatusNotificationS
 {
     private readonly ISettings _settings;
     private readonly ILocalizationProvider _localizer;
+    private readonly IGuestHoleManager _guestHoleManager;
     private readonly IConnectionManager _connectionManager;
 
     private ConnectionStatus _lastStatus;
 
     public ConnectionStatusNotificationSender(ISettings settings, ILocalizationProvider localizer,
+        IGuestHoleManager guestHoleManager,
         IConnectionManager connectionManager)
     {
         _settings = settings;
         _localizer = localizer;
+        _guestHoleManager = guestHoleManager;
         _connectionManager = connectionManager;
     }
 
     public void Send(ConnectionStatus currentStatus)
     {
-        if (!IsToNotify(currentStatus))
+        if (_guestHoleManager.IsActive || !IsToNotify(currentStatus))
         {
             return;
         }

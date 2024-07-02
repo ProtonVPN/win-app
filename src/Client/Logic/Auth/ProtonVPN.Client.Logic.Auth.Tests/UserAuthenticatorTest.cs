@@ -51,7 +51,7 @@ public class UserAuthenticatorTest
     private ISettings _settings;
     private IConnectionCertificateManager _connectionCertificateManager;
     private IEventMessageSender _eventMessageSender;
-    private IGuestHoleActionExecutor _guestHoleActionExecutor;
+    private IGuestHoleManager _guestHoleManager;
     private ITokenClient _tokenClient;
     private IConnectionManager _connectionManager;
     private IServersUpdater _serversUpdater;
@@ -66,7 +66,7 @@ public class UserAuthenticatorTest
         _settings = Substitute.For<ISettings>();
         _connectionCertificateManager = Substitute.For<IConnectionCertificateManager>();
         _eventMessageSender = Substitute.For<IEventMessageSender>();
-        _guestHoleActionExecutor = Substitute.For<IGuestHoleActionExecutor>();
+        _guestHoleManager = Substitute.For<IGuestHoleManager>();
         _tokenClient = Substitute.For<ITokenClient>();
         _connectionManager = Substitute.For<IConnectionManager>();
         _serversUpdater = Substitute.For<IServersUpdater>();
@@ -82,7 +82,7 @@ public class UserAuthenticatorTest
         _settings = null;
         _connectionCertificateManager = null;
         _eventMessageSender = null;
-        _guestHoleActionExecutor = null;
+        _guestHoleManager = null;
         _tokenClient = null;
         _connectionManager = null;
         _serversUpdater = null;
@@ -148,7 +148,7 @@ public class UserAuthenticatorTest
     private UserAuthenticator GetUserAuthenticator()
     {
         return new(_logger, _apiClient, _connectionCertificateManager, _settings, _eventMessageSender,
-            _guestHoleActionExecutor, _tokenClient, _connectionManager, _serversUpdater,
+            _guestHoleManager, _tokenClient, _connectionManager, _serversUpdater,
             _userSettingsMigrator, _vpnPlanUpdater);
     }
 }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,13 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
+namespace ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 
-namespace ProtonVPN.Api.Contracts;
-
-public interface IGuestHoleState
+public class GuestHoleStatusChangedMessage
 {
-    event EventHandler<bool> GuestHoleStateChanged;
-    bool IsActive { get; }
-    void SetState(bool isActive);
+    public bool IsActive { get; }
+
+    public GuestHoleStatusChangedMessage(bool isActive)
+    {
+        IsActive = isActive;
+    }
 }

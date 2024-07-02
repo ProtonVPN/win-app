@@ -33,7 +33,6 @@
         <ProjectReference Include="..\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj" />
         <ProjectReference Include="..\ProtonVPN.Api\ProtonVPN.Api.csproj" />
         <ProjectReference Include="..\..\ProtonVPN.Common.Legacy\ProtonVPN.Common.Legacy.csproj" />
-        <ProjectReference Include="..\..\ProtonVPN.Core\ProtonVPN.Core.csproj" />
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="FluentAssertions" />

@@ -21,6 +21,7 @@ using System.Security.Cryptography.X509Certificates;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.Web.WebView2.Core;
 using Newtonsoft.Json;
+using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.HumanVerification;
 using ProtonVPN.Api.Handlers.TlsPinning;
 using ProtonVPN.Configurations.Contracts;
@@ -31,12 +32,15 @@ namespace ProtonVPN.Client.UI.Login.Overlays;
 
 public sealed partial class HumanVerificationOverlayDialog
 {
+    private const string CSP_HEADER = "Content-Security-Policy";
     private const int WEBVIEW_ADDED_HEIGHT = 124;
 
     private readonly ILogger _logger;
     private readonly IHumanVerificationConfig _humanVerificationConfig;
     private readonly IConfiguration _config;
     private readonly ICertificateValidator _certificateValidator;
+    private readonly IApiHostProvider _apiHostProvider;
+    private readonly HttpClient _httpClient;
 
     public HumanVerificationOverlayDialog()
     {
@@ -44,6 +48,8 @@ public sealed partial class HumanVerificationOverlayDialog
         _humanVerificationConfig = App.GetService<IHumanVerificationConfig>();
         _config = App.GetService<IConfiguration>();
         _certificateValidator = App.GetService<ICertificateValidator>();
+        _apiHostProvider = App.GetService<IApiHostProvider>();
+        _httpClient = new HttpClient(App.GetService<TlsPinnedCertificateHandler>());
 
         ViewModel = App.GetService<HumanVerificationOverlayViewModel>();
         UserDataFolder = App.GetService<IConfiguration>().WebViewFolder;
@@ -79,11 +85,59 @@ public sealed partial class HumanVerificationOverlayDialog
             await WebView2.CoreWebView2.ClearServerCertificateErrorActionsAsync();
             WebView2.CoreWebView2.ServerCertificateErrorDetected += OnServerCertificateErrorDetected;
             WebView2.WebMessageReceived += WebView2_WebMessageReceived;
+
+            WebView2.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.All);
+            WebView2.CoreWebView2.WebResourceRequested += CoreWebView2_WebResourceRequested;
         }
         catch (Exception ex)
         {
             _logger.Error<AppLog>("Failed to initialize CoreWebView2 server certificate handler.", ex);
         }
+    }
+
+    private void CoreWebView2_WebResourceRequested(CoreWebView2 sender, CoreWebView2WebResourceRequestedEventArgs args)
+    {
+        HttpRequestMessage request = new(new HttpMethod(args.Request.Method), args.Request.Uri);
+        foreach (KeyValuePair<string, string> pair in args.Request.Headers)
+        {
+            request.Headers.Add(pair.Key, pair.Value);
+        }
+
+        if (_apiHostProvider.IsProxyActive())
+        {
+            request.Headers.Add("X-PM-DoH-Host", _config.DoHVerifyApiHost);
+        }
+
+        try
+        {
+            HttpResponseMessage response = _httpClient.Send(request);
+            args.Response = ModifyResponseMessage(response);
+        }
+        catch (HttpRequestException ex)
+        {
+            _logger.Error<AppLog>("Failed to fetch webview resource.", ex);
+        }
+    }
+
+    private CoreWebView2WebResourceResponse ModifyResponseMessage(HttpResponseMessage response)
+    {
+        CoreWebView2WebResourceResponse modifiedResponse =
+            WebView2.CoreWebView2.Environment.CreateWebResourceResponse(
+                response.Content.ReadAsStream().AsRandomAccessStream(),
+                (int)response.StatusCode,
+                response.ReasonPhrase,
+                string.Empty);
+
+        IEnumerable<KeyValuePair<string, IEnumerable<string>>> headers = response.Headers
+            .Where(h => h.Key != CSP_HEADER)
+            .Concat(response.Content.Headers);
+
+        foreach (KeyValuePair<string, IEnumerable<string>> header in headers)
+        {
+            modifiedResponse.Headers.AppendHeader(header.Key, string.Join(",", header.Value));
+        }
+
+        return modifiedResponse;
     }
 
     private void WebView2_WebMessageReceived(WebView2 sender, CoreWebView2WebMessageReceivedEventArgs args)

@@ -33,7 +33,6 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
 using ProtonVPN.Client.Logic.Users.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Migrations;
-using ProtonVPN.Common.Legacy.Abstract;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
@@ -51,7 +50,7 @@ public class UserAuthenticator : IUserAuthenticator
     private readonly IConnectionCertificateManager _connectionCertificateManager;
     private readonly ISettings _settings;
     private readonly IEventMessageSender _eventMessageSender;
-    private readonly IGuestHoleActionExecutor _guestHoleActionExecutor;
+    private readonly IGuestHoleManager _guestHoleManager;
     private readonly ITokenClient _tokenClient;
     private readonly IConnectionManager _connectionManager;
     private readonly IServersUpdater _serversUpdater;
@@ -70,7 +69,7 @@ public class UserAuthenticator : IUserAuthenticator
         IConnectionCertificateManager connectionCertificateManager,
         ISettings settings,
         IEventMessageSender eventMessageSender,
-        IGuestHoleActionExecutor guestHoleActionExecutor,
+        IGuestHoleManager guestHoleManager,
         ITokenClient tokenClient,
         IConnectionManager connectionManager,
         IServersUpdater serversUpdater,
@@ -82,7 +81,7 @@ public class UserAuthenticator : IUserAuthenticator
         _connectionCertificateManager = connectionCertificateManager;
         _settings = settings;
         _eventMessageSender = eventMessageSender;
-        _guestHoleActionExecutor = guestHoleActionExecutor;
+        _guestHoleManager = guestHoleManager;
         _tokenClient = tokenClient;
         _connectionManager = connectionManager;
         _serversUpdater = serversUpdater;
@@ -116,20 +115,60 @@ public class UserAuthenticator : IUserAuthenticator
         ClearAuthSessionDetails();
         try
         {
-            return await AuthAsync(username, password);
+            AuthResult result = await AuthAsync(username, password);
+            if (result.Failure)
+            {
+                return result;
+            }
+
+            return await CompleteLoginAsync(isAutoLogin: false, isToSendLoggedInEvent: true);
         }
         catch
         {
-            AuthResult? authResult = null;
-            Result guestHoleResult = await _guestHoleActionExecutor.ExecuteAsync(async () =>
-            {
-                authResult = await AuthAsync(username, password);
-            });
-
-            return guestHoleResult.Success && authResult != null
-                ? AuthResult.Ok()
-                : AuthResult.Fail(AuthError.GuestHoleFailed);
+            return await HandleLoginOverGuestHoleAsync(username, password);
         }
+    }
+
+    private async Task<AuthResult> HandleLoginOverGuestHoleAsync(string username, SecureString password)
+    {
+        AuthResult? authResult = await _guestHoleManager.ExecuteAsync<AuthResult>(async () =>
+        {
+            AuthResult authResult = await AuthAsync(username, password);
+            if (authResult.Success)
+            {
+                authResult = await CompleteLoginAsync(isAutoLogin: false, isToSendLoggedInEvent: false);
+                if (authResult.Success)
+                {
+                    await _connectionCertificateManager.ForceRequestNewCertificateAsync();
+                    await _serversUpdater.ForceFullUpdateIfEmptyAsync();
+                }
+            }
+
+            if (authResult.Success || (authResult.Failure && authResult.Value != AuthError.TwoFactorRequired))
+            {
+                await _guestHoleManager.DisconnectAsync();
+            }
+
+            return authResult;
+        });
+
+        if (authResult != null)
+        {
+            if (authResult.Success)
+            {
+                SetAuthenticationStatus(AuthenticationStatus.LoggedIn);
+                return authResult;
+            }
+
+            if (authResult.Value == AuthError.TwoFactorRequired)
+            {
+                return AuthResult.Fail(AuthError.TwoFactorRequired);
+            }
+
+            return authResult;
+        }
+
+        return AuthResult.Fail(AuthError.GuestHoleFailed);
     }
 
     public async Task<SsoAuthResult> StartSsoAuthAsync(string username)
@@ -168,7 +207,7 @@ public class UserAuthenticator : IUserAuthenticator
 
         SaveAuthSessionDetails(authResponse.Value);
 
-        return await CompleteLoginAsync(false);
+        return await CompleteLoginAsync(isAutoLogin: false, isToSendLoggedInEvent: true);
     }
 
     public async Task<AuthResult> AuthAsync(string username, SecureString password)
@@ -215,7 +254,7 @@ public class UserAuthenticator : IUserAuthenticator
 
             SaveAuthSessionDetails(response.Value);
 
-            return await CompleteLoginAsync(false);
+            return AuthResult.Ok();
         }
         catch (TypeInitializationException e) when (e.InnerException is DllNotFoundException)
         {
@@ -239,12 +278,12 @@ public class UserAuthenticator : IUserAuthenticator
 
         SaveAuthSessionDetails(_authResponse);
 
-        return await CompleteLoginAsync(false);
+        return await CompleteLoginAsync(isAutoLogin: false, isToSendLoggedInEvent: true);
     }
 
     public async Task<AuthResult> AutoLoginUserAsync()
     {
-        return await CompleteLoginAsync(true);
+        return await CompleteLoginAsync(isAutoLogin: true, isToSendLoggedInEvent: true);
     }
 
     public async Task LogoutAsync(LogoutReason reason)
@@ -322,8 +361,9 @@ public class UserAuthenticator : IUserAuthenticator
         _settings.RefreshToken = authResponse.RefreshToken;
     }
 
-    private async Task<AuthResult> CompleteLoginAsync(bool isAutoLogin)
+    private async Task<AuthResult> CompleteLoginAsync(bool isAutoLogin, bool isToSendLoggedInEvent)
     {
+        bool hasPlanChanged = false;
         try
         {
             SetAuthenticationStatus(AuthenticationStatus.LoggingIn);
@@ -355,15 +395,17 @@ public class UserAuthenticator : IUserAuthenticator
                 return AuthResult.Fail(usersResponse);
             }
 
-            ApiResponseResult<VpnInfoWrapperResponse>? vpnInfoResponse = await _vpnPlanUpdater.ForceUpdateAsync();
+            VpnPlanChangeResult vpnPlanChangeResult = await _vpnPlanUpdater.ForceUpdateAsync();
 
-            if (vpnInfoResponse is not null &&
-                vpnInfoResponse.Failure &&
-                vpnInfoResponse.Value.Code == ResponseCodes.NoVpnConnectionsAssigned)
+            if (vpnPlanChangeResult.ApiResponse is not null &&
+                vpnPlanChangeResult.ApiResponse.Failure &&
+                vpnPlanChangeResult.ApiResponse.Value.Code == ResponseCodes.NoVpnConnectionsAssigned)
             {
                 await LogoutAsync(LogoutReason.NoVpnConnectionsAssigned);
-                return AuthResult.Fail(vpnInfoResponse);
+                return AuthResult.Fail(vpnPlanChangeResult.ApiResponse);
             }
+
+            hasPlanChanged = vpnPlanChangeResult.PlanChangeMessage?.HasChanged() ?? false;
         }
         catch (Exception e)
         {
@@ -376,9 +418,17 @@ public class UserAuthenticator : IUserAuthenticator
 
         await MigrateUserSettingsAsync();
 
-        DeleteKeyPairIfNotAutoLogin(isAutoLogin);
+        DeleteKeyPairIfNotAutoLogin(isAutoLogin, _guestHoleManager.IsActive);
 
-        SetAuthenticationStatus(AuthenticationStatus.LoggedIn);
+        if (hasPlanChanged && !_guestHoleManager.IsActive)
+        {
+            await _connectionCertificateManager.ForceRequestNewCertificateAsync();
+        }
+
+        if (isToSendLoggedInEvent)
+        {
+            SetAuthenticationStatus(AuthenticationStatus.LoggedIn);
+        }
 
         return AuthResult.Ok();
     }
@@ -436,9 +486,9 @@ public class UserAuthenticator : IUserAuthenticator
         _settings.UnauthRefreshToken = response.RefreshToken;
     }
 
-    private void DeleteKeyPairIfNotAutoLogin(bool isAutoLogin)
+    private void DeleteKeyPairIfNotAutoLogin(bool isAutoLogin, bool isGuestHoleActive)
     {
-        if (!isAutoLogin)
+        if (!isAutoLogin && !isGuestHoleActive)
         {
             _connectionCertificateManager.DeleteKeyPairAndCertificate();
         }

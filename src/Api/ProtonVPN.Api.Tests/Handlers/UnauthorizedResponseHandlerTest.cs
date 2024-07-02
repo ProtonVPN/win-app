@@ -34,8 +34,6 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.UserLogs;
-using ProtonVPN.Core.Models;
-using ProtonVPN.Core.Settings;
 using ProtonVPN.Tests.Common.Breakpoints;
 using RichardSzalay.MockHttp;
 
@@ -64,7 +62,6 @@ public class UnauthorizedResponseHandlerTest
 
     private ITokenClient _tokenClient;
     private ISettings _appSettings;
-    private IUserStorage _userStorage;
     private ILogger _logger;
     private MockHttpMessageHandler _innerHandler;
 
@@ -79,9 +76,6 @@ public class UnauthorizedResponseHandlerTest
         _appSettings.AccessToken.Returns(ACCESS_TOKEN);
         _appSettings.RefreshToken.Returns(REFRESH_TOKEN);
         _appSettings.UniqueSessionId.Returns("Unique session ID");
-
-        _userStorage = Substitute.For<IUserStorage>();
-        _userStorage.GetUser().Returns(new User { Username = "test" });
 
         _logger = Substitute.For<ILogger>();
 

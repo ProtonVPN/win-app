@@ -18,44 +18,39 @@
  */
 
 using System;
-using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
-using ProtonVPN.Common.Legacy.Vpn;
+using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Configurations.Contracts;
-using ProtonVPN.Core.Settings;
-using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.Api;
 
-public class ApiHostProvider : IApiHostProvider, IVpnStateAware
+public class ApiHostProvider : IApiHostProvider
 {
-    private const int MAX_HOURS_WITH_PROXY = 24;
+    private readonly ISettings _settings;
+    private readonly IConfiguration _config;
+    private readonly IConnectionManager _connectionManager;
 
-    private readonly string _apiHost;
-    private readonly IAppSettings _appSettings;
-    private bool _isDisconnected = true;
-
-    public ApiHostProvider(IAppSettings appSettings, IConfiguration config)
+    public ApiHostProvider(ISettings settings, IConfiguration config, IConnectionManager connectionManager)
     {
-        _appSettings = appSettings;
-        _apiHost = new Uri(config.Urls.ApiUrl).Host;
+        _settings = settings;
+        _config = config;
+        _connectionManager = connectionManager;
     }
 
-    public string GetHost()
+    public Uri GetBaseUri()
     {
-        return IsProxyActive() ? _appSettings.ActiveAlternativeApiBaseUrl : _apiHost;
+        string host = IsProxyActive()
+            ? _settings.ActiveAlternativeApiBaseUrl
+            : new Uri(_config.Urls.ApiUrl).Host;
+
+        return new Uri($"https://{host}");
     }
 
     public bool IsProxyActive()
     {
-        return _appSettings.DoHEnabled &&
-               _isDisconnected &&
-               DateTime.UtcNow.Subtract(_appSettings.LastPrimaryApiFailDateUtc).TotalHours < MAX_HOURS_WITH_PROXY &&
-               !string.IsNullOrEmpty(_appSettings.ActiveAlternativeApiBaseUrl);
-    }
-
-    public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
-    {
-        _isDisconnected = e.State.Status == VpnStatus.Disconnected;
+        return _settings.IsAlternativeRoutingEnabled &&
+               _connectionManager.IsDisconnected &&
+               !string.IsNullOrEmpty(_settings.ActiveAlternativeApiBaseUrl);
     }
 }

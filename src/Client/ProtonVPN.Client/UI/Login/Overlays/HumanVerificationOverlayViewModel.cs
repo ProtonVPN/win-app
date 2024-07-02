@@ -19,6 +19,7 @@
 
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml;
+using ProtonVPN.Api.Contracts;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.HumanVerification;
@@ -26,7 +27,6 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Themes;
-using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
@@ -38,7 +38,7 @@ public partial class HumanVerificationOverlayViewModel : OverlayViewModelBase,
 {
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IThemeSelector _themeSelector;
-    private readonly IConfiguration _configuration;
+    private readonly IApiHostProvider _apiHostProvider;
 
     private string _token = string.Empty;
 
@@ -53,7 +53,7 @@ public partial class HumanVerificationOverlayViewModel : OverlayViewModelBase,
         IThemeSelector themeSelector,
         ILogger logger,
         IIssueReporter issueReporter,
-        IConfiguration configuration)
+        IApiHostProvider apiHostProvider)
         : base(localizationProvider,
                logger,
                issueReporter,
@@ -61,7 +61,7 @@ public partial class HumanVerificationOverlayViewModel : OverlayViewModelBase,
     {
         _eventMessageSender = eventMessageSender;
         _themeSelector = themeSelector;
-        _configuration = configuration;
+        _apiHostProvider = apiHostProvider;
     }
 
     [RelayCommand]
@@ -86,7 +86,8 @@ public partial class HumanVerificationOverlayViewModel : OverlayViewModelBase,
 
     private string GetCaptchaUrl()
     {
-        Uri requestUri = new(new Uri(_configuration.Urls.ApiUrl), $"core/v4/captcha?Token={_token}{(IsDarkTheme ? "&Dark=1" : string.Empty)}");
+        string relativeUri = $"core/v4/captcha?Token={_token}{(IsDarkTheme ? "&Dark=1" : string.Empty)}";
+        Uri requestUri = new(_apiHostProvider.GetBaseUri(), relativeUri);
         return requestUri.AbsoluteUri;
     }
 }

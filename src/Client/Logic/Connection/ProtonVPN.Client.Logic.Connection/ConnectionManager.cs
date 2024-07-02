@@ -20,6 +20,7 @@
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
@@ -55,6 +56,7 @@ public class ConnectionManager : IInternalConnectionManager,
     private readonly IReconnectionRequestCreator _reconnectionRequestCreator;
     private readonly IDisconnectionRequestCreator _disconnectionRequestCreator;
     private readonly IServersLoader _serversLoader;
+    private readonly IGuestHoleManager _guestHoleManager;
     private readonly TimeSpan _reconnectInterval = TimeSpan.FromMinutes(1);
 
     private TrafficBytes? _bytesTransferred;
@@ -82,7 +84,8 @@ public class ConnectionManager : IInternalConnectionManager,
         IConnectionRequestCreator connectionRequestCreator,
         IReconnectionRequestCreator reconnectionRequestCreator,
         IDisconnectionRequestCreator disconnectionRequestCreator,
-        IServersLoader serversLoader)
+        IServersLoader serversLoader,
+        IGuestHoleManager guestHoleManager)
     {
         _logger = logger;
         _settings = settings;
@@ -93,6 +96,7 @@ public class ConnectionManager : IInternalConnectionManager,
         _reconnectionRequestCreator = reconnectionRequestCreator;
         _disconnectionRequestCreator = disconnectionRequestCreator;
         _serversLoader = serversLoader;
+        _guestHoleManager = guestHoleManager;
     }
 
     public async Task ConnectAsync(IConnectionIntent? connectionIntent = null)
@@ -246,29 +250,32 @@ public class ConnectionManager : IInternalConnectionManager,
         _isConnectionStatusHandled = true;
         _isNetworkBlocked = message.NetworkBlocked;
 
-        if (message.Status == VpnStatusIpcEntity.Connected)
+        if (!_guestHoleManager.IsActive)
         {
-            Server? server = GetCurrentServer(message);
-            PhysicalServer? physicalServer = server?.Servers.FirstOrDefault(FilterPhysicalServerByVpnState(message));
+            if (message.Status == VpnStatusIpcEntity.Connected)
+            {
+                Server? server = GetCurrentServer(message);
+                PhysicalServer? physicalServer = server?.Servers.FirstOrDefault(FilterPhysicalServerByVpnState(message));
 
-            if (server is not null && physicalServer is not null)
-            {
-                VpnProtocol vpnProtocol = _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(message.VpnProtocol);
-                CurrentConnectionDetails = new ConnectionDetails(connectionIntent, server, physicalServer, vpnProtocol);
-            }
-            else if (server is null)
-            {
-                _logger.Error<AppLog>($"The status changed to Connected but the associated Server is null. Error: '{message.Error}' " +
-                                      $"NetworkBlocked: '{message.NetworkBlocked}' " +
-                                      $"Status: '{message.Status}' EntryIp: '{message.EndpointIp}' Label: '{message.Label}' " +
-                                      $"NetworkAdapterType: '{message.OpenVpnAdapterType}' VpnProtocol: '{message.VpnProtocol}'");
+                if (server is not null && physicalServer is not null)
+                {
+                    VpnProtocol vpnProtocol = _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(message.VpnProtocol);
+                    CurrentConnectionDetails = new ConnectionDetails(connectionIntent, server, physicalServer, vpnProtocol);
+                }
+                else if (server is null)
+                {
+                    _logger.Error<AppLog>($"The status changed to Connected but the associated Server is null. Error: '{message.Error}' " +
+                                          $"NetworkBlocked: '{message.NetworkBlocked}' " +
+                                          $"Status: '{message.Status}' EntryIp: '{message.EndpointIp}' Label: '{message.Label}' " +
+                                          $"NetworkAdapterType: '{message.OpenVpnAdapterType}' VpnProtocol: '{message.VpnProtocol}'");
 
-                // VPNWIN-2105 - Either (1) Reconnect without last server, or (2) Delete this comment
-                await ReconnectAsync();
-            }
-            else // Tier is too low for the connected server
-            {
-                await ReconnectIfNotRecentlyReconnectedAsync();
+                    // VPNWIN-2105 - Either (1) Reconnect without last server, or (2) Delete this comment
+                    await ReconnectAsync();
+                }
+                else // Tier is too low for the connected server
+                {
+                    await ReconnectIfNotRecentlyReconnectedAsync();
+                }
             }
         }
 

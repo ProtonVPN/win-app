@@ -29,15 +29,16 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using Polly.Timeout;
-using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Exceptions;
 using ProtonVPN.Api.Handlers;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
+using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Configurations.Contracts.Entities;
-using ProtonVPN.Core.Vpn;
 using ProtonVPN.Dns.Contracts;
 using ProtonVPN.Dns.Contracts.AlternativeRouting;
 using ProtonVPN.Dns.Contracts.Exceptions;
@@ -79,7 +80,7 @@ public class AlternativeHostHandlerTest
     private IAlternativeRoutingHostGenerator _alternativeRoutingHostGenerator;
     private IAlternativeHostsManager _alternativeHostsManager;
     private ISettings _settings;
-    private IGuestHoleState _guestHoleState;
+    private IGuestHoleManager _guestHoleManager;
     private IConfiguration _configuration;
     private MockHttpMessageHandler _mockHttpMessageHandler;
     private AlternativeHostHandler _alternativeHostHandler;
@@ -95,11 +96,11 @@ public class AlternativeHostHandlerTest
         _alternativeHostsManager = Substitute.For<IAlternativeHostsManager>();
         _settings = Substitute.For<ISettings>();
         _settings.UniqueSessionId.Returns(UNIQUE_SESSION_ID);
-        _guestHoleState = Substitute.For<IGuestHoleState>();
+        _guestHoleManager = Substitute.For<IGuestHoleManager>();
         _configuration = CreateConfiguration();
         _mockHttpMessageHandler = new MockHttpMessageHandler();
         _alternativeHostHandler = new(_logger, _dnsManager, _alternativeRoutingHostGenerator,
-            _alternativeHostsManager, _settings, _guestHoleState, _configuration)
+            _alternativeHostsManager, _settings, _configuration)
         { InnerHandler = _mockHttpMessageHandler };
         _httpClient = new(_alternativeHostHandler);
         _originalRequestCount = 0;
@@ -123,7 +124,7 @@ public class AlternativeHostHandlerTest
         _alternativeRoutingHostGenerator = null;
         _alternativeHostsManager = null;
         _settings = null;
-        _guestHoleState = null;
+        _guestHoleManager = null;
         _configuration = null;
         _mockHttpMessageHandler = null;
         _alternativeHostHandler = null;
@@ -179,25 +180,17 @@ public class AlternativeHostHandlerTest
     }
 
     [TestMethod]
-    [DataRow(VpnStatus.Disconnected, true, true)]
-    [DataRow(VpnStatus.Disconnected, false, false)]
-    [DataRow(VpnStatus.Pinging, false, true)]
-    [DataRow(VpnStatus.Connecting, false, true)]
-    [DataRow(VpnStatus.Reconnecting, false, true)]
-    [DataRow(VpnStatus.Waiting, false, true)]
-    [DataRow(VpnStatus.Authenticating, false, true)]
-    [DataRow(VpnStatus.RetrievingConfiguration, false, true)]
-    [DataRow(VpnStatus.AssigningIp, false, true)]
-    [DataRow(VpnStatus.Connected, false, true)]
-    [DataRow(VpnStatus.Disconnecting, false, true)]
-    [DataRow(VpnStatus.ActionRequired, false, true)]
+    [DataRow(ConnectionStatus.Disconnected, true, true)]
+    [DataRow(ConnectionStatus.Disconnected, false, false)]
+    [DataRow(ConnectionStatus.Connecting, false, true)]
+    [DataRow(ConnectionStatus.Connected, false, true)]
     public async Task Test_WithBlockingExceptionButAlternativeRoutingNotAllowed(
-        VpnStatus vpnStatus, bool isGuestHoleActive, bool isDoHEnabled)
+        ConnectionStatus connectionStatus, bool isGuestHoleActive, bool isAlternativeRoutingEnabled)
     {
         // Arrange
-        await SetVpnStatusAsync(vpnStatus);
-        _guestHoleState.IsActive.Returns(isGuestHoleActive);
-        _settings.IsDoHEnabled = isDoHEnabled;
+        SetConnectionStatus(connectionStatus);
+        SetGuestHoleState(isGuestHoleActive);
+        _settings.IsAlternativeRoutingEnabled = isAlternativeRoutingEnabled;
         HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
         MockedRequest mockedRequest = _mockHttpMessageHandler
                                       .When(REQUEST_URL)
@@ -221,8 +214,8 @@ public class AlternativeHostHandlerTest
     public async Task Test_NoAlternativeHosts(Type exceptionType)
     {
         // Arrange
-        await SetVpnStatusAsync(VpnStatus.Disconnected);
-        _settings.IsDoHEnabled = true;
+        SetConnectionStatus(ConnectionStatus.Disconnected);
+        _settings.IsAlternativeRoutingEnabled = true;
         HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
         MockedRequest mockedRequest = _mockHttpMessageHandler
                                       .When(REQUEST_URL)
@@ -249,9 +242,9 @@ public class AlternativeHostHandlerTest
         return (Exception)Activator.CreateInstance(exceptionType, "Test exception message");
     }
 
-    private async Task SetVpnStatusAsync(VpnStatus status)
+    private void SetConnectionStatus(ConnectionStatus status)
     {
-        await _alternativeHostHandler.OnVpnStateChanged(new VpnStateChangedEventArgs(new VpnState(status), VpnError.None, false));
+        _alternativeHostHandler.Receive(new ConnectionStatusChanged(status));
     }
 
     [TestMethod]
@@ -262,8 +255,8 @@ public class AlternativeHostHandlerTest
     public async Task Test_AlternativeHostsHaveNoIpAddresses(Type exceptionType)
     {
         // Arrange
-        await SetVpnStatusAsync(VpnStatus.Disconnected);
-        _settings.IsDoHEnabled = true;
+        SetConnectionStatus(ConnectionStatus.Disconnected);
+        _settings.IsAlternativeRoutingEnabled = true;
         _alternativeHostsManager.GetAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
                                 .Returns(CreateAlternativeHostsList());
         HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
@@ -304,8 +297,8 @@ public class AlternativeHostHandlerTest
     public async Task Test_LastIpAddressOfLastAlternativeHostWorks(Type exceptionType)
     {
         // Arrange
-        await SetVpnStatusAsync(VpnStatus.Disconnected);
-        _settings.IsDoHEnabled = true;
+        SetConnectionStatus(ConnectionStatus.Disconnected);
+        _settings.IsAlternativeRoutingEnabled = true;
         _alternativeHostsManager.GetAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
                                 .Returns(CreateAlternativeHostsList());
         _dnsManager.GetAsync(ALTERNATIVE_HOST_3, Arg.Any<CancellationToken>())
@@ -365,8 +358,8 @@ public class AlternativeHostHandlerTest
     public async Task Test_AllIpAddressesOfAllAlternativeHostsFail(Type exceptionType)
     {
         // Arrange
-        await SetVpnStatusAsync(VpnStatus.Disconnected);
-        _settings.IsDoHEnabled = true;
+        SetConnectionStatus(ConnectionStatus.Disconnected);
+        _settings.IsAlternativeRoutingEnabled = true;
         _alternativeHostsManager.GetAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
                                 .Returns(CreateAlternativeHostsList());
         _dnsManager.GetAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
@@ -416,8 +409,8 @@ public class AlternativeHostHandlerTest
     public async Task Test_AllIpAddressesOfAllAlternativeHostsFailWithErrorCode(Type exceptionType)
     {
         // Arrange
-        await SetVpnStatusAsync(VpnStatus.Disconnected);
-        _settings.IsDoHEnabled = true;
+        SetConnectionStatus(ConnectionStatus.Disconnected);
+        _settings.IsAlternativeRoutingEnabled = true;
         _alternativeHostsManager.GetAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
                                 .Returns(CreateAlternativeHostsList());
         _dnsManager.GetAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
@@ -467,8 +460,8 @@ public class AlternativeHostHandlerTest
     public async Task Test_CacheExists_SucceedsOnSecondAttempt(Type exceptionType)
     {
         // Arrange
-        await SetVpnStatusAsync(VpnStatus.Disconnected);
-        _settings.IsDoHEnabled = true;
+        SetConnectionStatus(ConnectionStatus.Disconnected);
+        _settings.IsAlternativeRoutingEnabled = true;
         _dnsManager.GetFromCache(CONFIG_API_HOST)
                    .Returns(CreateIpAddressList());
         HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
@@ -512,8 +505,8 @@ public class AlternativeHostHandlerTest
     public async Task Test_CacheExists_PingSucceeds_FailsOriginalRequest_AlternativeRoutingFails(Type exceptionType)
     {
         // Arrange
-        await SetVpnStatusAsync(VpnStatus.Disconnected);
-        _settings.IsDoHEnabled = true;
+        SetConnectionStatus(ConnectionStatus.Disconnected);
+        _settings.IsAlternativeRoutingEnabled = true;
         _dnsManager.GetFromCache(CONFIG_API_HOST)
                    .Returns(CreateIpAddressList());
         HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
@@ -549,8 +542,8 @@ public class AlternativeHostHandlerTest
     public async Task Test_CacheExists_PingSucceeds_FailsOriginalRequest_LastIpAddressOfLastAlternativeHostWorks(Type exceptionType)
     {
         // Arrange
-        await SetVpnStatusAsync(VpnStatus.Disconnected);
-        _settings.IsDoHEnabled = true;
+        SetConnectionStatus(ConnectionStatus.Disconnected);
+        _settings.IsAlternativeRoutingEnabled = true;
         _alternativeHostsManager.GetAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
                                 .Returns(CreateAlternativeHostsList());
         _dnsManager.GetAsync(ALTERNATIVE_HOST_3, Arg.Any<CancellationToken>())
@@ -613,8 +606,8 @@ public class AlternativeHostHandlerTest
         Func<HttpResponseMessage> configApiPingResponse)
     {
         // Arrange
-        await SetVpnStatusAsync(VpnStatus.Disconnected);
-        _settings.IsDoHEnabled = true;
+        SetConnectionStatus(ConnectionStatus.Disconnected);
+        _settings.IsAlternativeRoutingEnabled = true;
         _alternativeHostsManager.GetAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
                                 .Returns(CreateAlternativeHostsList());
         _dnsManager.GetAsync(ALTERNATIVE_HOST_3, Arg.Any<CancellationToken>())
@@ -681,8 +674,8 @@ public class AlternativeHostHandlerTest
     public async Task Test_ResolveSucceeds_SucceedsOnSecondAttempt(Type exceptionType)
     {
         // Arrange
-        await SetVpnStatusAsync(VpnStatus.Disconnected);
-        _settings.IsDoHEnabled = true;
+        SetConnectionStatus(ConnectionStatus.Disconnected);
+        _settings.IsAlternativeRoutingEnabled = true;
         _dnsManager.ResolveWithoutCacheAsync(CONFIG_API_HOST, Arg.Any<CancellationToken>())
                    .Returns(CreateIpAddressList());
         HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
@@ -714,8 +707,8 @@ public class AlternativeHostHandlerTest
     {
         // Arrange
         SetActiveAlternativeHost();
-        await SetVpnStatusAsync(VpnStatus.Disconnected);
-        _settings.IsDoHEnabled = true;
+        SetConnectionStatus(ConnectionStatus.Disconnected);
+        _settings.IsAlternativeRoutingEnabled = true;
         _dnsManager.ResolveWithoutCacheAsync(CONFIG_API_HOST, Arg.Any<CancellationToken>())
                    .Returns(CreateIpAddressList());
         HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
@@ -744,9 +737,7 @@ public class AlternativeHostHandlerTest
 
     private void SetActiveAlternativeHost()
     {
-        FieldInfo field = typeof(AlternativeHostHandler).GetField("_activeAlternativeHost",
-            BindingFlags.NonPublic | BindingFlags.Instance);
-        field.SetValue(_alternativeHostHandler, ALTERNATIVE_HOST_2);
+        _settings.ActiveAlternativeApiBaseUrl = ALTERNATIVE_HOST_2;
     }
 
     [TestMethod]
@@ -754,8 +745,8 @@ public class AlternativeHostHandlerTest
     {
         // Arrange
         SetActiveAlternativeHost();
-        await SetVpnStatusAsync(VpnStatus.Disconnected);
-        _settings.IsDoHEnabled = true;
+        SetConnectionStatus(ConnectionStatus.Disconnected);
+        _settings.IsAlternativeRoutingEnabled = true;
         _dnsManager.GetFromCache(CONFIG_API_HOST)
                    .Returns(CreateIpAddressList());
         HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
@@ -789,8 +780,8 @@ public class AlternativeHostHandlerTest
         // Arrange
         SetActiveAlternativeHost();
         SetOldLastAlternativeRoutingCheckDateUtc();
-        await SetVpnStatusAsync(VpnStatus.Disconnected);
-        _settings.IsDoHEnabled = true;
+        SetConnectionStatus(ConnectionStatus.Disconnected);
+        _settings.IsAlternativeRoutingEnabled = true;
         _dnsManager.GetFromCache(CONFIG_API_HOST)
                    .Returns(CreateIpAddressList());
         HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
@@ -851,8 +842,8 @@ public class AlternativeHostHandlerTest
         // Arrange
         SetActiveAlternativeHost();
         SetOldLastAlternativeRoutingCheckDateUtc();
-        await SetVpnStatusAsync(VpnStatus.Disconnected);
-        _settings.IsDoHEnabled = true;
+        SetConnectionStatus(ConnectionStatus.Disconnected);
+        _settings.IsAlternativeRoutingEnabled = true;
         _dnsManager.GetAsync(ALTERNATIVE_HOST_2, Arg.Any<CancellationToken>())
                    .Returns(CreateIpAddressList());
 
@@ -890,8 +881,8 @@ public class AlternativeHostHandlerTest
         // Arrange
         SetActiveAlternativeHost();
         SetOldLastAlternativeRoutingCheckDateUtc();
-        await SetVpnStatusAsync(VpnStatus.Disconnected);
-        _settings.IsDoHEnabled = true;
+        SetConnectionStatus(ConnectionStatus.Disconnected);
+        _settings.IsAlternativeRoutingEnabled = true;
         _dnsManager.ResolveWithoutCacheAsync(CONFIG_API_HOST, Arg.Any<CancellationToken>())
                    .Returns(CreateIpAddressList());
         _dnsManager.GetAsync(ALTERNATIVE_HOST_2, Arg.Any<CancellationToken>())
@@ -941,8 +932,8 @@ public class AlternativeHostHandlerTest
         // Arrange
         SetActiveAlternativeHost();
         SetOldLastAlternativeRoutingCheckDateUtc();
-        await SetVpnStatusAsync(VpnStatus.Disconnected);
-        _settings.IsDoHEnabled = true;
+        SetConnectionStatus(ConnectionStatus.Disconnected);
+        _settings.IsAlternativeRoutingEnabled = true;
         _dnsManager.GetAsync(ALTERNATIVE_HOST_2, Arg.Any<CancellationToken>())
                    .Returns(CreateIpAddressList());
         HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
@@ -984,8 +975,8 @@ public class AlternativeHostHandlerTest
         // Arrange
         SetActiveAlternativeHost();
         SetOldLastAlternativeRoutingCheckDateUtc();
-        await SetVpnStatusAsync(VpnStatus.Disconnected);
-        _settings.IsDoHEnabled = true;
+        SetConnectionStatus(ConnectionStatus.Disconnected);
+        _settings.IsAlternativeRoutingEnabled = true;
         HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
         MockedRequest mockedRequestOriginal = _mockHttpMessageHandler
                                               .When(REQUEST_URL)
@@ -1013,8 +1004,8 @@ public class AlternativeHostHandlerTest
         // Arrange
         SetActiveAlternativeHost();
         SetFreshLastAlternativeRoutingCheckDateUtc();
-        await SetVpnStatusAsync(VpnStatus.Disconnected);
-        _settings.IsDoHEnabled = true;
+        SetConnectionStatus(ConnectionStatus.Disconnected);
+        _settings.IsAlternativeRoutingEnabled = true;
         _dnsManager.GetAsync(ALTERNATIVE_HOST_2, Arg.Any<CancellationToken>())
                    .Returns(CreateIpAddressList());
         HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
@@ -1057,8 +1048,8 @@ public class AlternativeHostHandlerTest
         // Arrange
         SetActiveAlternativeHost();
         SetFreshLastAlternativeRoutingCheckDateUtc();
-        await SetVpnStatusAsync(VpnStatus.Disconnected);
-        _settings.IsDoHEnabled = true;
+        SetConnectionStatus(ConnectionStatus.Disconnected);
+        _settings.IsAlternativeRoutingEnabled = true;
         _dnsManager.GetAsync(ALTERNATIVE_HOST_2, Arg.Any<CancellationToken>())
                    .Returns(CreateIpAddressList());
         HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
@@ -1098,8 +1089,8 @@ public class AlternativeHostHandlerTest
         // Arrange
         SetActiveAlternativeHost();
         SetFreshLastAlternativeRoutingCheckDateUtc();
-        await SetVpnStatusAsync(VpnStatus.Disconnected);
-        _settings.IsDoHEnabled = true;
+        SetConnectionStatus(ConnectionStatus.Disconnected);
+        _settings.IsAlternativeRoutingEnabled = true;
         HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
         MockedRequest mockedRequestOriginal = _mockHttpMessageHandler
                                               .When(REQUEST_URL)
@@ -1120,22 +1111,14 @@ public class AlternativeHostHandlerTest
     }
 
     [TestMethod]
-    [DataRow(VpnStatus.Pinging)]
-    [DataRow(VpnStatus.Connecting)]
-    [DataRow(VpnStatus.Reconnecting)]
-    [DataRow(VpnStatus.Waiting)]
-    [DataRow(VpnStatus.Authenticating)]
-    [DataRow(VpnStatus.RetrievingConfiguration)]
-    [DataRow(VpnStatus.AssigningIp)]
-    [DataRow(VpnStatus.Connected)]
-    [DataRow(VpnStatus.Disconnecting)]
-    [DataRow(VpnStatus.ActionRequired)]
-    public async Task Test_AlternativeRoutingEnabled_ButNotAllowedDueToVpnStatus_NormalRequestSucceeds(VpnStatus vpnStatus)
+    [DataRow(ConnectionStatus.Connecting)]
+    [DataRow(ConnectionStatus.Connected)]
+    public async Task Test_AlternativeRoutingEnabled_ButNotAllowedDueToConnectionStatus_NormalRequestSucceeds(ConnectionStatus connectionStatus)
     {
         // Arrange
         SetActiveAlternativeHost();
-        await SetVpnStatusAsync(vpnStatus);
-        _settings.IsDoHEnabled = true;
+        SetConnectionStatus(connectionStatus);
+        _settings.IsAlternativeRoutingEnabled = true;
         HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
         MockedRequest mockedRequestOriginal = _mockHttpMessageHandler
                                               .When(REQUEST_URL)
@@ -1162,8 +1145,8 @@ public class AlternativeHostHandlerTest
     {
         // Arrange
         SetActiveAlternativeHost();
-        await SetVpnStatusAsync(VpnStatus.Disconnected);
-        _settings.IsDoHEnabled = false;
+        SetConnectionStatus(ConnectionStatus.Disconnected);
+        _settings.IsAlternativeRoutingEnabled = false;
         HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
         MockedRequest mockedRequestOriginal = _mockHttpMessageHandler
                                               .When(REQUEST_URL)
@@ -1177,9 +1160,9 @@ public class AlternativeHostHandlerTest
     {
         // Arrange
         SetActiveAlternativeHost();
-        await SetVpnStatusAsync(VpnStatus.Disconnected);
-        _settings.IsDoHEnabled = true;
-        _guestHoleState.IsActive.Returns(true);
+        SetConnectionStatus(ConnectionStatus.Disconnected);
+        _settings.IsAlternativeRoutingEnabled = true;
+        SetGuestHoleState(true);
         HttpRequestMessage request = new(HttpMethod.Get, REQUEST_URL);
         MockedRequest mockedRequestOriginal = _mockHttpMessageHandler
                                               .When(REQUEST_URL)
@@ -1230,13 +1213,6 @@ public class AlternativeHostHandlerTest
         await _alternativeHostsManager.Received(0).GetAsync(Arg.Any<string>(), Arg.Any<CancellationToken>());
     }
 
-
-
-
-
-
-
-
     [TestMethod]
     [DataRow(typeof(TimeoutException))]
     [DataRow(typeof(DnsException))]
@@ -1245,7 +1221,7 @@ public class AlternativeHostHandlerTest
     public async Task TestOnUserLoggedOut_LastIpAddressOfLastAlternativeHostWorks(Type exceptionType)
     {
         // Arrange
-        _alternativeHostHandler.OnUserLoggedOut();
+        _alternativeHostHandler.Receive(new LoggedOutMessage());
 
         // Arrange + Act + Assert
         await TestOnUserLoggedInOrOut_LastIpAddressOfLastAlternativeHostWorks(exceptionType);
@@ -1256,8 +1232,8 @@ public class AlternativeHostHandlerTest
 
     private async Task TestOnUserLoggedInOrOut_LastIpAddressOfLastAlternativeHostWorks(Type exceptionType)
     {
-        await SetVpnStatusAsync(VpnStatus.Disconnected);
-        _settings.IsDoHEnabled = true;
+        SetConnectionStatus(ConnectionStatus.Disconnected);
+        _settings.IsAlternativeRoutingEnabled = true;
         _alternativeHostsManager.GetAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
                                 .Returns(CreateAlternativeHostsList());
         _dnsManager.GetAsync(ALTERNATIVE_HOST_3, Arg.Any<CancellationToken>())
@@ -1307,12 +1283,18 @@ public class AlternativeHostHandlerTest
     public async Task TestOnUserLoggedIn_LastIpAddressOfLastAlternativeHostWorks(Type exceptionType)
     {
         // Arrange
-        _alternativeHostHandler.OnUserLoggedIn();
+        _alternativeHostHandler.Receive(new LoggedInMessage { IsAutoLogin = false });
 
         // Arrange + Act + Assert
         await TestOnUserLoggedInOrOut_LastIpAddressOfLastAlternativeHostWorks(exceptionType);
 
         // Assert
         _alternativeRoutingHostGenerator.Received(1).Generate(UNIQUE_SESSION_ID);
+    }
+
+    private void SetGuestHoleState(bool isActive)
+    {
+        _guestHoleManager.IsActive.Returns(isActive);
+        _alternativeHostHandler.Receive(new GuestHoleStatusChangedMessage(isActive));
     }
 }
