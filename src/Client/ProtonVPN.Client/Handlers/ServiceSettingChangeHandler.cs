@@ -33,6 +33,7 @@ public class ServiceSettingChangeHandler : IHandler, IEventMessageReceiver<Setti
         nameof(ISettings.VpnProtocol),
         nameof(ISettings.NatType),
         nameof(ISettings.IsNetShieldEnabled),
+        nameof(ISettings.IsKillSwitchEnabled),
         nameof(ISettings.IsIpv6LeakProtectionEnabled),
         nameof(ISettings.IsPortForwardingEnabled),
         nameof(ISettings.IsVpnAcceleratorEnabled),
