@@ -263,10 +263,10 @@
     <value>ამ ქვეყანაში ყველა სერვერი ტექმომსახურებაზეა</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Free server ({0})</value>
+    <value>სერვერი Free ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Free servers ({0})</value>
+    <value>სერვერი Free ({0})</value>
   </data>
   <data name="Connections_Gateway_Restricted">
     <value>სერვერები ამ კარიბჭეში ხელმისაწვდომია VPN Plus-ით</value>
@@ -305,10 +305,10 @@
     <value>P2P სერვერი ({0})</value>
   </data>
   <data name="Connections_P2P_States_One">
-    <value>P2P state ({0})</value>
+    <value>P2P ქვეყანა ({0})</value>
   </data>
   <data name="Connections_P2P_States_Other">
-    <value>P2P შტატები ({0})</value>
+    <value>P2P ქვეყანა ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_One">
     <value>Secure Core-ის ქვეყანა ({0})</value>
@@ -335,10 +335,10 @@
     <value>სერვერის ნახვა ({0})</value>
   </data>
   <data name="Connections_SeeStates_One">
-    <value>See state ({0})</value>
+    <value>ქვეყნის ({0}) ნახვა</value>
   </data>
   <data name="Connections_SeeStates_Other">
-    <value>See states ({0})</value>
+    <value>ქვეყნის ({0}) ნახვა</value>
   </data>
   <data name="Connections_Server_Restricted">
     <value>სერვერი ხელმისაწვდომია VPN Plus-ით</value>
@@ -353,7 +353,7 @@
     <value>სერვერი ({0})</value>
   </data>
   <data name="Connections_State_Restricted">
-    <value>Servers in this state are available with VPN Plus.</value>
+    <value>სერვერები ამ შტატში ხელმისაწვდომია VPN Plus-ით.</value>
     <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_State_UnderMaintenance">
@@ -1512,7 +1512,7 @@
     <value>გამოწერას ვადა გაუვიდა</value>
   </data>
   <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
-    <value>Upgrade to get access to Plus servers and features again.</value>
+    <value>ასწიეთ სატარიფო გეგმა Plus-ის სერვერებზე და სხვა ფუნქციებზე წვდომის დასაბრუნებლად.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free ავტომატურად მიუერთდება უსწრაფეს უფასო ხელმისაწვდომ სერვერს ჩვენი {0} უფასო ქვეყნიდან. ეს ჩვეულებრივ თქვენს მდებარეობასთან არსებული უახლოესი სერვერია.</value>
@@ -1760,7 +1760,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>მოგესალმებით Proton VPN-ში</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_Description">
-    <value>Browse privately, access blocked content, and enjoy digital freedom with no data or speed limits.</value>
+    <value>იმუშავეთ ინტერნეტში ინკოგნიტოდ, იქონიეთ წვდომა დაბლოკილ შემცველობასთან და ისიამოვნეთ ციფრული თავისუფლებით მონაცემების ან სიჩქარის ლიმიტის გარეშე.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_NoLogs">
     <value>სერტიფიცირებული VPN ჟურნალის გარეშე</value>
@@ -1769,25 +1769,25 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>Your activity is protected by Swiss privacy laws. We'll never track you online or share your information with third parties.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
-    <value>Browse freely from anywhere</value>
+    <value>დაათვალიერეთ თავისუფლად ნებისმიერი ადგილიდან</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
-    <value>Hide your virtual location and experience the internet from any one of our {0} available country.</value>
+    <value>დამალეთ თქვენი ვირტუალური მდებარეობა და ისიამოვნეთ ინტერნეტში ნებისმიერი ჩვენი {0} ხელმისაწვდომი ქვენიდან.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
-    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+    <value>დამალეთ თქვენი ვირტუალური მდებარეობა და ისიამოვნეთ ინტერნეტში ნებისმიერი ჩვენი {0} ხელმისაწვდომი ქვენიდან.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
-    <value>Protect 10 devices at once</value>
+    <value>დაიცავით 10 მოწყობილობა ერთდროულად</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
-    <value>Extend VPN protection to your desktop, mobile, browser, TV, and more. </value>
+    <value>გააფართოვეთ VPN-ით დაცვა, დაიცავით თქვენი კომპიუტერი, მობილური, ბრაუზერი, ტელევიზორი და მეტი. </value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Stream">
-    <value>Stream in high resolution</value>
+    <value>დასტრიმეთ მაღალი გაფართოებით</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
-    <value>Watch movies and TV shows from around the world, without compromising on speed or quality.</value>
+    <value>უყურეთ ფილმებს და სერიალებს ნებისმიერი ადგილიდან, სიჩქარის ან ხარიხის შეწირვის გარეშე.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>მოგესალმებათ VPN Plus</value>
@@ -2259,7 +2259,7 @@ Enjoy the best of Proton privacy.</value>
     <value>დააყენეთ ეს რიცხვი BitTorrent-ის თქვენ აპლიკაციაში უფრო მეტი სიჩქარის მისაღებად.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
-    <value>Your plan has been downgraded to Proton Free, and we're reconnecting you to the fastest free server.</value>
+    <value>თქვენი სატარიფო გეგმა ჩამოწეულია Proton Free-ზე და ჩვენ თავიდან დაგაკავშირებთ უსწრაფეს უფასო სერვერთან.</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>ყველაზე სწრაფი უფასო სერვერი</value>

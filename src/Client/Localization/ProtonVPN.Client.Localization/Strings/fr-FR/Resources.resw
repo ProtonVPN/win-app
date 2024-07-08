@@ -1509,7 +1509,7 @@
     <value>Commencer</value>
   </data>
   <data name="Dialogs_Common_SubscriptionExpired">
-    <value>Abonnement expiré</value>
+    <value>L'abonnement est arrivé à expiration.</value>
   </data>
   <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
     <value>Effectuez la mise à niveau pour accéder à nouveau aux serveurs et fonctionnalités Plus.</value>
@@ -2836,7 +2836,7 @@ Profitez de ce que Proton a de mieux à offrir en matière de protection de la v
     <value>Protégez votre appareil contre les logiciels malveillants.</value>
   </data>
   <data name="Upsell_Carousel_P2P">
-    <value>Débloquez les téléchargements peer-to-peer (P2P) et le partage de fichiers.</value>
+    <value>Débloquez les téléchargements et le partage de fichiers peer-to-peer (P2P).</value>
   </data>
   <data name="Upsell_Carousel_P2P_Discretion">
     <value>Masquez votre adresse IP à votre fournisseur de service et vos pairs.</value>

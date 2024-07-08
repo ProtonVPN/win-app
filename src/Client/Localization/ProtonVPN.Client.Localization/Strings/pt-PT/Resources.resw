@@ -263,7 +263,7 @@
     <value>All servers in this country are under maintenance</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Free server ({0})</value>
+    <value>Servidor gratuito ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Other">
     <value>Servidores gratuitos ({0})</value>
@@ -305,7 +305,7 @@
     <value>Servidores P2P ({0})</value>
   </data>
   <data name="Connections_P2P_States_One">
-    <value>P2P state ({0})</value>
+    <value>Estado P2P ({0})</value>
   </data>
   <data name="Connections_P2P_States_Other">
     <value>Estados P2P ({0})</value>
@@ -361,7 +361,7 @@
     <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_States_One">
-    <value>State ({0})</value>
+    <value>Estado ({0})</value>
   </data>
   <data name="Connections_States_Other">
     <value>Estados ({0})</value>
@@ -1506,7 +1506,7 @@
     <value>You've reached the maximum number of free server changes for now</value>
   </data>
   <data name="Dialogs_Common_GetStarted">
-    <value>Get started</value>
+    <value>Começar</value>
   </data>
   <data name="Dialogs_Common_SubscriptionExpired">
     <value>Subscription expired</value>
@@ -1711,7 +1711,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Smart Routing</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
-    <value>Maybe later</value>
+    <value>Talvez mais tarde</value>
   </data>
   <data name="Dialogs_Tor_Description">
     <value>Connect to a Tor server to access hidden services and onion sites using any browser.</value>
@@ -2035,7 +2035,7 @@ Enjoy the best of Proton privacy.</value>
     <value>Mostrar o endereço IP do utilizador</value>
   </data>
   <data name="Home_ConnectionDetails_State">
-    <value>State</value>
+    <value>Estado</value>
   </data>
   <data name="Home_ConnectionDetails_Title">
     <value>Detalhes da ligação</value>

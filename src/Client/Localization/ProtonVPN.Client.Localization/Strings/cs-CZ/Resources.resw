@@ -275,16 +275,16 @@
     <value>Na všech serverech v této zemi probíhá údržba</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Free server ({0})</value>
+    <value>Bezplatný server ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Few">
-    <value>Free servers ({0})</value>
+    <value>Bezplatné servery ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Many">
-    <value>Free servers ({0})</value>
+    <value>Bezplatné servery ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Free servers ({0})</value>
+    <value>Bezplatné servery ({0})</value>
   </data>
   <data name="Connections_Gateway_Restricted">
     <value>Servery v této bráně jsou dostupné s VPN Plus</value>
@@ -353,16 +353,16 @@
     <value>P2P servery ({0})</value>
   </data>
   <data name="Connections_P2P_States_One">
-    <value>P2P state ({0})</value>
+    <value>P2P stát ({0})</value>
   </data>
   <data name="Connections_P2P_States_Few">
     <value>P2P státy ({0})</value>
   </data>
   <data name="Connections_P2P_States_Many">
-    <value>P2P státy ({0})</value>
+    <value>P2P států ({0})</value>
   </data>
   <data name="Connections_P2P_States_Other">
-    <value>P2P státy ({0})</value>
+    <value>P2P států ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_One">
     <value>Secure Core země ({0})</value>
@@ -413,16 +413,16 @@
     <value>Ukázat servery ({0})</value>
   </data>
   <data name="Connections_SeeStates_One">
-    <value>See state ({0})</value>
+    <value>Zobrazit stát ({0})</value>
   </data>
   <data name="Connections_SeeStates_Few">
-    <value>See states ({0})</value>
+    <value>Zobrazit státy ({0})</value>
   </data>
   <data name="Connections_SeeStates_Many">
-    <value>See states ({0})</value>
+    <value>Zobrazit státy ({0})</value>
   </data>
   <data name="Connections_SeeStates_Other">
-    <value>See states ({0})</value>
+    <value>Zobrazit státy ({0})</value>
   </data>
   <data name="Connections_Server_Restricted">
     <value>Server dostupný s VPN Plus</value>
@@ -443,7 +443,7 @@
     <value>Servery ({0})</value>
   </data>
   <data name="Connections_State_Restricted">
-    <value>Servers in this state are available with VPN Plus.</value>
+    <value>Servery v tomto státě jsou dostupné s VPN Plus.</value>
     <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_State_UnderMaintenance">
@@ -451,7 +451,7 @@
     <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_States_One">
-    <value>State ({0})</value>
+    <value>Stát ({0})</value>
   </data>
   <data name="Connections_States_Few">
     <value>Státy ({0})</value>
@@ -1626,13 +1626,13 @@
     <value>V této chvíli jste dosáhli maximálního počtu změn serverů Free</value>
   </data>
   <data name="Dialogs_Common_GetStarted">
-    <value>Get started</value>
+    <value>Začínáme</value>
   </data>
   <data name="Dialogs_Common_SubscriptionExpired">
     <value>Předplatné vypršelo</value>
   </data>
   <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
-    <value>Upgrade to get access to Plus servers and features again.</value>
+    <value>Pro opětovný přístup k funkcím a serverům Plus, navyšte svůj tarif.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free vás automaticky připojí k nejrychlejšímu dostupnému bezplatnému serveru z naší {0} bezplatné země. Obvykle se jedná o server, který je nejblíže vaší poloze.</value>
@@ -1843,7 +1843,7 @@ Smart Routing se obvykle používá k obcházení zákonů potlačujících ochr
     <value>Smart Routing</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
-    <value>Maybe later</value>
+    <value>Možná později</value>
   </data>
   <data name="Dialogs_Tor_Description">
     <value>Připojte se k serveru Tor a získejte přístup ke skrytým službám a onion webům pomocí libovolného prohlížeče.</value>
@@ -1888,54 +1888,54 @@ Smart Routing se obvykle používá k obcházení zákonů potlačujících ochr
     <value>Pomoc s připojením</value>
   </data>
   <data name="Dialogs_WelcomeB2B_Description">
-    <value>Simple. Seamless. Secure. Protect yourself online and securely access your organization's sites, software, and files.</value>
+    <value>Jednoduché. Bezproblémové. Bezpečné. Chraňte se online a bezpečně přistupujte k webům, softwaru a souborům své organizace.</value>
   </data>
   <data name="Dialogs_WelcomeToProton_Title">
     <value>Vítejte v Proton VPN</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_Description">
-    <value>Browse privately, access blocked content, and enjoy digital freedom with no data or speed limits.</value>
+    <value>Procházejte soukromě, přistupujte k blokovanému obsahu a užívejte si digitální svobody bez omezení dat a rychlosti.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_NoLogs">
     <value>Certifikovaná VPN bez logů</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
-    <value>Your activity is protected by Swiss privacy laws. We'll never track you online or share your information with third parties.</value>
+    <value>Vaše aktivita je chráněna švýcarskými zákony o ochraně osobních údajů. Nikdy nebudeme sledovat vaši online aktivitu a sdílet ji s třetími stranami.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
-    <value>Browse freely from anywhere</value>
+    <value>Procházejte internet svobodně odkudkoli</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
-    <value>Hide your virtual location and experience the internet from any one of our {0} available country.</value>
+    <value>Skryjte svou virtuální polohu a využívejte internet z naší {0} dostupné země.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Few">
-    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+    <value>Skryjte svou virtuální polohu a využívejte internet z kterékoli z našich {0} dostupných zemí.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Many">
-    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+    <value>Skryjte svou virtuální polohu a využívejte internet z kterékoli z našich {0} dostupných zemí.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
-    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+    <value>Skryjte svou virtuální polohu a využívejte internet z kterékoli z našich {0} dostupných zemí.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
-    <value>Protect 10 devices at once</value>
+    <value>Chraňte až 10 zařízení současně</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
-    <value>Extend VPN protection to your desktop, mobile, browser, TV, and more. </value>
+    <value>Rozšiřte ochranu VPN na váš počítač, mobilní telefon, prohlížeč, televizi a další zařízení.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Stream">
-    <value>Stream in high resolution</value>
+    <value>Streamujte ve vyskoém rozlišení</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
-    <value>Watch movies and TV shows from around the world, without compromising on speed or quality.</value>
+    <value>Sledujte filmy a televizní pořady z celého světa bez omezení rychlosti a kvality.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Vítejte na VPN Plus</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description">
-    <value>Congratulations! You unlocked premium security and performance features on all Proton services.
+    <value>Gratulujeme! Odemkli jste prémiové funkce zabezpečení a výkonu všech služeb Proton. 
 
-Enjoy the best of Proton privacy.</value>
+Užijte si to nejlepší ze soukromí, které vám Proton nabízí.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Vítejte na Proton Unlimited</value>
@@ -1953,7 +1953,7 @@ Enjoy the best of Proton privacy.</value>
     <value>Ukončit Proton VPN?</value>
   </data>
   <data name="Exit_Message">
-    <value>Disconnecting from VPN...</value>
+    <value>Odpojování od VPN...</value>
   </data>
   <data name="Exit_Title">
     <value>Ukončit Proton VPN</value>
@@ -2185,7 +2185,7 @@ Enjoy the best of Proton privacy.</value>
     <value>Zobrazit IP adresu uživatele</value>
   </data>
   <data name="Home_ConnectionDetails_State">
-    <value>State</value>
+    <value>Stát</value>
   </data>
   <data name="Home_ConnectionDetails_Title">
     <value>Podrobnosti o připojení</value>
@@ -2194,16 +2194,16 @@ Enjoy the best of Proton privacy.</value>
     <value>Nahrát</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
-    <value>Download volume</value>
+    <value>Stažená data</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Total">
-    <value>Total volume</value>
+    <value>Celkový objem</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Upload">
-    <value>Upload volume</value>
+    <value>Nahraná data</value>
   </data>
   <data name="Home_ConnectionDetails_VpnAccelerator">
-    <value>Boosted by VPN Accelerator</value>
+    <value>Posíleno o VPN Accelerator</value>
   </data>
   <data name="Home_ConnectionDetails_VpnAccelerator_ToolTip">
     <value>Pokročilé technologie pro zvýšení výkonu a stability zvyšující rychlost VPN.</value>
@@ -2335,7 +2335,7 @@ Enjoy the best of Proton privacy.</value>
     <value>Přihlašovací formulář</value>
   </data>
   <data name="Login_Form_AdvancedKillSwitchDescription">
-    <value>Kill switch is blocking any outgoing connections</value>
+    <value>Kill Switch blokuje všechna odchozí spojení</value>
   </data>
   <data name="Login_Form_CreateAccount">
     <value>Vytvořit účet</value>
@@ -2423,7 +2423,7 @@ Enjoy the best of Proton privacy.</value>
     <value>Nastavte toto číslo ve vaší aplikaci BitTorrent pro nejvyšší rychlosti.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
-    <value>Your plan has been downgraded to Proton Free, and we're reconnecting you to the fastest free server.</value>
+    <value>Váš tarif byl snížen na Proton Free a přepojujeme vás k nejrychlejšímu bezplatnému serveru.</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Nejrychlejší bezplatný server</value>
@@ -2837,13 +2837,13 @@ Enjoy the best of Proton privacy.</value>
     <value>Rychlost (UDP)</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Description">
-    <value>Fast, secure, and efficient. WireGuard is difficult to detect and block.</value>
+    <value>Rychlé, bezpečné a efektivní. WireGuard je obtížné detekovat a blokovat.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Title">
     <value>WireGuard</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Description">
-    <value>Overcomes VPN blocks by hiding your VPN connection from censors. This protocol is DPI (deep packet inspection) resistant, but may not be as fast as other protocols. Stealth is exclusive to Proton VPN.</value>
+    <value>Překonává blokování VPN tím, že skrývá připojení VPN před cenzory. Tento protokol je odolný proti DPI (hloubkové kontrole paketů), ale nemusí být tak rychlý jako jiné protokoly. Stealth je exkluzivní pro Proton VPN.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Title">
     <value>Stealth</value>
