@@ -56,7 +56,7 @@ public class AltRoutingSLI : TestSession
 
         _loginRobot.DoLogin(TestUserData.PlusUser);
         PerformanceTestHelper.StartMonitoring();
-        _homeRobot.DoWaitForVpnStatusSubtitleLabel();
+        _homeRobot.DoCloseWelcomeOverlay();
         PerformanceTestHelper.StopMonitoring();
 
         PerformanceTestHelper.AddMetric("duration", PerformanceTestHelper.GetDuration);

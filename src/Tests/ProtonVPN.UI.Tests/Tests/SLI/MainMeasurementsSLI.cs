@@ -64,7 +64,7 @@ public class MainMeasurementsSLI : TestSession
             .DoLogin(TestUserData.PlusUser);
 
         PerformanceTestHelper.StartMonitoring();
-        _homeRobot.DoWaitForVpnStatusSubtitleLabel();
+        _homeRobot.DoCloseWelcomeOverlay();
         PerformanceTestHelper.StopMonitoring();
 
         PerformanceTestHelper.AddMetric("duration", PerformanceTestHelper.GetDuration);
