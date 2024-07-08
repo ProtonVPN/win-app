@@ -54,7 +54,7 @@ public class SplitTunnelingPerformanceTest : TestSession
         LaunchApp();
         _runId = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
         _loginRobot.DoLogin(TestUserData.PlusUser);
-        _homeRobot.DoWaitForVpnStatusSubtitleLabel();
+        _homeRobot.DoCloseWelcomeOverlay();
     }
 
     [Test]
