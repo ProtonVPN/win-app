@@ -2681,7 +2681,7 @@ Aproveite o melhor da privacidade da Proton.</value>
     <value>WireGuard</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Description">
-    <value>Overcomes VPN blocks by hiding your VPN connection from censors. This protocol is DPI (deep packet inspection) resistant, but may not be as fast as other protocols. Stealth is exclusive to Proton VPN.</value>
+    <value>Supera os bloqueios de VPN ao ocultar sua conexão VPN dos censores. Esse protocolo é resistente à DPI (inspeção profunda de pacotes), mas pode não ser tão rápido quanto outros protocolos. O Stealth é exclusivo do Proton VPN.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Title">
     <value>Stealth</value>

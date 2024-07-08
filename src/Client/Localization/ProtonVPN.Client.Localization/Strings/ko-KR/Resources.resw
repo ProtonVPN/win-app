@@ -296,7 +296,7 @@
     <value>서버 보기({0})</value>
   </data>
   <data name="Connections_SeeStates_Other">
-    <value>See states ({0})</value>
+    <value>도시 보기 ({0})</value>
   </data>
   <data name="Connections_Server_Restricted">
     <value>VPN Plus에서 사용할 수 있는 서버입니다</value>
@@ -308,11 +308,11 @@
     <value>서버 ({0})</value>
   </data>
   <data name="Connections_State_Restricted">
-    <value>Servers in this state are available with VPN Plus.</value>
+    <value>이 국가에 위치한 서버는 VPN Plus로 사용 가능합니다.</value>
     <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_State_UnderMaintenance">
-    <value>All servers in this state are under maintenance.</value>
+    <value>이 국가 내의 모든 서버는 유지보수 중입니다.</value>
     <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_States_Other">
@@ -1446,13 +1446,13 @@
     <value>무료 서버 변경 횟수의 최대치에 달했습니다</value>
   </data>
   <data name="Dialogs_Common_GetStarted">
-    <value>Get started</value>
+    <value>시작하기</value>
   </data>
   <data name="Dialogs_Common_SubscriptionExpired">
     <value>구독 기간이 만료되었습니다.</value>
   </data>
   <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
-    <value>Upgrade to get access to Plus servers and features again.</value>
+    <value>다시 Plus 서버 및 기능에 접근하려면 업그레이드 하세요.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
     <value>Proton Free가 {0}개 무료 국가 내의 가능한 빠른 서버로 자동으로 연결해 줍니다. 사용자의 위치에서 가장 가까운 곳으로 연결됩니다.</value>
@@ -1645,7 +1645,7 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
     <value>Smart Routing</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
-    <value>Maybe later</value>
+    <value>나중에</value>
   </data>
   <data name="Dialogs_Tor_Description">
     <value>Tor 서버에 접속하면 히든 서비스와 어니언 사이트에 어느 브라우저를 사용해도 접근할 수 있습니다.</value>
@@ -1690,45 +1690,45 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
     <value>연결 지원</value>
   </data>
   <data name="Dialogs_WelcomeB2B_Description">
-    <value>Simple. Seamless. Secure. Protect yourself online and securely access your organization's sites, software, and files.</value>
+    <value>간단하고. 매끄럽고. 안전한. 나 자신을 온라인에서 보호하고 내 조직의 사이트, 소프트웨어 및 파일을 안전하게 접근하세요.</value>
   </data>
   <data name="Dialogs_WelcomeToProton_Title">
     <value>Proton VPN에 오신 것을 환영합니다</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_Description">
-    <value>Browse privately, access blocked content, and enjoy digital freedom with no data or speed limits.</value>
+    <value>데이터 및 속도 제한 없이 브라우징은 은밀하게, 막힌 콘텐츠는 열리게, 디지털 자유를 그렇게 누리세요.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_NoLogs">
     <value>노-로그 인증을 받은 VPN</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
-    <value>Your activity is protected by Swiss privacy laws. We'll never track you online or share your information with third parties.</value>
+    <value>사용자의 활동은 스위스 개인정보 보호법에 의거해 보호됩니다. 당사는 사용자를 온라인 상에서 추적하거나 정보를 제3자와 공유하지 않습니다.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
-    <value>Browse freely from anywhere</value>
+    <value>어디서나 자유롭게 브라우징하세요</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
     <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
-    <value>Protect 10 devices at once</value>
+    <value>동시에 10개 디바이스를 보호하세요</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
-    <value>Extend VPN protection to your desktop, mobile, browser, TV, and more. </value>
+    <value>나의 데스크톱, 모바일, 브라우저, TV 등등까지 VPN 보호를 확장하세요. </value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Stream">
-    <value>Stream in high resolution</value>
+    <value>고해상도로 스트리밍하세요</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
-    <value>Watch movies and TV shows from around the world, without compromising on speed or quality.</value>
+    <value>속도 및 화질 저하 없이 전세계의 영화 TV 프로그램을 시청하세요.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>VPN Plus에 오신 것을 환영합니다</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description">
-    <value>Congratulations! You unlocked premium security and performance features on all Proton services.
+    <value>축하합니다! 모든 Proton 서비스의 프리미엄 보안 및 퍼포먼스 기능을 잠금해제 했습니다.
 
-Enjoy the best of Proton privacy.</value>
+강력한 Proton 개인정보 보호 기능을 누려보세요.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Proton Unlimited에 오신 것을 환영합니다</value>
@@ -1960,7 +1960,7 @@ Enjoy the best of Proton privacy.</value>
     <value>내 IP 주소 보이기</value>
   </data>
   <data name="Home_ConnectionDetails_State">
-    <value>State</value>
+    <value>주/도</value>
   </data>
   <data name="Home_ConnectionDetails_Title">
     <value>연결 세부사항</value>
@@ -2180,7 +2180,7 @@ Enjoy the best of Proton privacy.</value>
     <value>더 빠른 속도를 위해 BitTorrent 앱에서 이 번호로 설정하세요.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
-    <value>Your plan has been downgraded to Proton Free, and we're reconnecting you to the fastest free server.</value>
+    <value>사용자의 플랜이 Proton Free로 다운그레이드되었습니다. 가장 빠른 무료 서버로 재연결 중입니다.</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>가장 빠른 무료 서버</value>

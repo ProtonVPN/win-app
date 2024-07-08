@@ -353,7 +353,7 @@
     <value>Serwery P2P ({0})</value>
   </data>
   <data name="Connections_P2P_States_One">
-    <value>P2P state ({0})</value>
+    <value>Stan P2P ({0})</value>
   </data>
   <data name="Connections_P2P_States_Few">
     <value>Stany P2P ({0})</value>
@@ -1924,7 +1924,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Extend VPN protection to your desktop, mobile, browser, TV, and more. </value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Stream">
-    <value>Stream in high resolution</value>
+    <value>Streamuj w wysokiej rozdzielczości</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
     <value>Watch movies and TV shows from around the world, without compromising on speed or quality.</value>
