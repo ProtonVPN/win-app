@@ -189,7 +189,7 @@ public partial class HomeRobot
         RetryResult<AutomationElement> retry = Retry.WhileNull(
         () =>
         {
-            return FindFirstDescendant(cf => cf.ByName(CONNECTION_CARD_CONNECTING_HEADER));
+            return FindFirstDescendantUsingChildren(cf => cf.ByName(CONNECTION_CARD_CONNECTING_HEADER));
         },
         TestConstants.TenSecondsTimeout, TestConstants.RetryInterval);
 

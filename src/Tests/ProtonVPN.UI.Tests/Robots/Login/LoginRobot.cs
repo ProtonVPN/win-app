@@ -24,6 +24,7 @@ namespace ProtonVPN.UI.Tests.Robots.Login;
 
 public partial class LoginRobot : UIActions
 {
+    protected string SsoWindowClassName = "Chrome_WidgetWin_1";
     protected TextBox UsernameTextBox => ElementByAutomationId("UsernameTextBox").AsTextBox();
     protected TextBox PasswordBox => ElementByAutomationId("PasswordBox").AsTextBox();
     protected Button SignInButton => ElementByAutomationId("SignInButton").AsButton();
@@ -33,6 +34,8 @@ public partial class LoginRobot : UIActions
     protected Button HelpButton => ElementByAutomationId("HelpButton").AsButton();
     protected Menu HelpFlyoutMenu => ElementByAutomationId("HelpFlyoutMenu").AsMenu();
     protected MenuItem ReportIssueMenuItem => HelpFlyoutMenu.FindFirstDescendant("ReportIssueMenuItem").AsMenuItem();
+    protected Button SignInWithSsoButton => ElementByAutomationId("SwitchSignInButton").AsButton();
+    protected AutomationElement SsoWindow => ElementByClassName(SsoWindowClassName);
     protected TextBox TwoFactorInputField(string position)
     {
         return ElementByName($"{position} digit", TestConstants.TenSecondsTimeout).AsTextBox();

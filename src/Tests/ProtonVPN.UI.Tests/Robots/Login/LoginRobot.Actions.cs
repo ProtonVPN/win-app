@@ -35,6 +35,24 @@ public partial class LoginRobot
         return this;
     }
 
+    public LoginRobot ClickSignIn()
+    {
+        SignInButton.Invoke();
+        return this;
+    }
+
+    public LoginRobot SwitchToSsoLogin()
+    {
+        SignInWithSsoButton.Invoke();
+        return this;
+    }
+
+    public LoginRobot EnterEmail(string email)
+    {
+        UsernameTextBox.Text = email;
+        return this;
+    }
+
     public LoginRobot DoEnterTwoFactorCode(string code)
     {
         TwoFactorInputField("First").Text = (code[0].ToString());
@@ -74,6 +92,20 @@ public partial class LoginRobot
 
         Keyboard.Type(VirtualKeyShort.TAB);
         Thread.Sleep(300);
+        Keyboard.Type(VirtualKeyShort.ENTER);
+        return this;
+    }
+
+    public LoginRobot DoLoginSsoWebview(string password)
+    {
+        //We have a very limited ability to use WebView, that is why we are using static pauses and keyboard strokes.
+        WaitUntilElementExistsByClassName(SsoWindowClassName, TestConstants.ThirtySecondsTimeout);
+        Thread.Sleep(15000);
+        SsoWindow.Click();
+
+        Keyboard.Type(VirtualKeyShort.TAB);
+        Keyboard.Type(password);
+        Keyboard.Type(VirtualKeyShort.TAB);
         Keyboard.Type(VirtualKeyShort.ENTER);
         return this;
     }
