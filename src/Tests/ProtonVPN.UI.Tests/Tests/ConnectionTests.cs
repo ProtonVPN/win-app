@@ -31,7 +31,7 @@ using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
 namespace ProtonVPN.UI.Tests.Tests;
 
 [TestFixture]
-[Category("UI")]
+[Category("1")]
 public class ConnectionTests : TestSession
 {
     private const string COUNTRIES_PAGE_TITLE = "Countries";

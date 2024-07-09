@@ -30,7 +30,7 @@ using ProtonVPN.UI.Tests.TestsHelper;
 namespace ProtonVPN.UI.Tests.Tests;
 
 [TestFixture]
-[Category("UI")]
+[Category("2")]
 public class ReportIssueTests : TestSession
 {
     private const string SETTINGS_PAGE_TITLE = "Settings";
@@ -41,8 +41,8 @@ public class ReportIssueTests : TestSession
     [
         "Network type",
         "What are you trying to do?",
-        "What is the speed you are getting?",
-        "What is your connection speed without VPN?"
+        "What is your current download speed? You can find this by performing a free speed test online.",
+        "Disconnect from VPN and perform another speed test. Enter your download speed below."
     ];
 
     private ShellRobot _shellRobot = new();

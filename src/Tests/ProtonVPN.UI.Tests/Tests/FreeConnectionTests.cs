@@ -29,7 +29,7 @@ using ProtonVPN.UI.Tests.TestsHelper;
 namespace ProtonVPN.UI.Tests.Tests;
 
 [TestFixture]
-[Category("UI")]
+[Category("2")]
 public class FreeConnectionTests : TestSession
 {
     private const string SERVER_LOAD_OVERLAY_TITLE = "What is server load?";

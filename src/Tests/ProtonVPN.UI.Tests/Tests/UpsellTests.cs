@@ -27,7 +27,7 @@ using ProtonVPN.UI.Tests.TestsHelper;
 namespace ProtonVPN.UI.Tests.Tests;
 
 [TestFixture]
-[Category("UI")]
+[Category("2")]
 public class UpsellTests : TestSession
 {
     private const int UPSELL_FEATURES_COUNT = 10;
