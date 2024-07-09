@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -56,6 +57,10 @@ public class TestSession
             catch (TimeoutException)
             {
                 //Ignore
+            }
+            catch (Win32Exception)
+            {
+                // Ignore
             }
             return Window;
         },
@@ -120,7 +125,6 @@ public class TestSession
         }
 
         RefreshWindow(TestConstants.OneMinuteTimeout);
-        Window.WaitUntilClickable(TestConstants.TenSecondsTimeout);
         Window.Focus();
     }
 

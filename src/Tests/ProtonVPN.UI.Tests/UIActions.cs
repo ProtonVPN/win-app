@@ -35,9 +35,22 @@ public class UIActions : TestSession
         WaitForElement(() =>
         {
             RefreshWindow();
-            element = FindFirstDescendant(cf => cf.ByAutomationId(automationId));
+            element = FindFirstDescendantUsingChildren(cf => cf.ByAutomationId(automationId));
             return element != null;
         }, time, automationId);
+
+        return element;
+    }
+
+    public AutomationElement WaitUntilElementExistsByClassName(string className, TimeSpan time)
+    {
+        AutomationElement element = null;
+        WaitForElement(() =>
+        {
+            RefreshWindow();
+            element = FindFirstDescendantUsingChildren(cf => cf.ByClassName(className));
+            return element != null;
+        }, time, className);
 
         return element;
     }
@@ -61,7 +74,7 @@ public class UIActions : TestSession
         WaitForElement(() =>
         {
             RefreshWindow();
-            element = FindFirstDescendant(cf => cf.ByName(name));
+            element = FindFirstDescendantUsingChildren(cf => cf.ByName(name));
             return element != null;
         }, time, name);
 
@@ -92,7 +105,12 @@ public class UIActions : TestSession
         return WaitUntilElementExistsByName(name, timeout ?? TestConstants.FiveSecondsTimeout);
     }
 
-    public AutomationElement FindFirstDescendant(Func<ConditionFactory, ConditionBase> conditionFunc)
+    protected AutomationElement ElementByClassName(string name, TimeSpan? timeout = null)
+    {
+        return WaitUntilElementExistsByClassName(name, timeout ?? TestConstants.FiveSecondsTimeout);
+    }
+
+    public AutomationElement FindFirstDescendantUsingChildren(Func<ConditionFactory, ConditionBase> conditionFunc)
     {
         AutomationElement child = Window.FindFirstChild(conditionFunc);
         if (child != null)
