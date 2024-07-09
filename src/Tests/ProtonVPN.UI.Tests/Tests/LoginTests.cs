@@ -28,7 +28,7 @@ using ProtonVPN.UI.Tests.TestsHelper;
 namespace ProtonVPN.UI.Tests.Tests;
 
 [TestFixture]
-[Category("UI")]
+[Category("2")]
 public class LoginTests : TestSession
 {
     public const string FREE_PLAN_NAME = "Proton VPN Free";

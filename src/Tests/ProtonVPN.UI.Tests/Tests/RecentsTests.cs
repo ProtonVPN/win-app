@@ -28,7 +28,7 @@ using ProtonVPN.UI.Tests.TestsHelper;
 namespace ProtonVPN.UI.Tests.Tests;
 
 [TestFixture]
-[Category("UI")]
+[Category("2")]
 public class RecentsTests : TestSession
 {
     private ShellRobot _shellRobot = new();

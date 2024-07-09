@@ -5,7 +5,7 @@
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <UseWindowsForms>true</UseWindowsForms>
         <UseWPF>true</UseWPF>
-        <OutputPath>..\..\bin\</OutputPath>
+        <OutputPath>..\..\bin\e2e\</OutputPath>
         <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <IsPublishable>false</IsPublishable>
