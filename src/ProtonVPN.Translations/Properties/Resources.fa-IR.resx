@@ -1847,7 +1847,7 @@
     <value>ProtonVPN نمی تواند اتصال برقرار کند زیرا آداپتور شبکه TUN در حال استفاده است. لطفا هر گونه VPN فعال را قطع کنید و دوباره امتحان کنید. همچنین میتوانید به آداپتور TAP تغییر دهید (می توانید در تنظیمات پیشرفته به TUN تغییر دهید).</value>
   </data>
   <data name="Dialogs_WireGuardAdapterInUse_msg">
-    <value>Proton VPN قادر به اتصال نیست چون یک آداپتور شبکه WireGuard از پیش در حال استفاده است. لطفاً اتصالات VPN فعال را قطع کرده و دوباره امتحان کنید. درضمن، می‌توانید بین پروتوکول‌ها در تنظیمات پیشرفته تغییر دهید.</value>
+    <value>Proton VPN قادر به اتصال نیست چون یک آداپتور شبکه WireGuard از پیش در حال استفاده است. لطفاً اتصالات VPN فعال را قطع کرده و دوباره امتحان کنید. درضمن، می‌توانید بین پروتکل‌ها در تنظیمات پیشرفته تغییر دهید.</value>
   </data>
   <data name="Dialogs_btn_Cancel">
     <value>لغو</value>
@@ -3277,7 +3277,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>سرور، شهر یا کشور ترجيحی‌تان را ذخیره کنید.</value>
   </data>
   <data name="Upsell_Profiles_Bullet2">
-    <value>تعیین پروتوکول‌های دستی و ویژگی‌های برتر VPN.</value>
+    <value>تعیین پروتکل‌های دستی و ویژگی‌های برتر VPN.</value>
   </data>
   <data name="Upsell_Profiles_Bullet3">
     <value>راه‌اندازی اتصال خودکار برای دسترسی سریع‌تر.</value>

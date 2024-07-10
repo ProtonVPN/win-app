@@ -1,0 +1,3486 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About_UpdateStatus_val_CheckFailed">
+    <value>Ni mogoče preveriti posodobitev</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="About_UpdateStatus_val_Checking">
+    <value>Preverjanje za posodobitve</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="About_UpdateStatus_val_DownloadFailed">
+    <value>Prenos posodobitve ni uspel</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="About_UpdateStatus_val_Downloading">
+    <value>Prenašanje posodobitev</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="About_UpdateStatus_val_None">
+    <value>Proton VPN je posodobljen</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="About_UpdateStatus_val_Ready">
+    <value>Na voljo je nova verzija!</value>
+    <comment>The app update status in About window</comment>
+  </data>
+  <data name="About_lbl_ChangelogVersion">
+    <value>Dnevnik sprememb v.{0}</value>
+    <comment>The title of app version in change log in About window. The {0} is a placeholder for app version number.</comment>
+  </data>
+  <data name="About_lbl_ChangelogVersion_New">
+    <value>Novo</value>
+    <comment>The text displayed next to app version in change log in About window. Indicates this app version is newer than current version.</comment>
+  </data>
+  <data name="About_lbl_CurrentVersion">
+    <value>Trenutna različica:</value>
+    <comment>The label for current app version number in About window</comment>
+  </data>
+  <data name="About_lbl_CurrentVersion_EarlyAccess">
+    <value>Zgodnji dostop</value>
+    <comment>The label displayed next to current app version in About window. Displayed for early access app version.</comment>
+  </data>
+  <data name="About_lbl_LastUpdate">
+    <value>Zadnja posodobitev:</value>
+    <comment>The label for last update date in About window</comment>
+  </data>
+  <data name="About_lbl_LicensingInformation">
+    <value>Informacija o licenci:</value>
+    <comment>The label for licensing information in About window</comment>
+  </data>
+  <data name="About_lnk_ReadLicense">
+    <value>Preberite tukaj</value>
+    <comment>The text of "Read here" hyperlink in About window to read the licensing information</comment>
+  </data>
+  <data name="About_lnk_Update">
+    <value>Posodobi</value>
+    <comment>The text of Update hyperlink in About window and Update flash notification (starts app update)</comment>
+  </data>
+  <data name="About_ttl">
+    <value>O nas</value>
+    <comment>The title of About window</comment>
+  </data>
+  <data name="Account_btn_ManageSubscription">
+    <value>Upravljanje z naročnino</value>
+    <comment>The text on Manage subscription button in Account window (auto login to a subscription upgrade page)</comment>
+  </data>
+  <data name="Account_lbl_AccessContent">
+    <value>Dostop do blokirane vsebine</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_AccountPlan">
+    <value>Vrsta paketa:</value>
+    <comment>The label for account plan name in Account window</comment>
+  </data>
+  <data name="Account_lbl_AccountType">
+    <value>Vrsta računa:</value>
+    <comment>The label for account type in Account window</comment>
+  </data>
+  <data name="Account_lbl_AllPlusFeatures">
+    <value>Funkcije paketa Plus</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_Connection_One">
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; VPN povezava</value>
+  </data>
+  <data name="Account_lbl_Connection_Two">
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; VPN povezavi</value>
+  </data>
+  <data name="Account_lbl_Connection_Few">
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; VPN povezave</value>
+  </data>
+  <data name="Account_lbl_Connection_Other">
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; VPN povezav</value>
+  </data>
+  <data name="Account_lbl_Countries_One">
+    <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; država</value>
+  </data>
+  <data name="Account_lbl_Countries_Two">
+    <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; državi</value>
+  </data>
+  <data name="Account_lbl_Countries_Few">
+    <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; države</value>
+  </data>
+  <data name="Account_lbl_Countries_Other">
+    <value>in &lt;Bold&gt;{0}&lt;/Bold&gt; držav</value>
+  </data>
+  <data name="Account_lbl_CurrentPlan">
+    <value>Trenutna naročnina</value>
+  </data>
+  <data name="Account_lbl_Device_One">
+    <value>Naprava</value>
+  </data>
+  <data name="Account_lbl_Device_Two">
+    <value>Napravi</value>
+  </data>
+  <data name="Account_lbl_Device_Few">
+    <value>Naprave</value>
+  </data>
+  <data name="Account_lbl_Device_Other">
+    <value>Naprav</value>
+  </data>
+  <data name="Account_lbl_Free">
+    <value>Proton VPN Free</value>
+    <comment>The name of VPN subscription plan</comment>
+  </data>
+  <data name="Account_lbl_HighSpeed">
+    <value>&lt;Bold&gt;Visoka&lt;/Bold&gt; hitrost</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_HighestSpeed">
+    <value>&lt;Bold&gt;Najvišja&lt;/Bold&gt; hitrost (do 10 Gb/s)</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_MediumSpeed">
+    <value>&lt;Bold&gt;Srednja&lt;/Bold&gt; hitrost</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_NetShield">
+    <value>Blokiranje oglasov (NetShield)</value>
+    <comment>The text displayed in Account window for NetShield</comment>
+  </data>
+  <data name="Account_lbl_NoLogs">
+    <value>Strikten pravilnik brez dnevniških datotek</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_P2P">
+    <value>Podpora za P2P/BitTorrent</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_P2P_Info">
+    <value>Podpora za protokole za skupno rabo datotek, kot je BitTorrent.</value>
+    <comment>Tooltip message shown in account window when hovered on P2P exclamation mark icon</comment>
+  </data>
+  <data name="Account_lbl_Plus">
+    <value>Proton VPN Plus</value>
+    <comment>The name of VPN subscription plan</comment>
+  </data>
+  <data name="Account_lbl_SecureCoreVpn">
+    <value>Secure Core VPN</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_Servers_One">
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; strežnik</value>
+  </data>
+  <data name="Account_lbl_Servers_Two">
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; strežnika</value>
+  </data>
+  <data name="Account_lbl_Servers_Few">
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; strežniki</value>
+  </data>
+  <data name="Account_lbl_Servers_Other">
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; strežnikov</value>
+  </data>
+  <data name="Account_lbl_Streaming">
+    <value>Podpora pretočnim servisom</value>
+    <comment>The text displayed in Account window for Streaming service support</comment>
+  </data>
+  <data name="Account_lbl_TorOverVpn">
+    <value>TOR preko VPN</value>
+    <comment>The text displayed in Account window</comment>
+  </data>
+  <data name="Account_lbl_Username">
+    <value>Uporabniško ime:</value>
+    <comment>The label for user login name in Account window</comment>
+  </data>
+  <data name="Account_ttl">
+    <value>Račun</value>
+    <comment>The title of Account window</comment>
+  </data>
+  <data name="Api_error_Timeout">
+    <value>Vaša zahteva ni uspela. Poskusite ponovno.</value>
+  </data>
+  <data name="App_mnu_About">
+    <value>O programu</value>
+    <comment>The header of About menu item in the main app window (opens About window)</comment>
+  </data>
+  <data name="App_mnu_Account">
+    <value>Račun</value>
+    <comment>The header of Account menu item in the main app window (opens Account window)</comment>
+  </data>
+  <data name="App_mnu_Connect">
+    <value>Poveži</value>
+    <comment>The header of Connect menu item in the Taskbar Notification Icon (Systray) context menu (connects to VPN using Quick Connect profile)</comment>
+  </data>
+  <data name="App_mnu_Disconnect">
+    <value>Prekini</value>
+    <comment>The header of Disconnect menu item in the Taskbar Notification Icon (Systray) context menu (disconnects from VPN profile)</comment>
+  </data>
+  <data name="App_mnu_Exit">
+    <value>Izhod</value>
+    <comment>The header of Exit menu item in the main app window (exits the app)</comment>
+  </data>
+  <data name="App_mnu_Help">
+    <value>Pomoč</value>
+    <comment>The header of Help menu item in the main app window (opens help web page)</comment>
+  </data>
+  <data name="App_mnu_Logout">
+    <value>Odjava</value>
+    <comment>The header of Logout menu item in the main app window (logs out current user)</comment>
+  </data>
+  <data name="App_mnu_Profiles">
+    <value>Profili</value>
+    <comment>The header of Profiles menu item in the main app window (opens Profiles window)</comment>
+  </data>
+  <data name="App_mnu_ReportBug">
+    <value>Prijavite težavo</value>
+    <comment>The header of Report an Issue menu item in the main app window (opens Issue Report window)</comment>
+  </data>
+  <data name="App_mnu_Settings">
+    <value>Nastavitve</value>
+    <comment>The header of Settings menu item in the main app window (opens Settings window)</comment>
+  </data>
+  <data name="App_msg_LogoutConnectedConfirm">
+    <value>Odjava iz aplikacije bo prekinila aktivno povezavo VPN. Želite nadaljevati?</value>
+    <comment>The question displayed when trying to logout while connected to VPN</comment>
+  </data>
+  <data name="App_msg_UpdateConnectedConfirm">
+    <value>Za dokončanje postopka posodobitve bo Proton VPN začasno prekinil povezavo in deaktiviral trajno stikalo za izklop, če je katero koli od teh aktivnih. Želite nadaljevati?</value>
+    <comment>The question displayed when trying to update the app while connected to VPN</comment>
+  </data>
+  <data name="App_ttl">
+    <value>Proton VPN</value>
+    <comment>The title of main app window. Should not be converted.</comment>
+  </data>
+  <data name="BugReport_btn_Back">
+    <value>Nazaj</value>
+    <comment>The text on Back button in Issue Report window</comment>
+  </data>
+  <data name="BugReport_btn_Cancel">
+    <value>Prekliči</value>
+    <comment>The text on Cancel button in Issue Report window (clears data and closes the window)</comment>
+  </data>
+  <data name="BugReport_btn_Close">
+    <value>Zapri</value>
+    <comment>The text on Close button in Issue Report window (closes the window)</comment>
+  </data>
+  <data name="BugReport_btn_FillOutTheForm">
+    <value>Kontaktirajte nas</value>
+  </data>
+  <data name="BugReport_btn_GetUpdates">
+    <value>Posodobi</value>
+  </data>
+  <data name="BugReport_btn_GotIt">
+    <value>Končano</value>
+  </data>
+  <data name="BugReport_btn_LearnMore">
+    <value>Več informacij</value>
+  </data>
+  <data name="BugReport_btn_Retry">
+    <value>Poskusi znova</value>
+    <comment>The text on Retry button in Issue Report window (retries sending after failure)</comment>
+  </data>
+  <data name="BugReport_btn_Send">
+    <value>Pošlji poročilo</value>
+    <comment>The text on Send button in Issue Report window (sends the Issue report)</comment>
+  </data>
+  <data name="BugReport_btn_Troubleshoot">
+    <value>Odpravljanje težav</value>
+    <comment>The text on Troubleshoot button in Issue Report window (opens troubleshooting window)</comment>
+  </data>
+  <data name="BugReport_lbl_DidNotHelp">
+    <value>Ni delovalo?</value>
+  </data>
+  <data name="BugReport_lbl_Email">
+    <value>E-pošta</value>
+    <comment>The label for user e-mail address in Issue Report window</comment>
+  </data>
+  <data name="BugReport_lbl_EmailPlaceholder">
+    <value>Ta e-poštni naslov bo uporabljen za stik z vami glede te težave.</value>
+    <comment>The watermark text displayed in empty user e-mail text box in Issue Report window</comment>
+  </data>
+  <data name="BugReport_lbl_HowToReproduce">
+    <value>Natančno katere korake ste izvedli?</value>
+    <comment>The label in Issue Report window</comment>
+  </data>
+  <data name="BugReport_lbl_IncludeLogs">
+    <value>Pošlji dnevnik z napakami</value>
+    <comment>The label in Issue Report window</comment>
+  </data>
+  <data name="BugReport_lbl_IncludeLogsInfo">
+    <value>Če zagotovite naslednje podrobnosti, lahko naša ekipa identificira vašo težavo in možno rešitev z večjo verjetnostjo in krajšim časom:
+• Dnevnik namestitve gonilnikov
+• Seznam nameščenih aplikacij
+• Dnevniki aplikacije Proton VPN in storitve Proton VPN
+• Seznam omrežnih kartic
+• Informacije o usmerjevalni tabeli</value>
+    <comment>The text inside info tooltip in Issue Report window</comment>
+  </data>
+  <data name="BugReport_lbl_LogsDescription">
+    <value>Dnevniške datoteke z napakami nam pomagajo priti do jedra vaše težave. Če jih ne vključite, morda ne bomo mogli izvesti temeljite preiskave.</value>
+  </data>
+  <data name="BugReport_lbl_LogsTooltip">
+    <value>Dnevnik je vrsta datoteke, ki nam prikazuje dejanja, ki ste jih izvedli in so povzročila napako. Uporabljali jih bomo samo za pomoč našim inženirjem pri odpravljanju napak.</value>
+  </data>
+  <data name="BugReport_lbl_NewVersionAvailable">
+    <value>Posodobi Proton VPN.</value>
+  </data>
+  <data name="BugReport_lbl_NewVersionInfo">
+    <value>Ta različica Proton VPN je morda že rešila vašo težavo!</value>
+  </data>
+  <data name="BugReport_lbl_QuickSolutions">
+    <value>Hitri popravki</value>
+  </data>
+  <data name="BugReport_lbl_QuickSolutionsInfo">
+    <value>Ti nasveti vam lahko pomagajo rešiti vašo težavo hitreje.</value>
+  </data>
+  <data name="BugReport_lbl_Step">
+    <value>Korak</value>
+  </data>
+  <data name="BugReport_lbl_Username">
+    <value>Uporabniško ime</value>
+    <comment>The label for the username in Issue Report window</comment>
+  </data>
+  <data name="BugReport_lbl_UsernamePlaceholder">
+    <value>Vaše Proton uporabniško ime – za primer, da že imate račun.</value>
+    <comment>The watermark text displayed in empty username text box in Issue Report window</comment>
+  </data>
+  <data name="BugReport_lbl_WhatIsTheIssue">
+    <value>Kaj je narobe?</value>
+  </data>
+  <data name="BugReport_lbl_WhatWentWrong">
+    <value>Katere težave so nastale?</value>
+    <comment>The label in Issue Report window</comment>
+  </data>
+  <data name="BugReport_lbl_WillGetBack">
+    <value>Vrnili vam bomo odgovor, takoj ko bo mogoče.</value>
+  </data>
+  <data name="BugReport_lbl_of">
+    <value>od</value>
+    <comment>The text displayed in report an issue form. For example: Step 1 of 3.</comment>
+  </data>
+  <data name="BugReport_msg_EmailNotValid">
+    <value>E-pošta ni veljavna</value>
+  </data>
+  <data name="BugReport_msg_Sending">
+    <value>Pošiljanje poročila ...</value>
+    <comment>The message displayed in Issue Report window while sending the report</comment>
+  </data>
+  <data name="BugReport_msg_SendingFailed">
+    <value>Vaše poročilo ni bilo poslano.</value>
+    <comment>The message displayed in Issue Report window when sending Issue report fails</comment>
+  </data>
+  <data name="BugReport_msg_SendingInfo">
+    <value>Počakajte, da se postopek pošiljanja konča</value>
+    <comment>The message displayed in Issue Report window while sending the report</comment>
+  </data>
+  <data name="BugReport_msg_SendingSucceeded">
+    <value>Hvala za vaše povratne informacije.</value>
+    <comment>The message displayed in Issue Report window when sending completes</comment>
+  </data>
+  <data name="BugReport_ttl">
+    <value>Prijava napake</value>
+    <comment>The title of Issue Report window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_AssigningIp">
+    <value>Dodeljevanje IP-ja</value>
+    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_Authenticating">
+    <value>Preverjanje pristnosti uporabnika</value>
+    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_Connecting">
+    <value>Vzpostavljanje povezave</value>
+    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_Pinging">
+    <value>Čakanje na uporabno omrežje ...</value>
+    <comment>The VPN status displayed in Pinging overlay of main app window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_RetrievingConfiguration">
+    <value>Vzpostavitev tunela VPN</value>
+    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
+  </data>
+  <data name="Connecting_VpnStatus_val_Waiting">
+    <value>Vzpostavljanje povezave</value>
+    <comment>The VPN status displayed in Connecting overlay of main app window</comment>
+  </data>
+  <data name="Connecting_btn_Cancel">
+    <value>Prekliči</value>
+    <comment>The text on cancel button in Connecting overlay of main app window (cancels connection attempt)</comment>
+  </data>
+  <data name="Connecting_btn_TryAgain">
+    <value>Poskusi znova</value>
+    <comment>The text on retry button in Connecting overlay of main app window (retries connection to VPN)</comment>
+  </data>
+  <data name="Connecting_lbl_ConnectingTo_1">
+    <value>Povezovanje z</value>
+    <comment>The beginning of text for VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Connecting to {0}". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Connecting_lbl_ConnectingTo_1_SecureCore">
+    <value>Ustvarjam</value>
+    <comment>The beginning of text for Secure Core VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Creating {0} connection". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Connecting_lbl_ConnectingTo_2">
+    <value></value>
+    <comment>The end of text for VPN server being connected to in Connecting overlay of main app window. It shall be translated as the text after imaginary placeholder {0} in the text string "Connecting to {0}". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Connecting_lbl_ConnectingTo_2_SecureCore">
+    <value>povezava</value>
+    <comment>The end of text for Secure Core VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "Creating {0} connection". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Connecting_lbl_FailedConnection_1">
+    <value>Povezujem z</value>
+    <comment>The beginning of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Connecting_lbl_FailedConnection_1_SecureCore">
+    <value></value>
+    <comment>The beginning of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Connecting_lbl_FailedConnection_2">
+    <value>ni uspelo</value>
+    <comment>The end of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Connecting_lbl_FailedConnection_2_SecureCore">
+    <value>povezava ni uspela</value>
+    <comment>The end of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
+  </data>
+  <data name="Countries_lbl_One">
+    <value>{0} država</value>
+  </data>
+  <data name="Countries_lbl_Two">
+    <value>{0} državi</value>
+  </data>
+  <data name="Countries_lbl_Few">
+    <value>{0} države</value>
+  </data>
+  <data name="Countries_lbl_Other">
+    <value>{0} držav</value>
+  </data>
+  <data name="Country_val_AD">
+    <value>Andora</value>
+    <comment>The name of AD country</comment>
+  </data>
+  <data name="Country_val_AE">
+    <value>Združeni arabski emirati</value>
+    <comment>The name of AE country</comment>
+  </data>
+  <data name="Country_val_AF">
+    <value>Afganistan</value>
+    <comment>The name of AF country</comment>
+  </data>
+  <data name="Country_val_AG">
+    <value>Antigva in Barbuda</value>
+    <comment>The name of AG country</comment>
+  </data>
+  <data name="Country_val_AI">
+    <value>Angvila</value>
+    <comment>The name of AI country</comment>
+  </data>
+  <data name="Country_val_AL">
+    <value>Albanija</value>
+    <comment>The name of AL country</comment>
+  </data>
+  <data name="Country_val_AM">
+    <value>Armenija</value>
+    <comment>The name of AM country</comment>
+  </data>
+  <data name="Country_val_AO">
+    <value>Angola</value>
+    <comment>The name of AO country</comment>
+  </data>
+  <data name="Country_val_AQ">
+    <value>Antarktika</value>
+    <comment>The name of AQ country</comment>
+  </data>
+  <data name="Country_val_AR">
+    <value>Argentina</value>
+    <comment>The name of AR country</comment>
+  </data>
+  <data name="Country_val_AS">
+    <value>Ameriška Samoa</value>
+    <comment>The name of AS country</comment>
+  </data>
+  <data name="Country_val_AT">
+    <value>Avstrija</value>
+    <comment>The name of AT country</comment>
+  </data>
+  <data name="Country_val_AU">
+    <value>Avstralija</value>
+    <comment>The name of AU country</comment>
+  </data>
+  <data name="Country_val_AW">
+    <value>Aruba</value>
+    <comment>The name of AW country</comment>
+  </data>
+  <data name="Country_val_AX">
+    <value>Alandski otoki</value>
+    <comment>The name of AX country</comment>
+  </data>
+  <data name="Country_val_AZ">
+    <value>Azerbajdžan</value>
+    <comment>The name of AZ country</comment>
+  </data>
+  <data name="Country_val_BA">
+    <value>Bosna in Hercegovina</value>
+    <comment>The name of BA country</comment>
+  </data>
+  <data name="Country_val_BB">
+    <value>Barbados</value>
+    <comment>The name of BB country</comment>
+  </data>
+  <data name="Country_val_BD">
+    <value>Bangladeš</value>
+    <comment>The name of BD country</comment>
+  </data>
+  <data name="Country_val_BE">
+    <value>Belgija</value>
+    <comment>The name of BE country</comment>
+  </data>
+  <data name="Country_val_BF">
+    <value>Burkina Faso</value>
+    <comment>The name of BF country</comment>
+  </data>
+  <data name="Country_val_BG">
+    <value>Bolgarija</value>
+    <comment>The name of BG country</comment>
+  </data>
+  <data name="Country_val_BH">
+    <value>Bahrajn</value>
+    <comment>The name of BH country</comment>
+  </data>
+  <data name="Country_val_BI">
+    <value>Burundi</value>
+    <comment>The name of BI country</comment>
+  </data>
+  <data name="Country_val_BJ">
+    <value>Benin</value>
+    <comment>The name of BJ country</comment>
+  </data>
+  <data name="Country_val_BL">
+    <value>Sveti Bartolomej</value>
+    <comment>The name of BL country</comment>
+  </data>
+  <data name="Country_val_BM">
+    <value>Bermudi</value>
+    <comment>The name of BM country</comment>
+  </data>
+  <data name="Country_val_BN">
+    <value>Brunej</value>
+    <comment>The name of BN country</comment>
+  </data>
+  <data name="Country_val_BO">
+    <value>Bolivija</value>
+    <comment>The name of BO country</comment>
+  </data>
+  <data name="Country_val_BQ">
+    <value>Bonaire, Sveti Evstahij in Saba</value>
+    <comment>The name of BQ country</comment>
+  </data>
+  <data name="Country_val_BR">
+    <value>Brazilija</value>
+    <comment>The name of BR country</comment>
+  </data>
+  <data name="Country_val_BS">
+    <value>Bahami</value>
+    <comment>The name of BS country</comment>
+  </data>
+  <data name="Country_val_BT">
+    <value>Butan</value>
+    <comment>The name of BT country</comment>
+  </data>
+  <data name="Country_val_BV">
+    <value>Bouvetov otok</value>
+    <comment>The name of BV country</comment>
+  </data>
+  <data name="Country_val_BW">
+    <value>Bocvana</value>
+    <comment>The name of BW country</comment>
+  </data>
+  <data name="Country_val_BY">
+    <value>Belorusija</value>
+    <comment>The name of BY country</comment>
+  </data>
+  <data name="Country_val_BZ">
+    <value>Belize</value>
+    <comment>The name of BZ country</comment>
+  </data>
+  <data name="Country_val_CA">
+    <value>Kanada</value>
+    <comment>The name of CA country</comment>
+  </data>
+  <data name="Country_val_CC">
+    <value>Kokosovi (Keelingovi) otoki</value>
+    <comment>The name of CC country</comment>
+  </data>
+  <data name="Country_val_CD">
+    <value>Kongo (Demokratična republika)</value>
+    <comment>The name of CD country</comment>
+  </data>
+  <data name="Country_val_CF">
+    <value>Srednjeafriška republika</value>
+    <comment>The name of CF country</comment>
+  </data>
+  <data name="Country_val_CG">
+    <value>Kongo</value>
+    <comment>The name of CG country</comment>
+  </data>
+  <data name="Country_val_CH">
+    <value>Švica</value>
+    <comment>The name of CH country</comment>
+  </data>
+  <data name="Country_val_CI">
+    <value>Slonokoščena obala</value>
+    <comment>The name of CI country</comment>
+  </data>
+  <data name="Country_val_CK">
+    <value>Cookovi otoki</value>
+    <comment>The name of CK country</comment>
+  </data>
+  <data name="Country_val_CL">
+    <value>Čile</value>
+    <comment>The name of CL country</comment>
+  </data>
+  <data name="Country_val_CM">
+    <value>Kamerun</value>
+    <comment>The name of CM country</comment>
+  </data>
+  <data name="Country_val_CN">
+    <value>Kitajska</value>
+    <comment>The name of CN country</comment>
+  </data>
+  <data name="Country_val_CO">
+    <value>Kolumbija</value>
+    <comment>The name of CO country</comment>
+  </data>
+  <data name="Country_val_CR">
+    <value>Kostarika</value>
+    <comment>The name of CR country</comment>
+  </data>
+  <data name="Country_val_CU">
+    <value>Kuba</value>
+    <comment>The name of CU country</comment>
+  </data>
+  <data name="Country_val_CV">
+    <value>Zelenortski otoki</value>
+    <comment>The name of CV country</comment>
+  </data>
+  <data name="Country_val_CW">
+    <value>Curaçao</value>
+    <comment>The name of CW country</comment>
+  </data>
+  <data name="Country_val_CX">
+    <value>Božični otok</value>
+    <comment>The name of CX country</comment>
+  </data>
+  <data name="Country_val_CY">
+    <value>Ciper</value>
+    <comment>The name of CY country</comment>
+  </data>
+  <data name="Country_val_CZ">
+    <value>Češka</value>
+    <comment>The name of CZ country</comment>
+  </data>
+  <data name="Country_val_DE">
+    <value>Nemčija</value>
+    <comment>The name of DE country</comment>
+  </data>
+  <data name="Country_val_DJ">
+    <value>Džibuti</value>
+    <comment>The name of DJ country</comment>
+  </data>
+  <data name="Country_val_DK">
+    <value>Danska</value>
+    <comment>The name of DK country</comment>
+  </data>
+  <data name="Country_val_DM">
+    <value>Dominika</value>
+    <comment>The name of DM country</comment>
+  </data>
+  <data name="Country_val_DO">
+    <value>Dominikanska republika</value>
+    <comment>The name of DO country</comment>
+  </data>
+  <data name="Country_val_DZ">
+    <value>Alžirija</value>
+    <comment>The name of DZ country</comment>
+  </data>
+  <data name="Country_val_EC">
+    <value>Ekvador</value>
+    <comment>The name of EC country</comment>
+  </data>
+  <data name="Country_val_EE">
+    <value>Estonija</value>
+    <comment>The name of EE country</comment>
+  </data>
+  <data name="Country_val_EG">
+    <value>Egipt</value>
+    <comment>The name of EG country</comment>
+  </data>
+  <data name="Country_val_EH">
+    <value>Zahodna Sahara</value>
+    <comment>The name of EH country</comment>
+  </data>
+  <data name="Country_val_ER">
+    <value>Eritreja</value>
+    <comment>The name of ER country</comment>
+  </data>
+  <data name="Country_val_ES">
+    <value>Španija</value>
+    <comment>The name of ES country</comment>
+  </data>
+  <data name="Country_val_ET">
+    <value>Etiopija</value>
+    <comment>The name of ET country</comment>
+  </data>
+  <data name="Country_val_FI">
+    <value>Finska</value>
+    <comment>The name of FI country</comment>
+  </data>
+  <data name="Country_val_FJ">
+    <value>Fidži</value>
+    <comment>The name of FJ country</comment>
+  </data>
+  <data name="Country_val_FK">
+    <value>Falklandski otoki (Malvinas)</value>
+    <comment>The name of FK country</comment>
+  </data>
+  <data name="Country_val_FM">
+    <value>Mikronezija</value>
+    <comment>The name of FM country</comment>
+  </data>
+  <data name="Country_val_FO">
+    <value>Ferski otoki</value>
+    <comment>The name of FO country</comment>
+  </data>
+  <data name="Country_val_FR">
+    <value>Francija</value>
+    <comment>The name of FR country</comment>
+  </data>
+  <data name="Country_val_GA">
+    <value>Gabon</value>
+    <comment>The name of GA country</comment>
+  </data>
+  <data name="Country_val_GB">
+    <value>Združeno kraljestvo</value>
+    <comment>The name of GB country</comment>
+  </data>
+  <data name="Country_val_GD">
+    <value>Grenada</value>
+    <comment>The name of GD country</comment>
+  </data>
+  <data name="Country_val_GE">
+    <value>Gruzija</value>
+    <comment>The name of GE country</comment>
+  </data>
+  <data name="Country_val_GF">
+    <value>Francoska Gvajana</value>
+    <comment>The name of GF country</comment>
+  </data>
+  <data name="Country_val_GG">
+    <value>Guernsey</value>
+    <comment>The name of GG country</comment>
+  </data>
+  <data name="Country_val_GH">
+    <value>Gana</value>
+    <comment>The name of GH country</comment>
+  </data>
+  <data name="Country_val_GI">
+    <value>Gibraltar</value>
+    <comment>The name of GI country</comment>
+  </data>
+  <data name="Country_val_GL">
+    <value>Grenlandija</value>
+    <comment>The name of GL country</comment>
+  </data>
+  <data name="Country_val_GM">
+    <value>Gambija</value>
+    <comment>The name of GM country</comment>
+  </data>
+  <data name="Country_val_GN">
+    <value>Gvineja</value>
+    <comment>The name of GN country</comment>
+  </data>
+  <data name="Country_val_GP">
+    <value>Gvadelup</value>
+    <comment>The name of GP country</comment>
+  </data>
+  <data name="Country_val_GQ">
+    <value>Ekvatorialna Gvineja</value>
+    <comment>The name of GQ country</comment>
+  </data>
+  <data name="Country_val_GR">
+    <value>Grčija</value>
+    <comment>The name of GR country</comment>
+  </data>
+  <data name="Country_val_GS">
+    <value>Južna Georgija in Južni Sandwichevi otoki</value>
+    <comment>The name of GS country</comment>
+  </data>
+  <data name="Country_val_GT">
+    <value>Gvatemala</value>
+    <comment>The name of GT country</comment>
+  </data>
+  <data name="Country_val_GU">
+    <value>Gvam</value>
+    <comment>The name of GU country</comment>
+  </data>
+  <data name="Country_val_GW">
+    <value>Gvineja Bissau</value>
+    <comment>The name of GW country</comment>
+  </data>
+  <data name="Country_val_GY">
+    <value>Gvajana</value>
+    <comment>The name of GY country</comment>
+  </data>
+  <data name="Country_val_HK">
+    <value>Hongkong</value>
+    <comment>The name of HK country</comment>
+  </data>
+  <data name="Country_val_HM">
+    <value>Heardov otok in McDonaldovi otoki</value>
+    <comment>The name of HM country</comment>
+  </data>
+  <data name="Country_val_HN">
+    <value>Honduras</value>
+    <comment>The name of HN country</comment>
+  </data>
+  <data name="Country_val_HR">
+    <value>Hrvaška</value>
+    <comment>The name of HR country</comment>
+  </data>
+  <data name="Country_val_HT">
+    <value>Haiti</value>
+    <comment>The name of HT country</comment>
+  </data>
+  <data name="Country_val_HU">
+    <value>Madžarska</value>
+    <comment>The name of HU country</comment>
+  </data>
+  <data name="Country_val_ID">
+    <value>Indonezija</value>
+    <comment>The name of ID country</comment>
+  </data>
+  <data name="Country_val_IE">
+    <value>Irska</value>
+    <comment>The name of IE country</comment>
+  </data>
+  <data name="Country_val_IL">
+    <value>Izrael</value>
+    <comment>The name of IL country</comment>
+  </data>
+  <data name="Country_val_IM">
+    <value>Otok Man</value>
+    <comment>The name of IM country</comment>
+  </data>
+  <data name="Country_val_IN">
+    <value>Indija</value>
+    <comment>The name of IN country</comment>
+  </data>
+  <data name="Country_val_IO">
+    <value>Britansko ozemlje v Indijskem oceanu</value>
+    <comment>The name of IO country</comment>
+  </data>
+  <data name="Country_val_IQ">
+    <value>Irak</value>
+    <comment>The name of IQ country</comment>
+  </data>
+  <data name="Country_val_IR">
+    <value>Iran</value>
+    <comment>The name of IR country</comment>
+  </data>
+  <data name="Country_val_IS">
+    <value>Islandija</value>
+    <comment>The name of IS country</comment>
+  </data>
+  <data name="Country_val_IT">
+    <value>Italija</value>
+    <comment>The name of IT country</comment>
+  </data>
+  <data name="Country_val_JE">
+    <value>Jersey</value>
+    <comment>The name of JE country</comment>
+  </data>
+  <data name="Country_val_JM">
+    <value>Jamajka</value>
+    <comment>The name of JM country</comment>
+  </data>
+  <data name="Country_val_JO">
+    <value>Jordanija</value>
+    <comment>The name of JO country</comment>
+  </data>
+  <data name="Country_val_JP">
+    <value>Japonska</value>
+    <comment>The name of JP country</comment>
+  </data>
+  <data name="Country_val_KE">
+    <value>Kenija</value>
+    <comment>The name of KE country</comment>
+  </data>
+  <data name="Country_val_KG">
+    <value>Kirgizistan</value>
+    <comment>The name of KG country</comment>
+  </data>
+  <data name="Country_val_KH">
+    <value>Kambodža</value>
+    <comment>The name of KH country</comment>
+  </data>
+  <data name="Country_val_KI">
+    <value>Kiribati</value>
+    <comment>The name of KI country</comment>
+  </data>
+  <data name="Country_val_KM">
+    <value>Komori</value>
+    <comment>The name of KM country</comment>
+  </data>
+  <data name="Country_val_KN">
+    <value>Sveti Krištof in Nevis</value>
+    <comment>The name of KN country</comment>
+  </data>
+  <data name="Country_val_KP">
+    <value>Severna Koreja</value>
+    <comment>The name of KP country</comment>
+  </data>
+  <data name="Country_val_KR">
+    <value>Južna Koreja</value>
+    <comment>The name of KR country</comment>
+  </data>
+  <data name="Country_val_KW">
+    <value>Kuvajt</value>
+    <comment>The name of KW country</comment>
+  </data>
+  <data name="Country_val_KY">
+    <value>Kajmanji otoki</value>
+    <comment>The name of KY country</comment>
+  </data>
+  <data name="Country_val_KZ">
+    <value>Kazahstan</value>
+    <comment>The name of KZ country</comment>
+  </data>
+  <data name="Country_val_LA">
+    <value>Laos</value>
+    <comment>The name of LA country</comment>
+  </data>
+  <data name="Country_val_LB">
+    <value>Libanon</value>
+    <comment>The name of LB country</comment>
+  </data>
+  <data name="Country_val_LC">
+    <value>Sveta Lucija</value>
+    <comment>The name of LC country</comment>
+  </data>
+  <data name="Country_val_LI">
+    <value>Lihtenštajn</value>
+    <comment>The name of LI country</comment>
+  </data>
+  <data name="Country_val_LK">
+    <value>Šrilanka</value>
+    <comment>The name of LK country</comment>
+  </data>
+  <data name="Country_val_LR">
+    <value>Liberija</value>
+    <comment>The name of LR country</comment>
+  </data>
+  <data name="Country_val_LS">
+    <value>Lesoto</value>
+    <comment>The name of LS country</comment>
+  </data>
+  <data name="Country_val_LT">
+    <value>Litva</value>
+    <comment>The name of LT country</comment>
+  </data>
+  <data name="Country_val_LU">
+    <value>Luksemburg</value>
+    <comment>The name of LU country</comment>
+  </data>
+  <data name="Country_val_LV">
+    <value>Latvija</value>
+    <comment>The name of LV country</comment>
+  </data>
+  <data name="Country_val_LY">
+    <value>Libija</value>
+    <comment>The name of LY country</comment>
+  </data>
+  <data name="Country_val_MA">
+    <value>Maroko</value>
+    <comment>The name of MA country</comment>
+  </data>
+  <data name="Country_val_MC">
+    <value>Monako</value>
+    <comment>The name of MC country</comment>
+  </data>
+  <data name="Country_val_MD">
+    <value>Moldavija</value>
+    <comment>The name of MD country</comment>
+  </data>
+  <data name="Country_val_ME">
+    <value>Črna gora</value>
+    <comment>The name of ME country</comment>
+  </data>
+  <data name="Country_val_MF">
+    <value>Sveti Martin (francoski del)</value>
+    <comment>The name of MF country</comment>
+  </data>
+  <data name="Country_val_MG">
+    <value>Madagaskar</value>
+    <comment>The name of MG country</comment>
+  </data>
+  <data name="Country_val_MH">
+    <value>Marshallovi otoki</value>
+    <comment>The name of MH country</comment>
+  </data>
+  <data name="Country_val_MK">
+    <value>Makedonija</value>
+    <comment>The name of MK country</comment>
+  </data>
+  <data name="Country_val_ML">
+    <value>Mali</value>
+    <comment>The name of ML country</comment>
+  </data>
+  <data name="Country_val_MM">
+    <value>Mjanmar</value>
+    <comment>The name of MM country</comment>
+  </data>
+  <data name="Country_val_MN">
+    <value>Mongolija</value>
+    <comment>The name of MN country</comment>
+  </data>
+  <data name="Country_val_MO">
+    <value>Makav</value>
+    <comment>The name of MO country</comment>
+  </data>
+  <data name="Country_val_MP">
+    <value>Severni Marijanski otoki</value>
+    <comment>The name of MP country</comment>
+  </data>
+  <data name="Country_val_MQ">
+    <value>Martinik</value>
+    <comment>The name of MQ country</comment>
+  </data>
+  <data name="Country_val_MR">
+    <value>Mavretanija</value>
+    <comment>The name of MR country</comment>
+  </data>
+  <data name="Country_val_MS">
+    <value>Monserat</value>
+    <comment>The name of MS country</comment>
+  </data>
+  <data name="Country_val_MT">
+    <value>Malta</value>
+    <comment>The name of MT country</comment>
+  </data>
+  <data name="Country_val_MU">
+    <value>Mavricij</value>
+    <comment>The name of MU country</comment>
+  </data>
+  <data name="Country_val_MV">
+    <value>Maldivi</value>
+    <comment>The name of MV country</comment>
+  </data>
+  <data name="Country_val_MW">
+    <value>Malavi</value>
+    <comment>The name of MW country</comment>
+  </data>
+  <data name="Country_val_MX">
+    <value>Mehika</value>
+    <comment>The name of MX country</comment>
+  </data>
+  <data name="Country_val_MY">
+    <value>Malezija</value>
+    <comment>The name of MY country</comment>
+  </data>
+  <data name="Country_val_MZ">
+    <value>Mozambik</value>
+    <comment>The name of MZ country</comment>
+  </data>
+  <data name="Country_val_NA">
+    <value>Namibija</value>
+    <comment>The name of NA country</comment>
+  </data>
+  <data name="Country_val_NC">
+    <value>Nova Kaledonija</value>
+    <comment>The name of NC country</comment>
+  </data>
+  <data name="Country_val_NE">
+    <value>Niger</value>
+    <comment>The name of NE country</comment>
+  </data>
+  <data name="Country_val_NF">
+    <value>Otok Norfolk</value>
+    <comment>The name of NF country</comment>
+  </data>
+  <data name="Country_val_NG">
+    <value>Nigerija</value>
+    <comment>The name of NG country</comment>
+  </data>
+  <data name="Country_val_NI">
+    <value>Nikaragva</value>
+    <comment>The name of NI country</comment>
+  </data>
+  <data name="Country_val_NL">
+    <value>Nizozemska</value>
+    <comment>The name of NL country</comment>
+  </data>
+  <data name="Country_val_NO">
+    <value>Norveška</value>
+    <comment>The name of NO country</comment>
+  </data>
+  <data name="Country_val_NP">
+    <value>Nepal</value>
+    <comment>The name of NP country</comment>
+  </data>
+  <data name="Country_val_NR">
+    <value>Nauru</value>
+    <comment>The name of NR country</comment>
+  </data>
+  <data name="Country_val_NU">
+    <value>Niue</value>
+    <comment>The name of NU country</comment>
+  </data>
+  <data name="Country_val_NZ">
+    <value>Nova Zelandija</value>
+    <comment>The name of NZ country</comment>
+  </data>
+  <data name="Country_val_OM">
+    <value>Oman</value>
+    <comment>The name of OM country</comment>
+  </data>
+  <data name="Country_val_PA">
+    <value>Panama</value>
+    <comment>The name of PA country</comment>
+  </data>
+  <data name="Country_val_PE">
+    <value>Peru</value>
+    <comment>The name of PE country</comment>
+  </data>
+  <data name="Country_val_PF">
+    <value>Francoska Polinezija</value>
+    <comment>The name of PF country</comment>
+  </data>
+  <data name="Country_val_PG">
+    <value>Papuanska Nova Gvineja</value>
+    <comment>The name of PG country</comment>
+  </data>
+  <data name="Country_val_PH">
+    <value>Filipini</value>
+    <comment>The name of PH country</comment>
+  </data>
+  <data name="Country_val_PK">
+    <value>Pakistan</value>
+    <comment>The name of PK country</comment>
+  </data>
+  <data name="Country_val_PL">
+    <value>Poljska</value>
+    <comment>The name of PL country</comment>
+  </data>
+  <data name="Country_val_PM">
+    <value>Sveta Peter in Mihael</value>
+    <comment>The name of PM country</comment>
+  </data>
+  <data name="Country_val_PN">
+    <value>Pitcairn</value>
+    <comment>The name of PN country</comment>
+  </data>
+  <data name="Country_val_PR">
+    <value>Portoriko</value>
+    <comment>The name of PR country</comment>
+  </data>
+  <data name="Country_val_PS">
+    <value>Palestina</value>
+    <comment>The name of PS country</comment>
+  </data>
+  <data name="Country_val_PT">
+    <value>Portugalska</value>
+    <comment>The name of PT country</comment>
+  </data>
+  <data name="Country_val_PW">
+    <value>Palav</value>
+    <comment>The name of PW country</comment>
+  </data>
+  <data name="Country_val_PY">
+    <value>Paragvaj</value>
+    <comment>The name of PY country</comment>
+  </data>
+  <data name="Country_val_QA">
+    <value>Katar</value>
+    <comment>The name of QA country</comment>
+  </data>
+  <data name="Country_val_RE">
+    <value>Reunion</value>
+    <comment>The name of RE country</comment>
+  </data>
+  <data name="Country_val_RO">
+    <value>Romunija</value>
+    <comment>The name of RO country</comment>
+  </data>
+  <data name="Country_val_RS">
+    <value>Srbija</value>
+    <comment>The name of RS country</comment>
+  </data>
+  <data name="Country_val_RU">
+    <value>Rusija</value>
+    <comment>The name of RU country</comment>
+  </data>
+  <data name="Country_val_RW">
+    <value>Ruanda</value>
+    <comment>The name of RW country</comment>
+  </data>
+  <data name="Country_val_SA">
+    <value>Saudova Arabija</value>
+    <comment>The name of SA country</comment>
+  </data>
+  <data name="Country_val_SB">
+    <value>Salomonovi otoki</value>
+    <comment>The name of SB country</comment>
+  </data>
+  <data name="Country_val_SC">
+    <value>Sejšeli</value>
+    <comment>The name of SC country</comment>
+  </data>
+  <data name="Country_val_SD">
+    <value>Sudan</value>
+    <comment>The name of SD country</comment>
+  </data>
+  <data name="Country_val_SE">
+    <value>Švedska</value>
+    <comment>The name of SE country</comment>
+  </data>
+  <data name="Country_val_SG">
+    <value>Singapur</value>
+    <comment>The name of SG country</comment>
+  </data>
+  <data name="Country_val_SH">
+    <value>Sveta Helena, Ascension in Tristan da Cunha</value>
+    <comment>The name of SH country</comment>
+  </data>
+  <data name="Country_val_SI">
+    <value>Slovenija</value>
+    <comment>The name of SI country</comment>
+  </data>
+  <data name="Country_val_SJ">
+    <value>Svalbard in Jan Mayen</value>
+    <comment>The name of SJ country</comment>
+  </data>
+  <data name="Country_val_SK">
+    <value>Slovaška</value>
+    <comment>The name of SK country</comment>
+  </data>
+  <data name="Country_val_SL">
+    <value>Sierra Leone</value>
+    <comment>The name of SL country</comment>
+  </data>
+  <data name="Country_val_SM">
+    <value>San Marino</value>
+    <comment>The name of SM country</comment>
+  </data>
+  <data name="Country_val_SN">
+    <value>Senegal</value>
+    <comment>The name of SN country</comment>
+  </data>
+  <data name="Country_val_SO">
+    <value>Somalija</value>
+    <comment>The name of SO country</comment>
+  </data>
+  <data name="Country_val_SR">
+    <value>Surinam</value>
+    <comment>The name of SR country</comment>
+  </data>
+  <data name="Country_val_SS">
+    <value>Južni Sudan</value>
+    <comment>The name of SS country</comment>
+  </data>
+  <data name="Country_val_ST">
+    <value>Sveti Tomaž in Princ</value>
+    <comment>The name of ST country</comment>
+  </data>
+  <data name="Country_val_SV">
+    <value>Salvador</value>
+    <comment>The name of SV country</comment>
+  </data>
+  <data name="Country_val_SX">
+    <value>Sveti Martin (nizozemski del)</value>
+    <comment>The name of SX country</comment>
+  </data>
+  <data name="Country_val_SY">
+    <value>Sirija</value>
+    <comment>The name of SY country</comment>
+  </data>
+  <data name="Country_val_SZ">
+    <value>Esvatini</value>
+    <comment>The name of SZ country</comment>
+  </data>
+  <data name="Country_val_TC">
+    <value>Otoki Turks in Caicos</value>
+    <comment>The name of TC country</comment>
+  </data>
+  <data name="Country_val_TD">
+    <value>Čad</value>
+    <comment>The name of TD country</comment>
+  </data>
+  <data name="Country_val_TF">
+    <value>Francoska južna ozemlja</value>
+    <comment>The name of TF country</comment>
+  </data>
+  <data name="Country_val_TG">
+    <value>Togo</value>
+    <comment>The name of TG country</comment>
+  </data>
+  <data name="Country_val_TH">
+    <value>Tajska</value>
+    <comment>The name of TH country</comment>
+  </data>
+  <data name="Country_val_TJ">
+    <value>Tadžikistan</value>
+    <comment>The name of TJ country</comment>
+  </data>
+  <data name="Country_val_TK">
+    <value>Tokelav</value>
+    <comment>The name of TK country</comment>
+  </data>
+  <data name="Country_val_TL">
+    <value>Vzhodni Timor</value>
+    <comment>The name of TL country</comment>
+  </data>
+  <data name="Country_val_TM">
+    <value>Turkmenistan</value>
+    <comment>The name of TM country</comment>
+  </data>
+  <data name="Country_val_TN">
+    <value>Tunizija</value>
+    <comment>The name of TN country</comment>
+  </data>
+  <data name="Country_val_TO">
+    <value>Tonga</value>
+    <comment>The name of TO country</comment>
+  </data>
+  <data name="Country_val_TR">
+    <value>Turčija</value>
+    <comment>The name of TR country</comment>
+  </data>
+  <data name="Country_val_TT">
+    <value>Trinidad in Tobago</value>
+    <comment>The name of TT country</comment>
+  </data>
+  <data name="Country_val_TV">
+    <value>Tuvalu</value>
+    <comment>The name of TV country</comment>
+  </data>
+  <data name="Country_val_TW">
+    <value>Tajvan</value>
+    <comment>The name of TW country</comment>
+  </data>
+  <data name="Country_val_TZ">
+    <value>Tanzanija</value>
+    <comment>The name of TZ country</comment>
+  </data>
+  <data name="Country_val_UA">
+    <value>Ukrajina</value>
+    <comment>The name of UA country</comment>
+  </data>
+  <data name="Country_val_UG">
+    <value>Uganda</value>
+    <comment>The name of UG country</comment>
+  </data>
+  <data name="Country_val_UK">
+    <value>Združeno kraljestvo</value>
+    <comment>The name of UK country</comment>
+  </data>
+  <data name="Country_val_UM">
+    <value>Manjši zunanji otoki Združenih držav</value>
+    <comment>The name of UM country</comment>
+  </data>
+  <data name="Country_val_US">
+    <value>Združene države Amerike</value>
+    <comment>The name of US country</comment>
+  </data>
+  <data name="Country_val_UY">
+    <value>Urugvaj</value>
+    <comment>The name of UY country</comment>
+  </data>
+  <data name="Country_val_UZ">
+    <value>Uzbekistan</value>
+    <comment>The name of UZ country</comment>
+  </data>
+  <data name="Country_val_VA">
+    <value>Vatikan</value>
+    <comment>The name of VA country</comment>
+  </data>
+  <data name="Country_val_VC">
+    <value>Sveti Vincencij in Grenadine</value>
+    <comment>The name of VC country</comment>
+  </data>
+  <data name="Country_val_VE">
+    <value>Venezuela</value>
+    <comment>The name of VE country</comment>
+  </data>
+  <data name="Country_val_VG">
+    <value>Britanski Deviški otoki</value>
+    <comment>The name of VG country</comment>
+  </data>
+  <data name="Country_val_VI">
+    <value>Deviški otoki Združenih držav</value>
+    <comment>The name of VI country</comment>
+  </data>
+  <data name="Country_val_VN">
+    <value>Vietnam</value>
+    <comment>The name of VN country</comment>
+  </data>
+  <data name="Country_val_VU">
+    <value>Vanuatu</value>
+    <comment>The name of VU country</comment>
+  </data>
+  <data name="Country_val_WF">
+    <value>Wallis in Futuna</value>
+    <comment>The name of WF country</comment>
+  </data>
+  <data name="Country_val_WS">
+    <value>Samoa</value>
+    <comment>The name of WS country</comment>
+  </data>
+  <data name="Country_val_YE">
+    <value>Jemen</value>
+    <comment>The name of YE country</comment>
+  </data>
+  <data name="Country_val_YT">
+    <value>Mayotte</value>
+    <comment>The name of YT country</comment>
+  </data>
+  <data name="Country_val_ZA">
+    <value>Južna Afrika</value>
+    <comment>The name of ZA country</comment>
+  </data>
+  <data name="Country_val_ZM">
+    <value>Zambija</value>
+    <comment>The name of ZM country</comment>
+  </data>
+  <data name="Country_val_ZW">
+    <value>Zimbabve</value>
+    <comment>The name of ZW country</comment>
+  </data>
+  <data name="Country_val_ZZ">
+    <value>Neznano</value>
+    <comment>The name of ZZ (unknown or not specified) country</comment>
+  </data>
+  <data name="Dialogs_AssignVpnConnections_btn_Assign">
+    <value>Dodelite povezave VPN</value>
+  </data>
+  <data name="Dialogs_AssignVpnConnections_btn_LoginAgain">
+    <value>Ponovno se prijavite</value>
+  </data>
+  <data name="Dialogs_AssignVpnConnections_ttl_Info1">
+    <value>Če želite začeti svojo pot s Proton VPN, dodelite povezave VPN svojemu računu ali kateremu koli drugemu pod računu.</value>
+  </data>
+  <data name="Dialogs_AssignVpnConnections_ttl_Info2">
+    <value>Ta korak bo trajal le nekaj minut. Po tem se boste lahko prijavili in zaščitili vse svoje naprave.</value>
+  </data>
+  <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
+    <value>Hvala za nadgradnjo!</value>
+    <comment>The title to thank the user for upgrading to Professional/Visionary plan.</comment>
+  </data>
+  <data name="Dialogs_Bfe_msg_info">
+    <value>Ena od storitev, ki jih zahteva Proton VPN (Base Filtering Engine), se ne izvaja.&lt;LineBreak/&gt;
+Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="tem"/&gt;&lt;/Hyperlink&gt; navodilom, in jo znova omogočite in poskusite znova.</value>
+    <comment>The text on Base Filtering Engine dialog window</comment>
+  </data>
+  <data name="Dialogs_Delinquency_GoToBilling">
+    <value>Posodobi moje obračunavanje</value>
+    <comment>The "go to billing website" button text in the Delinquency window</comment>
+  </data>
+  <data name="Dialogs_Delinquency_Reconnected_Subtitle">
+    <value>Po plačilu boste lahko znova dostopali do premijskih funkcij. Trenutno se ponovno povezujemo z najhitrejšim BREZPLAČNIM strežnikom, ki je na voljo.</value>
+    <comment>The subtitle of the Delinquency window when the user is reconnected</comment>
+  </data>
+  <data name="Dialogs_Delinquency_Subtitle">
+    <value>Po plačilu čakajočih računov boste lahko znova dostopali do premijskih funkcij.</value>
+    <comment>The subtitle of the Delinquency window</comment>
+  </data>
+  <data name="Dialogs_Delinquency_Title">
+    <value>Vaš VPN račun ima neporavnane račune.</value>
+    <comment>The title of the Delinquency window</comment>
+  </data>
+  <data name="Dialogs_DisabledService_btn_Enable">
+    <value>Omogoči</value>
+  </data>
+  <data name="Dialogs_DisabledService_btn_LearnMore">
+    <value>Več informacij</value>
+  </data>
+  <data name="Dialogs_DisabledService_btn_ShowLess">
+    <value>Pokaži manj</value>
+  </data>
+  <data name="Dialogs_DisabledService_msg_ExtraInfo">
+    <value>Nekatere aplikacije, kot so protivirusni programi ali optimizatorji osebnih računalnikov, lahko motijo sistemske storitve, ki jih Proton VPN potrebuje za zaščito vaše povezave. Če kliknete Omogoči, sistemu Windows dovolite, da ponovno aktivira storitve Proton VPN.&lt;LineBreak/&gt;Če se težava ponovi, poskusite znova zagnati računalnik ali znova namestiti Proton VPN.</value>
+  </data>
+  <data name="Dialogs_DisabledService_msg_Info">
+    <value>Nekatere komponente Proton VPN so morda blokirane ali onemogočene, kar vam preprečuje povezavo. Kliknite Omogoči, da ga popravite.&lt;LineBreak/&gt;Upoštevajte, da ta operacija zahteva skrbniške pravice.</value>
+  </data>
+  <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
+    <value>Onemogoči stikalo za izklop</value>
+    <comment>The text on Disable button in Disconnect modal window</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_btn_Upgrade">
+    <value>Nadgradi</value>
+    <comment>The text on Upgrade button in Disconnect modal window</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_msg_AllAdaptersInUse">
+    <value>Vaša omrežna kartica je trenutno v uporabi.</value>
+    <comment>The error description displayed in Disconnect modal window if all TAP adapters are in use</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_msg_Identifying">
+    <value>Prepoznavanje težave ...</value>
+    <comment>The message displayed in Disconnect modal window while trying to identify connection problem</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_msg_KillSwitch">
+    <value>Stikalo za izklop ščiti vaš IP tako, da blokira vse povezave. V primeru težav lahko onemogočite stikalo za izklop.</value>
+    <comment>The text displayed in Disconnect modal window if the disconnect occurred with kill switch turned on.</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_msg_NoServers">
+    <value>Za vaš izbor trenutno ni na voljo nobenega strežnika. Izberite drugo možnost.</value>
+    <comment>The error description displayed in Disconnect modal window if disconnected because there are no servers available to connect to</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_msg_NoTap">
+    <value>Omrežna kartica manjka.</value>
+    <comment>The error description displayed in Disconnect modal window if TAP adapter is not installed</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_msg_OldVersion">
+    <value>Različica omrežne kartice je zastarela.</value>
+    <comment>The error description displayed in Disconnect modal window if TAP adapter version is too low</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_msg_TapErrorHelp">
+    <value>Oglejte si ta podporni &lt;Hyperlink Command="{Binding OpenHelpArticleCommand}"&gt;članek&lt;/Hyperlink&gt;, kako to popraviti.</value>
+    <comment>The text displayed in Disconnect modal window if TAP error is detected</comment>
+  </data>
+  <data name="Dialogs_DisconnectError_msg_TlsCertificateError">
+    <value>Prišlo je do težave pri preverjanju potrdila strežnika VPN, kar lahko pomeni, da je prišlo do poseganja v omrežno povezavo ali da ima strežnik, s katerim se poskušate povezati, težavo s konfiguracijo. Poiščite pomoč naše podpore strankam tako, da pošljete &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="poročilo o težavi"/&gt;&lt;/Hyperlink&gt;.</value>
+    <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occurred</comment>
+  </data>
+  <data name="Dialogs_DoNotShowThisMessageAgain">
+    <value>Ne prikazuj mi več tega sporočila</value>
+  </data>
+  <data name="Dialogs_EnableSmartProtocol_btn_Enable">
+    <value>Omogoči</value>
+    <comment>The text on Enable button in the Enable Smart Protocol window</comment>
+  </data>
+  <data name="Dialogs_EnableSmartProtocol_btn_KeepDisabled">
+    <value>Ohrani onemogočeno</value>
+    <comment>The text on "Keep disabled" button in the Enable Smart Protocol window</comment>
+  </data>
+  <data name="Dialogs_EnableSmartProtocol_msg">
+    <value>Proton VPN je zaznal, da vaše trenutno omrežje preprečuje povezavo z VPN. Če omogočite pametni protokol, lahko zaobidete te omejitve.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;Preberite več o pametnem protokolu.&lt;/Hyperlink&gt;</value>
+    <comment>The message displayed in the Enable Smart Protocol window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about Smart Protocol.").</comment>
+  </data>
+  <data name="Dialogs_EnableSmartProtocol_ttl">
+    <value>Pametni protokol je trenutno onemogočen</value>
+    <comment>The title of the Enable Smart Protocol window</comment>
+  </data>
+  <data name="Dialogs_Exit_btn_Cancel">
+    <value>Prekliči</value>
+  </data>
+  <data name="Dialogs_Exit_btn_Exit">
+    <value>Izhod</value>
+  </data>
+  <data name="Dialogs_Exit_msg_Confirm">
+    <value>Ali želite nadaljevati?</value>
+    <comment>The text displayed in the login window modal when the user tries to close the app while kill switch is active or VPN is on.</comment>
+  </data>
+  <data name="Dialogs_Exit_msg_Connected">
+    <value>Če zapustite aplikacijo, boste prekinili povezavo z VPN.</value>
+  </data>
+  <data name="Dialogs_Exit_msg_KillSwitchOn">
+    <value>Stikalo za izklop blokira vse povezave, da prepreči uhajanje vaših podatkov. Izhod iz aplikacije bo onemogočil stikalo za izklop.</value>
+  </data>
+  <data name="Dialogs_Exit_msg_PermanentKillSwitch">
+    <value>Omogočeno je trajno stikalo za izklop. Izhod iz aplikacije bo blokiral vse odhodne povezave, dokler se Proton VPN znova ne poveže.</value>
+  </data>
+  <data name="Dialogs_HumanVerification_ttl">
+    <value>Ali si človek</value>
+  </data>
+  <data name="Dialogs_IncorrectSystemTime_msg">
+    <value>Zdi se, da vaša sistemska ura ni sinhronizirana, kar bi lahko preprečilo uspešno povezovanje VPN-ja. Oglejte si &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;tukaj&lt;/Hyperlink&gt; za več informacij.</value>
+  </data>
+  <data name="Dialogs_KillSwitchConfirmation_msg">
+    <value>S stalnim izklopnim stikalom, če VPN iz kakršnega koli razloga ni povezan, ne boste mogli dostopati do interneta.</value>
+  </data>
+  <data name="Dialogs_KillSwitchConfirmation_ttl">
+    <value>Omogočiti stikalo za trajno zaustavitev?</value>
+  </data>
+  <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok">
+    <value>Razumem</value>
+    <comment>The ok button text in the Maximum Device Limit window when the user already has the highest subscription plan</comment>
+  </data>
+  <data name="Dialogs_MaximumDeviceLimit_Disconnect_Subtitle">
+    <value>Odklopite drugo napravo, da povežete to.</value>
+    <comment>The subtitle of the Maximum Device Limit window when the user already has the highest subscription plan</comment>
+  </data>
+  <data name="Dialogs_MaximumDeviceLimit_Title">
+    <value>Dosegli ste največjo omejitev naprave</value>
+    <comment>The title of the Maximum Device Limit window</comment>
+  </data>
+  <data name="Dialogs_MaximumDeviceLimit_Upgrade">
+    <value>Nadgradi</value>
+    <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
+  </data>
+  <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle">
+    <value>Prekinite povezavo z drugo napravo, da povežete to, ali nadgradite na PLUS, da omogočite povezavo do 10 naprav hkrati.</value>
+    <comment>The subtitle of the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_btn_Quit">
+    <value>Končaj</value>
+    <comment>The text on quit button in outdated app modal window</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_lbl_Downloading">
+    <value>Prenašanje</value>
+    <comment>The text on download button when download is in process in outdated app modal window</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_lbl_Error">
+    <value>Med prenosom novejše različice je prišlo do težave. Posodobite ročno, da dobite najnovejšo.</value>
+    <comment>The text displayed in outdated app window when the app fails to download the latest app version</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_lbl_Update">
+    <value>Posodobi</value>
+    <comment>The text on update button in outdated app modal window</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_lbl_UpdateManually">
+    <value>Posodobite ročno</value>
+    <comment>The text on update button in outdated app modal window</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_msg">
+    <value>Različica aplikacije, ki jo uporabljate, ni več podprta. Prosimo, takoj ko bo posodobitev na voljo, posodobite na najnovejšo različico.</value>
+    <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
+  </data>
+  <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
+    <value>Upoštevajte, da je stikalo za izklop omogočeno. Če aplikacijo posodobite ali zapustite, jo onemogočite.</value>
+    <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
+  </data>
+  <data name="Dialogs_P2PBlocked_msg_Blocked">
+    <value>Vaša povezava je bila onemogočena, ker uporabljate strežnik, ki ne podpira prometa enakovrednih (P2P). P2P ni podprt na brezplačnih strežnikih. Za P2P uporabite drug strežnik.</value>
+    <comment>The warning message displayed when P2P traffic is detected on servers not allowing it.</comment>
+  </data>
+  <data name="Dialogs_PortForwardingConfirmation_msg">
+    <value>Omogočite posredovanje vrat samo, ko ga potrebujete, da zagotovite najmočnejšo zaščito zasebnosti in varnosti.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadPortForwardingRisksCommand}"&gt;Ali potrebujem posredovanje vrat?&lt;/Hyperlink&gt;</value>
+  </data>
+  <data name="Dialogs_PortForwardingConfirmation_ttl">
+    <value>Omogočiti posredovanje vrat?</value>
+  </data>
+  <data name="Dialogs_Proxy_msg_ProxyDetected">
+    <value>Proton VPN je zaznal proxy strežnik, konfiguriran v vašem lokalnem omrežju. Aplikacija Proton VPN ne more zaščititi prometa, ki gre skozi ta proxy. To pomeni, da vaša povezava ne bo popolnoma zaščitena, kot je bilo pričakovano.</value>
+    <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
+  </data>
+  <data name="Dialogs_Rebranding_Subtitle_new_plans">
+    <value>Predstavljamo Protonov osveženi videz. Veliko storitev, eno poslanstvo. Dobrodošli v internetu, kjer je zasebnost privzeta. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Več o tem&lt;/Hyperlink&gt;</value>
+  </data>
+  <data name="Dialogs_Rebranding_Title_new_plans">
+    <value>Posodobljeni Proton, poenotena zaščita</value>
+  </data>
+  <data name="Dialogs_Rebranding_btn_GotIt_new_plans">
+    <value>Razumem</value>
+  </data>
+  <data name="Dialogs_SplitTunnelWarning_msg">
+    <value>Za pravilno delovanje razdeljenega tuneliranja morate onemogočiti stikalo za izklop.</value>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListOption1_One">
+    <value>Več sto strežnikov v {0} državi</value>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListOption1_Two">
+    <value>Več sto strežnikov v {0} državah</value>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListOption1_Few">
+    <value>Več sto strežnikov v {0} državah</value>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListOption1_Other">
+    <value>Več sto strežnikov v {0} državah</value>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListOption2">
+    <value>Povežite do 10 naprav hkrati</value>
+    <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListOption3">
+    <value>Napredne funkcije: NetShield, Secure Core, Tor, P2P</value>
+    <comment>An option of the subscriber benefits list in the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_ListTitle">
+    <value>Znova nadgradite in uživajte v vseh funkcijah:</value>
+    <comment>The text right before the subscriber benefits list in the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_Reconnected_Subtitle">
+    <value>Vaša naročnina je bila znižana, zato se ponovno povezujemo z najhitrejšim razpoložljivim strežnikom.</value>
+    <comment>The subtitle of the Subscription Expired window when the user is reconnected</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_Subtitle">
+    <value>Vaša naročnina je bila znižana.</value>
+    <comment>The subtitle of the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_Title">
+    <value>Vaš naročniški paket VPN je potekel</value>
+    <comment>The title of the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_Upgrade">
+    <value>Ponovno nadgradite</value>
+    <comment>The upgrade button text in the Subscription Expired window</comment>
+  </data>
+  <data name="Dialogs_Troubleshoot_ttl">
+    <value>Odpravljanje težav s Proton VPN</value>
+    <comment>The text displayed in Troubleshoot modal window title</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_btn_Close">
+    <value>Zapri</value>
+    <comment>The button displayed in Troubleshoot modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_btn_LearnMore">
+    <value>Več informacij</value>
+    <comment>The button displayed in Troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_AlternativeRouting">
+    <value>&lt;Bold&gt;Nadomestno usmerjanje&lt;/Bold&gt; - Če so spletna mesta Proton blokirana, ta nastavitev aplikaciji omogoča, da poskusi alternativno omrežno usmerjanje, da doseže Proton, kar je lahko uporabno za izogibanje požarnim zidovom ali težavam z omrežjem. Za večjo zanesljivost priporočamo, da to nastavitev ohranite vključeno. &lt;Hyperlink Command="{Binding AlternativeRoutingCommand}"&gt;Več o tem&lt;/Hyperlink&gt;</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_Antivirus">
+    <value>&lt;Bold&gt;Protivirusne motnje&lt;/Bold&gt; - Začasno onemogočite ali odstranite protivirusno programsko opremo.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_Firewall">
+    <value>&lt;Bold&gt;Motnje zaradi strežnika proxy ali požarnega zidu &lt;/Bold&gt; - Onemogočite vse strežnike proxy in požarne zidove ali se obrnite na skrbnika omrežja.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_GovBlock">
+    <value>&lt;Bold&gt;Vladna blokada&lt;/Bold&gt; - Vaša država morda blokira dostop do Protona. Poskusite uporabiti &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; za dostop do Protona.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_GovBlockDoH">
+    <value>&lt;Bold&gt;Vladna blokada&lt;/Bold&gt; - Vaša država morda blokira dostop do Protona. Poskusite uporabiti &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; za dostop do Protona.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_IspProblem">
+    <value>&lt;Bold&gt;Težave s ponudnikom internetnih storitev (ISP)&lt;/Bold&gt; - Poskusite se povezati s Protonom iz drugega omrežja (ali uporabite &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt;).</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_NoInternet">
+    <value>&lt;Bold&gt;Ni internetne povezave&lt;/Bold&gt;. Preverite, ali vaša internetna povezava deluje.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_ProtonDown">
+    <value>&lt;Bold&gt;Proton ne deluje&lt;/Bold&gt;; - Preverite &lt;Hyperlink Command="{Binding ProtonStatusCommand}"&gt;Stanje Protona &lt;/Hyperlink&gt; in našega sistema.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_Title">
+    <value>Morebitne težave, zaradi katerih bi lahko vaša povezava pretekla, in njihova rešitev</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_Troubleshooting_msg_Unknown">
+    <value>&lt;Bold&gt;Še vedno ne najdem rešitve&lt;/Bold&gt; - Pišite nam neposredno prek našega &lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;obrazca za podporo&lt;/Hyperlink&gt;, e-pošte (support@protonvpn.com) ali &lt;Hyperlink Command="{Binding ProtonTwitterCommand}"&gt;Twitter&lt;/Hyperlink&gt;.</value>
+    <comment>The text displayed in troubleshooting modal window</comment>
+  </data>
+  <data name="Dialogs_TunInUse_btn_SwitchToTap">
+    <value>Preklopite na TAP</value>
+  </data>
+  <data name="Dialogs_TunInUse_msg">
+    <value>Proton VPN se ni mogel povezati, ker je omrežna kartica TUN že v uporabi. Prekinite povezavo vseh aktivnih VPN-jev in poskusite znova. Druga možnost je, da preklopite na kartico TAP (lahko spremenite nazaj na TUN v naprednih nastavitvah).</value>
+  </data>
+  <data name="Dialogs_WireGuardAdapterInUse_msg">
+    <value>Proton VPN se ni mogel povezati, ker je omrežna kartica WireGuard že v uporabi. Prekinite povezavo vseh aktivnih VPN-jev in poskusite znova. Druga možnost je, da protokole zamenjate v naprednih nastavitvah.</value>
+  </data>
+  <data name="Dialogs_btn_Cancel">
+    <value>Prekliči</value>
+    <comment>The text on Cancel button in dialog windows</comment>
+  </data>
+  <data name="Dialogs_btn_Close">
+    <value>Zapri</value>
+    <comment>The text on Close button in dialog windows</comment>
+  </data>
+  <data name="Dialogs_btn_Continue">
+    <value>Nadaljuj</value>
+    <comment>The text on Continue button in dialog windows</comment>
+  </data>
+  <data name="Dialogs_btn_Enable">
+    <value>Omogoči</value>
+  </data>
+  <data name="Dialogs_btn_NoThanks">
+    <value>Ne, hvala.</value>
+    <comment>The text on NoThanks button in dialog windows</comment>
+  </data>
+  <data name="Dialogs_btn_Ok">
+    <value>V redu</value>
+  </data>
+  <data name="Dialogs_reconnection_FromServer">
+    <value>Iz strežnika:</value>
+    <comment>The label for the previous server in dialog windows</comment>
+  </data>
+  <data name="Dialogs_reconnection_ToServer">
+    <value>Na strežnik:</value>
+    <comment>The label for the new server in dialog windows</comment>
+  </data>
+  <data name="Dialogs_ttl_Question">
+    <value>Pozor</value>
+    <comment>The title of question message window</comment>
+  </data>
+  <data name="Dialogs_ttl_Warning">
+    <value>Pozor</value>
+    <comment>The title of warning message window</comment>
+  </data>
+  <data name="ErrorWindow_lbl_Close">
+    <value>Zapri</value>
+  </data>
+  <data name="ErrorWindow_lbl_Download">
+    <value>Prenesi</value>
+  </data>
+  <data name="ErrorWindow_lbl_DownloadInfo">
+    <value>Prenesite in namestite najnovejšo različico, da odpravite težavo.</value>
+  </data>
+  <data name="ErrorWindow_lbl_MissingHeading">
+    <value>V aplikaciji manjka zahtevana datoteka</value>
+  </data>
+  <data name="ErrorWindow_lbl_MissingInfo">
+    <value>Nekatere aplikacije v vašem računalniku so morda odstranile nekatere datoteke ali preprečile njihovo namestitev.</value>
+  </data>
+  <data name="ErrorWindow_lbl_Repair">
+    <value>Popravi</value>
+  </data>
+  <data name="ErrorWindow_lbl_RepairInfo">
+    <value>Popravite namestitev.</value>
+  </data>
+  <data name="KillSwitch">
+    <value>Stikalo za izklop</value>
+    <comment>Title for the kill switch feature. This feature is available from the side bar as a quick settings.</comment>
+  </data>
+  <data name="License_ttl">
+    <value>Licenca</value>
+    <comment>The title of License window</comment>
+  </data>
+  <data name="Login_Error_msg_SessionExpired">
+    <value>Vaša seja se je iztekla. Ponovno se prijavite.</value>
+    <comment>The message displayed in Login window when expired session is detected</comment>
+  </data>
+  <data name="Login_Error_msg_Unauthorized">
+    <value>Neveljavna možnost za osvežitev, ponovno se prijavite</value>
+    <comment>The text displayed after failed login attempt</comment>
+  </data>
+  <data name="Login_Error_msg_Unknown">
+    <value>Neznana napaka</value>
+    <comment>The description of error displayed in Login window</comment>
+  </data>
+  <data name="Login_btn_Authenticate">
+    <value>Preverjanje pristnosti</value>
+  </data>
+  <data name="Login_btn_Login">
+    <value>Prijava</value>
+    <comment>The text on Login button in Login window (logs in the user)</comment>
+  </data>
+  <data name="Login_lbl_KillSwitch">
+    <value>Stikalo za izklop je trenutno aktivno</value>
+    <comment>The text displayed on the login window when user was force logged out while kill switch is active</comment>
+  </data>
+  <data name="Login_lbl_Password">
+    <value>Geslo</value>
+    <comment>The label for Password text box in Login window</comment>
+  </data>
+  <data name="Login_lbl_SecureInternetAnywhere">
+    <value>Varen internet kjerkoli</value>
+    <comment>The text displayed on the bottom of Login window while logging in</comment>
+  </data>
+  <data name="Login_lbl_StartAndConnectOnBoot">
+    <value>Zaženite in se povežite ob zagonu</value>
+  </data>
+  <data name="Login_lbl_StartWithWindows">
+    <value>Začnite z Windows</value>
+    <comment>The label for Start with Windows toggle switch in Login window</comment>
+  </data>
+  <data name="Login_lbl_TakingLongerThanExpected">
+    <value>Povezava s Proton VPN v teku ...</value>
+    <comment>The text displayed in login window when login takes longer than expected</comment>
+  </data>
+  <data name="Login_lbl_TwoFactorAuthCode">
+    <value>Koda za dvojno preverjanje pristnosti</value>
+  </data>
+  <data name="Login_lbl_Username">
+    <value>Uporabniško ime</value>
+    <comment>The label for Username text box in Login window</comment>
+  </data>
+  <data name="Login_lnk_CommonSignInIssues">
+    <value>Pogoste težave pri vpisu</value>
+    <comment>The text of hyperlink in Need Help popup of Login window (opens web page with information regarding login issues)</comment>
+  </data>
+  <data name="Login_lnk_CreateAccount">
+    <value>Ustvarite račun</value>
+    <comment>The text of hyperlink for creating account in Login window</comment>
+  </data>
+  <data name="Login_lnk_ForgotUsername">
+    <value>Pozabljeno uporabniško ime</value>
+    <comment>The text of hyperlink in Need Help popup of Login window (opens web page for users that forgot username)</comment>
+  </data>
+  <data name="Login_lnk_LoginProblems">
+    <value>Pogoste težave pri vpisu</value>
+    <comment>The text of hyperlink in Need Help popup of Login window (opens web page with potential solutions for common login problems)</comment>
+  </data>
+  <data name="Login_lnk_NeedHelp">
+    <value>Potrebujete pomoč?</value>
+    <comment>The text of Need Help hyperlink of Login window (opens popup with more options)</comment>
+  </data>
+  <data name="Login_lnk_ReportAnIssue">
+    <value>Prijava napake</value>
+    <comment>The text of hyperlink in Need Help popup of Login window (opens report an issue modal window)</comment>
+  </data>
+  <data name="Login_lnk_ReportIssue">
+    <value>Prijava napake</value>
+    <comment>The text of hyperlink in Need Help popup of Login window (opens a modal to report a potential bug)</comment>
+  </data>
+  <data name="Login_lnk_ResetPassword">
+    <value>Ponastavitev gesla</value>
+    <comment>The text of hyperlink in Need Help popup of Login window (opens web page for resetting user password)</comment>
+  </data>
+  <data name="Login_msg_IncorrectTwoFactorCode">
+    <value>Neveljavna koda za dvojno preverjanje pristnosti.</value>
+  </data>
+  <data name="Login_msg_TwoFactorAuthFailed">
+    <value>Napačne poverilnice za prijavo. Poskusite znova.</value>
+  </data>
+  <data name="Login_ttl">
+    <value>Proton VPN</value>
+    <comment>The title of Login window. Should not be converted.</comment>
+  </data>
+  <data name="Map_SpeedGraph_lbl_DownSpeed">
+    <value>Hitrost odjemanja</value>
+    <comment>The label for download speed in Speed Graph on Map in main app window</comment>
+  </data>
+  <data name="Map_SpeedGraph_lbl_DownVolume">
+    <value>Volumen prejemanja</value>
+    <comment>The label for downloaded data amount in Speed Graph on Map in main app window</comment>
+  </data>
+  <data name="Map_SpeedGraph_lbl_Session">
+    <value>Seja</value>
+    <comment>The label for VPN connection duration in Speed Graph on Map in main app window</comment>
+  </data>
+  <data name="Map_SpeedGraph_lbl_Speed">
+    <value>Hitrost</value>
+    <comment>The label for overall data transfer speed in Speed Graph on Map in main app window</comment>
+  </data>
+  <data name="Map_SpeedGraph_lbl_TimeUnits">
+    <value>60 sekund</value>
+    <comment>The time units of Speed graph in Map of main app window</comment>
+  </data>
+  <data name="Map_SpeedGraph_lbl_Traffic">
+    <value>Promet seje</value>
+    <comment>The label for traffic data in Speed Graph on Map in main app window</comment>
+  </data>
+  <data name="Map_SpeedGraph_lbl_UpSpeed">
+    <value>Hitrost pošiljanja</value>
+    <comment>The label for upload speed in Speed Graph on Map in main app window</comment>
+  </data>
+  <data name="Map_SpeedGraph_lbl_UpVolume">
+    <value>Volumen oddajanja</value>
+    <comment>The label for uploaded data amount in Speed Graph on Map in main app window</comment>
+  </data>
+  <data name="Map_UpgradeTooltip">
+    <value>Nadgradite na Plus</value>
+  </data>
+  <data name="Map_VpnStatus_val_Connected">
+    <value>POVEZAN</value>
+    <comment>The connection status displayed in the Home section of the Map in main app window when not connected to VPN</comment>
+  </data>
+  <data name="Map_VpnStatus_val_Disconnected">
+    <value>POVEZAVA JE PREKINJENA</value>
+    <comment>The connection status displayed in the Home section of the Map in main app window when connected to VPN</comment>
+  </data>
+  <data name="Map_btn_Connect">
+    <value>Poveži</value>
+    <comment>The text of Connect command in a balloon above Pin in Map (connects to the VPN)</comment>
+  </data>
+  <data name="Map_btn_Disconnect">
+    <value>Prekini povezavo</value>
+    <comment>The text of Disconnect command in a balloon above Pin in Map (disconnects from the VPN)</comment>
+  </data>
+  <data name="Map_lbl_SecureCore">
+    <value>Secure Core</value>
+    <comment>The part of text displayed in a balloon above Secure Core Pin in Map. The full text is "(Secure Core) country name".</comment>
+  </data>
+  <data name="Modal_ChangeServer_Subtitle">
+    <value>Pridobite neomejene spremembe z VPN Plus</value>
+  </data>
+  <data name="Modal_ChangeServer_Title">
+    <value>Dosegli ste trenutno največje število brezplačnih sprememb strežnika.</value>
+  </data>
+  <data name="Modal_DiscourageSecureCore_ActivateSecureCore">
+    <value>Aktivirajte Secure Core</value>
+  </data>
+  <data name="Modal_DiscourageSecureCore_DoNotShowItAgain">
+    <value>Ne prikaži več</value>
+  </data>
+  <data name="Modal_DiscourageSecureCore_LearnMore">
+    <value>Več informacij</value>
+  </data>
+  <data name="Modal_DiscourageSecureCore_Subtitle">
+    <value>Secure Core ponuja najvišjo raven varnosti in zasebnosti, vendar lahko zmanjša hitrost interneta. Če potrebujete več zmogljivosti, lahko onemogočite Secure Core.</value>
+  </data>
+  <data name="Modal_DiscourageSecureCore_Title">
+    <value>Opomba o hitrosti …</value>
+  </data>
+  <data name="Modals_Rescope_NewFreeCountries">
+    <value>Nove brezplačne države</value>
+  </data>
+  <data name="Modals_Rescope_NewFreeCountriesDescription">
+    <value>Na Poljskem in v Romuniji so zdaj brezplačni strežniki.</value>
+  </data>
+  <data name="Modals_Rescope_ServerSelection">
+    <value>Spremembe izbire strežnika</value>
+  </data>
+  <data name="Modals_Rescope_ServerSelectionDescription">
+    <value>Da bi preprečili gnečo na strežniku in zagotovili, da ima vsakdo dostop do hitrega in varnega brskanja, smo odstranili ročno izbiro države in naredili velike izboljšave pri samodejni izbiri strežnika.</value>
+  </data>
+  <data name="Modals_Rescope_Title">
+    <value>Kaj je novega</value>
+  </data>
+  <data name="Modals_Rescope_btn_GotIt">
+    <value>Razumem</value>
+  </data>
+  <data name="NetShield">
+    <value>NetShield</value>
+  </data>
+  <data name="Notifications_Delinquency_Description">
+    <value>Po plačilu čakajočih računov boste lahko znova dostopali do premijskih funkcij.</value>
+    <comment>The description of the Delinquency notification</comment>
+  </data>
+  <data name="Notifications_Delinquency_Reconnected_Description">
+    <value>Po plačilu boste lahko znova dostopali do premijskih funkcij. Trenutno se ponovno povezujemo z najhitrejšim BREZPLAČNIM strežnikom, ki je na voljo.</value>
+    <comment>The description of the Delinquency notification when the user is reconnected</comment>
+  </data>
+  <data name="Notifications_Delinquency_Title">
+    <value>Vaš VPN račun ima neporavnane račune.</value>
+    <comment>The title of the Delinquency notification</comment>
+  </data>
+  <data name="Notifications_EnableSmartProtocol_msg">
+    <value>Proton VPN je zaznal, da vaše trenutno omrežje preprečuje povezavo z VPN. Če omogočite pametni protokol, lahko zaobidete te omejitve.</value>
+    <comment>The message displayed in the Enable Smart Protocol notification.</comment>
+  </data>
+  <data name="Notifications_EnableSmartProtocol_ttl">
+    <value>Pametni protokol je trenutno onemogočen</value>
+    <comment>The title of the Enable Smart Protocol notification</comment>
+  </data>
+  <data name="Notifications_InsecureWiFi_LearnMore">
+    <value>Več informacij</value>
+    <comment>Button displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network.</comment>
+  </data>
+  <data name="Notifications_InsecureWiFi_msg_Detected">
+    <value>Zaznana nezaščitena povezava WiFi: {0}</value>
+    <comment>The message displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network. The {0} is a placeholder for Wi-Fi network name.</comment>
+  </data>
+  <data name="Notifications_MaximumDeviceLimit_Disconnect_Description">
+    <value>Odklopite drugo napravo, da povežete to.</value>
+    <comment>The description of the Maximum Device Limit notification when the user already has the highest subscription plan</comment>
+  </data>
+  <data name="Notifications_MaximumDeviceLimit_Title">
+    <value>Dosegli ste največjo omejitev naprave</value>
+    <comment>The title of the Maximum Device Limit notification</comment>
+  </data>
+  <data name="Notifications_MaximumDeviceLimit_Upgrade_Description">
+    <value>Prekinite povezavo z drugo napravo, da povežete to, ali nadgradite na Plus, da boste hkrati povezali do 10 naprav.</value>
+    <comment>The description of the Maximum Device Limit notification when the user can upgrade the subscription plan</comment>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Description">
+    <value>Vaša naročnina je bila znižana. Znova nadgradite, da boste uživali v vseh funkcijah.</value>
+    <comment>The description of the Subscription Expired notification</comment>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Reconnected_Description">
+    <value>Vaša naročnina je bila znižana, zato se ponovno povezujemo z najhitrejšim razpoložljivim strežnikom. Znova nadgradite, da boste uživali v vseh funkcijah.</value>
+    <comment>The description of the Subscription Expired notification when the user is reconnected</comment>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Title">
+    <value>Vaš naročniški paket VPN je potekel</value>
+    <comment>The title of the Subscription Expired notification</comment>
+  </data>
+  <data name="Notifications_Update_lnk_Restart">
+    <value>Ponovni zagon</value>
+    <comment>The content of the button to automatically restart the application in order to install the latest version available. Appears in the about dialog.</comment>
+  </data>
+  <data name="Notifications_Update_lnk_WhatsNew">
+    <value>Kaj je novega</value>
+    <comment>The text of What's new hyperlink in Update flash notification (opens About window)</comment>
+  </data>
+  <data name="Notifications_Update_msg_NewAppVersion">
+    <value>Na voljo je nova verzija aplikacije!</value>
+    <comment>The message displayed in the Update notification when new app version is ready to install</comment>
+  </data>
+  <data name="Notifications_VpnState_msg_Connected">
+    <value>POVEZANI z {0}</value>
+    <comment>The message displayed in VPN state system notification when app connects to VPN. The {0} is a placeholder for server name.</comment>
+  </data>
+  <data name="Notifications_VpnState_msg_Disconnected">
+    <value>POVEZAVA JE PREKINJENA</value>
+    <comment>The message displayed in VPN state system notification when app disconnects from VPN</comment>
+  </data>
+  <data name="Onboarding_btn_EndTour">
+    <value>Konec ogleda</value>
+    <comment>The text on End Tour button in Onboarding overlay of main app window</comment>
+  </data>
+  <data name="Onboarding_btn_NextStep">
+    <value>Naslednji nasvet</value>
+    <comment>The text of Next Tip button on Onboarding overlay of main app window</comment>
+  </data>
+  <data name="Onboarding_msg_Step_1">
+    <value>Samodejno se povežite s strežnikom, ki vam bo zagotovil najhitrejšo povezavo.</value>
+    <comment>The description of onboarding step 1 in Onboarding overlay of main app window</comment>
+  </data>
+  <data name="Onboarding_msg_Step_2">
+    <value>Shranite želene nastavitve in strežnike za prihodnjo uporabo.</value>
+    <comment>The description of onboarding step 2 in Onboarding overlay of main app window</comment>
+  </data>
+  <data name="Onboarding_msg_Step_3">
+    <value>Izberite državo in strežnik, ki ju želite uporabiti za svoj končni naslov IP.</value>
+    <comment>The description of onboarding step 3 in Onboarding overlay of main app window</comment>
+  </data>
+  <data name="Onboarding_msg_Step_4">
+    <value>Prilagodite svojo povezavo VPN svoji spletni dejavnosti s posebnimi funkcijami Proton VPN za optimalno hitrost in zaščito zasebnosti.</value>
+    <comment>The description of onboarding step 4 in Onboarding overlay of main app window</comment>
+  </data>
+  <data name="Onboarding_ttl_Step_1">
+    <value>Hitro povezovanje</value>
+    <comment>The title of onboarding step 1 in Onboarding overlay of main app window</comment>
+  </data>
+  <data name="Onboarding_ttl_Step_2">
+    <value>Profili</value>
+    <comment>The title of onboarding step 2 in Onboarding overlay of main app window</comment>
+  </data>
+  <data name="Onboarding_ttl_Step_3">
+    <value>Države</value>
+    <comment>The title of onboarding step 3 in Onboarding overlay of main app window</comment>
+  </data>
+  <data name="Onboarding_ttl_Step_4">
+    <value>Hitre nastavitve</value>
+    <comment>The title of onboarding step 4 in Onboarding overlay of main app window</comment>
+  </data>
+  <data name="PortForwarding">
+    <value>Posredovanje vrat</value>
+  </data>
+  <data name="PortForwarding_lbl_ActivePort">
+    <value>Aktivna vrata:</value>
+  </data>
+  <data name="PortForwarding_lbl_CopyValue">
+    <value>Kliknite, da kopirate to številko vrat.</value>
+  </data>
+  <data name="PortForwarding_lbl_Info">
+    <value>Nastavite to številko v aplikaciji BitTorrent za večjo hitrost.</value>
+  </data>
+  <data name="PortForwarding_lbl_ServerWarning">
+    <value>Če želite uporabiti posredovanje vrat, &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;se povežite&lt;/Hyperlink&gt; na strežnik, ki podpira P2P.</value>
+  </data>
+  <data name="ProfileConnector_msg_MissingAuthCert">
+    <value>Proton VPN ni uspel pridobiti potrdila o pristnosti zaradi težave z omrežjem.</value>
+  </data>
+  <data name="Profiles_Profile_Description_val_Fastest">
+    <value>Najhitrejši dostopni strežnik</value>
+    <comment>The description of Fastest default profile displayed in Profiles window</comment>
+  </data>
+  <data name="Profiles_Profile_Description_val_Random">
+    <value>Vsakih drug strežnik</value>
+    <comment>The description of Random default profile displayed in Profiles window</comment>
+  </data>
+  <data name="Profiles_Profile_Error_lbl_NotValid">
+    <value>Profila ni bilo mogoče shraniti.</value>
+    <comment>The heading for list of validation errors in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_ColorEmpty">
+    <value>Izberite barvo.</value>
+    <comment>The error message displayed in the Profile window when a color is not selected</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_CountryEmpty">
+    <value>Izberite državo.</value>
+    <comment>The error message displayed in the Profile window when a country is not selected</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_GatewayEmpty">
+    <value>Izberite prehod.</value>
+    <comment>The error message displayed in the Profile window when a gateway is not selected</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_NameEmpty">
+    <value>Izberite ime profila.</value>
+    <comment>The error message displayed in the Profile window when a profile name is empty</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_NameExists">
+    <value>Ime profila že obstaja</value>
+    <comment>The error message displayed in the Profile window when a profile name is already used by another profile</comment>
+  </data>
+  <data name="Profiles_Profile_Error_msg_NameTooLong_One">
+    <value>Največja dolžina imena profila je {0} simbol. Izberite krajše ime profila.</value>
+  </data>
+  <data name="Profiles_Profile_Error_msg_NameTooLong_Two">
+    <value>Največja dolžina imena profila je {0} simbol. Izberite krajše ime profila.</value>
+  </data>
+  <data name="Profiles_Profile_Error_msg_NameTooLong_Few">
+    <value>Največja dolžina imena profila je {0} simbolov. Izberite krajše ime profila.</value>
+  </data>
+  <data name="Profiles_Profile_Error_msg_NameTooLong_Other">
+    <value>Največja dolžina imena profila je {0} simbolov. Izberite krajše ime profila.</value>
+  </data>
+  <data name="Profiles_Profile_Error_msg_ServerEmpty">
+    <value>Izberite strežnik.</value>
+    <comment>The error message displayed in the Profile window when a server is not selected</comment>
+  </data>
+  <data name="Profiles_Profile_ExitCountry_Watermark">
+    <value>Izberite izhodno državo</value>
+    <comment>The watermark text displayed in empty Exit Country combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_Gateway_Watermark">
+    <value>Izberite prehod</value>
+    <comment>The watermark text displayed in empty Gateway combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_Name_Watermark">
+    <value>Vnesite ime profila</value>
+    <comment>Thw watermark text displayed in empty Name text box of Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_Name_val_Fastest">
+    <value>Najhitrejše</value>
+    <comment>The name of Fastest profile</comment>
+  </data>
+  <data name="Profiles_Profile_Name_val_Random">
+    <value>Naključno</value>
+    <comment>The name of Random profile</comment>
+  </data>
+  <data name="Profiles_Profile_btn_Discard">
+    <value>Zavrzi</value>
+    <comment>The text on Discard button of discard changes Question dialog opened from Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_btn_KeepEditing">
+    <value>Nadaljuj z urejanjem</value>
+    <comment>The text on Keep Editing button of discard changes Question dialog opened from Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Color">
+    <value>Barva:</value>
+    <comment>The label for Color selection in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Country">
+    <value>Država:</value>
+    <comment>The label for Country combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Country_Watermark">
+    <value>Izberite državo</value>
+    <comment>The watermark text displayed in empty Country combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_ExitCountry">
+    <value>Izstopna država:</value>
+    <comment>The label for Exit Country combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Gateway">
+    <value>Prehod:</value>
+    <comment>The label for Gateway combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Name">
+    <value>Ime:</value>
+    <comment>The label for Name text box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Protocol">
+    <value>Protokol:</value>
+    <comment>The label for Protocol combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Server">
+    <value>Strežnik:</value>
+    <comment>The label for Server combo box in Profiles window</comment>
+  </data>
+  <data name="Profiles_Profile_lbl_Server_Watermark">
+    <value>Izberi strežnik</value>
+    <comment>The watermark text displayed in empty Server combo box in Profile window</comment>
+  </data>
+  <data name="Profiles_Profile_msg_DiscardChangesConfirm">
+    <value>Obstajajo neshranjene spremembe profila.&lt;LineBreak/&gt;&lt;LineBreak/&gt;Ste prepričani, da želite zavreči?</value>
+    <comment>The message displayed in Question dialog when cancelling changes in Profile window.</comment>
+  </data>
+  <data name="Profiles_Profile_ttl_Create">
+    <value>Ustvari profil</value>
+    <comment>The title of Profile window when creating new profile</comment>
+  </data>
+  <data name="Profiles_Profile_ttl_Edit">
+    <value>Uredi profil</value>
+    <comment>The title of Profile window when editing profile</comment>
+  </data>
+  <data name="Profiles_btn_Close">
+    <value>Zapri</value>
+    <comment>The text on Close button in Profiles window</comment>
+  </data>
+  <data name="Profiles_btn_Create">
+    <value>Ustvari profil</value>
+    <comment>The text on create profile button on Profile window (opens new profile window)</comment>
+  </data>
+  <data name="Profiles_btn_Troubleshoot">
+    <value>Odpravljanje težav</value>
+    <comment>The text on Troubleshoot button in Profiles window (opens troubleshooting window)</comment>
+  </data>
+  <data name="Profiles_col_Action">
+    <value>Dejanje</value>
+    <comment>The title of actions column in Profiles window</comment>
+  </data>
+  <data name="Profiles_col_Connection">
+    <value>Povezava</value>
+    <comment>The title of VPN connection description column in Profiles window</comment>
+  </data>
+  <data name="Profiles_col_Profile">
+    <value>Profil</value>
+    <comment>The title of profile name column in Profiles window</comment>
+  </data>
+  <data name="Profiles_col_Protocol">
+    <value>Protokol</value>
+    <comment>The title of VPN protocol column in Profiles window</comment>
+  </data>
+  <data name="Profiles_msg_AllServersOffline">
+    <value>Strežniki so trenutno brez povezave zaradi vzdrževanja.</value>
+    <comment>The warning message displayed when trying to connect to profile with all servers offline</comment>
+  </data>
+  <data name="Profiles_msg_CountryOffline">
+    <value>Strežniki v tej državi trenutno niso povezani zaradi vzdrževanja. Izberite drugo državo.</value>
+    <comment>The message displayed when trying to connect to country with no servers available</comment>
+  </data>
+  <data name="Profiles_msg_DeleteConfirm">
+    <value>Ta profil bo izbrisan. Želite nadaljevati?</value>
+    <comment>The confirmation message displayed when deleting profile in Profiles window</comment>
+  </data>
+  <data name="Profiles_msg_NoServersAvailable">
+    <value>Za vaš izbor trenutno ni na voljo nobenega strežnika. Izberite drugo možnost.</value>
+    <comment>The message displayed when trying to connect to a country or profile with no servers available</comment>
+  </data>
+  <data name="Profiles_ttl">
+    <value>Profili</value>
+    <comment>The title of Profiles window</comment>
+  </data>
+  <data name="PromoCode_btn_Apply">
+    <value>Uporabi</value>
+  </data>
+  <data name="PromoCode_lbl_CouponCode">
+    <value>Koda za kupon</value>
+  </data>
+  <data name="PromoCode_lbl_Success">
+    <value>Kupon je bil uspešno uporabljen.</value>
+  </data>
+  <data name="PromoCode_lbl_UseCoupon">
+    <value>Uporabi kupon</value>
+  </data>
+  <data name="QuickLaunch_btn_Connect">
+    <value>Hitro povezovanje</value>
+    <comment>The text on Connect button in Quick Launch window (connects to the VPN using Quick Connect profile)</comment>
+  </data>
+  <data name="QuickLaunch_btn_Disconnect">
+    <value>Prekini povezavo</value>
+    <comment>The text on Disconnect button in Quick Launch window (disconnects from VPN)</comment>
+  </data>
+  <data name="QuickLaunch_btn_OpenApp">
+    <value>Odpri Proton VPN</value>
+    <comment>The text on button in Quick Launch window (opens app)</comment>
+  </data>
+  <data name="QuickLaunch_lbl_Connecting">
+    <value>Povezovanje z</value>
+    <comment>The label for VPN server name in Quick Launch window. Part of the sentence "Connecting to {server name}".</comment>
+  </data>
+  <data name="QuickLaunch_lbl_Profiles">
+    <value>Profili</value>
+    <comment>The label for Profiles list in combo box in Quick Launch window</comment>
+  </data>
+  <data name="QuickSettings_btn_KillSwitchOff">
+    <value>Izklopi stikalo za izklop</value>
+    <comment>The text for the clickable option to disable the kill switch feature.</comment>
+  </data>
+  <data name="QuickSettings_btn_KillSwitchOn">
+    <value>Vklopi stikalo za izklop</value>
+    <comment>The text for the clickable option to enable the kill switch feature.</comment>
+  </data>
+  <data name="QuickSettings_btn_LearnMore">
+    <value>Več informacij</value>
+  </data>
+  <data name="QuickSettings_btn_NetshieldOff">
+    <value>Ne blokiraj</value>
+  </data>
+  <data name="QuickSettings_btn_NetshieldOnFirst">
+    <value>Blokiraj samo zlonamerne programe.</value>
+  </data>
+  <data name="QuickSettings_btn_NetshieldOnSecond">
+    <value>Blokiraj zlonameren program, oglase &amp; sledilnike.</value>
+  </data>
+  <data name="QuickSettings_btn_PermanentKillSwitch">
+    <value>Omogočiti stikalo za trajno zaustavitev</value>
+    <comment>The text for the clickable option to enable the kill switch feature permanently (even when the VPN app is not running).</comment>
+  </data>
+  <data name="QuickSettings_btn_PortForwardingOff">
+    <value>Posredovanje vrat je izklopljeno</value>
+  </data>
+  <data name="QuickSettings_btn_PortForwardingOn">
+    <value>Posredovanje vrat vklopljeno</value>
+  </data>
+  <data name="QuickSettings_btn_SecureCoreOff">
+    <value>Varno jedro izklopljeno</value>
+  </data>
+  <data name="QuickSettings_btn_SecureCoreOn">
+    <value>Secure Core izklopljeno</value>
+  </data>
+  <data name="QuickSettings_btn_Upgrade">
+    <value>NADGRADI</value>
+  </data>
+  <data name="QuickSettings_lbl_KillSwitchInfo">
+    <value>Ob prekinitvi VPN povezave onemogoči internet in prepreči nenamerno razkrivanje IP.</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldInfo">
+    <value>Brskajte po internetu brez oglasov in zlonamerne programske opreme.</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
+    <value>Oglasov blokiranih</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_One">
+    <value>Oglas blokiran</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Two">
+    <value>Oglasa blokirana</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAds_Few">
+    <value>Oglasi blokirani</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
+    <value>Oglaševalska spletna mesta uporabljajo piškotke in sledilnike, da ciljajo na vas.</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
+    <value>Podatki shranjeni</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
+    <value>Ocenjeno število oglasov, sledilnikov in zlonamerne programske opreme, ki jih je NetShield blokiral.</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
+    <value>Sledilnikov ustavljenih</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_One">
+    <value>Sledilnik ustavljen</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Two">
+    <value>Sledilnika ustavljena</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackers_Few">
+    <value>Sledilniki ustavljeni</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
+    <value>Sledilniki so spletna mesta tretjih oseb, ki zbirajo, shranjujejo in prodajajo podatke o vaši spletni dejavnosti.</value>
+  </data>
+  <data name="QuickSettings_lbl_NetShieldWarning">
+    <value>Če se spletna mesta ne naložijo, poskusite onemogočiti NetShield.</value>
+  </data>
+  <data name="QuickSettings_lbl_PortForwardingInfo">
+    <value>Pospešite torrente in spletno igranje tako, da omogočite, da so podprte lokalne aplikacije dosegljive iz interneta.</value>
+  </data>
+  <data name="QuickSettings_lbl_SecureCoreInfo">
+    <value>Usmerite svoje najbolj občutljive podatke prek naših najvarnejših strežnikov do zasebnosti prijaznih državah.</value>
+  </data>
+  <data name="QuickSettings_lbl_SecureCoreWarning">
+    <value>Secure Core lahko zmanjša hitrost VPN.</value>
+  </data>
+  <data name="SecureCore">
+    <value>Secure Core</value>
+  </data>
+  <data name="Secure_Servers_lbl_One">
+    <value>{0} varen strežnik</value>
+  </data>
+  <data name="Secure_Servers_lbl_Two">
+    <value>{0} varna strežnika</value>
+  </data>
+  <data name="Secure_Servers_lbl_Few">
+    <value>{0} varni strežniki</value>
+  </data>
+  <data name="Secure_Servers_lbl_Other">
+    <value>{0} varnih strežnikov</value>
+  </data>
+  <data name="ServerType_val_B2B">
+    <value>Prehodi</value>
+    <comment>The server type in Profile window</comment>
+  </data>
+  <data name="ServerType_val_None">
+    <value>Standard</value>
+    <comment>The server type in Profile window</comment>
+  </data>
+  <data name="ServerType_val_P2P">
+    <value>P2P</value>
+    <comment>The server type in Profile window</comment>
+  </data>
+  <data name="ServerType_val_SecureCore">
+    <value>Secure Core</value>
+    <comment>The server type in Profile window</comment>
+  </data>
+  <data name="ServerType_val_Tor">
+    <value>Tor</value>
+    <comment>The server type in Profile window</comment>
+  </data>
+  <data name="Servers_Fastest">
+    <value>Najhitrejše</value>
+    <comment>The label for fastest server item in the country list</comment>
+  </data>
+  <data name="Servers_Feature_val_P2P">
+    <value>P2P strežnik</value>
+    <comment>The name of P2P server feature</comment>
+  </data>
+  <data name="Servers_Feature_val_Plus">
+    <value>Strežnik Plus</value>
+    <comment>The name of Plus server feature</comment>
+  </data>
+  <data name="Servers_Feature_val_SecureCore">
+    <value>Secure Core</value>
+    <comment>The name of Secure Core server feature</comment>
+  </data>
+  <data name="Servers_Feature_val_Streaming">
+    <value>Pretakanje</value>
+  </data>
+  <data name="Servers_Feature_val_Tor">
+    <value>Tor strežnik</value>
+    <comment>The name of Tor server feature</comment>
+  </data>
+  <data name="Servers_FreeConnections">
+    <value>Brezplačne povezave (1)</value>
+  </data>
+  <data name="Servers_Load_lbl_IP">
+    <value>IP strežnika:</value>
+    <comment>The label for server IP address in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
+  </data>
+  <data name="Servers_Load_lbl_IPAutoAssigned">
+    <value>Samodejno dodeli</value>
+    <comment>The text displayed instead of server IP address in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
+  </data>
+  <data name="Servers_Load_lbl_Load">
+    <value>Obremenitev strežnika:</value>
+    <comment>The label for server load in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
+  </data>
+  <data name="Servers_Load_lbl_LoadInfo">
+    <value>{0}[%] Nalaganje</value>
+    <comment>The tooltip text of server load image in Countries tab of Sidebar section of main app window, the server load in Connection section of Sidebar of main app window. The {0} is a placeholder for load percentage value.</comment>
+  </data>
+  <data name="Servers_Load_lbl_LoadInfo_NoData">
+    <value>Ni podatkov</value>
+    <comment>The tooltip text of server load image in Countries tab of Sidebar section of main app window</comment>
+  </data>
+  <data name="Servers_Load_lbl_Status">
+    <value>Stanje Strežnika:</value>
+    <comment>The label for server status in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
+  </data>
+  <data name="Servers_Load_lbl_ViaCountry">
+    <value>Prek {0} do {1}</value>
+    <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
+  </data>
+  <data name="Servers_UpsellBanner">
+    <value>Zagotovite si svetovno pokritost z VPN Plus</value>
+  </data>
+  <data name="Servers_UpsellBanner_NotTheCountryYouWanted">
+    <value>Ni država, ki ste jo želeli? Nadgradite, da izberete kateri koli strežnik</value>
+  </data>
+  <data name="Servers_btn_Connect">
+    <value>Poveži</value>
+    <comment>The text on Connect button in Server list in Countries tab of Sidebar in main app window (connects to the VPN server)</comment>
+  </data>
+  <data name="Servers_btn_Disconnect">
+    <value>Prekini povezavo</value>
+    <comment>The text on Disconnect button in Server list in Countries tab of Sidebar in main app window (disconnects from the VPN server)</comment>
+  </data>
+  <data name="Servers_btn_Upgrade">
+    <value>Nadgradi</value>
+    <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
+  </data>
+  <data name="Servers_lbl_UpgradeToPlus">
+    <value>Nadgradite na Plus</value>
+  </data>
+  <data name="Servers_lbl_ViaCountry">
+    <value>preko</value>
+    <comment>The label displayed before entry country name in Server list of Countries tab of Sidebar section of main app window when Secure Core mode is enabled</comment>
+  </data>
+  <data name="Servers_msg_CantConnect_CertificateExpired">
+    <value>Proton VPN ni mogel osvežiti potrdila o pristnosti odjemalca.</value>
+  </data>
+  <data name="Servers_msg_CantConnect_Maintenance">
+    <value>Strežnik, s katerim se poskušate povezati, je trenutno brez povezave zaradi vzdrževanja. Izberite drug strežnik ali profil.</value>
+    <comment>The message displayed when connecting to server which is on maintenance</comment>
+  </data>
+  <data name="Servers_msg_CantConnect_Missing">
+    <value>Strežnik, s katerim se poskušate povezati, je bil odstranjen. Izberite drug strežnik ali profil.</value>
+    <comment>The message displayed when connecting to server which was removed and doesn't exist anymore</comment>
+  </data>
+  <data name="Servers_msg_CantConnect_RpcServerUnavailable">
+    <value>Proton VPN se ne more povezati, ker strežnik RPC v vašem sistemu ni na voljo. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;Oglejte si možne rešitve&lt;/Hyperlink&gt;</value>
+  </data>
+  <data name="Servers_msg_MissingServerPublicKey">
+    <value>Na žalost ta strežnik ne podpira WireGuarda.</value>
+  </data>
+  <data name="Settings_Advanced_SplitTunnel_btn_AddApp">
+    <value>Dodaj aplikacijo</value>
+    <comment>The text on Add App button in Settings window Advanced tab Split Tunneling section (opens a window for selecting custom app to add)</comment>
+  </data>
+  <data name="Settings_Advanced_SplitTunnel_lbl_Apps">
+    <value>APLIKACJE:</value>
+    <comment>The label for application list in Settings window Advanced tab Split Tunneling section</comment>
+  </data>
+  <data name="Settings_Advanced_SplitTunnel_lbl_Exclude">
+    <value>Izključite aplikacije/IP-je iz uporabe tunela VPN</value>
+    <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_SplitTunnel_lbl_Include">
+    <value>Samo vključene aplikacije/IP-ji bodo šli skozi tunel VPN</value>
+    <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_SplitTunnel_lbl_Ip">
+    <value>IP:</value>
+    <comment>The label for IP address list in Settings window Advanced tab Split Tunneling section</comment>
+  </data>
+  <data name="Settings_Advanced_SplitTunnel_lbl_Ip_Watermark">
+    <value>Dodaj IPv4 naslov</value>
+    <comment>The watermark text of empty text box for entering IPv4 address in Split Tunneling section of Advanced tab in Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_SplitTunnel_msg_IpInvalid">
+    <value>IP ni veljaven</value>
+    <comment>The error message displayed in a tooltip of IP text box in SplitTunneling section of Advanced tab of Settings window when IP address is not valid</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_DnsLeakProtection">
+    <value>Zaščita pred uhajanjem DNS</value>
+    <comment>The label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_DnsLeakProtection_Info">
+    <value>Prepreči razkrivanje podrobnosti poizvedb DNS tretjim osebam. Vedno aktivno.</value>
+    <comment>The description of DNS Leak Protection setting displayed in the tooltip of the ( i ) image next to the label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_DoH">
+    <value>Dovoli alternativno usmerjanje</value>
+    <comment>The label for Alternative Routing toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_DoH_Info">
+    <value>Če so spletna mesta Proton blokirana, ta nastavitev aplikaciji omogoča, da poskuša z alternativnim usmerjanjem omrežja doseči Proton, kar je lahko koristno za izogibanje požarnim zidovom ali težavam z omrežjem. Priporočamo, da je za večjo zanesljivost ta nastavitev vklopljena.</value>
+    <comment>The description of Allow Alternative Routing setting displayed in the tooltip of ( i ) image next to the label for Allow Alternative Routing toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_HardwareAcceleration">
+    <value>Strojno pospeševanje</value>
+    <comment>The label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_HardwareAcceleration_Info">
+    <value>Zagotavlja izboljšano zmogljivost sistema in bolj gladko izkušnjo z uporabo GPU za upodabljanje grafike. Izklopite v primeru napak na zaslonu.</value>
+    <comment>The description of Hardware Acceleration setting displayed in the tooltip of the ( i ) image next to the label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_Ipv6Protection">
+    <value>Zaščita pred puščanjem IPv6</value>
+    <comment>The label for IPv6 Leak Protection toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_Ipv6Protection_Info">
+    <value>Preprečite puščanje naslova IPv6.</value>
+    <comment>The description of IPv6 Leak Protection setting displayed in the tooltip of the ( i ) image next to the label for IPv6 Leak Protection toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_NetworkDriver">
+    <value>Gonilnik za omrežje OpenVPN</value>
+  </data>
+  <data name="Settings_Advanced_lbl_NetworkDriver_info">
+    <value>Omrežni gonilnik lahko vpliva na povezavo in njeno hitrost. Novi TUN adapter zagotavlja večjo hitrost. V primeru težav s povezavo se vrnite na kartico TAP.</value>
+  </data>
+  <data name="Settings_Advanced_lbl_NonStandardPorts">
+    <value>Nestandardna vrata</value>
+    <comment>The label for toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_NonStandardPorts_Info">
+    <value>Uporabite Proton VPN za kakršne koli posebne potrebe, tako da omogočite promet do nestandardnih vrat prek omrežja VPN.</value>
+    <comment>The description of Non-standard ports setting displayed in the tooltip of ( i ) image next to the label for Allow non-standard ports toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_OpenVpnTap">
+    <value>Kartica TAP</value>
+  </data>
+  <data name="Settings_Advanced_lbl_OpenVpnTun">
+    <value>Kartica TUN</value>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwarding">
+    <value>Posredovanje vrat</value>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings">
+    <value>Bližnjica za posredovanje vrat</value>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwardingInQuickSettings_Info">
+    <value>Dostopajte do nastavitev posredovanja vrat iz hitrih nastavitev</value>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwardingNotifications">
+    <value>Obvestila o posredovanju vrat</value>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwardingNotifications_Info">
+    <value>Prejmite obvestilo, ko se spremeni številka za posredovana vrata</value>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwarding_Info">
+    <value>Pospešite torrente in spletno igranje tako, da omogočite, da so podprte lokalne aplikacije dosegljive iz interneta. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Več o tem&lt;/Hyperlink&gt;</value>
+    <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_PortForwarding_Tooltip">
+    <value>Pospešite torrente in spletno igranje tako, da omogočite, da so podprte lokalne aplikacije dosegljive iz interneta.</value>
+  </data>
+  <data name="Settings_Advanced_lbl_SplitTunnel">
+    <value>Razdeljeno tuneliranje</value>
+    <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_SplitTunnel_Info">
+    <value>Izključite aplikacijo ali naslov IP iz prometa VPN ali vključite samo določene aplikacije. Ni ga mogoče vklopiti skupaj s stikalom za izklop.</value>
+    <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
+  </data>
+  <data name="Settings_Advanced_lbl_btn_LearnMore">
+    <value>Več informacij</value>
+  </data>
+  <data name="Settings_Advanced_ttl">
+    <value>Napredno</value>
+    <comment>The header of Advanced tab in Settings window</comment>
+  </data>
+  <data name="Settings_Connection_DefaultProtocol_val_Smart">
+    <value>Pametno (predlagano)</value>
+    <comment>The suggested Smart protocol selection displayed in Protocol combo box in Connection tab of Settings window.</comment>
+  </data>
+  <data name="Settings_Connection_DefaultProtocol_val_Tcp">
+    <value>OpenVPN - TCP</value>
+    <comment>The OpenVPN TCP protocol name displayed in Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
+  </data>
+  <data name="Settings_Connection_DefaultProtocol_val_Udp">
+    <value>OpenVPN - UDP</value>
+    <comment>The OpenVPN UDP protocol name displayed in Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
+  </data>
+  <data name="Settings_Connection_DefaultProtocol_val_WireGuard">
+    <value>WireGuard</value>
+    <comment>The WireGuard protocol name displayed in the Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
+  </data>
+  <data name="Settings_Connection_Warning_CustomDnsServer">
+    <value>Uporaba strežnikov DNS po meri bo onemogočila NetShield. Strežniki DNS so odgovorni za usmerjanje na pravilna spletna mesta. &lt;LineBreak/&gt;&lt;LineBreak/&gt;Uporabljajte samo strežnike DNS, ki jim zaupate. Ali želite vklopiti strežnike DNS po meri?
+​</value>
+    <comment>The text displayed in Custom DNS Servers warning modal window when use is trying to turn the feature ON when NetShield feature is turned on as well</comment>
+  </data>
+  <data name="Settings_Connection_btn_Upgrade">
+    <value>Nadgradi</value>
+    <comment>The text on Upgrade button in Connection tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_CustomDnsServer">
+    <value>Strežniki DNS po meri</value>
+    <comment>The label for Custom DNS Servers combo box in Connection tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_CustomDnsServer_Info">
+    <value>Vnesite zasebni strežnik DNS (na primer AdGuard DNS) za obdelavo vaših zahtev DNS. Uporaba strežnikov DNS po meri bo onemogočila NetShield. Strežniki DNS so odgovorni za to, da vas usmerijo na pravo mesto, zato uporabljajte le strežnike, ki jim zaupate.</value>
+    <comment>The description of Custom DNS Servers setting displayed in the tooltip of the ( i ) image next to the label for Custom DNS Server toggle switch in Connection tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_DefaultProtocol">
+    <value>Protokol</value>
+    <comment>The label for Protocol combo box in Connection tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_DefaultProtocol_Info">
+    <value>Omogočite pametni protokol za samodejno uporabo protokola in vrat, ki nudijo najboljšo povezljivost.</value>
+    <comment>The description of Default Protocol settings displayed in the tooltip of ( i ) image next to the label for Default Protocol combo box in Connection tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_ModerateNat">
+    <value>Zmerni NAT</value>
+  </data>
+  <data name="Settings_Connection_lbl_ModerateNat_Info">
+    <value>Zmerni NAT onemogoči naključno preslikavo lokalnih naslovov, kar lahko nekoliko zmanjša vašo varnost, vendar omogoča tehnike, kot so neposredne povezave za aplikacije, kot so spletne igre.</value>
+  </data>
+  <data name="Settings_Connection_lbl_QuickConnect">
+    <value>Hitro povezovanje</value>
+    <comment>The label for Quick Connect combo box in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_QuickConnect_Info">
+    <value>Gumb za hitro povezavo vas poveže z izbranim profilom.</value>
+    <comment>The description of Quick Connect settings displayed in the tooltip of ( i ) image next to the label for Quick Connect combo box in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_SmartReconnect">
+    <value>Samodejna ponovna povezava</value>
+    <comment>The label for Auto Reconnect toggle switch in Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_SmartReconnectNotifications">
+    <value>Obvestila o ponovni povezavi</value>
+    <comment>The label for Smart Reconnect notifications toggle switch in the General tab of Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_SmartReconnectNotifications_Info">
+    <value>Vklopite to, če želite prejemati obvestila, ko vas VPN pospeševalnik poveže s hitrejšim strežnikom.</value>
+    <comment>The description of the Smart Reconnect notifications setting displayed in the tooltip of the ( i ) image next to the label</comment>
+  </data>
+  <data name="Settings_Connection_lbl_SmartReconnect_Info">
+    <value>Samodejni preklop na hitrejši strežnik, podoben izbranemu.</value>
+    <comment>The description of Auto Reconnect setting displayed in the tooltip of the ( i ) image next to the label in Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_VpnAccelerator">
+    <value>VPN Accelerator</value>
+    <comment>The label for VPN Accelerator toggle switch in Settings window</comment>
+  </data>
+  <data name="Settings_Connection_lbl_VpnAccelerator_Info">
+    <value>Pospeševalec VPN omogoča nabor edinstvenih tehnologij za izboljšanje zmogljivosti, ki lahko povečajo hitrost VPN do 400[%].</value>
+    <comment>The description of VPN Accelerator setting displayed in the tooltip of the ( i ) image next to the label in Settings window</comment>
+  </data>
+  <data name="Settings_Connection_ttl">
+    <value>Povezava</value>
+    <comment>The title of Connection tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_AutoUpdate">
+    <value>Samodejne posodobitve</value>
+    <comment>The label for Automatic updates toggle switch in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_AutoUpdate_Info">
+    <value>Samodejno preveri in namesti posodobitve za Proton VPN.</value>
+    <comment>The description of Automatic updates setting displayed in the tooltip of ( i ) image next to the label for Automatic updates toggle switch in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_ConnectOnAppStart">
+    <value>Povežite se ob zagonu aplikacije</value>
+    <comment>The label for Connect on boot combo box in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_ConnectOnAppStart_Info">
+    <value>Samodejno se povežite s profilom hitre povezave, ko se zažene Proton VPN</value>
+    <comment>The description of Connect on boot setting displayed in the tooltip of ( i ) image next to the label for Connect on boot combo box in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_EarlyAccess">
+    <value>Zgodnji dostop</value>
+    <comment>The label for Early Access toggle switch in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_EarlyAccess_Info">
+    <value>Bodite prvi, ki prejme najnovejše posodobitve. Upoštevajte, da so zgodnje različice morda manj stabilne.</value>
+    <comment>The description of Early Access setting displayed in the tooltip of ( i ) image next to the label for Early Access toggle switch in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_Language">
+    <value>Jezik</value>
+    <comment>The label for Language combo box in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_ShowNotifications">
+    <value>Prikaži obvestila</value>
+    <comment>The label for Show Notifications toggle switch in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_StartMinimized">
+    <value>Začni pomanjšano</value>
+    <comment>The label for Start Minimized combo box in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_StartOnBoot">
+    <value>Vključi ob zagonu</value>
+    <comment>The label for Start on boot toggle switch in General tab of Settings window.
+This setting instructs the Proton VPN to start automatically when the user logs in to the computer.</comment>
+  </data>
+  <data name="Settings_General_ttl">
+    <value>Splošno</value>
+    <comment>The title of General tab in Settings window</comment>
+  </data>
+  <data name="Settings_btn_UpgradeToPlus">
+    <value>Nadgradite na Plus</value>
+    <comment>A message insde a tooltip which is displayed on mouse hover in the settings next to a paid feature.</comment>
+  </data>
+  <data name="Settings_lnk_Reconnect">
+    <value>Znova poveži</value>
+    <comment>The text of Reconnect hyperlink next to Reconnect Required message in Settings window (reconnects to same VPN server)</comment>
+  </data>
+  <data name="Settings_msg_ReconnectRequired">
+    <value>Nekatere spremembe zahtevajo ponovno povezavo, da začnejo veljati.</value>
+    <comment>The message displayed on the bottom of Settings window if any of settings changes requires VPN to be reconnected to take effect</comment>
+  </data>
+  <data name="Settings_ttl">
+    <value>Nastavitve</value>
+    <comment>The title of Settings window</comment>
+  </data>
+  <data name="SidebarProfiles_lbl_MyProfiles">
+    <value>Moji profili</value>
+    <comment>The text of "My Profiles" category text in the Profile sidebar, that has the custom created profiles below</comment>
+  </data>
+  <data name="SidebarProfiles_lbl_Recommended">
+    <value>Priporočeno</value>
+    <comment>The text of "Recommended" category text in the Profile sidebar, that has the predefined profiles below</comment>
+  </data>
+  <data name="Sidebar_B2BPopup_Desc">
+    <value>Prehod VPN je varna povezava, ki omogoča nadzorovan dostop do podatkov in storitev vašega podjetja prek namenskih strežnikov.</value>
+    <comment>Description of what a Gateway is, written inside the help popup when the Gateways info button is clicked.</comment>
+  </data>
+  <data name="Sidebar_B2BPopup_Title">
+    <value>Kaj je prehod?</value>
+    <comment>Title of the help popup when the Gateways info button is clicked.</comment>
+  </data>
+  <data name="Sidebar_Connection_btn_ChangeServer">
+    <value>Spremeni strežnik</value>
+  </data>
+  <data name="Sidebar_Connection_btn_Connect">
+    <value>Hitro povezovanje</value>
+    <comment>The text on Quick Connect button in Connection section of Sidebar section of main app window (connects to VPN using Quick Connect profile)</comment>
+  </data>
+  <data name="Sidebar_Connection_btn_Disconnect">
+    <value>Prekini povezavo</value>
+    <comment>The text on Disconnect button in Connection section of Sidebar section of main app window (disconnect from VPN)</comment>
+  </data>
+  <data name="Sidebar_Connection_lbl_Disconnected">
+    <value>Ste nezaščiteni!</value>
+    <comment>The text displayed on Connection section of Sidebar section of main app window</comment>
+  </data>
+  <data name="Sidebar_Connection_lbl_Disconnected_Info">
+    <value>Za varno povezavo se povežite s strežnikom VPN.</value>
+    <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
+  </data>
+  <data name="Sidebar_Connection_lbl_IP_Unknown">
+    <value>Neznano</value>
+    <comment>The text displayed on Connection section of Sidebar section of main app window</comment>
+  </data>
+  <data name="Sidebar_Connection_lbl_IP_Unknown_Info">
+    <value>Vašega naslova IP ni mogoče pridobiti zaradi težav z omrežjem ali omejitev ponudnika internetnih storitev.</value>
+    <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
+  </data>
+  <data name="Sidebar_Connection_lbl_KillSwitch">
+    <value>Stikalo za izklop je aktivirano!</value>
+    <comment>The text displayed in the sidebar when connection dropped and kill switch is turned on</comment>
+  </data>
+  <data name="Sidebar_Connection_lbl_KillSwitch_Info">
+    <value>Stikalo za izklop blokira vse povezave, da prepreči uhajanje vaših podatkov.</value>
+    <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
+  </data>
+  <data name="Sidebar_Countries_AllLocationCount">
+    <value>Plus lokacije ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_BasicAndPlusLocationCount">
+    <value>OSNOVNE &amp; PLUS lokacije ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_BasicLocationCount">
+    <value>BASIC lokacije ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_FreeLocationCount">
+    <value>BREZPLAČNE lokacije ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_FreeServers">
+    <value>Brezplačni strežniki</value>
+  </data>
+  <data name="Sidebar_Countries_FreeServersInfo">
+    <value>Brezplačni strežniki nimajo omejitve podatkov niti omejevanja omrežja. Hitrost je lahko omejena le zaradi velikega števila povezanih uporabnikov.</value>
+  </data>
+  <data name="Sidebar_Countries_Information">
+    <value>Informacija</value>
+  </data>
+  <data name="Sidebar_Countries_PlusLocationCount">
+    <value>PLUS lokacije ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier0">
+    <value>Brezplačni strežniki ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier1">
+    <value>OSNOVNI strežniki ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier2">
+    <value>Plus strežniki ({0})</value>
+  </data>
+  <data name="Sidebar_Countries_ServerCountByTier3">
+    <value>NOTRANJI strežniki</value>
+  </data>
+  <data name="Sidebar_Countries_info_SmartRouting">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Sidebar_Countries_lbl_Maintenance">
+    <value>Vzdrževalna dela v teku</value>
+    <comment>The text displayed next to the country in Countries tab of Sidebar section of main app window when all servers in the country are under maintenance.</comment>
+  </data>
+  <data name="Sidebar_Countries_lbl_Search_Watermark">
+    <value>Išči</value>
+    <comment>The watermark text displayed in Search text box in Countries tab of Sidebar section of main app window</comment>
+  </data>
+  <data name="Sidebar_Countries_lbl_SecureCore">
+    <value>Secure Core</value>
+    <comment>The label of Secure Core toggle switch on Countries tab of Sidebar section of main app window</comment>
+  </data>
+  <data name="Sidebar_Countries_lbl_SecureCore_Info">
+    <value>Zagotavlja dodatno zaščito pred ogrožanjem strežnika VPN z usmerjanjem prometa prek našega Secure Core omrežja</value>
+    <comment>The description of Secure Core feature displayed in a tooltip of ( i ) image next to Secure Core toggle switch label on Countries tab in Sidebar section of main app window</comment>
+  </data>
+  <data name="Sidebar_Countries_msg_SecureCoreDisableConfirm">
+    <value>Če onemogočite Secure Core, boste prekinili aktivno povezavo VPN. Želite nadaljevati?</value>
+    <comment>The confirmation message displayed when switching off Secure Core toggle switch in Countries tab of Sidebar section of main app window while connected to VPN</comment>
+  </data>
+  <data name="Sidebar_Countries_msg_SecureCoreEnableConfirm">
+    <value>Preklop v način Secure Core bo prekinil aktivno povezavo VPN. Želite nadaljevati?</value>
+    <comment>The confirmation message displayed when switching on Secure Core toggle switch in Countries tab of Sidebar section of main app window while connected to VPN</comment>
+  </data>
+  <data name="Sidebar_Countries_ttl">
+    <value>Države</value>
+    <comment>The title of Countries tab in Sidebar section of main app window</comment>
+  </data>
+  <data name="Sidebar_FeaturesPopup_BasicAndPlus">
+    <value>BASIC &amp; PLUS</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_LearnMore">
+    <value>Več informacij</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_P2P">
+    <value>P2P/BitTorrent</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_P2P_Desc">
+    <value>Ti strežniki zagotavljajo najboljšo zmogljivost za BitTorrent in skupno rabo datotek.</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Plus">
+    <value>PLUS</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_SmartRouting">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_SmartRouting_Desc">
+    <value>Ta tehnologija omogoča Proton VPN, da zagotavlja višjo hitrost in varnost v državah, kjer je storitev otežena.</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Streaming">
+    <value>Pretakanje</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Streaming_Desc">
+    <value>Strežniki PLUS podpirajo pretakanje (Netflix, Disney+ itd.) od kjer koli na svetu.</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Title">
+    <value>Funkcije</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Sidebar_FeaturesPopup_Tor_Desc">
+    <value>Usmerite svoj internetni promet prek omrežja Tor. Počasneje, a bolj zasebno.</value>
+  </data>
+  <data name="Sidebar_Profiles_btn_Create">
+    <value>Ustvari profil</value>
+    <comment>The text of button for creating new profile on Profiles tab of Sidebar section of main app window (opens new profile window)</comment>
+  </data>
+  <data name="Sidebar_Profiles_lnk_Manage">
+    <value>Upravljaj</value>
+    <comment>The text of hyperlink on Profiles tab of Sidebar section of main app window (opens Profiles window)</comment>
+  </data>
+  <data name="Sidebar_Profiles_ttl">
+    <value>Profili</value>
+    <comment>The title of Profiles tab in the Sidebar of main app window</comment>
+  </data>
+  <data name="Sidebar_Separator_Others">
+    <value>Ostalih</value>
+    <comment>When Port Forwarding is enabled, we show the P2P servers first and only then the others.</comment>
+  </data>
+  <data name="Sidebar_Servers_info_plus">
+    <value>Strežnik Plus</value>
+    <comment>The description displayed in a tooltip of P icon on a sidebar server item</comment>
+  </data>
+  <data name="Sidebar_Streaming_Country">
+    <value>Pretakanje - {0}</value>
+  </data>
+  <data name="Sidebar_Streaming_Features">
+    <value>Funkcije</value>
+  </data>
+  <data name="Sidebar_Streaming_Info">
+    <value>Za začetek pretakanja se povežite s strežnikom Plus v tej državi.</value>
+  </data>
+  <data name="Sidebar_Streaming_InfoNote">
+    <value>Opomba: uporabite nov zavihek brskalnika in/ali počistite predpomnilnik, da zagotovite prikaz nove vsebine.</value>
+  </data>
+  <data name="Sidebar_Streaming_More">
+    <value>in več</value>
+  </data>
+  <data name="StartMinimizedMode_val_Disabled">
+    <value>Onemogočeno</value>
+    <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
+  </data>
+  <data name="StartMinimizedMode_val_ToSystray">
+    <value>v pomanjšano</value>
+    <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
+  </data>
+  <data name="StartMinimizedMode_val_ToTaskbar">
+    <value>v opravilno vrstico</value>
+    <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
+  </data>
+  <data name="TextBoxPlaceholder">
+    <value>Začnite tipkati ...</value>
+    <comment>The text displayed as a placeholder on any text box all over the application</comment>
+  </data>
+  <data name="TimeUnit_val_Day_One">
+    <value>dan</value>
+  </data>
+  <data name="TimeUnit_val_Day_Two">
+    <value>dni</value>
+  </data>
+  <data name="TimeUnit_val_Day_Few">
+    <value>dni</value>
+  </data>
+  <data name="TimeUnit_val_Day_Other">
+    <value>dni</value>
+  </data>
+  <data name="TimeUnit_val_Hour_One">
+    <value>ura</value>
+  </data>
+  <data name="TimeUnit_val_Hour_Two">
+    <value>ur</value>
+  </data>
+  <data name="TimeUnit_val_Hour_Few">
+    <value>ur</value>
+  </data>
+  <data name="TimeUnit_val_Hour_Other">
+    <value>ur</value>
+  </data>
+  <data name="TimeUnit_val_Minute_One">
+    <value>minuta</value>
+  </data>
+  <data name="TimeUnit_val_Minute_Two">
+    <value>minut</value>
+  </data>
+  <data name="TimeUnit_val_Minute_Few">
+    <value>minut</value>
+  </data>
+  <data name="TimeUnit_val_Minute_Other">
+    <value>minut</value>
+  </data>
+  <data name="Tooltips_SmartReconnection_Description">
+    <value>Preklopili ste na hitrejši strežnik, ki je podoben izbranemu.</value>
+    <comment>The description of the Auto Reconnection tooltip</comment>
+  </data>
+  <data name="Tooltips_SmartReconnection_Title">
+    <value>VPN Accelerator</value>
+    <comment>The title of the Auto Reconnection tooltip</comment>
+  </data>
+  <data name="Tooltips_SmartReconnection_btn_NotificationSettings">
+    <value>Nastavitve obvestil</value>
+    <comment>The text button of the Auto Reconnection tooltip that opens the Notification Settings</comment>
+  </data>
+  <data name="Upsell_Accelerator_Bullet1">
+    <value>Dostopajte do hitrejših in manj natrpanih strežnikov.</value>
+  </data>
+  <data name="Upsell_Accelerator_Bullet2">
+    <value>Povečajte hitrost povezave do 400[%] s &lt;Bold&gt;pospeševalnikom VPN&lt;/Bold&gt;.</value>
+  </data>
+  <data name="Upsell_Accelerator_Bullet3">
+    <value>Izboljšana hitrost in stabilnost pri povezavi z oddaljenimi strežniki.</value>
+  </data>
+  <data name="Upsell_Accelerator_Title">
+    <value>Brskajte pri še višjih hitrostih (do 10 Gb/s)</value>
+  </data>
+  <data name="Upsell_Countries_AccessGeoblockedContent">
+    <value>Dostop do geografsko blokirane vsebine</value>
+  </data>
+  <data name="Upsell_Countries_ChooseAnyLocation">
+    <value>Izberite poljubno lokacijo</value>
+  </data>
+  <data name="Upsell_Countries_HigherVpnSpeed">
+    <value>Še večja hitrost VPN</value>
+  </data>
+  <data name="Upsell_Countries_StreamMovies">
+    <value>Pretakajte svoje najljubše filme</value>
+  </data>
+  <data name="Upsell_Countries_Subtitle">
+    <value>Ko nadgradite na Plus</value>
+    <comment>The message disaplyed in plus upgrade modal window</comment>
+  </data>
+  <data name="Upsell_Countries_Title">
+    <value>Dostop do {0} v {1}</value>
+    <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
+  </data>
+  <data name="Upsell_Country_Bullet1_One">
+    <value>Povežite se z {0} državo</value>
+  </data>
+  <data name="Upsell_Country_Bullet1_Two">
+    <value>Povežite se z {0} državama</value>
+  </data>
+  <data name="Upsell_Country_Bullet1_Few">
+    <value>Povežite se z {0} državami</value>
+  </data>
+  <data name="Upsell_Country_Bullet1_Other">
+    <value>Povežite se z {0} državami</value>
+  </data>
+  <data name="Upsell_Country_Bullet2">
+    <value>Višje hitrosti (10 Gb/s)</value>
+  </data>
+  <data name="Upsell_Country_Bullet3">
+    <value>Pretakajte svoje najljubše filme</value>
+  </data>
+  <data name="Upsell_Country_Bullet4">
+    <value>Zaščitite do 10 naprav</value>
+  </data>
+  <data name="Upsell_Country_Bullet5">
+    <value>30-dnevno jamstvo za vračilo denarja</value>
+  </data>
+  <data name="Upsell_Country_Subtitle">
+    <value>Odklenite &lt;Bold&gt;seznam držav&lt;/Bold&gt; z VPN Plus</value>
+  </data>
+  <data name="Upsell_Country_Title">
+    <value>Želite izbrati določeno državo?</value>
+  </data>
+  <data name="Upsell_CustomDns_Bullet1">
+    <value>Povežite se z VPN s svojim &lt;Bold&gt;sistemom domenskih imen po meri (DNS)&lt;/Bold&gt;</value>
+  </data>
+  <data name="Upsell_CustomDns_Bullet2">
+    <value>Shranite pogosto uporabljene povezave s &lt;Bold&gt;profili&lt;/Bold&gt;</value>
+  </data>
+  <data name="Upsell_CustomDns_Bullet3">
+    <value>Pridobite hitrejši dostop do svojih profilov s &lt;Bold&gt;hitro povezavo&lt;/Bold&gt;</value>
+  </data>
+  <data name="Upsell_CustomDns_Title">
+    <value>Odklenite napredno prilagoditev VPN</value>
+  </data>
+  <data name="Upsell_FreeConnections_Locations">
+    <value>Lokacije brezplačnih strežnikov ({0})</value>
+    <comment>{0} represents a number of free server locations.</comment>
+  </data>
+  <data name="Upsell_FreeConnections_Subtitle">
+    <value>Brezplačni Proton vas samodejno poveže z najhitrejšim razpoložljivim strežnikom. To bo običajno najbližji strežnik vaši lokaciji.</value>
+  </data>
+  <data name="Upsell_FreeConnections_Title">
+    <value>Brezplačne povezave</value>
+  </data>
+  <data name="Upsell_ModerateNat_Bullet1">
+    <value>Izboljšajte delovanje spletnih iger in video klicev</value>
+  </data>
+  <data name="Upsell_ModerateNat_Bullet2">
+    <value>NAT tipa 2 (zmerno) optimizira hitrost in stabilnost z omogočanjem neposrednih povezav med napravami;</value>
+  </data>
+  <data name="Upsell_ModerateNat_Subtitle">
+    <value>Odkleni &lt;Bold&gt;NAT tip 2&lt;/Bold&gt; z VPN Plus</value>
+  </data>
+  <data name="Upsell_ModerateNat_Title">
+    <value>Izboljšajte svojo igralno izkušnjo</value>
+  </data>
+  <data name="Upsell_Netshield_BlockAds">
+    <value>Blokiraj oglase in sledilnike</value>
+  </data>
+  <data name="Upsell_Netshield_BrowseFast">
+    <value>Brskajte pri še višjih hitrostih</value>
+  </data>
+  <data name="Upsell_Netshield_ProtectFromMalware">
+    <value>Zaščitite svojo napravo pred zlonamerno programsko opremo</value>
+  </data>
+  <data name="Upsell_Netshield_Subtitle">
+    <value>Ko nadgradite na Plus</value>
+  </data>
+  <data name="Upsell_Netshield_Title">
+    <value>Uživajte v brskanju brez oglasov z NetShield</value>
+  </data>
+  <data name="Upsell_NonStandardPorts_btn_LearnMore">
+    <value>Več informacij</value>
+    <comment>The button label in "allow non-standard ports" modal</comment>
+  </data>
+  <data name="Upsell_NonStandardPorts_btn_Upgrade">
+    <value>Nadgradi</value>
+    <comment>The button label in "allow non-standard ports" modal</comment>
+  </data>
+  <data name="Upsell_NonStandardPorts_msg">
+    <value>Imate napredne ali profesionalne računalniške potrebe, ki zahtevajo nestandardna vrata? Nadgradite na VPN Plus za dostop do te in drugih premijskih funkcij.</value>
+    <comment>The text in "allow non-standard ports" modal</comment>
+  </data>
+  <data name="Upsell_NonStandardPorts_ttl">
+    <value>Dovoli promet do nestandardnih vrat</value>
+    <comment>The title in "allow non-standard ports" modal</comment>
+  </data>
+  <data name="Upsell_Plan_Business_Info">
+    <value>Na voljo z VPN Business.</value>
+    <comment>The tooltip text of the business plan badge</comment>
+  </data>
+  <data name="Upsell_PortForwarding_Bullet1">
+    <value>Izboljšajte hitrost prenosa med P2P</value>
+  </data>
+  <data name="Upsell_PortForwarding_Bullet2">
+    <value>Povežite se s spletnimi igralnimi strežniki in gostite igre za več igralcev</value>
+  </data>
+  <data name="Upsell_PortForwarding_Bullet3">
+    <value>Nastavite oddaljeni dostop do naprav v lokalnem omrežju</value>
+  </data>
+  <data name="Upsell_PortForwarding_Subtitle">
+    <value>Odkleni &lt;Bold&gt;posredovanje vrat&lt;/Bold&gt; z VPN Plus</value>
+  </data>
+  <data name="Upsell_PortForwarding_Title">
+    <value>Napolnite svoje povezave P2P</value>
+  </data>
+  <data name="Upsell_Profiles_Bullet1">
+    <value>Shranite želeni strežnik, mesto ali državo.</value>
+  </data>
+  <data name="Upsell_Profiles_Bullet2">
+    <value>Nastavite protokole po meri in premijske funkcije VPN.</value>
+  </data>
+  <data name="Upsell_Profiles_Bullet3">
+    <value>Nastavite samodejno povezavo za še hitrejši dostop.</value>
+  </data>
+  <data name="Upsell_Profiles_Subtitle">
+    <value>Odklenite &lt;Bold&gt;profile&lt;/Bold&gt; z VPN Plus</value>
+  </data>
+  <data name="Upsell_Profiles_Title">
+    <value>Zagotovite si hiter dostop do pogostih povezav</value>
+  </data>
+  <data name="Upsell_SecureCore_ExtraEncryption">
+    <value>Dodajte še eno plast šifriranja svoji VPN povezavi s Secure Core</value>
+  </data>
+  <data name="Upsell_SecureCore_NetworkAttacks">
+    <value>Zaščitite se pred omrežnimi napadi</value>
+  </data>
+  <data name="Upsell_SecureCore_RouteThrough">
+    <value>Uporabljate izjemno varne strežnike v Švici, na Švedskem in Islandiji</value>
+  </data>
+  <data name="Upsell_SecureCore_Subtitle">
+    <value>Ko nadgradite na Plus</value>
+  </data>
+  <data name="Upsell_SecureCore_Title">
+    <value>Podvojite šifriranje s Secure Core</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Bullet1">
+    <value>Razdelite svoj promet na tunele VPN in tunele, ki niso VPN</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Bullet2">
+    <value>Naj zaupanja vredne aplikacije in naslovi IP obidejo VPN za večje hitrosti</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Bullet3">
+    <value>Ko brskate iz tujine, dostopajte do domačih in lokalnih vsebin</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Subtitle">
+    <value>Odkleni &lt;Bold&gt;posredovanje vrat&lt;/Bold&gt; z VPN Plus</value>
+  </data>
+  <data name="Upsell_SplitTunneling_Title">
+    <value>Izkoristite najboljše iz obeh svetov</value>
+  </data>
+  <data name="Upsell_btn_Upgrade">
+    <value>Nadgradi</value>
+    <comment>The text on Upgrade button in Upgrade Required Upsell window (opens web page for subscription plan upgrade)</comment>
+  </data>
+  <data name="VpnPlan_val_Free">
+    <value>Proton VPN Free</value>
+    <comment>The name of VPN subscription plan</comment>
+  </data>
+  <data name="VpnPlan_val_Visionary">
+    <value>Proton Visionary</value>
+    <comment>The name of VPN subscription plan</comment>
+  </data>
+  <data name="VpnPlan_val_Vpnbasic">
+    <value>Proton VPN Basic</value>
+    <comment>The name of VPN subscription plan</comment>
+  </data>
+  <data name="VpnPlan_val_Vpnplus">
+    <value>Proton VPN Plus</value>
+    <comment>The name of VPN subscription plan</comment>
+  </data>
+  <data name="VpnProtocol_val_OpenVpnTcp">
+    <value>OpenVPN (TCP)</value>
+    <comment>Protocol name displayed all over the app (do not translate)</comment>
+  </data>
+  <data name="VpnProtocol_val_OpenVpnUdp">
+    <value>OpenVPN (UDP)</value>
+    <comment>Protocol name displayed all over the app (do not translate)</comment>
+  </data>
+  <data name="VpnProtocol_val_Smart">
+    <value>Smart</value>
+    <comment>The name of the VPN protocol. Means that the protocol will be automatically selected when connecting.</comment>
+  </data>
+  <data name="VpnProtocol_val_WireGuard">
+    <value>WireGuard</value>
+  </data>
+  <data name="Welcome_btn_Skip">
+    <value>Preskoči</value>
+    <comment>The text on Skip button in Welcome window</comment>
+  </data>
+  <data name="Welcome_btn_TakeATour">
+    <value>Oglejte si</value>
+    <comment>The text on Take a Tour button in Welcome window</comment>
+  </data>
+  <data name="Welcome_lbl_Thanks">
+    <value>Hvala, ker uporabljate Proton VPN. Na hitro si oglejte glavne funkcije aplikacije.</value>
+    <comment>The text displayed in Welcome window</comment>
+  </data>
+  <data name="Welcome_lbl_Welcome">
+    <value>DOBRODOŠLI NA NADZORNI PLOŠČI!</value>
+    <comment>The text displayed in Welcome window</comment>
+  </data>
+  <data name="Welcome_ttl">
+    <value>Proton VPN</value>
+    <comment>The title of Welcome window</comment>
+  </data>
+  <data name="Window_btn_Cancel">
+    <value>Prekliči</value>
+    <comment>The text on Cancel button in data entry windows</comment>
+  </data>
+  <data name="Window_btn_Disable">
+    <value>Onemogoči</value>
+    <comment>When kill switch is enabled, a button with this text is displayed in the login window or in the connection status in the sidebar when disconnected</comment>
+  </data>
+  <data name="Window_btn_Save">
+    <value>Shrani</value>
+    <comment>The text on Save button in data entry windows</comment>
+  </data>
+  <data name="Window_lbl_Error">
+    <value>Napaka:</value>
+    <comment>The label for list of errors on Error Panel of data entry Window</comment>
+  </data>
+  <data name="Window_lbl_Loading">
+    <value>Nalaganje</value>
+    <comment>The text displayed while content is loading</comment>
+  </data>
+  <data name="WireGuard_lbl">
+    <value>WireGuard</value>
+    <comment>WireGuard client name (do not translate)</comment>
+  </data>
+</root>

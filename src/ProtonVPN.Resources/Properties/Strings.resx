@@ -222,4 +222,7 @@
   <data name="Language_nb-NO" xml:space="preserve">
     <value>Norsk bokmål</value>
   </data>
+  <data name="Language_sl-SI" xml:space="preserve">
+    <value>Slovenščina</value>
+  </data>
 </root>

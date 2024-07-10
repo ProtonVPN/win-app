@@ -1,2 +1,3 @@
 ﻿[CustomMessages]
 InstallProtonDriveTitle=Proton Drive をインストール - 暗号化クラウドストレージ (無料で利用可能)
+InstallingWebview2Runtime=Installing Web View 2 runtime...

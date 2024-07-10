@@ -1940,7 +1940,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
-    <value>Token de împrospătare nevalid, reconectați-vă.</value>
+    <value>Cod de acces de împrospătare nevalid, reconectați-vă.</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">

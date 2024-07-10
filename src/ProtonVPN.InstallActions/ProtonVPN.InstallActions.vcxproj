@@ -208,6 +208,7 @@
     <ClInclude Include="Os.h" />
     <ClInclude Include="PathManager.h" />
     <ClInclude Include="ProcessExecutionResult.h" />
+    <ClInclude Include="ProcessResource.h" />
     <ClInclude Include="ServiceManager.h" />
     <ClInclude Include="sha1.hpp" />
     <ClInclude Include="StringHelper.h" />
@@ -223,6 +224,7 @@
     <ClCompile Include="Os.cpp" />
     <ClCompile Include="PathManager.cpp" />
     <ClCompile Include="ProcessExecutionResult.cpp" />
+    <ClCompile Include="ProcessResource.cpp" />
     <ClCompile Include="pugixml\pugixml.cpp" />
     <ClCompile Include="ServiceManager.cpp" />
     <ClCompile Include="TapInstallationOutputParser.cpp" />

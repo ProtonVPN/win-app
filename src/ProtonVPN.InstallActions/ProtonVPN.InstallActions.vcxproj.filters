@@ -54,6 +54,9 @@
     <ClInclude Include="AppSettingsMigration.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ProcessResource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -90,6 +93,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pugixml\pugixml.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProcessResource.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

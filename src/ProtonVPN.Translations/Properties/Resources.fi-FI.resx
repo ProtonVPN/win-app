@@ -379,7 +379,7 @@
     <comment>The label for user e-mail address in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_EmailPlaceholder">
-    <value>Sähköpostiosoitetta käytetään ongelmaasi liittyviin yhteydenottoihin.</value>
+    <value>Osoitetta käytetään ongelmaasi liittyviin yhteydenottoihin.</value>
     <comment>The watermark text displayed in empty user e-mail text box in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_HowToReproduce">
@@ -412,7 +412,7 @@
     <value>Tämä Proton VPN -versio on jo saattanut korjata ongelmasi!</value>
   </data>
   <data name="BugReport_lbl_QuickSolutions">
-    <value>Nopeita korjauksia</value>
+    <value>Pikaratkaisut</value>
   </data>
   <data name="BugReport_lbl_QuickSolutionsInfo">
     <value>Nämä vinkit voivat auttaa ratkaisemaan ongelman nopeammin.</value>
@@ -1999,7 +1999,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The text of hyperlink in Need Help popup of Login window (opens web page for resetting user password)</comment>
   </data>
   <data name="Login_msg_IncorrectTwoFactorCode">
-    <value>Virheellinen toisen vaiheen todennuskoodi</value>
+    <value>Virheellinen toisen vaiheen vahvistuskoodi</value>
   </data>
   <data name="Login_msg_TwoFactorAuthFailed">
     <value>Virheelliset kirjautumistiedot. Yritä uudelleen.</value>
@@ -2623,7 +2623,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The label displayed before entry country name in Server list of Countries tab of Sidebar section of main app window when Secure Core mode is enabled</comment>
   </data>
   <data name="Servers_msg_CantConnect_CertificateExpired">
-    <value>Proton VPN ei voinut päivittää päätelaitteen todennusvarmennetta.</value>
+    <value>Proton VPN ei voinut päivittää päätteen todennusvarmennetta.</value>
   </data>
   <data name="Servers_msg_CantConnect_Maintenance">
     <value>Palvelin johon yrität yhdistää on huollossa. Valitse eri palvelin tai profiili.</value>
@@ -2798,10 +2798,10 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The description of Default Protocol settings displayed in the tooltip of ( i ) image next to the label for Default Protocol combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat">
-    <value>Keskitason NAT</value>
+    <value>Keskitasoinen NAT</value>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat_Info">
-    <value>Keskitason (eli tyypin 2) NAT, poistaa paikallisten osoitteiden sekoitetun määrityksen käytöstä. Tämä voi heikentää suojaustasi hieman, mutta mahdollistaa esimerkiksi suorien yhteyksien kaltaiset tekniikat mm. verkkopeleille.</value>
+    <value>Keskitasoinen (eli tyypin 2) NAT, poistaa paikallisten osoitteiden sekoituksen käytöstä. Tämä voi heikentää suojaustasi hieman, mutta mahdollistaa esimerkiksi suorien yhteyksien kaltaiset tekniikat mm. verkkopeleille.</value>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect">
     <value>Pikayhteys</value>
@@ -3291,7 +3291,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Pääset nopeasti käsiksi usein käyttämiisi yhteyksiin</value>
   </data>
   <data name="Upsell_SecureCore_ExtraEncryption">
-    <value>Lisää VPN-yhteyteesi yksi salauskerros lisää</value>
+    <value>Lisää VPN-yhteyteesi toinen salauskerros</value>
   </data>
   <data name="Upsell_SecureCore_NetworkAttacks">
     <value>Suojaudu verkkohyökkäyksiltä</value>

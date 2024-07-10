@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About_UpdateStatus_val_CheckFailed">
-    <value>Falha ao procurar atualizações</value>
+    <value>Erro ao procurar atualizações</value>
     <comment>The app update status in About window</comment>
   </data>
   <data name="About_UpdateStatus_val_Checking">
@@ -1806,7 +1806,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Antivirus">
-    <value>&lt;Bold&gt;Interferência do antivírus&lt;/Bold&gt; - desativar temporariamente ou remover o seu antivírus.</value>
+    <value>&lt;Bold&gt;Interferência do antivírus&lt;/Bold&gt; - desative temporariamente ou remova o seu antivírus.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Firewall">
@@ -1838,14 +1838,14 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Unknown">
-    <value>&lt;Bold&gt;Ainda não foi possível encontrar uma solução&lt;/Bold&gt; - contacte-nos directamente através do nosso &lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;formulário de suporte&lt;/Hyperlink&gt;, e-mail (support@protonvpn.com) ou &lt;Hyperlink Command="{Binding ProtonTwitterCommand}"&gt;Twitter&lt;/Hyperlink&gt;.</value>
+    <value>&lt;Bold&gt;Ainda não foi possível encontrar uma solução&lt;/Bold&gt; - contacte-nos diretamente através do nosso &lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;formulário de suporte&lt;/Hyperlink&gt;, e-mail (support@protonvpn.com) ou &lt;Hyperlink Command="{Binding ProtonTwitterCommand}"&gt;Twitter&lt;/Hyperlink&gt;.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_TunInUse_btn_SwitchToTap">
     <value>Mudar para TAP</value>
   </data>
   <data name="Dialogs_TunInUse_msg">
-    <value>O Proton VPN não conseguiu ligação por o adaptador já estar utilizado. Desligue quaisquer VPNs ativas e volte a tentar. Em alternativa, mude para o adaptador TAP (pode voltar ao TUN nas definições avançadas).</value>
+    <value>O Proton VPN não conseguiu ligar-se porque o adaptador de rede TUN já está a ser utilizado. Desligue quaisquer VPNs ativas e tente novamente. Em alternativa, mude para o adaptador TAP (pode voltar a mudar para TUN nas Definições Avançadas).</value>
   </data>
   <data name="Dialogs_WireGuardAdapterInUse_msg">
     <value>O Proton VPN não consegue conectar-se à VPN porque um outro adaptador de rede WireGuard está em utilização. Desligue quaisquer VPN que tenha activa e tente novamente. Em alternativa, pode mudar o protocolo nas definições avançadas.</value>
@@ -2130,7 +2130,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>Button displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network.</comment>
   </data>
   <data name="Notifications_InsecureWiFi_msg_Detected">
-    <value>Ligação WiFi insegura detectada: {0}</value>
+    <value>Ligação WiFi insegura detetada: {0}</value>
     <comment>The message displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network. The {0} is a placeholder for Wi-Fi network name.</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Disconnect_Description">
@@ -3089,7 +3089,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>e mais</value>
   </data>
   <data name="StartMinimizedMode_val_Disabled">
-    <value>Desativada</value>
+    <value>Desativado</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="StartMinimizedMode_val_ToSystray">
@@ -3123,7 +3123,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>minutos</value>
   </data>
   <data name="Tooltips_SmartReconnection_Description">
-    <value>Mudou para um servidor mais rápido e semelhante ao que tinha seleccionado.</value>
+    <value>Mudou para um servidor mais rápido e semelhante ao que tinha selecionado.</value>
     <comment>The description of the Auto Reconnection tooltip</comment>
   </data>
   <data name="Tooltips_SmartReconnection_Title">
@@ -3159,7 +3159,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Transmita os seus filmes favoritos</value>
   </data>
   <data name="Upsell_Countries_Subtitle">
-    <value>Quando actualizar para o Plus</value>
+    <value>Quando atualizar para o Plus</value>
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
@@ -3231,10 +3231,10 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Navegue na velocidade máxima</value>
   </data>
   <data name="Upsell_Netshield_ProtectFromMalware">
-    <value>Proteja o seu dispositivo do malware</value>
+    <value>Proteja o seu dispositivo de malware</value>
   </data>
   <data name="Upsell_Netshield_Subtitle">
-    <value>Quando actualizar para o Plus</value>
+    <value>Quando atualizar para o Plus</value>
   </data>
   <data name="Upsell_Netshield_Title">
     <value>Desfrute de uma navegação sem publicidades com o NetShield</value>
@@ -3244,7 +3244,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_btn_Upgrade">
-    <value>Actualizar</value>
+    <value>Atualizar</value>
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_msg">

@@ -9,6 +9,7 @@
 #include "psapi.h"
 #include <filesystem>
 
+#include "ProcessResource.h"
 #include "ProcessExecutionResult.h"
 #include "Os.h"
 #include <sddl.h>
@@ -299,4 +300,82 @@ void Os::RemovePinnedIcons(PCWSTR shortcut_path)
     }
 
     CoUninitialize();
+}
+
+// https://devblogs.microsoft.com/oldnewthing/20190425-00/?p=102443
+ProcessExecutionResult Os::LaunchUnelevatedProcess(const wchar_t* process_path, const wchar_t* args, bool is_to_wait)
+{
+    std::wstring command_line_wstring;
+    if (args != nullptr)
+    {
+        command_line_wstring = std::wstring(process_path) + L" " + args;
+    }
+    else
+    {
+        command_line_wstring = std::wstring(process_path);
+    }
+    wchar_t* command_line = command_line_wstring.data();
+
+    DWORD pid;
+    GetWindowThreadProcessId(GetShellWindow(), &pid);
+    HANDLE process = OpenProcess(PROCESS_CREATE_PROCESS, FALSE, pid);
+    if (process == nullptr)
+    {
+        return ProcessExecutionResult::Failure(GetLastError());
+    }
+
+    SIZE_T size;
+    InitializeProcThreadAttributeList(nullptr, 1, 0, &size);
+    PPROC_THREAD_ATTRIBUTE_LIST p = reinterpret_cast<PPROC_THREAD_ATTRIBUTE_LIST>(new char[size]);
+
+    ProcessResource process_resource(process, p);
+
+    if (!InitializeProcThreadAttributeList(p, 1, 0, &size))
+    {
+        return ProcessExecutionResult::Failure(GetLastError());
+    }
+
+    if (!UpdateProcThreadAttribute(p,
+        0,
+        PROC_THREAD_ATTRIBUTE_PARENT_PROCESS,
+        &process,
+        sizeof(process),
+        nullptr,
+        nullptr))
+    {
+        return ProcessExecutionResult::Failure(GetLastError());
+    }
+
+    STARTUPINFOEX startupInfo = {};
+    startupInfo.lpAttributeList = p;
+    startupInfo.StartupInfo.cb = sizeof(startupInfo);
+    PROCESS_INFORMATION pi = {};
+
+    if (!CreateProcess(process_path,
+        command_line,
+        nullptr,
+        nullptr,
+        FALSE,
+        CREATE_NEW_CONSOLE | EXTENDED_STARTUPINFO_PRESENT,
+        nullptr,
+        nullptr,
+        &startupInfo.StartupInfo,
+        &pi))
+    {
+        return ProcessExecutionResult::Failure(GetLastError());
+    }
+
+    process_resource.set_process_handle(pi.hProcess);
+    process_resource.set_thread_handle(pi.hThread);
+
+    if (is_to_wait)
+    {
+        DWORD wait_result = WaitForSingleObject(pi.hProcess, INFINITE);
+        if (wait_result != WAIT_OBJECT_0)
+        {
+            return ProcessExecutionResult::Failure(wait_result == WAIT_FAILED ? GetLastError() : wait_result);
+        }
+    }
+
+    return { {}, 0 };
 }

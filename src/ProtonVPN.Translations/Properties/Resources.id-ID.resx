@@ -363,11 +363,11 @@
     <value>Apakah solusi di atas tidak membantu?</value>
   </data>
   <data name="BugReport_lbl_Email">
-    <value>Surel</value>
+    <value>Email</value>
     <comment>The label for user e-mail address in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_EmailPlaceholder">
-    <value>Kami akan menggunakan alamat surel ini untuk menghubungi Anda terkait masalah yang Anda hadapi.</value>
+    <value>Kami akan menggunakan alamat email ini untuk menghubungi Anda terkait masalah yang Anda hadapi.</value>
     <comment>The watermark text displayed in empty user e-mail text box in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_HowToReproduce">
@@ -397,7 +397,7 @@
     <value>Perbarui Proton VPN</value>
   </data>
   <data name="BugReport_lbl_NewVersionInfo">
-    <value>Masalah Anda mungkin sudah teratasi pada versi Proton VPN ini!</value>
+    <value>Versi Proton VPN ini mungkin telah mengatasi masalah Anda!</value>
   </data>
   <data name="BugReport_lbl_QuickSolutions">
     <value>Solusi instan</value>
@@ -431,7 +431,7 @@
     <comment>The text displayed in report an issue form. For example: Step 1 of 3.</comment>
   </data>
   <data name="BugReport_msg_EmailNotValid">
-    <value>Surel tidak valid</value>
+    <value>Email tidak valid</value>
   </data>
   <data name="BugReport_msg_Sending">
     <value>Mengirim laporan...</value>
@@ -1558,7 +1558,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The subtitle of the Delinquency window</comment>
   </data>
   <data name="Dialogs_Delinquency_Title">
-    <value>Akun VPN Anda memiliki tagihan yang belum dilunasi</value>
+    <value>Akun VPN Anda memiliki faktur yang tertunggak</value>
     <comment>The title of the Delinquency window</comment>
   </data>
   <data name="Dialogs_DisabledService_btn_Enable">
@@ -1613,7 +1613,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The text displayed in Disconnect modal window if TAP error is detected</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TlsCertificateError">
-    <value>Terdapat masalah dalam proses validasi sertifikat server VPN, yang pada umumnya menandakan bahwa koneksi internet Anda sedang dibajak atau server yang hendak Anda tuju tidak diatur dengan benar. Dapatkan bantuan dari tim layanan dukungan kami dengan mengirimkan &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Issue Report"/&gt;&lt;/Hyperlink&gt;.</value>
+    <value>Terdapat masalah dalam memvalidasi sertifikat server VPN, yang dapat menandakan bahwa koneksi jaringan Anda sedang disusupi atau server yang ingin Anda tuju tidak diatur dengan benar. Dapatkan bantuan dari tim layanan dukungan kami dengan mengirimkan &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="Issue Report"/&gt;&lt;/Hyperlink&gt;.</value>
     <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occurred</comment>
   </data>
   <data name="Dialogs_DoNotShowThisMessageAgain">
@@ -1820,14 +1820,14 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Unknown">
-    <value>&lt;Bold&gt;Masih belum dapat menemukan solusi&lt;/Bold&gt; - Hubungi kami secara langsung melalui &lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;formulir dukungan&lt;/Hyperlink&gt; kami, surel (support@protonvpn.com), atau &lt;Hyperlink Command="{Binding ProtonTwitterCommand}"&gt;Twitter&lt;/Hyperlink&gt;.</value>
+    <value>&lt;Bold&gt;Masih belum dapat menemukan solusi&lt;/Bold&gt; - Hubungi kami secara langsung melalui &lt;Hyperlink Command="{Binding SupportFormCommand}"&gt;formulir dukungan&lt;/Hyperlink&gt; kami, email (support@protonvpn.com), atau &lt;Hyperlink Command="{Binding ProtonTwitterCommand}"&gt;Twitter&lt;/Hyperlink&gt;.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_TunInUse_btn_SwitchToTap">
     <value>Ganti ke TAP</value>
   </data>
   <data name="Dialogs_TunInUse_msg">
-    <value>Proton VPN tidak dapat terhubung karena adapter jaringan TUN telah digunakan. Mohon putuskan seluruh koneksi VPN yang sedang aktif lalu coba lagi. Sebagai alternatif, cobalah untuk berpindah ke adapter TAP (Anda dapat kembali ke TUN kapan saja melalui menu Pengaturan Lanjutan).</value>
+    <value>Proton VPN tidak dapat terhubung karena adapter jaringan TUN telah digunakan. Silakan putuskan seluruh koneksi VPN yang sedang aktif lalu coba lagi. Sebagai alternatif, cobalah untuk berpindah ke adapter TAP (Anda dapat kembali ke adapter TUN kapan saja melalui menu Pengaturan Lanjutan).</value>
   </data>
   <data name="Dialogs_WireGuardAdapterInUse_msg">
     <value>Proton VPN tidak dapat terhubung karena adapter jaringan WireGuard telah digunakan. Mohon putuskan seluruh koneksi VPN yang aktif dan coba lagi. Sebagai alternatif, cobalah untuk mengubah protokol jaringan melalui menu Pengaturan Lanjutan.</value>
@@ -2096,7 +2096,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The description of the Delinquency notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_Delinquency_Title">
-    <value>Akun VPN Anda memiliki tagihan yang belum dilunasi</value>
+    <value>Akun VPN Anda memiliki faktur yang tertunggak</value>
     <comment>The title of the Delinquency notification</comment>
   </data>
   <data name="Notifications_EnableSmartProtocol_msg">
@@ -2230,11 +2230,11 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The heading for list of validation errors in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_ColorEmpty">
-    <value>Silahkan pilih warna</value>
+    <value>Silakan pilih warna</value>
     <comment>The error message displayed in the Profile window when a color is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_CountryEmpty">
-    <value>Silahkan pilih negara</value>
+    <value>Silakan pilih negara</value>
     <comment>The error message displayed in the Profile window when a country is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_GatewayEmpty">
@@ -2242,7 +2242,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The error message displayed in the Profile window when a gateway is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameEmpty">
-    <value>Silahkan pilih nama profil</value>
+    <value>Silakan pilih nama profil</value>
     <comment>The error message displayed in the Profile window when a profile name is empty</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameExists">
@@ -2596,11 +2596,11 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Proton VPN tidak dapat memuat ulang sertifikat autentikasi klien.</value>
   </data>
   <data name="Servers_msg_CantConnect_Maintenance">
-    <value>Server yang coba anda sambung saat ini sedang luring untuk pemeliharaaan. Silahkan pilih server atau profil yang lain.</value>
+    <value>Server yang coba anda sambung saat ini sedang luring untuk pemeliharaaan. Silakan pilih server atau profil yang lain.</value>
     <comment>The message displayed when connecting to server which is on maintenance</comment>
   </data>
   <data name="Servers_msg_CantConnect_Missing">
-    <value>Server yang coba anda sambung telah dihapus. Silahkan pilih server atau profil yang lain.</value>
+    <value>Server yang coba anda sambung telah dihapus. Silakan pilih server atau profil yang lain.</value>
     <comment>The message displayed when connecting to server which was removed and doesn't exist anymore</comment>
   </data>
   <data name="Servers_msg_CantConnect_RpcServerUnavailable">
@@ -3111,13 +3111,13 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Akses konten yang terblokir wilayah</value>
   </data>
   <data name="Upsell_Countries_ChooseAnyLocation">
-    <value>Pilih lokasi mana pun</value>
+    <value>Pilih lokasi server di mana pun</value>
   </data>
   <data name="Upsell_Countries_HigherVpnSpeed">
     <value>Kecepatan VPN yang jauh lebih tinggi</value>
   </data>
   <data name="Upsell_Countries_StreamMovies">
-    <value>Streaming film kesayangan Anda</value>
+    <value>Tonton film streaming kesayangan Anda</value>
   </data>
   <data name="Upsell_Countries_Subtitle">
     <value>Pada saat Anda meningkatkan akun Anda ke Plus</value>
@@ -3134,7 +3134,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Kecepatan yang lebih tinggi (10 Gbps)</value>
   </data>
   <data name="Upsell_Country_Bullet3">
-    <value>Streaming film kesayangan Anda</value>
+    <value>Tonton film streaming kesayangan Anda</value>
   </data>
   <data name="Upsell_Country_Bullet4">
     <value>Lindungi hingga 10 perangkat</value>
@@ -3174,10 +3174,10 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Tingkatkan performa game online dan panggilan video Anda</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet2">
-    <value>NAT Type 2 (moderat) mengoptimalkan kecepatan dan stabilitas koneksi Anda dengan mengukuhkan koneksi langsung antar perangkat</value>
+    <value>NAT tipe 2 (moderat) mengoptimalkan kecepatan dan stabilitas koneksi Anda dengan mengukuhkan koneksi langsung antar perangkat</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
-    <value>Akses &lt;Bold&gt;NAT Type 2&lt;/Bold&gt; dengan VPN Plus</value>
+    <value>Akses &lt;Bold&gt;NAT tipe 2&lt;/Bold&gt; dengan VPN Plus</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
     <value>Bawa pengalaman gaming Anda ke level selanjutnya</value>

@@ -22,7 +22,7 @@ namespace ProtonDrive.Downloader.Response
     public class FileResponse
     {
         public string Url { get; set; }
-        public string Sha512CheckSum { get; set; }
-        public string Args { get; set; }
+        public string Sha512Checksum { get; set; }
+        public string SilentArguments { get; set; }
     }
 }

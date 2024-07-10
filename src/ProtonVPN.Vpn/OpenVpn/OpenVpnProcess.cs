@@ -36,6 +36,8 @@ namespace ProtonVPN.Vpn.OpenVpn
     /// </summary>
     public class OpenVpnProcess
     {
+        private const string TAP_DRIVER = "tap-windows6";
+
         private static readonly TimeSpan WaitAfterSignalingExit = TimeSpan.FromSeconds(6);
 
         private readonly ILogger _logger;
@@ -98,9 +100,14 @@ namespace ProtonVPN.Vpn.OpenVpn
                 .Add(new BaseRouteArgument(processParams.SplitTunnelMode))
                 .Add(new SplitTunnelRoutesArgument(processParams.SplitTunnelIPs, processParams.SplitTunnelMode));
 
-            if (processParams.OpenVpnAdapter == OpenVpnAdapter.Tun)
+            switch (processParams.OpenVpnAdapter)
             {
-                arguments.Add(new NetworkDriverArgument(processParams.InterfaceGuid, processParams.OpenVpnAdapter));
+                case OpenVpnAdapter.Tun:
+                    arguments.Add(new NetworkDriverArgument(processParams.InterfaceGuid, processParams.OpenVpnAdapter));
+                    break;
+                case OpenVpnAdapter.Tap:
+                    arguments.Add(new WindowsDriverArgument(TAP_DRIVER));
+                    break;
             }
 
             return arguments;
