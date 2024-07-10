@@ -49,10 +49,10 @@ public sealed partial class CountryPin
     }
 
     private readonly Storyboard _initialScaleStoryboard = new();
-    private readonly Storyboard _pulsatingStoryboard = new()
+    private readonly Storyboard _pulseStoryboard = new()
     {
         AutoReverse = true,
-        RepeatBehavior = RepeatBehavior.Forever
+        RepeatBehavior = new RepeatBehavior(2)
     };
 
     public CountryPin()
@@ -60,7 +60,20 @@ public sealed partial class CountryPin
         InitializeComponent();
 
         CreateDisconnectedStateAnimations();
-        CreatePulsingAnimations();
+        CreatePulseAnimations();
+
+        App.MainWindow.Activated += OnMainWindowActivated;
+    }
+
+    private void OnMainWindowActivated(object sender, WindowActivatedEventArgs args)
+    {
+        if (args.WindowActivationState != WindowActivationState.Deactivated
+            && !IsConnecting
+            && _initialScaleStoryboard.GetCurrentState() != ClockState.Active
+            && _pulseStoryboard.GetCurrentState() != ClockState.Active)
+        {
+            BeginPulseAnimation();
+        }
     }
 
     private void CreateDisconnectedStateAnimations()
@@ -135,16 +148,16 @@ public sealed partial class CountryPin
 
     private void OnInitialScaleAnimationCompleted(object? sender, object e)
     {
-        _pulsatingStoryboard.Begin();
+        BeginPulseAnimation();
     }
 
-    private void CreatePulsingAnimations()
+    private void CreatePulseAnimations()
     {
-        DoubleAnimationUsingKeyFrames fadeAnimationX = GetPulsatingAnimation();
-        DoubleAnimationUsingKeyFrames fadeAnimationY = GetPulsatingAnimation();
+        DoubleAnimationUsingKeyFrames fadeAnimationX = GetPulseAnimation();
+        DoubleAnimationUsingKeyFrames fadeAnimationY = GetPulseAnimation();
 
-        _pulsatingStoryboard.Children.Add(fadeAnimationX);
-        _pulsatingStoryboard.Children.Add(fadeAnimationY);
+        _pulseStoryboard.Children.Add(fadeAnimationX);
+        _pulseStoryboard.Children.Add(fadeAnimationY);
 
         Storyboard.SetTarget(fadeAnimationX, FadeScaleTransform);
         Storyboard.SetTarget(fadeAnimationY, FadeScaleTransform);
@@ -152,7 +165,7 @@ public sealed partial class CountryPin
         Storyboard.SetTargetProperty(fadeAnimationY, "ScaleY");
     }
 
-    private DoubleAnimationUsingKeyFrames GetPulsatingAnimation()
+    private DoubleAnimationUsingKeyFrames GetPulseAnimation()
     {
         return new DoubleAnimationUsingKeyFrames
         {
@@ -162,15 +175,20 @@ public sealed partial class CountryPin
 
     public void BeginAnimation()
     {
-        StopPulsatingAnimation();
+        StopPulseAnimation();
         _initialScaleStoryboard.Begin();
     }
 
-    public void StopPulsatingAnimation()
+    private void BeginPulseAnimation()
     {
-        if (_pulsatingStoryboard.GetCurrentState() == ClockState.Active)
+        _pulseStoryboard.Begin();
+    }
+
+    public void StopPulseAnimation()
+    {
+        if (_pulseStoryboard.GetCurrentState() == ClockState.Active)
         {
-            _pulsatingStoryboard.Stop();
+            _pulseStoryboard.Stop();
         }
     }
 
