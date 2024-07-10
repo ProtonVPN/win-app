@@ -26,52 +26,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                       xmlns:base="using:ProtonVPN.Client.Common.UI.Assets.Icons.Base"
                       mc:Ignorable="d">
 
-    <base:IconUserControl.Resources>
-        <x:Boolean x:Key="IconAnimationAutoReverse">True</x:Boolean>
-        <RepeatBehavior x:Key="IconAnimationRepeatBehavior">Forever</RepeatBehavior>
-        <Duration x:Key="IconAnimationDuration">0:0:1</Duration>
-        <x:Double x:Key="IconAnimationFromValue">1</x:Double>
-        <x:Double x:Key="IconAnimationToValue">2</x:Double>
-        <SineEase x:Key="IconAnimationEasingFunction"/>
-    </base:IconUserControl.Resources>
-
     <Viewbox Stretch="{x:Bind Stretch, Mode=OneWay}">
         <Grid Width="16"
               Height="16">
-            <Ellipse Width="8"
-                     Height="8"
+            <Ellipse Width="16"
+                     Height="16"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center"
                      Fill="{ThemeResource VpnGreenColorBrush}"
                      Opacity="0.2"
                      RenderTransformOrigin="0.5,0.5">
-                <Ellipse.RenderTransform>
-                    <ScaleTransform x:Name="scaleOuterEllipse" ScaleX="1" ScaleY="1" />
-                </Ellipse.RenderTransform>
-                <Ellipse.Triggers>
-                    <EventTrigger RoutedEvent="Ellipse.Loaded">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation AutoReverse="{StaticResource IconAnimationAutoReverse}"
-                                                 RepeatBehavior="{StaticResource IconAnimationRepeatBehavior}"
-                                                 Storyboard.TargetName="scaleOuterEllipse"
-                                                 Storyboard.TargetProperty="ScaleX"
-                                                 From="{StaticResource IconAnimationFromValue}"
-                                                 To="{StaticResource IconAnimationToValue}"
-                                                 Duration="{StaticResource IconAnimationDuration}"
-                                                 EasingFunction="{StaticResource IconAnimationEasingFunction}"/>
-                                <DoubleAnimation AutoReverse="{StaticResource IconAnimationAutoReverse}"
-                                                 RepeatBehavior="{StaticResource IconAnimationRepeatBehavior}"
-                                                 Storyboard.TargetName="scaleOuterEllipse"
-                                                 Storyboard.TargetProperty="ScaleY"
-                                                 From="{StaticResource IconAnimationFromValue}"
-                                                 To="{StaticResource IconAnimationToValue}"
-                                                 Duration="{StaticResource IconAnimationDuration}"
-                                                 EasingFunction="{StaticResource IconAnimationEasingFunction}" />
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                </Ellipse.Triggers>
             </Ellipse>
             <Ellipse Width="6"
                      Height="6"
