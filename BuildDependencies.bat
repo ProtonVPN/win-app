@@ -8,6 +8,11 @@ set resourcesDir=%binDir%Resources
 
 if "%~1"=="publish" (
     set resourcesDir=%publishDir%Resources
+) else (
+    copy /Y Setup\WireGuard\wintun.dll %binDir%
+    copy /Y Setup\WireGuard\wireguard-tunnel-tcp.dll %binDir%
+    copy /Y src\ProtonVPN.Vpn\Resources\wireguard.dll %binDir%
+    copy /Y src\ProtonVPN.Vpn\Resources\tunnel.dll %binDir%
 )
 
 if "%~1"=="publish-BTI" (
