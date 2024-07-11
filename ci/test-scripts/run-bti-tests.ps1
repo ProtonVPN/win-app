@@ -2,16 +2,24 @@ param (
     [string]$Category
 )
 
-$output = & VSTest.Console.exe src\bin\ProtonVPN.UI.Tests.dll /Settings:ci/test-scripts/TestRun/test-run-settings.xml /TestCaseFilter:"Category=$Category"
+$output = & VSTest.Console.exe src\bin\e2e\ProtonVPN.UI.Tests.dll /TestCaseFilter:"Category=$Category"
 $exitCode = $LASTEXITCODE
 
-$keywords = @("at ", "Stack Trace", "Total", "passed", "failed", "exception", "error message")
+$keywords = @("BVI-", "BackdropLocal", "worldTransform", "0.00, 0.00")
 
 $filteredOutput = $output | Where-Object {
     $line = $_
-    $keywords | ForEach-Object { 
-        if ($line -match $_) { return $true }
+    $shouldDrop = $false
+    $keywords | ForEach-Object {
+        if ($line -match $_) { 
+            $shouldDrop = $true
+        }
     }
+	
+    if ($line -match "passed" -or $line -match "failed") {
+        $shouldDrop = $false
+    }
+    return -not $shouldDrop
 }
 
 $filteredOutput

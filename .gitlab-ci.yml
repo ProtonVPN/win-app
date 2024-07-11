@@ -32,7 +32,8 @@ variables:
   TRANSFER_METER_FREQUENCY: "2s"
   ARTIFACT_COMPRESSION_LEVEL: "fastest"
   CACHE_COMPRESSION_LEVEL: "fastest"
-  NEXUS_GROUP: "/Vpn/Windows/SLI/Latest/Stable"
+  NEXUS_GROUP_STABLE: "/Vpn/Windows/SLI/Latest/Stable"
+  NEXUS_GROUP_BTI: "/Vpn/Windows/SLI/Latest/BTI"
   NEXUS_REPO: "test-productivity-builds-distribution"
 
 stages:
@@ -129,6 +130,7 @@ ui-tests-2:
     - /^debug.*$/
     - release/9.9.9
     - master
+    - schedules
   variables:
     CATEGORY: "2"
     
@@ -221,35 +223,55 @@ prepare-internal-beta-release:
   only:
     - /^release.*$/
     
-publish nexus:
+publish prod release nexus:
   stage: publish
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-      when: never
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: never
-    - if: $CI_COMMIT_BRANCH == "release/9.9.9"
-      when: never
-    - if: $CI_COMMIT_BRANCH =~ /^release\/\d+\.\d+\.\d+/
-      when: always
-    - when: never
+  only:
+    - /^release\/\d+\.\d+\.\d+/
+  except:
+    - release/9.9.9
   tags:
     - shared-medium
   image: $CI_REGISTRY/tpe/test-scripts
   allow_failure: true
   dependencies:
     - build-installer
+  needs:
+    - build-installer
   script:
     # Delete old assets
     - /usr/local/bin/nexus/delete_asset_on_nexus.py
       --repository $NEXUS_REPO
-      --group $NEXUS_GROUP
+      --group $NEXUS_GROUP_STABLE
     # Upload release build
     - /usr/local/bin/nexus/upload_to_nexus.py
       --path "Setup/Installers/ProtonVPN_*.exe"
       --repository $NEXUS_REPO
-      --group $NEXUS_GROUP
+      --group $NEXUS_GROUP_STABLE
       --filename "vpn_windows_latest.exe"
+      
+publish BTI nexus:
+  stage: publish
+  allow_failure: true
+  only:
+    - /^debug\/\d+\.\d+\.\d+/
+  tags:
+    - shared-medium
+  image: $CI_REGISTRY/tpe/test-scripts
+  dependencies:
+    - build-BTI-installer
+  needs:
+    - build-BTI-installer
+  script:
+    # Delete old assets
+    - /usr/local/bin/nexus/delete_asset_on_nexus.py
+      --repository $NEXUS_REPO
+      --group $NEXUS_GROUP_BTI
+    # Upload release build
+    - /usr/local/bin/nexus/upload_to_nexus.py
+      --path "Setup/Installers/ProtonVPN_*_BTI.exe"
+      --repository $NEXUS_REPO
+      --group $NEXUS_GROUP_BTI
+      --filename "vpn_windows_latest_bti.exe"
 
 mirror:
   stage: mirror
@@ -321,4 +343,4 @@ report-test-failure:
       when: on_failure
     - when: never
   script:
-    - reporter.py --message "Scheduled BTI test job failed!" --slack-channel "$SLACK_REPORT_CHANNEL" --platform windows --job-name "Windows BTI"
+    - reporter.py --message "Scheduled BTI test job failed!" --slack-channel "$SLACK_REPORT_CHANNEL" --platform windows --job-name "Windows BTI" --job-url "$CI_PIPELINE_URL"

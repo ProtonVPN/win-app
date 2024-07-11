@@ -77,6 +77,12 @@ public class NetworkUtils
         return retry.Result ?? throw new HttpRequestException("Failed to get IP Address.");
     }
 
+    public static string GetIpAddressBti()
+    {
+        string ipMeBtiUrl = Environment.GetEnvironmentVariable("IP_ENDPOINT_BTI");
+        return GetIpAddress(ipMeBtiUrl);
+    }
+
     private static async Task<string> GetExternalIpAddressAsync(string endpoint)
     {
         try
