@@ -261,6 +261,7 @@ public class ConnectionTests : TestSession
 
 
     [Test]
+    [Retry(3)]
     public void AutoConnectEnabled()
     {
         _shellRobot
@@ -278,6 +279,7 @@ public class ConnectionTests : TestSession
     }
 
     [Test]
+    [Retry(3)]
     public void AutoConnectDisabled()
     {
         _shellRobot

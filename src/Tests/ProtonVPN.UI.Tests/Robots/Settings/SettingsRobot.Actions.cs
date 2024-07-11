@@ -87,7 +87,7 @@ public partial class SettingsRobot
 
     public SettingsRobot DoApplyChanges()
     {
-        ApplyButton.Click();
+        ApplyButton.Invoke();
         return this;
     }
 
