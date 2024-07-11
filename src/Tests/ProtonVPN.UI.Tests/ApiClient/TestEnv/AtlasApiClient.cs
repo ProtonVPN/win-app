@@ -18,7 +18,9 @@
  */
 
 using System;
+using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace ProtonVPN.UI.Tests.ApiClient.TestEnv;
@@ -50,6 +52,23 @@ public class AtlasApiClient
     public async Task CleanupEnvVarsAsync()
     {
         await PostAtlasEnvVarAsync("");
+    }
+
+    public async Task MockApiAsync(string apiMock)
+    { 
+        string urlEncodedString = WebUtility.UrlEncode(apiMock)
+                                        .Replace("+", "%20")
+                                        .Replace("%0A", "%0D%0A");
+
+        StringContent content = new($"_method=put&mockConfig={urlEncodedString}");
+        content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+
+        HttpResponseMessage response = await _client.PostAsync("/internal/mock", content);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception($"Failed to mock API: \n {await response.Content.ReadAsStringAsync()}");
+        }
     }
 
     private async Task PostAtlasEnvVarAsync(string query)

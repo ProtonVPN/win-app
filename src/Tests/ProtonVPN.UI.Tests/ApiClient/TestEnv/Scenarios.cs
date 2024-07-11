@@ -18,7 +18,7 @@
  */
 
 namespace ProtonVPN.UI.Tests.ApiClient.TestEnv;
-internal class BtiScenarios
+internal class Scenarios
 {
     public const string UNHARDJAIL_ALL = "enable/sessions_un_hardjail_all";
     public const string RESET = "reset";
@@ -30,4 +30,17 @@ internal class BtiScenarios
     public const string HARDJAIL_86113 = "once/sessions_hardjail_all_86113";
     public const string HARDJAIL_86203 = "once/sessions_hardjail_all_86203";
     public const string HARDJAIL_86999 = "once/sessions_hardjail_all_86999";
+    public const string PUT_NL_1_IN_MAINTENANCE = "enable/server_down_nl_01";
+
+    public const string MAINTENANCE_ONE_MINUTE = "GET /vpn/v2/clientconfig:\n " +
+        "- body: {\"Code\":1000,\"DefaultPorts\":{\"OpenVPN\":{\"UDP\":[80,51820,4569,1194,5060],\"TCP\":[443,7770,8443]}," +
+        "\"WireGuard\":{\"UDP\":[443,88,1224,51820,500,4500],\"TCP\":[443]}},\"HolesIPs\":[\"62.112.9.168\",\"104.245.144.186\"]," +
+        "\"ServerRefreshInterval\":1," +
+        "\"FeatureFlags\":{\"NetShield\":true,\"GuestHoles\":false,\"ServerRefresh\":true,\"StreamingServicesLogos\":true,\"PortForwarding\":true," +
+        "\"ModerateNAT\":true,\"SafeMode\":false,\"StartConnectOnBoot\":true,\"PollNotificationAPI\":true,\"VpnAccelerator\":true,\"SmartReconnect\":true," +
+        "\"PromoCode\":false,\"WireGuardTls\":true,\"Telemetry\":true,\"NetShieldStats\":true,\"BusinessEvents\":false,\"ShowNewFreePlan\":false}," +
+        "\"SmartProtocol\":{\"OpenVPN\":true,\"IKEv2\":true,\"WireGuard\":true,\"WireGuardTCP\":true,\"WireGuardTLS\":true}," +
+        "\"RatingSettings\":{\"EligiblePlans\":[\"vpn2022\",\"bundle2022\",\"family2022\",\"visionary2022\",\"vpnpass2023\"],\"SuccessConnections\":2," +
+        "\"DaysLastReviewPassed\":100,\"DaysConnected\":999,\"DaysFromFirstConnection\":0},\"ChangeServerAttemptLimit\":4,\"ChangeServerShortDelayInSeconds\":90," +
+        "\"ChangeServerLongDelayInSeconds\":1200}";
 }

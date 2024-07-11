@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using FlaUI.Core.AutomationElements;
 using ProtonVPN.UI.Tests.TestsHelper;
 
@@ -25,7 +26,7 @@ namespace ProtonVPN.UI.Tests.Robots.Home;
 public partial class HomeRobot : UIActions
 {
     protected Label VpnStatusTitleLabel => ElementByAutomationId("VpnStatusTitleLabel", TestConstants.ThirtySecondsTimeout).AsLabel();
-    protected Label VpnStatusSubtitleLabel => ElementByAutomationId("VpnStatusSubtitleLabel", TestConstants.OneMinuteTimeout).AsLabel();
+    protected Label VpnStatusSubtitleLabel => ElementByAutomationId("VpnStatusSubtitleLabel", TestConstants.TwoMinutesTimeout).AsLabel();
 
     protected Label ConnectionCardHeaderLabel => ElementByAutomationId("ConnectionCardHeaderLabel").AsLabel();
     protected Label ConnectionCardTitleLabel => ElementByAutomationId("ConnectionCardTitleLabel").AsLabel();

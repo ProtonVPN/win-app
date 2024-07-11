@@ -36,7 +36,6 @@ public class LocalAgentErrorTests : TestSession
     private HomeRobot _homeRobot = new();
 
     private const string MAX_SESSIONS_MESSAGE = "You have reached your maximum device limit. Please disconnect another device to connect this one.";
-    private string _ip_me_url_bti = Environment.GetEnvironmentVariable("IP_ENDPOINT_BTI");
 
     [SetUp]
     public async Task TestInitializeAsync()
@@ -59,7 +58,7 @@ public class LocalAgentErrorTests : TestSession
 
         string certificateBefore = TestEnvironment.GetConnectionCertificate();
 
-        BtiController.SetScenarioAsync(BtiScenarios.HARDJAIL_86101);
+        BtiController.SetScenarioAsync(Scenarios.HARDJAIL_86101);
 
         //Give some time for the error to kick in and refresh the cert
         Thread.Sleep(TestConstants.TenSecondsTimeout);
@@ -71,45 +70,45 @@ public class LocalAgentErrorTests : TestSession
     [Test]
     public async Task LocalAgentError86102()
     {
-        await NewCertificateRequiredTest(BtiScenarios.HARDJAIL_86102);
+        await NewCertificateRequiredTest(Scenarios.HARDJAIL_86102);
     }
 
     [Test]
     public async Task LocalAgentError86103()
     {
-        await NewCertificateRequiredTest(BtiScenarios.HARDJAIL_86103);
+        await NewCertificateRequiredTest(Scenarios.HARDJAIL_86103);
     }
 
     [Test]
     public async Task LocalAgentError86105()
     {
-        await ReconnectionRequiredTestCase(BtiScenarios.HARDJAIL_86105);
+        await ReconnectionRequiredTestCase(Scenarios.HARDJAIL_86105);
     }
 
     [Test]
     public async Task LocalAgentError86110()
     {
-        await DisconnectionRequiredTestCase(BtiScenarios.HARDJAIL_86110);
+        await DisconnectionRequiredTestCase(Scenarios.HARDJAIL_86110);
         _homeRobot.VerifyErrorMessageExists(MAX_SESSIONS_MESSAGE);
     }
 
     [Test]
     public async Task LocalAgentError86113()
     {
-        await DisconnectionRequiredTestCase(BtiScenarios.HARDJAIL_86113);
+        await DisconnectionRequiredTestCase(Scenarios.HARDJAIL_86113);
         _homeRobot.VerifyErrorMessageExists(MAX_SESSIONS_MESSAGE);
     }
 
     [Test]
     public async Task LocalAgentError86203()
     {
-        string currentIpAddress = NetworkUtils.GetIpAddress(_ip_me_url_bti);
+        string currentIpAddress = NetworkUtils.GetIpAddressBti();
 
-        await ReconnectionRequiredTestCase(BtiScenarios.HARDJAIL_86203);
-        string ipAddress = NetworkUtils.GetIpAddress(_ip_me_url_bti);
+        await ReconnectionRequiredTestCase(Scenarios.HARDJAIL_86203);
+        string newIpAddress = NetworkUtils.GetIpAddressBti();
 
-        Assert.AreNotEqual(currentIpAddress, ipAddress, $"Failed to reconnect user to new server. " +
-            $"Old IP: ${currentIpAddress}. New IP: ${ipAddress}");
+        Assert.AreNotEqual(currentIpAddress, newIpAddress, $"Failed to reconnect user to new server. " +
+            $"Old IP: ${currentIpAddress}. New IP: ${newIpAddress}");
     }
 
     [Test]
@@ -120,7 +119,7 @@ public class LocalAgentErrorTests : TestSession
             .DoConnect()
             .VerifyVpnStatusIsConnected();
 
-        BtiController.SetScenarioAsync(BtiScenarios.HARDJAIL_86999);
+        BtiController.SetScenarioAsync(Scenarios.HARDJAIL_86999);
         _homeRobot.VerifyUserIsNotReconnected();
     }
 
