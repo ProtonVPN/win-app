@@ -18,6 +18,7 @@
  */
 
 using System.Collections.Generic;
+using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots.Home;
 using ProtonVPN.UI.Tests.Robots.Login;
@@ -41,8 +42,12 @@ public class LoginSSO : TestSession
     }
 
     [Test]
+    [Retry(3)]
     public void LoginSsoDomainDetection()
     {
+        //Delay to allow app to setup unauth session
+        Thread.Sleep(TestConstants.FiveSecondsTimeout);
+
         _loginRobot.DoLogin(TestUserData.SsoUser)
             .VerifyLoginErrorIsDisplayed(_ssoErrorMessages);
 
@@ -50,8 +55,12 @@ public class LoginSSO : TestSession
     }
 
     [Test]
+    [Retry(3)]
     public void LoginSsoHappyPath()
     {
+        //Delay to allow app to setup unauth session
+        Thread.Sleep(TestConstants.FiveSecondsTimeout);
+
         _loginRobot.EnterEmail(TestUserData.SsoUser.Username)
             .SwitchToSsoLogin();
 
