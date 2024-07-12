@@ -225,7 +225,7 @@ type
   TInt64Array = array of Int64;
 
 var
-  IsToReboot, IsVerySilent, IsToDisableAutoUpdate: Boolean;
+  IsToReboot, IsSilent, IsVerySilent, IsToDisableAutoUpdate: Boolean;
   InstallationProgressLabel: TNewStaticText;
 
 procedure InitializeWizard;
@@ -335,17 +335,17 @@ begin
     ((Version.Major = Major) and (Version.Minor = Minor) and (Version.Build >= Build));
 end;
 
-procedure SetIsVerySilent();
+procedure SetSilentModes();
 var
   i: Integer;
 begin
-  isVerySilent := False;
+  IsVerySilent := False;
+  IsSilent := False;
   for i := 1 to ParamCount do
     if CompareText(ParamStr(i), '/verysilent') = 0 then
-    begin
-      IsVerySilent := True;
-      break;
-    end;
+      IsVerySilent := True
+    else if CompareText(ParamStr(i), '/silent') = 0 then
+      IsSilent := True
 end;
 
 procedure SetIsToDisableAutoUpdate();
@@ -371,7 +371,7 @@ var
   Version: String;
   ErrCode: Integer;
 begin
-  SetIsVerySilent();
+  SetSilentModes();
   SetIsToDisableAutoUpdate();
   if IsWindowsVersionEqualOrHigher(10, 0, 17763) = False then begin
     if WizardSilent() = false then begin
@@ -467,7 +467,7 @@ begin
     end;
   end
   else if CurStep = ssPostInstall then begin
-    if IsVerySilent = false then begin
+    if (IsVerySilent = false) and (IsSilent = false) then begin
       if WizardIsTaskSelected('installWebview2') then begin
         InstallationProgressLabel.Caption := CustomMessage('InstallingWebview2Runtime');
         WizardForm.Refresh();
@@ -500,11 +500,6 @@ begin
     Log('RemoveWfpObjects returned: ' + IntToStr(res));
     UnloadDLL(ExpandConstant('{app}\{#VersionFolder}\Resources\ProtonVPN.InstallActions.x86.dll'));
   end;
-end;
-
-function GetDriveInstallPath(value: String): String;
-begin
-    Result := '"' + ExpandConstant('{autopf}\Proton\Drive') + '"';
 end;
 
 function ShouldDisplayProtonDriveCheckbox: Boolean;
