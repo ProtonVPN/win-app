@@ -1506,7 +1506,7 @@
     <value>Du hast die maximale Anzahl an kostenlosen Serverwechseln erreicht</value>
   </data>
   <data name="Dialogs_Common_GetStarted">
-    <value>Get started</value>
+    <value>Erste Schritte</value>
   </data>
   <data name="Dialogs_Common_SubscriptionExpired">
     <value>Abonnement abgelaufen</value>
@@ -1780,7 +1780,7 @@ Smart Routing wird in der Regel verwendet, um Datenschutzgesetze und andere Form
     <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
-    <value>Protect 10 devices at once</value>
+    <value>Schütze 10 Geräte gleichzeitig</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
     <value>Extend VPN protection to your desktop, mobile, browser, TV, and more. </value>

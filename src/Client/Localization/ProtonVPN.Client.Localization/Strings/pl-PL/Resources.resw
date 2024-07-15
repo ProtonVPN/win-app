@@ -1888,13 +1888,13 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Pomoc z połączeniem</value>
   </data>
   <data name="Dialogs_WelcomeB2B_Description">
-    <value>Simple. Seamless. Secure. Protect yourself online and securely access your organization's sites, software, and files.</value>
+    <value>Prosty. Bezproblemowy. Bezpieczny. Chroń się w sieci i zadbaj o bezpieczny dostęp do stron, oprogramowania i plików organizacji.</value>
   </data>
   <data name="Dialogs_WelcomeToProton_Title">
     <value>Witaj w Proton VPN</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_Description">
-    <value>Browse privately, access blocked content, and enjoy digital freedom with no data or speed limits.</value>
+    <value>Przeglądaj prywatnie Internet, uzyskaj dostęp do zablokowanych treści i ciesz się cyfrową wolnością bez limitów danych i prędkości.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_NoLogs">
     <value>Certyfikowany VPN bez logów</value>
@@ -1903,39 +1903,39 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Twoja aktywność jest chroniona przez szwajcarskie prawa ochrony danych osobowych. Nigdy nie będziemy śledzić użytkownika ani udostępniać danych stronom trzecim.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
-    <value>Browse freely from anywhere</value>
+    <value>Przeglądaj Internet gdziekolwiek jesteś</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
-    <value>Hide your virtual location and experience the internet from any one of our {0} available country.</value>
+    <value>Ukryj swoją wirtualną lokalizację i korzystaj z Internetu spośród {0} dostępnego kraju.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Few">
-    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+    <value>Ukryj swoją wirtualną lokalizację i korzystaj z Internetu spośród {0} dostępnych krajów.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Many">
-    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+    <value>Ukryj swoją wirtualną lokalizację i korzystaj z Internetu spośród {0} dostępnych krajów.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
-    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+    <value>Ukryj swoją wirtualną lokalizację i korzystaj z Internetu spośród {0} dostępnych krajów.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
     <value>Ochrona 10 urządzeń jednocześnie</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
-    <value>Extend VPN protection to your desktop, mobile, browser, TV, and more. </value>
+    <value>Rozszerz ochronę VPN na komputery, urządzenia mobilne, przeglądarki, telewizory i nie tylko.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Stream">
     <value>Streamuj w wysokiej rozdzielczości</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
-    <value>Watch movies and TV shows from around the world, without compromising on speed or quality.</value>
+    <value>Oglądaj filmy i programy telewizyjne z całego świata, bez kompromisów w zakresie prędkości i jakości.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Witaj w planie VPN Plus</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description">
-    <value>Congratulations! You unlocked premium security and performance features on all Proton services.
+    <value>Gratulacje! Odblokowano funkcje premium bezpieczeństwa i wydajności we wszystkich usługach Proton.
 
-Enjoy the best of Proton privacy.</value>
+Ciesz się tym, co najlepsze w prywatności Proton.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Witaj w planie Proton Unlimited</value>
@@ -2423,7 +2423,7 @@ Enjoy the best of Proton privacy.</value>
     <value>Ustaw ten numer portu w aplikacji BitTorrent dla lepszej prędkości.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
-    <value>Your plan has been downgraded to Proton Free, and we're reconnecting you to the fastest free server.</value>
+    <value>Twój plan został obniżony do planu Proton Free. Zostaniesz ponownie połączony z najszybszym darmowym serwerem.</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Najszybszy darmowy serwer</value>
