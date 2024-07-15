@@ -1765,7 +1765,7 @@ Smart Routing est généralement utilisé pour déjouer les lois contre la prote
     <value>Naviguez de manière privée, accédez au contenu bloqué et profitez de la liberté numérique sans limites de données ni de vitesse.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_NoLogs">
-    <value>VPN certifié sans logs</value>
+    <value>Le VPN qui n'enregistre pas vos activités.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
     <value>Votre activité est protégée par les lois Suisses sur la confidentialité. Nous ne vous suivrons jamais en ligne et ne partagerons jamais vos informations avec des tiers.</value>
@@ -2842,7 +2842,7 @@ Profitez de ce que Proton a de mieux à offrir en matière de protection de la v
     <value>Masquez votre adresse IP à votre fournisseur de service et vos pairs.</value>
   </data>
   <data name="Upsell_Carousel_P2P_PortForwarding">
-    <value>Augmentez les vitesses VPN peer-to-peer avec la redirection de port.</value>
+    <value>Augmentez les vitesses VPN peer-to-peer (P2P) avec la redirection de port.</value>
   </data>
   <data name="Upsell_Carousel_P2P_Speed">
     <value>Vitesses de chargement et de téléchargement augmentées</value>

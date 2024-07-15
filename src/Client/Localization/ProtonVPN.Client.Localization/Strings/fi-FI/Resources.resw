@@ -1756,7 +1756,7 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
     <value>Yhteysapua</value>
   </data>
   <data name="Dialogs_WelcomeB2B_Description">
-    <value>Simple. Seamless. Secure. Protect yourself online and securely access your organization's sites, software, and files.</value>
+    <value>Helppoa. Sujuvaa. Turvallista. Suojaa itseäsi verkossa ja käytä organisaatiosi sivustoja, ohjelmistoja ja tiedostoja turvallisesti.</value>
   </data>
   <data name="Dialogs_WelcomeToProton_Title">
     <value>Tervetuloa Proton VPN:ään</value>
@@ -1774,10 +1774,10 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
     <value>Selaa vapaasti mistä tahansa</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
-    <value>Hide your virtual location and experience the internet from any one of our {0} available country.</value>
+    <value>Piilota virtuaalinen sijaintisi ja käytä Internetiä mistä tahansa {0} käytettävissä olevasta maasta.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
-    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+    <value>Piilota virtuaalinen sijaintisi ja käytä Internetiä mistä tahansa {0} käytettävissä olevasta maasta.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
     <value>Suojaa 10 laitetta samanaikaisesti</value>
@@ -2681,7 +2681,7 @@ Nauti Proton-yksityisyyden parhaista puolista.</value>
     <value>WireGuard</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Description">
-    <value>Overcomes VPN blocks by hiding your VPN connection from censors. This protocol is DPI (deep packet inspection) resistant, but may not be as fast as other protocols. Stealth is exclusive to Proton VPN.</value>
+    <value>Kiertää VPN-estot piilottamalla VPN-yhteytesi sensuureilta. Tämä protokolla on DPI-vastustuskykyinen (Deep Packet Inspection), mutta ei välttämättä yhtä nopea kuin muut protokollat. Stealth on Proton VPN:n yksinoikeus.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Title">
     <value>Stealth</value>
