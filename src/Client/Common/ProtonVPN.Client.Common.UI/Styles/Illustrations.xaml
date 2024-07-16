@@ -165,6 +165,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/update-proton-vpn.png" />
     <SvgImageSource x:Key="FreeConnectionFlagsIllustrationSource"
                     UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/free-connection-flags.svg" />
+    <SvgImageSource x:Key="PlaceholderIllustrationSource"
+                    UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/placeholder.svg" />
 
     <BitmapImage x:Key="KillSwitchFeatureIllustrationSource"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/feature-kill-switch.png" />

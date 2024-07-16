@@ -24,11 +24,22 @@ namespace ProtonVPN.Client.Files.Contracts;
 public class UserFileReaderWriterParameters
 {
     public Serializers Serializer { get; }
+
+    public string FolderPath { get; }
+    public string FileNamePrefix { get; }
+    public string FileExtension { get; }
+
     public string FullFilePathFormat { get; }
 
-    public UserFileReaderWriterParameters(Serializers serializer, string folderPath, string fileNameFormat)
+    public UserFileReaderWriterParameters(Serializers serializer, string folderPath, string fileNamePrefix, string fileExtension)
     {
         Serializer = serializer;
-        FullFilePathFormat = Path.Combine(folderPath, fileNameFormat);
+
+        FolderPath = folderPath.Trim();
+        FileNamePrefix = fileNamePrefix.Trim();
+        string tempFileExtension = fileExtension.Trim();
+        FileExtension = tempFileExtension.StartsWith('.') ? tempFileExtension : $".{tempFileExtension}";
+
+        FullFilePathFormat = Path.Combine(FolderPath, $"{FileNamePrefix}.{{0}}{FileExtension}");
     }
 }

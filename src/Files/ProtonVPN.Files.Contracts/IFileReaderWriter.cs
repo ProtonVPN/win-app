@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
 using ProtonVPN.Serialization.Contracts;
 
 namespace ProtonVPN.Files.Contracts;
@@ -25,7 +26,9 @@ public interface IFileReaderWriter
 {
     T ReadOrNew<T>(string fullFilePath, Serializers serializer)
         where T : new();
-    T ReadOrNull<T>(string fullFilePath, Serializers serializer);
+    T ReadOrDefault<T>(string fullFilePath, Serializers serializer);
+
+    IDictionary<string, T> ReadAllUsers<T>(string folderPath, string fileNamePrefix, string fileExtension, Serializers serializer);
 
     FileOperationResult Write<T>(T value, string fullFilePath, Serializers serializer);
     FileOperationResult CreateNew<T>(T value, string fullFilePath, Serializers serializer);

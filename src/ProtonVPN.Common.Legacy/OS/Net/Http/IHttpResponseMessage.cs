@@ -25,4 +25,5 @@ public interface IHttpResponseMessage : IDisposable
 {
     IHttpContent Content { get; }
     bool IsSuccessStatusCode { get; }
+    string ContentMediaType { get; }
 }

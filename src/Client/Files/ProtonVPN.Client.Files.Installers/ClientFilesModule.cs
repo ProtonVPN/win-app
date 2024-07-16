@@ -18,6 +18,7 @@
  */
 
 using Autofac;
+using ProtonVPN.Client.Files.Images;
 
 namespace ProtonVPN.Client.Files.Installers;
 
@@ -26,5 +27,6 @@ public class ClientFilesModule : Module
     protected override void Load(ContainerBuilder builder)
     {
         builder.RegisterType<UserFileReaderWriter>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ImageCache>().AsImplementedInterfaces().SingleInstance();
     }
 }

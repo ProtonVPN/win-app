@@ -21,6 +21,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 <Page x:Class="ProtonVPN.Client.UI.ShellPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:banner="using:ProtonVPN.Client.UI.Announcements.Banner"
       xmlns:bases="using:ProtonVPN.Client.UI.Sidebar.Bases"
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       xmlns:helpers="using:ProtonVPN.Client.Helpers"
@@ -255,7 +256,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <NavigationView.PaneFooter>
 
-            <StackPanel Spacing="4" />
+            <StackPanel Spacing="0">
+                <banner:AnnouncementBannerComponent IsPaneOpened="{x:Bind NavigationViewControl.IsPaneOpen}" />
+            </StackPanel>
 
         </NavigationView.PaneFooter>
 

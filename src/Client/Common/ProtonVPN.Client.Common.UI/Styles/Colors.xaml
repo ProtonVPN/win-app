@@ -106,6 +106,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <!--  BackgroundWeakColor + InteractionDefaultActiveColor  -->
             <Color x:Key="BackgroundWeakActiveColor">#E3E2E0</Color>
 
+            <!--  BackgroundStrongColor + InteractionDefaultHoverColor  -->
+            <Color x:Key="BackgroundStrongHoverColor">#DEDCDA</Color>
+            <!--  BackgroundStrongColor + InteractionDefaultActiveColor  -->
+            <Color x:Key="BackgroundStrongActiveColor">#D9D7D4</Color>
+
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Dark">
@@ -190,6 +195,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Color x:Key="BackgroundWeakHoverColor">#33303E</Color>
             <!--  BackgroundWeakColor + InteractionDefaultActiveColor  -->
             <Color x:Key="BackgroundWeakActiveColor">#3D3A4A</Color>
+
+            <!--  BackgroundStrongColor + InteractionDefaultHoverColor  -->
+            <Color x:Key="BackgroundStrongHoverColor">#444052</Color>
+            <!--  BackgroundStrongColor + InteractionDefaultActiveColor  -->
+            <Color x:Key="BackgroundStrongActiveColor">#4A4659</Color>
 
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>

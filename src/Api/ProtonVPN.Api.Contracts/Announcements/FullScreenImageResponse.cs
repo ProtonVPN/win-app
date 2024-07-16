@@ -19,11 +19,10 @@
 
 using System.Collections.Generic;
 
-namespace ProtonVPN.Api.Contracts.Announcements
+namespace ProtonVPN.Api.Contracts.Announcements;
+
+public class FullScreenImageResponse
 {
-    public class FullScreenImageResponse
-    {
-        public List<SourceResponse> Source { get; set; }
-        public string AlternativeText { get; set; }
-    }
+    public List<SourceResponse> Source { get; set; }
+    public string AlternativeText { get; set; }
 }

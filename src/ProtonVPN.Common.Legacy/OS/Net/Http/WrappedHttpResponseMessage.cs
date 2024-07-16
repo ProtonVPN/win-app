@@ -35,6 +35,9 @@ internal class WrappedHttpResponseMessage : IHttpResponseMessage
 
     public bool IsSuccessStatusCode => _httpResponseMessage.IsSuccessStatusCode;
 
+    private string _contentMediaType;
+    public string ContentMediaType => _contentMediaType ?? (_contentMediaType = _httpResponseMessage?.Content?.Headers?.ContentType?.MediaType);
+
     public void Dispose()
     {
         _content = null;

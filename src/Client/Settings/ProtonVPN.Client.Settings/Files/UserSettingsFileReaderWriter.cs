@@ -27,7 +27,8 @@ namespace ProtonVPN.Client.Settings.Files;
 
 public class UserSettingsFileReaderWriter : IUserSettingsFileReaderWriter
 {
-    private const string FILE_NAME = "UserSettings.{0}.json";
+    private const string FILE_NAME_PREFIX = "UserSettings";
+    private const string FILE_EXTENSION = "json";
 
     private readonly ILogger _logger;
     private readonly IStaticConfiguration _staticConfiguration;
@@ -43,7 +44,7 @@ public class UserSettingsFileReaderWriter : IUserSettingsFileReaderWriter
         _staticConfiguration = staticConfiguration;
         _userFileReaderWriter = userFileReaderWriter;
 
-        _fileReaderWriterParameters = new(Serializers.PrettyJson, _staticConfiguration.StorageFolder, FILE_NAME);
+        _fileReaderWriterParameters = new(Serializers.PrettyJson, _staticConfiguration.StorageFolder, FILE_NAME_PREFIX, FILE_EXTENSION);
     }
 
     public IDictionary<string, string?> Read()

@@ -119,6 +119,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <!--  BackgroundWeakColor + InteractionDefaultActiveColor  -->
             <SolidColorBrush x:Key="BackgroundWeakActiveColorBrush" Color="{StaticResource BackgroundWeakActiveColor}" />
 
+            <!--  BackgroundStrongColor + InteractionDefaultHoverColor  -->
+            <SolidColorBrush x:Key="BackgroundStrongHoverColorBrush" Color="{StaticResource BackgroundStrongHoverColor}" />
+            <!--  BackgroundStrongColor + InteractionDefaultActiveColor  -->
+            <SolidColorBrush x:Key="BackgroundStrongActiveColorBrush" Color="{StaticResource BackgroundStrongActiveColor}" />
+
             <!--  Acrylic/Mica Brushes  -->
 
             <!--  Window Background (mixed with Mica effect)  -->
@@ -227,6 +232,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <SolidColorBrush x:Key="BackgroundWeakHoverColorBrush" Color="{StaticResource BackgroundWeakHoverColor}" />
             <!--  BackgroundWeakColor + InteractionDefaultActiveColor  -->
             <SolidColorBrush x:Key="BackgroundWeakActiveColorBrush" Color="{StaticResource BackgroundWeakActiveColor}" />
+
+            <!--  BackgroundStrongColor + InteractionDefaultHoverColor  -->
+            <SolidColorBrush x:Key="BackgroundStrongHoverColorBrush" Color="{StaticResource BackgroundStrongHoverColor}" />
+            <!--  BackgroundStrongColor + InteractionDefaultActiveColor  -->
+            <SolidColorBrush x:Key="BackgroundStrongActiveColorBrush" Color="{StaticResource BackgroundStrongActiveColor}" />
 
             <!--  Acrylic/Mica Brushes  -->
 

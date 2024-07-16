@@ -651,6 +651,7 @@
         <None Remove="Assets\Illustrations\netshield-on.png" />
         <None Remove="Assets\Illustrations\p2p-small.png" />
         <None Remove="Assets\Illustrations\netshield.png" />
+        <None Remove="Assets\Illustrations\placeholder.svg" />
         <None Remove="Assets\Illustrations\port-forwarding-off.png" />
         <None Remove="Assets\Illustrations\port-forwarding-on.png" />
         <None Remove="Assets\Illustrations\report-error.png" />
@@ -680,8 +681,6 @@
         <None Remove="Assets\Illustrations\upsell-tor-small.png" />
         <None Remove="Assets\Illustrations\upsell-worldwide-coverage-large.png" />
         <None Remove="Assets\Illustrations\upsell-worldwide-coverage-small.png" />
-        <None Remove="Assets\Illustrations\vpn-off.ico" />
-        <None Remove="Assets\Illustrations\vpn-on.ico" />
         <None Remove="Assets\Illustrations\vpn-tray-error.ico" />
         <None Remove="Assets\Illustrations\vpn-tray-not-logged-in.ico" />
         <None Remove="Assets\Illustrations\vpn-tray-protected.ico" />
@@ -734,6 +733,7 @@
         <None Remove="Styles\Controls\PivotStyles.xaml" />
         <None Remove="Styles\Controls\ProgressBarStyles.xaml" />
         <None Remove="Styles\Controls\ProgressRingStyles.xaml" />
+        <None Remove="Styles\Controls\ProminentBannerControlStyles.xaml" />
         <None Remove="Styles\Controls\RadioButtonStyles.xaml" />
         <None Remove="Styles\Controls\ScrollViewerStyles.xaml" />
         <None Remove="Styles\Controls\SettingsCardStyles.xaml" />
@@ -1870,6 +1870,9 @@
         <Content Update="Assets\Illustrations\p2p-small.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Illustrations\placeholder.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Illustrations\port-forwarding-off.png">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -1996,6 +1999,11 @@
         <Content Update="Assets\Illustrations\wrong-country.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Styles\Controls\ProminentBannerControlStyles.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
     </ItemGroup>
     <ItemGroup>
       <Page Update="Controls\UpsellBannerControl.xaml">

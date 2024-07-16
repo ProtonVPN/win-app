@@ -54,7 +54,7 @@ public partial class Configuration : StaticConfiguration, IConfiguration
     public TimeSpan ServerUpdateInterval => GetWithRandomizedDeviation();
     public TimeSpan ServerLoadUpdateInterval => GetWithRandomizedDeviation();
     public TimeSpan MinimumServerLoadUpdateInterval => GetWithRandomizedDeviation();
-    public TimeSpan AnnouncementUpdateInterval => GetWithRandomizedDeviation();
+    public TimeSpan AnnouncementsUpdateInterval => GetWithRandomizedDeviation();
     public TimeSpan AlternativeRoutingCheckInterval => Get();
     public TimeSpan UpdateCheckInterval => GetWithRandomizedDeviation();
     public TimeSpan UpdateRemindInterval => Get();

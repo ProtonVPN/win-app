@@ -21,14 +21,13 @@ using ProtonVPN.Client.Common.Observers;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Users.Contracts;
-using ProtonVPN.Client.Logic.Users.Contracts.Observers;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Logic.Users.Observers;
 
-public class VpnPlanObserver : PollingObserverBase, IVpnPlanObserver,
+public class VpnPlanObserver : PollingObserverBase, IObserver,
     IEventMessageReceiver<LoggedInMessage>,
     IEventMessageReceiver<LoggedOutMessage>
 {

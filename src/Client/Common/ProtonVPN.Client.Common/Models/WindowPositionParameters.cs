@@ -17,8 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Runtime;
-
 namespace ProtonVPN.Client.Common.Models;
 
 public struct WindowPositionParameters

@@ -18,43 +18,25 @@
  */
 
 using Microsoft.UI.Xaml;
-using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Helpers;
 
 namespace ProtonVPN.Client.UI.ReportIssue;
 
 public sealed partial class ReportIssueWindow
 {
-    private const int REPORT_ISSUE_WINDOW_WIDTH = 456;
-    private const int REPORT_ISSUE_WINDOW_HEIGHT = 620;
+    private const int WINDOW_WIDTH = 456;
+    private const int WINDOW_HEIGHT = 620;
 
     public ReportIssueWindow()
     {
         InitializeComponent();
-
-        AppWindow.SetIcon(Path.Combine(AppContext.BaseDirectory, "Assets/ProtonVPN.ico"));
-        AppWindow.TitleBar.ExtendsContentIntoTitleBar = true;
+        WindowConfigurator.Set(this, width: WINDOW_WIDTH, height: WINDOW_HEIGHT);
 
         Shell.Initialize(this);
-
-        InvalidateWindowPosition();
     }
 
     private void OnActivated(object sender, WindowActivatedEventArgs args)
     {
         WindowContainer.TitleBarOpacity = args.WindowActivationState.GetTitleBarOpacity();
-    }
-
-    private void InvalidateWindowPosition()
-    {
-        WindowPositionParameters parameters = new()
-        {
-            Width = REPORT_ISSUE_WINDOW_WIDTH,
-            Height = REPORT_ISSUE_WINDOW_HEIGHT
-        };
-
-        WindowState = WindowState.Normal;
-
-        this.SetPosition(parameters);
     }
 }

@@ -19,17 +19,18 @@
 
 using Newtonsoft.Json;
 
-namespace ProtonVPN.Api.Contracts.Announcements
+namespace ProtonVPN.Api.Contracts.Announcements;
+
+public class OfferResponse
 {
-    public class OfferResponse
-    {
-        [JsonProperty(PropertyName = "URL")]
-        public string Url { get; set; }
+    [JsonProperty(PropertyName = "URL")]
+    public string Url { get; set; }
 
-        public string Icon { get; set; }
+    public string Icon { get; set; }
 
-        public string Label { get; set; }
+    public string Label { get; set; }
 
-        public OfferPanelResponse Panel { get; set; }
-    }
+    public OfferPanelResponse Panel { get; set; }
+
+    public ProminentBannerResponse ProminentBanner { get; set; }
 }
