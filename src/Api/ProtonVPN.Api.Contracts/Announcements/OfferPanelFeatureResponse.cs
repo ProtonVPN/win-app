@@ -19,13 +19,12 @@
 
 using Newtonsoft.Json;
 
-namespace ProtonVPN.Api.Contracts.Announcements
-{
-    public class OfferPanelFeatureResponse
-    {
-        [JsonProperty(PropertyName = "IconURL")]
-        public string IconUrl { get; set; }
+namespace ProtonVPN.Api.Contracts.Announcements;
 
-        public string Text { get; set; }
-    }
+public class OfferPanelFeatureResponse
+{
+    [JsonProperty(PropertyName = "IconURL")]
+    public string IconUrl { get; set; }
+
+    public string Text { get; set; }
 }

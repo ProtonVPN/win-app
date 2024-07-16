@@ -31,7 +31,6 @@
         <PackageReference Include="Caliburn.Micro.Core" />
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\Announcements\ProtonVPN.Announcements.Contracts\ProtonVPN.Announcements.Contracts.csproj" />
         <ProjectReference Include="..\Client\Logic\Auth\ProtonVPN.Client.Logic.Auth.Contracts\ProtonVPN.Client.Logic.Auth.Contracts.csproj" />
         <ProjectReference Include="..\Dns\ProtonVPN.Dns.Contracts\ProtonVPN.Dns.Contracts.csproj" />
         <ProjectReference Include="..\Api\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj" />

@@ -19,21 +19,22 @@
 
 using Newtonsoft.Json;
 
-namespace ProtonVPN.Api.Contracts.Announcements
+namespace ProtonVPN.Api.Contracts.Announcements;
+
+public class AnnouncementResponse
 {
-    public class AnnouncementResponse
-    {
-        [JsonProperty(PropertyName = "NotificationID")]
-        public string Id { get; set; }
+    [JsonProperty(PropertyName = "NotificationID")]
+    public string Id { get; set; }
 
-        [JsonProperty(PropertyName = "StartTime")]
-        public long StartTimestamp { get; set; }
+    [JsonProperty(PropertyName = "StartTime")]
+    public long StartTimestamp { get; set; }
 
-        [JsonProperty(PropertyName = "EndTime")]
-        public long EndTimestamp { get; set; }
+    [JsonProperty(PropertyName = "EndTime")]
+    public long EndTimestamp { get; set; }
 
-        public OfferResponse Offer { get; set; }
+    public OfferResponse Offer { get; set; }
 
-        public int Type { get; set; }
-    }
+    public int Type { get; set; }
+
+    public string Reference { get; set; }
 }

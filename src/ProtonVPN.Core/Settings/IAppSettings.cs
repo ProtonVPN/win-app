@@ -22,10 +22,9 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using ProtonVPN.Announcements.Contracts;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
-using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Core.Networking;
+using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Legacy.KillSwitch;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Native.Structures;
@@ -88,7 +87,6 @@ public interface IAppSettings
     bool DoNotShowEnableSmartProtocolDialog { get; set; }
     bool DoNotShowDiscourageSecureCoreDialog { get; set; }
     bool FeatureSmartProtocolWireGuardEnabled { get; set; }
-    IReadOnlyList<Announcement> Announcements { get; set; }
     List<IssueCategoryResponse> ReportAnIssueFormData { get; set; }
     int[] OpenVpnTcpPorts { get; set; }
     int[] OpenVpnUdpPorts { get; set; }

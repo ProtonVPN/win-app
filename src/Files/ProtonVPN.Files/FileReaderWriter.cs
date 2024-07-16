@@ -18,7 +18,9 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using ProtonVPN.Files.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
@@ -49,10 +51,10 @@ public class FileReaderWriter : IFileReaderWriter
     public T ReadOrNew<T>(string fullFilePath, Serializers serializer)
         where T : new()
     {
-        return ReadOrNull<T>(fullFilePath, serializer) ?? new();
+        return ReadOrDefault<T>(fullFilePath, serializer) ?? new();
     }
 
-    public T ReadOrNull<T>(string fullFilePath, Serializers serializer)
+    public T ReadOrDefault<T>(string fullFilePath, Serializers serializer)
     {
         try
         {
@@ -84,6 +86,22 @@ public class FileReaderWriter : IFileReaderWriter
             Serializers.PrettyJson => _prettyJsonSerializer,
             _ => _protobufSerializer,
         };
+    }
+
+    public IDictionary<string, T> ReadAllUsers<T>(string folderPath, string fileNamePrefix, string fileExtension, Serializers serializer)
+    {
+        IList<string> fileNames = Directory.EnumerateFiles(folderPath)
+            .Select(Path.GetFileName)
+            .Where(f => f.StartsWith(fileNamePrefix) && f.EndsWith(fileExtension))
+            .ToList();
+
+        Dictionary<string, T> result = new();
+        foreach (string fileName in fileNames)
+        {
+            string userIdHash = fileName.Replace($"{fileNamePrefix}.", string.Empty).Replace(fileExtension, string.Empty);
+            result.Add(userIdHash, ReadOrDefault<T>(Path.Combine(folderPath, fileName), serializer));
+        }
+        return result;
     }
 
     public FileOperationResult Write<T>(T value, string fullFilePath, Serializers serializer)

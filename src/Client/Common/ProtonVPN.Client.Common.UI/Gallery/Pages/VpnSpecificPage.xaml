@@ -217,16 +217,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </gallery:SampleControl>
 
         <gallery:SampleControl Header="Info Bar">
-            <StackPanel Spacing="8" 
-                        MaxWidth="500">
-                <InfoBar x:Name="infobar1" 
+            <StackPanel MaxWidth="500"
+                        Spacing="8">
+                <InfoBar x:Name="infobar1"
                          Title="{x:Bind tbInfoBarTitle.Text}"
-                         Message="{x:Bind tbInfoBarDescription.Text}"
                          IsClosable="{x:Bind cbInfoBarClose.IsChecked.Value}"
                          IsIconVisible="{x:Bind cbInfoBarIcon.IsChecked.Value}"
-                         IsOpen="{Binding IsChecked, ElementName=cbInfoBarOpen, Mode=TwoWay}">
+                         IsOpen="{Binding IsChecked, ElementName=cbInfoBarOpen, Mode=TwoWay}"
+                         Message="{x:Bind tbInfoBarDescription.Text}">
                     <Image Source="{StaticResource UpdateProtonVpnIllustrationSource}"
-                           Stretch="Uniform"/>
+                           Stretch="Uniform" />
                     <InfoBar.ActionButton>
                         <custom:GhostButton Content="{Binding Text, ElementName=tbInfoBarAction, Mode=OneWay}"
                                             Style="{StaticResource PrimaryGhostButtonStyle}"
@@ -234,12 +234,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </InfoBar.ActionButton>
                 </InfoBar>
 
-                <InfoBar x:Name="infobar2" 
+                <InfoBar x:Name="infobar2"
                          Title="{x:Bind tbInfoBarTitle.Text}"
-                         Message="{x:Bind tbInfoBarDescription.Text}"
                          IsClosable="{x:Bind cbInfoBarClose.IsChecked.Value}"
                          IsIconVisible="{x:Bind cbInfoBarIcon.IsChecked.Value}"
-                         IsOpen="{Binding IsChecked, ElementName=cbInfoBarOpen, Mode=TwoWay}">
+                         IsOpen="{Binding IsChecked, ElementName=cbInfoBarOpen, Mode=TwoWay}"
+                         Message="{x:Bind tbInfoBarDescription.Text}">
                     <InfoBar.ActionButton>
                         <custom:GhostButton Content="{Binding Text, ElementName=tbInfoBarAction, Mode=OneWay}"
                                             Style="{StaticResource PrimaryGhostButtonStyle}"
@@ -259,7 +259,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <ComboBox x:Name="cboxInfoBarSeverity"
                               ItemsSource="{x:Bind InfoBarSeverities, Mode=OneTime}"
                               SelectedIndex="0"
-                              SelectionChanged="OnSeveritySelectionChanged"/>
+                              SelectionChanged="OnSeveritySelectionChanged" />
                     <TextBox Name="tbInfoBarTitle"
                              PlaceholderText="Info bar title"
                              Text="Title goes here" />
@@ -281,5 +281,80 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </StackPanel>
             </gallery:SampleControl.Options>
         </gallery:SampleControl>
+
+        <gallery:SampleControl Header="Prominent banner">
+
+            <StackPanel Orientation="Horizontal"
+                        Spacing="16">
+                <custom:ProminentBannerControl x:Name="prominentBanner1"
+                                               Width="{x:Bind slBannerWidth.Value}"
+                                               VerticalAlignment="Center"
+                                               ActionButtonText="{x:Bind tbBannerAction.Text}"
+                                               Description="{x:Bind tbBannerDescription.Text}"
+                                               Footer="{x:Bind tbBannerFooter.Text}"
+                                               Header="{x:Bind tbBannerTitle.Text}"
+                                               IsExpanded="{x:Bind cbBannerExpanded.IsChecked.Value}"
+                                               IsActionButtonVisible="{x:Bind cbBannerAction.IsChecked.Value}"
+                                               IsDismissButtonVisible="{x:Bind cbBannerDismiss.IsChecked.Value}" 
+                                               IconSource="{StaticResource PlaceholderIllustrationSource}"
+                                               LargeIllustrationSource="{StaticResource PlaceholderIllustrationSource}"
+                                               SmallIllustrationSource="{StaticResource PlaceholderIllustrationSource}" />
+                <custom:ProminentBannerControl x:Name="prominentBanner2"
+                                               Width="{x:Bind slBannerWidth.Value}"
+                                               VerticalAlignment="Center"
+                                               ActionButtonText="{x:Bind tbBannerAction.Text}"
+                                               Description="{x:Bind tbBannerDescription.Text}"
+                                               Footer="{x:Bind tbBannerFooter.Text}"
+                                               Header="{x:Bind tbBannerTitle.Text}"
+                                               IsExpanded="{x:Bind cbBannerExpanded.IsChecked.Value}"
+                                               IsActionButtonVisible="{x:Bind cbBannerAction.IsChecked.Value}"
+                                               IsDismissButtonVisible="{x:Bind cbBannerDismiss.IsChecked.Value}" 
+                                               IconSource="{StaticResource PlaceholderIllustrationSource}"/>
+            </StackPanel>
+
+            <gallery:SampleControl.Options>
+                <StackPanel MaxWidth="300"
+                            Orientation="Vertical"
+                            Spacing="4">
+                    <ComboBox x:Name="cboxBannerStyle"
+                              ItemsSource="{x:Bind ProminentBannerStyles, Mode=OneTime}"
+                              SelectedIndex="0"
+                              SelectionChanged="OnBannerStyleSelectionChanged" />
+                    <TextBox Name="tbBannerTitle"
+                             PlaceholderText="Banner title"
+                             Text="Title goes here" />
+                    <TextBox Name="tbBannerDescription"
+                             PlaceholderText="Banner description"
+                             Text="Description or message that explains what has happened goes here"
+                             TextWrapping="Wrap" />
+                    <TextBox Name="tbBannerFooter"
+                             PlaceholderText="Banner footer"
+                             Text="6 days 22 hours left"
+                             TextWrapping="Wrap" />
+                    <TextBox Name="tbBannerAction"
+                             PlaceholderText="Action"
+                             Text="Action" />
+                    <CheckBox Name="cbBannerAction"
+                              Margin="4,4,0,0"
+                              Content="Is action button visible"
+                              IsChecked="True" />
+                    <CheckBox Name="cbBannerDismiss"
+                              Margin="4,4,0,0"
+                              Content="Is dismiss button visible"
+                              IsChecked="True" />
+                    <Slider x:Name="slBannerWidth"
+                            Header="Banner width"
+                            Maximum="350"
+                            Minimum="250"
+                            StepFrequency="1"
+                            Value="300" />
+                    <CheckBox Name="cbBannerExpanded"
+                              Margin="4,4,0,0"
+                              Content="Is expanded"
+                              IsChecked="True" />
+                </StackPanel>
+            </gallery:SampleControl.Options>
+        </gallery:SampleControl>
+
     </StackPanel>
 </UserControl>

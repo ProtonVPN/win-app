@@ -20,6 +20,7 @@
 using System.Reflection;
 using ProtoBuf;
 using ProtoBuf.Meta;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Serialization.Contracts;
 
 namespace ProtonVPN.Serialization.Protobuf;
@@ -34,7 +35,7 @@ public class ProtobufSerializer : IProtobufSerializer
         foreach (Type type in protobufSerializableEntities.Types)
         {
             MetaType metaType = RuntimeTypeModel.Default.Add(type, applyDefaultBehaviour: false);
-            if (type.IsClass || type.IsInterface)
+            if (type.IsClass || type.IsInterface || type.IsStruct())
             {
                 metaType.Add(type.GetProperties(BindingFlags.Public | BindingFlags.Instance).Select(p => p.Name).ToArray());
             }

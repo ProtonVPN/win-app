@@ -32,7 +32,8 @@ namespace ProtonVPN.Client.Logic.Recents.Files;
 
 public class RecentsFileReaderWriter : IRecentsFileReaderWriter
 {
-    private const string FILE_NAME = "RecentConnections.{0}.bin";
+    private const string FILE_NAME_PREFIX = "RecentConnections";
+    private const string FILE_EXTENSION = "bin";
 
     private readonly ILogger _logger;
     private readonly IStaticConfiguration _staticConfiguration;
@@ -51,7 +52,7 @@ public class RecentsFileReaderWriter : IRecentsFileReaderWriter
         _entityMapper = entityMapper;
         _userFileReaderWriter = userFileReaderWriter;
 
-        _fileReaderWriterParameters = new(Serializers.Protobuf, _staticConfiguration.StorageFolder, FILE_NAME);
+        _fileReaderWriterParameters = new(Serializers.Protobuf, _staticConfiguration.StorageFolder, FILE_NAME_PREFIX, FILE_EXTENSION);
     }
 
     public List<IRecentConnection> Read()

@@ -14,6 +14,7 @@
 	  <PackageReference Include="protobuf-net" />
 	</ItemGroup>
 	<ItemGroup>
+		<ProjectReference Include="..\..\Common\ProtonVPN.Common.Core\ProtonVPN.Common.Core.csproj" />
 		<ProjectReference Include="..\ProtonVPN.Serialization.Contracts\ProtonVPN.Serialization.Contracts.csproj" />
 	</ItemGroup>
 </Project>

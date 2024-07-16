@@ -65,4 +65,9 @@ public class UserFileReaderWriter : IUserFileReaderWriter, IEventMessageReceiver
             _userId.Reset();
         }
     }
+
+    public IDictionary<string, T> ReadAllUsers<T>(UserFileReaderWriterParameters parameters)
+    {
+        return _fileReaderWriter.ReadAllUsers<T>(parameters.FolderPath, parameters.FileNamePrefix, parameters.FileExtension, parameters.Serializer);
+    }
 }

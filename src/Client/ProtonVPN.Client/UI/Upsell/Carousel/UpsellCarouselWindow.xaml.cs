@@ -18,43 +18,25 @@
  */
 
 using Microsoft.UI.Xaml;
-using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Helpers;
 
 namespace ProtonVPN.Client.UI.Upsell.Carousel;
 
 public sealed partial class UpsellCarouselWindow
 {
-    private const int UPSELL_CAROUSEL_WINDOW_WIDTH = 720;
-    private const int UPSELL_CAROUSEL_WINDOW_HEIGHT = 530;
+    private const int WINDOW_WIDTH = 720;
+    private const int WINDOW_HEIGHT = 530;
 
     public UpsellCarouselWindow()
     {
         InitializeComponent();
-
-        AppWindow.SetIcon(Path.Combine(AppContext.BaseDirectory, "Assets/ProtonVPN.ico"));
-        AppWindow.TitleBar.ExtendsContentIntoTitleBar = true;
+        WindowConfigurator.Set(this, width: WINDOW_WIDTH, height: WINDOW_HEIGHT);
 
         Shell.Initialize(this);
-
-        InvalidateWindowPosition();
     }
 
     private void OnActivated(object sender, WindowActivatedEventArgs args)
     {
         WindowContainer.TitleBarOpacity = args.WindowActivationState.GetTitleBarOpacity();
-    }
-
-    private void InvalidateWindowPosition()
-    {
-        WindowPositionParameters parameters = new()
-        {
-            Width = UPSELL_CAROUSEL_WINDOW_WIDTH,
-            Height = UPSELL_CAROUSEL_WINDOW_HEIGHT
-        };
-
-        WindowState = WindowState.Normal;
-
-        this.SetPosition(parameters);
     }
 }

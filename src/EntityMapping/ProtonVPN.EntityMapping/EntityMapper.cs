@@ -76,10 +76,18 @@ namespace ProtonVPN.EntityMapping
 
         public List<TOutput> Map<TInput, TOutput>(IEnumerable<TInput> inputEntities)
         {
-            List<TOutput> mappedEntities = new();
+            List<TOutput> mappedEntities = [];
+            if (inputEntities is null)
+            {
+                return mappedEntities;
+            }
             foreach (TInput inputEntity in inputEntities)
             {
-                mappedEntities.Add(Map<TInput, TOutput>(inputEntity));
+                TOutput outputEntity = Map<TInput, TOutput>(inputEntity);
+                if (outputEntity is not null)
+                {
+                    mappedEntities.Add(outputEntity);
+                }
             }
             return mappedEntities;
         }

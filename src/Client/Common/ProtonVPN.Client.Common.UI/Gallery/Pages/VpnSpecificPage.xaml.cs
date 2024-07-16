@@ -20,6 +20,7 @@
 using System;
 using System.Collections.ObjectModel;
 using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 
 namespace ProtonVPN.Client.Common.UI.Gallery.Pages;
@@ -29,6 +30,7 @@ public sealed partial class VpnSpecificPage
     internal ObservableCollection<FakeIntent> FakeIntents { get; }
 
     internal ObservableCollection<InfoBarSeverity> InfoBarSeverities { get; } = new ObservableCollection<InfoBarSeverity>(Enum.GetValues<InfoBarSeverity>());
+    internal ObservableCollection<ProminentBannerStyle> ProminentBannerStyles { get; } = new ObservableCollection<ProminentBannerStyle>(Enum.GetValues<ProminentBannerStyle>());
 
     public VpnSpecificPage()
     {
@@ -73,6 +75,14 @@ public sealed partial class VpnSpecificPage
 
         infobar1.Severity = severity;
         infobar2.Severity = severity;
+    }
+
+    private void OnBannerStyleSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        ProminentBannerStyle bannerStyle = (ProminentBannerStyle)cboxBannerStyle.SelectedItem;
+
+        prominentBanner1.BannerStyle = bannerStyle;
+        prominentBanner2.BannerStyle = bannerStyle;
     }
 }
 

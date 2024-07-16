@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Files.Contracts.Images;
+using ProtonVPN.Client.Logic.Announcements.Contracts.Entities;
 using ProtonVPN.Client.Logic.Connection.Contracts.SerializableEntities.Intents;
 using ProtonVPN.Client.Logic.Recents.Contracts.SerializableEntities;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
@@ -39,5 +41,14 @@ public class ProtobufSerializableEntities : IProtobufSerializableEntities
         yield return typeof(SerializableFeatureIntent);
         yield return typeof(SerializableLocationIntent);
         yield return typeof(SerializableRecentConnection);
+
+        yield return typeof(CachedImage);
+
+        yield return typeof(Announcement);
+        yield return typeof(AnnouncementType);
+        yield return typeof(FullScreenImage);
+        yield return typeof(Panel);
+        yield return typeof(PanelButton);
+        yield return typeof(PanelFeature);
     }
 }

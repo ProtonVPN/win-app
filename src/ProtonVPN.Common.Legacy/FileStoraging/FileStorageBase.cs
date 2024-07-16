@@ -76,7 +76,7 @@ public abstract class FileStorageBase<T> : IFileStorageBase<T>
 
     private T ExecuteGet()
     {
-        return _fileReaderWriter.ReadOrNull<T>(_fileName, Serializers.Json);
+        return _fileReaderWriter.ReadOrDefault<T>(_fileName, Serializers.Json);
     }
 
     private static string NameOf(Type type)

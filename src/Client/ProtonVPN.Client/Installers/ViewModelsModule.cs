@@ -21,6 +21,8 @@ using Autofac;
 using Autofac.Builder;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.UI;
+using ProtonVPN.Client.UI.Announcements.Banner;
+using ProtonVPN.Client.UI.Announcements.Modals;
 using ProtonVPN.Client.UI.Connections.Countries;
 using ProtonVPN.Client.UI.Connections.Gateways;
 using ProtonVPN.Client.UI.Connections.P2P;
@@ -69,6 +71,7 @@ public class ViewModelsModule : Module
         RegisterViewModel<ReportIssueShellViewModel>(builder);
         RegisterViewModel<UpsellCarouselShellViewModel>(builder);
 
+        RegisterViewModel<AnnouncementModalViewModel>(builder);
         RegisterViewModel<CategorySelectionViewModel>(builder);
         RegisterViewModel<QuickFixesViewModel>(builder);
         RegisterViewModel<ContactFormViewModel>(builder);
@@ -129,6 +132,7 @@ public class ViewModelsModule : Module
         RegisterViewModel<GalleryItemViewModel>(builder);
         RegisterViewModel<TroubleshootingOverlayViewModel>(builder);
         RegisterViewModel<DisableKillSwitchBannerViewModel>(builder);
+        RegisterViewModel<AnnouncementBannerViewModel>(builder);
 
         RegisterViewModel<SidebarHomeViewModel>(builder);
         RegisterViewModel<SidebarGatewaysHeaderViewModel>(builder);

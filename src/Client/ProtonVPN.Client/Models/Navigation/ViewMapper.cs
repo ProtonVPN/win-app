@@ -48,6 +48,7 @@ using ProtonVPN.Client.UI.Connections.P2P;
 using ProtonVPN.Client.UI.Connections.SecureCore;
 using ProtonVPN.Client.UI.Connections.Tor;
 using ProtonVPN.Client.UI.Connections.Gateways;
+using ProtonVPN.Client.UI.Announcements.Modals;
 
 namespace ProtonVPN.Client.Models.Navigation;
 
@@ -202,6 +203,7 @@ public class ViewMapper : IViewMapper
     {
         ConfigureDialog<ReportIssueShellViewModel, ReportIssueWindow>();
         ConfigureDialog<UpsellCarouselShellViewModel, UpsellCarouselWindow>();
+        ConfigureDialog<AnnouncementModalViewModel, AnnouncementModalWindow>();
     }
 
     private void ConfigurePage<VM, V>()

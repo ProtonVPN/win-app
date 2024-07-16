@@ -53,7 +53,7 @@ public interface IConfiguration : IStaticConfiguration
     TimeSpan ServerUpdateInterval { get; }
     TimeSpan ServerLoadUpdateInterval { get; }
     TimeSpan MinimumServerLoadUpdateInterval { get; }
-    TimeSpan AnnouncementUpdateInterval { get; }
+    TimeSpan AnnouncementsUpdateInterval { get; }
     TimeSpan AlternativeRoutingCheckInterval { get; }
     TimeSpan UpdateCheckInterval { get; }
     TimeSpan UpdateRemindInterval { get; }

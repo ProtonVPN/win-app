@@ -20,29 +20,32 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace ProtonVPN.Api.Contracts.Announcements
+namespace ProtonVPN.Api.Contracts.Announcements;
+
+public class OfferPanelResponse
 {
-    public class OfferPanelResponse
-    {
-        public string Incentive { get; set; }
+    public string Incentive { get; set; }
 
-        public string IncentivePrice { get; set; }
+    public string IncentivePrice { get; set; }
 
-        public string Pill { get; set; }
+    public string Pill { get; set; }
 
-        [JsonProperty(PropertyName = "PictureURL")]
-        public string PictureUrl { get; set; }
+    [JsonProperty(PropertyName = "PictureURL")]
+    public string PictureUrl { get; set; }
 
-        public string Title { get; set; }
+    public string Title { get; set; }
 
-        public IList<OfferPanelFeatureResponse> Features { get; set; }
+    public IList<OfferPanelFeatureResponse> Features { get; set; }
 
-        public string FeaturesFooter { get; set; }
+    public string FeaturesFooter { get; set; }
 
-        public OfferPanelButtonResponse Button { get; set; }
+    public OfferPanelButtonResponse Button { get; set; }
 
-        public string PageFooter { get; set; }
+    public string PageFooter { get; set; }
 
-        public FullScreenImageResponse FullScreenImage { get; set; }
-    }
+    public FullScreenImageResponse FullScreenImage { get; set; }
+
+    public bool ShowCountdown { get; set; }
+
+    public bool IsDismissible { get; set; } = true;
 }

@@ -160,7 +160,7 @@ public static class DefaultConfiguration
     public static TimeSpan ServerUpdateInterval => TimeSpan.FromHours(12);
     public static TimeSpan ServerLoadUpdateInterval => TimeSpan.FromHours(3);
     public static TimeSpan MinimumServerLoadUpdateInterval => TimeSpan.FromMinutes(15);
-    public static TimeSpan AnnouncementUpdateInterval => TimeSpan.FromMinutes(150);
+    public static TimeSpan AnnouncementsUpdateInterval => TimeSpan.FromMinutes(150);
     public static TimeSpan AlternativeRoutingCheckInterval => TimeSpan.FromMinutes(30);
     public static TimeSpan UpdateCheckInterval => TimeSpan.FromHours(3);
     public static TimeSpan UpdateRemindInterval => TimeSpan.FromHours(24);

@@ -29,7 +29,8 @@ namespace ProtonVPN.Client.Logic.Servers.Files;
 
 public class ServersFileReaderWriter : IServersFileReaderWriter
 {
-    private const string FILE_NAME = "Servers.{0}.bin";
+    private const string FILE_NAME_PREFIX = "Servers";
+    private const string FILE_EXTENSION = "bin";
 
     private readonly ILogger _logger;
     private readonly IStaticConfiguration _staticConfiguration;
@@ -45,7 +46,7 @@ public class ServersFileReaderWriter : IServersFileReaderWriter
         _staticConfiguration = staticConfiguration;
         _userFileReaderWriter = userFileReaderWriter;
 
-        _fileReaderWriterParameters = new(Serializers.Protobuf, _staticConfiguration.StorageFolder, FILE_NAME);
+        _fileReaderWriterParameters = new(Serializers.Protobuf, _staticConfiguration.StorageFolder, FILE_NAME_PREFIX, FILE_EXTENSION);
     }
 
     public IReadOnlyList<Server> Read()

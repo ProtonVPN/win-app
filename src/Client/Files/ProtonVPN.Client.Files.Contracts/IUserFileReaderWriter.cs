@@ -27,4 +27,6 @@ public interface IUserFileReaderWriter
         where T : new();
 
     FileOperationResult Write<T>(T value, UserFileReaderWriterParameters parameters);
+
+    IDictionary<string, T> ReadAllUsers<T>(UserFileReaderWriterParameters parameters);
 }
