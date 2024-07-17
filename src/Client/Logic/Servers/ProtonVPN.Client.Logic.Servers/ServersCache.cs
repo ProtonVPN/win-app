@@ -102,7 +102,11 @@ public class ServersCache : IServersCache
             DeviceLocation? currentLocation = _settings.DeviceLocation;
 
             ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync(currentLocation?.IpAddress ?? string.Empty);
-            if (response.Success)
+            if (response.LastModified.HasValue)
+            {
+                _settings.LogicalsLastModifiedDate = response.LastModified.Value;
+            }
+            if (response.Success && !response.IsNotModified)
             {
                 List<Server> servers = _entityMapper.Map<LogicalServerResponse, Server>(response.Value.Servers);
                 SaveToFile(servers);

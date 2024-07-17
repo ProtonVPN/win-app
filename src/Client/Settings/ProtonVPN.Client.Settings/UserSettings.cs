@@ -23,6 +23,7 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.Settings.Repositories.Contracts;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Settings;
@@ -331,6 +332,12 @@ public class UserSettings : GlobalSettings, IUserSettings
     {
         get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? false;
         set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
+    public DateTimeOffset LogicalsLastModifiedDate
+    {
+        get => _userCache.GetValueType<DateTimeOffset>(SettingEncryption.Encrypted)?.Max(DateTimeOffset.UnixEpoch) ?? DateTimeOffset.UnixEpoch;
+        set => _userCache.SetValueType<DateTimeOffset>(value.Max(DateTimeOffset.UnixEpoch), SettingEncryption.Encrypted);
     }
 
     public UserSettings(IGlobalSettingsCache globalSettingsCache, IUserSettingsCache userSettingsCache)
