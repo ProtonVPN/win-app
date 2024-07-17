@@ -71,6 +71,7 @@ public static class DefaultSettings
     public static bool IsFeatureConnectedServerCheckEnabled = true;
     public static TimeSpan ConnectedServerCheckInterval = TimeSpan.FromMinutes(30);
     public static DefaultConnection DefaultConnection = DefaultConnection.Fastest;
+    public static DateTimeOffset LogicalsLastModifiedDate = DateTimeOffset.MinValue;
 
     public static ChangeServerSettings ChangeServerSettings = new()
     {

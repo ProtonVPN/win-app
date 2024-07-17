@@ -67,23 +67,25 @@ public class BaseApiClient : IClientBase
         return new(json, Encoding.UTF8, "application/json");
     }
 
-        protected async Task<ApiResponseResult<T>> GetApiResponseResult<T>(HttpResponseMessage response)
-            where T : BaseResponse
+    protected async Task<ApiResponseResult<T>> GetApiResponseResult<T>(HttpResponseMessage response)
+        where T : BaseResponse
+    {
+        string body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+        try
         {
-            string body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            try
-            {
-                T json = JsonConvert.DeserializeObject<T>(body) ?? throw new HttpRequestException(string.Empty);
+            T json = response.StatusCode is HttpStatusCode.NotModified
+                ? default(T)
+                : JsonConvert.DeserializeObject<T>(body) ?? throw new HttpRequestException(string.Empty);
 
-                ApiResponseResult<T> result = CreateApiResponseResult(json, response);
-                HandleResult(result, response);
-                return result;
-            }
-            catch (JsonException)
-            {
-                throw new HttpRequestException(GetStatusCodeDescription(response.StatusCode));
-            }
+            ApiResponseResult<T> result = CreateApiResponseResult(json, response);
+            HandleResult(result, response);
+            return result;
         }
+        catch (JsonException)
+        {
+            throw new HttpRequestException(GetStatusCodeDescription(response.StatusCode));
+        }
+    }
 
     public string GetStatusCodeDescription(HttpStatusCode code)
     {
@@ -94,14 +96,15 @@ public class BaseApiClient : IClientBase
     private ApiResponseResult<T> CreateApiResponseResult<T>(T response, HttpResponseMessage responseMessage)
         where T : BaseResponse
     {
-        switch (response.Code)
+        if (responseMessage.StatusCode is HttpStatusCode.NotModified)
         {
-            case ResponseCodes.OkResponse:
-                return ApiResponseResult<T>.Ok(responseMessage, response);
-            default:
-
-                return ApiResponseResult<T>.Fail(response, responseMessage, response.Error);
+            return ApiResponseResult<T>.NotModified(responseMessage);
         }
+        return response.Code switch
+        {
+            ResponseCodes.OkResponse => ApiResponseResult<T>.Ok(responseMessage, response),
+            _ => ApiResponseResult<T>.Fail(response, responseMessage, response.Error),
+        };
     }
 
     private void HandleResult<T>(ApiResponseResult<T> result, HttpResponseMessage responseMessage)
@@ -179,22 +182,22 @@ public class BaseApiClient : IClientBase
         using StreamReader streamReader = new(stream);
         using JsonTextReader jsonTextReader = new(streamReader);
 
-            T json = _jsonSerializer.Deserialize<T>(jsonTextReader) ?? throw new HttpRequestException(string.Empty);
+        T json = _jsonSerializer.Deserialize<T>(jsonTextReader) ?? throw new HttpRequestException(string.Empty);
 
-            if (json.Code != ResponseCodes.OkResponse)
-            {
-                return ApiResponseResult<T>.Fail(response, json.Error);
-            }
-
-            return ApiResponseResult<T>.Ok(response, json);
+        if (json.Code != ResponseCodes.OkResponse)
+        {
+            return ApiResponseResult<T>.Fail(response, json.Error);
         }
 
-        protected ApiResponseResult<T> Logged<T>(ApiResponseResult<T> result, string message = null) where T : BaseResponse
+        return ApiResponseResult<T>.Ok(response, json);
+    }
+
+    protected ApiResponseResult<T> Logged<T>(ApiResponseResult<T> result, string message = null) where T : BaseResponse
+    {
+        if (result.Failure)
         {
-            if (result.Failure)
-            {
-                Logger.Error<ApiErrorLog>($"API: {(string.IsNullOrEmpty(message) ? "Request" : message)} failed: {result.Error}");
-            }
+            Logger.Error<ApiErrorLog>($"API: {(string.IsNullOrEmpty(message) ? "Request" : message)} failed: {result.Error}");
+        }
 
         return result;
     }

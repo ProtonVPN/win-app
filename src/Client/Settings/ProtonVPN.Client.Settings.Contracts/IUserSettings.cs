@@ -68,4 +68,5 @@ public interface IUserSettings
     bool WasWelcomePlusOverlayDisplayed { get; set; }
     bool WasWelcomeUnlimitedOverlayDisplayed { get; set; }
     bool WasWelcomeB2BOverlayDisplayed { get; set; }
+    DateTimeOffset LogicalsLastModifiedDate { get; set; }
 }

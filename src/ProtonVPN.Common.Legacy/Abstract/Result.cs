@@ -31,20 +31,19 @@ public class Result
     }
 
     public bool Success { get; }
-
     public string Error { get; protected set; }
 
     public Exception Exception { get; }
 
     public bool Failure => !Success;
 
-    public static Result Fail(string message = null) => new(false, message);
+    public static Result Fail(string message = null) => new(success: false, error: message);
 
-    public static Result Fail(Exception exception) => new(false, "", exception);
+    public static Result Fail(Exception exception) => new(success: false, error: "", exception: exception);
 
-    public static Result<T> Fail<T>(string message = "") => new(default(T), false, message);
+    public static Result<T> Fail<T>(string message = "") => new(default(T), success: false, error: message);
 
-    public static Result Ok() => new(true, "");
+    public static Result Ok() => new(success: true, "");
 
-    public static Result<T> Ok<T>(T value) => new(value, true, "");
+    public static Result<T> Ok<T>(T value) => new(value, success: true, error: "");
 }

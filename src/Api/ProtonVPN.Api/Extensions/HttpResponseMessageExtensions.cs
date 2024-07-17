@@ -33,6 +33,7 @@ public static class HttpResponseMessageExtensions
         HttpStatusCode.NotFound,
         HttpStatusCode.Conflict,
         HttpStatusCode.UnprocessableEntity,
+        HttpStatusCode.NotModified
     ];
 
     public static bool IsToRetry(this HttpResponseMessage message)
