@@ -1512,7 +1512,7 @@
     <value>L'abonnement est arrivé à expiration.</value>
   </data>
   <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
-    <value>Effectuez la mise à niveau pour accéder à nouveau aux serveurs et fonctionnalités Plus.</value>
+    <value>Améliorez votre abonnement pour accéder à nouveau aux serveurs et fonctionnalités Plus.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free vous connecte automatiquement au serveur gratuit le plus rapide dans {0} pays disponible. C'est en général le serveur le plus proche de votre localisation géographique.</value>
@@ -1768,7 +1768,7 @@ Smart Routing est généralement utilisé pour déjouer les lois contre la prote
     <value>Le VPN qui n'enregistre pas vos activités.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
-    <value>Votre activité est protégée par les lois Suisses sur la confidentialité. Nous ne vous suivrons jamais en ligne et ne partagerons jamais vos informations avec des tiers.</value>
+    <value>Vos activités en ligne sont protégées par les lois suisses sur la protection de la vie privée. Nous ne suivrons jamais vos activités et nous ne partagerons jamais vos informations avec des tiers.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
     <value>Naviguez librement où que vous soyez</value>
@@ -2567,7 +2567,7 @@ Profitez de ce que Proton a de mieux à offrir en matière de protection de la v
     <value>Connexion automatique</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>Se connecte automatiquement à votre connexion par défaut lorsque Proton VPN s'ouvre.</value>
+    <value>Se connecte automatiquement à votre connexion par défaut à l'ouverture de Proton VPN.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>Connexion la plus rapide</value>
@@ -2654,7 +2654,7 @@ Profitez de ce que Proton a de mieux à offrir en matière de protection de la v
     <value>OpenVPN</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Description">
-    <value>Reconnu, éprouvé et sécurisé. OpenVPN est moins économe en batterie que d'autres protocoles.</value>
+    <value>Reconnu, éprouvé et sécurisé. OpenVPN sollicite davantage votre batterie que d'autres protocoles.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
@@ -2687,7 +2687,7 @@ Profitez de ce que Proton a de mieux à offrir en matière de protection de la v
     <value>Stealth</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
-    <value>Rapide, sûr et efficace. WireGuard est plus économe en batterie que les autres protocoles.</value>
+    <value>Rapide, sûr et efficace. WireGuard sollicite moins votre batterie que les autres protocoles.</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>

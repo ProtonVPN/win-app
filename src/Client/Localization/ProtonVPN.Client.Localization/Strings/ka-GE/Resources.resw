@@ -1793,9 +1793,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>მოგესალმებათ VPN Plus</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description">
-    <value>Congratulations! You unlocked premium security and performance features on all Proton services.
-
-Enjoy the best of Proton privacy.</value>
+    <value>გილოცავთ! თქვენ განბლოკეთ ფასიანი უსაფრთხოების და წარმადობის ფუნქციები ყველა Proton-ის სერვისისთვის. ისიამოვნეთ Proton-ის კონფიდენციალობის საუკეთესო ფუნქციებით.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>მოგესალმებათ Proton Unlimited</value>

@@ -1708,7 +1708,7 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
     <value>어디서나 자유롭게 브라우징하세요</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
-    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+    <value>가상 위치를 숨기고 {0}개 이용 가능한 국가 중 하나에서 인터넷을 경험하세요.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
     <value>동시에 10개 디바이스를 보호하세요</value>

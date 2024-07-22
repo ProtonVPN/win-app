@@ -2600,7 +2600,7 @@ Nauti Proton-yksityisyyden parhaista puolista.</value>
     <value>Tarkasta ja asenna Proton VPN:n päivitykset automaattisesti.</value>
   </data>
   <data name="Settings_General_BetaAccess">
-    <value>Beta-käyttö</value>
+    <value>Käytä beetaversiota</value>
   </data>
   <data name="Settings_General_BetaAccess_Description">
     <value>Hanki varhainen käyttöoikeus ja auta meitä testaamaan Proton VPN:n uusia versioita.</value>
