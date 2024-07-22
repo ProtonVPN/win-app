@@ -208,7 +208,7 @@
     <value>Tu adaptador de red está actualmente en uso.</value>
   </data>
   <data name="Connection_Error_TapRequiresUpdate">
-    <value>La versión adaptador de red está desactualizada.</value>
+    <value>La versión del adaptador de red está desactualizada.</value>
   </data>
   <data name="Connection_Error_TlsCertificate">
     <value>Hay un problema al validar el certificado del servidor VPN, lo que podría indicar que la conexión de red está siendo alterada o que el servidor al que estás intentando conectarte tiene un problema de configuración. Obtén ayuda de nuestro servicio de atención al cliente enviando un notificación del problema.</value>
@@ -2129,7 +2129,7 @@ Disfruta lo mejor de la privacidad de Proton.</value>
     <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
   </data>
   <data name="Home_Update_Confirmation_Title">
-    <value>Actualizar Proton VPN?</value>
+    <value>¿Actualizar Proton VPN?</value>
   </data>
   <data name="Home_Update_UpdateAvailable">
     <value>Actualización disponible</value>
@@ -2393,7 +2393,7 @@ Disfruta lo mejor de la privacidad de Proton.</value>
     <value>No podrás usar el reenvío de puertos con NAT moderada.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Title">
-    <value>Activar NAT moderada?</value>
+    <value>¿Activar NAT moderada?</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Description">
     <value>Selecciona un tipo de traducción de dirección de red para tu conexión.</value>
@@ -2705,7 +2705,7 @@ Disfruta lo mejor de la privacidad de Proton.</value>
     <value>Esto restablecerá los ajustes de Proton VPN a su estado original.</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Title">
-    <value>Restaurar los ajustes por defecto?</value>
+    <value>¿Restaurar los ajustes por defecto?</value>
   </data>
   <data name="Settings_SelectedProtocol_OpenVpnTcp">
     <value>OpenVPN (TCP)</value>
