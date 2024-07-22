@@ -137,13 +137,13 @@ public class MainWindowActivator :
 
     public async Task TryExitAsync()
     {
-        Activate(activateAllDialogs: false);
-
         Logger.Info<AppLog>("Exiting application.");
 
         string? confirmationMessage = _localizer.GetExitOrSignOutConfirmationMessage(_connectionManager.IsDisconnected, _settings);
         if (!string.IsNullOrEmpty(confirmationMessage))
         {
+            Activate(activateAllDialogs: false);
+
             ContentDialogResult result = await _overlayActivator.ShowMessageAsync(
                 new MessageDialogParameters
                 {
