@@ -3147,7 +3147,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Navega a velocidades aún mayores (hasta 10 Gbps)</value>
   </data>
   <data name="Upsell_Countries_AccessGeoblockedContent">
-    <value>Acceda a contenido geobloqueado</value>
+    <value>Accede a contenido geobloqueado</value>
   </data>
   <data name="Upsell_Countries_ChooseAnyLocation">
     <value>Elige cualquier ubicación</value>
@@ -3311,7 +3311,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Permite que las aplicaciones de confianza y direcciones IP eviten la VPN para velocidades rápidas</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet3">
-    <value>Accede a contenido de tu hogar y local cuando navega desde el extranjero</value>
+    <value>Accede a contenido local y de tu hogar cuando navegas desde el extranjero</value>
   </data>
   <data name="Upsell_SplitTunneling_Subtitle">
     <value>Desbloquea el &lt;Bold&gt;túnel dividido&lt;/Bold&gt; con VPN Plus</value>
