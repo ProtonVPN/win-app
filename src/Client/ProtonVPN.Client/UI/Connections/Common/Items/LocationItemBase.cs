@@ -66,13 +66,15 @@ public abstract partial class LocationItemBase : ObservableObject
     [NotifyPropertyChangedFor(nameof(ToolTip))]
     private bool _isRestricted;
 
+    private string SearchableHeader { get; }
+
     public bool IsEnabled => !IsRestricted && !IsUnderMaintenance;
 
     public ILocalizationProvider Localizer { get; }
 
     public abstract GroupLocationType GroupType { get; }
 
-    public abstract string Header { get; }
+    public string Header { get; }
 
     public abstract string? ToolTip { get; }
 
@@ -118,7 +120,8 @@ public abstract partial class LocationItemBase : ObservableObject
         IConnectionManager connectionManager,
         IMainViewNavigator mainViewNavigator,
         IUpsellCarouselDialogActivator upsellCarouselActivator,
-        LocationItemFactory locationItemFactory)
+        LocationItemFactory locationItemFactory,
+        string header)
     {
         Localizer = localizer;
         ServersLoader = serversLoader;
@@ -126,6 +129,9 @@ public abstract partial class LocationItemBase : ObservableObject
         MainViewNavigator = mainViewNavigator;
         UpsellCarouselActivator = upsellCarouselActivator;
         LocationItemFactory = locationItemFactory;
+
+        Header = header;
+        SearchableHeader = header.RemoveDiacritics();
 
         SubItems.CollectionChanged += OnSubItemsCollectionChanged;
 
@@ -144,7 +150,8 @@ public abstract partial class LocationItemBase : ObservableObject
     public virtual bool MatchesSearchQuery(string searchQuery)
     {
         return string.IsNullOrWhiteSpace(searchQuery)
-            || Header.ContainsIgnoringCase(searchQuery);
+               || Header.ContainsIgnoringCase(searchQuery)
+               || SearchableHeader.ContainsIgnoringCase(searchQuery);
     }
 
     public abstract void InvalidateIsActiveConnection(ConnectionDetails? currentConnectionDetails);

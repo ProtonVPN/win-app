@@ -30,13 +30,11 @@ using ProtonVPN.Client.UI.Connections.Common.Factories;
 
 namespace ProtonVPN.Client.UI.Connections.Common.Items;
 
-public partial class GatewayLocationItem : LocationItemBase
+public class GatewayLocationItem : LocationItemBase
 {
     public override GroupLocationType GroupType => GroupLocationType.Gateways;
 
     public string Gateway { get; }
-
-    public override string Header => Gateway;
 
     public override string? ToolTip =>
         IsRestricted
@@ -71,7 +69,8 @@ public partial class GatewayLocationItem : LocationItemBase
                connectionManager,
                mainViewNavigator,
                upsellCarouselActivator,
-               locationItemFactory)
+               locationItemFactory,
+               gateway)
     {
         Gateway = gateway;
 
