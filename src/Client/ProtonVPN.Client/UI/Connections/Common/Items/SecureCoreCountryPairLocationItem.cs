@@ -39,8 +39,6 @@ public class SecureCoreCountryPairLocationItem : LocationItemBase
 
     public SecureCoreCountryPair CountryPair { get; }
 
-    public override string Header => Localizer.GetCountryName(CountryPair.ExitCountry);
-
     public override string? ToolTip =>
         IsRestricted
             ? Localizer.Get("Connections_Server_Restricted")
@@ -73,7 +71,8 @@ public class SecureCoreCountryPairLocationItem : LocationItemBase
                connectionManager,
                mainViewNavigator,
                upsellCarouselActivator,
-               locationItemFactory)
+               locationItemFactory,
+               localizer.GetCountryName(countryPair.ExitCountry))
     {
         CountryPair = countryPair;
 

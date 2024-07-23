@@ -259,5 +259,50 @@ namespace ProtonVPN.Common.Tests.Extensions
 
             Assert.IsFalse(isValid);
         }
+
+        [DataTestMethod]
+        [DataRow("Ålesund", "Alesund")]
+        [DataRow("Bergen", "Bergen")]
+        [DataRow("Bío-Bío", "Bio-Bio")]
+        [DataRow("Bogotá", "Bogota")]
+        [DataRow("Brăila", "Braila")]
+        [DataRow("Córdoba", "Cordoba")]
+        [DataRow("České Budějovice", "Ceske Budejovice")]
+        [DataRow("Český Krumlov", "Cesky Krumlov")]
+        [DataRow("Děčín", "Decin")]
+        [DataRow("Düsseldorf", "Dusseldorf")]
+        [DataRow("Évian-les-Bains", "Evian-les-Bains")]
+        [DataRow("Færøyene", "Faeroyene")]
+        [DataRow("Göreme", "Goreme")]
+        [DataRow("Göteborg", "Goteborg")]
+        [DataRow("Jökulsárlón", "Jokulsarlon")]
+        [DataRow("Kraków", "Krakow")]
+        [DataRow("León", "Leon")]
+        [DataRow("Ljubljana", "Ljubljana")]
+        [DataRow("Łódź", "Lodz")]
+        [DataRow("Málaga", "Malaga")]
+        [DataRow("Montaña", "Montana")]
+        [DataRow("München", "Munchen")]
+        [DataRow("Mývatn", "Myvatn")]
+        [DataRow("Nürnberg", "Nurnberg")]
+        [DataRow("Río de Janeiro", "Rio de Janeiro")]
+        [DataRow("Rūdninkai", "Rudninkai")]
+        [DataRow("São Paulo", "Sao Paulo")]
+        [DataRow("Şanlıurfa", "Sanliurfa")]
+        [DataRow("Smørrebrød", "Smorrebrod")]
+        [DataRow("Timișoara", "Timisoara")]
+        [DataRow("Tórshavn", "Torshavn")]
+        [DataRow("Tromsø", "Tromso")]
+        [DataRow("Türkiye", "Turkiye")]
+        [DataRow("Viña del Mar", "Vina del Mar")]
+        [DataRow("Zürich", "Zurich")]
+        [DataRow("Žilina", "Zilina")]
+        [DataRow("Øresund", "Oresund")]
+        [DataRow("Île-de-France", "Ile-de-France")]
+        [DataRow("Réunion", "Reunion")]
+        public void TestRemoveDiacritics(string value, string expectedValue)
+        {
+            Assert.AreEqual(expectedValue, value.RemoveDiacritics());
+        }
     }
 }

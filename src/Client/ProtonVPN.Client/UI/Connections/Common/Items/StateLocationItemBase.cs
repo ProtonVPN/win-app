@@ -34,8 +34,6 @@ namespace ProtonVPN.Client.UI.Connections.Common.Items;
 
 public abstract class StateLocationItemBase : LocationItemBase
 {
-    public override string Header => State.Name; 
-    
     public string SubHeader => ShowBaseLocation
         ? $" -  {Localizer.GetCountryName(State.CountryCode)}"
         : string.Empty;
@@ -78,7 +76,8 @@ public abstract class StateLocationItemBase : LocationItemBase
                connectionManager,
                mainViewNavigator,
                upsellCarouselActivator,
-               locationItemFactory)
+               locationItemFactory,
+               state.Name)
     {
         State = state;
         ShowBaseLocation = showBaseLocation;

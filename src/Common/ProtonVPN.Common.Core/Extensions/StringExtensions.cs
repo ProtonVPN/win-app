@@ -20,6 +20,7 @@
 using System.Globalization;
 using System.Net;
 using System.Security;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace ProtonVPN.Common.Core.Extensions;
@@ -27,6 +28,99 @@ namespace ProtonVPN.Common.Core.Extensions;
 public static class StringExtensions
 {
     private static readonly Regex _base64KeyRegex = new("^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$");
+
+    private static readonly Dictionary<string, string> _diacriticsMap = new()
+    {
+        { "äæǽ", "ae" },
+        { "öœ", "oe" },
+        { "ü", "ue" },
+        { "Ä", "Ae" },
+        { "Ü", "Ue" },
+        { "Ö", "Oe" },
+        { "ÀÁÂÃÄÅǺĀĂĄǍΑΆẢẠẦẪẨẬẰẮẴẲẶА", "A" },
+        { "àáâãåǻāăąǎªαάảạầấẫẩậằắẵẳặа", "a" },
+        { "Б", "B" },
+        { "б", "b" },
+        { "ÇĆĈĊČ", "C" },
+        { "çćĉċč", "c" },
+        { "Д", "D" },
+        { "д", "d" },
+        { "ÐĎĐΔ", "Dj" },
+        { "ðďđδ", "dj" },
+        { "ÈÉÊËĒĔĖĘĚΕΈẼẺẸỀẾỄỂỆЕЭ", "E" },
+        { "èéêëēĕėęěέεẽẻẹềếễểệеэ", "e" },
+        { "Ф", "F" },
+        { "ф", "f" },
+        { "ĜĞĠĢΓГҐ", "G" },
+        { "ĝğġģγгґ", "g" },
+        { "ĤĦ", "H" },
+        { "ĥħ", "h" },
+        { "ÌÍÎÏĨĪĬǏĮİΗΉΊΙΪỈỊИЫ", "I" },
+        { "ìíîïĩīĭǐįıηήίιϊỉịиыї", "i" },
+        { "Ĵ", "J" },
+        { "ĵ", "j" },
+        { "ĶΚК", "K" },
+        { "ķκк", "k" },
+        { "ĹĻĽĿŁΛЛ", "L" },
+        { "ĺļľŀłλл", "l" },
+        { "М", "M" },
+        { "м", "m" },
+        { "ÑŃŅŇΝН", "N" },
+        { "ñńņňŉνн", "n" },
+        { "ÒÓÔÕŌŎǑŐƠØǾΟΌΩΏỎỌỒỐỖỔỘỜỚỠỞỢО", "O" },
+        { "òóôõōŏǒőơøǿºοόωώỏọồốỗổộờớỡởợо", "o" },
+        { "П", "P" },
+        { "п", "p" },
+        { "ŔŖŘΡР", "R" },
+        { "ŕŗřρр", "r" },
+        { "ŚŜŞȘŠΣС", "S" },
+        { "śŝşșšſσςс", "s" },
+        { "ȚŢŤŦτТ", "T" },
+        { "țţťŧт", "t" },
+        { "ÙÚÛŨŪŬŮŰŲƯǓǕǗǙǛŨỦỤỪỨỮỬỰУ", "U" },
+        { "ùúûũūŭůűųưǔǖǘǚǜυύϋủụừứữửựу", "u" },
+        { "ÝŸŶΥΎΫỲỸỶỴЙ", "Y" },
+        { "ýÿŷỳỹỷỵй", "y" },
+        { "В", "V" },
+        { "в", "v" },
+        { "Ŵ", "W" },
+        { "ŵ", "w" },
+        { "ŹŻŽΖЗ", "Z" },
+        { "źżžζз", "z" },
+        { "ÆǼ", "AE" },
+        { "ß", "ss" },
+        { "Ĳ", "IJ" },
+        { "ĳ", "ij" },
+        { "Œ", "OE" },
+        { "ƒ", "f" },
+        { "ξ", "ks" },
+        { "π", "p" },
+        { "β", "v" },
+        { "μ", "m" },
+        { "ψ", "ps" },
+        { "Ё", "Yo" },
+        { "ё", "yo" },
+        { "Є", "Ye" },
+        { "є", "ye" },
+        { "Ї", "Yi" },
+        { "Ж", "Zh" },
+        { "ж", "zh" },
+        { "Х", "Kh" },
+        { "х", "kh" },
+        { "Ц", "Ts" },
+        { "ц", "ts" },
+        { "Ч", "Ch" },
+        { "ч", "ch" },
+        { "Ш", "Sh" },
+        { "ш", "sh" },
+        { "Щ", "Shch" },
+        { "щ", "shch" },
+        { "ЪъЬь", "" },
+        { "Ю", "Yu" },
+        { "ю", "yu" },
+        { "Я", "Ya" },
+        { "я", "ya" },
+    };
 
     public static bool IsNullOrEmpty(this string value)
     {
@@ -46,6 +140,36 @@ public static class StringExtensions
     public static bool ContainsIgnoringCase(this string value, string other)
     {
         return value != null && value.IndexOf(other, StringComparison.OrdinalIgnoreCase) >= 0;
+    }
+
+    public static string RemoveDiacritics(this string value)
+    {
+        if (string.IsNullOrEmpty(value))
+        {
+            return value;
+        }
+
+        value = value.Normalize(NormalizationForm.FormD);
+        StringBuilder sb = new();
+
+        foreach (char c in value.Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark))
+        {
+            // Some of the diacritics can't be automatically remapped, therefore requires manual mapping.
+            bool isMapped = false;
+            foreach (var kvp in _diacriticsMap.Where(kvp => kvp.Key.Contains(c)))
+            {
+                sb.Append(kvp.Value);
+                isMapped = true;
+                break;
+            }
+
+            if (!isMapped)
+            {
+                sb.Append(c);
+            }
+        }
+
+        return sb.ToString().Normalize(NormalizationForm.FormC);
     }
 
     public static bool ContainsIgnoringCase(this IEnumerable<string> collection, string other)

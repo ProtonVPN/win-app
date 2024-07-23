@@ -1071,7 +1071,7 @@
     <comment>The name of TO country</comment>
   </data>
   <data name="Country_val_TR" xml:space="preserve">
-    <value>Turkey</value>
+    <value>Türkiye</value>
     <comment>The name of TR country</comment>
   </data>
   <data name="Country_val_TT" xml:space="preserve">

@@ -39,8 +39,6 @@ public abstract partial class ServerLocationItemBase : LocationItemBase
     [NotifyPropertyChangedFor(nameof(LoadPercent))]
     private double _load;
 
-    public override string Header => Server.Name;
-
     public Server Server { get; }
 
     public string LoadPercent => $"{Load:P0}";
@@ -79,7 +77,8 @@ public abstract partial class ServerLocationItemBase : LocationItemBase
                connectionManager,
                mainViewNavigator,
                upsellCarouselActivator,
-               locationItemFactory)
+               locationItemFactory,
+               server.Name)
     {
         Server = server;
 

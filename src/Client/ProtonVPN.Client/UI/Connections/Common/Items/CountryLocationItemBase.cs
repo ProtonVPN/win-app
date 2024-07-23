@@ -34,8 +34,6 @@ namespace ProtonVPN.Client.UI.Connections.Common.Items;
 
 public abstract partial class CountryLocationItemBase : LocationItemBase
 {
-    public override string Header => Localizer.GetCountryName(ExitCountryCode);
-
     public override string? ToolTip =>
         IsRestricted
             ? Localizer.Get("Connections_Country_Restricted")
@@ -84,7 +82,8 @@ public abstract partial class CountryLocationItemBase : LocationItemBase
                connectionManager,
                mainViewNavigator,
                upsellCarouselActivator,
-               locationItemFactory)
+               locationItemFactory,
+               localizer.GetCountryName(exitCountryCode))
     {
         ExitCountryCode = exitCountryCode;
         IsSecureCore = isSecureCore;
