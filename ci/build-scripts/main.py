@@ -74,7 +74,7 @@ elif args.command == 'app-installer':
     if 'BTI' in build_path:
         installer_filename = 'ProtonVPN_v{semVersion}_BTI.exe'.format(semVersion=semVersion)  
     installer_path = os.path.join('.\Setup\Installers', installer_filename)
-    
+
     print_sha256(installer_path)
     sys.exit(err)
 
