@@ -24,7 +24,7 @@ using ProtonVPN.UI.Tests.Robots.Home;
 using ProtonVPN.UI.Tests.Robots.Login;
 using ProtonVPN.UI.Tests.TestsHelper;
 
-namespace ProtonVPN.UI.Tests.Tests.Bti;
+namespace ProtonVPN.UI.Tests.Tests.BigTestInfra;
 
 [TestFixture]
 [Category("BTI")]
@@ -32,7 +32,7 @@ public class LoginBtiTests : TestSession
 {
     private LoginRobot _loginRobot = new();
     private HomeRobot _homeRobot = new();
-    private AtlasApiClient _atlasApiClient = new AtlasApiClient();
+    private AtlasApiClient _atlasApiClient = new();
 
     [SetUp]
     public async Task TestInitializeAsync()

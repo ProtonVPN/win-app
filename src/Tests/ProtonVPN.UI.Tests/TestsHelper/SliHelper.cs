@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using FlaUI.Core.Tools;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
@@ -28,23 +29,23 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
-public class PerformanceTestHelper
+public class SliHelper
 {
-    public static readonly Stopwatch Timer = new Stopwatch();
-    public static List<JProperty> MetricsList = new List<JProperty>();
-    private Random _random = new Random();
+    public static string SliName { get; set; }
+    public static string Workflow { get; set; }
+    public static string RunId { get; set; }
+    public static string Duration => Timer.Elapsed.TotalSeconds.ToString();
+
+    public static readonly Stopwatch Timer = new();
+    public static List<JProperty> MetricsList = [];
+    private Random _random = new();
     private static bool IsMonitoring { get; set; }
 
-    public static string GetDuration => Timer.Elapsed.TotalSeconds.ToString();
-
-    public static void StartMonitoring()
+    public static void Measure(Action method)
     {
         Timer.Start();
         IsMonitoring = true;
-    }
-
-    public static void StopMonitoring()
-    {
+        method();
         Timer.Stop();
         IsMonitoring = false;
     }
@@ -58,6 +59,11 @@ public class PerformanceTestHelper
     public static void AddMetric(string metricName, string value)
     {
         MetricsList.Add(new JProperty(metricName, value));
+    }
+
+    public static void AddDuration()
+    {
+        AddMetric("duration", Duration);
     }
 
     public static void AddTestStatusMetric()
@@ -76,7 +82,19 @@ public class PerformanceTestHelper
     public static void AddNetworkSpeedToMetrics(string downloadSpeedLabel, string uploadSpeedLabel)
     {
         NetworkUtils.FlushDns();
-        Dictionary<string, double> networkSpeedConnected = GetNetworkSpeed();
+        Dictionary<string, double> networkSpeedConnected = null;
+        RetryResult<bool> retry = Retry.WhileException(
+            () =>
+            {
+                networkSpeedConnected = GetNetworkSpeed();
+            },
+            TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval);
+
+        if (!retry.Success)
+        {
+            throw new Exception(retry.LastException.Message);
+        }
+        
         AddMetric(downloadSpeedLabel, networkSpeedConnected["downloadSpeed"].ToString());
         AddMetric(uploadSpeedLabel, networkSpeedConnected["uploadSpeed"].ToString());
     }
@@ -90,6 +108,7 @@ public class PerformanceTestHelper
             (int)s["Tier"] == 2 &&
             !s["Name"].ToString().Contains("SE-") &&
             !s["Name"].ToString().Contains("IS-") &&
+            !s["Name"].ToString().Contains("TOR") &&
             !s["Name"].ToString().Contains("CH-")).ToList();
         if(filteredServers.Count > 0)
         {

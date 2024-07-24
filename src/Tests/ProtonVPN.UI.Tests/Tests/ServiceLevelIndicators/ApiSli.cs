@@ -24,52 +24,43 @@ using System.Security;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.Annotations;
 using ProtonVPN.UI.Tests.ApiClient.Prod;
 using ProtonVPN.UI.Tests.ApiClient.TestEnv;
 using ProtonVPN.UI.Tests.TestsHelper;
 
-namespace ProtonVPN.UI.Tests.Tests.Performance;
+namespace ProtonVPN.UI.Tests.Tests.ServiceLevelIndicators;
 
 [TestFixture]
 [Category("SLI")]
+[Workflow("api_measurements")]
 public class ApiSLI
 {
     private TestUserAuthenticator _userAuthenticator = new();
     private ProdTestApiClient _prodTestApiClient = new();
-    private const string WORKFLOW = "api_measurements";
     private LokiPusher _lokiPusher = new();
-    private string _measurementGroup;
-    private string _runId;
-
-    [OneTimeSetUp]
-    public void TestInitialize()
-    {
-        _runId = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
-    }
 
     [Test]
+    [Sli("paid_servers_stats")]
     public async Task LogicalsStatsPlus()
     {
-        _measurementGroup = "paid_servers_stats";
-
         SecureString password = new NetworkCredential("", TestUserData.PlusUser.Password).SecurePassword;
         await PushServerMaintenanceStatsAsync(TestUserData.PlusUser.Username, password, 2);
     }
 
     [Test]
+    [Sli("free_servers_stats")]
     public async Task LogicalsStatsFree()
     {
-        _measurementGroup = "free_servers_stats";
-
         SecureString password = new NetworkCredential("", TestUserData.FreeUser.Password).SecurePassword;
         await PushServerMaintenanceStatsAsync(TestUserData.FreeUser.Username, password, 0);
     }
 
     [TearDown]
-    public async Task TestCleanup()
+    public void TestCleanup()
     {
-        await _lokiPusher.PushCollectedMetricsAsync(PerformanceTestHelper.MetricsList, _runId, _measurementGroup, WORKFLOW);
-        PerformanceTestHelper.Reset();
+        _lokiPusher.PushMetrics();
+        SliHelper.Reset();
     }
 
     private async Task PushServerMaintenanceStatsAsync(string username, SecureString password, int serverTier)
@@ -88,7 +79,7 @@ public class ApiSLI
             totalIndividualServers += serversArray.Count;
             onlineIndividualServers += serversArray.Count(s => (int)s["Status"] == 1);
         }
-        PerformanceTestHelper.AddMetric("total_servers", totalIndividualServers.ToString());
-        PerformanceTestHelper.AddMetric("online_servers", onlineIndividualServers.ToString());
+        SliHelper.AddMetric("total_servers", totalIndividualServers.ToString());
+        SliHelper.AddMetric("online_servers", onlineIndividualServers.ToString());
     }
 }

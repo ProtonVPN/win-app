@@ -21,6 +21,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using FlaUI.Core.Tools;
+using Newtonsoft.Json.Linq;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.ApiClient.TestEnv;
@@ -32,27 +33,23 @@ public class BtiController
         BaseAddress = new Uri(Environment.GetEnvironmentVariable("BTI_CONTROLLER_URL"))
     };
 
-    public static void SetScenarioAsync(string scenarioEndpoint)
+    public static void SetScenario(string scenarioEndpoint)
     {
-        RetryResult<bool> retry = Retry.WhileFalse(
+        RetryResult<bool> retry = Retry.WhileException(
             () => {
-                return SendScenario(scenarioEndpoint).Result;
+                MakeScenarioRequest(scenarioEndpoint);
             },
-            TestConstants.ThirtySecondsTimeout, TestConstants.RetryInterval, ignoreException: true);
+            TestConstants.TenSecondsTimeout, TestConstants.ApiRetryInterval);
+
+        if (!retry.Success)
+        {
+            throw new Exception($"Failed to set scenario:\n${retry.LastException.Message}");
+        }
     }
 
-    private static async Task<bool> SendScenario(string scenarioEndpoint)
+    private static void MakeScenarioRequest(string scenarioEndpoint)
     {
-        try
-        {
-            HttpResponseMessage response = await _client.GetAsync(scenarioEndpoint);
-            response.EnsureSuccessStatusCode();
-
-            return true;
-        }
-        catch (HttpRequestException)
-        {
-            return false;
-        }
+        HttpResponseMessage response = _client.GetAsync(scenarioEndpoint).Result;
+        response.EnsureSuccessStatusCode();
     }
 }
