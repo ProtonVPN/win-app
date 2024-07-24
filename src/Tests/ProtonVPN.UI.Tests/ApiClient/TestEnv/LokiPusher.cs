@@ -27,6 +27,7 @@ using System.Threading.Tasks;
 using System;
 using ProtonVPN.UI.Tests.TestsHelper;
 using System.Linq;
+using FlaUI.Core.Tools;
 
 namespace ProtonVPN.UI.Tests.ApiClient.TestEnv;
 
@@ -40,23 +41,23 @@ public class LokiPusher
         _httpClient = new LokiApiClient().GetHttpClient();
     }
 
-    public async Task PushCollectedMetricsAsync(List<JProperty> metrics, string runId, string measurementGroup, string workflow)
+    public void PushMetrics()
     {
-        JArray fullMetrics = BaseMetricsJsonBody(GetMetadata(runId), metrics);
-        JObject requestBody = BaseLokiRequestJsonBody(fullMetrics, GetMetricsLabels(measurementGroup, workflow));
-        await PushToLokiAsync(requestBody);
+        JArray fullMetrics = BaseMetricsJsonBody(GetMetadata(SliHelper.RunId), SliHelper.MetricsList);
+        JObject requestBody = BaseLokiRequestJsonBody(fullMetrics, GetMetricsLabels(SliHelper.SliName, SliHelper.Workflow));
+        PushToLokiWithRetry(requestBody);
     }
 
-    public async Task PushLogsAsync(string logsPath, string runId, string lokiLabel, string workflow)
+    public void PushLogs(string logsPath, string lokiLabel)
     {
-        JObject requestBody = AddLogsToRequestJson(logsPath, lokiLabel, workflow, GetMetadata(runId));
-        await PushToLokiAsync(requestBody);
+        JObject requestBody = AddLogsToRequestJson(logsPath, lokiLabel, SliHelper.Workflow, GetMetadata(SliHelper.RunId));
+        PushToLokiWithRetry(requestBody);
     }
 
-    public async Task PushAllLogsAsync(string runId, string workflow)
+    public void PushAllLogs()
     {
-        await PushLogsAsync(TestConstants.ClientLogsPath, runId, "windows_client_logs", workflow);
-        await PushLogsAsync(TestEnvironment.GetServiceLogsPath(), runId, "windows_service_logs", workflow);
+        PushLogs(TestConstants.ClientLogsPath, "windows_client_logs");
+        PushLogs(TestEnvironment.GetServiceLogsPath(), "windows_service_logs");
     }
 
     private JObject AddLogsToRequestJson(string pathToLogs, string measurementGroup, string workflow, JObject metadata)
@@ -79,12 +80,32 @@ public class LokiPusher
         return BaseLokiRequestJsonBody(logs, GetLogsLabels(workflow));
     }
 
-    private async Task PushToLokiAsync(JObject requestBody)
+    private void PushToLokiWithRetry(JObject requestBody)
+    {
+        RetryResult<string> retry = Retry.WhileNull(
+            () => {
+                return PushToLokiAsync(requestBody).Result;
+            },
+            TestConstants.TenSecondsTimeout, TestConstants.ApiRetryInterval, ignoreException: true);
+
+        if (!retry.Success)
+        { 
+            throw new Exception($"Failed to push to loki:\n{retry.LastException.Message}");
+        }
+    }
+
+    private async Task<string> PushToLokiAsync(JObject requestBody)
     {
         string jsonContent = JsonConvert.SerializeObject(requestBody);
         var httpContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
         HttpResponseMessage response = await _httpClient.PostAsync(_lokiPushEndpoint, httpContent);
+        string responseBody = await response.Content.ReadAsStringAsync();
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception(responseBody);
+        }
         response.EnsureSuccessStatusCode();
+        return responseBody;
     }
 
     private string ConvertTimeToUnixNanosecond(string timestampString)

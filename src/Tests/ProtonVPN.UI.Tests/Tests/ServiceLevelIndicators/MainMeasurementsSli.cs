@@ -20,6 +20,7 @@
 using System;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.Annotations;
 using ProtonVPN.UI.Tests.ApiClient.TestEnv;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.Robots.Countries;
@@ -28,15 +29,15 @@ using ProtonVPN.UI.Tests.Robots.Login;
 using ProtonVPN.UI.Tests.Robots.Shell;
 using ProtonVPN.UI.Tests.TestsHelper;
 
-namespace ProtonVPN.UI.Tests.Tests.Performance;
+namespace ProtonVPN.UI.Tests.Tests.ServiceLevelIndicators;
 
 [TestFixture]
 [Category("SLI")]
+[Workflow("main_measurements")]
 public class MainMeasurementsSLI : TestSession
 {
-    private string _runId;
-    private string _measurementGroup;
-    private const string WORKFLOW = "main_measurements";
+    private const string COUNTRY_NAME = "Germany";
+    private const string COUNTRY_CODE = "DE";
 
     private LoginRobot _loginRobot = new();
     private HomeRobot _homeRobot = new();
@@ -44,37 +45,34 @@ public class MainMeasurementsSLI : TestSession
     private CountriesRobot _countriesRobot = new();
 
     private LokiPusher _lokiPusher = new();
-    private PerformanceTestHelper _performanceTestHelper = new();
-
+    private SliHelper _performanceTestHelper = new();
 
     [OneTimeSetUp]
     public void TestInitialize()
     {
         LaunchApp();
-        _runId = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
     }
 
     [Test, Order(0)]
-    public async Task LoginPerformance()
+    [Duration, TestStatus]
+    [Sli("login")]
+    public void LoginPerformance()
     {
-        _measurementGroup = "login";
-
         _loginRobot
             .Wait(TestConstants.StartupDelay)
             .DoLogin(TestUserData.PlusUser);
 
-        PerformanceTestHelper.StartMonitoring();
-        _homeRobot.DoCloseWelcomeOverlay();
-        PerformanceTestHelper.StopMonitoring();
-
-        PerformanceTestHelper.AddMetric("duration", PerformanceTestHelper.GetDuration);
+        SliHelper.Measure(() =>
+        {
+            _homeRobot.DoCloseWelcomeOverlay();
+        });
     }
 
     [Test, Order(1)]
-    public async Task QuickConnectPerformance()
+    [Duration, TestStatus]
+    [Sli("quick_connect")]
+    public void QuickConnectPerformance()
     {
-        _measurementGroup = "quick_connect";
-
         //First connection is made to make sure that everything is setup
         _homeRobot
             .DoConnect()
@@ -83,69 +81,67 @@ public class MainMeasurementsSLI : TestSession
             .Wait(TestConstants.TenSecondsTimeout);
 
         _homeRobot.DoConnect();
-        PerformanceTestHelper.StartMonitoring();
-        _homeRobot.VerifyAllStatesUntilConnected();
-        PerformanceTestHelper.StopMonitoring();
-        _homeRobot.DoDisconnect()
-            //This helps to avoid race conditions when sending API calls.
-            .Wait(TestConstants.FiveSecondsTimeout);
-
-        PerformanceTestHelper.AddMetric("duration", PerformanceTestHelper.GetDuration);
+        SliHelper.Measure(() =>
+        {
+            _homeRobot.VerifyAllStatesUntilConnected();
+        });
+        _homeRobot.DoDisconnect();
     }
 
     [Test, Order(2)]
-    public async Task NetworkPerformance()
+    [Sli("network_speed")]
+    public void NetworkPerformance()
     {
-        _measurementGroup = "network_speed";
-        PerformanceTestHelper.AddNetworkSpeedToMetrics("download_speed_disconnected", "upload_speed_disconnected");
+        SliHelper.AddNetworkSpeedToMetrics("download_speed_disconnected", "upload_speed_disconnected");
 
         _shellRobot
           .DoNavigateToCountriesPage()
           .VerifyCurrentPage("Countries", false);
 
-        _countriesRobot.SearchFor("Germany")
-            .DoConnect("DE");
+        _countriesRobot.SearchFor(COUNTRY_NAME)
+            .DoConnect(COUNTRY_CODE);
         _homeRobot.VerifyVpnStatusIsConnected()
             .Wait(TestConstants.TenSecondsTimeout);
 
-        PerformanceTestHelper.AddNetworkSpeedToMetrics("download_speed_connected", "upload_speed_connected");
+        SliHelper.AddNetworkSpeedToMetrics("download_speed_connected", "upload_speed_connected");
 
         _homeRobot.DoDisconnect()
-            .VerifyVpnStatusIsDisconnected()
-            .Wait(TestConstants.FiveSecondsTimeout);
+            .VerifyVpnStatusIsDisconnected();
     }
 
     [Test, Order(3)]
+    [Duration, TestStatus]
+    [Sli("specific_server_connect")]
     public async Task ConnectionToSpecificServer()
     {
-        _measurementGroup = "specific_server_connect";
         string serverName = await _performanceTestHelper.GetRandomSpecificPaidServerAsync();
 
         _shellRobot
            .DoNavigateToCountriesPage()
            .VerifyCurrentPage("Countries", false);
 
-        _countriesRobot.SearchFor(serverName);
-        PerformanceTestHelper.StartMonitoring();
-        _countriesRobot.DoConnect(serverName);
-        _homeRobot.VerifyVpnStatusIsConnected();
-        PerformanceTestHelper.StopMonitoring();
-        _homeRobot.DoDisconnect()
-            .Wait(TestConstants.FiveSecondsTimeout);
+        _countriesRobot.SearchFor(serverName)
+            .DoConnect(serverName);
+
+        SliHelper.Measure(() =>
+        {
+            _homeRobot.VerifyVpnStatusIsConnected();
+        });
+
+        _homeRobot.DoDisconnect();
     }
 
     [TearDown]
-    public async Task TestCleanup()
+    public void TestCleanup()
     {
-        PerformanceTestHelper.AddTestStatusMetric();
-        await _lokiPusher.PushCollectedMetricsAsync(PerformanceTestHelper.MetricsList, _runId, _measurementGroup, WORKFLOW);
-        PerformanceTestHelper.Reset();
+        _lokiPusher.PushMetrics();
+        SliHelper.Reset();
     }
 
     [OneTimeTearDown]
-    public async Task OneTimeTearDownAsync()
+    public void OneTimeTearDown()
     {
         Cleanup();
-        await _lokiPusher.PushAllLogsAsync(_runId, WORKFLOW);
+        _lokiPusher.PushAllLogs();
     }
 }

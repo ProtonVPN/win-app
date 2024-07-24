@@ -26,7 +26,7 @@ using ProtonVPN.UI.Tests.Robots.Home;
 using ProtonVPN.UI.Tests.Robots.Login;
 using ProtonVPN.UI.Tests.TestsHelper;
 
-namespace ProtonVPN.UI.Tests.Tests.Bti;
+namespace ProtonVPN.UI.Tests.Tests.BigTestInfra;
 
 [TestFixture]
 [Category("BTI")]
@@ -40,8 +40,8 @@ public class LocalAgentErrorTests : TestSession
     [SetUp]
     public async Task TestInitializeAsync()
     {
-        BtiController.SetScenarioAsync("reset");
-        BtiController.SetScenarioAsync("enable/sessions_un_hardjail_all");
+        BtiController.SetScenario(Scenarios.RESET);
+        BtiController.SetScenario(Scenarios.UNHARDJAIL_ALL);
         LaunchApp();
         _loginRobot.DoLogin(TestUserData.PlusUserBti);
         _homeRobot.DoCloseWelcomeOverlay();
@@ -58,7 +58,7 @@ public class LocalAgentErrorTests : TestSession
 
         string certificateBefore = TestEnvironment.GetConnectionCertificate();
 
-        BtiController.SetScenarioAsync(Scenarios.HARDJAIL_86101);
+        BtiController.SetScenario(Scenarios.HARDJAIL_86101);
 
         //Give some time for the error to kick in and refresh the cert
         Thread.Sleep(TestConstants.TenSecondsTimeout);
@@ -119,7 +119,7 @@ public class LocalAgentErrorTests : TestSession
             .DoConnect()
             .VerifyVpnStatusIsConnected();
 
-        BtiController.SetScenarioAsync(Scenarios.HARDJAIL_86999);
+        BtiController.SetScenario(Scenarios.HARDJAIL_86999);
         _homeRobot.VerifyUserIsNotReconnected();
     }
 
@@ -127,8 +127,8 @@ public class LocalAgentErrorTests : TestSession
     public async Task TestCleanupAsync()
     {
         Cleanup();
-        BtiController.SetScenarioAsync("reset");
-        BtiController.SetScenarioAsync("enable/sessions_un_hardjail_all");
+        BtiController.SetScenario(Scenarios.RESET);
+        BtiController.SetScenario(Scenarios.UNHARDJAIL_ALL);
     }
 
     private async Task ReconnectionRequiredTestCase(string scenario)
@@ -138,7 +138,7 @@ public class LocalAgentErrorTests : TestSession
             .DoConnect()
             .VerifyVpnStatusIsConnected();
 
-        BtiController.SetScenarioAsync(scenario);
+        BtiController.SetScenario(scenario);
 
         _homeRobot.VerifyAllStatesUntilConnected()
             .DoDisconnect();
@@ -151,7 +151,7 @@ public class LocalAgentErrorTests : TestSession
             .DoConnect()
             .VerifyVpnStatusIsConnected();
 
-        BtiController.SetScenarioAsync(scenario);
+        BtiController.SetScenario(scenario);
 
         _homeRobot.VerifyVpnStatusIsDisconnected();
     }

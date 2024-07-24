@@ -29,6 +29,7 @@ public static class TestConstants
     public static TimeSpan DefaultNavigationDelay => TimeSpan.FromSeconds(1);
     //Useful to imitate user's delay and then check networking conditions
     public static TimeSpan DisconnectionDelay => TimeSpan.FromSeconds(2);
+    public static TimeSpan ApiRetryInterval => TimeSpan.FromSeconds(3);
     public static TimeSpan FiveSecondsTimeout => TimeSpan.FromSeconds(5);
     public static TimeSpan TenSecondsTimeout => TimeSpan.FromSeconds(10);
     public static TimeSpan ThirtySecondsTimeout => TimeSpan.FromSeconds(30);
