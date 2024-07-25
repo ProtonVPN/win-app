@@ -21,6 +21,7 @@
 
 #define Hash ""
 #define VersionFolder "v" + MyAppVersion
+#define ClearAppDataClientArg "-DoUninstallActions"
 #define AppFolder "Proton\VPN"
 #define SourcePath GetEnv("BUILD_PATH")
 #define IsBTISource SourcePath == "src/bin/win-x64/BTI/publish"
@@ -221,6 +222,9 @@ external 'RemovePinnedIcons@{app}\{#VersionFolder}\Resources\ProtonVPN.InstallAc
 
 function RemoveWfpObjects(): Integer;
 external 'RemoveWfpObjects@{app}\{#VersionFolder}\Resources\ProtonVPN.InstallActions.x86.dll cdecl uninstallonly';
+
+function LaunchUnelevatedProcessOnUninstall(processPath, args: String; isToWait: Boolean): Integer;
+external 'LaunchUnelevatedProcess@{app}\{#VersionFolder}\Resources\ProtonVPN.InstallActions.x86.dll cdecl uninstallonly';
 
 type
   TInt64Array = array of Int64;
@@ -499,6 +503,7 @@ begin
     Log('TAP uninstallation returned: ' + IntToStr(res));
     res := RemoveWfpObjects();
     Log('RemoveWfpObjects returned: ' + IntToStr(res));
+    LaunchUnelevatedProcessOnUninstall(ExpandConstant('{app}\{#VersionFolder}\{#MyAppExeName}'), '{#ClearAppDataClientArg}', True);
     UnloadDLL(ExpandConstant('{app}\{#VersionFolder}\Resources\ProtonVPN.InstallActions.x86.dll'));
   end;
 end;
