@@ -33,6 +33,12 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
         OpenVpnUdp,
 
         [EnumMember]
-        WireGuard,
+        WireGuardUdp,
+
+        [EnumMember]
+        WireGuardTcp,
+
+        [EnumMember]
+        WireGuardTls,
     }
 }

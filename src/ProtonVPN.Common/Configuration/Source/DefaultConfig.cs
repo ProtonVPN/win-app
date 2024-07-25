@@ -164,6 +164,10 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 DefaultWireGuardPorts = new[] { 51820, 88, 123, 49152, 1224 },
 
+                DefaultWireGuardTcpPorts = new [] { 443 },
+
+                DefaultWireGuardTlsPorts = new [] { 443 },
+
                 DefaultLocale = "en-US",
 
                 MaintenanceCheckInterval = TimeSpan.FromMinutes(30),
@@ -250,9 +254,11 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 WireGuard =
                 {
-                    TunAdapterHardwareId = "Wintun",
+                    WintunAdapterHardwareId = "Wintun",
 
-                    TunAdapterGuid = "{EAB2262D-9AB1-5975-7D92-334D06F4972B}",
+                    WintunAdapterGuid = Guid.Parse("{AC128890-BDB1-CE5C-D1DB-EFB01DE370B2}"),
+
+                    NtAdapterGuid = Guid.Parse("{EAB2262D-9AB1-5975-7D92-334D06F4972B}"),
 
                     TunAdapterName = "ProtonVPN",
 
@@ -269,6 +275,8 @@ namespace ProtonVPN.Common.Configuration.Source
                     DefaultDnsServer = "10.2.0.1",
 
                     DefaultClientAddress = "10.2.0.2",
+
+                    PipeName = $"ProtectedPrefix\\Administrators\\WireGuard\\{wireGuardConfigFilename}",
                 },
 
                 TlsPinningConfig =
@@ -351,7 +359,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 AutoLoginBaseUrl = "https://account.proton.me/lite",
 
-                WintunDriverPath = Path.Combine(resourcesFolder, "wintun.dll"),
+                WintunDriverPath = Path.Combine(baseFolder, "wintun.dll"),
 
                 WintunAdapterName = "ProtonVPN TUN",
 

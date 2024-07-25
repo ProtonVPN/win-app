@@ -148,7 +148,7 @@ namespace ProtonVPN.Vpn.Connection
             foreach (VpnProtocol preferredProtocol in preferredProtocols)
             {
                 if (!ports.ContainsKey(preferredProtocol) || 
-                    (endpoint.Server.X25519PublicKey == null && preferredProtocol is VpnProtocol.WireGuard or VpnProtocol.OpenVpnUdp))
+                    (endpoint.Server.X25519PublicKey == null && preferredProtocol is VpnProtocol.WireGuardUdp or VpnProtocol.OpenVpnUdp))
                 {
                     continue;
                 }
@@ -170,10 +170,12 @@ namespace ProtonVPN.Vpn.Connection
             switch (endpoint.VpnProtocol)
             {
                 case VpnProtocol.OpenVpnTcp:
-                    isAlive = await IsOpenVpnEndpointAliveAsync(endpoint, cancellationToken);
+                case VpnProtocol.WireGuardTcp:
+                case VpnProtocol.WireGuardTls:
+                    isAlive = await IsTcpEndpointAliveAsync(endpoint, cancellationToken);
                     break;
                 case VpnProtocol.OpenVpnUdp:
-                case VpnProtocol.WireGuard:
+                case VpnProtocol.WireGuardUdp:
                     isAlive = await IsUdpEndpointAliveAsync(endpoint, cancellationToken);
                     break;
             }
@@ -181,7 +183,7 @@ namespace ProtonVPN.Vpn.Connection
             return isAlive ? endpoint : VpnEndpoint.Empty;
         }
 
-        private async Task<bool> IsOpenVpnEndpointAliveAsync(VpnEndpoint endpoint, CancellationToken cancellationToken)
+        private async Task<bool> IsTcpEndpointAliveAsync(VpnEndpoint endpoint, CancellationToken cancellationToken)
         {
             return await IsEndpointAliveAsync(async timeoutTask => await _tcpPortScanner.Alive(endpoint, timeoutTask), cancellationToken);
         }

@@ -195,6 +195,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Builds.Variables"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Builds.ConsoleJob", "src\Builds\ProtonVPN.Builds.ConsoleJob\ProtonVPN.Builds.ConsoleJob.csproj", "{37355661-376A-4F1D-B4A8-2B74D088571A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Logging.Events", "src\Logging\ProtonVPN.Logging.Events\ProtonVPN.Logging.Events.csproj", "{E4DC870F-6844-4031-B74D-F2B29B02ADD6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1093,6 +1095,18 @@ Global
 		{37355661-376A-4F1D-B4A8-2B74D088571A}.Release|x64.Build.0 = Release|Any CPU
 		{37355661-376A-4F1D-B4A8-2B74D088571A}.Release|x86.ActiveCfg = Release|Any CPU
 		{37355661-376A-4F1D-B4A8-2B74D088571A}.Release|x86.Build.0 = Release|Any CPU
+		{E4DC870F-6844-4031-B74D-F2B29B02ADD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4DC870F-6844-4031-B74D-F2B29B02ADD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4DC870F-6844-4031-B74D-F2B29B02ADD6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E4DC870F-6844-4031-B74D-F2B29B02ADD6}.Debug|x64.Build.0 = Debug|Any CPU
+		{E4DC870F-6844-4031-B74D-F2B29B02ADD6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E4DC870F-6844-4031-B74D-F2B29B02ADD6}.Debug|x86.Build.0 = Debug|Any CPU
+		{E4DC870F-6844-4031-B74D-F2B29B02ADD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4DC870F-6844-4031-B74D-F2B29B02ADD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4DC870F-6844-4031-B74D-F2B29B02ADD6}.Release|x64.ActiveCfg = Release|Any CPU
+		{E4DC870F-6844-4031-B74D-F2B29B02ADD6}.Release|x64.Build.0 = Release|Any CPU
+		{E4DC870F-6844-4031-B74D-F2B29B02ADD6}.Release|x86.ActiveCfg = Release|Any CPU
+		{E4DC870F-6844-4031-B74D-F2B29B02ADD6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1158,6 +1172,7 @@ Global
 		{CEE9045E-0299-4488-80FF-0162D099C544} = {4B1EF657-A679-43B5-83DD-612D602C6333}
 		{070A1A8B-241E-45B8-882C-B33D79086E34} = {209CAB96-3CE8-4F93-A535-2B93C9A6AA32}
 		{37355661-376A-4F1D-B4A8-2B74D088571A} = {209CAB96-3CE8-4F93-A535-2B93C9A6AA32}
+		{E4DC870F-6844-4031-B74D-F2B29B02ADD6} = {2A968101-45CA-421C-A546-00D681BF3C76}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5CFD3EA5-ADCA-48F0-9E3F-BBC76CCBF1C2}

@@ -58,7 +58,7 @@ namespace ProtonVPN.Core.Tests.Servers
         public void ItShouldSkipServersWithoutPublicKeyForWireguard()
         {
             // Arrange
-            _appSettings.GetProtocol().Returns(VpnProtocol.WireGuard);
+            _appSettings.GetProtocol().Returns(VpnProtocol.WireGuardUdp);
             _userStorage.GetUser().Returns(new User {MaxTier = 0});
             ServerManager serverManager = new ServerManager(_userStorage, _appSettings, _logger);
 
@@ -73,7 +73,7 @@ namespace ProtonVPN.Core.Tests.Servers
         public void ItShouldSkipCountriesWithNoServersForWireguard()
         {
             // Arrange
-            _appSettings.GetProtocol().Returns(VpnProtocol.WireGuard);
+            _appSettings.GetProtocol().Returns(VpnProtocol.WireGuardUdp);
             ServerManager serverManager = new ServerManager(_userStorage, _appSettings, _logger);
 
             // Act

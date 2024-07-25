@@ -127,7 +127,17 @@ namespace ProtonVPN.App.Tests.Servers
                 Features = (ulong)features,
                 Tier = tier,
                 City = city,
-                Servers = new List<PhysicalServerResponse>()
+                Servers = new List<PhysicalServerResponse> { new PhysicalServerResponse
+                {
+                    Id = "id",
+                    Domain = "domain.com",
+                    EntryIp = "127.0.0.1",
+                    ExitIp = "127.0.0.1",
+                    Label = "0",
+                    Signature = "signature",
+                    Status = 1,
+                    X25519PublicKey = "X25519PublicKey",
+                }}
             };
         }
 

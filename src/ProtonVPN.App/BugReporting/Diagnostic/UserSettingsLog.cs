@@ -105,7 +105,6 @@ namespace ProtonVPN.BugReporting.Diagnostic
             yield return new(nameof(IAppSettings.PortForwardingInQuickSettings), _appSettings.PortForwardingInQuickSettings);
             yield return new(nameof(IAppSettings.DoNotShowKillSwitchConfirmationDialog), _appSettings.DoNotShowKillSwitchConfirmationDialog);
             yield return new(nameof(IAppSettings.DoNotShowEnableSmartProtocolDialog), _appSettings.DoNotShowEnableSmartProtocolDialog);
-            yield return new(nameof(IAppSettings.FeatureSmartProtocolWireGuardEnabled), _appSettings.FeatureSmartProtocolWireGuardEnabled);
             yield return new(nameof(IAppSettings.Announcements) + "Count", _appSettings.Announcements?.Count ?? 0);
             yield return new(nameof(IAppSettings.OpenVpnTcpPorts), JsonConvert.SerializeObject(_appSettings.OpenVpnTcpPorts));
             yield return new(nameof(IAppSettings.OpenVpnUdpPorts), JsonConvert.SerializeObject(_appSettings.OpenVpnUdpPorts));

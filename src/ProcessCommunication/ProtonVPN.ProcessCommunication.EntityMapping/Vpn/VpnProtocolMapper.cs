@@ -31,7 +31,9 @@ namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn
             {
                 VpnProtocol.OpenVpnUdp => VpnProtocolIpcEntity.OpenVpnUdp,
                 VpnProtocol.OpenVpnTcp => VpnProtocolIpcEntity.OpenVpnTcp,
-                VpnProtocol.WireGuard => VpnProtocolIpcEntity.WireGuard,
+                VpnProtocol.WireGuardUdp => VpnProtocolIpcEntity.WireGuardUdp,
+                VpnProtocol.WireGuardTcp => VpnProtocolIpcEntity.WireGuardTcp,
+                VpnProtocol.WireGuardTls => VpnProtocolIpcEntity.WireGuardTls,
                 VpnProtocol.Smart => VpnProtocolIpcEntity.Smart,
                 _ => throw new NotImplementedException("VpnProtocol has an unknown value.")
             };
@@ -43,7 +45,9 @@ namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn
             {
                 VpnProtocolIpcEntity.OpenVpnTcp => VpnProtocol.OpenVpnTcp,
                 VpnProtocolIpcEntity.OpenVpnUdp => VpnProtocol.OpenVpnUdp,
-                VpnProtocolIpcEntity.WireGuard => VpnProtocol.WireGuard,
+                VpnProtocolIpcEntity.WireGuardUdp => VpnProtocol.WireGuardUdp,
+                VpnProtocolIpcEntity.WireGuardTcp => VpnProtocol.WireGuardTcp,
+                VpnProtocolIpcEntity.WireGuardTls => VpnProtocol.WireGuardTls,
                 VpnProtocolIpcEntity.Smart => VpnProtocol.Smart,
                 _ => throw new NotImplementedException("VpnProtocol has an unknown value."),
             };

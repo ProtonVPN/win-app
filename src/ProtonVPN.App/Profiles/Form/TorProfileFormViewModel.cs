@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Common.Configuration;
+using ProtonVPN.Core.FeatureFlags;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
@@ -35,8 +36,9 @@ namespace ProtonVPN.Profiles.Form
             IDialogs dialogs,
             IModals modals,
             ServerManager serverManager,
-            IProfileFactory profileFactory) 
-            : base(appConfig, colorProvider, userStorage, profileManager, dialogs, modals, serverManager, profileFactory)
+            IProfileFactory profileFactory,
+            IFeatureFlagsProvider featureFlagsProvider)
+            : base(appConfig, colorProvider, userStorage, profileManager, dialogs, modals, serverManager, profileFactory, featureFlagsProvider)
         {
         }
 

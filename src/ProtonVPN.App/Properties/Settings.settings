@@ -338,9 +338,6 @@
     <Setting Name="WireGuardPorts" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="FeatureSmartProtocolWireGuardEnabled" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="HardwareAccelerationEnabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -429,6 +426,12 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="FeatureFlags" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="WireGuardTcpPorts" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="WireGuardTlsPorts" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

@@ -99,7 +99,7 @@ namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn
             {
                 Ports = new Dictionary<VpnProtocol, IReadOnlyCollection<int>>()
                 {
-                    { VpnProtocol.WireGuard, new List<int>() { 80, 443 } },
+                    { VpnProtocol.WireGuardUdp, new List<int>() { 80, 443 } },
                     { VpnProtocol.OpenVpnUdp, new List<int>() { 8080, 1 } }
                 },
                 CustomDns = new List<string>() { "172.16.0.0" },
@@ -164,7 +164,7 @@ namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn
             {
                 Ports = new Dictionary<VpnProtocolIpcEntity, int[]>()
                 {
-                    { VpnProtocolIpcEntity.WireGuard, new int[] { 80, 443 } },
+                    { VpnProtocolIpcEntity.WireGuardUdp, new int[] { 80, 443 } },
                     { VpnProtocolIpcEntity.OpenVpnUdp, new int[] { 8080, 1 } }
                 },
                 CustomDns = new List<string>() { "172.16.0.0" },

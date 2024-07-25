@@ -198,6 +198,12 @@ namespace ProtonVPN.Common.Configuration
         [Required]
         public int[] DefaultWireGuardPorts { get; set; }
 
+        [Required]
+        public int[] DefaultWireGuardTcpPorts { get; set; }
+
+        [Required]
+        public int[] DefaultWireGuardTlsPorts { get; set; }
+
         public UrlConfig Urls { get; } = new();
 
         public OpenVpnConfig OpenVpn { get; } = new();

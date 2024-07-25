@@ -87,13 +87,14 @@ namespace ProtonVPN.Core.Settings
         bool DoNotShowKillSwitchConfirmationDialog { get; set; }
         bool DoNotShowEnableSmartProtocolDialog { get; set; }
         bool DoNotShowDiscourageSecureCoreDialog { get; set; }
-        bool FeatureSmartProtocolWireGuardEnabled { get; set; }
         IReadOnlyList<Announcement> Announcements { get; set; }
         string FeatureFlags { get; set; }
         List<IssueCategoryResponse> ReportAnIssueFormData { get; set; }
         int[] OpenVpnTcpPorts { get; set; }
         int[] OpenVpnUdpPorts { get; set; }
         int[] WireGuardPorts { get; set; }
+        int[] WireGuardTcpPorts { get; set; }
+        int[] WireGuardTlsPorts { get; set; }
         bool FeatureNetShieldEnabled { get; set; }
         bool FeatureMaintenanceTrackerEnabled { get; set; }
         bool FeaturePollNotificationApiEnabled { get; set; }

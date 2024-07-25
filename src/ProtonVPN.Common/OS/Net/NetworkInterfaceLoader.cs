@@ -19,6 +19,7 @@
 
 using System;
 using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 
@@ -45,16 +46,22 @@ namespace ProtonVPN.Common.OS.Net
             return _networkInterfaces.GetByName(_config.OpenVpn.TunAdapterName);
         }
 
-        public INetworkInterface GetWireGuardTunInterface()
+        public INetworkInterface GetWireGuardInterface(VpnProtocol protocol)
         {
-            INetworkInterface networkInterface = _networkInterfaces.GetById(Guid.Parse(_config.WireGuard.TunAdapterGuid));
+            Guid guid = protocol switch
+            {
+                VpnProtocol.WireGuardUdp => _config.WireGuard.NtAdapterGuid,
+                VpnProtocol.WireGuardTcp or VpnProtocol.WireGuardTls => _config.WireGuard.WintunAdapterGuid,
+                _ => throw new Exception($"Can't provide GUID for protocol {protocol}")
+            };
+            INetworkInterface networkInterface = _networkInterfaces.GetById(guid);
             return networkInterface ?? _networkInterfaces.GetByName(_config.WireGuard.TunAdapterName);
         }
 
         public INetworkInterface GetByVpnProtocol(VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter)
         {
-            return vpnProtocol == VpnProtocol.WireGuard
-                ? GetWireGuardTunInterface()
+            return vpnProtocol.IsWireGuard()
+                ? GetWireGuardInterface(vpnProtocol)
                 : GetByOpenVpnAdapter(openVpnAdapter);
         }
 

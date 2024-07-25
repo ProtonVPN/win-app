@@ -19,6 +19,7 @@
 
 using System;
 using ProtonVPN.Common;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
@@ -84,7 +85,7 @@ namespace ProtonVPN.Vpn.Connection
             _credentials = credentials;
             _config = config;
 
-            if (_endpoint.VpnProtocol == VpnProtocol.WireGuard)
+            if (_endpoint.VpnProtocol.IsWireGuard())
             {
                 _logger.Info<ConnectLog>("WireGuard protocol selected. No network adapters to check.");
                 Connect();
@@ -222,11 +223,11 @@ namespace ProtonVPN.Vpn.Connection
 
         private void Origin_StateChanged(object sender, EventArgs<VpnState> e)
         {
-            if (e.Data.Status == VpnStatus.Connected && e.Data.VpnProtocol == VpnProtocol.WireGuard)
+            if (e.Data.Status == VpnStatus.Connected && e.Data.VpnProtocol.IsWireGuard())
             {
                 HandleConnectedWithWireGuard();
             }
-            else if (e.Data.Status == VpnStatus.Disconnected && e.Data.VpnProtocol is VpnProtocol.OpenVpnTcp or VpnProtocol.OpenVpnUdp)
+            else if (e.Data.Status == VpnStatus.Disconnected && e.Data.VpnProtocol.IsOpenVpn())
             {
                 _wintunAdapter.Close();
             }
@@ -250,7 +251,9 @@ namespace ProtonVPN.Vpn.Connection
         {
             switch (vpnState.VpnProtocol)
             {
-                case VpnProtocol.WireGuard:
+                case VpnProtocol.WireGuardUdp:
+                case VpnProtocol.WireGuardTcp:
+                case VpnProtocol.WireGuardTls:
                     HandleWireGuardError(vpnState);
                     break;
                 case VpnProtocol.OpenVpnUdp:

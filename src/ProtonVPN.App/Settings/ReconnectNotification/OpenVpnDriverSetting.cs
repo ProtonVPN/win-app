@@ -18,6 +18,7 @@
  */
 
 using System.Collections.Generic;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Core.Settings;
 
@@ -39,7 +40,7 @@ namespace ProtonVPN.Settings.ReconnectNotification
 
         public override bool Changed(VpnProtocol vpnProtocol)
         {
-            return base.Changed(vpnProtocol) && vpnProtocol != VpnProtocol.WireGuard;
+            return base.Changed(vpnProtocol) && vpnProtocol.IsOpenVpn();
         }
     }
 }

@@ -27,6 +27,7 @@ using ProtonVPN.Common.Abstract;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Core.FeatureFlags;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Profiles;
@@ -55,6 +56,7 @@ namespace ProtonVPN.App.Tests.Vpn.Connectors
         private readonly IVpnServiceManager _vpnServiceManager = Substitute.For<IVpnServiceManager>();
         private readonly IModals _modals = Substitute.For<IModals>();
         private readonly IDialogs _dialogs = Substitute.For<IDialogs>();
+        private readonly IFeatureFlagsProvider _featureFlagsProvider = Substitute.For<IFeatureFlagsProvider>();
 
         private ServerManager _serverManager;
         private IVpnCredentialProvider _vpnCredentialProvider;
@@ -92,7 +94,18 @@ namespace ProtonVPN.App.Tests.Vpn.Connectors
             
             _vpnCredentialProvider.Credentials().Returns(GetVpnCredentials());
 
-            _profileConnector = new ProfileConnector(_logger, _userStorage, _appSettings, _serverManager, _vpnServiceManager, _modals, _dialogs, _vpnCredentialProvider, _popupWindows, _delinquencyPopupViewModel);
+            _profileConnector = new ProfileConnector(
+                _logger,
+                _userStorage,
+                _appSettings,
+                _serverManager,
+                _vpnServiceManager,
+                _modals,
+                _dialogs,
+                _vpnCredentialProvider,
+                _popupWindows,
+                _delinquencyPopupViewModel,
+                _featureFlagsProvider);
         }
 
         private void InitializeUser()

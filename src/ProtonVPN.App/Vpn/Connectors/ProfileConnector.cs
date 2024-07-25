@@ -30,6 +30,7 @@ using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Abstract;
+using ProtonVPN.Core.FeatureFlags;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Profiles;
 using ProtonVPN.Core.Servers;
@@ -62,6 +63,7 @@ namespace ProtonVPN.Vpn.Connectors
         private readonly IVpnCredentialProvider _vpnCredentialProvider;
         private readonly IPopupWindows _popupWindows;
         private readonly IDelinquencyPopupViewModel _delinquencyPopupViewModel;
+        private readonly IFeatureFlagsProvider _featureFlagsProvider;
 
         public ProfileConnector(
             ILogger logger,
@@ -73,7 +75,8 @@ namespace ProtonVPN.Vpn.Connectors
             IDialogs dialogs,
             IVpnCredentialProvider vpnCredentialProvider,
             IPopupWindows popupWindows,
-            IDelinquencyPopupViewModel delinquencyPopupViewModel)
+            IDelinquencyPopupViewModel delinquencyPopupViewModel,
+            IFeatureFlagsProvider featureFlagsProvider)
         {
             _logger = logger;
             _userStorage = userStorage;
@@ -85,6 +88,7 @@ namespace ProtonVPN.Vpn.Connectors
             _vpnCredentialProvider = vpnCredentialProvider;
             _popupWindows = popupWindows;
             _delinquencyPopupViewModel = delinquencyPopupViewModel;
+            _featureFlagsProvider = featureFlagsProvider;
         }
 
         public bool IsServerFromProfile(Server server, Profile profile)
@@ -339,7 +343,9 @@ namespace ProtonVPN.Vpn.Connectors
         {
             return new Dictionary<VpnProtocol, IReadOnlyCollection<int>>
             {
-                {VpnProtocol.WireGuard, _appSettings.WireGuardPorts},
+                {VpnProtocol.WireGuardUdp, _appSettings.WireGuardPorts},
+                {VpnProtocol.WireGuardTcp, _appSettings.WireGuardTcpPorts},
+                {VpnProtocol.WireGuardTls, _appSettings.WireGuardTlsPorts},
                 {VpnProtocol.OpenVpnUdp, _appSettings.OpenVpnUdpPorts},
                 {VpnProtocol.OpenVpnTcp, _appSettings.OpenVpnTcpPorts},
             };
@@ -350,13 +356,20 @@ namespace ProtonVPN.Vpn.Connectors
             List<VpnProtocol> preferredProtocols = new List<VpnProtocol>();
             if (protocol == VpnProtocol.Smart)
             {
-                if (_appSettings.FeatureSmartProtocolWireGuardEnabled)
+                preferredProtocols.Add(VpnProtocol.WireGuardUdp);
+
+                if (_featureFlagsProvider.IsStealthEnabled)
                 {
-                    preferredProtocols.Add(VpnProtocol.WireGuard);
+                    preferredProtocols.Add(VpnProtocol.WireGuardTcp);
                 }
 
                 preferredProtocols.Add(VpnProtocol.OpenVpnUdp);
                 preferredProtocols.Add(VpnProtocol.OpenVpnTcp);
+
+                if (_featureFlagsProvider.IsStealthEnabled)
+                {
+                    preferredProtocols.Add(VpnProtocol.WireGuardTls);
+                }
             }
             else
             {
@@ -392,6 +405,7 @@ namespace ProtonVPN.Vpn.Connectors
             IReadOnlyList<VpnHost> hosts = GetValidServers(servers);
             if (hosts.Any())
             {
+                vpnProtocol = GetVpnProtocol(vpnProtocol);
                 VpnConnectionRequest request = new(hosts, vpnProtocol, VpnConfig(vpnProtocol), credentialsResult.Value);
                 _logger.Info<ConnectLog>("Connect requested");
                 await _vpnServiceManager.Connect(request);
@@ -401,6 +415,13 @@ namespace ProtonVPN.Vpn.Connectors
             {
                 _logger.Info<ConnectLog>("Connect received zero valid servers");
             }
+        }
+
+        private VpnProtocol GetVpnProtocol(VpnProtocol vpnProtocol)
+        {
+            return !_featureFlagsProvider.IsStealthEnabled && vpnProtocol.IsWireGuardTcpOrTls()
+                ? VpnProtocol.Smart
+                : vpnProtocol;
         }
 
         private void SwitchSecureCoreMode(bool secureCore)

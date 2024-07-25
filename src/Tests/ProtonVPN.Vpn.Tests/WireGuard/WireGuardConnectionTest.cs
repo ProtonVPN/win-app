@@ -53,7 +53,7 @@ namespace ProtonVPN.Vpn.Tests.WireGuard
 
             // Act
             wireGuardConnection.Connect(
-                new VpnEndpoint(new VpnHost("host", "127.0.0.1", "", null, signature: string.Empty), VpnProtocol.WireGuard),
+                new VpnEndpoint(new VpnHost("host", "127.0.0.1", "", null, signature: string.Empty), VpnProtocol.WireGuardUdp),
                 new VpnCredentials("cert",
                     new AsymmetricKeyPair(
                         new SecretKey("U2VjcmV0S2V5", KeyAlgorithm.Unknown),
@@ -75,10 +75,11 @@ namespace ProtonVPN.Vpn.Tests.WireGuard
             IX25519KeyGenerator xIx25519KeyGenerator = Substitute.For<IX25519KeyGenerator>();
             WireGuardService wireGuardService =
                 new(logger, new ProtonVPN.Common.Configuration.Config(), Substitute.For<IService>());
-            TrafficManager trafficManager = new("ProtonVPN", logger);
+            NtTrafficManager ntTrafficManager = new("ProtonVPN", logger);
+            WintunTrafficManager wintunTrafficManager = new("ProtonVPN");
             StatusManager statusManager = new(logger, string.Empty);
 
-            return new(logger, config, gatewayCache, wireGuardService, trafficManager, statusManager, xIx25519KeyGenerator);
+            return new(logger, config, gatewayCache, wireGuardService, ntTrafficManager, wintunTrafficManager, statusManager, xIx25519KeyGenerator);
         }
     }
 }
