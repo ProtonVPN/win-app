@@ -52,6 +52,8 @@ gitleaks-scan-repository:
   allow_failure: true
   needs: []
   rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: never
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       when: never
     - when: always
