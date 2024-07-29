@@ -2837,13 +2837,13 @@ Enjoy the best of Proton privacy.</value>
     <value>Швидкість (UDP)</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Description">
-    <value>Fast, secure, and efficient. WireGuard is difficult to detect and block.</value>
+    <value>Швидкий, безпечний та ефективний. WireGuard важко виявити та блокувати.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Title">
     <value>WireGuard</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Description">
-    <value>Overcomes VPN blocks by hiding your VPN connection from censors. This protocol is DPI (deep packet inspection) resistant, but may not be as fast as other protocols. Stealth is exclusive to Proton VPN.</value>
+    <value>Обходить блокування VPN, приховуючи ваше VPN-з'єднання від цензури. Цей протокол стійкий до DPI (глибока перевірка пакетів), але може бути не таким швидким, як інші протоколи. Stealth – ексклюзивний протокол, доступний лише з Proton VPN.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Title">
     <value>Stealth</value>

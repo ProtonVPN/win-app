@@ -2185,7 +2185,7 @@ Ciesz się tym, co najlepsze w prywatności Proton.</value>
     <value>Pokaż adres IP użytkownika</value>
   </data>
   <data name="Home_ConnectionDetails_State">
-    <value>State</value>
+    <value>Stan</value>
   </data>
   <data name="Home_ConnectionDetails_Title">
     <value>Szczegóły połączenia</value>

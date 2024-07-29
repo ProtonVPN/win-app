@@ -1756,7 +1756,7 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Ajuda de conexão</value>
   </data>
   <data name="Dialogs_WelcomeB2B_Description">
-    <value>Simple. Seamless. Secure. Protect yourself online and securely access your organization's sites, software, and files.</value>
+    <value>Simples. Sem interrupções. Seguro. Proteja-se on-line e acesse com segurança os sites, o software e os arquivos da sua organização.</value>
   </data>
   <data name="Dialogs_WelcomeToProton_Title">
     <value>Boas-vindas ao Proton VPN</value>
@@ -1774,22 +1774,22 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Navegue com liberade de qualquer lugar</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
-    <value>Hide your virtual location and experience the internet from any one of our {0} available country.</value>
+    <value>Oculte sua localização virtual e experimente a Internet de qualquer um de nossos {0} países disponíveis.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
-    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+    <value>Oculte sua localização virtual e experimente a Internet de qualquer um de nossos {0} países disponíveis.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
     <value>Proteja 10 dispositivos de uma só vez</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
-    <value>Extend VPN protection to your desktop, mobile, browser, TV, and more. </value>
+    <value>Estenda a proteção VPN para seu desktop, celular, navegador, TV e muito mais. </value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Stream">
     <value>Streaming em alta resolução</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
-    <value>Watch movies and TV shows from around the world, without compromising on speed or quality.</value>
+    <value>Assista a filmes e programas de TV de todo o mundo, sem comprometer a velocidade ou a qualidade.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Boas-vindas ao VPN Plus</value>
@@ -2261,7 +2261,7 @@ Aproveite o melhor da privacidade da Proton.</value>
     <value>Defina este número em seu aplicativo BitTorrent para maior velocidade.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
-    <value>Your plan has been downgraded to Proton Free, and we're reconnecting you to the fastest free server.</value>
+    <value>Seu plano foi rebaixado para o Proton Free, e estamos reconectando-o ao servidor gratuito mais rápido.</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Servidor gratuito mais rápido</value>

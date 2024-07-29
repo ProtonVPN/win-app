@@ -1506,7 +1506,7 @@
     <value>شما در حال حاضر به حداکثر تغییرات مجاز در سرورهای رایگان رسیده‌اید</value>
   </data>
   <data name="Dialogs_Common_GetStarted">
-    <value>Get started</value>
+    <value>شروع کنید</value>
   </data>
   <data name="Dialogs_Common_SubscriptionExpired">
     <value>Subscription expired</value>
@@ -1711,7 +1711,7 @@ Secure Core</value>
     <value>Smart Routing</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
-    <value>Maybe later</value>
+    <value>شاید بعدا</value>
   </data>
   <data name="Dialogs_Tor_Description">
     <value>به یک سرور Tor وصل شوید تا به سرویس‌های مخفی و سایت‌های onion با هر مرورگری دسترسی یابید.</value>
@@ -1738,7 +1738,7 @@ Secure Core</value>
     <value>These quick fixes may help you connect to Proton.</value>
   </data>
   <data name="Dialogs_Troubleshooting_DidNotWork">
-    <value>Didn't work?</value>
+    <value>کار نکرد؟</value>
   </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork">
     <value>Use a different network</value>
@@ -2035,7 +2035,7 @@ Enjoy the best of Proton privacy.</value>
     <value>نشانی IP کاربر را نشان دهید</value>
   </data>
   <data name="Home_ConnectionDetails_State">
-    <value>State</value>
+    <value>استان</value>
   </data>
   <data name="Home_ConnectionDetails_Title">
     <value>جزئیات اتصال</value>
@@ -2081,7 +2081,7 @@ Enjoy the best of Proton privacy.</value>
     <value>Ads are promotional banners or pop-ups that appear on websites and apps.</value>
   </data>
   <data name="Home_NetShield_DataSaved">
-    <value>Data saved</value>
+    <value>داده‌های صرفه‌جویی شده</value>
   </data>
   <data name="Home_NetShield_DataSaved_Description">
     <value>Estimated data saved by blocking unwanted ads, trackers, and malware.</value>
@@ -2330,7 +2330,7 @@ Enjoy the best of Proton privacy.</value>
     <value>داده‌های استفاده در غلبه بر مسدود سازی‌های VPN و بهبود یابی عملکرد برنامه به ما کمک می‌کند.</value>
   </data>
   <data name="Settings_Common_Apply">
-    <value>Apply</value>
+    <value>اعمال</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
   <data name="Settings_Common_ApplyAndReconnect">
@@ -2747,13 +2747,13 @@ Enjoy the best of Proton privacy.</value>
     <value>مرکز پشتیبانی</value>
   </data>
   <data name="Settings_Theme_Dark">
-    <value>Dark</value>
+    <value>تاریک</value>
   </data>
   <data name="Settings_Theme_Default">
-    <value>Default</value>
+    <value>پیش‌فرض</value>
   </data>
   <data name="Settings_Theme_Light">
-    <value>Light</value>
+    <value>روشن</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>سرعت اتصالتان را تا ۴۰۰٪ با فناوری‌های بهبود بخشی به عملکرد افزایش دهید.</value>
@@ -2766,7 +2766,7 @@ Enjoy the best of Proton privacy.</value>
     <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
   </data>
   <data name="SystemNotification_Disconnected">
-    <value>Disconnected</value>
+    <value>قطع شده</value>
   </data>
   <data name="Tray_Actions_ExitApplication">
     <value>خروج</value>
@@ -2809,7 +2809,7 @@ Enjoy the best of Proton privacy.</value>
     <value>Android and Android TV</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser">
-    <value>Browser</value>
+    <value>مرورگر</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Platforms_Linux">
     <value>Linux</value>
@@ -2848,7 +2848,7 @@ Enjoy the best of Proton privacy.</value>
     <value>Increased upload and download speeds</value>
   </data>
   <data name="Upsell_Carousel_Platforms_More">
-    <value>+ more</value>
+    <value>+ بیشتر</value>
     <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
   </data>
   <data name="Upsell_Carousel_SecureCore">

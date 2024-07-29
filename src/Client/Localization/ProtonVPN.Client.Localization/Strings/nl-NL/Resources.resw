@@ -181,7 +181,7 @@
     <value>Aan</value>
   </data>
   <data name="Common_States_Updating">
-    <value>Updating...</value>
+    <value>Bijwerken...</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN is er niet in geslaagd om het authenticatiecertificaat op te halen vanwege een netwerk probleem.</value>
@@ -1506,7 +1506,7 @@
     <value>U heeft het maximum aantal gratis serverwijzigingen bereikt voor nu</value>
   </data>
   <data name="Dialogs_Common_GetStarted">
-    <value>Get started</value>
+    <value>Aan de slag</value>
   </data>
   <data name="Dialogs_Common_SubscriptionExpired">
     <value>Subscription expired</value>
@@ -1711,7 +1711,7 @@ Smart Routing wordt meestal gebruikt om anti-privacywetten en andere vormen van 
     <value>Smart Routing</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
-    <value>Maybe later</value>
+    <value>Misschien later</value>
   </data>
   <data name="Dialogs_Tor_Description">
     <value>Maak verbinding met een Tor-server om via een willekeurige browser toegang te krijgen tot verborgen services en privé(onion)sites.</value>
@@ -2035,7 +2035,7 @@ Enjoy the best of Proton privacy.</value>
     <value>Toon IP-adres van gebruiker</value>
   </data>
   <data name="Home_ConnectionDetails_State">
-    <value>State</value>
+    <value>Land/Staat</value>
   </data>
   <data name="Home_ConnectionDetails_Title">
     <value>Verbindingsdetails</value>

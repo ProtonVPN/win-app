@@ -140,7 +140,7 @@
     <value>連線</value>
   </data>
   <data name="Common_Actions_ConnectTo">
-    <value>Connect to {0}</value>
+    <value>與 {0} 連接</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to Connect to something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_ContactUs">
@@ -150,7 +150,7 @@
     <value>中斷連線</value>
   </data>
   <data name="Common_Actions_DisconnectFrom">
-    <value>Disconnect from {0}</value>
+    <value>與 {0} 中斷連線</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Enable">
@@ -181,7 +181,7 @@
     <value>開啟</value>
   </data>
   <data name="Common_States_Updating">
-    <value>Updating...</value>
+    <value>正在更新...</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>由於網路問題，Proton VPN 提取認證憑證失敗。</value>
@@ -1446,7 +1446,7 @@
     <value>您已達到免費版切換伺服器的次數上限</value>
   </data>
   <data name="Dialogs_Common_GetStarted">
-    <value>Get started</value>
+    <value>開始使用</value>
   </data>
   <data name="Dialogs_Common_SubscriptionExpired">
     <value>Subscription expired</value>
@@ -1645,7 +1645,7 @@ VPN 連線</value>
     <value>Smart Routing</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
-    <value>Maybe later</value>
+    <value>稍後再說</value>
   </data>
   <data name="Dialogs_Tor_Description">
     <value>連接至 Tor 伺服器，使用任何瀏覽器存取隱藏服務與 onion 網站。</value>
@@ -1672,7 +1672,7 @@ VPN 連線</value>
     <value>These quick fixes may help you connect to Proton.</value>
   </data>
   <data name="Dialogs_Troubleshooting_DidNotWork">
-    <value>Didn't work?</value>
+    <value>不起作用？</value>
   </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork">
     <value>Use a different network</value>
@@ -1889,7 +1889,7 @@ Enjoy the best of Proton privacy.</value>
     <value>正在連接到...</value>
   </data>
   <data name="Home_ConnectionCard_Header_DefaultConnection">
-    <value>Default connection</value>
+    <value>預設連線</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
     <value>免費連線</value>
@@ -1960,7 +1960,7 @@ Enjoy the best of Proton privacy.</value>
     <value>顯示使用者 IP 位址</value>
   </data>
   <data name="Home_ConnectionDetails_State">
-    <value>State</value>
+    <value>州份</value>
   </data>
   <data name="Home_ConnectionDetails_Title">
     <value>連線詳細資訊</value>
@@ -1972,7 +1972,7 @@ Enjoy the best of Proton privacy.</value>
     <value>Download volume</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Total">
-    <value>Total volume</value>
+    <value>總容量</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Upload">
     <value>Upload volume</value>
@@ -2003,7 +2003,7 @@ Enjoy the best of Proton privacy.</value>
     <value>Ads are promotional banners or pop-ups that appear on websites and apps.</value>
   </data>
   <data name="Home_NetShield_DataSaved">
-    <value>Data saved</value>
+    <value>資料已儲存</value>
   </data>
   <data name="Home_NetShield_DataSaved_Description">
     <value>Estimated data saved by blocking unwanted ads, trackers, and malware.</value>
@@ -2249,7 +2249,7 @@ Enjoy the best of Proton privacy.</value>
     <value>使用資料有助於我們克服 VPN 封鎖器和改善應用程式效能。</value>
   </data>
   <data name="Settings_Common_Apply">
-    <value>Apply</value>
+    <value>套用</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
   <data name="Settings_Common_ApplyAndReconnect">
@@ -2330,7 +2330,7 @@ Enjoy the best of Proton privacy.</value>
     <value>限制數據流入您的網路。此選項較為安全，惟點對點遊戲連線或會較困難。</value>
   </data>
   <data name="Settings_Connection_Default">
-    <value>Default connection</value>
+    <value>預設連線</value>
   </data>
   <data name="Settings_Connection_Default_Fastest">
     <value>最快的國家</value>
@@ -2339,7 +2339,7 @@ Enjoy the best of Proton privacy.</value>
     <value>The best server based on your location</value>
   </data>
   <data name="Settings_Connection_Default_Last">
-    <value>Last connection</value>
+    <value>最後一次連接</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Your most recently used connection</value>
@@ -2594,7 +2594,7 @@ Enjoy the best of Proton privacy.</value>
     <value>速度 (UDP)</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Description">
-    <value>Fast, secure, and efficient. WireGuard is difficult to detect and block.</value>
+    <value>快快速安全及經濟。WireGuard難以偵測及阻擋。</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Title">
     <value>WireGuard</value>
@@ -2666,13 +2666,13 @@ Enjoy the best of Proton privacy.</value>
     <value>支援中心</value>
   </data>
   <data name="Settings_Theme_Dark">
-    <value>Dark</value>
+    <value>深色</value>
   </data>
   <data name="Settings_Theme_Default">
-    <value>Default</value>
+    <value>預設值</value>
   </data>
   <data name="Settings_Theme_Light">
-    <value>Light</value>
+    <value>淺色</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>透過高效能技術，將您的連線速度提升高達 400%。</value>
@@ -2767,7 +2767,7 @@ Enjoy the best of Proton privacy.</value>
     <value>增加上下載時的速度</value>
   </data>
   <data name="Upsell_Carousel_Platforms_More">
-    <value>+ more</value>
+    <value>+ 瀏覽更多</value>
     <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
   </data>
   <data name="Upsell_Carousel_SecureCore">

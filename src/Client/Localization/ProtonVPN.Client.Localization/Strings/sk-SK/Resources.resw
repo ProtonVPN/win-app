@@ -1626,7 +1626,7 @@
     <value>Momentálne ste dosiahli maximálny počet bezplatných zmien servera</value>
   </data>
   <data name="Dialogs_Common_GetStarted">
-    <value>Get started</value>
+    <value>Začnite</value>
   </data>
   <data name="Dialogs_Common_SubscriptionExpired">
     <value>Predplatné vypršalo</value>
@@ -1843,7 +1843,7 @@ Smart Routing sa zvyčajne používa na obchádzanie zákonov proti ochrane súk
     <value>Smart Routing</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
-    <value>Maybe later</value>
+    <value>Možno neskôr</value>
   </data>
   <data name="Dialogs_Tor_Description">
     <value>Pripojte sa k serveru Tor a získajte prístup k skrytým službám a lokalitám typu onion pomocou ľubovoľného prehliadača.</value>
@@ -2185,7 +2185,7 @@ Enjoy the best of Proton privacy.</value>
     <value>Zobraziť IP adresu používateľa</value>
   </data>
   <data name="Home_ConnectionDetails_State">
-    <value>State</value>
+    <value>Krajina</value>
   </data>
   <data name="Home_ConnectionDetails_Title">
     <value>Podrobnosti pripojenia</value>
