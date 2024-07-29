@@ -257,7 +257,7 @@
     <comment>The text displayed in Account window for NetShield</comment>
   </data>
   <data name="Account_lbl_NoLogs">
-    <value>Přísné zásady neukládání záznamů</value>
+    <value>Přísné zásady neukládání logů</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_P2P">
