@@ -45,6 +45,7 @@ using ProtonVPN.HumanVerification;
 using ProtonVPN.HumanVerification.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Modals.ApiActions;
+using ProtonVPN.Servers;
 using ProtonVPN.Vpn;
 using Module = Autofac.Module;
 
@@ -96,6 +97,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<ReportAnIssueFormDataProvider>().As<IReportAnIssueFormDataProvider>().SingleInstance();
             builder.RegisterType<SystemState>().As<ISystemState>().SingleInstance();
             builder.RegisterType<VpnAuthCertificateUpdater>().AsImplementedInterfaces().AsSelf().SingleInstance();
+            builder.RegisterType<LogicalsTimestampResetter>().AsImplementedInterfaces().SingleInstance();
         }
     }
 }

@@ -132,7 +132,8 @@ namespace ProtonVPN.Core.Settings
         int ChangeServerLongDelayInSeconds { get; set; }
         bool IsTelemetryGloballyEnabled { get; set; }
         string StatisticalEvents { get; set; }
-
+        DateTimeOffset LogicalsLastModifiedDate { get; set; }
+        
         bool IsNetShieldEnabled();
         bool IsPortForwardingEnabled();
         bool IsVpnAcceleratorEnabled();

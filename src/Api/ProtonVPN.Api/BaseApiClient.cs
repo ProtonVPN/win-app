@@ -72,7 +72,9 @@ namespace ProtonVPN.Api
             string body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             try
             {
-                T json = JsonConvert.DeserializeObject<T>(body) ?? throw new HttpRequestException(string.Empty);
+                T json = response.StatusCode is HttpStatusCode.NotModified
+                    ? default(T)
+                    : JsonConvert.DeserializeObject<T>(body) ?? throw new HttpRequestException(string.Empty);
                 ApiResponseResult<T> result = CreateApiResponseResult(json, response);
                 HandleResult(result, response);
                 return result;
@@ -92,6 +94,11 @@ namespace ProtonVPN.Api
         private ApiResponseResult<T> CreateApiResponseResult<T>(T response, HttpResponseMessage responseMessage)
             where T : BaseResponse
         {
+            if (responseMessage.StatusCode is HttpStatusCode.NotModified)
+            {
+                return ApiResponseResult<T>.NotModified(responseMessage);
+            }
+
             switch (response.Code)
             {
                 case ResponseCodes.OkResponse:

@@ -110,6 +110,7 @@ public class ApiClient : BaseApiClient, IApiClient
             "vpn/logicals?SignServer=Server.EntryIP,Server.Label", ip);
         request.SetRetryCount(SERVERS_RETRY_COUNT);
         request.SetCustomTimeout(TimeSpan.FromSeconds(SERVERS_TIMEOUT_IN_SECONDS));
+        request.Headers.IfModifiedSince = AppSettings.LogicalsLastModifiedDate;
         return await SendRequest<ServersResponse>(request, "Get servers");
     }
 

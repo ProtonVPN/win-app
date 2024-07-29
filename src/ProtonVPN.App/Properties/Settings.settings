@@ -434,5 +434,8 @@
     <Setting Name="WireGuardTlsPorts" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="LogicalsLastModifiedDate" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

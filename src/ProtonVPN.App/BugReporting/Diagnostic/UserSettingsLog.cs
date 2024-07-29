@@ -125,6 +125,7 @@ namespace ProtonVPN.BugReporting.Diagnostic
             yield return new(nameof(IAppSettings.AuthenticationCertificateRequestUtcDate), _appSettings.AuthenticationCertificateRequestUtcDate);
             yield return new(nameof(IAppSettings.HardwareAccelerationEnabled), _appSettings.HardwareAccelerationEnabled);
             yield return new(nameof(IAppSettings.ModerateNat), _appSettings.ModerateNat);
+            yield return new(nameof(IAppSettings.LogicalsLastModifiedDate), _appSettings.LogicalsLastModifiedDate);
         }
 
         private string ConvertToReadableValue(dynamic value)

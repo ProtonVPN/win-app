@@ -24,6 +24,7 @@ using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Users;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
@@ -38,17 +39,20 @@ namespace ProtonVPN.Core.Servers
         private readonly IApiClient _apiClient;
         private readonly TruncatedLocation _location;
         private readonly IUserLocationService _userLocationService;
+        private readonly IAppSettings _appSettings;
 
         public ApiServers(
             ILogger logger,
             IApiClient apiClient,
             TruncatedLocation location,
-            IUserLocationService userLocationService)
+            IUserLocationService userLocationService,
+            IAppSettings appSettings)
         {
             _logger = logger;
             _apiClient = apiClient;
             _location = location;
             _userLocationService = userLocationService;
+            _appSettings = appSettings;
         }
 
         public async Task<IReadOnlyCollection<LogicalServerResponse>> GetServersAsync()
@@ -57,8 +61,16 @@ namespace ProtonVPN.Core.Servers
             {
                 string ip = await GetLocationIPAsync();
                 ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync(ip);
-                NameUnnamedGateways(response);
-                return response.Success ? response.Value.Servers : Array.Empty<LogicalServerResponse>();
+
+                if (response.LastModified.HasValue)
+                {
+                    _appSettings.LogicalsLastModifiedDate = response.LastModified.Value;
+                }
+                if (response.Success && !response.IsNotModified)
+                {
+                    NameUnnamedGateways(response);
+                    return response.Value.Servers;
+                }
             }
             catch (Exception ex)
             {

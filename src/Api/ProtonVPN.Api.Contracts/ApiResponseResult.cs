@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using ProtonVPN.Api.Contracts.Common;
@@ -29,33 +30,44 @@ namespace ProtonVPN.Api.Contracts
     {
         public HttpResponseMessage ResponseMessage { get; }
         public IList<BaseResponseDetailAction> Actions { get; }
+        public DateTimeOffset? LastModified { get; }
+        public bool IsNotModified { get; }
 
-        protected ApiResponseResult(HttpResponseMessage responseMessage, bool success, string error, T value)
+        protected ApiResponseResult(HttpResponseMessage responseMessage, bool success, string error, bool isNotModified, T value)
             : base(value, success, error)
         {
             ResponseMessage = responseMessage;
             Actions = value?.Details?.Actions;
+            LastModified = responseMessage.Content.Headers.LastModified;
+            IsNotModified = isNotModified;
         }
 
-        protected ApiResponseResult(HttpResponseMessage responseMessage, bool success, string error)
+        protected ApiResponseResult(HttpResponseMessage responseMessage, bool success, string error, bool isNotModified)
             : base(default(T), success, error)
         {
             ResponseMessage = responseMessage;
+            LastModified = responseMessage.Content.Headers.LastModified;
+            IsNotModified = isNotModified;
         }
 
         public static ApiResponseResult<T> Ok(HttpResponseMessage responseMessage, T value)
         {
-            return new ApiResponseResult<T>(responseMessage, true, "", value);
+            return new ApiResponseResult<T>(responseMessage, success: true, "", isNotModified: false, value);
         }
 
         public static ApiResponseResult<T> Fail(HttpResponseMessage responseMessage, string error)
         {
-            return new ApiResponseResult<T>(responseMessage, false, error);
+            return new ApiResponseResult<T>(responseMessage, success: false, error, isNotModified: false);
         }
 
         public static ApiResponseResult<T> Fail(T value, HttpResponseMessage responseMessage, string error)
         {
-            return new ApiResponseResult<T>(responseMessage, false, error, value);
+            return new ApiResponseResult<T>(responseMessage, success: false, error, isNotModified: false, value);
+        }
+
+        public static ApiResponseResult<T> NotModified(HttpResponseMessage responseMessage)
+        {
+            return new ApiResponseResult<T>(responseMessage, success: true, "", isNotModified: true);
         }
     }
 }

@@ -17,8 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Helpers;
-
 namespace ProtonVPN.Common.Abstract
 {
     public class Result<T> : Result
@@ -26,7 +24,6 @@ namespace ProtonVPN.Common.Abstract
         protected internal Result(T value, bool success, string error)
             : base(success, error)
         {
-            Ensure.IsTrue(value != null || !success);
             Value = value;
         }
 
