@@ -2705,7 +2705,7 @@ Enjoy the best of Proton privacy.</value>
     <value>This will reset your Proton VPN settings to their original state.</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Title">
-    <value>Restore default settings?</value>
+    <value>Restaurar as definições padrão?</value>
   </data>
   <data name="Settings_SelectedProtocol_OpenVpnTcp">
     <value>OpenVPN (TCP)</value>

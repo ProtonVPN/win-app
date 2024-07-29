@@ -1626,7 +1626,7 @@
     <value>Dosegli ste trenutno največje število brezplačnih sprememb strežnika</value>
   </data>
   <data name="Dialogs_Common_GetStarted">
-    <value>Get started</value>
+    <value>Začnite</value>
   </data>
   <data name="Dialogs_Common_SubscriptionExpired">
     <value>Naročnina je potekla</value>
@@ -1843,7 +1843,7 @@ Pametno usmerjanje se običajno uporablja za izogibanje zakonom proti zasebnosti
     <value>Smart Routing</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
-    <value>Maybe later</value>
+    <value>Morda kasneje</value>
   </data>
   <data name="Dialogs_Tor_Description">
     <value>Povežite se s strežnikom Tor za dostop do skritih storitev in Tor spletnih mest s katerim koli brskalnikom.</value>
@@ -2185,7 +2185,7 @@ Enjoy the best of Proton privacy.</value>
     <value>Pokaži IP naslov uporabnika</value>
   </data>
   <data name="Home_ConnectionDetails_State">
-    <value>State</value>
+    <value>Država</value>
   </data>
   <data name="Home_ConnectionDetails_Title">
     <value>Podrobnosti povezave</value>

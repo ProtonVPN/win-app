@@ -1512,7 +1512,7 @@
     <value>Abonnement abgelaufen</value>
   </data>
   <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
-    <value>Upgrade to get access to Plus servers and features again.</value>
+    <value>Upgrade, um Zugang zu Plus-Servern und Funktionen wieder zu erhalten.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free verbindet dich automatisch mit dem schnellsten verfügbaren freien Server aus unserem {0} freien Land. Dies ist normalerweise der Server, der deinem Standort am nächsten ist.</value>
@@ -1756,48 +1756,48 @@ Smart Routing wird in der Regel verwendet, um Datenschutzgesetze und andere Form
     <value>Hilfe zur Verbindung</value>
   </data>
   <data name="Dialogs_WelcomeB2B_Description">
-    <value>Simple. Seamless. Secure. Protect yourself online and securely access your organization's sites, software, and files.</value>
+    <value>Einfach. Nahtlos. Sicher. Schütze dich online und greife sicher auf die Websites, Software und Dateien deines Unternehmens zu.</value>
   </data>
   <data name="Dialogs_WelcomeToProton_Title">
     <value>Willkommen bei Proton VPN</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_Description">
-    <value>Browse privately, access blocked content, and enjoy digital freedom with no data or speed limits.</value>
+    <value>Surfe privat, greife auf gesperrte Inhalte zu und genieße digitale Freiheit ohne Daten- oder Geschwindigkeitsbegrenzung.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_NoLogs">
     <value>Zertifiziertes VPN ohne Protokollierung</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
-    <value>Your activity is protected by Swiss privacy laws. We'll never track you online or share your information with third parties.</value>
+    <value>Deine Aktivitäten sind durch die Schweizer Datenschutzgesetze geschützt. Wir werden dich niemals online nachverfolgen oder deine Informationen an Dritte weitergeben.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
-    <value>Browse freely from anywhere</value>
+    <value>Browse frei von überall</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
-    <value>Hide your virtual location and experience the internet from any one of our {0} available country.</value>
+    <value>Verstecke deinen virtuellen Standort und erlebe das Internet von unserem {0} verfügbaren Land aus.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
-    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+    <value>Verstecke deinen virtuellen Standort und erlebe das Internet von einem beliebigen unserer {0} verfügbaren Länder aus.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
     <value>Schütze 10 Geräte gleichzeitig</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
-    <value>Extend VPN protection to your desktop, mobile, browser, TV, and more. </value>
+    <value>Erweitere den VPN-Schutz auf deinen Desktop, dein Handy, deinen Browser, dein TV-Gerät und vieles mehr.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Stream">
     <value>Streame in hoher Auflösung</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
-    <value>Watch movies and TV shows from around the world, without compromising on speed or quality.</value>
+    <value>Sieh dir Filme und Fernsehsendungen aus der ganzen Welt an, ohne Kompromisse bei der Geschwindigkeit oder Qualität einzugehen.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Willkommen bei VPN Plus</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description">
-    <value>Congratulations! You unlocked premium security and performance features on all Proton services.
+    <value>Herzlichen Glückwunsch! Du hast die Premium-Sicherheits- und Performance-Funktionen für alle Proton-Dienste freigeschaltet.
 
-Enjoy the best of Proton privacy.</value>
+Genieße das Beste an Proton's Privatsphäre.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Willkommen bei Proton Unlimited</value>
@@ -2261,7 +2261,7 @@ Enjoy the best of Proton privacy.</value>
     <value>Trage diese Nummer in deiner BitTorrent-App ein, um bessere Geschwindigkeiten zu erzielen.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
-    <value>Your plan has been downgraded to Proton Free, and we're reconnecting you to the fastest free server.</value>
+    <value>Dein Abonnement wurde auf Proton Free herabgestuft, und wir verbinden dich wieder mit dem schnellsten kostenlosen Server.</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Schnellster kostenloser Server</value>
@@ -2675,13 +2675,13 @@ Enjoy the best of Proton privacy.</value>
     <value>Geschwindigkeit (UDP)</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Description">
-    <value>Fast, secure, and efficient. WireGuard is difficult to detect and block.</value>
+    <value>Schnell, sicher und effizient. WireGuard ist schwer zu erkennen und zu blockieren.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Title">
     <value>WireGuard</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Description">
-    <value>Overcomes VPN blocks by hiding your VPN connection from censors. This protocol is DPI (deep packet inspection) resistant, but may not be as fast as other protocols. Stealth is exclusive to Proton VPN.</value>
+    <value>Umgeht VPN-Sperren, indem es deine VPN-Verbindung vor Zensoren versteckt. Dieses Protokoll ist resistent gegen DPI (Deep Packet Inspection), ist aber möglicherweise nicht so schnell wie andere Protokolle. Stealth gibt es nur bei Proton VPN.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Title">
     <value>Stealth</value>

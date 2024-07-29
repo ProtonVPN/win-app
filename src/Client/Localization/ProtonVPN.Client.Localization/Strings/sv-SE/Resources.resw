@@ -612,7 +612,7 @@
     <comment>The name of BO country</comment>
   </data>
   <data name="Country_val_BQ">
-    <value>Karibiska Nederländerna</value>
+    <value>Bonaire, Sint Eustatius och Saba</value>
     <comment>The name of BQ country</comment>
   </data>
   <data name="Country_val_BR">
@@ -1683,7 +1683,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>VPN kan gå långsammare än normalt</value>
   </data>
   <data name="Dialogs_ServerLoad_HighRange_Title">
-    <value>Hög (91-100%)</value>
+    <value>Hög (91-100 %)</value>
   </data>
   <data name="Dialogs_ServerLoad_LowRange_Description">
     <value>Blixtsnabba hastigheter</value>
@@ -2032,7 +2032,7 @@ Njut av det bästa av Protons integritet.</value>
     <comment>Tooltip displayed when the user hover the button to show the User IP Address</comment>
   </data>
   <data name="Home_ConnectionDetails_ShowIP_Description">
-    <value>Visa användarens IP adress</value>
+    <value>Visa användarens IP-adress</value>
   </data>
   <data name="Home_ConnectionDetails_State">
     <value>Delstat</value>
@@ -2041,16 +2041,16 @@ Njut av det bästa av Protons integritet.</value>
     <value>Anslutningsdetaljer</value>
   </data>
   <data name="Home_ConnectionDetails_Upload">
-    <value>Uppladdning</value>
+    <value>Ladda upp</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
-    <value>Download volume</value>
+    <value>Nedladdningsvolym</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Total">
     <value>Total volym</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Upload">
-    <value>Upload volume</value>
+    <value>Uppladdningsvolym</value>
   </data>
   <data name="Home_ConnectionDetails_VpnAccelerator">
     <value>Ökad av VPN Accelerator</value>
@@ -2399,7 +2399,7 @@ Njut av det bästa av Protons integritet.</value>
     <value>Välj en nätverksadressöversättningstyp för din anslutning.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate">
-    <value>Moderate (type 2)</value>
+    <value>Moderera (typ 2)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
     <value>Vissa begränsningar för data som kommer in i ditt nätverk. Detta alternativ är bäst för videospel online.</value>
