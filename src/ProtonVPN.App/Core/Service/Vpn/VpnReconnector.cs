@@ -266,7 +266,7 @@ namespace ProtonVPN.Core.Service.Vpn
             switch (reconnectionStep)
             {
                 case VpnReconnectionSteps.SimilarOnSameProtocol:
-                    await ConnectToSimilarServerAsync(isToTryLastServer, _targetProfile?.VpnProtocol ?? _appSettings.GetProtocol());
+                    await ConnectToSimilarServerAsync(isToTryLastServer, _appSettings.GetProtocol());
                     break;
                 case VpnReconnectionSteps.SimilarOnSmartProtocol:
                     await ConnectToSimilarServerAsync(isToTryLastServer, VpnProtocol.Smart);

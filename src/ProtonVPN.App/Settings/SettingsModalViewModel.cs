@@ -675,8 +675,8 @@ namespace ProtonVPN.Settings
 
         private void SetDisconnected()
         {
-            Disconnected = _vpnState.Status == VpnStatus.Disconnecting ||
-                           _vpnState.Status == VpnStatus.Disconnected;
+            Disconnected = _vpnState is not null &&
+                           _vpnState.Status is VpnStatus.Disconnecting or VpnStatus.Disconnected;
         }
 
         private void RefreshReconnectRequiredState(string settingChanged)
