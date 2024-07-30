@@ -28,7 +28,7 @@ using ProtonVPN.UI.Tests.Robots.Shell;
 using ProtonVPN.UI.Tests.TestsHelper;
 using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
 
-namespace ProtonVPN.UI.Tests.Tests;
+namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
 [Category("1")]
@@ -96,7 +96,7 @@ public class ConnectionTests : TestSession
     [Test]
     public void ConnectViaOpenVpnTcp()
     {
-        PerformProtocolConnectionTest(Protocol.OpenVpnTcp); 
+        PerformProtocolConnectionTest(Protocol.OpenVpnTcp);
     }
 
     [Test]
@@ -114,7 +114,7 @@ public class ConnectionTests : TestSession
             .DoDisconnect()
             .VerifyVpnStatusIsDisconnected()
             .VerifyConnectionCardIsDisconnected()
-            .Wait(TestConstants.DisconnectionDelay);
+            .Wait(DisconnectionDelay);
 
         CommonAssertions.AssertIpAddressUnchanged(unprotectedIpAddress);
     }
@@ -134,7 +134,7 @@ public class ConnectionTests : TestSession
             .DoCancelConnection()
             .VerifyVpnStatusIsDisconnected()
             .VerifyConnectionCardIsDisconnected()
-            .Wait(TestConstants.DisconnectionDelay);
+            .Wait(DisconnectionDelay);
 
         CommonAssertions.AssertIpAddressUnchanged(unprotectedIpAddress);
     }
@@ -146,7 +146,7 @@ public class ConnectionTests : TestSession
 
         _countriesRobot
             .DoConnect(COUNTRY_CODE);
-    
+
         _homeRobot
             .VerifyAllStatesUntilConnected(COUNTRY);
 

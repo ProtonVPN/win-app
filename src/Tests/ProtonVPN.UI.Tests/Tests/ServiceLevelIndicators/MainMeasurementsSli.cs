@@ -21,6 +21,7 @@ using System;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Annotations;
+using ProtonVPN.UI.Tests.ApiClient.Prod;
 using ProtonVPN.UI.Tests.ApiClient.TestEnv;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.Robots.Countries;
@@ -45,7 +46,7 @@ public class MainMeasurementsSLI : TestSession
     private CountriesRobot _countriesRobot = new();
 
     private LokiPusher _lokiPusher = new();
-    private SliHelper _performanceTestHelper = new();
+    private ProdTestApiClient _prodTestApiClient = new();
 
     [OneTimeSetUp]
     public void TestInitialize()
@@ -114,7 +115,7 @@ public class MainMeasurementsSLI : TestSession
     [Sli("specific_server_connect")]
     public async Task ConnectionToSpecificServer()
     {
-        string serverName = await _performanceTestHelper.GetRandomSpecificPaidServerAsync();
+        string serverName = await _prodTestApiClient.GetRandomSpecificPaidServerAsync();
 
         _shellRobot
            .DoNavigateToCountriesPage()

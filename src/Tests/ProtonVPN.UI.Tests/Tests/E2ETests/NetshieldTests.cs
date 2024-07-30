@@ -19,26 +19,21 @@
 
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots;
-using ProtonVPN.UI.Tests.Robots.Countries;
 using ProtonVPN.UI.Tests.Robots.Home;
 using ProtonVPN.UI.Tests.Robots.Login;
+using ProtonVPN.UI.Tests.Robots.Settings;
 using ProtonVPN.UI.Tests.Robots.Shell;
 using ProtonVPN.UI.Tests.TestsHelper;
 
-namespace ProtonVPN.UI.Tests.Tests;
+namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
 [Category("2")]
-public class SecureCoreTests : TestSession
+public class NetshieldTests : TestSession
 {
-    private const string COUNTRY = "Australia";
-    private const string ENTRY_COUNTRY = "Switzerland";
-    private const string COUNTRY_CODE = "AU";
-    private const string ENTRY_COUNTRY_CODE = "CH";
-
     private ShellRobot _shellRobot = new();
+    private SettingsRobot _settingsRobot = new();
     private HomeRobot _homeRobot = new();
-    private CountriesRobot _countriesRobot = new();
     private LoginRobot _loginRobot = new();
 
     [SetUp]
@@ -55,51 +50,35 @@ public class SecureCoreTests : TestSession
             .DoWaitForVpnStatusSubtitleLabel()
             .VerifyVpnStatusIsDisconnected()
             .VerifyConnectionCardIsInInitalState();
-
-        _shellRobot
-            .DoNavigateToSecureCoreCountriesPage();
     }
 
     [Test]
-    public void SecureCoreViaCountry()
+    //TODO Change this test case to disabling it while connected, when LA logic is implemented
+    public void NetshieldOn()
     {
-        _countriesRobot
-            .DoConnect(COUNTRY_CODE);
-
         _homeRobot
-            .VerifyVpnStatusIsConnecting()
-            .VerifyConnectionCardIsConnecting(COUNTRY)
-            .VerifyVpnStatusIsConnected()
-            .VerifyConnectionCardIsConnected(COUNTRY);
-
-        _shellRobot
-            .DoNavigateToSecureCoreCountriesPage();
-
-        _countriesRobot
-            .Wait(TestConstants.DefaultAnimationDelay)
-            .VerifyActiveConnection(COUNTRY_CODE);
+            .DoConnect()
+            .VerifyVpnStatusIsConnected();
+        _settingsRobot
+            .VerifyNetshieldIsBlocking();
     }
 
     [Test]
-    public void SecureCoreViaSpecficEntry()
+    public void NetshieldOff()
     {
-        _countriesRobot
-            .DoNavigateToCountry(COUNTRY_CODE)
-            .DoConnectSecureCore(ENTRY_COUNTRY_CODE, COUNTRY_CODE);
-
-        _homeRobot
-            .VerifyVpnStatusIsConnecting()
-            .VerifyConnectionCardIsConnecting(COUNTRY, $"via {ENTRY_COUNTRY}")
-            .VerifyVpnStatusIsConnected()
-            .VerifyConnectionCardIsConnected(COUNTRY, $"via {ENTRY_COUNTRY}");
-
         _shellRobot
-            .DoNavigateToSecureCoreCountriesPage();
-
-        _countriesRobot
-            .VerifyActiveConnection(COUNTRY_CODE)
-            .DoNavigateToCountry(COUNTRY_CODE)
-            .VerifyActiveConnection(ENTRY_COUNTRY_CODE, COUNTRY_CODE);
+            .DoNavigateToNetShieldFeaturePage();
+        _settingsRobot
+            .DoSelectNetshield()
+            .DoApplyChanges();
+        _shellRobot
+            .DoNavigateToHomePage()
+            .Wait(TestConstants.DefaultNavigationDelay);
+        _homeRobot
+            .DoConnect()
+            .VerifyVpnStatusIsConnected();
+        _settingsRobot
+            .VerifyNetshieldIsNotBlocking();
     }
 
     [TearDown]

@@ -27,7 +27,7 @@ using ProtonVPN.UI.Tests.Robots.Shell;
 using ProtonVPN.UI.Tests.TestsHelper;
 using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
 
-namespace ProtonVPN.UI.Tests.Tests;
+namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
 [Category("2")]
@@ -61,7 +61,7 @@ public class SettingsTests : TestSession
         LaunchApp();
 
         _loginRobot
-            .Wait(TestConstants.StartupDelay)
+            .Wait(StartupDelay)
             .DoLogin(TestUserData.PlusUser);
 
         _homeRobot
