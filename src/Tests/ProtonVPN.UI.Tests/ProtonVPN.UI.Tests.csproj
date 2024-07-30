@@ -11,6 +11,9 @@
         <IsPublishable>false</IsPublishable>
     </PropertyGroup>
     <ItemGroup>
+      <None Remove="Tests\ServiceLevelIndicators\README.md" />
+    </ItemGroup>
+    <ItemGroup>
         <None Include="app.config" />
     </ItemGroup>
     <ItemGroup>

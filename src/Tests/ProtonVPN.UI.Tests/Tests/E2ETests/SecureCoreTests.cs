@@ -25,24 +25,24 @@ using ProtonVPN.UI.Tests.Robots.Login;
 using ProtonVPN.UI.Tests.Robots.Shell;
 using ProtonVPN.UI.Tests.TestsHelper;
 
-namespace ProtonVPN.UI.Tests.Tests;
+namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
 [Category("2")]
-public class RecentsTests : TestSession
+public class SecureCoreTests : TestSession
 {
+    private const string COUNTRY = "Australia";
+    private const string ENTRY_COUNTRY = "Switzerland";
+    private const string COUNTRY_CODE = "AU";
+    private const string ENTRY_COUNTRY_CODE = "CH";
+
     private ShellRobot _shellRobot = new();
     private HomeRobot _homeRobot = new();
     private CountriesRobot _countriesRobot = new();
     private LoginRobot _loginRobot = new();
 
-    private const string FIRST_COUNTRY_CODE = "AR";
-    private const string FIRST_COUNTRY_NAME = "Argentina";
-    private const string SECOND_COUNTRY_CODE = "AU";
-    private const string SECOND_COUNTRY_NAME = "Australia";
-
-    [OneTimeSetUp]
-    public void OneTimeSetup()
+    [SetUp]
+    public void TestInitialize()
     {
         LaunchApp();
 
@@ -55,62 +55,54 @@ public class RecentsTests : TestSession
             .DoWaitForVpnStatusSubtitleLabel()
             .VerifyVpnStatusIsDisconnected()
             .VerifyConnectionCardIsInInitalState();
-    }
-
-    [Test, Order(0)]
-    public void RecentIsAddedToTheList()
-    {
-        _homeRobot
-            .VerifyRecentsDoesNotExist();
 
         _shellRobot
-            .DoNavigateToCountriesPage();
+            .DoNavigateToSecureCoreCountriesPage();
+    }
 
+    [Test]
+    public void SecureCoreViaCountry()
+    {
         _countriesRobot
-            .DoConnect(FIRST_COUNTRY_CODE);
+            .DoConnect(COUNTRY_CODE);
+
         _homeRobot
-            .VerifyVpnStatusIsConnected();
+            .VerifyVpnStatusIsConnecting()
+            .VerifyConnectionCardIsConnecting(COUNTRY)
+            .VerifyVpnStatusIsConnected()
+            .VerifyConnectionCardIsConnected(COUNTRY);
 
         _shellRobot
-            .DoNavigateToCountriesPage();
+            .DoNavigateToSecureCoreCountriesPage();
 
         _countriesRobot
-            .DoConnect(SECOND_COUNTRY_CODE);
-        _homeRobot
-            .VerifyVpnStatusIsConnected()
-            .VerifyRecentsTabIsDisplayed();
-
-        _homeRobot
-            .DoClickOnRecentsTab()
-            .VerifyCountryIsInRecentsList(FIRST_COUNTRY_NAME);
+            .Wait(TestConstants.DefaultAnimationDelay)
+            .VerifyActiveConnection(COUNTRY_CODE);
     }
 
-    [Test, Order(1)]
-    public void ConnectionToRecent()
+    [Test]
+    public void SecureCoreViaSpecficEntry()
     {
-        _homeRobot
-            .DoClickOnRecentCountry(FIRST_COUNTRY_NAME)
-            .VerifyVpnStatusIsConnected()
-            .DoDisconnect()
-            .VerifyVpnStatusIsDisconnected();
-    }
+        _countriesRobot
+            .DoNavigateToCountry(COUNTRY_CODE)
+            .DoConnectSecureCore(ENTRY_COUNTRY_CODE, COUNTRY_CODE);
 
-    [Test, Order(2)]
-    public void RemoveRecent()
-    {
         _homeRobot
-            .RemoveRecent(FIRST_COUNTRY_NAME)
-            .RemoveRecent(SECOND_COUNTRY_NAME)
-            .VerifyRecentsDoesNotExist();
+            .VerifyVpnStatusIsConnecting()
+            .VerifyConnectionCardIsConnecting(COUNTRY, $"via {ENTRY_COUNTRY}")
+            .VerifyVpnStatusIsConnected()
+            .VerifyConnectionCardIsConnected(COUNTRY, $"via {ENTRY_COUNTRY}");
+
+        _shellRobot
+            .DoNavigateToSecureCoreCountriesPage();
+
+        _countriesRobot
+            .VerifyActiveConnection(COUNTRY_CODE)
+            .DoNavigateToCountry(COUNTRY_CODE)
+            .VerifyActiveConnection(ENTRY_COUNTRY_CODE, COUNTRY_CODE);
     }
 
     [TearDown]
-    public void SaveArtifacts()
-    {
-        SaveScreenshotAndLogsIfFailed();
-    }
-
-    [OneTimeTearDown]
     public void TestCleanup()
     {
         Cleanup();

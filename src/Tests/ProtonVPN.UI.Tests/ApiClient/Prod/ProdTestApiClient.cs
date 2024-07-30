@@ -18,6 +18,8 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -28,10 +30,12 @@ namespace ProtonVPN.UI.Tests.ApiClient.Prod;
 
 public class ProdTestApiClient
 {
-    private readonly HttpClient _client;
     public static string AcessToken;
     public static string UID;
 
+    private readonly HttpClient _client;
+    private readonly Random _random = new();
+    
     public ProdTestApiClient()
     {
         _client = new HttpClient
@@ -40,13 +44,27 @@ public class ProdTestApiClient
         };
     }
 
-    public async Task<JArray> GetLogicalServersUnauthorizedAsync()
+    public async Task<string> GetRandomSpecificPaidServerAsync()
     {
-        HttpResponseMessage response = await _client.GetAsync("/vpn/logicals");
-        response.EnsureSuccessStatusCode();
-        string responseBody = response.Content.ReadAsStringAsync().Result;
-        JObject json = JObject.Parse(responseBody);
-        return (JArray)json["LogicalServers"];
+        JToken randomServer = null;
+        JArray logicals = await new ProdTestApiClient().GetLogicalServersUnauthorizedAsync();
+        List<JToken> filteredServers = logicals.Where(
+            s => (int)s["Status"] == 1 &&
+            (int)s["Tier"] == 2 &&
+            !s["Name"].ToString().Contains("SE-") &&
+            !s["Name"].ToString().Contains("IS-") &&
+            !s["Name"].ToString().Contains("TOR") &&
+            !s["Name"].ToString().Contains("CH-")).ToList();
+        if (filteredServers.Count > 0)
+        {
+            randomServer = filteredServers.OrderBy(_ => _random.Next()).FirstOrDefault();
+        }
+        else
+        {
+            throw new Exception("Empty server list was returned.");
+        }
+
+        return randomServer["Name"].ToString();
     }
 
     public async Task<JArray> GetLogicalServersLoggedInAsync()
@@ -74,6 +92,15 @@ public class ProdTestApiClient
 
         AuthResponse authResponse = JsonSerializer.Deserialize<AuthResponse>(await response.Content.ReadAsStringAsync());
         return authResponse;
+    }
+
+    private async Task<JArray> GetLogicalServersUnauthorizedAsync()
+    {
+        HttpResponseMessage response = await _client.GetAsync("/vpn/logicals");
+        response.EnsureSuccessStatusCode();
+        string responseBody = response.Content.ReadAsStringAsync().Result;
+        JObject json = JObject.Parse(responseBody);
+        return (JArray)json["LogicalServers"];
     }
 
     private async Task<HttpResponseMessage> SendPostUnauthorizedAsync(string endpoint, string content)

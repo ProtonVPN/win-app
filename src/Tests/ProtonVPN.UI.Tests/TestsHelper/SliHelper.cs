@@ -21,12 +21,9 @@ using FlaUI.Core.Tools;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
-using ProtonVPN.UI.Tests.ApiClient.Prod;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
 public class SliHelper
@@ -36,7 +33,6 @@ public class SliHelper
     public static string RunId { get; set; }
     public static readonly Stopwatch Timer = new();
     public static List<JProperty> MetricsList = [];
-    private Random _random = new();
     private static bool IsMonitoring { get; set; }
     private static double Duration => Timer.Elapsed.TotalSeconds;
 
@@ -99,29 +95,6 @@ public class SliHelper
         
         AddMetric(downloadSpeedLabel, networkSpeedConnected["downloadSpeed"].ToString());
         AddMetric(uploadSpeedLabel, networkSpeedConnected["uploadSpeed"].ToString());
-    }
-
-    public async Task<string> GetRandomSpecificPaidServerAsync()
-    {
-        JToken randomServer = null;
-        JArray logicals = await new ProdTestApiClient().GetLogicalServersUnauthorizedAsync();
-        List<JToken> filteredServers = logicals.Where(
-            s => (int)s["Status"] == 1 &&
-            (int)s["Tier"] == 2 &&
-            !s["Name"].ToString().Contains("SE-") &&
-            !s["Name"].ToString().Contains("IS-") &&
-            !s["Name"].ToString().Contains("TOR") &&
-            !s["Name"].ToString().Contains("CH-")).ToList();
-        if(filteredServers.Count > 0)
-        {
-            randomServer = filteredServers.OrderBy(_ => _random.Next()).FirstOrDefault();
-        } 
-        else
-        {
-            throw new Exception("Empty server list was returned.");
-        }
-       
-        return randomServer["Name"].ToString();
     }
 
     public static Dictionary<string, double> GetNetworkSpeed()
