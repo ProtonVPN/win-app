@@ -43,6 +43,11 @@ public class LokiPusher
 
     public void PushMetrics()
     {
+        if (SliHelper.MetricsList.Count == 0)
+        {
+            throw new Exception("Pushing empty metric list is not allowed.");
+        }
+
         JArray fullMetrics = BaseMetricsJsonBody(GetMetadata(SliHelper.RunId), SliHelper.MetricsList);
         JObject requestBody = BaseLokiRequestJsonBody(fullMetrics, GetMetricsLabels(SliHelper.SliName, SliHelper.Workflow));
         PushToLokiWithRetry(requestBody);
