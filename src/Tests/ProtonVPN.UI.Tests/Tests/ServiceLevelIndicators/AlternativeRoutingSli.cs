@@ -62,10 +62,10 @@ public class AlternativeRoutingSli : TestSession
     [TearDown]
     public async Task TestCleanup()
     {
+        Cleanup();
         _lokiPusher.PushMetrics();
         _lokiPusher.PushAllLogs();
         SliHelper.Reset();
         BtiController.SetScenario(Scenarios.RESET);
-        Cleanup();
     }
 }

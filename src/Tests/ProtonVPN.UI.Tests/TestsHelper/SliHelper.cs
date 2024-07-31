@@ -34,12 +34,11 @@ public class SliHelper
     public static string SliName { get; set; }
     public static string Workflow { get; set; }
     public static string RunId { get; set; }
-    public static string Duration => Timer.Elapsed.TotalSeconds.ToString();
-
     public static readonly Stopwatch Timer = new();
     public static List<JProperty> MetricsList = [];
     private Random _random = new();
     private static bool IsMonitoring { get; set; }
+    private static double Duration => Timer.Elapsed.TotalSeconds;
 
     public static void Measure(Action method)
     {
@@ -63,7 +62,10 @@ public class SliHelper
 
     public static void AddDuration()
     {
-        AddMetric("duration", Duration);
+        if(Duration != 0)
+        {
+            AddMetric("duration", Duration.ToString());
+        }
     }
 
     public static void AddTestStatusMetric()

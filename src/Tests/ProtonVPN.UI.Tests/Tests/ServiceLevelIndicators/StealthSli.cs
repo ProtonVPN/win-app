@@ -94,8 +94,8 @@ public class StealthSli: TestSession
     [OneTimeTearDown]
     public void TestCleanup()
     {
-        _lokiPusher.PushMetrics();
         Cleanup();
+        _lokiPusher.PushMetrics();
         SliHelper.Reset();
         _lokiPusher.PushAllLogs();
     }
