@@ -2573,7 +2573,7 @@ Disfrute lo mejor de la privacidad de Proton.</value>
     <value>Conexión más rápida</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Latest">
-    <value>Último conectado</value>
+    <value>Última conexión</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch">
     <value>Inicio automático</value>
