@@ -361,7 +361,7 @@
     <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_States_One">
-    <value>State ({0})</value>
+    <value>Staat ({0})</value>
   </data>
   <data name="Connections_States_Other">
     <value>Staaten ({0})</value>

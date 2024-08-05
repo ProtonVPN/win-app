@@ -1774,10 +1774,10 @@ Smart Routing används vanligtvis för att komma runt antiintegritetslagar och a
     <value>Surfa fritt från var som helst</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
-    <value>Hide your virtual location and experience the internet from any one of our {0} available country.</value>
+    <value>Dölj din virtuella plats och upplev Internet från {0} tillgängligt land.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
-    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+    <value>Dölj din virtuella plats och upplev Internet från något av våra {0} tillgängliga länder.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
     <value>Skydda 10 enheter samtidigt</value>

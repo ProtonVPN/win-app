@@ -275,13 +275,13 @@
     <value>Na všetkých serveroch v tejto krajine prebieha údržba</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Free server ({0})</value>
+    <value>Bezplatný server ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Few">
     <value>Bezplatné servery ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Many">
-    <value>Bezplatné servery ({0})</value>
+    <value>Bezplatných serverov ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Other">
     <value>Bezplatné servery ({0})</value>
@@ -353,13 +353,13 @@
     <value>P2P servery ({0})</value>
   </data>
   <data name="Connections_P2P_States_One">
-    <value>P2P state ({0})</value>
+    <value>P2P štát({0})</value>
   </data>
   <data name="Connections_P2P_States_Few">
     <value>P2P štáty ({0})</value>
   </data>
   <data name="Connections_P2P_States_Many">
-    <value>P2P štáty ({0})</value>
+    <value>P2P štátov ({0})</value>
   </data>
   <data name="Connections_P2P_States_Other">
     <value>P2P štáty ({0})</value>
@@ -413,16 +413,16 @@
     <value>Zobraziť servery ({0})</value>
   </data>
   <data name="Connections_SeeStates_One">
-    <value>See state ({0})</value>
+    <value>Zobraziť štát ({0})</value>
   </data>
   <data name="Connections_SeeStates_Few">
-    <value>See states ({0})</value>
+    <value>Zobraziť štáty ({0})</value>
   </data>
   <data name="Connections_SeeStates_Many">
-    <value>See states ({0})</value>
+    <value>Zobraziť štátov ({0})</value>
   </data>
   <data name="Connections_SeeStates_Other">
-    <value>See states ({0})</value>
+    <value>Zobraziť štáty ({0})</value>
   </data>
   <data name="Connections_Server_Restricted">
     <value>Server je dostupný s VPN Plus</value>
@@ -443,7 +443,7 @@
     <value>Servery ({0})</value>
   </data>
   <data name="Connections_State_Restricted">
-    <value>Servers in this state are available with VPN Plus.</value>
+    <value>Servery v tomto štáte sú dostupné s VPN Plus.</value>
     <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_State_UnderMaintenance">
@@ -451,13 +451,13 @@
     <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_States_One">
-    <value>State ({0})</value>
+    <value>Štát ({0})</value>
   </data>
   <data name="Connections_States_Few">
     <value>Štáty ({0})</value>
   </data>
   <data name="Connections_States_Many">
-    <value>Štáty ({0})</value>
+    <value>Štátov ({0})</value>
   </data>
   <data name="Connections_States_Other">
     <value>Štáty ({0})</value>
@@ -1632,7 +1632,7 @@
     <value>Predplatné vypršalo</value>
   </data>
   <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
-    <value>Upgrade to get access to Plus servers and features again.</value>
+    <value>Inovujte svoj účet, aby ste znova získali prístup k serverom a funkciám Plus.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free vás automaticky pripojí k najrýchlejšiemu dostupnému bezplatnému serveru z našej {0} bezplatnej krajiny. Obvykle sa jedná o server, ktorý je najbližšie k vašej polohe.</value>
@@ -1888,54 +1888,54 @@ Smart Routing sa zvyčajne používa na obchádzanie zákonov proti ochrane súk
     <value>Pomoc s pripojením</value>
   </data>
   <data name="Dialogs_WelcomeB2B_Description">
-    <value>Simple. Seamless. Secure. Protect yourself online and securely access your organization's sites, software, and files.</value>
+    <value>Jednoduché. Bezproblémové. Bezpečné. Chráňte sa online a bezpečne pristupujte k webom, softvéru a súborom svojej organizácie.</value>
   </data>
   <data name="Dialogs_WelcomeToProton_Title">
     <value>Vitajte v Proton VPN</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_Description">
-    <value>Browse privately, access blocked content, and enjoy digital freedom with no data or speed limits.</value>
+    <value>Prechádzajte súkromne, pristupujte k blokovanému obsahu a užívajte si digitálne slobody bez obmedzenia dát a rýchlosti.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_NoLogs">
     <value>Certifikovaná VPN sieť bez logov</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
-    <value>Your activity is protected by Swiss privacy laws. We'll never track you online or share your information with third parties.</value>
+    <value>Vaša aktivita je chránená švajčiarskymi zákonmi o ochrane osobných údajov. Nikdy nebudeme sledovať vašu online aktivitu a zdieľať ju s tretími stranami.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
-    <value>Browse freely from anywhere</value>
+    <value>Prechádzajte internet slobodne odkiaľkoľvek</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
-    <value>Hide your virtual location and experience the internet from any one of our {0} available country.</value>
+    <value>Skryte svoju virtuálnu polohu a využívajte internet z našej {0} dostupnej krajiny.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Few">
-    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+    <value>Skryte svoju virtuálnu polohu a využívajte internet z ktorejkoľvek z našich {0} dostupných krajín.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Many">
-    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+    <value>Skryte svoju virtuálnu polohu a využívajte internet z ktorejkoľvek z našich {0} dostupných krajín.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
-    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+    <value>Skryte svoju virtuálnu polohu a využívajte internet z ktorejkoľvek z našich {0} dostupných krajín.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
-    <value>Protect 10 devices at once</value>
+    <value>Chráňte až 10 zariadení súčasne</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
-    <value>Extend VPN protection to your desktop, mobile, browser, TV, and more. </value>
+    <value>Rozšírte ochranu VPN na váš počítač, mobilný telefón, prehliadač, televíziu a ďalšie zariadenia. </value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Stream">
-    <value>Stream in high resolution</value>
+    <value>Streamujte vo vysokom rozlíšení</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
-    <value>Watch movies and TV shows from around the world, without compromising on speed or quality.</value>
+    <value>Sledujte filmy a televízne programy z celého sveta bez obmedzenia rýchlosti a kvality.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Vitajte vo VPN Plus</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description">
-    <value>Congratulations! You unlocked premium security and performance features on all Proton services.
+    <value>Gratulujeme! Odomkli ste prémiové funkcie zabezpečenia a výkonu všetkých služieb Proton.
 
-Enjoy the best of Proton privacy.</value>
+Užite si to najlepšie zo súkromia, ktoré vám Proton ponúka.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Vitajte v Proton Unlimited</value>
@@ -2423,7 +2423,7 @@ Enjoy the best of Proton privacy.</value>
     <value>Nastavte toto číslo vo vašej aplikácii BitTorrent pre najvyššie rýchlosti.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
-    <value>Your plan has been downgraded to Proton Free, and we're reconnecting you to the fastest free server.</value>
+    <value>Vaša tarifa bola znížená na Proton Free a prepájame vás k najrýchlejšiemu bezplatnému serveru.</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Najrýchlejší bezplatný server</value>

@@ -1880,7 +1880,7 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
     <value>내 계정</value>
   </data>
   <data name="Home_ConnectionCard_ChangeServer">
-    <value>서버 번경</value>
+    <value>서버 변경</value>
   </data>
   <data name="Home_ConnectionCard_Header_BrowseSafely">
     <value>안전하게 다음 위치에서 탐색 중:</value>

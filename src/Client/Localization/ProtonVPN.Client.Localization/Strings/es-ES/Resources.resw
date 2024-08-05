@@ -1599,7 +1599,7 @@ La latencia alta puede ralentizar tu conexión.</value>
     <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
-    <value>Enviar registros de errores</value>
+    <value>Enviar los registros de errores</value>
     <comment>The label for the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description">
@@ -1955,7 +1955,7 @@ Disfruta lo mejor de la privacidad de Proton.</value>
     <value>Mi cuenta</value>
   </data>
   <data name="Home_ConnectionCard_ChangeServer">
-    <value>Cambiar servidor</value>
+    <value>Cambiar de servidor</value>
   </data>
   <data name="Home_ConnectionCard_Header_BrowseSafely">
     <value>Navegación segura desde</value>
@@ -2135,7 +2135,7 @@ Disfruta lo mejor de la privacidad de Proton.</value>
     <value>Actualización disponible</value>
   </data>
   <data name="Home_Update_UpdateReady">
-    <value>Actualización lista</value>
+    <value>La actualización está lista.</value>
   </data>
   <data name="Home_VpnStatus_Landmark">
     <value>Estado de VPN</value>
@@ -2371,7 +2371,7 @@ Disfruta lo mejor de la privacidad de Proton.</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark">
-    <value>Añadir dirección IPv4</value>
+    <value>Añadir una dirección IPv4</value>
     <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
@@ -2399,7 +2399,7 @@ Disfruta lo mejor de la privacidad de Proton.</value>
     <value>Selecciona un tipo de traducción de dirección de red para tu conexión.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate">
-    <value>Moderado (tipo 2)</value>
+    <value>Moderada (tipo 2)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
     <value>Alguna restricción en los datos que entran en tu red. Esta opción es mejor para juegos en línea.</value>
@@ -2546,10 +2546,10 @@ Disfruta lo mejor de la privacidad de Proton.</value>
     <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Remove">
-    <value>Quitar IP</value>
+    <value>Borrar la IP</value>
   </data>
   <data name="Settings_Features_SplitTunneling_IpAddresses_Watermark">
-    <value>Añadir dirección IPv4</value>
+    <value>Añadir una dirección IPv4</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Standard">
     <value>Estándar</value>
@@ -2573,7 +2573,7 @@ Disfruta lo mejor de la privacidad de Proton.</value>
     <value>Conexión más rápida</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Latest">
-    <value>Último conectado</value>
+    <value>Última conexión</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch">
     <value>Abrir automaticamente</value>

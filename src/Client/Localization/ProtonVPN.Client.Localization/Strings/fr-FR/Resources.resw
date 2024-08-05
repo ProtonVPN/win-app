@@ -1762,7 +1762,7 @@ Smart Routing est généralement utilisé pour déjouer les lois contre la prote
     <value>Bienvenue sur Proton VPN</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_Description">
-    <value>Naviguez de manière privée, accédez au contenu bloqué et profitez de la liberté numérique sans limites de données ni de vitesse.</value>
+    <value>Naviguez en toute confidentialité, accédez au contenu bloqué et profitez de la liberté numérique sans limites de données ni de vitesse.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_NoLogs">
     <value>Le VPN qui n'enregistre pas vos activités.</value>
@@ -1774,10 +1774,10 @@ Smart Routing est généralement utilisé pour déjouer les lois contre la prote
     <value>Naviguez librement où que vous soyez</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
-    <value>Masquez votre emplacement virtuel et utilisez Internet depuis l'un de nos {0} pays disponibles.</value>
+    <value>Masquez votre emplacement virtuel et utilisez internet depuis {0} pays disponible.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
-    <value>Masquez votre emplacement virtuel et utilisez Internet depuis l'un de nos {0} pays disponibles.</value>
+    <value>Masquez votre emplacement virtuel et utilisez internet depuis l'un de nos {0} pays disponibles.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
     <value>Protégez 10 appareils en même temps</value>
@@ -2681,7 +2681,7 @@ Profitez de ce que Proton a de mieux à offrir en matière de protection de la v
     <value>WireGuard</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Description">
-    <value>Contourne les blocages VPN en masquant votre connexion VPN aux censeurs. Ce protocole résiste à l'inspection approfondie des paquets (DPI), mais peut ne pas être aussi rapide que d'autres protocoles. Stealth est un protocole réservé à Proton VPN.</value>
+    <value>Contourne les blocages VPN en masquant votre connexion VPN face à la censure. Ce protocole résiste à l'inspection approfondie des paquets (DPI), mais peut ne pas être aussi rapide que d'autres protocoles. Stealth est un protocole exclusif de Proton VPN.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Title">
     <value>Stealth</value>
