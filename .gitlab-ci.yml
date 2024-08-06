@@ -6,21 +6,27 @@ include:
   - project: 'translations/generator'
     ref: master
     file: '/jobs/sync-crowdin.gitlab-ci.yml'
-    
+
   - project: 'ProtonVPN/qa/test-configuration'
     ref: master
     file: '/windows-config.yml'
-    
+
   - local: '/.gitlab-ci-templates.yml'
-      
+
   - component: $CI_SERVER_HOST/proton/devops/cicd-components/devsecops/grype/scan-code@0.0.15
     inputs:
       stage: test
       cli-args: "-c .grype"
-     
+
   - component: $CI_SERVER_HOST/proton/devops/cicd-components/devsecops/gitleaks/scan-repository@0.0.18
     inputs:
       stage: test
+
+  - component: $CI_SERVER_HOST/proton/devops/cicd-components/tools/artifactlift/release@0.1.20
+    inputs:
+      product: vpn
+      platform: windows
+      artifact_list: ""
 
 variables:
   PUBLIC_REPO_URL: git@github.com:ProtonVPN/win-app.git
@@ -36,8 +42,10 @@ variables:
   NEXUS_GROUP_BTI: "/Vpn/Windows/SLI/Latest/BTI"
   NEXUS_REPO: "test-productivity-builds-distribution"
   GIT_FETCH_DEFAULT_BRANCH: "yes"
+  RELEASE_METADATA: "release-metadata/windows-releases.json release-metadata/win-update.json"
 
 stages:
+  - deploy
   - release
   - bot # comes from translations/generator job
   - build
@@ -345,3 +353,17 @@ report-test-failure:
     - when: never
   script:
     - reporter.py --message "Scheduled BTI test job failed!" --slack-channel "$SLACK_REPORT_CHANNEL" --platform windows --job-name "Windows BTI" --job-url "$CI_PIPELINE_URL"
+
+artifactlift-release-artifacts:
+  rules:
+    - when: never
+
+deploy-json-to-prod:
+  extends: artifactlift-release-artifacts
+  artifacts:
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: manual
+  script:
+    - artifactlift s3 upload --directory "windows" $RELEASE_METADATA
+  resource_group: deploy-json-to-prod
