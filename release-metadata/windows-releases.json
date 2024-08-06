@@ -1,0 +1,303 @@
+{
+    "Categories": [
+        {
+            "Name": "EarlyAccess",
+            "Releases": []
+        },
+        {
+            "Name": "Stable",
+            "Releases": [
+                {
+                    "Version": "3.3.0",
+                    "File": {
+                        "Url": "https://download.protonvpn.net/download/ProtonVPN_v3.3.0.exe",
+                        "SHA1CheckSum": "48e563e80dfc149d57fd3d3083822a91fefcb86f",
+                        "SHA256CheckSum": "c5a99099f3bbc7dea9737347ee18ad71e7023f44dab135fe37201ccf3e392aea",
+                        "SHA512CheckSum": "65401f489aecf64816234539256927889e5f86b2978740f96f02fc971fa1e1ff740f819fd8b5618c75ab32f4e8ac6a082bcf08a0ead1236f05f7527e9a4f13c9",
+                        "Arguments": "/silent"
+                    },
+                    "ChangeLog": [
+                        "Bug fixes and performance improvements."
+                    ],
+                    "ReleaseDate": "2024-07-30T08:00:00Z",
+                    "MinimumOsVersion": "10.0.17763",
+                    "RolloutPercentage": 100
+                },
+                {
+                    "Version": "3.2.12",
+                    "File": {
+                        "Url": "https://download.protonvpn.net/download/ProtonVPN_v3.2.12.exe",
+                        "SHA1CheckSum": "3d32e639c7a256e54dceaaf0e7bacc28381b6494",
+                        "SHA256CheckSum": "a6b9e7faa5c41c04f71634570959415ca36c188fc761287c69f67757d90ef277",
+                        "SHA512CheckSum": "e135428843334c3146eac2dd139c65c7362bf2fa2ec7cb79ee0fe491d59f760501aa510310cc964f6f03ccbeeab6106c8c977ab6608eb515b6ef9b2c15a204af",
+                        "Arguments": "/silent"
+                    },
+                    "ChangeLog": [
+                        "Updates OpenVPN version to 2.6.10."
+                    ],
+                    "ReleaseDate": "2024-06-25T08:00:00Z",
+                    "MinimumOsVersion": "10.0.17763",
+                    "RolloutPercentage": 100
+                },
+                {
+                    "Version": "3.2.11",
+                    "File": {
+                        "Url": "https://download.protonvpn.net/download/ProtonVPN_v3.2.11.exe",
+                        "SHA1CheckSum": "be1157341f0fc1d16b572e869519c9adc5b52e9a",
+                        "SHA256CheckSum": "eb37bf757a2613e6b5c0d328e9b27c64902249c510d8883593e83ff289794aa0",
+                        "SHA512CheckSum": "09d996dc3a7ccb6c1c4c1a707bfc59a742f76542058f33ce61bf8bb0b1ae88a9bd9042f199e42de48ccd1867e9c08070920dd6f6a7542f6425c077b7320ea3ed",
+                        "Arguments": "/silent"
+                    },
+                    "ChangeLog": [
+                        "We have expanded server support to include additional countries.",
+                        "Enhanced localization support for multiple languages.",
+                        "We fixed an issue in the installation process."
+                    ],
+                    "ReleaseDate": "2024-03-28T08:00:00Z",
+                    "MinimumOsVersion": "10.0.17763",
+                    "RolloutPercentage": 100
+                },
+                {
+                    "Version": "3.2.10",
+                    "File": {
+                        "Url": "https://download.protonvpn.net/download/ProtonVPN_v3.2.10.exe",
+                        "SHA1CheckSum": "9444ac2183ddf90bcaa5ab05733df23bc8efe340",
+                        "SHA256CheckSum": "afe52b0d72dbc1ce35f66c6fff2eb412161dfaadeb052e71a42542c2513ae446",   
+                        "SHA512CheckSum": "a717fe8c87aa91819d160a53766fb21b43d5f47e6df6e564f98d1ce1a326d5f2c3e2eda7d49378de4bec11a823c47df2edc014780a3653a33deff81905cf51de",
+                        "Arguments": "/silent"
+                    },
+                    "ChangeLog": [
+                        "Minor security improvements.",
+                        "Fixes an issue where human verification was not working for some users."
+                    ],
+                    "ReleaseDate": "2024-02-01T08:00:00Z",
+                    "MinimumOsVersion": "10.0.17763",
+                    "RolloutPercentage": 100
+                },
+                {
+                    "Version": "3.2.9",
+                    "File": {
+                        "Url": "https://download.protonvpn.net/download/ProtonVPN_v3.2.9.exe",
+                        "SHA1CheckSum": "037519da82c56dbac9dd5bc8ee225e93ec098c0f",
+                        "SHA256CheckSum": "8532b3ee4dfd64d634caf7856cb4beb241eaf016ffe7889ac0c5a8542a7ba4f7",   
+                        "SHA512CheckSum": "28fda32910a5bc3168d7e2703f7461f933d06a7c302cf374098727ad05cd013da5ca9adcd190fc919f3e513428e15192783236eaa33fef5599ce1e80cbd335fa",
+                        "Arguments": "/silent"
+                    },
+                    "ChangeLog": [
+                        "Adds support for Norwegian language."
+                    ],
+                    "ReleaseDate": "2023-12-18T08:00:00Z",
+                    "MinimumOsVersion": "10.0.17763",
+                    "RolloutPercentage": 100
+                },
+                {
+                    "Version": "3.2.8",
+                    "File": {
+                        "Url": "https://download.protonvpn.net/download/ProtonVPN_v3.2.8.exe",
+                        "SHA1CheckSum": "1054808e8e33f069725f76a5572412d56aaebc43",
+                        "SHA256CheckSum": "d69305dda26e4e4cf9a84593570be29cdbafb9f9ff0de17e78dfabf6e0fbcf50",   
+                        "SHA512CheckSum": "31ff910ab612141460d47c2ee29176d3cbddf82b3a21b5314397b42fe033595f3168ba79ea171bf8a5947dc8d71fc9be5a4c8d85dffbcb15bb762638962e501c",
+                        "Arguments": "/silent"
+                    },
+                    "ChangeLog": [
+                        "Minor security improvements."
+                    ],
+                    "ReleaseDate": "2023-12-06T08:00:00Z",
+                    "MinimumOsVersion": "10.0.17763",
+                    "RolloutPercentage": 100
+                },
+                {
+                    "Version": "3.2.7",
+                    "File": {
+                        "Url": "https://download.protonvpn.net/download/ProtonVPN_v3.2.7.exe",
+                        "SHA1CheckSum": "b95236cf76a962f4dccde9032641ce67f9a1cfd9",
+                        "SHA256CheckSum": "57bea2dd764fb122edd25842985274e249bbf7181dee7840cc791a87e202ac09",   
+                        "SHA512CheckSum": "3298fe796a005d6d6de26ccfcbc494c2a965e27539f3b79a1bfa5a88e0fc1463a8d5d43d988025c2f61bf0b649b452504880750f373c8670a2a4e4512552071e",
+                        "Arguments": "/silent"
+                    },
+                    "ChangeLog": [
+                       "Stability and performance improvements.",
+                       "Fixes the duplicated taskbar icon issue.",
+                       "Adds support for Japanese, Georgian, Greek, Finnish, Swedish and Korean languages.",
+                       "Fixes an issue where the colour of the sidebar profiles was not visible for some users."
+                    ],
+                    "ReleaseDate": "2023-11-06T08:00:00Z",
+                    "MinimumOsVersion": "10.0.17763",
+                    "RolloutPercentage": 100
+                },
+                {
+                    "Version": "3.2.2",
+                    "File": {
+                        "Url": "https://download.protonvpn.net/download/ProtonVPN_v3.2.2.exe",
+                        "SHA1CheckSum": "ce32a63ec458e38dc0f2bb2446dfda808d88350f",
+                        "SHA256CheckSum": "498598b4a6ae3b36567536d83592505e1eeea3ae1edc36e4d0d22e945b7beaee",
+                        "SHA512CheckSum": "412c5e72954d52090f94f757a59907fa46017dd054f091dff4f2e0719b09fcc2304aeb98c085522a784377ca94ab47dda61c37d424bc90ac41d5bc743533d745",
+                        "Arguments": "/silent"
+                    },
+                    "ChangeLog": [
+                        "Minor UI and stability improvements."
+                    ],
+                    "ReleaseDate": "2023-10-04T08:00:00Z",
+                    "MinimumOsVersion": "10.0.17763",
+                    "RolloutPercentage": 100
+                },
+                {
+                    "Version": "3.2.1",
+                    "File": {
+                        "Url": "https://download.protonvpn.net/download/ProtonVPN_v3.2.1.exe",
+                        "SHA1CheckSum": "5f1233c1b6cc3cc748840736d3c5ba0f8054efea",
+                        "SHA256CheckSum": "7c5973208fb1b840a145b954d5c23c2f32bb2cbf7ba96f871cd2c604e0b3b00b",
+                        "SHA512CheckSum": "087b7b17ab7cb08dfe80cd22ad6dad2b77547ef33d425fa230b005b17f1e002feaebecea53926fa393be96b47899cd2d683de598e2f1ca91986520b2367275c0",
+                        "Arguments": "/silent"
+                    },
+                    "ChangeLog": [
+                        "Minor UI and stability improvements."
+                    ],
+                    "ReleaseDate": "2023-09-15T09:00:00Z",
+                    "MinimumOsVersion": "10.0.17763",
+                    "RolloutPercentage": 100
+                },
+                {
+                    "Version": "3.1.1",
+                    "File": {
+                        "Url": "https://download.protonvpn.net/download/ProtonVPN_v3.1.1.exe",
+                        "SHA1CheckSum": "136d3785560f7f133a187b1f480c050207a2ba2e",
+                        "SHA256CheckSum": "b46b6a7143ea3410e84860efddc88f7f7453126440b13a363ad3a0efc9f0052d",
+                        "SHA512CheckSum": "254c5875d0079105045de9aac8a4516d6aa0fb60b4b3b05d4c9c16e6e23f494bc8021fe54405c8b66cbb8fa3eb4c5cfc1b37dd5d766216242514dbb32195cf65",
+                        "Arguments": "/silent"
+                    },
+                    "ChangeLog": [
+                        "Minor UI and performance improvements."
+                    ],
+                    "ReleaseDate": "2023-08-24T09:00:00Z",
+                    "MinimumOsVersion": "10.0.17763"
+                },
+                {
+                    "Version": "3.1.0",
+                    "File": {
+                        "Url": "https://download.protonvpn.net/download/ProtonVPN_v3.1.0.exe",
+                        "SHA1CheckSum": "768f6a3ac7c29c9666851da9b2d167effbc53d94",
+                        "SHA256CheckSum": "d139622a81351d614741ddae9a78f58b3ab83665a4cf1459881f794e0963a0e2",
+                        "SHA512CheckSum": "2c580dc4ba956fdf88fefd0bf1524521ac3b202f6178262e18faf78430a02f9904207d9b00a541e9af83660139fbf648196d7475ea26b115415e2f473b23df76",
+                        "Arguments": "/silent"
+                    },
+                    "ChangeLog": [
+                        "Introducing support for Proton VPN B2B plans.",
+                        "Safeguard your organization and your employees with the new VPN Essential and Business subscriptions, while empowering access control to your company's files and services through gateways and dedicated servers."
+                    ],
+                    "ReleaseDate": "2023-08-03T10:00:00Z",
+                    "MinimumOsVersion": "10.0.17763"
+                },
+                {
+                    "Version": "3.0.7",
+                    "File": {
+                        "Url": "https://download.protonvpn.net/download/ProtonVPN_v3.0.7.exe",
+                        "SHA1CheckSum": "c11fd487094820a0c87399477638a6da56fba6e8",
+                        "SHA256CheckSum": "2b4ae19913ee3d15751b95d05c1efe794c174e802d0a352fed333c2a6396fd1e",
+                        "SHA512CheckSum": "976b29a7442f179df10fa23c4b00746097334a63f0e74956c71fca443cf3f0ec282cb7a46759b178d09f46aedc450f11afa62b3219261bf221a20e36d531183b",
+                        "Arguments": "/silent"
+                    },
+                    "ChangeLog": [
+                        "Fixes an issue that caused some users' applications to launch incorrectly.",
+                        "Minor UI and performance improvements."
+                    ],
+                    "ReleaseDate": "2023-06-07T08:00:00Z",
+                    "MinimumOsVersion": "10.0.17763"
+                },
+                {
+                    "Version": "3.0.5",
+                    "File": {
+                        "Url": "https://download.protonvpn.net/download/ProtonVPN_v3.0.5.exe",
+                        "SHA1CheckSum": "a4c1bcae69e1358d453c0090e69086453dbcf523",
+                        "SHA256CheckSum": "04d3b827e5a2c3899d797d2c5a19433fda43c3abc4e3e8b3fa5548c525973e4f",
+                        "SHA512CheckSum": "e1b65025bd5ff7e094668872626ba7ba2df97a66b409586e9b4f2efb08fe94d44c644979efa523962125821e06e8942ce351c551f8ada54c07f4c06fc617d905",
+                        "Arguments": "/silent"
+                    },
+                    "ChangeLog": [
+                        "Improves the overall stability of the app.",
+                        "With this new release we've improved the runtime performance and enhanced security features.",
+                        "We've also introduced automatic updates, to ensure that the app is always up-to-date with the latest features and security enhancements."
+                    ],
+                    "ReleaseDate": "2023-05-02T08:00:00Z",
+                    "MinimumOsVersion": "10.0.17763"
+                },
+                {
+                    "Version": "2.4.3",
+                    "File": {
+                        "Url": "https://download.protonvpn.net/download/ProtonVPN_win_v2.4.3.exe",
+                        "SHA1CheckSum": "1cdf82e0d13ae3304864a6c01422bf4eaf96563f",
+                        "SHA256CheckSum": "a8c0275fdd40b609d34b43ef7cb1f6f814a0f758d65e7562e24899caf66964b7",
+                        "SHA512CheckSum": "242f9bcd9cb270d528db2b12e799307d6d09f7117ee921e742c99e338d8283780b0f416f29bfa7a9977843a123682e4e67a656d0f37a0157456bf76b3247d671",
+                        "Arguments": "/qb"
+                    },
+                    "ChangeLog": [
+                        "Minor stability improvements."
+                    ],
+                    "ReleaseDate": "2023-07-13T08:00:00Z",
+                    "MinimumOsVersion": "6.1.7600"
+                },
+                {
+                    "Version": "2.4.2",
+                    "File": {
+                        "Url": "https://download.protonvpn.net/download/ProtonVPN_win_v2.4.2.exe",
+                        "SHA1CheckSum": "55fc48f6d43d4f1155d5a47760bc578db5ca0513",
+                        "SHA256CheckSum": "6ba500d1b689282d63820cca965e491aa095b6c2dac802ab8fd863b172231e26",
+                        "SHA512CheckSum": "4e526a8a01269ec7f2458888139df39ccbba065aa5e0734c2893c2a6990b5363db639584ce0f955091b0029cff8ba91abfac3dcd787a58e226415ce444ca33b6",
+                        "Arguments": "/qb"
+                    },
+                    "ChangeLog": [
+                        "Minor UI and performance improvements."
+                    ],
+                    "ReleaseDate": "2023-04-18T08:00:00Z",
+                    "MinimumOsVersion": "6.1.7600"
+                },
+                {
+                    "Version": "2.4.1",
+                    "File": {
+                        "Url": "https://download.protonvpn.net/download/ProtonVPN_win_v2.4.1.exe",
+                        "SHA1CheckSum": "695251a2628c95a6fd9e2b7f3092593723d09594",
+                        "SHA256CheckSum": "c95cf2af65dd0b1556c02cd17952462f02314cf532eec06ebca08328549790ae",
+                        "SHA512CheckSum": "18a6a92e460312b3ee7b76e9bc2be98f47f19cdf84dbbf64d73b5fe70aaec19a22de89ffa73c2b416230f1f91e0b6f929663d3e01bcf59bea978b565390b1dcc",
+                        "Arguments": "/qb"
+                    },
+                    "ChangeLog": [
+                        "Minor stability improvements.",
+                        "Minor improvements to the update system."
+                    ],
+                    "ReleaseDate": "2023-03-22T12:53:00Z",
+                    "MinimumOsVersion": "6.1.7600"
+                },
+                {
+                    "Version": "2.3.2",
+                    "File": {
+                        "Url": "https://download.protonvpn.net/download/ProtonVPN_win_v2.3.2.exe",
+                        "SHA1CheckSum": "63b679452fffd92aa778caafaa0fb99c45ab9a2b",
+                        "SHA256CheckSum": "3fd2a8f09887fef57cd6c99e31ad71804281142c4f731f0685dfea8c362411b6",
+                        "SHA512CheckSum": "41a867409f020a2c72a4284e21b99db43ad8860f385e3411f902d403c28eda0e11a5118dbd977be81dde9711428e65307b8dd5128a872838e410ce328f28a496",
+                        "Arguments": "/qb"
+                    },
+                    "ChangeLog": [
+                        "Adds support for Czech and Romanian languages."
+                    ],
+                    "ReleaseDate": "2023-01-03T11:42:24Z",
+                    "MinimumOsVersion": "6.1.7600"
+                },
+                {
+                    "Version": "2.3.1",
+                    "File": {
+                        "Url": "https://download.protonvpn.net/download/ProtonVPN_win_v2.3.1.exe",
+                        "SHA1CheckSum": "a57601fcca6385dcae33f38e0d684fa516d80d79",
+                        "SHA256CheckSum": "a09596b6c0c919641b2d448a6399201d3cddb52f1c2c518e70546b27b6112847",
+                        "SHA512CheckSum": "313605531761865edf169c9a56ddf4945410507004f89bdb6454e1be8755e895281591ca84868ae915b98ae99de391aabc31698fbe56472bbe8c7a7c974f22ff",
+                        "Arguments": "/qb"
+                    },
+                    "ChangeLog": [
+                        "Minor UI and stability improvements."
+                    ],
+                    "ReleaseDate": "2022-12-07T10:24:32Z",
+                    "MinimumOsVersion": "6.1.7600"
+                }
+            ]
+        }
+    ]
+}
