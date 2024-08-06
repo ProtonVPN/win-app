@@ -120,12 +120,6 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 MaxGuestHoleRetries = 5,
 
-                GuestHoleVpnUsername = "guest",
-
-                GuestHoleVpnPassword = "guest",
-
-                VpnUsernameSuffix = "+pw", // p - proton, w - windows
-
                 UpdateCheckInterval = TimeSpan.FromHours(3),
 
                 UpdateRemindInterval = TimeSpan.FromHours(24),

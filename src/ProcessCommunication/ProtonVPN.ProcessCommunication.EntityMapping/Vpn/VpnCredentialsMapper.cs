@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Crypto;
 using ProtonVPN.EntityMapping.Contracts;
@@ -39,8 +38,6 @@ namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn
         {
             return new()
                 {
-                    Username = leftEntity.Username,
-                    Password = leftEntity.Password,
                     ClientCertPem = leftEntity.ClientCertPem,
                     ClientKeyPair = _entityMapper.Map<AsymmetricKeyPair, AsymmetricKeyPairIpcEntity>(leftEntity.ClientKeyPair)
                 };
@@ -50,9 +47,7 @@ namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn
         {
             return rightEntity is null
                 ? throw new ArgumentNullException($"The {nameof(VpnCredentialsIpcEntity)} to be mapped is null.")
-                : rightEntity.ClientCertPem.IsNullOrEmpty() || rightEntity.ClientKeyPair == null
-                    ? new(rightEntity.Username, rightEntity.Password)
-                    : new(rightEntity.ClientCertPem, _entityMapper.Map<AsymmetricKeyPairIpcEntity, AsymmetricKeyPair>(rightEntity.ClientKeyPair));
+                : new(rightEntity.ClientCertPem, _entityMapper.Map<AsymmetricKeyPairIpcEntity, AsymmetricKeyPair>(rightEntity.ClientKeyPair));
         }
     }
 }

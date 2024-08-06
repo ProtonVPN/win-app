@@ -18,7 +18,6 @@
  */
 
 using System.Text;
-using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Vpn;
 
 namespace ProtonVPN.Vpn.OpenVpn
@@ -51,17 +50,9 @@ namespace ProtonVPN.Vpn.OpenVpn
                 .AppendLine("key-direction 1")
                 .AppendLine("disable-dco")
                 .AppendLine(GetTlsAuth())
-                .AppendLine(GetCertificate());
-
-            if (!vpnCredentials.Username.IsNullOrEmpty() && !vpnCredentials.Password.IsNullOrEmpty())
-            {
-                sb.AppendLine("auth-user-pass");
-            }
-            else
-            {
-                sb.AppendLine("<cert>").AppendLine(vpnCredentials.ClientCertPem.Trim()).AppendLine("</cert>");
-                sb.AppendLine("<key>").AppendLine(vpnCredentials.ClientKeyPair.SecretKey.Pem).AppendLine("</key>");
-            }
+                .AppendLine(GetCertificate())
+                .AppendLine("<cert>").AppendLine(vpnCredentials.ClientCertPem.Trim()).AppendLine("</cert>")
+                .AppendLine("<key>").AppendLine(vpnCredentials.ClientKeyPair.SecretKey.Pem).AppendLine("</key>");
 
             return sb.ToString();
         }

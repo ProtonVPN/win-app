@@ -25,13 +25,14 @@ using ProtonVPN.Api;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
-using ProtonVPN.Logging.Contracts.Events.GuestHoleLogs;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Servers.Contracts;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.GuestHoles.FileStoraging;
+using ProtonVPN.Core.Auth;
+using ProtonVPN.Crypto;
 
 namespace ProtonVPN.Vpn.Connectors
 {
@@ -46,6 +47,7 @@ namespace ProtonVPN.Vpn.Connectors
         private readonly GuestHoleState _guestHoleState;
         private readonly IConfiguration _config;
         private readonly IGuestHoleServersFileStorage _guestHoleServersFileStorage;
+        private readonly IAuthKeyManager _authKeyManager;
         private readonly ILogger _logger;
 
         public GuestHoleConnector(
@@ -54,6 +56,7 @@ namespace ProtonVPN.Vpn.Connectors
             GuestHoleState guestHoleState,
             IConfiguration config,
             IGuestHoleServersFileStorage guestHoleServersFileStorage,
+            IAuthKeyManager authKeyManager,
             ILogger logger)
         {
             _vpnServiceManager = vpnServiceManager;
@@ -61,13 +64,12 @@ namespace ProtonVPN.Vpn.Connectors
             _guestHoleState = guestHoleState;
             _config = config;
             _guestHoleServersFileStorage = guestHoleServersFileStorage;
+            _authKeyManager = authKeyManager;
             _logger = logger;
         }
 
         public async Task Connect()
         {
-            _logger.Info<GuestHoleLog>("OpenVPN adapters are available. Proceeding with guest hole connection.");
-
             VpnConnectionRequest request = new(
                 Servers(),
                 VpnProtocol.Smart,
@@ -80,14 +82,7 @@ namespace ProtonVPN.Vpn.Connectors
 
         private VpnCredentials CreateVpnCredentials()
         {
-            string username = AddSuffixToUsername(_config.GuestHoleVpnUsername);
-            string password = _config.GuestHoleVpnPassword;
-            return new(username, password);
-        }
-
-        private string AddSuffixToUsername(string username)
-        {
-            return username + _config.VpnUsernameSuffix;
+            return new(string.Empty, _authKeyManager.GenerateTemporaryKeyPair());
         }
 
         public async Task Disconnect()
@@ -124,7 +119,12 @@ namespace ProtonVPN.Vpn.Connectors
         {
             IEnumerable<GuestHoleServerContract> servers = _guestHoleServersFileStorage.Get();
             return servers != null
-                ? servers.Select(server => new VpnHost(server.Host, server.Ip, server.Label, null, server.Signature))
+                ? servers.Select(server => new VpnHost(
+                        server.Host,
+                        server.Ip,
+                        server.Label,
+                        new PublicKey(server.X25519PublicKey, KeyAlgorithm.X25519),
+                        server.Signature))
                     .OrderBy(_ => _random.Next())
                     .ToList()
                 : new List<VpnHost>();
@@ -134,18 +134,15 @@ namespace ProtonVPN.Vpn.Connectors
         {
             Dictionary<VpnProtocol, IReadOnlyCollection<int>> portConfig = new()
             {
-                {VpnProtocol.OpenVpnUdp, _appSettings.OpenVpnUdpPorts},
-                {VpnProtocol.OpenVpnTcp, _appSettings.OpenVpnTcpPorts},
+                { VpnProtocol.WireGuardTls, _appSettings.WireGuardTlsPorts }
             };
 
             return new VpnConfig(new VpnConfigParameters
             {
                 Ports = portConfig,
-                OpenVpnAdapter = OpenVpnAdapter.Tap,
                 PreferredProtocols = new List<VpnProtocol>
                 {
-                    VpnProtocol.OpenVpnUdp,
-                    VpnProtocol.OpenVpnTcp,
+                    VpnProtocol.WireGuardTls,
                 },
             });
         }

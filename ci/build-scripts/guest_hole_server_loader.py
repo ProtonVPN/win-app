@@ -37,7 +37,12 @@ def load():
         if server['EntryIP'] in unique_entries:
             continue
 
-        server_json_object = "".join(['{"host":"', server['Domain'], '","ip":"', server['EntryIP'], '","signature":"', server['Signature'], '","label":"', server['Label'], '"}'])
+        server_json_object = "".join([
+            '{"host":"', server['Domain'],
+            '","ip":"', server['EntryIP'],
+            '","signature":"', server['Signature'],
+            '","label":"', server['Label'],
+            '","publicKey":"', server['X25519PublicKey'], '"}'])
         servers_str = ",".join([servers_str, server_json_object])
         unique_entries.append(server['EntryIP'])
 

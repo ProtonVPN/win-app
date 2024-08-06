@@ -132,15 +132,6 @@ namespace ProtonVPN.Common.Configuration
         [Required]
         public int MaxGuestHoleRetries { get; set; }
 
-        [Required]
-        public string GuestHoleVpnUsername { get; set; }
-
-        [Required]
-        public string GuestHoleVpnPassword { get; set; }
-
-        [Required]
-        public string VpnUsernameSuffix { get; set; }
-
         [Range(typeof(TimeSpan), "00:00:10", "10:00:00:00")]
         public TimeSpan UpdateCheckInterval { get; set; }
 
