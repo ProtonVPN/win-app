@@ -22,12 +22,6 @@ include:
     inputs:
       stage: test
 
-  - component: $CI_SERVER_HOST/proton/devops/cicd-components/tools/artifactlift/release@0.1.20
-    inputs:
-      product: vpn
-      platform: windows
-      artifact_list: ""
-
 variables:
   PUBLIC_REPO_URL: git@github.com:ProtonVPN/win-app.git
   SCREENSHOT_PATH: src/bin/e2e/TestFailureData/
@@ -42,10 +36,8 @@ variables:
   NEXUS_GROUP_BTI: "/Vpn/Windows/SLI/Latest/BTI"
   NEXUS_REPO: "test-productivity-builds-distribution"
   GIT_FETCH_DEFAULT_BRANCH: "yes"
-  RELEASE_METADATA: "release-metadata/windows-releases.json release-metadata/win-update.json"
 
 stages:
-  - deploy
   - release
   - bot # comes from translations/generator job
   - build
@@ -353,17 +345,3 @@ report-test-failure:
     - when: never
   script:
     - reporter.py --message "Scheduled BTI test job failed!" --slack-channel "$SLACK_REPORT_CHANNEL" --platform windows --job-name "Windows BTI" --job-url "$CI_PIPELINE_URL"
-
-artifactlift-release-artifacts:
-  rules:
-    - when: never
-
-deploy-json-to-prod:
-  extends: artifactlift-release-artifacts
-  artifacts:
-  rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
-      when: manual
-  script:
-    - artifactlift s3 upload --directory "windows" $RELEASE_METADATA
-  resource_group: deploy-json-to-prod
