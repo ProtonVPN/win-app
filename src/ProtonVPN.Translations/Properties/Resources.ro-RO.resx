@@ -3072,7 +3072,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Transmisie în flux</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Streaming_Desc">
-    <value>Serverele PLUS suportă trasmisii în flux (Netflix, Disney+ etc.) de oriunde din lume.</value>
+    <value>Serverele PLUS suportă transmisii în flux (Netflix, Disney+ etc.) de oriunde din lume.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Title">
     <value>Funcții</value>
@@ -3104,7 +3104,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The description displayed in a tooltip of P icon on a sidebar server item</comment>
   </data>
   <data name="Sidebar_Streaming_Country">
-    <value>Trasmisii în flux - {0}</value>
+    <value>Transmisii în flux - {0}</value>
   </data>
   <data name="Sidebar_Streaming_Features">
     <value>Funcții</value>

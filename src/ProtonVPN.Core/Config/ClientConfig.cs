@@ -99,6 +99,8 @@ namespace ProtonVPN.Core.Config
                     _appSettings.OpenVpnTcpPorts = response.Value.DefaultPorts.OpenVpn.Tcp;
                     _appSettings.OpenVpnUdpPorts = response.Value.DefaultPorts.OpenVpn.Udp;
                     _appSettings.WireGuardPorts = response.Value.DefaultPorts.WireGuard.Udp.Where(IsWireGuardPortSupported).ToArray();
+                    _appSettings.WireGuardTcpPorts = response.Value.DefaultPorts.WireGuard.Tcp.Where(IsWireGuardPortSupported).ToArray();
+                    _appSettings.WireGuardTlsPorts = response.Value.DefaultPorts.WireGuard.Tls.Where(IsWireGuardPortSupported).ToArray();
                     _appSettings.FeatureNetShieldEnabled = response.Value.FeatureFlags.NetShield;
                     _appSettings.FeatureNetShieldStatsEnabled = response?.Value?.FeatureFlags?.NetShieldStats ?? false;
 
@@ -121,8 +123,6 @@ namespace ProtonVPN.Core.Config
                     {
                         _appSettings.FeaturePortForwardingEnabled = response.Value.FeatureFlags.PortForwarding.Value;
                     }
-
-                    _appSettings.FeatureSmartProtocolWireGuardEnabled = response.Value.SmartProtocol.WireGuard;
 
                     bool vpnAcceleratorFeatureFlag = response.Value.FeatureFlags.VpnAccelerator ?? true;
                     _appSettings.FeatureVpnAcceleratorEnabled = vpnAcceleratorFeatureFlag;

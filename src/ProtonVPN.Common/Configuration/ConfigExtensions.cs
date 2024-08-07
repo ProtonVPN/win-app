@@ -29,7 +29,7 @@ namespace ProtonVPN.Common.Configuration
             {
                 OpenVpnAdapter.Tap => config.OpenVpn.TapAdapterId,
                 OpenVpnAdapter.Tun => config.OpenVpn.TunAdapterId,
-                _ => config.WireGuard.TunAdapterHardwareId
+                _ => config.WireGuard.WintunAdapterHardwareId
             };
         }
 

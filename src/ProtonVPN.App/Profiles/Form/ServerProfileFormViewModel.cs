@@ -26,6 +26,7 @@ using ProtonVPN.Core.Settings;
 using System.Collections.Generic;
 using System.Linq;
 using ProtonVPN.Common.Configuration;
+using ProtonVPN.Core.FeatureFlags;
 using ProtonVPN.Profiles.Servers;
 
 namespace ProtonVPN.Profiles.Form
@@ -40,8 +41,9 @@ namespace ProtonVPN.Profiles.Form
             IDialogs dialogs,
             IModals modals,
             ServerManager serverManager,
-            IProfileFactory profileFactory) 
-            : base(appConfig, colorProvider, userStorage, profileManager, dialogs, modals, serverManager, profileFactory)
+            IProfileFactory profileFactory,
+            IFeatureFlagsProvider featureFlagsProvider)
+            : base(appConfig, colorProvider, userStorage, profileManager, dialogs, modals, serverManager, profileFactory, featureFlagsProvider)
         {
         }
 

@@ -24,6 +24,8 @@ namespace ProtonVPN.Common.Networking
         Smart,
         OpenVpnTcp,
         OpenVpnUdp,
-        WireGuard,
+        WireGuardUdp,
+        WireGuardTcp,
+        WireGuardTls,
     }
 }

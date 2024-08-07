@@ -42,12 +42,29 @@ namespace ProtonVPN.Common.Extensions
 
         public static string ToJsonDateTimeOffset(this DateTimeOffset? date)
         {
-            return date.HasValue ? JsonConvert.SerializeObject(date) : null;
+            return date.HasValue ? date.Value.ToJsonDateTimeOffset() : null;
+        }
+
+        public static string ToJsonDateTimeOffset(this DateTimeOffset date)
+        {
+            return JsonConvert.SerializeObject(date);
         }
 
         public static DateTimeOffset TruncateToSeconds(this DateTimeOffset date)
         {
             return new(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second, date.Offset);
+        }
+
+        /// <summary>Returns the smaller (earlier) of two dates.</summary>
+        public static DateTimeOffset Min(this DateTimeOffset dateLeft, DateTimeOffset dateRight)
+        {
+            return DateTimeOffset.Compare(dateLeft, dateRight) < 0 ? dateLeft : dateRight;
+        }
+
+        /// <summary>Returns the larger (later) of two dates.</summary>
+        public static DateTimeOffset Max(this DateTimeOffset dateLeft, DateTimeOffset dateRight)
+        {
+            return DateTimeOffset.Compare(dateLeft, dateRight) > 0 ? dateLeft : dateRight;
         }
     }
 }

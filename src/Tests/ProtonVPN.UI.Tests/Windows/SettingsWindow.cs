@@ -24,8 +24,8 @@ namespace ProtonVPN.UI.Tests.Windows
     public class SettingsWindow : UIActions
     {
         private AutomationElement StartMinimizedComboBox => ElementByAutomationId("StartMinimizedCombobox").AsComboBox();
-        private ListBoxItem OpenVpnUdpOption => StartMinimizedComboBox.FindChildAt(2).AsListBoxItem();
-        private ListBoxItem OpenVpnTcpOption => StartMinimizedComboBox.FindChildAt(3).AsListBoxItem();
+        private ListBoxItem OpenVpnUdpOption => StartMinimizedComboBox.FindFirstChild(cf => cf.ByName("[udp, OpenVPN - UDP]")).AsListBoxItem();
+        private ListBoxItem OpenVpnTcpOption => StartMinimizedComboBox.FindFirstChild(cf => cf.ByName("[tcp, OpenVPN - TCP]")).AsListBoxItem();
         private ListBoxItem OptionDisabled => StartMinimizedComboBox.FindFirstChild().AsListBoxItem();
         private Button SettingsCloseButton => ElementByAutomationId("ModalCloseButton").AsButton();
         private CheckBox ConnectOnBootCheckBox => ElementByAutomationId("ConnectOnBootCheckbox").AsCheckBox();

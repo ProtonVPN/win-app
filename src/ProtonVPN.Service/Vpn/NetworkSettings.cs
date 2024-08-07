@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.NetworkLogs;
 using ProtonVPN.Common.Networking;
@@ -41,10 +42,7 @@ namespace ProtonVPN.Service.Vpn
 
         public void OnVpnDisconnected(VpnState state)
         {
-            if (state.VpnProtocol != VpnProtocol.WireGuard)
-            {
-                RestoreNetworkSettings(state.VpnProtocol, state.OpenVpnAdapter);
-            }
+            RestoreNetworkSettings(state.VpnProtocol, state.OpenVpnAdapter);
         }
 
         public void OnVpnConnected(VpnState state)
@@ -53,15 +51,21 @@ namespace ProtonVPN.Service.Vpn
 
         public void OnVpnConnecting(VpnState state)
         {
-            if (state.VpnProtocol == VpnProtocol.OpenVpnTcp || state.VpnProtocol == VpnProtocol.OpenVpnUdp)
+            ApplyNetworkSettings(state.VpnProtocol, state.OpenVpnAdapter);
+
+            if (state.VpnProtocol.IsOpenVpn() || state.VpnProtocol.IsWireGuardTcpOrTls())
             {
-                ApplyNetworkSettings(state.VpnProtocol, state.OpenVpnAdapter);
                 _wintunRegistryFixer.EnsureTunAdapterRegistryIsCorrect();
             }
         }
 
         private void ApplyNetworkSettings(VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter)
         {
+            if (!vpnProtocol.IsOpenVpn())
+            {
+                return;
+            }
+
             uint interfaceIndex = _networkInterfaceLoader.GetByVpnProtocol(vpnProtocol, openVpnAdapter).Index;
 
             try
@@ -78,6 +82,11 @@ namespace ProtonVPN.Service.Vpn
 
         private void RestoreNetworkSettings(VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter)
         {
+            if (!vpnProtocol.IsOpenVpn())
+            {
+                return;
+            }
+
             uint interfaceIndex = _networkInterfaceLoader.GetByVpnProtocol(vpnProtocol, openVpnAdapter)?.Index ?? 0;
             if (interfaceIndex == 0)
             {

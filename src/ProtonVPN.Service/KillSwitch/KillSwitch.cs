@@ -18,8 +18,8 @@
  */
 
 using Autofac;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.KillSwitch;
-using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Net.NetworkInterface;
 using ProtonVPN.Common.Vpn;
@@ -65,7 +65,7 @@ namespace ProtonVPN.Service.KillSwitch
         {
             _lastVpnState = state;
 
-            if (_lastVpnState.VpnProtocol == VpnProtocol.WireGuard)
+            if (_lastVpnState.VpnProtocol.IsWireGuard())
             {
                 UpdateLeakProtectionStatus(state);
             }
@@ -159,7 +159,7 @@ namespace ProtonVPN.Service.KillSwitch
                 case VpnStatus.Pinging:
                 case VpnStatus.Connecting:
                 case VpnStatus.Reconnecting:
-                case VpnStatus.Connected when _lastVpnState.VpnProtocol == VpnProtocol.WireGuard:
+                case VpnStatus.Connected when _lastVpnState.VpnProtocol.IsWireGuard():
                     return true;
                 case VpnStatus.Disconnecting:
                 case VpnStatus.Disconnected:

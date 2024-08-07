@@ -257,7 +257,7 @@
     <comment>The text displayed in Account window for NetShield</comment>
   </data>
   <data name="Account_lbl_NoLogs">
-    <value>Přísné zásady neukládání záznamů</value>
+    <value>Přísné zásady neukládání logů</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_P2P">
@@ -3398,7 +3398,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Přístup k domácímu i místnímu obsahu při procházení ze zahraničí</value>
   </data>
   <data name="Upsell_SplitTunneling_Subtitle">
-    <value>Odemknutí &lt;Bold&gt;rozděleného tunelování&lt;/Bold&gt; pomocí VPN Plus</value>
+    <value>Odemkněte &lt;Bold&gt;Split Tunneling&lt;/Bold&gt; pomocí VPN Plus</value>
   </data>
   <data name="Upsell_SplitTunneling_Title">
     <value>Získejte to nejlepší z obou světů</value>

@@ -13,6 +13,20 @@ include:
     
   - local: '/.gitlab-ci-templates.yml'
 
+  - component: $CI_SERVER_HOST/proton/devops/cicd-components/tools/artifactlift/release-candidate@0.1.20
+    inputs:
+      product: vpn
+      platform: windows
+      artifact_list: "*"
+      artifact_local_directory: Setup/Installers
+  - component: $CI_SERVER_HOST/proton/devops/cicd-components/tools/artifactlift/release@0.1.20
+    inputs:
+      product: vpn
+      platform: windows
+      artifact_list: ""
+      artifact_metadata_path: /windows
+      artifact_metadata_list: ../windows-releases.json
+
 variables:
   PUBLIC_REPO_URL: git@github.com:ProtonVPN/win-app.git
   TEST_ARTIFACT_PATH: src/bin/TestArtifactData/
@@ -34,6 +48,8 @@ stages:
   - publish-to-slack
   - test-setup
   - ui-test
+  - generate
+  - deploy
   - test-upload
   - installation-test
   - test-cleanup
@@ -48,7 +64,7 @@ build-release:
     TYPE: Release
     DEPENDENCIES: publish
     BUILD_PATH: src/bin/win-x64/publish
-    
+
 build-bti:
   rules:
     - if: '$CI_COMMIT_BRANCH == "master"'
@@ -258,3 +274,60 @@ send-slack-notification:
   script:
     - python -m pip install -r ci\python-libs.txt
     - python ci\build-scripts\main.py send-slack-notification
+
+generate-release-artifacts:
+  stage: generate
+  image: harbor.protontech.ch/docker.io/library/alpine:3.20
+  tags:
+    - shared-small
+  script:
+    - set -ex
+    - export RELEASE_VERSION="${CI_COMMIT_BRANCH##release/}" && echo "RELEASE_VERSION=${RELEASE_VERSION}" | tee release.env
+    - echo "ARTIFACT_LIST=ProtonVPN_v${RELEASE_VERSION}.exe" | tee -a release.env
+  artifacts:
+    reports:
+      dotenv: release.env
+  only:
+    - /^release.*$/
+
+artifactlift-release-candidate-artifacts:
+  rules:
+    - when: never
+
+artifactlift-release-artifacts:
+  rules:
+    - when: never
+
+artifactlift-release-metadata:
+  rules:
+    - when: never
+
+release-binary-to-nexus:
+  extends: artifactlift-release-candidate-artifacts
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "release/9.9.9"'
+      when: never
+    - if: '$CI_COMMIT_BRANCH =~ /^release\/\d+\.\d+\.\d+/'
+      when: manual
+    - when: never
+
+release-binary-to-prod:
+  extends: artifactlift-release-artifacts
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "release/9.9.9"'
+      when: never
+    - if: '$CI_COMMIT_BRANCH =~ /^release\/\d+\.\d+\.\d+/'
+      when: manual
+    - when: never
+
+release-json-to-prod:
+  extends: artifactlift-release-metadata
+  needs:
+    - job: release-binary-to-prod
+      artifacts: true
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "release/9.9.9"'
+      when: never
+    - if: '$CI_COMMIT_BRANCH =~ /^release\/\d+\.\d+\.\d+/'
+      when: manual
+    - when: never

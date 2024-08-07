@@ -2002,7 +2002,7 @@ Segui le &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="t
     <value>Codice di autenticazione a due fattori non valido</value>
   </data>
   <data name="Login_msg_TwoFactorAuthFailed">
-    <value>Credenziali di accesso non valide. Per favore riprova.</value>
+    <value>Credenziali errate. Riprova.</value>
   </data>
   <data name="Login_ttl">
     <value>Proton VPN</value>

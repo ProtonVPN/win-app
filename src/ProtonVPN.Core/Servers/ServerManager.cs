@@ -244,33 +244,25 @@ namespace ProtonVPN.Core.Servers
 
         private void SaveServers(IEnumerable<LogicalServerResponse> servers)
         {
-            if (_appSettings.GetProtocol() == VpnProtocol.WireGuard)
+            List<LogicalServerResponse> filteredServers = new();
+            foreach (LogicalServerResponse server in servers)
             {
-                List<LogicalServerResponse> filteredServers = new();
-                foreach (LogicalServerResponse server in servers)
+                if (server == null)
                 {
-                    if (server == null)
-                    {
-                        continue;
-                    }
-
-                    List<PhysicalServerResponse> physicalServers = server.Servers.Where(ContainsPublicKey).ToList();
-                    if (physicalServers.Count == 0)
-                    {
-                        continue;
-                    }
-
-                    server.Servers = physicalServers;
-                    filteredServers.Add(server);
+                    continue;
                 }
 
-                _servers = filteredServers;
-            }
-            else
-            {
-                _servers = servers.Where(s => s != null).ToList();
+                List<PhysicalServerResponse> physicalServers = server.Servers.Where(ContainsPublicKey).ToList();
+                if (physicalServers.Count == 0)
+                {
+                    continue;
+                }
+
+                server.Servers = physicalServers;
+                filteredServers.Add(server);
             }
 
+            _servers = filteredServers;
             _hasB2BServers = _servers.Any(s => ServerFeatures.IsB2B(s.Features));
         }
 
@@ -290,8 +282,7 @@ namespace ProtonVPN.Core.Servers
                     continue;
                 }
 
-                if (_appSettings.GetProtocol() == VpnProtocol.WireGuard &&
-                    server.Servers.Count(s => !s.X25519PublicKey.IsNullOrEmpty()) == 0)
+                if (server.Servers.Count(s => !s.X25519PublicKey.IsNullOrEmpty()) == 0)
                 {
                     continue;
                 }

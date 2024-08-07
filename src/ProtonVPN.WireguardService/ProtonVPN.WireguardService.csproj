@@ -23,4 +23,8 @@
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
     <PackageReference Include="System.Diagnostics.EventLog" Version="8.0.0" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Logging\ProtonVPN.Logging.Events\ProtonVPN.Logging.Events.csproj" />
+    <ProjectReference Include="..\ProtonVPN.Common\ProtonVPN.Common.csproj" />
+  </ItemGroup>
 </Project>

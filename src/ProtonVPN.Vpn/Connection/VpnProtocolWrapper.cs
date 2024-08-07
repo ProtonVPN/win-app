@@ -19,6 +19,7 @@
 
 using System;
 using ProtonVPN.Common;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Vpn.Common;
@@ -95,21 +96,10 @@ namespace ProtonVPN.Vpn.Connection
             StateChanged?.Invoke(this, e);
         }
 
-        private ISingleVpnConnection VpnConnection
-        {
-            get
-            {
-                switch (_vpnProtocol)
-                {
-                    case VpnProtocol.OpenVpnTcp:
-                    case VpnProtocol.OpenVpnUdp:
-                        return _openVpnConnection;
-                    case VpnProtocol.WireGuard:
-                        return _wireGuardConnection;
-                    default:
-                        return null;
-                }
-            }
-        }
+        private ISingleVpnConnection VpnConnection => _vpnProtocol.IsWireGuard()
+            ? _wireGuardConnection
+            : _vpnProtocol.IsOpenVpn()
+                ? _openVpnConnection
+                : null;
     }
 }

@@ -24,7 +24,9 @@ using System.Windows.Input;
 using Caliburn.Micro;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Networking;
+using ProtonVPN.Core.FeatureFlags;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Profiles;
@@ -39,18 +41,29 @@ using ServerViewModel = ProtonVPN.Profiles.Servers.ServerViewModel;
 
 namespace ProtonVPN.Profiles.Form
 {
-    public abstract class AbstractForm : Screen
+    public abstract class AbstractForm : Screen, IFeatureFlagsAware
     {
+        private readonly VpnProtocol[] _protocols = {
+            VpnProtocol.Smart,
+            VpnProtocol.WireGuardUdp,
+            VpnProtocol.WireGuardTcp,
+            VpnProtocol.OpenVpnUdp,
+            VpnProtocol.OpenVpnTcp,
+            VpnProtocol.WireGuardTls,
+        };
+
+        private readonly IConfiguration _appConfig;
         private readonly ColorProvider _colorProvider;
         protected readonly IUserStorage UserStorage;
         private readonly ProfileManager _profileManager;
         private readonly IDialogs _dialogs;
-        private readonly IConfiguration _appConfig;
         private readonly IModals _modals;
         protected readonly ServerManager ServerManager;
         private readonly IProfileFactory _profileFactory;
+        private readonly IFeatureFlagsProvider _featureFlagsProvider;
 
         private bool _unsavedChanges;
+        private bool _isStealthEnabled;
 
         private string _profileId;
 
@@ -62,7 +75,8 @@ namespace ProtonVPN.Profiles.Form
             IDialogs dialogs,
             IModals modals,
             ServerManager serverManager,
-            IProfileFactory profileFactory)
+            IProfileFactory profileFactory,
+            IFeatureFlagsProvider featureFlagsProvider)
         {
             _appConfig = appConfig;
             _profileManager = profileManager;
@@ -72,8 +86,12 @@ namespace ProtonVPN.Profiles.Form
             _modals = modals;
             ServerManager = serverManager;
             _profileFactory = profileFactory;
+            _featureFlagsProvider = featureFlagsProvider;
 
             SelectColorCommand = new RelayCommand<string>(SelectColorAction);
+            _isStealthEnabled = _featureFlagsProvider.IsStealthEnabled;
+
+            InvalidateProtocols();
         }
 
         public ICommand SelectColorCommand { get; set; }
@@ -85,7 +103,7 @@ namespace ProtonVPN.Profiles.Form
             private set => Set(ref _editMode, value);
         }
 
-        public VpnProtocol[] Protocols => new[] { VpnProtocol.Smart, VpnProtocol.OpenVpnUdp, VpnProtocol.OpenVpnTcp, VpnProtocol.WireGuard };
+        public VpnProtocol[] Protocols { get; set; }
 
         private string[] _colors;
         public string[] Colors => _colors ??= _colorProvider.GetColors();
@@ -134,13 +152,13 @@ namespace ProtonVPN.Profiles.Form
             }
         }
 
-        private VpnProtocol _openVpnProtocol = VpnProtocol.Smart;
+        private VpnProtocol _vpnProtocol = VpnProtocol.Smart;
         public VpnProtocol VpnProtocol
         {
-            get => _openVpnProtocol;
+            get => _vpnProtocol;
             set
             {
-                Set(ref _openVpnProtocol, value);
+                Set(ref _vpnProtocol, value);
                 _unsavedChanges = true;
             }
         }
@@ -191,7 +209,9 @@ namespace ProtonVPN.Profiles.Form
         public virtual void LoadProfile(Profile profile)
         {
             ProfileName = profile.Name;
-            VpnProtocol = profile.VpnProtocol;
+            VpnProtocol = profile.VpnProtocol.IsWireGuardTcpOrTls() && !_featureFlagsProvider.IsStealthEnabled
+                ? VpnProtocol.Smart
+                : profile.VpnProtocol;
             ColorCode = profile.ColorCode;
 
             if (profile.Server == null)
@@ -391,6 +411,34 @@ namespace ProtonVPN.Profiles.Form
                 .WithSecondaryButtonText(Translation.Get("Profiles_Profile_btn_Discard"));
 
             return await _dialogs.ShowQuestionAsync(settings);
+        }
+
+        private void InvalidateProtocols()
+        {
+            VpnProtocol[] protocols = _protocols;
+
+            if (!_featureFlagsProvider.IsStealthEnabled)
+            {
+                if (VpnProtocol.IsWireGuardTcpOrTls())
+                {
+                    _vpnProtocol = VpnProtocol.Smart;
+                    NotifyOfPropertyChange(nameof(VpnProtocol));
+                }
+
+                protocols = protocols.Where(p => !p.IsWireGuardTcpOrTls()).ToArray();
+            }
+
+            Protocols = protocols;
+            NotifyOfPropertyChange(nameof(Protocols));
+        }
+
+        public void OnFeatureFlagsChanged()
+        {
+            if (_isStealthEnabled != _featureFlagsProvider.IsStealthEnabled)
+            {
+                _isStealthEnabled = _featureFlagsProvider.IsStealthEnabled;
+                InvalidateProtocols();
+            }
         }
     }
 }

@@ -25,6 +25,7 @@ namespace ProtonVPN.Core.FeatureFlags;
 public interface IFeatureFlagsProvider
 {
     bool IsSsoEnabled { get; }
+    bool IsStealthEnabled { get; }
 
     event EventHandler FeatureFlagsUpdated;
 

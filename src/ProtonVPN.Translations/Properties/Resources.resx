@@ -777,10 +777,6 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>OpenVPN (UDP)</value>
     <comment>Protocol name displayed all over the app (do not translate)</comment>
   </data>
-  <data name="WireGuard_lbl" xml:space="preserve">
-    <value>WireGuard</value>
-    <comment>WireGuard client name (do not translate)</comment>
-  </data>
   <data name="Settings_lnk_Reconnect" xml:space="preserve">
     <value>Reconnect</value>
     <comment>The text of Reconnect hyperlink next to Reconnect Required message in Settings window (reconnects to same VPN server)</comment>
@@ -2955,12 +2951,26 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="ProfileConnector_msg_MissingAuthCert" xml:space="preserve">
     <value>Proton VPN failed to fetch authentication certificate due to network issue.</value>
   </data>
-  <data name="VpnProtocol_val_WireGuard" xml:space="preserve">
-    <value>WireGuard</value>
+  <data name="VpnProtocol_val_WireGuardUdp" xml:space="preserve">
+    <value>WireGuard (UDP)</value>
   </data>
-  <data name="Settings_Connection_DefaultProtocol_val_WireGuard" xml:space="preserve">
-    <value>WireGuard</value>
-    <comment>The WireGuard protocol name displayed in the Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
+  <data name="VpnProtocol_val_WireGuardTcp" xml:space="preserve">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_val_WireGuardTls" xml:space="preserve">
+    <value>Stealth</value>
+  </data>
+  <data name="Settings_Connection_DefaultProtocol_val_WireGuardUdp" xml:space="preserve">
+    <value>WireGuard (UDP)</value>
+    <comment>The WireGuard (UDP) protocol name displayed in the Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
+  </data>
+  <data name="Settings_Connection_DefaultProtocol_val_WireGuardTcp" xml:space="preserve">
+    <value>WireGuard (TCP)</value>
+    <comment>The WireGuard (TCP) protocol name displayed in the Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
+  </data>
+  <data name="Settings_Connection_DefaultProtocol_val_WireGuardTls" xml:space="preserve">
+    <value>Stealth</value>
+    <comment>The Stealth protocol name displayed in the Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
   </data>
   <data name="Dialogs_IncorrectSystemTime_msg" xml:space="preserve">
     <value>Your system clock seems to be out of sync, which could prevent the VPN from connecting successfully. Please see &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;here&lt;/Hyperlink&gt; for more information.</value>

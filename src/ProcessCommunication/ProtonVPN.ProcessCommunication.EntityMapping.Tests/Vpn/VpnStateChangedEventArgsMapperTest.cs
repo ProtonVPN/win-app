@@ -151,7 +151,7 @@ namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn
                 state: new VpnState(
                     status: VpnStatus.RetrievingConfiguration,
                     entryIp: "172.16.0.0", 
-                    vpnProtocol: VpnProtocol.WireGuard,
+                    vpnProtocol: VpnProtocol.WireGuardUdp,
                     networkAdapterType: OpenVpnAdapter.Tun,
                     label: "Proton VPN"
                 ),

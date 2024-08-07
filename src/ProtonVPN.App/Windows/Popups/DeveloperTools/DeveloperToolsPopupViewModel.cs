@@ -358,7 +358,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         private string GenerateNetworkAdapterString(VpnState vpnState)
         {
             string result = "Connected" + Environment.NewLine + GenerateVpnProtocolString(vpnState.VpnProtocol);
-            if (vpnState.VpnProtocol == VpnProtocol.WireGuard)
+            if (vpnState.VpnProtocol == VpnProtocol.WireGuardUdp)
             {
                 return result;
             }

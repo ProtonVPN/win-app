@@ -43,6 +43,8 @@ public class FeatureFlagsProvider : IFeatureFlagsProvider
 
     public bool IsSsoEnabled => IsFlagEnabled("ExternalSSO");
 
+    public bool IsStealthEnabled => IsFlagEnabled("Stealth");
+
     public FeatureFlagsProvider(
         ILogger logger,
         IApiClient apiClient,

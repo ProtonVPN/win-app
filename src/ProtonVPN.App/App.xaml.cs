@@ -17,9 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Runtime;
 using System.Windows;
 using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Config;
 using ProtonVPN.Core;
 using ProtonVPN.Native.PInvoke;
@@ -31,6 +33,13 @@ namespace ProtonVPN
     {
         protected override async void OnStartup(StartupEventArgs e)
         {
+            if (e.Args.ContainsIgnoringCase("-DoUninstallActions"))
+            {
+                UninstallActions.DeleteClientData();
+                Environment.Exit(0);
+                return;
+            }
+
             if (await SingleInstanceApplication.InitializeAsFirstInstance("{588dc704-8eac-4a43-9345-ec7186b23f05}", string.Join(" ", e.Args)))
             {
                 BalloonNotification.SetAppId("Proton.VPN");

@@ -24,12 +24,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using ProtonVPN.Account;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Config.Url;
 using ProtonVPN.Core;
+using ProtonVPN.Core.FeatureFlags;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Models;
 using ProtonVPN.Core.Service.Vpn;
@@ -48,22 +48,40 @@ using ProtonVPN.Translations;
 
 namespace ProtonVPN.Settings
 {
-    public class SettingsModalViewModel : BaseModalViewModel, IVpnStateAware, IVpnPlanAware
+    public class SettingsModalViewModel : BaseModalViewModel, IVpnStateAware, IVpnPlanAware, IFeatureFlagsAware
     {
+        private readonly List<KeyValuePair<string, string>> _protocols = new()
+        {
+            new(PROTOCOL_AUTO, Translation.Get("Settings_Connection_DefaultProtocol_val_Smart")),
+            new(PROTOCOL_WIREGUARD_UDP, Translation.Get("Settings_Connection_DefaultProtocol_val_WireGuardUdp")),
+            new(PROTOCOL_WIREGUARD_TCP, Translation.Get("Settings_Connection_DefaultProtocol_val_WireGuardTcp")),
+            new(PROTOCOL_OPENVPN_UDP, Translation.Get("Settings_Connection_DefaultProtocol_val_Udp")),
+            new(PROTOCOL_OPENVPN_TCP, Translation.Get("Settings_Connection_DefaultProtocol_val_Tcp")),
+            new(PROTOCOL_STEALTH, Translation.Get("Settings_Connection_DefaultProtocol_val_WireGuardTls")),
+        };
+
+        private const string PROTOCOL_AUTO = "auto";
+        private const string PROTOCOL_WIREGUARD_UDP = "wireguard";
+        private const string PROTOCOL_WIREGUARD_TCP = "wireguard_tcp";
+        private const string PROTOCOL_OPENVPN_TCP = "tcp";
+        private const string PROTOCOL_OPENVPN_UDP = "udp";
+        private const string PROTOCOL_STEALTH = "stealth";
+
         private readonly IUserStorage _userStorage;
         private readonly IAppSettings _appSettings;
         private readonly IVpnManager _vpnManager;
         private readonly IDialogs _dialogs;
         private readonly IModals _modals;
         private readonly IActiveUrls _urls;
-        private readonly ISubscriptionManager _subscriptionManager;
         private readonly ILanguageProvider _languageProvider;
         private readonly IPortForwardingManager _portForwardingManager;
         private readonly ReconnectState _reconnectState;
+        private readonly IFeatureFlagsProvider _featureFlagsProvider;
         private readonly ProfileViewModelFactory _profileViewModelFactory;
 
         private IReadOnlyList<ProfileViewModel> _quickConnectProfiles;
-        private VpnStatus _vpnStatus;
+        private VpnState _vpnState;
+        private bool _isStealthEnabled;
 
         public SettingsModalViewModel(
             IUserStorage userStorage,
@@ -72,7 +90,6 @@ namespace ProtonVPN.Settings
             IDialogs dialogs,
             IModals modals,
             IActiveUrls urls,
-            ISubscriptionManager subscriptionManager,
             ILanguageProvider languageProvider,
             IPortForwardingManager portForwardingManager,
             ReconnectState reconnectState,
@@ -80,6 +97,7 @@ namespace ProtonVPN.Settings
             SplitTunnelingViewModel splitTunnelingViewModel,
             CustomDnsListViewModel customDnsListViewModel,
             PortForwardingActivePortViewModel activePortViewModel,
+            IFeatureFlagsProvider featureFlagsProvider,
             PortForwardingWarningViewModel portForwardingWarningViewModel)
         {
             _userStorage = userStorage;
@@ -88,11 +106,11 @@ namespace ProtonVPN.Settings
             _dialogs = dialogs;
             _modals = modals;
             _urls = urls;
-            _subscriptionManager = subscriptionManager;
             _languageProvider = languageProvider;
             _portForwardingManager = portForwardingManager;
             _reconnectState = reconnectState;
 
+            _featureFlagsProvider = featureFlagsProvider;
             _profileViewModelFactory = profileViewModelFactory;
             SplitTunnelingViewModel = splitTunnelingViewModel;
             Ips = customDnsListViewModel;
@@ -108,6 +126,10 @@ namespace ProtonVPN.Settings
             ShowCustomDnsUpgradeModalCommand = new RelayCommand(ShowUpgradeModalActionAsync<CustomDnsUpsellModalViewModel>);
             ShowModerateNatUpgradeModalCommand = new RelayCommand(ShowUpgradeModalActionAsync<ModerateNatUpsellModalViewModel>);
             LearnMoreAboutPortForwardingCommand = new RelayCommand(LearnMoreAboutPortForwardingAction);
+
+            _isStealthEnabled = _featureFlagsProvider.IsStealthEnabled;
+
+            InvalidateProtocols();
         }
 
         public PortForwardingActivePortViewModel ActivePortViewModel { get; }
@@ -152,7 +174,7 @@ namespace ProtonVPN.Settings
         public bool IsToShowPortForwardingSubSettings => _appSettings.FeaturePortForwardingEnabled &&
                                                          (IsPaidUser || !_appSettings.FeatureFreeRescopeEnabled);
 
-        public bool IsToShowNetworkDriverSelection => _appSettings.GetProtocol() != VpnProtocol.WireGuard;
+        public bool IsToShowNetworkDriverSelection => _appSettings.GetProtocol().IsOpenVpn();
 
         public bool IsToShowPortForwardingWarningLabel => PortForwardingWarningViewModel.IsToShowPortForwardingWarningLabel;
 
@@ -485,13 +507,7 @@ namespace ProtonVPN.Settings
             }
         }
 
-        public List<KeyValuePair<string, string>> Protocols => new()
-        {
-            new("auto", Translation.Get("Settings_Connection_DefaultProtocol_val_Smart")),
-            new("wireguard", Translation.Get("Settings_Connection_DefaultProtocol_val_WireGuard")),
-            new("udp", Translation.Get("Settings_Connection_DefaultProtocol_val_Udp")),
-            new("tcp", Translation.Get("Settings_Connection_DefaultProtocol_val_Tcp")),
-        };
+        public List<KeyValuePair<string, string>> Protocols { get; set; }
 
         public List<KeyValuePair<OpenVpnAdapter, string>> NetworkDrivers => new()
         {
@@ -523,7 +539,7 @@ namespace ProtonVPN.Settings
 
         public Task OnVpnStateChanged(VpnStateChangedEventArgs e)
         {
-            _vpnStatus = e.State.Status;
+            _vpnState = e.State;
 
             SetDisconnected();
 
@@ -659,8 +675,8 @@ namespace ProtonVPN.Settings
 
         private void SetDisconnected()
         {
-            Disconnected = _vpnStatus == VpnStatus.Disconnecting ||
-                           _vpnStatus == VpnStatus.Disconnected;
+            Disconnected = _vpnState is not null &&
+                           _vpnState.Status is VpnStatus.Disconnecting or VpnStatus.Disconnected;
         }
 
         private void RefreshReconnectRequiredState(string settingChanged)
@@ -719,6 +735,43 @@ namespace ProtonVPN.Settings
         private void OnActivePortViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             NotifyOfPropertyChange(e.PropertyName);
+        }
+
+        private void InvalidateProtocols()
+        {
+            List<KeyValuePair<string, string>> protocols = _protocols.ToList();
+
+            if (!_featureFlagsProvider.IsStealthEnabled)
+            {
+                protocols.Remove(protocols.FirstOrDefault(kvp => kvp.Key == PROTOCOL_WIREGUARD_TCP));
+                protocols.Remove(protocols.FirstOrDefault(kvp => kvp.Key == PROTOCOL_STEALTH));
+
+                if (_appSettings.OvpnProtocol is PROTOCOL_WIREGUARD_TCP or PROTOCOL_STEALTH)
+                {
+                    SelectedProtocol = PROTOCOL_AUTO;
+                    NotifyOfPropertyChange(nameof(SelectedProtocol));
+                }
+
+                if (_vpnState is not null &&
+                    _vpnState.Status != VpnStatus.Disconnecting &&
+                    _vpnState.Status != VpnStatus.Disconnected &&
+                    _vpnState.VpnProtocol.IsWireGuardTcpOrTls())
+                {
+                    ReconnectAction();
+                }
+            }
+
+            Protocols = protocols;
+            NotifyOfPropertyChange(nameof(Protocols));
+        }
+
+        public void OnFeatureFlagsChanged()
+        {
+            if (_isStealthEnabled != _featureFlagsProvider.IsStealthEnabled)
+            {
+                _isStealthEnabled = _featureFlagsProvider.IsStealthEnabled;
+                InvalidateProtocols();
+            }
         }
     }
 }

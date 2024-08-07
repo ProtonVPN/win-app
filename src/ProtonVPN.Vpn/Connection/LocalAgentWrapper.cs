@@ -201,6 +201,9 @@ namespace ProtonVPN.Vpn.Connection
                 case LocalAgentState.ClientCertificateUnknownCA:
                     InvokeStateChange(VpnStatus.ActionRequired, VpnError.CertificateExpired);
                     break;
+                case LocalAgentState.ServerUnreachable when _tlsConnected:
+                    _origin.Disconnect(VpnError.Unknown);
+                    break;
             }
         }
 
@@ -213,7 +216,7 @@ namespace ProtonVPN.Vpn.Connection
             else
             {
                 _tlsConnected = true;
-                if (_vpnConfig.VpnProtocol == VpnProtocol.WireGuard)
+                if (_vpnConfig.VpnProtocol.IsWireGuard())
                 {
                     _splitTunnelRouting.SetUpRoutingTable(_vpnConfig, _vpnState.Data.LocalIp);
                 }
@@ -347,7 +350,7 @@ namespace ProtonVPN.Vpn.Connection
 
             CloseTlsChannel();
             _eventReceiver.Stop();
-            if (_vpnConfig.VpnProtocol == VpnProtocol.WireGuard)
+            if (_vpnConfig.VpnProtocol.IsWireGuard())
             {
                 _splitTunnelRouting.DeleteRoutes(_vpnConfig);
             }

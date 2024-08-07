@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace ProtonVPN.Common.Configuration
@@ -24,10 +25,13 @@ namespace ProtonVPN.Common.Configuration
     public class WireGuardConfig
     {
         [Required]
-        public string TunAdapterHardwareId { get; internal set; }
+        public string WintunAdapterHardwareId { get; internal set; }
 
         [Required]
-        public string TunAdapterGuid { get; internal set; }
+        public Guid WintunAdapterGuid { get; internal set; }
+
+        [Required]
+        public Guid NtAdapterGuid { get; internal set; }
 
         [Required]
         public string TunAdapterName { get; internal set; }
@@ -52,5 +56,8 @@ namespace ProtonVPN.Common.Configuration
 
         [Required]
         public string DefaultClientAddress { get; internal set; }
+
+        [Required]
+        public string PipeName { get; internal set; }
     }
 }

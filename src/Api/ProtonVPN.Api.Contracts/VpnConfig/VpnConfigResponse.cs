@@ -34,7 +34,5 @@ namespace ProtonVPN.Api.Contracts.VpnConfig
         public int? ChangeServerLongDelayInSeconds { get; set; }
 
         public FeatureFlagsResponse FeatureFlags { get; set; }
-
-        public SmartProtocolResponse SmartProtocol { get; set; }
     }
 }

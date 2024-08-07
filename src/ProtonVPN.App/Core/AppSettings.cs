@@ -369,6 +369,18 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
+        public int[] WireGuardTcpPorts
+        {
+            get => Get<int[]>() ?? _config.DefaultWireGuardTcpPorts;
+            set => Set(value);
+        }
+
+        public int[] WireGuardTlsPorts
+        {
+            get => Get<int[]>() ?? _config.DefaultWireGuardTlsPorts;
+            set => Set(value);
+        }
+
         public OpenVpnAdapter NetworkAdapterType
         {
             get => Get<OpenVpnAdapter>();
@@ -394,12 +406,6 @@ namespace ProtonVPN.Core
         }
 
         public bool FeaturePortForwardingEnabled
-        {
-            get => Get<bool>();
-            set => Set(value);
-        }
-
-        public bool FeatureSmartProtocolWireGuardEnabled
         {
             get => Get<bool>();
             set => Set(value);
@@ -639,6 +645,12 @@ namespace ProtonVPN.Core
             set => SetPerUserEncrypted(value);
         }
 
+        public DateTimeOffset LogicalsLastModifiedDate
+        {
+            get => Get<string>().FromJsonDateTimeOffset() ?? DateTimeOffset.UnixEpoch;
+            set => Set(value.ToJsonDateTimeOffset());
+        }
+
         public TimeSpan MaintenanceCheckInterval
         {
             get
@@ -708,7 +720,9 @@ namespace ProtonVPN.Core
             string protocolStr = OvpnProtocol;
             return protocolStr.EqualsIgnoringCase("udp") ? VpnProtocol.OpenVpnUdp :
                 protocolStr.EqualsIgnoringCase("tcp") ? VpnProtocol.OpenVpnTcp :
-                protocolStr.EqualsIgnoringCase("wireguard") ? VpnProtocol.WireGuard :
+                protocolStr.EqualsIgnoringCase("wireguard") ? VpnProtocol.WireGuardUdp :
+                protocolStr.EqualsIgnoringCase("wireguard_tcp") ? VpnProtocol.WireGuardTcp :
+                protocolStr.EqualsIgnoringCase("stealth") ? VpnProtocol.WireGuardTls :
                 VpnProtocol.Smart;
         }
 
