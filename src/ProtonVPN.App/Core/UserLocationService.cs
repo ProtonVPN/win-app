@@ -33,7 +33,7 @@ using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.Core
 {
-    internal class UserLocationService : IVpnStateAware, IUserLocationService, IConnectionDetailsAware
+    public class UserLocationService : IVpnStateAware, IUserLocationService, IConnectionDetailsAware
     {
         private static readonly TimeSpan UpdateLocationDelay = TimeSpan.FromSeconds(6);
 
@@ -68,6 +68,29 @@ namespace ProtonVPN.Core
         public Task Update()
         {
             return _updateAction.Run();
+        }
+
+        public async Task<string> GetTruncatedIpAddressAsync()
+        {
+            string ip = _userStorage.GetLocation().Ip;
+            if (ip.IsNullOrEmpty())
+            {
+                await Update();
+            }
+
+            ip = _userStorage.GetLocation().Ip;
+            if (string.IsNullOrEmpty(ip))
+            {
+                return string.Empty;
+            }
+
+            string[] parts = ip.Split('.');
+            if (parts.Length >= 3)
+            {
+                return string.Join(".", parts[0], parts[1], parts[2], 0);
+            }
+
+            return string.Empty;
         }
 
         public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)

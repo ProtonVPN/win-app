@@ -40,6 +40,9 @@ namespace ProtonVPN.Core.Config
         private readonly IAppSettings _appSettings;
         private readonly IApiClient _apiClient;
         private readonly IConfiguration _config;
+        private readonly IUserAuthenticator _userAuthenticator;
+        private readonly IUserStorage _userStorage;
+        private readonly IUserLocationService _userLocationService;
         private readonly ISchedulerTimer _timer;
         private readonly SingleAction _updateAction;
 
@@ -53,11 +56,17 @@ namespace ProtonVPN.Core.Config
             IScheduler scheduler,
             IApiClient apiClient,
             IConfiguration config,
+            IUserAuthenticator userAuthenticator,
+            IUserStorage userStorage,
+            IUserLocationService userLocationService,
             IEventAggregator eventAggregator)
         {
             _appSettings = appSettings;
             _apiClient = apiClient;
             _config = config;
+            _userAuthenticator = userAuthenticator;
+            _userStorage = userStorage;
+            _userLocationService = userLocationService;
 
             _timer = scheduler.Timer();
             _timer.Interval = config.ClientConfigUpdateInterval.RandomizedWithDeviation(0.2);
@@ -92,7 +101,9 @@ namespace ProtonVPN.Core.Config
             try
             {
                 _lastUpdateCallTime = DateTime.UtcNow;
-                ApiResponseResult<VpnConfigResponse> response = await _apiClient.GetVpnConfig();
+                string country = _userAuthenticator.IsLoggedIn ? _userStorage.GetLocation().Country : null;
+                string ip = _userAuthenticator.IsLoggedIn ? await _userLocationService.GetTruncatedIpAddressAsync() : null;
+                ApiResponseResult<VpnConfigResponse> response = await _apiClient.GetVpnConfig(country, ip);
                 if (response.Success)
                 {
                     _lastSuccessfulUpdateTime = DateTime.UtcNow;

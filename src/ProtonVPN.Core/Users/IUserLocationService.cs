@@ -30,6 +30,8 @@ namespace ProtonVPN.Core.Users
 
         Task Update();
 
+        Task<string> GetTruncatedIpAddressAsync();
+
         event EventHandler<UserLocationEventArgs> UserLocationChanged;
     }
 }

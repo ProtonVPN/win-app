@@ -51,7 +51,7 @@ namespace ProtonVPN.Api.Contracts
         Task<ApiResponseResult<UserLocationResponse>> GetLocationDataAsync();
         Task<ApiResponseResult<BaseResponse>> ReportBugAsync(IEnumerable<KeyValuePair<string, string>> fields, IEnumerable<File> files);
         Task<ApiResponseResult<SessionsResponse>> GetSessions();
-        Task<ApiResponseResult<VpnConfigResponse>> GetVpnConfig();
+        Task<ApiResponseResult<VpnConfigResponse>> GetVpnConfig(string country, string ip);
         Task<ApiResponseResult<AnnouncementsResponse>> GetAnnouncementsAsync(AnnouncementsRequest request);
         Task<ApiResponseResult<StreamingServicesResponse>> GetStreamingServicesAsync();
         Task<ApiResponseResult<BaseResponse>> CheckAuthenticationServerStatusAsync();

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,70 +17,85 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Api;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Common.OS.Net.NetworkInterface;
+using ProtonVPN.Core;
+using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Users;
 
-namespace ProtonVPN.Core.Tests.Users
+namespace ProtonVPN.App.Tests.Core
 {
     [TestClass]
-    public class TruncatedLocationTest
+    public class UserLocationServiceTest
     {
+        private readonly GuestHoleState _guestHoleState = new();
+        private IApiClient _apiClient;
         private IUserStorage _userStorage;
+        private INetworkInterfaces _networkInterfaces;
+        private IUserAuthenticator _userAuthenticator;
 
         [TestInitialize]
         public void TestInitialize()
         {
+            _apiClient = Substitute.For<IApiClient>();
             _userStorage = Substitute.For<IUserStorage>();
+            _networkInterfaces = Substitute.For<INetworkInterfaces>();
+            _userAuthenticator = Substitute.For<IUserAuthenticator>();
         }
 
         [TestMethod]
         [DataRow("85.24.60.44")]
         [DataRow("198.11.10.11")]
-        public void Value_ShouldBe_IpWithZeroedLastOctet(string ip)
+        public async Task Value_ShouldBe_IpWithZeroedLastOctetAsync(string ip)
         {
             // Arrange
             UserLocation userLocation = new(ip, "ISP", "ZZ");
             _userStorage.GetLocation().Returns(userLocation);
-            TruncatedLocation location = new(_userStorage);
 
             // Act
-            string result = location.Ip();
+            UserLocationService userLocationService = GetUserLocationService();
 
             // Assert
-            result.Split('.')[3].Should().Be("0");
+            (await userLocationService.GetTruncatedIpAddressAsync()).Split('.')[3].Should().Be("0");
         }
 
         [TestMethod]
-        public void Value_ShouldBeEmpty_WhenIpIsNull()
+        public async Task Value_ShouldBeEmpty_WhenIpIsNullAsync()
         {
             // Arrange
             UserLocation userLocation = new(null, "ISP", "ZZ");
             _userStorage.GetLocation().Returns(userLocation);
-            TruncatedLocation location = new(_userStorage);
 
             // Act
-            string result = location.Ip();
+            UserLocationService userLocationService = GetUserLocationService();
 
             // Assert
-            result.Should().Be(string.Empty);
+            (await userLocationService.GetTruncatedIpAddressAsync()).Should().Be(string.Empty);
         }
 
         [TestMethod]
-        public void Value_ShouldBeEmpty_WhenIpIsEmpty()
+        public async Task Value_ShouldBeEmpty_WhenIpIsEmptyAsync()
         {
             // Arrange
             UserLocation userLocation = new(string.Empty, "ISP", "ZZ");
             _userStorage.GetLocation().Returns(userLocation);
-            TruncatedLocation location = new(_userStorage);
 
             // Act
-            string result = location.Ip();
+            UserLocationService userLocationService = GetUserLocationService();
 
             // Assert
-            result.Should().Be(string.Empty);
+            (await userLocationService.GetTruncatedIpAddressAsync()).Should().Be(string.Empty);
+        }
+
+        private UserLocationService GetUserLocationService()
+        {
+            return new(_apiClient, _userStorage, _networkInterfaces, _userAuthenticator, _guestHoleState);
         }
     }
 }
