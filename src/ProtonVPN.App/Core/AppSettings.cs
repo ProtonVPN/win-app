@@ -504,6 +504,12 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
+        public bool SecureDisconnect
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+
         [Obsolete(
             "Use this only for checking if the user enabled/disabled the feature." +
             "Use IsSmartReconnectEnabled() for checking if Smart Reconnect is/should be enabled.")]

@@ -6268,6 +6268,24 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disconnect on secured wifi.
+        /// </summary>
+        public static string Settings_General_lbl_SecureDisconnect {
+            get {
+                return ResourceManager.GetString("Settings_General_lbl_SecureDisconnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disconnect when connecting to secure wifi.
+        /// </summary>
+        public static string Settings_General_lbl_SecureDisconnect_Info {
+            get {
+                return ResourceManager.GetString("Settings_General_lbl_SecureDisconnect_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Early Access.
         /// </summary>
         public static string Settings_General_lbl_EarlyAccess {

@@ -1473,6 +1473,18 @@ namespace ProtonVPN.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SecureDisconnect {
+            get {
+                return ((bool)(this["SecureDisconnect"]));
+            }
+            set {
+                this["SecureDisconnect"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool StartOnBoot {
             get {
                 return ((bool)(this["StartOnBoot"]));

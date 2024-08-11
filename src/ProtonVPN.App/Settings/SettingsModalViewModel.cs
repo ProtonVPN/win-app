@@ -445,6 +445,12 @@ namespace ProtonVPN.Settings
             set => _appSettings.ConnectOnInsecureWifi = value;
         }
 
+        public bool SecureDisconnect
+        {
+            get => _appSettings.SecureDisconnect;
+            set => _appSettings.SecureDisconnect = value;
+        }
+
         public bool ShowNotifications
         {
             get => _appSettings.ShowNotifications;
