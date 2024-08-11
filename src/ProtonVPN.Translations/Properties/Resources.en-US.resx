@@ -277,6 +277,10 @@
     <value>Automatically connect to the Quick Connect profile when Proton VPN starts.</value>
     <comment>The description of Connect on boot setting displayed in the tooltip of ( i ) image next to the label for Connect on boot combo box in General tab of Settings window</comment>
   </data>
+  <data name="Settings_General_lbl_ConnectOnInsecureWifi_Info" xml:space="preserve">
+    <value>Automatically connect to the Quick Connect profile when connecting to an insecure wifi.</value>
+    <comment>The description of Connect on insecure wifi setting displayed in the tooltip of ( i ) image next to the label for Connect on insecure wifi combo box in General tab of Settings window</comment>
+  </data>
   <data name="StartMinimizedMode_val_Disabled" xml:space="preserve">
     <value>Disabled</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
@@ -708,6 +712,10 @@ This setting instructs the Proton VPN to start automatically when the user logs 
   <data name="Settings_General_lbl_ConnectOnAppStart" xml:space="preserve">
     <value>Connect on app start</value>
     <comment>The label for Connect on boot combo box in General tab of Settings window</comment>
+  </data>
+  <data name="Settings_General_lbl_ConnectOnInsecureWifi" xml:space="preserve">
+    <value>Connect when connected to an insecure wifi</value>
+    <comment>The label for Connect on insecure wifi combo box in General tab of Settings window</comment>
   </data>
   <data name="About_lbl_ChangelogVersion" xml:space="preserve">
     <value>Changelog of v.{0}</value>

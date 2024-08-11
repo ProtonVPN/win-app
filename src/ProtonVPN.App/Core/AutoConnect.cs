@@ -26,24 +26,30 @@ using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.Core.Network;
 
 namespace ProtonVPN.Core
 {
     internal class AutoConnect : IVpnStateAware
     {
         private readonly IAppSettings _appSettings;
+        private readonly INetworkClient _networkClient;
         private readonly IVpnManager _vpnManager;
         private readonly ILogger _logger;
         private VpnStatus _vpnStatus;
 
         public AutoConnect(
             IAppSettings appSettings,
+            INetworkClient networkClient,
             IVpnManager vpnManager,
             ILogger logger)
         {
             _appSettings = appSettings;
+            _networkClient = networkClient;
             _vpnManager = vpnManager;
             _logger = logger;
+
+            _networkClient.WifiChangeDetected += OnWifiChangeDetected;
         }
 
         public async Task LoadAsync(bool autoLogin)
@@ -74,6 +80,27 @@ namespace ProtonVPN.Core
             _vpnStatus = e.State.Status;
 
             return Task.CompletedTask;
+        }
+
+        private void OnWifiChangeDetected(object sender, WifiChangeEventArgs e)
+        {
+            if (e.Secure || !_appSettings.ConnectOnInsecureWifi)
+            {
+                return;
+            }
+
+            Task.Factory.StartNew(async () =>
+            {
+                try
+                {
+                    _logger.Info<ConnectTriggerLog>("Automatically connecting on insecure wifi");
+                    await _vpnManager.QuickConnectAsync();
+                }
+                catch (OperationCanceledException ex)
+                {
+                    _logger.Error<AppLog>("An error occurred when connecting automatically on insecure wifi.", ex);
+                }
+            });
         }
     }
 }

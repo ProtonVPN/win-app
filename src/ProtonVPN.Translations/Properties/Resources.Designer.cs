@@ -6241,11 +6241,29 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automatically connect to the Quick Connect profile when Proton VPN starts..
+        ///   Looks up a localized string similar to Automatically connect to the Quick Connect profile when Proton VPN starts.
         /// </summary>
         public static string Settings_General_lbl_ConnectOnAppStart_Info {
             get {
                 return ResourceManager.GetString("Settings_General_lbl_ConnectOnAppStart_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connect on insecure wifi.
+        /// </summary>
+        public static string Settings_General_lbl_ConnectOnInsecureWifi {
+            get {
+                return ResourceManager.GetString("Settings_General_lbl_ConnectOnInsecureWifi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically connect to the Quick Connect profile when connecting to inseucre wifi.
+        /// </summary>
+        public static string Settings_General_lbl_ConnectOnInsecureWifi_Info {
+            get {
+                return ResourceManager.GetString("Settings_General_lbl_ConnectOnInsecureWifi_Info", resourceCulture);
             }
         }
         

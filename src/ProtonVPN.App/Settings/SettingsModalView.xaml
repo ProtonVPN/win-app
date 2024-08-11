@@ -212,6 +212,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                         <Border Style="{StaticResource BorderSettingContainer}">
                             <DockPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Style="{StaticResource SettingName}"
+                                           Content="{translations:Loc Settings_General_lbl_ConnectOnInsecureWifi}" />
+                                    <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
+                                                            ToolTip="{translations:Loc Settings_General_lbl_ConnectOnInsecureWifi_Info}"/>
+                                </StackPanel>
+                                <CheckBox Margin="0,0,14,0"
+                                          HorizontalAlignment="Right"
+                                          Style="{StaticResource ToggleSwitch}"
+                                          IsChecked="{Binding ConnectOnInsecureWifi}"
+                                          AutomationProperties.AutomationId="{StaticResource ConnectOnInsecureWifiCheckbox}" />
+                            </DockPanel>
+                        </Border>
+
+                        <Border Style="{StaticResource BorderSettingContainer}">
+                            <DockPanel>
                                 <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_General_lbl_ShowNotifications}"/>
                                 <CheckBox Margin="0,0,14,0"
                                           HorizontalAlignment="Right"

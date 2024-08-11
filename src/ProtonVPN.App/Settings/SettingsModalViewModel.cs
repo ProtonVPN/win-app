@@ -439,6 +439,12 @@ namespace ProtonVPN.Settings
             set => _appSettings.ConnectOnAppStart = value;
         }
 
+        public bool ConnectOnInsecureWifi
+        {
+            get => _appSettings.ConnectOnInsecureWifi;
+            set => _appSettings.ConnectOnInsecureWifi = value;
+        }
+
         public bool ShowNotifications
         {
             get => _appSettings.ShowNotifications;
