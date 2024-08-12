@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <RunConfiguration>
+     <!-- Specify timeout in milliseconds. A valid value should be greater than 0 -->
+     <TestSessionTimeout>1800000</TestSessionTimeout>
+  </RunConfiguration>
+</RunSettings>
