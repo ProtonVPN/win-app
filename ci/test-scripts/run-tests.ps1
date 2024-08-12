@@ -2,11 +2,12 @@ param (
     [string]$Category
 )
 
-$output = & VSTest.Console.exe src\bin\e2e\ProtonVPN.UI.Tests.dll /TestCaseFilter:"Category=$Category"
+$output = & VSTest.Console.exe src\bin\e2e\ProtonVPN.UI.Tests.dll /Settings:.testsettings.xml /TestCaseFilter:"Category=$Category"
 $exitCode = $LASTEXITCODE
 
 $keywords = @("BVI-", "BackdropLocal", "worldTransform", "0.00, 0.00")
 
+#Filter noise from some of the runners
 $filteredOutput = $output | Where-Object {
     $line = $_
     $shouldDrop = $false

@@ -137,6 +137,8 @@ ui-tests-2:
     
 bti-test:
   extends: .test_execution_script
+  tags:
+    - BTI
   needs:
     - build-BTI-installer
   dependencies:
@@ -151,14 +153,8 @@ bti-test:
     - if: $BTI_SCHEDULED == "true"
       when: always
     - when: manual
-  tags:
-    - BTI
-  script:
-    - ci\test-scripts\uninstall-app.ps1
-    - ci\test-scripts\install-the-app.ps1
-    - dotnet build src/Tests/ProtonVPN.UI.Tests/ProtonVPN.UI.Tests.csproj --arch x64 -o src/bin/e2e
-    - ci\test-scripts\run-bti-tests.ps1 -Category "BTI"
-    - ci\test-scripts\uninstall-app.ps1
+  variables:
+    CATEGORY: "BTI"
 
 tests:
   stage: test

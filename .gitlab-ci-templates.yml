@@ -6,7 +6,7 @@
     - ci\test-scripts\uninstall-app.ps1
     - ci\test-scripts\install-the-app.ps1
     - dotnet build src/Tests/ProtonVPN.UI.Tests/ProtonVPN.UI.Tests.csproj --arch x64 -o src/bin/e2e
-    - VSTest.Console.exe src\bin\e2e\ProtonVPN.UI.Tests.dll /TestCaseFilter:"Category=${CATEGORY}"
+    - ci\test-scripts\run-tests.ps1 -Category ${CATEGORY}
     - ci\test-scripts\uninstall-app.ps1
   artifacts:
     when: always
