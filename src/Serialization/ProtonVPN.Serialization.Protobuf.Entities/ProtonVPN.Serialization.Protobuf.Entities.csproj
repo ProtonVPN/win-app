@@ -12,6 +12,7 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Client\Logic\Announcements\ProtonVPN.Client.Logic.Announcements.Contracts\ProtonVPN.Client.Logic.Announcements.Contracts.csproj" />
+	  <ProjectReference Include="..\..\Client\Logic\Profiles\ProtonVPN.Client.Logic.Profiles.Contracts\ProtonVPN.Client.Logic.Profiles.Contracts.csproj" />
 	  <ProjectReference Include="..\..\Client\Logic\Recents\ProtonVPN.Client.Logic.Recents\ProtonVPN.Client.Logic.Recents.csproj" />
 	  <ProjectReference Include="..\..\Client\Logic\Servers\ProtonVPN.Client.Logic.Servers.Contracts\ProtonVPN.Client.Logic.Servers.Contracts.csproj" />
 	</ItemGroup>

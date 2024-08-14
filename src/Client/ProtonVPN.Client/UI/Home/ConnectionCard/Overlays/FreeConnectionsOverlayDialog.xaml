@@ -22,10 +22,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
+               xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                xmlns:models="using:ProtonVPN.Client.Models"
-               xmlns:toolkit="using:CommunityToolkit.WinUI.Controls" 
+               xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
                Title="{x:Bind ViewModel.Localizer.Get('Dialogs_FreeConnections_Title')}"
                x:DefaultBindMode="OneWay"
                CloseButtonCommand="{x:Bind ViewModel.CloseOverlayCommand}"
@@ -56,9 +57,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <DataTemplate x:DataType="models:Country">
                     <StackPanel Orientation="Horizontal"
                                 Spacing="8">
-                        <controls:CountryFlagControl Width="30"
-                                                     VerticalAlignment="Top"
-                                                     ExitCountryCode="{x:Bind Code, Mode=OneTime}" />
+                        <custom:SimpleCountryFlag Width="30"
+                                                  VerticalAlignment="Top"
+                                                  CountryCode="{x:Bind Code, Mode=OneTime}"
+                                                  FlagType="Country" />
                         <TextBlock Foreground="{ThemeResource TextNormColorBrush}"
                                    Style="{StaticResource BodyTextBlockStyle}"
                                    Text="{x:Bind Name, Mode=OneTime}"
@@ -68,9 +70,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-        <controls:UpsellBannerControl Margin="0,12,0,0"  
-                                      Image="{StaticResource WorldwideCoverageIllustrationSource}"
+        <controls:UpsellBannerControl Margin="0,12,0,0"
+                                      Command="{x:Bind ViewModel.UpgradePlanCommand}"
                                       Description="{x:Bind ViewModel.Localizer.Get('FreeConnections_WorldwideCoverageUpsell')}"
-                                      Command="{x:Bind ViewModel.UpgradePlanCommand}"/>
+                                      Image="{StaticResource WorldwideCoverageIllustrationSource}" />
     </StackPanel>
 </ContentDialog>

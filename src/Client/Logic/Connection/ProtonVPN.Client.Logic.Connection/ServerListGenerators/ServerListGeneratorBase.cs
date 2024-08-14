@@ -19,8 +19,6 @@
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
-using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
-using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 namespace ProtonVPN.Client.Logic.Connection.ServerListGenerators;
@@ -41,11 +39,6 @@ public abstract class ServerListGeneratorBase
     protected IEnumerable<PhysicalServer> SelectPhysicalServers(Server server)
     {
         return server.Servers.Where(s => !s.IsUnderMaintenance()).OrderBy(_ => Random.Next()).Take(MaxPhysicalServersPerLogical);
-    }
-
-    protected bool IsStandardServer(Server server)
-    {
-        return !server.Features.IsSupported(ServerFeatures.SecureCore | ServerFeatures.B2B | ServerFeatures.Tor);
     }
 
     protected string? GetCity(List<Server> pickedServers, CityLocationIntent? cityLocationIntent)
@@ -98,13 +91,10 @@ public abstract class ServerListGeneratorBase
 
     protected void AddServerIfNotAlreadyListed(List<Server> pickedServers, IEnumerable<Server> unfilteredServers, Func<Server, bool> serverFilter)
     {
-        if (!pickedServers.Any(serverFilter))
+        Server? server = unfilteredServers.Where(s => !pickedServers.Any(pickedServer => s.Id == pickedServer.Id)).FirstOrDefault(serverFilter);
+        if (server is not null)
         {
-            Server? server = unfilteredServers.Where(s => !pickedServers.Any(pickedServer => s.Id == pickedServer.Id)).FirstOrDefault(serverFilter);
-            if (server is not null)
-            {
-                pickedServers.Add(server);
-            }
+            pickedServers.Add(server);
         }
     }
 }

@@ -39,10 +39,10 @@ public class ConnectionIntentMapper : IMapper<IConnectionIntent, SerializableCon
         return leftEntity is null
             ? null
             : new SerializableConnectionIntent()
-            {
-                Location = _entityMapper.Map<ILocationIntent, SerializableLocationIntent>(leftEntity.Location),
-                Feature = _entityMapper.Map<IFeatureIntent, SerializableFeatureIntent>(leftEntity.Feature),
-            };
+              {
+                  Location = _entityMapper.Map<ILocationIntent, SerializableLocationIntent>(leftEntity.Location),
+                  Feature = _entityMapper.Map<IFeatureIntent, SerializableFeatureIntent>(leftEntity.Feature),
+              };
     }
 
     public IConnectionIntent Map(SerializableConnectionIntent rightEntity)

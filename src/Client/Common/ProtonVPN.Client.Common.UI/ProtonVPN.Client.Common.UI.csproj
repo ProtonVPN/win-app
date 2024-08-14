@@ -14,6 +14,7 @@
         <Content Remove="Assets\Icons\Base\CustomPathIcon.cs" />
         <Content Remove="Assets\Icons\Base\IconUserControl.cs" />
         <Content Remove="Assets\Icons\Base\PathIconSize.cs" />
+        <Content Remove="Assets\Icons\Base\ProfileIconUserControl.cs" />
         <Content Remove="Assets\Icons\IconUserControl.xaml.cs" />
         <Content Remove="Assets\Icons\LatencyHigh.xaml" />
         <Content Remove="Assets\Icons\LatencyHigh.xaml.cs" />
@@ -338,6 +339,38 @@
         <Content Remove="Assets\Icons\PathIcons\WindowImage.cs" />
         <Content Remove="Assets\Icons\PathIcons\WindowTerminal.cs" />
         <Content Remove="Assets\Icons\PathIcons\Wrench.cs" />
+        <Content Remove="Assets\Icons\Profiles\AnonymousProfileIcon.xaml" />
+        <Content Remove="Assets\Icons\Profiles\AnonymousProfileIcon.xaml.cs" />
+        <Content Remove="Assets\Icons\Profiles\BotProfileIcon.xaml" />
+        <Content Remove="Assets\Icons\Profiles\BotProfileIcon.xaml.cs" />
+        <Content Remove="Assets\Icons\Profiles\BrowsingProfileIcon.xaml" />
+        <Content Remove="Assets\Icons\Profiles\BrowsingProfileIcon.xaml.cs" />
+        <Content Remove="Assets\Icons\Profiles\BusinessProfileIcon.xaml" />
+        <Content Remove="Assets\Icons\Profiles\BusinessProfileIcon.xaml.cs" />
+        <Content Remove="Assets\Icons\Profiles\DefaultProfileIcon.xaml" />
+        <Content Remove="Assets\Icons\Profiles\DefaultProfileIcon.xaml.cs" />
+        <Content Remove="Assets\Icons\Profiles\DownloadProfileIcon.xaml" />
+        <Content Remove="Assets\Icons\Profiles\DownloadProfileIcon.xaml.cs" />
+        <Content Remove="Assets\Icons\Profiles\FingerprintingProfileIcon.xaml" />
+        <Content Remove="Assets\Icons\Profiles\FingerprintingProfileIcon.xaml.cs" />
+        <Content Remove="Assets\Icons\Profiles\GamingIcon.xaml.cs" />
+        <Content Remove="Assets\Icons\Profiles\GamingProfileIcon.xaml" />
+        <Content Remove="Assets\Icons\Profiles\GatewayProfileIcon.xaml" />
+        <Content Remove="Assets\Icons\Profiles\GatewayProfileIcon.xaml.cs" />
+        <Content Remove="Assets\Icons\Profiles\HomeProfileIcon.xaml" />
+        <Content Remove="Assets\Icons\Profiles\HomeProfileIcon.xaml.cs" />
+        <Content Remove="Assets\Icons\Profiles\PrivacyProfileIcon.xaml" />
+        <Content Remove="Assets\Icons\Profiles\PrivacyProfileIcon.xaml.cs" />
+        <Content Remove="Assets\Icons\Profiles\ProtectionProfileIcon.xaml" />
+        <Content Remove="Assets\Icons\Profiles\ProtectionProfileIcon.xaml.cs" />
+        <Content Remove="Assets\Icons\Profiles\SecurityProfileIcon.xaml" />
+        <Content Remove="Assets\Icons\Profiles\SecurityProfileIcon.xaml.cs" />
+        <Content Remove="Assets\Icons\Profiles\ShoppingProfileIcon.xaml" />
+        <Content Remove="Assets\Icons\Profiles\ShoppingProfileIcon.xaml.cs" />
+        <Content Remove="Assets\Icons\Profiles\SpeedProfileIcon.xaml" />
+        <Content Remove="Assets\Icons\Profiles\SpeedProfileIcon.xaml.cs" />
+        <Content Remove="Assets\Icons\Profiles\StreamingProfileIcon.xaml" />
+        <Content Remove="Assets\Icons\Profiles\StreamingProfileIcon.xaml.cs" />
         <Content Remove="Assets\Icons\SecureCoreFlagOutline.xaml" />
         <Content Remove="Assets\Icons\SecureCoreFlagOutline.xaml.cs" />
     </ItemGroup>
@@ -394,6 +427,8 @@
         <None Remove="Assets\Flags\CY.svg" />
         <None Remove="Assets\Flags\CZ.svg" />
         <None Remove="Assets\Flags\Dark\Gateway.svg" />
+        <None Remove="Assets\Flags\Dark\Latest.svg" />
+        <None Remove="Assets\Flags\Dark\Random.svg" />
         <None Remove="Assets\Flags\DE.svg" />
         <None Remove="Assets\Flags\DJ.svg" />
         <None Remove="Assets\Flags\DK.svg" />
@@ -407,7 +442,6 @@
         <None Remove="Assets\Flags\ER.svg" />
         <None Remove="Assets\Flags\ES.svg" />
         <None Remove="Assets\Flags\ET.svg" />
-        <None Remove="Assets\Flags\Fastest.svg" />
         <None Remove="Assets\Flags\FI.svg" />
         <None Remove="Assets\Flags\FJ.svg" />
         <None Remove="Assets\Flags\FK.svg" />
@@ -462,11 +496,13 @@
         <None Remove="Assets\Flags\KY.svg" />
         <None Remove="Assets\Flags\KZ.svg" />
         <None Remove="Assets\Flags\LA.svg" />
-        <None Remove="Assets\Flags\Latest.svg" />
         <None Remove="Assets\Flags\LB.svg" />
         <None Remove="Assets\Flags\LC.svg" />
         <None Remove="Assets\Flags\LI.svg" />
+        <None Remove="Assets\Flags\Light\Fastest.svg" />
         <None Remove="Assets\Flags\Light\Gateway.svg" />
+        <None Remove="Assets\Flags\Light\Latest.svg" />
+        <None Remove="Assets\Flags\Light\Random.svg" />
         <None Remove="Assets\Flags\LK.svg" />
         <None Remove="Assets\Flags\LR.svg" />
         <None Remove="Assets\Flags\LS.svg" />
@@ -598,6 +634,22 @@
         <None Remove="Assets\Icons\LatencyLow.xaml" />
         <None Remove="Assets\Icons\LatencyMedium.xaml" />
         <None Remove="Assets\Icons\LoadingLogo.xaml" />
+        <None Remove="Assets\Icons\Profiles\AnonymousProfileIcon.xaml" />
+        <None Remove="Assets\Icons\Profiles\BotProfileIcon.xaml" />
+        <None Remove="Assets\Icons\Profiles\BrowsingProfileIcon.xaml" />
+        <None Remove="Assets\Icons\Profiles\BusinessProfileIcon.xaml" />
+        <None Remove="Assets\Icons\Profiles\DefaultProfileIcon.xaml" />
+        <None Remove="Assets\Icons\Profiles\DownloadProfileIcon.xaml" />
+        <None Remove="Assets\Icons\Profiles\FingerprintingProfileIcon.xaml" />
+        <None Remove="Assets\Icons\Profiles\GamingProfileIcon.xaml" />
+        <None Remove="Assets\Icons\Profiles\GatewayProfileIcon.xaml" />
+        <None Remove="Assets\Icons\Profiles\HomeProfileIcon.xaml" />
+        <None Remove="Assets\Icons\Profiles\PrivacyProfileIcon.xaml" />
+        <None Remove="Assets\Icons\Profiles\ProtectionProfileIcon.xaml" />
+        <None Remove="Assets\Icons\Profiles\SecurityProfileIcon.xaml" />
+        <None Remove="Assets\Icons\Profiles\ShoppingProfileIcon.xaml" />
+        <None Remove="Assets\Icons\Profiles\SpeedProfileIcon.xaml" />
+        <None Remove="Assets\Icons\Profiles\StreamingProfileIcon.xaml" />
         <None Remove="Assets\Icons\SecureCoreFlagOutline.xaml" />
         <None Remove="Assets\Icons\Streaming\10play.png" />
         <None Remove="Assets\Icons\Streaming\7plus.png" />
@@ -645,21 +697,24 @@
         <None Remove="Assets\Illustrations\Light\default-connection.svg" />
         <None Remove="Assets\Illustrations\Light\free-countries.svg" />
         <None Remove="Assets\Illustrations\Light\product-logo.svg" />
+        <None Remove="Assets\Illustrations\Light\profile-new.svg" />
         <None Remove="Assets\Illustrations\Light\vpn-plus.svg" />
         <None Remove="Assets\Illustrations\Light\welcome.png" />
         <None Remove="Assets\Illustrations\netshield-off.png" />
         <None Remove="Assets\Illustrations\netshield-on.png" />
-        <None Remove="Assets\Illustrations\p2p-small.png" />
+        <None Remove="Assets\Illustrations\p2p-countries.png" />
         <None Remove="Assets\Illustrations\netshield.png" />
         <None Remove="Assets\Illustrations\placeholder.svg" />
         <None Remove="Assets\Illustrations\port-forwarding-off.png" />
         <None Remove="Assets\Illustrations\port-forwarding-on.png" />
+        <None Remove="Assets\Illustrations\profile-new.svg" />
+        <None Remove="Assets\Illustrations\profiles.png" />
         <None Remove="Assets\Illustrations\report-error.png" />
         <None Remove="Assets\Illustrations\report-success.png" />
-        <None Remove="Assets\Illustrations\secure-core-small.png" />
+        <None Remove="Assets\Illustrations\secure-core-countries.png" />
         <None Remove="Assets\Illustrations\split-tunneling-off.png" />
         <None Remove="Assets\Illustrations\split-tunneling-on.png" />
-        <None Remove="Assets\Illustrations\tor-small.png" />
+        <None Remove="Assets\Illustrations\tor-countries.png" />
         <None Remove="Assets\Illustrations\update-proton-vpn.png" />
         <None Remove="Assets\Illustrations\upsell-customisation-large.png" />
         <None Remove="Assets\Illustrations\upsell-customisation-small.png" />
@@ -692,9 +747,7 @@
         <None Remove="Assets\Illustrations\world-map.svg" />
         <None Remove="Assets\Illustrations\worldwide-coverage.png" />
         <None Remove="Assets\Illustrations\wrong-country.png" />
-        <None Remove="Controls\CountryFlagControl.xaml" />
         <None Remove="Controls\DeviceLocationControl.xaml" />
-        <None Remove="Controls\DualCommandsRowControl.xaml" />
         <None Remove="Controls\ServerLoadControl.xaml" />
         <None Remove="Assets\Icons\ActiveDot.xaml" />
         <None Remove="Controls\UpsellBannerControl.xaml" />
@@ -717,7 +770,9 @@
         <None Remove="Styles\Controls\CheckBoxStyles.xaml" />
         <None Remove="Styles\Controls\ComboBoxStyles.xaml" />
         <None Remove="Styles\Controls\ConnectionCardStyles.xaml" />
+        <None Remove="Styles\Controls\ConnectionProfileIconStyles.xaml" />
         <None Remove="Styles\Controls\ContentDialogStyles.xaml" />
+        <None Remove="Styles\Controls\CountryFlagStyles.xaml" />
         <None Remove="Styles\Controls\DualCommandsRowStyles.xaml" />
         <None Remove="Styles\Controls\ExpanderStyles.xaml" />
         <None Remove="Styles\Controls\FlyoutStyles.xaml" />
@@ -772,10 +827,6 @@
     </ItemGroup>
     <ItemGroup>
         <Page Update="Assets\Icons\ActiveDot.xaml">
-            <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-            <SubType>Designer</SubType>
-        </Page>
-        <Page Update="Controls\CountryFlagControl.xaml">
             <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
             <SubType>Designer</SubType>
         </Page>
@@ -926,11 +977,6 @@
         </Page>
     </ItemGroup>
     <ItemGroup>
-        <Page Update="Controls\DualCommandsRowControl.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-    </ItemGroup>
-    <ItemGroup>
         <CustomAdditionalCompileInputs Remove="Controls\ServerLoadControl.xaml" />
     </ItemGroup>
     <ItemGroup>
@@ -943,13 +989,28 @@
         <Resource Remove="Styles\Controls\ContentDialogStyles.xaml" />
     </ItemGroup>
     <ItemGroup>
+        <Content Update="Assets\Flags\Dark\Latest.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Flags\Dark\Random.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Flags\Dark\Fastest.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Flags\Dark\Gateway.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
-        <Content Update="Assets\Flags\Latest.svg">
+        <Content Update="Assets\Flags\Light\Fastest.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Flags\Light\Gateway.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Flags\Light\Latest.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Flags\Light\Random.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Icons\App\proton-vpn-off.svg">
@@ -1169,9 +1230,6 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Flags\ET.svg">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-        <Content Update="Assets\Flags\Fastest.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Flags\FI.svg">
@@ -1846,6 +1904,9 @@
         <Content Update="Assets\Illustrations\Light\product-logo.svg">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Illustrations\Light\profile-new.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Illustrations\Light\vpn-plus.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -1867,7 +1928,7 @@
         <Content Update="Assets\Illustrations\p2p-servers.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
-        <Content Update="Assets\Illustrations\p2p-small.png">
+        <Content Update="Assets\Illustrations\p2p-countries.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\placeholder.svg">
@@ -1879,6 +1940,12 @@
         <Content Update="Assets\Illustrations\port-forwarding-on.png">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Illustrations\Dark\profile-new.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\profiles.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Illustrations\report-error.png">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -1888,7 +1955,7 @@
         <Content Update="Assets\Illustrations\secure-core-connection.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
-        <Content Update="Assets\Illustrations\secure-core-small.png">
+        <Content Update="Assets\Illustrations\secure-core-countries.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\smart-routing.png">
@@ -1909,7 +1976,7 @@
         <Content Update="Assets\Icons\NetShield\ads-blocked.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
-        <Content Update="Assets\Illustrations\tor-small.png">
+        <Content Update="Assets\Illustrations\tor-countries.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Icons\NetShield\trackers-stopped.png">
@@ -2001,7 +2068,77 @@
         </Content>
     </ItemGroup>
     <ItemGroup>
+      <Page Update="Assets\Icons\Profiles\BrowsingProfileIcon.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Assets\Icons\Profiles\SecurityProfileIcon.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Assets\Icons\Profiles\BusinessProfileIcon.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Assets\Icons\Profiles\DownloadProfileIcon.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Assets\Icons\Profiles\SpeedProfileIcon.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Assets\Icons\Profiles\DefaultProfileIcon.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Assets\Icons\Profiles\AnonymousProfileIcon.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Assets\Icons\Profiles\PrivacyProfileIcon.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Assets\Icons\Profiles\ProtectionProfileIcon.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Assets\Icons\Profiles\StreamingProfileIcon.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Assets\Icons\Profiles\ShoppingProfileIcon.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Assets\Icons\Profiles\FingerprintingProfileIcon.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Assets\Icons\Profiles\GamingProfileIcon.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
       <Page Update="Styles\Controls\ProminentBannerControlStyles.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Styles\Controls\ConnectionProfileIconStyles.xaml">
         <Generator>MSBuild:Compile</Generator>
       </Page>
     </ItemGroup>
@@ -2129,5 +2266,26 @@
         <Page Update="Styles\Controls\TooltipStyles.xaml">
             <Generator>MSBuild:Compile</Generator>
         </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <CustomAdditionalCompileInputs Remove="Assets\Icons\Profiles\BotProfileIcon.xaml" />
+    </ItemGroup>
+    <ItemGroup>
+      <Resource Remove="Assets\Icons\Profiles\BotProfileIcon.xaml" />
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Styles\Controls\CountryFlagStyles.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Assets\Icons\Profiles\HomeProfileIcon.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Assets\Icons\Profiles\GatewayProfileIcon.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
     </ItemGroup>
 </Project>

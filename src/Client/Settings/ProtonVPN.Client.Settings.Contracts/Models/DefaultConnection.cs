@@ -1,0 +1,48 @@
+﻿/*
+ * Copyright (c) 2024 Proton AG
+ *
+ * This file is part of ProtonVPN.
+ *
+ * ProtonVPN is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ProtonVPN is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+using ProtonVPN.Client.Settings.Contracts.Enums;
+
+namespace ProtonVPN.Client.Settings.Contracts.Models;
+
+public struct DefaultConnection
+{
+    public static DefaultConnection Fastest => new(DefaultConnectionType.Fastest);
+    public static DefaultConnection Last => new(DefaultConnectionType.Last);
+
+    public DefaultConnectionType Type { get; init; }
+    public Guid ProfileId { get; init; } = Guid.Empty;
+
+    public DefaultConnection(Guid profileId)
+        : this(DefaultConnectionType.Profile)
+    {
+        ProfileId = profileId;
+    }
+
+    private DefaultConnection(DefaultConnectionType type)
+    {
+        Type = type;
+    }
+
+    public override bool Equals(object? obj) => obj is DefaultConnection other && Equals(other);
+    public bool Equals(DefaultConnection dc) => Type == dc.Type && ProfileId == dc.ProfileId;
+    public override int GetHashCode() => (Type, ProfileId).GetHashCode();
+    public static bool operator ==(DefaultConnection left, DefaultConnection right) => left.Equals(right);
+    public static bool operator !=(DefaultConnection left, DefaultConnection right) => !(left == right);
+}

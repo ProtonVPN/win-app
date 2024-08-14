@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<base:ProfileIconUserControl x:Class="ProtonVPN.Client.Common.UI.Assets.Icons.Profiles.SpeedProfileIcon"
+                             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                             xmlns:base="using:ProtonVPN.Client.Common.UI.Assets.Icons.Base"
+                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                             xmlns:local="using:ProtonVPN.Client.Common.UI.Assets.Icons.Profiles"
+                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                             x:DefaultBindMode="OneWay"
+                             mc:Ignorable="d">
+
+    <UserControl.Resources>
+
+        <LinearGradientBrush x:Key="gradient_brush_black" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="0,1">
+            <LinearGradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Offset="0.6" Color="#00000000" />
+                    <GradientStop Offset="1" Color="#60000000" />
+                </GradientStopCollection>
+            </LinearGradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="gradient_brush_white_black" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="1,0">
+            <LinearGradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Offset="0" Color="#30000000" />
+                    <GradientStop Offset="0.5" Color="#00000000" />
+                    <GradientStop Offset="0.5" Color="#00FFFFFF" />
+                    <GradientStop Offset="1" Color="#60FFFFFF" />
+                </GradientStopCollection>
+            </LinearGradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="gradient_brush_white" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="0.2,1">
+            <LinearGradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="#80FFFFFF" />
+                    <GradientStop Offset="1" Color="#00FFFFFF" />
+                </GradientStopCollection>
+            </LinearGradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+    </UserControl.Resources>
+
+    <Viewbox Stretch="{x:Bind Stretch}">
+        <Canvas Width="36"
+                Height="24">
+
+            <Path Data="M18.1689 12.3977L27.4462 0.320441C27.9651 -0.355109 29.0436 0.12307 28.8886 0.959993L27.5656 8.10449C27.4734 8.60215 27.8564 9.06123 28.3637 9.06123H35.1868C35.8722 9.06123 36.249 9.85626 35.8141 10.3847L24.8546 23.7007C24.3192 24.3512 23.2678 23.8562 23.4309 23.0304L25.0831 14.666C25.182 14.1657 24.798 13.6998 24.2868 13.6998H18.8131C18.1404 13.6998 17.7597 12.9304 18.1689 12.3977Z"
+                  Fill="{x:Bind AccentColor, Converter={StaticResource ProfileColorToBrushConverter}}" />
+            <Path Data="M18.1689 12.3977L27.4462 0.320441C27.9651 -0.355109 29.0436 0.12307 28.8886 0.959993L27.5656 8.10449C27.4734 8.60215 27.8564 9.06123 28.3637 9.06123H35.1868C35.8722 9.06123 36.249 9.85626 35.8141 10.3847L24.8546 23.7007C24.3192 24.3512 23.2678 23.8562 23.4309 23.0304L25.0831 14.666C25.182 14.1657 24.798 13.6998 24.2868 13.6998H18.8131C18.1404 13.6998 17.7597 12.9304 18.1689 12.3977Z"
+                  Fill="{StaticResource gradient_brush_black}" />
+            <Path Data="M18.1689 12.3977L27.4462 0.320441C27.9651 -0.355109 29.0436 0.12307 28.8886 0.959993L27.5656 8.10449C27.4734 8.60215 27.8564 9.06123 28.3637 9.06123H35.1868C35.8722 9.06123 36.249 9.85626 35.8141 10.3847L24.8546 23.7007C24.3192 24.3512 23.2678 23.8562 23.4309 23.0304L25.0831 14.666C25.182 14.1657 24.798 13.6998 24.2868 13.6998H18.8131C18.1404 13.6998 17.7597 12.9304 18.1689 12.3977Z"
+                  Fill="{StaticResource gradient_brush_white}" />
+            <Rectangle Canvas.Left="7"
+                       Canvas.Top="3"
+                       Width="14"
+                       Height="2"
+                       Fill="{x:Bind AccentColor, Converter={StaticResource ProfileColorToBrushConverter}}"
+                       RadiusX="1"
+                       RadiusY="1" />
+            <Rectangle Canvas.Left="1"
+                       Canvas.Top="11"
+                       Width="14"
+                       Height="2"
+                       Fill="{x:Bind AccentColor, Converter={StaticResource ProfileColorToBrushConverter}}"
+                       RadiusX="1"
+                       RadiusY="1" />
+            <Rectangle Canvas.Left="7"
+                       Canvas.Top="19"
+                       Width="13"
+                       Height="2"
+                       Fill="{x:Bind AccentColor, Converter={StaticResource ProfileColorToBrushConverter}}"
+                       RadiusX="1"
+                       RadiusY="1" />
+            <Rectangle Canvas.Left="7"
+                       Canvas.Top="3"
+                       Width="14"
+                       Height="2"
+                       Fill="{StaticResource gradient_brush_white_black}"
+                       RadiusX="1"
+                       RadiusY="1" />
+            <Rectangle Canvas.Left="1"
+                       Canvas.Top="11"
+                       Width="14"
+                       Height="2"
+                       Fill="{StaticResource gradient_brush_white_black}"
+                       RadiusX="1"
+                       RadiusY="1" />
+            <Rectangle Canvas.Left="7"
+                       Canvas.Top="19"
+                       Width="13"
+                       Height="2"
+                       Fill="{StaticResource gradient_brush_white_black}"
+                       RadiusX="1"
+                       RadiusY="1" />
+        </Canvas>
+    </Viewbox>
+</base:ProfileIconUserControl>

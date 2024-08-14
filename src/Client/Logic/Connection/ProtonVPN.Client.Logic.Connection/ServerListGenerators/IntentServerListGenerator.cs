@@ -49,21 +49,18 @@ public class IntentServerListGenerator : ServerListGeneratorBase, IIntentServerL
     public IEnumerable<PhysicalServer> Generate(IConnectionIntent connectionIntent)
     {
         IEnumerable<Server> servers = _serversLoader.GetServers();
-        ILocationIntent? locationIntent = connectionIntent.Location;
+        ILocationIntent locationIntent = connectionIntent.Location;
         IFeatureIntent? featureIntent = connectionIntent.Feature;
 
-        if (locationIntent is not null)
-        {
-            servers = locationIntent.FilterServers(servers);
+        servers = locationIntent.FilterServers(servers, _settings.DeviceLocation);
 
-            if (locationIntent is FreeServerLocationIntent fsli && fsli.Type == FreeServerType.Random)
-            {
-                servers = servers.Where(s => s.Id != fsli.ExcludedLogicalServerId);
-            }
+        if (locationIntent is FreeServerLocationIntent fsli && fsli.Kind == ConnectionIntentKind.Random)
+        {
+            servers = servers.Where(s => s.Id != fsli.ExcludedLogicalServerId);
         }
 
         servers = featureIntent is null
-            ? servers.Where(s => !s.Features.IsSupported(ServerFeatures.SecureCore | ServerFeatures.B2B | ServerFeatures.Tor))
+            ? servers.Where(s => s.IsStandard())
             : featureIntent.FilterServers(servers);
 
         return SortServers(servers, locationIntent)
@@ -72,9 +69,9 @@ public class IntentServerListGenerator : ServerListGeneratorBase, IIntentServerL
             .Take(MAX_GENERATED_PHYSICAL_SERVERS);
     }
 
-    private IEnumerable<Server> SortServers(IEnumerable<Server> source, ILocationIntent? locationIntent)
+    private IEnumerable<Server> SortServers(IEnumerable<Server> source, ILocationIntent locationIntent)
     {
-        return locationIntent is FreeServerLocationIntent fsli && fsli.Type == FreeServerType.Random
+        return locationIntent.Kind == ConnectionIntentKind.Random
             ? source.OrderBy(_ => Random.Next())
             : _settings.IsPortForwardingEnabled
                 ? source.OrderByDescending(s => s.Features.IsSupported(ServerFeatures.P2P)).ThenBy(s => s.Score)

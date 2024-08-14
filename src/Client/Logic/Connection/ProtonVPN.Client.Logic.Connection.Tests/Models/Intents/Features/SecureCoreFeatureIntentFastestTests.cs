@@ -27,9 +27,9 @@ public class SecureCoreFeatureIntentFastestTests
     [TestMethod]
     public void SecureCoreFeatureIntent_ShouldBeFastest_GivenNoEntryCountryCode()
     {
-        SecureCoreFeatureIntent featureFastestSecureCoreA = new SecureCoreFeatureIntent();
-        SecureCoreFeatureIntent featureFastestSecureCoreB = new SecureCoreFeatureIntent("");
-        SecureCoreFeatureIntent featureFastestSecureCoreC = new SecureCoreFeatureIntent(string.Empty);
+        SecureCoreFeatureIntent featureFastestSecureCoreA = new();
+        SecureCoreFeatureIntent featureFastestSecureCoreB = new(" ");
+        SecureCoreFeatureIntent featureFastestSecureCoreC = new(string.Empty);
 
         Assert.IsTrue(featureFastestSecureCoreA.IsFastest);
         Assert.IsTrue(featureFastestSecureCoreB.IsFastest);
@@ -39,8 +39,8 @@ public class SecureCoreFeatureIntentFastestTests
     [TestMethod]
     public void SecureCoreFeatureIntent_ShouldNotBeFastest_GivenEntryCountryCode()
     {
-        SecureCoreFeatureIntent featureSecureCoreA = new SecureCoreFeatureIntent("CH");
-        SecureCoreFeatureIntent featureSecureCoreB = new SecureCoreFeatureIntent("SE");
+        SecureCoreFeatureIntent featureSecureCoreA = new("CH");
+        SecureCoreFeatureIntent featureSecureCoreB = new("SE");
 
         Assert.IsFalse(featureSecureCoreA.IsFastest);
         Assert.IsFalse(featureSecureCoreB.IsFastest);

@@ -19,12 +19,13 @@
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.SerializableEntities.Intents;
+using ProtonVPN.Client.Logic.Profiles.Contracts;
+using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts.SerializableEntities;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
-using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
 
 namespace ProtonVPN.Client.Logic.Recents.EntityMapping;
 
@@ -32,11 +33,13 @@ public class RecentConnectionMapper : IMapper<IRecentConnection, SerializableRec
 {
     private readonly IEntityMapper _entityMapper;
     private readonly ILogger _logger;
+    private readonly IProfilesManager _profilesManager;
 
-    public RecentConnectionMapper(IEntityMapper entityMapper, ILogger logger)
+    public RecentConnectionMapper(IEntityMapper entityMapper, ILogger logger, IProfilesManager profilesManager)
     {
         _entityMapper = entityMapper;
         _logger = logger;
+        _profilesManager = profilesManager;
     }
 
     public SerializableRecentConnection Map(IRecentConnection leftEntity)
@@ -57,6 +60,7 @@ public class RecentConnectionMapper : IMapper<IRecentConnection, SerializableRec
         return new SerializableRecentConnection
         {
             ConnectionIntent = connectionIntent,
+            ProfileId = leftEntity.ConnectionIntent is IConnectionProfile cnp ? cnp.Id : null,
             IsPinned = leftEntity.IsPinned,
             PinTime = leftEntity.PinTime,
         };
@@ -71,19 +75,17 @@ public class RecentConnectionMapper : IMapper<IRecentConnection, SerializableRec
                 return null;
             }
 
-            IConnectionIntent connectionIntent =
-                _entityMapper.Map<SerializableConnectionIntent, IConnectionIntent>(rightEntity.ConnectionIntent);
+            IConnectionIntent connectionIntent = rightEntity.ProfileId.HasValue
+                ? _profilesManager.GetById(rightEntity.ProfileId.Value)
+                : _entityMapper.Map<SerializableConnectionIntent, IConnectionIntent>(rightEntity.ConnectionIntent);
 
-            if (connectionIntent is null)
-            {
-                return null;
-            }
-
-            return new RecentConnection(connectionIntent)
-            {
-                IsPinned = rightEntity.IsPinned,
-                PinTime = rightEntity.PinTime,
-            };
+            return connectionIntent is null
+                ? null
+                : new RecentConnection(connectionIntent)
+                {
+                    IsPinned = rightEntity.IsPinned,
+                    PinTime = rightEntity.PinTime,
+                };
         }
         catch (Exception ex)
         {

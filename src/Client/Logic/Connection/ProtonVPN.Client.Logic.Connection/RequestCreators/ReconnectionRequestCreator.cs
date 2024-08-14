@@ -18,7 +18,6 @@
  */
 
 using ProtonVPN.Client.Logic.Auth.Contracts;
-using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
@@ -54,8 +53,10 @@ public class ReconnectionRequestCreator : ConnectionRequestCreator, IReconnectio
 
     public override async Task<ConnectionRequestIpcEntity> CreateAsync(IConnectionIntent connectionIntent)
     {
-        MainSettingsIpcEntity settings = GetSettings();
+        MainSettingsIpcEntity settings = GetSettings(connectionIntent);
         VpnConfigIpcEntity config = GetVpnConfig(settings);
+
+        // If the protocol in the settings is a specific one (not Smart), put it at the top of the smart protocol list
         if (settings.VpnProtocol != VpnProtocolIpcEntity.Smart)
         {
             IList<VpnProtocolIpcEntity> preferredProtocols = GetPreferredSmartProtocols();
@@ -82,8 +83,7 @@ public class ReconnectionRequestCreator : ConnectionRequestCreator, IReconnectio
     {
         IEnumerable<PhysicalServer> intentServers = IntentServerListGenerator.Generate(connectionIntent);
 
-        if (!Settings.IsSmartReconnectEnabled || connectionIntent.Feature is B2BFeatureIntent ||
-            (connectionIntent.Location is FreeServerLocationIntent fsli && fsli.Type == FreeServerType.Random))
+        if (IsToBypassSmartServerListGenerator(connectionIntent))
         {
             return intentServers;
         }

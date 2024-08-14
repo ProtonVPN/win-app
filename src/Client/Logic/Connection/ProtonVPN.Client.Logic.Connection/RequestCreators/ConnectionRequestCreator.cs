@@ -19,7 +19,6 @@
 
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
-using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
@@ -46,7 +45,6 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
     protected readonly ISmartSecureCoreServerListGenerator SmartSecureCoreServerListGenerator;
     protected readonly ISmartStandardServerListGenerator SmartStandardServerListGenerator;
 
-    private readonly ILogger _logger;
     private readonly IConnectionKeyManager _connectionKeyManager;
     private readonly IConnectionCertificateManager _connectionCertificateManager;
 
@@ -61,20 +59,19 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
         ISmartSecureCoreServerListGenerator smartSecureCoreServerListGenerator,
         ISmartStandardServerListGenerator smartStandardServerListGenerator,
         IMainSettingsRequestCreator mainSettingsRequestCreator)
-        : base(settings, entityMapper, featureFlagsObserver, mainSettingsRequestCreator)
+        : base(logger, settings, entityMapper, featureFlagsObserver, mainSettingsRequestCreator)
     {
         IntentServerListGenerator = intentServerListGenerator;
         SmartSecureCoreServerListGenerator = smartSecureCoreServerListGenerator;
         SmartStandardServerListGenerator = smartStandardServerListGenerator;
 
-        _logger = logger;
         _connectionKeyManager = connectionKeyManager;
         _connectionCertificateManager = connectionCertificateManager;
     }
 
     public virtual async Task<ConnectionRequestIpcEntity> CreateAsync(IConnectionIntent connectionIntent)
     {
-        MainSettingsIpcEntity settings = GetSettings();
+        MainSettingsIpcEntity settings = GetSettings(connectionIntent);
 
         ConnectionRequestIpcEntity request = new()
         {
@@ -110,7 +107,7 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
     {
         if (_connectionKeyManager.GetKeyPairOrNull() is null)
         {
-            _logger.Info<UserCertificateLog>("Connection keys are missing, forcing new keys and certificate.");
+            Logger.Info<UserCertificateLog>("Connection keys are missing, forcing new keys and certificate.");
             await _connectionCertificateManager.ForceRequestNewKeyPairAndCertificateAsync();
         }
         else
@@ -119,12 +116,12 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
 
             if (connectionCertificate is null)
             {
-                _logger.Info<UserCertificateLog>("Connection certificate is missing, requesting a new certificate.");
+                Logger.Info<UserCertificateLog>("Connection certificate is missing, requesting a new certificate.");
                 await _connectionCertificateManager.RequestNewCertificateAsync();
             }
             else if (connectionCertificate.Value.ExpirationUtcDate <= DateTimeOffset.UtcNow)
             {
-                _logger.Info<UserCertificateLog>("Connection certificate is expired, requesting a new certificate.");
+                Logger.Info<UserCertificateLog>("Connection certificate is expired, requesting a new certificate.");
                 await _connectionCertificateManager.RequestNewCertificateAsync();
             }
         }
@@ -141,8 +138,7 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
 
     protected IEnumerable<PhysicalServer> GetPhysicalServers(IConnectionIntent connectionIntent)
     {
-        if (!Settings.IsSmartReconnectEnabled || connectionIntent.Feature is B2BFeatureIntent ||
-            (connectionIntent.Location is FreeServerLocationIntent fsli && fsli.Type == FreeServerType.Random))
+        if (IsToBypassSmartServerListGenerator(connectionIntent))
         {
             return IntentServerListGenerator.Generate(connectionIntent);
         }

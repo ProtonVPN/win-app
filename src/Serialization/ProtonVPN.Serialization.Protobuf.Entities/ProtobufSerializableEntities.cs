@@ -20,6 +20,7 @@
 using ProtonVPN.Client.Files.Contracts.Images;
 using ProtonVPN.Client.Logic.Announcements.Contracts.Entities;
 using ProtonVPN.Client.Logic.Connection.Contracts.SerializableEntities.Intents;
+using ProtonVPN.Client.Logic.Profiles.Contracts.SerializableEntities;
 using ProtonVPN.Client.Logic.Recents.Contracts.SerializableEntities;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
@@ -50,5 +51,8 @@ public class ProtobufSerializableEntities : IProtobufSerializableEntities
         yield return typeof(Panel);
         yield return typeof(PanelButton);
         yield return typeof(PanelFeature);
+
+        yield return typeof(SerializableProfile);
+        yield return typeof(SerializableProfileSettings);
     }
 }

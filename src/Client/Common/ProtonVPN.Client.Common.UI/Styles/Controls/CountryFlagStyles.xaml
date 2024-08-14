@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+                    xmlns:enums="using:ProtonVPN.Client.Common.Enums"
+                    xmlns:triggers="using:CommunityToolkit.WinUI">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light">
+            <SolidColorBrush x:Key="FlagOutlineColorBrush" Color="#200C0C14" />
+            <SolidColorBrush x:Key="FlagShadowColorBrush" Color="#660C0C14" />
+            <StaticResource x:Key="FlagSecureCoreOutlineColorBrush" ResourceKey="BorderNormColorBrush" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+            <SolidColorBrush x:Key="FlagOutlineColorBrush" Color="#106D697D" />
+            <SolidColorBrush x:Key="FlagShadowColorBrush" Color="#660C0C14" />
+            <StaticResource x:Key="FlagSecureCoreOutlineColorBrush" ResourceKey="BorderNormColorBrush" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <enums:FlagType x:Key="FastestFlagType">Fastest</enums:FlagType>
+    <enums:FlagType x:Key="LatestFlagType">Latest</enums:FlagType>
+    <enums:FlagType x:Key="RandomFlagType">Random</enums:FlagType>
+    <enums:FlagType x:Key="GatewayFlagType">Gateway</enums:FlagType>
+    <enums:FlagType x:Key="CountryFlagType">Country</enums:FlagType>
+
+    <x:Double x:Key="MainFlagWidth">24</x:Double>
+    <x:Double x:Key="MainFlagHeight">16</x:Double>
+    <x:Double x:Key="SmallFlagWidth">18</x:Double>
+    <x:Double x:Key="SmallFlagHeight">12</x:Double>
+
+    <x:Double x:Key="FlagShadowWidth">14</x:Double>
+    <x:Double x:Key="FlagShadowHeight">6</x:Double>
+    <x:Double x:Key="FlagShadowCompactHeight">10</x:Double>
+
+    <CornerRadius x:Key="BackFlagShadowCornerRadius">0,3,0,5</CornerRadius>
+    <CornerRadius x:Key="FrontFlagShadowCornerRadius">5,0,3,0</CornerRadius>
+
+    <Style BasedOn="{StaticResource DefaultSimpleCountryFlagStyle}" TargetType="custom:SimpleCountryFlag" />
+    <Style BasedOn="{StaticResource DefaultComplexCountryFlagStyle}" TargetType="custom:ComplexCountryFlag" />
+
+    <Style x:Key="DefaultSimpleCountryFlagStyle" TargetType="custom:SimpleCountryFlag">
+        <Setter Property="Width" Value="24"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="custom:SimpleCountryFlag">
+                    <Viewbox>
+                        <Grid Width="{StaticResource MainFlagWidth}"
+                              Height="{StaticResource MainFlagHeight}">
+
+                            <Border x:Name="PART_CountryFlag"
+                                    Margin="-1"
+                                    Padding="1"
+                                    Background="{ThemeResource FlagOutlineColorBrush}"
+                                    CornerRadius="5"
+                                    Visibility="Collapsed">
+                                <Image Source="{Binding CountryCode, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource CountryCodeToFlagImageSourceConverter}, Mode=OneWay}"
+                                       Stretch="Fill" />
+                            </Border>
+
+                            <Image x:Name="PART_GenericFlag"
+                                   Source="{ThemeResource PlaceholderFlagSource}"
+                                   Stretch="Fill"
+                                   Visibility="Visible" />
+
+                            <Path x:Name="PART_SecureCoreOutline"
+                                  Margin="-4"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Bottom"
+                                  Data="M 1,3 L 1,7 Q 1,15 9,15 L 23,15"
+                                  Stretch="None"
+                                  Stroke="{ThemeResource FlagSecureCoreOutlineColorBrush}"
+                                  StrokeEndLineCap="Round"
+                                  StrokeStartLineCap="Round"
+                                  StrokeThickness="2"
+                                  Visibility="{Binding IsSecureCore, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        </Grid>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="FlagTypes">
+                                <VisualState x:Name="Country">
+                                    <VisualState.StateTriggers>
+                                        <triggers:IsEqualStateTrigger Value="{Binding FlagType, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                                      To="{StaticResource CountryFlagType}" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_GenericFlag.Visibility" Value="Collapsed" />
+                                        <Setter Target="PART_CountryFlag.Visibility" Value="Visible" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Generic" />
+                            </VisualStateGroup>
+
+                            <VisualStateGroup x:Name="GenericFlagSources">
+                                <VisualState x:Name="Fastest">
+                                    <VisualState.StateTriggers>
+                                        <triggers:IsEqualStateTrigger Value="{Binding FlagType, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                                      To="{StaticResource FastestFlagType}" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_GenericFlag.Source" Value="{ThemeResource FastestCountryFlagSource}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Latest">
+                                    <VisualState.StateTriggers>
+                                        <triggers:IsEqualStateTrigger Value="{Binding FlagType, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                                      To="{StaticResource LatestFlagType}" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_GenericFlag.Source" Value="{ThemeResource LatestFlagSource}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Random">
+                                    <VisualState.StateTriggers>
+                                        <triggers:IsEqualStateTrigger Value="{Binding FlagType, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                                      To="{StaticResource RandomFlagType}" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_GenericFlag.Source" Value="{ThemeResource RandomCountryFlagSource}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Gateway">
+                                    <VisualState.StateTriggers>
+                                        <triggers:IsEqualStateTrigger Value="{Binding FlagType, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                                      To="{StaticResource GatewayFlagType}" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_GenericFlag.Source" Value="{ThemeResource GatewayFlagSource}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState />
+                            </VisualStateGroup>
+
+                            <VisualStateGroup x:Name="SecureCoreOutlines">
+                                <VisualState x:Name="Short">
+                                    <VisualState.StateTriggers>
+                                        <StateTrigger IsActive="{Binding UseShorterSecureCoreOutline, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_SecureCoreOutline.Data" Value="M 1,3 L 1,7 Q 1,15 9,15 L 13,15" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="DefaultComplexCountryFlagStyle" TargetType="custom:ComplexCountryFlag">
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="custom:ComplexCountryFlag">
+                    <Viewbox>
+                        <Grid x:Name="PART_Container">
+
+                            <Grid x:Name="PART_BackFlagContainer"
+                                  Visibility="Collapsed"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Bottom"
+                                  Margin="0,12,0,0">
+
+                                <custom:SimpleCountryFlag x:Name="PART_BackFlag"
+                                                          Width="{StaticResource SmallFlagWidth}"
+                                                          Height="{StaticResource SmallFlagHeight}"
+                                                          CountryCode="{TemplateBinding EntryCountryCode}"
+                                                          FlagType="Country" />
+
+                                <Border Name="PART_BackFlagShadow"
+                                        Width="{StaticResource FlagShadowWidth}"
+                                        Height="{StaticResource FlagShadowHeight}"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Top"
+                                        Background="{ThemeResource FlagShadowColorBrush}"
+                                        CornerRadius="{StaticResource BackFlagShadowCornerRadius}" />
+                            </Grid>
+
+                            <custom:SimpleCountryFlag x:Name="PART_MainFlag"
+                                                      Margin="0"
+                                                      Width="{StaticResource MainFlagWidth}"
+                                                      Height="{StaticResource MainFlagHeight}"
+                                                      HorizontalAlignment="Left"
+                                                      VerticalAlignment="Top"
+                                                      CountryCode="{TemplateBinding ExitCountryCode}"
+                                                      FlagType="{TemplateBinding MainFlagType}"
+                                                      IsSecureCore="{TemplateBinding IsSecureCore}" />
+
+                            <Grid x:Name="PART_FrontFlagContainer"
+                                  Visibility="Collapsed"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Bottom"
+                                  Margin="12,12,0,0">
+
+                                <Border Name="PART_FrontFlagShadow"
+                                        Width="{StaticResource FlagShadowWidth}"
+                                        Height="{StaticResource FlagShadowHeight}"
+                                        Margin="-2"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        Background="{ThemeResource FlagShadowColorBrush}"
+                                        CornerRadius="{StaticResource FrontFlagShadowCornerRadius}" />
+
+                                <custom:SimpleCountryFlag x:Name="PART_FrontFlag"
+                                                          CountryCode="{TemplateBinding ExitCountryCode}"
+                                                          FlagType="Country"
+                                                          Width="{StaticResource SmallFlagWidth}"
+                                                          Height="{StaticResource SmallFlagHeight}"/>
+                            </Grid>
+
+                        </Grid>
+
+                        <VisualStateManager.VisualStateGroups>
+
+                            <VisualStateGroup x:Name="FlagModes">
+                                <VisualState x:Name="BackAndMainFlags">
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_BackFlagContainer.Visibility" Value="Visible" />
+                                        <Setter Target="PART_MainFlag.IsSecureCore" Value="False" />
+                                        <Setter Target="PART_MainFlag.Margin" Value="6,0,0,0" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="FrontAndMainFlags">
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_FrontFlagContainer.Visibility" Value="Visible" />
+                                        <Setter Target="PART_MainFlag.UseShorterSecureCoreOutline" Value="True" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="MainFlagOnly" />
+                            </VisualStateGroup>
+
+                            <VisualStateGroup x:Name="LayoutModes">
+                                <VisualState x:Name="Compact">
+                                    <VisualState.StateTriggers>
+                                        <StateTrigger IsActive="{Binding IsCompact, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Target="PART_BackFlagContainer.Margin" Value="0,8,0,0" />
+                                        <Setter Target="PART_BackFlagShadow.Height" Value="{StaticResource FlagShadowCompactHeight}" />
+                                        <Setter Target="PART_FrontFlagContainer.Margin" Value="12,8,0,0" />
+                                        <Setter Target="PART_FrontFlagShadow.Height" Value="{StaticResource FlagShadowCompactHeight}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState />
+                            </VisualStateGroup>
+                            
+                        </VisualStateManager.VisualStateGroups>
+                    </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

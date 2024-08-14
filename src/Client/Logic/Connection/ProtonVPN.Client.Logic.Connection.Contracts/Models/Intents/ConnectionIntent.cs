@@ -19,54 +19,28 @@
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
-using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 
-public class ConnectionIntent : IConnectionIntent
+public class ConnectionIntent : ConnectionIntentBase, IConnectionIntent
 {
-    public static IConnectionIntent Default => new ConnectionIntent(new CountryLocationIntent());
-    public static IConnectionIntent FreeDefault => new ConnectionIntent(new FreeServerLocationIntent());
-
-    public ILocationIntent Location { get; }
-
-    public IFeatureIntent? Feature { get; }
+    public static IConnectionIntent Default => new ConnectionIntent(CountryLocationIntent.Fastest);
+    public static IConnectionIntent FreeDefault => new ConnectionIntent(FreeServerLocationIntent.Fastest);
 
     public ConnectionIntent(ILocationIntent location, IFeatureIntent? feature = null)
-    {
-        Location = location;
-        Feature = feature;
-    }
+        : base(location, feature)
+    { }
 
-    public bool IsSameAs(IConnectionIntent? intent)
+    public override bool IsSameAs(IConnectionIntent? intent)
     {
         if (intent == null)
         {
             return false;
         }
 
-        // Check whether both location are identical and both feature are null or identical.
-        return Location.IsSameAs(intent.Location)
+        return intent is ConnectionIntent
+            // Check whether both location are identical and both feature are null or identical
+            && Location.IsSameAs(intent.Location)
             && ((Feature == null && intent.Feature == null) || Feature?.IsSameAs(intent.Feature) == true);
-    }
-
-    public bool HasNoServers(IEnumerable<Server> servers)
-    {
-        return !servers.Any(IsServerSupported);
-    }
-
-    private bool IsServerSupported(Server server)
-    {
-        return Location.IsSupported(server) && (Feature == null || Feature.IsSupported(server));
-    }
-
-    public bool AreAllServersUnderMaintenance(IEnumerable<Server> servers)
-    {
-        return servers.Where(IsServerSupported).All(server => server.IsUnderMaintenance());
-    }
-
-    public override string ToString()
-    {
-        return $"{Location}{(Feature is null ? string.Empty : $" [{Feature}]")}";
     }
 }

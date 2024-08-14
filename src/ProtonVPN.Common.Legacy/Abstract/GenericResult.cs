@@ -26,7 +26,6 @@ public class Result<T> : Result
     protected internal Result(T value, bool success, string error)
         : base(success, error)
     {
-        Ensure.IsTrue(value != null || !success);
         Value = value;
     }
 

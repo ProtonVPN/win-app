@@ -24,6 +24,8 @@ using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Helpers;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Models.Navigation;
 
@@ -31,9 +33,12 @@ namespace ProtonVPN.Client.Models.Navigation;
 // https://github.com/microsoft/TemplateStudio/blob/main/docs/WinUI/navigation.md
 public abstract class ViewNavigatorBase : IViewNavigator
 {
+    private readonly ILogger _logger;
     private readonly IViewMapper _viewMapper;
+
     private Window? _window;
     private Frame? _frame;
+
     private object? _lastParameterUsed;
 
     private bool _isRegisteredToFrameEvents;
@@ -67,54 +72,17 @@ public abstract class ViewNavigatorBase : IViewNavigator
 
     protected NavigationTransitionInfo NavigationTransition { get; set; }
 
-    protected ViewNavigatorBase(IViewMapper viewMapper)
+    protected ViewNavigatorBase(
+        ILogger logger,
+        IViewMapper viewMapper)
     {
+        _logger = logger;
         _viewMapper = viewMapper;
 
         NavigationTransition = new DrillInNavigationTransitionInfo();
     }
 
     public event NavigatedEventHandler? Navigated;
-
-    public async Task<bool> GoBackAsync(bool forceNavigation = false)
-    {
-        if (CanGoBack)
-        {
-            INavigationAware? vmBeforeNavigation = Frame.GetPageViewModel() as INavigationAware;
-
-            if (vmBeforeNavigation != null)
-            {
-                bool continueNavigation = await vmBeforeNavigation.OnNavigatingFromAsync(forceNavigation);
-                if (!continueNavigation)
-                {
-                    return false;
-                }
-            }
-
-            Frame.GoBack();
-
-            vmBeforeNavigation?.OnNavigatedFrom();
-
-            return true;
-        }
-
-        return false;
-    }
-
-    public Task<bool> NavigateToAsync(string pageKey, object? parameter = null, bool clearNavigation = false, bool forceNavigation = false)
-    {
-        Type pageType = _viewMapper.GetPageType(pageKey);
-
-        return NavigateToPageAsync(pageType, parameter, clearNavigation, forceNavigation);
-    }
-
-    public Task<bool> NavigateToAsync<TPageViewModel>(object? parameter = null, bool clearNavigation = false, bool forceNavigation = false)
-        where TPageViewModel : PageViewModelBase
-    {
-        Type pageType = _viewMapper.GetPageType<TPageViewModel>();
-
-        return NavigateToPageAsync(pageType, parameter, clearNavigation, forceNavigation);
-    }
 
     public void CloseCurrentWindow()
     {
@@ -129,23 +97,56 @@ public abstract class ViewNavigatorBase : IViewNavigator
         }
     }
 
+    public async Task<bool> GoBackAsync(bool forceNavigation = false)
+    {
+        if (CanGoBack)
+        {
+            INavigationAware? currentPage = Frame.GetPageViewModel() as INavigationAware;
+
+            if (currentPage != null && !forceNavigation)
+            {
+                bool shouldContinueNavigation = await currentPage.OnNavigatingFromAsync();
+                if (!shouldContinueNavigation)
+                {
+                    return false;
+                }
+            }
+
+            Frame.GoBack();
+
+            currentPage?.OnNavigatedFrom();
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public Task<bool> NavigateToAsync<TPageViewModel>(object? parameter = null, bool clearNavigation = false, bool forceNavigation = false)
+        where TPageViewModel : PageViewModelBase
+    {
+        Type pageType = _viewMapper.GetPageType<TPageViewModel>();
+
+        return NavigateToPageAsync(pageType, parameter, clearNavigation, forceNavigation);
+    }
+
     private async Task<bool> NavigateToPageAsync(Type pageType, object? parameter, bool clearNavigation, bool forceNavigation)
     {
         if (!CanNavigate || _frame == null)
         {
             return false;
         }
-        
+
         if (Frame.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(_lastParameterUsed)))
         {
             Frame.Tag = clearNavigation;
 
-            INavigationAware? vmBeforeNavigation = Frame.GetPageViewModel() as INavigationAware;
+            INavigationAware? currentPage = Frame.GetPageViewModel() as INavigationAware;
 
-            if (vmBeforeNavigation != null && !forceNavigation)
+            if (currentPage != null && !forceNavigation)
             {
-                bool continueNavigation = await vmBeforeNavigation.OnNavigatingFromAsync(forceNavigation);
-                if (!continueNavigation)
+                bool shouldContinueNavigation = await currentPage.OnNavigatingFromAsync();
+                if (!shouldContinueNavigation)
                 {
                     return false;
                 }
@@ -156,7 +157,7 @@ public abstract class ViewNavigatorBase : IViewNavigator
             if (navigated)
             {
                 _lastParameterUsed = parameter;
-                vmBeforeNavigation?.OnNavigatedFrom();
+                currentPage?.OnNavigatedFrom();
             }
 
             return navigated;
@@ -165,23 +166,52 @@ public abstract class ViewNavigatorBase : IViewNavigator
         return false;
     }
 
+    private void OnNavigating(object sender, NavigatingCancelEventArgs e)
+    {
+        if (sender is Frame frame)
+        {
+            bool isBackNavigation = e.NavigationMode == NavigationMode.Back;
+
+            if (_viewMapper.GetPageViewModel(e.SourcePageType) is INavigationAware targetPage)
+            {
+                bool shouldContinueNavigation = targetPage.OnNavigatingTo(e.Parameter, isBackNavigation);
+                if (!shouldContinueNavigation)
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
+    }
+
     private void OnNavigated(object sender, NavigationEventArgs e)
     {
         if (sender is Frame frame)
         {
+            bool isBackNavigation = e.NavigationMode == NavigationMode.Back;
+
             bool clearNavigation = (bool)frame.Tag;
             if (clearNavigation)
             {
                 frame.BackStack.Clear();
             }
 
-            if (frame.GetPageViewModel() is INavigationAware navigationAware)
+            if (frame.GetPageViewModel() is INavigationAware targetPage)
             {
-                navigationAware.OnNavigatedTo(e.Parameter, e.NavigationMode == NavigationMode.Back);
+                targetPage?.OnNavigatedTo(e.Parameter, isBackNavigation);
             }
 
             Navigated?.Invoke(sender, e);
         }
+    }
+
+    private void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+    {
+        _logger.Error<AppLog>($"Navigation to the page '{e.SourcePageType}' has failed.", e.Exception);
+    }
+
+    private void OnNavigationStopped(object sender, NavigationEventArgs e)
+    {
+        _logger.Info<AppLog>($"Navigation to the page '{e.SourcePageType}' was stopped.");
     }
 
     private void OnWindowActivated(object sender, WindowActivatedEventArgs args)
@@ -198,7 +228,10 @@ public abstract class ViewNavigatorBase : IViewNavigator
     {
         if (_frame != null && !_isRegisteredToFrameEvents)
         {
+            _frame.Navigating += OnNavigating;
             _frame.Navigated += OnNavigated;
+            _frame.NavigationFailed += OnNavigationFailed;
+            _frame.NavigationStopped += OnNavigationStopped;
 
             _isRegisteredToFrameEvents = true;
         }
@@ -208,7 +241,10 @@ public abstract class ViewNavigatorBase : IViewNavigator
     {
         if (_frame != null && _isRegisteredToFrameEvents)
         {
+            _frame.Navigating -= OnNavigating;
             _frame.Navigated -= OnNavigated;
+            _frame.NavigationFailed -= OnNavigationFailed;
+            _frame.NavigationStopped -= OnNavigationStopped;
 
             _isRegisteredToFrameEvents = false;
         }

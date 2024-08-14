@@ -19,6 +19,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
@@ -31,6 +32,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
@@ -64,6 +66,9 @@ public abstract partial class ConnectionCardViewModelBase : ViewModelBase,
     [NotifyPropertyChangedFor(nameof(IsDisconnected))]
     [NotifyPropertyChangedFor(nameof(IsConnecting))]
     [NotifyPropertyChangedFor(nameof(IsConnected))]
+    [NotifyPropertyChangedFor(nameof(FlagType))]
+    [NotifyPropertyChangedFor(nameof(Profile))]
+    [NotifyPropertyChangedFor(nameof(IsProfileIntent))]
     private ConnectionStatus _currentConnectionStatus;
 
     [ObservableProperty]
@@ -78,6 +83,9 @@ public abstract partial class ConnectionCardViewModelBase : ViewModelBase,
     [NotifyPropertyChangedFor(nameof(IsTor))]
     [NotifyPropertyChangedFor(nameof(IsP2P))]
     [NotifyPropertyChangedFor(nameof(IsB2B))]
+    [NotifyPropertyChangedFor(nameof(FlagType))]
+    [NotifyPropertyChangedFor(nameof(Profile))]
+    [NotifyPropertyChangedFor(nameof(IsProfileIntent))]
     private IConnectionIntent? _currentConnectionIntent;
 
     public HomeViewModel HomeViewModel { get; }
@@ -89,37 +97,21 @@ public abstract partial class ConnectionCardViewModelBase : ViewModelBase,
         {
             ConnectionStatus.Disconnected => CurrentConnectionIntent?.Location is FreeServerLocationIntent
                 ? Localizer.Get("Home_ConnectionCard_Header_FreeConnection")
-                : Localizer.Get("Home_ConnectionCard_Header_DefaultConnection"),                    
+                : Localizer.Get("Home_ConnectionCard_Header_DefaultConnection"),
             ConnectionStatus.Connecting => Localizer.Get("Home_ConnectionCard_Header_ConnectingTo"),
             ConnectionStatus.Connected => Localizer.Get("Home_ConnectionCard_Header_BrowseSafely"),
             _ => string.Empty,
         };
 
-    public string Title =>
-        CurrentConnectionStatus switch
-        {
-            ConnectionStatus.Connected => Localizer.GetConnectionDetailsTitle(CurrentConnectionDetails),
-            _ => Localizer.GetConnectionIntentTitle(CurrentConnectionIntent)
-        };
+    public string Title => GetConnectionCardTitle();
 
-    public string Subtitle =>
-        CurrentConnectionStatus switch
-        {
-            ConnectionStatus.Connected => Localizer.GetConnectionDetailsSubtitle(CurrentConnectionDetails),
-            _ => Localizer.GetConnectionIntentSubtitle(CurrentConnectionIntent, useDetailedSubtitle: true)
-        };
+    public string Subtitle => GetConnectionCardSubtitle();
 
     public string? ExitCountry =>
         CurrentConnectionStatus switch
         {
             ConnectionStatus.Connected =>
-                CurrentConnectionDetails?.OriginalConnectionIntent.Location switch
-                {
-                    CountryLocationIntent countryIntent => countryIntent.IsFastest ? string.Empty : CurrentConnectionDetails.ExitCountryCode,
-                    GatewayServerLocationIntent gatewayServerIntent => CurrentConnectionDetails.ExitCountryCode,
-                    FreeServerLocationIntent freeServerIntent => freeServerIntent.Type == FreeServerType.Fastest ? string.Empty : CurrentConnectionDetails.ExitCountryCode,
-                    _ => string.Empty,
-                },
+                CurrentConnectionDetails?.ExitCountryCode,
             _ => CurrentConnectionIntent?.Location?.GetCountryCode()
         };
 
@@ -132,6 +124,14 @@ public abstract partial class ConnectionCardViewModelBase : ViewModelBase,
                     : string.Empty,
             _ => (CurrentConnectionIntent?.Feature as SecureCoreFeatureIntent)?.EntryCountryCode
         };
+
+    public IConnectionProfile? Profile => CurrentConnectionStatus switch
+    {
+        ConnectionStatus.Connected => CurrentConnectionDetails?.OriginalConnectionIntent as IConnectionProfile,
+        _ => CurrentConnectionIntent as IConnectionProfile
+    };
+
+    public bool IsProfileIntent => Profile != null;
 
     public bool IsSecureCore => IsFeature<SecureCoreFeatureIntent>(ServerFeatures.SecureCore);
 
@@ -150,6 +150,12 @@ public abstract partial class ConnectionCardViewModelBase : ViewModelBase,
     public bool HasSubtitle => !string.IsNullOrEmpty(Subtitle);
 
     public bool HasSubtitleAndFeature => HasSubtitle && (IsTor || IsP2P);
+
+    public FlagType FlagType => (CurrentConnectionStatus switch
+    {
+        ConnectionStatus.Connected => CurrentConnectionDetails?.OriginalConnectionIntent.Location,
+        _ => CurrentConnectionIntent?.Location
+    }).GetFlagType();
 
     protected ConnectionCardViewModelBase(
         IConnectionManager connectionManager,
@@ -240,6 +246,30 @@ public abstract partial class ConnectionCardViewModelBase : ViewModelBase,
                                        && CurrentConnectionDetails?.OriginalConnectionIntent.Feature is TFeatureIntent
                                        && CurrentConnectionDetails.Server.Features.IsSupported(serverFeature),
             _ => CurrentConnectionIntent?.Feature is TFeatureIntent
+        };
+    }
+
+    private string GetConnectionCardTitle()
+    {
+        return IsProfileIntent
+            ? Profile!.Name
+            : CurrentConnectionStatus switch
+            {
+                ConnectionStatus.Connected => Localizer.GetConnectionDetailsTitle(CurrentConnectionDetails),
+                _ => Localizer.GetConnectionIntentTitle(CurrentConnectionIntent),
+            };
+    }
+
+    private string GetConnectionCardSubtitle()
+    {
+        return CurrentConnectionStatus switch
+        {
+            ConnectionStatus.Connected => IsProfileIntent
+                ? Localizer.GetConnectionProfileDetailsSubtitle(CurrentConnectionDetails)
+                : Localizer.GetConnectionDetailsSubtitle(CurrentConnectionDetails),
+            _ => IsProfileIntent
+                ? Localizer.GetConnectionProfileSubtitle(Profile)
+                : Localizer.GetConnectionIntentSubtitle(CurrentConnectionIntent, useDetailedSubtitle: true),
         };
     }
 }

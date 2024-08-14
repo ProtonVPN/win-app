@@ -33,7 +33,7 @@ public class SecureCoreServerLocationItem : ServerLocationItemBase
 {
     public override GroupLocationType GroupType => GroupLocationType.SecureCoreServers;
 
-    protected override IFeatureIntent? FeatureIntent => new SecureCoreFeatureIntent(Server.EntryCountry);
+    public override IFeatureIntent? FeatureIntent => new SecureCoreFeatureIntent(Server.EntryCountry);
 
     public SecureCoreServerLocationItem(
         ILocalizationProvider localizer,

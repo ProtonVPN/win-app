@@ -63,4 +63,9 @@ public sealed partial class SampleControl : UserControl
     {
         vbSample.Stretch = tgViewbox.IsChecked.GetValueOrDefault() ? Stretch.Uniform : Stretch.None;
     }
+
+    private void OnToggleThemeChecked(object sender, RoutedEventArgs e)
+    {
+        ContentContainer.RequestedTheme = tgTheme.IsChecked.GetValueOrDefault() ? ElementTheme.Light : ElementTheme.Dark;
+    }
 }

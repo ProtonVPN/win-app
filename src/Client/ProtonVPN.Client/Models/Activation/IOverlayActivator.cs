@@ -33,12 +33,12 @@ public interface IOverlayActivator
     Task ShowOverlayAsync<TOverlayViewModel>(Window? rootWindow = null)
         where TOverlayViewModel : OverlayViewModelBase;
 
-    Task ShowOverlayAsync(string overlayKey, Window? rootWindow = null);
+    Task ShowOverlayAsync(OverlayViewModelBase overlay, Window? rootWindow = null);
 
     void CloseOverlay<TOverlayViewModel>()
         where TOverlayViewModel : OverlayViewModelBase;
 
-    void CloseOverlay(string overlayKey);
+    void CloseOverlay(OverlayViewModelBase overlay);
 
     void CloseAllOverlays();
 }

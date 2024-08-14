@@ -21,6 +21,7 @@ using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Settings.Contracts;
@@ -63,8 +64,12 @@ public class CountriesPageViewModel : CountriesPageViewModelBase
 
     protected override IEnumerable<LocationItemBase> GetItems()
     {
-        LocationItemBase fastestCountry =
-            LocationItemFactory.GetCountry(string.Empty);
+        IEnumerable<LocationItemBase> genericCountries =
+        [
+            LocationItemFactory.GetGenericCountry(ConnectionIntentKind.Fastest, false),
+            LocationItemFactory.GetGenericCountry(ConnectionIntentKind.Fastest, true),
+            LocationItemFactory.GetGenericCountry(ConnectionIntentKind.Random, false),
+        ];
 
         IEnumerable<LocationItemBase> countries =
             ServersLoader.GetCountryCodes()
@@ -74,8 +79,8 @@ public class CountriesPageViewModel : CountriesPageViewModelBase
             ServersLoader.GetFreeServers()
                          .Select(LocationItemFactory.GetServer);
 
-        return countries
-            .Concat([fastestCountry])
+        return genericCountries
+            .Concat(countries)
             .Concat(freeServers);
     }
 

@@ -33,7 +33,10 @@ public class SecureCoreFeatureIntent : FeatureIntentBase
 
     public SecureCoreFeatureIntent(string? entryCountryCode = null)
     {
-        EntryCountryCode = entryCountryCode;
+        if (!string.IsNullOrWhiteSpace(entryCountryCode))
+        {
+            EntryCountryCode = entryCountryCode;
+        }
     }
 
     public override bool IsSameAs(IFeatureIntent? intent)

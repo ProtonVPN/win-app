@@ -26,6 +26,9 @@ using ProtonVPN.Client.UI.Announcements.Modals;
 using ProtonVPN.Client.UI.Connections.Countries;
 using ProtonVPN.Client.UI.Connections.Gateways;
 using ProtonVPN.Client.UI.Connections.P2P;
+using ProtonVPN.Client.UI.Connections.Profiles;
+using ProtonVPN.Client.UI.Connections.Profiles.Controls;
+using ProtonVPN.Client.UI.Connections.Profiles.Overlays;
 using ProtonVPN.Client.UI.Connections.SecureCore;
 using ProtonVPN.Client.UI.Connections.Tor;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
@@ -53,6 +56,7 @@ using ProtonVPN.Client.UI.Settings;
 using ProtonVPN.Client.UI.Settings.Pages;
 using ProtonVPN.Client.UI.Settings.Pages.About;
 using ProtonVPN.Client.UI.Settings.Pages.Advanced;
+using ProtonVPN.Client.UI.Settings.Pages.DefaultConnections;
 using ProtonVPN.Client.UI.Sidebar;
 using ProtonVPN.Client.UI.Tray;
 using ProtonVPN.Client.UI.Upsell.Banner;
@@ -96,6 +100,11 @@ public class ViewModelsModule : Module
         RegisterViewModel<HelpViewModel>(builder);
         RegisterViewModel<SettingsViewModel>(builder);
         RegisterViewModel<GatewaysPageViewModel>(builder);
+        RegisterViewModel<ProfilesPageViewModel>(builder);
+        RegisterViewModel<EditProfileOverlayViewModel>(builder);
+        RegisterViewModel<ConnectionIntentSelectorViewModel>(builder);
+        RegisterViewModel<ProfileIconSelectorViewModel>(builder);
+        RegisterViewModel<ProfileSettingsSelectorViewModel>(builder);
         RegisterViewModel<CountriesPageViewModel>(builder);
         RegisterViewModel<CountryPageViewModel>(builder);
         RegisterViewModel<P2PCountriesPageViewModel>(builder);
@@ -138,6 +147,7 @@ public class ViewModelsModule : Module
         RegisterViewModel<SidebarGatewaysHeaderViewModel>(builder);
         RegisterViewModel<SidebarGatewaysViewModel>(builder);
         RegisterViewModel<SidebarConnectionsHeaderViewModel>(builder);
+        RegisterViewModel<SidebarProfilesViewModel>(builder);
         RegisterViewModel<SidebarCountriesViewModel>(builder);
         RegisterViewModel<SidebarP2PCountriesViewModel>(builder);
         RegisterViewModel<SidebarSecureCoreCountriesViewModel>(builder);
@@ -171,11 +181,11 @@ public class ViewModelsModule : Module
     private IRegistrationBuilder<TType, ConcreteReflectionActivatorData, SingleRegistrationStyle> RegisterViewModel<TType>(ContainerBuilder builder)
         where TType : notnull
     {
-        return builder.RegisterType<TType>().AsSelf().As<IEventMessageReceiver>().SingleInstance();
+        return builder.RegisterType<TType>().AsSelf().AsImplementedInterfaces().SingleInstance();
     }
 
     private IRegistrationBuilder<TType, ConcreteReflectionActivatorData, SingleRegistrationStyle> RegisterUpsellFeatureViewModel<TType>(ContainerBuilder builder)
-    where TType : notnull
+        where TType : notnull
     {
         return builder.RegisterType<TType>().AsSelf().As<IEventMessageReceiver>().As<UpsellFeatureViewModelBase>().SingleInstance();
     }

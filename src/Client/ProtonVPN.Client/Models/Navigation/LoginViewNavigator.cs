@@ -18,12 +18,16 @@
  */
 
 using ProtonVPN.Client.UI.Login.Forms;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Models.Navigation;
 
 public class LoginViewNavigator : ViewNavigatorBase, ILoginViewNavigator
 {
-    public LoginViewNavigator(IViewMapper viewMapper) : base(viewMapper)
+    public LoginViewNavigator(
+        ILogger logger,
+        IViewMapper viewMapper)
+        : base(logger, viewMapper)
     { }
 
     public Task NavigateToLoginAsync()

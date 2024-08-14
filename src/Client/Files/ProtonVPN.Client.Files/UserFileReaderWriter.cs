@@ -34,7 +34,8 @@ public class UserFileReaderWriter : IUserFileReaderWriter, IEventMessageReceiver
 
     private readonly ResettableLazy<string?> _userId;
 
-    public UserFileReaderWriter(IFileReaderWriter fileReaderWriter, IUserHashGenerator userHashGenerator)
+    public UserFileReaderWriter(IFileReaderWriter fileReaderWriter,
+        IUserHashGenerator userHashGenerator)
     {
         _fileReaderWriter = fileReaderWriter;
         _userHashGenerator = userHashGenerator;
@@ -45,17 +46,49 @@ public class UserFileReaderWriter : IUserFileReaderWriter, IEventMessageReceiver
     public T ReadOrNew<T>(UserFileReaderWriterParameters parameters)
         where T : new()
     {
-        return _fileReaderWriter.ReadOrNew<T>(GetFullFilePath(parameters), parameters.Serializer);
+        try
+        {
+            return _fileReaderWriter.ReadOrNew<T>(GetFullFilePath(parameters), parameters.Serializer);
+        }
+        catch
+        {
+            return new();
+        }
     }
 
     public FileOperationResult Write<T>(T value, UserFileReaderWriterParameters parameters)
     {
-        return _fileReaderWriter.Write<T>(value, GetFullFilePath(parameters), parameters.Serializer);
+        try
+        {
+            return _fileReaderWriter.Write<T>(value, GetFullFilePath(parameters), parameters.Serializer);
+        }
+        catch
+        {
+            return FileOperationResult.Failed;
+        }
+    }
+
+    public bool DoesFileExist(UserFileReaderWriterParameters parameters)
+    {
+        try
+        {
+            string filePath = GetFullFilePath(parameters);
+            return File.Exists(filePath);
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     private string GetFullFilePath(UserFileReaderWriterParameters parameters)
     {
-        return string.Format(parameters.FullFilePathFormat, _userId.Value);
+        string? userId = _userId.Value;
+        if (string.IsNullOrWhiteSpace(userId))
+        {
+            throw new ArgumentNullException("UserId");
+        }
+        return string.Format(parameters.FullFilePathFormat, userId);
     }
 
     public void Receive(SettingChangedMessage message)
@@ -68,6 +101,7 @@ public class UserFileReaderWriter : IUserFileReaderWriter, IEventMessageReceiver
 
     public IDictionary<string, T> ReadAllUsers<T>(UserFileReaderWriterParameters parameters)
     {
-        return _fileReaderWriter.ReadAllUsers<T>(parameters.FolderPath, parameters.FileNamePrefix, parameters.FileExtension, parameters.Serializer);
+        return _fileReaderWriter.ReadAllUsers<T>(parameters.FolderPath,
+            parameters.FileNamePrefix, parameters.FileExtension, parameters.Serializer);
     }
 }

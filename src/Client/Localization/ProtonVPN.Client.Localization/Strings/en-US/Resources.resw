@@ -123,6 +123,9 @@
   <data name="Common_Actions_Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="Common_Actions_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
   <data name="Common_Actions_Connect" xml:space="preserve">
     <value>Connect</value>
   </data>
@@ -131,6 +134,12 @@
   </data>
   <data name="Common_Actions_Remove" xml:space="preserve">
     <value>Remove</value>
+  </data>
+  <data name="Common_Actions_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Common_Actions_Delete" xml:space="preserve">
+    <value>Delete</value>
   </data>
   <data name="Common_Actions_Upgrade" xml:space="preserve">
     <value>Upgrade</value>
@@ -173,6 +182,21 @@
   </data>
   <data name="Country_Fastest" xml:space="preserve">
     <value>Fastest country</value>
+  </data>
+  <data name="Country_Fastest_ExcludingMyCountry" xml:space="preserve">
+    <value>Fastest (excluding my country)</value>
+  </data>
+  <data name="Country_Random" xml:space="preserve">
+    <value>Random country</value>
+  </data>
+  <data name="Country_Random_ExcludingMyCountry" xml:space="preserve">
+    <value>Random (excluding my country)</value>
+  </data>
+  <data name="Profiles_Page_Title" xml:space="preserve">
+    <value>Profiles</value>
+  </data>
+  <data name="Profiles_Page_Description" xml:space="preserve">
+    <value>Configure your own VPN settings and connect in one click.</value>
   </data>
   <data name="Country_val_AD" xml:space="preserve">
     <value>Andorra</value>
@@ -1554,11 +1578,20 @@
   <data name="Home_VpnStatus_Title_Connected" xml:space="preserve">
     <value>Protected</value>
   </data>
+  <data name="Server_Feature_None" xml:space="preserve">
+    <value>All countries</value>
+  </data>
   <data name="Server_Feature_P2P" xml:space="preserve">
     <value>P2P</value>
   </data>
   <data name="Server_Feature_Tor" xml:space="preserve">
     <value>Tor</value>
+  </data>
+  <data name="Server_Feature_SecureCore" xml:space="preserve">
+    <value>Secure Core</value>
+  </data>
+  <data name="Server_Feature_B2B" xml:space="preserve">
+    <value>Gateways</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode" xml:space="preserve">
     <value>Incorrect code. Please try again.</value>
@@ -1654,6 +1687,19 @@
   </data>
   <data name="Settings_Connection_Protocol" xml:space="preserve">
     <value>Protocol</value>
+  </data>
+  <data name="Settings_Connection_Protocol_NavigationFailed_Title" xml:space="preserve">
+    <value>Change protocol in profiles</value>
+  </data>
+  <data name="Settings_Connection_Protocol_NavigationFailed_Message" xml:space="preserve">
+    <value>You’re currently connected to a VPN profile. 
+
+• To change the protocol for this connection, disconnect then edit your profile.
+
+• To change your protocol for other VPN connections, you’ll need to disconnect from your profile first.</value>
+  </data>
+  <data name="Settings_Connection_Protocol_NavigationFailed_Action" xml:space="preserve">
+    <value>Go to profiles</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator" xml:space="preserve">
     <value>VPN Accelerator</value>
@@ -1752,7 +1798,7 @@
     <value>Speed (UDP)</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Description" xml:space="preserve">
-    <value>Fast, secure, and efficient. WireGuard is more battery-efficient than other protocols.</value>
+    <value>State-of-the-art protocol for security and performance.</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title" xml:space="preserve">
     <value>WireGuard</value>
@@ -1761,7 +1807,7 @@
     <value>WireGuard</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Description" xml:space="preserve">
-    <value>Fast, secure, and efficient. WireGuard is difficult to detect and block.</value>
+    <value>State-of-the-art protocol for security and performance.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Title" xml:space="preserve">
     <value>Stealth</value>
@@ -1990,9 +2036,6 @@
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Title" xml:space="preserve">
     <value>Restore default settings?</value>
-  </data>
-  <data name="Common_Actions_Close" xml:space="preserve">
-    <value>Close</value>
   </data>
   <data name="Settings_Support_DebugLogs_ErrorMessage" xml:space="preserve">
     <value>The logs folder could not be found.</value>
@@ -2276,6 +2319,12 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   </data>
   <data name="Dialogs_SmartRouting_Title" xml:space="preserve">
     <value>Smart Routing</value>
+  </data>  
+  <data name="Connections_Fastest" xml:space="preserve">
+    <value>Fastest</value>
+  </data>
+  <data name="Connections_Random" xml:space="preserve">
+    <value>Random</value>
   </data>
   <data name="Countries_Fastest" xml:space="preserve">
     <value>Fastest country</value>
@@ -2359,8 +2408,15 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Login_Error_SsoAuthFailed" xml:space="preserve">
     <value>SSO Authentication failed. Please try again.</value>
   </data>
+  <data name="Connection_Error_Title" xml:space="preserve">
+    <value>Connection failed</value>
+  </data>
   <data name="Connection_Error_NoServers" xml:space="preserve">
     <value>There are no servers available right now for your selection. Please select a different option.</value>
+  </data>
+  <data name="Connection_Error_NoServers_Profile" xml:space="preserve">
+    <value>Your server selection for '{0}' is unavailable. Select a different server or try again later.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Connection_Error_TapAdapterInUse" xml:space="preserve">
     <value>Your network adapter is currently in use.</value>
@@ -2379,6 +2435,9 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   </data>
   <data name="Connection_Error_ReportAnIssue" xml:space="preserve">
     <value>Report an issue</value>
+  </data>
+  <data name="Connection_Error_EditProfile" xml:space="preserve">
+    <value>Edit profile</value>
   </data>
   <data name="Connection_Error_RpcServerUnavailable" xml:space="preserve">
     <value>Proton VPN can't connect because the RPC server is unavailable on your system.</value>
@@ -2861,7 +2920,54 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
 
 Enjoy the best of Proton privacy.</value>
   </data>
-
+  <data name="Connections_Profiles_Name" xml:space="preserve">
+    <value>Profile name</value>
+  </data>
+  <data name="Connections_Profiles_New" xml:space="preserve">
+    <value>New profile</value>
+    <comment>"New profile" is more appropriate when you already have a profile</comment>
+  </data>
+  <data name="Connections_Profiles_Create" xml:space="preserve">
+    <value>Create profile</value>
+    <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
+  </data>
+  <data name="Connections_Profiles_Save" xml:space="preserve">
+    <value>Save profile</value>
+  </data>
+  <data name="Connections_Profiles_Delete" xml:space="preserve">
+    <value>Delete profile</value>
+  </data>
+  <data name="Connections_Profiles_Delete_Title" xml:space="preserve">
+    <value>Delete profile?</value>
+  </data>
+  <data name="Connections_Profiles_Delete_Message" xml:space="preserve">
+    <value>'{0}' will be permanently removed.</value>
+    <comment>{0} is a placeholder for the name of the profile.</comment>
+  </data>
+  <data name="Connections_Profiles_Empty_Title" xml:space="preserve">
+    <value>Create your first profile</value>
+  </data>
+  <data name="Connections_Profiles_Empty_Description" xml:space="preserve">
+    <value>Profiles are saved connections with your choice of location, server, and protocol.</value>
+  </data>
+  <data name="Connections_Profiles_One" xml:space="preserve">
+    <value>Profile ({0})</value>
+    <comment>{0} is a placeholder for the number of profiles (eg. Profile (1)). This string is used when the number is 1.</comment>
+  </data>
+  <data name="Connections_Profiles_Other" xml:space="preserve">
+    <value>Profiles ({0})</value>
+    <comment>{0} is a placeholder for the number of profiles (eg. Profiles (5)). This string is used when the number is different than 1.</comment>
+  </data>
+  <data name="Connections_Profiles_NotAvailable_Tooltip" xml:space="preserve">
+    <value>Profiles are available with VPN Plus</value>
+    <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
+  </data>
+  <data name="Connections_Country" xml:space="preserve">
+    <value>Country</value>
+   </data>
+  <data name="Connections_Country_Middle" xml:space="preserve">
+    <value>Middle country</value>
+   </data>
   <data name="Connections_Countries_One" xml:space="preserve">
     <value>Country ({0})</value>
     <comment>{0} is a placeholder for the number of countries (eg. Country (1)). This string is used when the number is 1.</comment>
@@ -2869,6 +2975,9 @@ Enjoy the best of Proton privacy.</value>
   <data name="Connections_Countries_Other" xml:space="preserve">
     <value>Countries ({0})</value>
     <comment>{0} is a placeholder for the number of countries (eg. Countries (5)). This string is used when the number is different than 1.</comment>
+  </data>
+  <data name="Connections_State" xml:space="preserve">
+    <value>State</value>
   </data>
   <data name="Connections_States_One" xml:space="preserve">
     <value>State ({0})</value>
@@ -2878,6 +2987,9 @@ Enjoy the best of Proton privacy.</value>
     <value>States ({0})</value>
     <comment>{0} is a placeholder for the number of states (eg. States (5)). This string is used when the number is different than 1. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
+  <data name="Connections_City" xml:space="preserve">
+    <value>City</value>
+  </data>
   <data name="Connections_Cities_One" xml:space="preserve">
     <value>City ({0})</value>
     <comment>{0} is a placeholder for the number of cities (eg. City (1)). This string is used when the number is 1.</comment>
@@ -2885,6 +2997,9 @@ Enjoy the best of Proton privacy.</value>
   <data name="Connections_Cities_Other" xml:space="preserve">
     <value>Cities ({0})</value>
     <comment>{0} is a placeholder for the number of cities (eg. Cities (5)). This string is used when the number is different than 1.</comment>
+  </data>
+  <data name="Connections_Server" xml:space="preserve">
+    <value>Server</value>
   </data>
   <data name="Connections_Servers_One" xml:space="preserve">
     <value>Server ({0})</value>
@@ -2990,6 +3105,9 @@ Enjoy the best of Proton privacy.</value>
     <value>See servers ({0})</value>
     <comment>{0} is a placeholder for the number of servers (eg. See servers (5)). This string is used when the number is different than 1.</comment>
   </data>
+  <data name="Connections_Gateway" xml:space="preserve">
+    <value>Gateway</value>
+   </data>
   <data name="Connections_Gateways_One" xml:space="preserve">
     <value>Gateway ({0})</value>
     <comment>{0} is a placeholder for the number of gateways (eg. Gateway (1)). This string is used when the number is 1.</comment>
@@ -2997,6 +3115,9 @@ Enjoy the best of Proton privacy.</value>
   <data name="Connections_Gateways_Other" xml:space="preserve">
     <value>Gateways ({0})</value>
     <comment>{0} is a placeholder for the number of gateways (eg. Gateways (5)). This string is used when the number is different than 1.</comment>
+  </data>
+  <data name="Connections_Gateways_Server" xml:space="preserve">
+    <value>Dedicated server</value>
   </data>
   <data name="Connections_Gateways_Servers_One" xml:space="preserve">
     <value>Dedicated server ({0})</value>

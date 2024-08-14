@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Client.Settings.Contracts.Models;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
@@ -39,7 +40,7 @@ public class GatewayLocationIntent : LocationIntentBase
             && GatewayName == gatewayIntent.GatewayName;
     }
 
-    public override bool IsSupported(Server server)
+    public override bool IsSupported(Server server, DeviceLocation? deviceLocation)
     {
         return server.GatewayName == GatewayName;
     }
@@ -47,5 +48,10 @@ public class GatewayLocationIntent : LocationIntentBase
     public override string ToString()
     {
         return $"Gateway {GatewayName}";
+    }
+
+    public override bool IsGenericRandomIntent()
+    {
+        return false;
     }
 }

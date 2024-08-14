@@ -62,7 +62,7 @@ public abstract partial class ServerLocationItemBase : LocationItemBase
 
     public bool SupportsTor => Server.Features.IsSupported(ServerFeatures.Tor);
 
-    protected override ILocationIntent LocationIntent => new ServerLocationIntent(Server.Id, Server.Name, Server.ExitCountry, Server.State, Server.City);
+    public override ILocationIntent LocationIntent => new ServerLocationIntent(Server.Id, Server.Name, Server.ExitCountry, Server.State, Server.City);
 
     protected ServerLocationItemBase(
         ILocalizationProvider localizer,
@@ -94,7 +94,7 @@ public abstract partial class ServerLocationItemBase : LocationItemBase
             : base.MatchesSearchQuery(searchQuery);
     }
 
-    protected override void InvalidateIsUnderMaintenance()
+    public override void InvalidateIsUnderMaintenance()
     {
         IsUnderMaintenance = Server.IsUnderMaintenance();
     }

@@ -29,4 +29,6 @@ public interface IUserFileReaderWriter
     FileOperationResult Write<T>(T value, UserFileReaderWriterParameters parameters);
 
     IDictionary<string, T> ReadAllUsers<T>(UserFileReaderWriterParameters parameters);
+
+    bool DoesFileExist(UserFileReaderWriterParameters parameters);
 }

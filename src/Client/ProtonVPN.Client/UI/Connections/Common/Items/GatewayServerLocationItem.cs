@@ -34,9 +34,9 @@ public class GatewayServerLocationItem : ServerLocationItemBase
 {
     public override GroupLocationType GroupType => GroupLocationType.GatewayServers;
 
-    protected override ILocationIntent LocationIntent => new GatewayServerLocationIntent(Server.Id, Server.Name, Server.ExitCountry, Server.GatewayName);
+    public override ILocationIntent LocationIntent => new GatewayServerLocationIntent(Server.Id, Server.Name, Server.ExitCountry, Server.GatewayName);
 
-    protected override IFeatureIntent? FeatureIntent => new B2BFeatureIntent();
+    public override IFeatureIntent? FeatureIntent => new B2BFeatureIntent();
 
     public GatewayServerLocationItem(
         ILocalizationProvider localizer,

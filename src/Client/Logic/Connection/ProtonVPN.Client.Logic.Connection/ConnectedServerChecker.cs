@@ -78,8 +78,6 @@ public class ConnectedServerChecker : PollingObserverBase,
         {
             Logger.Info<ConnectTriggerLog>($"Refreshing the server list due to the current connected server being no longer available.");
             await _serversUpdater.UpdateAsync(ServersRequestParameter.ForceFullUpdate);
-            Logger.Info<ConnectTriggerLog>($"Reconnecting due to the current connected server being no longer available.");
-            await _connectionManager.ReconnectAsync();
         }
     }
 

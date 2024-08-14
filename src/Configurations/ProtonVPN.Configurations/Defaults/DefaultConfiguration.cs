@@ -141,6 +141,8 @@ public static class DefaultConfiguration
     public static string VpnUsernameSuffix => "+pw"; // p - proton, w - windows
     public static string DoHVerifyApiHost => "verify-api.protonvpn.com";
 
+    public static int MaximumProfileNameLength => 25;
+
     public static long BugReportingMaxFileSize => 488 * 1024;
     public static int MaxClientLogsAttached => 3;
     public static int MaxServiceLogsAttached => 3;

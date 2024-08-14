@@ -23,6 +23,7 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
@@ -33,12 +34,13 @@ public class GuestHoleConnectionRequestCreator : ConnectionRequestCreatorBase, I
     private readonly IConfiguration _config;
 
     public GuestHoleConnectionRequestCreator(
+        ILogger logger,
         ISettings settings,
         IEntityMapper entityMapper,
         IFeatureFlagsObserver featureFlagsObserver,
         IConfiguration config,
         IMainSettingsRequestCreator mainSettingsRequestCreator)
-        : base(settings, entityMapper, featureFlagsObserver, mainSettingsRequestCreator)
+        : base(logger, settings, entityMapper, featureFlagsObserver, mainSettingsRequestCreator)
     {
         _config = config;
     }

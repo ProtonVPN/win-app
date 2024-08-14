@@ -35,7 +35,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <UserControl.Resources>
 
         <DataTemplate x:Key="RecentItemTemplate"
-                      x:DataType="recents:RecentItemViewModel">
+                      x:DataType="recents:RecentItem">
 
             <custom:DualCommandsRow AutomationProperties.FullDescription="{x:Bind FullTitle}"
                                     AutomationProperties.Name="{x:Bind FullTitle}"
@@ -45,7 +45,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     PrimaryCommandContent="{x:Bind PrimaryCommandText}"
                                     SecondaryCommandAutomationName="{x:Bind SecondaryCommandDescription}"
                                     SecondaryCommandToolTip="{x:Bind SecondaryCommandToolTip}">
-
                 <custom:DualCommandsRow.SecondaryCommandIcon>
                     <pathicons:ThreeDotsVertical />
                 </custom:DualCommandsRow.SecondaryCommandIcon>
@@ -92,14 +91,23 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                    Visibility="{x:Bind IsPinned, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
                     </Grid>
 
-                    <controls:CountryFlagControl Grid.Column="1"
-                                                 MinWidth="30"
-                                                 MinHeight="20"
-                                                 EntryCountryCode="{x:Bind EntryCountry}"
-                                                 ExitCountryCode="{x:Bind ExitCountry}"
-                                                 IsCompact="True"
-                                                 IsGateway="{x:Bind IsB2B}"
-                                                 IsSecureCore="{x:Bind IsSecureCore}" />
+                    <Grid x:Name="FlagContainer"
+                          Grid.Column="1">
+
+                        <custom:ComplexCountryFlag Width="30"
+                                                   EntryCountryCode="{x:Bind EntryCountry}"
+                                                   ExitCountryCode="{x:Bind ExitCountry}"
+                                                   IsCompact="True"
+                                                   IsSecureCore="{x:Bind IsSecureCore}"
+                                                   MainFlagType="{x:Bind FlagType}"
+                                                   Visibility="{x:Bind IsProfileIntent, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+
+                        <custom:ConnectionProfileIcon Width="30"
+                                                      IsFlagVisible="False"
+                                                      ProfileCategory="{x:Bind Profile.Category}"
+                                                      ProfileColor="{x:Bind Profile.Color}"
+                                                      Visibility="{x:Bind IsProfileIntent, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    </Grid>
 
                     <TextBlock Grid.Column="2"
                                Foreground="{ThemeResource TextWeakColorBrush}"
@@ -118,7 +126,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <StackPanel Orientation="Horizontal"
                                     Spacing="12"
                                     Visibility="{x:Bind HasFeature}">
-                            
+
                             <TextBlock VerticalAlignment="Center"
                                        Foreground="{ThemeResource TextWeakColorBrush}"
                                        Style="{StaticResource BodyMediumTextBlockStyle}"
@@ -149,11 +157,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                            TextTrimming="CharacterEllipsis"
                                            TextWrapping="WrapWholeWords" />
                             </StackPanel>
-                            
+
                         </StackPanel>
 
-                        <pathicons:Wrench Foreground="{ThemeResource TextWeakColorBrush}"
-                                          Margin="0,1,0,0"
+                        <pathicons:Wrench Margin="0,1,0,0"
+                                          Foreground="{ThemeResource TextWeakColorBrush}"
                                           Visibility="{x:Bind IsServerAvailable, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
 
                         <icons:ActiveDot Width="16"

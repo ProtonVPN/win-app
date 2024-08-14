@@ -118,7 +118,7 @@ public class ChangeServerModerator :
     {
         if (_connectionManager.IsConnected &&
             _connectionManager.CurrentConnectionIntent?.Location is FreeServerLocationIntent intent &&
-           intent.Type == FreeServerType.Random)
+           intent.Kind == ConnectionIntentKind.Random)
         {
             RegisterChangeServerAttempt();
         }

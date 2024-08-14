@@ -29,8 +29,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              mc:Ignorable="d">
 
     <InfoBar AutomationProperties.AutomationId="ConnectionErrorPanel" 
-             IsOpen="{x:Bind ViewModel.HasConnectionError, Mode=TwoWay}"
+             IsOpen="{x:Bind ViewModel.IsConnectionErrorVisible, Mode=TwoWay}"
              CloseButtonCommand="{x:Bind ViewModel.CloseErrorCommand}"
+             Title="{x:Bind ViewModel.ConnectionErrorTitle}"
              Message="{x:Bind ViewModel.ConnectionErrorMessage}"
              Severity="Error">
         <InfoBar.ActionButton>

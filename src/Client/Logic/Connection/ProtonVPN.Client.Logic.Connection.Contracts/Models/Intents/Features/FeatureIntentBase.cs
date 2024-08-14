@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 
 public abstract class FeatureIntentBase : IntentBase, IFeatureIntent
@@ -30,4 +32,11 @@ public abstract class FeatureIntentBase : IntentBase, IFeatureIntent
 
         return GetType() == intent.GetType();
     }
+
+    public IEnumerable<Server> FilterServers(IEnumerable<Server> servers)
+    {
+        return servers.Where(IsSupported);
+    }
+
+    public abstract bool IsSupported(Server server);
 }

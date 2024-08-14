@@ -80,35 +80,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </gallery:SampleControl.Options>
         </gallery:SampleControl>
 
-        <gallery:SampleControl Header="Country Flag">
-            <controls:CountryFlagControl EntryCountryCode="{Binding Text, ElementName=tbEntryCountryCode, Mode=OneWay}"
-                                         ExitCountryCode="{Binding Text, ElementName=tbCountryCode, Mode=OneWay}"
-                                         IsCompact="{Binding IsChecked, ElementName=cbCompactFlag, Mode=OneWay}"
-                                         IsGateway="{Binding IsChecked, ElementName=cbGateway, Mode=OneWay}"
-                                         IsSecureCore="{Binding IsChecked, ElementName=cbSecureCore, Mode=OneWay}" />
-            <gallery:SampleControl.Options>
-                <StackPanel Orientation="Vertical"
-                            Spacing="4">
-                    <TextBox Name="tbCountryCode"
-                             PlaceholderText="Country Code"
-                             Text="AD" />
-                    <TextBox Name="tbEntryCountryCode"
-                             PlaceholderText="Entry Country Code"
-                             Text="" />
-                    <CheckBox Name="cbSecureCore"
-                              Margin="4,4,0,0"
-                              Content="Is Secure Core" />
-                    <CheckBox Name="cbGateway"
-                              Margin="4,4,0,0"
-                              Content="Is Gateway" />
-                    <CheckBox Name="cbCompactFlag"
-                              Margin="4,4,0,0"
-                              Content="Is Compact" />
-                    <Border Height="160" />
-                </StackPanel>
-            </gallery:SampleControl.Options>
-        </gallery:SampleControl>
-
         <gallery:SampleControl Header="Server load">
             <controls:ServerLoadControl FirstThreshold="{Binding RangeStart, ElementName=rsThresholds, Mode=OneWay}"
                                         SecondThreshold="{Binding RangeEnd, ElementName=rsThresholds, Mode=OneWay}"
@@ -146,12 +117,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                     SecondaryCommandText="{x:Bind SecondaryButton}">
                                 <Grid ColumnDefinitions="Auto,*"
                                       ColumnSpacing="8">
-                                    <controls:CountryFlagControl Grid.Column="0"
-                                                                 EntryCountryCode="{x:Bind EntryCountryCode}"
-                                                                 ExitCountryCode="{x:Bind ExitCountryCode}"
-                                                                 IsCompact="True"
-                                                                 IsGateway="{x:Bind IsGateway}"
-                                                                 IsSecureCore="{x:Bind IsSecureCore}" />
+                                    <custom:ComplexCountryFlag Grid.Column="0"
+                                                               EntryCountryCode="{x:Bind EntryCountryCode}"
+                                                               ExitCountryCode="{x:Bind ExitCountryCode}"
+                                                               IsCompact="True"
+                                                               IsSecureCore="{x:Bind IsSecureCore}" />
                                     <TextBlock Grid.Column="1"
                                                VerticalAlignment="Center"
                                                Text="{x:Bind Title}"
@@ -166,11 +136,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         SecondaryCommandText="Cities">
                     <Grid ColumnDefinitions="Auto,Auto,*"
                           ColumnSpacing="8">
-                        <controls:CountryFlagControl Grid.Column="0"
-                                                     EntryCountryCode="SE"
-                                                     ExitCountryCode="AU"
-                                                     IsCompact="True"
-                                                     IsSecureCore="True" />
+                        <custom:ComplexCountryFlag Grid.Column="0"
+                                                   EntryCountryCode="SE"
+                                                   ExitCountryCode="AU"
+                                                   IsCompact="True"
+                                                   IsSecureCore="True" />
                         <TextBlock Grid.Column="1"
                                    VerticalAlignment="Center"
                                    Text="Australia" />

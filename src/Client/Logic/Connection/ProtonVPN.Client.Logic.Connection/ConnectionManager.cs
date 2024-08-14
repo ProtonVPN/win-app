@@ -141,7 +141,7 @@ public class ConnectionManager : IInternalConnectionManager,
         }
         else
         {
-            SetConnectionStatus(ConnectionStatus.Disconnected);
+            await DisconnectAsync();
 
             _eventMessageSender.Send(new ConnectionErrorMessage { VpnError = error });
             return false;

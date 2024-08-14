@@ -26,6 +26,7 @@ using ProtonVPN.Client.Logic.Announcements.Installers;
 using ProtonVPN.Client.Logic.Auth.Installers;
 using ProtonVPN.Client.Logic.Connection.Installers;
 using ProtonVPN.Client.Logic.Feedback.Installers;
+using ProtonVPN.Client.Logic.Profiles.Installers;
 using ProtonVPN.Client.Logic.Recents.Installers;
 using ProtonVPN.Client.Logic.Servers.Installers;
 using ProtonVPN.Client.Logic.Services.Installers;
@@ -75,6 +76,7 @@ public class MainModule : Module
                .RegisterModule<EventMessagingModule>()
                .RegisterModule<ViewModelsModule>()
                .RegisterModule<RecentsLogicModule>()
+               .RegisterModule<ProfilesLogicModule>()
                .RegisterModule<ServersLogicModule>()
                .RegisterModule<ConfigurationsModule>()
                .RegisterModule<ApiModule>()

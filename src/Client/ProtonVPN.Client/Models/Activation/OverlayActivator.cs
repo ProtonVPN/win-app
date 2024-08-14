@@ -27,6 +27,7 @@ using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.UI.Dialogs.Overlays;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
@@ -48,12 +49,15 @@ public class OverlayActivator : WindowActivatorBase, IOverlayActivator
 
     public async Task<ContentDialogResult> ShowMessageAsync(MessageDialogParameters parameters, Window? rootWindow = null)
     {
+        CloseAllOverlays();
+
+        rootWindow ??= App.MainWindow;
+
+        MessageContentDialog dialog = CreateMessageOverlay(parameters, rootWindow);
+        ActiveOverlay overlay = new(rootWindow, dialog);
+
         try
         {
-            rootWindow ??= App.MainWindow;
-
-            MessageContentDialog dialog = CreateMessageOverlay(parameters, rootWindow);
-            ActiveOverlay overlay = new(rootWindow, dialog);
             RegisterOverlay(overlay);
 
             ContentDialogResult result = await overlay.Dialog.ShowAsync();
@@ -64,16 +68,23 @@ public class OverlayActivator : WindowActivatorBase, IOverlayActivator
             Logger.Error<AppLog>($"Error when trying to show message '{parameters.Title}'", e);
             throw;
         }
+        finally
+        {
+            UnregisterOverlay(overlay);
+        }
     }
 
     public async Task<ContentDialogResult> ShowLoadingMessageAsync(MessageDialogParameters parameters, Task loadingTask, Window? rootWindow = null)
     {
+        CloseAllOverlays();
+
+        rootWindow ??= App.MainWindow;
+
+        MessageContentDialog dialog = CreateMessageOverlay(parameters, rootWindow);
+        ActiveOverlay overlay = new(rootWindow, dialog);
+
         try
         {
-            rootWindow ??= App.MainWindow;
-
-            MessageContentDialog dialog = CreateMessageOverlay(parameters, rootWindow);
-            ActiveOverlay overlay = new(rootWindow, dialog);
             RegisterOverlay(overlay);
 
             Task<ContentDialogResult> showDialogTask = overlay.Dialog.ShowAsync().AsTask();
@@ -93,6 +104,10 @@ public class OverlayActivator : WindowActivatorBase, IOverlayActivator
             Logger.Error<AppLog>($"Error when trying to show loading message '{parameters.Title}'", e);
             throw;
         }
+        finally
+        {
+            UnregisterOverlay(overlay);
+        }
     }
 
     public Task ShowOverlayAsync<TOverlayViewModel>(Window? rootWindow = null)
@@ -103,9 +118,9 @@ public class OverlayActivator : WindowActivatorBase, IOverlayActivator
         return ShowOverlayAsync(overlayType, rootWindow);
     }
 
-    public Task ShowOverlayAsync(string overlayKey, Window? rootWindow = null)
+    public Task ShowOverlayAsync(OverlayViewModelBase overlay, Window? rootWindow = null)
     {
-        Type overlayType = _viewMapper.GetOverlayType(overlayKey);
+        Type overlayType = _viewMapper.GetOverlayType(overlay.GetType());
 
         return ShowOverlayAsync(overlayType, rootWindow);
     }
@@ -118,9 +133,9 @@ public class OverlayActivator : WindowActivatorBase, IOverlayActivator
         CloseOverlay(overlayType);
     }
 
-    public void CloseOverlay(string overlayKey)
+    public void CloseOverlay(OverlayViewModelBase overlay)
     {
-        Type overlayType = _viewMapper.GetOverlayType(overlayKey);
+        Type overlayType = _viewMapper.GetOverlayType(overlay.GetType());
 
         CloseOverlay(overlayType);
     }
@@ -148,11 +163,12 @@ public class OverlayActivator : WindowActivatorBase, IOverlayActivator
             overlay.Dialog.ApplyFlowDirection(language);
         }
     }
-
     private async Task ShowOverlayAsync(Type overlayType, Window? rootWindow)
     {
         try
         {
+            CloseAllOverlays();
+
             rootWindow ??= App.MainWindow;
 
             ActiveOverlay? overlay = _activeOverlays.FirstOrDefault(o => o.BelongsTo(rootWindow) && o.IsOfType(overlayType));
@@ -200,8 +216,6 @@ public class OverlayActivator : WindowActivatorBase, IOverlayActivator
 
     private void RegisterOverlay(ActiveOverlay overlay)
     {
-        overlay.Dialog.Closed += OnOverlayClosed;
-
         _activeOverlays.Add(overlay);
     }
 
@@ -209,17 +223,7 @@ public class OverlayActivator : WindowActivatorBase, IOverlayActivator
     {
         if (overlay is not null)
         {
-            overlay.Dialog.Closed -= OnOverlayClosed;
-
             _activeOverlays.Remove(overlay);
-        }
-    }
-
-    private void OnOverlayClosed(ContentDialog overlay, ContentDialogClosedEventArgs args)
-    {
-        if (overlay is not null)
-        {
-            UnregisterOverlay(_activeOverlays.FirstOrDefault(o => o.Dialog == overlay));
         }
     }
 

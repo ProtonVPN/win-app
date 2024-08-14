@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Connection.Contracts.SerializableEntities.Intents;
 using ProtonVPN.EntityMapping.Contracts;
@@ -33,13 +34,24 @@ public class CountryLocationIntentMapper : IMapper<CountryLocationIntent, Serial
             {
                 TypeName = nameof(CountryLocationIntent),
                 CountryCode = leftEntity.CountryCode,
+                Kind = leftEntity.Kind.ToString(),
+                IsToExcludeMyCountry = leftEntity.IsToExcludeMyCountry,
             };
     }
 
     public CountryLocationIntent Map(SerializableLocationIntent rightEntity)
     {
-        return rightEntity is null
-            ? null
-            : new CountryLocationIntent(countryCode: rightEntity.CountryCode);
+        if (rightEntity is null)
+        {
+            return null;
+        }
+
+        if (string.IsNullOrWhiteSpace(rightEntity.Kind) || !Enum.TryParse(rightEntity.Kind, out ConnectionIntentKind kind))
+        {
+            kind = ConnectionIntentKind.Fastest;
+        }
+
+        return new CountryLocationIntent(countryCode: rightEntity.CountryCode, kind,
+            isToExcludeMyCountry: rightEntity.IsToExcludeMyCountry ?? false);
     }
 }

@@ -141,7 +141,6 @@ public class DeviceLocationObserver :
 
     private async Task FetchDeviceLocationAsync(int delayInMs)
     {
-
         if (_isFetchInProgress)
         {
             return;

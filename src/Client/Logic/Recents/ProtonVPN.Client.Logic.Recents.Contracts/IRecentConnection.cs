@@ -23,7 +23,7 @@ namespace ProtonVPN.Client.Logic.Recents.Contracts;
 
 public interface IRecentConnection
 {
-    IConnectionIntent ConnectionIntent { get; }
+    IConnectionIntent ConnectionIntent { get; set; }
 
     bool IsPinned { get; set; }
 

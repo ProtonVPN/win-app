@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
 namespace ProtonVPN.Client.Logic.Connection.Tests.Models.Intents.Locations;
@@ -25,24 +26,61 @@ namespace ProtonVPN.Client.Logic.Connection.Tests.Models.Intents.Locations;
 public class CountryLocationIntentFastestTests
 {
     [TestMethod]
-    public void CountryLocationIntent_ShouldBeFastest_GivenNoCountryCode()
+    public void CountryCodeShouldBeNullAndKindFastestAndIsNotToExcludeMyCountry_GivenNoCountryCode()
     {
-        CountryLocationIntent locationFastestCountryA = new CountryLocationIntent();
-        CountryLocationIntent locationFastestCountryB = new CountryLocationIntent("");
-        CountryLocationIntent locationFastestCountryC = new CountryLocationIntent(string.Empty);
+        CountryLocationIntent cliA = new();
+        CountryLocationIntent cliB = new(" ");
+        CountryLocationIntent cliC = new(string.Empty);
 
-        Assert.IsTrue(locationFastestCountryA.IsFastest);
-        Assert.IsTrue(locationFastestCountryB.IsFastest);
-        Assert.IsTrue(locationFastestCountryC.IsFastest);
+        List<CountryLocationIntent> list = [cliA, cliB, cliC];
+
+        foreach(CountryLocationIntent cli in list)
+        {
+            Assert.IsNull(cli.CountryCode);
+            Assert.AreEqual(ConnectionIntentKind.Fastest, cli.Kind);
+            Assert.IsFalse(cli.IsToExcludeMyCountry);
+
+            Assert.IsFalse(cli.IsSpecificCountry);
+            Assert.IsTrue(cli.IsFastestCountry);
+            Assert.IsFalse(cli.IsFastestCountryExcludingMine);
+            Assert.IsFalse(cli.IsRandomCountry);
+            Assert.IsFalse(cli.IsRandomCountryExcludingMine);
+        }
     }
 
     [TestMethod]
-    public void SecureCoreFeatureIntent_ShouldNotBeFastest_GivenEntryCountryCode()
+    public void KindShouldBeFastestAndIsNotToExcludeMyCountry_GivenCountryCode()
     {
-        CountryLocationIntent locationCountryA = new CountryLocationIntent("CH");
-        CountryLocationIntent locationCountryB = new CountryLocationIntent("FR");
+        const string countryCode = "CH";
 
-        Assert.IsFalse(locationCountryA.IsFastest);
-        Assert.IsFalse(locationCountryB.IsFastest);
+        CountryLocationIntent cli = new(countryCode);
+
+        Assert.AreEqual(countryCode, cli.CountryCode);
+        Assert.AreEqual(ConnectionIntentKind.Fastest, cli.Kind);
+        Assert.IsFalse(cli.IsToExcludeMyCountry);
+
+        Assert.IsTrue(cli.IsSpecificCountry);
+        Assert.IsFalse(cli.IsFastestCountry);
+        Assert.IsFalse(cli.IsFastestCountryExcludingMine);
+        Assert.IsFalse(cli.IsRandomCountry);
+        Assert.IsFalse(cli.IsRandomCountryExcludingMine);
+    }
+
+    [TestMethod]
+    public void KindShouldNotBeFastestAndIsToExcludeMyCountry()
+    {
+        const string countryCode = "LT";
+
+        CountryLocationIntent cli = new(countryCode, ConnectionIntentKind.Random, isToExcludeMyCountry: true);
+
+        Assert.AreEqual(countryCode, cli.CountryCode);
+        Assert.AreEqual(ConnectionIntentKind.Random, cli.Kind);
+        Assert.IsTrue(cli.IsToExcludeMyCountry);
+
+        Assert.IsTrue(cli.IsSpecificCountry);
+        Assert.IsFalse(cli.IsFastestCountry);
+        Assert.IsFalse(cli.IsFastestCountryExcludingMine);
+        Assert.IsFalse(cli.IsRandomCountry);
+        Assert.IsFalse(cli.IsRandomCountryExcludingMine);
     }
 }

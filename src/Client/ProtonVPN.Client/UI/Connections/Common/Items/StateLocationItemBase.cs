@@ -34,9 +34,9 @@ namespace ProtonVPN.Client.UI.Connections.Common.Items;
 
 public abstract class StateLocationItemBase : LocationItemBase
 {
-    public string SubHeader => ShowBaseLocation
-        ? $" -  {Localizer.GetCountryName(State.CountryCode)}"
-        : string.Empty;
+    public string SubHeader { get; }
+
+    public string SearchableSubHeader { get; }
 
     public override string? ToolTip =>
         IsRestricted
@@ -53,14 +53,14 @@ public abstract class StateLocationItemBase : LocationItemBase
 
     public override object SecondSortProperty => SubHeader;
 
-    protected int ServersItemsCount { get; private set; }
-
     public string SecondaryActionLabel =>
         HasSubItems && ServersItemsCount > 0
             ? Localizer.GetPluralFormat("Connections_SeeServers", ServersItemsCount)
             : string.Empty;
 
-    protected override ILocationIntent LocationIntent => new StateLocationIntent(State.CountryCode, State.Name);
+    public override ILocationIntent LocationIntent => new StateLocationIntent(State.CountryCode, State.Name);
+
+    protected int ServersItemsCount { get; private set; }
 
     protected StateLocationItemBase(
         ILocalizationProvider localizer,
@@ -82,6 +82,11 @@ public abstract class StateLocationItemBase : LocationItemBase
         State = state;
         ShowBaseLocation = showBaseLocation;
 
+        SubHeader = ShowBaseLocation
+            ? $" -  {Localizer.GetCountryName(State.CountryCode)}"
+            : string.Empty;
+        SearchableSubHeader = SubHeader.RemoveDiacritics();
+
         FetchSubItems();
     }
 
@@ -102,12 +107,13 @@ public abstract class StateLocationItemBase : LocationItemBase
     public override bool MatchesSearchQuery(string searchQuery)
     {
         return base.MatchesSearchQuery(searchQuery)
-            || SubHeader.ContainsIgnoringCase(searchQuery);
+            || SubHeader.ContainsIgnoringCase(searchQuery)
+            || SearchableSubHeader.ContainsIgnoringCase(searchQuery);
     }
 
     protected override void GroupSubItems()
     {
-        // States have cities and servers as subitems. 
+        // States have cities and servers as subitems.
         // Cities are only displayed as search results. Only display servers in flyout.
         SubGroups.Reset(
             SubItems.OfType<ServerLocationItemBase>()

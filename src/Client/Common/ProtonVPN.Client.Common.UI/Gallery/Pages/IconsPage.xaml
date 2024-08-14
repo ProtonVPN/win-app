@@ -22,10 +22,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:controls="using:ProtonVPN.Client.Common.UI.Gallery.Controls"
+             xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:enums="using:ProtonVPN.Client.Common.Enums"
+             xmlns:gallery="using:ProtonVPN.Client.Common.UI.Gallery.Controls"
              xmlns:local="using:ProtonVPN.Client.Common.UI.Gallery.Pages"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pages="using:ProtonVPN.Client.Common.UI.Gallery.Pages"
              xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+             xmlns:profiles="using:ProtonVPN.Client.Common.UI.Assets.Icons.Profiles"
+             xmlns:toolkit="using:CommunityToolkit.WinUI"
+             xmlns:toolkitControls="using:CommunityToolkit.WinUI.Controls"
+             x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -37,114 +45,270 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </UserControl.Resources>
 
     <StackPanel Spacing="10">
-        <Grid ColumnDefinitions="120,40,40,40,40"
-              ColumnSpacing="10">
-            <TextBlock VerticalAlignment="Center"
-                       Text="Alias" />
-            <pathicons:Alias Grid.Column="1"
-                             HorizontalAlignment="Center"
-                             VerticalAlignment="Center"
-                             Size="Pixels16" />
-            <pathicons:Alias Grid.Column="2"
-                             HorizontalAlignment="Center"
-                             VerticalAlignment="Center"
-                             Size="Pixels20" />
-            <pathicons:Alias Grid.Column="3"
-                             HorizontalAlignment="Center"
-                             VerticalAlignment="Center"
-                             Size="Pixels24" />
-            <pathicons:Alias Grid.Column="4"
-                             HorizontalAlignment="Center"
-                             VerticalAlignment="Center"
-                             Size="Pixels32" />
-        </Grid>
-        <Grid ColumnDefinitions="120,40,40,40,40"
-              ColumnSpacing="10">
-            <TextBlock VerticalAlignment="Center"
-                       Text="ArrowRight" />
-            <pathicons:ArrowRight Grid.Column="1"
-                                  HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"
-                                  Size="Pixels16" />
-            <pathicons:ArrowRight Grid.Column="2"
-                                  HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"
-                                  Size="Pixels20" />
-            <pathicons:ArrowRight Grid.Column="3"
-                                  HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"
-                                  Size="Pixels24" />
-            <pathicons:ArrowRight Grid.Column="4"
-                                  HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"
-                                  Size="Pixels32" />
-        </Grid>
 
-        <Grid ColumnDefinitions="120,40,40,40,40"
-              ColumnSpacing="10">
-            <TextBlock VerticalAlignment="Center"
-                       Text="ArrowRotateRight" />
-            <pathicons:ArrowRotateRight Grid.Column="1"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Size="Pixels16" />
-            <pathicons:ArrowRotateRight Grid.Column="2"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Size="Pixels20" />
-            <pathicons:ArrowRotateRight Grid.Column="3"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Size="Pixels24" />
-            <pathicons:ArrowRotateRight Grid.Column="4"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Size="Pixels32" />
-        </Grid>
+        <gallery:SampleControl Header="Regular Icons">
+            <Grid MaxWidth="500">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="40" />
+                </Grid.ColumnDefinitions>
 
-        <Grid ColumnDefinitions="120,40,40,40,40"
-              ColumnSpacing="10">
-            <TextBlock VerticalAlignment="Center"
-                       Text="Globe" />
-            <pathicons:Globe Grid.Column="1"
-                             HorizontalAlignment="Center"
-                             VerticalAlignment="Center"
-                             Size="Pixels16" />
-            <pathicons:Globe Grid.Column="2"
-                             HorizontalAlignment="Center"
-                             VerticalAlignment="Center"
-                             Size="Pixels20" />
-            <pathicons:Globe Grid.Column="3"
-                             HorizontalAlignment="Center"
-                             VerticalAlignment="Center"
-                             Size="Pixels24" />
-            <pathicons:Globe Grid.Column="4"
-                             HorizontalAlignment="Center"
-                             VerticalAlignment="Center"
-                             Size="Pixels32" />
-        </Grid>
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="Alias" />
+                <pathicons:Alias Grid.Row="0"
+                                 Grid.Column="1"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 Size="Pixels16" />
+                <pathicons:Alias Grid.Row="0"
+                                 Grid.Column="2"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 Size="Pixels20" />
+                <pathicons:Alias Grid.Row="0"
+                                 Grid.Column="3"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 Size="Pixels24" />
+                <pathicons:Alias Grid.Row="0"
+                                 Grid.Column="4"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 Size="Pixels32" />
 
-        <Grid ColumnDefinitions="120,40,40,40,40"
-              ColumnSpacing="10">
-            <TextBlock VerticalAlignment="Center"
-                       Text="InfoCircle" />
-            <pathicons:InfoCircle Grid.Column="1"
-                                  HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"
-                                  Size="Pixels16" />
-            <pathicons:InfoCircle Grid.Column="2"
-                                  HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"
-                                  Size="Pixels20" />
-            <pathicons:InfoCircle Grid.Column="3"
-                                  HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"
-                                  Size="Pixels24" />
-            <pathicons:InfoCircle Grid.Column="4"
-                                  HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"
-                                  Size="Pixels32" />
-        </Grid>
+                <TextBlock Grid.Row="1"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="ArrowRight" />
+                <pathicons:ArrowRight Grid.Row="1"
+                                      Grid.Column="1"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Size="Pixels16" />
+                <pathicons:ArrowRight Grid.Row="1"
+                                      Grid.Column="2"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Size="Pixels20" />
+                <pathicons:ArrowRight Grid.Row="1"
+                                      Grid.Column="3"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Size="Pixels24" />
+                <pathicons:ArrowRight Grid.Row="1"
+                                      Grid.Column="4"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Size="Pixels32" />
+
+                <TextBlock Grid.Row="2"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="ArrowRotateRight" />
+                <pathicons:ArrowRotateRight Grid.Row="2"
+                                            Grid.Column="1"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Size="Pixels16" />
+                <pathicons:ArrowRotateRight Grid.Row="2"
+                                            Grid.Column="2"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Size="Pixels20" />
+                <pathicons:ArrowRotateRight Grid.Row="2"
+                                            Grid.Column="3"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Size="Pixels24" />
+                <pathicons:ArrowRotateRight Grid.Row="2"
+                                            Grid.Column="4"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Size="Pixels32" />
+
+                <TextBlock Grid.Row="3"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="Globe" />
+                <pathicons:Globe Grid.Row="3"
+                                 Grid.Column="1"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 Size="Pixels16" />
+                <pathicons:Globe Grid.Row="3"
+                                 Grid.Column="2"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 Size="Pixels20" />
+                <pathicons:Globe Grid.Row="3"
+                                 Grid.Column="3"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 Size="Pixels24" />
+                <pathicons:Globe Grid.Row="3"
+                                 Grid.Column="4"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 Size="Pixels32" />
+
+                <TextBlock Grid.Row="4"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="InfoCircle" />
+                <pathicons:InfoCircle Grid.Row="4"
+                                      Grid.Column="1"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Size="Pixels16" />
+                <pathicons:InfoCircle Grid.Row="4"
+                                      Grid.Column="2"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Size="Pixels20" />
+                <pathicons:InfoCircle Grid.Row="4"
+                                      Grid.Column="3"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Size="Pixels24" />
+                <pathicons:InfoCircle Grid.Row="4"
+                                      Grid.Column="4"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Size="Pixels32" />
+            </Grid>
+        </gallery:SampleControl>
+
+        <gallery:SampleControl Header="Simple flag">
+
+            <toolkitControls:UniformGrid Margin="40"
+                                         ColumnSpacing="40"
+                                         Rows="1">
+
+                <custom:SimpleCountryFlag CountryCode="{x:Bind tboxCountryCode.Text}"
+                                          FlagType="{Binding SelectedItem, ElementName=cboxFlagType}"
+                                          IsSecureCore="{Binding IsChecked, ElementName=cbIsSecureCore, Mode=OneWay}"
+                                          UseShorterSecureCoreOutline="{Binding IsChecked, ElementName=cbShorterOutline, Mode=OneWay}" />
+                <custom:SimpleCountryFlag Width="96"
+                                          CountryCode="{x:Bind tboxCountryCode.Text}"
+                                          FlagType="{Binding SelectedItem, ElementName=cboxFlagType}"
+                                          IsSecureCore="{Binding IsChecked, ElementName=cbIsSecureCore, Mode=OneWay}"
+                                          UseShorterSecureCoreOutline="{Binding IsChecked, ElementName=cbShorterOutline, Mode=OneWay}" />
+
+            </toolkitControls:UniformGrid>
+
+            <gallery:SampleControl.Options>
+                <StackPanel MaxWidth="300"
+                            Orientation="Vertical"
+                            Spacing="8">
+                    <ComboBox x:Name="cboxFlagType"
+                              Header="Flag content type:"
+                              ItemsSource="{toolkit:EnumValues Type=enums:FlagType}"
+                              SelectedIndex="0" />
+                    <TextBox x:Name="tboxCountryCode"
+                             MaxLength="2"
+                             PlaceholderText="Country Code"
+                             Text="CH" />
+                    <CheckBox x:Name="cbIsSecureCore"
+                              Content="Is Secure Core" />
+                    <CheckBox x:Name="cbShorterOutline"
+                              Content="Use shorter outline"
+                              IsEnabled="{Binding IsChecked, ElementName=cbIsSecureCore, Mode=OneWay}" />
+                </StackPanel>
+            </gallery:SampleControl.Options>
+        </gallery:SampleControl>
+
+        <gallery:SampleControl Header="Complex flag">
+
+            <toolkitControls:UniformGrid Margin="40"
+                                         ColumnSpacing="40"
+                                         Rows="1">
+
+                <custom:ComplexCountryFlag EntryCountryCode="{x:Bind tboxComplexEntryCountryCode.Text}"
+                                           ExitCountryCode="{x:Bind tboxComplexCountryCode.Text}"
+                                           IsCompact="{Binding IsChecked, ElementName=cbIsCompact, Mode=OneWay}"
+                                           IsSecureCore="{Binding IsChecked, ElementName=cbComplexIsSecureCore, Mode=OneWay}"
+                                           MainFlagType="{Binding SelectedItem, ElementName=cboxComplexFlagType}" />
+                <custom:ComplexCountryFlag Width="120"
+                                           EntryCountryCode="{x:Bind tboxComplexEntryCountryCode.Text}"
+                                           ExitCountryCode="{x:Bind tboxComplexCountryCode.Text}"
+                                           IsCompact="{Binding IsChecked, ElementName=cbIsCompact, Mode=OneWay}"
+                                           IsSecureCore="{Binding IsChecked, ElementName=cbComplexIsSecureCore, Mode=OneWay}"
+                                           MainFlagType="{Binding SelectedItem, ElementName=cboxComplexFlagType}" />
+
+            </toolkitControls:UniformGrid>
+
+            <gallery:SampleControl.Options>
+                <StackPanel MaxWidth="300"
+                            Orientation="Vertical"
+                            Spacing="8">
+                    <ComboBox x:Name="cboxComplexFlagType"
+                              Header="Flag content type:"
+                              ItemsSource="{toolkit:EnumValues Type=enums:FlagType}"
+                              SelectedIndex="0" />
+                    <TextBox x:Name="tboxComplexCountryCode"
+                             MaxLength="2"
+                             PlaceholderText="Exit Country Code"
+                             Text="CH" />
+                    <CheckBox x:Name="cbComplexIsSecureCore"
+                              Content="Is Secure Core" />
+                    <TextBox x:Name="tboxComplexEntryCountryCode"
+                             IsEnabled="{Binding IsChecked, ElementName=cbComplexIsSecureCore, Mode=OneWay}"
+                             MaxLength="2"
+                             PlaceholderText="Entry Country Code" />
+                    <CheckBox x:Name="cbIsCompact"
+                              Content="Is Compact" />
+                </StackPanel>
+            </gallery:SampleControl.Options>
+        </gallery:SampleControl>
+
+        <gallery:SampleControl Header="Profile Icons">
+            <toolkitControls:UniformGrid ColumnSpacing="8"
+                                         Columns="4"
+                                         Orientation="Horizontal"
+                                         RowSpacing="8">
+                <profiles:GamingProfileIcon AccentColor="{Binding SelectedItem, ElementName=cboxProfileIconColor}" />
+                <profiles:StreamingProfileIcon AccentColor="{Binding SelectedItem, ElementName=cboxProfileIconColor}" />
+                <profiles:ProtectionProfileIcon AccentColor="{Binding SelectedItem, ElementName=cboxProfileIconColor}" />
+                <profiles:PrivacyProfileIcon AccentColor="{Binding SelectedItem, ElementName=cboxProfileIconColor}" />
+
+                <profiles:AnonymousProfileIcon AccentColor="{Binding SelectedItem, ElementName=cboxProfileIconColor}" />
+                <profiles:DefaultProfileIcon AccentColor="{Binding SelectedItem, ElementName=cboxProfileIconColor}" />
+                <profiles:SpeedProfileIcon AccentColor="{Binding SelectedItem, ElementName=cboxProfileIconColor}" />
+                <profiles:DownloadProfileIcon AccentColor="{Binding SelectedItem, ElementName=cboxProfileIconColor}" />
+
+                <profiles:BusinessProfileIcon AccentColor="{Binding SelectedItem, ElementName=cboxProfileIconColor}" />
+                <profiles:ShoppingProfileIcon AccentColor="{Binding SelectedItem, ElementName=cboxProfileIconColor}" />
+                <profiles:SecurityProfileIcon AccentColor="{Binding SelectedItem, ElementName=cboxProfileIconColor}" />
+                <profiles:BrowsingProfileIcon AccentColor="{Binding SelectedItem, ElementName=cboxProfileIconColor}" />
+
+                <profiles:BotProfileIcon AccentColor="{Binding SelectedItem, ElementName=cboxProfileIconColor}" />
+                <profiles:GatewayProfileIcon AccentColor="{Binding SelectedItem, ElementName=cboxProfileIconColor}" />
+                <profiles:HomeProfileIcon AccentColor="{Binding SelectedItem, ElementName=cboxProfileIconColor}" />
+                <profiles:FingerprintingProfileIcon AccentColor="{Binding SelectedItem, ElementName=cboxProfileIconColor}" />
+            </toolkitControls:UniformGrid>
+            <gallery:SampleControl.Options>
+                <StackPanel MaxWidth="300"
+                            Orientation="Vertical"
+                            Spacing="4">
+                    <ComboBox x:Name="cboxProfileIconColor"
+                              Header="Accent color:"
+                              ItemsSource="{toolkit:EnumValues Type=enums:ProfileColor}"
+                              SelectedIndex="0" />
+                </StackPanel>
+            </gallery:SampleControl.Options>
+        </gallery:SampleControl>
     </StackPanel>
 
 </UserControl>

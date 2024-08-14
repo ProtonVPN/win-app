@@ -20,25 +20,27 @@
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Client.Settings.Contracts.Models;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
 public class FreeServerLocationIntent : LocationIntentBase
 {
+    public static FreeServerLocationIntent Fastest => new();
+
     public override bool IsForPaidUsersOnly => false;
 
-    public FreeServerType Type { get; }
     public string? ExcludedLogicalServerId { get; }
 
     public FreeServerLocationIntent(string excludedLogicalServerId)
+        : base(ConnectionIntentKind.Random)
     {
-        Type = FreeServerType.Random;
         ExcludedLogicalServerId = excludedLogicalServerId;
     }
 
     public FreeServerLocationIntent()
+        : base(ConnectionIntentKind.Fastest)
     {
-        Type = FreeServerType.Fastest;
         ExcludedLogicalServerId = null;
     }
 
@@ -46,17 +48,22 @@ public class FreeServerLocationIntent : LocationIntentBase
     {
         return base.IsSameAs(intent)
             && intent is FreeServerLocationIntent freeServerIntent
-            && Type == freeServerIntent.Type
+            && Kind == freeServerIntent.Kind
             && ExcludedLogicalServerId == freeServerIntent.ExcludedLogicalServerId;
     }
 
-    public override bool IsSupported(Server server)
+    public override bool IsSupported(Server server, DeviceLocation? deviceLocation)
     {
         return server.Tier == ServerTiers.Free;
     }
 
+    public override bool IsGenericRandomIntent()
+    {
+        return Kind == ConnectionIntentKind.Random;
+    }
+
     public override string ToString()
     {
-        return $"{Type} free server";
+        return $"{Kind} free server";
     }
 }

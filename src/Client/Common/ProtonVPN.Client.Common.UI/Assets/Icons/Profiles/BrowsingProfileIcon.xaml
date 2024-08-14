@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<base:ProfileIconUserControl x:Class="ProtonVPN.Client.Common.UI.Assets.Icons.Profiles.BrowsingProfileIcon"
+                             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                             xmlns:base="using:ProtonVPN.Client.Common.UI.Assets.Icons.Base"
+                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                             xmlns:local="using:ProtonVPN.Client.Common.UI.Assets.Icons.Profiles"
+                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                             x:DefaultBindMode="OneWay"
+                             mc:Ignorable="d">
+
+    <UserControl.Resources>
+
+        <LinearGradientBrush x:Key="gradient_brush_black" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="0,1">
+            <LinearGradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Offset="0.6" Color="#00000000" />
+                    <GradientStop Offset="1" Color="#A0000000" />
+                </GradientStopCollection>
+            </LinearGradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="gradient_brush_white" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="0.2,1">
+            <LinearGradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="#40FFFFFF" />
+                    <GradientStop Offset="0.8" Color="#00FFFFFF" />
+                </GradientStopCollection>
+            </LinearGradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="gradient_brush_white_2" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="0,1">
+            <LinearGradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="#60FFFFFF" />
+                    <GradientStop Offset="1" Color="#10FFFFFF" />
+                </GradientStopCollection>
+            </LinearGradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="gradient_brush_white_black" MappingMode="RelativeToBoundingBox" StartPoint="0,0.2" EndPoint="1,0">
+            <LinearGradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Offset="0" Color="#90FFFFFF" />
+                    <GradientStop Offset="0.2" Color="#00FFFFFF" />
+                    <GradientStop Offset="0.2" Color="#00000000" />
+                    <GradientStop Offset="0.6" Color="#50000000" />
+                </GradientStopCollection>
+            </LinearGradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="gradient_brush_shadow" MappingMode="RelativeToBoundingBox" StartPoint="0,0.7" EndPoint="1,1">
+            <LinearGradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Offset="0.4" Color="#00000000" />
+                    <GradientStop Offset="0.7" Color="#40000000" />
+                    <GradientStop Offset="1" Color="#60000000" />
+                </GradientStopCollection>
+            </LinearGradientBrush.GradientStops>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="gradient_brush_shadow_2" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="1,0">
+            <LinearGradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Offset="0.4" Color="#00000000" />
+                    <GradientStop Offset="0.6" Color="#60000000" />
+                </GradientStopCollection>
+            </LinearGradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+    </UserControl.Resources>
+
+    <Viewbox Stretch="{x:Bind Stretch}">
+        <Canvas Width="36"
+                Height="24">
+            <Ellipse Canvas.Left="2"
+                     Width="24"
+                     Height="24"
+                     Fill="{x:Bind AccentColor, Converter={StaticResource ProfileColorToBrushConverter}}" />
+            <Ellipse Canvas.Left="2"
+                     Width="24"
+                     Height="24"
+                     Fill="{StaticResource gradient_brush_black}" />
+            <Ellipse Canvas.Left="2"
+                     Width="24"
+                     Height="24"
+                     Fill="{StaticResource gradient_brush_white}" />
+            <Path Data="M3.55951 11.234L4.82682 11.234C4.89615 9.79198 5.15999 8.41456 5.58719 7.14894H4.72138C4.07344 8.38572 3.66553 9.76804 3.55951 11.234ZM5.70245 5.61703H6.20956C6.44416 5.1287 6.70524 4.66355 6.9905 4.22507C6.52055 4.64903 6.08923 5.11498 5.70245 5.61703ZM14 0C7.37258 0 2 5.37258 2 12C2 18.6274 7.37258 24 14 24C14.022 24 14.044 23.9999 14.066 23.9998C14.0751 23.9999 14.0842 24 14.0933 24C14.1153 24 14.1372 23.9997 14.159 23.999C20.7131 23.9139 26 18.5743 26 12C26 5.42566 20.7131 0.086146 14.159 0.00103192C14.1372 0.000346184 14.1153 0 14.0933 0C14.0842 0 14.0751 5.9351e-05 14.066 0.000177627C14.044 5.92293e-05 14.022 0 14 0ZM11.4129 2.14899C10.384 2.65655 9.44462 3.46312 8.65502 4.51591C8.39776 4.85891 8.15759 5.22684 7.93678 5.61703H10.2261C10.3696 4.97044 10.5346 4.36659 10.7188 3.81412C10.9222 3.20393 11.1535 2.64239 11.4129 2.14899ZM9.93944 7.14894H7.21563C6.74056 8.38176 6.43892 9.76299 6.36067 11.234L9.5911 11.234C9.6228 9.78963 9.74364 8.41143 9.93944 7.14894ZM11.1234 11.234C11.1571 9.76706 11.2866 8.38687 11.4908 7.14894H16.6958C16.8999 8.38687 17.0295 9.76706 17.0632 11.234L11.1234 11.234ZM9.5911 12.766L6.36067 12.766C6.43892 14.237 6.74057 15.6182 7.21563 16.8511H9.93944C9.74364 15.5886 9.6228 14.2104 9.5911 12.766ZM11.4908 16.8511C11.2866 15.6131 11.1571 14.2329 11.1234 12.766L17.0632 12.766C17.0295 14.2329 16.8999 15.6131 16.6958 16.8511H11.4908ZM10.2261 18.383H7.93678C8.15759 18.7732 8.39777 19.1411 8.65502 19.4841C9.44462 20.5369 10.384 21.3435 11.4129 21.851C11.1535 21.3576 10.9222 20.7961 10.7188 20.1859C10.5346 19.6334 10.3696 19.0296 10.2261 18.383ZM6.9905 19.7749C6.70525 19.3365 6.44417 18.8713 6.20956 18.383H5.70246C6.08923 18.885 6.52055 19.351 6.9905 19.7749ZM4.72139 16.8511H5.5872C5.15999 15.5854 4.89615 14.208 4.82682 12.766L3.55951 12.766C3.66553 14.232 4.07344 15.6143 4.72139 16.8511ZM11.7983 18.383H16.3883C16.2751 18.8543 16.1499 19.2952 16.0145 19.7015C15.6905 20.6733 15.3217 21.4046 14.9493 21.8771C14.5951 22.3265 14.3144 22.4519 14.1308 22.4666C14.1114 22.467 14.092 22.4674 14.0726 22.4676C13.8895 22.4594 13.6024 22.3404 13.2373 21.8771C12.8649 21.4046 12.4961 20.6733 12.1721 19.7015C12.0367 19.2952 11.9115 18.8543 11.7983 18.383ZM16.8421 21.7181C17.7712 21.2075 18.6209 20.4493 19.3448 19.4841C19.602 19.1411 19.8422 18.7732 20.063 18.383H17.9605C17.817 19.0296 17.6519 19.6334 17.4678 20.1859C17.2824 20.7419 17.0739 21.2576 16.8421 21.7181ZM18.2471 16.8511H20.7841C21.2591 15.6182 21.5607 14.237 21.639 12.766L18.5955 12.766C18.5638 14.2104 18.4429 15.5886 18.2471 16.8511ZM18.5955 11.234L21.639 11.234C21.5607 9.76298 21.2591 8.38176 20.7841 7.14894H18.2471C18.4429 8.41143 18.5638 9.78963 18.5955 11.234ZM17.9605 5.61703H20.063C19.8422 5.22683 19.602 4.8589 19.3448 4.51589C18.6209 3.55074 17.7712 2.79252 16.8421 2.28191C17.0739 2.74242 17.2824 3.25806 17.4678 3.81412C17.6519 4.36659 17.817 4.97044 17.9605 5.61703ZM21.009 4.22461C21.2943 4.66322 21.5555 5.12852 21.7902 5.61703H22.2975C21.9106 5.1148 21.4791 4.64868 21.009 4.22461ZM23.2786 7.14894H22.4125C22.8397 8.41456 23.1035 9.79198 23.1728 11.234L24.4405 11.234C24.3345 9.76804 23.9266 8.38572 23.2786 7.14894ZM24.4405 12.766L23.1728 12.766C23.1035 14.208 22.8397 15.5854 22.4125 16.8511H23.2786C23.9266 15.6143 24.3345 14.232 24.4405 12.766ZM22.2975 18.383H21.7902C21.5555 18.8715 21.2943 19.3368 21.009 19.7754C21.4791 19.3513 21.9106 18.8852 22.2975 18.383ZM14.0726 1.53238C14.092 1.53263 14.1114 1.53298 14.1308 1.53343C14.3144 1.54806 14.5951 1.67354 14.9493 2.12289C15.3217 2.59543 15.6905 3.32667 16.0145 4.29854C16.1499 4.70481 16.2751 5.14574 16.3883 5.61703H11.7983C11.9115 5.14574 12.0367 4.70481 12.1721 4.29854C12.4961 3.32667 12.8649 2.59543 13.2373 2.12289C13.6024 1.65956 13.8895 1.54057 14.0726 1.53238Z"
+                  Fill="{StaticResource gradient_brush_white_2}" />
+
+            <Ellipse Canvas.Left="2"
+                     Width="24"
+                     Height="24"
+                     d:IsHidden="True"
+                     Fill="{StaticResource gradient_brush_shadow}" />
+            <Path Canvas.Left="14"
+                  Canvas.Top="5.2"
+                  Width="12"
+                  Height="18.3"
+                  Data="M5.5139046,4.7683716E-07 C5.6566505,4.7683716E-07 5.79813,0.0093460083 5.9381466,0.027701378 L6.0030956,0.037638187 6.0173283,0.033918381 C6.3312531,-0.036725044 6.6782055,-0.0011277199 7.0043869,0.17957401 L11.203354,2.5058451 11.271843,2.685998 C11.742914,3.9725513 12,5.3622532 12,6.8120003 12,12.196775 8.4532547,16.753166 3.5684328,18.272503 L3.4483051,18.308239 3.3676443,18.253443 C1.3886213,16.811264 0,13.43503 0,9.5 0,4.2532949 2.4686594,4.7683716E-07 5.5139046,4.7683716E-07 z"
+                  Fill="{StaticResource gradient_brush_shadow}"
+                  Stretch="Fill" />
+            <Path Canvas.Left="14"
+                  Canvas.Top="5.2"
+                  Width="12"
+                  Height="18.3"
+                  Data="M5.5139046,4.7683716E-07 C5.6566505,4.7683716E-07 5.79813,0.0093460083 5.9381466,0.027701378 L6.0030956,0.037638187 6.0173283,0.033918381 C6.3312531,-0.036725044 6.6782055,-0.0011277199 7.0043869,0.17957401 L11.203354,2.5058451 11.271843,2.685998 C11.742914,3.9725513 12,5.3622532 12,6.8120003 12,12.196775 8.4532547,16.753166 3.5684328,18.272503 L3.4483051,18.308239 3.3676443,18.253443 C1.3886213,16.811264 0,13.43503 0,9.5 0,4.2532949 2.4686594,4.7683716E-07 5.5139046,4.7683716E-07 z"
+                  Fill="{StaticResource gradient_brush_shadow_2}"
+                  Stretch="Fill" />
+
+            <Path Data="M30.2871 15.5084L33.3592 14.3597C34.1506 14.0637 34.241 12.9805 33.5097 12.5574L22.2856 6.06467C21.5206 5.62216 20.5997 6.31673 20.815 7.17384L24.0844 20.1922C24.2987 21.0454 25.4309 21.2262 25.9001 20.482L27.6478 17.7107L29.963 20.8286C30.3038 21.2876 30.9593 21.368 31.4009 21.005L32.5084 20.0945C32.9202 19.756 32.9941 19.1539 32.6762 18.7258L30.2871 15.5084Z"
+                  Fill="{x:Bind AccentColor, Converter={StaticResource ProfileColorToBrushConverter}}" />
+            <Path Data="M30.2871 15.5084L33.3592 14.3597C34.1506 14.0637 34.241 12.9805 33.5097 12.5574L22.2856 6.06467C21.5206 5.62216 20.5997 6.31673 20.815 7.17384L24.0844 20.1922C24.2987 21.0454 25.4309 21.2262 25.9001 20.482L27.6478 17.7107L29.963 20.8286C30.3038 21.2876 30.9593 21.368 31.4009 21.005L32.5084 20.0945C32.9202 19.756 32.9941 19.1539 32.6762 18.7258L30.2871 15.5084Z"
+                  Fill="{StaticResource gradient_brush_white_black}" />
+
+        </Canvas>
+    </Viewbox>
+</base:ProfileIconUserControl>

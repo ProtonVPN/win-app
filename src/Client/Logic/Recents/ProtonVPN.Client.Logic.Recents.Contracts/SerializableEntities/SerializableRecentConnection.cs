@@ -24,6 +24,7 @@ namespace ProtonVPN.Client.Logic.Recents.Contracts.SerializableEntities;
 public class SerializableRecentConnection
 {
     public SerializableConnectionIntent? ConnectionIntent { get; set; }
+    public Guid? ProfileId { get; set; }
     public bool IsPinned { get; set; }
     public DateTime? PinTime { get; set; }
 }

@@ -19,6 +19,7 @@
 
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Models.Activation.Custom;
 using ProtonVPN.Client.Models.Navigation;
@@ -39,7 +40,9 @@ public class CountryLocationItem : CountryLocationItemBase
         IMainViewNavigator mainViewNavigator,
         IUpsellCarouselDialogActivator upsellCarouselActivator,
         LocationItemFactory locationItemFactory,
-        string exitCountryCode)
+        string exitCountryCode,
+        ConnectionIntentKind intentKind = ConnectionIntentKind.Fastest,
+        bool excludeMyCountry = false)
         : base(localizer,
                serversLoader,
                connectionManager,
@@ -47,6 +50,8 @@ public class CountryLocationItem : CountryLocationItemBase
                upsellCarouselActivator,
                locationItemFactory,
                exitCountryCode,
+               intentKind,
+               excludeMyCountry,
                false)
     { }
 

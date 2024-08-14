@@ -20,6 +20,7 @@
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Client.Settings.Contracts.Models;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 
@@ -31,7 +32,9 @@ public interface IConnectionIntent
 
     bool IsSameAs(IConnectionIntent? intent);
 
-    bool HasNoServers(IEnumerable<Server> servers);
+    bool IsSupported(Server server, DeviceLocation? deviceLocation);
 
-    bool AreAllServersUnderMaintenance(IEnumerable<Server> servers);
+    bool HasNoServers(IEnumerable<Server> servers, DeviceLocation? deviceLocation);
+
+    bool AreAllServersUnderMaintenance(IEnumerable<Server> servers, DeviceLocation? deviceLocation);
 }

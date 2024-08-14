@@ -32,9 +32,9 @@ namespace ProtonVPN.Client.UI.Connections.Common.Items;
 
 public class P2PStateLocationItem : StateLocationItemBase
 {
-    public override GroupLocationType GroupType => GroupLocationType.P2PStates; 
+    public override GroupLocationType GroupType => GroupLocationType.P2PStates;
 
-    protected override IFeatureIntent? FeatureIntent => new P2PFeatureIntent();
+    public override IFeatureIntent? FeatureIntent => new P2PFeatureIntent();
 
     public P2PStateLocationItem(
         ILocalizationProvider localizer,

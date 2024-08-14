@@ -94,19 +94,13 @@ public abstract partial class PageViewModelBase<TViewNavigator> : PageViewModelB
         return IsBackEnabled;
     }
 
-    [RelayCommand]
-    public async Task<bool> NavigateToAsync(string pageKey)
-    {
-        return await ViewNavigator.NavigateToAsync(pageKey);
-    }
-
     public async Task<bool> NavigateToAsync<TPageViewModel>()
         where TPageViewModel : PageViewModelBase
     {
         return await ViewNavigator.NavigateToAsync<TPageViewModel>();
     }
 
-    public virtual Task<bool> OnNavigatingFromAsync(bool forceNavigation = false)
+    public virtual Task<bool> OnNavigatingFromAsync()
     {
         return Task.FromResult(true);
     }
@@ -114,6 +108,11 @@ public abstract partial class PageViewModelBase<TViewNavigator> : PageViewModelB
     public virtual void OnNavigatedFrom()
     {
         IsActive = false;
+    }
+
+    public virtual bool OnNavigatingTo(object parameter, bool isBackNavigation)
+    {
+        return true;
     }
 
     public virtual void OnNavigatedTo(object parameter, bool isBackNavigation)

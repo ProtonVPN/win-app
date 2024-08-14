@@ -18,13 +18,11 @@
  */
 
 using System.Collections.Specialized;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Data;
 using ProtonVPN.Client.Common.Collections;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
@@ -34,55 +32,15 @@ using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.UI.Connections.Common.Enums;
 using ProtonVPN.Client.UI.Connections.Common.Extensions;
 using ProtonVPN.Client.UI.Connections.Common.Factories;
-using ProtonVPN.Client.UI.Home;
 using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Client.UI.Connections.Common.Items;
 
-public abstract partial class LocationItemBase : ObservableObject
+public abstract partial class LocationItemBase : ConnectionItemBase
 {
-    protected readonly IServersLoader ServersLoader;
-    protected readonly IConnectionManager ConnectionManager;
-    protected readonly IMainViewNavigator MainViewNavigator;
-    protected readonly IUpsellCarouselDialogActivator UpsellCarouselActivator;
-
     protected readonly LocationItemFactory LocationItemFactory;
 
-    [ObservableProperty]
-    [NotifyCanExecuteChangedFor(nameof(ToggleConnectionCommand))]
-    [NotifyPropertyChangedFor(nameof(IsEnabled))]
-    [NotifyPropertyChangedFor(nameof(ToolTip))]
-    private bool _isUnderMaintenance;
-
-    [ObservableProperty]
-    [NotifyCanExecuteChangedFor(nameof(ToggleConnectionCommand))]
-    [NotifyPropertyChangedFor(nameof(PrimaryActionLabel))]
-    [NotifyPropertyChangedFor(nameof(PrimaryCommandAutomationId))]
-    private bool _isActiveConnection;
-
-    [ObservableProperty]
-    [NotifyCanExecuteChangedFor(nameof(ToggleConnectionCommand))]
-    [NotifyPropertyChangedFor(nameof(IsEnabled))]
-    [NotifyPropertyChangedFor(nameof(ToolTip))]
-    private bool _isRestricted;
-
-    private string SearchableHeader { get; }
-
-    public bool IsEnabled => !IsRestricted && !IsUnderMaintenance;
-
-    public ILocalizationProvider Localizer { get; }
-
     public abstract GroupLocationType GroupType { get; }
-
-    public string Header { get; }
-
-    public abstract string? ToolTip { get; }
-
-    public virtual bool IsCounted => true;
-
-    public abstract object FirstSortProperty { get; }
-
-    public abstract object SecondSortProperty { get; }
 
     public CollectionViewSource SubLocationGroupsCvs { get; }
 
@@ -92,27 +50,19 @@ public abstract partial class LocationItemBase : ObservableObject
 
     public bool HasSubItems => SubItemsCount > 0;
 
-    public string PrimaryActionLabel => Localizer.Get(
-        IsActiveConnection
-            ? "Common_Actions_Disconnect"
-            : "Common_Actions_Connect");
+    public abstract object FirstSortProperty { get; }
 
-    public string PrimaryCommandAutomationId =>
-        IsActiveConnection
-            ? $"Disconnect_from_{AutomationName}"
-            : $"Connect_to_{AutomationName}";
+    public abstract object SecondSortProperty { get; }
 
-    public string SecondaryCommandAutomationId => $"Navigate_to_{AutomationName}";
+    public override string SecondaryCommandAutomationId => $"Navigate_to_{AutomationName}";
 
-    public string ActiveConnectionAutomationId => $"Active_connection_{AutomationName}";
+    public override ModalSources UpsellModalSource => GroupType.GetUpsellModalSources();
 
     protected int SubItemsCount { get; private set; }
 
-    protected abstract ILocationIntent LocationIntent { get; }
+    public abstract ILocationIntent LocationIntent { get; }
 
-    protected virtual IFeatureIntent? FeatureIntent => null;
-
-    protected virtual string AutomationName => Header;
+    public virtual IFeatureIntent? FeatureIntent => null;
 
     protected LocationItemBase(
         ILocalizationProvider localizer,
@@ -122,16 +72,14 @@ public abstract partial class LocationItemBase : ObservableObject
         IUpsellCarouselDialogActivator upsellCarouselActivator,
         LocationItemFactory locationItemFactory,
         string header)
+        : base(localizer,
+               serversLoader,
+               connectionManager,
+               mainViewNavigator,
+               upsellCarouselActivator,
+               header)
     {
-        Localizer = localizer;
-        ServersLoader = serversLoader;
-        ConnectionManager = connectionManager;
-        MainViewNavigator = mainViewNavigator;
-        UpsellCarouselActivator = upsellCarouselActivator;
         LocationItemFactory = locationItemFactory;
-
-        Header = header;
-        SearchableHeader = header.RemoveDiacritics();
 
         SubItems.CollectionChanged += OnSubItemsCollectionChanged;
 
@@ -142,9 +90,9 @@ public abstract partial class LocationItemBase : ObservableObject
         };
     }
 
-    public ConnectionIntent GetConnectionIntent()
+    public override IConnectionIntent GetConnectionIntent()
     {
-        return new(LocationIntent, FeatureIntent);
+        return new ConnectionIntent(LocationIntent, FeatureIntent);
     }
 
     public virtual bool MatchesSearchQuery(string searchQuery)
@@ -154,11 +102,9 @@ public abstract partial class LocationItemBase : ObservableObject
                || SearchableHeader.ContainsIgnoringCase(searchQuery);
     }
 
-    public abstract void InvalidateIsActiveConnection(ConnectionDetails? currentConnectionDetails);
-
-    public void InvalidateIsRestricted(bool isPaidUser)
+    public override void InvalidateIsRestricted(bool isPaidUser)
     {
-        IsRestricted = !isPaidUser;
+        base.InvalidateIsRestricted(isPaidUser);
 
         foreach (LocationItemBase item in SubItems)
         {
@@ -166,9 +112,14 @@ public abstract partial class LocationItemBase : ObservableObject
         }
     }
 
-    protected virtual void InvalidateIsUnderMaintenance()
+    public override void InvalidateIsUnderMaintenance()
     {
         IsUnderMaintenance = SubItems.Any() && SubItems.All(item => item.IsUnderMaintenance);
+    }
+
+    protected virtual IEnumerable<LocationItemBase> GetSubItems()
+    {
+        return [];
     }
 
     protected void FetchSubItems()
@@ -190,42 +141,9 @@ public abstract partial class LocationItemBase : ObservableObject
                     .Select(group => LocationItemFactory.GetGroup(group.Key, group)));
     }
 
-    protected virtual IEnumerable<LocationItemBase> GetSubItems()
-    {
-        return [];
-    }
-
     protected virtual void OnSubItemsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
         SubItemsCount = SubItems.Count(item => item.IsCounted);
         OnPropertyChanged(nameof(HasSubItems));
-    }
-
-    [RelayCommand(CanExecute = nameof(CanToggleConnection))]
-    protected async Task ToggleConnectionAsync()
-    {
-        if (IsRestricted)
-        {
-            UpsellCarouselActivator.ShowDialog(GroupType.GetUpsellModalSources());
-            return;
-        }
-
-        await MainViewNavigator.NavigateToAsync<HomeViewModel>();
-
-        if (IsActiveConnection)
-        {
-            await ConnectionManager.DisconnectAsync();
-        }
-        else
-        {
-            await ConnectionManager.ConnectAsync(GetConnectionIntent());
-        }
-    }
-
-    private bool CanToggleConnection()
-    {
-        return !IsUnderMaintenance
-            || IsActiveConnection
-            || IsRestricted;
     }
 }

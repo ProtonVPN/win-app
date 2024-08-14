@@ -25,13 +25,19 @@ public interface INavigationAware
     /// Called when parent frame navigates from this page BEFORE the navigation happened.
     /// </summary>
     /// <returns>Returns true to proceed with navigation, false to cancel it</returns>
-    Task<bool> OnNavigatingFromAsync(bool forceNavigation);
+    Task<bool> OnNavigatingFromAsync();
 
     /// <summary>
     /// Called when parent frame navigates from this page.
     /// Navigation has already happened, page is no longer visible.
     /// </summary>
     void OnNavigatedFrom();
+
+    /// <summary>
+    /// Called when parent frame navigates to this page BEFORE the navigation happened.
+    /// </summary>
+    /// <returns>Returns true to proceed with navigation, false to cancel it</returns>
+    bool OnNavigatingTo(object parameter, bool isBackNavigation);
 
     /// <summary>
     /// Called when parent frame navigates to this page.

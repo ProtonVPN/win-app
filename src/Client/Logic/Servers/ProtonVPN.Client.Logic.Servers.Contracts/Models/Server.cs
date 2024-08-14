@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
+using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 
 namespace ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
@@ -49,6 +50,11 @@ public class Server
     public bool IsAvailable()
     {
         return !IsUnderMaintenance() && Servers is not null && Servers.Any(s => !s.IsUnderMaintenance());
+    }
+
+    public bool IsStandard()
+    {
+        return !Features.IsSupported(ServerFeatures.SecureCore | ServerFeatures.B2B | ServerFeatures.Tor);
     }
 
     public Server CopyWithoutPhysicalServers()

@@ -104,7 +104,7 @@ public partial class SsoLoginOverlayViewModel : OverlayViewModelBase
         _ssoResponseToken = null;
         IsLoadingPage = true;
         await InitializeWebViewAsync(ssoChallengeToken);
-        await OverlayActivator.ShowOverlayAsync(OverlayKey, _viewNavigator.Window);
+        await OverlayActivator.ShowOverlayAsync(this, _viewNavigator.Window);
         return await _userAuthenticator.CompleteSsoAuthAsync(_ssoResponseToken ?? string.Empty);
     }
 

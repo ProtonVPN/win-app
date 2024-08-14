@@ -21,21 +21,33 @@ using System.Diagnostics;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Contracts.ViewModels;
-
+using ProtonVPN.Client.UI.Connections.Countries;
+using ProtonVPN.Client.UI.Connections.Gateways;
+using ProtonVPN.Client.UI.Connections.P2P;
+using ProtonVPN.Client.UI.Connections.Profiles;
+using ProtonVPN.Client.UI.Connections.Profiles.Overlays;
+using ProtonVPN.Client.UI.Connections.SecureCore;
+using ProtonVPN.Client.UI.Connections.Tor;
 using ProtonVPN.Client.UI.Dialogs.Overlays;
-using ProtonVPN.Client.UI.ReportIssue;
+using ProtonVPN.Client.UI.Dialogs.Overlays.Welcome;
+using ProtonVPN.Client.UI.Features.KillSwitch;
+using ProtonVPN.Client.UI.Features.NetShield;
+using ProtonVPN.Client.UI.Features.PortForwarding;
+using ProtonVPN.Client.UI.Features.SplitTunneling;
 using ProtonVPN.Client.UI.Gallery;
 using ProtonVPN.Client.UI.Home;
+using ProtonVPN.Client.UI.Home.ConnectionCard.Overlays;
 using ProtonVPN.Client.UI.Login;
-using ProtonVPN.Client.UI.Settings;
-using ProtonVPN.Client.UI.Settings.Pages;
-using ProtonVPN.Client.UI.Settings.Pages.Advanced;
-using ProtonVPN.Client.UI.ReportIssue.Steps;
-using ProtonVPN.Client.UI.ReportIssue.Results;
 using ProtonVPN.Client.UI.Login.Forms;
 using ProtonVPN.Client.UI.Login.Overlays;
-using ProtonVPN.Client.UI.Home.ConnectionCard.Overlays;
+using ProtonVPN.Client.UI.ReportIssue;
+using ProtonVPN.Client.UI.ReportIssue.Results;
+using ProtonVPN.Client.UI.ReportIssue.Steps;
+using ProtonVPN.Client.UI.Settings;
+using ProtonVPN.Client.UI.Settings.Pages;
 using ProtonVPN.Client.UI.Settings.Pages.About;
+using ProtonVPN.Client.UI.Settings.Pages.Advanced;
+using ProtonVPN.Client.UI.Settings.Pages.DefaultConnections;
 using ProtonVPN.Client.UI.Upsell.Carousel;
 using ProtonVPN.Client.UI.Upsell.Carousel.Features;
 using ProtonVPN.Client.UI.Features.NetShield;
@@ -48,15 +60,17 @@ using ProtonVPN.Client.UI.Connections.P2P;
 using ProtonVPN.Client.UI.Connections.SecureCore;
 using ProtonVPN.Client.UI.Connections.Tor;
 using ProtonVPN.Client.UI.Connections.Gateways;
+using ProtonVPN.Client.UI.Connections.Profiles;
 using ProtonVPN.Client.UI.Announcements.Modals;
+using ProtonVPN.Client.UI.Connections.Profiles.Overlays;
 
 namespace ProtonVPN.Client.Models.Navigation;
 
 public class ViewMapper : IViewMapper
 {
-    private readonly Dictionary<string, Type> _pages = new();
-    private readonly Dictionary<string, Type> _overlays = new();
-    private readonly Dictionary<string, Type> _dialogs = new();
+    private readonly List<ViewMappingPair> _pages = new();
+    private readonly List<ViewMappingPair> _overlays = new();
+    private readonly List<ViewMappingPair> _dialogs = new();
 
     public ViewMapper()
     {
@@ -67,65 +81,81 @@ public class ViewMapper : IViewMapper
 
     public Type GetPageType<TPageViewModel>() where TPageViewModel : PageViewModelBase
     {
-        return GetPageType(typeof(TPageViewModel).FullName!);
+        return GetPageType(typeof(TPageViewModel));
     }
 
     public Type GetOverlayType<TOverlayViewModel>() where TOverlayViewModel : OverlayViewModelBase
     {
-        return GetOverlayType(typeof(TOverlayViewModel).FullName!);
+        return GetOverlayType(typeof(TOverlayViewModel));
     }
 
     public Type GetDialogType<TPageViewModel>() where TPageViewModel : PageViewModelBase
     {
-        return GetDialogType(typeof(TPageViewModel).FullName!);
+        return GetDialogType(typeof(TPageViewModel));
     }
 
-    public Type GetPageType(string key)
+    public Type GetPageType(Type viewModelType)
     {
-        Type? pageType;
         lock (_pages)
         {
-            if (!_pages.TryGetValue(key, out pageType))
-            {
-                throw new ArgumentException($"Page not found: {key}. Did you forget to call ViewMapper.Configure?");
-            }
+            return GetViewType(_pages, viewModelType);
         }
-
-        return pageType;
     }
 
-    public Type GetOverlayType(string key)
+    public Type GetOverlayType(Type viewModelType)
     {
-        Type? overlayType;
         lock (_overlays)
         {
-            if (!_overlays.TryGetValue(key, out overlayType))
-            {
-                throw new ArgumentException($"Overlay not found: {key}. Did you forget to call DialogActivator.ConfigureOverlay?");
-            }
+            return GetViewType(_overlays, viewModelType);
         }
-
-        return overlayType;
     }
 
-    public Type GetDialogType(string key)
+    public Type GetDialogType(Type viewModelType)
     {
-        Type? dialogType;
         lock (_dialogs)
         {
-            if (!_dialogs.TryGetValue(key, out dialogType))
-            {
-                throw new ArgumentException($"Dialog not found: {key}. Did you forget to call DialogActivator.ConfigureDialog?");
-            }
+            return GetViewType(_dialogs, viewModelType);
         }
+    }
 
-        return dialogType;
+    public PageViewModelBase GetPageViewModel(Type pageType)
+    {
+        lock (_pages)
+        {
+            Type viewModelType = GetViewModelType(_pages, pageType);
+
+            return App.GetService(viewModelType) as PageViewModelBase
+                ?? throw new ArgumentException($"Corresponding view model not found for '{pageType}'.");
+        }
+    }
+
+    public OverlayViewModelBase GetOverlayViewModel(Type overlayType)
+    {
+        lock (_overlays)
+        {
+            Type viewModelType = GetViewModelType(_overlays, overlayType);
+
+            return App.GetService(viewModelType) as OverlayViewModelBase
+                ?? throw new ArgumentException($"Corresponding view model not found for '{overlayType}'.");
+        }
+    }
+
+    public PageViewModelBase GetDialogViewModel(Type dialogType)
+    {
+        lock (_dialogs)
+        {
+            Type viewModelType = GetViewModelType(_dialogs, dialogType);
+
+            return App.GetService(viewModelType) as PageViewModelBase
+                ?? throw new ArgumentException($"Corresponding view model not found for '{dialogType}'.");
+        }
     }
 
     protected void ConfigurePages()
     {
         ConfigurePage<HomeViewModel, HomePage>();
         ConfigurePage<GatewaysPageViewModel, GatewaysPage>();
+        ConfigurePage<ProfilesPageViewModel, ProfilesPage>();
         ConfigurePage<CountriesPageViewModel, CountriesPage>();
         ConfigurePage<CountryPageViewModel, CountryPage>();
         ConfigurePage<P2PCountriesPageViewModel, P2PCountriesPage>();
@@ -197,6 +227,7 @@ public class ViewMapper : IViewMapper
         ConfigureOverlay<WelcomeToVpnPlusOverlayViewModel, WelcomeToVpnPlusOverlayDialog>();
         ConfigureOverlay<WelcomeToVpnUnlimitedOverlayViewModel, WelcomeToVpnUnlimitedOverlayDialog>();
         ConfigureOverlay<WelcomeToVpnB2BOverlayViewModel, WelcomeToVpnB2BOverlayDialog>();
+        ConfigureOverlay<EditProfileOverlayViewModel, EditProfileOverlayDialog>();
     }
 
     protected void ConfigureDialogs()
@@ -206,25 +237,43 @@ public class ViewMapper : IViewMapper
         ConfigureDialog<AnnouncementModalViewModel, AnnouncementModalWindow>();
     }
 
+    private Type GetViewType(List<ViewMappingPair> sourceList, Type viewModelType)
+    {
+        return sourceList.FirstOrDefault(p => p.ViewModelType == viewModelType)?.ViewType
+            ?? throw new ArgumentException($"Corresponding view not found for '{viewModelType}'. Did you forget to configure the mapping in the ViewMapper?");
+    }
+
+    private Type GetViewModelType(List<ViewMappingPair> sourceList, Type viewType)
+    {
+        return sourceList.FirstOrDefault(p => p.ViewType == viewType)?.ViewModelType
+            ?? throw new ArgumentException($"Corresponding view model not found for '{viewType}'. Did you forget to configure the mapping in the ViewMapper?");
+    }
+
+    private void ConfigureViewMappingPair<VM, V>(List<ViewMappingPair> sourceList)
+    {
+        Type viewType = typeof(V);
+        if (sourceList.Any(p => p.ViewType == viewType))
+        {
+            throw new ArgumentException($"The mapping for '{viewType}' is already configured in the ViewMapper");
+        }
+
+        Type viewModelType = typeof(VM);
+        if (sourceList.Any(p => p.ViewModelType == viewModelType))
+        {
+            throw new ArgumentException($"The mapping for '{viewModelType}' is already configured in the ViewMapper");
+        }
+
+        ViewMappingPair pair = new(viewType: viewType, viewModelType: viewModelType);
+        sourceList.Add(pair);
+    }
+
     private void ConfigurePage<VM, V>()
         where VM : PageViewModelBase
         where V : Page
     {
         lock (_pages)
         {
-            string key = typeof(VM).FullName!;
-            if (_pages.ContainsKey(key))
-            {
-                throw new ArgumentException($"The key {key} is already configured in ViewMapper");
-            }
-
-            Type type = typeof(V);
-            if (_pages.Any(p => p.Value == type))
-            {
-                throw new ArgumentException($"This type is already configured with key {_pages.First(p => p.Value == type).Key}");
-            }
-
-            _pages.Add(key, type);
+            ConfigureViewMappingPair<VM, V>(_pages);
         }
     }
 
@@ -234,19 +283,7 @@ public class ViewMapper : IViewMapper
     {
         lock (_overlays)
         {
-            string key = typeof(VM).FullName!;
-            if (_overlays.ContainsKey(key))
-            {
-                throw new ArgumentException($"The key {key} is already configured in DialogActivator");
-            }
-
-            Type type = typeof(V);
-            if (_overlays.Any(p => p.Value == type))
-            {
-                throw new ArgumentException($"This type is already configured with key {_overlays.First(p => p.Value == type).Key}");
-            }
-
-            _overlays.Add(key, type);
+            ConfigureViewMappingPair<VM, V>(_overlays);
         }
     }
 
@@ -256,19 +293,7 @@ public class ViewMapper : IViewMapper
     {
         lock (_dialogs)
         {
-            string key = typeof(VM).FullName!;
-            if (_dialogs.ContainsKey(key))
-            {
-                throw new ArgumentException($"The key {key} is already configured in DialogActivator");
-            }
-
-            Type type = typeof(V);
-            if (_dialogs.Any(p => p.Value == type))
-            {
-                throw new ArgumentException($"This type is already configured with key {_dialogs.First(p => p.Value == type).Key}");
-            }
-
-            _dialogs.Add(key, type);
+            ConfigureViewMappingPair<VM, V>(_dialogs);
         }
     }
 }
