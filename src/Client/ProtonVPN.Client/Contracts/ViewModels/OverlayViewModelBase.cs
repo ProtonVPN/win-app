@@ -39,11 +39,14 @@ public abstract partial class OverlayViewModelBase : ViewModelBase
         OverlayActivator = overlayActivator;
     }
 
-    protected string OverlayKey => GetType().FullName!;
-
     [RelayCommand]
     public void CloseOverlay()
     {
-        OverlayActivator.CloseOverlay(OverlayKey);
+        OverlayActivator.CloseOverlay(this);
+    }
+
+    public async Task ShowAsync()
+    {
+        await OverlayActivator.ShowOverlayAsync(this);
     }
 }

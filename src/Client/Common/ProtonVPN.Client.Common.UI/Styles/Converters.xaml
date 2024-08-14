@@ -40,4 +40,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <converters:OpacityToVisibilityConverter x:Key="OpacityToVisibilityConverter"/>
     <toolkitConverters:StringVisibilityConverter x:Key="StringVisibilityConverter" />
     <converters:IsStringNotEmptyConverter x:Key="IsStringNotEmptyConverter" />
+    <converters:ProfileColorToBrushConverter x:Key="ProfileColorToBrushConverter" 
+                                            BlueColor="#7B7BFB"
+                                            PurpleColor="#A257FF"
+                                            GreenColor="#7FDF66"
+                                            RedColor="#F45E5E"
+                                            OrangeColor="#F79F4D"
+                                            YellowColor="#F9E646"/>
+    <converters:CountryCodeToFlagImageSourceConverter x:Key="CountryCodeToFlagImageSourceConverter"/>
 </ResourceDictionary>

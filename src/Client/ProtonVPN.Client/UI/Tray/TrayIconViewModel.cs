@@ -45,7 +45,7 @@ public partial class TrayIconViewModel :
     IEventMessageReceiver<LoggedOutMessage>
 {
     private readonly IMainWindowActivator _mainWindowActivator;
-    private readonly IRecentConnectionsProvider _recentConnectionsProvider;
+    private readonly IRecentConnectionsManager _recentConnectionsManager;
     private readonly IConnectionManager _connectionManager;
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IOverlayActivator _overlayActivator;
@@ -62,7 +62,7 @@ public partial class TrayIconViewModel :
     public TrayIconViewModel(
         ILocalizationProvider localizationProvider,
         IMainWindowActivator mainWindowActivator,
-        IRecentConnectionsProvider recentConnectionsProvider,
+        IRecentConnectionsManager recentConnectionsManager,
         IConnectionManager connectionManager,
         IUserAuthenticator userAuthenticator,
         ILogger logger,
@@ -73,7 +73,7 @@ public partial class TrayIconViewModel :
         : base(localizationProvider, logger, issueReporter)
     {
         _mainWindowActivator = mainWindowActivator;
-        _recentConnectionsProvider = recentConnectionsProvider;
+        _recentConnectionsManager = recentConnectionsManager;
         _connectionManager = connectionManager;
         _userAuthenticator = userAuthenticator;
         _overlayActivator = overlayActivator;
@@ -96,7 +96,7 @@ public partial class TrayIconViewModel :
     [RelayCommand(CanExecute = nameof(CanConnect))]
     public async Task ConnectAsync()
     {
-        IConnectionIntent defaultConnectionIntent = _recentConnectionsProvider.GetDefaultConnection();
+        IConnectionIntent defaultConnectionIntent = _recentConnectionsManager.GetDefaultConnection();
 
         await _connectionManager.ConnectAsync(defaultConnectionIntent);
     }

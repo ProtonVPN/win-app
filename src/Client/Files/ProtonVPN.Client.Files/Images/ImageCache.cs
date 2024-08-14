@@ -157,8 +157,10 @@ public class ImageCache : IImageCache
     {
         try
         {
-            return Directory.GetFiles(Path.Combine(_config.ImageCacheFolder, folder))
-                            .Select(path => new CachedImage() { LocalPath = path }).ToList();
+            string? fullPath = Path.Combine(_config.ImageCacheFolder, folder);
+            return Directory.Exists(fullPath)
+                ? Directory.GetFiles(fullPath).Select(path => new CachedImage() { LocalPath = path }).ToList()
+                : [];
         }
         catch (Exception ex)
         {

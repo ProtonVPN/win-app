@@ -34,7 +34,7 @@ public class P2PCityLocationItem : CityLocationItemBase
 {
     public override GroupLocationType GroupType => GroupLocationType.P2PCities;
 
-    protected override IFeatureIntent? FeatureIntent => new P2PFeatureIntent();
+    public override IFeatureIntent? FeatureIntent => new P2PFeatureIntent();
 
     public P2PCityLocationItem(
         ILocalizationProvider localizer,

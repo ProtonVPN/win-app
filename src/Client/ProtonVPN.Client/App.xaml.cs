@@ -31,14 +31,14 @@ public partial class App
 {
     public const string APPLICATION_NAME = "Proton VPN";
 
+    public static MainWindow MainWindow { get; } = new();
+
     // The .NET Generic Host provides dependency injection, configuration, logging, and other services.
     // https://docs.microsoft.com/dotnet/core/extensions/generic-host
     // https://docs.microsoft.com/dotnet/core/extensions/dependency-injection
     // https://docs.microsoft.com/dotnet/core/extensions/configuration
     // https://docs.microsoft.com/dotnet/core/extensions/logging
     public IHost Host { get; }
-
-    public static MainWindow MainWindow { get; } = new();
 
     public App()
     {
@@ -57,12 +57,13 @@ public partial class App
     public static T GetService<T>()
         where T : class
     {
-        if ((App.Current as App)!.Host?.Services.GetService(typeof(T)) is not T service)
-        {
-            throw new ArgumentException($"{typeof(T)} needs to be registered within Autofac.");
-        }
+        return (T)GetService(typeof(T));
+    }
 
-        return service;
+    public static object GetService(Type type)
+    {
+        return (App.Current as App)!.Host?.Services.GetService(type)
+            ?? throw new ArgumentException($"{type} needs to be registered within Autofac.");
     }
 
     protected override async void OnLaunched(LaunchActivatedEventArgs args)

@@ -53,7 +53,7 @@ public class ServerMaintenanceHandler : IHandler, IEventMessageReceiver<ServerLi
                 string reason = server is null ? "removed from the API" : "put under maintenance";
                 _logger.Info<AppLog>($"The current server {_connectionManager.CurrentConnectionDetails.ServerName} " +
                                      $"was {reason}, connecting to the default intent.");
-                await _connectionManager.ConnectAsync();
+                await _connectionManager.ReconnectAsync();
             }
         }
     }

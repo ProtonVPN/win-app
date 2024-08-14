@@ -100,12 +100,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Grid VerticalAlignment="Center"
                       ColumnDefinitions="Auto,*,Auto"
                       ColumnSpacing="12">
-                    <controls:CountryFlagControl Grid.Column="0"
-                                                 Width="30"
-                                                 Height="20"
-                                                 VerticalAlignment="Center"
-                                                 ExitCountryCode="{x:Bind ExitCountryCode}"
-                                                 IsSecureCore="{x:Bind IsSecureCore}" />
+
+                    <custom:SimpleCountryFlag Grid.Column="0"
+                                              Width="30"
+                                              VerticalAlignment="Center"
+                                              CountryCode="{x:Bind ExitCountryCode}"
+                                              FlagType="{x:Bind FlagType}"
+                                              IsSecureCore="{x:Bind IsSecureCore}" />
+
                     <TextBlock Grid.Column="1"
                                Margin="{StaticResource LocationItemHeaderMargin}"
                                VerticalAlignment="Center"
@@ -158,12 +160,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Grid VerticalAlignment="Center"
                       ColumnDefinitions="Auto,*,Auto"
                       ColumnSpacing="12">
-                    <controls:CountryFlagControl Grid.Column="0"
-                                                 Width="30"
-                                                 Height="20"
-                                                 VerticalAlignment="Center"
-                                                 ExitCountryCode="{x:Bind ExitCountryCode}"
-                                                 IsSecureCore="{x:Bind IsSecureCore}" />
+
+                    <custom:SimpleCountryFlag Grid.Column="0"
+                                              Width="30"
+                                              VerticalAlignment="Center"
+                                              CountryCode="{x:Bind ExitCountryCode}"
+                                              FlagType="{x:Bind FlagType}"
+                                              IsSecureCore="{x:Bind IsSecureCore}" />
+
                     <TextBlock Grid.Column="1"
                                Margin="{StaticResource LocationItemHeaderMargin}"
                                VerticalAlignment="Center"
@@ -229,11 +233,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Grid VerticalAlignment="Center"
                       ColumnDefinitions="Auto,*,Auto"
                       ColumnSpacing="12">
-                    <controls:CountryFlagControl Grid.Column="0"
-                                                 Width="30"
-                                                 Height="20"
-                                                 VerticalAlignment="Center"
-                                                 IsGateway="true" />
+
+                    <custom:SimpleCountryFlag Grid.Column="0"
+                                              Width="30"
+                                              VerticalAlignment="Center"
+                                              FlagType="Gateway" />
+
                     <TextBlock Grid.Column="1"
                                Margin="{StaticResource LocationItemHeaderMargin}"
                                VerticalAlignment="Center"
@@ -301,16 +306,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                       ColumnSpacing="12"
                       RowDefinitions="Auto,Auto">
 
-                    <controls:CountryFlagControl Grid.Row="0"
-                                                 Grid.RowSpan="2"
-                                                 Grid.Column="0"
-                                                 Width="36"
-                                                 Height="36"
-                                                 VerticalAlignment="Center"
-                                                 EntryCountryCode="{x:Bind CountryPair.EntryCountry}"
-                                                 ExitCountryCode="{x:Bind CountryPair.ExitCountry}"
-                                                 IsCompact="False"
-                                                 IsSecureCore="True" />
+                    <custom:ComplexCountryFlag Grid.Row="0"
+                                               Grid.RowSpan="2"
+                                               Grid.Column="0"
+                                               Width="36"
+                                               VerticalAlignment="Center"
+                                               EntryCountryCode="{x:Bind CountryPair.EntryCountry}"
+                                               ExitCountryCode="{x:Bind CountryPair.ExitCountry}"
+                                               IsSecureCore="True"
+                                               MainFlagType="Country" />
 
                     <TextBlock Grid.Row="0"
                                Grid.Column="1"
@@ -613,11 +617,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           ColumnDefinitions="Auto,*,Auto"
                           ColumnSpacing="12">
 
-                        <controls:CountryFlagControl Grid.Column="0"
-                                                     VerticalAlignment="Center"
-                                                     ExitCountryCode="{x:Bind Server.ExitCountry}"
-                                                     IsCompact="True"
-                                                     IsGateway="true" />
+                        <custom:ComplexCountryFlag Grid.Column="0"
+                                                   Width="30"
+                                                   VerticalAlignment="Center"
+                                                   ExitCountryCode="{x:Bind Server.ExitCountry}"
+                                                   IsCompact="True"
+                                                   MainFlagType="Gateway" />
 
                         <TextBlock Grid.Column="1"
                                    Margin="{StaticResource LocationItemHeaderMargin}"

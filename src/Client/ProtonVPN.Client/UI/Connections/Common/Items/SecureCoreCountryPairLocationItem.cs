@@ -52,9 +52,9 @@ public class SecureCoreCountryPairLocationItem : LocationItemBase
 
     public override object SecondSortProperty => Description;
 
-    protected override ILocationIntent LocationIntent => new CountryLocationIntent(CountryPair.ExitCountry);
+    public override ILocationIntent LocationIntent => new CountryLocationIntent(CountryPair.ExitCountry);
 
-    protected override IFeatureIntent? FeatureIntent => new SecureCoreFeatureIntent(CountryPair.EntryCountry);
+    public override IFeatureIntent? FeatureIntent => new SecureCoreFeatureIntent(CountryPair.EntryCountry);
 
     protected override string AutomationName => $"{CountryPair.ExitCountry}_via_{CountryPair.EntryCountry}";
 

@@ -24,7 +24,7 @@ namespace ProtonVPN.Client.Logic.Recents;
 
 public class RecentConnection : IRecentConnection
 {
-    public IConnectionIntent ConnectionIntent { get; }
+    public IConnectionIntent ConnectionIntent { get; set; }
 
     public bool IsPinned { get; set; }
 

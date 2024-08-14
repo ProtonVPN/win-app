@@ -27,6 +27,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Localization.Extensions;
@@ -40,20 +41,27 @@ public static class LocalizationExtensions
            : localizer.Get("Common_States_Off");
     }
 
-    public static string GetFreeServerName(this ILocalizationProvider localizer, FreeServerType type)
+    public static string GetFreeServerName(this ILocalizationProvider localizer, ConnectionIntentKind kind)
     {
-        return type switch
+        return kind switch
         {
-            FreeServerType.Fastest => localizer.Get("Server_Fastest_Free"),
-            FreeServerType.Random => localizer.Get("Server_Free"),
+            ConnectionIntentKind.Fastest => localizer.Get("Server_Fastest_Free"),
+            ConnectionIntentKind.Random => localizer.Get("Server_Free"),
             _ => localizer.Get("Server_Fastest_Free")
         };
     }
 
-    public static string GetCountryName(this ILocalizationProvider localizer, string countryCode)
+    public static string GetCountryName(this ILocalizationProvider localizer, string countryCode, ConnectionIntentKind intentKind = ConnectionIntentKind.Fastest, bool excludeMyCountry = false)
     {
         return string.IsNullOrEmpty(countryCode)
-            ? localizer.Get("Country_Fastest")
+            ? intentKind switch
+            {
+                ConnectionIntentKind.Fastest when excludeMyCountry => localizer.Get("Country_Fastest_ExcludingMyCountry"),
+                ConnectionIntentKind.Random when excludeMyCountry => localizer.Get("Country_Random_ExcludingMyCountry"),
+                ConnectionIntentKind.Fastest => localizer.Get("Country_Fastest"),
+                ConnectionIntentKind.Random => localizer.Get("Country_Random"),                
+                _ => throw new NotImplementedException($"Intent kind '{intentKind}' is not supported."),
+            }
             : localizer.Get($"Country_val_{countryCode}");
     }
 
@@ -61,9 +69,9 @@ public static class LocalizationExtensions
     {
         return connectionIntent?.Location switch
         {
-            CountryLocationIntent countryIntent => localizer.GetCountryName(countryIntent.CountryCode),
+            CountryLocationIntent countryIntent => localizer.GetCountryName(countryIntent.CountryCode, countryIntent.Kind, countryIntent.IsToExcludeMyCountry),
             GatewayLocationIntent gatewayIntent => gatewayIntent.GatewayName,
-            FreeServerLocationIntent freeServerIntent => localizer.GetFreeServerName(freeServerIntent.Type),
+            FreeServerLocationIntent freeServerIntent => localizer.GetFreeServerName(freeServerIntent.Kind),
             _ => localizer.Get("Country_Fastest")
         };
     }
@@ -72,14 +80,14 @@ public static class LocalizationExtensions
     {
         return connectionDetails?.OriginalConnectionIntent.Location switch
         {
-            CountryLocationIntent countryIntent => countryIntent.IsFastest
-                ? localizer.Get("Country_Fastest")
-                : localizer.GetCountryName(connectionDetails.ExitCountryCode),
+            CountryLocationIntent countryIntent => countryIntent.IsSpecificCountry
+                ? localizer.GetCountryName(connectionDetails.ExitCountryCode)
+                : localizer.GetCountryName(countryIntent.CountryCode, countryIntent.Kind, countryIntent.IsToExcludeMyCountry),
             GatewayLocationIntent gatewayIntent => connectionDetails.GatewayName,
-            FreeServerLocationIntent freeServerIntent => freeServerIntent.Type switch
+            FreeServerLocationIntent freeServerIntent => freeServerIntent.Kind switch
             {
-                FreeServerType.Random => localizer.GetCountryName(connectionDetails.ExitCountryCode),
-                _ => localizer.GetFreeServerName(freeServerIntent.Type)
+                ConnectionIntentKind.Random => localizer.GetCountryName(connectionDetails.ExitCountryCode, freeServerIntent.Kind),
+                _ => localizer.GetFreeServerName(freeServerIntent.Kind)
             },
             _ => localizer.Get("Country_Fastest")
         };
@@ -99,7 +107,7 @@ public static class LocalizationExtensions
             StateLocationIntent stateIntent => stateIntent.State,
             GatewayServerLocationIntent gatewayServerIntent => localizer.GetFormat("Connection_Intent_Country_Server", localizer.GetCountryName(gatewayServerIntent.CountryCode), gatewayServerIntent.Number).Trim(),
             FreeServerLocationIntent freeServerIntent => useDetailedSubtitle ? localizer.Get("Connection_Intent_AutoSelected") : string.Empty,
-            CountryLocationIntent countryIntent => useDetailedSubtitle && countryIntent.IsFastest ? localizer.Get("Settings_Connection_Default_Fastest_Description") : string.Empty,
+            CountryLocationIntent countryIntent => useDetailedSubtitle && countryIntent.IsFastestCountry ? localizer.Get("Settings_Connection_Default_Fastest_Description") : string.Empty,
             _ => string.Empty,
         };
     }
@@ -109,9 +117,9 @@ public static class LocalizationExtensions
         if (connectionDetails?.OriginalConnectionIntent.Feature is SecureCoreFeatureIntent secureCoreIntent &&
             connectionDetails?.OriginalConnectionIntent.Location is CountryLocationIntent locationIntent)
         {
-            return locationIntent.IsFastest
-                ? $"{localizer.GetCountryName(connectionDetails.ExitCountryCode)} {localizer.GetSecureCoreLabel(connectionDetails.EntryCountryCode)}"
-                : localizer.GetSecureCoreLabel(connectionDetails.EntryCountryCode);
+            return locationIntent.IsSpecificCountry
+                ? localizer.GetSecureCoreLabel(connectionDetails.EntryCountryCode)
+                : $"{localizer.GetCountryName(connectionDetails.ExitCountryCode, locationIntent.Kind, locationIntent.IsToExcludeMyCountry)} {localizer.GetSecureCoreLabel(connectionDetails.EntryCountryCode)}";
         }
 
         return connectionDetails?.OriginalConnectionIntent.Location switch
@@ -119,18 +127,42 @@ public static class LocalizationExtensions
             ServerLocationIntent serverIntent => localizer.GetFormat("Connection_Intent_City_Server", GetStateOrCityName(connectionDetails.State, connectionDetails.City), connectionDetails.ServerNumber),
             CityLocationIntent cityIntent => connectionDetails.City,
             StateLocationIntent stateIntent => connectionDetails.State,
-            CountryLocationIntent countryIntent => countryIntent.IsFastest
-                ? localizer.GetCountryName(connectionDetails.ExitCountryCode)
-                : string.Empty,
+            CountryLocationIntent countryIntent => countryIntent.IsSpecificCountry
+                ? string.Empty
+                : localizer.GetCountryName(connectionDetails.ExitCountryCode, countryIntent.Kind, countryIntent.IsToExcludeMyCountry),
             GatewayServerLocationIntent gatewayServerIntent => localizer.GetFormat("Connection_Intent_Country_Server", localizer.GetCountryName(connectionDetails.ExitCountryCode), connectionDetails.ServerNumber),
-            FreeServerLocationIntent freeServerIntent => freeServerIntent.Type switch
+            FreeServerLocationIntent freeServerIntent => freeServerIntent.Kind switch
             {
-                FreeServerType.Fastest => localizer.GetFormat("Connection_Intent_Country_Server", localizer.GetCountryName(connectionDetails.ExitCountryCode), connectionDetails.ServerNumber),
-                FreeServerType.Random => $"#{connectionDetails.ServerNumber}",
+                ConnectionIntentKind.Fastest => localizer.GetFormat("Connection_Intent_Country_Server", localizer.GetCountryName(connectionDetails.ExitCountryCode, freeServerIntent.Kind), connectionDetails.ServerNumber),
+                ConnectionIntentKind.Random => $"#{connectionDetails.ServerNumber}",
                 _ => string.Empty
             },
             _ => string.Empty,
         };
+    }
+
+    public static string GetConnectionProfileDetailsSubtitle(this ILocalizationProvider localizer, ConnectionDetails connectionDetails)
+    {
+        string title = localizer.GetConnectionDetailsTitle(connectionDetails);
+        string subtitle = localizer.GetConnectionDetailsSubtitle(connectionDetails);
+
+        return string.IsNullOrWhiteSpace(subtitle)
+            ? title
+            : connectionDetails.IsSecureCore
+                ? $"{title} {subtitle}"
+                : $"{title} - {subtitle}";
+    }
+
+    public static string GetConnectionProfileSubtitle(this ILocalizationProvider localizer, IConnectionProfile profile)
+    {
+        string title = localizer.GetConnectionIntentTitle(profile);
+        string subtitle = localizer.GetConnectionIntentSubtitle(profile);
+
+        return string.IsNullOrWhiteSpace(subtitle)
+            ? title
+            : profile?.Feature is SecureCoreFeatureIntent
+                ? $"{title} {subtitle}"
+                : $"{title} - {subtitle}";
     }
 
     public static string GetSecureCoreLabel(this ILocalizationProvider localizer, string? entryCountryCode)
@@ -232,6 +264,18 @@ public static class LocalizationExtensions
             : vpnPlan;
     }
 
+    public static string GetFeatureName(this ILocalizationProvider localizer, Feature feature)
+    {
+        return feature switch
+        {
+            Feature.SecureCore => localizer.Get("Server_Feature_SecureCore"),
+            Feature.Tor => localizer.Get("Server_Feature_Tor"),
+            Feature.P2P => localizer.Get("Server_Feature_P2P"),
+            Feature.B2B => localizer.Get("Server_Feature_B2B"),
+            _ => localizer.Get("Server_Feature_None")
+        };
+    }
+
     public static string GetVpnProtocol(this ILocalizationProvider localizer, VpnProtocol vpnProtocol)
     {
         return vpnProtocol switch
@@ -246,12 +290,17 @@ public static class LocalizationExtensions
         };
     }
 
-    public static string GetVpnError(this ILocalizationProvider localizer, VpnError vpnError, bool isPaidUser)
+    public static string GetVpnErrorMessage(this ILocalizationProvider localizer, VpnError vpnError, IConnectionIntent connectionIntent, bool isPaidUser)
     {
         return vpnError switch
         {
-            VpnError.WireGuardAdapterInUseError => localizer.Get("Connection_Error_WireGuardAdapterInUse"),
+            VpnError.None or
+            VpnError.NoneKeepEnabledKillSwitch => string.Empty,
+
+            VpnError.NoServers when connectionIntent is IConnectionProfile profile => localizer.GetFormat("Connection_Error_NoServers_Profile", profile.Name),
             VpnError.NoServers => localizer.Get("Connection_Error_NoServers"),
+
+            VpnError.WireGuardAdapterInUseError => localizer.Get("Connection_Error_WireGuardAdapterInUse"),
             VpnError.NoTapAdaptersError => localizer.Get("Connection_Error_NoTapAdapters"),
             VpnError.TapAdapterInUseError => localizer.Get("Connection_Error_TapAdapterInUse"),
             VpnError.TapRequiresUpdateError => localizer.Get("Connection_Error_TapRequiresUpdate"),
@@ -259,25 +308,26 @@ public static class LocalizationExtensions
             VpnError.RpcServerUnavailable => localizer.Get("Connection_Error_RpcServerUnavailable"),
             VpnError.MissingConnectionCertificate => localizer.Get("Connection_Error_MissingConnectionCertificate"),
             VpnError.SessionLimitReachedBasic or
-                VpnError.SessionLimitReachedFree or
-                VpnError.SessionLimitReachedPlus or
-                VpnError.SessionLimitReachedPro or
-                VpnError.SessionLimitReachedVisionary or
-                VpnError.SessionLimitReachedUnknown => localizer.Get(isPaidUser
+            VpnError.SessionLimitReachedFree or
+            VpnError.SessionLimitReachedPlus or
+            VpnError.SessionLimitReachedPro or
+            VpnError.SessionLimitReachedVisionary or
+            VpnError.SessionLimitReachedUnknown => localizer.Get(isPaidUser
                     ? "Connection_Error_SessionLimitReachedPaidUser"
                     : "Connection_Error_SessionLimitReachedFreeUser"),
             _ => localizer.Get("Connection_Error_Unknown")
         };
     }
 
-    public static string GetDisconnectErrorActionButtonTitle(this ILocalizationProvider localizer, VpnError vpnError)
+    public static string GetVpnErrorActionLabel(this ILocalizationProvider localizer, VpnError vpnError, IConnectionIntent connectionIntent)
     {
         return vpnError switch
         {
-            VpnError.RpcServerUnavailable
-                or VpnError.TapAdapterInUseError
-                or VpnError.NoTapAdaptersError
-                or VpnError.TapRequiresUpdateError => localizer.Get("Connection_Error_ViewPossibleSolutions"),
+            VpnError.NoServers when connectionIntent is IConnectionProfile => localizer.Get("Connection_Error_EditProfile"),
+            VpnError.RpcServerUnavailable or 
+            VpnError.TapAdapterInUseError or 
+            VpnError.NoTapAdaptersError or 
+            VpnError.TapRequiresUpdateError => localizer.Get("Connection_Error_ViewPossibleSolutions"),
             _ => localizer.Get("Connection_Error_ReportAnIssue")
         };
     }

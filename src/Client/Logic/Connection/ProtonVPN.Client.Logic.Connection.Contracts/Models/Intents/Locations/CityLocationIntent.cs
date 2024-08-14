@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Client.Settings.Contracts.Models;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
@@ -42,9 +43,9 @@ public class CityLocationIntent : StateLocationIntent
             && City == cityIntent.City;
     }
 
-    public override bool IsSupported(Server server)
+    public override bool IsSupported(Server server, DeviceLocation? deviceLocation)
     {
-        return base.IsSupported(server) && server.City == City;
+        return base.IsSupported(server, deviceLocation) && server.City == City;
     }
 
     public override string ToString()

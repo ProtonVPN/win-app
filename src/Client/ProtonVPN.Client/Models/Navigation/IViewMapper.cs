@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Client.Contracts.ViewModels;
+using ProtonVPN.Core.Modals;
 
 namespace ProtonVPN.Client.Models.Navigation;
 
@@ -32,9 +33,15 @@ public interface IViewMapper
     Type GetDialogType<TPageViewModel>() 
         where TPageViewModel : PageViewModelBase;
 
-    Type GetPageType(string key);
+    public Type GetPageType(Type viewModelType);
 
-    Type GetOverlayType(string key);
+    public Type GetOverlayType(Type viewModelType);
 
-    Type GetDialogType(string key);
+    public Type GetDialogType(Type viewModelType);
+
+    public PageViewModelBase GetPageViewModel(Type pageType);
+
+    public OverlayViewModelBase GetOverlayViewModel(Type overlayType);
+
+    public PageViewModelBase GetDialogViewModel(Type dialogType);
 }

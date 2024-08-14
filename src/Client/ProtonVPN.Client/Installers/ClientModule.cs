@@ -75,6 +75,8 @@ public class ClientModule : Module
 
         builder.RegisterType<ReleaseViewModelFactory>().SingleInstance();
         builder.RegisterType<LocationItemFactory>().SingleInstance();
+        builder.RegisterType<ProfileItemFactory>().SingleInstance();
+        builder.RegisterType<CommonItemFactory>().SingleInstance();
 
         RegisterHandlers(builder);
 

@@ -21,6 +21,7 @@ using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Models.Navigation;
@@ -65,13 +66,18 @@ public class TorCountriesPageViewModel : CountriesPageViewModelBase
 
     protected override IEnumerable<LocationItemBase> GetItems()
     {
-        LocationItemBase fastestCountry =
-            LocationItemFactory.GetTorCountry(string.Empty);
+        IEnumerable<LocationItemBase> genericCountries =
+        [
+            LocationItemFactory.GetGenericTorCountry(ConnectionIntentKind.Fastest, false),
+            LocationItemFactory.GetGenericTorCountry(ConnectionIntentKind.Fastest, true),
+            LocationItemFactory.GetGenericTorCountry(ConnectionIntentKind.Random, false),
+        ];
 
         IEnumerable<LocationItemBase> countries =
             ServersLoader.GetCountryCodesByFeatures(ServerFeatures.Tor)
                          .Select(LocationItemFactory.GetTorCountry);
 
-        return countries.Concat([fastestCountry]);
+        return genericCountries
+            .Concat(countries);
     }
 }

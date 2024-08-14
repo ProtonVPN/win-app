@@ -33,7 +33,7 @@ public class FreeServerLocationIntentMapper : IMapper<FreeServerLocationIntent, 
             : new SerializableLocationIntent()
             {
                 TypeName = nameof(FreeServerLocationIntent),
-                FreeServerType = (int)leftEntity.Type,
+                FreeServerType = (int)leftEntity.Kind,
                 FreeServerExcludedLogicalId = leftEntity.ExcludedLogicalServerId,
             };
     }
@@ -42,9 +42,9 @@ public class FreeServerLocationIntentMapper : IMapper<FreeServerLocationIntent, 
     {
         return rightEntity is null
             ? null
-            : (FreeServerType)rightEntity.FreeServerType switch
+            : (ConnectionIntentKind)rightEntity.FreeServerType switch
             {
-                FreeServerType.Random => new FreeServerLocationIntent(excludedLogicalServerId: rightEntity.FreeServerExcludedLogicalId),
+                ConnectionIntentKind.Random => new FreeServerLocationIntent(excludedLogicalServerId: rightEntity.FreeServerExcludedLogicalId),
                 _ => new FreeServerLocationIntent(),
             };
     }

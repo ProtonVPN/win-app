@@ -35,6 +35,8 @@ public partial class Configuration : StaticConfiguration, IConfiguration
     public string VpnUsernameSuffix => Get();
     public string DoHVerifyApiHost => Get();
 
+    public int MaximumProfileNameLength => Get();
+
     public long BugReportingMaxFileSize => Get();
     public int MaxClientLogsAttached => Get();
     public int MaxServiceLogsAttached => Get();

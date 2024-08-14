@@ -18,6 +18,7 @@
  */
 
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls.Primitives;
 
 namespace ProtonVPN.Client.UI.Home.Recents;
 
@@ -32,7 +33,7 @@ public sealed partial class RecentsComponent
         InitializeComponent();
     }
 
-    private void OnActionsMenuFlyoutClosing(object sender, object e)
+    private void OnActionsMenuFlyoutClosing(FlyoutBase sender, FlyoutBaseClosingEventArgs args)
     {
         // Because the list of Pinned/Recent item is rebuilt after unpin or remove, we need to reset focus on the recent components
         Focus(FocusState.Programmatic);

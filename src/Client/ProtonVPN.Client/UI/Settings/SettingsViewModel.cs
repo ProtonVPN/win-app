@@ -18,19 +18,19 @@
  */
 
 using System.Collections.ObjectModel;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Profiles.Contracts;
+using ProtonVPN.Client.Logic.Profiles.Contracts.Messages;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Models.Activation;
@@ -39,9 +39,11 @@ using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Models.Themes;
 using ProtonVPN.Client.Models.Urls;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.UI.Settings.Pages;
 using ProtonVPN.Client.UI.Settings.Pages.About;
+using ProtonVPN.Client.UI.Settings.Pages.DefaultConnections;
 using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -53,7 +55,8 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
     IEventMessageReceiver<ThemeChangedMessage>,
     IEventMessageReceiver<SettingChangedMessage>,
     IEventMessageReceiver<LoggedInMessage>,
-    IEventMessageReceiver<VpnPlanChangedMessage>
+    IEventMessageReceiver<VpnPlanChangedMessage>,
+    IEventMessageReceiver<ProfilesChangedMessage>
 {
     private readonly IThemeSelector _themeSelector;
     private readonly ILocalizationService _localizationService;
@@ -64,6 +67,7 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
     private readonly IReportIssueDialogActivator _reportIssueDialogActivator;
     private readonly IUpsellCarouselDialogActivator _upsellCarouselDialogActivator;
     private readonly IConnectionManager _connectionManager;
+    private readonly IProfilesManager _profilesManager;
     private readonly Lazy<ObservableCollection<Language>> _languages;
 
     public bool IsPaidUser => _settings.VpnPlan.IsPaid;
@@ -86,7 +90,9 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
         set => _settings.Language = value.Id;
     }
 
-    public string DefaultConnectionState => Localizer.Get($"Settings_Connection_Default_{_settings.DefaultConnection}");
+    public string DefaultConnectionState => _settings.DefaultConnection.Type == DefaultConnectionType.Profile
+        ? _profilesManager.GetById(_settings.DefaultConnection.ProfileId)?.Name ?? string.Empty
+        : Localizer.Get($"Settings_Connection_Default_{_settings.DefaultConnection.Type}");
 
     public string ConnectionProtocolState => Localizer.Get($"Settings_SelectedProtocol_{_settings.VpnProtocol}");
 
@@ -132,7 +138,8 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
         IUpsellCarouselDialogActivator upsellCarouselDialogActivator,
         IConnectionManager connectionManager,
         ILogger logger,
-        IIssueReporter issueReporter)
+        IIssueReporter issueReporter,
+        IProfilesManager profilesManager)
         : base(viewNavigator, localizationProvider, logger, issueReporter)
     {
         _themeSelector = themeSelector;
@@ -144,6 +151,7 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
         _reportIssueDialogActivator = reportIssueDialogActivator;
         _upsellCarouselDialogActivator = upsellCarouselDialogActivator;
         _connectionManager = connectionManager;
+        _profilesManager = profilesManager;
 
         _languages = new Lazy<ObservableCollection<Language>>(
             () => new ObservableCollection<Language>(_localizationService.GetAvailableLanguages()));
@@ -291,6 +299,11 @@ public partial class SettingsViewModel : NavigationPageViewModelBase,
     public void Receive(VpnPlanChangedMessage message)
     {
         ExecuteOnUIThread(InvalidateAllProperties);
+    }
+
+    public void Receive(ProfilesChangedMessage message)
+    {
+        ExecuteOnUIThread(() => OnPropertyChanged(nameof(DefaultConnectionState)));
     }
 
     protected override void OnLanguageChanged()

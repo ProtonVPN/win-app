@@ -22,9 +22,12 @@ namespace ProtonVPN.Client.Settings.Contracts.Migrations;
 public class LegacyProfile
 {
     public string? Id { get; set; }
+    public string? Name { get; set; }
     public int ProfileType { get; set; }
     public ulong Features { get; set; }
     public string? CountryCode { get; set; }
     public string? GatewayName { get; set; }
     public string? ServerId { get; set; }
+    public string? ColorCode { get; set; }
+    public int? VpnProtocol { get; set; }
 }

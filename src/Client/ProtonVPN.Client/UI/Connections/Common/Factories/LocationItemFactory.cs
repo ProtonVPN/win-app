@@ -19,6 +19,8 @@
 
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Models.Activation;
@@ -59,6 +61,11 @@ public class LocationItemFactory
         return new LocationGroup(_localizer, _overlayActivator, groupType, items);
     }
 
+    public CountryLocationItem GetGenericCountry(ConnectionIntentKind intentKind, bool excludeMyCountry)
+    {
+        return new CountryLocationItem(_localizer, _serversLoader, _connectionManager, _mainViewNavigator, _upsellCarouselActivator, this, string.Empty, intentKind, excludeMyCountry);
+    }
+
     public CountryLocationItem GetCountry(string exitCountryCode)
     {
         return new CountryLocationItem(_localizer, _serversLoader, _connectionManager, _mainViewNavigator, _upsellCarouselActivator, this, exitCountryCode);
@@ -79,6 +86,11 @@ public class LocationItemFactory
         return new ServerLocationItem(_localizer, _serversLoader, _connectionManager, _mainViewNavigator, _upsellCarouselActivator, this, server);
     }
 
+    public SecureCoreCountryLocationItem GetGenericSecureCoreCountry(ConnectionIntentKind intentKind, bool excludeMyCountry)
+    {
+        return new SecureCoreCountryLocationItem(_localizer, _serversLoader, _connectionManager, _mainViewNavigator, _upsellCarouselActivator, this, string.Empty, intentKind, excludeMyCountry);
+    }
+
     public SecureCoreCountryLocationItem GetSecureCoreCountry(string exitCountryCode)
     {
         return new SecureCoreCountryLocationItem(_localizer, _serversLoader, _connectionManager, _mainViewNavigator, _upsellCarouselActivator, this, exitCountryCode);
@@ -92,6 +104,11 @@ public class LocationItemFactory
     public SecureCoreServerLocationItem GetSecureCoreServer(Server server)
     {
         return new SecureCoreServerLocationItem(_localizer, _serversLoader, _connectionManager, _mainViewNavigator, _upsellCarouselActivator, this, server);
+    }
+
+    public P2PCountryLocationItem GetGenericP2PCountry(ConnectionIntentKind intentKind, bool excludeMyCountry)
+    {
+        return new P2PCountryLocationItem(_localizer, _serversLoader, _connectionManager, _mainViewNavigator, _upsellCarouselActivator, this, string.Empty, intentKind, excludeMyCountry);
     }
 
     public P2PCountryLocationItem GetP2PCountry(string exitCountryCode)
@@ -114,6 +131,11 @@ public class LocationItemFactory
         return new P2PServerLocationItem(_localizer, _serversLoader, _connectionManager, _mainViewNavigator, _upsellCarouselActivator, this, server);
     }
 
+    public TorCountryLocationItem GetGenericTorCountry(ConnectionIntentKind intentKind, bool excludeMyCountry)
+    {
+        return new TorCountryLocationItem(_localizer, _serversLoader, _connectionManager, _mainViewNavigator, _upsellCarouselActivator, this, string.Empty, intentKind, excludeMyCountry);
+    }
+
     public TorCountryLocationItem GetTorCountry(string exitCountryCode)
     {
         return new TorCountryLocationItem(_localizer, _serversLoader, _connectionManager, _mainViewNavigator, _upsellCarouselActivator, this, exitCountryCode);
@@ -132,5 +154,10 @@ public class LocationItemFactory
     public GatewayServerLocationItem GetGatewayServer(Server server)
     {
         return new GatewayServerLocationItem(_localizer, _serversLoader, _connectionManager, _mainViewNavigator, _upsellCarouselActivator, this, server);
+    }
+
+    public GenericFastestLocationItem GetGenericFastestLocation(GroupLocationType groupType, ILocationIntent locationIntent)
+    {
+        return new GenericFastestLocationItem(_localizer, _serversLoader, _connectionManager, _mainViewNavigator, _upsellCarouselActivator, this, groupType, locationIntent);
     }
 }

@@ -148,8 +148,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Setter>
     </Style>
 
-    <x:Double x:Key="DefaultConnectionIntentBulletHeaderedContentControlColumnSpacing">8</x:Double>
-    <x:Double x:Key="DefaultConnectionIntentBulletHeaderedContentControlRowSpacing">0</x:Double>
+    <x:Double x:Key="DefaultConnectionIntentBulletPresenterWidth">36</x:Double>
+    <x:Double x:Key="DefaultConnectionIntentBulletHeaderedContentControlColumnSpacing">12</x:Double>
+    <x:Double x:Key="DefaultConnectionIntentBulletHeaderedContentControlRowSpacing">4</x:Double>
 
     <Style x:Key="DefaultConnectionIntentBulletHeaderedContentControlStyle" BasedOn="{StaticResource DefaultBulletHeaderedContentControlStyle}" TargetType="custom:BulletHeaderedContentControl">
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -161,8 +162,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Grid x:Name="Container"
                           Padding="{TemplateBinding Padding}"
                           Background="{TemplateBinding Background}"
-                          ColumnSpacing="{StaticResource DefaultConnectionIntentBulletHeaderedContentControlColumnSpacing}"
-                          RowSpacing="{StaticResource DefaultConnectionIntentBulletHeaderedContentControlRowSpacing}">
+                          ColumnSpacing="{ThemeResource DefaultConnectionIntentBulletHeaderedContentControlColumnSpacing}"
+                          RowSpacing="{ThemeResource DefaultConnectionIntentBulletHeaderedContentControlRowSpacing}">
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -177,8 +178,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                           Grid.Row="0"
                                           Grid.RowSpan="2"
                                           Grid.Column="0"
-                                          Width="30"
-                                          Height="20"
+                                          Width="{ThemeResource DefaultConnectionIntentBulletPresenterWidth}"
                                           VerticalAlignment="Top"
                                           Content="{TemplateBinding BulletContent}"/>
 
@@ -187,9 +187,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                           Grid.Column="1"
                                           Content="{TemplateBinding Header}"
                                           ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                          FontSize="{StaticResource BodyFontSize}"
-                                          FontWeight="{StaticResource BodyFontWeight}"
-                                          LineHeight="{StaticResource BodyLineHeight}"
+                                          FontSize="{StaticResource BodyMediumFontSize}"
+                                          FontWeight="{StaticResource BodyMediumFontWeight}"
+                                          LineHeight="{StaticResource BodyMediumLineHeight}"
                                           TextWrapping="Wrap" />
 
                         <ContentPresenter x:Name="ContentPresenter"

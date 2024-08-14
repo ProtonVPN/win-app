@@ -18,6 +18,7 @@
  */
 
 using System.ComponentModel;
+using System.Data;
 using System.Reflection;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -29,6 +30,8 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
+using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Models.Activation;
 using ProtonVPN.Client.Models.Navigation;
@@ -114,13 +117,8 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
         });
     }
 
-    public override async Task<bool> OnNavigatingFromAsync(bool forceNavigation = false)
+    public override async Task<bool> OnNavigatingFromAsync()
     {
-        if (forceNavigation)
-        {
-            return true;
-        }
-
         if (!CanApply()) // No changes made, simply leave page
         {
             return true;
@@ -264,9 +262,17 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
             return false;
         }
 
+        IConnectionIntent? currentConnectionIntent = ConnectionManager.CurrentConnectionIntent;
+        bool isConnectionProfile = currentConnectionIntent is IConnectionProfile;
+
         IEnumerable<ChangedSettingArgs> changedSettings = GetChangedSettings();
         foreach (ChangedSettingArgs changedSetting in changedSettings)
         {
+            if (isConnectionProfile && IgnorableProfileReconnectionSettings.Contains(changedSetting.Name))
+            {
+                continue;
+            }
+
             if (RequiredReconnectionSettings.Contains(changedSetting.Name))
             {
                 return true;

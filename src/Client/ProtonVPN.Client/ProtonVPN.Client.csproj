@@ -71,6 +71,21 @@
         <None Update="appsettings.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <Page Update="UI\Connections\Common\Controls\LocationComboBox.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Connections\Profiles\Controls\ProfileSettingsSelectorView.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Connections\Profiles\Controls\ProfileIconSelectorView.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Connections\Profiles\Overlays\EditProfileOverlayDialog.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="UI\Connections\Profiles\ProfilesPage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
         <Page Update="UI\Login\DisableKillSwitchBannerComponent.xaml">
           <Generator>MSBuild:Compile</Generator>
         </Page>
@@ -274,11 +289,17 @@
         <None Remove="UI\Connections\Bases\CountriesPageControl.xaml" />
         <None Remove="UI\Connections\Bases\LocationItemsControl.xaml" />
         <None Remove="UI\Connections\Common\Controls\CountryPageControl.xaml" />
+        <None Remove="UI\Connections\Common\Controls\LocationComboBox.xaml" />
         <None Remove="UI\Connections\Countries\CountriesPage.xaml" />
         <None Remove="UI\Connections\Countries\CountryPage.xaml" />
         <None Remove="UI\Connections\Gateways\GatewaysPage.xaml" />
         <None Remove="UI\Connections\P2P\P2PCountriesPage.xaml" />
         <None Remove="UI\Connections\P2P\P2PCountryPage.xaml" />
+        <None Remove="UI\Connections\Profiles\Controls\ConnectionIntentSelectorView.xaml" />
+        <None Remove="UI\Connections\Profiles\Controls\ProfileIconSelectorView.xaml" />
+        <None Remove="UI\Connections\Profiles\Controls\ProfileSettingsSelectorView.xaml" />
+        <None Remove="UI\Connections\Profiles\Overlays\EditProfileOverlayDialog.xaml" />
+        <None Remove="UI\Connections\Profiles\ProfilesPage.xaml" />
         <None Remove="UI\Connections\SecureCore\SecureCoreCountriesPage.xaml" />
         <None Remove="UI\Connections\Tor\TorCountriesPage.xaml" />
         <None Remove="UI\Dialogs\Overlays\TroubleshootingOverlayDialog.xaml" />
@@ -389,6 +410,8 @@
         <ProjectReference Include="..\Logic\Connection\ProtonVPN.Client.Logic.Connection.Contracts\ProtonVPN.Client.Logic.Connection.Contracts.csproj" />
         <ProjectReference Include="..\Logic\Connection\ProtonVPN.Client.Logic.Connection.Installers\ProtonVPN.Client.Logic.Connection.Installers.csproj" />
         <ProjectReference Include="..\Logic\Feedback\ProtonVPN.Client.Logic.Feedback.Installers\ProtonVPN.Client.Logic.Feedback.Installers.csproj" />
+        <ProjectReference Include="..\Logic\Profiles\ProtonVPN.Client.Logic.Profiles.Contracts\ProtonVPN.Client.Logic.Profiles.Contracts.csproj" />
+        <ProjectReference Include="..\Logic\Profiles\ProtonVPN.Client.Logic.Profiles.Installers\ProtonVPN.Client.Logic.Profiles.Installers.csproj" />
         <ProjectReference Include="..\Logic\Recents\ProtonVPN.Client.Logic.Recents.Contracts\ProtonVPN.Client.Logic.Recents.Contracts.csproj" />
         <ProjectReference Include="..\Logic\Recents\ProtonVPN.Client.Logic.Recents.Installers\ProtonVPN.Client.Logic.Recents.Installers.csproj" />
         <ProjectReference Include="..\Logic\Servers\ProtonVPN.Client.Logic.Servers.Contracts\ProtonVPN.Client.Logic.Servers.Contracts.csproj" />
@@ -411,5 +434,13 @@
         <Content Update="Assets\ProtonVPN.ico">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <CustomAdditionalCompileInputs Remove="UI\Connections\Profiles\Controls\ConnectionIntentSelectorView.xaml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Resource Remove="UI\Connections\Profiles\Controls\ConnectionIntentSelectorView.xaml" />
     </ItemGroup>
 </Project>

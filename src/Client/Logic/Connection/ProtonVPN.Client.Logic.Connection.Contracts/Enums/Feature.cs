@@ -25,4 +25,5 @@ public enum Feature
     SecureCore,
     Tor,
     P2P,
+    B2B
 }

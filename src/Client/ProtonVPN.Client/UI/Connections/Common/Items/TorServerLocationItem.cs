@@ -33,7 +33,7 @@ public class TorServerLocationItem : ServerLocationItemBase
 {
     public override GroupLocationType GroupType => GroupLocationType.TorServers;
 
-    protected override IFeatureIntent? FeatureIntent => new TorFeatureIntent();
+    public override IFeatureIntent? FeatureIntent => new TorFeatureIntent();
 
     public TorServerLocationItem(
         ILocalizationProvider localizer,

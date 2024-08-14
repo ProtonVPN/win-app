@@ -33,6 +33,7 @@ public partial class HomeRobot : UIActions
     protected Label ConnectionCardSubtitleLabel => ElementByAutomationId("ConnectionCardSubtitleLabel").AsLabel();
     protected Label ConnectionCardFeatureTorLabel => ElementByAutomationId("ConnectionCardFeatureTorLabel").AsLabel();
     protected Label ConnectionCardFeatureP2PLabel => ElementByAutomationId("ConnectionCardFeatureP2PLabel").AsLabel();
+    protected Label ConnectionCardFeatureSecureCoreLabel => ElementByAutomationId("ConnectionCardFeatureSecureCoreLabel").AsLabel();
     protected Button ConnectionCardConnectButton => ElementByAutomationId("ConnectionCardConnectButton").AsButton();
     protected Button ConnectionCardCancelButton => ElementByAutomationId("ConnectionCardCancelButton").AsButton();
     protected Button ConnectionCardDisconnectButton => ElementByAutomationId("ConnectionCardDisconnectButton").AsButton();

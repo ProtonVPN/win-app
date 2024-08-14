@@ -17,9 +17,21 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Client.Settings.Contracts.Models;
+
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
 public interface ILocationIntent : IIntent
 {
+    ConnectionIntentKind Kind { get; }
+
     bool IsSameAs(ILocationIntent? intent);
+
+    IEnumerable<Server> FilterServers(IEnumerable<Server> servers, DeviceLocation? deviceLocation);
+
+    bool IsSupported(Server server, DeviceLocation? deviceLocation);
+
+    bool IsGenericRandomIntent();
 }

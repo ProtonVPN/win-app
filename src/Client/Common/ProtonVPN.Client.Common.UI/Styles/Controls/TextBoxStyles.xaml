@@ -136,8 +136,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </ResourceDictionary.ThemeDictionaries>
 
     <x:Double x:Key="TextControlThemeMinWidth">40</x:Double>
+    <Visibility x:Key="TextBoxDeleteButtonVisibility">Visible</Visibility>
 
-    <Style BasedOn="{StaticResource DefaultTextBoxStyle}" TargetType="TextBox">
+    <Style BasedOn="{StaticResource StandardTextBoxStyle}" TargetType="TextBox"/>
+
+    <Style x:Key="StandardTextBoxStyle" BasedOn="{StaticResource DefaultTextBoxStyle}" TargetType="TextBox">
         <Setter Property="Foreground" Value="{ThemeResource TextControlForeground}" />
         <Setter Property="Background" Value="{ThemeResource TextControlBackground}" />
         <Setter Property="BorderBrush" Value="{ThemeResource TextControlBorderBrush}" />
@@ -438,17 +441,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </VisualStateGroup>
                             <VisualStateGroup x:Name="ButtonStates">
                                 <VisualState x:Name="ButtonVisible">
-
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DeleteButton"
-                                                                       Storyboard.TargetProperty="Visibility">
-                                            <DiscreteObjectKeyFrame KeyTime="0">
-                                                <DiscreteObjectKeyFrame.Value>
-                                                    <Visibility>Visible</Visibility>
-                                                </DiscreteObjectKeyFrame.Value>
-                                            </DiscreteObjectKeyFrame>
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
+                                    <VisualState.Setters>
+                                        <Setter Target="DeleteButton.Visibility" Value="{ThemeResource TextBoxDeleteButtonVisibility}"/>
+                                    </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="ButtonCollapsed" />
                             </VisualStateGroup>
@@ -469,4 +464,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Setter.Value>
         </Setter>
     </Style>
+    
 </ResourceDictionary>

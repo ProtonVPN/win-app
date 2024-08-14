@@ -17,10 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
+using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.EntityMapping.Contracts;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
@@ -28,8 +34,6 @@ namespace ProtonVPN.Client.Logic.Connection.RequestCreators;
 
 public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
 {
-    private readonly IFeatureFlagsObserver _featureFlagsObserver;
-
     private readonly IReadOnlyList<VpnProtocolIpcEntity> _smartPreferredProtocols = [
         VpnProtocolIpcEntity.WireGuardUdp,
         VpnProtocolIpcEntity.WireGuardTcp,
@@ -39,14 +43,13 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
     ];
 
     protected ConnectionRequestCreatorBase(
+        ILogger logger, 
         ISettings settings,
         IEntityMapper entityMapper,
         IFeatureFlagsObserver featureFlagsObserver,
         IMainSettingsRequestCreator mainSettingsRequestCreator)
-        : base(settings, entityMapper, mainSettingsRequestCreator)
-    {
-        _featureFlagsObserver = featureFlagsObserver;
-    }
+        : base(logger, settings, entityMapper, featureFlagsObserver, mainSettingsRequestCreator)
+    { }
 
     protected abstract Task<VpnCredentialsIpcEntity> GetVpnCredentialsAsync();
 
@@ -74,7 +77,7 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
     protected IList<VpnProtocolIpcEntity> GetPreferredSmartProtocols()
     {
         List<VpnProtocolIpcEntity> preferredProtocols = _smartPreferredProtocols.ToList();
-        if (!_featureFlagsObserver.IsStealthEnabled)
+        if (!FeatureFlagsObserver.IsStealthEnabled)
         {
             preferredProtocols.Remove(VpnProtocolIpcEntity.WireGuardTls);
         }
@@ -93,11 +96,19 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
             { VpnProtocolIpcEntity.OpenVpnTcp, Settings.OpenVpnTcpPorts },
         };
 
-        if (!_featureFlagsObserver.IsStealthEnabled)
+        if (!FeatureFlagsObserver.IsStealthEnabled)
         {
             ports.Remove(VpnProtocolIpcEntity.WireGuardTls);
         }
 
         return ports;
+    }
+
+    protected bool IsToBypassSmartServerListGenerator(IConnectionIntent connectionIntent)
+    {
+        return !Settings.IsSmartReconnectEnabled ||
+               connectionIntent is IConnectionProfile ||
+               connectionIntent.Feature is B2BFeatureIntent ||
+               (connectionIntent.Location is FreeServerLocationIntent fsli && fsli.Kind == ConnectionIntentKind.Random);
     }
 }

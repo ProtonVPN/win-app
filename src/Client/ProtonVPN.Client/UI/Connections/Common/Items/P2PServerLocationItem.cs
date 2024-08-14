@@ -33,7 +33,7 @@ public class P2PServerLocationItem : ServerLocationItemBase
 {
     public override GroupLocationType GroupType => GroupLocationType.P2PServers;
 
-    protected override IFeatureIntent? FeatureIntent => new P2PFeatureIntent();
+    public override IFeatureIntent? FeatureIntent => new P2PFeatureIntent();
 
     public P2PServerLocationItem(
         ILocalizationProvider localizer,

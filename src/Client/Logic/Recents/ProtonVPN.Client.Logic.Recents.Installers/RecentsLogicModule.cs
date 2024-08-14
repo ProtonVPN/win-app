@@ -28,7 +28,7 @@ public class RecentsLogicModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
-        builder.RegisterType<RecentConnectionsProvider>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<RecentConnectionsManager>().AsImplementedInterfaces().SingleInstance().AutoActivate();
         builder.RegisterType<RecentsFileReaderWriter>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterAllMappersInAssembly<RecentConnectionMapper>();

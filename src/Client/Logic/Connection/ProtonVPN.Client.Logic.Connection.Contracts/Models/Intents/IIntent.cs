@@ -17,15 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Servers.Contracts.Models;
-
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 
 public interface IIntent
 {
     bool IsForPaidUsersOnly { get; }
-
-    IEnumerable<Server> FilterServers(IEnumerable<Server> servers);
-
-    bool IsSupported(Server server);
 }

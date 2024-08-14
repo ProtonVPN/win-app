@@ -20,14 +20,16 @@
 using ProtonVPN.Client.UI.Upsell.Carousel.Features;
 using ProtonVPN.Client.UI.Upsell.Carousel.Features.Base;
 using ProtonVPN.Client.UI.Upsell.Carousel.Models;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Models.Navigation;
 
 public class UpsellCarouselViewNavigator : ViewNavigatorBase, IUpsellCarouselViewNavigator
 {
     public UpsellCarouselViewNavigator( 
-        IViewMapper viewMapper) : 
-        base(viewMapper)
+        ILogger logger,
+        IViewMapper viewMapper) 
+        : base(logger, viewMapper)
     { }
 
     public Task NavigateToFeatureAsync(UpsellFeature feature)

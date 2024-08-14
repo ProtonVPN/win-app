@@ -25,18 +25,26 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <ResourceDictionary x:Key="Light">
             <SvgImageSource x:Key="GatewayFlagSource"
                             UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Flags/Light/Gateway.svg" />
+            <SvgImageSource x:Key="FastestCountryFlagSource"
+                            UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Flags/Light/Fastest.svg" />
+            <SvgImageSource x:Key="RandomCountryFlagSource"
+                            UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Flags/Light/Random.svg" />
+            <SvgImageSource x:Key="LatestFlagSource"
+                            UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Flags/Light/Latest.svg" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="Dark">
             <SvgImageSource x:Key="GatewayFlagSource"
                             UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Flags/Dark/Gateway.svg" />
+            <SvgImageSource x:Key="FastestCountryFlagSource"
+                            UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Flags/Dark/Fastest.svg" />
+            <SvgImageSource x:Key="RandomCountryFlagSource"
+                            UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Flags/Dark/Random.svg" />
+            <SvgImageSource x:Key="LatestFlagSource"
+                            UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Flags/Dark/Latest.svg" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <SvgImageSource x:Key="FastestCountryFlagSource"
-                    UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Flags/Fastest.svg" />
-    <SvgImageSource x:Key="LatestFlagSource"
-                    UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Flags/Latest.svg" />
     <SvgImageSource x:Key="PlaceholderFlagSource"
                     UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Flags/Placeholder.svg" />
-    
+
 </ResourceDictionary>

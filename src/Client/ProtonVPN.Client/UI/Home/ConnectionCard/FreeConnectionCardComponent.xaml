@@ -32,10 +32,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_ConnectionCard_Landmark')}"
              mc:Ignorable="d">
 
-    <StackPanel Orientation="Vertical"
-                Padding="{StaticResource HomePageContentPadding}"
+    <StackPanel Padding="{StaticResource HomePageContentPadding}"
+                Orientation="Vertical"
                 Spacing="12">
-        
         <Grid ColumnSpacing="12">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -43,17 +42,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0"
+                       VerticalAlignment="Center"
                        AutomationProperties.AutomationId="ConnectionCardHeaderLabel"
                        Foreground="{ThemeResource TextWeakColorBrush}"
                        Style="{StaticResource BodyTextBlockStyle}"
                        TabIndex="1"
-                       Text="{x:Bind ViewModel.Header}" 
-                       VerticalAlignment="Center" />
+                       Text="{x:Bind ViewModel.Header}" />
 
             <help:HelpComponent Grid.Column="1"
-                                TabIndex="6"
                                 Margin="0,-5,0,-3"
-                                VerticalAlignment="Center" />
+                                VerticalAlignment="Center"
+                                TabIndex="6" />
         </Grid>
 
         <Grid MinHeight="72"
@@ -76,23 +75,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Style="{StaticResource ConnectionCardGhostButtonStyle}"
                                 TabIndex="2">
                 <toolkit:DockPanel>
-                    <controls:CountryFlagControl Width="36"
-                                                 Margin="4,0,0,0"
-                                                 VerticalAlignment="Top"
-                                                 toolkit:DockPanel.Dock="Left"
-                                                 EntryCountryCode="{x:Bind ViewModel.EntryCountry}"
-                                                 ExitCountryCode="{x:Bind ViewModel.ExitCountry}"
-                                                 IsGateway="{x:Bind ViewModel.IsB2B}"
-                                                 IsSecureCore="{x:Bind ViewModel.IsSecureCore}" />
+
+                    <custom:ComplexCountryFlag Width="36"
+                                               VerticalAlignment="Top"
+                                               toolkit:DockPanel.Dock="Left"
+                                               EntryCountryCode="{x:Bind ViewModel.EntryCountry}"
+                                               ExitCountryCode="{x:Bind ViewModel.ExitCountry}"
+                                               IsSecureCore="{x:Bind ViewModel.IsSecureCore}"
+                                               MainFlagType="{x:Bind ViewModel.FlagType}" />
+
                     <StackPanel Margin="12,0,0,0"
                                 Orientation="Vertical"
                                 Spacing="4">
 
                         <TextBlock AutomationProperties.AutomationId="ConnectionCardTitleLabel"
-                                    Style="{StaticResource BodyLargeStrongTextBlockStyle}"
-                                    Text="{x:Bind ViewModel.Title}"
-                                    TextTrimming="CharacterEllipsis"
-                                    TextWrapping="WrapWholeWords" />
+                                   Style="{StaticResource BodyLargeStrongTextBlockStyle}"
+                                   Text="{x:Bind ViewModel.Title}"
+                                   TextTrimming="CharacterEllipsis"
+                                   TextWrapping="WrapWholeWords" />
 
                         <toolkit:WrapPanel HorizontalSpacing="6"
                                            Orientation="Horizontal"
@@ -186,7 +186,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Setter Target="ShowConnectionDetailsButton.Command" Value="{x:Bind ViewModel.ShowAboutFreeConnectionsCommand, Mode=OneTime}" />
                         <Setter Target="ShowConnectionDetailsButton.RightIcon">
                             <Setter.Value>
-                                <pathicons:InfoCircle Size="Pixels24"/>
+                                <pathicons:InfoCircle Size="Pixels24" />
                             </Setter.Value>
                         </Setter>
                     </VisualState.Setters>
@@ -200,8 +200,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Setter Target="ShowConnectionDetailsButton.Command" Value="{x:Bind ViewModel.ShowConnectionDetailsCommand, Mode=OneTime}" />
                         <Setter Target="ShowConnectionDetailsButton.RightIcon">
                             <Setter.Value>
-                                <pathicons:ChevronRight Size="Pixels24" 
-                                                        Visibility="{x:Bind ViewModel.HomeViewModel.IsConnectionDetailsPaneOpened, Converter={StaticResource NotBooleanToVisibilityConverter}}"/>
+                                <pathicons:ChevronRight Size="Pixels24"
+                                                        Visibility="{x:Bind ViewModel.HomeViewModel.IsConnectionDetailsPaneOpened, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
                             </Setter.Value>
                         </Setter>
                     </VisualState.Setters>
@@ -230,8 +230,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionCard_ChangeServer')}"
                                                TextTrimming="CharacterEllipsis" />
                                     <TextBlock Grid.Column="1"
-                                               Text="{x:Bind ViewModel.FormattedRemainingTime}"
-                                               Margin="8,0,0,0"/>
+                                               Margin="8,0,0,0"
+                                               Text="{x:Bind ViewModel.FormattedRemainingTime}" />
                                 </Grid>
                             </Setter.Value>
                         </Setter>

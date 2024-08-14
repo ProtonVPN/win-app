@@ -19,6 +19,7 @@
 
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
@@ -38,7 +39,7 @@ public class TorCountryLocationItem : CountryLocationItemBase
             ? Localizer.GetPluralFormat("Connections_SeeServers", SubItemsCount)
             : string.Empty;
 
-    protected override IFeatureIntent? FeatureIntent => new TorFeatureIntent();
+    public override IFeatureIntent? FeatureIntent => new TorFeatureIntent();
 
     public TorCountryLocationItem(
         ILocalizationProvider localizer,
@@ -47,7 +48,9 @@ public class TorCountryLocationItem : CountryLocationItemBase
         IMainViewNavigator mainViewNavigator,
         IUpsellCarouselDialogActivator upsellCarouselActivator,
         LocationItemFactory locationItemFactory,
-        string exitCountryCode)
+        string exitCountryCode,
+        ConnectionIntentKind intentKind = ConnectionIntentKind.Fastest,
+        bool excludeMyCountry = false)
         : base(localizer,
                serversLoader,
                connectionManager,
@@ -55,6 +58,8 @@ public class TorCountryLocationItem : CountryLocationItemBase
                upsellCarouselActivator,
                locationItemFactory,
                exitCountryCode,
+               intentKind,
+               excludeMyCountry,
                false)
     { }
 

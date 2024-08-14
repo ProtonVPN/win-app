@@ -34,11 +34,9 @@ namespace ProtonVPN.Client.UI.Connections.Common.Items;
 
 public abstract class CityLocationItemBase : LocationItemBase
 {
-    public string SubHeader => ShowBaseLocation
-        ? BelongsToState
-            ? $" -  {City.StateName}, {Localizer.GetCountryName(City.CountryCode)}"
-            : $" -  {Localizer.GetCountryName(City.CountryCode)}"
-        : string.Empty;
+    public string SubHeader { get; }
+
+    public string SearchableSubHeader { get; }
 
     public override string? ToolTip =>
         IsRestricted
@@ -62,7 +60,7 @@ public abstract class CityLocationItemBase : LocationItemBase
             ? Localizer.GetPluralFormat("Connections_SeeServers", SubItemsCount)
             : string.Empty;
 
-    protected override ILocationIntent LocationIntent => new CityLocationIntent(City.CountryCode, City.StateName, City.Name);
+    public override ILocationIntent LocationIntent => new CityLocationIntent(City.CountryCode, City.StateName, City.Name);
 
     protected CityLocationItemBase(
         ILocalizationProvider localizer,
@@ -83,6 +81,13 @@ public abstract class CityLocationItemBase : LocationItemBase
     {
         City = city;
         ShowBaseLocation = showBaseLocation;
+
+        SubHeader = ShowBaseLocation
+            ? BelongsToState
+                ? $" -  {City.StateName}, {Localizer.GetCountryName(City.CountryCode)}"
+                : $" -  {Localizer.GetCountryName(City.CountryCode)}"
+            : string.Empty;
+        SearchableSubHeader = SubHeader.RemoveDiacritics();
 
         FetchSubItems();
     }
@@ -105,7 +110,8 @@ public abstract class CityLocationItemBase : LocationItemBase
     public override bool MatchesSearchQuery(string searchQuery)
     {
         return base.MatchesSearchQuery(searchQuery)
-            || SubHeader.ContainsIgnoringCase(searchQuery);
+            || SubHeader.ContainsIgnoringCase(searchQuery)
+            || SearchableSubHeader.ContainsIgnoringCase(searchQuery);
     }
 
     protected override void OnSubItemsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)

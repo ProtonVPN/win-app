@@ -24,11 +24,13 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Profiles.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
@@ -39,9 +41,10 @@ public partial class RecentsViewModel : ViewModelBase,
     IEventMessageReceiver<LoggedInMessage>,
     IEventMessageReceiver<SettingChangedMessage>
 {
-    private readonly IRecentConnectionsProvider _recentConnectionsProvider;
+    private readonly IRecentConnectionsManager _recentConnectionsManager;
     private readonly IConnectionManager _connectionManager;
     private readonly ISettings _settings;
+    private readonly IProfilesManager _profilesManager;
 
     public bool IsRecentsComponentOpened
     {
@@ -49,21 +52,23 @@ public partial class RecentsViewModel : ViewModelBase,
         set => _settings.IsRecentsPaneOpened = value;
     }
 
-    public ObservableCollection<RecentItemViewModel> RecentConnections { get; } = new();
+    public ObservableCollection<RecentItem> RecentConnections { get; } = new();
 
     public bool HasRecentConnections => RecentConnections.Any();
 
-    public RecentsViewModel(IRecentConnectionsProvider recentConnectionsProvider,
+    public RecentsViewModel(IRecentConnectionsManager recentConnectionsManager,
         IConnectionManager connectionManager,
         ILocalizationProvider localizationProvider,
         ILogger logger,
         IIssueReporter issueReporter,
-        ISettings settings)
+        ISettings settings,
+        IProfilesManager profilesManager)
         : base(localizationProvider, logger, issueReporter)
     {
-        _recentConnectionsProvider = recentConnectionsProvider;
+        _recentConnectionsManager = recentConnectionsManager;
         _connectionManager = connectionManager;
         _settings = settings;
+        _profilesManager = profilesManager;
 
         InvalidateRecentConnections();
     }
@@ -99,11 +104,12 @@ public partial class RecentsViewModel : ViewModelBase,
     {
         RecentConnections.Clear();
 
-        IRecentConnection? mostRecentConnection = _recentConnectionsProvider.GetMostRecentConnection();
+        IRecentConnection? mostRecentConnection = _recentConnectionsManager.GetMostRecentConnection();
+        DefaultConnection defaultConnection = _settings.DefaultConnection;
 
-        foreach (IRecentConnection recentConnection in _recentConnectionsProvider.GetRecentConnections())
+        foreach (IRecentConnection recentConnection in _recentConnectionsManager.GetRecentConnections())
         {
-            if (_settings.DefaultConnection == DefaultConnection.Last)
+            if (defaultConnection.Type == DefaultConnectionType.Last)
             {
                 // Most recent connection will be displayed on the connection card instead (unless it is pinned)
                 // We also want to show all recents in case the user upgraded to a paid plan and is still connected to a free server.
@@ -117,13 +123,12 @@ public partial class RecentsViewModel : ViewModelBase,
             }
 
             RecentConnections.Add(
-                new RecentItemViewModel(
+                new RecentItem(
                     _connectionManager,
-                    _recentConnectionsProvider,
+                    _recentConnectionsManager,
                     recentConnection,
                     Localizer,
-                    Logger,
-                    IssueReporter));
+                    _profilesManager));
         }
 
         OnPropertyChanged(nameof(HasRecentConnections));

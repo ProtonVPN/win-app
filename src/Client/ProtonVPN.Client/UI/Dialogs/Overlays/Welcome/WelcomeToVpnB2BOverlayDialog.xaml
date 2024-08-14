@@ -33,12 +33,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <ContentDialog.Resources>
         <!-- NaN = Auto -->
         <x:Double x:Key="ContentDialogWidth">NaN</x:Double>
+        <x:Double x:Key="MaximumContentDialogWidth">620.0</x:Double>
         <Thickness x:Key="ContentDialogContentMargin">0,-36,0,0</Thickness>
         <Visibility x:Key="ContentDialogCloseButtonVisibility">Collapsed</Visibility>
     </ContentDialog.Resources>
 
-    <Grid MaxWidth="620"
-          RowDefinitions="Auto,*,Auto"
+    <Grid RowDefinitions="Auto,*,Auto"
           Margin="0,0,0,48">
 
         <Image Grid.Row="0"

@@ -52,9 +52,9 @@ public class GatewayLocationItem : LocationItemBase
             ? Localizer.GetPluralFormat("Connections_SeeServers", SubItemsCount)
             : string.Empty;
 
-    protected override ILocationIntent LocationIntent => new GatewayLocationIntent(Gateway);
+    public override ILocationIntent LocationIntent => new GatewayLocationIntent(Gateway);
 
-    protected override IFeatureIntent? FeatureIntent => new B2BFeatureIntent();
+    public override IFeatureIntent? FeatureIntent => new B2BFeatureIntent();
 
     public GatewayLocationItem(
         ILocalizationProvider localizer,

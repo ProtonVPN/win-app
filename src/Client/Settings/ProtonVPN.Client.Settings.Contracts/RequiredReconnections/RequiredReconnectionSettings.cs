@@ -21,8 +21,8 @@ namespace ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 
 public static class RequiredReconnectionSettings
 {
-    private static readonly IReadOnlyList<string> _settings = new List<string>()
-    {
+    private static readonly IReadOnlyList<string> _settings =
+    [
         nameof(ISettings.IsSplitTunnelingEnabled),
         nameof(ISettings.SplitTunnelingMode),
         nameof(ISettings.SplitTunnelingStandardAppsList),
@@ -35,7 +35,7 @@ public static class RequiredReconnectionSettings
 
         nameof(ISettings.IsCustomDnsServersEnabled),
         nameof(ISettings.CustomDnsServersList),
-    };
+    ];
 
     public static IReadOnlyList<string> Get()
     {

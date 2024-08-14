@@ -30,4 +30,6 @@ public class SerializableLocationIntent
     public string? GatewayName { get; set; }
     public int? FreeServerType { get; set; }
     public string? FreeServerExcludedLogicalId { get; set; }
+    public string? Kind { get; set; }
+    public bool? IsToExcludeMyCountry { get; set; }
 }

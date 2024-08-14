@@ -19,6 +19,7 @@
 
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
@@ -34,7 +35,7 @@ public class P2PCountryLocationItem : CountryLocationItemBase
 {
     public override GroupLocationType GroupType => GroupLocationType.P2PCountries;
 
-    protected override IFeatureIntent? FeatureIntent => new P2PFeatureIntent();
+    public override IFeatureIntent? FeatureIntent => new P2PFeatureIntent();
 
     public P2PCountryLocationItem(
         ILocalizationProvider localizer,
@@ -43,7 +44,9 @@ public class P2PCountryLocationItem : CountryLocationItemBase
         IMainViewNavigator mainViewNavigator,
         IUpsellCarouselDialogActivator upsellCarouselActivator,
         LocationItemFactory locationItemFactory,
-        string exitCountryCode)
+        string exitCountryCode,
+        ConnectionIntentKind intentKind = ConnectionIntentKind.Fastest,
+        bool excludeMyCountry = false)
         : base(localizer,
                serversLoader,
                connectionManager,
@@ -51,6 +54,8 @@ public class P2PCountryLocationItem : CountryLocationItemBase
                upsellCarouselActivator,
                locationItemFactory,
                exitCountryCode,
+               intentKind,
+               excludeMyCountry,
                false)
     { }
 

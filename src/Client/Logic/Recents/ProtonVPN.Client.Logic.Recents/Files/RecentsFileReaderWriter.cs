@@ -83,7 +83,8 @@ public class RecentsFileReaderWriter : IRecentsFileReaderWriter
         _logger.Info<AppLog>("Writing recent connections file.");
 
         List<SerializableRecentConnection> serializableRecentConnections =
-            _entityMapper.Map<IRecentConnection, SerializableRecentConnection>(recentConnections);
+            _entityMapper.Map<IRecentConnection, SerializableRecentConnection>(recentConnections)
+                .Where(r => r != null).ToList();
 
         FileOperationResult result = _userFileReaderWriter.Write(serializableRecentConnections, _fileReaderWriterParameters);
 

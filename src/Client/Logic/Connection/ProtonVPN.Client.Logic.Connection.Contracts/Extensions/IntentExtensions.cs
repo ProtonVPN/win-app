@@ -17,8 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Common.Extensions;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
 
@@ -42,5 +44,21 @@ public static class IntentExtensions
     public static int GetServerNumber(this GatewayServerLocationIntent serverIntent)
     {
         return serverIntent.Name.GetServerNumber();
+    }
+
+    public static FlagType GetFlagType(this ILocationIntent? locationIntent)
+    {
+        return locationIntent switch
+        {
+            GatewayLocationIntent gatewayIntent => FlagType.Gateway,
+            CountryLocationIntent countryIntent when countryIntent.IsSpecificCountry => FlagType.Country,
+            CountryLocationIntent countryIntent when countryIntent.IsGenericRandomIntent() => FlagType.Random,
+            _ => FlagType.Fastest,
+        };
+    }
+
+    public static FlagType GetFlagType(this IConnectionIntent? connectionIntent)
+    {
+        return GetFlagType(connectionIntent?.Location);
     }
 }

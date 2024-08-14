@@ -34,12 +34,12 @@ public class ConnectionCardViewModel : ConnectionCardViewModelBase,
     IEventMessageReceiver<RecentConnectionsChanged>,
     IEventMessageReceiver<SettingChangedMessage>
 {
-    private readonly IRecentConnectionsProvider _recentConnectionsProvider;
+    private readonly IRecentConnectionsManager _recentConnectionsManager;
     private readonly ISettings _settings;
 
     public ConnectionCardViewModel(
         IConnectionManager connectionManager,
-        IRecentConnectionsProvider recentConnectionsProvider,
+        IRecentConnectionsManager recentConnectionsManager,
         ILocalizationProvider localizationProvider,
         ILogger logger,
         IIssueReporter issueReporter,
@@ -47,7 +47,7 @@ public class ConnectionCardViewModel : ConnectionCardViewModelBase,
         HomeViewModel homeViewModel)
         : base(connectionManager, localizationProvider, logger, issueReporter, homeViewModel)
     {
-        _recentConnectionsProvider = recentConnectionsProvider;
+        _recentConnectionsManager = recentConnectionsManager;
         _settings = settings;
 
         InvalidateCurrentConnectionStatus();
@@ -77,7 +77,10 @@ public class ConnectionCardViewModel : ConnectionCardViewModelBase,
         IConnectionIntent? currentConnectionIntent = ConnectionManager.CurrentConnectionIntent;
 
         CurrentConnectionIntent = ConnectionManager.IsDisconnected || currentConnectionIntent == null
-            ? _recentConnectionsProvider.GetDefaultConnection()
+            ? _recentConnectionsManager.GetDefaultConnection()
             : currentConnectionIntent;
+
+        // If intent is a profile, the reference might be the same even though profile details/settings have changed. Force invalidating all properties.
+        InvalidateAllProperties();
     }
 }

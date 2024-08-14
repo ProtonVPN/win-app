@@ -32,8 +32,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_ConnectionCard_Landmark')}"
              mc:Ignorable="d">
 
-    <StackPanel Orientation="Vertical"
-                Padding="{StaticResource HomePageContentPadding}"
+    <StackPanel Padding="{StaticResource HomePageContentPadding}"
+                Orientation="Vertical"
                 Spacing="12">
         <Grid ColumnSpacing="12">
             <Grid.ColumnDefinitions>
@@ -42,17 +42,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0"
+                       VerticalAlignment="Center"
                        AutomationProperties.AutomationId="ConnectionCardHeaderLabel"
                        Foreground="{ThemeResource TextWeakColorBrush}"
                        Style="{StaticResource BodyTextBlockStyle}"
                        TabIndex="1"
-                       Text="{x:Bind ViewModel.Header}" 
-                       VerticalAlignment="Center" />
+                       Text="{x:Bind ViewModel.Header}" />
 
             <help:HelpComponent Grid.Column="1"
-                                TabIndex="6"
                                 Margin="0,-5,0,-3"
-                                VerticalAlignment="Center" />
+                                VerticalAlignment="Center"
+                                TabIndex="6" />
         </Grid>
 
         <Grid MinHeight="72"
@@ -77,14 +77,27 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 TabIndex="2"
                                 ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Show')}">
                 <toolkit:DockPanel>
-                    <controls:CountryFlagControl Width="36"
-                                                 Margin="4,0,0,0"
-                                                 VerticalAlignment="Top"
-                                                 toolkit:DockPanel.Dock="Left"
-                                                 EntryCountryCode="{x:Bind ViewModel.EntryCountry}"
-                                                 ExitCountryCode="{x:Bind ViewModel.ExitCountry}"
-                                                 IsGateway="{x:Bind ViewModel.IsB2B}"
-                                                 IsSecureCore="{x:Bind ViewModel.IsSecureCore}" />
+
+                    <Grid x:Name="FlagContainer"
+                          VerticalAlignment="Top"
+                          toolkit:DockPanel.Dock="Left">
+
+                        <custom:ComplexCountryFlag Width="36"
+                                                   EntryCountryCode="{x:Bind ViewModel.EntryCountry}"
+                                                   ExitCountryCode="{x:Bind ViewModel.ExitCountry}"
+                                                   IsSecureCore="{x:Bind ViewModel.IsSecureCore}"
+                                                   MainFlagType="{x:Bind ViewModel.FlagType}"
+                                                   Visibility="{x:Bind ViewModel.IsProfileIntent, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+
+                        <custom:ConnectionProfileIcon Width="44"
+                                                      CountryCode="{x:Bind ViewModel.ExitCountry}"
+                                                      FlagType="{x:Bind ViewModel.FlagType}"
+                                                      IsFlagVisible="True"
+                                                      ProfileCategory="{x:Bind ViewModel.Profile.Category}"
+                                                      ProfileColor="{x:Bind ViewModel.Profile.Color}"
+                                                      Visibility="{x:Bind ViewModel.IsProfileIntent, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    </Grid>
+
                     <StackPanel Margin="12,0,0,0"
                                 Orientation="Vertical"
                                 Spacing="4">
@@ -175,8 +188,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <VisualState.Setters>
                         <Setter Target="ShowConnectionDetailsButton.RightIcon">
                             <Setter.Value>
-                                <pathicons:ChevronRight Size="Pixels24" 
-                                                        Visibility="{x:Bind ViewModel.HomeViewModel.IsConnectionDetailsPaneOpened, Converter={StaticResource NotBooleanToVisibilityConverter}}"/>
+                                <pathicons:ChevronRight Size="Pixels24"
+                                                        Visibility="{x:Bind ViewModel.HomeViewModel.IsConnectionDetailsPaneOpened, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
                             </Setter.Value>
                         </Setter>
                     </VisualState.Setters>

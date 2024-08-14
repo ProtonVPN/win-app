@@ -22,7 +22,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:common="using:ProtonVPN.Client.UI.Connections.Common.Controls"
-             xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
              xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:map="using:ProtonVPN.Client.UI.Home.Map"
@@ -62,20 +61,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    Style="{StaticResource MainPageContentControlStyle}">
 
             <custom:PageContentControl.PageHeader>
-                <Grid ColumnSpacing="12"
-                      Margin="0,8,0,0">
+                <Grid Margin="0,8,0,0"
+                      ColumnSpacing="12">
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    
-                    <controls:CountryFlagControl Grid.Column="0"
-                                                 Width="30"
-                                                 Height="20"
-                                                 Margin="0,4,0,0"
-                                                 VerticalAlignment="Top"
-                                                 ExitCountryCode="{x:Bind ViewModel.CountryCode}" />
+
+                    <custom:SimpleCountryFlag Grid.Column="0"
+                                              Width="30"
+                                              Margin="0,4,0,0"
+                                              VerticalAlignment="Top"
+                                              CountryCode="{x:Bind ViewModel.CountryCode}"
+                                              FlagType="Country" />
+
                     <TextBlock Grid.Column="1"
                                VerticalAlignment="Top"
                                Style="{StaticResource SubtitleTextBlockStyle}"

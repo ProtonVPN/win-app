@@ -17,9 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 
 public interface IFeatureIntent : IIntent
 {
     bool IsSameAs(IFeatureIntent? intent);
+
+    IEnumerable<Server> FilterServers(IEnumerable<Server> servers);
+
+    bool IsSupported(Server server);
 }

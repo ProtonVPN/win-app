@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<base:ProfileIconUserControl x:Class="ProtonVPN.Client.Common.UI.Assets.Icons.Profiles.BusinessProfileIcon"
+                             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                             xmlns:base="using:ProtonVPN.Client.Common.UI.Assets.Icons.Base"
+                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                             xmlns:local="using:ProtonVPN.Client.Common.UI.Assets.Icons.Profiles"
+                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                             x:DefaultBindMode="OneWay"
+                             mc:Ignorable="d">
+
+    <UserControl.Resources>
+
+        <LinearGradientBrush x:Key="gradient_brush_black" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="0,1">
+            <LinearGradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Offset="0.6" Color="#00000000" />
+                    <GradientStop Offset="1" Color="#40000000" />
+                </GradientStopCollection>
+            </LinearGradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="gradient_brush_white" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="0.2,1">
+            <LinearGradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="#90FFFFFF" />
+                    <GradientStop Offset="0.8" Color="#00FFFFFF" />
+                </GradientStopCollection>
+            </LinearGradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="gradient_brush_white_black" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="0,0.6">
+            <LinearGradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Offset="0" Color="#60FFFFFF" />
+                    <GradientStop Offset="0.4" Color="#00FFFFFF" />
+                    <GradientStop Offset="0.4" Color="#00000000" />
+                    <GradientStop Offset="1" Color="#A0000000" />
+                </GradientStopCollection>
+            </LinearGradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="gradient_brush_white_black_2" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="0,1">
+            <LinearGradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Offset="0" Color="#30FFFFFF" />
+                    <GradientStop Offset="0.2" Color="#00FFFFFF" />
+                    <GradientStop Offset="0.2" Color="#00000000" />
+                    <GradientStop Offset="1" Color="#40000000" />
+                </GradientStopCollection>
+            </LinearGradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+    </UserControl.Resources>
+
+    <Viewbox Stretch="{x:Bind Stretch}">
+        <Canvas Width="36"
+                Height="24">
+            <Path Data="M23 2H13C12.4477 2 12 2.44772 12 3V5C12 5.55228 12.4477 6 13 6H23C23.5523 6 24 5.55228 24 5V3C24 2.44772 23.5523 2 23 2ZM13 0C11.3431 0 10 1.34315 10 3V5C10 6.65685 11.3431 8 13 8H23C24.6569 8 26 6.65685 26 5V3C26 1.34315 24.6569 0 23 0H13Z"
+                  Fill="{x:Bind AccentColor, Converter={StaticResource ProfileColorToBrushConverter}}" />
+            <Path Data="M23 2H13C12.4477 2 12 2.44772 12 3V5C12 5.55228 12.4477 6 13 6H23C23.5523 6 24 5.55228 24 5V3C24 2.44772 23.5523 2 23 2ZM13 0C11.3431 0 10 1.34315 10 3V5C10 6.65685 11.3431 8 13 8H23C24.6569 8 26 6.65685 26 5V3C26 1.34315 24.6569 0 23 0H13Z"
+                  Fill="{StaticResource gradient_brush_white_black}" />
+            <Rectangle Canvas.Left="2"
+                       Canvas.Top="5"
+                       Width="32"
+                       Height="19"
+                       Fill="{x:Bind AccentColor, Converter={StaticResource ProfileColorToBrushConverter}}"
+                       RadiusX="3"
+                       RadiusY="3" />
+            <Rectangle Canvas.Left="2"
+                       Canvas.Top="5"
+                       Width="32"
+                       Height="19"
+                       Fill="{StaticResource gradient_brush_black}"
+                       RadiusX="3"
+                       RadiusY="3" />
+            <Rectangle Canvas.Left="2"
+                       Canvas.Top="5"
+                       Width="32"
+                       Height="19"
+                       Fill="{StaticResource gradient_brush_white}"
+                       RadiusX="3"
+                       RadiusY="3" />
+
+            <Path Data="M2 7C2 5.89543 2.89543 5 4 5H32C33.1046 5 34 5.89543 34 7V10L25.7247 13.1032C20.7442 14.9709 15.2558 14.9709 10.2753 13.1032L2 10V7Z"
+                  Fill="{x:Bind AccentColor, Converter={StaticResource ProfileColorToBrushConverter}}" />
+            <Path Data="M2 7C2 5.89543 2.89543 5 4 5H32C33.1046 5 34 5.89543 34 7V10L25.7247 13.1032C20.7442 14.9709 15.2558 14.9709 10.2753 13.1032L2 10V7Z"
+                  Fill="{StaticResource gradient_brush_white_black_2}" />
+
+            <Rectangle Canvas.Left="15"
+                       Canvas.Top="13"
+                       Width="6"
+                       Height="4"
+                       Fill="white"
+                       RadiusX="1"
+                       RadiusY="1" />
+
+        </Canvas>
+    </Viewbox>
+</base:ProfileIconUserControl>

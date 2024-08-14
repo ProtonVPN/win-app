@@ -38,8 +38,6 @@ public interface IViewNavigator
 
     Task<bool> GoBackAsync(bool forceNavigation = false);
 
-    Task<bool> NavigateToAsync(string pageKey, object? parameter = null, bool clearNavigation = false, bool forceNavigation = false);
-
     Task<bool> NavigateToAsync<TPageViewModel>(object? parameter = null, bool clearNavigation = false, bool forceNavigation = false)
         where TPageViewModel : PageViewModelBase;
 

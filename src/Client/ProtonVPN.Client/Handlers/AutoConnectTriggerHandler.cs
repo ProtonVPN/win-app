@@ -39,7 +39,7 @@ public class AutoConnectTriggerHandler : IHandler,
     IEventMessageReceiver<ConnectionStatusChanged>
 {
     private readonly IConnectionManager _connectionManager;
-    private readonly IRecentConnectionsProvider _recentConnectionsProvider;
+    private readonly IRecentConnectionsManager _recentConnectionsManager;
     private readonly ISettings _settings;
     private readonly IServersLoader _serversLoader;
     private readonly IUserAuthenticator _userAuthenticator;
@@ -52,13 +52,13 @@ public class AutoConnectTriggerHandler : IHandler,
 
     public AutoConnectTriggerHandler(
         IConnectionManager connectionManager,
-        IRecentConnectionsProvider recentConnectionsProvider,
+        IRecentConnectionsManager recentConnectionsManager,
         ISettings settings,
         IServersLoader serversLoader,
         IUserAuthenticator userAuthenticator)
     {
         _connectionManager = connectionManager;
-        _recentConnectionsProvider = recentConnectionsProvider;
+        _recentConnectionsManager = recentConnectionsManager;
         _settings = settings;
         _serversLoader = serversLoader;
         _userAuthenticator = userAuthenticator;
@@ -114,7 +114,7 @@ public class AutoConnectTriggerHandler : IHandler,
 
     private async Task AutoConnectAsync()
     {
-        IConnectionIntent defaultConnectionIntent = _recentConnectionsProvider.GetDefaultConnection();
+        IConnectionIntent defaultConnectionIntent = _recentConnectionsManager.GetDefaultConnection();
 
         await _connectionManager.ConnectAsync(defaultConnectionIntent);
     }

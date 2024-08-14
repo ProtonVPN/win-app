@@ -17,10 +17,21 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Client.Settings.Contracts.Models;
+
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
 public abstract class LocationIntentBase : IntentBase, ILocationIntent
 {
+    public ConnectionIntentKind Kind { get; }
+
+    protected LocationIntentBase(ConnectionIntentKind kind = ConnectionIntentKind.Fastest)
+    {
+        Kind = kind;
+    }
+
     public virtual bool IsSameAs(ILocationIntent? intent)
     {
         if (intent == null)
@@ -30,4 +41,13 @@ public abstract class LocationIntentBase : IntentBase, ILocationIntent
 
         return GetType() == intent.GetType();
     }
+
+    public IEnumerable<Server> FilterServers(IEnumerable<Server> servers, DeviceLocation? deviceLocation)
+    {
+        return servers.Where(s => IsSupported(s, deviceLocation));
+    }
+
+    public abstract bool IsSupported(Server server, DeviceLocation? deviceLocation);
+
+    public abstract bool IsGenericRandomIntent();
 }
