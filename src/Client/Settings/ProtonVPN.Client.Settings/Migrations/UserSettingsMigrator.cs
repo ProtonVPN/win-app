@@ -162,6 +162,8 @@ public class UserSettingsMigrator : IUserSettingsMigrator
         MigrateVpnProtocol(userSettings);
 
         MigrateProfilesAndQuickConnectProfileId(userSettings);
+
+        SetWelcomeOverlaysAsDisplayed();
     }
 
     private void MigrateConnectionKeyPair(Dictionary<string, string?> userSettings)
@@ -288,5 +290,11 @@ public class UserSettingsMigrator : IUserSettingsMigrator
             {
             }
         }
+    }
+
+    private void SetWelcomeOverlaysAsDisplayed()
+    {
+        _settings.WasWelcomeOverlayDisplayed = true;
+        _settings.WasWelcomeB2BOverlayDisplayed = true;
     }
 }

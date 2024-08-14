@@ -51,7 +51,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <ScrollViewer Grid.Row="1"
                       HorizontalAlignment="Center"
-                      Margin="120,0,110,0">
+                      Margin="110,0,110,0">
             <StackPanel Spacing="24">
 
                 <StackPanel Spacing="8">
@@ -114,7 +114,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </ScrollViewer>
 
         <Button Grid.Row="2"
-                Margin="124,0,134,0"
+                Margin="124,0,124,0"
                 Style="{StaticResource PrimaryButtonStyle}"
                 HorizontalAlignment="Stretch"
                 Command="{x:Bind ViewModel.CloseOverlayCommand, Mode=OneTime}"
