@@ -74,6 +74,13 @@ public class ComplexCountryFlag : Control
         set => SetValue(IsCompactProperty, value);
     }
 
+    protected override void OnApplyTemplate()
+    {
+        base.OnApplyTemplate();
+
+        InvalidateFlagsLayoutVisualState();
+    }
+
     private static void OnMainFlagTypePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is ComplexCountryFlag control)
