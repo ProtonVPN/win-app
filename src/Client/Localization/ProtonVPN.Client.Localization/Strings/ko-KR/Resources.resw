@@ -146,12 +146,18 @@
   <data name="Common_Actions_ContactUs">
     <value>문의</value>
   </data>
+  <data name="Common_Actions_Delete">
+    <value>Delete</value>
+  </data>
   <data name="Common_Actions_Disconnect">
     <value>연결 해제</value>
   </data>
   <data name="Common_Actions_DisconnectFrom">
     <value>{0}에서 연결 해제</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
+  <data name="Common_Actions_Edit">
+    <value>Edit</value>
   </data>
   <data name="Common_Actions_Enable">
     <value>활성화</value>
@@ -168,6 +174,15 @@
   <data name="Common_Actions_Upgrade">
     <value>업그레이드</value>
   </data>
+  <data name="Common_Confirmation_KillSwitch_Message">
+    <value>**Advanced kill switch is enabled.** To use the internet without VPN, disable advanced kill switch.</value>
+  </data>
+  <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
+    <value>**Advanced kill switch is enabled.** If you continue, you will be disconnected from the internet.</value>
+  </data>
+  <data name="Common_Confirmation_YouWillBeDisconnected_Message">
+    <value>You'll be disconnected from VPN.</value>
+  </data>
   <data name="Common_Links_LearnMore">
     <value>더 알아보기</value>
   </data>
@@ -183,11 +198,18 @@
   <data name="Common_States_Updating">
     <value>업데이트 중...</value>
   </data>
+  <data name="Connection_Error_EditProfile">
+    <value>Edit profile</value>
+  </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN이 네트워크 문제로 인해 인증서를 불러오지 못했습니다.</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>현재 선택 가능한 서버가 없습니다. 다른 옵션을 선택하세요.</value>
+  </data>
+  <data name="Connection_Error_NoServers_Profile">
+    <value>Your server selection for '{0}' is unavailable. Select a different server or try again later.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>네트워크 어댑터가 없습니다.</value>
@@ -209,6 +231,9 @@
   </data>
   <data name="Connection_Error_TapRequiresUpdate">
     <value>네트워크 어댑터 드라이버 버전이 오래되었습니다.</value>
+  </data>
+  <data name="Connection_Error_Title">
+    <value>Connection failed</value>
   </data>
   <data name="Connection_Error_TlsCertificate">
     <value>VPN 서버 인증서의 유효성을 검사하는 데 문제가 있으며, 이는 네트워크 연결이 변조되었거나 연결하려는 서버에 구성 문제가 있음을 나타낼 수 있습니다. 문제 보고서를 보내서 지원팀의 도움을 받으실 수 있습니다.</value>
@@ -241,6 +266,9 @@
   <data name="Connections_Cities_Other">
     <value>도시 ({0})</value>
   </data>
+  <data name="Connections_City">
+    <value>City</value>
+  </data>
   <data name="Connections_City_Restricted">
     <value>이 도시의 서버는 VPN Plus로 사용 가능합니다.</value>
   </data>
@@ -250,14 +278,26 @@
   <data name="Connections_Countries_Other">
     <value>국가 ({0})</value>
   </data>
+  <data name="Connections_Country">
+    <value>Country</value>
+  </data>
+  <data name="Connections_Country_Middle">
+    <value>Middle country</value>
+  </data>
   <data name="Connections_Country_Restricted">
     <value>이 국가의 서버는 VPN Plus로 사용 가능합니다.</value>
   </data>
   <data name="Connections_Country_UnderMaintenance">
     <value>이 국가 내의 모든 서버는 유지 보수 상태입니다.</value>
   </data>
+  <data name="Connections_Fastest">
+    <value>Fastest</value>
+  </data>
   <data name="Connections_Free_Servers_Other">
     <value>Free 서버 ({0})</value>
+  </data>
+  <data name="Connections_Gateway">
+    <value>Gateway</value>
   </data>
   <data name="Connections_Gateway_Restricted">
     <value>이 게이트웨이의 서버는 VPN Plus로 사용 가능합니다.</value>
@@ -267,6 +307,9 @@
   </data>
   <data name="Connections_Gateways_Other">
     <value>게이트웨이 ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Server">
+    <value>Dedicated server</value>
   </data>
   <data name="Connections_Gateways_Servers_Other">
     <value>전용 서버 ({0})</value>
@@ -283,6 +326,46 @@
   <data name="Connections_P2P_States_Other">
     <value>P2P 도시 ({0})</value>
   </data>
+  <data name="Connections_Profiles_Other">
+    <value>Profiles ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Create">
+    <value>Create profile</value>
+    <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
+  </data>
+  <data name="Connections_Profiles_Delete">
+    <value>Delete profile</value>
+  </data>
+  <data name="Connections_Profiles_Delete_Message">
+    <value>'{0}' will be permanently removed.</value>
+    <comment>{0} is a placeholder for the name of the profile.</comment>
+  </data>
+  <data name="Connections_Profiles_Delete_Title">
+    <value>Delete profile?</value>
+  </data>
+  <data name="Connections_Profiles_Empty_Description">
+    <value>Profiles are saved connections with your choice of location, server, and protocol.</value>
+  </data>
+  <data name="Connections_Profiles_Empty_Title">
+    <value>Create your first profile</value>
+  </data>
+  <data name="Connections_Profiles_Name">
+    <value>Profile name</value>
+  </data>
+  <data name="Connections_Profiles_New">
+    <value>New profile</value>
+    <comment>"New profile" is more appropriate when you already have a profile</comment>
+  </data>
+  <data name="Connections_Profiles_NotAvailable_Tooltip">
+    <value>Profiles are available with VPN Plus</value>
+    <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
+  </data>
+  <data name="Connections_Profiles_Save">
+    <value>Save profile</value>
+  </data>
+  <data name="Connections_Random">
+    <value>Random</value>
+  </data>
   <data name="Connections_SecureCore_Countries_Other">
     <value>Secure Core 도시 ({0})</value>
   </data>
@@ -298,6 +381,9 @@
   <data name="Connections_SeeStates_Other">
     <value>도시 보기 ({0})</value>
   </data>
+  <data name="Connections_Server">
+    <value>Server</value>
+  </data>
   <data name="Connections_Server_Restricted">
     <value>VPN Plus에서 사용할 수 있는 서버입니다</value>
   </data>
@@ -306,6 +392,9 @@
   </data>
   <data name="Connections_Servers_Other">
     <value>서버 ({0})</value>
+  </data>
+  <data name="Connections_State">
+    <value>State</value>
   </data>
   <data name="Connections_State_Restricted">
     <value>이 국가에 위치한 서버는 VPN Plus로 사용 가능합니다.</value>
@@ -434,6 +523,15 @@
   </data>
   <data name="Country_Fastest">
     <value>가장 빠른 국가</value>
+  </data>
+  <data name="Country_Fastest_ExcludingMyCountry">
+    <value>Fastest (excluding my country)</value>
+  </data>
+  <data name="Country_Random">
+    <value>Random country</value>
+  </data>
+  <data name="Country_Random_ExcludingMyCountry">
+    <value>Random (excluding my country)</value>
   </data>
   <data name="Country_val_AD">
     <value>안도라</value>
@@ -1332,7 +1430,7 @@
     <comment>The name of TO country</comment>
   </data>
   <data name="Country_val_TR">
-    <value>터키</value>
+    <value>Türkiye</value>
     <comment>The name of TR country</comment>
   </data>
   <data name="Country_val_TT">
@@ -1739,9 +1837,6 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   <data name="Dialogs_Welcome_Title">
     <value>Proton VPN에 오신 것을 환영합니다</value>
   </data>
-  <data name="Exit_Confirmation_Message">
-    <value>VPN 연결이 끊어질 것입니다.</value>
-  </data>
   <data name="Exit_Confirmation_Title">
     <value>Proton VPN을 종료합니까?</value>
   </data>
@@ -1782,6 +1877,10 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   <data name="Format_Size_Terabytes">
     <value>{0} TB</value>
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
+  </data>
+  <data name="Format_SpeedUnit">
+    <value>Speed {0}</value>
+    <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
     <value>{0} B/초</value>
@@ -1868,9 +1967,6 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   </data>
   <data name="Home_Account_SignOut">
     <value>로그아웃</value>
-  </data>
-  <data name="Home_Account_SignOut_Confirmation_Message">
-    <value>VPN 연결이 끊어질 것입니다.</value>
   </data>
   <data name="Home_Account_SignOut_Confirmation_Title">
     <value>{0}에서 로그아웃하시겠어요?</value>
@@ -2182,11 +2278,26 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   <data name="Notifications_SubscriptionExpired_Description_Connected">
     <value>사용자의 플랜이 Proton Free로 다운그레이드되었습니다. 가장 빠른 무료 서버로 재연결 중입니다.</value>
   </data>
+  <data name="Profiles_Page_Description">
+    <value>Configure your own VPN settings and connect in one click.</value>
+  </data>
+  <data name="Profiles_Page_Title">
+    <value>Profiles</value>
+  </data>
   <data name="Server_Fastest_Free">
     <value>가장 빠른 무료 서버</value>
   </data>
+  <data name="Server_Feature_B2B">
+    <value>Gateways</value>
+  </data>
+  <data name="Server_Feature_None">
+    <value>All countries</value>
+  </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
+  </data>
+  <data name="Server_Feature_SecureCore">
+    <value>Secure Core</value>
   </data>
   <data name="Server_Feature_Tor">
     <value>Tor</value>
@@ -2346,6 +2457,19 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   </data>
   <data name="Settings_Connection_Protocol">
     <value>프로토콜</value>
+  </data>
+  <data name="Settings_Connection_Protocol_NavigationFailed_Action">
+    <value>Go to profiles</value>
+  </data>
+  <data name="Settings_Connection_Protocol_NavigationFailed_Message">
+    <value>You’re currently connected to a VPN profile. 
+
+• To change the protocol for this connection, disconnect then edit your profile.
+
+• To change your protocol for other VPN connections, you’ll need to disconnect from your profile first.</value>
+  </data>
+  <data name="Settings_Connection_Protocol_NavigationFailed_Title">
+    <value>Change protocol in profiles</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
@@ -2594,7 +2718,7 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
     <value>속도 (UDP)</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Description">
-    <value>빠르고, 안전하며 효율적입니다. WireGuard는 탐지하고 차단하기 어렵습니다.</value>
+    <value>State-of-the-art protocol for security and performance.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Title">
     <value>WireGuard</value>
@@ -2607,7 +2731,7 @@ Stealth는 Proton VPN만의 기능입니다.</value>
     <value>Stealth</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
-    <value>빠르고, 안전하며 효율적입니다. WireGuard는 다른 프로토콜보다 배터리 효율이 좋습니다.</value>
+    <value>State-of-the-art protocol for security and performance.</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>
@@ -2694,6 +2818,34 @@ Stealth는 Proton VPN만의 기능입니다.</value>
   <data name="Tray_Actions_OpenApplication">
     <value>{0} 열기</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Unit_BytesPerSecond">
+    <value>B/s</value>
+    <comment>Unit for Bytes per second</comment>
+  </data>
+  <data name="Unit_ExabytesPerSecond">
+    <value>EB/s</value>
+    <comment>Unit for Exabytes per second</comment>
+  </data>
+  <data name="Unit_GigabytesPerSecond">
+    <value>GB/s</value>
+    <comment>Unit for Gigabytes per second</comment>
+  </data>
+  <data name="Unit_KilobytesPerSecond">
+    <value>KB/s</value>
+    <comment>Unit for Kilobytes per second</comment>
+  </data>
+  <data name="Unit_MegabytesPerSecond">
+    <value>MB/s</value>
+    <comment>Unit for Megabytes per second</comment>
+  </data>
+  <data name="Unit_PetabytesPerSecond">
+    <value>PB/s</value>
+    <comment>Unit for Petabytes per second</comment>
+  </data>
+  <data name="Unit_TerabytesPerSecond">
+    <value>TB/s</value>
+    <comment>Unit for Terabytes per second</comment>
   </data>
   <data name="UpsellBanner_NetShield_Description">
     <value>웹사이트 및 앱에서 광고, 트래커와 멀웨어를 차단하세요</value>

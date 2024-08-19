@@ -146,12 +146,18 @@
   <data name="Common_Actions_ContactUs">
     <value>聯絡我們</value>
   </data>
+  <data name="Common_Actions_Delete">
+    <value>Delete</value>
+  </data>
   <data name="Common_Actions_Disconnect">
     <value>中斷連線</value>
   </data>
   <data name="Common_Actions_DisconnectFrom">
     <value>與 {0} 中斷連線</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
+  <data name="Common_Actions_Edit">
+    <value>Edit</value>
   </data>
   <data name="Common_Actions_Enable">
     <value>啟用</value>
@@ -168,6 +174,15 @@
   <data name="Common_Actions_Upgrade">
     <value>升級</value>
   </data>
+  <data name="Common_Confirmation_KillSwitch_Message">
+    <value>**Advanced kill switch is enabled.** To use the internet without VPN, disable advanced kill switch.</value>
+  </data>
+  <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
+    <value>**Advanced kill switch is enabled.** If you continue, you will be disconnected from the internet.</value>
+  </data>
+  <data name="Common_Confirmation_YouWillBeDisconnected_Message">
+    <value>You'll be disconnected from VPN.</value>
+  </data>
   <data name="Common_Links_LearnMore">
     <value>了解更多</value>
   </data>
@@ -183,11 +198,18 @@
   <data name="Common_States_Updating">
     <value>正在更新...</value>
   </data>
+  <data name="Connection_Error_EditProfile">
+    <value>Edit profile</value>
+  </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>由於網路問題，Proton VPN 提取認證憑證失敗。</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>目前沒有伺服器可供選擇，請選擇其他選項。</value>
+  </data>
+  <data name="Connection_Error_NoServers_Profile">
+    <value>Your server selection for '{0}' is unavailable. Select a different server or try again later.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>網路介面卡遺失。</value>
@@ -209,6 +231,9 @@
   </data>
   <data name="Connection_Error_TapRequiresUpdate">
     <value>網路介面卡版本已過時。</value>
+  </data>
+  <data name="Connection_Error_Title">
+    <value>Connection failed</value>
   </data>
   <data name="Connection_Error_TlsCertificate">
     <value>驗證 VPN 伺服器憑證時發生問題。這可能表示網路連線遭遇竄改，或是您想連線的伺服器配置有問題。請提交問題回報並聯繫我們的客服團隊。</value>
@@ -241,6 +266,9 @@
   <data name="Connections_Cities_Other">
     <value>城市 ({0})</value>
   </data>
+  <data name="Connections_City">
+    <value>City</value>
+  </data>
   <data name="Connections_City_Restricted">
     <value>Servers in this city are available with VPN Plus</value>
   </data>
@@ -250,14 +278,26 @@
   <data name="Connections_Countries_Other">
     <value>國家 ({0})</value>
   </data>
+  <data name="Connections_Country">
+    <value>Country</value>
+  </data>
+  <data name="Connections_Country_Middle">
+    <value>Middle country</value>
+  </data>
   <data name="Connections_Country_Restricted">
     <value>Servers in this country are available with VPN Plus</value>
   </data>
   <data name="Connections_Country_UnderMaintenance">
     <value>此國家所有伺服器俱在維護中</value>
   </data>
+  <data name="Connections_Fastest">
+    <value>Fastest</value>
+  </data>
   <data name="Connections_Free_Servers_Other">
     <value>Free 伺服器 ({0} 個)</value>
+  </data>
+  <data name="Connections_Gateway">
+    <value>Gateway</value>
   </data>
   <data name="Connections_Gateway_Restricted">
     <value>Servers in this gateway are available with VPN Plus</value>
@@ -267,6 +307,9 @@
   </data>
   <data name="Connections_Gateways_Other">
     <value>Gateways ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Server">
+    <value>Dedicated server</value>
   </data>
   <data name="Connections_Gateways_Servers_Other">
     <value>Dedicated servers ({0})</value>
@@ -283,6 +326,46 @@
   <data name="Connections_P2P_States_Other">
     <value>P2P州 ({0})</value>
   </data>
+  <data name="Connections_Profiles_Other">
+    <value>Profiles ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Create">
+    <value>Create profile</value>
+    <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
+  </data>
+  <data name="Connections_Profiles_Delete">
+    <value>Delete profile</value>
+  </data>
+  <data name="Connections_Profiles_Delete_Message">
+    <value>'{0}' will be permanently removed.</value>
+    <comment>{0} is a placeholder for the name of the profile.</comment>
+  </data>
+  <data name="Connections_Profiles_Delete_Title">
+    <value>Delete profile?</value>
+  </data>
+  <data name="Connections_Profiles_Empty_Description">
+    <value>Profiles are saved connections with your choice of location, server, and protocol.</value>
+  </data>
+  <data name="Connections_Profiles_Empty_Title">
+    <value>Create your first profile</value>
+  </data>
+  <data name="Connections_Profiles_Name">
+    <value>Profile name</value>
+  </data>
+  <data name="Connections_Profiles_New">
+    <value>New profile</value>
+    <comment>"New profile" is more appropriate when you already have a profile</comment>
+  </data>
+  <data name="Connections_Profiles_NotAvailable_Tooltip">
+    <value>Profiles are available with VPN Plus</value>
+    <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
+  </data>
+  <data name="Connections_Profiles_Save">
+    <value>Save profile</value>
+  </data>
+  <data name="Connections_Random">
+    <value>Random</value>
+  </data>
   <data name="Connections_SecureCore_Countries_Other">
     <value>雙重路由國家/地區 ({0})</value>
   </data>
@@ -298,6 +381,9 @@
   <data name="Connections_SeeStates_Other">
     <value>See states ({0})</value>
   </data>
+  <data name="Connections_Server">
+    <value>Server</value>
+  </data>
   <data name="Connections_Server_Restricted">
     <value>Server available with VPN Plus</value>
   </data>
@@ -306,6 +392,9 @@
   </data>
   <data name="Connections_Servers_Other">
     <value>伺服器 ({0})</value>
+  </data>
+  <data name="Connections_State">
+    <value>State</value>
   </data>
   <data name="Connections_State_Restricted">
     <value>Servers in this state are available with VPN Plus.</value>
@@ -434,6 +523,15 @@
   </data>
   <data name="Country_Fastest">
     <value>最快的國家</value>
+  </data>
+  <data name="Country_Fastest_ExcludingMyCountry">
+    <value>Fastest (excluding my country)</value>
+  </data>
+  <data name="Country_Random">
+    <value>Random country</value>
+  </data>
+  <data name="Country_Random_ExcludingMyCountry">
+    <value>Random (excluding my country)</value>
   </data>
   <data name="Country_val_AD">
     <value>安道爾</value>
@@ -1332,7 +1430,7 @@
     <comment>The name of TO country</comment>
   </data>
   <data name="Country_val_TR">
-    <value>土耳其</value>
+    <value>Türkiye</value>
     <comment>The name of TR country</comment>
   </data>
   <data name="Country_val_TT">
@@ -1739,9 +1837,6 @@ Enjoy the best of Proton privacy.</value>
   <data name="Dialogs_Welcome_Title">
     <value>歡迎使用 Proton VPN</value>
   </data>
-  <data name="Exit_Confirmation_Message">
-    <value>這將會中斷與 VPN 的連線。</value>
-  </data>
   <data name="Exit_Confirmation_Title">
     <value>Exit Proton VPN?</value>
   </data>
@@ -1782,6 +1877,10 @@ Enjoy the best of Proton privacy.</value>
   <data name="Format_Size_Terabytes">
     <value>{0} TB</value>
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
+  </data>
+  <data name="Format_SpeedUnit">
+    <value>Speed {0}</value>
+    <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
     <value>{0} 位元組/秒</value>
@@ -1868,9 +1967,6 @@ Enjoy the best of Proton privacy.</value>
   </data>
   <data name="Home_Account_SignOut">
     <value>登出</value>
-  </data>
-  <data name="Home_Account_SignOut_Confirmation_Message">
-    <value>這將會中斷與 VPN 的連線。</value>
   </data>
   <data name="Home_Account_SignOut_Confirmation_Title">
     <value>確定要從 {0} 登出嗎？</value>
@@ -2182,11 +2278,26 @@ Enjoy the best of Proton privacy.</value>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
     <value>Your plan has been downgraded to Proton Free, and we're reconnecting you to the fastest free server.</value>
   </data>
+  <data name="Profiles_Page_Description">
+    <value>Configure your own VPN settings and connect in one click.</value>
+  </data>
+  <data name="Profiles_Page_Title">
+    <value>Profiles</value>
+  </data>
   <data name="Server_Fastest_Free">
     <value>最快速的伺免費服器</value>
   </data>
+  <data name="Server_Feature_B2B">
+    <value>Gateways</value>
+  </data>
+  <data name="Server_Feature_None">
+    <value>All countries</value>
+  </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
+  </data>
+  <data name="Server_Feature_SecureCore">
+    <value>Secure Core</value>
   </data>
   <data name="Server_Feature_Tor">
     <value>Tor</value>
@@ -2346,6 +2457,19 @@ Enjoy the best of Proton privacy.</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>通訊協定</value>
+  </data>
+  <data name="Settings_Connection_Protocol_NavigationFailed_Action">
+    <value>Go to profiles</value>
+  </data>
+  <data name="Settings_Connection_Protocol_NavigationFailed_Message">
+    <value>You’re currently connected to a VPN profile. 
+
+• To change the protocol for this connection, disconnect then edit your profile.
+
+• To change your protocol for other VPN connections, you’ll need to disconnect from your profile first.</value>
+  </data>
+  <data name="Settings_Connection_Protocol_NavigationFailed_Title">
+    <value>Change protocol in profiles</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN 加速器</value>
@@ -2594,7 +2718,7 @@ Enjoy the best of Proton privacy.</value>
     <value>速度 (UDP)</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Description">
-    <value>快快速安全及經濟。WireGuard難以偵測及阻擋。</value>
+    <value>State-of-the-art protocol for security and performance.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Title">
     <value>WireGuard</value>
@@ -2606,7 +2730,7 @@ Enjoy the best of Proton privacy.</value>
     <value>Stealth</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
-    <value>快速、安全且高效能。WireGuard 比其他通訊協定更節能。</value>
+    <value>State-of-the-art protocol for security and performance.</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>
@@ -2693,6 +2817,34 @@ Enjoy the best of Proton privacy.</value>
   <data name="Tray_Actions_OpenApplication">
     <value>Open {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Unit_BytesPerSecond">
+    <value>B/s</value>
+    <comment>Unit for Bytes per second</comment>
+  </data>
+  <data name="Unit_ExabytesPerSecond">
+    <value>EB/s</value>
+    <comment>Unit for Exabytes per second</comment>
+  </data>
+  <data name="Unit_GigabytesPerSecond">
+    <value>GB/s</value>
+    <comment>Unit for Gigabytes per second</comment>
+  </data>
+  <data name="Unit_KilobytesPerSecond">
+    <value>KB/s</value>
+    <comment>Unit for Kilobytes per second</comment>
+  </data>
+  <data name="Unit_MegabytesPerSecond">
+    <value>MB/s</value>
+    <comment>Unit for Megabytes per second</comment>
+  </data>
+  <data name="Unit_PetabytesPerSecond">
+    <value>PB/s</value>
+    <comment>Unit for Petabytes per second</comment>
+  </data>
+  <data name="Unit_TerabytesPerSecond">
+    <value>TB/s</value>
+    <comment>Unit for Terabytes per second</comment>
   </data>
   <data name="UpsellBanner_NetShield_Description">
     <value>Block ads, trackers, and malware on websites and apps</value>
