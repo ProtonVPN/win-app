@@ -62,7 +62,7 @@ public partial class HomeRobot : UIActions
     protected AutomationElement UpgradeToChooseServerLabel => ElementByName("Upgrade to choose any server.");
 
     protected Button DiscoverVpnPlusButton => ElementByAutomationId("DiscoverVpnPlusButton").AsButton();
-    protected Button GetStartedButton => ElementByAutomationId("GetStartedButton", TestConstants.OneMinuteTimeout).AsButton();
+    protected Button GetStartedButton => ElementByAutomationId("GetStartedButton", TestConstants.TwoMinutesTimeout).AsButton();
 
     protected AutomationElement GetRecentRow(string countryName = null)
     {

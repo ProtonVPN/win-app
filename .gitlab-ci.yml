@@ -101,6 +101,8 @@ build-bti:
       when: never
     - if: '$CI_COMMIT_BRANCH =~ /^release.*$/'
       when: never
+    - if: '$CI_COMMIT_BRANCH =~ /^debug\/\d+\.\d+\.\d+/'
+      when: always
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       when: never
     - if: $BTI_SCHEDULED == "true"

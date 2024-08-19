@@ -48,14 +48,22 @@ public class LokiPusher
             throw new Exception("Pushing empty metric list is not allowed.");
         }
 
-        JArray fullMetrics = BaseMetricsJsonBody(GetMetadata(SliHelper.RunId), SliHelper.MetricsList);
-        JObject requestBody = BaseLokiRequestJsonBody(fullMetrics, GetMetricsLabels(SliHelper.SliName, SliHelper.Workflow));
-        PushToLokiWithRetry(requestBody);
+        try
+        {
+            JArray fullMetrics = BaseMetricsJsonBody(GetMetadata(SliHelper.RunId), SliHelper.MetricsList);
+            JObject requestBody = BaseLokiRequestJsonBody(fullMetrics, GetMetricsLabels(SliHelper.SliName, SliHelper.Workflow));
+            PushToLokiWithRetry(requestBody);
+        }
+        catch (Exception ex)
+        {
+            SliHelper.Reset();
+            throw;
+        }
     }
 
-    public void PushLogs(string logsPath, string lokiLabel)
+    public void PushLogs(string logsPath, string logType)
     {
-        JObject requestBody = AddLogsToRequestJson(logsPath, lokiLabel, SliHelper.Workflow, GetMetadata(SliHelper.RunId));
+        JObject requestBody = AddLogsToRequestJson(logsPath, logType, SliHelper.Workflow, GetMetadata(SliHelper.RunId));
         PushToLokiWithRetry(requestBody);
     }
 
@@ -65,7 +73,7 @@ public class LokiPusher
         PushLogs(TestEnvironment.GetServiceLogsPath(), "windows_service_logs");
     }
 
-    private JObject AddLogsToRequestJson(string pathToLogs, string measurementGroup, string workflow, JObject metadata)
+    private JObject AddLogsToRequestJson(string pathToLogs, string logType, string workflow, JObject metadata)
     {
         List<JArray> logs = new List<JArray>();
         FileStream fileStream = new FileStream(pathToLogs, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
@@ -82,20 +90,21 @@ public class LokiPusher
                 logs.Add(element);
             }
         }
-        return BaseLokiRequestJsonBody(logs, GetLogsLabels(workflow));
+        return BaseLokiRequestJsonBody(logs, GetLogsLabels(workflow, logType));
     }
 
     private void PushToLokiWithRetry(JObject requestBody)
     {
         RetryResult<string> retry = Retry.WhileNull(
-            () => {
+            () =>
+            {
                 return PushToLokiAsync(requestBody).Result;
             },
             TestConstants.TenSecondsTimeout, TestConstants.ApiRetryInterval, ignoreException: true);
 
         if (!retry.Success)
-        { 
-            throw new Exception($"Failed to push to loki:\n{retry.LastException.Message}");
+        {
+            throw new Exception($"Failed to push to loki:\n{retry.LastException}");
         }
     }
 
@@ -155,27 +164,29 @@ public class LokiPusher
             {
                 new JProperty("id", runId),
                 new JProperty("app_version", TestEnvironment.GetAppVersion()),
-                new JProperty("os_version", TestEnvironment.GetOperatingSystemMajorVersion().ToString()),
                 new JProperty("build_commit_sha1", TestEnvironment.GetCommitHash())
             });
     }
 
     private JObject GetMetricsLabels(string measurementGroup, string workflow)
     {
-        return new JObject
-            (
-                new JProperty("sli", measurementGroup),
-                new JProperty("workflow", workflow),
-                new JProperty("environment", "prod"),
-                new JProperty("platform", "windows"),
-                new JProperty("product", "VPN")
-            );
+        JObject labels = GetCommonLabels(workflow);
+        labels.Add(new JProperty("sli", measurementGroup));
+        return labels;
     }
 
-    private JObject GetLogsLabels(string workflow)
+    private JObject GetLogsLabels(string workflow, string logType)
+    {
+        JObject labels = GetCommonLabels(workflow);
+        labels.Add(new JProperty("logType", logType));
+        return labels;
+    }
+
+    private JObject GetCommonLabels(string workflow)
     {
         return new JObject
             (
+                new JProperty("os_version", TestEnvironment.GetOperatingSystem()),
                 new JProperty("workflow", workflow),
                 new JProperty("environment", "prod"),
                 new JProperty("platform", "windows"),

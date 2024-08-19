@@ -63,9 +63,9 @@ public class TestEnvironment : TestSession
         return File.Exists(TestConstants.PathToRecorder);
     }
 
-    public static int GetOperatingSystemMajorVersion()
+    public static string GetOperatingSystem()
     {
-        return Environment.OSVersion.Version.Major;
+        return $"Windows {Environment.OSVersion.Version.Major}";
     }
 
     public static string GetProtonClientFolder()
