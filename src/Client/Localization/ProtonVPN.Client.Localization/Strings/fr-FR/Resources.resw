@@ -146,12 +146,18 @@
   <data name="Common_Actions_ContactUs">
     <value>Nous contacter</value>
   </data>
+  <data name="Common_Actions_Delete">
+    <value>Supprimer</value>
+  </data>
   <data name="Common_Actions_Disconnect">
     <value>Déconnecter</value>
   </data>
   <data name="Common_Actions_DisconnectFrom">
     <value>Déconnexion de {0}</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
+  <data name="Common_Actions_Edit">
+    <value>Modifier</value>
   </data>
   <data name="Common_Actions_Enable">
     <value>Activer</value>
@@ -168,6 +174,15 @@
   <data name="Common_Actions_Upgrade">
     <value>Changer d'abonnement</value>
   </data>
+  <data name="Common_Confirmation_KillSwitch_Message">
+    <value>**L'arrêt d'urgence (kill switch) est activé.** Pour utiliser internet sans VPN, désactivez l'arrêt d'urgence (kill switch) avancé.</value>
+  </data>
+  <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
+    <value>**L'arrêt d'urgence (kill switch) est activé.** Si vous continuez, vous serez déconnecté d'internet.</value>
+  </data>
+  <data name="Common_Confirmation_YouWillBeDisconnected_Message">
+    <value>Vous serez déconnecté du VPN.</value>
+  </data>
   <data name="Common_Links_LearnMore">
     <value>En savoir plus</value>
   </data>
@@ -183,11 +198,18 @@
   <data name="Common_States_Updating">
     <value>Mise à jour...</value>
   </data>
+  <data name="Connection_Error_EditProfile">
+    <value>Modifier le profil</value>
+  </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN n'a pas pu obtenir l'authentification du certificat suite à une erreur réseau.</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>Il n'y a actuellement aucun serveur disponible pour votre sélection. Nous vous invitons à choisir une autre option.</value>
+  </data>
+  <data name="Connection_Error_NoServers_Profile">
+    <value>Le serveur sélectionné pour « {0} » n'est pas disponible. Veuillez sélectionner un autre serveur ou réessayer plus tard.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>Il manque la carte réseau.</value>
@@ -209,6 +231,9 @@
   </data>
   <data name="Connection_Error_TapRequiresUpdate">
     <value>La version de la carte réseau est obsolète.</value>
+  </data>
+  <data name="Connection_Error_Title">
+    <value>La connexion n'a pas abouti.</value>
   </data>
   <data name="Connection_Error_TlsCertificate">
     <value>Il y a un problème de validation du certificat du serveur VPN, ce qui peut indiquer que la connexion réseau est altérée ou que le serveur auquel vous essayez de vous connecter a un problème de configuration. Signalez le problème à notre service client pour obtenir de l'aide.</value>
@@ -244,6 +269,9 @@
   <data name="Connections_Cities_Other">
     <value>Villes ({0})</value>
   </data>
+  <data name="Connections_City">
+    <value>Ville</value>
+  </data>
   <data name="Connections_City_Restricted">
     <value>Les serveurs de cette ville sont disponibles avec VPN Plus.</value>
   </data>
@@ -256,17 +284,29 @@
   <data name="Connections_Countries_Other">
     <value>Pays ({0})</value>
   </data>
+  <data name="Connections_Country">
+    <value>Pays</value>
+  </data>
+  <data name="Connections_Country_Middle">
+    <value>Pays de transit</value>
+  </data>
   <data name="Connections_Country_Restricted">
     <value>Les serveurs de ce pays sont disponibles avec VPN Plus.</value>
   </data>
   <data name="Connections_Country_UnderMaintenance">
     <value>Tous les serveurs de ce pays sont en maintenance.</value>
   </data>
+  <data name="Connections_Fastest">
+    <value>La plus rapide</value>
+  </data>
   <data name="Connections_Free_Servers_One">
     <value>Serveur gratuit ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Other">
     <value>Serveurs gratuits ({0})</value>
+  </data>
+  <data name="Connections_Gateway">
+    <value>Passerelle </value>
   </data>
   <data name="Connections_Gateway_Restricted">
     <value>Les serveurs de cette passerelle sont disponibles avec VPN Plus.</value>
@@ -279,6 +319,9 @@
   </data>
   <data name="Connections_Gateways_Other">
     <value>Passerelles ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Server">
+    <value>Serveur dédié</value>
   </data>
   <data name="Connections_Gateways_Servers_One">
     <value>Serveur dédié ({0})</value>
@@ -310,6 +353,49 @@
   <data name="Connections_P2P_States_Other">
     <value>États P2P ({0})</value>
   </data>
+  <data name="Connections_Profiles_One">
+    <value>Profil ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Other">
+    <value>Profils ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Create">
+    <value>Créer un profil</value>
+    <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
+  </data>
+  <data name="Connections_Profiles_Delete">
+    <value>Supprimer le profil</value>
+  </data>
+  <data name="Connections_Profiles_Delete_Message">
+    <value>'{0}' sera définitivement retiré.</value>
+    <comment>{0} is a placeholder for the name of the profile.</comment>
+  </data>
+  <data name="Connections_Profiles_Delete_Title">
+    <value>Supprimer le profil ?</value>
+  </data>
+  <data name="Connections_Profiles_Empty_Description">
+    <value>Les profils sont des connexions enregistrées tenant compte de vos préférences de protocole, de serveur et d'emplacement.</value>
+  </data>
+  <data name="Connections_Profiles_Empty_Title">
+    <value>Créez votre premier profil</value>
+  </data>
+  <data name="Connections_Profiles_Name">
+    <value>Nom du profil</value>
+  </data>
+  <data name="Connections_Profiles_New">
+    <value>Nouveau profil</value>
+    <comment>"New profile" is more appropriate when you already have a profile</comment>
+  </data>
+  <data name="Connections_Profiles_NotAvailable_Tooltip">
+    <value>Les profils sont disponibles avec VPN Plus.</value>
+    <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
+  </data>
+  <data name="Connections_Profiles_Save">
+    <value>Enregistrer le profil</value>
+  </data>
+  <data name="Connections_Random">
+    <value>Aléatoire</value>
+  </data>
   <data name="Connections_SecureCore_Countries_One">
     <value>Pays Secure Core ({0})</value>
   </data>
@@ -340,6 +426,9 @@
   <data name="Connections_SeeStates_Other">
     <value>Voir les états ({0})</value>
   </data>
+  <data name="Connections_Server">
+    <value>Serveur</value>
+  </data>
   <data name="Connections_Server_Restricted">
     <value>Serveur disponible avec VPN Plus</value>
   </data>
@@ -351,6 +440,9 @@
   </data>
   <data name="Connections_Servers_Other">
     <value>Serveurs ({0})</value>
+  </data>
+  <data name="Connections_State">
+    <value>État</value>
   </data>
   <data name="Connections_State_Restricted">
     <value>Les serveurs dans cet état sont disponibles avec VPN Plus.</value>
@@ -494,6 +586,15 @@
   </data>
   <data name="Country_Fastest">
     <value>Pays le plus rapide</value>
+  </data>
+  <data name="Country_Fastest_ExcludingMyCountry">
+    <value>Le plus rapide (sauf mon pays)</value>
+  </data>
+  <data name="Country_Random">
+    <value>Pays aléatoire</value>
+  </data>
+  <data name="Country_Random_ExcludingMyCountry">
+    <value>Aléatoire (sauf mon pays)</value>
   </data>
   <data name="Country_val_AD">
     <value>Andorre</value>
@@ -1808,9 +1909,6 @@ Profitez de ce que Proton a de mieux à offrir en matière de protection de la v
   <data name="Dialogs_Welcome_Title">
     <value>Bienvenue chez Proton VPN</value>
   </data>
-  <data name="Exit_Confirmation_Message">
-    <value>Vous serez déconnecté du VPN.</value>
-  </data>
   <data name="Exit_Confirmation_Title">
     <value>Quitter Proton VPN ?</value>
   </data>
@@ -1851,6 +1949,10 @@ Profitez de ce que Proton a de mieux à offrir en matière de protection de la v
   <data name="Format_Size_Terabytes">
     <value>{0} To</value>
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
+  </data>
+  <data name="Format_SpeedUnit">
+    <value>Vitesse {0}</value>
+    <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
     <value>{0} o/s</value>
@@ -1943,9 +2045,6 @@ Profitez de ce que Proton a de mieux à offrir en matière de protection de la v
   </data>
   <data name="Home_Account_SignOut">
     <value>Se déconnecter</value>
-  </data>
-  <data name="Home_Account_SignOut_Confirmation_Message">
-    <value>Vous allez être déconnecté du VPN.</value>
   </data>
   <data name="Home_Account_SignOut_Confirmation_Title">
     <value>Se déconnecter de {0} ?</value>
@@ -2263,11 +2362,26 @@ Profitez de ce que Proton a de mieux à offrir en matière de protection de la v
   <data name="Notifications_SubscriptionExpired_Description_Connected">
     <value>Votre abonnement passe à Proton Free et nous vous reconnectons au serveur gratuit le plus rapide.</value>
   </data>
+  <data name="Profiles_Page_Description">
+    <value>Configurez vos propres paramètres VPN et connectez-vous en un clic.</value>
+  </data>
+  <data name="Profiles_Page_Title">
+    <value>Profils</value>
+  </data>
   <data name="Server_Fastest_Free">
     <value>Serveur gratuit le plus rapide</value>
   </data>
+  <data name="Server_Feature_B2B">
+    <value>Passerelles</value>
+  </data>
+  <data name="Server_Feature_None">
+    <value>Tous les pays</value>
+  </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
+  </data>
+  <data name="Server_Feature_SecureCore">
+    <value>Secure Core</value>
   </data>
   <data name="Server_Feature_Tor">
     <value>Tor</value>
@@ -2427,6 +2541,19 @@ Profitez de ce que Proton a de mieux à offrir en matière de protection de la v
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protocole</value>
+  </data>
+  <data name="Settings_Connection_Protocol_NavigationFailed_Action">
+    <value>Accéder aux profils</value>
+  </data>
+  <data name="Settings_Connection_Protocol_NavigationFailed_Message">
+    <value>Vous êtes actuellement connecté à un profil VPN.
+
+• Pour changer le protocole de cette connexion, déconnectez-vous puis modifiez votre profil.
+
+• Pour changer le protocole d'autres connexions VPN, vous devez d'abord vous déconnecter de votre profil.</value>
+  </data>
+  <data name="Settings_Connection_Protocol_NavigationFailed_Title">
+    <value>Modifier le protocole dans les profils</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
@@ -2675,7 +2802,7 @@ Profitez de ce que Proton a de mieux à offrir en matière de protection de la v
     <value>Vitesse (UDP)</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Description">
-    <value>Rapide, sécurisé et efficace. WireGuard est difficile à détecter et bloquer.</value>
+    <value>Protocole à la pointe de la technologie en matière de sécurité et de performance.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Title">
     <value>WireGuard</value>
@@ -2687,7 +2814,7 @@ Profitez de ce que Proton a de mieux à offrir en matière de protection de la v
     <value>Stealth</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
-    <value>Rapide, sûr et efficace. WireGuard sollicite moins votre batterie que les autres protocoles.</value>
+    <value>Protocole à la pointe de la technologie en matière de sécurité et de performance.</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>
@@ -2774,6 +2901,34 @@ Profitez de ce que Proton a de mieux à offrir en matière de protection de la v
   <data name="Tray_Actions_OpenApplication">
     <value>Ouvrir {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Unit_BytesPerSecond">
+    <value>O/s</value>
+    <comment>Unit for Bytes per second</comment>
+  </data>
+  <data name="Unit_ExabytesPerSecond">
+    <value>EB/s</value>
+    <comment>Unit for Exabytes per second</comment>
+  </data>
+  <data name="Unit_GigabytesPerSecond">
+    <value>GB/s</value>
+    <comment>Unit for Gigabytes per second</comment>
+  </data>
+  <data name="Unit_KilobytesPerSecond">
+    <value>KB/s</value>
+    <comment>Unit for Kilobytes per second</comment>
+  </data>
+  <data name="Unit_MegabytesPerSecond">
+    <value>MB/s</value>
+    <comment>Unit for Megabytes per second</comment>
+  </data>
+  <data name="Unit_PetabytesPerSecond">
+    <value>PB/s</value>
+    <comment>Unit for Petabytes per second</comment>
+  </data>
+  <data name="Unit_TerabytesPerSecond">
+    <value>TB/s</value>
+    <comment>Unit for Terabytes per second</comment>
   </data>
   <data name="UpsellBanner_NetShield_Description">
     <value>Bloquez les publicités, les traqueurs et les logiciels malveillants sur les sites internet et les applications.</value>
