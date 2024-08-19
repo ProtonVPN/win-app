@@ -2912,7 +2912,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="te
     <comment>The label for Connect on boot combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_ConnectOnAppStart_Info">
-    <value>Samodejno se povežite s profilom hitre povezave, ko se zažene Proton VPN</value>
+    <value>Samodejno se povežite s profilom hitre povezave, ko se Proton VPN zažene.</value>
     <comment>The description of Connect on boot setting displayed in the tooltip of ( i ) image next to the label for Connect on boot combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_EarlyAccess">
@@ -2980,7 +2980,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Spremeni strežnik</value>
   </data>
   <data name="Sidebar_Connection_btn_Connect">
-    <value>Hitro povezovanje</value>
+    <value>Hitra povezava</value>
     <comment>The text on Quick Connect button in Connection section of Sidebar section of main app window (connects to VPN using Quick Connect profile)</comment>
   </data>
   <data name="Sidebar_Connection_btn_Disconnect">
@@ -3018,7 +3018,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>OSNOVNE &amp; PLUS lokacije ({0})</value>
   </data>
   <data name="Sidebar_Countries_BasicLocationCount">
-    <value>BASIC lokacije ({0})</value>
+    <value>OSNOVNE lokacije ({0})</value>
   </data>
   <data name="Sidebar_Countries_FreeLocationCount">
     <value>BREZPLAČNE lokacije ({0})</value>
@@ -3027,7 +3027,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Brezplačni strežniki</value>
   </data>
   <data name="Sidebar_Countries_FreeServersInfo">
-    <value>Brezplačni strežniki nimajo omejitve podatkov niti omejevanja omrežja. Hitrost je lahko omejena le zaradi velikega števila povezanih uporabnikov.</value>
+    <value>Brezplačni strežniki nimajo omejitve količine podatkov niti omejevanja hitrosti omrežja. Hitrost je lahko omejena le zaradi velikega števila povezanih uporabnikov.</value>
   </data>
   <data name="Sidebar_Countries_Information">
     <value>Informacija</value>
@@ -3036,7 +3036,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>PLUS lokacije ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier0">
-    <value>Brezplačni strežniki ({0})</value>
+    <value>BREZPLAČNI strežniki ({0})</value>
   </data>
   <data name="Sidebar_Countries_ServerCountByTier1">
     <value>OSNOVNI strežniki ({0})</value>
