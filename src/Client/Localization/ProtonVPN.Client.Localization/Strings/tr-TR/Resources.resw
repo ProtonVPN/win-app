@@ -147,7 +147,7 @@
     <value>Bizimle görüşün</value>
   </data>
   <data name="Common_Actions_Delete">
-    <value>Delete</value>
+    <value>Sil</value>
   </data>
   <data name="Common_Actions_Disconnect">
     <value>Bağlantıyı kes</value>
@@ -157,7 +157,7 @@
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Edit">
-    <value>Edit</value>
+    <value>Düzenle</value>
   </data>
   <data name="Common_Actions_Enable">
     <value>Aç</value>
@@ -175,13 +175,13 @@
     <value>Yükselt</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>**Advanced kill switch is enabled.** To use the internet without VPN, disable advanced kill switch.</value>
+    <value>**Gelişmiş bağlantı kesici açıldı.** VPN olmadan İnternet kullanmak için gelişmiş bağlantı kesiciyi kapatın.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>**Advanced kill switch is enabled.** If you continue, you will be disconnected from the internet.</value>
+    <value>**Gelişmiş balantı kesici açık.** İlerlerseniz İnternet bağlantınız kesilecek.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
-    <value>You'll be disconnected from VPN.</value>
+    <value>VPN bağlantınız kesilecek.</value>
   </data>
   <data name="Common_Links_LearnMore">
     <value>Ayrıntılı bilgi alın</value>
@@ -199,7 +199,7 @@
     <value>Güncelleniyor...</value>
   </data>
   <data name="Connection_Error_EditProfile">
-    <value>Edit profile</value>
+    <value>Profili düzenle</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN, ağ sorunu nedeniyle kimlik doğrulama sertifikasını alamadı.</value>
@@ -208,7 +208,7 @@
     <value>Şu anda seçiminize uygun bir sunucu yok. Lütfen başka bir seçenek seçin.</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
-    <value>Your server selection for '{0}' is unavailable. Select a different server or try again later.</value>
+    <value>Seçtiğiniz '{0}' sunucusu şu anda kullanılamıyor. Başka bir sunucu seçin ya da bir süre sonra yeniden deneyin.</value>
     <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Connection_Error_NoTapAdapters">
@@ -233,7 +233,7 @@
     <value>Ağ bağdaştırıcısı sürümü güncel değil.</value>
   </data>
   <data name="Connection_Error_Title">
-    <value>Connection failed</value>
+    <value>Bağlantı kurulamadı</value>
   </data>
   <data name="Connection_Error_TlsCertificate">
     <value>VPN sunucu sertifikası doğrulanırken bir sorun çıktı. Bu durum, ağ bağlantısının kurcalanmasından ya da bağlanmaya çalıştığınız sunucunun yapılandırma sorunu olmasından kaynaklanabilir. Bir Sorun bildirimi göndererek müşteri desteği ekibimizden yardım alın.</value>
@@ -270,7 +270,7 @@
     <value>İller ({0})</value>
   </data>
   <data name="Connections_City">
-    <value>City</value>
+    <value>İl</value>
   </data>
   <data name="Connections_City_Restricted">
     <value>Bu ildeki sunucular VPN Plus tarifesi ile kullanılabilir</value>
@@ -285,10 +285,10 @@
     <value>Ülkeler ({0})</value>
   </data>
   <data name="Connections_Country">
-    <value>Country</value>
+    <value>Ülke</value>
   </data>
   <data name="Connections_Country_Middle">
-    <value>Middle country</value>
+    <value>Orta ülke</value>
   </data>
   <data name="Connections_Country_Restricted">
     <value>Bu ülkedeki sunucular VPN Plus tarifesi ile kullanılabilir</value>
@@ -297,7 +297,7 @@
     <value>Bu ülkedeki tüm sunucularda bakım yapılıyor</value>
   </data>
   <data name="Connections_Fastest">
-    <value>Fastest</value>
+    <value>En hızlı</value>
   </data>
   <data name="Connections_Free_Servers_One">
     <value>Free sunucusu ({0})</value>
@@ -306,7 +306,7 @@
     <value>Free sunucuları ({0})</value>
   </data>
   <data name="Connections_Gateway">
-    <value>Gateway</value>
+    <value>Ağ geçidi</value>
   </data>
   <data name="Connections_Gateway_Restricted">
     <value>Bu ağ geçidindeki sunucular VPN Plus tarifesi ile kullanılabilir</value>
@@ -321,7 +321,7 @@
     <value>Ağ geçitleri ({0})</value>
   </data>
   <data name="Connections_Gateways_Server">
-    <value>Dedicated server</value>
+    <value>Size ayrılmış sunucu</value>
   </data>
   <data name="Connections_Gateways_Servers_One">
     <value>Size ayrılmış sunucu ({0})</value>
@@ -354,47 +354,47 @@
     <value>P2P eyaletleri ({0})</value>
   </data>
   <data name="Connections_Profiles_One">
-    <value>Profile ({0})</value>
+    <value>Profil ({0})</value>
   </data>
   <data name="Connections_Profiles_Other">
-    <value>Profiles ({0})</value>
+    <value>Profiller ({0})</value>
   </data>
   <data name="Connections_Profiles_Create">
-    <value>Create profile</value>
+    <value>Profil oluştur</value>
     <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
   </data>
   <data name="Connections_Profiles_Delete">
-    <value>Delete profile</value>
+    <value>Profili sil</value>
   </data>
   <data name="Connections_Profiles_Delete_Message">
-    <value>'{0}' will be permanently removed.</value>
+    <value>'{0}' kalıcı olarak silinecek.</value>
     <comment>{0} is a placeholder for the name of the profile.</comment>
   </data>
   <data name="Connections_Profiles_Delete_Title">
-    <value>Delete profile?</value>
+    <value>Profil silinsin mi?</value>
   </data>
   <data name="Connections_Profiles_Empty_Description">
-    <value>Profiles are saved connections with your choice of location, server, and protocol.</value>
+    <value>Profiller, seçtiğiniz konum, sunucu ve iletişim kuralı ile kaydedilen bağlantılardır.</value>
   </data>
   <data name="Connections_Profiles_Empty_Title">
-    <value>Create your first profile</value>
+    <value>İlk profilinizi oluşturun</value>
   </data>
   <data name="Connections_Profiles_Name">
-    <value>Profile name</value>
+    <value>Profil adı</value>
   </data>
   <data name="Connections_Profiles_New">
-    <value>New profile</value>
+    <value>Yeni profil</value>
     <comment>"New profile" is more appropriate when you already have a profile</comment>
   </data>
   <data name="Connections_Profiles_NotAvailable_Tooltip">
-    <value>Profiles are available with VPN Plus</value>
+    <value>Profiller VPN Plus tarifesi ile kullanılabilir</value>
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
   </data>
   <data name="Connections_Profiles_Save">
-    <value>Save profile</value>
+    <value>Profili kaydet</value>
   </data>
   <data name="Connections_Random">
-    <value>Random</value>
+    <value>Rastgele</value>
   </data>
   <data name="Connections_SecureCore_Countries_One">
     <value>Secure Core ülkesi ({0})</value>
@@ -427,7 +427,7 @@
     <value>Eyaletleri görüntüle ({0})</value>
   </data>
   <data name="Connections_Server">
-    <value>Server</value>
+    <value>Sunucu</value>
   </data>
   <data name="Connections_Server_Restricted">
     <value>Sunucu VPN Plus tarifesi ile kullanılabilir</value>
@@ -442,7 +442,7 @@
     <value>Sunucular ({0})</value>
   </data>
   <data name="Connections_State">
-    <value>State</value>
+    <value>Eyalet</value>
   </data>
   <data name="Connections_State_Restricted">
     <value>Bu eyaletteki sunucular VPN Plus tarifesi ile kullanılabilir.</value>
@@ -588,13 +588,13 @@
     <value>En hızlı ülke</value>
   </data>
   <data name="Country_Fastest_ExcludingMyCountry">
-    <value>Fastest (excluding my country)</value>
+    <value>En hızlı (ülkemin dışında)</value>
   </data>
   <data name="Country_Random">
-    <value>Random country</value>
+    <value>Rastgele ülke</value>
   </data>
   <data name="Country_Random_ExcludingMyCountry">
-    <value>Random (excluding my country)</value>
+    <value>Rastgele (ülkemin dışında)</value>
   </data>
   <data name="Country_val_AD">
     <value>Andorra</value>
@@ -1951,7 +1951,7 @@ En iyi Proton gizliliğinin tadını çıkarın.</value>
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_SpeedUnit">
-    <value>Speed {0}</value>
+    <value>Hız {0}</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
@@ -2363,19 +2363,19 @@ En iyi Proton gizliliğinin tadını çıkarın.</value>
     <value>Aboneliğiniz Proton Free tarifesine düşürüldü ve sizi yeniden en hızlı Free sunucusuna bağlıyoruz.</value>
   </data>
   <data name="Profiles_Page_Description">
-    <value>Configure your own VPN settings and connect in one click.</value>
+    <value>Size özel VPN ayarları yapın ve tek tıkla bağlantı kurun.</value>
   </data>
   <data name="Profiles_Page_Title">
-    <value>Profiles</value>
+    <value>Profiller</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>En hızlı Free sunucusu</value>
   </data>
   <data name="Server_Feature_B2B">
-    <value>Gateways</value>
+    <value>Ağ geçitleri</value>
   </data>
   <data name="Server_Feature_None">
-    <value>All countries</value>
+    <value>Tüm ülkeler</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
@@ -2543,17 +2543,17 @@ En iyi Proton gizliliğinin tadını çıkarın.</value>
     <value>İletişim kuralı</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Action">
-    <value>Go to profiles</value>
+    <value>Profillere git</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Message">
-    <value>You’re currently connected to a VPN profile. 
+    <value>Şu anda bir VPN profiline bağlısınız.
 
-• To change the protocol for this connection, disconnect then edit your profile.
+• Bu bağlantının iletişim kuralını değiştirmek için bağlantıyı kesin ve profilinizi düzenleyin.
 
-• To change your protocol for other VPN connections, you’ll need to disconnect from your profile first.</value>
+• Diğer VPN bağlantılarının iletişim kuralını değiştirmek için önce profilinizin bağlantısını kesmeniz gerekir.</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Title">
-    <value>Change protocol in profiles</value>
+    <value>Profillerdeki iletişim kuralını değiştir</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
@@ -2802,7 +2802,7 @@ En iyi Proton gizliliğinin tadını çıkarın.</value>
     <value>Hız (UDP)</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Description">
-    <value>State-of-the-art protocol for security and performance.</value>
+    <value>Güvenlik ve başarım için son teknoloji iletişim kuralı.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Title">
     <value>WireGuard</value>
@@ -2814,7 +2814,7 @@ En iyi Proton gizliliğinin tadını çıkarın.</value>
     <value>Stealth</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
-    <value>State-of-the-art protocol for security and performance.</value>
+    <value>Güvenlik ve başarım için son teknoloji iletişim kuralı.</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>

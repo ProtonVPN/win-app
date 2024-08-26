@@ -147,7 +147,7 @@
     <value>დაგვიკავშირდით</value>
   </data>
   <data name="Common_Actions_Delete">
-    <value>Delete</value>
+    <value>წაშლა</value>
   </data>
   <data name="Common_Actions_Disconnect">
     <value>გათიშვა</value>
@@ -157,7 +157,7 @@
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Edit">
-    <value>Edit</value>
+    <value>ჩასწორება</value>
   </data>
   <data name="Common_Actions_Enable">
     <value>ჩართვა</value>
@@ -175,13 +175,13 @@
     <value>გაუმჯობესება</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>**Advanced kill switch is enabled.** To use the internet without VPN, disable advanced kill switch.</value>
+    <value>**Advanced kill switch ჩართულია** ინტერნეტის VPN-ის გარეშე გამოსაყენებლად გათიშეთ Advanced kill switch.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>**Advanced kill switch is enabled.** If you continue, you will be disconnected from the internet.</value>
+    <value>**Advanced kill switch ჩართულია** თუ გააგრძელებთ, ინტერნეტი გაგეთიშებათ.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
-    <value>You'll be disconnected from VPN.</value>
+    <value>VPN გაითიშება.</value>
   </data>
   <data name="Common_Links_LearnMore">
     <value>გაიგეთ მეტი</value>
@@ -199,7 +199,7 @@
     <value>განახლება...</value>
   </data>
   <data name="Connection_Error_EditProfile">
-    <value>Edit profile</value>
+    <value>პროფილის ჩასწორება</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN-მა ქსელის პრობლემის გამო ავთენტიკაციის სერტიფიკატი ვერ გამოითხოვა.</value>
@@ -208,7 +208,7 @@
     <value>ამჟამად თქვენი არჩეული სერვერები მიუწვდომელია. აირჩიეთ სხვა პარამეტრი.</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
-    <value>Your server selection for '{0}' is unavailable. Select a different server or try again later.</value>
+    <value>თქვენი სერვერის არჩევანი '{0}'-სთვის ხელმიუწვდომელია. აირჩიეთ სხვა სერვერი, ან მოგვიანებით სცადეთ.</value>
     <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Connection_Error_NoTapAdapters">
@@ -233,7 +233,7 @@
     <value>ქსელის ადაპტერის ვერსია მოძველებულია.</value>
   </data>
   <data name="Connection_Error_Title">
-    <value>Connection failed</value>
+    <value>შეერთების შეცდომა</value>
   </data>
   <data name="Connection_Error_TlsCertificate">
     <value>არსებობს პრობლემა VPN სერვერის სერტიფიკატის გადამოწმებასთან, რაც შეიძლება ნიშნავდეს, რომ თქვენი ქსელური შეერთება გზაში იცვლება, ან სერვერს, რომელთან მიერთებასაც ცდილობთ, პრობლემები აქვს. დაუკავშირდით ჩვენი მხარდაჭერის გუნდს ანგარიშის გაგზავნით.</value>
@@ -270,7 +270,7 @@
     <value>ქალაქი ({0})</value>
   </data>
   <data name="Connections_City">
-    <value>City</value>
+    <value>ქალაქი</value>
   </data>
   <data name="Connections_City_Restricted">
     <value>სერვერები ამ ქალაქში ხელმისაწვდომია VPN Plus-ით</value>
@@ -285,10 +285,10 @@
     <value>ქვეყანა ({0})</value>
   </data>
   <data name="Connections_Country">
-    <value>Country</value>
+    <value>ქვეყანა</value>
   </data>
   <data name="Connections_Country_Middle">
-    <value>Middle country</value>
+    <value>შუა ქვეყანა</value>
   </data>
   <data name="Connections_Country_Restricted">
     <value>სერვერები ამ ქვეყანაში ხელმისაწვდომია VPN Plus-ით</value>
@@ -297,7 +297,7 @@
     <value>ამ ქვეყანაში ყველა სერვერი ტექმომსახურებაზეა</value>
   </data>
   <data name="Connections_Fastest">
-    <value>Fastest</value>
+    <value>უსწრაფესი</value>
   </data>
   <data name="Connections_Free_Servers_One">
     <value>სერვერი Free ({0})</value>
@@ -306,7 +306,7 @@
     <value>სერვერი Free ({0})</value>
   </data>
   <data name="Connections_Gateway">
-    <value>Gateway</value>
+    <value>კარიბჭე</value>
   </data>
   <data name="Connections_Gateway_Restricted">
     <value>სერვერები ამ კარიბჭეში ხელმისაწვდომია VPN Plus-ით</value>
@@ -321,7 +321,7 @@
     <value>კარიბჭე ({0})</value>
   </data>
   <data name="Connections_Gateways_Server">
-    <value>Dedicated server</value>
+    <value>გამოყოფილი სერვერი</value>
   </data>
   <data name="Connections_Gateways_Servers_One">
     <value>გამოყოფილი სერვერი ({0})</value>
@@ -354,47 +354,47 @@
     <value>P2P ქვეყანა ({0})</value>
   </data>
   <data name="Connections_Profiles_One">
-    <value>Profile ({0})</value>
+    <value>პროფილი ({0})</value>
   </data>
   <data name="Connections_Profiles_Other">
-    <value>Profiles ({0})</value>
+    <value>პროფილი ({0})</value>
   </data>
   <data name="Connections_Profiles_Create">
-    <value>Create profile</value>
+    <value>პროფილის შექმნა</value>
     <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
   </data>
   <data name="Connections_Profiles_Delete">
-    <value>Delete profile</value>
+    <value>პროფილის წაშლა</value>
   </data>
   <data name="Connections_Profiles_Delete_Message">
-    <value>'{0}' will be permanently removed.</value>
+    <value>'{0}' სამუდამოდ წაიშლება.</value>
     <comment>{0} is a placeholder for the name of the profile.</comment>
   </data>
   <data name="Connections_Profiles_Delete_Title">
-    <value>Delete profile?</value>
+    <value>წავშალო პროფილი?</value>
   </data>
   <data name="Connections_Profiles_Empty_Description">
-    <value>Profiles are saved connections with your choice of location, server, and protocol.</value>
+    <value>პროფილები შენახული მიერთებებია თქვენი მდებარეობის, სერვერისა და პროტოკოლის არჩევნით.</value>
   </data>
   <data name="Connections_Profiles_Empty_Title">
-    <value>Create your first profile</value>
+    <value>შექმენით თქვენი პირველი კარიბჭე</value>
   </data>
   <data name="Connections_Profiles_Name">
-    <value>Profile name</value>
+    <value>პროფილის სახელი</value>
   </data>
   <data name="Connections_Profiles_New">
-    <value>New profile</value>
+    <value>ახალი პროფილი</value>
     <comment>"New profile" is more appropriate when you already have a profile</comment>
   </data>
   <data name="Connections_Profiles_NotAvailable_Tooltip">
-    <value>Profiles are available with VPN Plus</value>
+    <value>პროფილები ხელმისაწვდომია VPN Plus-თან ერთად</value>
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
   </data>
   <data name="Connections_Profiles_Save">
-    <value>Save profile</value>
+    <value>პროფილის შენახვა</value>
   </data>
   <data name="Connections_Random">
-    <value>Random</value>
+    <value>შემთხვევითი</value>
   </data>
   <data name="Connections_SecureCore_Countries_One">
     <value>Secure Core-ის ქვეყანა ({0})</value>
@@ -427,7 +427,7 @@
     <value>ქვეყნის ({0}) ნახვა</value>
   </data>
   <data name="Connections_Server">
-    <value>Server</value>
+    <value>სერვერი</value>
   </data>
   <data name="Connections_Server_Restricted">
     <value>სერვერი ხელმისაწვდომია VPN Plus-ით</value>
@@ -442,7 +442,7 @@
     <value>სერვერი ({0})</value>
   </data>
   <data name="Connections_State">
-    <value>State</value>
+    <value>მდგომარეობა</value>
   </data>
   <data name="Connections_State_Restricted">
     <value>სერვერები ამ შტატში ხელმისაწვდომია VPN Plus-ით.</value>
@@ -588,13 +588,13 @@
     <value>უსწრაფესი ქვეყანა</value>
   </data>
   <data name="Country_Fastest_ExcludingMyCountry">
-    <value>Fastest (excluding my country)</value>
+    <value>უწრაფესი (ჩემი ქვეყნის გარდა)</value>
   </data>
   <data name="Country_Random">
-    <value>Random country</value>
+    <value>შემთხვევითი ქვეყანა</value>
   </data>
   <data name="Country_Random_ExcludingMyCountry">
-    <value>Random (excluding my country)</value>
+    <value>შემთხვევითი (ჩემი ქვეყნის გარდა)</value>
   </data>
   <data name="Country_val_AD">
     <value>ანდორა</value>
@@ -1493,7 +1493,7 @@
     <comment>The name of TO country</comment>
   </data>
   <data name="Country_val_TR">
-    <value>Türkiye</value>
+    <value>თურქეთი</value>
     <comment>The name of TR country</comment>
   </data>
   <data name="Country_val_TT">
@@ -1947,7 +1947,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_SpeedUnit">
-    <value>Speed {0}</value>
+    <value>სიჩქარე {0}</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
@@ -2359,19 +2359,19 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>თქვენი სატარიფო გეგმა ჩამოწეულია Proton Free-ზე და ჩვენ თავიდან დაგაკავშირებთ უსწრაფეს უფასო სერვერთან.</value>
   </data>
   <data name="Profiles_Page_Description">
-    <value>Configure your own VPN settings and connect in one click.</value>
+    <value>მოირგეთ საკუთარი VPN პარამეტრები და დაუკავშირდით ერთი წკაპით.</value>
   </data>
   <data name="Profiles_Page_Title">
-    <value>Profiles</value>
+    <value>პროფილები</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>ყველაზე სწრაფი უფასო სერვერი</value>
   </data>
   <data name="Server_Feature_B2B">
-    <value>Gateways</value>
+    <value>კარიბჭეები</value>
   </data>
   <data name="Server_Feature_None">
-    <value>All countries</value>
+    <value>ყველა ქვეყანა</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
@@ -2539,17 +2539,17 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>პროტოკოლი</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Action">
-    <value>Go to profiles</value>
+    <value>პროფილებზე გადასვლა</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Message">
-    <value>You’re currently connected to a VPN profile. 
+    <value>ამჟამად მიერთებული ბრძანდებით VPN პროფილთან.
 
-• To change the protocol for this connection, disconnect then edit your profile.
+• ამ დაკავშირებისთვის პროტოკოლის შესაცვლელად, ჯერ გათიშეთ კავშირი, შემდეგ კი ჩაასწორეთ თქვენი პროფილი.
 
-• To change your protocol for other VPN connections, you’ll need to disconnect from your profile first.</value>
+• პროკოლის სხვა VPN კავშირებისთვის შესაცვლელად ჯერ თქვენი პროფილი უნდა გათიშოთ.</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Title">
-    <value>Change protocol in profiles</value>
+    <value>პროტოკოლი შეცვლა პროფილებში</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
@@ -2798,7 +2798,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>სიჩქარე (UDP)</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Description">
-    <value>State-of-the-art protocol for security and performance.</value>
+    <value>ხელოვნების ნიმუში უსაფრთხოებისა და წარმადობისთვის და არა პროტოკოლი.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Title">
     <value>WireGuard</value>
@@ -2810,7 +2810,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>Stealth</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
-    <value>State-of-the-art protocol for security and performance.</value>
+    <value>ხელოვნების ნიმუში უსაფრთხოებისა და წარმადობისთვის და არა პროტოკოლი.</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>
@@ -2899,31 +2899,31 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Unit_BytesPerSecond">
-    <value>B/s</value>
+    <value>ბ/წმ</value>
     <comment>Unit for Bytes per second</comment>
   </data>
   <data name="Unit_ExabytesPerSecond">
-    <value>EB/s</value>
+    <value>ებ/წმ</value>
     <comment>Unit for Exabytes per second</comment>
   </data>
   <data name="Unit_GigabytesPerSecond">
-    <value>GB/s</value>
+    <value>გბ/წმ</value>
     <comment>Unit for Gigabytes per second</comment>
   </data>
   <data name="Unit_KilobytesPerSecond">
-    <value>KB/s</value>
+    <value>კბ/წმ</value>
     <comment>Unit for Kilobytes per second</comment>
   </data>
   <data name="Unit_MegabytesPerSecond">
-    <value>MB/s</value>
+    <value>მბ/წმ</value>
     <comment>Unit for Megabytes per second</comment>
   </data>
   <data name="Unit_PetabytesPerSecond">
-    <value>PB/s</value>
+    <value>პბ/წმ</value>
     <comment>Unit for Petabytes per second</comment>
   </data>
   <data name="Unit_TerabytesPerSecond">
-    <value>TB/s</value>
+    <value>ტბ/წმ</value>
     <comment>Unit for Terabytes per second</comment>
   </data>
   <data name="UpsellBanner_NetShield_Description">

@@ -367,7 +367,7 @@
     <value>Supprimer le profil</value>
   </data>
   <data name="Connections_Profiles_Delete_Message">
-    <value>'{0}' sera définitivement retiré.</value>
+    <value>« {0} » sera définitivement retiré.</value>
     <comment>{0} is a placeholder for the name of the profile.</comment>
   </data>
   <data name="Connections_Profiles_Delete_Title">
@@ -588,13 +588,13 @@
     <value>Pays le plus rapide</value>
   </data>
   <data name="Country_Fastest_ExcludingMyCountry">
-    <value>Le plus rapide (sauf mon pays)</value>
+    <value>Le plus rapide (à l'exclusion de mon pays)</value>
   </data>
   <data name="Country_Random">
     <value>Pays aléatoire</value>
   </data>
   <data name="Country_Random_ExcludingMyCountry">
-    <value>Aléatoire (sauf mon pays)</value>
+    <value>Aléatoire (à l'exclusion de mon pays)</value>
   </data>
   <data name="Country_val_AD">
     <value>Andorre</value>
@@ -2907,27 +2907,27 @@ Profitez de ce que Proton a de mieux à offrir en matière de protection de la v
     <comment>Unit for Bytes per second</comment>
   </data>
   <data name="Unit_ExabytesPerSecond">
-    <value>EB/s</value>
+    <value>EO/s</value>
     <comment>Unit for Exabytes per second</comment>
   </data>
   <data name="Unit_GigabytesPerSecond">
-    <value>GB/s</value>
+    <value>GO/s</value>
     <comment>Unit for Gigabytes per second</comment>
   </data>
   <data name="Unit_KilobytesPerSecond">
-    <value>KB/s</value>
+    <value>KO/s</value>
     <comment>Unit for Kilobytes per second</comment>
   </data>
   <data name="Unit_MegabytesPerSecond">
-    <value>MB/s</value>
+    <value>MO/s</value>
     <comment>Unit for Megabytes per second</comment>
   </data>
   <data name="Unit_PetabytesPerSecond">
-    <value>PB/s</value>
+    <value>PO/s</value>
     <comment>Unit for Petabytes per second</comment>
   </data>
   <data name="Unit_TerabytesPerSecond">
-    <value>TB/s</value>
+    <value>TO/s</value>
     <comment>Unit for Terabytes per second</comment>
   </data>
   <data name="UpsellBanner_NetShield_Description">
