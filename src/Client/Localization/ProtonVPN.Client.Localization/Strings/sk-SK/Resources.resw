@@ -157,7 +157,7 @@
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Edit">
-    <value>Edit</value>
+    <value>Upraviť</value>
   </data>
   <data name="Common_Actions_Enable">
     <value>Povoliť</value>
@@ -199,7 +199,7 @@
     <value>Aktualizácia...</value>
   </data>
   <data name="Connection_Error_EditProfile">
-    <value>Edit profile</value>
+    <value>Upraviť profil</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN sa nepodarilo načítať overovací certifikát kvôli problému so sieťou.</value>
@@ -276,7 +276,7 @@
     <value>Mestá ({0})</value>
   </data>
   <data name="Connections_City">
-    <value>City</value>
+    <value>Mesto</value>
   </data>
   <data name="Connections_City_Restricted">
     <value>Servery v tomto meste sú dostupné cez VPN Plus</value>
@@ -297,7 +297,7 @@
     <value>Krajiny ({0})</value>
   </data>
   <data name="Connections_Country">
-    <value>Country</value>
+    <value>Krajina</value>
   </data>
   <data name="Connections_Country_Middle">
     <value>Middle country</value>
@@ -324,7 +324,7 @@
     <value>Bezplatné servery ({0})</value>
   </data>
   <data name="Connections_Gateway">
-    <value>Gateway</value>
+    <value>Brána</value>
   </data>
   <data name="Connections_Gateway_Restricted">
     <value>Servery v tejto bráne sú dostupné cez VPN Plus</value>
@@ -420,7 +420,7 @@
     <value>Profiles ({0})</value>
   </data>
   <data name="Connections_Profiles_Create">
-    <value>Create profile</value>
+    <value>Vytvoriť profil</value>
     <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
   </data>
   <data name="Connections_Profiles_Delete">
@@ -440,10 +440,10 @@
     <value>Create your first profile</value>
   </data>
   <data name="Connections_Profiles_Name">
-    <value>Profile name</value>
+    <value>Názov profilu</value>
   </data>
   <data name="Connections_Profiles_New">
-    <value>New profile</value>
+    <value>Nový profil</value>
     <comment>"New profile" is more appropriate when you already have a profile</comment>
   </data>
   <data name="Connections_Profiles_NotAvailable_Tooltip">
@@ -451,7 +451,7 @@
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
   </data>
   <data name="Connections_Profiles_Save">
-    <value>Save profile</value>
+    <value>Uložiť profil</value>
   </data>
   <data name="Connections_Random">
     <value>Random</value>
@@ -1619,7 +1619,7 @@
     <comment>The name of TO country</comment>
   </data>
   <data name="Country_val_TR">
-    <value>Türkiye</value>
+    <value>Turecko</value>
     <comment>The name of TR country</comment>
   </data>
   <data name="Country_val_TT">
@@ -2543,7 +2543,7 @@ Užite si to najlepšie zo súkromia, ktoré vám Proton ponúka.</value>
     <value>Gateways</value>
   </data>
   <data name="Server_Feature_None">
-    <value>All countries</value>
+    <value>Všetky krajiny</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>

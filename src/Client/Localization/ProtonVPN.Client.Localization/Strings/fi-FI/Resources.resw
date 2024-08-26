@@ -147,7 +147,7 @@
     <value>Ota yhteyttä</value>
   </data>
   <data name="Common_Actions_Delete">
-    <value>Delete</value>
+    <value>Poista</value>
   </data>
   <data name="Common_Actions_Disconnect">
     <value>Katkaise</value>
@@ -157,7 +157,7 @@
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Edit">
-    <value>Edit</value>
+    <value>Muokkaa</value>
   </data>
   <data name="Common_Actions_Enable">
     <value>Käytä</value>
@@ -175,13 +175,13 @@
     <value>Päivitä</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>**Advanced kill switch is enabled.** To use the internet without VPN, disable advanced kill switch.</value>
+    <value>**Edistynyt tappokytkin on käytössä.** Jos haluat käyttää Internetiä ilman VPN:ää, poista se käytöstä.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>**Advanced kill switch is enabled.** If you continue, you will be disconnected from the internet.</value>
+    <value>**Edistynyt tappokytkin on käytössä.** Jos jatkat, Internet-yhteytesi katkaistaan.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
-    <value>You'll be disconnected from VPN.</value>
+    <value>VPN-yhteytesi katkaistaan.</value>
   </data>
   <data name="Common_Links_LearnMore">
     <value>Lue lisää</value>
@@ -199,7 +199,7 @@
     <value>Päivitetään...</value>
   </data>
   <data name="Connection_Error_EditProfile">
-    <value>Edit profile</value>
+    <value>Muokkaa profiilia</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN ei voinut noutaa todennusvarmennetta verkko-ongelman vuoksi.</value>
@@ -208,7 +208,7 @@
     <value>Valintaasi vastaavia palvelimia ei ole tällä hetkellä käytettävissä. Valitse eri vaihtoehto.</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
-    <value>Your server selection for '{0}' is unavailable. Select a different server or try again later.</value>
+    <value>Valitsemasi palvelin '{0}' ei ole käytettävissä. Valitse toinen palvelin tai kokeile myöhemmin uudelleen.</value>
     <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Connection_Error_NoTapAdapters">
@@ -233,7 +233,7 @@
     <value>Verkkosovittimen versio on vanhentunut.</value>
   </data>
   <data name="Connection_Error_Title">
-    <value>Connection failed</value>
+    <value>Yhteys epäonnistui</value>
   </data>
   <data name="Connection_Error_TlsCertificate">
     <value>VPN-palvelimen varmenteen vahvistuksessa on ongelma, joka saattaa viitata verkkoyhteyden peukalointiin tai tavoittelemasi palvelimen asetusongelmaan. Saat apua asiakaspalvelustamme lähettämällä ongelmaraportin.</value>
@@ -270,7 +270,7 @@
     <value>Kaupungit ({0})</value>
   </data>
   <data name="Connections_City">
-    <value>City</value>
+    <value>Kaupunki</value>
   </data>
   <data name="Connections_City_Restricted">
     <value>Tämän kaupungin palvelimet käytettävissä VPN Plus -tilauksella</value>
@@ -285,10 +285,10 @@
     <value>Maat ({0})</value>
   </data>
   <data name="Connections_Country">
-    <value>Country</value>
+    <value>Maa</value>
   </data>
   <data name="Connections_Country_Middle">
-    <value>Middle country</value>
+    <value>Välitysmaa</value>
   </data>
   <data name="Connections_Country_Restricted">
     <value>Tämän maan palvelimet ovat käytettävissä VPN Plus -tilauksella</value>
@@ -297,7 +297,7 @@
     <value>Kaikki tämän maan palvelimet ovat huollossa</value>
   </data>
   <data name="Connections_Fastest">
-    <value>Fastest</value>
+    <value>Nopein</value>
   </data>
   <data name="Connections_Free_Servers_One">
     <value>Ilmaispalvelin ({0})</value>
@@ -306,7 +306,7 @@
     <value>Ilmaispalvelimet ({0})</value>
   </data>
   <data name="Connections_Gateway">
-    <value>Gateway</value>
+    <value>Yhdyskäytävä</value>
   </data>
   <data name="Connections_Gateway_Restricted">
     <value>Tämän yhdyskäytävän palvelimet ovat käytettävissä VPN Plus -tilauksella</value>
@@ -321,7 +321,7 @@
     <value>Yhdyskäytävät ({0})</value>
   </data>
   <data name="Connections_Gateways_Server">
-    <value>Dedicated server</value>
+    <value>Oma palvelin</value>
   </data>
   <data name="Connections_Gateways_Servers_One">
     <value>Oma palvelin ({0})</value>
@@ -354,47 +354,47 @@
     <value>P2P-osavaltiot ({0})</value>
   </data>
   <data name="Connections_Profiles_One">
-    <value>Profile ({0})</value>
+    <value>Profiili ({0})</value>
   </data>
   <data name="Connections_Profiles_Other">
-    <value>Profiles ({0})</value>
+    <value>Profiilit ({0})</value>
   </data>
   <data name="Connections_Profiles_Create">
-    <value>Create profile</value>
+    <value>Luo profiili</value>
     <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
   </data>
   <data name="Connections_Profiles_Delete">
-    <value>Delete profile</value>
+    <value>Poista profiili</value>
   </data>
   <data name="Connections_Profiles_Delete_Message">
-    <value>'{0}' will be permanently removed.</value>
+    <value>'{0}' poistetaan pysyvästi.</value>
     <comment>{0} is a placeholder for the name of the profile.</comment>
   </data>
   <data name="Connections_Profiles_Delete_Title">
-    <value>Delete profile?</value>
+    <value>Poistetaanko profiili?</value>
   </data>
   <data name="Connections_Profiles_Empty_Description">
-    <value>Profiles are saved connections with your choice of location, server, and protocol.</value>
+    <value>Profiilit ovat tallennettuja yhteyksiä, jotka sisältävät valitsemasi sijainnin, palvelimen ja protokollan.</value>
   </data>
   <data name="Connections_Profiles_Empty_Title">
-    <value>Create your first profile</value>
+    <value>Luo ensimmäinen profiilisi</value>
   </data>
   <data name="Connections_Profiles_Name">
-    <value>Profile name</value>
+    <value>Profiilin nimi</value>
   </data>
   <data name="Connections_Profiles_New">
-    <value>New profile</value>
+    <value>Uusi profiili</value>
     <comment>"New profile" is more appropriate when you already have a profile</comment>
   </data>
   <data name="Connections_Profiles_NotAvailable_Tooltip">
-    <value>Profiles are available with VPN Plus</value>
+    <value>Profiilit ovat käytettävissä VPN Plus -tilauksella</value>
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
   </data>
   <data name="Connections_Profiles_Save">
-    <value>Save profile</value>
+    <value>Tallenna profiilii</value>
   </data>
   <data name="Connections_Random">
-    <value>Random</value>
+    <value>Satunnainen</value>
   </data>
   <data name="Connections_SecureCore_Countries_One">
     <value>Secure Core -maa ({0})</value>
@@ -427,7 +427,7 @@
     <value>Näytä osavaltiot ({0})</value>
   </data>
   <data name="Connections_Server">
-    <value>Server</value>
+    <value>Palvelin</value>
   </data>
   <data name="Connections_Server_Restricted">
     <value>Palvelin on käytettävissä VPN Plus -tilauksella</value>
@@ -442,7 +442,7 @@
     <value>Palvelimet ({0})</value>
   </data>
   <data name="Connections_State">
-    <value>State</value>
+    <value>Osavaltio</value>
   </data>
   <data name="Connections_State_Restricted">
     <value>Tämän osavaltion palvelimet ovat käytettävissä VPN Plus -tilauksella.</value>
@@ -588,13 +588,13 @@
     <value>Nopein maa</value>
   </data>
   <data name="Country_Fastest_ExcludingMyCountry">
-    <value>Fastest (excluding my country)</value>
+    <value>Nopein (kotimaatani lukuun ottamatta)</value>
   </data>
   <data name="Country_Random">
-    <value>Random country</value>
+    <value>Satunnainen maa</value>
   </data>
   <data name="Country_Random_ExcludingMyCountry">
-    <value>Random (excluding my country)</value>
+    <value>Satunnainen (kotimaatani lukuun ottamatta)</value>
   </data>
   <data name="Country_val_AD">
     <value>Andorra</value>
@@ -1493,7 +1493,7 @@
     <comment>The name of TO country</comment>
   </data>
   <data name="Country_val_TR">
-    <value>Türkiye</value>
+    <value>Turkki</value>
     <comment>The name of TR country</comment>
   </data>
   <data name="Country_val_TT">
@@ -1951,7 +1951,7 @@ Nauti Proton-yksityisyyden parhaista puolista.</value>
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_SpeedUnit">
-    <value>Speed {0}</value>
+    <value>Nopeus {0}</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
@@ -2363,19 +2363,19 @@ Nauti Proton-yksityisyyden parhaista puolista.</value>
     <value>Tilauksesi on alennettu Proton Free -tasolle, yhdistämme sinut uudelleen nopeimmalle ilmaispalvelimelle.</value>
   </data>
   <data name="Profiles_Page_Description">
-    <value>Configure your own VPN settings and connect in one click.</value>
+    <value>Määritä omat VPN-asetuksesi ja yhdistä yhdellä klikkauksella.</value>
   </data>
   <data name="Profiles_Page_Title">
-    <value>Profiles</value>
+    <value>Profiilit</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Nopein ilmainen palvelin</value>
   </data>
   <data name="Server_Feature_B2B">
-    <value>Gateways</value>
+    <value>Yhdyskäytävät</value>
   </data>
   <data name="Server_Feature_None">
-    <value>All countries</value>
+    <value>Kaikki maat</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
@@ -2543,17 +2543,16 @@ Nauti Proton-yksityisyyden parhaista puolista.</value>
     <value>Protokolla</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Action">
-    <value>Go to profiles</value>
+    <value>Siirry profiileihin</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Message">
-    <value>You’re currently connected to a VPN profile. 
+    <value>Olet yhteydessä VPN-profiiliin. 
+• Jos haluat muuttaa tämän yhteyden protokollaa, katkaise yhteys ja muokkaa sitten profiiliasi.
 
-• To change the protocol for this connection, disconnect then edit your profile.
-
-• To change your protocol for other VPN connections, you’ll need to disconnect from your profile first.</value>
+• Jos haluat muuttaa muiden VPN-yhteyksien protokollia, sinun on ensin katkaistava yhteys profiiliisi.</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Title">
-    <value>Change protocol in profiles</value>
+    <value>Muuta protokollaa profiileissa</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
@@ -2802,7 +2801,7 @@ Nauti Proton-yksityisyyden parhaista puolista.</value>
     <value>Nopea (UDP)</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Description">
-    <value>State-of-the-art protocol for security and performance.</value>
+    <value>Uusinta tekniikkaa hyödyntävä turvallisuus- ja suorituskykyprotokolla.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Title">
     <value>WireGuard</value>
@@ -2814,7 +2813,7 @@ Nauti Proton-yksityisyyden parhaista puolista.</value>
     <value>Stealth</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
-    <value>State-of-the-art protocol for security and performance.</value>
+    <value>Uusinta tekniikkaa hyödyntävä turvallisuus- ja suorituskykyprotokolla.</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>
@@ -2903,31 +2902,31 @@ Nauti Proton-yksityisyyden parhaista puolista.</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Unit_BytesPerSecond">
-    <value>B/s</value>
+    <value>t/s</value>
     <comment>Unit for Bytes per second</comment>
   </data>
   <data name="Unit_ExabytesPerSecond">
-    <value>EB/s</value>
+    <value>Et/s</value>
     <comment>Unit for Exabytes per second</comment>
   </data>
   <data name="Unit_GigabytesPerSecond">
-    <value>GB/s</value>
+    <value>Gt/s</value>
     <comment>Unit for Gigabytes per second</comment>
   </data>
   <data name="Unit_KilobytesPerSecond">
-    <value>KB/s</value>
+    <value>kt/s</value>
     <comment>Unit for Kilobytes per second</comment>
   </data>
   <data name="Unit_MegabytesPerSecond">
-    <value>MB/s</value>
+    <value>Mt/s</value>
     <comment>Unit for Megabytes per second</comment>
   </data>
   <data name="Unit_PetabytesPerSecond">
-    <value>PB/s</value>
+    <value>Pt/s</value>
     <comment>Unit for Petabytes per second</comment>
   </data>
   <data name="Unit_TerabytesPerSecond">
-    <value>TB/s</value>
+    <value>Tt/s</value>
     <comment>Unit for Terabytes per second</comment>
   </data>
   <data name="UpsellBanner_NetShield_Description">

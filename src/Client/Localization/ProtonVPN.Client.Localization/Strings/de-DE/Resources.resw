@@ -147,7 +147,7 @@
     <value>Kontaktiere uns</value>
   </data>
   <data name="Common_Actions_Delete">
-    <value>Delete</value>
+    <value>Löschen</value>
   </data>
   <data name="Common_Actions_Disconnect">
     <value>Trennen</value>
@@ -157,7 +157,7 @@
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Edit">
-    <value>Edit</value>
+    <value>Bearbeiten</value>
   </data>
   <data name="Common_Actions_Enable">
     <value>Aktivieren</value>
@@ -175,13 +175,13 @@
     <value>Upgraden</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>**Advanced kill switch is enabled.** To use the internet without VPN, disable advanced kill switch.</value>
+    <value>**Erweiterter Kill Switch ist aktiviert.** Um das Internet ohne VPN zu nutzen, deaktiviere den erweiterten Kill Switch.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>**Advanced kill switch is enabled.** If you continue, you will be disconnected from the internet.</value>
+    <value>**Erweiterter Kill Switch ist aktiviert.** Wenn du fortfährst, wirst du vom Internet getrennt.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
-    <value>You'll be disconnected from VPN.</value>
+    <value>Du wirst vom VPN getrennt.</value>
   </data>
   <data name="Common_Links_LearnMore">
     <value>Mehr erfahren</value>
@@ -199,7 +199,7 @@
     <value>Wird aktualisiert...</value>
   </data>
   <data name="Connection_Error_EditProfile">
-    <value>Edit profile</value>
+    <value>Profil bearbeiten</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN konnte das Authentifizierungszertifikat aufgrund eines Netzwerkproblems nicht abrufen.</value>
@@ -208,7 +208,7 @@
     <value>Es gibt zurzeit keine Server, die auf deine Auswahl zutreffen. Bitte wähle eine andere Option aus.</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
-    <value>Your server selection for '{0}' is unavailable. Select a different server or try again later.</value>
+    <value>Der Server, den du für '{0}' ausgewählt hast, ist derzeit nicht verfügbar. Wähle einen anderen Server oder versuche es später erneut.</value>
     <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Connection_Error_NoTapAdapters">
@@ -233,7 +233,7 @@
     <value>Die Version des Netzwerkadapters ist veraltet.</value>
   </data>
   <data name="Connection_Error_Title">
-    <value>Connection failed</value>
+    <value>Verbindung fehlgeschlagen</value>
   </data>
   <data name="Connection_Error_TlsCertificate">
     <value>Es gibt ein Problem bei der Validierung des VPN-Server-Zertifikats, was darauf hinweisen könnte, dass die Netzwerkverbindung manipuliert wurde oder der Server, mit dem du dich verbinden möchtest, ein Konfigurationsproblem hat. Hol dir Hilfe von unserem Kundensupport, indem du einen Fehlerbericht sendest.</value>
@@ -270,7 +270,7 @@
     <value>Städte ({0})</value>
   </data>
   <data name="Connections_City">
-    <value>City</value>
+    <value>Stadt</value>
   </data>
   <data name="Connections_City_Restricted">
     <value>Server in dieser Stadt sind mit VPN Plus verfügbar</value>
@@ -285,10 +285,10 @@
     <value>Länder ({0})</value>
   </data>
   <data name="Connections_Country">
-    <value>Country</value>
+    <value>Land</value>
   </data>
   <data name="Connections_Country_Middle">
-    <value>Middle country</value>
+    <value>Land in der Mitte</value>
   </data>
   <data name="Connections_Country_Restricted">
     <value>Server in diesem Land sind mit VPN Plus verfügbar</value>
@@ -297,7 +297,7 @@
     <value>Alle Server in diesem Land werden gerade gewartet</value>
   </data>
   <data name="Connections_Fastest">
-    <value>Fastest</value>
+    <value>Am schnellsten</value>
   </data>
   <data name="Connections_Free_Servers_One">
     <value>Kostenloser Server ({0})</value>
@@ -321,7 +321,7 @@
     <value>Gateways ({0})</value>
   </data>
   <data name="Connections_Gateways_Server">
-    <value>Dedicated server</value>
+    <value>Dedizierter Server</value>
   </data>
   <data name="Connections_Gateways_Servers_One">
     <value>Dedizierter Server ({0})</value>
@@ -348,53 +348,53 @@
     <value>P2P-Server ({0})</value>
   </data>
   <data name="Connections_P2P_States_One">
-    <value>P2P state ({0})</value>
+    <value>P2P-Land ({0})</value>
   </data>
   <data name="Connections_P2P_States_Other">
-    <value>P2P-Staaten ({0})</value>
+    <value>P2P-Länder ({0})</value>
   </data>
   <data name="Connections_Profiles_One">
-    <value>Profile ({0})</value>
+    <value>Profil ({0})</value>
   </data>
   <data name="Connections_Profiles_Other">
-    <value>Profiles ({0})</value>
+    <value>Profile ({0})</value>
   </data>
   <data name="Connections_Profiles_Create">
-    <value>Create profile</value>
+    <value>Profil erstellen</value>
     <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
   </data>
   <data name="Connections_Profiles_Delete">
-    <value>Delete profile</value>
+    <value>Profil löschen</value>
   </data>
   <data name="Connections_Profiles_Delete_Message">
-    <value>'{0}' will be permanently removed.</value>
+    <value>'{0}' wird dauerhaft gelöscht.</value>
     <comment>{0} is a placeholder for the name of the profile.</comment>
   </data>
   <data name="Connections_Profiles_Delete_Title">
-    <value>Delete profile?</value>
+    <value>Profil löschen?</value>
   </data>
   <data name="Connections_Profiles_Empty_Description">
-    <value>Profiles are saved connections with your choice of location, server, and protocol.</value>
+    <value>Profile sind gespeicherte Verbindungen mit dem von dir gewählten Standort, Server und Protokoll.</value>
   </data>
   <data name="Connections_Profiles_Empty_Title">
-    <value>Create your first profile</value>
+    <value>Erstelle dein erstes Profil</value>
   </data>
   <data name="Connections_Profiles_Name">
-    <value>Profile name</value>
+    <value>Profilname</value>
   </data>
   <data name="Connections_Profiles_New">
-    <value>New profile</value>
+    <value>Neues Profil</value>
     <comment>"New profile" is more appropriate when you already have a profile</comment>
   </data>
   <data name="Connections_Profiles_NotAvailable_Tooltip">
-    <value>Profiles are available with VPN Plus</value>
+    <value>Profile sind verfügbar mit VPN Plus</value>
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
   </data>
   <data name="Connections_Profiles_Save">
-    <value>Save profile</value>
+    <value>Profil speichern</value>
   </data>
   <data name="Connections_Random">
-    <value>Random</value>
+    <value>Zufällig</value>
   </data>
   <data name="Connections_SecureCore_Countries_One">
     <value>„Secure Core”-Land ({0})</value>
@@ -421,10 +421,10 @@
     <value>Siehe Server ({0})</value>
   </data>
   <data name="Connections_SeeStates_One">
-    <value>See state ({0})</value>
+    <value>Siehe Land ({0})</value>
   </data>
   <data name="Connections_SeeStates_Other">
-    <value>Siehe Zustände ({0})</value>
+    <value>Siehe Länder ({0})</value>
   </data>
   <data name="Connections_Server">
     <value>Server</value>
@@ -442,7 +442,7 @@
     <value>Server ({0})</value>
   </data>
   <data name="Connections_State">
-    <value>State</value>
+    <value>Status</value>
   </data>
   <data name="Connections_State_Restricted">
     <value>Server in diesem Staat sind mit VPN Plus verfügbar.</value>
@@ -588,13 +588,13 @@
     <value>Schnellstes Land</value>
   </data>
   <data name="Country_Fastest_ExcludingMyCountry">
-    <value>Fastest (excluding my country)</value>
+    <value>Schnellstes (ohne mein Land)</value>
   </data>
   <data name="Country_Random">
-    <value>Random country</value>
+    <value>Zufälliges Land</value>
   </data>
   <data name="Country_Random_ExcludingMyCountry">
-    <value>Random (excluding my country)</value>
+    <value>Zufällig (ohne mein Land)</value>
   </data>
   <data name="Country_val_AD">
     <value>Andorra</value>
@@ -1493,7 +1493,7 @@
     <comment>The name of TO country</comment>
   </data>
   <data name="Country_val_TR">
-    <value>Türkiye</value>
+    <value>Türkei</value>
     <comment>The name of TR country</comment>
   </data>
   <data name="Country_val_TT">
@@ -1951,7 +1951,7 @@ Genieße das Beste an Proton's Privatsphäre.</value>
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_SpeedUnit">
-    <value>Speed {0}</value>
+    <value>Geschwindigkeit: {0}</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
@@ -2363,10 +2363,10 @@ Genieße das Beste an Proton's Privatsphäre.</value>
     <value>Dein Abonnement wurde auf Proton Free herabgestuft, und wir verbinden dich wieder mit dem schnellsten kostenlosen Server.</value>
   </data>
   <data name="Profiles_Page_Description">
-    <value>Configure your own VPN settings and connect in one click.</value>
+    <value>Konfiguriere deine eigenen VPN-Einstellungen und verbinde dich mit nur einem Klick.</value>
   </data>
   <data name="Profiles_Page_Title">
-    <value>Profiles</value>
+    <value>Profile</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Schnellster kostenloser Server</value>
@@ -2375,7 +2375,7 @@ Genieße das Beste an Proton's Privatsphäre.</value>
     <value>Gateways</value>
   </data>
   <data name="Server_Feature_None">
-    <value>All countries</value>
+    <value>Alle Länder</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
@@ -2543,17 +2543,17 @@ Genieße das Beste an Proton's Privatsphäre.</value>
     <value>Protokoll</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Action">
-    <value>Go to profiles</value>
+    <value>Zu Profilen gehen</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Message">
-    <value>You’re currently connected to a VPN profile. 
+    <value>Momentan bist du mit einem VPN-Profil verbunden.
 
-• To change the protocol for this connection, disconnect then edit your profile.
+• Um das Protokoll für diese Verbindung zu ändern, trenne sie und bearbeite dann dein Profil.
 
-• To change your protocol for other VPN connections, you’ll need to disconnect from your profile first.</value>
+• Um das Protokoll für andere VPN-Verbindungen zu ändern, musst du zuerst dein Profil trennen.</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Title">
-    <value>Change protocol in profiles</value>
+    <value>Protokoll in Profilen ändern</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
@@ -2802,7 +2802,7 @@ Genieße das Beste an Proton's Privatsphäre.</value>
     <value>Geschwindigkeit (UDP)</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Description">
-    <value>State-of-the-art protocol for security and performance.</value>
+    <value>Hochmodernes Protokoll für Sicherheit und Leistung.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Title">
     <value>WireGuard</value>
@@ -2814,7 +2814,7 @@ Genieße das Beste an Proton's Privatsphäre.</value>
     <value>Stealth</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
-    <value>State-of-the-art protocol for security and performance.</value>
+    <value>Hochmodernes Protokoll für Sicherheit und Leistung.</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>

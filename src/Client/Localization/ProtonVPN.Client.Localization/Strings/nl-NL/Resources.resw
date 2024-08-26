@@ -147,7 +147,7 @@
     <value>Contacteer ons</value>
   </data>
   <data name="Common_Actions_Delete">
-    <value>Delete</value>
+    <value>Verwijderen</value>
   </data>
   <data name="Common_Actions_Disconnect">
     <value>Verbreken</value>
@@ -199,7 +199,7 @@
     <value>Bijwerken...</value>
   </data>
   <data name="Connection_Error_EditProfile">
-    <value>Edit profile</value>
+    <value>Profiel bewerken</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN is er niet in geslaagd om het authenticatiecertificaat op te halen vanwege een netwerk probleem.</value>
@@ -233,7 +233,7 @@
     <value>De netwerkadapter versie is verouderd.</value>
   </data>
   <data name="Connection_Error_Title">
-    <value>Connection failed</value>
+    <value>Verbinding mislukt</value>
   </data>
   <data name="Connection_Error_TlsCertificate">
     <value>Er is een probleem opgetreden bij het verifiëren van het VPN-servercertificaat. Dit kan erop duiden dat er met de netwerkverbinding wordt geknoeid of dat de server waarmee je verbinding probeert te maken een configuratieprobleem heeft. Vraag hulp van onze klantenservice door een probleemrapport te sturen.</value>
@@ -270,7 +270,7 @@
     <value>Steden ({0})</value>
   </data>
   <data name="Connections_City">
-    <value>City</value>
+    <value>Stad</value>
   </data>
   <data name="Connections_City_Restricted">
     <value>Servers in deze stad zijn beschikbaar met VPN Plus</value>
@@ -285,7 +285,7 @@
     <value>Landen ({0})</value>
   </data>
   <data name="Connections_Country">
-    <value>Country</value>
+    <value>Land</value>
   </data>
   <data name="Connections_Country_Middle">
     <value>Middle country</value>
@@ -297,7 +297,7 @@
     <value>Alle servers in dit land worden onderhouden</value>
   </data>
   <data name="Connections_Fastest">
-    <value>Fastest</value>
+    <value>Snelste</value>
   </data>
   <data name="Connections_Free_Servers_One">
     <value>Free server ({0})</value>
@@ -354,17 +354,17 @@
     <value>P2P-staten ({0})</value>
   </data>
   <data name="Connections_Profiles_One">
-    <value>Profile ({0})</value>
+    <value>Profiel ({0})</value>
   </data>
   <data name="Connections_Profiles_Other">
-    <value>Profiles ({0})</value>
+    <value>Profielen ({0})</value>
   </data>
   <data name="Connections_Profiles_Create">
-    <value>Create profile</value>
+    <value>Profiel aanmaken</value>
     <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
   </data>
   <data name="Connections_Profiles_Delete">
-    <value>Delete profile</value>
+    <value>Profiel verwijderen</value>
   </data>
   <data name="Connections_Profiles_Delete_Message">
     <value>'{0}' will be permanently removed.</value>
@@ -380,10 +380,10 @@
     <value>Create your first profile</value>
   </data>
   <data name="Connections_Profiles_Name">
-    <value>Profile name</value>
+    <value>Profielnaam</value>
   </data>
   <data name="Connections_Profiles_New">
-    <value>New profile</value>
+    <value>Nieuw profiel</value>
     <comment>"New profile" is more appropriate when you already have a profile</comment>
   </data>
   <data name="Connections_Profiles_NotAvailable_Tooltip">
@@ -394,7 +394,7 @@
     <value>Save profile</value>
   </data>
   <data name="Connections_Random">
-    <value>Random</value>
+    <value>Willekeurig</value>
   </data>
   <data name="Connections_SecureCore_Countries_One">
     <value>Secure Core land ({0})</value>
@@ -442,7 +442,7 @@
     <value>Servers ({0})</value>
   </data>
   <data name="Connections_State">
-    <value>State</value>
+    <value>Land/Staat</value>
   </data>
   <data name="Connections_State_Restricted">
     <value>Servers in deze staat zijn beschikbaar met VPN Plus.</value>
@@ -591,7 +591,7 @@
     <value>Fastest (excluding my country)</value>
   </data>
   <data name="Country_Random">
-    <value>Random country</value>
+    <value>Willekeurig land</value>
   </data>
   <data name="Country_Random_ExcludingMyCountry">
     <value>Random (excluding my country)</value>
@@ -1493,7 +1493,7 @@
     <comment>The name of TO country</comment>
   </data>
   <data name="Country_val_TR">
-    <value>Türkiye</value>
+    <value>Turkije</value>
     <comment>The name of TR country</comment>
   </data>
   <data name="Country_val_TT">
@@ -1875,10 +1875,10 @@ Smart Routing wordt meestal gebruikt om anti-privacywetten en andere vormen van 
     <value>Browse in vrijheid vanuit waar dan ook</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
-    <value>Verberg je virtuele locatie en ervaar het internet van een vanaf een van ons beschikbare {0} land.</value>
+    <value>Verberg uw virtuele locatie en ervaar het internet van een vanaf een van ons beschikbare {0} land.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
-    <value>Verberg je virtuele locatie en ervaar het internet vanaf een van onze {0} beschikbare landen.</value>
+    <value>Verberg uw virtuele locatie en ervaar het internet vanaf een van onze {0} beschikbare landen.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
     <value>Bescherm 10 apparaten tegelijkertijd</value>
@@ -1951,7 +1951,7 @@ Geniet van het beste van Proton-privacy.</value>
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_SpeedUnit">
-    <value>Speed {0}</value>
+    <value>Snelheid {0}</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
@@ -2366,7 +2366,7 @@ Geniet van het beste van Proton-privacy.</value>
     <value>Configure your own VPN settings and connect in one click.</value>
   </data>
   <data name="Profiles_Page_Title">
-    <value>Profiles</value>
+    <value>Profielen</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Snelste gratis server</value>
@@ -2375,7 +2375,7 @@ Geniet van het beste van Proton-privacy.</value>
     <value>Gateways</value>
   </data>
   <data name="Server_Feature_None">
-    <value>All countries</value>
+    <value>Alle landen</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
@@ -2543,7 +2543,7 @@ Geniet van het beste van Proton-privacy.</value>
     <value>Protocol</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Action">
-    <value>Go to profiles</value>
+    <value>Ga naar profielen</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Message">
     <value>You’re currently connected to a VPN profile. 
@@ -2694,7 +2694,7 @@ Geniet van het beste van Proton-privacy.</value>
     <value>Automatisch verbinden</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>Verbindt automatisch met uw standaardverbinding wanneer Proton VPN opent.</value>
+    <value>Verbind automatisch met uw standaardverbinding wanneer Proton VPN opent.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>Snelste verbinding</value>

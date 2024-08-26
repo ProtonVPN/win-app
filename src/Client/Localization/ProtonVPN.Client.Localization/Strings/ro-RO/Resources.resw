@@ -147,7 +147,7 @@
     <value>Contactați-ne</value>
   </data>
   <data name="Common_Actions_Delete">
-    <value>Delete</value>
+    <value>Ștergere</value>
   </data>
   <data name="Common_Actions_Disconnect">
     <value>Deconectare</value>
@@ -157,7 +157,7 @@
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Edit">
-    <value>Edit</value>
+    <value>Editare</value>
   </data>
   <data name="Common_Actions_Enable">
     <value>Activare</value>
@@ -175,13 +175,13 @@
     <value>Modificare</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>**Advanced kill switch is enabled.** To use the internet without VPN, disable advanced kill switch.</value>
+    <value>**Întrerupătorul de conexiune avansat este activat.** Pentru a utiliza internetul fără VPN, dezactivați-l.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>**Advanced kill switch is enabled.** If you continue, you will be disconnected from the internet.</value>
+    <value>**Întrerupătorul de conexiune avansat este activat.** Dacă veți continua, accesul la internet va fi blocat.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
-    <value>You'll be disconnected from VPN.</value>
+    <value>Se va întrerupe conexiunea prin VPN.</value>
   </data>
   <data name="Common_Links_LearnMore">
     <value>Detalii</value>
@@ -199,7 +199,7 @@
     <value>Se actualizează...</value>
   </data>
   <data name="Connection_Error_EditProfile">
-    <value>Edit profile</value>
+    <value>Editare profil</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN a eșuat să preia certificatul de autentificare datorită problemelor de rețea.</value>
@@ -208,7 +208,7 @@
     <value>Nu sunt servere disponibile acum pentru selecția curentă. Selectați o opțiune diferită.</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
-    <value>Your server selection for '{0}' is unavailable. Select a different server or try again later.</value>
+    <value>Serverul „{0}” selectat nu este disponibil. Selectați un server diferit sau reîncercați mai târziu.</value>
     <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Connection_Error_NoTapAdapters">
@@ -233,7 +233,7 @@
     <value>Versiunea adaptorului de rețea este depășită.</value>
   </data>
   <data name="Connection_Error_Title">
-    <value>Connection failed</value>
+    <value>Conexiunea a eșuat</value>
   </data>
   <data name="Connection_Error_TlsCertificate">
     <value>Există o problemă la validarea certificatului de server VPN, care ar putea indica modificarea conexiunii la rețea sau că serverul la care încercați să vă conectați are o problemă de configurare. Obțineți ajutor de la asistența noastră pentru clienți trimițând un raport de erori.</value>
@@ -273,7 +273,7 @@
     <value>Orașe ({0})</value>
   </data>
   <data name="Connections_City">
-    <value>City</value>
+    <value>Oraș</value>
   </data>
   <data name="Connections_City_Restricted">
     <value>Serverele din acest oraș sunt disponibile cu VPN Plus.</value>
@@ -291,10 +291,10 @@
     <value>Țări ({0})</value>
   </data>
   <data name="Connections_Country">
-    <value>Country</value>
+    <value>Țara</value>
   </data>
   <data name="Connections_Country_Middle">
-    <value>Middle country</value>
+    <value>Țara intermediară</value>
   </data>
   <data name="Connections_Country_Restricted">
     <value>Serverele din această țară sunt disponibile cu VPN Plus.</value>
@@ -303,7 +303,7 @@
     <value>Toate serverele din această țară sunt în mentenanță.</value>
   </data>
   <data name="Connections_Fastest">
-    <value>Fastest</value>
+    <value>Cel mai rapid</value>
   </data>
   <data name="Connections_Free_Servers_One">
     <value>Servere gratuite ({0})</value>
@@ -315,7 +315,7 @@
     <value>Servere gratuite ({0})</value>
   </data>
   <data name="Connections_Gateway">
-    <value>Gateway</value>
+    <value>Poartă de acces</value>
   </data>
   <data name="Connections_Gateway_Restricted">
     <value>Serverele din acest port de acces sunt disponibile cu VPN Plus.</value>
@@ -333,7 +333,7 @@
     <value>Porți de acces ({0})</value>
   </data>
   <data name="Connections_Gateways_Server">
-    <value>Dedicated server</value>
+    <value>Server dedicat</value>
   </data>
   <data name="Connections_Gateways_Servers_One">
     <value>Servere dedicate ({0})</value>
@@ -381,50 +381,50 @@
     <value>Țări P2P ({0})</value>
   </data>
   <data name="Connections_Profiles_One">
-    <value>Profile ({0})</value>
+    <value>Profiluri ({0})</value>
   </data>
   <data name="Connections_Profiles_Few">
-    <value>Profiles ({0})</value>
+    <value>Profiluri ({0})</value>
   </data>
   <data name="Connections_Profiles_Other">
-    <value>Profiles ({0})</value>
+    <value>Profiluri ({0})</value>
   </data>
   <data name="Connections_Profiles_Create">
-    <value>Create profile</value>
+    <value>Creare profil</value>
     <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
   </data>
   <data name="Connections_Profiles_Delete">
-    <value>Delete profile</value>
+    <value>Ștergere profil</value>
   </data>
   <data name="Connections_Profiles_Delete_Message">
-    <value>'{0}' will be permanently removed.</value>
+    <value>„{0}” va fi șters permanent.</value>
     <comment>{0} is a placeholder for the name of the profile.</comment>
   </data>
   <data name="Connections_Profiles_Delete_Title">
-    <value>Delete profile?</value>
+    <value>Ștergeți profilul?</value>
   </data>
   <data name="Connections_Profiles_Empty_Description">
-    <value>Profiles are saved connections with your choice of location, server, and protocol.</value>
+    <value>Profilurile sunt conexiuni salvate cu locul, serverul și protocolul ales.</value>
   </data>
   <data name="Connections_Profiles_Empty_Title">
-    <value>Create your first profile</value>
+    <value>Creați primul profil</value>
   </data>
   <data name="Connections_Profiles_Name">
-    <value>Profile name</value>
+    <value>Nume profil</value>
   </data>
   <data name="Connections_Profiles_New">
-    <value>New profile</value>
+    <value>Profil nou</value>
     <comment>"New profile" is more appropriate when you already have a profile</comment>
   </data>
   <data name="Connections_Profiles_NotAvailable_Tooltip">
-    <value>Profiles are available with VPN Plus</value>
+    <value>Profilurile sunt disponibile în VPN Plus</value>
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
   </data>
   <data name="Connections_Profiles_Save">
-    <value>Save profile</value>
+    <value>Salvare profil</value>
   </data>
   <data name="Connections_Random">
-    <value>Random</value>
+    <value>Aleatoriu</value>
   </data>
   <data name="Connections_SecureCore_Countries_One">
     <value>Țări cu Secure Core ({0})</value>
@@ -490,7 +490,7 @@
     <value>Servere ({0})</value>
   </data>
   <data name="Connections_State">
-    <value>State</value>
+    <value>Stat</value>
   </data>
   <data name="Connections_State_Restricted">
     <value>Serverele din acest stat sunt disponibile cu VPN Plus.</value>
@@ -651,13 +651,13 @@
     <value>Cea mai rapidă țară</value>
   </data>
   <data name="Country_Fastest_ExcludingMyCountry">
-    <value>Fastest (excluding my country)</value>
+    <value>Cel mai rapid (exclus țara mea)</value>
   </data>
   <data name="Country_Random">
-    <value>Random country</value>
+    <value>Țară aleatorie</value>
   </data>
   <data name="Country_Random_ExcludingMyCountry">
-    <value>Random (excluding my country)</value>
+    <value>Aleatoriu (exclus țara mea)</value>
   </data>
   <data name="Country_val_AD">
     <value>Andorra</value>
@@ -1556,7 +1556,7 @@
     <comment>The name of TO country</comment>
   </data>
   <data name="Country_val_TR">
-    <value>Türkiye</value>
+    <value>Turcia</value>
     <comment>The name of TR country</comment>
   </data>
   <data name="Country_val_TT">
@@ -2023,7 +2023,7 @@ Bucurați-vă de cea mai bună confidențialitate de la Proton.</value>
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_SpeedUnit">
-    <value>Speed {0}</value>
+    <value>Viteza {0}</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
@@ -2308,7 +2308,7 @@ Bucurați-vă de cea mai bună confidențialitate de la Proton.</value>
     <value>Anulare fixare</value>
   </data>
   <data name="Home_Update_Confirmation_Message">
-    <value>Pentru a finaliza procesul de actualizare, Proton VPN va deconecta și dezactiva temporar opțiunea de blocare permanentă a conexiunii dacă este activă. Continuați?</value>
+    <value>Pentru a finaliza procesul de actualizare, Proton VPN se va deconecta temporar și se va dezactiva întrerupătorul de conexiune dacă una din aceste funcții este activă. Continuați?</value>
     <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
   </data>
   <data name="Home_Update_Confirmation_Title">
@@ -2356,14 +2356,14 @@ Bucurați-vă de cea mai bună confidențialitate de la Proton.</value>
     <value>Formular de înscriere</value>
   </data>
   <data name="Login_Form_AdvancedKillSwitchDescription">
-    <value>Funcția de blocare a conexiunii blochează orice conexiune de ieșire.</value>
+    <value>Întrerupătorul de conexiune blochează orice conexiune de ieșire.</value>
   </data>
   <data name="Login_Form_CreateAccount">
     <value>Creare cont</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="Login_Form_DisableKillSwitch">
-    <value>Dezactivare blocare conexiune</value>
+    <value>Dezactivare întrerupător de conexiune</value>
   </data>
   <data name="Login_Form_Email">
     <value>E-mail</value>
@@ -2447,19 +2447,19 @@ Bucurați-vă de cea mai bună confidențialitate de la Proton.</value>
     <value>Planul v-a fost retrogradat la Proton Free și vă reconectam la cel mai rapid server gratuit.</value>
   </data>
   <data name="Profiles_Page_Description">
-    <value>Configure your own VPN settings and connect in one click.</value>
+    <value>Configurați-vă propriile setări pentru VPN și conectați-vă cu un singur clic.</value>
   </data>
   <data name="Profiles_Page_Title">
-    <value>Profiles</value>
+    <value>Profiluri</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Cel mai rapid server gratuit</value>
   </data>
   <data name="Server_Feature_B2B">
-    <value>Gateways</value>
+    <value>Porți de acces</value>
   </data>
   <data name="Server_Feature_None">
-    <value>All countries</value>
+    <value>Toate țările</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
@@ -2627,17 +2627,17 @@ Bucurați-vă de cea mai bună confidențialitate de la Proton.</value>
     <value>Protocol</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Action">
-    <value>Go to profiles</value>
+    <value>Accesare profiluri</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Message">
-    <value>You’re currently connected to a VPN profile. 
+    <value>În prezent, folosiți conexiunea de la un profil VPN.
 
-• To change the protocol for this connection, disconnect then edit your profile.
+• Pentru a schimba protocolul pentru această conexiune, deconectați-vă, apoi editați-vă profilul.
 
-• To change your protocol for other VPN connections, you’ll need to disconnect from your profile first.</value>
+• Pentru a schimba protocolul pentru alte conexiuni VPN, mai întâi va trebui să vă deconectați de la acest profil.</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Title">
-    <value>Change protocol in profiles</value>
+    <value>Modificare protocol în profiluri</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
@@ -2646,31 +2646,31 @@ Bucurați-vă de cea mai bună confidențialitate de la Proton.</value>
     <value>Funcții VPN</value>
   </data>
   <data name="Settings_Features_KillSwitch">
-    <value>Blocare conexiune</value>
+    <value>Întrerupător de conexiune</value>
   </data>
   <data name="Settings_Features_KillSwitch_Advanced">
     <value>Avansat</value>
   </data>
   <data name="Settings_Features_KillSwitch_Advanced_Description">
-    <value>Permiteți accesul la internet numai atunci când este conectat la VPN Proton. Comutatorul avansat de blocare a conexiunii va rămâne activ chiar și atunci când reporniți dispozitivul.</value>
+    <value>Permiteți accesul la internet numai atunci când este conectat la Proton VPN. Întrerupătorul de conexiune avansat va rămâne activ chiar și atunci când reporniți dispozitivul.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Conflict_Description">
     <value>Aceasta va dezactiva divizarea traficului.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Conflict_Title">
-    <value>Activați blocarea conexiunii?</value>
+    <value>Activați întrerupătorul de conexiune?</value>
   </data>
   <data name="Settings_Features_KillSwitch_Description">
     <value>Vă protejează adresa IP deconectându-vă de la internet dacă se pierde conexiunea prin VPN.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Footer">
-    <value>Când comutatorul de blocare a conexiunii este activ, nu vă veți putea conecta la site-uri web și aplicații excluse din conexiunea VPN prin tunelarea divizată.</value>
+    <value>Când întrerupătorul de conexiune este activ, nu vă veți putea conecta la site-urile web și aplicațiile excluse din conexiunea VPN folosind funcția de divizare a traficului.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Standard">
     <value>Standard</value>
   </data>
   <data name="Settings_Features_KillSwitch_Standard_Description">
-    <value>Deconectare automată de la internet dacă se pierde conexiunea prin VPN.</value>
+    <value>Deconectează automat accesul la internet dacă se pierde conexiunea prin VPN.</value>
   </data>
   <data name="Settings_Features_NetShield">
     <value>NetShield</value>
@@ -2735,7 +2735,7 @@ Bucurați-vă de cea mai bună confidențialitate de la Proton.</value>
     <value>Eliminare aplicație</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Conflict_Description">
-    <value>Aceasta va dezactiva funcția de blocare a conexiunii.</value>
+    <value>Aceasta va dezactiva întrerupătorul de conexiune.</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Conflict_Title">
     <value>Activați divizarea traficului?</value>
@@ -2886,7 +2886,7 @@ Bucurați-vă de cea mai bună confidențialitate de la Proton.</value>
     <value>Viteză (UDP)</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Description">
-    <value>State-of-the-art protocol for security and performance.</value>
+    <value>Protocol de ultimă generație pentru securitate și performanță.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Title">
     <value>WireGuard</value>
@@ -2898,7 +2898,7 @@ Bucurați-vă de cea mai bună confidențialitate de la Proton.</value>
     <value>Stealth</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
-    <value>State-of-the-art protocol for security and performance.</value>
+    <value>Protocol de ultimă generație pentru securitate și performanță.</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>
@@ -2991,27 +2991,27 @@ Bucurați-vă de cea mai bună confidențialitate de la Proton.</value>
     <comment>Unit for Bytes per second</comment>
   </data>
   <data name="Unit_ExabytesPerSecond">
-    <value>EB/s</value>
+    <value>EiB/s</value>
     <comment>Unit for Exabytes per second</comment>
   </data>
   <data name="Unit_GigabytesPerSecond">
-    <value>GB/s</value>
+    <value>GiB/s</value>
     <comment>Unit for Gigabytes per second</comment>
   </data>
   <data name="Unit_KilobytesPerSecond">
-    <value>KB/s</value>
+    <value>KiB/s</value>
     <comment>Unit for Kilobytes per second</comment>
   </data>
   <data name="Unit_MegabytesPerSecond">
-    <value>MB/s</value>
+    <value>MiB/s</value>
     <comment>Unit for Megabytes per second</comment>
   </data>
   <data name="Unit_PetabytesPerSecond">
-    <value>PB/s</value>
+    <value>PiB/s</value>
     <comment>Unit for Petabytes per second</comment>
   </data>
   <data name="Unit_TerabytesPerSecond">
-    <value>TB/s</value>
+    <value>TiB/s</value>
     <comment>Unit for Terabytes per second</comment>
   </data>
   <data name="UpsellBanner_NetShield_Description">
