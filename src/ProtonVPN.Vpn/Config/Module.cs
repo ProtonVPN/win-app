@@ -96,8 +96,6 @@ namespace ProtonVPN.Vpn.Config
             INetworkAdapterManager networkAdapterManager = c.Resolve<INetworkAdapterManager>();
             INetworkInterfaceLoader networkInterfaceLoader = c.Resolve<INetworkInterfaceLoader>();
             ITaskQueue taskQueue = c.Resolve<ITaskQueue>();
-            TcpPortScanner tcpPortScanner = c.Resolve<TcpPortScanner>();
-            tcpPortScanner.Config(c.Resolve<OpenVpnConfig>().OpenVpnStaticKey);
             IEndpointScanner endpointScanner = c.Resolve<VpnEndpointScanner>();
             VpnEndpointCandidates candidates = new();
             IIssueReporter issueReporter = c.Resolve<IIssueReporter>();

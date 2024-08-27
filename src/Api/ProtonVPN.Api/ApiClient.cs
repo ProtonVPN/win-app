@@ -35,6 +35,7 @@ using ProtonVPN.Api.Contracts.Users;
 using ProtonVPN.Api.Contracts.VpnConfig;
 using ProtonVPN.Api.Contracts.VpnSessions;
 using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Common.StatisticalEvents;
 using ProtonVPN.Core.Settings;
@@ -162,9 +163,13 @@ public class ApiClient : BaseApiClient, IApiClient
         return await SendRequest<SessionsResponse>(request, "Get sessions");
     }
 
-    public async Task<ApiResponseResult<VpnConfigResponse>> GetVpnConfig()
+    public async Task<ApiResponseResult<VpnConfigResponse>> GetVpnConfig(string country, string ip)
     {
-        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/v2/clientconfig");
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/v2/clientconfig", ip);
+        if (!country.IsNullOrEmpty())
+        {
+            request.Headers.Add("x-pm-country", country);
+        }
         return await SendRequest<VpnConfigResponse>(request, "Get VPN config");
     }
 

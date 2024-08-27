@@ -21,7 +21,6 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common;
-using ProtonVPN.Common.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Common.Networking;
@@ -118,7 +117,7 @@ namespace ProtonVPN.Vpn.Connection
                 _vpnEndpoint = endpoint;
                 _logger.Info<ConnectScanResultLog>($"Connecting to {endpoint.Server.Ip}:{endpoint.Port} " +
                     $"with protocol {endpoint.VpnProtocol} as it responded fastest.");
-                _origin.Connect(endpoint, GetCredentials(endpoint), GetConfig(endpoint.VpnProtocol));
+                _origin.Connect(endpoint, _vpnCredentials, GetConfig(endpoint.VpnProtocol));
             }
             else
             {
@@ -143,20 +142,6 @@ namespace ProtonVPN.Vpn.Connection
                 AllowNonStandardPorts = _config.AllowNonStandardPorts,
                 PortForwarding = _config.PortForwarding,
             });
-        }
-
-        private VpnCredentials GetCredentials(VpnEndpoint endpoint)
-        {
-            if (string.IsNullOrEmpty(endpoint.Server.Label))
-            {
-                return _vpnCredentials;
-            }
-
-            string username = $"{_vpnCredentials.Username}+b:{endpoint.Server.Label}";
-
-            return _vpnCredentials.ClientCertPem.IsNullOrEmpty() || _vpnCredentials.ClientKeyPair == null
-                ? new VpnCredentials(username, _vpnCredentials.Password)
-                : new VpnCredentials(_vpnCredentials.ClientCertPem, _vpnCredentials.ClientKeyPair);
         }
 
         private async void DelayedDisconnect(CancellationToken cancellationToken)

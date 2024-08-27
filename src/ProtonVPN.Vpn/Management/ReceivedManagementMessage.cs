@@ -48,10 +48,6 @@ namespace ProtonVPN.Vpn.Management
 
         public bool IsLogSet => _messageText.StartsWithIgnoringCase("SUCCESS: real-time log notification set");
 
-        public bool IsUsernameNeeded => _messageText.StartsWithIgnoringCase(">PASSWORD:Need");
-
-        public bool IsPasswordNeeded => _messageText.StartsWithIgnoringCase("SUCCESS: 'Auth' username entered");
-
         public bool IsByteCount => _messageText.StartsWithIgnoringCase(">BYTECOUNT");
 
         public bool IsState => _messageText.StartsWithIgnoringCase(">STATE");

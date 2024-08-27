@@ -30,26 +30,7 @@ namespace ProtonVPN.Common.Vpn
 
             ClientCertPem = clientCertPem;
             ClientKeyPair = clientKeyPair;
-
-            Username = null;
-            Password = null;
         }
-        
-        public VpnCredentials(string username, string password)
-        {
-            Ensure.NotEmpty(username, nameof(username));
-            Ensure.NotEmpty(password, nameof(password));
-
-            Username = username;
-            Password = password;
-
-            ClientCertPem = null;
-            ClientKeyPair = null;
-        }
-
-        public string Username { get; }
-
-        public string Password { get; }
 
         public string ClientCertPem { get; }
 

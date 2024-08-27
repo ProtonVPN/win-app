@@ -169,16 +169,6 @@ namespace ProtonVPN.Vpn.Management
                 _disconnectAccepted = true;
                 handled = true;
             }
-            else if (message.IsUsernameNeeded)
-            {
-                await TrySend(_managementChannel.Messages.Username(_credentials.Username));
-                handled = true;
-            }
-            else if (message.IsPasswordNeeded)
-            {
-                await TrySend(_managementChannel.Messages.Password(_credentials.Password));
-                handled = true;
-            }
             else if (message.IsControlMessage)
             {
                 HandleControlMessage(message);

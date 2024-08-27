@@ -23,13 +23,16 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Api;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
+using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Servers.Contracts;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.Crypto;
 using ProtonVPN.GuestHoles.FileStoraging;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Vpn.Connectors;
 
 namespace ProtonVPN.App.Tests.Vpn.Connectors
@@ -43,12 +46,10 @@ namespace ProtonVPN.App.Tests.Vpn.Connectors
         private readonly IVpnServiceManager _serviceManager = Substitute.For<IVpnServiceManager>();
         private readonly IAppSettings _appSettings = Substitute.For<IAppSettings>();
         private readonly ILogger _logger = Substitute.For<ILogger>();
+        private readonly IAuthKeyManager _authKeyManager = Substitute.For<IAuthKeyManager>();
         private readonly IConfiguration _config = new Common.Configuration.Config()
         {
             MaxGuestHoleRetries = MAX_RETRIES,
-            GuestHoleVpnUsername = "guest",
-            GuestHoleVpnPassword = "guest",
-            VpnUsernameSuffix = "+pw"
         };
         private readonly IGuestHoleServersFileStorage _guestHoleServers = Substitute.For<IGuestHoleServersFileStorage>();
 
@@ -57,25 +58,29 @@ namespace ProtonVPN.App.Tests.Vpn.Connectors
         {
             GuestHoleState guestHoleState = new();
             guestHoleState.SetState(true);
+            _authKeyManager.GenerateTemporaryKeyPair().Returns(GetKeyPair());
             _guestHoleServers.Get().Returns(new List<GuestHoleServerContract>());
             _connector = new GuestHoleConnector(_serviceManager, _appSettings, guestHoleState, 
-                _config, _guestHoleServers, _logger);
+                _config, _guestHoleServers, _authKeyManager, _logger);
+        }
+
+        private AsymmetricKeyPair GetKeyPair()
+        {
+            return new AsymmetricKeyPair(
+                new SecretKey("PVPN", KeyAlgorithm.Unknown),
+                new PublicKey("PVPN", KeyAlgorithm.Unknown));
         }
 
         [TestMethod]
-        public async Task ItShouldConnectWithGuestCredentials()
+        public async Task ItShouldConnectWithoutAuthCertificateAsync()
         {
-            // Arrange
-            string expectedUsername = _config.GuestHoleVpnUsername + _config.VpnUsernameSuffix;
-
             // Act
             await _connector.Connect();
 
             // Assert
             await _serviceManager.Received(1)
                 .Connect(Arg.Is<VpnConnectionRequest>(c =>
-                    c.Credentials.Username == expectedUsername &&
-                    c.Credentials.Password == _config.GuestHoleVpnPassword));
+                    c.Credentials.ClientCertPem.IsNullOrEmpty()));
         }
 
         [TestMethod]

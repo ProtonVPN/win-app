@@ -15,5 +15,8 @@ namespace ProtonVPN.Core.Servers.Contracts
 
         [JsonProperty("signature")]
         public string Signature { get; set; }
+
+        [JsonProperty("publicKey")]
+        public string X25519PublicKey { get; set; }
     }
 }

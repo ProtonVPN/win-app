@@ -2886,7 +2886,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>Title of the help popup when the Gateways info button is clicked.</comment>
   </data>
   <data name="Sidebar_Connection_btn_ChangeServer">
-    <value>서버 번경</value>
+    <value>서버 변경</value>
   </data>
   <data name="Sidebar_Connection_btn_Connect">
     <value>빠른 연결</value>

@@ -432,7 +432,7 @@
     <value>¿Cuál es el problema?</value>
   </data>
   <data name="BugReport_lbl_WhatWentWrong">
-    <value>¿Qué ha fallado?</value>
+    <value>¿Cual fue el problema?</value>
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_WillGetBack">
@@ -1676,7 +1676,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <value>El reloj del sistema parece estar desincronizado, lo que podría impedir que la VPN se conecte. Consulta &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;aquí&lt;/Hyperlink&gt; para más información.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>Con Kill Switch permanente, si la VPN no está conectada por algún motivo, no podrás acceder a internet.</value>
+    <value>Con el interruptor de bloqueo permanente, si la VPN no está conectada por alguna razón, no podrás acceder a internet.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
     <value>¿Activar Kill Switch permanente?</value>
@@ -1722,15 +1722,15 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The text on update button in outdated app modal window</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg">
-    <value>La versión de la aplicación que está utilizando ya no es compatible. Por favor, tan pronto como esté disponible la actualización, actualice a la última versión.</value>
+    <value>La versión de la aplicación que está usando ya no es compatible. Por favor, tan pronto como esté disponible la actualización, actualice a la última versión.</value>
     <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
-    <value>Ten en cuenta que Kill Switch está activado. Actualizar o salir de la aplicación lo desactivará.</value>
+    <value>Ten en cuenta que el interruptor de bloqueo está activado. Actualizar o salir de la aplicación lo desactivará.</value>
     <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
-    <value>Tu conexión ha sido desactivada porque estás utilizando un servidor que no soporta el tráfico peer-to-peer (P2P). P2P no es compatible con servidores gratuitos. Por favor, utiliza un servidor distinto para P2P.</value>
+    <value>Tu conexión ha sido desactivada porque estás usando un servidor que no soporta el tráfico peer-to-peer (P2P). P2P no es compatible con servidores gratuitos. Por favor, utiliza un servidor distinto para P2P.</value>
     <comment>The warning message displayed when P2P traffic is detected on servers not allowing it.</comment>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_msg">
@@ -1744,7 +1744,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
-    <value>Presentamos el nuevo aspecto de Proton. Muchos servicios, una sola misión. Te damos la bienvenida a una internet donde la privacidad es la norma.  &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Más información&lt;/Hyperlink&gt;</value>
+    <value>Presentamos el nuevo aspecto de Proton. Varios servicios, una sola misión. Te damos la bienvenida a una internet donde la privacidad es la norma.  &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Más información&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Dialogs_Rebranding_Title_new_plans">
     <value>Nueva imagen, máxima protección</value>
@@ -1814,11 +1814,11 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_GovBlock">
-    <value>&lt;Bold&gt;Bloqueo gubernamental&lt;/Bold&gt; - Es posible que tu país esté bloqueando el acceso a Proton. Prueba utilizando &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; para acceder a Proton.</value>
+    <value>&lt;Bold&gt;Bloqueo gubernamental&lt;/Bold&gt; - Es posible que tu país esté bloqueando el acceso a Proton. Prueba usando &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; para acceder a Proton.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_GovBlockDoH">
-    <value>&lt;Bold&gt;Bloqueo gubernamental&lt;/Bold&gt; - Es posible que tu país esté bloqueando el acceso a Proton. Prueba utilizando &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; para acceder a Proton.</value>
+    <value>&lt;Bold&gt;Bloqueo gubernamental&lt;/Bold&gt; - Es posible que tu país esté bloqueando el acceso a Proton. Prueba usando &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt; para acceder a Proton.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_IspProblem">
@@ -1830,7 +1830,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_ProtonDown">
-    <value>&lt;Bold&gt;Proton está fuera de servicio&lt;/Bold&gt; - Consulta &lt;Hyperlink Command="{Binding ProtonStatusCommand}"&gt;Proton Status&lt;/Hyperlink&gt; para conocer el estado de nuestro sistema.</value>
+    <value>&lt;Bold&gt;Proton está fuera de servicio&lt;/Bold&gt; - Consula el &lt;Hyperlink Command="{Binding ProtonStatusCommand}"&gt;Estado de Proton&lt;/Hyperlink&gt; para conocer el estado de nuestro sistema.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Title">
@@ -1937,7 +1937,7 @@ Por favor, sigue &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
-    <value>Kill Switch está actualmente activo.</value>
+    <value>El interruptor de bloqueo está activado</value>
     <comment>The text displayed on the login window when user was force logged out while kill switch is active</comment>
   </data>
   <data name="Login_lbl_Password">
@@ -2916,7 +2916,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>Title of the help popup when the Gateways info button is clicked.</comment>
   </data>
   <data name="Sidebar_Connection_btn_ChangeServer">
-    <value>Cambiar servidor</value>
+    <value>Cambiar de servidor</value>
   </data>
   <data name="Sidebar_Connection_btn_Connect">
     <value>Conexión rápida</value>

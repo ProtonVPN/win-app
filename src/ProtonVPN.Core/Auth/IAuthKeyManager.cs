@@ -26,6 +26,7 @@ namespace ProtonVPN.Core.Auth
         void RegenerateKeyPair();
         void DeleteKeyPair();
         AsymmetricKeyPair GetKeyPairOrNull();
+        AsymmetricKeyPair GenerateTemporaryKeyPair();
         SecretKey GetSecretKey();
         PublicKey GetPublicKey();
     }

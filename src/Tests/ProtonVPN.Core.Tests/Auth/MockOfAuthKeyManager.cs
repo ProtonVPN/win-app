@@ -83,6 +83,14 @@ namespace ProtonVPN.Core.Tests.Auth
             return _secretKey == null || _publicKey == null ? null : new AsymmetricKeyPair(_secretKey, _publicKey);
         }
 
+        public AsymmetricKeyPair GenerateTemporaryKeyPair()
+        {
+            IncrementMethodCalls();
+            return new(
+                new SecretKey(CreateOrIncrementKeyBytes(_secretKey), KeyAlgorithm.Ed25519),
+                new PublicKey(CreateOrIncrementKeyBytes(_publicKey), KeyAlgorithm.Ed25519));
+        }
+
         public SecretKey GetSecretKey()
         {
             IncrementMethodCalls();

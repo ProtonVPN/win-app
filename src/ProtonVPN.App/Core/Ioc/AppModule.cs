@@ -115,7 +115,6 @@ namespace ProtonVPN.Core.Ioc
                 .AsSelf()
                 .SingleInstance();
             builder.RegisterType<UserStorage>().As<IUserStorage>().SingleInstance();
-            builder.RegisterType<TruncatedLocation>().SingleInstance();
 
             builder.RegisterType<PinFactory>()
                 .AsImplementedInterfaces()

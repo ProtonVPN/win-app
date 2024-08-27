@@ -22,6 +22,7 @@ using NSubstitute;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.Crypto;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
@@ -115,7 +116,8 @@ namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn
                 new List<VpnHost>(),
                 VpnProtocol.OpenVpnUdp,
                 new VpnConfig(new VpnConfigParameters()),
-                new VpnCredentials(DateTime.UtcNow.Ticks.ToString(), DateTime.UtcNow.Millisecond.ToString()));
+                new VpnCredentials(string.Empty, new AsymmetricKeyPair(
+                    new SecretKey("PVPN", KeyAlgorithm.Unknown), new PublicKey("PVPN", KeyAlgorithm.Unknown))));
 
             ConnectionRequestIpcEntity result = _mapper.Map(entityToTest);
 

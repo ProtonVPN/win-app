@@ -43,7 +43,7 @@ public class FeatureFlagsProvider : IFeatureFlagsProvider
 
     public bool IsSsoEnabled => IsFlagEnabled("ExternalSSO");
 
-    public bool IsStealthEnabled => IsFlagEnabled("Stealth");
+    public bool IsStealthEnabled => IsStealthFlagEnabled();
 
     public FeatureFlagsProvider(
         ILogger logger,
@@ -75,6 +75,12 @@ public class FeatureFlagsProvider : IFeatureFlagsProvider
     {
         return _featureFlagsCache.Get().FirstOrDefault(f => f.Name.EqualsIgnoringCase(featureFlagName))?.IsEnabled
             ?? DEFAULT_STATE_IF_FLAG_MISSING;
+    }
+
+    private bool IsStealthFlagEnabled()
+    {
+        return _featureFlagsCache.Get().FirstOrDefault(f => f.Name.EqualsIgnoringCase("Stealth"))?.IsEnabled
+               ?? true;
     }
 
     private async void OnTimerTick(object sender, EventArgs eventArgs)

@@ -298,10 +298,6 @@ artifactlift-release-artifacts:
   rules:
     - when: never
 
-artifactlift-release-metadata:
-  rules:
-    - when: never
-
 release-binary-to-nexus:
   extends: artifactlift-release-candidate-artifacts
   rules:
@@ -313,18 +309,6 @@ release-binary-to-nexus:
 
 release-binary-to-prod:
   extends: artifactlift-release-artifacts
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "release/9.9.9"'
-      when: never
-    - if: '$CI_COMMIT_BRANCH =~ /^release\/\d+\.\d+\.\d+/'
-      when: manual
-    - when: never
-
-release-json-to-prod:
-  extends: artifactlift-release-metadata
-  needs:
-    - job: release-binary-to-prod
-      artifacts: true
   rules:
     - if: '$CI_COMMIT_BRANCH == "release/9.9.9"'
       when: never

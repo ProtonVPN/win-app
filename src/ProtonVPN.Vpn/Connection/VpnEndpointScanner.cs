@@ -185,7 +185,7 @@ namespace ProtonVPN.Vpn.Connection
 
         private async Task<bool> IsTcpEndpointAliveAsync(VpnEndpoint endpoint, CancellationToken cancellationToken)
         {
-            return await IsEndpointAliveAsync(async timeoutTask => await _tcpPortScanner.Alive(endpoint, timeoutTask), cancellationToken);
+            return await IsEndpointAliveAsync(async timeoutTask => await _tcpPortScanner.IsAliveAsync(endpoint, timeoutTask), cancellationToken);
         }
 
         private async Task<bool> IsUdpEndpointAliveAsync(VpnEndpoint endpoint, CancellationToken cancellationToken)
