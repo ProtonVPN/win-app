@@ -29,6 +29,8 @@ namespace ProtonVPN.UI.Tests.Windows
         private ListBoxItem OptionDisabled => StartMinimizedComboBox.FindFirstChild().AsListBoxItem();
         private Button SettingsCloseButton => ElementByAutomationId("ModalCloseButton").AsButton();
         private CheckBox ConnectOnBootCheckBox => ElementByAutomationId("ConnectOnBootCheckbox").AsCheckBox();
+        private CheckBox ConnectOnInsecureWifiCheckBox => ElementByAutomationId("ConnectOnInsecureWifiCheckbox").AsCheckBox();
+        private CheckBox SecureDisconnectCheckBox => ElementByAutomationId("SecureDisconnectCheckbox").AsCheckBox();
         private AutomationElement ConnectionTab => ElementByName("Connection").FindFirstChild();
         private AutomationElement AdvancedTab => ElementByName("Advanced").FindFirstChild();
         private CheckBox CustomDnsCheckBox => ElementByAutomationId("CheckBoxCustomDnsServers").AsCheckBox();
@@ -52,6 +54,18 @@ namespace ProtonVPN.UI.Tests.Windows
         public SettingsWindow ClickOnConnectOnBoot()
         {
             ConnectOnBootCheckBox.Click();
+            return this;
+        }
+
+        public SettingsWindow ClickOnConnectOnInsecureWifi()
+        {
+            ConnectOnInsecureWifiCheckBox.Click();
+            return this;
+        }
+
+        public SettingsWindow ClickOnSecureDisconnect()
+        {
+            SecureDisconnectCheckBox.Click();
             return this;
         }
 

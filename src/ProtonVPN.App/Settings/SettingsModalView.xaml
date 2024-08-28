@@ -210,6 +210,40 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </DockPanel>
                         </Border>
 
+                        <Border Style="{StaticResource BorderlessSettingContainer}">
+                            <DockPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Style="{StaticResource SettingName}"
+                                           Content="{translations:Loc Settings_General_lbl_ConnectOnInsecureWifi}" />
+                                    <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
+                                                            ToolTip="{translations:Loc Settings_General_lbl_ConnectOnInsecureWifi_Info}"/>
+                                </StackPanel>
+                                <CheckBox Margin="0,0,14,0"
+                                          HorizontalAlignment="Right"
+                                          Style="{StaticResource ToggleSwitch}"
+                                          IsChecked="{Binding ConnectOnInsecureWifi}"
+                                          AutomationProperties.AutomationId="{StaticResource ConnectOnInsecureWifiCheckbox}" />
+                            </DockPanel>
+                        </Border>
+
+                        <Border Style="{StaticResource BorderSettingContainer}">
+                            <DockPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource SubSettingIcon}" />
+                                    <Label Style="{StaticResource SettingName}" Margin="5,0,0,0"
+                                           Content="{translations:Loc Settings_General_lbl_SecureDisconnect}"/>
+                                    <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
+                                                            ToolTip="{translations:Loc Settings_General_lbl_SecureDisconnect_Info}"/>
+                                </StackPanel>
+
+                                <CheckBox Style="{StaticResource ToggleSwitch}"
+                                          Margin="0,0,14,0"
+                                          HorizontalAlignment="Right"
+                                          IsChecked="{Binding SecureDisconnect}"
+                                          AutomationProperties.AutomationId="{StaticResource SecureDisconnectCheckbox}"/>
+                            </DockPanel>
+                        </Border>
+
                         <Border Style="{StaticResource BorderSettingContainer}">
                             <DockPanel>
                                 <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_General_lbl_ShowNotifications}"/>

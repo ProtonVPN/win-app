@@ -26,24 +26,31 @@ using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
+using ProtonVPN.Core.Network;
 
 namespace ProtonVPN.Core
 {
     internal class AutoConnect : IVpnStateAware
     {
         private readonly IAppSettings _appSettings;
+        private readonly INetworkClient _networkClient;
         private readonly IVpnManager _vpnManager;
         private readonly ILogger _logger;
         private VpnStatus _vpnStatus;
+        private bool _connectedToInsecureWifi;
 
         public AutoConnect(
             IAppSettings appSettings,
+            INetworkClient networkClient,
             IVpnManager vpnManager,
             ILogger logger)
         {
             _appSettings = appSettings;
+            _networkClient = networkClient;
             _vpnManager = vpnManager;
             _logger = logger;
+
+            _networkClient.WifiChangeDetected += OnWifiChangeDetected;
         }
 
         public async Task LoadAsync(bool autoLogin)
@@ -74,6 +81,54 @@ namespace ProtonVPN.Core
             _vpnStatus = e.State.Status;
 
             return Task.CompletedTask;
+        }
+
+        private bool InsecureWifiAutoConnectionRequired(bool isSecure)
+        {
+            return !isSecure && _vpnStatus.Equals(VpnStatus.Disconnected) && _appSettings.ConnectOnInsecureWifi;
+        }
+        private bool InsecureWifiSecureDisconnectRequired(bool isSecure)
+        {
+            return isSecure && _vpnStatus.Equals(VpnStatus.Connected) && _connectedToInsecureWifi && _appSettings.SecureDisconnect;
+        }
+
+        private void OnWifiChangeDetected(object sender, WifiChangeEventArgs e)
+        {
+            if (_appSettings.ConnectOnInsecureWifi)
+            {
+                if (InsecureWifiSecureDisconnectRequired(e.Secure))
+                {
+                    Task.Factory.StartNew(async () =>
+                    {
+                        try
+                        {
+                            _logger.Info<ConnectTriggerLog>("Automatically disconnecting on secure wifi");
+                            await _vpnManager.DisconnectAsync();
+                        }
+                        catch (OperationCanceledException ex)
+                        {
+                            _logger.Error<AppLog>("An error occurred when disconnecting automatically on secure wifi.", ex);
+                        }
+                    });
+                }
+                else if (InsecureWifiAutoConnectionRequired(e.Secure))
+                {
+                    Task.Factory.StartNew(async () =>
+                    {
+                        try
+                        {
+                            _logger.Info<ConnectTriggerLog>("Automatically connecting on insecure wifi");
+                            await _vpnManager.QuickConnectAsync();
+                        }
+                        catch (OperationCanceledException ex)
+                        {
+                            _logger.Error<AppLog>("An error occurred when connecting automatically on insecure wifi.", ex);
+                        }
+                    });
+                }
+            }
+
+            _connectedToInsecureWifi = !e.Secure;
         }
     }
 }
