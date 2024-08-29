@@ -3071,30 +3071,6 @@ Please follow &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
   <data name="Upsell_ModerateNat_Unlock" xml:space="preserve">
     <value>Upgrade to a paid plan to unlock this and many other features.</value>
   </data>
-  <data name="Upsell_NonStandardPorts_btn_LearnMore" xml:space="preserve">
-    <value>Learn More</value>
-    <comment>The button label in "allow non-standard ports" modal</comment>
-  </data>
-  <data name="Upsell_NonStandardPorts_btn_Upgrade" xml:space="preserve">
-    <value>Upgrade</value>
-    <comment>The button label in "allow non-standard ports" modal</comment>
-  </data>
-  <data name="Upsell_NonStandardPorts_msg" xml:space="preserve">
-    <value>Have advanced or professional computing needs that require non-standard ports? Upgrade to VPN Plus to access this and other premium features.</value>
-    <comment>The text in "allow non-standard ports" modal</comment>
-  </data>
-  <data name="Upsell_NonStandardPorts_ttl" xml:space="preserve">
-    <value>Allow traffic to non-standard ports</value>
-    <comment>The title in "allow non-standard ports" modal</comment>
-  </data>
-  <data name="Settings_Advanced_lbl_NonStandardPorts" xml:space="preserve">
-    <value>Non-standard ports</value>
-    <comment>The label for toggle switch in Advanced tab of Settings window</comment>
-  </data>
-  <data name="Settings_Advanced_lbl_NonStandardPorts_Info" xml:space="preserve">
-    <value>Use Proton VPN for any special need by allowing traffic to non-standard ports through the VPN network.</value>
-    <comment>The description of Non-standard ports setting displayed in the tooltip of ( i ) image next to the label for Allow non-standard ports toggle switch in Advanced tab of Settings window</comment>
-  </data>
   <data name="Settings_Advanced_lbl_PortForwarding" xml:space="preserve">
     <value>Port Forwarding</value>
   </data>

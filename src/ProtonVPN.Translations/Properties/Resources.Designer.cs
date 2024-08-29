@@ -5863,24 +5863,6 @@ namespace ProtonVPN.Translations.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Non-standard ports.
-        /// </summary>
-        public static string Settings_Advanced_lbl_NonStandardPorts {
-            get {
-                return ResourceManager.GetString("Settings_Advanced_lbl_NonStandardPorts", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Use Proton VPN for any special need by allowing traffic to non-standard ports through the VPN network..
-        /// </summary>
-        public static string Settings_Advanced_lbl_NonStandardPorts_Info {
-            get {
-                return ResourceManager.GetString("Settings_Advanced_lbl_NonStandardPorts_Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to TAP adapter.
         /// </summary>
         public static string Settings_Advanced_lbl_OpenVpnTap {
@@ -7083,42 +7065,6 @@ namespace ProtonVPN.Translations.Properties {
         public static string Upsell_Netshield_Title {
             get {
                 return ResourceManager.GetString("Upsell_Netshield_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Learn More.
-        /// </summary>
-        public static string Upsell_NonStandardPorts_btn_LearnMore {
-            get {
-                return ResourceManager.GetString("Upsell_NonStandardPorts_btn_LearnMore", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Upgrade.
-        /// </summary>
-        public static string Upsell_NonStandardPorts_btn_Upgrade {
-            get {
-                return ResourceManager.GetString("Upsell_NonStandardPorts_btn_Upgrade", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Have advanced or professional computing needs that require non-standard ports? Upgrade to VPN Plus to access this and other premium features..
-        /// </summary>
-        public static string Upsell_NonStandardPorts_msg {
-            get {
-                return ResourceManager.GetString("Upsell_NonStandardPorts_msg", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Allow traffic to non-standard ports.
-        /// </summary>
-        public static string Upsell_NonStandardPorts_ttl {
-            get {
-                return ResourceManager.GetString("Upsell_NonStandardPorts_ttl", resourceCulture);
             }
         }
         

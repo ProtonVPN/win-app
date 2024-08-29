@@ -57,7 +57,6 @@ public class UrlsConfiguration : IUrlsConfiguration
     public string AboutSmartProtocolUrl { get; set; } = string.Empty;
     public string IncorrectSystemTimeArticleUrl { get; set; } = string.Empty;
     public string AssignVpnConnectionsUrl { get; set; } = string.Empty;
-    public string NonStandardPortsUrl { get; set; } = string.Empty;
     public string LoginProblemsUrl { get; set; } = string.Empty;
     public string RebrandingUrl { get; set; } = string.Empty;
     public string RpcServerProblemUrl { get; set; } = string.Empty;

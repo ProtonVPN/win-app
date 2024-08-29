@@ -40,7 +40,6 @@ public static class UpsellFeatureMapper
             ModalSources.CustomDns or
             ModalSources.ModerateNat or
             ModalSources.Profiles or
-            ModalSources.NonStandardPorts => UpsellFeature.AdvancedSettings,
             ModalSources.MaxConnections => UpsellFeature.MultipleDevices,
             ModalSources.Undefined or
             ModalSources.PromoOffer or
@@ -62,7 +61,6 @@ public static class UpsellFeatureMapper
             UpsellFeature.MultipleDevices => ModalSources.MaxConnections,
             UpsellFeature.Tor => ModalSources.Countries,
             UpsellFeature.SplitTunneling => ModalSources.SplitTunneling,
-            UpsellFeature.AdvancedSettings => ModalSources.NonStandardPorts,
             _ => ModalSources.Undefined
         };
     }

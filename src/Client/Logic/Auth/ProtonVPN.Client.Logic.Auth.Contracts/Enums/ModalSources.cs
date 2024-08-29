@@ -35,7 +35,6 @@ public enum ModalSources
     SplitTunneling,
     CustomDns,
     ModerateNat,
-    NonStandardPorts,
     ChangeServer,
     PromoOffer,
     Downgrade,
