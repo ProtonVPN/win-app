@@ -3228,7 +3228,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Dostęp do zablokowanych treści</value>
   </data>
   <data name="Upsell_Countries_ChooseAnyLocation">
-    <value>Wybierz inną lokalizację</value>
+    <value>Wybierz lokalizację</value>
   </data>
   <data name="Upsell_Countries_HigherVpnSpeed">
     <value>Jeszcze wyższa prędkość VPN</value>
