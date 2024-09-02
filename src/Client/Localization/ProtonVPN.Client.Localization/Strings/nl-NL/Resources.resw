@@ -175,7 +175,7 @@
     <value>Upgraden</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>**Advanced kill switch is enabled.** To use the internet without VPN, disable advanced kill switch.</value>
+    <value>**Geavanceerde kill switch is ingeschakeld.** Om het internet zonder VPN te gebruiken, schakel de geavanceerde kill switch uit.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
     <value>**Advanced kill switch is enabled.** If you continue, you will be disconnected from the internet.</value>
