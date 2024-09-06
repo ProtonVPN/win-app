@@ -19,19 +19,27 @@
 
 using System;
 using System.Net.Http;
-using System.Threading.Tasks;
 using FlaUI.Core.Tools;
-using Newtonsoft.Json.Linq;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.ApiClient.TestEnv;
 
 public class BtiController
 {
-    private static readonly HttpClient _client = new HttpClient
+    private static HttpClient _client;
+
+    static BtiController()
     {
-        BaseAddress = new Uri(Environment.GetEnvironmentVariable("BTI_CONTROLLER_URL"))
-    };
+        var handler = new HttpClientHandler
+        {
+            ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+        };
+
+        _client = new HttpClient(handler)
+        {
+            BaseAddress = new Uri(Environment.GetEnvironmentVariable("BTI_CONTROLLER_URL"))
+        };
+    }
 
     public static void SetScenario(string scenarioEndpoint)
     {
@@ -43,7 +51,7 @@ public class BtiController
 
         if (!retry.Success)
         {
-            throw new Exception($"Failed to set scenario:\n${retry.LastException.Message}");
+            throw new Exception($"Failed to set scenario:\n${retry.LastException}");
         }
     }
 
