@@ -2330,22 +2330,22 @@ Enjoy the best of Proton privacy.</value>
     <value>Oglas blokiran</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Two">
-    <value>Oglasov blokiranih</value>
+    <value>Oglasa blokirana</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Few">
-    <value>Oglasov blokiranih</value>
+    <value>Oglasi blokirani</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Other">
-    <value>Oglasi blokirani</value>
+    <value>Oglasov blokiranih</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Description">
     <value>Oglasi so promocijske pasice ali pojavna okna, ki se pojavljajo na spletnih mestih in v aplikacijah.</value>
   </data>
   <data name="Home_NetShield_DataSaved">
-    <value>Shranjeni podatki</value>
+    <value>Prihranjeni podatki</value>
   </data>
   <data name="Home_NetShield_DataSaved_Description">
-    <value>Ocenjeni podatki, shranjeni z blokiranjem neželenih oglasov, sledilnikov in zlonamerne programske opreme.</value>
+    <value>Ocenjena količina podatkov, ki je bila prihranjena z blokiranjem neželenih oglasov, sledilnikov in zlonamerne programske opreme.</value>
   </data>
   <data name="Home_NetShield_Landmark">
     <value>Statistika NetShield</value>
@@ -2358,13 +2358,13 @@ Enjoy the best of Proton privacy.</value>
     <value>Sledilnik ustavljen</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_Two">
-    <value>Sledilnikov ustavljenih</value>
+    <value>Sledilnika ustavljena</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_Few">
-    <value>Sledilnikov ustavljenih</value>
+    <value>Sledilniki ustavljeni</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_Other">
-    <value>Sledilniki ustavljeni</value>
+    <value>Sledilnikov ustavljenih</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_Description">
     <value>Sledilniki so piškotki in spletna mesta tretjih oseb, ki zbirajo, shranjujejo in prodajajo podatke o vaši spletni dejavnosti.</value>
@@ -2440,7 +2440,7 @@ Enjoy the best of Proton privacy.</value>
     <value>Obrazec za prijavo</value>
   </data>
   <data name="Login_Form_AdvancedKillSwitchDescription">
-    <value>Stikalo Kill blokira vse odhodne povezave</value>
+    <value>Stikalo za izklop blokira vse odhodne povezave</value>
   </data>
   <data name="Login_Form_CreateAccount">
     <value>Ustvarite račun</value>

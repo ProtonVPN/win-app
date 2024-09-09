@@ -147,7 +147,7 @@
     <value>Kontaktujte nás</value>
   </data>
   <data name="Common_Actions_Delete">
-    <value>Delete</value>
+    <value>Vymazať</value>
   </data>
   <data name="Common_Actions_Disconnect">
     <value>Odpojiť</value>
@@ -175,13 +175,13 @@
     <value>Upgradovať</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>**Advanced kill switch is enabled.** To use the internet without VPN, disable advanced kill switch.</value>
+    <value>**Pokročilý kill switch je zapnutý.** Ak chcete používať internet bez siete VPN, vypnite pokročilý kill switch.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>**Advanced kill switch is enabled.** If you continue, you will be disconnected from the internet.</value>
+    <value>**Pokročilý kill switch je zapnutý.** Ak budete pokračovať, dôjde k odpojeniu od internetu.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
-    <value>You'll be disconnected from VPN.</value>
+    <value>Budete odpojení od VPN.</value>
   </data>
   <data name="Common_Links_LearnMore">
     <value>Zistiť viac</value>
@@ -208,7 +208,7 @@
     <value>Momentálne nie sú pre váš výber k dispozícii žiadne servery. Vyberte inú možnosť.</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
-    <value>Your server selection for '{0}' is unavailable. Select a different server or try again later.</value>
+    <value>Server, ktorý ste vybrali pre '{0}' je nedostupný. Vyberte iný server alebo to skúste neskôr.</value>
     <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Connection_Error_NoTapAdapters">
@@ -233,7 +233,7 @@
     <value>Verzia sieťového adaptéra je zastaraná.</value>
   </data>
   <data name="Connection_Error_Title">
-    <value>Connection failed</value>
+    <value>Pripojenie zlyhalo</value>
   </data>
   <data name="Connection_Error_TlsCertificate">
     <value>Vyskytol sa problém s overením certifikátu servera VPN, čo môže znamenať, že sa so sieťovým pripojením manipuluje alebo že server, ku ktorému sa snažíte pripojiť, má problém s konfiguráciou. Získajte pomoc od našej zákazníckej podpory zaslaním hlásenia o probléme.</value>
@@ -300,7 +300,7 @@
     <value>Krajina</value>
   </data>
   <data name="Connections_Country_Middle">
-    <value>Middle country</value>
+    <value>Medzikrajina</value>
   </data>
   <data name="Connections_Country_Restricted">
     <value>Servery v tejto krajine sú dostupné cez VPN Plus</value>
@@ -309,7 +309,7 @@
     <value>Na všetkých serveroch v tejto krajine prebieha údržba</value>
   </data>
   <data name="Connections_Fastest">
-    <value>Fastest</value>
+    <value>Najrýchlejší</value>
   </data>
   <data name="Connections_Free_Servers_One">
     <value>Bezplatný server ({0})</value>
@@ -345,7 +345,7 @@
     <value>Brány ({0})</value>
   </data>
   <data name="Connections_Gateways_Server">
-    <value>Dedicated server</value>
+    <value>Dedikovaný server</value>
   </data>
   <data name="Connections_Gateways_Servers_One">
     <value>Dedikovaný server ({0})</value>
@@ -408,36 +408,36 @@
     <value>P2P štáty ({0})</value>
   </data>
   <data name="Connections_Profiles_One">
-    <value>Profile ({0})</value>
+    <value>Profil ({0})</value>
   </data>
   <data name="Connections_Profiles_Few">
-    <value>Profiles ({0})</value>
+    <value>Profily ({0})</value>
   </data>
   <data name="Connections_Profiles_Many">
-    <value>Profiles ({0})</value>
+    <value>Profilov ({0})</value>
   </data>
   <data name="Connections_Profiles_Other">
-    <value>Profiles ({0})</value>
+    <value>Profilov ({0})</value>
   </data>
   <data name="Connections_Profiles_Create">
     <value>Vytvoriť profil</value>
     <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
   </data>
   <data name="Connections_Profiles_Delete">
-    <value>Delete profile</value>
+    <value>Vymazať profil</value>
   </data>
   <data name="Connections_Profiles_Delete_Message">
-    <value>'{0}' will be permanently removed.</value>
+    <value>'{0}' bude natrvalo odstránený.</value>
     <comment>{0} is a placeholder for the name of the profile.</comment>
   </data>
   <data name="Connections_Profiles_Delete_Title">
-    <value>Delete profile?</value>
+    <value>Vymazať profil?</value>
   </data>
   <data name="Connections_Profiles_Empty_Description">
-    <value>Profiles are saved connections with your choice of location, server, and protocol.</value>
+    <value>Profily sú uložené pripojenia s vami vybranými umiestneniami, servermi a protokolmi.</value>
   </data>
   <data name="Connections_Profiles_Empty_Title">
-    <value>Create your first profile</value>
+    <value>Vytvorte váš prvý profil</value>
   </data>
   <data name="Connections_Profiles_Name">
     <value>Názov profilu</value>
@@ -447,14 +447,14 @@
     <comment>"New profile" is more appropriate when you already have a profile</comment>
   </data>
   <data name="Connections_Profiles_NotAvailable_Tooltip">
-    <value>Profiles are available with VPN Plus</value>
+    <value>Profily sú dostupné v rámci VPN Plus</value>
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
   </data>
   <data name="Connections_Profiles_Save">
     <value>Uložiť profil</value>
   </data>
   <data name="Connections_Random">
-    <value>Random</value>
+    <value>Náhodne</value>
   </data>
   <data name="Connections_SecureCore_Countries_One">
     <value>Krajina so Secure Core ({0})</value>
@@ -538,7 +538,7 @@
     <value>Servery ({0})</value>
   </data>
   <data name="Connections_State">
-    <value>State</value>
+    <value>Krajina</value>
   </data>
   <data name="Connections_State_Restricted">
     <value>Servery v tomto štáte sú dostupné s VPN Plus.</value>
@@ -714,13 +714,13 @@
     <value>Najrýchlejšia krajina</value>
   </data>
   <data name="Country_Fastest_ExcludingMyCountry">
-    <value>Fastest (excluding my country)</value>
+    <value>Najrýchlejší (okrem mojej krajiny)</value>
   </data>
   <data name="Country_Random">
-    <value>Random country</value>
+    <value>Náhodná krajina</value>
   </data>
   <data name="Country_Random_ExcludingMyCountry">
-    <value>Random (excluding my country)</value>
+    <value>Náhodná (okrem mojej krajiny)</value>
   </data>
   <data name="Country_val_AD">
     <value>Andorra</value>
@@ -2095,7 +2095,7 @@ Užite si to najlepšie zo súkromia, ktoré vám Proton ponúka.</value>
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_SpeedUnit">
-    <value>Speed {0}</value>
+    <value>Rýchlosť {0}</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
@@ -2531,16 +2531,16 @@ Užite si to najlepšie zo súkromia, ktoré vám Proton ponúka.</value>
     <value>Vaša tarifa bola znížená na Proton Free a prepájame vás k najrýchlejšiemu bezplatnému serveru.</value>
   </data>
   <data name="Profiles_Page_Description">
-    <value>Configure your own VPN settings and connect in one click.</value>
+    <value>Nakonfigurujte si vlastné nastavenia VPN a pripojte sa jedným kliknutím.</value>
   </data>
   <data name="Profiles_Page_Title">
-    <value>Profiles</value>
+    <value>Profily</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Najrýchlejší bezplatný server</value>
   </data>
   <data name="Server_Feature_B2B">
-    <value>Gateways</value>
+    <value>Brány</value>
   </data>
   <data name="Server_Feature_None">
     <value>Všetky krajiny</value>
@@ -2711,17 +2711,17 @@ Užite si to najlepšie zo súkromia, ktoré vám Proton ponúka.</value>
     <value>Protokol</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Action">
-    <value>Go to profiles</value>
+    <value>Prejsť na profily</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Message">
-    <value>You’re currently connected to a VPN profile. 
+    <value>Práve ste sa pripojili k VPN profilu. 
 
-• To change the protocol for this connection, disconnect then edit your profile.
+- Ak chcete zmeniť protokol pre toto pripojenie, odpojte sa a potom upravte svoj profil.
 
-• To change your protocol for other VPN connections, you’ll need to disconnect from your profile first.</value>
+- Ak chcete zmeniť protokol na iné VPN pripojenia, musíte sa najprv od svojho profilu odpojiť.</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Title">
-    <value>Change protocol in profiles</value>
+    <value>Zmeniť protokol v profiloch</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
@@ -2970,7 +2970,7 @@ Užite si to najlepšie zo súkromia, ktoré vám Proton ponúka.</value>
     <value>Rýchlosť (UDP)</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Description">
-    <value>State-of-the-art protocol for security and performance.</value>
+    <value>Najmodernejší protokol z hľadiska bezpečnosti a výkonu.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Title">
     <value>WireGuard</value>
@@ -2982,7 +2982,7 @@ Užite si to najlepšie zo súkromia, ktoré vám Proton ponúka.</value>
     <value>Stealth</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
-    <value>State-of-the-art protocol for security and performance.</value>
+    <value>Najmodernejší protokol z hľadiska bezpečnosti a výkonu.</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>

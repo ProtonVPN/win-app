@@ -2531,7 +2531,7 @@ Ciesz się tym, co najlepsze w prywatności Proton.</value>
     <value>Twój plan został obniżony do planu Proton Free. Zostaniesz ponownie połączony z najszybszym darmowym serwerem.</value>
   </data>
   <data name="Profiles_Page_Description">
-    <value>Configure your own VPN settings and connect in one click.</value>
+    <value>Skonfiguruj własne ustawienia VPN i połącz się za pomocą jednego kliknięcia.</value>
   </data>
   <data name="Profiles_Page_Title">
     <value>Profile</value>
@@ -2711,7 +2711,7 @@ Ciesz się tym, co najlepsze w prywatności Proton.</value>
     <value>Protokół</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Action">
-    <value>Przejdź do profili</value>
+    <value>Przejdź do profilów</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Message">
     <value>You’re currently connected to a VPN profile. 
