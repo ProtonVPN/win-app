@@ -288,7 +288,7 @@
     <value>País</value>
   </data>
   <data name="Connections_Country_Middle">
-    <value>País de trânsito</value>
+    <value>País intermediário</value>
   </data>
   <data name="Connections_Country_Restricted">
     <value>Servidores neste país estão disponíveis com VPN Plus</value>
@@ -2408,7 +2408,7 @@ Aproveite o melhor da privacidade da Proton.</value>
     <value>Saiba mais</value>
   </data>
   <data name="Settings_About_Licensing">
-    <value>Licenciamento</value>
+    <value>Licença</value>
   </data>
   <data name="Settings_About_Loading">
     <value>Carregando</value>

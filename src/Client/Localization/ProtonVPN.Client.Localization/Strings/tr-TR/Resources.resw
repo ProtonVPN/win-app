@@ -421,7 +421,7 @@
     <value>Sunucuları görüntüle ({0})</value>
   </data>
   <data name="Connections_SeeStates_One">
-    <value>({0}) Eyaletini gör</value>
+    <value>Eyaleti görüntüle ({0})</value>
   </data>
   <data name="Connections_SeeStates_Other">
     <value>Eyaletleri görüntüle ({0})</value>
@@ -2247,7 +2247,7 @@ En iyi Proton gizliliğinin tadını çıkarın.</value>
     <value>Korunmuyorsunuz</value>
   </data>
   <data name="Home_VpnStatus_Title_Connected">
-    <value>Korunmuş</value>
+    <value>Korunuyor</value>
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
     <value>Oturum bilgileri alınırken bir sorun çıktı. Lütfen yeniden deneyin.</value>
