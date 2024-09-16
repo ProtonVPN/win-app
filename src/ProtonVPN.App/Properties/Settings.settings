@@ -437,5 +437,8 @@
     <Setting Name="LogicalsLastModifiedDate" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="DisabledSmartProtocols" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

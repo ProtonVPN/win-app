@@ -1757,5 +1757,17 @@ namespace ProtonVPN.Properties {
                 this["LogicalsLastModifiedDate"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DisabledSmartProtocols {
+            get {
+                return ((string)(this["DisabledSmartProtocols"]));
+            }
+            set {
+                this["DisabledSmartProtocols"] = value;
+            }
+        }
     }
 }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,24 +17,25 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Api.Contracts.Common;
+using Newtonsoft.Json;
 
 namespace ProtonVPN.Api.Contracts.VpnConfig
 {
-    public class VpnConfigResponse : BaseResponse
+    public class SmartProtocolResponse
     {
-        public DefaultPortsResponse DefaultPorts { get; set; }
+        [JsonProperty(PropertyName = "WireGuard")]
+        public bool WireGuardUdp { get; set; }
 
-        public int? ServerRefreshInterval { get; set; }
+        [JsonProperty(PropertyName = "WireGuardTCP")]
+        public bool WireGuardTcp { get; set; }
 
-        public int? ChangeServerAttemptLimit { get; set; }
+        [JsonProperty(PropertyName = "WireGuardTLS")]
+        public bool WireGuardTls { get; set; }
 
-        public int? ChangeServerShortDelayInSeconds { get; set; }
+        [JsonProperty(PropertyName = "OpenVPN")]
+        public bool OpenVpnUdp { get; set; }
 
-        public int? ChangeServerLongDelayInSeconds { get; set; }
-
-        public FeatureFlagsResponse FeatureFlags { get; set; }
-
-        public SmartProtocolResponse SmartProtocol { get; set; }
+        [JsonProperty(PropertyName = "OpenVPNTCP")]
+        public bool OpenVpnTcp { get; set; }
     }
 }

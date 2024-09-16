@@ -353,23 +353,11 @@ namespace ProtonVPN.Vpn.Connectors
 
         private IList<VpnProtocol> GetPreferredProtocols(VpnProtocol protocol)
         {
-            List<VpnProtocol> preferredProtocols = new List<VpnProtocol>();
+            List<VpnProtocol> preferredProtocols = new();
+
             if (protocol == VpnProtocol.Smart)
             {
-                preferredProtocols.Add(VpnProtocol.WireGuardUdp);
-
-                if (_featureFlagsProvider.IsStealthEnabled)
-                {
-                    preferredProtocols.Add(VpnProtocol.WireGuardTcp);
-                }
-
-                preferredProtocols.Add(VpnProtocol.OpenVpnUdp);
-                preferredProtocols.Add(VpnProtocol.OpenVpnTcp);
-
-                if (_featureFlagsProvider.IsStealthEnabled)
-                {
-                    preferredProtocols.Add(VpnProtocol.WireGuardTls);
-                }
+                preferredProtocols = GenerateSmartProtocolList();
             }
             else
             {
@@ -377,6 +365,44 @@ namespace ProtonVPN.Vpn.Connectors
             }
 
             return preferredProtocols;
+        }
+
+        private List<VpnProtocol> GenerateSmartProtocolList()
+        {
+            List<VpnProtocol> preferredProtocols = new();
+            List<VpnProtocol> fallbackProtocols = new();
+
+            SetProtocolBucket(VpnProtocol.WireGuardUdp, preferredProtocols, fallbackProtocols);
+
+            if (_featureFlagsProvider.IsStealthEnabled)
+            {
+                SetProtocolBucket(VpnProtocol.WireGuardTcp, preferredProtocols, fallbackProtocols);
+            }
+
+            SetProtocolBucket(VpnProtocol.OpenVpnUdp, preferredProtocols, fallbackProtocols);
+            SetProtocolBucket(VpnProtocol.OpenVpnTcp, preferredProtocols, fallbackProtocols);
+
+            if (_featureFlagsProvider.IsStealthEnabled)
+            {
+                SetProtocolBucket(VpnProtocol.WireGuardTls, preferredProtocols, fallbackProtocols);
+            }
+
+            preferredProtocols.AddRange(fallbackProtocols);
+
+            return preferredProtocols;
+        }
+
+        private void SetProtocolBucket(VpnProtocol protocol, List<VpnProtocol> preferredProtocols,
+            List<VpnProtocol> fallbackProtocols)
+        {
+            if (!_appSettings.DisabledSmartProtocols?.Contains(protocol) ?? true)
+            {
+                preferredProtocols.Add(protocol);
+            }
+            else
+            {
+                fallbackProtocols.Add(protocol);
+            }
         }
 
         private List<string> GetSplitTunnelIPs()

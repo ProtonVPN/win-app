@@ -27,6 +27,7 @@ using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.VpnConfig;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
@@ -162,6 +163,33 @@ namespace ProtonVPN.Core.Config
                         _appSettings.ChangeServerLongDelayInSeconds =
                             response.Value.ChangeServerLongDelayInSeconds.Value;
                     }
+
+                    if (response.Value.SmartProtocol is not null)
+                    {
+                        List<VpnProtocol> disabledVpnProtocols = [];
+                        if (!response.Value.SmartProtocol.WireGuardUdp)
+                        {
+                            disabledVpnProtocols.Add(VpnProtocol.WireGuardUdp);
+                        }
+                        if (!response.Value.SmartProtocol.WireGuardTcp)
+                        {
+                            disabledVpnProtocols.Add(VpnProtocol.WireGuardTcp);
+                        }
+                        if (!response.Value.SmartProtocol.WireGuardTls)
+                        {
+                            disabledVpnProtocols.Add(VpnProtocol.WireGuardTls);
+                        }
+                        if (!response.Value.SmartProtocol.OpenVpnUdp)
+                        {
+                            disabledVpnProtocols.Add(VpnProtocol.OpenVpnUdp);
+                        }
+                        if (!response.Value.SmartProtocol.OpenVpnTcp)
+                        {
+                            disabledVpnProtocols.Add(VpnProtocol.OpenVpnTcp);
+                        }
+                        _appSettings.DisabledSmartProtocols = disabledVpnProtocols.ToArray();
+                    }
+
                 }
             }
             catch

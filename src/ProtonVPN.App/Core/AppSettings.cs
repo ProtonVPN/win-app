@@ -651,6 +651,12 @@ namespace ProtonVPN.Core
             set => Set(value.ToJsonDateTimeOffset());
         }
 
+        public VpnProtocol[] DisabledSmartProtocols
+        {
+            get => Get<VpnProtocol[]>() ?? new List<VpnProtocol>().ToArray();
+            set => Set(value);
+        }
+
         public TimeSpan MaintenanceCheckInterval
         {
             get
