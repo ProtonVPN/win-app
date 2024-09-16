@@ -175,10 +175,10 @@
     <value>Yükselt</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>**Gelişmiş bağlantı kesici açıldı.** VPN olmadan İnternet kullanmak için gelişmiş bağlantı kesiciyi kapatın.</value>
+    <value>**Gelişmiş bağlantı kesici özelliği açıldı.** VPN olmadan internet kullanmak için gelişmiş bağlantı kesici özelliğini kapatın.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>**Gelişmiş balantı kesici açık.** İlerlerseniz İnternet bağlantınız kesilecek.</value>
+    <value>**Gelişmiş balantı kesici özelliği açık.** İlerlerseniz internet bağlantınız kesilecek.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
     <value>VPN bağlantınız kesilecek.</value>
@@ -1875,10 +1875,10 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
     <value>Her yerden serbestçe gezinin</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
-    <value>Sanal konumunuzu gizleyin ve kullanabileceğiniz {0} ülkenin birinden İnternet deneyimini yaşayın.</value>
+    <value>Sanal konumunuzu gizleyin ve kullanabileceğiniz {0} ülkenin birinden internet deneyimini yaşayın.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
-    <value>Sanal konumunuzu gizleyin ve kullanabileceğiniz {0} ülkenin birinden İnternet deneyimini yaşayın.</value>
+    <value>Sanal konumunuzu gizleyin ve kullanabileceğiniz {0} ülkenin birinden internet deneyimini yaşayın.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
     <value>Aynı anda 10 aygıtı koruyun</value>
@@ -2199,7 +2199,7 @@ En iyi Proton gizliliğinin tadını çıkarın.</value>
     <value>İzleyici engellendi</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_Description">
-    <value>İzleyiciler, İnternet üzerinde yaptığınız işlemler hakkında bilgi toplayıp kaydeden ve satan üçüncü taraf siteler ve çerezlerdir.</value>
+    <value>İzleyiciler, internet üzerinde yaptığınız işlemler hakkında bilgi toplayıp kaydeden ve satan üçüncü taraf siteler ve çerezlerdir.</value>
   </data>
   <data name="Home_Page_Title">
     <value>Giriş</value>
@@ -2224,7 +2224,7 @@ En iyi Proton gizliliğinin tadını çıkarın.</value>
     <value>Sabitlemeyi kaldır</value>
   </data>
   <data name="Home_Update_Confirmation_Message">
-    <value>Proton VPN, güncelleme işlemini tamamlamak için etkinse bağlantıyı geçici olarak kesecek ve ve varsa açık olan Gelişmiş bağlantı kesiciyi kapatacak. İlerlemek istiyor musunuz?</value>
+    <value>Proton VPN, güncelleme işlemini tamamlamak için etkinse bağlantıyı geçici olarak kesecek ve varsa açık olan gelişmiş bağlantı kesici özelliğini kapatacak. İlerlemek istiyor musunuz?</value>
     <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
   </data>
   <data name="Home_Update_Confirmation_Title">
@@ -2272,14 +2272,14 @@ En iyi Proton gizliliğinin tadını çıkarın.</value>
     <value>Oturum açma formu</value>
   </data>
   <data name="Login_Form_AdvancedKillSwitchDescription">
-    <value>Bağlantı kesici dışarı giden tüm bağlantıları engelliyor</value>
+    <value>Bağlantı kesici özelliği dışarı giden tüm bağlantıları engelliyor</value>
   </data>
   <data name="Login_Form_CreateAccount">
     <value>Hesap ekle</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="Login_Form_DisableKillSwitch">
-    <value>Bağlantı kesiciyi kapat</value>
+    <value>Bağlantı kesici özelliğini kapat</value>
   </data>
   <data name="Login_Form_Email">
     <value>E-posta adresi</value>
@@ -2568,25 +2568,25 @@ En iyi Proton gizliliğinin tadını çıkarın.</value>
     <value>Gelişmiş</value>
   </data>
   <data name="Settings_Features_KillSwitch_Advanced_Description">
-    <value>Yalnızca Proton VPN bağlantısı kurulduğunda İnternet erişimine izin verilir. Gelişmiş bağlantı kesici, aygıtınızı yeniden başlattığınızda bile etkin kalır.</value>
+    <value>Yalnızca Proton VPN bağlantısı kurulduğunda internet erişimine izin verilir. Gelişmiş bağlantı kesici özelliği, aygıtınızı yeniden başlattığınızda bile etkin kalır.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Conflict_Description">
     <value>Bu işlem ayrılmış tünellemeyi kapatacak.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Conflict_Title">
-    <value>Bağlantı kesilci açılsın mı?</value>
+    <value>Bağlantı kesilci özelliği açılsın mı?</value>
   </data>
   <data name="Settings_Features_KillSwitch_Description">
-    <value>VPN bağlantınız kesilirse İnternet bağlantınızı keserek IP adresinizin açığa çıkmasını engeller.</value>
+    <value>VPN bağlantınız kesilirse internet bağlantınızı keserek IP adresinizin açığa çıkmasını engeller.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Footer">
-    <value>Bağlantı kesici açıkken, VPN bağlantınızın dışında bırakılmış sitelere ve uygulamalara, ayrılmış tünelleme kullanarak bağlanamazsınız.</value>
+    <value>Bağlantı kesici özelliği açıkken, VPN bağlantınızın dışında bırakılmış sitelere ve uygulamalara, ayrılmış tünelleme kullanarak bağlanamazsınız.</value>
   </data>
   <data name="Settings_Features_KillSwitch_Standard">
     <value>Standart</value>
   </data>
   <data name="Settings_Features_KillSwitch_Standard_Description">
-    <value>VPN bağlantısı kesilirse İnternet bağlantısını otomatik olarak keser.</value>
+    <value>VPN bağlantısı kesilirse internet bağlantısını otomatik olarak keser.</value>
   </data>
   <data name="Settings_Features_NetShield">
     <value>NetShield</value>
@@ -2651,7 +2651,7 @@ En iyi Proton gizliliğinin tadını çıkarın.</value>
     <value>Uygulamayı kaldır</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Conflict_Description">
-    <value>Bu işlem bağlantı kesiciyi kapatacak.</value>
+    <value>Bu işlem bağlantı kesici özelliğini kapatacak.</value>
   </data>
   <data name="Settings_Features_SplitTunneling_Conflict_Title">
     <value>Ayrılmış tünelleme açılsın mı?</value>
@@ -3034,7 +3034,7 @@ En iyi Proton gizliliğinin tadını çıkarın.</value>
     <value>Ayrılmış tünelleme ile aynı anda iki farklı konumdan gezinin</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling_Configuration">
-    <value>VPN ile kalan her şeyi korurken güvenilir uygulamaların ve IP adreslerinin doğrudan İnternet bağlantısı kurmasına izin verin</value>
+    <value>VPN ile kalan her şeyi korurken güvenilir uygulamaların ve IP adreslerinin doğrudan internet bağlantısı kurmasına izin verin</value>
   </data>
   <data name="Upsell_Carousel_Streaming">
     <value>Beğendiğiniz film ve TV dizilerinin yayın akışlarını izleyin</value>

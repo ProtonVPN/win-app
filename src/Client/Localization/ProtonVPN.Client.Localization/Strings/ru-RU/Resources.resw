@@ -199,7 +199,7 @@
     <value>Обновляется…...</value>
   </data>
   <data name="Connection_Error_EditProfile">
-    <value>Edit profile</value>
+    <value>Изменить профиль</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN не смог получить сертификат аутентификации из-за проблемы с сетью.</value>
@@ -2721,7 +2721,7 @@ Smart Routing обычно используется для обхода зако
 • Чтобы изменить протокол для других VPN-подключений, сначала нужно отключиться от текущего профиля.</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Title">
-    <value>Change protocol in profiles</value>
+    <value>Изменить протокол в профилях</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
