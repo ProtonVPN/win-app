@@ -44,7 +44,7 @@ using ProtonVPN.Logging.Installers;
 using ProtonVPN.OperatingSystems.Processes.Installers;
 using ProtonVPN.OperatingSystems.Registries.Installers;
 using ProtonVPN.OperatingSystems.Services.Installers;
-using ProtonVPN.ProcessCommunication.App.Installers;
+using ProtonVPN.ProcessCommunication.Client.Installers;
 using ProtonVPN.ProcessCommunication.Installers;
 using ProtonVPN.Serialization.Installers;
 
@@ -69,7 +69,7 @@ public class MainModule : Module
                .RegisterModule<ClientModule>()
                .RegisterModule<ServicesLogicModule>()
                .RegisterModule<ConnectionLogicModule>()
-               .RegisterModule<AppProcessCommunicationModule>()
+               .RegisterModule<ClientProcessCommunicationModule>()
                .RegisterModule<EntityMappingModule>()
                .RegisterModule<ProcessCommunicationModule>()
                .RegisterModule<LocalizationModule>()

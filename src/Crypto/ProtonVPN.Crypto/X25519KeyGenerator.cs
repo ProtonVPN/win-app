@@ -22,39 +22,38 @@ using System.Linq;
 using System.Security.Cryptography;
 using ProtonVPN.Crypto.Contracts;
 
-namespace ProtonVPN.Crypto
+namespace ProtonVPN.Crypto;
+
+public class X25519KeyGenerator : IX25519KeyGenerator
 {
-    public class X25519KeyGenerator : IX25519KeyGenerator
+    public SecretKey FromEd25519SecretKey(SecretKey secretKey)
     {
-        public SecretKey FromEd25519SecretKey(SecretKey secretKey)
+        ThrowIfSecretKeyIsNotEd25519(secretKey);
+        byte[] secretKeyLast32Bytes = secretKey.Bytes.Skip(secretKey.Bytes.Length - 32).Take(32).ToArray();
+
+        byte[] x25519SecretKey;
+        using (SHA512 shaM = SHA512.Create())
         {
-            ThrowIfSecretKeyIsNotEd25519(secretKey);
-            byte[] secretKeyLast32Bytes = secretKey.Bytes.Skip(secretKey.Bytes.Length - 32).Take(32).ToArray();
-
-            byte[] x25519SecretKey;
-            using (SHA512 shaM = SHA512.Create())
-            {
-                x25519SecretKey = shaM.ComputeHash(secretKeyLast32Bytes);
-            }
-
-            x25519SecretKey = x25519SecretKey.Take(32).ToArray();
-            x25519SecretKey[0] &= 0xF8;
-            x25519SecretKey[31] = (byte)((x25519SecretKey[31] & 0x7F) | 0x40);
-
-            return new SecretKey(x25519SecretKey, KeyAlgorithm.X25519);
+            x25519SecretKey = shaM.ComputeHash(secretKeyLast32Bytes);
         }
 
-        private void ThrowIfSecretKeyIsNotEd25519(SecretKey secretKey)
+        x25519SecretKey = x25519SecretKey.Take(32).ToArray();
+        x25519SecretKey[0] &= 0xF8;
+        x25519SecretKey[31] = (byte)((x25519SecretKey[31] & 0x7F) | 0x40);
+
+        return new SecretKey(x25519SecretKey, KeyAlgorithm.X25519);
+    }
+
+    private void ThrowIfSecretKeyIsNotEd25519(SecretKey secretKey)
+    {
+        if (secretKey.Algorithm != KeyAlgorithm.Ed25519)
         {
-            if (secretKey.Algorithm != KeyAlgorithm.Ed25519)
-            {
-                throw new ArgumentException($"The Secret key provided does not use the '{KeyAlgorithm.Ed25519}' " +
-                    $"algorithm, it uses the '{secretKey.Algorithm}' algorithm instead.");
-            }
-            if (secretKey.Bytes.Length < 32)
-            {
-                throw new ArgumentException($"The provided {KeyAlgorithm.Ed25519} secret key does not have at least 32 bytes.");
-            }
+            throw new ArgumentException($"The Secret key provided does not use the '{KeyAlgorithm.Ed25519}' " +
+                $"algorithm, it uses the '{secretKey.Algorithm}' algorithm instead.");
+        }
+        if (secretKey.Bytes.Length < 32)
+        {
+            throw new ArgumentException($"The provided {KeyAlgorithm.Ed25519} secret key does not have at least 32 bytes.");
         }
     }
 }

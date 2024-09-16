@@ -20,49 +20,36 @@
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
-using ProtonVPN.Logging.Contracts.Events.ProcessCommunicationLogs;
 using ProtonVPN.ProcessCommunication.Contracts;
 
-namespace ProtonVPN.Client.Logic.Services
+namespace ProtonVPN.Client.Logic.Services;
+
+public class ProcessCommunicationStarter : IProcessCommunicationStarter
 {
-    public class ProcessCommunicationStarter : IProcessCommunicationStarter
+    private readonly IGrpcClient _grpcClient;
+    private readonly ILogger _logger;
+    private readonly IClientControllerListener _clientControllerListener;
+
+    public ProcessCommunicationStarter(IGrpcClient grpcClient,
+        ILogger logger,
+        IClientControllerListener clientControllerListener)
     {
-        private readonly IGrpcServer _grpcServer;
-        private readonly ILogger _logger;
-        private readonly IVpnServiceCaller _vpnServiceCaller;
+        _grpcClient = grpcClient;
+        _logger = logger;
+        _clientControllerListener = clientControllerListener;
+    }
 
-        public ProcessCommunicationStarter(IGrpcServer grpcServer,
-            ILogger logger, IVpnServiceCaller vpnServiceCaller)
+    public void Start()
+    {
+        try
         {
-            _grpcServer = grpcServer;
-            _logger = logger;
-            _vpnServiceCaller = vpnServiceCaller;
+            _grpcClient.Create();
+            _clientControllerListener.Start();
         }
-
-        public async Task StartAsync(CancellationToken cancellationToken)
+        catch (Exception e)
         {
-            try
-            {
-                int appServerPort = StartGrpcServerAndGetPort();
-                _logger.Info<ProcessCommunicationLog>($"Sending app gRPC server port {appServerPort} to service.");
-                await _vpnServiceCaller.RegisterClientAsync(appServerPort, cancellationToken);
-            }
-            catch (Exception e)
-            {
-                _logger.Error<AppServiceStartFailedLog>("An error occurred when starting the gRPC server of the VPN client.", e);
-                throw;
-            }
-        }
-
-        private int StartGrpcServerAndGetPort()
-        {
-            _grpcServer.CreateAndStart();
-            int? appServerPort = _grpcServer.Port;
-            if (appServerPort.HasValue)
-            {
-                return appServerPort.Value;
-            }
-            throw new Exception("The gRPC server port is null.");
+            _logger.Error<AppServiceStartFailedLog>("An error occurred when starting the gRPC client.", e);
+            throw;
         }
     }
 }

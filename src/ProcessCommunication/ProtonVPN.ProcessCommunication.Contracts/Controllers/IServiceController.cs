@@ -19,10 +19,9 @@
 
 using System.ServiceModel;
 
-namespace ProtonVPN.ProcessCommunication.Contracts.Controllers
+namespace ProtonVPN.ProcessCommunication.Contracts.Controllers;
+
+[ServiceContract]
+public interface IServiceController
 {
-    [ServiceContract]
-    public interface IServiceController
-    {
-    }
 }

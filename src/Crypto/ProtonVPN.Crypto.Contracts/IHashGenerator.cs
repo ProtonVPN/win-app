@@ -23,4 +23,5 @@ public interface IHashGenerator
 {
     uint HashToUint(string text);
     decimal HashToPercentage(string text);
+    string GenerateRandomString(int length);
 }

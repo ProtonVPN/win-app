@@ -27,10 +27,8 @@ using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
-using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Communication;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.Service.ProcessCommunication;
@@ -39,114 +37,98 @@ using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.ConnectionCertificates;
 using ProtonVPN.Vpn.PortMapping;
 
-namespace ProtonVPN.Service
+namespace ProtonVPN.Service;
+
+public class VpnController : IVpnController
 {
-    public class VpnController : IVpnController
+    private readonly IVpnConnection _vpnConnection;
+    private readonly ILogger _logger;
+    private readonly IServiceSettings _serviceSettings;
+    private readonly ITaskQueue _taskQueue;
+    private readonly IPortMappingProtocolClient _portMappingProtocolClient;
+    private readonly IClientControllerSender _appControllerCaller;
+    private readonly IEntityMapper _entityMapper;
+    private readonly IConnectionCertificateCache _connectionCertificateCache;
+
+    public VpnController(
+        IVpnConnection vpnConnection,
+        ILogger logger,
+        IServiceSettings serviceSettings,
+        ITaskQueue taskQueue,
+        IPortMappingProtocolClient portMappingProtocolClient,
+        IClientControllerSender appControllerCaller,
+        IEntityMapper entityMapper,
+        IConnectionCertificateCache connectionCertificateCache)
     {
-        private readonly IVpnConnection _vpnConnection;
-        private readonly ILogger _logger;
-        private readonly IServiceSettings _serviceSettings;
-        private readonly ITaskQueue _taskQueue;
-        private readonly IPortMappingProtocolClient _portMappingProtocolClient;
-        private readonly IServiceGrpcClient _grpcClient;
-        private readonly IAppControllerCaller _appControllerCaller;
-        private readonly IEntityMapper _entityMapper;
-        private readonly IConnectionCertificateCache _connectionCertificateCache;
+        _vpnConnection = vpnConnection;
+        _logger = logger;
+        _serviceSettings = serviceSettings;
+        _taskQueue = taskQueue;
+        _portMappingProtocolClient = portMappingProtocolClient;
+        _appControllerCaller = appControllerCaller;
+        _entityMapper = entityMapper;
+        _connectionCertificateCache = connectionCertificateCache;
+    }
 
-        public VpnController(
-            IVpnConnection vpnConnection,
-            ILogger logger,
-            IServiceSettings serviceSettings,
-            ITaskQueue taskQueue,
-            IPortMappingProtocolClient portMappingProtocolClient,
-            IServiceGrpcClient grpcClient,
-            IAppControllerCaller appControllerCaller,
-            IEntityMapper entityMapper,
-            IConnectionCertificateCache connectionCertificateCache)
+    public async Task Connect(ConnectionRequestIpcEntity connectionRequest)
+    {
+        Ensure.NotNull(connectionRequest, nameof(connectionRequest));
+
+        _logger.Info<ConnectLog>("Connect requested");
+
+        _serviceSettings.Apply(connectionRequest.Settings);
+
+        VpnConfig config = _entityMapper.Map<VpnConfigIpcEntity, VpnConfig>(connectionRequest.Config);
+        config.OpenVpnAdapter = _serviceSettings.OpenVpnAdapter;
+        IReadOnlyList<VpnHost> endpoints = _entityMapper.Map<VpnServerIpcEntity, VpnHost>(connectionRequest.Servers);
+        VpnCredentials credentials = _entityMapper.Map<VpnCredentialsIpcEntity, VpnCredentials>(connectionRequest.Credentials);
+        _connectionCertificateCache.Set(new ConnectionCertificate(credentials.ClientCertificatePem, credentials.ClientCertificateExpirationDateUtc));
+        _vpnConnection.Connect(endpoints, config, credentials);
+    }
+
+    public async Task Disconnect(DisconnectionRequestIpcEntity disconnectionRequest)
+    {
+        _logger.Info<DisconnectLog>($"Disconnect requested (Error: {disconnectionRequest.ErrorType})");
+        _serviceSettings.Apply(disconnectionRequest.Settings);
+        _vpnConnection.Disconnect((VpnError)disconnectionRequest.ErrorType);
+    }
+
+    public async Task UpdateConnectionCertificate(ConnectionCertificateIpcEntity certificate)
+    {
+        _connectionCertificateCache.Set(new ConnectionCertificate(certificate.Pem, certificate.ExpirationDateUtc));
+    }
+
+    public async Task<TrafficBytesIpcEntity> GetTrafficBytes()
+    {
+        return _entityMapper.Map<TrafficBytes, TrafficBytesIpcEntity>(_vpnConnection.Total);
+    }
+
+    public async Task ApplySettings(MainSettingsIpcEntity settings)
+    {
+        Ensure.NotNull(settings, nameof(settings));
+        _serviceSettings.Apply(settings);
+    }
+
+    public async Task RepeatState()
+    {
+        _taskQueue.Enqueue(async () =>
         {
-            _vpnConnection = vpnConnection;
-            _logger = logger;
-            _serviceSettings = serviceSettings;
-            _taskQueue = taskQueue;
-            _portMappingProtocolClient = portMappingProtocolClient;
-            _grpcClient = grpcClient;
-            _appControllerCaller = appControllerCaller;
-            _entityMapper = entityMapper;
-            _connectionCertificateCache = connectionCertificateCache;
-        }
+            await _appControllerCaller.SendCurrentVpnStateAsync();
+        });
+    }
 
-        public async Task RegisterStateConsumer(StateConsumerIpcEntity stateConsumer)
-        {
-            if (stateConsumer?.ServerPort is null || stateConsumer.ServerPort < 1 || stateConsumer.ServerPort > ushort.MaxValue)
-            {
-                _logger.Error<ConnectLog>($"Received a new but invalid VPN Client gRPC port '{stateConsumer?.ServerPort}' to be registered.");
-                return;
-            }
+    public async Task RepeatPortForwardingState()
+    {
+        _portMappingProtocolClient.RepeatState();
+    }
 
-            _logger.Info<ConnectLog>($"Received new VPN Client gRPC port {stateConsumer.ServerPort} to be registered.");
-            await _grpcClient.CreateAsync(stateConsumer.ServerPort);
-        }
+    public async Task RequestNetShieldStats()
+    {
+        _vpnConnection.RequestNetShieldStats();
+    }
 
-        public async Task Connect(ConnectionRequestIpcEntity connectionRequest)
-        {
-            Ensure.NotNull(connectionRequest, nameof(connectionRequest));
-
-            _logger.Info<ConnectLog>("Connect requested");
-
-            _serviceSettings.Apply(connectionRequest.Settings);
-
-            VpnConfig config = _entityMapper.Map<VpnConfigIpcEntity, VpnConfig>(connectionRequest.Config);
-            config.OpenVpnAdapter = _serviceSettings.OpenVpnAdapter;
-            IReadOnlyList<VpnHost> endpoints = _entityMapper.Map<VpnServerIpcEntity, VpnHost>(connectionRequest.Servers);
-            VpnCredentials credentials = _entityMapper.Map<VpnCredentialsIpcEntity, VpnCredentials>(connectionRequest.Credentials);
-            _connectionCertificateCache.Set(new ConnectionCertificate(credentials.ClientCertificatePem, credentials.ClientCertificateExpirationDateUtc));
-            _vpnConnection.Connect(endpoints, config, credentials);
-        }
-
-        public async Task Disconnect(DisconnectionRequestIpcEntity disconnectionRequest)
-        {
-            _logger.Info<DisconnectLog>($"Disconnect requested (Error: {disconnectionRequest.ErrorType})");
-            _serviceSettings.Apply(disconnectionRequest.Settings);
-            _vpnConnection.Disconnect((VpnError)disconnectionRequest.ErrorType);
-        }
-
-        public async Task UpdateConnectionCertificate(ConnectionCertificateIpcEntity certificate)
-        {
-            _connectionCertificateCache.Set(new ConnectionCertificate(certificate.Pem, certificate.ExpirationDateUtc));
-        }
-
-        public async Task<TrafficBytesIpcEntity> GetTrafficBytes()
-        {
-            return _entityMapper.Map<TrafficBytes, TrafficBytesIpcEntity>(_vpnConnection.Total);
-        }
-
-        public async Task ApplySettings(MainSettingsIpcEntity settings)
-        {
-            Ensure.NotNull(settings, nameof(settings));
-            _serviceSettings.Apply(settings);
-        }
-
-        public async Task RepeatState()
-        {
-            _taskQueue.Enqueue(async () =>
-            {
-                await _appControllerCaller.SendCurrentVpnStateAsync();
-            });
-        }
-
-        public async Task RepeatPortForwardingState()
-        {
-            _portMappingProtocolClient.RepeatState();
-        }
-
-        public async Task RequestNetShieldStats()
-        {
-            _vpnConnection.RequestNetShieldStats();
-        }
-
-        public async Task RequestConnectionDetails()
-        {
-            _vpnConnection.RequestConnectionDetails();
-        }
+    public async Task RequestConnectionDetails()
+    {
+        _vpnConnection.RequestConnectionDetails();
     }
 }

@@ -28,7 +28,7 @@ namespace ProtonVPN.Client.Logic.Services;
 
 public class UpdateServiceCaller : ServiceCallerBase<IUpdateController>, IUpdateServiceCaller
 {
-    public UpdateServiceCaller(ILogger logger, IAppGrpcClient grpcClient, IServiceManager serviceManager) : base(logger, grpcClient, serviceManager)
+    public UpdateServiceCaller(ILogger logger, IGrpcClient grpcClient, IServiceManager serviceManager) : base(logger, grpcClient, serviceManager)
     {
     }
 

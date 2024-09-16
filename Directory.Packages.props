@@ -27,7 +27,7 @@
     <PackageVersion Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
     <PackageVersion Include="FlaUI.UIA3" Version="4.0.0" />
     <PackageVersion Include="FluentAssertions" Version="6.11.0" />
-    <PackageVersion Include="Grpc.Core" Version="2.46.6" />
+    <PackageVersion Include="Grpc.Net.Client" Version="2.63.0" />
     <PackageVersion Include="H.NotifyIcon.WinUI" Version="2.0.124" />
     <PackageVersion Include="log4net" Version="2.0.15" />
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3" />
@@ -63,7 +63,8 @@
     <PackageVersion Include="Portable.BouncyCastle" Version="1.9.0" />
     <PackageVersion Include="protobuf-net" Version="3.2.30" />
     <PackageVersion Include="protobuf-net.BuildTools" Version="3.1.25" />
-    <PackageVersion Include="protobuf-net.Grpc" Version="1.0.179" />
+    <PackageVersion Include="protobuf-net.Grpc" Version="1.1.1" />
+    <PackageVersion Include="protobuf-net.Grpc.AspNetCore" Version="1.1.1" />
     <PackageVersion Include="protobuf-net.Grpc.Native" Version="1.0.179" />
     <PackageVersion Include="ReswPlusLib" Version="2.0.0" />
     <PackageVersion Include="RichardSzalay.MockHttp" Version="6.0.0" />

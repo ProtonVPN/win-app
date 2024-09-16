@@ -17,15 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Security.Cryptography;
 using System.Text;
-using System;
 using ProtonVPN.Crypto.Contracts;
 
 namespace ProtonVPN.Crypto;
 
 public class HashGenerator : IHashGenerator
 {
+    private readonly RandomNumberGenerator _randomNumberGenerator = RandomNumberGenerator.Create();
+
     /// <summary>Returns a uniformly distributed unsigned integer based on the provided string</summary>
     /// <returns>uint between 0 and uint.Max (4294967295)</returns>
     public uint HashToUint(string text)
@@ -44,5 +46,20 @@ public class HashGenerator : IHashGenerator
     {
         uint hash = HashToUint(text);
         return decimal.Divide(hash, uint.MaxValue);
+    }
+
+    /// <summary>Returns a cryptographically strong random string of any given length</summary>
+    /// <returns>string with the defined argument length</returns>
+    public string GenerateRandomString(int length)
+    {
+        byte[] bytes = new byte[(length + 1) / 2];
+        _randomNumberGenerator.GetBytes(bytes);
+        StringBuilder sb = new();
+        foreach (byte b in bytes)
+        {
+            sb.Append(b.ToString("X2"));
+        }
+
+        return sb.ToString().Substring(0, length);
     }
 }

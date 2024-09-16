@@ -32,14 +32,9 @@ namespace ProtonVPN.Client.Logic.Services;
 
 public class VpnServiceCaller : ServiceCallerBase<IVpnController>, IVpnServiceCaller
 {
-    public VpnServiceCaller(ILogger logger, IAppGrpcClient grpcClient, IServiceManager serviceManager)
+    public VpnServiceCaller(ILogger logger, IGrpcClient grpcClient, IServiceManager serviceManager)
         : base(logger, grpcClient, serviceManager)
     { }
-
-    public Task RegisterClientAsync(int appServerPort, CancellationToken cancellationToken)
-    {
-        return InvokeAsync(c => c.RegisterStateConsumer(new StateConsumerIpcEntity { ServerPort = appServerPort }).Wrap());
-    }
 
     public Task ConnectAsync(ConnectionRequestIpcEntity connectionRequest)
     {
