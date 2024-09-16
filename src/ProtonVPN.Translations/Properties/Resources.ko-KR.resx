@@ -201,7 +201,7 @@
     <value>&lt;Bold&gt;{0}&lt;/Bold&gt; VPN 연결</value>
   </data>
   <data name="Account_lbl_Countries_Other">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt;개 국가에서</value>
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt;개 국가 연결</value>
   </data>
   <data name="Account_lbl_CurrentPlan">
     <value>현재 요금제</value>

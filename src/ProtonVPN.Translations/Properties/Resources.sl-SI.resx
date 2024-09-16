@@ -2536,10 +2536,10 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="te
     <value>Oglaševalska spletna mesta uporabljajo piškotke in sledilnike, da ciljajo na vas.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
-    <value>Podatki shranjeni</value>
+    <value>Prihranjeni podatki</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
-    <value>Ocenjeno število oglasov, sledilnikov in zlonamerne programske opreme, ki jih je NetShield blokiral.</value>
+    <value>Ocenjena velikost podatkov za oglase, sledilnike in zlonamerne programske opreme, ki jih je NetShield blokiral.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
     <value>Sledilnikov ustavljenih</value>
@@ -2588,7 +2588,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="te
     <comment>The server type in Profile window</comment>
   </data>
   <data name="ServerType_val_None">
-    <value>Standard</value>
+    <value>Standardni</value>
     <comment>The server type in Profile window</comment>
   </data>
   <data name="ServerType_val_P2P">
@@ -2604,7 +2604,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="te
     <comment>The server type in Profile window</comment>
   </data>
   <data name="Servers_Fastest">
-    <value>Najhitrejše</value>
+    <value>Najhitrejši</value>
     <comment>The label for fastest server item in the country list</comment>
   </data>
   <data name="Servers_Feature_val_P2P">
@@ -2642,7 +2642,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="te
     <comment>The label for server load in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_LoadInfo">
-    <value>{0}[%] Nalaganje</value>
+    <value>{0}% Nalaganje</value>
     <comment>The tooltip text of server load image in Countries tab of Sidebar section of main app window, the server load in Connection section of Sidebar of main app window. The {0} is a placeholder for load percentage value.</comment>
   </data>
   <data name="Servers_Load_lbl_LoadInfo_NoData">
@@ -2650,7 +2650,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="te
     <comment>The tooltip text of server load image in Countries tab of Sidebar section of main app window</comment>
   </data>
   <data name="Servers_Load_lbl_Status">
-    <value>Stanje Strežnika:</value>
+    <value>Stanje strežnika:</value>
     <comment>The label for server status in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_ViaCountry">
@@ -2661,7 +2661,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="te
     <value>Zagotovite si svetovno pokritost z VPN Plus</value>
   </data>
   <data name="Servers_UpsellBanner_NotTheCountryYouWanted">
-    <value>Ni država, ki ste jo želeli? Nadgradite, da izberete kateri koli strežnik</value>
+    <value>Ni država, ki ste jo želeli? Nadgradite in izberite kateri koli strežnik.</value>
   </data>
   <data name="Servers_btn_Connect">
     <value>Poveži</value>
@@ -2697,14 +2697,14 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="te
     <value>Proton VPN se ne more povezati, ker strežnik RPC v vašem sistemu ni na voljo. &lt;Hyperlink Command="{Binding OpenRpcServerUrlCommand}"&gt;Oglejte si možne rešitve&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Servers_msg_MissingServerPublicKey">
-    <value>Na žalost ta strežnik ne podpira WireGuarda.</value>
+    <value>Žal ta strežnik ne podpira WireGuarda.</value>
   </data>
   <data name="Settings_Advanced_SplitTunnel_btn_AddApp">
     <value>Dodaj aplikacijo</value>
     <comment>The text on Add App button in Settings window Advanced tab Split Tunneling section (opens a window for selecting custom app to add)</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Apps">
-    <value>APLIKACJE:</value>
+    <value>APLIKACIJE:</value>
     <comment>The label for application list in Settings window Advanced tab Split Tunneling section</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Exclude">
@@ -2752,7 +2752,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="te
     <comment>The description of Hardware Acceleration setting displayed in the tooltip of the ( i ) image next to the label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_Ipv6Protection">
-    <value>Zaščita pred puščanjem IPv6</value>
+    <value>Zaščita pred uhajanjem IPv6</value>
     <comment>The label for IPv6 Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_Ipv6Protection_Info">
@@ -2763,7 +2763,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="te
     <value>Gonilnik za omrežje OpenVPN</value>
   </data>
   <data name="Settings_Advanced_lbl_NetworkDriver_info">
-    <value>Omrežni gonilnik lahko vpliva na povezavo in njeno hitrost. Novi TUN adapter zagotavlja večjo hitrost. V primeru težav s povezavo se vrnite na kartico TAP.</value>
+    <value>Omrežni gonilnik lahko vpliva na povezavo in njeno hitrost. Nova TUN kartica zagotavlja večjo hitrost. V primeru težav s povezavo se vrnite na kartico TAP.</value>
   </data>
   <data name="Settings_Advanced_lbl_NonStandardPorts">
     <value>Nestandardna vrata</value>
@@ -2892,7 +2892,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="te
     <comment>The label for VPN Accelerator toggle switch in Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_VpnAccelerator_Info">
-    <value>Pospeševalec VPN omogoča nabor edinstvenih tehnologij za izboljšanje zmogljivosti, ki lahko povečajo hitrost VPN do 400[%].</value>
+    <value>Pospeševalec VPN omogoča nabor edinstvenih tehnologij za izboljšanje zmogljivosti, ki lahko povečajo hitrost VPN do 400 %.</value>
     <comment>The description of VPN Accelerator setting displayed in the tooltip of the ( i ) image next to the label in Settings window</comment>
   </data>
   <data name="Settings_Connection_ttl">
@@ -3217,7 +3217,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Dostopajte do hitrejših in manj natrpanih strežnikov.</value>
   </data>
   <data name="Upsell_Accelerator_Bullet2">
-    <value>Povečajte hitrost povezave do 400[%] s &lt;Bold&gt;pospeševalnikom VPN&lt;/Bold&gt;.</value>
+    <value>Povečajte hitrost povezave do 400 % s &lt;Bold&gt;pospeševalnikom VPN&lt;/Bold&gt;.</value>
   </data>
   <data name="Upsell_Accelerator_Bullet3">
     <value>Izboljšana hitrost in stabilnost pri povezavi z oddaljenimi strežniki.</value>
@@ -3242,7 +3242,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The message disaplyed in plus upgrade modal window</comment>
   </data>
   <data name="Upsell_Countries_Title">
-    <value>Dostop do {0} v {1}</value>
+    <value>Dostopajte do {0} v {1}</value>
     <comment>The message displayed in plus upgrade modal window. {0} is a placeholder for "X secure servers" (Secure_Servers_lbl) and {1} for "X countries" (Countries_lbl).</comment>
   </data>
   <data name="Upsell_Country_Bullet1_One">
@@ -3267,7 +3267,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Zaščitite do 10 naprav</value>
   </data>
   <data name="Upsell_Country_Bullet5">
-    <value>30-dnevno jamstvo za vračilo denarja</value>
+    <value>30-dnevno jamstvo z vračilom denarja</value>
   </data>
   <data name="Upsell_Country_Subtitle">
     <value>Odklenite &lt;Bold&gt;seznam držav&lt;/Bold&gt; z VPN Plus</value>
@@ -3399,7 +3399,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Ko brskate iz tujine, dostopajte do domačih in lokalnih vsebin</value>
   </data>
   <data name="Upsell_SplitTunneling_Subtitle">
-    <value>Odkleni &lt;Bold&gt;posredovanje vrat&lt;/Bold&gt; z VPN Plus</value>
+    <value>Odkleni &lt;Bold&gt;razdeljeno tuneliranje&lt;/Bold&gt; z VPN Plus</value>
   </data>
   <data name="Upsell_SplitTunneling_Title">
     <value>Izkoristite najboljše iz obeh svetov</value>
@@ -3452,7 +3452,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text displayed in Welcome window</comment>
   </data>
   <data name="Welcome_lbl_Welcome">
-    <value>DOBRODOŠLI NA NADZORNI PLOŠČI!</value>
+    <value>DOBRODOŠLI!</value>
     <comment>The text displayed in Welcome window</comment>
   </data>
   <data name="Welcome_ttl">

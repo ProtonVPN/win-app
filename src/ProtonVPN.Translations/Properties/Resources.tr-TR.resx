@@ -328,7 +328,7 @@
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
-    <value>Bunlardan biri etkinse, Proton VPN güncelleme işlemini tamamlamak için geçici olarak bağlantıyı kesecek ve bağlantı kesiciyi kapatacak. İlerlemek istiyor musunuz?</value>
+    <value>Bunlardan biri etkinse, Proton VPN güncelleme işlemini tamamlamak için geçici olarak bağlantıyı kesecek ve bağlantı kesici özelliğini kapatacak. İlerlemek istiyor musunuz?</value>
     <comment>The question displayed when trying to update the app while connected to VPN</comment>
   </data>
   <data name="App_ttl">
@@ -1591,7 +1591,7 @@
     <value>Bazı Proton VPN bileşenleri, bağlantı kurmanızı önleyecek şekilde engellenmiş ya da kapatılmış olabilir. Bu durumu düzeltmek için aç düğmesine tıklayın.&lt;LineBreak/&gt;Bu işlem için yönetici izinlerinin gerektiğini unutmayın.</value>
   </data>
   <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
-    <value>Bağlantı kesiciyi kapat</value>
+    <value>Bağlantı kesici özelliğini kapat</value>
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
@@ -1607,7 +1607,7 @@
     <comment>The message displayed in Disconnect modal window while trying to identify connection problem</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch">
-    <value>Bağlantı kesici, tüm bağlantıları engelleyerek IP adresinizi koruyor. Bir sorun olması durumunda Bağlantı kesiciyi kapatabilirsiniz.</value>
+    <value>Bağlantı kesici özelliği, tüm bağlantıları engelleyerek IP adresinizi koruyor. Bir sorun olması durumunda Bağlantı kesici özelliğini kapatabilirsiniz.</value>
     <comment>The text displayed in Disconnect modal window if the disconnect occurred with kill switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoServers">
@@ -1663,10 +1663,10 @@
     <value>Uygulamadan çıkarsanız VPN ile bağlantınız kesilecek.</value>
   </data>
   <data name="Dialogs_Exit_msg_KillSwitchOn">
-    <value>Bağlantı kesici, verilerinizin sızmasını önlemek için tüm bağlantıları engelliyor. Uygulamadan çıkmak, bağlantı kesiciyi kapatacak.</value>
+    <value>Bağlantı kesici özelliği, verilerinizin sızmasını önlemek için tüm bağlantıları engelliyor. Uygulamadan çıkmak, bağlantı kesici özelliğini kapatacak.</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch">
-    <value>Kalıcı bağlantı kesici şu anda açık. Uygulamadan çıkarsanız yeniden bağlantı kurulana kadar Proton VPN tüm giden bağlantıları engelleyecek.</value>
+    <value>Kalıcı bağlantı kesici özelliği şu anda açık. Uygulamadan çıkarsanız yeniden bağlantı kurulana kadar Proton VPN tüm giden bağlantıları engelleyecek.</value>
   </data>
   <data name="Dialogs_HumanVerification_ttl">
     <value>İnsan olduğunuzu doğrulayın</value>
@@ -1675,10 +1675,10 @@
     <value>Sistem saatiniz doğru değil gibi görünüyor. Bu durum VPN bağlantısının kurulmasını engelleyebilir. Ayrıntılı bilgi almak için &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;buraya&lt;/Hyperlink&gt; bakabilirsiniz.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>Kalıcı bağlantı kesici ile VPN bağlantısı herhangi bir nedenle kesildiğinde, İnternet erişiminiz de kesilir.</value>
+    <value>Kalıcı bağlantı kesici özelliği açıkken VPN bağlantısı herhangi bir nedenle kesildiğinde, internet erişiminiz de kesilir.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
-    <value>Kalıcı bağlantı kesici açılsın mı?</value>
+    <value>Kalıcı bağlantı kesici özelliği açılsın mı?</value>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok">
     <value>Anladım</value>
@@ -1725,7 +1725,7 @@
     <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
-    <value>Bağlantı kesicinin açık olduğunu unutmayın. Uygulamayı güncellemek ya da uygulamadan çıkmak bağlantı kesiciyi kapatır.</value>
+    <value>Bağlantı kesici özelliğinin açık olduğunu unutmayın. Uygulamayı güncellemek ya da uygulamadan çıkmak bağlantı kesici özelliğini kapatır.</value>
     <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
@@ -1743,7 +1743,7 @@
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
-    <value>Yenilenmiş Proton böyle görünüyor. Birçok hizmet, tek amaç. Gizliliğe odaklanmış bir İnternet fikrine hoş geldiniz. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Ayrıntılı bilgi alın&lt;/Hyperlink&gt;</value>
+    <value>Yenilenmiş Proton böyle görünüyor. Birçok hizmet, tek amaç. Gizliliğe odaklanmış bir internet fikrine hoş geldiniz. &lt;Hyperlink Command="{Binding LearnMoreCommand}"&gt;Ayrıntılı bilgi alın&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Dialogs_Rebranding_Title_new_plans">
     <value>Güncellenmiş Proton, birleşik koruma</value>
@@ -1752,7 +1752,7 @@
     <value>Anladım</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
-    <value>Ayrılmış tünellemenin düzgün çalışması için bağlantı kesiciyi kapatmalısınız.</value>
+    <value>Ayrılmış tünellemenin düzgün çalışması için bağlantı kesici özelliğini kapatmalısınız.</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1_One">
     <value>{0} ülkede yüzlerce sunucu</value>
@@ -1825,7 +1825,7 @@
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_NoInternet">
-    <value>&lt;Bold&gt;İnternet bağlantısı yok&lt;/Bold&gt; - Lütfen İnternet bağlantınızın çalıştığından emin olun.</value>
+    <value>&lt;Bold&gt;İnternet bağlantısı yok&lt;/Bold&gt; - Lütfen internet bağlantınızın çalıştığından emin olun.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_ProtonDown">
@@ -1936,7 +1936,7 @@
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
-    <value>Bağlantı kesici açık</value>
+    <value>Bağlantı kesici özelliği açık</value>
     <comment>The text displayed on the login window when user was force logged out while kill switch is active</comment>
   </data>
   <data name="Login_lbl_Password">
@@ -1944,7 +1944,7 @@
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>Her yerde güvenli İnternet</value>
+    <value>Her yerde güvenli internet</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
@@ -2078,7 +2078,7 @@
     <value>Ayrıntılı bilgi alın</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Subtitle">
-    <value>Secure Core, en yüksek düzeyde güvenlik ve gizlilik sunar. Ancak İnternet hızınızı düşürebilir. Başarımı yükseltmeye gerek duyuyorsanız, Secure Core özelliğini kapatabilirsiniz.</value>
+    <value>Secure Core, en yüksek düzeyde güvenlik ve gizlilik sunar. Ancak internet hızınızı düşürebilir. Başarımı yükseltmeye gerek duyuyorsanız, Secure Core özelliğini kapatabilirsiniz.</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Title">
     <value>Hız hakkında bir not...</value>
@@ -2433,11 +2433,11 @@
     <comment>The label for Profiles list in combo box in Quick Launch window</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
-    <value>Bağlantı kesiciyi kapat</value>
+    <value>Bağlantı kesici özelliğini kapat</value>
     <comment>The text for the clickable option to disable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
-    <value>Bağlantı kesiciyi aç</value>
+    <value>Bağlantı kesici özelliğini aç</value>
     <comment>The text for the clickable option to enable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_LearnMore">
@@ -2472,7 +2472,7 @@
     <value>YÜKSELT</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>VPN bağlantısı kesildiğinde IP adresinizin isteğiniz dışında sızmasını engellemek için İnternet erişimini kapatır.</value>
+    <value>VPN bağlantısı kesildiğinde IP adresinizin isteğiniz dışında sızmasını engellemek için internet erişimini kapatır.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
     <value>İnternette reklamlar ve kötü amaçlı yazılımlar olmadan gezinin.</value>
@@ -2505,7 +2505,7 @@
     <value>Siteler yüklenmiyorsa, NetShield özelliğini kapatmayı deneyin</value>
   </data>
   <data name="QuickSettings_lbl_PortForwardingInfo">
-    <value>Desteklenen yerel uygulamalara İnternet üzerinden erişilebilmesine izin vererek torrent ve çevrim içi oyun kullanımınızı hızlandırın.</value>
+    <value>Desteklenen yerel uygulamalara internet üzerinden erişilebilmesine izin vererek torrent ve çevrim içi oyun kullanımınızı hızlandırın.</value>
   </data>
   <data name="QuickSettings_lbl_SecureCoreInfo">
     <value>En hassas verilerinizi gizliliğe saygı gösteren ülkelerdeki en güvenli sunucularımız üzerinden yöneltin.</value>
@@ -2734,18 +2734,18 @@
     <value>Yönlendirilen bağlantı noktası değiştirildiğinde bildirim alın</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Info">
-    <value>Desteklenen yerel uygulamalara İnternet üzerinden erişilmesini sağlayarak, torrent ve çevrim içi oyun hızınızı artırın. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Ayrıntılı bilgi alın&lt;/Hyperlink&gt;</value>
+    <value>Desteklenen yerel uygulamalara internet üzerinden erişilmesini sağlayarak, torrent ve çevrim içi oyun hızınızı artırın. &lt;Hyperlink Command="{Binding LearnMoreAboutPortForwardingCommand}"&gt;Ayrıntılı bilgi alın&lt;/Hyperlink&gt;</value>
     <comment>Do not translate whatever is between &lt; and &gt;. Do not forget to translate the "Learn more".</comment>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding_Tooltip">
-    <value>Desteklenen yerel uygulamalara İnternet üzerinden erişilebilmesine izin vererek torrent ve çevrim içi oyun kullanımınızı hızlandırın.</value>
+    <value>Desteklenen yerel uygulamalara internet üzerinden erişilebilmesine izin vererek torrent ve çevrim içi oyun kullanımınızı hızlandırın.</value>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel">
     <value>Ayrılmış tünelleme</value>
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info">
-    <value>Bir uygulama veya IP adresinin VPN trafiğine katılmamasını ya da yalnızca belirli uygulamaların katılmasını sağlar. Bağlantı kesici ile aynı anda kullanılamaz.</value>
+    <value>Bir uygulama veya IP adresinin VPN trafiğine katılmamasını ya da yalnızca belirli uygulamaların katılmasını sağlar. Bağlantı kesici özelliği ile aynı anda kullanılamaz.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_btn_LearnMore">
@@ -2938,15 +2938,15 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text displayed on Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_IP_Unknown_Info">
-    <value>Ağ sorunları veya İnternet hizmeti sağlayıcınızın kısıtlamaları nedeniyle IP adresiniz alınamadı.</value>
+    <value>Ağ sorunları veya internet hizmeti sağlayıcınızın kısıtlamaları nedeniyle IP adresiniz alınamadı.</value>
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch">
-    <value>Bağlantı kesici açıldı!</value>
+    <value>Bağlantı kesici özelliği açıldı!</value>
     <comment>The text displayed in the sidebar when connection dropped and kill switch is turned on</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch_Info">
-    <value>Bağlantı kesici, verilerinizin sızmasını önlemek için tüm bağlantıları engelliyor.</value>
+    <value>Bağlantı kesici özelliği, verilerinizin sızmasını önlemek için tüm bağlantıları engelliyor.</value>
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">
