@@ -2,22 +2,21 @@
     <PropertyGroup>
         <TargetFramework>net8.0-windows</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
-        <OutputPath>..\..\bin</OutputPath>
+        <OutputPath>..\..\..\bin</OutputPath>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <OutputType>Library</OutputType>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     </PropertyGroup>
     <ItemGroup>
-        <Compile Include="..\..\GlobalAssemblyInfo.cs">
+        <Compile Include="..\..\..\GlobalAssemblyInfo.cs">
             <Link>Properties\GlobalAssemblyInfo.cs</Link>
         </Compile>
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Autofac" />
-        <PackageReference Include="System.Private.ServiceModel" />
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\..\EntityMapping\ProtonVPN.EntityMapping.Common.Installers\ProtonVPN.EntityMapping.Common.Installers.csproj" />
-        <ProjectReference Include="..\ProtonVPN.ProcessCommunication.EntityMapping\ProtonVPN.ProcessCommunication.EntityMapping.csproj" />
+      <ProjectReference Include="..\..\ProtonVPN.ProcessCommunication.Contracts\ProtonVPN.ProcessCommunication.Contracts.csproj" />
+      <ProjectReference Include="..\ProtonVPN.ProcessCommunication.Server\ProtonVPN.ProcessCommunication.Server.csproj" />
     </ItemGroup>
 </Project>

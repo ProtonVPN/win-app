@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,11 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Crypto.Contracts;
+namespace ProtonVPN.ProcessCommunication.Common;
 
-public interface IHashGenerator
+public static class NamedPipeConfiguration
 {
-    uint HashToUint(string text);
-    decimal HashToPercentage(string text);
-    string GenerateRandomString(int length);
+    public const string REGISTRY_PATH = @"SOFTWARE\Proton AG\Proton VPN\gRPC";
+    public const string REGISTRY_KEY = "PipeName";
 }

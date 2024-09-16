@@ -35,7 +35,7 @@ using ProtonVPN.Logging.Contracts;
 using ProtonVPN.OperatingSystems.Processes.Installers;
 using ProtonVPN.OperatingSystems.Registries.Installers;
 using ProtonVPN.ProcessCommunication.Installers;
-using ProtonVPN.ProcessCommunication.Service.Installers;
+using ProtonVPN.ProcessCommunication.Server.Installers;
 using ProtonVPN.Serialization.Installers;
 using ProtonVPN.Service.Driver;
 using ProtonVPN.Service.Firewall;
@@ -61,7 +61,7 @@ internal class ServiceModule : Module
         builder.RegisterType<Bootstrapper>().SingleInstance();
         builder.RegisterType<VpnController>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<UpdateController>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<AppControllerCaller>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ClientControllerSender>().AsImplementedInterfaces().SingleInstance();
 
         builder.Register(_ => new ServiceRetryPolicy(2, TimeSpan.FromSeconds(1))).SingleInstance();
         builder.Register(c => new CalloutDriver(
@@ -134,11 +134,12 @@ internal class ServiceModule : Module
         builder.RegisterAssemblyModule<EntityMappingModule>()
                .RegisterAssemblyModule<RegistriesModule>()
                .RegisterAssemblyModule<ProcessCommunicationModule>()
-               .RegisterAssemblyModule<ServiceProcessCommunicationModule>()
+               .RegisterAssemblyModule<ServerProcessCommunicationModule>()
                .RegisterAssemblyModule<SerializationModule>()
                .RegisterAssemblyModule<FilesModule>()
                .RegisterAssemblyModule<IssueReportingModule>()
-               .RegisterAssemblyModule<PowerEventsModule>();
+               .RegisterAssemblyModule<PowerEventsModule>()
+               .RegisterAssemblyModule<ProcessesModule>();
     }
 
     private IVpnConnection GetVpnConnection(IComponentContext c, IVpnConnection connection)

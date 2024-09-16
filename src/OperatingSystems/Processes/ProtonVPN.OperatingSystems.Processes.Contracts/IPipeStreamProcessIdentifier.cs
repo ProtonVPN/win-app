@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,11 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Crypto.Contracts;
+using System.IO.Pipes;
 
-public interface IHashGenerator
+namespace ProtonVPN.OperatingSystems.Processes.Contracts;
+
+public interface IPipeStreamProcessIdentifier
 {
-    uint HashToUint(string text);
-    decimal HashToPercentage(string text);
-    string GenerateRandomString(int length);
+    string? GetClientProcessFileName(PipeStream pipeStream);
+    string? GetServerProcessFileName(PipeStream pipeStream);
 }

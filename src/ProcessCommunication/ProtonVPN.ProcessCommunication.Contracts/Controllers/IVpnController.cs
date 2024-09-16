@@ -19,7 +19,6 @@
 
 using System.ServiceModel;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Communication;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
@@ -28,8 +27,6 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Controllers;
 [ServiceContract]
 public interface IVpnController : IServiceController
 {
-    Task RegisterStateConsumer(StateConsumerIpcEntity stateConsumer);
-
     Task Connect(ConnectionRequestIpcEntity connectionRequest);
     Task Disconnect(DisconnectionRequestIpcEntity disconnectionRequest);
     Task UpdateConnectionCertificate(ConnectionCertificateIpcEntity certificate);

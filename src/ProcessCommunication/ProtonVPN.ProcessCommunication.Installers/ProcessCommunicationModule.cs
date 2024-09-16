@@ -19,8 +19,6 @@
 
 using Autofac;
 using ProtonVPN.EntityMapping.Common.Installers.Extensions;
-using ProtonVPN.ProcessCommunication.Common.Channels;
-using ProtonVPN.ProcessCommunication.Common.Registration;
 using ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
 
 namespace ProtonVPN.ProcessCommunication.Installers;
@@ -29,11 +27,6 @@ public class ProcessCommunicationModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
-        builder.RegisterType<GrpcChannelWrapperFactory>().AsImplementedInterfaces().SingleInstance();
-
-        builder.RegisterType<ServiceServerPortRegister>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<AppServerPortRegister>().AsImplementedInterfaces().SingleInstance();
-
         builder.RegisterAllMappersInAssembly<VpnStatusMapper>();
     }
 }

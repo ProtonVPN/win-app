@@ -28,15 +28,18 @@ using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 
 namespace ProtonVPN.Client.Logic.Services;
 
-public abstract class ServiceCallerBase<TController> where TController : IServiceController
+public abstract class ServiceCallerBase<TController>
+    where TController : IServiceController
 {
-    private readonly IAppGrpcClient _grpcClient;
+    private static readonly TimeSpan _timeout = TimeSpan.FromSeconds(5);
+
+    private readonly IGrpcClient _grpcClient;
     private readonly IServiceManager _serviceManager;
 
     protected ILogger Logger { get; }
 
     protected ServiceCallerBase(ILogger logger,
-        IAppGrpcClient grpcClient,
+        IGrpcClient grpcClient,
         IServiceManager serviceManager)
     {
         Logger = logger;
@@ -57,7 +60,7 @@ public abstract class ServiceCallerBase<TController> where TController : IServic
                 T result = await serviceCall(serviceController);
                 if (result is Task task)
                 {
-                    await task;
+                    await RunWithTimeoutAsync(task);
                 }
 
                 return Result.Ok(result);
@@ -71,11 +74,22 @@ public abstract class ServiceCallerBase<TController> where TController : IServic
                     return Result.Fail<T>(e.CombinedMessage());
                 }
 
-                await _grpcClient.RecreateAsync();
                 LogError(e, memberName, isToRetry: true);
             }
 
             retryCount--;
+        }
+    }
+
+    private async Task RunWithTimeoutAsync(Task task)
+    {
+        if (await Task.WhenAny(task, Task.Delay(_timeout)) == task)
+        {
+            await task;
+        }
+        else
+        {
+            throw new TimeoutException($"The gRPC call has timed out ({_timeout}).");
         }
     }
 

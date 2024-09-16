@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,11 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Crypto.Contracts;
+namespace ProtonVPN.Common.Core.Extensions;
 
-public interface IHashGenerator
+public static class TaskExtensions
 {
-    uint HashToUint(string text);
-    decimal HashToPercentage(string text);
-    string GenerateRandomString(int length);
+    public static void IgnoreExceptions(this Task task)
+    {
+        task.ContinueWith(c => { AggregateException ignored = c.Exception; },
+            TaskContinuationOptions.OnlyOnFaulted |
+            TaskContinuationOptions.ExecuteSynchronously);
+    }
 }

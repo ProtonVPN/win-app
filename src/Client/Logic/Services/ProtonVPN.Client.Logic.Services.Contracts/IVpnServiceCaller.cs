@@ -26,8 +26,6 @@ namespace ProtonVPN.Client.Logic.Services.Contracts;
 
 public interface IVpnServiceCaller
 {
-    Task RegisterClientAsync(int appServerPort, CancellationToken cancellationToken);
-
     Task ConnectAsync(ConnectionRequestIpcEntity connectionRequest);
     Task DisconnectAsync(DisconnectionRequestIpcEntity connectionRequest);
 

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,11 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Crypto.Contracts;
+using Autofac;
+using ProtonVPN.ProcessCommunication.Contracts;
 
-public interface IHashGenerator
+namespace ProtonVPN.ProcessCommunication.Server.Installers;
+
+public class ServerProcessCommunicationModule : Module
 {
-    uint HashToUint(string text);
-    decimal HashToPercentage(string text);
-    string GenerateRandomString(int length);
+    protected override void Load(ContainerBuilder builder)
+    {
+        builder.RegisterType<GrpcServer>().As<IGrpcServer>().SingleInstance();
+    }
 }

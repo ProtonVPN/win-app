@@ -20,13 +20,12 @@
 using System.ServiceModel;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Update;
 
-namespace ProtonVPN.ProcessCommunication.Contracts.Controllers
-{
-    [ServiceContract]
-    public interface IUpdateController : IServiceController
-    {
-        Task CheckForUpdate(UpdateSettingsIpcEntity updateSettingsIpcEntity);
+namespace ProtonVPN.ProcessCommunication.Contracts.Controllers;
 
-        Task StartAutoUpdate();
-    }
+[ServiceContract]
+public interface IUpdateController : IServiceController
+{
+    Task CheckForUpdate(UpdateSettingsIpcEntity updateSettingsIpcEntity);
+
+    Task StartAutoUpdate();
 }

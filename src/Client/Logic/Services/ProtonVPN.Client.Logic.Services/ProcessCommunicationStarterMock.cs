@@ -19,13 +19,11 @@
 
 using ProtonVPN.Client.Logic.Services.Contracts;
 
-namespace ProtonVPN.Client.Logic.Services
+namespace ProtonVPN.Client.Logic.Services;
+
+public class ProcessCommunicationStarterMock : IProcessCommunicationStarter
 {
-    public class ProcessCommunicationStarterMock : IProcessCommunicationStarter
+    public void Start()
     {
-        public Task StartAsync(CancellationToken cancellationToken)
-        {
-            return Task.CompletedTask;
-        }
     }
 }

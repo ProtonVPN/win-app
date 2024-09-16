@@ -18,7 +18,6 @@
  */
 
 using Autofac;
-using ProtonVPN.OperatingSystems.Processes.Contracts;
 
 namespace ProtonVPN.OperatingSystems.Processes.Installers;
 
@@ -26,6 +25,7 @@ public class ProcessesModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
-        builder.RegisterType<CommandLineCaller>().As<ICommandLineCaller>().SingleInstance();
+        builder.RegisterType<CommandLineCaller>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<PipeStreamProcessIdentifier>().AsImplementedInterfaces().SingleInstance();
     }
 }

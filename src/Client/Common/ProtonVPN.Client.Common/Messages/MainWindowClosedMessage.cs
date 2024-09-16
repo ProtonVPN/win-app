@@ -17,11 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Crypto.Contracts;
+namespace ProtonVPN.Client.Common.Messages;
 
-public interface IHashGenerator
+public class MainWindowClosedMessage
 {
-    uint HashToUint(string text);
-    decimal HashToPercentage(string text);
-    string GenerateRandomString(int length);
 }

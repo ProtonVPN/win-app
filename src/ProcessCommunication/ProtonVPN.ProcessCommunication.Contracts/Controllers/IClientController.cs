@@ -18,10 +18,28 @@
  */
 
 using System.ServiceModel;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.NetShield;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.PortForwarding;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Update;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
 namespace ProtonVPN.ProcessCommunication.Contracts.Controllers;
 
 [ServiceContract]
-public interface IServiceController
+public interface IClientController
 {
+    [OperationContract]
+    IAsyncEnumerable<VpnStateIpcEntity> StreamVpnStateChangeAsync();
+
+    [OperationContract]
+    IAsyncEnumerable<PortForwardingStateIpcEntity> StreamPortForwardingStateChangeAsync();
+
+    [OperationContract]
+    IAsyncEnumerable<ConnectionDetailsIpcEntity> StreamConnectionDetailsChangeAsync();
+
+    [OperationContract]
+    IAsyncEnumerable<NetShieldStatisticIpcEntity> StreamNetShieldStatisticChangeAsync();
+
+    [OperationContract]
+    IAsyncEnumerable<UpdateStateIpcEntity> StreamUpdateStateChangeAsync();
 }

@@ -16,12 +16,18 @@
  * You should have received a copy of the GNU General Public License
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
+using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 
-namespace ProtonVPN.Crypto.Contracts;
+namespace ProtonVPN.ProcessCommunication.Contracts;
 
-public interface IHashGenerator
+public interface IGrpcClient
 {
-    uint HashToUint(string text);
-    decimal HashToPercentage(string text);
-    string GenerateRandomString(int length);
+    IClientController ClientController { get; }
+    IUpdateController UpdateController { get; }
+    IVpnController VpnController { get; }
+
+    void Create();
+
+    Task<T> GetServiceControllerOrThrowAsync<T>(TimeSpan timeout)
+        where T : IServiceController;
 }

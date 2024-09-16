@@ -26,9 +26,10 @@ public class ServicesLogicModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
-        builder.RegisterType<ProcessCommunicationStarter>().As<IProcessCommunicationStarter>().SingleInstance();
+        builder.RegisterType<ProcessCommunicationStarter>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<VpnServiceCaller>().As<IVpnServiceCaller>().SingleInstance();
         builder.RegisterType<UpdateServiceCaller>().As<IUpdateServiceCaller>().SingleInstance();
-        builder.RegisterType<ServiceManager>().As<IServiceManager>().SingleInstance();
+        builder.RegisterType<ServiceManager>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ClientControllerListener>().AsImplementedInterfaces().SingleInstance();
     }
 }

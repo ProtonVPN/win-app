@@ -25,7 +25,6 @@ using ProtonVPN.Client.Logic.Connection.ServerListGenerators;
 using ProtonVPN.Client.Logic.Connection.Validators;
 using ProtonVPN.Common.Legacy.OS.Net;
 using ProtonVPN.EntityMapping.Common.Installers.Extensions;
-using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 
 namespace ProtonVPN.Client.Logic.Connection.Installers;
 
@@ -35,7 +34,6 @@ public class ConnectionLogicModule : Module
     {
         builder.RegisterType<ConnectionManager>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<PortForwardingManager>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<AppController>().As<IAppController>().SingleInstance();
         builder.RegisterType<GuestHoleServersFileStorage>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<GuestHoleConnector>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<GuestHoleManager>().AsImplementedInterfaces().SingleInstance();

@@ -17,11 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Crypto.Contracts;
+using System.Threading.Tasks;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Update;
 
-public interface IHashGenerator
+namespace ProtonVPN.Service.ProcessCommunication
 {
-    uint HashToUint(string text);
-    decimal HashToPercentage(string text);
-    string GenerateRandomString(int length);
+    public interface IClientControllerSender
+    {
+        Task SendCurrentVpnStateAsync();
+        Task SendCurrentPortForwardingStateAsync();
+        Task SendUpdateStateAsync(UpdateStateIpcEntity updateState);
+    }
 }

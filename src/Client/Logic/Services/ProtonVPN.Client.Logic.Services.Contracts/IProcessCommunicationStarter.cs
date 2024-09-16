@@ -17,10 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Logic.Services.Contracts
+namespace ProtonVPN.Client.Logic.Services.Contracts;
+
+public interface IProcessCommunicationStarter
 {
-    public interface IProcessCommunicationStarter
-    {
-        Task StartAsync(CancellationToken cancellationToken);
-    }
+    void Start();
 }

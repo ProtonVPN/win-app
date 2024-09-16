@@ -37,7 +37,7 @@ namespace ProtonVPN.Service
     {
         private readonly INotifyingAppUpdate _notifyingAppUpdate;
         private readonly IFeedUrlProvider _feedUrlProvider;
-        private readonly IAppControllerCaller _appControllerCaller;
+        private readonly IClientControllerSender _appControllerCaller;
         private readonly IEntityMapper _entityMapper;
         private readonly ICurrentAppVersionProvider _currentAppVersionProvider;
         private readonly ILogger _logger;
@@ -48,7 +48,7 @@ namespace ProtonVPN.Service
         public UpdateController(
             INotifyingAppUpdate notifyingAppUpdate,
             IFeedUrlProvider feedUrlProvider,
-            IAppControllerCaller appControllerCaller,
+            IClientControllerSender appControllerCaller,
             IEntityMapper entityMapper,
             ICurrentAppVersionProvider currentAppVersionProvider,
             ILogger logger)

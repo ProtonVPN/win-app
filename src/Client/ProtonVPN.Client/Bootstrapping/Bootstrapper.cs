@@ -115,10 +115,8 @@ public class Bootstrapper : IBootstrapper
 
     private async Task StartServiceAsync()
     {
-        CancellationToken cancellationToken = new CancellationTokenSource().Token;
-
         await _serviceManager.StartAsync();
-        await _processCommunicationStarter.StartAsync(cancellationToken);
+        _processCommunicationStarter.Start();
     }
 
     private void ParseAndRunCommandLineArguments()
