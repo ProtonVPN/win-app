@@ -2546,11 +2546,11 @@ Njut av det bästa av Protons integritet.</value>
     <value>Gå till profiler</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Message">
-    <value>You’re currently connected to a VPN profile. 
+    <value>Du är för närvarande ansluten till en VPN-profil. 
 
-• To change the protocol for this connection, disconnect then edit your profile.
+• För att ändra protokollet för denna anslutning, koppla från och redigera sedan din profil.
 
-• To change your protocol for other VPN connections, you’ll need to disconnect from your profile first.</value>
+• För att ändra ditt protokoll för andra VPN-anslutningar måste du först koppla från din profil.</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Title">
     <value>Ändra protokoll i profiler</value>
