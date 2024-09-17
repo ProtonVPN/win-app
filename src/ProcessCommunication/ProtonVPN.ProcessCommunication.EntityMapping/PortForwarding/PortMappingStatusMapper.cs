@@ -21,18 +21,17 @@ using ProtonVPN.Common.PortForwarding;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.PortForwarding;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.PortForwarding
-{
-    public class PortMappingStatusMapper : IMapper<PortMappingStatus, PortMappingStatusIpcEntity>
-    {
-        public PortMappingStatusIpcEntity Map(PortMappingStatus leftEntity)
-        {
-            return (PortMappingStatusIpcEntity)leftEntity;
-        }
+namespace ProtonVPN.ProcessCommunication.EntityMapping.PortForwarding;
 
-        public PortMappingStatus Map(PortMappingStatusIpcEntity rightEntity)
-        {
-            return (PortMappingStatus)rightEntity;
-        }
+public class PortMappingStatusMapper : IMapper<PortMappingStatus, PortMappingStatusIpcEntity>
+{
+    public PortMappingStatusIpcEntity Map(PortMappingStatus leftEntity)
+    {
+        return (PortMappingStatusIpcEntity)leftEntity;
+    }
+
+    public PortMappingStatus Map(PortMappingStatusIpcEntity rightEntity)
+    {
+        return (PortMappingStatus)rightEntity;
     }
 }

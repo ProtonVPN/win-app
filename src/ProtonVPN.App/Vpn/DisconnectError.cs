@@ -162,7 +162,9 @@ namespace ProtonVPN.Vpn
             }
             else
             {
-                await _vpnServiceManager.UpdateAuthCertificate(_appSettings.AuthenticationCertificatePem);
+                await _vpnServiceManager.UpdateAuthCertificate(
+                    _appSettings.AuthenticationCertificatePem,
+                    _appSettings.AuthenticationCertificateExpirationUtcDate);
             }
         }
 

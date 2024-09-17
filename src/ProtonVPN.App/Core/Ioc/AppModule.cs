@@ -24,6 +24,7 @@ using ProtonVPN.About;
 using ProtonVPN.Account;
 using ProtonVPN.AccountPlan;
 using ProtonVPN.Api;
+using ProtonVPN.Client.Logic.Connection;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.OS.DeviceIds;
 using ProtonVPN.Common.OS.Processes;
@@ -125,7 +126,6 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<VpnServiceCaller>().AsSelf().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<UpdateService>().AsSelf().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<UpdateServiceCaller>().AsSelf().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<AppController>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ModalWindows>().As<IModalWindows>().SingleInstance();
             builder.RegisterType<ProtonVPN.Modals.Modals>().As<IModals>().SingleInstance();
             builder.RegisterType<PopupWindows>().As<IPopupWindows>().SingleInstance();
@@ -302,6 +302,10 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<NetShieldStatsManager>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<UpgradeModalManager>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<VpnStatusNotifier>().AsImplementedInterfaces().SingleInstance();
+
+            builder.RegisterType<ClientControllerEventHandler>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<ClientControllerListener>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<ProcessCommunicationStarter>().AsImplementedInterfaces().SingleInstance();
         }
     }
 }

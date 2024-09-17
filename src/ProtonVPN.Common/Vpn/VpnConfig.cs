@@ -36,10 +36,7 @@ namespace ProtonVPN.Common.Vpn
         public int NetShieldMode { get; }
         public bool? SplitTcp { get; }
         public bool PortForwarding { get; }
-
         public bool ModerateNat { get; }
-
-        public bool? AllowNonStandardPorts { get; }
 
         public VpnConfig(VpnConfigParameters parameters)
         {
@@ -56,7 +53,6 @@ namespace ProtonVPN.Common.Vpn
             NetShieldMode = parameters.NetShieldMode;
             SplitTcp = parameters.SplitTcp;
             ModerateNat = parameters.ModerateNat;
-            AllowNonStandardPorts = parameters.AllowNonStandardPorts;
             PortForwarding = parameters.PortForwarding;
         }
 

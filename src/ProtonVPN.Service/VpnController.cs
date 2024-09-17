@@ -20,16 +20,14 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Helpers;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
-using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.EntityMapping.Contracts;
-using ProtonVPN.ProcessCommunication.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
+using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Communication;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.Service.ProcessCommunication;
@@ -46,8 +44,7 @@ namespace ProtonVPN.Service
         private readonly IServiceSettings _serviceSettings;
         private readonly ITaskQueue _taskQueue;
         private readonly IPortMappingProtocolClient _portMappingProtocolClient;
-        private readonly IServiceGrpcClient _grpcClient;
-        private readonly IAppControllerCaller _appControllerCaller;
+        private readonly IClientControllerSender _clientControllerSender;
         private readonly IEntityMapper _entityMapper;
 
         public VpnController(
@@ -56,8 +53,7 @@ namespace ProtonVPN.Service
             IServiceSettings serviceSettings,
             ITaskQueue taskQueue,
             IPortMappingProtocolClient portMappingProtocolClient,
-            IServiceGrpcClient grpcClient,
-            IAppControllerCaller appControllerCaller,
+            IClientControllerSender clientControllerSender,
             IEntityMapper entityMapper)
         {
             _vpnConnection = vpnConnection;
@@ -65,21 +61,8 @@ namespace ProtonVPN.Service
             _serviceSettings = serviceSettings;
             _taskQueue = taskQueue;
             _portMappingProtocolClient = portMappingProtocolClient;
-            _grpcClient = grpcClient;
-            _appControllerCaller = appControllerCaller;
+            _clientControllerSender = clientControllerSender;
             _entityMapper = entityMapper;
-        }
-
-        public async Task RegisterStateConsumer(StateConsumerIpcEntity stateConsumer)
-        {
-            if (stateConsumer?.ServerPort is null || stateConsumer.ServerPort < 1 || stateConsumer.ServerPort > ushort.MaxValue)
-            {
-                _logger.Error<ConnectLog>($"Received a new but invalid VPN Client gRPC port '{stateConsumer?.ServerPort}' to be registered.");
-                return;
-            }
-
-            _logger.Info<ConnectLog>($"Received new VPN Client gRPC port {stateConsumer.ServerPort} to be registered.");
-            await _grpcClient.CreateAsync(stateConsumer.ServerPort);
         }
 
         public async Task Connect(ConnectionRequestIpcEntity connectionRequest)
@@ -104,9 +87,9 @@ namespace ProtonVPN.Service
             _vpnConnection.Disconnect((VpnError)disconnectionRequest.ErrorType);
         }
 
-        public async Task UpdateAuthCertificate(AuthCertificateIpcEntity certificate)
+        public async Task UpdateConnectionCertificate(ConnectionCertificateIpcEntity certificate)
         {
-            _vpnConnection.UpdateAuthCertificate(certificate.Certificate);
+            _vpnConnection.UpdateAuthCertificate(certificate.Pem);
         }
 
         public async Task<TrafficBytesIpcEntity> GetTrafficBytes()
@@ -124,7 +107,7 @@ namespace ProtonVPN.Service
         {
             _taskQueue.Enqueue(async () =>
             {
-                await _appControllerCaller.SendCurrentVpnStateAsync();
+                await _clientControllerSender.SendCurrentVpnStateAsync();
             });
         }
 

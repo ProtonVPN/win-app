@@ -24,7 +24,6 @@ using ProtonVPN.Logging.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Communication;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
@@ -32,7 +31,7 @@ namespace ProtonVPN.Core.Service.Vpn
 {
     public class VpnServiceCaller : ServiceControllerCaller<IVpnController>
     {
-        public VpnServiceCaller(ILogger logger, IAppGrpcClient grpcClient, VpnSystemService vpnSystemService) 
+        public VpnServiceCaller(ILogger logger, IGrpcClient grpcClient, VpnSystemService vpnSystemService) 
             : base(logger, grpcClient, vpnSystemService)
         {
         }
@@ -47,9 +46,9 @@ namespace ProtonVPN.Core.Service.Vpn
             return Invoke(c => c.Connect(connectionRequest).Wrap());
         }
 
-        public Task UpdateAuthCertificate(AuthCertificateIpcEntity certificate)
+        public Task UpdateConnectionCertificate(ConnectionCertificateIpcEntity certificate)
         {
-            return Invoke(c => c.UpdateAuthCertificate(certificate).Wrap());
+            return Invoke(c => c.UpdateConnectionCertificate(certificate).Wrap());
         }
 
         public Task Disconnect(DisconnectionRequestIpcEntity disconnectionRequest)
@@ -70,11 +69,6 @@ namespace ProtonVPN.Core.Service.Vpn
         public Task RequestNetShieldStats()
         {
             return Invoke(c => c.RequestNetShieldStats().Wrap());
-        }
-
-        public Task RegisterVpnClient(int port)
-        {
-            return Invoke(c => c.RegisterStateConsumer(new StateConsumerIpcEntity { ServerPort = port }).Wrap());
         }
     }
 }

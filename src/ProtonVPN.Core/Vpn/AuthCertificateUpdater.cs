@@ -44,7 +44,9 @@ namespace ProtonVPN.Core.Vpn
                 _vpnStatus == VpnStatus.Connected &&
                 !_appSettings.AuthenticationCertificatePem.IsNullOrEmpty())
             {
-                await _vpnServiceManager.UpdateAuthCertificate(_appSettings.AuthenticationCertificatePem);
+                await _vpnServiceManager.UpdateAuthCertificate(
+                    _appSettings.AuthenticationCertificatePem,
+                    _appSettings.AuthenticationCertificateExpirationUtcDate);
             }
         }
 

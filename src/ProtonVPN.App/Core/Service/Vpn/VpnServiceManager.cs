@@ -22,15 +22,14 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Helpers;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
 using ProtonVPN.Common.NetShield;
 using ProtonVPN.Common.PortForwarding;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Service.Settings;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.EntityMapping.Contracts;
-using ProtonVPN.ProcessCommunication.Contracts.Controllers;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.NetShield;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.PortForwarding;
@@ -43,7 +42,7 @@ namespace ProtonVPN.Core.Service.Vpn
         private readonly VpnServiceCaller _vpnServiceCaller;
         private readonly MainSettingsProvider _settingsContractProvider;
         private readonly ILogger _logger;
-        private readonly IAppController _appController;
+        private readonly IClientControllerEventHandler _clientControllerEventHandler;
         private readonly IEntityMapper _entityMapper;
         private Action<VpnStateChangedEventArgs> _vpnStateCallback;
         private Action<PortForwardingState> _portForwardingStateCallback;
@@ -54,18 +53,18 @@ namespace ProtonVPN.Core.Service.Vpn
             VpnServiceCaller vpnServiceCaller,
             MainSettingsProvider settingsContractProvider,
             ILogger logger,
-            IAppController appController,
+            IClientControllerEventHandler clientControllerEventHandler,
             IEntityMapper entityMapper)
         {
             _vpnServiceCaller = vpnServiceCaller;
             _settingsContractProvider = settingsContractProvider;
             _logger = logger;
-            _appController = appController;
+            _clientControllerEventHandler = clientControllerEventHandler;
             _entityMapper = entityMapper;
-            _appController.OnVpnStateChanged += OnVpnStateChanged;
-            _appController.OnPortForwardingStateChanged += OnPortForwardingStateChanged;
-            _appController.OnConnectionDetailsChanged += OnConnectionDetailsChanged;
-            _appController.OnNetShieldStatisticChanged += OnNetShieldStatisticChanged;
+            _clientControllerEventHandler.OnVpnStateChanged += OnVpnStateChanged;
+            _clientControllerEventHandler.OnPortForwardingStateChanged += OnPortForwardingStateChanged;
+            _clientControllerEventHandler.OnConnectionDetailsChanged += OnConnectionDetailsChanged;
+            _clientControllerEventHandler.OnNetShieldStatisticChanged += OnNetShieldStatisticChanged;
         }
 
         private void OnConnectionDetailsChanged(object sender, ConnectionDetailsIpcEntity connectionDetails)
@@ -113,9 +112,13 @@ namespace ProtonVPN.Core.Service.Vpn
             await _vpnServiceCaller.Connect(connectionRequest);
         }
 
-        public async Task UpdateAuthCertificate(string certificate)
+        public async Task UpdateAuthCertificate(string certificate, DateTimeOffset? expirationDateUtc)
         {
-            await _vpnServiceCaller.UpdateAuthCertificate(new AuthCertificateIpcEntity() { Certificate = certificate });
+            await _vpnServiceCaller.UpdateConnectionCertificate(new ConnectionCertificateIpcEntity()
+            {
+                Pem = certificate,
+                ExpirationDateUtc = expirationDateUtc?.UtcDateTime ?? DateTime.MinValue
+            });
         }
 
         public async Task<InOutBytes> GetTrafficBytes()

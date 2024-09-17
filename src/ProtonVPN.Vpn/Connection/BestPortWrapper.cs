@@ -139,7 +139,6 @@ namespace ProtonVPN.Vpn.Connection
                 SplitTunnelIPs = _config.SplitTunnelIPs,
                 SplitTunnelMode = _config.SplitTunnelMode,
                 VpnProtocol = vpnProtocol,
-                AllowNonStandardPorts = _config.AllowNonStandardPorts,
                 PortForwarding = _config.PortForwarding,
             });
         }

@@ -48,12 +48,9 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
         public bool ModerateNat { get; set; }
 
         [DataMember(Order = 9, IsRequired = true)]
-        public bool? SplitTcp { get; set; }
+        public bool SplitTcp { get; set; }
 
         [DataMember(Order = 10, IsRequired = true)]
-        public bool? AllowNonStandardPorts { get; set; }
-
-        [DataMember(Order = 11, IsRequired = true)]
         public bool PortForwarding { get; set; }
 
         public VpnConfigIpcEntity()

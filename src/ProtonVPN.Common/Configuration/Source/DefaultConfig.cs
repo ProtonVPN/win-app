@@ -204,7 +204,6 @@ namespace ProtonVPN.Common.Configuration.Source
                     AboutSmartProtocolUrl = "https://protonvpn.com/support/how-to-change-vpn-protocols",
                     IncorrectSystemTimeArticleUrl = "https://protonvpn.com/support/update-windows-clock",
                     AssignVpnConnectionsUrl = "https://protonvpn.com/support/assign-vpn-connection",
-                    NonStandardPortsUrl = "https://protonvpn.com/support/non-standard-ports",
                     LoginProblemsUrl = "https://protonvpn.com/support/login-problems",
                     RebrandingUrl = "https://protonvpn.com/blog/updated-proton-vpn",
                     RpcServerProblemUrl = "https://protonvpn.com/support/rpc-server-unavailable",

@@ -39,7 +39,7 @@ namespace ProtonVPN.Service
         private readonly INotifyingAppUpdate _notifyingAppUpdate;
         private readonly IAppUpdates _appUpdates;
         private readonly IFeedUrlProvider _feedUrlProvider;
-        private readonly IAppControllerCaller _appControllerCaller;
+        private readonly IClientControllerSender _clientControllerSender;
         private readonly IEntityMapper _entityMapper;
         private readonly ICurrentAppVersionProvider _currentAppVersionProvider;
         private readonly ILogger _logger;
@@ -51,7 +51,7 @@ namespace ProtonVPN.Service
             INotifyingAppUpdate notifyingAppUpdate,
             IAppUpdates appUpdates,
             IFeedUrlProvider feedUrlProvider,
-            IAppControllerCaller appControllerCaller,
+            IClientControllerSender clientControllerSender,
             IEntityMapper entityMapper,
             ICurrentAppVersionProvider currentAppVersionProvider,
             ILogger logger)
@@ -59,7 +59,7 @@ namespace ProtonVPN.Service
             _notifyingAppUpdate = notifyingAppUpdate;
             _appUpdates = appUpdates;
             _feedUrlProvider = feedUrlProvider;
-            _appControllerCaller = appControllerCaller;
+            _clientControllerSender = clientControllerSender;
             _entityMapper = entityMapper;
             _currentAppVersionProvider = currentAppVersionProvider;
             _logger = logger;
@@ -149,7 +149,7 @@ namespace ProtonVPN.Service
         private async Task SendUpdateStateAsync(AppUpdateStateContract e)
         {
             _lastUpdateState = e;
-            await _appControllerCaller.SendUpdateStateAsync(_entityMapper.Map<AppUpdateStateContract, UpdateStateIpcEntity>(e));
+            await _clientControllerSender.SendUpdateStateAsync(_entityMapper.Map<AppUpdateStateContract, UpdateStateIpcEntity>(e));
         }
 
         private void CacheUpdateSettings(UpdateSettingsIpcEntity updateSettingsIpcEntity)

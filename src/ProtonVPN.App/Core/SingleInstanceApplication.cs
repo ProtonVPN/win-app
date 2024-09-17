@@ -19,7 +19,7 @@
 
 using System.Threading;
 using System.Threading.Tasks;
-using ProtonVPN.ProcessCommunication.App.Installers;
+using ProtonVPN.ProcessCommunication.Client.Installers;
 
 namespace ProtonVPN.Core
 {

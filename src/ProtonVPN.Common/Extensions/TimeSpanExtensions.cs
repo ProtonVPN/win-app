@@ -33,5 +33,15 @@ namespace ProtonVPN.Common.Extensions
 
             return value + TimeSpan.FromMilliseconds(value.TotalMilliseconds * deviation * (2.0 * Random.NextDouble() - 1.0));
         }
+
+        public static TimeSpan Min(TimeSpan value1, TimeSpan value2)
+        {
+            return TimeSpan.FromTicks(Math.Min(value1.Ticks, value2.Ticks));
+        }
+
+        public static TimeSpan Max(TimeSpan value1, TimeSpan value2)
+        {
+            return TimeSpan.FromTicks(Math.Max(value1.Ticks, value2.Ticks));
+        }
     }
 }

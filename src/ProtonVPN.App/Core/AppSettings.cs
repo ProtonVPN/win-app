@@ -486,12 +486,6 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
-        public bool ShowNonStandardPortsToFreeUsers
-        {
-            get => Get<bool>();
-            set => Set(value);
-        }
-
         public bool ConnectOnAppStart
         {
             get => Get<bool>();
@@ -511,12 +505,6 @@ namespace ProtonVPN.Core
         {
             get => Get<bool>();
             set => Set(value);
-        }
-
-        public bool AllowNonStandardPorts
-        {
-            get => GetPerUser<bool>();
-            set => SetPerUser(value);
         }
 
         public string AuthenticationPublicKey

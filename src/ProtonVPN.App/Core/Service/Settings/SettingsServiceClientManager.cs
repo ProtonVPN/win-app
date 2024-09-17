@@ -19,11 +19,10 @@
 
 using System.ComponentModel;
 using System.Threading.Tasks;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
 using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
-using ProtonVPN.ProcessCommunication.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
@@ -34,19 +33,15 @@ namespace ProtonVPN.Core.Service.Settings
         private readonly ILogger _logger;
         private readonly VpnServiceCaller _vpnServiceCaller;
         private readonly MainSettingsProvider _settingsContractProvider;
-        private readonly IAppGrpcClient _grpcClient;
 
         public SettingsServiceClientManager(
             ILogger logger,
             VpnServiceCaller vpnServiceCaller,
-            MainSettingsProvider settingsContractProvider,
-            IAppGrpcClient grpcClient)
+            MainSettingsProvider settingsContractProvider)
         {
             _logger = logger;
             _vpnServiceCaller = vpnServiceCaller;
             _settingsContractProvider = settingsContractProvider;
-            _grpcClient = grpcClient;
-            _grpcClient.CreateAsync();
         }
 
         public async Task UpdateServiceSettings()
@@ -79,7 +74,6 @@ namespace ProtonVPN.Core.Service.Settings
                 e.PropertyName == nameof(IAppSettings.VpnAcceleratorEnabled) ||
                 e.PropertyName == nameof(IAppSettings.FeatureVpnAcceleratorEnabled) ||
                 e.PropertyName == nameof(IAppSettings.ModerateNat) ||
-                e.PropertyName == nameof(IAppSettings.AllowNonStandardPorts) ||
                 e.PropertyName == nameof(IAppSettings.OvpnProtocol) ||
                 e.PropertyName == nameof(IAppSettings.NetworkAdapterType) ||
                 e.PropertyName == nameof(IAppSettings.NetShieldMode) ||

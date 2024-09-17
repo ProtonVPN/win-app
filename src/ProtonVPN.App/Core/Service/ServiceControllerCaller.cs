@@ -32,10 +32,10 @@ namespace ProtonVPN.Core.Service
     public abstract class ServiceControllerCaller<Controller> where Controller : IServiceController
     {
         private readonly ILogger _logger;
-        private readonly IAppGrpcClient _grpcClient;
+        private readonly IGrpcClient _grpcClient;
         private readonly VpnSystemService _vpnSystemService;
 
-        protected ServiceControllerCaller(ILogger logger, IAppGrpcClient grpcClient, VpnSystemService vpnSystemService)
+        protected ServiceControllerCaller(ILogger logger, IGrpcClient grpcClient, VpnSystemService vpnSystemService)
         {
             _logger = logger;
             _grpcClient = grpcClient;
@@ -69,7 +69,6 @@ namespace ProtonVPN.Core.Service
                         return Result.Fail<T>(e.CombinedMessage());
                     }
 
-                    await _grpcClient.RecreateAsync();
                     LogError(e, memberName, isToRetry: true);
                 }
 

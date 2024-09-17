@@ -215,29 +215,6 @@ namespace ProtonVPN.Settings
             }
         }
 
-        public bool AllowNonStandardPorts
-        {
-            get => _appSettings.AllowNonStandardPorts;
-            set
-            {
-                if (value && !IsPaidUser)
-                {
-                    ShowNonStandardPortsUpsellModal();
-                    return;
-                }
-
-                _appSettings.AllowNonStandardPorts = value;
-                NotifyOfPropertyChange();
-            }
-        }
-
-        private async void ShowNonStandardPortsUpsellModal()
-        {
-            await _modals.ShowAsync<NonStandardPortsUpsellModalViewModel>();
-        }
-
-        public bool ShowAllowNonStandardPorts => _appSettings.ShowNonStandardPortsToFreeUsers;
-
         public bool ModerateNat
         {
             get => _appSettings.ModerateNat;
@@ -613,10 +590,6 @@ namespace ProtonVPN.Settings
             else if (e.PropertyName.Equals(nameof(IAppSettings.ModerateNat)))
             {
                 NotifyOfPropertyChange(() => ModerateNat);
-            }
-            else if (e.PropertyName.Equals(nameof(IAppSettings.AllowNonStandardPorts)))
-            {
-                NotifyOfPropertyChange(() => AllowNonStandardPorts);
             }
             else if (e.PropertyName.Equals(nameof(IAppSettings.HardwareAccelerationEnabled)))
             {

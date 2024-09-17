@@ -282,7 +282,6 @@ namespace ProtonVPN.Vpn.Connection
                 Bouncing = _endpoint.Server.Label,
                 SplitTcp = _vpnConfig.SplitTcp,
                 NetShieldLevel = _vpnConfig.NetShieldMode,
-                SafeMode = !_vpnConfig.AllowNonStandardPorts,
                 PortForwarding = _vpnConfig.PortForwarding,
                 RandomizedNat = !_vpnConfig.ModerateNat,
             });
@@ -294,7 +293,6 @@ namespace ProtonVPN.Vpn.Connection
             {
                 SplitTcp = vpnFeatures.SplitTcp,
                 NetShieldLevel = vpnFeatures.NetShieldMode,
-                SafeMode = !vpnFeatures.AllowNonStandardPorts,
                 PortForwarding = vpnFeatures.PortForwarding,
                 RandomizedNat = !vpnFeatures.ModerateNat,
             });

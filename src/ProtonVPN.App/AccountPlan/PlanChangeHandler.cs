@@ -130,7 +130,6 @@ namespace ProtonVPN.AccountPlan
                 _appSettings.SecureCore = false;
                 _appSettings.PortForwardingEnabled = false;
                 _appSettings.NetShieldEnabled = false;
-                _appSettings.AllowNonStandardPorts = false;
                 _appSettings.ModerateNat = false;
                 if (_appSettings.FeatureFreeRescopeEnabled)
                 {

@@ -21,39 +21,38 @@ using ProtonVPN.Crypto;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Crypto;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Crypto
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Crypto;
+
+public class AsymmetricKeyPairMapper : IMapper<AsymmetricKeyPair, AsymmetricKeyPairIpcEntity>
 {
-    public class AsymmetricKeyPairMapper : IMapper<AsymmetricKeyPair, AsymmetricKeyPairIpcEntity>
+    private readonly IEntityMapper _entityMapper;
+
+    public AsymmetricKeyPairMapper(IEntityMapper entityMapper)
     {
-        private readonly IEntityMapper _entityMapper;
+        _entityMapper = entityMapper;
+    }
 
-        public AsymmetricKeyPairMapper(IEntityMapper entityMapper)
+    public AsymmetricKeyPairIpcEntity Map(AsymmetricKeyPair leftEntity)
+    {
+        if (leftEntity is null || leftEntity.SecretKey is null || leftEntity.PublicKey is null)
         {
-            _entityMapper = entityMapper;
+            return null;
         }
+        return new AsymmetricKeyPairIpcEntity()
+        {
+            SecretKey = _entityMapper.Map<SecretKey, SecretKeyIpcEntity>(leftEntity.SecretKey),
+            PublicKey = _entityMapper.Map<PublicKey, PublicKeyIpcEntity>(leftEntity.PublicKey),
+        };
+    }
 
-        public AsymmetricKeyPairIpcEntity Map(AsymmetricKeyPair leftEntity)
+    public AsymmetricKeyPair Map(AsymmetricKeyPairIpcEntity rightEntity)
+    {
+        if (rightEntity is null || rightEntity.SecretKey is null || rightEntity.PublicKey is null)
         {
-            if (leftEntity is null || leftEntity.SecretKey is null || leftEntity.PublicKey is null)
-            {
-                return null;
-            }
-            return new AsymmetricKeyPairIpcEntity()
-            {
-                SecretKey = _entityMapper.Map<SecretKey, SecretKeyIpcEntity>(leftEntity.SecretKey),
-                PublicKey = _entityMapper.Map<PublicKey, PublicKeyIpcEntity>(leftEntity.PublicKey),
-            };
+            return null;
         }
-
-        public AsymmetricKeyPair Map(AsymmetricKeyPairIpcEntity rightEntity)
-        {
-            if (rightEntity is null || rightEntity.SecretKey is null || rightEntity.PublicKey is null)
-            {
-                return null;
-            }
-            return new AsymmetricKeyPair(
-                _entityMapper.Map<SecretKeyIpcEntity, SecretKey>(rightEntity.SecretKey),
-                _entityMapper.Map<PublicKeyIpcEntity, PublicKey>(rightEntity.PublicKey));
-        }
+        return new AsymmetricKeyPair(
+            _entityMapper.Map<SecretKeyIpcEntity, SecretKey>(rightEntity.SecretKey),
+            _entityMapper.Map<PublicKeyIpcEntity, PublicKey>(rightEntity.PublicKey));
     }
 }

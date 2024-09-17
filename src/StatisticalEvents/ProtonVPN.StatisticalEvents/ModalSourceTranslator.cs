@@ -38,7 +38,6 @@ namespace ProtonVPN.StatisticalEvents
                 ModalSources.SplitTunneling => "split_tunneling",
                 ModalSources.CustomDns => "custom_dns",
                 ModalSources.ModerateNat => "moderate_nat",
-                ModalSources.NonStandardPorts => "safe_mode",
                 ModalSources.ChangeServer => "change_server",
                 ModalSources.PromoOffer => "promo_offer",
                 ModalSources.Downgrade => "downgrade",

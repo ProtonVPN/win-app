@@ -347,15 +347,6 @@
     <Setting Name="UserDoNotShowDiscourageSecureCoreDialog" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="UserAllowNonStandardPorts" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="UserAllowNonStandardPortsDefault" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="ShowNonStandardPortsToFreeUsers" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="UserModerateNat" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>

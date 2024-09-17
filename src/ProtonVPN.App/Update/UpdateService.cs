@@ -27,10 +27,10 @@ using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Service.Update;
+using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.EntityMapping.Contracts;
-using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Update;
 using ProtonVPN.Update.Contracts;
 
@@ -58,7 +58,7 @@ namespace ProtonVPN.Update
             IAppSettings appSettings,
             IEntityMapper entityMapper,
             UpdateServiceCaller updateServiceCaller,
-            IAppController appController)
+            IClientControllerEventHandler clientControllerEventHandler)
         {
             _scheduler = scheduler;
             _appConfig = appConfig;
@@ -70,7 +70,7 @@ namespace ProtonVPN.Update
             _timer.Tick += TimerTick;
             _timer.Interval = appConfig.UpdateCheckInterval;
 
-            appController.OnUpdateStateChanged += OnUpdateStateChanged;
+            clientControllerEventHandler.OnUpdateStateChanged += OnUpdateStateChanged;
         }
 
         public event EventHandler<UpdateStateChangedEventArgs> UpdateStateChanged;

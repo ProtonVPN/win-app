@@ -84,7 +84,6 @@ namespace ProtonVPN.PortForwarding
             _appSettings.SecureCore = false;
             _appSettings.PortForwardingEnabled = true;
             _appSettings.ModerateNat = true;
-            _appSettings.AllowNonStandardPorts = true;
 
             if (secureCore)
             {

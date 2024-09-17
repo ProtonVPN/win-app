@@ -24,14 +24,13 @@ using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.ProcessCommunication.EntityMapping.Tests.Common;
 using ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn;
+
+[TestClass]
+public class OpenVpnAdapterMapperTest : EnumMapperTestBase<OpenVpnAdapter, OpenVpnAdapterIpcEntity>
 {
-    [TestClass]
-    public class OpenVpnAdapterMapperTest : EnumMapperTestBase<OpenVpnAdapter, OpenVpnAdapterIpcEntity>
+    protected override IMapper<OpenVpnAdapter, OpenVpnAdapterIpcEntity> CreateMapper()
     {
-        protected override IMapper<OpenVpnAdapter, OpenVpnAdapterIpcEntity> CreateMapper()
-        {
-            return new OpenVpnAdapterMapper();
-        }
+        return new OpenVpnAdapterMapper();
     }
 }

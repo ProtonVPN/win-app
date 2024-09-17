@@ -56,7 +56,7 @@
 copy $(MSBuildProjectDirectory)\Resources\wireguard.dll $(MSBuildProjectDirectory)\$(OutputPath)wireguard.dll</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <ItemGroup>

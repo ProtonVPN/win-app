@@ -21,25 +21,23 @@ using ProtonVPN.Crypto;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Crypto;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Crypto
-{
-    public class ServerPublicKeyMapper : KeyMapperBase<ServerPublicKeyIpcEntity>, IMapper<PublicKey, ServerPublicKeyIpcEntity>
-    {
-        public ServerPublicKeyIpcEntity Map(PublicKey leftEntity)
-        {
-            return leftEntity is null
-                ? null
-                : MapKeyToIpcEntity(leftEntity);
-        }
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Crypto;
 
-        public PublicKey Map(ServerPublicKeyIpcEntity rightEntity)
-        {
-            return rightEntity is null
-                ? null
-                : rightEntity.Base64 is null
-                    ? new(rightEntity.Bytes, (KeyAlgorithm)rightEntity.Algorithm)
-                    : new(rightEntity.Base64, (KeyAlgorithm)rightEntity.Algorithm);
-        }
+public class ServerPublicKeyMapper : KeyMapperBase<ServerPublicKeyIpcEntity>, IMapper<PublicKey, ServerPublicKeyIpcEntity>
+{
+    public ServerPublicKeyIpcEntity Map(PublicKey leftEntity)
+    {
+        return leftEntity is null
+            ? null
+            : MapKeyToIpcEntity(leftEntity);
+    }
+
+    public PublicKey Map(ServerPublicKeyIpcEntity rightEntity)
+    {
+        return rightEntity is null
+            ? null
+            : rightEntity.Base64 is null
+                ? new(rightEntity.Bytes, (KeyAlgorithm)rightEntity.Algorithm)
+                : new(rightEntity.Base64, (KeyAlgorithm)rightEntity.Algorithm);
     }
 }
-
