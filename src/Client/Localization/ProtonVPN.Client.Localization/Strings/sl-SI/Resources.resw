@@ -157,7 +157,7 @@
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Edit">
-    <value>Edit</value>
+    <value>Uredi</value>
   </data>
   <data name="Common_Actions_Enable">
     <value>Omogoči</value>
@@ -276,7 +276,7 @@
     <value>Mest ({0})</value>
   </data>
   <data name="Connections_City">
-    <value>City</value>
+    <value>Mesto</value>
   </data>
   <data name="Connections_City_Restricted">
     <value>Strežniki v tem mestu so na voljo v paketu VPN Plus</value>
@@ -297,7 +297,7 @@
     <value>Držav ({0})</value>
   </data>
   <data name="Connections_Country">
-    <value>Country</value>
+    <value>Država</value>
   </data>
   <data name="Connections_Country_Middle">
     <value>Middle country</value>
@@ -324,7 +324,7 @@
     <value>Brezplačni strežniki ({0})</value>
   </data>
   <data name="Connections_Gateway">
-    <value>Gateway</value>
+    <value>Prehod</value>
   </data>
   <data name="Connections_Gateway_Restricted">
     <value>Strežniki v tem prehodu so na voljo v paketu VPN Plus</value>
@@ -1619,7 +1619,7 @@
     <comment>The name of TO country</comment>
   </data>
   <data name="Country_val_TR">
-    <value>Türkiye</value>
+    <value>Turčija</value>
     <comment>The name of TR country</comment>
   </data>
   <data name="Country_val_TT">
@@ -2095,7 +2095,7 @@ Enjoy the best of Proton privacy.</value>
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_SpeedUnit">
-    <value>Speed {0}</value>
+    <value>Hitrost {0}</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
