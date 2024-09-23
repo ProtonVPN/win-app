@@ -2671,7 +2671,7 @@
     <comment>The label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DnsLeakProtection_Info">
-    <value>DNS sorgularının üçüncü taraflara sızdırılmasını önleyin. Hep açık.</value>
+    <value>DNS sorgularının üçüncü taraflara sızdırılmasını önler. Her zaman açıktır.</value>
     <comment>The description of DNS Leak Protection setting displayed in the tooltip of the ( i ) image next to the label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DoH">

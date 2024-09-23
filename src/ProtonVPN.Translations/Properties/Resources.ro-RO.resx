@@ -3113,7 +3113,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Conectați-vă la un server Plus din această țară pentru a reda transmisii în flux.</value>
   </data>
   <data name="Sidebar_Streaming_InfoNote">
-    <value>Notă: Folosiți un alt navigator și/sau goliți bufferul pentru a vă asigura că apare conținut nou.</value>
+    <value>Observație: Folosiți un alt navigator și/sau goliți bufferul pentru a vă asigura că apare conținut nou.</value>
   </data>
   <data name="Sidebar_Streaming_More">
     <value>și mai multe</value>
