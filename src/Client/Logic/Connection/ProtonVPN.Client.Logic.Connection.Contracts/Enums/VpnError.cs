@@ -51,7 +51,7 @@ public enum VpnError
     CertificateRevoked = 86102,
     SessionKilledDueToMultipleKeys = 86103,
     UnableToVerifyCert = 86104,
-    CertRevokedOrExpired = 86105,
+    CertCARevokedOrExpired = 86105,
     CertificateNotYetProvided = 86106,
     SessionBeingInstalled = 86107,
     SystemErrorOnTheServer = 86150,
@@ -65,5 +65,6 @@ public enum VpnError
 
     PlanNeedsToBeUpgraded = 86151,
 
+    ServerSessionDoesNotMatch = 86202,
     ServerSessionError = 86203,
 }

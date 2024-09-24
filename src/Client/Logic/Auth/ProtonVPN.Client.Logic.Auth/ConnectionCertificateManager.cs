@@ -67,6 +67,14 @@ public class ConnectionCertificateManager : IConnectionCertificateManager
         _logger.Info<UserCertificateRevokedLog>("Connection certificate deleted.");
     }
 
+    public void DeleteKeyPairAndCertificateIfMatches(string expiredCertificatePem)
+    {
+        if (expiredCertificatePem == _settings.ConnectionCertificate?.Pem)
+        {
+            DeleteKeyPairAndCertificate();
+        }
+    }
+
     private enum NewCertificateRequestParameter
     {
         NewCertificateIfCurrentIsOld = 0,
@@ -74,10 +82,10 @@ public class ConnectionCertificateManager : IConnectionCertificateManager
         ForceNewKeyPairAndCertificate = 2
     }
 
-    public async Task RequestNewCertificateAsync(bool isToSendMessageIfCertificateIsNotUpdated = false)
+    public async Task RequestNewCertificateAsync(string? expiredCertificatePem = null)
     {
         await EnqueueRequestAsync(NewCertificateRequestParameter.NewCertificateIfCurrentIsOld,
-            isToSendMessageIfCertificateIsNotUpdated);
+            expiredCertificatePem);
     }
 
     public async Task ForceRequestNewCertificateAsync()
@@ -91,13 +99,14 @@ public class ConnectionCertificateManager : IConnectionCertificateManager
     }
 
     private async Task EnqueueRequestAsync(NewCertificateRequestParameter parameter,
-        bool isToSendMessageIfCertificateIsNotUpdated = false)
+        string? expiredCertificatePem = null)
     {
         await _semaphore.WaitAsync();
 
         try
         {
-            if (parameter != NewCertificateRequestParameter.NewCertificateIfCurrentIsOld || IsToRequest())
+            if (parameter != NewCertificateRequestParameter.NewCertificateIfCurrentIsOld ||
+                IsToRequest(expiredCertificatePem))
             {
                 LogNewCertificateRequest(parameter);
                 RegenerateKeyPairIfRequested(parameter);
@@ -109,14 +118,9 @@ public class ConnectionCertificateManager : IConnectionCertificateManager
                         $"Status Code {response.ResponseMessage.StatusCode}, " +
                         $"Internal Code {response.Value.Code}, " +
                         $"Error '{response.Value.Error}'.");
-
-                    if (isToSendMessageIfCertificateIsNotUpdated)
-                    {
-                        SendMessageWithCurrentCertificate();
-                    }
                 }
             }
-            else if (isToSendMessageIfCertificateIsNotUpdated)
+            else
             {
                 SendMessageWithCurrentCertificate();
             }
@@ -147,14 +151,15 @@ public class ConnectionCertificateManager : IConnectionCertificateManager
         }
     }
 
-    private bool IsToRequest()
+    private bool IsToRequest(string? expiredCertificatePem)
     {
         ConnectionCertificate? connectionCertificate = _settings.ConnectionCertificate;
         DateTimeOffset utcNow = DateTimeOffset.UtcNow;
         return connectionCertificate is null ||
                string.IsNullOrWhiteSpace(connectionCertificate.Value.Pem) ||
                utcNow >= connectionCertificate.Value.RefreshUtcDate ||
-               utcNow >= connectionCertificate.Value.ExpirationUtcDate;
+               utcNow >= connectionCertificate.Value.ExpirationUtcDate ||
+               expiredCertificatePem == connectionCertificate.Value.Pem;
     }
 
     private void RegenerateKeyPairIfRequested(NewCertificateRequestParameter parameter)

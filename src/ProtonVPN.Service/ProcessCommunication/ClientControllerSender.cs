@@ -164,6 +164,7 @@ public class ClientControllerSender : IClientController, IClientControllerSender
             OpenVpnAdapterType = _entityMapper.MapNullableStruct<OpenVpnAdapter, OpenVpnAdapterIpcEntity>(state.OpenVpnAdapter),
             VpnProtocol = _entityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(state.VpnProtocol),
             Label = state.Label,
+            ConnectionCertificatePem = state.ConnectionCertificate?.Pem
         };
     }
 

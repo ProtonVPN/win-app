@@ -67,13 +67,18 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
     {
         VpnError error = _entityMapper.Map<VpnErrorTypeIpcEntity, VpnError>(vpnState.Error);
 
+        DeleteCertificateIfRequired(error, vpnState.ConnectionCertificatePem);
+
         if (_error == vpnState.Error && _status == vpnState.Status)
         {
             // If there is a certificate error, check if the certificate is old and refresh if old, regardless if the error is repeating.
             // And always send the certificate to the service to ensure it is up-to-date with the most recent certificate, regardless if updated or not.
-            if (error == VpnError.CertificateExpired || error == VpnError.PlanNeedsToBeUpgraded || error.RequiresCertificateUpdate())
+            if (error == VpnError.CertificateExpired ||
+                error == VpnError.PlanNeedsToBeUpgraded ||
+                error.RequiresCertificateUpdate())
             {
-                await _connectionCertificateManager.RequestNewCertificateAsync(isToSendMessageIfCertificateIsNotRefreshed: true);
+                await _connectionCertificateManager.RequestNewCertificateAsync(
+                    vpnState.ConnectionCertificatePem);
             }
             return ConnectionErrorHandlerResult.SameAsLast;
         }
@@ -102,7 +107,8 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
 
         if (error == VpnError.CertificateExpired)
         {
-            await _connectionCertificateManager.RequestNewCertificateAsync(isToSendMessageIfCertificateIsNotRefreshed: true);
+            await _connectionCertificateManager.RequestNewCertificateAsync(
+                vpnState.ConnectionCertificatePem);
             // No need to reconnect, if the certificate was updated successfully,
             // ConnectionManager will inform the service about updated certificate.
             return ConnectionErrorHandlerResult.NoAction;
@@ -141,6 +147,14 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
         }
 
         return ConnectionErrorHandlerResult.NoAction;
+    }
+
+    private void DeleteCertificateIfRequired(VpnError error, string connectionCertificatePem)
+    {
+        if (error.RequiresCertificateDeletion())
+        {
+            _connectionCertificateManager.DeleteKeyPairAndCertificateIfMatches(connectionCertificatePem);
+        }
     }
 
     private async Task<ConnectionErrorHandlerResult> HandleNoTapAdaptersErrorAsync()

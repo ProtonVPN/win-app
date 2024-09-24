@@ -65,9 +65,20 @@ public static class VpnErrorExtensions
     private static readonly List<VpnError> _errorsForCertificateUpdate =
     [
         VpnError.CertificateRevoked,
-        VpnError.CertRevokedOrExpired,
+        VpnError.CertCARevokedOrExpired,
         VpnError.ClientKeyMismatch,
         VpnError.SessionKilledDueToMultipleKeys,
+        VpnError.ServerSessionDoesNotMatch,
+    ];
+
+    private static readonly List<VpnError> _errorsForCertificateDeletion =
+    [
+        VpnError.CertificateExpired,
+        VpnError.CertificateRevoked,
+        VpnError.CertCARevokedOrExpired,
+        VpnError.ClientKeyMismatch,
+        VpnError.SessionKilledDueToMultipleKeys,
+        VpnError.ServerSessionDoesNotMatch,
     ];
 
     public static bool RequiresInformingUser(this VpnError error)
@@ -88,5 +99,10 @@ public static class VpnErrorExtensions
     public static bool RequiresCertificateUpdate(this VpnError error)
     {
         return _errorsForCertificateUpdate.Contains(error);
+    }
+
+    public static bool RequiresCertificateDeletion(this VpnError error)
+    {
+        return _errorsForCertificateDeletion.Contains(error);
     }
 }

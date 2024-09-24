@@ -19,6 +19,7 @@
 
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.Vpn;
+using ProtonVPN.Vpn.ConnectionCertificates;
 
 namespace ProtonVPN.Vpn.Common;
 
@@ -34,6 +35,7 @@ public class VpnState
     public VpnProtocol VpnProtocol { get; }
     public string Label { get; }
     public bool PortForwarding { get; }
+    public ConnectionCertificate ConnectionCertificate { get; }
 
     public VpnState(VpnStatus status, VpnProtocol vpnProtocol)
         : this(status, VpnError.None, string.Empty, string.Empty, vpnProtocol)
@@ -46,7 +48,8 @@ public class VpnState
     }
 
     public VpnState(VpnStatus status, VpnError error, string localIp, string remoteIp, VpnProtocol vpnProtocol,
-        bool portForwarding = false, OpenVpnAdapter? openVpnAdapter = null, string label = "")
+        bool portForwarding = false, OpenVpnAdapter? openVpnAdapter = null, string label = "",
+        ConnectionCertificate connectionCertificate = null)
     {
         Status = status;
         Error = error;
@@ -56,5 +59,6 @@ public class VpnState
         PortForwarding = portForwarding;
         OpenVpnAdapter = openVpnAdapter;
         Label = label;
+        ConnectionCertificate = connectionCertificate;
     }
 }
