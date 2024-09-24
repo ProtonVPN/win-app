@@ -62,7 +62,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
     [
         VpnError.SessionKilledDueToMultipleKeys,
         VpnError.CertificateRevoked,
-        VpnError.CertRevokedOrExpired,
+        VpnError.CertCARevokedOrExpired,
         VpnError.PlanNeedsToBeUpgraded,
         VpnError.SessionLimitReachedFree,
         VpnError.SessionLimitReachedBasic,
@@ -71,6 +71,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         VpnError.SessionLimitReachedPro,
         VpnError.SessionLimitReachedUnknown,
         VpnError.SystemErrorOnTheServer,
+        VpnError.ServerSessionDoesNotMatch,
         VpnError.ServerSessionError,
     ];
 
@@ -84,6 +85,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
     private EventArgs<VpnState> _vpnState;
     private string _localIp = string.Empty;
     private DateTime _lastNetShieldStatsRequestDate = DateTime.MinValue;
+    private ConnectionCertificate _lastConnectionCertificate = null;
 
     public LocalAgentWrapper(
         ILogger logger,
@@ -220,11 +222,30 @@ internal class LocalAgentWrapper : ISingleVpnConnection
                 break;
             case LocalAgentState.ClientCertificateExpiredError:
             case LocalAgentState.ClientCertificateUnknownCA:
-                InvokeStateChange(VpnStatus.ActionRequired, VpnError.CertificateExpired);
+                OnCertificateExpiredError();
                 break;
             case LocalAgentState.ServerUnreachable when _tlsConnected:
                 _origin.Disconnect(VpnError.ServerUnreachable);
                 break;
+        }
+    }
+
+    private void OnCertificateExpiredError()
+    {
+        ConnectionCertificate lastCertificate = _lastConnectionCertificate;
+        ConnectionCertificate currentCertificate = _connectionCertificateCache.Get();
+
+        if (string.IsNullOrWhiteSpace(currentCertificate?.Pem) ||
+            currentCertificate?.Pem == lastCertificate?.Pem)
+        {
+            InvokeStateChange(VpnStatus.ActionRequired, VpnError.CertificateExpired, currentCertificate);
+        }
+        else
+        {
+            _logger.Info<LocalAgentLog>("The current connection certificate is not null and is different from the " +
+                "last certificate used. Closing existing TLS channel and reconnecting.");
+            _eventReceiver.Stop();
+            ReconnectToTlsChannel(currentCertificate);
         }
     }
 
@@ -286,7 +307,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         }
         else if (e.Error == VpnError.CertificateExpired)
         {
-            InvokeStateChange(VpnStatus.ActionRequired, VpnError.CertificateExpired);
+            OnCertificateExpiredError();
         }
         else
         {
@@ -398,6 +419,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
             return;
         }
 
+        _lastConnectionCertificate = connectionCertificate;
         using GoString clientCertPem = connectionCertificate.Pem.ToGoString();
         using GoString clientKeyPem = _credentials.ClientKeyPair.SecretKey.Pem.ToGoString();
         using GoString serverCaPem = VpnCertConfig.RootCa.ToGoString();
@@ -426,7 +448,8 @@ internal class LocalAgentWrapper : ISingleVpnConnection
             : VpnError.Unknown;
     }
 
-    private void InvokeStateChange(VpnStatus status, VpnError? error = null)
+    private void InvokeStateChange(VpnStatus status, VpnError? error = null,
+        ConnectionCertificate connectionCertificate = null)
     {
         _currentStatus = status;
         InvokeStateChange(new EventArgs<VpnState>(new VpnState(
@@ -437,7 +460,8 @@ internal class LocalAgentWrapper : ISingleVpnConnection
             _vpnConfig?.VpnProtocol ?? VpnProtocol.Smart,
             _vpnConfig?.PortForwarding ?? false,
             _vpnConfig?.OpenVpnAdapter,
-            _vpnState?.Data.Label ?? string.Empty)));
+            _vpnState?.Data.Label ?? string.Empty,
+            connectionCertificate)));
     }
 
     private void InvokeStateChange(EventArgs<VpnState> state)

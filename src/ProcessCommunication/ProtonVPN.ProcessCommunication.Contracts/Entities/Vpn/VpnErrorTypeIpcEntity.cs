@@ -106,7 +106,7 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
         UnableToVerifyCert = 86104,
 
         [EnumMember]
-        CertRevokedOrExpired = 86105,
+        CertCARevokedOrExpired = 86105,
 
         [EnumMember]
         CertificateNotYetProvided = 86106,
@@ -137,6 +137,9 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
 
         [EnumMember]
         PlanNeedsToBeUpgraded = 86151,
+
+        [EnumMember]
+        ServerSessionDoesNotMatch = 86202,
 
         [EnumMember]
         ServerSessionError = 86203,

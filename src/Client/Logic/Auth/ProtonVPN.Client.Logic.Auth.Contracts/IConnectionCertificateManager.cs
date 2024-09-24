@@ -23,7 +23,8 @@ public interface IConnectionCertificateManager
 {
     void SetFeatures(IList<string> features);
     void DeleteKeyPairAndCertificate();
-    Task RequestNewCertificateAsync(bool isToSendMessageIfCertificateIsNotRefreshed = false);
+    void DeleteKeyPairAndCertificateIfMatches(string expiredCertificatePem);
+    Task RequestNewCertificateAsync(string? expiredCertificatePem = null);
     Task ForceRequestNewCertificateAsync();
     Task ForceRequestNewKeyPairAndCertificateAsync();
 }
