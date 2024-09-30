@@ -400,7 +400,7 @@
     <comment>The text inside info tooltip in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_LogsDescription">
-    <value>Hata günlükleri, sorununuzun temeline inmemize yardımcı olur. Bunları göndermezeniz, sorunu tam olarak araştıramayabiliriz.</value>
+    <value>Hata günlüğü, sorununuzun temeline inmemize yardımcı olur. Bunu göndermezeniz, sorunu tam olarak araştıramayabiliriz.</value>
   </data>
   <data name="BugReport_lbl_LogsTooltip">
     <value>Bir günlük, soruna neden olan olayları görmemizi sağlayan bir dosya türüdür. Bunları yalnızca mühendislerimizin hataları gidermesine yardımcı olmaları için kullanacağız.</value>
