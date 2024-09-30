@@ -2513,7 +2513,7 @@ Njut av det bästa av Protons integritet.</value>
     <value>Välj en nätverksadressöversättningstyp för din anslutning.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate">
-    <value>Moderera (typ 2)</value>
+    <value>Moderate (type 2)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
     <value>Vissa begränsningar för data som kommer in i ditt nätverk. Detta alternativ är bäst för videospel online.</value>

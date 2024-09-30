@@ -157,7 +157,7 @@
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Edit">
-    <value>Edit</value>
+    <value>Змінити</value>
   </data>
   <data name="Common_Actions_Enable">
     <value>Увімкнути</value>
@@ -276,7 +276,7 @@
     <value>Міста ({0})</value>
   </data>
   <data name="Connections_City">
-    <value>City</value>
+    <value>Місто</value>
   </data>
   <data name="Connections_City_Restricted">
     <value>Сервери в цьому місті доступні з VPN Plus</value>
@@ -454,7 +454,7 @@
     <value>Save profile</value>
   </data>
   <data name="Connections_Random">
-    <value>Random</value>
+    <value>Випадковий</value>
   </data>
   <data name="Connections_SecureCore_Countries_One">
     <value>Secure Core country ({0})</value>
@@ -517,7 +517,7 @@
     <value>See states ({0})</value>
   </data>
   <data name="Connections_Server">
-    <value>Server</value>
+    <value>Сервер</value>
   </data>
   <data name="Connections_Server_Restricted">
     <value>Сервер доступний з VPN Plus</value>
@@ -1619,7 +1619,7 @@
     <comment>The name of TO country</comment>
   </data>
   <data name="Country_val_TR">
-    <value>Türkiye</value>
+    <value>Туреччина</value>
     <comment>The name of TR country</comment>
   </data>
   <data name="Country_val_TT">
@@ -3071,7 +3071,7 @@ Enjoy the best of Proton privacy.</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Unit_BytesPerSecond">
-    <value>B/s</value>
+    <value>Б/с</value>
     <comment>Unit for Bytes per second</comment>
   </data>
   <data name="Unit_ExabytesPerSecond">
@@ -3079,23 +3079,23 @@ Enjoy the best of Proton privacy.</value>
     <comment>Unit for Exabytes per second</comment>
   </data>
   <data name="Unit_GigabytesPerSecond">
-    <value>GB/s</value>
+    <value>ГБ/с</value>
     <comment>Unit for Gigabytes per second</comment>
   </data>
   <data name="Unit_KilobytesPerSecond">
-    <value>KB/s</value>
+    <value>КБ/с</value>
     <comment>Unit for Kilobytes per second</comment>
   </data>
   <data name="Unit_MegabytesPerSecond">
-    <value>MB/s</value>
+    <value>МБ/с</value>
     <comment>Unit for Megabytes per second</comment>
   </data>
   <data name="Unit_PetabytesPerSecond">
-    <value>PB/s</value>
+    <value>Пб/с</value>
     <comment>Unit for Petabytes per second</comment>
   </data>
   <data name="Unit_TerabytesPerSecond">
-    <value>TB/s</value>
+    <value>ТБ/с</value>
     <comment>Unit for Terabytes per second</comment>
   </data>
   <data name="UpsellBanner_NetShield_Description">

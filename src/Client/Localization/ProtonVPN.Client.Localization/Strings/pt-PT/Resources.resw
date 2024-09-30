@@ -157,7 +157,7 @@
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Edit">
-    <value>Edit</value>
+    <value>Editar</value>
   </data>
   <data name="Common_Actions_Enable">
     <value>Ativar</value>
@@ -270,7 +270,7 @@
     <value>Cidades ({0})</value>
   </data>
   <data name="Connections_City">
-    <value>City</value>
+    <value>Cidade</value>
   </data>
   <data name="Connections_City_Restricted">
     <value>Servers in this city are available with VPN Plus</value>
@@ -285,7 +285,7 @@
     <value>Países ({0})</value>
   </data>
   <data name="Connections_Country">
-    <value>Country</value>
+    <value>País</value>
   </data>
   <data name="Connections_Country_Middle">
     <value>Middle country</value>
@@ -297,7 +297,7 @@
     <value>All servers in this country are under maintenance</value>
   </data>
   <data name="Connections_Fastest">
-    <value>Fastest</value>
+    <value>O mais rápido</value>
   </data>
   <data name="Connections_Free_Servers_One">
     <value>Servidor gratuito ({0})</value>
@@ -360,7 +360,7 @@
     <value>Profiles ({0})</value>
   </data>
   <data name="Connections_Profiles_Create">
-    <value>Create profile</value>
+    <value>Criar um perfil</value>
     <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
   </data>
   <data name="Connections_Profiles_Delete">
@@ -371,7 +371,7 @@
     <comment>{0} is a placeholder for the name of the profile.</comment>
   </data>
   <data name="Connections_Profiles_Delete_Title">
-    <value>Delete profile?</value>
+    <value>Eliminar o perfil?</value>
   </data>
   <data name="Connections_Profiles_Empty_Description">
     <value>Profiles are saved connections with your choice of location, server, and protocol.</value>
@@ -383,7 +383,7 @@
     <value>Profile name</value>
   </data>
   <data name="Connections_Profiles_New">
-    <value>New profile</value>
+    <value>Novo perfil</value>
     <comment>"New profile" is more appropriate when you already have a profile</comment>
   </data>
   <data name="Connections_Profiles_NotAvailable_Tooltip">
@@ -391,7 +391,7 @@
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
   </data>
   <data name="Connections_Profiles_Save">
-    <value>Save profile</value>
+    <value>Gravar o perfil</value>
   </data>
   <data name="Connections_Random">
     <value>Random</value>
@@ -442,7 +442,7 @@
     <value>Servidores ({0})</value>
   </data>
   <data name="Connections_State">
-    <value>State</value>
+    <value>Estado</value>
   </data>
   <data name="Connections_State_Restricted">
     <value>Servers in this state are available with VPN Plus.</value>
@@ -1493,7 +1493,7 @@
     <comment>The name of TO country</comment>
   </data>
   <data name="Country_val_TR">
-    <value>Türkiye</value>
+    <value>Turquia</value>
     <comment>The name of TR country</comment>
   </data>
   <data name="Country_val_TT">

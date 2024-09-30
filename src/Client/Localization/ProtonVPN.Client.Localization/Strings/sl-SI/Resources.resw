@@ -147,7 +147,7 @@
     <value>Stopite v stik z nami</value>
   </data>
   <data name="Common_Actions_Delete">
-    <value>Delete</value>
+    <value>Izbriši</value>
   </data>
   <data name="Common_Actions_Disconnect">
     <value>Prekini povezavo</value>
@@ -199,7 +199,7 @@
     <value>Posodabljanje ...</value>
   </data>
   <data name="Connection_Error_EditProfile">
-    <value>Edit profile</value>
+    <value>Urejanje profila</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN ni uspel pridobiti potrdila o pristnosti zaradi težave z omrežjem.</value>
@@ -440,10 +440,10 @@
     <value>Create your first profile</value>
   </data>
   <data name="Connections_Profiles_Name">
-    <value>Profile name</value>
+    <value>Ime profila</value>
   </data>
   <data name="Connections_Profiles_New">
-    <value>New profile</value>
+    <value>Nov profil</value>
     <comment>"New profile" is more appropriate when you already have a profile</comment>
   </data>
   <data name="Connections_Profiles_NotAvailable_Tooltip">
@@ -454,7 +454,7 @@
     <value>Save profile</value>
   </data>
   <data name="Connections_Random">
-    <value>Random</value>
+    <value>Naključno</value>
   </data>
   <data name="Connections_SecureCore_Countries_One">
     <value>Secure Core država ({0})</value>
@@ -517,7 +517,7 @@
     <value>See states ({0})</value>
   </data>
   <data name="Connections_Server">
-    <value>Server</value>
+    <value>Strežnik</value>
   </data>
   <data name="Connections_Server_Restricted">
     <value>Strežnik je na voljo z VPN Plus</value>
@@ -538,7 +538,7 @@
     <value>Strežniki ({0})</value>
   </data>
   <data name="Connections_State">
-    <value>State</value>
+    <value>Država</value>
   </data>
   <data name="Connections_State_Restricted">
     <value>Servers in this state are available with VPN Plus.</value>
@@ -2534,7 +2534,7 @@ Enjoy the best of Proton privacy.</value>
     <value>Configure your own VPN settings and connect in one click.</value>
   </data>
   <data name="Profiles_Page_Title">
-    <value>Profiles</value>
+    <value>Profili</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Najhitrejši brezplačni strežnik</value>

@@ -2714,11 +2714,11 @@ Ciesz się tym, co najlepsze w prywatności Proton.</value>
     <value>Przejdź do profilów</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Message">
-    <value>You’re currently connected to a VPN profile. 
+    <value>Jesteś połączony z profilem VPN. 
 
-• To change the protocol for this connection, disconnect then edit your profile.
+• Aby zmienić protokół połączenia, rozłącz się i edytuj profil.
 
-• To change your protocol for other VPN connections, you’ll need to disconnect from your profile first.</value>
+• Aby zmienić protokół dla innych połączeń VPN, rozłącz się najpierw z profilem.</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Title">
     <value>Zmień protokół w profilach</value>
