@@ -1704,7 +1704,7 @@ Yüksek gecikme değeri bağlantınızı yavaşlatabilir.</value>
     <comment>The label for the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description">
-    <value>Hata günlükleri bize neyin yanlış gittiğini ve hangi işlemlerin soruna yol açtığını gösterir. Bunları yalnızca mühendislerimizin hataları düzeltmesine yardımcı olmak için kullanacağız.</value>
+    <value>Hata günlüğü bize neyin yanlış gittiğini ve hangi işlemlerin soruna yol açtığını gösterir. Bunları yalnızca mühendislerimizin hataları düzeltmesine yardımcı olmak için kullanacağız.</value>
     <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_Header">
@@ -2856,16 +2856,16 @@ En iyi Proton gizliliğinin tadını çıkarın.</value>
     <value>Destek</value>
   </data>
   <data name="Settings_Support_DebugLogs">
-    <value>Hata ayıklama günlükleri</value>
+    <value>Hata ayıklama günlüğü</value>
   </data>
   <data name="Settings_Support_DebugLogs_Application">
-    <value>Uygulama günlükleri</value>
+    <value>Uygulama günlüğü</value>
   </data>
   <data name="Settings_Support_DebugLogs_ErrorMessage">
     <value>Günlük klasörü bulunamadı.</value>
   </data>
   <data name="Settings_Support_DebugLogs_Service">
-    <value>Hizmet günlükleri</value>
+    <value>Hizmet günlüğü</value>
   </data>
   <data name="Settings_Support_ReportIssue">
     <value>Sorun bildireceğim</value>

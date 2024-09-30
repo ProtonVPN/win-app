@@ -270,10 +270,10 @@
     <value>Города ({0})</value>
   </data>
   <data name="Connections_Cities_Many">
-    <value>Города ({0})</value>
+    <value>Городов ({0})</value>
   </data>
   <data name="Connections_Cities_Other">
-    <value>Города ({0})</value>
+    <value>Городов ({0})</value>
   </data>
   <data name="Connections_City">
     <value>Город</value>
@@ -291,10 +291,10 @@
     <value>Страны ({0})</value>
   </data>
   <data name="Connections_Countries_Many">
-    <value>Страны ({0})</value>
+    <value>Стран ({0})</value>
   </data>
   <data name="Connections_Countries_Other">
-    <value>Страны ({0})</value>
+    <value>Стран ({0})</value>
   </data>
   <data name="Connections_Country">
     <value>Страна</value>
