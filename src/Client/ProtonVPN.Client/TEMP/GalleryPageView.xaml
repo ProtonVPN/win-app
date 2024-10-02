@@ -210,9 +210,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <Expander MaxWidth="600"
                           Margin="0"
-                          HorizontalAlignment="Stretch"
                           Header="Hello"
-                          Style="{StaticResource DualCommandsExpanderStyle}">
+                          Style="{StaticResource ConnectionRowExpanderStyle}">
                     <Border Width="200"
                             Height="80"
                             HorizontalAlignment="Stretch"
