@@ -21,23 +21,18 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
-using ProtonVPN.Client.Bootstrapping;
-using ProtonVPN.Client.Installers;
 using ProtonVPN.IssueReporting.Installers;
+using ProtonVPN.Client.Modules;
+using ProtonVPN.Client.Services.Bootstrapping;
 
 namespace ProtonVPN.Client;
 
-public partial class App
+public partial class App : Application
 {
     public const string APPLICATION_NAME = "Proton VPN";
 
-    public static MainWindow MainWindow { get; } = new();
+    public MainWindow? MainWindow { get; private set; }
 
-    // The .NET Generic Host provides dependency injection, configuration, logging, and other services.
-    // https://docs.microsoft.com/dotnet/core/extensions/generic-host
-    // https://docs.microsoft.com/dotnet/core/extensions/dependency-injection
-    // https://docs.microsoft.com/dotnet/core/extensions/configuration
-    // https://docs.microsoft.com/dotnet/core/extensions/logging
     public IHost Host { get; }
 
     public App()
@@ -50,7 +45,7 @@ public partial class App
             .CreateDefaultBuilder()
             .UseContentRoot(AppContext.BaseDirectory)
             .UseServiceProviderFactory(new AutofacServiceProviderFactory())
-            .ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule<MainModule>())
+            .ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule<AppModule>())
             .Build();
     }
 
@@ -69,6 +64,8 @@ public partial class App
     protected override async void OnLaunched(LaunchActivatedEventArgs args)
     {
         base.OnLaunched(args);
+
+        MainWindow = new();
 
         await GetService<IBootstrapper>().StartAsync(args);
     }

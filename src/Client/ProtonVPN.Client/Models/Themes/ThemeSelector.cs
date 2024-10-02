@@ -20,9 +20,9 @@
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.Client.Contracts.Messages;
 
 namespace ProtonVPN.Client.Models.Themes;
 

@@ -234,6 +234,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <VisualStateManager.VisualStateGroups>
 
                             <VisualStateGroup x:Name="FlagModes">
+                                <VisualState x:Name="MainFlagOnly" />
                                 <VisualState x:Name="BackAndMainFlags">
                                     <VisualState.Setters>
                                         <Setter Target="PART_BackFlagContainer.Visibility" Value="Visible" />
@@ -247,7 +248,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="PART_MainFlag.UseShorterSecureCoreOutline" Value="True" />
                                     </VisualState.Setters>
                                 </VisualState>
-                                <VisualState x:Name="MainFlagOnly" />
                             </VisualStateGroup>
 
                             <VisualStateGroup x:Name="LayoutModes">

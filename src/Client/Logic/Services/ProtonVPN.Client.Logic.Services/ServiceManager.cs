@@ -17,15 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Common.Messages;
-using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.OperatingSystems.Services.Contracts;
 
 namespace ProtonVPN.Client.Logic.Services;
 
-public class ServiceManager : IServiceManager, IEventMessageReceiver<MainWindowClosedMessage>
+public class ServiceManager : IServiceManager/*, IEventMessageReceiver<MainWindowClosedMessage>*/
 {
     private readonly IService _service;
     private readonly CancellationTokenSource _cancellationTokenSource = new();
@@ -36,10 +34,11 @@ public class ServiceManager : IServiceManager, IEventMessageReceiver<MainWindowC
         _service = serviceFactory.Get(configuration.ServiceName);
     }
 
-    public void Receive(MainWindowClosedMessage message)
-    {
-        _cancellationTokenSource.Cancel();
-    }
+    // TODO: fix
+    // public void Receive(MainWindowClosedMessage message)
+    // {
+    //     _cancellationTokenSource.Cancel();
+    // }
 
     public Task StartAsync()
     {

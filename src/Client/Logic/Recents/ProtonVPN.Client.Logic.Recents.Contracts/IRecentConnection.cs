@@ -29,7 +29,9 @@ public interface IRecentConnection
 
     DateTime? PinTime { get; set; }
 
+    [Obsolete("Active connection is calculated at runtime and should not be saved in the recent connection")]
     bool IsActiveConnection { get; set; }
 
+    [Obsolete("Server under maintenance is calculated at runtime and should not be saved in the recent connection")]
     bool IsServerUnderMaintenance { get; set; }
 }

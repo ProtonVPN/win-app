@@ -31,4 +31,4 @@ public class ChangedSettingArgs
         NewValue = newValue;
         HasChanged = hasChanged;
     }
-}
+}    

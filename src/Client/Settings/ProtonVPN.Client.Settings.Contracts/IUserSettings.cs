@@ -69,4 +69,8 @@ public interface IUserSettings
     bool WasWelcomeUnlimitedOverlayDisplayed { get; set; }
     bool WasWelcomeB2BOverlayDisplayed { get; set; }
     DateTimeOffset LogicalsLastModifiedDate { get; set; }
+    bool IsP2PInfoBannerDismissed { get; set; }
+    bool IsSecureCoreInfoBannerDismissed { get; set; }
+    bool IsTorInfoBannerDismissed { get; set; }
+    bool IsGatewayInfoBannerDismissed { get; set; }
 }

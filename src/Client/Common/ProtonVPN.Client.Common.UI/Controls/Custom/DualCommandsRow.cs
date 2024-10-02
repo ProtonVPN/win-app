@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Windows.Input;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Automation.Peers;
@@ -26,61 +27,50 @@ using ProtonVPN.Client.Common.UI.Automation;
 
 namespace ProtonVPN.Client.Common.UI.Controls.Custom;
 
-public class DualCommandsRow : ContentControl
+[Obsolete("Use DualConnectionRowButtonBase instead")]
+public abstract class DualCommandsRowBase : ContentControl
 {
     public static readonly DependencyProperty IsContentEnabledProperty =
-        DependencyProperty.Register(nameof(IsContentEnabled), typeof(bool), typeof(DualCommandsRow), new PropertyMetadata(true));
+        DependencyProperty.Register(nameof(IsContentEnabled), typeof(bool), typeof(DualCommandsRowBase), new PropertyMetadata(true));
 
     public static readonly DependencyProperty PrimaryCommandContentProperty =
-        DependencyProperty.Register(nameof(PrimaryCommandContent), typeof(object), typeof(DualCommandsRow), new PropertyMetadata(default));
+        DependencyProperty.Register(nameof(PrimaryCommandContent), typeof(object), typeof(DualCommandsRowBase), new PropertyMetadata(default));
 
     public static readonly DependencyProperty PrimaryCommandContentTemplateProperty =
-        DependencyProperty.Register(nameof(PrimaryCommandContentTemplate), typeof(DataTemplate), typeof(DualCommandsRow), new PropertyMetadata(default));
+        DependencyProperty.Register(nameof(PrimaryCommandContentTemplate), typeof(DataTemplate), typeof(DualCommandsRowBase), new PropertyMetadata(default));
 
     public static readonly DependencyProperty PrimaryCommandContentTemplateSelectorProperty =
-        DependencyProperty.Register(nameof(PrimaryCommandContentTemplateSelector), typeof(DataTemplateSelector), typeof(DualCommandsRow), new PropertyMetadata(default));
+        DependencyProperty.Register(nameof(PrimaryCommandContentTemplateSelector), typeof(DataTemplateSelector), typeof(DualCommandsRowBase), new PropertyMetadata(default));
 
     public static readonly DependencyProperty PrimaryCommandProperty =
-        DependencyProperty.Register(nameof(PrimaryCommand), typeof(ICommand), typeof(DualCommandsRow), new PropertyMetadata(default));
+        DependencyProperty.Register(nameof(PrimaryCommand), typeof(ICommand), typeof(DualCommandsRowBase), new PropertyMetadata(default));
 
     public static readonly DependencyProperty PrimaryCommandParameterProperty =
-        DependencyProperty.Register(nameof(PrimaryCommandParameter), typeof(object), typeof(DualCommandsRow), new PropertyMetadata(default));
+        DependencyProperty.Register(nameof(PrimaryCommandParameter), typeof(object), typeof(DualCommandsRowBase), new PropertyMetadata(default));
 
     public static readonly DependencyProperty PrimaryCommandToolTipProperty =
-        DependencyProperty.Register(nameof(PrimaryCommandToolTip), typeof(object), typeof(DualCommandsRow), new PropertyMetadata(default));
+        DependencyProperty.Register(nameof(PrimaryCommandToolTip), typeof(object), typeof(DualCommandsRowBase), new PropertyMetadata(default));
 
     public static readonly DependencyProperty PrimaryCommandAutomationIdProperty =
-        DependencyProperty.Register(nameof(PrimaryCommandAutomationId), typeof(string), typeof(DualCommandsRow), new PropertyMetadata(default));
+        DependencyProperty.Register(nameof(PrimaryCommandAutomationId), typeof(string), typeof(DualCommandsRowBase), new PropertyMetadata(default));
 
     public static readonly DependencyProperty PrimaryCommandAutomationNameProperty =
-        DependencyProperty.Register(nameof(PrimaryCommandAutomationName), typeof(string), typeof(DualCommandsRow), new PropertyMetadata(default));
+        DependencyProperty.Register(nameof(PrimaryCommandAutomationName), typeof(string), typeof(DualCommandsRowBase), new PropertyMetadata(default));
 
     public static readonly DependencyProperty SecondaryCommandTextProperty =
-        DependencyProperty.Register(nameof(SecondaryCommandText), typeof(string), typeof(DualCommandsRow), new PropertyMetadata(default, OnSecondaryCommandTextPropertyChanged));
+        DependencyProperty.Register(nameof(SecondaryCommandText), typeof(string), typeof(DualCommandsRowBase), new PropertyMetadata(default, OnSecondaryCommandTextPropertyChanged));
 
     public static readonly DependencyProperty SecondaryCommandIconProperty =
-        DependencyProperty.Register(nameof(SecondaryCommandIcon), typeof(IconElement), typeof(DualCommandsRow), new PropertyMetadata(default, OnSecondaryCommandIconPropertyChanged));
-
-    public static readonly DependencyProperty SecondaryCommandFlyoutProperty =
-        DependencyProperty.Register(nameof(SecondaryCommandFlyout), typeof(FlyoutBase), typeof(DualCommandsRow), new PropertyMetadata(default));
-
-    public static readonly DependencyProperty SecondaryCommandProperty =
-        DependencyProperty.Register(nameof(SecondaryCommand), typeof(ICommand), typeof(DualCommandsRow), new PropertyMetadata(default));
-
-    public static readonly DependencyProperty SecondaryCommandParameterProperty =
-        DependencyProperty.Register(nameof(SecondaryCommandParameter), typeof(object), typeof(DualCommandsRow), new PropertyMetadata(default));
+        DependencyProperty.Register(nameof(SecondaryCommandIcon), typeof(IconElement), typeof(DualCommandsRowBase), new PropertyMetadata(default, OnSecondaryCommandIconPropertyChanged));
 
     public static readonly DependencyProperty SecondaryCommandToolTipProperty =
-        DependencyProperty.Register(nameof(SecondaryCommandToolTip), typeof(object), typeof(DualCommandsRow), new PropertyMetadata(default));
+        DependencyProperty.Register(nameof(SecondaryCommandToolTip), typeof(object), typeof(DualCommandsRowBase), new PropertyMetadata(default));
 
     public static readonly DependencyProperty SecondaryCommandAutomationIdProperty =
-        DependencyProperty.Register(nameof(SecondaryCommandAutomationId), typeof(string), typeof(DualCommandsRow), new PropertyMetadata(default));
+        DependencyProperty.Register(nameof(SecondaryCommandAutomationId), typeof(string), typeof(DualCommandsRowBase), new PropertyMetadata(default));
 
     public static readonly DependencyProperty SecondaryCommandAutomationNameProperty =
-        DependencyProperty.Register(nameof(SecondaryCommandAutomationName), typeof(string), typeof(DualCommandsRow), new PropertyMetadata(default));
-
-    public static readonly DependencyProperty IsSecondaryCommandVisibleProperty =
-        DependencyProperty.Register(nameof(IsSecondaryCommandVisible), typeof(bool), typeof(DualCommandsRow), new PropertyMetadata(true));
+        DependencyProperty.Register(nameof(SecondaryCommandAutomationName), typeof(string), typeof(DualCommandsRowBase), new PropertyMetadata(default));
 
     protected UIElement PART_SecondaryContainer;
 
@@ -150,24 +140,6 @@ public class DualCommandsRow : ContentControl
         set => SetValue(SecondaryCommandIconProperty, value);
     }
 
-    public FlyoutBase SecondaryCommandFlyout
-    {
-        get => (FlyoutBase)GetValue(SecondaryCommandFlyoutProperty);
-        set => SetValue(SecondaryCommandFlyoutProperty, value);
-    }
-
-    public ICommand SecondaryCommand
-    {
-        get => (ICommand)GetValue(SecondaryCommandProperty);
-        set => SetValue(SecondaryCommandProperty, value);
-    }
-
-    public object SecondaryCommandParameter
-    {
-        get => GetValue(SecondaryCommandParameterProperty);
-        set => SetValue(SecondaryCommandParameterProperty, value);
-    }
-
     public object SecondaryCommandToolTip
     {
         get => GetValue(SecondaryCommandToolTipProperty);
@@ -186,17 +158,6 @@ public class DualCommandsRow : ContentControl
         set => SetValue(SecondaryCommandAutomationNameProperty, value);
     }
 
-    public bool IsSecondaryCommandVisible
-    {
-        get => (bool)GetValue(IsSecondaryCommandVisibleProperty);
-        set => SetValue(IsSecondaryCommandVisibleProperty, value);
-    }
-
-    public DualCommandsRow()
-    {
-        DefaultStyleKey = typeof(DualCommandsRow);
-    }
-
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
@@ -212,7 +173,7 @@ public class DualCommandsRow : ContentControl
 
     private static void OnSecondaryCommandTextPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is DualCommandsRow control)
+        if (d is DualCommandsRowBase control)
         {
             control.InvalidateSecondaryContainerVisibility();
         }
@@ -220,7 +181,7 @@ public class DualCommandsRow : ContentControl
 
     private static void OnSecondaryCommandIconPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is DualCommandsRow control)
+        if (d is DualCommandsRowBase control)
         {
             control.InvalidateSecondaryContainerVisibility();
         }
@@ -236,5 +197,72 @@ public class DualCommandsRow : ContentControl
                     ? Visibility.Visible
                     : Visibility.Collapsed;
         }
+    }
+}
+
+[Obsolete("Use DualConnectionRowButton instead")]
+public class DualCommandsRow : DualCommandsRowBase
+{
+    public static readonly DependencyProperty SecondaryCommandFlyoutProperty =
+        DependencyProperty.Register(nameof(SecondaryCommandFlyout), typeof(FlyoutBase), typeof(DualCommandsRow), new PropertyMetadata(default, OnSecondaryCommandFlyoutPropertyChanged));
+
+    public static readonly DependencyProperty SecondaryCommandProperty =
+        DependencyProperty.Register(nameof(SecondaryCommand), typeof(ICommand), typeof(DualCommandsRow), new PropertyMetadata(default));
+
+    public static readonly DependencyProperty SecondaryCommandParameterProperty =
+        DependencyProperty.Register(nameof(SecondaryCommandParameter), typeof(object), typeof(DualCommandsRow), new PropertyMetadata(default));
+
+    private const string FLYOUT_OPENED_VISUAL_STATE = "FlyoutOpened";
+    private const string FLYOUT_CLOSED_VISUAL_STATE = "FlyoutClosed";
+
+    public FlyoutBase SecondaryCommandFlyout
+    {
+        get => (FlyoutBase)GetValue(SecondaryCommandFlyoutProperty);
+        set => SetValue(SecondaryCommandFlyoutProperty, value);
+    }
+
+    public ICommand SecondaryCommand
+    {
+        get => (ICommand)GetValue(SecondaryCommandProperty);
+        set => SetValue(SecondaryCommandProperty, value);
+    }
+
+    public object SecondaryCommandParameter
+    {
+        get => GetValue(SecondaryCommandParameterProperty);
+        set => SetValue(SecondaryCommandParameterProperty, value);
+    }
+
+    public DualCommandsRow()
+    {
+        DefaultStyleKey = typeof(DualCommandsRow);
+    }
+
+    private static void OnSecondaryCommandFlyoutPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is DualCommandsRow control)
+        {
+            if (e.OldValue is FlyoutBase oldFlyout)
+            {
+                oldFlyout.Opened -= control.OnFlyoutOpened;
+                oldFlyout.Closed -= control.OnFlyoutClosed;
+            }
+
+            if (e.NewValue is FlyoutBase newFlyout)
+            {
+                newFlyout.Opened += control.OnFlyoutOpened;
+                newFlyout.Closed += control.OnFlyoutClosed;
+            }
+        }
+    }
+
+    private void OnFlyoutOpened(object sender, object e)
+    {
+        VisualStateManager.GoToState(this, FLYOUT_OPENED_VISUAL_STATE, false);
+    }
+
+    private void OnFlyoutClosed(object sender, object e)
+    {
+        VisualStateManager.GoToState(this, FLYOUT_CLOSED_VISUAL_STATE, false);
     }
 }

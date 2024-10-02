@@ -32,6 +32,8 @@ public class VpnStateIpcEntityHandler : IEventMessageReceiver<VpnStateIpcEntity>
     private readonly IInternalConnectionManager _connectionManager;
     private readonly SemaphoreSlim _semaphore = new(1, 1);
 
+    private bool _isNetworkBlocked;
+
     public VpnStateIpcEntityHandler(ILogger logger,
         IConnectionErrorHandler connectionErrorHandler,
         IInternalConnectionManager connectionManager)
@@ -58,13 +60,15 @@ public class VpnStateIpcEntityHandler : IEventMessageReceiver<VpnStateIpcEntity>
     {
         ConnectionErrorHandlerResult connectionErrorHandlerResponse = await _connectionErrorHandler.HandleAsync(message);
 
-        if ((message.Error != VpnErrorTypeIpcEntity.None && connectionErrorHandlerResponse == ConnectionErrorHandlerResult.SameAsLast) ||
-            (message.Error == VpnErrorTypeIpcEntity.NoneKeepEnabledKillSwitch && message.Status == VpnStatusIpcEntity.Disconnected))
+        if (((message.Error != VpnErrorTypeIpcEntity.None && connectionErrorHandlerResponse == ConnectionErrorHandlerResult.SameAsLast) ||
+            (message.Error == VpnErrorTypeIpcEntity.NoneKeepEnabledKillSwitch && message.Status == VpnStatusIpcEntity.Disconnected)) && message.NetworkBlocked == _isNetworkBlocked)
         {
             _logger.Info<ConnectionStateChangeLog>($"Ignoring VPN state with Status '{message.Status}' " +
                 $"and Error '{message.Error}' handled with '{connectionErrorHandlerResponse}'.");
             return;
         }
+
+        _isNetworkBlocked = message.NetworkBlocked;
 
         LogHandlerResponse(message, connectionErrorHandlerResponse);
 

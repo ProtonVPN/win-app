@@ -20,7 +20,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="using:ProtonVPN.Client.Common.UI.Controls"
                     xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
                     xmlns:enums="using:ProtonVPN.Client.Common.Enums"
                     xmlns:profiles="using:ProtonVPN.Client.Common.UI.Assets.Icons.Profiles"

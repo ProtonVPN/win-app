@@ -26,8 +26,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <BitmapImage x:Key="WelcomeIllustrationSource"
                          UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/welcome.png" />
             <SvgImageSource x:Key="ProductLogoIllustrationSource"
-                            UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/product-logo.svg"
-                            RasterizePixelWidth="173" RasterizePixelHeight="45"/>
+                            UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/product-logo.svg" />
             <SvgImageSource x:Key="VpnPlusIllustrationSource"
                             UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/vpn-plus.svg" />
             <SvgImageSource x:Key="DefaultConnectionIllustrationSource"
@@ -39,8 +38,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <BitmapImage x:Key="WelcomeIllustrationSource"
                          UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Dark/welcome.png" />
             <SvgImageSource x:Key="ProductLogoIllustrationSource"
-                            UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Dark/product-logo.svg" 
-                            RasterizePixelWidth="173" RasterizePixelHeight="45"/>
+                            UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Dark/product-logo.svg" />
             <SvgImageSource x:Key="VpnPlusIllustrationSource"
                             UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Dark/vpn-plus.svg" />
             <SvgImageSource x:Key="DefaultConnectionIllustrationSource"
@@ -50,6 +48,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
+    <BitmapImage x:Key="DefaultHyperlinkIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/hyperlink-default.png" />
+    
     <BitmapImage x:Key="ReportSentIllustrationSource"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/report-success.png" />
     <BitmapImage x:Key="ReportErrorIllustrationSource"
@@ -187,5 +188,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/gateways.png" />
     <SvgImageSource x:Key="ProfilesIllustrationSource"
                     UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/profiles.svg" />
+    <BitmapImage x:Key="RecentsIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/recents.png" />
 
 </ResourceDictionary>

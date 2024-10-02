@@ -72,6 +72,10 @@ public static class DefaultSettings
     public static TimeSpan ConnectedServerCheckInterval = TimeSpan.FromMinutes(30);
     public static DefaultConnection DefaultConnection = DefaultConnection.Fastest;
     public static DateTimeOffset LogicalsLastModifiedDate = DateTimeOffset.MinValue;
+    public static bool IsP2PInfoBannerDismissed = false;
+    public static bool IsSecureCoreInfoBannerDismissed = false;
+    public static bool IsTorInfoBannerDismissed = false;
+    public static bool IsGatewayInfoBannerDismissed = false;
 
     public static ChangeServerSettings ChangeServerSettings = new()
     {

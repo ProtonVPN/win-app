@@ -201,7 +201,7 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
             }
             finally
             {
-                InvalidateActiveConnection();
+                //InvalidateActiveConnection();
 
                 SaveAndBroadcastRecentConnectionsChanges();
             }
@@ -215,7 +215,7 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
             LoadRecentConnections();
 
             UpdateCurrentConnectionIntent();
-            InvalidateActiveConnection();
+            //InvalidateActiveConnection();
         }
 
         _areRecentsLoaded = true;
@@ -329,6 +329,7 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
         return true;
     }
 
+    [Obsolete("Active connection is handled on the client")]
     private void InvalidateActiveConnection()
     {
         ConnectionStatus currentConnectionStatus = _connectionManager.ConnectionStatus;

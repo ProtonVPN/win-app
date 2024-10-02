@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<Page x:Class="ProtonVPN.Client.Legacy.UI.Home.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:connectionCard="using:ProtonVPN.Client.Legacy.UI.Home.ConnectionCard"
+      xmlns:connectionError="using:ProtonVPN.Client.Legacy.UI.Home.ConnectionError"
+      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:details="using:ProtonVPN.Client.Legacy.UI.Home.Details"
+      xmlns:map="using:ProtonVPN.Client.Legacy.UI.Home.Map"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+      xmlns:recents="using:ProtonVPN.Client.Legacy.UI.Home.Recents"
+      xmlns:selectors="using:ProtonVPN.Client.Legacy.UI.Home.ConnectionCard.Selectors"
+      xmlns:status="using:ProtonVPN.Client.Legacy.UI.Home.Status"
+      xmlns:banner="using:ProtonVPN.Client.Legacy.UI.Upsell.Banner"
+      x:DefaultBindMode="OneWay"
+      NavigationCacheMode="Required"
+      mc:Ignorable="d">
+
+    <Page.Resources>
+        <x:Double x:Key="MapOverlayGradientHeight">82.0</x:Double>
+
+        <DataTemplate x:Key="ConnectionCardTemplate">
+            <StackPanel>
+                <connectionCard:ConnectionCardComponent AutomationProperties.AutomationId="ConnectionCardComponent"
+                                                        AutomationProperties.LandmarkType="Custom"
+                                                        TabIndex="1"
+                                                        Margin="0,0,0,8"/>
+                <recents:RecentsComponent AutomationProperties.AutomationId="RecentsComponent"
+                                          AutomationProperties.LandmarkType="Custom"
+                                          TabIndex="2" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="FreeConnectionCardTemplate">
+            <connectionCard:FreeConnectionCardComponent AutomationProperties.AutomationId="FreeConnectionCardComponent"
+                                                        AutomationProperties.LandmarkType="Custom"
+                                                        TabIndex="1" />
+        </DataTemplate>
+
+        <selectors:ConnectionCardTemplateSelector x:Key="ConnectionCardTemplateSelector"
+                                                  ConnectionCardTemplate="{StaticResource ConnectionCardTemplate}"
+                                                  FreeConnectionCardTemplate="{StaticResource FreeConnectionCardTemplate}" />
+
+    </Page.Resources>
+
+    <Grid x:Name="ContentArea">
+        <SplitView x:Name="SplitViewArea"
+                   BorderThickness="0"
+                   SizeChanged="OnSplitViewAreaSizeChanged"
+                   CornerRadius="4,0,0,4"
+                   DisplayMode="{x:Bind ViewModel.ConnectionDetailsPaneDisplayMode, Mode=TwoWay}"
+                   IsPaneOpen="{x:Bind ViewModel.IsConnectionDetailsPaneOpened, Mode=TwoWay}"
+                   IsTabStop="False"
+                   OpenPaneLength="{x:Bind ViewModel.ConnectionDetailsPaneWidth, Mode=OneWay}"
+                   PaneBackground="{ThemeResource PaneOverlayBackgroundColorBrush}"
+                   PanePlacement="Right">
+            
+            <SplitView.Pane>
+                <Grid Margin="28,20"
+                      AutomationProperties.LandmarkType="Custom"
+                      AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Landmark')}"
+                      RowSpacing="16"
+                      ColumnSpacing="8"
+                      TabIndex="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               VerticalAlignment="Center"
+                               AutomationProperties.AutomationId="ConnectionDetailsTitle"
+                               Style="{StaticResource BodyLargeStrongTextBlockStyle}"
+                               TabIndex="6"
+                               Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Title')}" />
+
+                    <custom:GhostButton Grid.Row="0"
+                                        Grid.Column="1"
+                                        Margin="0,2,-2,-2"
+                                        VerticalAlignment="Center"
+                                        AutomationProperties.AutomationId="CloseConnectionDetailsButton"
+                                        AutomationProperties.FullDescription="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Hide')}"
+                                        Command="{x:Bind ViewModel.CloseConnectionDetailsPaneCommand, Mode=OneTime}"
+                                        TabIndex="7"
+                                        ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Hide')}">
+                        <custom:GhostButton.LeftIcon>
+                            <pathicons:Cross />
+                        </custom:GhostButton.LeftIcon>
+                    </custom:GhostButton>
+
+                    <Grid Grid.Row="1"
+                          Grid.Column="0"
+                          Grid.ColumnSpan="2">
+
+                        <StackPanel HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Orientation="Vertical"
+                                    Spacing="8"
+                                    Visibility="{x:Bind ViewModel.IsConnecting}">
+                            <ProgressRing Width="24"
+                                          Height="24"
+                                          HorizontalAlignment="Center"
+                                          IsActive="{x:Bind ViewModel.IsConnecting}" />
+                            <TextBlock HorizontalAlignment="Center"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Common_Message_Loading')}" />
+                        </StackPanel>
+
+                        <details:ConnectionDetailsComponent TabIndex="8"
+                                                            Visibility="{x:Bind ViewModel.IsConnected}" />
+                    </Grid>
+                </Grid>
+            </SplitView.Pane>
+
+            <custom:PageContentControl x:Name="PageContainer"
+                                       Padding="0,0,0,-16"
+                                       CanContentScroll="False"
+                                       IsBackButtonVisible="False"
+                                       IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
+                                       Style="{StaticResource StretchPageContentControlStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+
+                        <map:MapComponent AutomationProperties.AutomationId="MapComponent"
+                                          AutomationProperties.LandmarkType="Custom"
+                                          AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_Map_Landmark')}"
+                                          InactiveFillColorBrush="{ThemeResource BackgroundWeakColorBrush}"
+                                          ActiveFillColorBrush="{ThemeResource BackgroundStrongColorBrush}"
+                                          IsConnected="{x:Bind ViewModel.IsConnected}"
+                                          IsConnecting="{x:Bind ViewModel.IsConnecting}"
+                                          ActiveCountryCode="{x:Bind ViewModel.ActiveCountryCode}"
+                                          TabIndex="2" />
+
+                        <Grid>
+                            <status:VpnStatusComponent AutomationProperties.AutomationId="VpnStatusComponent"
+                                                       AutomationProperties.LandmarkType="Custom"
+                                                       AutomationProperties.LocalizedLandmarkType="{x:Bind ViewModel.Localizer.Get('Home_VpnStatus_Landmark')}"
+                                                       TabIndex="1" />
+
+                            <StackPanel MaxWidth="{StaticResource MaximumHomePageContentWidth}"
+                                        Margin="0,60,0,0" 
+                                        Padding="{StaticResource HomePageContentPadding}">
+                                <connectionError:ConnectionErrorComponent/>
+                                <banner:UpsellBannerComponent />
+                            </StackPanel>
+                        </Grid>
+
+                        <Border Height="{StaticResource MapOverlayGradientHeight}"
+                                VerticalAlignment="Bottom"
+                                Background="{ThemeResource ReverseGradientFadingColorBrush}"
+                                IsHitTestVisible="False"/>
+                    </Grid>
+
+                    <Border Grid.Row="1"
+                            Grid.RowSpan="2"
+                            Background="{ThemeResource BackgroundNormColorBrush}" />
+
+                    <ContentControl Grid.Row="1"
+                                    MaxWidth="{StaticResource MaximumHomePageContentWidth}"
+                                    Margin="0,0,0,16"
+                                    HorizontalContentAlignment="Stretch"
+                                    Content="{x:Bind ViewModel.IsPaidUser}"
+                                    ContentTemplateSelector="{StaticResource ConnectionCardTemplateSelector}" 
+                                    TabNavigation="Local"/>
+
+                </Grid>
+            </custom:PageContentControl>
+        </SplitView>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="PaneDisplayModes">
+                <VisualState x:Name="Inline">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsConnectionDetailsPaneInline}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="SplitViewArea.PaneBackground" Value="Transparent" />
+                        <Setter Target="SplitViewArea.CornerRadius" Value="0" />
+                        <Setter Target="PageContainer.CornerRadius" Value="8,8,0,0" />
+                        <Setter Target="PageContainer.BorderThickness" Value="1,1,1,0" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="NavigationDisplayModes">
+                <VisualState x:Name="Minimal">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsNavigationPaneCollapsed}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="SplitViewArea.Margin" Value="0,45,0,0" />
+                        <Setter Target="PageContainer.Margin" Value="0,-45,0,0" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</Page>

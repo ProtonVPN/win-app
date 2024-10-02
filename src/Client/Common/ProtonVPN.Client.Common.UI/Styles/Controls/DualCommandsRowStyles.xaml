@@ -123,11 +123,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                            Visibility="{Binding SecondaryCommandText, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}" />
                                 <ContentPresenter x:Name="SecondaryIcon"
                                                   Grid.Column="0"
+                                                  Margin="0,1,0,0"
                                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                   AutomationProperties.AccessibilityView="Raw"
                                                   Content="{TemplateBinding SecondaryCommandIcon}"
                                                   Foreground="{ThemeResource TextWeakColorBrush}"
-                                                  Margin="0,1,0,0"
                                                   HighContrastAdjustment="None"
                                                   Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
                             </StackPanel>
@@ -188,6 +188,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="RowContentEnabled" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FlyoutStates">
+                                <VisualState x:Name="FlyoutOpened">
+                                    <VisualState.Setters>
+                                        <Setter Target="SecondaryButton.Background" Value="{ThemeResource InteractionDefaultHoverColorBrush}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="FlyoutClosed" />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                     </Grid>

@@ -22,24 +22,22 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.Web.WebView2.Core;
-using ProtonVPN.Client.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
-using ProtonVPN.Client.Models.Activation;
-using ProtonVPN.Client.Models.Navigation;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using ProtonVPN.Client.Contracts.Bases.ViewModels;
+using ProtonVPN.Client.Contracts.Services.Activation;
 
 namespace ProtonVPN.Client.UI.Login.Overlays;
 
-public partial class SsoLoginOverlayViewModel : OverlayViewModelBase
+public partial class SsoLoginOverlayViewModel :  OverlayViewModelBase<IMainWindowOverlayActivator>
 {
-    private readonly IViewNavigator _viewNavigator;
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly ISettings _settings;
     private readonly IConfiguration _configuration;
@@ -53,17 +51,15 @@ public partial class SsoLoginOverlayViewModel : OverlayViewModelBase
     public WebView2 SsoWebView { get; }
 
     public SsoLoginOverlayViewModel(
-        ILocalizationProvider localizationProvider,
-        ILoginViewNavigator viewNavigator,
-        IOverlayActivator overlayActivator,
+        ILocalizationProvider localizer,
+        IMainWindowOverlayActivator overlayActivator,
         IUserAuthenticator userAuthenticator,
         ISettings settings,
         IConfiguration configuration,
         ILogger logger,
         IIssueReporter issueReporter)
-        : base(localizationProvider, logger, issueReporter, overlayActivator)
+        : base(overlayActivator, localizer, logger, issueReporter)
     {
-        _viewNavigator = viewNavigator;
         _userAuthenticator = userAuthenticator;
         _settings = settings;
         _configuration = configuration;
@@ -85,7 +81,7 @@ public partial class SsoLoginOverlayViewModel : OverlayViewModelBase
 
             _ssoResponseToken = match.Groups["token"]?.Value;
 
-            CloseOverlay();
+            OverlayActivator.CloseCurrentOverlay();
         }
     }
 
@@ -104,7 +100,7 @@ public partial class SsoLoginOverlayViewModel : OverlayViewModelBase
         _ssoResponseToken = null;
         IsLoadingPage = true;
         await InitializeWebViewAsync(ssoChallengeToken);
-        await OverlayActivator.ShowOverlayAsync(this, _viewNavigator.Window);
+        await OverlayActivator.ShowOverlayAsync(this);
         return await _userAuthenticator.CompleteSsoAuthAsync(_ssoResponseToken ?? string.Empty);
     }
 

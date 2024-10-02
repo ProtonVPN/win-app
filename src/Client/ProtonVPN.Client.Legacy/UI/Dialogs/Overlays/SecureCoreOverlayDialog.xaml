@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<ContentDialog x:Class="ProtonVPN.Client.Legacy.UI.Dialogs.Overlays.SecureCoreOverlayDialog"
+               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               xmlns:pathIcons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+               Title="{x:Bind ViewModel.Localizer.Get('Dialogs_SecureCore_Title')}"
+               x:DefaultBindMode="OneWay"
+               CloseButtonCommand="{x:Bind ViewModel.CloseOverlayCommand}"
+               Style="{StaticResource OverlayContentDialogStyle}"
+               mc:Ignorable="d">
+
+    <StackPanel Orientation="Vertical"
+                Spacing="16">
+
+        <Grid ColumnSpacing="8"
+              HorizontalAlignment="Center"
+              RowSpacing="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Column="0"
+                       Grid.Row="0"
+                       HorizontalAlignment="Center"
+                       TextAlignment="Center"
+                       Style="{StaticResource CaptionTextBlockStyle}"
+                       Foreground="{ThemeResource TextWeakColorBrush}"
+                       Text="{x:Bind ViewModel.Localizer.Get('Dialogs_SecureCore_StandardConnection')}"
+                       TextWrapping="Wrap" />
+
+            <TextBlock Grid.Column="1"
+                       Grid.Row="0"
+                       HorizontalAlignment="Center"
+                       TextAlignment="Center"
+                       Style="{StaticResource CaptionTextBlockStyle}"
+                       Foreground="{ThemeResource TextWeakColorBrush}"
+                       Text="{x:Bind ViewModel.Localizer.Get('Dialogs_SecureCore_SecureCoreConnection')}"
+                       TextWrapping="Wrap" />
+
+            <Image Grid.Column="0"
+                   Grid.Row="1"
+                   Source="{StaticResource StandardConnectionIllustrationSource}"/>
+
+            <Image Grid.Column="1"
+                   Grid.Row="1"
+                   Source="{StaticResource SecureCoreConnectionIllustrationSource}" />
+
+            <StackPanel Grid.Column="0"
+                        Grid.Row="2"
+                        Spacing="8"
+                        HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal"
+                            Spacing="8">
+                    <pathIcons:LockFilled Foreground="{ThemeResource TextNormColorBrush}" />
+                    <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Dialogs_SecureCore_HighPrivacy')}"
+                               Foreground="{ThemeResource TextNormColorBrush}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Spacing="8">
+                    <pathIcons:Bolt Foreground="{ThemeResource TextNormColorBrush}" />
+                    <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Dialogs_SecureCore_LowerLatency')}"
+                               Foreground="{ThemeResource TextNormColorBrush}" />
+                </StackPanel>
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="1"
+                        Grid.Row="2"
+                        Spacing="8"
+                        HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal"
+                            Spacing="8">
+                    <pathIcons:LocksFilled Foreground="{ThemeResource TextNormColorBrush}" />
+                    <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Dialogs_SecureCore_AdvancedPrivacy')}"
+                               Foreground="{ThemeResource TextNormColorBrush}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Spacing="8">
+                    <pathIcons:Hourglass Foreground="{ThemeResource TextNormColorBrush}" />
+                    <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Dialogs_SecureCore_HigherLatency')}"
+                               Foreground="{ThemeResource TextNormColorBrush}" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Dialogs_SecureCore_Description')}"
+                   TextWrapping="Wrap" />
+
+        <HyperlinkButton HorizontalAlignment="Center"
+                         Content="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}"
+                         NavigateUri="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}"
+                         ToolTipService.ToolTip="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}"
+                         AutomationProperties.AutomationId="LearnMoreHyperlinkButton" />
+    </StackPanel>
+</ContentDialog>

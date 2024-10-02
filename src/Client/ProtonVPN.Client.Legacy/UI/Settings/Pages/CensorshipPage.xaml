@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<Page x:Class="ProtonVPN.Client.Legacy.UI.Settings.Pages.CensorshipPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
+      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+      x:DefaultBindMode="OneWay"
+      NavigationCacheMode="Required"
+      mc:Ignorable="d">
+
+    <custom:SettingsPageContentControl x:Name="PageContentHost"
+                                       BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
+                                       IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
+                                       IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
+                                       ApplyCommand="{x:Bind ViewModel.ApplyCommand, Mode=OneTime}"
+                                       ApplyCommandText="{x:Bind ViewModel.ApplyCommandText}"
+                                       PageHeader="{x:Bind ViewModel.Title}">
+
+        <StackPanel x:Name="ContentArea">
+
+            <toolkit:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_Censorship_ShareStatistics_Description')}"
+                               Header="{x:Bind ViewModel.Localizer.Get('Settings_Censorship_ShareStatistics')}"
+                               Style="{StaticResource DefaultSettingsCardStyle}">
+                <ToggleSwitch IsOn="{x:Bind ViewModel.IsShareStatisticsEnabled, Mode=TwoWay}"
+                              Style="{StaticResource ToggleSwitchStyle}" />
+            </toolkit:SettingsCard>
+
+            <toolkit:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_Censorship_ShareCrashReports_Description')}"
+                               Header="{x:Bind ViewModel.Localizer.Get('Settings_Censorship_ShareCrashReports')}"
+                               Style="{StaticResource DefaultSettingsCardStyle}">
+                <ToggleSwitch IsOn="{x:Bind ViewModel.IsShareCrashReportsEnabled, Mode=TwoWay}"
+                              Style="{StaticResource ToggleSwitchStyle}" />
+            </toolkit:SettingsCard>
+
+            <TextBlock Margin="0,8,0,0"
+                       Foreground="{ThemeResource TextWeakColorBrush}"
+                       Style="{StaticResource CaptionTextBlockStyle}">
+                <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Censorship_Footer')}" />
+                <Hyperlink NavigateUri="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}"
+                           ToolTipService.ToolTip="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}">
+                    <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
+                </Hyperlink>
+                <Run />
+            </TextBlock>
+        </StackPanel>
+    </custom:SettingsPageContentControl>
+</Page>

@@ -27,16 +27,28 @@ public class SettingsPageContentControl : PageContentControl
     public static readonly DependencyProperty ApplyCommandProperty =
         DependencyProperty.Register(nameof(ApplyCommand), typeof(ICommand), typeof(SettingsPageContentControl), new PropertyMetadata(default, OnApplyCommandPropertyChanged));
 
+    public static readonly DependencyProperty CloseCommandProperty =
+        DependencyProperty.Register(nameof(CloseCommand), typeof(ICommand), typeof(SettingsPageContentControl), new PropertyMetadata(default));
+
     public static readonly DependencyProperty ApplyCommandParameterProperty =
         DependencyProperty.Register(nameof(ApplyCommandParameter), typeof(object), typeof(SettingsPageContentControl), new PropertyMetadata(default, OnApplyCommandPropertyChanged));
 
     public static readonly DependencyProperty ApplyCommandTextProperty =
         DependencyProperty.Register(nameof(ApplyCommandText), typeof(string), typeof(SettingsPageContentControl), new PropertyMetadata(default));
 
+    public static readonly DependencyProperty CloseButtonTextProperty =
+        DependencyProperty.Register(nameof(CloseButtonText), typeof(string), typeof(SettingsPageContentControl), new PropertyMetadata(default));
+
     public ICommand ApplyCommand
     {
         get => (ICommand)GetValue(ApplyCommandProperty);
         set => SetValue(ApplyCommandProperty, value);
+    }
+
+    public ICommand CloseCommand
+    {
+        get => (ICommand)GetValue(CloseCommandProperty);
+        set => SetValue(CloseCommandProperty, value);
     }
 
     public object ApplyCommandParameter
@@ -49,6 +61,12 @@ public class SettingsPageContentControl : PageContentControl
     {
         get => (string)GetValue(ApplyCommandTextProperty);
         set => SetValue(ApplyCommandTextProperty, value);
+    }
+
+    public string CloseButtonText
+    {
+        get => (string)GetValue(CloseButtonTextProperty);
+        set => SetValue(CloseButtonTextProperty, value);
     }
 
     protected bool IsApplyCommandEmpty => ApplyCommand == null || !ApplyCommand.CanExecute(ApplyCommandParameter);

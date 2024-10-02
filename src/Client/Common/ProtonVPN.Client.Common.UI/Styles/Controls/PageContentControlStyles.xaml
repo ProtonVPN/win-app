@@ -154,11 +154,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
 
+            
+                            <custom:GhostButton Grid.Row="0"
+                                                Content="{TemplateBinding CloseButtonText}"
+                                                Command="{Binding CloseCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                HorizontalAlignment="Right">
+                                <custom:GhostButton.RightIcon>
+                                    <pathicons:CrossCircleFilled />
+                                </custom:GhostButton.RightIcon>
+                            </custom:GhostButton>
+
                             <Grid x:Name="PART_HeaderContainer"
-                                  Grid.Row="0"
+                                  Grid.Row="1"
                                   Margin="{StaticResource PageContentControlHeaderContainerMargin}"
                                   Visibility="Collapsed">
 
@@ -205,7 +216,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}" />
                             </Grid>
 
-                            <ScrollViewer Grid.Row="1"
+                            <ScrollViewer Grid.Row="2"
                                           HorizontalScrollBarVisibility="Disabled"
                                           VerticalScrollBarVisibility="{Binding CanContentScroll, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToScrollBarVisibilityConverter}}">
                                 <ContentPresenter Margin="0,0,0,16" />
