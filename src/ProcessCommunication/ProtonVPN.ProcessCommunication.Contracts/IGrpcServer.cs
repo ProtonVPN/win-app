@@ -17,15 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.ProcessCommunication.Contracts
-{
-    public interface IGrpcServer
-    {
-        int? Port { get; }
-        event EventHandler? OnStart;
+namespace ProtonVPN.ProcessCommunication.Contracts;
 
-        void CreateAndStart();
-        Task ShutdownAsync();
-        Task KillAsync();
-    }
+public interface IGrpcServer
+{
+    void CreateAndStart();
+    Task StopAsync();
 }

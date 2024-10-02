@@ -21,7 +21,6 @@ using H.NotifyIcon;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Dispatching;
-using ProtonVPN.Client.Common.Messages;
 using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Legacy.Contracts;
 using ProtonVPN.Client.Contracts.Messages;

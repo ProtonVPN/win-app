@@ -17,11 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-<<<<<<<< HEAD:src/Client/ProtonVPN.Client.Legacy/Messages/MainWindowClosedMessage.cs
 namespace ProtonVPN.Client.Legacy.Messages;
-========
-namespace ProtonVPN.Client.Common.Messages;
->>>>>>>> redesign:src/Client/Common/ProtonVPN.Client.Common/Messages/MainWindowClosedMessage.cs
 
 public class MainWindowClosedMessage
 {
