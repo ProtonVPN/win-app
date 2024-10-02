@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+                    xmlns:triggers="using:CommunityToolkit.WinUI">
+
+    <CornerRadius x:Key="ServerLoadCornerRadius">2</CornerRadius>
+
+    <Style BasedOn="{StaticResource ServerLoadDefaultStyle}" TargetType="custom:ServerLoad" />
+
+    <Style x:Key="ServerLoadDefaultStyle" TargetType="custom:ServerLoad">
+        <Setter Property="Background" Value="{ThemeResource BackgroundStrongColorBrush}" />
+        <Setter Property="Foreground" Value="{ThemeResource TextWeakColorBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="custom:ServerLoad">
+                    <StackPanel Orientation="Horizontal"
+                                Spacing="8">
+                        <TextBlock Margin="0,0,0,2"
+                                   VerticalAlignment="Center"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   Style="{StaticResource BodyMediumTextBlockStyle}"
+                                   Text="{Binding Load, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource DoubleToPercentFormatConverter}}"
+                                   Visibility="{Binding IsTextVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                        <Grid Width="32"
+                              Height="4"
+                              VerticalAlignment="Center"
+                              Background="{TemplateBinding Background}"
+                              CornerRadius="{StaticResource ServerLoadCornerRadius}">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition x:Name="ServerLoadFillColumn"
+                                                  Width="{Binding Load, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource DoubleToStarGridLengthConverter}}" />
+                                <ColumnDefinition x:Name="ServerLoadEmptyColumn"
+                                                  Width="{Binding Load, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource ReverseDoubleToStarGridLengthConverter}}" />
+                            </Grid.ColumnDefinitions>
+
+                            <Border x:Name="ServerLoadIndicator"
+                                    Grid.Column="0"
+                                    Background="{ThemeResource SignalSuccessColorBrush}"
+                                    CornerRadius="{StaticResource ServerLoadCornerRadius}">
+                                <Border.BackgroundTransition>
+                                    <BrushTransition Duration="0:0:0.5" />
+                                </Border.BackgroundTransition>
+                            </Border>
+
+                        </Grid>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="ServerLoadStates">
+
+                                <VisualState x:Name="HighServerLoad">
+                                    <VisualState.StateTriggers>
+                                        <triggers:CompareStateTrigger Comparison="GreaterThan"
+                                                                      Value="{Binding Load, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                                      To="{Binding MediumToHighTreshold, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Target="ServerLoadIndicator.Background" Value="{ThemeResource SignalDangerColorBrush}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="MediumServerLoad">
+                                    <VisualState.StateTriggers>
+                                        <triggers:CompareStateTrigger Comparison="GreaterThan"
+                                                                      Value="{Binding Load, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                                      To="{Binding LowToMediumThreshold, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Target="ServerLoadIndicator.Background" Value="{ThemeResource SignalWarningColorBrush}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="LowServerLoad" />
+
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

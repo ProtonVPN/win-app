@@ -156,7 +156,7 @@ public static class StringExtensions
         {
             // Some of the diacritics can't be automatically remapped, therefore requires manual mapping.
             bool isMapped = false;
-            foreach (var kvp in _diacriticsMap.Where(kvp => kvp.Key.Contains(c)))
+            foreach (KeyValuePair<string, string> kvp in _diacriticsMap.Where(kvp => kvp.Key.Contains(c)))
             {
                 sb.Append(kvp.Value);
                 isMapped = true;

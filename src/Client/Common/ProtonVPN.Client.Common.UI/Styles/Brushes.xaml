@@ -133,7 +133,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <AcrylicBrush x:Key="PaneOverlayBackgroundColorBrush"
                           FallbackColor="{StaticResource BackgroundNormColor}"
                           TintColor="{StaticResource BackgroundNormColor}"
-                          TintOpacity="0.6" />
+                          TintOpacity="0.4" />
 
         </ResourceDictionary>
 
@@ -247,7 +247,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <AcrylicBrush x:Key="PaneOverlayBackgroundColorBrush"
                           FallbackColor="{StaticResource BackgroundNormColor}"
                           TintColor="{StaticResource BackgroundNormColor}"
-                          TintOpacity="0.6" />
+                          TintOpacity="0.4" />
             
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>

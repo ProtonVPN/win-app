@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<Page x:Class="ProtonVPN.Client.Legacy.UI.Settings.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+      xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
+      x:DefaultBindMode="OneWay"
+      NavigationCacheMode="Required"
+      mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style x:Key="SettingsSectionHeaderTextBlockStyle" BasedOn="{StaticResource BodyStrongTextBlockStyle}" TargetType="TextBlock">
+            <Setter Property="Margin" Value="2,20,0,12" />
+            <Setter Property="AutomationProperties.HeadingLevel" Value="Level2" />
+        </Style>
+    </Page.Resources>
+
+    <custom:PageContentControl x:Name="PageContentHost"
+                               BackCommand="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
+                               IsBackButtonVisible="{x:Bind ViewModel.IsBackEnabled}"
+                               IsCompact="{x:Bind ViewModel.IsNavigationPaneCollapsed}"
+                               PageHeader="{x:Bind ViewModel.Title}"
+                               Style="{StaticResource MainPageContentControlStyle}">
+
+        <StackPanel x:Name="ContentArea">
+
+            <TextBlock Margin="2,8,0,12"
+                       Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
+                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection')}" />
+
+            <toolkit:SettingsCard AutomationProperties.AutomationId="DefaultConnectionSettingsCard"
+                                  Command="{x:Bind ViewModel.NavigateToDefaultConnectionPageCommand, Mode=OneTime}"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default')}"
+                                  IsClickEnabled="True"
+                                  Style="{StaticResource DefaultSettingsCardStyle}"
+                                  Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <toolkit:SettingsCard.HeaderIcon>
+                    <pathicons:Bookmark />
+                </toolkit:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.ActionIcon>
+                    <pathicons:ChevronRight />
+                </toolkit:SettingsCard.ActionIcon>
+                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                           Text="{x:Bind ViewModel.DefaultConnectionState}" />
+            </toolkit:SettingsCard>
+
+            <toolkit:SettingsCard AutomationProperties.AutomationId="ProtocolSettingsCard"
+                                  Command="{x:Bind ViewModel.NavigateToProtocolPageCommand, Mode=OneTime}"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Protocol')}"
+                                  IsClickEnabled="True"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                <toolkit:SettingsCard.HeaderIcon>
+                    <pathicons:Servers />
+                </toolkit:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.ActionIcon>
+                    <pathicons:ChevronRight />
+                </toolkit:SettingsCard.ActionIcon>
+                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                           Text="{x:Bind ViewModel.ConnectionProtocolState}" />
+            </toolkit:SettingsCard>
+
+            <toolkit:SettingsCard AutomationProperties.AutomationId="VpnAcceleratorSettingsCard"
+                                  Command="{x:Bind ViewModel.NavigateToVpnAcceleratorPageCommand, Mode=OneTime}"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_VpnAccelerator')}"
+                                  IsClickEnabled="True"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                <toolkit:SettingsCard.HeaderIcon>
+                    <pathicons:Rocket />
+                </toolkit:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.ActionIcon>
+                    <pathicons:ChevronRight />
+                </toolkit:SettingsCard.ActionIcon>
+                <Grid>
+                    <Image Height="24"
+                           Source="{ThemeResource VpnPlusIllustrationSource}"
+                           Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+                    <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                               Text="{x:Bind ViewModel.VpnAcceleratorSettingsState}"
+                               Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                </Grid>
+            </toolkit:SettingsCard>
+
+            <toolkit:SettingsCard AutomationProperties.AutomationId="AdvancedSettingsCard"
+                                  Command="{x:Bind ViewModel.NavigateToAdvancedSettingsPageCommand, Mode=OneTime}"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_AdvancedSettings')}"
+                                  IsClickEnabled="True"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                <toolkit:SettingsCard.HeaderIcon>
+                    <pathicons:Sliders />
+                </toolkit:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.ActionIcon>
+                    <pathicons:ChevronRight />
+                </toolkit:SettingsCard.ActionIcon>
+            </toolkit:SettingsCard>
+
+            <TextBlock Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
+                       Text="{x:Bind ViewModel.Localizer.Get('Settings_General')}" />
+
+            <toolkit:SettingsCard AutomationProperties.AutomationId="AutoStartupSettingsCard"
+                                  Command="{x:Bind ViewModel.NavigateToAutoStartupPageCommand, Mode=OneTime}"
+                                  Description="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_Description')}"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup')}"
+                                  IsClickEnabled="True"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                <toolkit:SettingsCard.HeaderIcon>
+                    <pathicons:PowerOff />
+                </toolkit:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.ActionIcon>
+                    <pathicons:ChevronRight />
+                </toolkit:SettingsCard.ActionIcon>
+            </toolkit:SettingsCard>
+
+            <toolkit:SettingsCard AutomationProperties.AutomationId="NotificationsSettingsCard"
+                                  Description="{x:Bind ViewModel.Localizer.Get('Settings_General_Notifications_Description')}"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_General_Notifications')}"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                <toolkit:SettingsCard.HeaderIcon>
+                    <pathicons:Bell />
+                </toolkit:SettingsCard.HeaderIcon>
+                <ToggleSwitch IsOn="{x:Bind ViewModel.IsNotificationEnabled, Mode=TwoWay}"
+                              Style="{StaticResource ToggleSwitchStyle}" />
+            </toolkit:SettingsCard>
+
+            <toolkit:SettingsCard AutomationProperties.AutomationId="LanguagesSettingsCard"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_General_Language')}"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                <toolkit:SettingsCard.HeaderIcon>
+                    <pathicons:Language />
+                </toolkit:SettingsCard.HeaderIcon>
+                <ComboBox x:Name="cbLanguage"
+                          DisplayMemberPath="Description"
+                          ItemsSource="{x:Bind ViewModel.Languages}"
+                          SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}" />
+            </toolkit:SettingsCard>
+
+            <toolkit:SettingsCard AutomationProperties.AutomationId="ThemesSettingsCard"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_General_Theme')}"
+                                  IsTabStop="False"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                <toolkit:SettingsCard.HeaderIcon>
+                    <pathicons:CircleHalfFilled />
+                </toolkit:SettingsCard.HeaderIcon>
+                <ComboBox x:Name="themeMode"
+                          DisplayMemberPath="TranslatedName"
+                          ItemsSource="{x:Bind ViewModel.Themes}"
+                          SelectedItem="{x:Bind ViewModel.SelectedTheme, Mode=TwoWay}" />
+            </toolkit:SettingsCard>
+
+            <toolkit:SettingsCard AutomationProperties.AutomationId="BetaAccessSettingsCard"
+                                  Description="{x:Bind ViewModel.Localizer.Get('Settings_General_BetaAccess_Description')}"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_General_BetaAccess')}"
+                                  IsTabStop="False"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                <toolkit:SettingsCard.HeaderIcon>
+                    <pathicons:KeySkeleton />
+                </toolkit:SettingsCard.HeaderIcon>
+                <ToggleSwitch IsOn="{x:Bind ViewModel.IsBetaAccessEnabled, Mode=TwoWay}"
+                              Style="{StaticResource ToggleSwitchStyle}" />
+            </toolkit:SettingsCard>
+
+            <toolkit:SettingsCard AutomationProperties.AutomationId="AutomaticUpdatesSettingsCard"
+                                  Description="{x:Bind ViewModel.Localizer.Get('Settings_General_AutomaticUpdates_Description')}"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_General_AutomaticUpdates')}"
+                                  IsTabStop="False"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                <toolkit:SettingsCard.HeaderIcon>
+                    <pathicons:ArrowsRotate />
+                </toolkit:SettingsCard.HeaderIcon>
+                <ToggleSwitch IsOn="{x:Bind ViewModel.IsAutomaticUpdatesEnabled, Mode=TwoWay}"
+                              Style="{StaticResource ToggleSwitchStyle}" />
+            </toolkit:SettingsCard>
+
+            <TextBlock Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
+                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Support')}" />
+
+            <toolkit:SettingsCard AutomationProperties.AutomationId="SupportCenterSettingsCard"
+                                  Command="{x:Bind ViewModel.OpenSupportCommand, Mode=OneTime}"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Support_SupportCenter')}"
+                                  IsClickEnabled="True"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                <toolkit:SettingsCard.HeaderIcon>
+                    <pathicons:LifeRing />
+                </toolkit:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.ActionIcon>
+                    <pathicons:ArrowOutSquare />
+                </toolkit:SettingsCard.ActionIcon>
+            </toolkit:SettingsCard>
+
+            <toolkit:SettingsCard AutomationProperties.AutomationId="ReportIssueSettingsCard"
+                                  Command="{x:Bind ViewModel.ReportIssueCommand, Mode=OneTime}"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Support_ReportIssue')}"
+                                  IsClickEnabled="True"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                <toolkit:SettingsCard.HeaderIcon>
+                    <pathicons:Bug />
+                </toolkit:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.ActionIcon>
+                    <pathicons:ChevronRight />
+                </toolkit:SettingsCard.ActionIcon>
+            </toolkit:SettingsCard>
+
+            <toolkit:SettingsCard AutomationProperties.AutomationId="DebugLogsSettingsCard"
+                                  Command="{x:Bind ViewModel.NavigateToDebugLogsPageCommand, Mode=OneTime}"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Support_DebugLogs')}"
+                                  IsClickEnabled="True"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                <toolkit:SettingsCard.HeaderIcon>
+                    <pathicons:Code />
+                </toolkit:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.ActionIcon>
+                    <pathicons:ChevronRight />
+                </toolkit:SettingsCard.ActionIcon>
+            </toolkit:SettingsCard>
+
+            <toolkit:SettingsCard AutomationProperties.AutomationId="AboutSettingsCard"
+                                  Command="{x:Bind ViewModel.NavigateToAboutPageCommand, Mode=OneTime}"
+                                  Description="{x:Bind ViewModel.ClientVersionDescription}"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_About_Title')}"
+                                  IsClickEnabled="True"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                <toolkit:SettingsCard.HeaderIcon>
+                    <pathicons:BrandProtonVpn />
+                </toolkit:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.ActionIcon>
+                    <pathicons:ChevronRight />
+                </toolkit:SettingsCard.ActionIcon>
+            </toolkit:SettingsCard>
+
+            <toolkit:SettingsCard AutomationProperties.AutomationId="DeveloperToolsSettingsCard"
+                                  Command="{x:Bind ViewModel.NavigateToDeveloperToolsPageCommand, Mode=OneTime}"
+                                  Header="Developer tools"
+                                  IsClickEnabled="True"
+                                  Style="{StaticResource DefaultSettingsCardStyle}"
+                                  Visibility="{x:Bind ViewModel.IsToShowDeveloperTools}">
+                <toolkit:SettingsCard.HeaderIcon>
+                    <pathicons:WindowTerminal />
+                </toolkit:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.ActionIcon>
+                    <pathicons:ChevronRight />
+                </toolkit:SettingsCard.ActionIcon>
+            </toolkit:SettingsCard>
+
+            <TextBlock Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
+                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Improve')}" />
+
+            <toolkit:SettingsCard AutomationProperties.AutomationId="CensorshipSettingsCard"
+                                  Command="{x:Bind ViewModel.NavigateToCensorshipPageCommand, Mode=OneTime}"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Improve_Censorship')}"
+                                  IsClickEnabled="True"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                <toolkit:SettingsCard.HeaderIcon>
+                    <pathicons:Users />
+                </toolkit:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.ActionIcon>
+                    <pathicons:ChevronRight />
+                </toolkit:SettingsCard.ActionIcon>
+            </toolkit:SettingsCard>
+
+            <Button Margin="0,16,0,0"
+                    AutomationProperties.AutomationId="RestoreDefaultSettingsButton"
+                    Command="{x:Bind ViewModel.RestoreDefaultSettingsCommand, Mode=OneTime}"
+                    Content="{x:Bind ViewModel.Localizer.Get('Settings_RestoreDefault')}"
+                    Style="{StaticResource SecondaryButtonStyle}" />
+
+            <StackPanel Margin="0,16,0,0">
+                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                           Style="{StaticResource CaptionTextBlockStyle}">
+                    <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_OperatingSystemVersion')}" /><Run Text=":" />
+                    <Run Text="{x:Bind ViewModel.OperatingSystemVersionDescription}" />
+                </TextBlock>
+            </StackPanel>
+        </StackPanel>
+    </custom:PageContentControl>
+</Page>

@@ -19,7 +19,6 @@
 
 using System.Text;
 using ProtonVPN.Client.Common.Dispatching;
-using ProtonVPN.Client.Common.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -33,7 +32,7 @@ using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
 namespace ProtonVPN.Client.Logic.Services;
 
-public class ClientControllerListener : IClientControllerListener, IEventMessageReceiver<MainWindowClosedMessage>
+public class ClientControllerListener : IClientControllerListener/*, IEventMessageReceiver<MainWindowClosedMessage>*/
 {
     private readonly ILogger _logger;
     private readonly IGrpcClient _grpcClient;
@@ -56,10 +55,11 @@ public class ClientControllerListener : IClientControllerListener, IEventMessage
         _serviceManager = serviceManager;
     }
 
-    public void Receive(MainWindowClosedMessage message)
-    {
-        _cancellationTokenSource.Cancel();
-    }
+    // TODO: fix
+    // public void Receive(MainWindowClosedMessage message)
+    // {
+    //     _cancellationTokenSource.Cancel();
+    // }
 
     public void Start()
     {

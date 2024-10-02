@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!--
 Copyright (c) 2023 Proton AG
 
@@ -24,31 +24,36 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
               xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:reportissue="using:ProtonVPN.Client.UI.Dialogs.ReportIssue"
+              xmlns:temp="using:ProtonVPN.Client.TEMP"
               xmlns:tray="using:ProtonVPN.Client.UI.Tray"
+              xmlns:ui="using:ProtonVPN.Client.UI"
               xmlns:wex="using:WinUIEx"
-              MinWidth="518"
-              MinHeight="608"
-              Activated="OnActivated"
-              PersistenceId="MainWindow"
+              x:DefaultBindMode="OneWay"
               mc:Ignorable="d">
 
-    <!--  There's a consistent difference between the size defined here and the actual size  -->
-    <!--  Adds 16px to the width and 8px to the height to compensate  -->
-
-    <Window.SystemBackdrop>
-        <MicaBackdrop Kind="BaseAlt" />
-    </Window.SystemBackdrop>
-
     <custom:WindowContentControl x:Name="WindowContainer"
-                                 Title="{Binding Content.ViewModel.Title, ElementName=Container}" 
+                                 Title="{x:Bind Shell.ViewModel.Title, Mode=OneWay}"
+                                 IconSource="{StaticResource ProtonVpnOnApplicationIconSource}"
                                  Style="{StaticResource MainWindowContentControlStyle}">
 
         <Grid>
-            <tray:TrayIconComponent />
+            <tray:TrayIconComponentView />
 
-            <ContentControl x:Name="Container"
-                            HorizontalContentAlignment="Stretch"
-                            VerticalContentAlignment="Stretch" />
+            <ui:MainWindowShellView x:Name="Shell" />
+
+            <StackPanel Margin="0,-30,140,0"
+                        Padding="16,-4"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        BorderBrush="{ThemeResource BorderWeakColorBrush}"
+                        BorderThickness="0,0,1,0"
+                        Orientation="Horizontal"
+                        Spacing="16">
+                <reportissue:ReportIssueComponentView Opacity="0.6" />
+                <temp:NavigationMasterControllerView Opacity="0.6" />
+            </StackPanel>
         </Grid>
     </custom:WindowContentControl>
+
 </wex:WindowEx>

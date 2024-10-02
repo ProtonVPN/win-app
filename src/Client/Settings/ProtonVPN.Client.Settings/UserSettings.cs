@@ -371,6 +371,30 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userCache.SetValueType<DateTimeOffset>(value.Max(DateTimeOffset.UnixEpoch), SettingEncryption.Encrypted);
     }
 
+    public bool IsP2PInfoBannerDismissed
+    {
+        get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsP2PInfoBannerDismissed;
+        set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
+    public bool IsSecureCoreInfoBannerDismissed
+    {
+        get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsSecureCoreInfoBannerDismissed;
+        set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
+    public bool IsTorInfoBannerDismissed
+    {
+        get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsTorInfoBannerDismissed;
+        set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
+    public bool IsGatewayInfoBannerDismissed
+    {
+        get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsGatewayInfoBannerDismissed;
+        set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
     public UserSettings(IGlobalSettingsCache globalSettingsCache, IUserSettingsCache userSettingsCache)
             : base(globalSettingsCache)
     {

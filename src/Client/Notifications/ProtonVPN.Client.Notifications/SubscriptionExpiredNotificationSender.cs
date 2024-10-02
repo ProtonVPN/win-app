@@ -18,7 +18,6 @@
  */
 
 using Microsoft.Toolkit.Uwp.Notifications;
-using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
@@ -26,8 +25,8 @@ using ProtonVPN.Client.Notifications.Contracts;
 
 namespace ProtonVPN.Client.Notifications;
 
-public class SubscriptionExpiredNotificationSender : ISubscriptionExpiredNotificationSender,
-    IEventMessageReceiver<MainWindowStateChangedMessage>
+public class SubscriptionExpiredNotificationSender : ISubscriptionExpiredNotificationSender
+    //IEventMessageReceiver<MainWindowStateChangedMessage>
 {
     private readonly ILocalizationProvider _localizer;
     private readonly IConnectionManager _connectionManager;
@@ -60,8 +59,9 @@ public class SubscriptionExpiredNotificationSender : ISubscriptionExpiredNotific
         tcb.Show();
     }
 
-    public void Receive(MainWindowStateChangedMessage message)
-    {
-        _isMainWindowActive = !message.IsMinimized;
-    }
+    // TODO: fix
+    // public void Receive(MainWindowStateChangedMessage message)
+    // {
+    //     _isMainWindowActive = !message.IsMinimized;
+    // }
 }

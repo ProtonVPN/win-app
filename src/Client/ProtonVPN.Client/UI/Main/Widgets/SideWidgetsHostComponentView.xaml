@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<UserControl x:Class="ProtonVPN.Client.UI.Main.Widgets.SideWidgetsHostComponentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:bases="using:ProtonVPN.Client.UI.Main.Widgets.Bases"
+             xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ks="using:ProtonVPN.Client.UI.Main.Features.KillSwitch"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ns="using:ProtonVPN.Client.UI.Main.Features.NetShield"
+             xmlns:pf="using:ProtonVPN.Client.UI.Main.Features.PortForwarding"
+             xmlns:selectors="using:ProtonVPN.Client.Selectors"
+             xmlns:settings="using:ProtonVPN.Client.UI.Main.Settings"
+             xmlns:st="using:ProtonVPN.Client.UI.Main.Features.SplitTunneling"
+             x:DefaultBindMode="OneWay"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+
+        <DataTemplate x:Key="SideWidgetItemTemplate"
+                      x:DataType="bases:SideWidgetViewModelBase">
+            <custom:WidgetButton Command="{x:Bind InvokeCommand, Mode=OneTime}"
+                                 Content="{x:Bind Icon}"
+                                 IsActive="{x:Bind IsSelected}"
+                                 Style="{StaticResource SideWidgetButtonStyle}"
+                                 Text="{x:Bind Header}"
+                                 Visibility="{x:Bind IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        </DataTemplate>
+        <DataTemplate x:Key="SplitTunnelingWidgetItemTemplate"
+                      x:DataType="st:SplitTunnelingWidgetViewModel">
+            <st:SplitTunnelingWidgetView />
+        </DataTemplate>
+        <DataTemplate x:Key="KillSwitchWidgetItemTemplate"
+                      x:DataType="ks:KillSwitchWidgetViewModel">
+            <ks:KillSwitchWidgetView />
+        </DataTemplate>
+        <DataTemplate x:Key="PortForwardingWidgetItemTemplate"
+                      x:DataType="pf:PortForwardingWidgetViewModel">
+            <pf:PortForwardingWidgetView />
+        </DataTemplate>
+        <DataTemplate x:Key="NetShieldWidgetItemTemplate"
+                      x:DataType="ns:NetShieldWidgetViewModel">
+            <ns:NetShieldWidgetView />
+        </DataTemplate>
+        <DataTemplate x:Key="SettingsWidgetItemTemplate"
+                      x:DataType="settings:SettingsWidgetViewModel">
+            <settings:SettingsWidgetView />
+        </DataTemplate>
+
+        <selectors:SideWidgetItemTemplateSelector x:Key="SideWidgetItemTemplateSelector"
+                                                  DefaultWidgetTemplate="{StaticResource SideWidgetItemTemplate}"
+                                                  KillSwitchWidgetTemplate="{StaticResource KillSwitchWidgetItemTemplate}"
+                                                  NetShieldWidgetTemplate="{StaticResource NetShieldWidgetItemTemplate}"
+                                                  PortForwardingWidgetTemplate="{StaticResource PortForwardingWidgetItemTemplate}"
+                                                  SettingsWidgetTemplate="{StaticResource SettingsWidgetItemTemplate}"
+                                                  SplitTunnelingWidgetTemplate="{StaticResource SplitTunnelingWidgetItemTemplate}" />
+
+    </UserControl.Resources>
+
+    <Grid Margin="0,8,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ItemsControl Grid.Row="0"
+                      ItemTemplateSelector="{StaticResource SideWidgetItemTemplateSelector}"
+                      ItemsSource="{x:Bind ViewModel.HeaderWidgets}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Spacing="8" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+
+        <Border Grid.Row="1"
+                Height="1"
+                Margin="0,8"
+                Background="{ThemeResource BorderWeakColorBrush}"
+                Visibility="{x:Bind ViewModel.HasHeaderAndFooterWidgets}" />
+
+        <ItemsControl Grid.Row="2"
+                      ItemTemplateSelector="{StaticResource SideWidgetItemTemplateSelector}"
+                      ItemsSource="{x:Bind ViewModel.FooterWidgets}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Spacing="8" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </Grid>
+
+</UserControl>

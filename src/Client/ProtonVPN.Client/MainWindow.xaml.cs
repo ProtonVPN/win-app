@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,92 +17,41 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Media;
-using ProtonVPN.Client.Contracts;
-using ProtonVPN.Client.Helpers;
-using ProtonVPN.Client.Models.Icons;
-using ProtonVPN.Client.UI;
-using ProtonVPN.Client.UI.Login;
-using Windows.Foundation;
+using ProtonVPN.Client.Contracts.Bases;
+using ProtonVPN.Client.Contracts.Extensions;
+using ProtonVPN.Client.Services.Activation;
 
 namespace ProtonVPN.Client;
 
-public sealed partial class MainWindow
+public sealed partial class MainWindow : IActivationStateAware
 {
-    private const double TITLE_BAR_HEIGHT = 36.0;
+    public MainWindowActivator WindowActivator { get; }
 
-    private readonly IShellPage _shell;
-    private readonly IShellPage _loginShell;
+    public MainWindowOverlayActivator OverlayActivator { get; }
 
     public MainWindow()
     {
+        WindowActivator = App.GetService<MainWindowActivator>();
+        OverlayActivator = App.GetService<MainWindowOverlayActivator>();
+
         InitializeComponent();
 
-        _shell = new ShellPage();
-        _shell.Initialize(this);
-
-        _loginShell = new LoginShellPage();
-        _loginShell.Initialize(this);
-
-        AppWindow.Title = App.APPLICATION_NAME;
-        AppWindow.TitleBar.ExtendsContentIntoTitleBar = true;
-
-        UpdateApplicationIcon(ApplicationIconSelector.LoggedOutIcon);
+        WindowActivator.Initialize(this);
+        OverlayActivator.Initialize(this);
     }
 
-    public void SwitchToLoginShell()
+    public void InvalidateTitleBarOpacity(WindowActivationState activationState)
     {
-        Container.Content = _loginShell;
-
-        HideTitleBar();
+        WindowContainer.TitleBarOpacity = activationState.GetTitleBarOpacity();
     }
 
-    public void SwitchToMainShell()
+    public void InvalidateTitleBarVisibility(bool isTitleBarVisible)
     {
-        Container.Content = _shell;
+        WindowContainer.IsTitleBarVisible = isTitleBarVisible;
 
-        ShowTitleBar();
-    }
-
-    public void UpdateApplicationIcon(ImageSource icon)
-    {
-        WindowContainer.IconSource = icon;
-
-        // VPNWIN-1925 - This doesn't work when the App is pinned to the task bar.
-        // When pinned, the app simply use the default icon from the project properties.
-        // Consider switching to badge to reflect the current connection status
-        AppWindow?.SetIcon(icon.GetFullImagePath());
-    }
-
-    private void OnActivated(object sender, WindowActivatedEventArgs args)
-    {
-        WindowContainer.TitleBarOpacity = args.WindowActivationState.GetTitleBarOpacity();
-    }
-
-    protected override bool OnSizeChanged(Size newSize)
-    {
-        this.SetDragArea(newSize.Width, TITLE_BAR_HEIGHT);
-
-        return base.OnSizeChanged(newSize);
-    }
-
-    private void HideTitleBar()
-    {
-        WindowContainer.IsTitleBarVisible = false;
-
-        IsMinimizable = false;
-        IsMaximizable = false;
-        IsResizable = false;
-    }
-
-    private void ShowTitleBar()
-    {
-        WindowContainer.IsTitleBarVisible = true;
-
-        IsMinimizable = true;
-        IsMaximizable = true;
-        IsResizable = true;
+        IsMinimizable = isTitleBarVisible;
+        IsMaximizable = isTitleBarVisible;
+        IsResizable = isTitleBarVisible;
     }
 }

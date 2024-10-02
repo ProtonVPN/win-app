@@ -26,20 +26,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <ResourceDictionary.ThemeDictionaries>
 
         <ResourceDictionary x:Key="Light">
-
-            <StaticResource x:Key="ContentDialogBorderBrush" ResourceKey="BorderNormColorBrush" />
+            <StaticResource x:Key="ContentDialogBorderBrush" ResourceKey="BorderWeakColorBrush" />
             <StaticResource x:Key="ContentDialogForeground" ResourceKey="TextNormColorBrush" />
-            <StaticResource x:Key="ContentDialogBackground" ResourceKey="BackgroundNormColorBrush" />
+            <StaticResource x:Key="ContentDialogBackground" ResourceKey="PaneOverlayBackgroundColorBrush" />
 
             <StaticResource x:Key="ContentDialogCommandSpaceBackground" ResourceKey="BackgroundWeakColorBrush" />
             <StaticResource x:Key="ContentDialogCommandSpaceBorderBrush" ResourceKey="BorderWeakColorBrush" />
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Dark">
-
-            <StaticResource x:Key="ContentDialogBorderBrush" ResourceKey="BorderNormColorBrush" />
+            <StaticResource x:Key="ContentDialogBorderBrush" ResourceKey="BorderWeakColorBrush" />
             <StaticResource x:Key="ContentDialogForeground" ResourceKey="TextNormColorBrush" />
-            <StaticResource x:Key="ContentDialogBackground" ResourceKey="BackgroundNormColorBrush" />
+            <StaticResource x:Key="ContentDialogBackground" ResourceKey="PaneOverlayBackgroundColorBrush" />
 
             <StaticResource x:Key="ContentDialogCommandSpaceBackground" ResourceKey="BackgroundWeakColorBrush" />
             <StaticResource x:Key="ContentDialogCommandSpaceBorderBrush" ResourceKey="BorderWeakColorBrush" />
@@ -49,18 +47,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <!--  ContentDialog creates another popup behind to prevent interacting with the main window. Override this brush to make it transparent  -->
     <StaticResource x:Key="SystemControlPageBackgroundMediumAltMediumBrush" ResourceKey="TransparentColorBrush" />
 
-    <x:Double x:Key="ContentDialogWidth">352.0</x:Double>
+    <x:Double x:Key="ContentDialogWidth">420.0</x:Double>
     <x:Double x:Key="MaximumContentDialogWidth">800.0</x:Double>
     <Thickness x:Key="ContentDialogBorderWidth">1</Thickness>
     <CornerRadius x:Key="ContentDialogCornerRadius">8</CornerRadius>
-    <Thickness x:Key="ContentDialogPadding">24</Thickness>
+    <Thickness x:Key="ContentDialogPadding">8</Thickness>
 
     <Thickness x:Key="ContentDialogCommandSpaceBorderThickness">0,1,0,0</Thickness>
 
     <Thickness x:Key="ContentDialogMargin">4,16</Thickness>
 
     <Thickness x:Key="ContentDialogTitleMargin">0,2,0,0</Thickness>
-    <Thickness x:Key="ContentDialogContentMargin">0,-24,0,0</Thickness>
+    <Thickness x:Key="ContentDialogContentMargin">0,8,0,0</Thickness>
     <Visibility x:Key="ContentDialogCloseButtonVisibility">Visible</Visibility>
     <Visibility x:Key="ContentDialogCloseOutsideAreaVisibility">Visible</Visibility>
 
@@ -119,7 +117,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <ScaleTransform x:Name="ScaleTransform" />
                                 </Border.RenderTransform>
 
-                                <Grid x:Name="DialogSpace">
+                                <Grid x:Name="DialogSpace"
+                                      Padding="{TemplateBinding Padding}">
 
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
@@ -128,9 +127,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     </Grid.RowDefinitions>
 
                                     <Grid Grid.Row="0"
-                                          Margin="{ThemeResource ContentDialogTitleMargin}"
-                                          Padding="{TemplateBinding Padding}"
-                                          ColumnSpacing="24">
+                                          ColumnSpacing="24"
+                                          Margin="4">
 
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
@@ -139,15 +137,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                                         <ContentControl x:Name="Title"
                                                         Grid.Column="0"
-                                                        HorizontalAlignment="Stretch"
+                                                        Margin="8,5,0,0"
+                                                        HorizontalAlignment="Left"
                                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                         VerticalAlignment="Top"
                                                         AutomationProperties.HeadingLevel="Level1"
                                                         Content="{TemplateBinding Title}"
                                                         ContentTemplate="{TemplateBinding TitleTemplate}"
                                                         FontFamily="{StaticResource ContentControlThemeFontFamily}"
-                                                        FontSize="{StaticResource SubtitleFontSize}"
-                                                        FontWeight="{StaticResource SubtitleFontWeight}"
+                                                        FontSize="{StaticResource BodyStrongFontSize}"
+                                                        FontWeight="{StaticResource BodyStrongFontWeight}"
                                                         Foreground="{TemplateBinding Foreground}"
                                                         IsTabStop="False">
                                             <ContentControl.Template>
@@ -166,21 +165,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         </ContentControl>
 
                                         <custom:GhostButton Grid.Column="1"
-                                                            Margin="0,0,0,0"
+                                                            Margin="0"
                                                             VerticalAlignment="Top"
                                                             AutomationProperties.AutomationId="CloseContentDialogButton"
                                                             Command="{TemplateBinding CloseButtonCommand}"
                                                             Visibility="{ThemeResource ContentDialogCloseButtonVisibility}"
                                                             IsEnabled="True">
                                             <custom:GhostButton.LeftIcon>
-                                                <pathicons:Cross />
+                                                <pathicons:CrossCircleFilled />
                                             </custom:GhostButton.LeftIcon>
                                         </custom:GhostButton>
                                     </Grid>
 
-                                    <Border Grid.Row="1"
-                                            Margin="{ThemeResource ContentDialogContentMargin}"
-                                            Padding="{TemplateBinding Padding}">
+                                    <Border Grid.Row="1" 
+                                            Margin="{ThemeResource ContentDialogContentMargin}">
                                         <ScrollViewer x:Name="ContentScrollViewer"
                                                       Margin="0,0,-12,0"
                                                       Padding="0,0,12,0"
@@ -195,6 +193,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                               FontWeight="{StaticResource BodyFontWeight}"
                                                               Foreground="{TemplateBinding Foreground}"
                                                               LineHeight="{StaticResource BodyLineHeight}"
+                                                              Margin="8"
                                                               TextWrapping="Wrap" />
                                         </ScrollViewer>
                                     </Border>

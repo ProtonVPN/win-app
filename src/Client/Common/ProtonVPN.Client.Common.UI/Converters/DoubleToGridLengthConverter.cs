@@ -28,9 +28,15 @@ public class DoubleToGridLengthConverter : IValueConverter
 {
     public GridUnitType UnitType { get; set; } = GridUnitType.Star;
 
+    public bool IsReverse { get; set; } = false;
+
     public object Convert(object value, Type targetType, object parameter, string language)
     {
-        return new GridLength(System.Convert.ToDouble(value), UnitType);
+        double size = System.Convert.ToDouble(value);
+
+        return IsReverse
+            ? new GridLength(1 - size, UnitType)
+            : new GridLength(size, UnitType);
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, string language)

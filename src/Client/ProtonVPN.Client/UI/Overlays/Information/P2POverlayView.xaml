@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2023 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<ContentDialog x:Class="ProtonVPN.Client.UI.Overlays.Information.P2POverlayView"
+               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               Title="{x:Bind ViewModel.Localizer.Get('Overlay_P2P_Title')}"
+               x:DefaultBindMode="OneWay"
+               CloseButtonCommand="{x:Bind ViewModel.CloseOverlayCommand}"
+               Style="{StaticResource OverlayContentDialogStyle}"
+               mc:Ignorable="d">
+
+    <StackPanel Orientation="Vertical"
+                Spacing="24">
+
+        <Grid ColumnSpacing="12"
+              RowSpacing="16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="48" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Image Grid.Row="0"
+                   Grid.Column="0"
+                   VerticalAlignment="Center"
+                   Source="{StaticResource P2PServersIllustrationSource}" />
+
+            <StackPanel Grid.Row="0"
+                        Grid.Column="1"
+                        Spacing="4">
+                <TextBlock Foreground="{ThemeResource TextNormColorBrush}"
+                           Style="{StaticResource BodyStrongTextBlockStyle}"
+                           Text="{x:Bind ViewModel.Localizer.Get('Overlay_P2P_Bullet1_Header')}"
+                           TextWrapping="Wrap" />
+                <TextBlock Foreground="{ThemeResource TextNormColorBrush}"
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           Text="{x:Bind ViewModel.Localizer.Get('Overlay_P2P_Bullet1_Description')}"
+                           TextWrapping="Wrap" />
+            </StackPanel>
+
+            <Image Grid.Row="1"
+                   Grid.Column="0"
+                   VerticalAlignment="Center"
+                   Source="{StaticResource P2PDownloadIllustrationSource}" />
+
+            <StackPanel Grid.Row="1"
+                        Grid.Column="1"
+                        Spacing="4">
+                <TextBlock Foreground="{ThemeResource TextNormColorBrush}"
+                           Style="{StaticResource BodyStrongTextBlockStyle}"
+                           Text="{x:Bind ViewModel.Localizer.Get('Overlay_P2P_Bullet2_Header')}"
+                           TextWrapping="Wrap" />
+                <TextBlock Foreground="{ThemeResource TextNormColorBrush}"
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           Text="{x:Bind ViewModel.Localizer.Get('Overlay_P2P_Bullet2_Description')}"
+                           TextWrapping="Wrap" />
+            </StackPanel>
+
+            <Image Grid.Row="2"
+                   Grid.Column="0"
+                   VerticalAlignment="Center"
+                   Source="{StaticResource SpeedIllustrationSource}" />
+
+            <StackPanel Grid.Row="2"
+                        Grid.Column="1"
+                        Spacing="4">
+                <TextBlock Foreground="{ThemeResource TextNormColorBrush}"
+                           Style="{StaticResource BodyStrongTextBlockStyle}"
+                           Text="{x:Bind ViewModel.Localizer.Get('Overlay_P2P_Bullet3_Header')}"
+                           TextWrapping="Wrap" />
+                <TextBlock Foreground="{ThemeResource TextNormColorBrush}"
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           Text="{x:Bind ViewModel.Localizer.Get('Overlay_P2P_Bullet3_Description')}"
+                           TextWrapping="Wrap" />
+            </StackPanel>
+
+        </Grid>
+
+        <custom:IllustratedHyperlinkButton Margin="-8"
+                                           HorizontalAlignment="Stretch"
+                                           AutomationProperties.AutomationId="LearnMoreHyperlinkButton"
+                                           Content="{x:Bind ViewModel.Localizer.Get('Overlay_P2P_LearnMore')}"
+                                           IllustrationSource="{StaticResource DefaultHyperlinkIllustrationSource}"
+                                           NavigateUri="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}" />
+    </StackPanel>
+
+</ContentDialog>

@@ -5,6 +5,7 @@
         <RootNamespace>ProtonVPN.Client.Common.UI</RootNamespace>
         <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
         <UseWinUI>true</UseWinUI>
+        <Nullable>enable</Nullable>
         <EnableMsixTooling>true</EnableMsixTooling>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <OutputPath>..\..\..\bin</OutputPath>
@@ -690,6 +691,7 @@
         <None Remove="Assets\Illustrations\feature-port-forwarding.png" />
         <None Remove="Assets\Illustrations\free-connection-flags.svg" />
         <None Remove="Assets\Illustrations\gateways.png" />
+        <None Remove="Assets\Illustrations\hyperlink-default.png" />
         <None Remove="Assets\Illustrations\kill-switch-off.png" />
         <None Remove="Assets\Illustrations\kill-switch-on-level-1.png" />
         <None Remove="Assets\Illustrations\kill-switch-on-level-2.png" />
@@ -709,6 +711,7 @@
         <None Remove="Assets\Illustrations\port-forwarding-on.png" />
         <None Remove="Assets\Illustrations\profile-new.svg" />
         <None Remove="Assets\Illustrations\profiles.png" />
+        <None Remove="Assets\Illustrations\recents.png" />
         <None Remove="Assets\Illustrations\report-error.png" />
         <None Remove="Assets\Illustrations\report-success.png" />
         <None Remove="Assets\Illustrations\secure-core-countries.png" />
@@ -771,14 +774,18 @@
         <None Remove="Styles\Controls\ComboBoxStyles.xaml" />
         <None Remove="Styles\Controls\ConnectionCardStyles.xaml" />
         <None Remove="Styles\Controls\ConnectionProfileIconStyles.xaml" />
+        <None Remove="Styles\Controls\ConnectionRowStyles.xaml" />
         <None Remove="Styles\Controls\ContentDialogStyles.xaml" />
         <None Remove="Styles\Controls\CountryFlagStyles.xaml" />
+        <None Remove="Styles\Controls\DetailRowButtonStyles.xaml" />
+        <None Remove="Styles\Controls\DeviceLocationStyles.xaml" />
         <None Remove="Styles\Controls\DualCommandsRowStyles.xaml" />
         <None Remove="Styles\Controls\ExpanderStyles.xaml" />
         <None Remove="Styles\Controls\FlyoutStyles.xaml" />
         <None Remove="Styles\Controls\GhostButtonStyles.xaml" />
         <None Remove="Styles\Controls\HyperlinkButtonStyles.xaml" />
         <None Remove="Styles\Controls\HyperlinkStyles.xaml" />
+        <None Remove="Styles\Controls\InfoBannerStyles.xaml" />
         <None Remove="Styles\Controls\InfoBarStyles.xaml" />
         <None Remove="Styles\Controls\ListBoxStyles.xaml" />
         <None Remove="Styles\Controls\MessageContentDialogStyles.xaml" />
@@ -791,6 +798,7 @@
         <None Remove="Styles\Controls\ProminentBannerControlStyles.xaml" />
         <None Remove="Styles\Controls\RadioButtonStyles.xaml" />
         <None Remove="Styles\Controls\ScrollViewerStyles.xaml" />
+        <None Remove="Styles\Controls\ServerLoadStyles.xaml" />
         <None Remove="Styles\Controls\SettingsCardStyles.xaml" />
         <None Remove="Styles\Controls\SettingsExpanderStyles.xaml" />
         <None Remove="Styles\Controls\StepContentControlStyles.xaml" />
@@ -798,6 +806,7 @@
         <None Remove="Styles\Controls\ToggleSwitchStyles.xaml" />
         <None Remove="Styles\Controls\TooltipStyles.xaml" />
         <None Remove="Styles\Controls\UpsellFeatureContentControlStyles.xaml" />
+        <None Remove="Styles\Controls\WidgetButtonStyles.xaml" />
         <None Remove="Styles\Controls\WindowContentControlStyles.xaml" />
         <None Remove="Styles\Converters.xaml" />
         <None Remove="Styles\Flags.xaml" />
@@ -833,6 +842,9 @@
         <Page Update="Controls\DeviceLocationControl.xaml">
             <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
             <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Styles\Controls\DeviceLocationStyles.xaml">
+          <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
         </Page>
         <Page Update="Styles\Controls\HyperlinkStyles.xaml">
             <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
@@ -893,6 +905,9 @@
     <ItemGroup>
         <Page Update="Styles\Controls\CheckBoxStyles.xaml">
             <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="Styles\Controls\DetailRowButtonStyles.xaml">
+          <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
         </Page>
         <Page Update="Styles\Flags.xaml">
           <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
@@ -1883,6 +1898,9 @@
         <Content Update="Assets\Illustrations\gateways.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Illustrations\hyperlink-default.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Illustrations\kill-switch-off.png">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -1944,6 +1962,9 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\profiles.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\recents.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\report-error.png">
@@ -2272,6 +2293,26 @@
     </ItemGroup>
     <ItemGroup>
       <Resource Remove="Assets\Icons\Profiles\BotProfileIcon.xaml" />
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Styles\Controls\InfoBannerStyles.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Styles\Controls\ServerLoadStyles.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Styles\Controls\ConnectionRowStyles.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Styles\Controls\WidgetButtonStyles.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
     </ItemGroup>
     <ItemGroup>
       <Page Update="Styles\Controls\CountryFlagStyles.xaml">

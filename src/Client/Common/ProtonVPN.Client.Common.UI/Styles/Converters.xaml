@@ -34,8 +34,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <converters:BooleanToScrollBarVisibilityConverter x:Key="BooleanToScrollBarVisibilityConverter"/>
     <converters:DoubleToGridLengthConverter x:Key="DoubleToStarGridLengthConverter"
                                             UnitType="Star"/>
+    <converters:DoubleToGridLengthConverter x:Key="ReverseDoubleToStarGridLengthConverter"
+                                            UnitType="Star"
+                                            IsReverse="True"/>
     <converters:DoubleToGridLengthConverter x:Key="DoubleToPixelGridLengthConverter"
                                             UnitType="Pixel"/>
+    <converters:DoubleToPercentFormatConverter x:Key="DoubleToPercentFormatConverter"/>
     <converters:FocusStateToBooleanConverter x:Key="FocusStateToBooleanConverter" />
     <converters:OpacityToVisibilityConverter x:Key="OpacityToVisibilityConverter"/>
     <toolkitConverters:StringVisibilityConverter x:Key="StringVisibilityConverter" />

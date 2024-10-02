@@ -440,7 +440,7 @@ public class UserAuthenticator : IUserAuthenticator
             && _settings.UnauthRefreshToken != null;
     }
 
-    private void ClearUnauthSessionDetails()
+    public void ClearUnauthSessionDetails()
     {
         _settings.UnauthUniqueSessionId = null;
         _settings.UnauthAccessToken = null;

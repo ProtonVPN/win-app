@@ -18,8 +18,6 @@
  */
 
 using ProtonVPN.Client.Common.Observers;
-using ProtonVPN.Client.Contracts;
-using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
@@ -39,8 +37,8 @@ public class NetShieldStatsObserver : PollingObserverBase,
     INetShieldStatsObserver,
     IEventMessageReceiver<ConnectionStatusChanged>,
     IEventMessageReceiver<SettingChangedMessage>,
-    IEventMessageReceiver<NetShieldStatisticIpcEntity>,
-    IEventMessageReceiver<MainWindowStateChangedMessage>
+    IEventMessageReceiver<NetShieldStatisticIpcEntity>
+    //IEventMessageReceiver<MainWindowStateChangedMessage>
 {
     private const int TIMER_INTERVAL_IN_SECONDS = 20;
     private const int MINIMUM_REQUEST_TIMEOUT_IN_SECONDS = 20;
@@ -50,7 +48,6 @@ public class NetShieldStatsObserver : PollingObserverBase,
     private readonly ISettings _settings;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IConnectionManager _connectionManager;
-    private readonly IMainWindowActivator _mainWindowActivator;
 
     private readonly TimeSpan _requestTimeout;
     private readonly object _lock = new();
@@ -65,8 +62,7 @@ public class NetShieldStatsObserver : PollingObserverBase,
         ISettings settings,
         IEventMessageSender eventMessageSender,
         IConfiguration config,
-        IConnectionManager connectionManager,
-        IMainWindowActivator mainWindowActivator)
+        IConnectionManager connectionManager)
         : base(logger, issuesIssueReporter)
     {
         _logger = logger;
@@ -74,7 +70,6 @@ public class NetShieldStatsObserver : PollingObserverBase,
         _settings = settings;
         _eventMessageSender = eventMessageSender;
         _connectionManager = connectionManager;
-        _mainWindowActivator = mainWindowActivator;
 
         TimeSpan requestInterval = config.NetShieldStatisticRequestInterval;
         TimeSpan minimumRequestTimeout = TimeSpan.FromSeconds(MINIMUM_REQUEST_TIMEOUT_IN_SECONDS);
@@ -95,10 +90,11 @@ public class NetShieldStatsObserver : PollingObserverBase,
         }
     }
 
-    public void Receive(MainWindowStateChangedMessage message)
-    {
-        InvalidateTimer();
-    }
+    // TODO: fix
+    // public void Receive(MainWindowStateChangedMessage message)
+    // {
+    //     InvalidateTimer();
+    // }
 
     public void Receive(NetShieldStatisticIpcEntity message)
     {
@@ -125,7 +121,7 @@ public class NetShieldStatsObserver : PollingObserverBase,
 
     private bool CanRequestNetShieldStats()
     {
-        return _settings.IsNetShieldEnabled && _connectionManager.IsConnected && !_mainWindowActivator.IsWindowMinimized;
+        return _settings.IsNetShieldEnabled && _connectionManager.IsConnected; // TODO: Check how to enable this again: && !_mainWindowActivator.IsWindowMinimized;
     }
 
     private void InvalidateTimer()

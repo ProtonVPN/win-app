@@ -20,9 +20,8 @@
 using System.Runtime.InteropServices;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
-using ProtonVPN.Client.Bootstrapping;
-using ProtonVPN.Client.Helpers;
 using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.Client.Services.Bootstrapping.Helpers;
 
 namespace ProtonVPN.Client;
 
@@ -30,13 +29,13 @@ public class Program
 {
     private const string SINGLE_INSTANCE_APP_MUTEX_NAME = "{588dc704-8eac-4a43-9345-ec7186b23f05}";
 
-    private static Mutex _mutex; // The variable is kept to hold the Mutex lock
+    private static Mutex? _mutex; // The variable is kept to hold the Mutex lock
 
     // This method should be async Task to be able to await IsFirstInstanceAsync,
     // but when changing to async Task, the xaml inspector tool is not able to find elements.
     // https://github.com/microsoft/microsoft-ui-xaml/issues/7385
     [STAThread]
-    static void Main(string[] args)
+    private static void Main(string[] args)
     {
         if (args.ContainsIgnoringCase("-DoUninstallActions"))
         {
@@ -46,7 +45,8 @@ public class Program
 
         if (IsFirstInstance())
         {
-            ProtocolActivationManager.Register();
+            AppProtocolHelper.Register();
+
             SetCurrentProcessExplicitAppUserModelID("Proton.VPN");
 
             Application.Start(_ =>
@@ -56,13 +56,14 @@ public class Program
                 new App();
             });
 
-            ProtocolActivationManager.Unregister();
+            AppProtocolHelper.Unregister();
         }
         else
         {
-            OtherInstancesActivator.BringToForeground();
+            AppInstanceHelper.BringToForeground();
         }
     }
+
     private static bool IsFirstInstance()
     {
         _mutex = new Mutex(true, SINGLE_INSTANCE_APP_MUTEX_NAME, out bool isFirstInstance);

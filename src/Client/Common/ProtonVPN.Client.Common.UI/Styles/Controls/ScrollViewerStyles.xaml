@@ -12,8 +12,8 @@
         <Setter Property="Padding" Value="{ThemeResource DefaultScrollViewerPadding}" />
     </Style>
     
-    <Thickness x:Key="OffsetScrollViewerMargin">0,0,-20,0</Thickness>
-    <Thickness x:Key="OffsetScrollViewerPadding">0,0,20,0</Thickness>
+    <Thickness x:Key="OffsetScrollViewerMargin">0,0,-12,0</Thickness>
+    <Thickness x:Key="OffsetScrollViewerPadding">0,0,12,0</Thickness>
 
     <Style x:Key="OffsetScrollViewer" TargetType="ScrollViewer" BasedOn="{StaticResource DefaultScrollViewer}" >
         <Setter Property="Margin" Value="{ThemeResource OffsetScrollViewerMargin}" />

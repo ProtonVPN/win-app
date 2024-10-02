@@ -45,6 +45,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Thickness x:Key="HyperlinkButtonPadding">5,3</Thickness>
 
     <Style BasedOn="{StaticResource HyperlinkButtonStyle}" TargetType="HyperlinkButton" />
+    <Style BasedOn="{StaticResource ProgressHyperlinkButtonStyle}" TargetType="custom:ProgressHyperlinkButton" />
+    <Style BasedOn="{StaticResource DefaultIllustratedHyperlinkButtonStyle}" TargetType="custom:IllustratedHyperlinkButton" />
 
     <Style x:Key="HyperlinkButtonStyle" BasedOn="{StaticResource DefaultHyperlinkButtonStyle}" TargetType="HyperlinkButton">
         <Setter Property="Foreground" Value="{ThemeResource LinkNormColorBrush}" />
@@ -185,8 +187,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Setter>
     </Style>
 
-    <Style BasedOn="{StaticResource ProgressHyperlinkButtonStyle}" TargetType="custom:ProgressHyperlinkButton" />
-
     <Style x:Key="ProgressHyperlinkButtonStyle" BasedOn="{StaticResource HyperlinkButtonStyle}" TargetType="custom:ProgressHyperlinkButton">
         <Setter Property="Template">
             <Setter.Value>
@@ -301,4 +301,97 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="DefaultIllustratedHyperlinkButtonStyle" TargetType="custom:IllustratedHyperlinkButton">
+        <Setter Property="Foreground" Value="{ThemeResource TextNormColorBrush}" />
+        <Setter Property="Background" Value="{ThemeResource InteractionDefaultColorBrush}" />
+        <Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="FontSize" Value="{StaticResource CaptionStrongFontSize}" />
+        <Setter Property="FontWeight" Value="{StaticResource CaptionStrongFontWeight}" />
+        <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+        <Setter Property="Padding" Value="8,8,16,8" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="custom:IllustratedHyperlinkButton">
+
+                    <Grid x:Name="ContentContainer"
+                          Padding="{TemplateBinding Padding}"
+                          AutomationProperties.AccessibilityView="Raw"
+                          Background="{TemplateBinding Background}"
+                          BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                          BorderBrush="{TemplateBinding BorderBrush}"
+                          BorderThickness="{TemplateBinding BorderThickness}"
+                          ColumnSpacing="16"
+                          CornerRadius="{TemplateBinding CornerRadius}"                          
+                          ToolTipService.ToolTip="{TemplateBinding NavigateUri}"
+                          ToolTipService.Placement="Top">
+
+                        <Grid.BackgroundTransition>
+                            <BrushTransition Duration="0:0:0.083" />
+                        </Grid.BackgroundTransition>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image x:Name="HyperlinkIllustration"
+                               Grid.Column="0"
+                               Width="68"
+                               Height="48"
+                               Source="{TemplateBinding IllustrationSource}"
+                               Stretch="Uniform" />
+                        
+                        <TextBlock x:Name="ContentPresenter"
+                                   Grid.Column="1"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   MaxLines="2"
+                                   Text="{TemplateBinding Content}"
+                                   TextDecorations="Underline"
+                                   TextTrimming="CharacterEllipsis"
+                                   TextWrapping="Wrap" />
+
+                        <pathicons:ArrowOutSquare x:Name="LinkGlyph"
+                                                  Grid.Column="2"
+                                                  VerticalAlignment="Center"
+                                                  Foreground="{ThemeResource TextHintColorBrush}"
+                                                  Size="Pixels16"/>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Target="ContentContainer.Background" Value="{ThemeResource InteractionDefaultHoverColorBrush}" />
+                                        <Setter Target="LinkGlyph.Foreground" Value="{ThemeResource TextNormColorBrush}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Target="ContentContainer.Background" Value="{ThemeResource InteractionDefaultActiveColorBrush}" />
+                                        <Setter Target="LinkGlyph.Foreground" Value="{ThemeResource TextNormColorBrush}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Disabled">
+                                    <VisualState.Setters>
+                                        <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource HyperlinkButtonForegroundDisabled}" />
+                                        <Setter Target="LinkGlyph.Foreground" Value="{ThemeResource HyperlinkButtonForegroundDisabled}" />
+                                        <Setter Target="HyperlinkIllustration.Opacity" Value="0.5" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>
