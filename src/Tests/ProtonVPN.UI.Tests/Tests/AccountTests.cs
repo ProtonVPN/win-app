@@ -25,6 +25,7 @@ using ProtonVPN.UI.Tests.Windows;
 namespace ProtonVPN.UI.Tests.Tests
 {
     [TestFixture]
+    [Category("ARM")]
     [Category("UI")]
     public class AccountTests : TestSession
     {
@@ -41,6 +42,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Retry(3)]
         public void RestrictedAccountConnections()
         {
             _loginWindow.SignIn(TestUserData.GetFreeUser());

@@ -28,9 +28,9 @@ namespace ProtonVPN.UI.Tests.Windows
         private TextBox ProfileNameInput => ElementByAutomationId("textSource").AsTextBox();
         private ComboBox CountryBox => ElementByAutomationId("CountryBox").AsComboBox();
         private ComboBox ServerBox => ElementByAutomationId("ServerBox").AsComboBox();
+        private AutomationElement RandomServerButton => ElementByName("Random", TestData.MediumTimeout);
         private ListBoxItem CountryFirstOption => CountryBox.FindChildAt(1).AsListBoxItem();
-        private ListBoxItem ServerFirstOption => ServerBox.FindChildAt(2).AsListBoxItem();
-        private Button SaveButton => ElementByName("Save").AsButton();
+        private Button SaveButton => WaitUntilElementExistsByNameAndReturnTheElement("Save", TestData.MediumTimeout).AsButton();
         private AutomationElement SecureCoreButton => ElementByName("Secure Core");
         private AutomationElement P2PButton => ElementByName("P2P");
         private AutomationElement TorButton => ElementByName("Tor");
@@ -44,7 +44,7 @@ namespace ProtonVPN.UI.Tests.Windows
             CountryFirstOption.Select();
             CountryBox.Click();
             ServerBox.Click();
-            ServerFirstOption.Select();
+            RandomServerButton.Click();
             ServerBox.Click();
             SaveButton.Invoke();
             return this;
@@ -60,7 +60,7 @@ namespace ProtonVPN.UI.Tests.Windows
         {
             ProfileNameInput.Enter(profileName);
             ServerBox.Click();
-            ServerFirstOption.Select();
+            RandomServerButton.Click();
             SaveButton.Invoke();
             return this;
         }

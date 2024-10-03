@@ -29,108 +29,78 @@ using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Update.Releases;
 using ProtonVPN.Update.Responses;
 
-namespace ProtonVPN.Update.Tests.Releases
+namespace ProtonVPN.Update.Tests.Releases;
+
+[TestClass]
+public class ReleasesTest
 {
-    [TestClass]
-    public class ReleasesTest
+    private ILogger _logger;
+
+    [TestInitialize]
+    public void TestInitialize()
     {
-        private ILogger _logger;
+        _logger = Substitute.For<ILogger>();
+    }
 
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            _logger = Substitute.For<ILogger>();
-        }
+    [TestCleanup]
+    public void TestCleanup()
+    {
+        _logger = null;
+    }
 
-        [TestCleanup]
-        public void TestCleanup()
-        {
-            _logger = null;
-        }
+    [TestMethod]
+    public void Releases_ShouldImplement_IEnumerable()
+    {
+        Update.Releases.Releases releases = new(_logger, [], new Version(), "");
 
-        [TestMethod]
-        public void Releases_ShouldImplement_IEnumerable()
-        {
-            CategoryResponse[] categories = new CategoryResponse[0];
-            Update.Releases.Releases releases = new(_logger, categories, new Version(), "");
+        releases.Should().BeAssignableTo<IEnumerable<Release>>();
+    }
 
-            releases.Should().BeAssignableTo<IEnumerable<Release>>();
-        }
+    [TestMethod]
+    public void Releases_Version_ShouldBe_FromReleases()
+    {
+        string json = File.ReadAllText(@"TestData\windows-releases.json");
+        ReleasesResponse releasesResponse = JsonConvert.DeserializeObject<ReleasesResponse>(json);
+        List<Version> expected = releasesResponse.Releases.Select(r => Version.Parse(r.Version)).ToList();
 
-        [TestMethod]
-        public void Releases_ShouldBeEmpty_WhenCategories_AreEmpty()
-        {
-            CategoryResponse[] categories = new CategoryResponse[0];
-            Update.Releases.Releases releases = new(_logger, categories, new Version(), "");
+        Update.Releases.Releases releases = new(_logger, releasesResponse.Releases, new Version(), "");
 
-            releases.Should().HaveCount(0);
-        }
+        IEnumerable<Version> result = releases.Select(r => r.Version);
 
-        [TestMethod]
-        public void Releases_ShouldBeEmpty_WhenCategories_HaveNoReleases()
-        {
-            CategoryResponse[] categories = { new() { Name = "Stable" } };
-            Update.Releases.Releases releases = new(_logger, categories, new Version(), "");
+        result.Should()
+            .OnlyHaveUniqueItems().And
+            .Contain(expected);
+    }
 
-            releases.Should().HaveCount(0);
-        }
+    [TestMethod]
+    public void Releases_EarlyAccess_ShouldBeTrue_ForEarlyAccess()
+    {
+        string json = File.ReadAllText(@"TestData\windows-releases.json");
+        ReleasesResponse releasesResponse = JsonConvert.DeserializeObject<ReleasesResponse>(json);
+        Update.Releases.Releases releases = new(_logger, releasesResponse.Releases, new Version(), "EarlyAccess");
 
-        [TestMethod]
-        public void Releases_ShouldContain_AllReleases_FromCategories()
-        {
-            string json = File.ReadAllText(@"TestData\windows-releases.json");
-            CategoriesResponse categories = JsonConvert.DeserializeObject<CategoriesResponse>(json);
-            Update.Releases.Releases releases = new(_logger, categories.Categories, new Version(), "");
+        releases.Where(r => r.EarlyAccess).Should().HaveCount(2);
+    }
 
-            releases.Should().HaveCount(5);
-        }
+    [TestMethod]
+    public void Releases_New_ShouldBeTrue_ForNewReleases()
+    {
+        string json = File.ReadAllText(@"TestData\windows-releases.json");
+        ReleasesResponse releasesResponse = JsonConvert.DeserializeObject<ReleasesResponse>(json);
+        Update.Releases.Releases releases = new(_logger, releasesResponse.Releases, Version.Parse("1.5.0"), "");
 
-        [TestMethod]
-        public void Releases_Version_ShouldBe_FromReleases()
-        {
-            string json = File.ReadAllText(@"TestData\windows-releases.json");
-            CategoriesResponse categories = JsonConvert.DeserializeObject<CategoriesResponse>(json);
-            List<Version> expected = categories.Categories.SelectMany(c => c.Releases).Select(r => Version.Parse(r.Version)).ToList();
+        releases.Where(r => r.New).Should().HaveCount(3);
+    }
 
-            Update.Releases.Releases releases = new(_logger, categories.Categories, new Version(), "");
+    [TestMethod]
+    public void Releases_ShouldContainOnlyValidVersions()
+    {
+        string json = File.ReadAllText(@"TestData\windows-releases-invalid-versions.json");
+        ReleasesResponse releasesResponse = JsonConvert.DeserializeObject<ReleasesResponse>(json);
+        Update.Releases.Releases releases = new(_logger, releasesResponse.Releases, Version.Parse("1.5.0"), "");
 
-            IEnumerable<Version> result = releases.Select(r => r.Version);
-
-            result.Should()
-                .OnlyHaveUniqueItems().And
-                .Contain(expected);
-        }
-
-        [TestMethod]
-        public void Releases_EarlyAccess_ShouldBeTrue_ForEarlyAccess()
-        {
-            string json = File.ReadAllText(@"TestData\windows-releases.json");
-            CategoriesResponse categories = JsonConvert.DeserializeObject<CategoriesResponse>(json);
-            Update.Releases.Releases releases = new(_logger, categories.Categories, new Version(), "EarlyAccess");
-
-            releases.Where(r => r.EarlyAccess).Should().HaveCount(2);
-        }
-
-        [TestMethod]
-        public void Releases_New_ShouldBeTrue_ForNewReleases()
-        {
-            string json = File.ReadAllText(@"TestData\windows-releases.json");
-            CategoriesResponse categories = JsonConvert.DeserializeObject<CategoriesResponse>(json);
-            Update.Releases.Releases releases = new(_logger, categories.Categories, Version.Parse("1.5.0"), "");
-
-            releases.Where(r => r.New).Should().HaveCount(3);
-        }
-
-        [TestMethod]
-        public void Releases_ShouldContainOnlyValidVersions()
-        {
-            string json = File.ReadAllText(@"TestData\windows-releases-invalid-versions.json");
-            CategoriesResponse categories = JsonConvert.DeserializeObject<CategoriesResponse>(json);
-            Update.Releases.Releases releases = new(_logger, categories.Categories, Version.Parse("1.5.0"), "");
-
-            releases.Should().HaveCount(2);
-            releases.Should().Contain(r => r.Version == new Version("1.5.0"));
-            releases.Should().Contain(r => r.Version == new Version("1.5.1"));
-        }
+        releases.Should().HaveCount(2);
+        releases.Should().Contain(r => r.Version == new Version("1.5.0"));
+        releases.Should().Contain(r => r.Version == new Version("1.5.1"));
     }
 }

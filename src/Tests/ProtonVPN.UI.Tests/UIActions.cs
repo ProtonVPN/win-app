@@ -108,6 +108,19 @@ namespace ProtonVPN.UI.Tests
             return element;
         }
 
+        protected AutomationElement WaitUntilElementExistsByNameAndReturnTheElement(string name, TimeSpan time)
+        {
+            AutomationElement element = null;
+            WaitForElement(() =>
+            {
+                RefreshWindow();
+                element = Window.FindFirstDescendant(cf => cf.ByName(name));
+                return element != null;
+            }, time, name);
+
+            return element;
+        }
+
         protected dynamic CheckIfDisplayedByClassName(string className)
         {
             RefreshWindow();
@@ -170,19 +183,19 @@ namespace ProtonVPN.UI.Tests
 
         protected AutomationElement ElementByAutomationId(string automationId, TimeSpan? timeout = null)
         {
-            WaitUntilElementExistsByAutomationId(automationId, timeout ?? TestData.VeryShortTimeout);
+            WaitUntilElementExistsByAutomationId(automationId, timeout ?? TestData.ShortTimeout);
             return Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId));
         }
 
         protected AutomationElement ElementByClassName(string className)
         {
-            WaitUntilElementExistsByClassName(className, TestData.VeryShortTimeout);
+            WaitUntilElementExistsByClassName(className, TestData.ShortTimeout);
             return Window.FindFirstDescendant(cf => cf.ByClassName(className));
         }
 
-        protected AutomationElement ElementByName(string name)
+        protected AutomationElement ElementByName(string name, TimeSpan? timeout = null)
         {
-            WaitUntilElementExistsByName(name, TestData.VeryShortTimeout);
+            WaitUntilElementExistsByName(name, timeout ?? TestData.ShortTimeout);
             return Window.FindFirstDescendant(cf => cf.ByName(name));
         }
 

@@ -5,6 +5,7 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <OutputPath>..\bin\</OutputPath>
 	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	<Platforms>AnyCPU;ARM64</Platforms>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>protonvpn.ico</ApplicationIcon>

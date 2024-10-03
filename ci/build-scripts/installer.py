@@ -4,19 +4,8 @@ import subprocess
 import pathlib
 
 def build(version, hash, setupFile):
-    fileData = ''
-    with open(setupFile, 'r') as file:
-      fileData = file.read()
 
-    fileData = re.sub('(#define MyAppVersion \")([0-9+]\.[0-9+]\.[0-9+])(\".+)', rf'\g<1>{version}\3', fileData, 1, flags = re.M | re.DOTALL)
-
-    if hash:
-        fileData = fileData.replace('#define Hash ""', "#define Hash \"{hash}\"".format(hash=hash))
-
-    setupFile = pathlib.Path(setupFile).parent.resolve().__str__() + '\\' + 'setup-edited.iss'
-    print(setupFile)
-    with open(setupFile, 'w') as file:
-      file.write(fileData)
+    createSetupFile(version, hash)
 
     p = subprocess.Popen(['iscc', setupFile, "/Ssigntool=signtool.exe $p"],
                          env=os.environ,
@@ -25,3 +14,17 @@ def build(version, hash, setupFile):
     print(p.communicate()[0])
 
     return p.returncode
+    
+def createSetupFile(version, hash):
+    baseSetupFile = 'Setup/SetupBase.iss'
+    fileData = ''
+    with open(baseSetupFile, 'r') as file:
+        fileData = file.read()
+
+    fileData = re.sub('(#define MyAppVersion \")([0-9+]\.[0-9+]\.[0-9+])(\".+)', rf'\g<1>{version}\3', fileData, 1, flags = re.M | re.DOTALL)
+
+    if hash:
+        fileData = fileData.replace('#define Hash ""', "#define Hash \"{hash}\"".format(hash=hash))
+
+    with open(baseSetupFile, 'w') as file:
+        file.write(fileData)

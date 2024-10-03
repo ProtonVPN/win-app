@@ -42,6 +42,7 @@ namespace ProtonVPN.UI.Tests.Tests
         private const string GOOGLE_URL = "www.google.com";
 
         [Test]
+        [Category("ARM")]
         [Category("Smoke")]
         public async Task QuickConnectDisconnectAndValidateIP()
         {
@@ -53,6 +54,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("ARM")]
         public void ConnectToProfileViaProfileTab()
         {
             _homeWindow.NavigateToProfilesTab()
@@ -61,6 +63,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("ARM")]
         public void ConnectByCountryList()
         {
             _homeWindow.ConnectViaCountry("Netherlands")
@@ -70,6 +73,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("ARM")]
         [Category("Smoke")]
         public void ConnectToCreatedProfile()
         {
@@ -81,6 +85,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("ARM")]
         public void LogoutWhileConnectedToVpn()
         {
             _homeWindow.PressQuickConnectButton()
@@ -91,6 +96,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("ARM")]
         public void CancelLogoutWhileConnectedToVpn()
         {
             _homeWindow.PressQuickConnectButton()
@@ -101,6 +107,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("ARM")]
         public void KillSwitchIsNotActiveOnLogout()
         {
             _homeWindow.EnableKillSwitch()
@@ -114,6 +121,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("ARM")]
         [Category("Smoke")]
         public void AutoConnectConnectsAutomatically()
         {
@@ -124,7 +132,7 @@ namespace ProtonVPN.UI.Tests.Tests
 
             //Delay to allow app to properly exit
             Thread.Sleep(2000);
-            LaunchApp();
+            LaunchApp(false);
 
             _homeWindow.WaitUntilConnected();
             _homeWindow.PressQuickConnectButton()
@@ -135,12 +143,13 @@ namespace ProtonVPN.UI.Tests.Tests
 
             //Delay to allow app to properly exit
             Thread.Sleep(2000);
-            LaunchApp();
+            LaunchApp(false);
 
             _homeWindow.WaitUntilDisconnected();
         }
 
         [Test]
+        [Category("ARM")]
         public void ConnectAndDisconnectViaMap()
         {
             _homeWindow.PerformConnectionViaMap(TestData.MapCountry)
@@ -150,6 +159,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("ARM")]
         [Category("Smoke")]
         public void CustomDnsManipulation()
         {
@@ -177,6 +187,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("ARM")]
         [Category("Smoke")]
         public void CancelConnectionWhileConnecting()
         {
@@ -190,6 +201,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("ARM")]
         [Category("Smoke")]
         public void AppExitWithKillSwitchEnabled()
         {
@@ -202,6 +214,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("ARM")]
         public void ConnectUsingOpenVpnUdp()
         {
             _homeWindow.NavigateToSettings()
@@ -213,6 +226,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("ARM")]
         public void ConnectUsingOpenVpnTcp()
         {
             _homeWindow.NavigateToSettings()

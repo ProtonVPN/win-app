@@ -175,7 +175,7 @@ namespace ProtonVPN.Common.Configuration.Source
                     BfeArticleUrl = "https://protonvpn.com/support/how-to-enable-the-base-filtering-engine",
                     PasswordResetUrl = "https://account.protonvpn.com/reset-password",
                     ForgetUsernameUrl = "https://account.protonvpn.com/forgot-username",
-                    UpdateUrl = "https://protonvpn.com/download/windows-releases.json",
+                    UpdateUrl = "https://protonvpn.com/download/windows/{0}/v1/version.json",
                     DownloadUrl = "https://protonvpn.com/download",
                     ApiUrl = "https://vpn-api.proton.me",
                     TlsReportUrl = "https://reports.protonmail.ch/reports/tls",
@@ -346,11 +346,11 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 WintunAdapterName = "ProtonVPN TUN",
 
-                InstallActionsPath = Path.Combine(resourcesFolder, "ProtonVPN.InstallActions.dll"),
+                InstallActionsPath = Path.Combine(baseFolder, "ProtonVPN.InstallActions.dll"),
 
                 IsCertificateValidationDisabled = false,
 
-                DeviceRolloutPercentage = null,
+                DeviceRolloutProportion = null,
 
                 StatisticalEventSendTriggerInterval = TimeSpan.FromMinutes(15),
                 StatisticalEventMinimumWaitInterval = TimeSpan.FromMinutes(10)

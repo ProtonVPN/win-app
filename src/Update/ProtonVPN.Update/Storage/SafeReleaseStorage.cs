@@ -37,11 +37,11 @@ namespace ProtonVPN.Update.Storage
             _storage = storage;
         }
 
-        public async Task<IEnumerable<Release>> Releases()
+        public async Task<IEnumerable<Release>> GetReleasesAsync()
         {
             try
             {
-                return await _storage.Releases();
+                return await _storage.GetReleasesAsync();
             }
             catch (JsonException e)
             {

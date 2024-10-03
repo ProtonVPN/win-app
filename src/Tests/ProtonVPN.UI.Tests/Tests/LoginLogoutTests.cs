@@ -34,6 +34,7 @@ namespace ProtonVPN.UI.Tests.Tests
         private readonly HomeResult _homeResult = new HomeResult();
 
         [Test]
+        [Category("ARM")]
         [Category("Smoke")]
         public void LoginAsFreeUser()
         {
@@ -49,6 +50,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("ARM")]
         public void LoginAsPlusUser()
         {
             _loginWindow.SignIn(TestUserData.GetPlusUser());
@@ -56,6 +58,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("ARM")]
         public void LoginAsVisionaryUser()
         {
             _loginWindow.SignIn(TestUserData.GetVisionaryUser());
@@ -63,6 +66,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("ARM")]
         [Category("Smoke")]
         public void LoginUsingIncorrectCredentials()
         {
@@ -71,6 +75,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("ARM")]
         [Category("Smoke")]
         public void SuccessfulLogout()
         {
@@ -80,6 +85,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("ARM")]
         public void LoginWithTwoPassUser()
         {
             _loginWindow.SignIn(TestUserData.GetTwoPassUser());
@@ -87,6 +93,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("ARM")]
         public void LoginWithZeroAssignedConnections()
         {
             _loginWindow.EnterCredentials(TestUserData.GetZeroAssignedConnectionUser());
@@ -94,6 +101,7 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
+        [Category("ARM")]
         [Category("Smoke")]
         public void TwoFactorLogin()
         {

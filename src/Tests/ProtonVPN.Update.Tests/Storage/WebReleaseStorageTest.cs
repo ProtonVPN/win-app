@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Sockets;
 using System.Threading;
@@ -98,7 +99,7 @@ namespace ProtonVPN.Update.Tests.Storage
             _feedUrlProvider.GetFeedUrl().Returns(_feedUrl);
             IReleaseStorage storage = WebReleaseStorage(HttpResponseFromFile("windows-releases.json"));
 
-            await storage.Releases();
+            await storage.GetReleasesAsync();
 
             await _httpClient.Received().GetAsync(feedUri);
         }
@@ -108,7 +109,9 @@ namespace ProtonVPN.Update.Tests.Storage
         {
             IReleaseStorage storage = WebReleaseStorage(HttpResponseFromFile("windows-releases.json"));
 
-            IEnumerable<Release> result = await storage.Releases();
+            IEnumerable<Release> result = await storage.GetReleasesAsync();
+
+            var a = result.ToList();
 
             result.Should().HaveCount(5);
         }
@@ -120,7 +123,7 @@ namespace ProtonVPN.Update.Tests.Storage
             httpResponse.IsSuccessStatusCode.Returns(false);
             IReleaseStorage storage = WebReleaseStorage(httpResponse);
 
-            Func<Task> action = () => storage.Releases();
+            Func<Task> action = () => storage.GetReleasesAsync();
 
             action.Should().ThrowAsync<HttpRequestException>();
         }
@@ -146,7 +149,7 @@ namespace ProtonVPN.Update.Tests.Storage
         {
             IReleaseStorage storage = WebReleaseStorage(FailedHttpRequest(exception));
 
-            Func<Task> action = () => storage.Releases();
+            Func<Task> action = () => storage.GetReleasesAsync();
 
             action.Should().ThrowAsync<TE>();
         }
@@ -155,7 +158,7 @@ namespace ProtonVPN.Update.Tests.Storage
         {
             IReleaseStorage storage = WebReleaseStorage(FailedHttpResponse(exception));
 
-            Func<Task> action = () => storage.Releases();
+            Func<Task> action = () => storage.GetReleasesAsync();
 
             action.Should().ThrowAsync<TE>();
         }
@@ -165,7 +168,7 @@ namespace ProtonVPN.Update.Tests.Storage
         {
             IReleaseStorage storage = WebReleaseStorage(CancelledHttpRequest());
 
-            Func<Task> action = () => storage.Releases();
+            Func<Task> action = () => storage.GetReleasesAsync();
 
             action.Should().ThrowAsync<TaskCanceledException>();
         }
@@ -175,7 +178,7 @@ namespace ProtonVPN.Update.Tests.Storage
         {
             IReleaseStorage storage = WebReleaseStorage(CancelledHttpResponse());
 
-            Func<Task> action = () => storage.Releases();
+            Func<Task> action = () => storage.GetReleasesAsync();
 
             action.Should().ThrowAsync<TaskCanceledException>();
         }
