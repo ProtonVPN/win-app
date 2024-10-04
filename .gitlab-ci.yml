@@ -125,18 +125,6 @@ ui-tests-1:
   variables:
     CATEGORY: "1"
     
-ui-tests-2:
-  extends: .test_execution_script
-  dependencies:
-    - build-installer
-  except:
-    - /^debug.*$/
-    - release/9.9.9
-    - master
-    - schedules
-  variables:
-    CATEGORY: "2"
-    
 bti-test:
   extends: .test_execution_script
   tags:

@@ -36,9 +36,8 @@ namespace ProtonVPN.UI.Tests;
 
 public class TestSession
 {
-    protected static Application App;
-    protected static Application Service;
-    protected static Window Window;
+    public static Application App;
+    public static Window Window;
 
     private const string CLIENT_NAME = "ProtonVPN.Client.exe";
 

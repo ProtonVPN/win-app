@@ -11,13 +11,9 @@
         <IsPublishable>false</IsPublishable>
     </PropertyGroup>
     <ItemGroup>
-      <None Remove="Tests\ServiceLevelIndicators\README.md" />
-    </ItemGroup>
-    <ItemGroup>
         <None Include="app.config" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Appium.WebDriver" />
         <PackageReference Include="Autofac" />
         <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" />
         <PackageReference Include="FlaUI.UIA3" />

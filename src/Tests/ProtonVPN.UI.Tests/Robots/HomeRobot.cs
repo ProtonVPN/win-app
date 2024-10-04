@@ -17,41 +17,37 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using NUnit.Framework;
-using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.UiTools;
 
-namespace ProtonVPN.UI.Tests.Tests.E2ETests;
+namespace ProtonVPN.UI.Tests.Robots;
 
-[TestFixture]
-[Category("1")]
-public class ConnectionTests : TestSession
+public class HomeRobot
 {
-    private LoginRobot _loginRobot = new();
-    private HomeRobot _homeRobot = new();
+    protected Element UnprotectedLabel = Element.ByName("Unprotected");
+    protected Element ProtectedLabel = Element.ByName("Protected");
+    protected Element ConnectButton = Element.ByName("Connect");
 
-    [SetUp]
-    public void TestInitialize()
+    public HomeRobot QuickConnect()
     {
-        LaunchApp();
+        ConnectButton.Click();
+        return this;
     }
 
-    [Test]
-    [Ignore("Unstable Client Connection")] // Uncomment it when connection is more stable
-    public void QuickConnect()
+    public class Verifications : HomeRobot
     {
-        _loginRobot
-            .Login(TestUserData.PlusUser);
-        _homeRobot
-            .Verify.IsLoggedIn();
-        _homeRobot
-            .QuickConnect()
-            .Verify.IsConnected();
+        public Verifications IsLoggedIn()
+        {
+            UnprotectedLabel.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications IsConnected()
+        {
+            ProtectedLabel.WaitUntilDisplayed(TestConstants.TenSecondsTimeout);
+            return this;
+        }
     }
 
-    [TearDown]
-    public void TestCleanup()
-    {
-        Cleanup();
-    }
+    public Verifications Verify => new Verifications();
 }

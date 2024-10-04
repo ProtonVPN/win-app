@@ -2,6 +2,9 @@
   stage: ui-test
   tags:
     - redesign
+  hooks:
+    pre_get_sources_script:
+      - Get-Process | Where-Object { $_.Name -like "proton*" } | Stop-Process -Force
   script:
     - ci\test-scripts\uninstall-app.ps1
     - ci\test-scripts\install-the-app.ps1

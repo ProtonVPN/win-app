@@ -34,7 +34,7 @@ public static class CommonAssertions
         },
         TestConstants.TenSecondsTimeout, TestConstants.RetryInterval);
 
-        Assert.IsTrue(retry.Result, $"Dns was not resolved for {url}.");
+        Assert.That(retry.Result,Is.True, $"Dns was not resolved for {url}.");
     }
 
     public static void AssertDnsIsNotResolved(string url)
@@ -45,7 +45,7 @@ public static class CommonAssertions
         },
         TestConstants.TenSecondsTimeout, TestConstants.RetryInterval);
 
-        Assert.IsTrue(retry.Result, $"DNS was resolved for {url}");
+        Assert.That(retry.Result,Is.True, $"DNS was resolved for {url}");
     }
 
     public static void AssertIpAddressChanged(string previousIpAddress)
@@ -57,7 +57,7 @@ public static class CommonAssertions
         },
         TestConstants.TenSecondsTimeout, TestConstants.RetryInterval);
 
-        Assert.IsTrue(retry.Result, $"IP Address has not changed from {previousIpAddress}");
+        Assert.That(retry.Result, Is.True, $"IP Address has not changed from {previousIpAddress}");
     }
 
     public static void AssertIpAddressUnchanged(string previousIpAddress)
@@ -69,7 +69,7 @@ public static class CommonAssertions
         },
         TestConstants.TenSecondsTimeout, TestConstants.RetryInterval);
 
-        Assert.IsTrue(retry.Result, $"IP Address has changed from {previousIpAddress}");
+        Assert.That(retry.Result, Is.True, $"IP Address has changed from {previousIpAddress}");
     }
 
     private static bool TryToResolveDns(string url)
