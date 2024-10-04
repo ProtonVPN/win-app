@@ -416,6 +416,9 @@
     <Setting Name="UserStatisticalEvents" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="UnauthStatisticalEvents" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
     <Setting Name="FeatureFlags" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>

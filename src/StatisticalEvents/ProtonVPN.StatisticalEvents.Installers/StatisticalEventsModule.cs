@@ -18,18 +18,18 @@
  */
 
 using Autofac;
-using ProtonVPN.StatisticalEvents;
 using ProtonVPN.StatisticalEvents.DimensionBuilders;
 using ProtonVPN.StatisticalEvents.Sending;
 
-namespace ProtonVPN.Api.Installers
+namespace ProtonVPN.StatisticalEvents.Installers
 {
     public class StatisticalEventsModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<UpsellDimensionBuilder>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<StatisticalEventSender>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<AuthenticatedStatisticalEventSender>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<UnauthStatisticalEventSender>().AsImplementedInterfaces().SingleInstance();
 
             RegisterSpecificSenders(builder);
         }
@@ -39,6 +39,7 @@ namespace ProtonVPN.Api.Installers
             builder.RegisterType<UpsellDisplayStatisticalEventSender>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<UpsellSuccessStatisticalEventSender>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<UpsellUpgradeAttemptStatisticalEventSender>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<ClientInstallsStatisticalEventSender>().AsImplementedInterfaces().SingleInstance();
         }
     }
 }

@@ -92,6 +92,8 @@ using ProtonVPN.Settings;
 using ProtonVPN.Settings.Migrations;
 using ProtonVPN.Sidebar;
 using ProtonVPN.Sidebar.Announcements;
+using ProtonVPN.StatisticalEvents.Contracts;
+using ProtonVPN.StatisticalEvents.Installers;
 using ProtonVPN.Streaming;
 using ProtonVPN.Translations;
 using ProtonVPN.Update;
@@ -162,6 +164,7 @@ namespace ProtonVPN.Core
             RegisterEvents();
             Resolve<Language>().Initialize(e.Args);
             InitializeUpdates(e.Args);
+            HandleProtonInstallerArguments(e.Args);
 
             if (Resolve<IAppSettings>().StartMinimized == StartMinimizedMode.Disabled)
             {
@@ -193,7 +196,21 @@ namespace ProtonVPN.Core
             Resolve<UpdateService>().Initialize();
         }
 
-        private void StartProcessCommunication()
+        private void HandleProtonInstallerArguments(string[] args)
+        {
+            bool isCleanInstall = new CommandLineOption("CleanInstall", args).Exists();
+            if (isCleanInstall)
+            {
+                bool isMailInstalled = new CommandLineOption("MailInstalled", args).Exists();
+                bool isDriveInstalled = new CommandLineOption("DriveInstalled", args).Exists();
+                bool isPassInstalled = new CommandLineOption("PassInstalled", args).Exists();
+
+                IClientInstallsStatisticalEventSender statisticalEventSender = Resolve<IClientInstallsStatisticalEventSender>();
+                statisticalEventSender.Send(isMailInstalled, isDriveInstalled, isPassInstalled);
+            }
+        }
+
+        private async Task StartProcessCommunication()
         {
             try
             {

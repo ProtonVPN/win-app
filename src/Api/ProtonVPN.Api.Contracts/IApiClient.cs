@@ -59,6 +59,7 @@ namespace ProtonVPN.Api.Contracts
         Task<ApiResponseResult<BaseResponse>> ApplyPromoCodeAsync(PromoCodeRequest promoCodeRequest);
         Task<ApiResponseResult<ForkedAuthSessionResponse>> ForkAuthSessionAsync(AuthForkSessionRequest request);
         Task<ApiResponseResult<SettingsResponse>> GetSettingsAsync();
+        Task<ApiResponseResult<BaseResponse>> PostUnauthStatisticalEventsAsync(StatisticalEventsBatch statisticalEvents);
         Task<ApiResponseResult<BaseResponse>> PostStatisticalEventsAsync(StatisticalEventsBatch statisticalEvents);
         Task<ApiResponseResult<UsersResponse>> GetUserAsync(string accessToken, string uid);
         Task<ApiResponseResult<FeatureFlagsResponse>> GetFeatureFlagsAsync();

@@ -21,7 +21,7 @@ using ProtonVPN.Common.StatisticalEvents;
 using ProtonVPN.StatisticalEvents.Contracts;
 using ProtonVPN.StatisticalEvents.DimensionBuilders;
 using ProtonVPN.StatisticalEvents.MeasurementGroups;
-using ProtonVPN.StatisticalEvents.Sending;
+using ProtonVPN.StatisticalEvents.Sending.Contracts;
 
 namespace ProtonVPN.StatisticalEvents
 {
@@ -31,10 +31,10 @@ namespace ProtonVPN.StatisticalEvents
         public override string Event => "upsell_upgrade_attempt";
 
         private readonly IUpsellDimensionBuilder _upsellDimensionBuilder;
-        private readonly IStatisticalEventSender _statisticalEventSender;
+        private readonly IAuthenticatedStatisticalEventSender _statisticalEventSender;
 
         public UpsellUpgradeAttemptStatisticalEventSender(IUpsellDimensionBuilder upsellDimensionBuilder,
-            IStatisticalEventSender statisticalEventSender)
+            IAuthenticatedStatisticalEventSender statisticalEventSender)
         {
             _upsellDimensionBuilder = upsellDimensionBuilder;
             _statisticalEventSender = statisticalEventSender;

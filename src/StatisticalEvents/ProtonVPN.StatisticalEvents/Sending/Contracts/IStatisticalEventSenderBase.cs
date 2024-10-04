@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,12 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading.Tasks;
 using ProtonVPN.Common.StatisticalEvents;
+using System.Threading.Tasks;
 
-namespace ProtonVPN.StatisticalEvents.Sending
+namespace ProtonVPN.StatisticalEvents.Sending.Contracts
 {
-    public interface IStatisticalEventSender
+    public interface IStatisticalEventSenderBase
     {
         Task EnqueueAsync(StatisticalEvent statisticalEvent);
     }

@@ -633,6 +633,12 @@ namespace ProtonVPN.Core
             set => SetPerUserEncrypted(value);
         }
 
+        public string UnauthStatisticalEvents
+        {
+            get => GetDecrypted();
+            set => SetEncrypted(value);
+        }
+
         public DateTimeOffset LogicalsLastModifiedDate
         {
             get => Get<string>().FromJsonDateTimeOffset() ?? DateTimeOffset.UnixEpoch;

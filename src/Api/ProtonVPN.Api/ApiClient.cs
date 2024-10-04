@@ -231,6 +231,13 @@ public class ApiClient : BaseApiClient, IApiClient
         return await SendRequest<SettingsResponse>(request, "Get user settings");
     }
 
+    public async Task<ApiResponseResult<BaseResponse>> PostUnauthStatisticalEventsAsync(StatisticalEventsBatch statisticalEvents)
+    {
+        HttpRequestMessage request = GetRequest(HttpMethod.Post, "data/v1/stats/multiple");
+        request.Content = GetJsonContent(statisticalEvents);
+        return await SendRequest<BaseResponse>(request, "Post statistical events batch");
+    }
+
     public async Task<ApiResponseResult<BaseResponse>> PostStatisticalEventsAsync(StatisticalEventsBatch statisticalEvents)
     {
         HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "data/v1/stats/multiple");

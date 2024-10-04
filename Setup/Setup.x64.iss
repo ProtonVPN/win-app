@@ -1,5 +1,5 @@
 [Setup]
-ArchitecturesAllowed=x64
+ArchitecturesAllowed=x64os
 
 #define Architecture "x64"
 #define SourcePath GetEnv("BUILD_PATH")
