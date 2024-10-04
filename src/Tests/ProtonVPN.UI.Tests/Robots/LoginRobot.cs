@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,29 +17,30 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
-using System.Linq;
-using FlaUI.Core.AutomationElements;
-using NUnit.Framework;
+using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.UiTools;
 
-namespace ProtonVPN.UI.Tests.Robots.Login;
-public partial class LoginRobot
+namespace ProtonVPN.UI.Tests.Robots;
+
+public class LoginRobot
 {
-    public LoginRobot VerifyLoginErrorIsDisplayed(List<string> expectedMessages)
-    {
-        TextBox errorMessageTextBox = ErrorMessageTextBox;
+    protected Element UsernameTextBox => Element.ByAutomationId("UsernameTextBox");
+    protected Element PasswordTextBox => Element.ByAutomationId("PasswordBox");
+    protected Element SignInButton => Element.ByAutomationId("SignInButton");
 
-        Assert.IsNotNull(errorMessageTextBox?.Text);
-        Assert.IsTrue(expectedMessages.Any(m => errorMessageTextBox.Text.Contains(m)));
+    public LoginRobot Login(TestUserData user)
+    {
+        UsernameTextBox.SetText(user.Username);
+        PasswordTextBox.SetText(user.Password);
+        SignInButton.Click();
 
         return this;
     }
 
-    public LoginRobot VerifyIsInLoginWindow()
+    public class Verifications : LoginRobot
     {
-        Assert.IsNotNull(UsernameTextBox);
-        Assert.IsNotNull(PasswordBox);
-        Assert.IsNotNull(SignInButton);
-        return this;
+        
     }
+
+    public Verifications Verify => new Verifications();
 }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,13 +17,29 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using FlaUI.Core.AutomationElements;
+using FlaUI.Core.Conditions;
+using System;
 
-namespace ProtonVPN.UI.Tests.Robots.Countries;
+namespace ProtonVPN.UI.Tests.UiTools;
 
-public class ServerConnectButton
+public class Element
 {
-    public required Button Button { get; init; }
-    public required string Name { get; init; }
-    public required int Number { get; init; }
+    public string SelectorValue;
+    public Func<ConditionFactory, ConditionBase> Condition;
+
+    public Element(Func<ConditionFactory, ConditionBase> selector, string selectorValue)
+    {
+        SelectorValue = selectorValue;
+        Condition = selector;
+    }
+
+    public static Element ByAutomationId(string automationId)
+    {
+        return new Element(cf => cf.ByAutomationId(automationId), automationId);
+    }
+
+    public static Element ByName(string name)
+    {
+        return new Element(cf => cf.ByName(name), name);
+    }
 }
