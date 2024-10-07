@@ -2911,7 +2911,7 @@ Stealth는 Proton VPN만의 기능입니다.</value>
     <value>피어 투 피어 다운로드와 파일 공유 (P2P)의 잠금을 해제하세요</value>
   </data>
   <data name="Upsell_Carousel_P2P_Discretion">
-    <value>귀하의 IP 주소를 서비스 제공자와 피어로부터 숨깁니다</value>
+    <value>나의 IP 주소를 서비스 제공자와 피어로부터 숨깁니다</value>
   </data>
   <data name="Upsell_Carousel_P2P_PortForwarding">
     <value>포트 포워딩으로 P2P 속도를 슈퍼차지하세요</value>

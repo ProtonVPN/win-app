@@ -157,7 +157,7 @@
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Edit">
-    <value>Edit</value>
+    <value>Bewerk</value>
   </data>
   <data name="Common_Actions_Enable">
     <value>Inschakelen</value>
@@ -175,13 +175,13 @@
     <value>Upgraden</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>**Geavanceerde kill switch is ingeschakeld.** Om het internet zonder VPN te gebruiken, schakel de geavanceerde kill switch uit.</value>
+    <value>**Geavanceerde IP-beveiliging is ingeschakeld.** Om het internet zonder VPN te gebruiken, schakel de geavanceerde IP-beveiliging uit.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>**Advanced kill switch is enabled.** If you continue, you will be disconnected from the internet.</value>
+    <value>**Geavanceerde IP-beveiliging is ingeschakeld.** Als u doorgaat, wordt de verbinding met het internet verbroken.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
-    <value>You'll be disconnected from VPN.</value>
+    <value>U zult worden losgekoppeld van de VPN.</value>
   </data>
   <data name="Common_Links_LearnMore">
     <value>Lees meer</value>
@@ -208,7 +208,7 @@
     <value>Er zijn momenteel geen servers beschikbaar voor uw selectie. Selecteer een andere optie.</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
-    <value>Your server selection for '{0}' is unavailable. Select a different server or try again later.</value>
+    <value>Uw serverselectie voor '{0}' is niet beschikbaar. Selecteer een andere server of probeer het later opnieuw.</value>
     <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Connection_Error_NoTapAdapters">
@@ -288,7 +288,7 @@
     <value>Land</value>
   </data>
   <data name="Connections_Country_Middle">
-    <value>Middle country</value>
+    <value>Midden land</value>
   </data>
   <data name="Connections_Country_Restricted">
     <value>Servers in dit land zijn beschikbaar met VPN Plus</value>
@@ -367,17 +367,17 @@
     <value>Profiel verwijderen</value>
   </data>
   <data name="Connections_Profiles_Delete_Message">
-    <value>'{0}' will be permanently removed.</value>
+    <value>'{0}' zal permanent verwijderd worden.</value>
     <comment>{0} is a placeholder for the name of the profile.</comment>
   </data>
   <data name="Connections_Profiles_Delete_Title">
-    <value>Delete profile?</value>
+    <value>Profiel verwijderen?</value>
   </data>
   <data name="Connections_Profiles_Empty_Description">
-    <value>Profiles are saved connections with your choice of location, server, and protocol.</value>
+    <value>Profielen worden opgeslagen connecties met uw keuze van locatie, server en protocol.</value>
   </data>
   <data name="Connections_Profiles_Empty_Title">
-    <value>Create your first profile</value>
+    <value>Maak je eerste profiel aan</value>
   </data>
   <data name="Connections_Profiles_Name">
     <value>Profielnaam</value>
@@ -387,11 +387,11 @@
     <comment>"New profile" is more appropriate when you already have a profile</comment>
   </data>
   <data name="Connections_Profiles_NotAvailable_Tooltip">
-    <value>Profiles are available with VPN Plus</value>
+    <value>Profielen zijn beschikbaar met VPN Plus</value>
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
   </data>
   <data name="Connections_Profiles_Save">
-    <value>Save profile</value>
+    <value>Profiel opslaan</value>
   </data>
   <data name="Connections_Random">
     <value>Willekeurig</value>
@@ -588,13 +588,13 @@
     <value>Snelste land</value>
   </data>
   <data name="Country_Fastest_ExcludingMyCountry">
-    <value>Fastest (excluding my country)</value>
+    <value>Snelste (exclusief mijn land)</value>
   </data>
   <data name="Country_Random">
     <value>Willekeurig land</value>
   </data>
   <data name="Country_Random_ExcludingMyCountry">
-    <value>Random (excluding my country)</value>
+    <value>Willekeurig (exclusief mijn land)</value>
   </data>
   <data name="Country_val_AD">
     <value>Andorra</value>
@@ -2363,7 +2363,7 @@ Geniet van het beste van Proton-privacy.</value>
     <value>Uw abonnement is gedowngraded naar Proton Free, en we verbinden u opnieuw met de snelste gratis server.</value>
   </data>
   <data name="Profiles_Page_Description">
-    <value>Configure your own VPN settings and connect in one click.</value>
+    <value>Configureer uw eigen VPN-instellingen en verbind met één klik.</value>
   </data>
   <data name="Profiles_Page_Title">
     <value>Profielen</value>
@@ -2546,14 +2546,14 @@ Geniet van het beste van Proton-privacy.</value>
     <value>Ga naar profielen</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Message">
-    <value>You’re currently connected to a VPN profile. 
+    <value>Je bent momenteel verbonden met een VPN-profiel. 
 
-• To change the protocol for this connection, disconnect then edit your profile.
+• Om het protocol voor deze verbinding te wijzigen, verbreek de verbinding en bewerk je profiel.
 
-• To change your protocol for other VPN connections, you’ll need to disconnect from your profile first.</value>
+• Om uw protocol voor andere VPN-verbindingen te wijzigen, moet u eerst de verbinding met uw profiel verbreken.</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Title">
-    <value>Change protocol in profiles</value>
+    <value>Wijzig protocol in profielen</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
@@ -2802,7 +2802,7 @@ Geniet van het beste van Proton-privacy.</value>
     <value>Snelheid (UDP)</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Description">
-    <value>State-of-the-art protocol for security and performance.</value>
+    <value>Geavanceerd protocol voor beveiliging en prestaties.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Title">
     <value>WireGuard</value>
@@ -2814,7 +2814,7 @@ Geniet van het beste van Proton-privacy.</value>
     <value>Stealth</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
-    <value>State-of-the-art protocol for security and performance.</value>
+    <value>Geavanceerd protocol voor beveiliging en prestaties.</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>
