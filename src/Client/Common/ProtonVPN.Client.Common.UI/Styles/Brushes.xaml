@@ -24,7 +24,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <ResourceDictionary.ThemeDictionaries>
 
         <ResourceDictionary x:Key="Light">
-            
+
             <!--  Brushes  -->
 
             <!--  Transparent  -->
@@ -101,7 +101,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <GradientStop Offset="0" Color="{StaticResource GradientConnectionLineStartColor}" />
                 <GradientStop Offset="1" Color="{StaticResource GradientConnectionLineEndColor}" />
             </LinearGradientBrush>
-            <LinearGradientBrush x:Key="GradientUpsellBackgroundColorBrush" StartPoint="0,0" EndPoint="0,1" Opacity="0.4">
+            <LinearGradientBrush x:Key="GradientUpsellBackgroundColorBrush" Opacity="0.4" StartPoint="0,0" EndPoint="0,1">
                 <GradientStop Offset="0" Color="{StaticResource GradientUpsellBackgroundStartColor}" />
                 <GradientStop Offset="0.5" Color="{StaticResource GradientUpsellBackgroundEndColor}" />
                 <GradientStop Offset="1" Color="{StaticResource GradientUpsellBackgroundEndColor}" />
@@ -134,11 +134,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           FallbackColor="{StaticResource BackgroundNormColor}"
                           TintColor="{StaticResource BackgroundNormColor}"
                           TintOpacity="0.4" />
+            <SolidColorBrush x:Key="PaneOverlayBorderColorBrush" Opacity="0.82" Color="{StaticResource BorderWeakColor}" />
 
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Dark">
-            
+
             <!--  Brushes  -->
 
             <!--  Transparent  -->
@@ -215,7 +216,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <GradientStop Offset="0" Color="{StaticResource GradientConnectionLineStartColor}" />
                 <GradientStop Offset="1" Color="{StaticResource GradientConnectionLineEndColor}" />
             </LinearGradientBrush>
-            <LinearGradientBrush x:Key="GradientUpsellBackgroundColorBrush" StartPoint="0,0" EndPoint="0,1" Opacity="0.4">
+            <LinearGradientBrush x:Key="GradientUpsellBackgroundColorBrush" Opacity="0.4" StartPoint="0,0" EndPoint="0,1">
                 <GradientStop Offset="0" Color="{StaticResource GradientUpsellBackgroundStartColor}" />
                 <GradientStop Offset="0.5" Color="{StaticResource GradientUpsellBackgroundEndColor}" />
                 <GradientStop Offset="1" Color="{StaticResource GradientUpsellBackgroundEndColor}" />
@@ -248,7 +249,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           FallbackColor="{StaticResource BackgroundNormColor}"
                           TintColor="{StaticResource BackgroundNormColor}"
                           TintOpacity="0.4" />
-            
+            <SolidColorBrush x:Key="PaneOverlayBorderColorBrush" Opacity="0.82" Color="{StaticResource BorderWeakColor}" />
+
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 </ResourceDictionary>

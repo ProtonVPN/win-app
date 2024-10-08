@@ -29,11 +29,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:temp="using:ProtonVPN.Client.TEMP"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
-
-    <Grid>
+    
+    <Grid x:Name="SidebarContainer"
+          HorizontalAlignment="Left"
+          Style="{StaticResource PaneOverlayGridStyle}">
 
         <!--  Collapsed  -->
-        <StackPanel Padding="8"
+        <StackPanel Padding="8" 
                     HorizontalAlignment="Left"
                     Orientation="Vertical"
                     Spacing="24"
@@ -61,8 +63,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <!--  Expanded  -->
         <Grid RowSpacing="8"
-              Visibility="{x:Bind IsSidebarExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
-              Margin="0,0,12,0">
+              Visibility="{x:Bind IsSidebarExpanded, Converter={StaticResource BooleanToVisibilityConverter}}">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -78,8 +79,23 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <Frame x:Name="SidebarNavigationFrame"
                    Grid.Row="1"
-                   IsNavigationStackEnabled="{x:Bind Navigator.IsNavigationStackEnabled}" />
+                   IsNavigationStackEnabled="{x:Bind Navigator.IsNavigationStackEnabled}" 
+                   Margin="0,0,8,0"/>
         </Grid>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="SidebarStates">
+                <VisualState x:Name="Expanded">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind IsSidebarExpanded}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="SidebarContainer.HorizontalAlignment" Value="Stretch" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Collapsed"/>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
 
     </Grid>
 

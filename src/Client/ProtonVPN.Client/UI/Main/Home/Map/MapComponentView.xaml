@@ -28,11 +28,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
-    <UserControl.Resources>
-        <HorizontalAlignment x:Key="PlaceholderHorizontalContentAlignment">Center</HorizontalAlignment>
-        <VerticalAlignment x:Key="PlaceholderVerticalContentAlignment">Center</VerticalAlignment>
-    </UserControl.Resources>
-
-    <temp:PlaceholderControl Content="Map" Background="{ThemeResource GradientProtectedColorBrush}"/>
+    <TextBlock Text="Map" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
 </UserControl>

@@ -30,9 +30,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       NavigationCacheMode="Required"
       mc:Ignorable="d">
 
-    <Grid BorderBrush="{ThemeResource BorderWeakColorBrush}"
-          BorderThickness="1"
-          CornerRadius="8">
+    <Grid Style="{StaticResource PaneOverlayGridStyle}">
 
         <ScrollViewer Margin="20"
                       Padding="80,20"

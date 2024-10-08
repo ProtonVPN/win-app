@@ -76,7 +76,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     </UserControl.Resources>
 
-    <Grid Margin="0,8,0,0">
+    <Grid Style="{StaticResource PaneOverlayGridStyle}">
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />

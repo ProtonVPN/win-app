@@ -42,16 +42,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <ui:MainWindowShellView x:Name="Shell" />
 
-            <StackPanel Margin="0,-30,140,0"
-                        Padding="16,-4"
+            <StackPanel Margin="0,0,140,0"
+                        Padding="16,0"
+                        Height="32"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top"
-                        BorderBrush="{ThemeResource BorderWeakColorBrush}"
+                        BorderBrush="{ThemeResource TextWeakColorBrush}"
                         BorderThickness="0,0,1,0"
                         Orientation="Horizontal"
                         Spacing="16">
-                <reportissue:ReportIssueComponentView Opacity="0.6" />
-                <temp:NavigationMasterControllerView Opacity="0.6" />
+                <reportissue:ReportIssueComponentView  />
+                <temp:NavigationMasterControllerView />
             </StackPanel>
         </Grid>
     </custom:WindowContentControl>
