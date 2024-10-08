@@ -34,59 +34,161 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       NavigationCacheMode="Required"
       mc:Ignorable="d">
 
-    <Grid Margin="8"
-          ColumnSpacing="8">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="15*" />
-            <ColumnDefinition Width="*"
-                              MinWidth="58"
-                              MaxWidth="120" />
-        </Grid.ColumnDefinitions>
+    <Page.Resources>
+        <x:Double x:Key="ConnectionStatusGradientHeight">332.0</x:Double>
+        <x:Double x:Key="WidgetComponentMinWidth">58.0</x:Double>
+        <x:Double x:Key="WidgetComponentMaxWidth">120.0</x:Double>
 
-        <SplitView x:Name="svMain"
-                   Grid.Row="0"
-                   CompactPaneLength="32"
-                   DisplayMode="{x:Bind ViewModel.SidebarDisplayMode}"
-                   IsPaneOpen="{x:Bind ViewModel.IsSidebarExpanded, Mode=TwoWay}"
-                   PaneBackground="{ThemeResource BackgroundNormColorBrush}"
-                   OpenPaneLength="300">
+        <Duration x:Key="ConnectionStatusBackgroundAnimationDuration">0:0:1</Duration>
+    </Page.Resources>
 
-            <SplitView.Pane>
-                <sidebar:SidebarComponentView x:Name="sidebarComponent"
-                                              Grid.Column="0"
-                                              IsSidebarExpanded="{x:Bind ViewModel.IsSidebarExpanded}"
-                                              PointerEntered="OnSidebarPointerEntered"
-                                              PointerExited="OnSidebarPointerExited" />
-            </SplitView.Pane>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{Binding Source={StaticResource MainTitleBarHeight}, Converter={StaticResource DoubleToPixelGridLengthConverter}}" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0"
+              Grid.RowSpan="2"
+              Height="{StaticResource ConnectionStatusGradientHeight}"
+              VerticalAlignment="Top">
+            <Border x:Name="OverlayGradient"
+                    Background="{ThemeResource GradientFadingColorBrush}" />
+            <Border x:Name="StatusGradient"
+                    Background="{ThemeResource GradientUnprotectedColorBrush}" />
+        </Grid>
 
-                <Border Grid.Column="0"
-                        Width="12">
-                    <controls:PropertySizer Binding="{x:Bind svMain.OpenPaneLength, Mode=TwoWay}"
-                                            Maximum="440"
-                                            Minimum="240"
-                                            Visibility="{x:Bind ViewModel.IsSidebarExpanded}" />
-                </Border>
+        <Grid Grid.Row="1"
+              Margin="8"
+              ColumnSpacing="8">
 
-                <Frame x:Name="MainNavigationFrame"
-                       Grid.Column="1"
-                       IsNavigationStackEnabled="{x:Bind Navigator.IsNavigationStackEnabled}" />
-            </Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
-        </SplitView>
+            <SplitView x:Name="svMain"
+                       Grid.Row="0"
+                       CompactPaneLength="54"
+                       DisplayMode="{x:Bind ViewModel.SidebarDisplayMode}"
+                       IsPaneOpen="{x:Bind ViewModel.IsSidebarExpanded, Mode=TwoWay}"
+                       OpenPaneLength="300"
+                       PaneBackground="{ThemeResource TransparentColorBrush}">
 
-        <widgets:SideWidgetsHostComponentView Grid.Column="1" />
+                <SplitView.Pane>
+                    <sidebar:SidebarComponentView x:Name="SidebarComponent"
+                                                  Grid.Column="0"
+                                                  IsSidebarExpanded="{x:Bind ViewModel.IsSidebarExpanded}"
+                                                  PointerEntered="OnSidebarPointerEntered"
+                                                  PointerExited="OnSidebarPointerExited" />
+                </SplitView.Pane>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0"
+                            Width="12">
+                        <controls:PropertySizer Binding="{x:Bind svMain.OpenPaneLength, Mode=TwoWay}"
+                                                Maximum="440"
+                                                Minimum="240"
+                                                Visibility="{x:Bind ViewModel.IsSidebarExpanded}" />
+                    </Border>
+
+                    <Frame x:Name="MainNavigationFrame"
+                           Grid.Column="1"
+                           IsNavigationStackEnabled="{x:Bind Navigator.IsNavigationStackEnabled}" />
+                </Grid>
+
+            </SplitView>
+
+            <widgets:SideWidgetsHostComponentView x:Name="SideWidgetsHostComponent"
+                                                  Grid.Column="1" />
+
+        </Grid>
 
         <VisualStateManager.VisualStateGroups>
+
+            <VisualStateGroup x:Name="ConnectionStates">
+
+                <VisualState x:Name="Connecting">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsConnecting, Mode=OneWay}" />
+                    </VisualState.StateTriggers>
+                    <Storyboard>
+                        <ColorAnimation EnableDependentAnimation="True"
+                                        Storyboard.TargetName="StatusGradient"
+                                        Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)"
+                                        To="{ThemeResource GradientConnectingStartColor}"
+                                        Duration="{StaticResource ConnectionStatusBackgroundAnimationDuration}" />
+                        <ColorAnimation EnableDependentAnimation="True"
+                                        Storyboard.TargetName="StatusGradient"
+                                        Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)"
+                                        To="{ThemeResource GradientConnectingEndColor}"
+                                        Duration="{StaticResource ConnectionStatusBackgroundAnimationDuration}" />
+                    </Storyboard>
+                </VisualState>
+
+                <VisualState x:Name="Connected">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsConnected, Mode=OneWay}" />
+                    </VisualState.StateTriggers>
+                    <Storyboard>
+                        <ColorAnimation EnableDependentAnimation="True"
+                                        Storyboard.TargetName="StatusGradient"
+                                        Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)"
+                                        To="{ThemeResource GradientProtectedStartColor}"
+                                        Duration="{StaticResource ConnectionStatusBackgroundAnimationDuration}" />
+                        <ColorAnimation EnableDependentAnimation="True"
+                                        Storyboard.TargetName="StatusGradient"
+                                        Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)"
+                                        To="{ThemeResource GradientProtectedEndColor}"
+                                        Duration="{StaticResource ConnectionStatusBackgroundAnimationDuration}" />
+                    </Storyboard>
+                </VisualState>
+
+                <VisualState x:Name="Disconnected">
+                    <VisualState.StateTriggers>
+                        <!--  This is the default visual state. when no other visual state is active, this one kicks in  -->
+                        <StateTrigger IsActive="True" />
+                    </VisualState.StateTriggers>
+                    <Storyboard>
+                        <ColorAnimation EnableDependentAnimation="True"
+                                        Storyboard.TargetName="StatusGradient"
+                                        Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)"
+                                        To="{ThemeResource GradientUnprotectedStartColor}"
+                                        Duration="{StaticResource ConnectionStatusBackgroundAnimationDuration}" />
+                        <ColorAnimation EnableDependentAnimation="True"
+                                        Storyboard.TargetName="StatusGradient"
+                                        Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)"
+                                        To="{ThemeResource GradientUnprotectedEndColor}"
+                                        Duration="{StaticResource ConnectionStatusBackgroundAnimationDuration}" />
+                    </Storyboard>
+                </VisualState>
+
+            </VisualStateGroup>
+
+            <VisualStateGroup x:Name="NavigationStates">
+                <VisualState x:Name="NotOnHomePage">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsHomePageDisplayed, Converter={StaticResource NotBooleanToBooleanConverter}}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="SidebarComponent.Opacity" Value="0.4" />
+                        <Setter Target="SidebarComponent.IsHitTestVisible" Value="False" />
+                        <Setter Target="SideWidgetsHostComponent.Opacity" Value="0.4" />
+                        <Setter Target="SideWidgetsHostComponent.IsHitTestVisible" Value="False" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="OnHomePage"/>
+            </VisualStateGroup>
+
             <VisualStateGroup x:Name="SidebarStates">
                 <VisualState x:Name="Expanded">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{x:Bind ViewModel.WindowWidthThreshold, Mode=OneTime}" />
+                        <AdaptiveTrigger MinWindowWidth="{x:Bind ViewModel.SidebarWindowWidthThreshold, Mode=OneTime}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="svMain.IsPaneOpen" Value="True" />
@@ -98,6 +200,25 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="svMain.IsPaneOpen" Value="False" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+
+            <VisualStateGroup x:Name="WidgetComponentStates">
+                <VisualState x:Name="IconsAndLabels">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{x:Bind ViewModel.WidgetsWindowWidthThreshold, Mode=OneTime}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="SideWidgetsHostComponent.Width" Value="{StaticResource WidgetComponentMaxWidth}" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="IconsOnly">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="SideWidgetsHostComponent.Width" Value="{StaticResource WidgetComponentMinWidth}" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>

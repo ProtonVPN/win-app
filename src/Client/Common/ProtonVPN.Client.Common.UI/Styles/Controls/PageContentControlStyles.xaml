@@ -28,6 +28,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Thickness x:Key="PageContentControlHeaderContainerMargin">0,16,0,11</Thickness>
     <Thickness x:Key="PageContentControlHeaderButtonMargin">16,6,0,0</Thickness>
 
+    <Style x:Key="PaneOverlayGridStyle" TargetType="Grid">
+        <Setter Property="Padding" Value="8" />
+        <Setter Property="Background" Value="{ThemeResource PaneOverlayBackgroundColorBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource PaneOverlayBorderColorBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="8" />
+    </Style>
+
     <Style BasedOn="{StaticResource DefaultPageContentControlStyle}" TargetType="custom:PageContentControl" />
 
     <Style x:Key="StretchPageContentControlStyle" TargetType="custom:PageContentControl">
@@ -45,10 +53,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ControlTemplate TargetType="custom:PageContentControl">
 
                     <Grid x:Name="PageContainer"
-                          Background="{TemplateBinding Background}"
-                          BorderBrush="{TemplateBinding BorderBrush}"
-                          BorderThickness="{TemplateBinding BorderThickness}"
-                          CornerRadius="{TemplateBinding CornerRadius}">
+                          Style="{StaticResource PaneOverlayGridStyle}">
                         
                         <Grid x:Name="PageContentContainer"
                               Padding="{TemplateBinding Padding}"
@@ -143,9 +148,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ControlTemplate TargetType="custom:SettingsPageContentControl">
 
                     <Grid x:Name="PageContainer"
-                          BorderBrush="{TemplateBinding BorderBrush}"
-                          BorderThickness="{TemplateBinding BorderThickness}"
-                          CornerRadius="{TemplateBinding CornerRadius}">
+                          Style="{StaticResource PaneOverlayGridStyle}">
 
                         <Grid x:Name="PageContentContainer"
                               Padding="{TemplateBinding Padding}"
@@ -243,4 +246,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Setter.Value>
         </Setter>
     </Style>
+    
 </ResourceDictionary>

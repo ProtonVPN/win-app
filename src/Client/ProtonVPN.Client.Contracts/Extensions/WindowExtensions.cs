@@ -52,7 +52,7 @@ public static class WindowExtensions
         window.AppWindow.TitleBar.ButtonForegroundColor = ResourceHelper.GetColor("TextNormColor", theme);
         window.AppWindow.TitleBar.ButtonHoverForegroundColor = ResourceHelper.GetColor("TextNormColor", theme);
         window.AppWindow.TitleBar.ButtonPressedForegroundColor = ResourceHelper.GetColor("TextNormColor", theme);
-        window.AppWindow.TitleBar.ButtonInactiveForegroundColor = ResourceHelper.GetColor("TextHintColor", theme);
+        window.AppWindow.TitleBar.ButtonInactiveForegroundColor = ResourceHelper.GetColor("TextWeakColor", theme);
 
         if (window.Content is FrameworkElement element)
         {
