@@ -38,22 +38,23 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Color x:Key="InteractionNormHoverColor">#6243E6</Color>
             <Color x:Key="InteractionNormActiveColor">#573BCC</Color>
             <!--  InteractionWeak  -->
-            <Color x:Key="InteractionWeakColor">#EAE7E4</Color>
-            <Color x:Key="InteractionWeakHoverColor">#DEDBD9</Color>
-            <Color x:Key="InteractionWeakActiveColor">#D3D0CD</Color>
+            <Color x:Key="InteractionWeakColor">#FFFFFF</Color>
+            <Color x:Key="InteractionWeakHoverColor">#ECECEC</Color>
+            <Color x:Key="InteractionWeakActiveColor">#D8D8D9</Color>
             <!--  InteractionDefault  -->
-            <Color x:Key="InteractionDefaultColor">#00C2C0BE</Color>
-            <Color x:Key="InteractionDefaultHoverColor">#33C2C0BE</Color>
-            <Color x:Key="InteractionDefaultActiveColor">#59C2C0BE</Color>
+            <Color x:Key="InteractionDefaultEmptyColor">#000C0C14</Color>
+            <Color x:Key="InteractionDefaultColor">#0A0C0C14</Color>
+            <Color x:Key="InteractionDefaultHoverColor">#140C0C14</Color>
+            <Color x:Key="InteractionDefaultActiveColor">#1F0C0C14</Color>
             <!--  InteractionException  -->
             <Color x:Key="InteractionExceptionColor">#FFFFFF</Color>
             <Color x:Key="InteractionExceptionHoverColor">#F3F2F2</Color>
             <Color x:Key="InteractionExceptionActiveColor">#EAE9E8</Color>
             <!--  Text  -->
-            <Color x:Key="TextNormColor">#0C0C14</Color>
-            <Color x:Key="TextWeakColor">#706D6B</Color>
-            <Color x:Key="TextHintColor">#8F8D8A</Color>
-            <Color x:Key="TextDisabledColor">#C2BFBC</Color>
+            <Color x:Key="TextNormColor">#FF0C0C14</Color>
+            <Color x:Key="TextWeakColor">#B30C0C14</Color>
+            <Color x:Key="TextHintColor">#800C0C14</Color>
+            <Color x:Key="TextDisabledColor">#4D0C0C14</Color>
             <Color x:Key="TextInvertColor">#FFFFFF</Color>
             <Color x:Key="TextOnPrimaryColor">#FFFFFF</Color>
             <!--  Background  -->
@@ -62,54 +63,57 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Color x:Key="BackgroundStrongColor">#E5E4E1</Color>
             <Color x:Key="BackgroundInvertColor">#0C0C14</Color>
             <!--  Border  -->
-            <Color x:Key="BorderNormColor">#D1CFCD</Color>
-            <Color x:Key="BorderWeakColor">#EAE7E4</Color>
+            <Color x:Key="BorderNormColor">#290C0C14</Color>
+            <Color x:Key="BorderWeakColor">#140C0C14</Color>
             <Color x:Key="BorderFocusColor">#6D4AFF</Color>
             <Color x:Key="BorderFocusRingColor">#336D4AFF</Color>
+            <!--  Map  -->
+            <Color x:Key="MapNormColor">#E5E5E6</Color>
+            <Color x:Key="MapHighlightColor">#BCBCC3</Color>
             <!--  Signal  -->
-            <Color x:Key="SignalDangerColor">#DC3251</Color>
+            <Color x:Key="SignalDangerColor">#B71432</Color>
             <Color x:Key="SignalWarningColor">#FF9900</Color>
             <Color x:Key="SignalSuccessColor">#1EA885</Color>
             <!--  Backdrop  -->
-            <Color x:Key="BackdropNormColor">#510C0C14</Color>
+            <Color x:Key="BackdropNormColor">#520C0C14</Color>
             <!--  VPN  -->
             <Color x:Key="VpnGreenColor">#1C9C7C</Color>
             <!--  Gradient  -->
             <Color x:Key="GradientFadingStartColor">#FFFFFFFF</Color>
             <Color x:Key="GradientFadingEndColor">#00FFFFFF</Color>
-            <Color x:Key="GradientUnprotectedStartColor">#1EDC3251</Color>
-            <Color x:Key="GradientUnprotectedEndColor">#00DC3251</Color>
-            <Color x:Key="GradientConnectingStartColor">#1EFFFFFF</Color>
+            <Color x:Key="GradientUnprotectedStartColor">#80F7607B</Color>
+            <Color x:Key="GradientUnprotectedEndColor">#00F7607B</Color>
+            <Color x:Key="GradientConnectingStartColor">#80FFFFFF</Color>
             <Color x:Key="GradientConnectingEndColor">#00FFFFFF</Color>
-            <Color x:Key="GradientProtectedStartColor">#1E1C9C7C</Color>
-            <Color x:Key="GradientProtectedEndColor">#001C9C7C</Color>
+            <Color x:Key="GradientProtectedStartColor">#802CFFCC</Color>
+            <Color x:Key="GradientProtectedEndColor">#002CFFCC</Color>
             <Color x:Key="GradientConnectionLineStartColor">#6D4AFF</Color>
             <Color x:Key="GradientConnectionLineEndColor">#1C9C7C</Color>
-            <Color x:Key="GradientDisconnectedPinStop1Color">#00DC3251</Color>
-            <Color x:Key="GradientDisconnectedPinStop2Color">#80DC3251</Color>
-            <Color x:Key="GradientDisconnectedPinStop3Color">#DC3251</Color>
+            <Color x:Key="GradientDisconnectedPinStop1Color">#00B71432</Color>
+            <Color x:Key="GradientDisconnectedPinStop2Color">#80B71432</Color>
+            <Color x:Key="GradientDisconnectedPinStop3Color">#FFB71432</Color>
             <Color x:Key="GradientConnectedPinStop1Color">#001C9C7C</Color>
             <Color x:Key="GradientConnectedPinStop2Color">#801C9C7C</Color>
-            <Color x:Key="GradientConnectedPinStop3Color">#1C9C7C</Color>
+            <Color x:Key="GradientConnectedPinStop3Color">#FF1C9C7C</Color>
             <Color x:Key="GradientUpsellBackgroundStartColor">#FF11D8CC</Color>
             <Color x:Key="GradientUpsellBackgroundEndColor">#006E4BFF</Color>
 
             <!--  Composite Colors  -->
 
             <!--  BackgroundNormColor + InteractionDefaultHoverColor  -->
-            <Color x:Key="BackgroundNormHoverColor">#F3F2F2</Color>
+            <Color x:Key="BackgroundNormHoverColor">#ECECED</Color>
             <!--  BackgroundNormColor + InteractionDefaultActiveColor  -->
-            <Color x:Key="BackgroundNormActiveColor">#EAE9E8</Color>
+            <Color x:Key="BackgroundNormActiveColor">#E1E1E2</Color>
 
             <!--  BackgroundWeakColor + InteractionDefaultHoverColor  -->
-            <Color x:Key="BackgroundWeakHoverColor">#EBE9E8</Color>
+            <Color x:Key="BackgroundWeakHoverColor">#E3E2E1</Color>
             <!--  BackgroundWeakColor + InteractionDefaultActiveColor  -->
-            <Color x:Key="BackgroundWeakActiveColor">#E3E2E0</Color>
+            <Color x:Key="BackgroundWeakActiveColor">#D8D7D7</Color>
 
             <!--  BackgroundStrongColor + InteractionDefaultHoverColor  -->
-            <Color x:Key="BackgroundStrongHoverColor">#DEDCDA</Color>
+            <Color x:Key="BackgroundStrongHoverColor">#D4D3D1</Color>
             <!--  BackgroundStrongColor + InteractionDefaultActiveColor  -->
-            <Color x:Key="BackgroundStrongActiveColor">#D9D7D4</Color>
+            <Color x:Key="BackgroundStrongActiveColor">#CAC9C8</Color>
 
         </ResourceDictionary>
 
@@ -132,30 +136,34 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Color x:Key="InteractionWeakHoverColor">#5C5969</Color>
             <Color x:Key="InteractionWeakActiveColor">#6E6B79</Color>
             <!--  InteractionDefault  -->
-            <Color x:Key="InteractionDefaultColor">#005B576B</Color>
-            <Color x:Key="InteractionDefaultHoverColor">#335B576B</Color>
-            <Color x:Key="InteractionDefaultActiveColor">#665B576B</Color>
+            <Color x:Key="InteractionDefaultEmptyColor">#00FFFFFF</Color>
+            <Color x:Key="InteractionDefaultColor">#0DFFFFFF</Color>
+            <Color x:Key="InteractionDefaultHoverColor">#1AFFFFFF</Color>
+            <Color x:Key="InteractionDefaultActiveColor">#33FFFFFF</Color>
             <!--  InteractionException  -->
             <Color x:Key="InteractionExceptionColor">#4A4658</Color>
             <Color x:Key="InteractionExceptionHoverColor">#5C5969</Color>
             <Color x:Key="InteractionExceptionActiveColor">#6E6B79</Color>
             <!--  Text  -->
-            <Color x:Key="TextNormColor">#FFFFFF</Color>
-            <Color x:Key="TextWeakColor">#A7A4B5</Color>
-            <Color x:Key="TextHintColor">#6D697D</Color>
-            <Color x:Key="TextDisabledColor">#5B576B</Color>
+            <Color x:Key="TextNormColor">#FFFFFFFF</Color>
+            <Color x:Key="TextWeakColor">#B3FFFFFF</Color>
+            <Color x:Key="TextHintColor">#80FFFFFF</Color>
+            <Color x:Key="TextDisabledColor">#4DFFFFFF</Color>
             <Color x:Key="TextInvertColor">#1C1B24</Color>
-            <Color x:Key="TextOnPrimaryColor">#FFFFFF</Color>
+            <Color x:Key="TextOnPrimaryColor">#FFFFFFFF</Color>
             <!--  Background  -->
             <Color x:Key="BackgroundNormColor">#16141C</Color>
             <Color x:Key="BackgroundWeakColor">#292733</Color>
             <Color x:Key="BackgroundStrongColor">#3F3B4C</Color>
             <Color x:Key="BackgroundInvertColor">#FFFFFF</Color>
             <!--  Border  -->
-            <Color x:Key="BorderNormColor">#4A4658</Color>
-            <Color x:Key="BorderWeakColor">#343140</Color>
+            <Color x:Key="BorderNormColor">#33FFFFFF</Color>
+            <Color x:Key="BorderWeakColor">#1AFFFFFF</Color>
             <Color x:Key="BorderFocusColor">#6D4AFF</Color>
-            <Color x:Key="BorderFocusRingColor">#4C6D4AFF</Color>
+            <Color x:Key="BorderFocusRingColor">#4D6D4AFF</Color>
+            <!--  Map  -->
+            <Color x:Key="MapNormColor">#3E3A4A</Color>
+            <Color x:Key="MapHighlightColor">#676278</Color>
             <!--  Signal  -->
             <Color x:Key="SignalDangerColor">#F7607B</Color>
             <Color x:Key="SignalWarningColor">#FFAD33</Color>
@@ -167,39 +175,39 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <!--  Gradient  -->
             <Color x:Key="GradientFadingStartColor">#FF16141C</Color>
             <Color x:Key="GradientFadingEndColor">#0016141C</Color>
-            <Color x:Key="GradientUnprotectedStartColor">#7FF7607B</Color>
+            <Color x:Key="GradientUnprotectedStartColor">#80F7607B</Color>
             <Color x:Key="GradientUnprotectedEndColor">#00F7607B</Color>
-            <Color x:Key="GradientConnectingStartColor">#7FFFFFFF</Color>
+            <Color x:Key="GradientConnectingStartColor">#80FFFFFF</Color>
             <Color x:Key="GradientConnectingEndColor">#00FFFFFF</Color>
-            <Color x:Key="GradientProtectedStartColor">#7F2CFFCC</Color>
+            <Color x:Key="GradientProtectedStartColor">#802CFFCC</Color>
             <Color x:Key="GradientProtectedEndColor">#002CFFCC</Color>
             <Color x:Key="GradientConnectionLineStartColor">#8A6EFF</Color>
             <Color x:Key="GradientConnectionLineEndColor">#2CFFCC</Color>
             <Color x:Key="GradientDisconnectedPinStop1Color">#00F7607B</Color>
             <Color x:Key="GradientDisconnectedPinStop2Color">#80F7607B</Color>
-            <Color x:Key="GradientDisconnectedPinStop3Color">#F7607B</Color>
-            <Color x:Key="GradientConnectedPinStop1Color">#002CFFCC</Color>
-            <Color x:Key="GradientConnectedPinStop2Color">#802CFFCC</Color>
-            <Color x:Key="GradientConnectedPinStop3Color">#2CFFCC</Color>
+            <Color x:Key="GradientDisconnectedPinStop3Color">#FFF7607B</Color>
+            <Color x:Key="GradientConnectedPinStop1Color">#004BB99D</Color>
+            <Color x:Key="GradientConnectedPinStop2Color">#804BB99D</Color>
+            <Color x:Key="GradientConnectedPinStop3Color">#FF4BB99D</Color>
             <Color x:Key="GradientUpsellBackgroundStartColor">#FF11D8CC</Color>
             <Color x:Key="GradientUpsellBackgroundEndColor">#006E4BFF</Color>
 
             <!--  Composite Colors  -->
 
             <!--  BackgroundNormColor + InteractionDefaultHoverColor  -->
-            <Color x:Key="BackgroundNormHoverColor">#24212B</Color>
+            <Color x:Key="BackgroundNormHoverColor">#2E2C33</Color>
             <!--  BackgroundNormColor + InteractionDefaultActiveColor  -->
-            <Color x:Key="BackgroundNormActiveColor">#312F3C</Color>
+            <Color x:Key="BackgroundNormActiveColor">#454349</Color>
 
             <!--  BackgroundWeakColor + InteractionDefaultHoverColor  -->
-            <Color x:Key="BackgroundWeakHoverColor">#33303E</Color>
+            <Color x:Key="BackgroundWeakHoverColor">#3F3D48</Color>
             <!--  BackgroundWeakColor + InteractionDefaultActiveColor  -->
-            <Color x:Key="BackgroundWeakActiveColor">#3D3A4A</Color>
+            <Color x:Key="BackgroundWeakActiveColor">#54525C</Color>
 
             <!--  BackgroundStrongColor + InteractionDefaultHoverColor  -->
-            <Color x:Key="BackgroundStrongHoverColor">#444052</Color>
+            <Color x:Key="BackgroundStrongHoverColor">#534F5E</Color>
             <!--  BackgroundStrongColor + InteractionDefaultActiveColor  -->
-            <Color x:Key="BackgroundStrongActiveColor">#4A4659</Color>
+            <Color x:Key="BackgroundStrongActiveColor">#656270</Color>
 
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>

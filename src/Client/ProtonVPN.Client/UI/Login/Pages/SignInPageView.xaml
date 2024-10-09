@@ -34,10 +34,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <StackPanel Spacing="8">
             <TextBlock Text="{x:Bind ViewModel.Localizer.Get('SignIn_Form_Title')}"
                        Style="{ThemeResource TitleTextBlockStyle}"
-                       Foreground="{ThemeResource TextNormColor}" />
+                       Foreground="{ThemeResource TextNormColorBrush}" />
             <TextBlock Text="{x:Bind ViewModel.Localizer.Get('SignIn_Form_Description')}"
                        Style="{ThemeResource BodyTextBlockStyle}"
-                       Foreground="{ThemeResource TextWeakColor}" />
+                       Foreground="{ThemeResource TextWeakColorBrush}" />
         </StackPanel>
 
         <StackPanel>
@@ -81,7 +81,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Button Margin="0,8,0,0"
                     HorizontalAlignment="Stretch"
                     HorizontalContentAlignment="Center"
-                    Foreground="{ThemeResource TextNormColor}"
+                    Foreground="{ThemeResource TextNormColorBrush}"
                     Style="{StaticResource SecondaryButtonStyle}"
                     AutomationProperties.AutomationId="CreateAccountButton"
                     AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('SignIn_Form_CreateAccount')}"

@@ -50,7 +50,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Height="16"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
-                                Background="{ThemeResource TextNormColor}"
+                                Background="{ThemeResource TextNormColorBrush}"
                                 CornerRadius="1.5"
                                 Opacity="0" />
 

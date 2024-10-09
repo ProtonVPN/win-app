@@ -27,40 +27,40 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="ExpanderContentBackground" ResourceKey="TransparentColorBrush" />
             <StaticResource x:Key="ExpanderContentBorderBrush" ResourceKey="TransparentColorBrush" />
 
-            <StaticResource x:Key="ExpanderHeaderBackground" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="ExpanderHeaderBackground" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="ExpanderHeaderBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
             <StaticResource x:Key="ExpanderHeaderBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-            <StaticResource x:Key="ExpanderHeaderBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="ExpanderHeaderBackgroundDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
 
             <StaticResource x:Key="ExpanderHeaderForeground" ResourceKey="TextWeakColorBrush" />
             <StaticResource x:Key="ExpanderHeaderForegroundPointerOver" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="ExpanderHeaderForegroundPressed" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="ExpanderHeaderForegroundDisabled" ResourceKey="TextDisabledColorBrush" />
 
-            <StaticResource x:Key="ExpanderHeaderBorderBrush" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="ExpanderHeaderBorderBrush" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="ExpanderHeaderBorderBrushPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
             <StaticResource x:Key="ExpanderHeaderBorderBrushPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-            <StaticResource x:Key="ExpanderHeaderBorderBrushDisabled" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="ExpanderHeaderBorderBrushDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Dark">
             <StaticResource x:Key="ExpanderContentBackground" ResourceKey="TransparentColorBrush" />
             <StaticResource x:Key="ExpanderContentBorderBrush" ResourceKey="TransparentColorBrush" />
 
-            <StaticResource x:Key="ExpanderHeaderBackground" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="ExpanderHeaderBackground" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="ExpanderHeaderBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
             <StaticResource x:Key="ExpanderHeaderBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-            <StaticResource x:Key="ExpanderHeaderBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="ExpanderHeaderBackgroundDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
 
             <StaticResource x:Key="ExpanderHeaderForeground" ResourceKey="TextWeakColorBrush" />
             <StaticResource x:Key="ExpanderHeaderForegroundPointerOver" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="ExpanderHeaderForegroundPressed" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="ExpanderHeaderForegroundDisabled" ResourceKey="TextDisabledColorBrush" />
 
-            <StaticResource x:Key="ExpanderHeaderBorderBrush" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="ExpanderHeaderBorderBrush" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="ExpanderHeaderBorderBrushPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
             <StaticResource x:Key="ExpanderHeaderBorderBrushPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-            <StaticResource x:Key="ExpanderHeaderBorderBrushDisabled" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="ExpanderHeaderBorderBrushDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 

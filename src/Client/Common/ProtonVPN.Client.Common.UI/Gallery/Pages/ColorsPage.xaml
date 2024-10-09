@@ -140,9 +140,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Grid.Column="1"
                     Orientation="Horizontal"
                     Spacing="8">
-            <gallery:ColorsControl ColorBrush="{ThemeResource InteractionDefaultColorBrush}"
+            <gallery:ColorsControl ColorBrush="{ThemeResource InteractionDefaultEmptyColorBrush}"
                                    Header="interaction-default"
-                                   ResourceName="InteractionDefaultColorBrush" />
+                                   ResourceName="InteractionDefaultEmptyColorBrush" />
             <gallery:ColorsControl ColorBrush="{ThemeResource InteractionDefaultHoverColorBrush}"
                                    Header="interaction-default-hover"
                                    ResourceName="InteractionDefaultHoverColorBrush" />

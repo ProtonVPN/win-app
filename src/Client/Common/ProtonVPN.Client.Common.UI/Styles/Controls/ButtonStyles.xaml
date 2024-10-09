@@ -269,7 +269,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Style x:Key="SidebarButtonStyle" BasedOn="{StaticResource SecondaryButtonStyle}" TargetType="Button">
         <Setter Property="Foreground" Value="{ThemeResource TextNormColorBrush}" />
-        <Setter Property="Background" Value="{ThemeResource InteractionDefaultColorBrush}" />
+        <Setter Property="Background" Value="{ThemeResource InteractionDefaultEmptyColorBrush}" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Padding" Value="3,0,0,0" />
@@ -343,7 +343,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
                                                                        Storyboard.TargetProperty="Background">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource InteractionDefaultColorBrush}" />
+                                                                    Value="{ThemeResource InteractionDefaultEmptyColorBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
                                                                        Storyboard.TargetProperty="Foreground">
@@ -389,8 +389,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="MinHeight" Value="36" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="Background" Value="{ThemeResource InteractionDefaultColorBrush}" />
-        <Setter Property="BorderBrush" Value="{ThemeResource InteractionDefaultColorBrush}" />
+        <Setter Property="Background" Value="{ThemeResource InteractionDefaultEmptyColorBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource InteractionDefaultEmptyColorBrush}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Template">
             <Setter.Value>
@@ -436,7 +436,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentContainer"
                                                                        Storyboard.TargetProperty="Background">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource InteractionDefaultColorBrush}" />
+                                                                    Value="{ThemeResource InteractionDefaultEmptyColorBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentContainer"
                                                                        Storyboard.TargetProperty="Foreground">

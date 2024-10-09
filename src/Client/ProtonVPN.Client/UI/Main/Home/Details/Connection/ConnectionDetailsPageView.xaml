@@ -53,17 +53,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Grid.ColumnDefinitions>
 
             <pathIcons:LockFilled Grid.Column="0"
-                                  Foreground="{ThemeResource VpnGreenColor}" />
+                                  Foreground="{ThemeResource VpnGreenColorBrush}" />
 
             <TextBlock Grid.Column="1"
-                       Foreground="{ThemeResource VpnGreenColor}"
+                       Foreground="{ThemeResource VpnGreenColorBrush}"
                        Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Protected')}"
                        Style="{ThemeResource BodyMediumStrongTextBlockStyle}" />
 
             <TextBlock Grid.Column="2"
                        VerticalAlignment="Center"
                        Style="{ThemeResource BodyTextBlockStyle}"
-                       Foreground="{ThemeResource TextWeakColor}">
+                       Foreground="{ThemeResource TextWeakColorBrush}">
                 <Run Text="•" />
                 <Run Text="{x:Bind ViewModel.FormattedSessionLength}" />
             </TextBlock>
@@ -81,11 +81,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <StackPanel Spacing="2">
                     <TextBlock Style="{ThemeResource CaptionTextBlockStyle}"
-                               Foreground="{ThemeResource TextWeakColor}"
+                               Foreground="{ThemeResource TextWeakColorBrush}"
                                Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_VpnIp')}" />
 
                     <TextBlock Style="{ThemeResource BodyStrongTextBlockStyle}"
-                               Foreground="{ThemeResource TextNormColor}"
+                               Foreground="{ThemeResource TextNormColorBrush}"
                                Text="{x:Bind ViewModel.ServerIpAddress}" />
                 </StackPanel>
 
@@ -99,7 +99,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <StackPanel Spacing="2">
                     <TextBlock Style="{ThemeResource CaptionTextBlockStyle}"
-                               Foreground="{ThemeResource TextWeakColor}"
+                               Foreground="{ThemeResource TextWeakColorBrush}"
                                Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_ServerLoad')}" />
 
                     <Grid ColumnSpacing="4">
@@ -111,7 +111,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                         <TextBlock Grid.Column="0"
                                    Style="{ThemeResource BodyStrongTextBlockStyle}"
-                                   Foreground="{ThemeResource TextNormColor}"
+                                   Foreground="{ThemeResource TextNormColorBrush}"
                                    Text="{x:Bind ViewModel.FormattedServerLoad}" />
 
                         <controls:ServerLoadControl Grid.Column="1"
@@ -129,11 +129,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <StackPanel Spacing="2">
                     <TextBlock Style="{ThemeResource CaptionTextBlockStyle}"
-                               Foreground="{ThemeResource TextWeakColor}"
+                               Foreground="{ThemeResource TextWeakColorBrush}"
                                Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Protocol')}" />
 
                     <TextBlock Style="{ThemeResource BodyStrongTextBlockStyle}"
-                               Foreground="{ThemeResource TextNormColor}"
+                               Foreground="{ThemeResource TextNormColorBrush}"
                                Text="{x:Bind ViewModel.VpnProtocol}" />
                 </StackPanel>
             </custom:DetailRowButton>
@@ -146,11 +146,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <StackPanel Spacing="2">
                     <TextBlock Style="{ThemeResource CaptionTextBlockStyle}"
-                               Foreground="{ThemeResource TextWeakColor}"
+                               Foreground="{ThemeResource TextWeakColorBrush}"
                                Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Latency')}" />
 
                     <TextBlock Style="{ThemeResource BodyStrongTextBlockStyle}"
-                               Foreground="{ThemeResource TextNormColor}"
+                               Foreground="{ThemeResource TextNormColorBrush}"
                                Text="{x:Bind ViewModel.ServerLatency}" />
                 </StackPanel>
 

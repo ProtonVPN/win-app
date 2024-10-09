@@ -37,18 +37,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <ResourceDictionary x:Key="Light">
 
-                    <StaticResource x:Key="SettingsCardBackground" ResourceKey="InteractionDefaultColorBrush" />
+                    <StaticResource x:Key="SettingsCardBackground" ResourceKey="InteractionDefaultEmptyColorBrush" />
                     <StaticResource x:Key="SettingsCardBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
                     <StaticResource x:Key="SettingsCardBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-                    <StaticResource x:Key="SettingsCardBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
+                    <StaticResource x:Key="SettingsCardBackgroundDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
                 </ResourceDictionary>
 
                 <ResourceDictionary x:Key="Dark">
 
-                    <StaticResource x:Key="SettingsCardBackground" ResourceKey="InteractionDefaultColorBrush" />
+                    <StaticResource x:Key="SettingsCardBackground" ResourceKey="InteractionDefaultEmptyColorBrush" />
                     <StaticResource x:Key="SettingsCardBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
                     <StaticResource x:Key="SettingsCardBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-                    <StaticResource x:Key="SettingsCardBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
+                    <StaticResource x:Key="SettingsCardBackgroundDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
 

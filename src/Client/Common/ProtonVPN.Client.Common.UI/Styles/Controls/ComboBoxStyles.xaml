@@ -36,16 +36,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="ComboBoxItemForegroundSelectedPressed" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="ComboBoxItemForegroundSelectedDisabled" ResourceKey="TextWeakColorBrush" />
 
-            <StaticResource x:Key="ComboBoxItemBackground" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="ComboBoxItemBackground" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="ComboBoxItemBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
             <StaticResource x:Key="ComboBoxItemBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-            <StaticResource x:Key="ComboBoxItemBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="ComboBoxItemBackgroundDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
 
-            <StaticResource x:Key="ComboBoxItemBackgroundSelected" ResourceKey="InteractionDefaultColorBrush" />
-            <StaticResource x:Key="ComboBoxItemBackgroundSelectedUnfocused" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="ComboBoxItemBackgroundSelected" ResourceKey="InteractionDefaultEmptyColorBrush" />
+            <StaticResource x:Key="ComboBoxItemBackgroundSelectedUnfocused" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="ComboBoxItemBackgroundSelectedPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
             <StaticResource x:Key="ComboBoxItemBackgroundSelectedPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-            <StaticResource x:Key="ComboBoxItemBackgroundSelectedDisabled" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="ComboBoxItemBackgroundSelectedDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
 
             <StaticResource x:Key="ComboBoxItemBorderBrush" ResourceKey="TransparentColorBrush" />
             <StaticResource x:Key="ComboBoxItemBorderBrushPointerOver" ResourceKey="TransparentColorBrush" />
@@ -121,16 +121,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="ComboBoxItemForegroundSelectedPressed" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="ComboBoxItemForegroundSelectedDisabled" ResourceKey="TextWeakColorBrush" />
 
-            <StaticResource x:Key="ComboBoxItemBackground" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="ComboBoxItemBackground" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="ComboBoxItemBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
             <StaticResource x:Key="ComboBoxItemBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-            <StaticResource x:Key="ComboBoxItemBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="ComboBoxItemBackgroundDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
 
-            <StaticResource x:Key="ComboBoxItemBackgroundSelected" ResourceKey="InteractionDefaultColorBrush" />
-            <StaticResource x:Key="ComboBoxItemBackgroundSelectedUnfocused" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="ComboBoxItemBackgroundSelected" ResourceKey="InteractionDefaultEmptyColorBrush" />
+            <StaticResource x:Key="ComboBoxItemBackgroundSelectedUnfocused" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="ComboBoxItemBackgroundSelectedPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
             <StaticResource x:Key="ComboBoxItemBackgroundSelectedPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-            <StaticResource x:Key="ComboBoxItemBackgroundSelectedDisabled" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="ComboBoxItemBackgroundSelectedDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
 
             <StaticResource x:Key="ComboBoxItemBorderBrush" ResourceKey="TransparentColorBrush" />
             <StaticResource x:Key="ComboBoxItemBorderBrushPointerOver" ResourceKey="TransparentColorBrush" />

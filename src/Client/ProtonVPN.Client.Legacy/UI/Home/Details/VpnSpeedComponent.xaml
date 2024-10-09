@@ -103,7 +103,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <TextBlock Grid.Row="0"
                        HorizontalAlignment="Right"
                        Padding="0,0,12,0"
-                       Foreground="{ThemeResource TextWeakColor}"
+                       Foreground="{ThemeResource TextWeakColorBrush}"
                        Style="{ThemeResource CaptionStrongTextBlockStyle}"
                        Text="{x:Bind ViewModel.SpeedUnit}" />
 

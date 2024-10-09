@@ -53,14 +53,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                             <TextBlock Grid.Column="1"
                                        Style="{ThemeResource BodyStrongTextBlockStyle}"
-                                       Foreground="{ThemeResource TextNormColor}"
+                                       Foreground="{ThemeResource TextNormColorBrush}"
                                        Text="{TemplateBinding ProtectionLabel}" />
 
                             <TextBlock Grid.Column="2"
                                        Style="{ThemeResource BodyTextBlockStyle}"
                                        TextTrimming="CharacterEllipsis"
                                        TextWrapping="NoWrap"
-                                       Foreground="{ThemeResource TextWeakColor}">
+                                       Foreground="{ThemeResource TextWeakColorBrush}">
                                 <Run Text="•"/>
                                 <Run Text="{Binding ProtectionSubLabel, RelativeSource={RelativeSource TemplatedParent}}"/>
                             </TextBlock>
@@ -81,10 +81,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         Spacing="2">
                                 <TextBlock Text="{TemplateBinding IpAddressLabel}"
                                            Style="{ThemeResource CaptionTextBlockStyle}"
-                                           Foreground="{ThemeResource TextWeakColor}" />
+                                           Foreground="{ThemeResource TextWeakColorBrush}" />
 
                                 <TextBlock x:Name="PART_ScrambledIpAddress"
-                                           Foreground="{ThemeResource TextNormColor}"
+                                           Foreground="{ThemeResource TextNormColorBrush}"
                                            Style="{StaticResource BodyStrongTextBlockStyle}" />
                             </StackPanel>
 
@@ -92,10 +92,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         Spacing="2">
                                 <TextBlock Text="{TemplateBinding CountryLabel}"
                                            Style="{ThemeResource CaptionTextBlockStyle}"
-                                           Foreground="{ThemeResource TextWeakColor}" />
+                                           Foreground="{ThemeResource TextWeakColorBrush}" />
 
                                 <TextBlock x:Name="PART_ScrambledCountry"
-                                           Foreground="{ThemeResource TextNormColor}"
+                                           Foreground="{ThemeResource TextNormColorBrush}"
                                            Style="{StaticResource BodyStrongTextBlockStyle}" />
                             </StackPanel>
 
@@ -103,10 +103,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         Spacing="2">
                                 <TextBlock Text="{TemplateBinding IspLabel}"
                                            Style="{ThemeResource CaptionTextBlockStyle}"
-                                           Foreground="{ThemeResource TextWeakColor}" />
+                                           Foreground="{ThemeResource TextWeakColorBrush}" />
 
                                 <TextBlock x:Name="PART_ScrambledIsp"
-                                           Foreground="{ThemeResource TextNormColor}"
+                                           Foreground="{ThemeResource TextNormColorBrush}"
                                            Style="{StaticResource BodyStrongTextBlockStyle}" />
                             </StackPanel>
                         </Grid>
@@ -132,7 +132,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="ProtectionIcon.Content">
                                             <Setter.Value>
                                                 <pathIcons:LockOpenFilled Grid.Column="0"
-                                                                          Foreground="{ThemeResource SignalDangerColor}" />
+                                                                          Foreground="{ThemeResource SignalDangerColorBrush}" />
                                             </Setter.Value>
                                         </Setter>
                                     </VisualState.Setters>

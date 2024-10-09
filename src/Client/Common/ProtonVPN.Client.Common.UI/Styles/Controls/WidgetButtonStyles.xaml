@@ -27,10 +27,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <ResourceDictionary x:Key="Light">
 
-            <StaticResource x:Key="SideWidgetButtonBackgroundInactive" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="SideWidgetButtonBackgroundInactive" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="SideWidgetButtonBackgroundActive" ResourceKey="InteractionDefaultActiveColorBrush" />
 
-            <StaticResource x:Key="SideWidgetButtonBackground" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="SideWidgetButtonBackground" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="SideWidgetButtonBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
             <StaticResource x:Key="SideWidgetButtonBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="SideWidgetButtonBackgroundDisabled" ResourceKey="InteractionWeakColorBrush" />
@@ -40,7 +40,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="SideWidgetButtonForegroundPressed" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="SideWidgetButtonForegroundDisabled" ResourceKey="TextHintColorBrush" />
 
-            <StaticResource x:Key="SideWidgetButtonBorderBrush" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="SideWidgetButtonBorderBrush" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="SideWidgetButtonBorderBrushPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
             <StaticResource x:Key="SideWidgetButtonBorderBrushPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="SideWidgetButtonBorderBrushDisabled" ResourceKey="InteractionWeakColorBrush" />
@@ -49,10 +49,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <ResourceDictionary x:Key="Dark">
 
-            <StaticResource x:Key="SideWidgetButtonBackgroundInactive" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="SideWidgetButtonBackgroundInactive" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="SideWidgetButtonBackgroundActive" ResourceKey="InteractionDefaultActiveColorBrush" />
 
-            <StaticResource x:Key="SideWidgetButtonBackground" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="SideWidgetButtonBackground" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="SideWidgetButtonBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
             <StaticResource x:Key="SideWidgetButtonBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="SideWidgetButtonBackgroundDisabled" ResourceKey="InteractionWeakColorBrush" />
@@ -62,7 +62,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="SideWidgetButtonForegroundPressed" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="SideWidgetButtonForegroundDisabled" ResourceKey="TextHintColorBrush" />
 
-            <StaticResource x:Key="SideWidgetButtonBorderBrush" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="SideWidgetButtonBorderBrush" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="SideWidgetButtonBorderBrushPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
             <StaticResource x:Key="SideWidgetButtonBorderBrushPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="SideWidgetButtonBorderBrushDisabled" ResourceKey="InteractionWeakColorBrush" />

@@ -43,10 +43,10 @@ public static class WindowExtensions
         window.AppWindow.TitleBar.ForegroundColor = ResourceHelper.GetColor("TextNormColor", theme);
         window.AppWindow.TitleBar.InactiveForegroundColor = ResourceHelper.GetColor("TextHintColor", theme);
 
-        window.AppWindow.TitleBar.ButtonBackgroundColor = ResourceHelper.GetColor("InteractionDefaultColor", theme);
+        window.AppWindow.TitleBar.ButtonBackgroundColor = ResourceHelper.GetColor("InteractionDefaultEmptyColor", theme);
         window.AppWindow.TitleBar.ButtonHoverBackgroundColor = ResourceHelper.GetColor("InteractionDefaultHoverColor", theme);
         window.AppWindow.TitleBar.ButtonPressedBackgroundColor = ResourceHelper.GetColor("InteractionDefaultActiveColor", theme);
-        window.AppWindow.TitleBar.ButtonInactiveBackgroundColor = ResourceHelper.GetColor("InteractionDefaultColor", theme);
+        window.AppWindow.TitleBar.ButtonInactiveBackgroundColor = ResourceHelper.GetColor("InteractionDefaultEmptyColor", theme);
 
         window.AppWindow.TitleBar.ButtonForegroundColor = ResourceHelper.GetColor("TextNormColor", theme);
         window.AppWindow.TitleBar.ButtonHoverForegroundColor = ResourceHelper.GetColor("TextNormColor", theme);
