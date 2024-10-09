@@ -147,6 +147,7 @@ public class Bootstrapper : IBootstrapper
         }
 
         _mainWindowActivator.Exit();
+        await _serviceManager.StopAsync();
     }
 
     private void HandleCommandLineArguments()
