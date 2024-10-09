@@ -41,18 +41,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="NavigationViewItemForegroundSelectedPressed" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="NavigationViewItemForegroundSelectedDisabled" ResourceKey="TextDisabledColorBrush" />
 
-            <StaticResource x:Key="NavigationViewItemBackground" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="NavigationViewItemBackground" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="NavigationViewItemBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
             <StaticResource x:Key="NavigationViewItemBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-            <StaticResource x:Key="NavigationViewItemBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="NavigationViewItemBackgroundDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="NavigationViewItemBackgroundChecked" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="NavigationViewItemBackgroundCheckedPointerOver" ResourceKey="InteractionWeakColorBrush" />
             <StaticResource x:Key="NavigationViewItemBackgroundCheckedPressed" ResourceKey="InteractionWeakHoverColorBrush" />
-            <StaticResource x:Key="NavigationViewItemBackgroundCheckedDisabled" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="NavigationViewItemBackgroundCheckedDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="NavigationViewItemBackgroundSelected" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="NavigationViewItemBackgroundSelectedPointerOver" ResourceKey="InteractionWeakColorBrush" />
             <StaticResource x:Key="NavigationViewItemBackgroundSelectedPressed" ResourceKey="InteractionWeakHoverColorBrush" />
-            <StaticResource x:Key="NavigationViewItemBackgroundSelectedDisabled" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="NavigationViewItemBackgroundSelectedDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
 
             <StaticResource x:Key="TopNavigationViewItemForeground" ResourceKey="TextWeakColorBrush" />
             <StaticResource x:Key="TopNavigationViewItemForegroundPointerOver" ResourceKey="TextNormColorBrush" />
@@ -91,18 +91,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="NavigationViewItemForegroundSelectedPressed" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="NavigationViewItemForegroundSelectedDisabled" ResourceKey="TextDisabledColorBrush" />
 
-            <StaticResource x:Key="NavigationViewItemBackground" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="NavigationViewItemBackground" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="NavigationViewItemBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
             <StaticResource x:Key="NavigationViewItemBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-            <StaticResource x:Key="NavigationViewItemBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="NavigationViewItemBackgroundDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="NavigationViewItemBackgroundChecked" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="NavigationViewItemBackgroundCheckedPointerOver" ResourceKey="InteractionWeakColorBrush" />
             <StaticResource x:Key="NavigationViewItemBackgroundCheckedPressed" ResourceKey="InteractionWeakHoverColorBrush" />
-            <StaticResource x:Key="NavigationViewItemBackgroundCheckedDisabled" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="NavigationViewItemBackgroundCheckedDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="NavigationViewItemBackgroundSelected" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="NavigationViewItemBackgroundSelectedPointerOver" ResourceKey="InteractionWeakColorBrush" />
             <StaticResource x:Key="NavigationViewItemBackgroundSelectedPressed" ResourceKey="InteractionWeakHoverColorBrush" />
-            <StaticResource x:Key="NavigationViewItemBackgroundSelectedDisabled" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="NavigationViewItemBackgroundSelectedDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
 
             <StaticResource x:Key="TopNavigationViewItemForeground" ResourceKey="TextWeakColorBrush" />
             <StaticResource x:Key="TopNavigationViewItemForegroundPointerOver" ResourceKey="TextNormColorBrush" />

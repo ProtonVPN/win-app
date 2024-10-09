@@ -28,10 +28,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <StaticResource x:Key="PrimaryGhostButtonIndicatorBrush" ResourceKey="PrimaryColorBrush" />
 
-            <StaticResource x:Key="PrimaryGhostButtonBackground" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="PrimaryGhostButtonBackground" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="PrimaryGhostButtonBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
             <StaticResource x:Key="PrimaryGhostButtonBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-            <StaticResource x:Key="PrimaryGhostButtonBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="PrimaryGhostButtonBackgroundDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
 
             <StaticResource x:Key="PrimaryGhostButtonForeground" ResourceKey="LinkNormColorBrush" />
             <StaticResource x:Key="PrimaryGhostButtonForegroundPointerOver" ResourceKey="LinkHoverColorBrush" />
@@ -45,10 +45,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <StaticResource x:Key="SecondaryGhostButtonIndicatorBrush" ResourceKey="PrimaryColorBrush" />
 
-            <StaticResource x:Key="SecondaryGhostButtonBackground" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="SecondaryGhostButtonBackground" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="SecondaryGhostButtonBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
             <StaticResource x:Key="SecondaryGhostButtonBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-            <StaticResource x:Key="SecondaryGhostButtonBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="SecondaryGhostButtonBackgroundDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
 
             <StaticResource x:Key="SecondaryGhostButtonForeground" ResourceKey="TextWeakColorBrush" />
             <StaticResource x:Key="SecondaryGhostButtonForegroundPointerOver" ResourceKey="TextNormColorBrush" />
@@ -82,10 +82,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <StaticResource x:Key="SecondaryGhostButtonIndicatorBrush" ResourceKey="PrimaryColorBrush" />
 
-            <StaticResource x:Key="SecondaryGhostButtonBackground" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="SecondaryGhostButtonBackground" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="SecondaryGhostButtonBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
             <StaticResource x:Key="SecondaryGhostButtonBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-            <StaticResource x:Key="SecondaryGhostButtonBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="SecondaryGhostButtonBackgroundDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
 
             <StaticResource x:Key="SecondaryGhostButtonForeground" ResourceKey="TextWeakColorBrush" />
             <StaticResource x:Key="SecondaryGhostButtonForegroundPointerOver" ResourceKey="TextNormColorBrush" />

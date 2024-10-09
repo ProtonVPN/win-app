@@ -24,7 +24,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                x:DefaultBindMode="OneWay"
-               Background="{ThemeResource TextInvertColor}"
+               Background="{ThemeResource TextInvertColorBrush}"
                Style="{StaticResource CaptchaContentDialogStyle}"
                mc:Ignorable="d">
     

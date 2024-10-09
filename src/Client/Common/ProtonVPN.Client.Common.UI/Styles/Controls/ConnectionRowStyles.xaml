@@ -83,7 +83,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ControlTemplate TargetType="custom:ConnectionRowButton">
                     <Grid x:Name="ConnectionRowContainer"
                           Padding="12,10"
-                          Background="{ThemeResource InteractionDefaultColorBrush}"
+                          Background="{ThemeResource InteractionDefaultEmptyColorBrush}"
                           ColumnSpacing="12"
                           CornerRadius="8">
                         <Grid.ColumnDefinitions>
@@ -213,7 +213,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 </VisualState>
                                 <VisualState x:Name="Disabled">
                                     <VisualState.Setters>
-                                        <Setter Target="ConnectionRowContainer.Background" Value="{ThemeResource InteractionDefaultColorBrush}" />
+                                        <Setter Target="ConnectionRowContainer.Background" Value="{ThemeResource InteractionDefaultEmptyColorBrush}" />
                                         <Setter Target="ConnectionRowIcon.Opacity" Value="{StaticResource ConnectionRowDisabledIconOpacity}" />
                                         <Setter Target="ConnectionRowFeatures.Opacity" Value="{StaticResource ConnectionRowDisabledFeaturesOpacity}" />
                                         <Setter Target="ConnectionRowHeader.Foreground" Value="{ThemeResource TextHintColorBrush}" />
@@ -262,7 +262,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ControlTemplate TargetType="custom:ServerConnectionRowButton">
                     <Grid x:Name="ConnectionRowContainer"
                           Padding="12,10"
-                          Background="{ThemeResource InteractionDefaultColorBrush}"
+                          Background="{ThemeResource InteractionDefaultEmptyColorBrush}"
                           CornerRadius="8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -369,7 +369,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 </VisualState>
                                 <VisualState x:Name="Disabled">
                                     <VisualState.Setters>
-                                        <Setter Target="ConnectionRowContainer.Background" Value="{ThemeResource InteractionDefaultColorBrush}" />
+                                        <Setter Target="ConnectionRowContainer.Background" Value="{ThemeResource InteractionDefaultEmptyColorBrush}" />
                                         <Setter Target="ConnectionRowIcon.Opacity" Value="{StaticResource ConnectionRowDisabledIconOpacity}" />
                                         <Setter Target="ConnectionRowFeatures.Opacity" Value="{StaticResource ConnectionRowDisabledFeaturesOpacity}" />
                                         <Setter Target="ConnectionRowHeader.Foreground" Value="{ThemeResource TextHintColorBrush}" />

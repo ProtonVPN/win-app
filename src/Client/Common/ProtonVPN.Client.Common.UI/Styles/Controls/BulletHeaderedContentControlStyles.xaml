@@ -118,7 +118,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                           Margin="0,-2,0,0"
                                           VerticalAlignment="Top"
                                           Content="{TemplateBinding BulletContent}"
-                                          Foreground="{ThemeResource VpnGreenColor}" />
+                                          Foreground="{ThemeResource VpnGreenColorBrush}" />
 
                         <ContentPresenter x:Name="HeaderPresenter"
                                           Grid.Row="0"

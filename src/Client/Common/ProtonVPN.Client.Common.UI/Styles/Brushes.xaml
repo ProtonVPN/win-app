@@ -44,6 +44,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <SolidColorBrush x:Key="InteractionWeakHoverColorBrush" Color="{StaticResource InteractionWeakHoverColor}" />
             <SolidColorBrush x:Key="InteractionWeakActiveColorBrush" Color="{StaticResource InteractionWeakActiveColor}" />
             <!--  InteractionDefault  -->
+            <SolidColorBrush x:Key="InteractionDefaultEmptyColorBrush" Color="{StaticResource InteractionDefaultEmptyColor}" />
             <SolidColorBrush x:Key="InteractionDefaultColorBrush" Color="{StaticResource InteractionDefaultColor}" />
             <SolidColorBrush x:Key="InteractionDefaultHoverColorBrush" Color="{StaticResource InteractionDefaultHoverColor}" />
             <SolidColorBrush x:Key="InteractionDefaultActiveColorBrush" Color="{StaticResource InteractionDefaultActiveColor}" />
@@ -68,6 +69,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <SolidColorBrush x:Key="BorderWeakColorBrush" Color="{StaticResource BorderWeakColor}" />
             <SolidColorBrush x:Key="BorderFocusColorBrush" Color="{StaticResource BorderFocusColor}" />
             <SolidColorBrush x:Key="BorderFocusRingColorBrush" Color="{StaticResource BorderFocusRingColor}" />
+            <!--  Map  -->
+            <SolidColorBrush x:Key="MapNormColorBrush" Color="{StaticResource MapNormColor}" />
+            <SolidColorBrush x:Key="MapHighlightColorBrush" Color="{StaticResource MapHighlightColor}" />
             <!--  Signal  -->
             <SolidColorBrush x:Key="SignalDangerColorBrush" Color="{StaticResource SignalDangerColor}" />
             <SolidColorBrush x:Key="SignalWarningColorBrush" Color="{StaticResource SignalWarningColor}" />
@@ -159,6 +163,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <SolidColorBrush x:Key="InteractionWeakHoverColorBrush" Color="{StaticResource InteractionWeakHoverColor}" />
             <SolidColorBrush x:Key="InteractionWeakActiveColorBrush" Color="{StaticResource InteractionWeakActiveColor}" />
             <!--  InteractionDefault  -->
+            <SolidColorBrush x:Key="InteractionDefaultEmptyColorBrush" Color="{StaticResource InteractionDefaultEmptyColor}" />
             <SolidColorBrush x:Key="InteractionDefaultColorBrush" Color="{StaticResource InteractionDefaultColor}" />
             <SolidColorBrush x:Key="InteractionDefaultHoverColorBrush" Color="{StaticResource InteractionDefaultHoverColor}" />
             <SolidColorBrush x:Key="InteractionDefaultActiveColorBrush" Color="{StaticResource InteractionDefaultActiveColor}" />
@@ -183,6 +188,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <SolidColorBrush x:Key="BorderWeakColorBrush" Color="{StaticResource BorderWeakColor}" />
             <SolidColorBrush x:Key="BorderFocusColorBrush" Color="{StaticResource BorderFocusColor}" />
             <SolidColorBrush x:Key="BorderFocusRingColorBrush" Color="{StaticResource BorderFocusRingColor}" />
+            <!--  Map  -->
+            <SolidColorBrush x:Key="MapNormColorBrush" Color="{StaticResource MapNormColor}" />
+            <SolidColorBrush x:Key="MapHighlightColorBrush" Color="{StaticResource MapHighlightColor}" />
             <!--  Signal  -->
             <SolidColorBrush x:Key="SignalDangerColorBrush" Color="{StaticResource SignalDangerColor}" />
             <SolidColorBrush x:Key="SignalWarningColorBrush" Color="{StaticResource SignalWarningColor}" />

@@ -31,10 +31,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="MenuFlyoutPresenterBackground" ResourceKey="BackgroundNormColorBrush" />
             <StaticResource x:Key="MenuFlyoutPresenterBorderBrush" ResourceKey="BorderNormColorBrush" />
 
-            <StaticResource x:Key="MenuFlyoutItemBackground" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="MenuFlyoutItemBackground" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="MenuFlyoutItemBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
             <StaticResource x:Key="MenuFlyoutItemBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-            <StaticResource x:Key="MenuFlyoutItemBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="MenuFlyoutItemBackgroundDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
 
             <StaticResource x:Key="MenuFlyoutItemForeground" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="MenuFlyoutItemForegroundPointerOver" ResourceKey="TextNormColorBrush" />
@@ -55,10 +55,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="MenuFlyoutPresenterBackground" ResourceKey="BackgroundNormColorBrush" />
             <StaticResource x:Key="MenuFlyoutPresenterBorderBrush" ResourceKey="BorderNormColorBrush" />
 
-            <StaticResource x:Key="MenuFlyoutItemBackground" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="MenuFlyoutItemBackground" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="MenuFlyoutItemBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
             <StaticResource x:Key="MenuFlyoutItemBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-            <StaticResource x:Key="MenuFlyoutItemBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="MenuFlyoutItemBackgroundDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
 
             <StaticResource x:Key="MenuFlyoutItemForeground" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="MenuFlyoutItemForegroundPointerOver" ResourceKey="TextNormColorBrush" />

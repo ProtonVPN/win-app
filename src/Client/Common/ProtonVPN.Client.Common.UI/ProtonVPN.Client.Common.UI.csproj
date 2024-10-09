@@ -55,6 +55,7 @@
         <Content Remove="Assets\Icons\PathIcons\ArrowUpCircleLine.cs" />
         <Content Remove="Assets\Icons\PathIcons\ArrowUpFromSquare.cs" />
         <Content Remove="Assets\Icons\PathIcons\ArrowUpLine.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ArrowWithinSquare.cs" />
         <Content Remove="Assets\Icons\PathIcons\At.cs" />
         <Content Remove="Assets\Icons\PathIcons\Backspace.cs" />
         <Content Remove="Assets\Icons\PathIcons\BagPercent.cs" />
@@ -751,6 +752,7 @@
         <None Remove="Assets\Illustrations\worldwide-coverage.png" />
         <None Remove="Assets\Illustrations\wrong-country.png" />
         <None Remove="Controls\DeviceLocationControl.xaml" />
+        <None Remove="Controls\MapControl.xaml" />
         <None Remove="Controls\ServerLoadControl.xaml" />
         <None Remove="Assets\Icons\ActiveDot.xaml" />
         <None Remove="Controls\UpsellBannerControl.xaml" />
@@ -2293,6 +2295,11 @@
     </ItemGroup>
     <ItemGroup>
       <Resource Remove="Assets\Icons\Profiles\BotProfileIcon.xaml" />
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Controls\MapControl.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
     </ItemGroup>
     <ItemGroup>
       <Page Update="Styles\Controls\InfoBannerStyles.xaml">

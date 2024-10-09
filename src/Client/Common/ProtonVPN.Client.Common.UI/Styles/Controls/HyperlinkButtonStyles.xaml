@@ -304,7 +304,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Style x:Key="DefaultIllustratedHyperlinkButtonStyle" TargetType="custom:IllustratedHyperlinkButton">
         <Setter Property="Foreground" Value="{ThemeResource TextNormColorBrush}" />
-        <Setter Property="Background" Value="{ThemeResource InteractionDefaultColorBrush}" />
+        <Setter Property="Background" Value="{ThemeResource InteractionDefaultEmptyColorBrush}" />
         <Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="FontSize" Value="{StaticResource CaptionStrongFontSize}" />
