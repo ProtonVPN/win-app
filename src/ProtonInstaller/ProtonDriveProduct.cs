@@ -37,7 +37,7 @@ public class ProtonDriveProduct : ProtonProductBase
         Stream stream = await response.Content.ReadAsStreamAsync();
         ProtonDriveReleasesResponse? releasesResponse = await JsonSerializer.DeserializeAsync(stream, JsonContext.Default.ProtonDriveReleasesResponse);
         ProtonDriveReleaseResponse? release = releasesResponse?.Releases?
-            .Where(r => r.CategoryName == STABLE_CHANNEL && (r.RolloutRatio is null || r.RolloutRatio > 0.0))
+            .Where(r => r.CategoryName == STABLE_CHANNEL && (r.RolloutRatio is null || r.RolloutRatio > 0.00))
             .MaxBy(r => GetVersion(r.Version));
 
         return release is not null

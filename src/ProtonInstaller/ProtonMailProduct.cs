@@ -37,7 +37,7 @@ public class ProtonMailProduct : ProtonProductBase
         Stream stream = await response.Content.ReadAsStreamAsync();
         ProtonMailReleasesResponse? releasesResponse = await JsonSerializer.DeserializeAsync(stream, JsonContext.Default.ProtonMailReleasesResponse);
         ProtonMailReleaseResponse? release = releasesResponse?.Releases?
-            .Where(r => r.CategoryName == STABLE_CHANNEL && r.RolloutProportion is not null && r.RolloutProportion > 0)
+            .Where(r => r.CategoryName == STABLE_CHANNEL && r.RolloutProportion is not null && r.RolloutProportion > 0.00)
             .MaxBy(r => GetVersion(r.Version));
 
         ProtonMailFileResponse? file = release?.File.FirstOrDefault();

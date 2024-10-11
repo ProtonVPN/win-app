@@ -37,7 +37,7 @@ public class ProtonPassProduct : ProtonProductBase
         Stream stream = await response.Content.ReadAsStreamAsync();
         ProtonPassReleasesResponse? releasesResponse = await JsonSerializer.DeserializeAsync(stream, JsonContext.Default.ProtonPassReleasesResponse);
         ProtonPassReleaseResponse? release = releasesResponse?.Releases?
-            .Where(r => r.CategoryName == STABLE_CHANNEL && r.RolloutPercentage is not null && r.RolloutPercentage >= 1.0)
+            .Where(r => r.CategoryName == STABLE_CHANNEL && r.RolloutPercentage is not null && r.RolloutPercentage > 0.00)
             .MaxBy(r => GetVersion(r.Version));
 
         ProtonPassFileResponse? file = release?.File.FirstOrDefault();
