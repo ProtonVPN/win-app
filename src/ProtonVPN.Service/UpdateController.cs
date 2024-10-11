@@ -67,14 +67,15 @@ namespace ProtonVPN.Service
             _notifyingAppUpdate.StateChanged += OnUpdateStateChanged;
         }
 
-        public async Task CheckForUpdate(UpdateSettingsIpcEntity updateSettingsIpcEntity)
+        public async Task CheckForUpdate(UpdateSettingsIpcEntity updateSettingsIpcEntity,
+            CancellationToken cancelToken)
         {
             CacheUpdateSettings(updateSettingsIpcEntity);
             _appUpdates.Cleanup();
             _notifyingAppUpdate.StartCheckingForUpdate(updateSettingsIpcEntity.IsEarlyAccess);
         }
 
-        public async Task StartAutoUpdate()
+        public async Task StartAutoUpdate(CancellationToken cancelToken)
         {
             if (_lastUpdateState.IsReady)
             {

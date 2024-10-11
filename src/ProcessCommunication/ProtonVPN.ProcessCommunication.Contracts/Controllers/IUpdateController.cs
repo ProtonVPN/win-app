@@ -25,7 +25,7 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Controllers;
 [ServiceContract]
 public interface IUpdateController : IServiceController
 {
-    Task CheckForUpdate(UpdateSettingsIpcEntity updateSettingsIpcEntity);
+    Task CheckForUpdate(UpdateSettingsIpcEntity updateSettingsIpcEntity, CancellationToken cancelToken);
 
-    Task StartAutoUpdate();
+    Task StartAutoUpdate(CancellationToken cancelToken);
 }

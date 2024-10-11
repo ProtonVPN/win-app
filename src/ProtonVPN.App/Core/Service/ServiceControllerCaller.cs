@@ -19,6 +19,7 @@
 
 using System;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Extensions;
@@ -31,6 +32,8 @@ namespace ProtonVPN.Core.Service
 {
     public abstract class ServiceControllerCaller<Controller> where Controller : IServiceController
     {
+        private readonly TimeSpan _callTimeout = TimeSpan.FromSeconds(3);
+
         private readonly ILogger _logger;
         private readonly IGrpcClient _grpcClient;
         private readonly VpnSystemService _vpnSystemService;
@@ -42,7 +45,7 @@ namespace ProtonVPN.Core.Service
             _vpnSystemService = vpnSystemService;
         }
 
-        protected async Task<Result<T>> Invoke<T>(Func<Controller, Task<T>> serviceCall,
+        protected async Task<Result<T>> Invoke<T>(Func<Controller, CancellationToken, Task<T>> serviceCall,
             [CallerMemberName] string memberName = "")
         {
             int retryCount = 5;
@@ -52,7 +55,8 @@ namespace ProtonVPN.Core.Service
                 {
                     Controller serviceController =
                         await _grpcClient.GetServiceControllerOrThrowAsync<Controller>(TimeSpan.FromSeconds(1));
-                    T result = await serviceCall(serviceController);
+                    CancellationTokenSource cancellationTokenSource = new(_callTimeout);
+                    T result = await serviceCall(serviceController, cancellationTokenSource.Token);
                     if (result is Task task)
                     {
                         await task;

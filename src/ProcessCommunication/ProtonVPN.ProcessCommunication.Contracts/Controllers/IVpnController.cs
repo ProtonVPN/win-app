@@ -27,13 +27,13 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Controllers;
 [ServiceContract]
 public interface IVpnController : IServiceController
 {
-    Task Connect(ConnectionRequestIpcEntity connectionRequest);
-    Task Disconnect(DisconnectionRequestIpcEntity disconnectionRequest);
-    Task UpdateConnectionCertificate(ConnectionCertificateIpcEntity certificate);
-    Task<TrafficBytesIpcEntity> GetTrafficBytes();
-    Task ApplySettings(MainSettingsIpcEntity settings);
+    Task Connect(ConnectionRequestIpcEntity connectionRequest, CancellationToken cancelToken);
+    Task Disconnect(DisconnectionRequestIpcEntity disconnectionRequest, CancellationToken cancelToken);
+    Task UpdateConnectionCertificate(ConnectionCertificateIpcEntity certificate, CancellationToken cancelToken);
+    Task<TrafficBytesIpcEntity> GetTrafficBytes(CancellationToken cancelToken);
+    Task ApplySettings(MainSettingsIpcEntity settings, CancellationToken cancelToken);
 
-    Task RepeatState();
-    Task RepeatPortForwardingState();
-    Task RequestNetShieldStats();
+    Task RepeatState(CancellationToken cancelToken);
+    Task RepeatPortForwardingState(CancellationToken cancelToken);
+    Task RequestNetShieldStats(CancellationToken cancelToken);
 }

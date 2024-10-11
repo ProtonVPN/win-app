@@ -35,12 +35,12 @@ namespace ProtonVPN.Core.Service.Update
 
         public Task CheckForUpdates(UpdateSettingsIpcEntity updateSettingsIpcEntity)
         {
-            return Invoke(c => c.CheckForUpdate(updateSettingsIpcEntity).Wrap());
+            return Invoke((c, ct) => c.CheckForUpdate(updateSettingsIpcEntity, ct).Wrap());
         }
 
         public Task StartAutoUpdate()
         {
-            return Invoke(c => c.StartAutoUpdate().Wrap());
+            return Invoke((c, ct) => c.StartAutoUpdate(ct).Wrap());
         }
     }
 }

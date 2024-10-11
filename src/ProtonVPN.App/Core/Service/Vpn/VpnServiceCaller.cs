@@ -38,37 +38,37 @@ namespace ProtonVPN.Core.Service.Vpn
 
         public Task ApplySettings(MainSettingsIpcEntity settings)
         {
-            return Invoke(c => c.ApplySettings(settings).Wrap());
+            return Invoke((c, ct) => c.ApplySettings(settings, ct).Wrap());
         }
 
         public Task Connect(ConnectionRequestIpcEntity connectionRequest)
         {
-            return Invoke(c => c.Connect(connectionRequest).Wrap());
+            return Invoke((c, ct) => c.Connect(connectionRequest, ct).Wrap());
         }
 
         public Task UpdateConnectionCertificate(ConnectionCertificateIpcEntity certificate)
         {
-            return Invoke(c => c.UpdateConnectionCertificate(certificate).Wrap());
+            return Invoke((c, ct) => c.UpdateConnectionCertificate(certificate, ct).Wrap());
         }
 
         public Task Disconnect(DisconnectionRequestIpcEntity disconnectionRequest)
         {
-            return Invoke(c => c.Disconnect(disconnectionRequest).Wrap());
+            return Invoke((c, ct) => c.Disconnect(disconnectionRequest, ct).Wrap());
         }
 
         public Task RepeatState()
         {
-            return Invoke(c => c.RepeatState().Wrap());
+            return Invoke((c, ct) => c.RepeatState(ct).Wrap());
         }
 
         public Task<Result<TrafficBytesIpcEntity>> GetTrafficBytes()
         {
-            return Invoke(c => c.GetTrafficBytes());
+            return Invoke((c, ct) => c.GetTrafficBytes(ct));
         }
 
         public Task RequestNetShieldStats()
         {
-            return Invoke(c => c.RequestNetShieldStats().Wrap());
+            return Invoke((c, ct) => c.RequestNetShieldStats(ct).Wrap());
         }
     }
 }

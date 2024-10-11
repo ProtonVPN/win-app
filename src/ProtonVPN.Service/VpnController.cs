@@ -18,6 +18,7 @@
  */
 
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Helpers;
 using ProtonVPN.Common.Threading;
@@ -65,7 +66,7 @@ namespace ProtonVPN.Service
             _entityMapper = entityMapper;
         }
 
-        public async Task Connect(ConnectionRequestIpcEntity connectionRequest)
+        public async Task Connect(ConnectionRequestIpcEntity connectionRequest, CancellationToken cancelToken)
         {
             Ensure.NotNull(connectionRequest, nameof(connectionRequest));
 
@@ -80,30 +81,30 @@ namespace ProtonVPN.Service
             _vpnConnection.Connect(endpoints, config, credentials);
         }
 
-        public async Task Disconnect(DisconnectionRequestIpcEntity disconnectionRequest)
+        public async Task Disconnect(DisconnectionRequestIpcEntity disconnectionRequest, CancellationToken cancelToken)
         {
             _logger.Info<DisconnectLog>($"Disconnect requested (Error: {disconnectionRequest.ErrorType})");
             _serviceSettings.Apply(disconnectionRequest.Settings);
             _vpnConnection.Disconnect((VpnError)disconnectionRequest.ErrorType);
         }
 
-        public async Task UpdateConnectionCertificate(ConnectionCertificateIpcEntity certificate)
+        public async Task UpdateConnectionCertificate(ConnectionCertificateIpcEntity certificate, CancellationToken cancelToken)
         {
             _vpnConnection.UpdateAuthCertificate(certificate.Pem);
         }
 
-        public async Task<TrafficBytesIpcEntity> GetTrafficBytes()
+        public async Task<TrafficBytesIpcEntity> GetTrafficBytes(CancellationToken cancelToken)
         {
             return _entityMapper.Map<InOutBytes, TrafficBytesIpcEntity>(_vpnConnection.Total);
         }
 
-        public async Task ApplySettings(MainSettingsIpcEntity settings)
+        public async Task ApplySettings(MainSettingsIpcEntity settings, CancellationToken cancelToken)
         {
             Ensure.NotNull(settings, nameof(settings));
             _serviceSettings.Apply(settings);
         }
 
-        public async Task RepeatState()
+        public async Task RepeatState(CancellationToken cancelToken)
         {
             _taskQueue.Enqueue(async () =>
             {
@@ -111,12 +112,12 @@ namespace ProtonVPN.Service
             });
         }
 
-        public async Task RepeatPortForwardingState()
+        public async Task RepeatPortForwardingState(CancellationToken cancelToken)
         {
             _portMappingProtocolClient.RepeatState();
         }
 
-        public async Task RequestNetShieldStats()
+        public async Task RequestNetShieldStats(CancellationToken cancelToken)
         {
             _vpnConnection.RequestNetShieldStats();
         }
