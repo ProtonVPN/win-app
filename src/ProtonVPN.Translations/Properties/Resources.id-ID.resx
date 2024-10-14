@@ -388,7 +388,7 @@
     <comment>The text inside info tooltip in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_LogsDescription">
-    <value>Log error membantu kami dalam menumpaskan masalah Anda hingga ke akar-akarnya. Apabila Anda tidak menyertakan log error yang ada, kami mungkin tidak akan dapat menganalisa masalah Anda secara menyeluruh.</value>
+    <value>Log error membantu kami dalam menumpas masalah Anda hingga ke akar-akarnya. Apabila Anda tidak menyertakan log error, kami mungkin tidak akan dapat menganalisa masalah Anda secara menyeluruh.</value>
   </data>
   <data name="BugReport_lbl_LogsTooltip">
     <value>Log merupakan berkas yang merekam berbagai tindakan yang memicu terjadinya suatu error. Kami hanya akan menggunakan berkas log Anda untuk membantu para teknisi kami dalam menumpas bug yang ada.</value>
