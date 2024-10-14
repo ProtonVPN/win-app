@@ -147,7 +147,7 @@
     <value>Зв'язатися з нами</value>
   </data>
   <data name="Common_Actions_Delete">
-    <value>Delete</value>
+    <value>Видалити</value>
   </data>
   <data name="Common_Actions_Disconnect">
     <value>Від’єднатися</value>
@@ -297,7 +297,7 @@
     <value>Країни ({0})</value>
   </data>
   <data name="Connections_Country">
-    <value>Country</value>
+    <value>Країна</value>
   </data>
   <data name="Connections_Country_Middle">
     <value>Middle country</value>
@@ -443,7 +443,7 @@
     <value>Profile name</value>
   </data>
   <data name="Connections_Profiles_New">
-    <value>New profile</value>
+    <value>Новий профіль</value>
     <comment>"New profile" is more appropriate when you already have a profile</comment>
   </data>
   <data name="Connections_Profiles_NotAvailable_Tooltip">

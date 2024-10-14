@@ -345,7 +345,7 @@
     <value>Prehodi ({0})</value>
   </data>
   <data name="Connections_Gateways_Server">
-    <value>Dedicated server</value>
+    <value>Namenski strežniki</value>
   </data>
   <data name="Connections_Gateways_Servers_One">
     <value>Namenski strežnik ({0})</value>
@@ -431,7 +431,7 @@
     <comment>{0} is a placeholder for the name of the profile.</comment>
   </data>
   <data name="Connections_Profiles_Delete_Title">
-    <value>Delete profile?</value>
+    <value>Izbrišem profil?</value>
   </data>
   <data name="Connections_Profiles_Empty_Description">
     <value>Profiles are saved connections with your choice of location, server, and protocol.</value>
@@ -2540,10 +2540,10 @@ Enjoy the best of Proton privacy.</value>
     <value>Najhitrejši brezplačni strežnik</value>
   </data>
   <data name="Server_Feature_B2B">
-    <value>Gateways</value>
+    <value>Prehodi</value>
   </data>
   <data name="Server_Feature_None">
-    <value>All countries</value>
+    <value>Vse države</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
