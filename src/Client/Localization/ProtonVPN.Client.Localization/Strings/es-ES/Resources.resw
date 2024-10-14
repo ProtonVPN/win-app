@@ -2349,7 +2349,7 @@ Disfruta lo mejor de la privacidad de Proton.</value>
     <value>Sexta cifra</value>
   </data>
   <data name="Main_Loading_SigningIn">
-    <value>Iniciando sesión, por favor espera...</value>
+    <value>Iniciando sesión. Espera...</value>
     <comment>Message in the loading screen when signing in or starting the app</comment>
   </data>
   <data name="Main_Loading_SigningOut">

@@ -2501,7 +2501,7 @@ Njut av det bästa av Protons integritet.</value>
     <value>Låter dig ansluta till skrivare, högtalare och andra enheter i din enhets lokala nätverk.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
-    <value>NAT type</value>
+    <value>NAT-typ</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Description">
     <value>You won't be able to use port forwarding with Moderate NAT.</value>

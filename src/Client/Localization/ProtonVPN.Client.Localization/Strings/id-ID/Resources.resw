@@ -1635,7 +1635,7 @@ Latensi yang tinggi dapat memperlambat koneksi Anda.</value>
     <comment>The label for the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description">
-    <value>Log error membantu kami dalam melihat apa yang salah dan tindakan apa saja yang menyebabkan masalah Anda. Kami hanya akan menggunakan log ini untuk membantu insinyur kami memperbaiki bug yang ada.</value>
+    <value>Log error menampilkan kepada kami apa yang salah dan tindakan apa saja yang menyebabkan masalah Anda. Kami hanya akan menggunakan log ini untuk membantu para insinyur kami dalam memperbaiki bug yang ada.</value>
     <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_Header">
@@ -2646,7 +2646,7 @@ Nikmati yang terbaik dari rangkaian privasi Proton.</value>
     <value>Akses Beta</value>
   </data>
   <data name="Settings_General_BetaAccess_Description">
-    <value>Dapatkan akses dini dan bantu kami menguji versi Proton VPN yang baru</value>
+    <value>Dapatkan akses dini dan bantu kami menguji versi baru Proton VPN</value>
   </data>
   <data name="Settings_General_Language">
     <value>Bahasa</value>
