@@ -82,15 +82,6 @@ public class VpnCredentialsMapperTest
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
-    public void TestMapRightToLeft_ThrowsWhenNull()
-    {
-        VpnCredentialsIpcEntity entityToTest = null;
-
-        _mapper.Map(entityToTest);
-    }
-
-    [TestMethod]
     public void TestMapRightToLeft_WithCertificate()
     {
         VpnCredentialsIpcEntity entityToTest = new()

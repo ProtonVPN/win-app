@@ -20,7 +20,6 @@
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Crypto;
 using ProtonVPN.EntityMapping.Contracts;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Crypto;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
@@ -39,40 +38,18 @@ public class VpnCredentialsMapper : IMapper<VpnCredentials, VpnCredentialsIpcEnt
     {
         return new()
         {
-            Certificate = CreateConnectionCertificateIpcEntity(leftEntity),
+            Certificate = new()
+            {
+                Pem = leftEntity.ClientCertPem ?? string.Empty,
+                ExpirationDateUtc = DateTime.MinValue,
+            },
             ClientKeyPair = _entityMapper.Map<AsymmetricKeyPair, AsymmetricKeyPairIpcEntity>(leftEntity.ClientKeyPair)
-        };
-    }
-
-    private ConnectionCertificateIpcEntity CreateConnectionCertificateIpcEntity(VpnCredentials leftEntity)
-    {
-        return string.IsNullOrWhiteSpace(leftEntity.ClientCertPem)
-            ? null
-            : new()
-        {
-            Pem = leftEntity.ClientCertPem ?? string.Empty,
-            ExpirationDateUtc = DateTime.MinValue,
         };
     }
 
     public VpnCredentials Map(VpnCredentialsIpcEntity rightEntity)
     {
-        return IsCertificateCredential(rightEntity)
-            ? CreateCertificateVpnCredentials(rightEntity)
-            : throw new ArgumentNullException($"The {nameof(VpnCredentialsIpcEntity)} to be mapped is null.");
-    }
-
-    private bool IsCertificateCredential(VpnCredentialsIpcEntity rightEntity)
-    {
-        return rightEntity is not null &&
-               rightEntity.ClientKeyPair is not null &&
-               rightEntity.Certificate is not null &&
-               !string.IsNullOrWhiteSpace(rightEntity.Certificate.Pem);
-    }
-
-    private VpnCredentials CreateCertificateVpnCredentials(VpnCredentialsIpcEntity rightEntity)
-    {
         return new(rightEntity.Certificate.Pem,
-                   _entityMapper.Map<AsymmetricKeyPairIpcEntity, AsymmetricKeyPair>(rightEntity.ClientKeyPair));
+            _entityMapper.Map<AsymmetricKeyPairIpcEntity, AsymmetricKeyPair>(rightEntity.ClientKeyPair));
     }
 }

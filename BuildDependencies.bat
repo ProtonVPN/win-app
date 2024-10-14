@@ -22,6 +22,7 @@ if "%PLATFORM%"=="x64" (
     xcopy %currentDir%Setup\Native\x64\wireguard.dll %binDir% /y
     xcopy %currentDir%Setup\Native\x64\tunnel.dll %binDir% /y
     xcopy %currentDir%Setup\Native\x64\wireguard-tunnel-tcp.dll %binDir% /y
+    xcopy %currentDir%Setup\Native\x64\wintun.dll %binDir% /y
     xcopy %currentDir%Setup\Native\x64\libcrypto-3-x64.dll %resourcesDir% /y
     xcopy %currentDir%Setup\Native\x64\libpkcs11-helper-1.dll %resourcesDir% /y
     xcopy %currentDir%Setup\Native\x64\libssl-3-x64.dll %resourcesDir% /y
@@ -33,6 +34,7 @@ if "%PLATFORM%"=="arm64" (
     xcopy %currentDir%Setup\Native\arm64\wireguard.dll %binDir% /y
     xcopy %currentDir%Setup\Native\arm64\tunnel.dll %binDir% /y
     xcopy %currentDir%Setup\Native\arm64\wireguard-tunnel-tcp.dll %binDir% /y
+    xcopy %currentDir%Setup\Native\arm64\wintun.dll %binDir% /y
     xcopy %currentDir%Setup\Native\arm64\libcrypto-3-arm64.dll %resourcesDir% /y
     xcopy %currentDir%Setup\Native\arm64\libpkcs11-helper-1.dll %resourcesDir% /y
     xcopy %currentDir%Setup\Native\arm64\libssl-3-arm64.dll %resourcesDir% /y
