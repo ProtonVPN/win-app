@@ -18,6 +18,7 @@
 #define ProtonInstallerName "ProtonInstaller.exe"
 #define Webview2InstallerName "MicrosoftEdgeWebview2Setup.exe"
 #define InstallLogPath "{app}\Install.log.txt"
+#define ClearAppDataClientArg "-DoUninstallActions"
 
 #define ProtonDriveUpgradeCode "{F3B95BD2-1311-4B82-8B4A-B9EB7C0500ED}"
 
@@ -209,6 +210,9 @@ external 'RemovePinnedIcons@{app}\{#VersionFolder}\Resources\ProtonVPN.InstallAc
 
 function RemoveWfpObjects(): Integer;
 external 'RemoveWfpObjects@{app}\{#VersionFolder}\Resources\ProtonVPN.InstallActions.x86.dll cdecl uninstallonly';
+
+function LaunchUnelevatedProcessOnUninstall(processPath, args: String; isToWait: Boolean): Integer;
+external 'LaunchUnelevatedProcess@{app}\{#VersionFolder}\Resources\ProtonVPN.InstallActions.x86.dll cdecl uninstallonly';
 
 type
   TInt64Array = array of Int64;
@@ -744,6 +748,7 @@ begin
     Log('TAP uninstallation returned: ' + IntToStr(res));
     res := RemoveWfpObjects();
     Log('RemoveWfpObjects returned: ' + IntToStr(res));
+    LaunchUnelevatedProcessOnUninstall(ExpandConstant('{app}\{#VersionFolder}\{#MyAppExeName}'), '{#ClearAppDataClientArg}', True);
     UnloadDLL(ExpandConstant('{app}\{#VersionFolder}\Resources\ProtonVPN.InstallActions.x86.dll'));
   end;
 end;
