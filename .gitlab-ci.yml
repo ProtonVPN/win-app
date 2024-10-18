@@ -301,6 +301,7 @@ build-BTI-installer-x64:
     - .build-installer
   variables:
     BUILD_PATH: src/bin/win-x64/BTI/publish
+    PLATFORM: x64
 
 prepare-internal-beta-release:
   stage: internal-beta
