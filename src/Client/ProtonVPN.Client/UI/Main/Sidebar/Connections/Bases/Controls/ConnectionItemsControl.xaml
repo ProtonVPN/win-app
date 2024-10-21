@@ -30,8 +30,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:icons="using:ProtonVPN.Client.Common.UI.Assets.Icons"
              xmlns:local="using:ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Controls"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:models="using:ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Models"
              xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+             xmlns:profiles="using:ProtonVPN.Client.Models.Connections.Profiles"
              xmlns:recents="using:ProtonVPN.Client.Models.Connections.Recents"
              xmlns:selectors="using:ProtonVPN.Client.Selectors"
              xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
@@ -183,11 +183,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </custom:ConnectionRowButton>
 
                 <custom:DualConnectionRowButton.SecondaryCommandContent>
-                    <pathicons:ThreeDotsVertical />
+                    <pathicons:ThreeDotsVertical Size="Pixels20" />
                 </custom:DualConnectionRowButton.SecondaryCommandContent>
 
                 <custom:DualConnectionRowButton.SecondaryCommandFlyout>
                     <Flyout Closed="{x:Bind OnCollapseCountry}"
+                            Closing="OnMenuFlyoutClosing"
                             Opening="{x:Bind OnExpandCountry}"
                             Placement="{StaticResource LocationSubItemsFlyoutPlacement}">
 
@@ -222,10 +223,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   Style="{StaticResource InfoSettingsCardStyle}"
                                                   Visibility="{x:Bind HasVirtualServers, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <toolkit:SettingsCard.HeaderIcon>
-                                    <pathicons:Globe />
+                                    <pathicons:Globe Size="Pixels20" />
                                 </toolkit:SettingsCard.HeaderIcon>
                                 <toolkit:SettingsCard.ActionIcon>
-                                    <pathicons:ChevronRight />
+                                    <pathicons:ChevronRight Size="Pixels20" />
                                 </toolkit:SettingsCard.ActionIcon>
                             </toolkit:SettingsCard>
 
@@ -277,16 +278,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             IsRestricted="{x:Bind IsRestricted}"
                                             IsUnderMaintenance="{x:Bind IsUnderMaintenance}">
                     <custom:ConnectionRowButton.Icon>
-                        <pathicons:MapPin />
+                        <pathicons:MapPin Size="Pixels20" />
                     </custom:ConnectionRowButton.Icon>
                 </custom:ConnectionRowButton>
 
                 <custom:DualConnectionRowButton.SecondaryCommandContent>
-                    <pathicons:ThreeDotsVertical />
+                    <pathicons:ThreeDotsVertical Size="Pixels20" />
                 </custom:DualConnectionRowButton.SecondaryCommandContent>
 
                 <custom:DualConnectionRowButton.SecondaryCommandFlyout>
                     <Flyout Closed="{x:Bind OnCollapseState}"
+                            Closing="OnMenuFlyoutClosing"
                             Opening="{x:Bind OnExpandState}"
                             Placement="{StaticResource LocationSubItemsFlyoutPlacement}">
 
@@ -320,10 +322,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   Style="{StaticResource InfoSettingsCardStyle}"
                                                   Visibility="{x:Bind HasVirtualServers, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <toolkit:SettingsCard.HeaderIcon>
-                                    <pathicons:Globe />
+                                    <pathicons:Globe Size="Pixels20" />
                                 </toolkit:SettingsCard.HeaderIcon>
                                 <toolkit:SettingsCard.ActionIcon>
-                                    <pathicons:ChevronRight />
+                                    <pathicons:ChevronRight Size="Pixels20" />
                                 </toolkit:SettingsCard.ActionIcon>
                             </toolkit:SettingsCard>
 
@@ -351,16 +353,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             IsRestricted="{x:Bind IsRestricted}"
                                             IsUnderMaintenance="{x:Bind IsUnderMaintenance}">
                     <custom:ConnectionRowButton.Icon>
-                        <pathicons:MapPin />
+                        <pathicons:MapPin Size="Pixels20" />
                     </custom:ConnectionRowButton.Icon>
                 </custom:ConnectionRowButton>
 
                 <custom:DualConnectionRowButton.SecondaryCommandContent>
-                    <pathicons:ThreeDotsVertical />
+                    <pathicons:ThreeDotsVertical Size="Pixels20" />
                 </custom:DualConnectionRowButton.SecondaryCommandContent>
 
                 <custom:DualConnectionRowButton.SecondaryCommandFlyout>
                     <Flyout Closed="{x:Bind OnCollapseCity}"
+                            Closing="OnMenuFlyoutClosing"
                             Opening="{x:Bind OnExpandCity}"
                             Placement="{StaticResource LocationSubItemsFlyoutPlacement}"
                             ScrollViewer.HorizontalScrollMode="Disabled">
@@ -395,10 +398,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   Style="{StaticResource InfoSettingsCardStyle}"
                                                   Visibility="{x:Bind HasVirtualServers, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <toolkit:SettingsCard.HeaderIcon>
-                                    <pathicons:Globe />
+                                    <pathicons:Globe Size="Pixels20" />
                                 </toolkit:SettingsCard.HeaderIcon>
                                 <toolkit:SettingsCard.ActionIcon>
-                                    <pathicons:ChevronRight />
+                                    <pathicons:ChevronRight Size="Pixels20" />
                                 </toolkit:SettingsCard.ActionIcon>
                             </toolkit:SettingsCard>
 
@@ -451,11 +454,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </custom:ConnectionRowButton>
 
                 <custom:DualConnectionRowButton.SecondaryCommandContent>
-                    <pathicons:ThreeDotsVertical />
+                    <pathicons:ThreeDotsVertical Size="Pixels20" />
                 </custom:DualConnectionRowButton.SecondaryCommandContent>
 
                 <custom:DualConnectionRowButton.SecondaryCommandFlyout>
                     <Flyout Closed="{x:Bind OnCollapseGateway}"
+                            Closing="OnMenuFlyoutClosing"
                             Opening="{x:Bind OnExpandGateway}"
                             Placement="{StaticResource LocationSubItemsFlyoutPlacement}">
 
@@ -530,38 +534,102 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             SupportsTor="{x:Bind IsTor}"
                                             TorLabel="{x:Bind Localizer.Get('Countries_Tor')}">
                     <custom:ConnectionRowButton.Icon>
-                        <custom:ComplexCountryFlag Width="30"
-                                                   EntryCountryCode="{x:Bind EntryCountry}"
-                                                   ExitCountryCode="{x:Bind ExitCountry}"
-                                                   IsSecureCore="{x:Bind IsSecureCore}"
-                                                   MainFlagType="{x:Bind FlagType}" />
+                        <Grid Width="30">
+                            <custom:ConnectionProfileIcon Width="30"
+                                                          CountryCode="{x:Bind ExitCountry}"
+                                                          FlagType="{x:Bind FlagType}"
+                                                          IsFlagVisible="True"
+                                                          ProfileCategory="{x:Bind Profile.Category}"
+                                                          ProfileColor="{x:Bind Profile.Color}"
+                                                          Visibility="{x:Bind IsProfileIntent, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <custom:ComplexCountryFlag Width="30"
+                                                       EntryCountryCode="{x:Bind EntryCountry}"
+                                                       ExitCountryCode="{x:Bind ExitCountry}"
+                                                       IsSecureCore="{x:Bind IsSecureCore}"
+                                                       MainFlagType="{x:Bind FlagType}"
+                                                       Visibility="{x:Bind IsProfileIntent, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+                        </Grid>
                     </custom:ConnectionRowButton.Icon>
                 </custom:ConnectionRowButton>
 
                 <custom:DualConnectionRowButton.SecondaryCommandContent>
-                    <pathicons:ThreeDotsVertical />
+                    <pathicons:ThreeDotsVertical Size="Pixels20" />
                 </custom:DualConnectionRowButton.SecondaryCommandContent>
 
                 <custom:DualConnectionRowButton.SecondaryCommandFlyout>
-                    <MenuFlyout Placement="{StaticResource LocationSubItemsFlyoutPlacement}">
+                    <MenuFlyout Closing="OnMenuFlyoutClosing"
+                                Placement="{StaticResource LocationSubItemsFlyoutPlacement}">
                         <MenuFlyoutItem Command="{x:Bind PinCommand, Mode=OneTime}"
                                         Text="{x:Bind Localizer.Get('Home_Recents_Pin')}"
                                         Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}">
                             <MenuFlyoutItem.Icon>
-                                <pathicons:PinFilled />
+                                <pathicons:PinFilled Size="Pixels20" />
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
                         <MenuFlyoutItem Command="{x:Bind UnpinCommand, Mode=OneTime}"
                                         Text="{x:Bind Localizer.Get('Home_Recents_Unpin')}"
                                         Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}">
                             <MenuFlyoutItem.Icon>
-                                <pathicons:PinSlashFilled />
+                                <pathicons:PinSlashFilled Size="Pixels20" />
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
                         <MenuFlyoutItem Command="{x:Bind RemoveCommand, Mode=OneTime}"
                                         Text="{x:Bind Localizer.Get('Common_Actions_Remove')}">
                             <MenuFlyoutItem.Icon>
-                                <pathicons:TrashCross />
+                                <pathicons:TrashCross Size="Pixels20" />
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                    </MenuFlyout>
+                </custom:DualConnectionRowButton.SecondaryCommandFlyout>
+
+            </custom:DualConnectionRowButton>
+
+        </DataTemplate>
+
+        <DataTemplate x:Key="ProfileConnectionItemTemplate"
+                      x:DataType="profiles:ProfileConnectionItem">
+
+            <custom:DualConnectionRowButton ToolTipService.ToolTip="{x:Bind ToolTip}">
+
+                <custom:ConnectionRowButton ActionLabel="{x:Bind PrimaryActionLabel}"
+                                            Command="{x:Bind ToggleConnectionCommand, Mode=OneTime}"
+                                            Description="{x:Bind Description}"
+                                            Header="{x:Bind Header}"
+                                            IsActiveConnection="{x:Bind IsActiveConnection}"
+                                            IsDescriptionVisible="{x:Bind IsDescriptionVisible}"
+                                            IsRestricted="{x:Bind IsRestricted}"
+                                            IsUnderMaintenance="{x:Bind IsUnderMaintenance}"
+                                            P2PLabel="{x:Bind Localizer.Get('Countries_P2P')}"
+                                            SupportsP2P="{x:Bind IsP2P}"
+                                            SupportsTor="{x:Bind IsTor}"
+                                            TorLabel="{x:Bind Localizer.Get('Countries_Tor')}">
+                    <custom:ConnectionRowButton.Icon>
+                        <custom:ConnectionProfileIcon Width="30"
+                                                      CountryCode="{x:Bind ExitCountryCode}"
+                                                      FlagType="{x:Bind FlagType}"
+                                                      IsFlagVisible="True"
+                                                      ProfileCategory="{x:Bind Profile.Category}"
+                                                      ProfileColor="{x:Bind Profile.Color}" />
+                    </custom:ConnectionRowButton.Icon>
+                </custom:ConnectionRowButton>
+
+                <custom:DualConnectionRowButton.SecondaryCommandContent>
+                    <pathicons:ThreeDotsVertical Size="Pixels20" />
+                </custom:DualConnectionRowButton.SecondaryCommandContent>
+
+                <custom:DualConnectionRowButton.SecondaryCommandFlyout>
+                    <MenuFlyout Closing="OnMenuFlyoutClosing"
+                                Placement="BottomEdgeAlignedRight">
+                        <MenuFlyoutItem Command="{x:Bind EditProfileCommand}"
+                                        Text="{x:Bind Localizer.Get('Common_Actions_Edit')}">
+                            <MenuFlyoutItem.Icon>
+                                <pathicons:Pencil Size="Pixels20" />
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Command="{x:Bind DeleteProfileCommand}"
+                                        Text="{x:Bind Localizer.Get('Common_Actions_Delete')}">
+                            <MenuFlyoutItem.Icon>
+                                <pathicons:TrashCrossFilled Size="Pixels20" />
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
                     </MenuFlyout>
@@ -579,6 +647,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   GatewayLocationItemTemplate="{StaticResource GatewayLocationItemTemplate}"
                                                   GatewayServerLocationItemTemplate="{StaticResource GatewayServerLocationItemTemplate}"
                                                   GenericCountryLocationItemTemplate="{StaticResource GenericCountryLocationItemTemplate}"
+                                                  ProfileConnectionItemTemplate="{StaticResource ProfileConnectionItemTemplate}"
                                                   RecentConnectionItemTemplate="{StaticResource RecentConnectionItemTemplate}"
                                                   ServerLocationItemTemplate="{StaticResource ServerLocationItemTemplate}"
                                                   StateLocationItemTemplate="{StaticResource StateLocationItemTemplate}" />

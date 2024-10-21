@@ -27,7 +27,7 @@ public class NotNullToVisibilityConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, string language)
     {
-        return value == null || string.IsNullOrEmpty(value.ToString())
+        return value is null || string.IsNullOrEmpty(value.ToString())
             ? Visibility.Collapsed 
             : Visibility.Visible;
     }

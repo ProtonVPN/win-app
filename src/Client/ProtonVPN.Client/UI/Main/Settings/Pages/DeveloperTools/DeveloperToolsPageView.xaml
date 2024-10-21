@@ -76,6 +76,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             </toolkit:SettingsCard>
 
+            <toolkit:SettingsCard Header="Info banners"
+                                  IsTabStop="False"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                <Button Command="{x:Bind ViewModel.ResetInfoBannersCommand, Mode=OneTime}"
+                        Content="Reset"
+                        Style="{StaticResource PrimaryButtonStyle}" />
+            </toolkit:SettingsCard>
+
         </StackPanel>
     </custom:PageContentControl>
 </Page>

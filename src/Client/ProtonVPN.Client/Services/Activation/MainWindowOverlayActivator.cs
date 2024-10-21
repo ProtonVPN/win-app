@@ -91,14 +91,6 @@ public class MainWindowOverlayActivator : OverlayActivatorBase<MainWindow>, IMai
         return ShowOverlayAsync<TorOverlayViewModel>();
     }
 
-    public Task<ContentDialogResult> ShowProfilesInfoOverlayAsync()
-    {
-        return ShowMessageAsync(new()
-        {
-            Title = "Profiles Info overlay", Message = "TODO", CloseButtonText = "Close",
-        });
-    }
-
     public Task<ContentDialogResult> ShowSmartRoutingInfoOverlayAsync()
     {
         return ShowOverlayAsync<SmartRoutingOverlayViewModel>();

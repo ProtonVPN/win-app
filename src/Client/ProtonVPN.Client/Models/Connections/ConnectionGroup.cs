@@ -19,13 +19,10 @@
 
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
-using ProtonVPN.Client.Common.UI.Assets.Icons.Base;
-using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Extensions;
-using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Models;
+using ProtonVPN.Client.Localization.Contracts;
 
 namespace ProtonVPN.Client.Models.Connections;
 
@@ -80,8 +77,6 @@ public partial class ConnectionGroup : List<ConnectionItemBase>
 
             ConnectionGroupType.TorCountries or
             ConnectionGroupType.TorServers => _overlayActivator.ShowTorInfoOverlayAsync(),
-
-            ConnectionGroupType.Profiles => _overlayActivator.ShowProfilesInfoOverlayAsync(),
 
             _ => Task.CompletedTask
         };

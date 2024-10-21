@@ -126,9 +126,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
 
-                                    <Grid Grid.Row="0"
+                                    <Grid Grid.Row="0" 
                                           ColumnSpacing="24"
-                                          Margin="4">
+                                          Padding="2,4,4,4">
 
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
@@ -136,11 +136,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         </Grid.ColumnDefinitions>
 
                                         <ContentControl x:Name="Title"
-                                                        Grid.Column="0"
-                                                        Margin="8,5,0,0"
-                                                        HorizontalAlignment="Left"
+                                                        Grid.Column="0" 
+                                                        Margin="8,0,0,0"
+                                                        HorizontalAlignment="Stretch"
                                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                        VerticalAlignment="Top"
+                                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                         AutomationProperties.HeadingLevel="Level1"
                                                         Content="{TemplateBinding Title}"
                                                         ContentTemplate="{TemplateBinding TitleTemplate}"
@@ -157,7 +157,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                       Content="{TemplateBinding Content}"
                                                                       ContentTemplate="{TemplateBinding ContentTemplate}"
                                                                       ContentTransitions="{TemplateBinding ContentTransitions}"
-                                                                      LineHeight="{StaticResource SubtitleLineHeight}"
                                                                       MaxLines="2"
                                                                       TextWrapping="Wrap" />
                                                 </ControlTemplate>
@@ -177,7 +176,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         </custom:GhostButton>
                                     </Grid>
 
-                                    <Border Grid.Row="1" 
+                                    <Border Grid.Row="1"
                                             Margin="{ThemeResource ContentDialogContentMargin}">
                                         <ScrollViewer x:Name="ContentScrollViewer"
                                                       Margin="0,0,-12,0"

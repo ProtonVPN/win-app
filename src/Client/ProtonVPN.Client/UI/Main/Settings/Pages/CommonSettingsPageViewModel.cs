@@ -139,7 +139,7 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter)
-        : base(settings, parentViewNavigator, localizer, logger, issueReporter)
+        : base(parentViewNavigator, localizer, logger, issueReporter, settings)
     {
         _themeSelector = themeSelector;
         _localizationService = localizationService;

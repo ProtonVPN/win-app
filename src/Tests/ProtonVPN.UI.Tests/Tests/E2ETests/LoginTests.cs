@@ -27,8 +27,8 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("1")]
 public class LoginTests : TestSession
 {
+    private NavigationRobot _navigationRobot = new();
     private LoginRobot _loginRobot = new();
-    private HomeRobot _homeRobot = new();
 
     private const string INCORRECT_CREDENTIALS_ERROR = "The password is not correct. Please try again with a different password.";
     private const string INCORRECT_2FA_CODE_ERROR = "Incorrect code. Please try again.";
@@ -61,20 +61,26 @@ public class LoginTests : TestSession
     [Test]
     public void LoginWithIncorrectCredentials()
     {
+        _navigationRobot
+            .Verify.IsOnLoginPage();
+
         _loginRobot
-            .Login(TestUserData.IncorrectUser);
-        _loginRobot
+            .Login(TestUserData.IncorrectUser)
             .Verify.ErrorMessageIsDisplayed(INCORRECT_CREDENTIALS_ERROR);
     }
 
     [Test]
     public void LoginWithTwoFactor()
     {
+        _navigationRobot
+            .Verify.IsOnLoginPage();
+
         _loginRobot
             .Login(TestUserData.TwoFactorUser)
             .EnterTwoFactorCode(TestUserData.GetTwoFactorCode());
-        _homeRobot
-            .Verify.IsLoggedIn();
+
+        _navigationRobot
+            .Verify.IsOnMainPage();
     }
 
     [Test]
@@ -94,9 +100,13 @@ public class LoginTests : TestSession
 
     private void LoginWithUser(TestUserData user)
     {
+        _navigationRobot
+            .Verify.IsOnLoginPage();
+
         _loginRobot
             .Login(user);
-        _homeRobot
-            .Verify.IsLoggedIn();
+
+        _navigationRobot
+            .Verify.IsOnMainPage();
     }
 }

@@ -28,11 +28,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:attachedProperties="using:ProtonVPN.Client.Common.UI.AttachedProperties"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
+      AutomationProperties.AutomationId="SignInPage"
+      AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('SignIn_Form_Title')}"
       mc:Ignorable="d">
 
     <StackPanel Spacing="24"
-                VerticalAlignment="Center"
-                AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('SignIn_Form')}">
+                VerticalAlignment="Center">
 
         <custom:GhostButton Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Back')}"
                             HorizontalAlignment="Left"

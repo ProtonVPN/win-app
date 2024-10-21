@@ -28,10 +28,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:attachedProperties="using:ProtonVPN.Client.Common.UI.AttachedProperties"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
+      AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Login_TwoFactorForm_Title')}"
       mc:Ignorable="d">
 
     <Page.Resources>
-        <Style x:Key="TwoFactorNumberBox" BasedOn="{StaticResource StandardTextBoxStyle}" TargetType="TextBox">
+        <Style x:Key="TwoFactorNumberBox" BasedOn="{StaticResource DefaultTextBoxStyle}" TargetType="TextBox">
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="Width" Value="52" />
             <Setter Property="Height" Value="40" />

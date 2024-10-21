@@ -25,11 +25,18 @@ using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Client.Contracts.Bases.ViewModels;
 using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Contracts;
+using Microsoft.UI.Xaml.Navigation;
+using ProtonVPN.Client.Contracts.Bases;
+using ProtonVPN.Client.Contracts.Services.Mapping.Bases;
+using ProtonVPN.Client.Contracts.Services.Mapping;
+using System.Linq;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections;
 
 public partial class ConnectionsPageViewModel : PageViewModelBase<ISidebarViewNavigator, IConnectionsViewNavigator>
 {
+    private readonly IPageViewMapper _pageViewMapper;
+
     [ObservableProperty]
     private IConnectionPage? _selectedConnectionPage;
 
@@ -41,10 +48,22 @@ public partial class ConnectionsPageViewModel : PageViewModelBase<ISidebarViewNa
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter,
-        IEnumerable<IConnectionPage> connectionPages)
+        IEnumerable<IConnectionPage> connectionPages,
+        IPageViewMapper pageViewMapper)
         : base(parentViewNavigator, childViewNavigator, localizer, logger, issueReporter)
     {
+        _pageViewMapper = pageViewMapper;
+
         ConnectionPages = new(connectionPages.OrderBy(p => p.SortIndex));
+    }
+
+    protected override void OnChildNavigation(NavigationEventArgs e)
+    {
+        base.OnChildNavigation(e);
+
+        Type connectionPageType = _pageViewMapper.GetViewModelType(e.SourcePageType);
+
+        SelectedConnectionPage = ConnectionPages.FirstOrDefault(p => p.GetType().IsAssignableFrom(connectionPageType));
     }
 
     partial void OnSelectedConnectionPageChanged(IConnectionPage? value)

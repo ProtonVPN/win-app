@@ -17,18 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
-using ProtonVPN.Client.Logic.Servers.Contracts;
-using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
-using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Factories;
-using ProtonVPN.Client.Models.Connections.Countries;
-using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Models;
+using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
+using ProtonVPN.Client.Models.Connections;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Countries.SecureCore;
 

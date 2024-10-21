@@ -31,7 +31,8 @@ using ProtonVPN.Client.Contracts.Bases.ViewModels;
 using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Factories;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Contracts;
-using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Models;
+using ProtonVPN.Client.Models.Connections;
+
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;
 

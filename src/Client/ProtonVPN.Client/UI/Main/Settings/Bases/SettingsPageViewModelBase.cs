@@ -27,16 +27,16 @@ using ProtonVPN.Client.Contracts.Services.Navigation;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Bases;
 
-public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISettingsViewNavigator>
+public abstract class SettingsPageViewModelBase : PageViewModelBase<ISettingsViewNavigator>
 {
     protected readonly ISettings Settings;
 
     protected SettingsPageViewModelBase(
-        ISettings settings,
         ISettingsViewNavigator parentViewNavigator,
         ILocalizationProvider localizer,
         ILogger logger,
-        IIssueReporter issueReporter)
+        IIssueReporter issueReporter,
+        ISettings settings)
         : base(parentViewNavigator, localizer, logger, issueReporter)
     {
         Settings = settings;

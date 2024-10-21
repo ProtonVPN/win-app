@@ -25,6 +25,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:details="using:ProtonVPN.Client.UI.Main.Home.Details"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      AutomationProperties.AutomationId="HomePage"
+      AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Automation_Properties_Home_Page')}"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
       mc:Ignorable="d">

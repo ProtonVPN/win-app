@@ -29,26 +29,51 @@ public class ConnectionTests : TestSession
 {
     private LoginRobot _loginRobot = new();
     private HomeRobot _homeRobot = new();
+    private NavigationRobot _navigationRobot = new();
+    private SidebarRobot _sidebarRobot = new();
 
     [SetUp]
     public void TestInitialize()
     {
         LaunchApp();
+
+        _loginRobot
+            .Login(TestUserData.PlusUser);
+
+        _navigationRobot
+            .Verify.IsOnMainPage()
+                   .IsOnHomePage();
+
+        _homeRobot
+            .DismissWelcomeModal();
     }
 
     [Test]
     public void QuickConnect()
     {
-        _loginRobot
-            .Login(TestUserData.PlusUser);
-
         _homeRobot
-            .Verify.IsLoggedIn()
-            .DismissWelcomeModal()
             .QuickConnect()
             .Verify.IsConnected();
+    }
 
-        _homeRobot.Disconnect()
+    [Test]
+    public void ConnectToCountry()
+    {
+        const string country = "Australia";
+
+        _navigationRobot
+            .Verify.IsOnConnectionsPage();
+        _sidebarRobot
+            .NavigateToAllCountriesTab();
+        _navigationRobot
+            .Verify.IsOnCountriesPage();
+        _sidebarRobot
+            .ConnectToCountry(country);
+        _homeRobot
+            .Verify.IsConnected();
+        _sidebarRobot
+            .DisconnectFromCountry(country);
+        _homeRobot
             .Verify.IsDisconnected();
     }
 

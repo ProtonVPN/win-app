@@ -22,12 +22,16 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Models.Connections.Countries;
 using ProtonVPN.Client.Models.Connections.Gateways;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Models.Connections;
 
 namespace ProtonVPN.Client.Factories;
 
 public interface ILocationItemFactory
 {
     GenericCountryLocationItem GetGenericCountry(CountriesConnectionType connectionType, ConnectionIntentKind intentKind, bool excludeMyCountry);
+
+    GenericFastestLocationItem GetGenericFastestLocation(ConnectionGroupType groupType, ILocationIntent locationIntent);
 
     CountryLocationItem GetCountry(string exitCountryCode);
 

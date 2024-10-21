@@ -26,7 +26,7 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
 [Category("1")]
-public class LoginSSO : TestSession
+public class LoginSsoTests : TestSession
 {
     private LoginRobot _loginRobot = new();
     private HomeRobot _homeRobot = new();

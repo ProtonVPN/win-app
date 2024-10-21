@@ -41,7 +41,7 @@ using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.Factories;
 using ProtonVPN.Client.Models.Connections;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Contracts;
-using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Models;
+
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;
 

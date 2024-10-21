@@ -21,19 +21,18 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Data;
 using ProtonVPN.Client.Common.Collections;
+using ProtonVPN.Client.Contracts.Services.Activation;
+using ProtonVPN.Client.Factories;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
-using ProtonVPN.Client.Settings.Contracts.Models;
-using ProtonVPN.Client.Contracts.Services.Activation;
-using ProtonVPN.Client.Factories;
-using ProtonVPN.Client.Models.Connections;
 using ProtonVPN.Client.Models.Connections.Countries;
+using ProtonVPN.Client.Settings.Contracts.Models;
 
-namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Models;
+namespace ProtonVPN.Client.Models.Connections;
 
 public abstract partial class HostLocationItemBase : LocationItemBase
 {
@@ -122,7 +121,7 @@ public abstract partial class HostLocationItemBase : LocationItemBase
 
     protected abstract IEnumerable<ConnectionItemBase> GetSubItems();
 
-    protected void FetchSubItems()
+    public void FetchSubItems()
     {
         SubItems.Reset(
             GetSubItems().OrderBy(item => item.GroupType)

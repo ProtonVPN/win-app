@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -27,12 +27,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
       x:DefaultBindMode="OneWay"
+      AutomationProperties.AutomationId="CommonSettingsPage"
+      AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Automation_Properties_Settings_Common_Page')}"
       NavigationCacheMode="Required"
       mc:Ignorable="d">
 
     <Page.Resources>
-        <Style x:Key="SettingsSectionHeaderTextBlockStyle" BasedOn="{StaticResource BodyStrongTextBlockStyle}"
-               TargetType="TextBlock">
+        <Style x:Key="SettingsSectionHeaderTextBlockStyle" BasedOn="{StaticResource BodyStrongTextBlockStyle}" TargetType="TextBlock">
             <Setter Property="Margin" Value="2,20,0,12" />
             <Setter Property="AutomationProperties.HeadingLevel" Value="Level2" />
         </Style>
