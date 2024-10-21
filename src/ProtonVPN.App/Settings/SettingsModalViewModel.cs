@@ -55,9 +55,9 @@ namespace ProtonVPN.Settings
             new(PROTOCOL_AUTO, Translation.Get("Settings_Connection_DefaultProtocol_val_Smart")),
             new(PROTOCOL_WIREGUARD_UDP, Translation.Get("Settings_Connection_DefaultProtocol_val_WireGuardUdp")),
             new(PROTOCOL_WIREGUARD_TCP, Translation.Get("Settings_Connection_DefaultProtocol_val_WireGuardTcp")),
+            new(PROTOCOL_STEALTH, Translation.Get("Settings_Connection_DefaultProtocol_val_WireGuardTls")),
             new(PROTOCOL_OPENVPN_UDP, Translation.Get("Settings_Connection_DefaultProtocol_val_Udp")),
             new(PROTOCOL_OPENVPN_TCP, Translation.Get("Settings_Connection_DefaultProtocol_val_Tcp")),
-            new(PROTOCOL_STEALTH, Translation.Get("Settings_Connection_DefaultProtocol_val_WireGuardTls")),
         };
 
         private const string PROTOCOL_AUTO = "auto";

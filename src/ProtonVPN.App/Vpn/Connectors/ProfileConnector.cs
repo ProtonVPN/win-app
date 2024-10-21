@@ -376,15 +376,11 @@ namespace ProtonVPN.Vpn.Connectors
             if (_featureFlagsProvider.IsStealthEnabled)
             {
                 SetProtocolBucket(VpnProtocol.WireGuardTcp, preferredProtocols, fallbackProtocols);
+                SetProtocolBucket(VpnProtocol.WireGuardTls, preferredProtocols, fallbackProtocols);
             }
 
             SetProtocolBucket(VpnProtocol.OpenVpnUdp, preferredProtocols, fallbackProtocols);
             SetProtocolBucket(VpnProtocol.OpenVpnTcp, preferredProtocols, fallbackProtocols);
-
-            if (_featureFlagsProvider.IsStealthEnabled)
-            {
-                SetProtocolBucket(VpnProtocol.WireGuardTls, preferredProtocols, fallbackProtocols);
-            }
 
             preferredProtocols.AddRange(fallbackProtocols);
 

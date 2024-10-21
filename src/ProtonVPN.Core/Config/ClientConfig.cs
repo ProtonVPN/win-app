@@ -108,11 +108,11 @@ namespace ProtonVPN.Core.Config
                 if (response.Success)
                 {
                     _lastSuccessfulUpdateTime = DateTime.UtcNow;
-                    _appSettings.OpenVpnTcpPorts = response.Value.DefaultPorts.OpenVpn.Tcp;
-                    _appSettings.OpenVpnUdpPorts = response.Value.DefaultPorts.OpenVpn.Udp;
-                    _appSettings.WireGuardPorts = response.Value.DefaultPorts.WireGuard.Udp.Where(IsWireGuardPortSupported).ToArray();
-                    _appSettings.WireGuardTcpPorts = response.Value.DefaultPorts.WireGuard.Tcp.Where(IsWireGuardPortSupported).ToArray();
-                    _appSettings.WireGuardTlsPorts = response.Value.DefaultPorts.WireGuard.Tls.Where(IsWireGuardPortSupported).ToArray();
+                    _appSettings.OpenVpnTcpPorts = CreateEmptyArrayIfNull(response.Value.DefaultPorts?.OpenVpn?.Tcp);
+                    _appSettings.OpenVpnUdpPorts = CreateEmptyArrayIfNull(response.Value.DefaultPorts?.OpenVpn?.Udp);
+                    _appSettings.WireGuardPorts = CreateEmptyArrayIfNull(response.Value.DefaultPorts?.WireGuard?.Udp).Where(IsWireGuardPortSupported).ToArray();
+                    _appSettings.WireGuardTcpPorts = CreateEmptyArrayIfNull(response.Value.DefaultPorts?.WireGuard?.Tcp).Where(IsWireGuardPortSupported).ToArray();
+                    _appSettings.WireGuardTlsPorts = CreateEmptyArrayIfNull(response.Value.DefaultPorts?.WireGuard?.Tls).Where(IsWireGuardPortSupported).ToArray();
                     _appSettings.FeatureNetShieldEnabled = response.Value.FeatureFlags.NetShield;
                     _appSettings.FeatureNetShieldStatsEnabled = response?.Value?.FeatureFlags?.NetShieldStats ?? false;
 
@@ -194,6 +194,11 @@ namespace ProtonVPN.Core.Config
             catch
             {
             }
+        }
+
+        private static int[] CreateEmptyArrayIfNull(int[]? array)
+        {
+            return array ?? [];
         }
 
         private bool IsWireGuardPortSupported(int port)

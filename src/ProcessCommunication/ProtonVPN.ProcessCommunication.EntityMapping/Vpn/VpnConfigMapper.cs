@@ -45,7 +45,7 @@ public class VpnConfigMapper : IMapper<VpnConfig, VpnConfigIpcEntity>
         }
         Dictionary<VpnProtocolIpcEntity, int[]> portConfig = leftEntity.Ports.ToDictionary(
             p => _entityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(p.Key),
-            p => p.Value.ToArray());
+            p => ReadOnlyCollectionToArray(p.Value));
 
         return new VpnConfigIpcEntity
         {
@@ -62,6 +62,11 @@ public class VpnConfigMapper : IMapper<VpnConfig, VpnConfigIpcEntity>
         };
     }
 
+    private static int[] ReadOnlyCollectionToArray(IReadOnlyCollection<int>? collection)
+    {
+        return collection?.ToArray() ?? [];
+    }
+
     public VpnConfig Map(VpnConfigIpcEntity rightEntity)
     {
         if (rightEntity is null)
@@ -71,7 +76,7 @@ public class VpnConfigMapper : IMapper<VpnConfig, VpnConfigIpcEntity>
         }
         Dictionary<VpnProtocol, IReadOnlyCollection<int>> portConfig = rightEntity.Ports.ToDictionary(
             p => _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(p.Key),
-            p => (IReadOnlyCollection<int>)p.Value.ToList());
+            p => ArrayToReadOnlyCollection(p.Value));
 
         return new VpnConfig(
             new VpnConfigParameters
@@ -87,5 +92,10 @@ public class VpnConfigMapper : IMapper<VpnConfig, VpnConfigIpcEntity>
                 SplitTcp = rightEntity.SplitTcp,
                 PortForwarding = rightEntity.PortForwarding,
             });
+    }
+
+    private static IReadOnlyCollection<int> ArrayToReadOnlyCollection(int[]? array)
+    {
+        return (IReadOnlyCollection<int>)array?.ToList() ?? [];
     }
 }
