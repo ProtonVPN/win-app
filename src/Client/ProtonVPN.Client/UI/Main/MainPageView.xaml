@@ -22,14 +22,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:controls="using:CommunityToolkit.WinUI.Controls"
-      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="using:ProtonVPN.Client.UI.Main"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       xmlns:sidebar="using:ProtonVPN.Client.UI.Main.Sidebar"
-      xmlns:temp="using:ProtonVPN.Client.TEMP"
       xmlns:widgets="using:ProtonVPN.Client.UI.Main.Widgets"
+      xmlns:map="using:ProtonVPN.Client.UI.Main.Map"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
       mc:Ignorable="d">
@@ -43,31 +40,45 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Page.Resources>
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="SidebarColumn"
+                              Width="{x:Bind  MainSplitView.OpenPaneLength, Converter={StaticResource DoubleToPixelGridLengthConverter}}"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="{x:Bind SideWidgetsHostComponent.ActualWidth, Converter={StaticResource DoubleToPixelGridLengthConverter}}"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="{Binding Source={StaticResource MainTitleBarHeight}, Converter={StaticResource DoubleToPixelGridLengthConverter}}" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
+        <map:MapComponentView x:Name="MapView"
+                              Grid.Row="0"
+                              Grid.Column="1"
+                              Grid.RowSpan="2" />
+
         <Grid Grid.Row="0"
               Grid.RowSpan="2"
+              Grid.Column="0"
+              Grid.ColumnSpan="3"
               Height="{StaticResource ConnectionStatusGradientHeight}"
               VerticalAlignment="Top">
-            <Border x:Name="OverlayGradient"
-                    Background="{ThemeResource GradientFadingColorBrush}" />
+            <Border Background="{ThemeResource GradientFadingColorBrush}" />
             <Border x:Name="StatusGradient"
                     Background="{ThemeResource GradientUnprotectedColorBrush}" />
         </Grid>
 
         <Grid Grid.Row="1"
               Margin="8"
-              ColumnSpacing="8">
+              ColumnSpacing="8"
+              Grid.Column="0"
+              Grid.ColumnSpan="3">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <SplitView x:Name="svMain"
+            <SplitView x:Name="MainSplitView"
                        Grid.Row="0"
                        CompactPaneLength="54"
                        DisplayMode="{x:Bind ViewModel.SidebarDisplayMode}"
@@ -80,7 +91,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   Grid.Column="0"
                                                   IsSidebarExpanded="{x:Bind ViewModel.IsSidebarExpanded}"
                                                   PointerEntered="OnSidebarPointerEntered"
-                                                  PointerExited="OnSidebarPointerExited" />
+                                                  PointerExited="OnSidebarPointerExited" 
+                                                  Canvas.ZIndex="2"/>
                 </SplitView.Pane>
 
                 <Grid>
@@ -91,7 +103,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                     <Border Grid.Column="0"
                             Width="12">
-                        <controls:PropertySizer Binding="{x:Bind svMain.OpenPaneLength, Mode=TwoWay}"
+                        <controls:PropertySizer Binding="{x:Bind MainSplitView.OpenPaneLength, Mode=TwoWay}"
                                                 Maximum="440"
                                                 Minimum="240"
                                                 Visibility="{x:Bind ViewModel.IsSidebarExpanded}" />
@@ -105,7 +117,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </SplitView>
 
             <widgets:SideWidgetsHostComponentView x:Name="SideWidgetsHostComponent"
-                                                  Grid.Column="1" />
+                                                  Grid.Column="1" 
+                                                  Canvas.ZIndex="2"/>
 
         </Grid>
 
@@ -115,7 +128,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <VisualState x:Name="Connecting">
                     <VisualState.StateTriggers>
-                        <StateTrigger IsActive="{x:Bind ViewModel.IsConnecting, Mode=OneWay}" />
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsConnecting}" />
                     </VisualState.StateTriggers>
                     <Storyboard>
                         <ColorAnimation EnableDependentAnimation="True"
@@ -133,7 +146,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <VisualState x:Name="Connected">
                     <VisualState.StateTriggers>
-                        <StateTrigger IsActive="{x:Bind ViewModel.IsConnected, Mode=OneWay}" />
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsConnected}" />
                     </VisualState.StateTriggers>
                     <Storyboard>
                         <ColorAnimation EnableDependentAnimation="True"
@@ -180,6 +193,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Setter Target="SidebarComponent.IsHitTestVisible" Value="False" />
                         <Setter Target="SideWidgetsHostComponent.Opacity" Value="0.4" />
                         <Setter Target="SideWidgetsHostComponent.IsHitTestVisible" Value="False" />
+                        <Setter Target="MapView.Visibility" Value="Collapsed" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="OnHomePage"/>
@@ -191,7 +205,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <AdaptiveTrigger MinWindowWidth="{x:Bind ViewModel.SidebarWindowWidthThreshold, Mode=OneTime}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="svMain.IsPaneOpen" Value="True" />
+                        <Setter Target="MainSplitView.IsPaneOpen" Value="True" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Collapsed">
@@ -199,7 +213,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="svMain.IsPaneOpen" Value="False" />
+                        <Setter Target="MainSplitView.IsPaneOpen" Value="False" />
+                        <Setter Target="SidebarColumn.Width" Value="{x:Bind MainSplitView.CompactPaneLength, Converter={StaticResource DoubleToPixelGridLengthConverter}}"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>

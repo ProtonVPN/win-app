@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2024 Proton AG
+/*
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,19 +17,23 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Bases.ViewModels;
+using ProtonVPN.Client.Contracts.Bases;
 
-namespace ProtonVPN.Client.UI.Main.Home.Map;
+namespace ProtonVPN.Client.UI.Main.Map;
 
-public class MapComponentViewModel : ViewModelBase
+public sealed partial class MapComponentView : IContextAware
 {
-    public MapComponentViewModel(
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(localizer, logger, issueReporter)
-    { }
+    public MapComponentViewModel ViewModel { get; }
+
+    public MapComponentView()
+    {
+        ViewModel = App.GetService<MapComponentViewModel>();
+
+        InitializeComponent();
+    }
+
+    public object GetContext()
+    {
+        return ViewModel;
+    }
 }

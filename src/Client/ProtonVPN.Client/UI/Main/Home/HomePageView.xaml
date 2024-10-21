@@ -24,26 +24,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:card="using:ProtonVPN.Client.UI.Main.Home.Card"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:details="using:ProtonVPN.Client.UI.Main.Home.Details"
-      xmlns:map="using:ProtonVPN.Client.UI.Main.Home.Map"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
       mc:Ignorable="d">
 
     <Grid >
-        
-        <map:MapComponentView />
-        
-        <card:ConnectionCardComponentView Width="400"
-                                          Height="200"
-                                          HorizontalAlignment="Left"
+                
+        <card:ConnectionCardComponentView Width="250"
+                                          Height="50"
+                                          HorizontalAlignment="Center"
                                           VerticalAlignment="Top" />
-        
-        <StackPanel>
-            <Button Click="ButtonBase_OnClick">Connect</Button>
-            <Button Click="Disconnect">Disconnect</Button>
-        </StackPanel>
-
 
         <details:DetailsComponentView HorizontalAlignment="Stretch"
                                       VerticalAlignment="Bottom" />

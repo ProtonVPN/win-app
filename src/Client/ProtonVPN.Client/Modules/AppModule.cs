@@ -76,7 +76,7 @@ using ProtonVPN.Client.UI.Main.Home.Card;
 using ProtonVPN.Client.UI.Main.Home.Details;
 using ProtonVPN.Client.UI.Main.Home.Details.Connection;
 using ProtonVPN.Client.UI.Main.Home.Details.Location;
-using ProtonVPN.Client.UI.Main.Home.Map;
+using ProtonVPN.Client.UI.Main.Map;
 using ProtonVPN.Client.UI.Main.Settings;
 using ProtonVPN.Client.UI.Main.Settings.Pages;
 using ProtonVPN.Client.UI.Main.Settings.Pages.About;

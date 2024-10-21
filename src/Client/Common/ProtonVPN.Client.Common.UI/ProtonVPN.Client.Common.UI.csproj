@@ -764,7 +764,8 @@
         <None Remove="Assets\Illustrations\worldwide-coverage.png" />
         <None Remove="Assets\Illustrations\wrong-country.png" />
         <None Remove="Controls\DeviceLocationControl.xaml" />
-        <None Remove="Controls\MapControl.xaml" />
+        <None Remove="Controls\Map\CountryPin.xaml" />
+        <None Remove="Controls\Map\MapControl.xaml" />
         <None Remove="Controls\ServerLoadControl.xaml" />
         <None Remove="Assets\Icons\ActiveDot.xaml" />
         <None Remove="Controls\UpsellBannerControl.xaml" />
@@ -839,6 +840,12 @@
         <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
     </ItemGroup>
     <ItemGroup>
+        <Page Update="Controls\Map\CountryPin.xaml">
+          <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        </Page>
+        <Page Update="Controls\Map\MapControl.xaml">
+          <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        </Page>
         <Page Update="Styles\Colors.xaml">
             <Generator>MSBuild:Compile</Generator>
         </Page>
