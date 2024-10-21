@@ -175,7 +175,7 @@
     <value>업그레이드</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>**향상된 킬 스위치가 활성화되었습니다.** VPN 없이 인터넷을 사용하려면 향상된 킬 스위치를 비활성화하십시오.</value>
+    <value>**향상된 킬 스위치가 활성화되었습니다.** VPN 없이 인터넷을 사용하려면 향상된 킬 스위치를 비활성화 하십시오.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
     <value>**향상된 킬 스위치가 활성화되었습니다.** 계속하면 인터넷에서 연결 해제됩니다.</value>
@@ -525,7 +525,7 @@
     <value>가장 빠른 국가</value>
   </data>
   <data name="Country_Fastest_ExcludingMyCountry">
-    <value>빠르게 (현재 거주 국가 제외)</value>
+    <value>가장 빠른 곳 (현재 거주 국가 제외)</value>
   </data>
   <data name="Country_Random">
     <value>무작위 국가</value>
@@ -1794,7 +1794,7 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
     <value>Proton VPN에 오신 것을 환영합니다</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_Description">
-    <value>데이터 및 속도 제한 없이 브라우징은 은밀하게, 막힌 콘텐츠는 열리게, 디지털 자유를 그렇게 누리세요.</value>
+    <value>데이터 및 속도 제한 없이 브라우징은 은밀하게, 막힌 콘텐츠는 열리게, 디지털 자유를 누리세요.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_NoLogs">
     <value>노-로그 인증을 받은 VPN</value>
@@ -2276,7 +2276,7 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
     <value>더 빠른 속도를 위해 BitTorrent 앱에서 이 번호로 설정하세요.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
-    <value>사용자의 플랜이 Proton Free로 다운그레이드되었습니다. 가장 빠른 무료 서버로 재연결 중입니다.</value>
+    <value>사용자의 플랜이 Proton Free로 다운그레이드 되어, 가장 빠른 무료 서버로 재연결 중입니다.</value>
   </data>
   <data name="Profiles_Page_Description">
     <value>한 번의 클릭으로 나만의 VPN 설정을 구성하고 연결하세요.</value>
@@ -2469,7 +2469,7 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
 • 타 VPN 연결에 대한 프로토콜을 변경하려면 먼저 프로필에서 연결 해제가 필요합니다.</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Title">
-    <value>프로맆에서 프로토콜 변경하기</value>
+    <value>프로필에서 프로토콜 변경하기</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
