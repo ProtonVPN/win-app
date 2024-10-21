@@ -189,6 +189,7 @@
 
   <ItemGroup>
     <Folder Include="UI\Overlays\Information\Notification\" />
+    <Folder Include="UI\Main\Map\" />
     <Page Update="UI\Main\Home\Details\Connection\VpnSpeedComponent.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
