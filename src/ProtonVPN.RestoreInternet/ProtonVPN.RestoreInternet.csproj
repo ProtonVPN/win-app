@@ -26,7 +26,6 @@
         <PackageReference Include="System.Diagnostics.DiagnosticSource" />
         <PackageReference Include="System.Formats.Asn1" />
         <PackageReference Include="System.Text.Encoding.CodePages" />
-        <PackageReference Include="System.Text.Json" />
     </ItemGroup>
     <ItemGroup>
         <Folder Include="Properties\" />
