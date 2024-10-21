@@ -40,6 +40,7 @@ public class ConnectionRequestMapper : IMapper<VpnConnectionRequest, ConnectionR
             ? null
             : new()
             {
+                RetryId = Guid.NewGuid(),
                 Servers = _entityMapper.Map<VpnHost, VpnServerIpcEntity>(leftEntity.Servers).ToArray(),
                 Protocol = _entityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(leftEntity.VpnProtocol),
                 Config = _entityMapper.Map<VpnConfig, VpnConfigIpcEntity>(leftEntity.Config),

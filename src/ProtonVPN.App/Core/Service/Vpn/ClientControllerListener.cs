@@ -93,7 +93,7 @@ public class ClientControllerListener : IClientControllerListener
 
     private async Task StartServiceIfStoppedAsync()
     {
-        await _monitoredVpnService.StartAsync();
+        await _monitoredVpnService.StartIfNotRunningAsync();
     }
 
     private async Task StartVpnStateListenerAsync()

@@ -17,7 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Helpers;
@@ -35,11 +39,15 @@ using ProtonVPN.Service.ProcessCommunication;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.PortMapping;
+using Timer = System.Timers.Timer;
 
 namespace ProtonVPN.Service
 {
     public class VpnController : IVpnController
     {
+        private readonly TimeSpan _retryIdCleanupTimerInterval = TimeSpan.FromMinutes(10);
+        private readonly TimeSpan _retryIdExpirationInterval = TimeSpan.FromHours(1);
+
         private readonly IVpnConnection _vpnConnection;
         private readonly ILogger _logger;
         private readonly IServiceSettings _serviceSettings;
@@ -47,6 +55,10 @@ namespace ProtonVPN.Service
         private readonly IPortMappingProtocolClient _portMappingProtocolClient;
         private readonly IClientControllerSender _clientControllerSender;
         private readonly IEntityMapper _entityMapper;
+        private readonly Timer _timer;
+
+        private readonly object _lock = new object();
+        private readonly ConcurrentDictionary<Guid, DateTimeOffset> _receivedRetryIds = [];
 
         public VpnController(
             IVpnConnection vpnConnection,
@@ -64,14 +76,34 @@ namespace ProtonVPN.Service
             _portMappingProtocolClient = portMappingProtocolClient;
             _clientControllerSender = clientControllerSender;
             _entityMapper = entityMapper;
+
+            _timer = new(_retryIdCleanupTimerInterval);
+            _timer.Elapsed += OnTimedEvent;
+            _timer.AutoReset = true;
+            _timer.Enabled = true;
+        }
+
+        private void OnTimedEvent(object sender, EventArgs e)
+        {
+            lock(_lock)
+            {
+                List<KeyValuePair<Guid, DateTimeOffset>> list = _receivedRetryIds.ToList();
+                foreach (KeyValuePair<Guid, DateTimeOffset> pair in list)
+                {
+                    if (pair.Value <= DateTimeOffset.UtcNow)
+                    {
+                        _receivedRetryIds.TryRemove(pair.Key, out _);
+                    }
+                }
+            }
         }
 
         public async Task Connect(ConnectionRequestIpcEntity connectionRequest, CancellationToken cancelToken)
         {
             Ensure.NotNull(connectionRequest, nameof(connectionRequest));
+            EnforceRetryId(connectionRequest.RetryId);
 
             _logger.Info<ConnectLog>("Connect requested");
-
             _serviceSettings.Apply(connectionRequest.Settings);
 
             VpnConfig config = _entityMapper.Map<VpnConfigIpcEntity, VpnConfig>(connectionRequest.Config);
@@ -81,8 +113,26 @@ namespace ProtonVPN.Service
             _vpnConnection.Connect(endpoints, config, credentials);
         }
 
+        private void EnforceRetryId(Guid retryId, [CallerMemberName] string sourceMemberName = "")
+        {
+            lock (_lock)
+            {
+                if (_receivedRetryIds.ContainsKey(retryId))
+                {
+                    string message = $"{sourceMemberName} request dropped because the retry ID is repeated.";
+                    _logger.Info<ConnectLog>(message);
+                    throw new ArgumentException(message);
+                }
+                DateTimeOffset expirationDate = DateTimeOffset.UtcNow + _retryIdExpirationInterval;
+                _receivedRetryIds.AddOrUpdate(retryId, _ => expirationDate, (_, _) => expirationDate);
+            }
+        }
+
         public async Task Disconnect(DisconnectionRequestIpcEntity disconnectionRequest, CancellationToken cancelToken)
         {
+            Ensure.NotNull(disconnectionRequest, nameof(disconnectionRequest));
+            EnforceRetryId(disconnectionRequest.RetryId);
+
             _logger.Info<DisconnectLog>($"Disconnect requested (Error: {disconnectionRequest.ErrorType})");
             _serviceSettings.Apply(disconnectionRequest.Settings);
             _vpnConnection.Disconnect((VpnError)disconnectionRequest.ErrorType);

@@ -143,6 +143,7 @@ namespace ProtonVPN.Core.Service.Vpn
                 sourceFilePath: sourceFilePath, sourceMemberName: sourceMemberName, sourceLineNumber: sourceLineNumber);
             DisconnectionRequestIpcEntity disconnectionRequest = new()
             {
+                RetryId = Guid.NewGuid(),
                 Settings = _settingsContractProvider.Create(),
                 ErrorType = (VpnErrorTypeIpcEntity)vpnError
             };

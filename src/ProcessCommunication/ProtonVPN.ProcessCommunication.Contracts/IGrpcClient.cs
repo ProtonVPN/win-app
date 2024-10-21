@@ -27,8 +27,9 @@ public interface IGrpcClient
     IVpnController VpnController { get; }
     IUiController UiController { get; }
 
-    void Create();
     void Stop();
+    void CreateIfPipeNameChanged();
+    void Create();
 
     Task<T> GetServiceControllerOrThrowAsync<T>(TimeSpan timeout)
         where T : IServiceController;

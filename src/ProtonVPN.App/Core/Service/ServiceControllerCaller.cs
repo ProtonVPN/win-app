@@ -36,13 +36,13 @@ namespace ProtonVPN.Core.Service
 
         private readonly ILogger _logger;
         private readonly IGrpcClient _grpcClient;
-        private readonly VpnSystemService _vpnSystemService;
+        private readonly Lazy<IMonitoredVpnService> _monitoredVpnService;
 
-        protected ServiceControllerCaller(ILogger logger, IGrpcClient grpcClient, VpnSystemService vpnSystemService)
+        protected ServiceControllerCaller(ILogger logger, IGrpcClient grpcClient, Lazy<IMonitoredVpnService> monitoredVpnService)
         {
             _logger = logger;
             _grpcClient = grpcClient;
-            _vpnSystemService = vpnSystemService;
+            _monitoredVpnService = monitoredVpnService;
         }
 
         protected async Task<Result<T>> Invoke<T>(Func<Controller, CancellationToken, Task<T>> serviceCall,
@@ -66,7 +66,7 @@ namespace ProtonVPN.Core.Service
                 }
                 catch (Exception e)
                 {
-                    await StartServiceIfStoppedAsync();
+                    await CheckForIssuesAsync();
                     if (retryCount <= 0)
                     {
                         LogError(e, memberName, isToRetry: false);
@@ -80,9 +80,20 @@ namespace ProtonVPN.Core.Service
             }
         }
 
+        private async Task CheckForIssuesAsync()
+        {
+            await StartServiceIfStoppedAsync();
+            RecreateGrpcChannelIfPipeNameChanged();
+        }
+
         private async Task StartServiceIfStoppedAsync()
         {
-            await _vpnSystemService.StartIfStoppedAsync();
+            await _monitoredVpnService.Value.StartIfNotRunningAsync();
+        }
+
+        private void RecreateGrpcChannelIfPipeNameChanged()
+        {
+            _grpcClient.CreateIfPipeNameChanged();
         }
 
         private void LogError(Exception exception, string callerMemberName, bool isToRetry)

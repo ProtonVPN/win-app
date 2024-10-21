@@ -37,7 +37,7 @@ public class NamedPipesConnectionFactory : INamedPipesConnectionFactory
 
     private TimeSpan? _connectionRetryInterval;
     private TimeSpan? _registryRetryInterval;
-
+    private string? _pipeName;
     private readonly CancellationTokenSource _cancellationTokenSource = new();
 
     public NamedPipesConnectionFactory(IRegistryEditor registryEditor)
@@ -64,6 +64,7 @@ public class NamedPipesConnectionFactory : INamedPipesConnectionFactory
 
         try
         {
+            _pipeName = pipeName;
             await clientStream.ConnectAsync(cancellationToken).ConfigureAwait(false);
 
             // No authorization checks are made because user processes without admin permissions such as this Client
@@ -89,7 +90,7 @@ public class NamedPipesConnectionFactory : INamedPipesConnectionFactory
         _registryRetryInterval = null;
         while (!cancellationToken.IsCancellationRequested)
         {
-            string? pipeName = _registryEditor.ReadString(_registryUri);
+            string? pipeName = GetPipeName();
             if (!string.IsNullOrWhiteSpace(pipeName))
             {
                 return pipeName;
@@ -104,8 +105,18 @@ public class NamedPipesConnectionFactory : INamedPipesConnectionFactory
         return null;
     }
 
+    private string? GetPipeName()
+    {
+        return _registryEditor.ReadString(_registryUri);
+    }
+
     public void Stop()
     {
         _cancellationTokenSource.Cancel();
+    }
+
+    public bool HasPipeNameChanged()
+    {
+        return _pipeName != GetPipeName();
     }
 }

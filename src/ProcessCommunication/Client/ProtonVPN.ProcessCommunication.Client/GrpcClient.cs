@@ -30,6 +30,8 @@ public class GrpcClient : IGrpcClient
 {
     private readonly ILogger _logger;
     private readonly INamedPipesConnectionFactory _namedPipesConnectionFactory;
+    private readonly object _lock = new();
+    private GrpcChannel _channel;
 
     public IClientController ClientController { get; private set; }
     public IUpdateController UpdateController { get; private set; }
@@ -42,14 +44,32 @@ public class GrpcClient : IGrpcClient
         _namedPipesConnectionFactory = namedPipesConnectionFactory;
     }
 
+    public void Stop()
+    {
+        _namedPipesConnectionFactory.Stop();
+    }
+
+    public void CreateIfPipeNameChanged()
+    {
+        if (_namedPipesConnectionFactory.HasPipeNameChanged())
+        {
+            Create();
+        }
+    }
+
     public void Create()
     {
-        GrpcChannel channel = CreateChannel();
+        lock (_lock)
+        {
+            _channel?.Dispose();
 
-        ClientController = channel.CreateGrpcService<IClientController>();
-        UpdateController = channel.CreateGrpcService<IUpdateController>();
-        VpnController = channel.CreateGrpcService<IVpnController>();
-        UiController = channel.CreateGrpcService<IUiController>();
+            _channel = CreateChannel();
+
+            ClientController = _channel.CreateGrpcService<IClientController>();
+            UpdateController = _channel.CreateGrpcService<IUpdateController>();
+            VpnController = _channel.CreateGrpcService<IVpnController>();
+            UiController = _channel.CreateGrpcService<IUiController>();
+        }
     }
 
     private GrpcChannel CreateChannel()
@@ -110,10 +130,5 @@ public class GrpcClient : IGrpcClient
         }
 
         throw new NotImplementedException($"Controller of type {typeof(T)} is not supported.");
-    }
-
-    public void Stop()
-    {
-        _namedPipesConnectionFactory.Stop();
     }
 }

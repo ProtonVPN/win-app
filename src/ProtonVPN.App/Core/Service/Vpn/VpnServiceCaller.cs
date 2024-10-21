@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Extensions;
@@ -31,8 +32,8 @@ namespace ProtonVPN.Core.Service.Vpn
 {
     public class VpnServiceCaller : ServiceControllerCaller<IVpnController>
     {
-        public VpnServiceCaller(ILogger logger, IGrpcClient grpcClient, VpnSystemService vpnSystemService) 
-            : base(logger, grpcClient, vpnSystemService)
+        public VpnServiceCaller(ILogger logger, IGrpcClient grpcClient, Lazy<IMonitoredVpnService> monitoredVpnService) 
+            : base(logger, grpcClient, monitoredVpnService)
         {
         }
 
