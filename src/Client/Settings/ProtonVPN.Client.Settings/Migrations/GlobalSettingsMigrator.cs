@@ -86,7 +86,7 @@ public class GlobalSettingsMigrator : IGlobalSettingsMigrator
         }
         catch (Exception e)
         {
-            _logger.Error<AppLog>("Failed to migrate user settings.", e);
+            _logger.Error<AppLog>("Failed to migrate global settings.", e);
         }
     }
 

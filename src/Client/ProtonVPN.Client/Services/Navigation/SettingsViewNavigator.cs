@@ -25,6 +25,7 @@ using ProtonVPN.Client.UI.Main.Settings.Pages;
 using ProtonVPN.Client.UI.Main.Settings.Pages.About;
 using ProtonVPN.Client.UI.Main.Settings.Pages.Advanced;
 using ProtonVPN.Client.UI.Main.Settings.Pages.DefaultConnections;
+using ProtonVPN.Client.UI.Main.Settings.Pages.DeveloperTools;
 
 namespace ProtonVPN.Client.Services.Navigation;
 

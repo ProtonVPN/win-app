@@ -19,6 +19,7 @@
 
 using ProtonVPN.Client.Common.Observers;
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Services.Contracts;
@@ -31,8 +32,8 @@ using ProtonVPN.Logging.Contracts.Events.AppLogs;
 namespace ProtonVPN.Client.Logic.Connection;
 
 public class VpnStatePollingObserver : PollingObserverBase,
+    IVpnStatePollingObserver,
     IEventMessageReceiver<ConnectionStatusChanged>
-    //IEventMessageReceiver<ApplicationStartedMessage>
 {
     private readonly ISettings _settings;
     private readonly IConfiguration _configuration;
@@ -102,12 +103,11 @@ public class VpnStatePollingObserver : PollingObserverBase,
         }
     }
 
-    // TODO: fix
-    // public void Receive(ApplicationStartedMessage message)
-    // {
-    //     lock (_timerLock)
-    //     {
-    //         StartTimerAndTriggerOnStart();
-    //     }
-    // }
+    public void Initialize()
+    {
+        lock (_timerLock)
+        {
+            StartTimer();
+        }
+    }
 }

@@ -110,6 +110,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <GradientStop Offset="0.5" Color="{StaticResource GradientUpsellBackgroundEndColor}" />
                 <GradientStop Offset="1" Color="{StaticResource GradientUpsellBackgroundEndColor}" />
             </LinearGradientBrush>
+            <RadialGradientBrush x:Key="GradientVpnPlanBorderBrushColor">
+                <GradientStop Color="#6E4BFF" Offset="0.0" />
+                <GradientStop Color="#547AEC" Offset="0.5" />
+                <GradientStop Color="#2FCCCf" Offset="1.0" />
+            </RadialGradientBrush>
 
             <!--  Composite Brushes  -->
 
@@ -229,6 +234,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <GradientStop Offset="0.5" Color="{StaticResource GradientUpsellBackgroundEndColor}" />
                 <GradientStop Offset="1" Color="{StaticResource GradientUpsellBackgroundEndColor}" />
             </LinearGradientBrush>
+            <RadialGradientBrush x:Key="GradientVpnPlanBorderBrushColor">
+                <GradientStop Color="#6E4BFF" Offset="0.0" />
+                <GradientStop Color="#547AEC" Offset="0.5" />
+                <GradientStop Color="#2FCCCf" Offset="1.0" />
+            </RadialGradientBrush>
 
             <!--  Composite Brushes  -->
 

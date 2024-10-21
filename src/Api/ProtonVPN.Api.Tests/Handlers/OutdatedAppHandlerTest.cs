@@ -20,8 +20,8 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Api.Handlers;
@@ -38,24 +38,21 @@ namespace ProtonVPN.Api.Tests.Handlers
         [DataRow(ResponseCodes.OutdatedApiResponse)]
         public async Task ItShouldInvokeOutdatedAppEvent(int code)
         {
-            // Arrange
-            int called = 0;
-
+            IOutdatedClientNotifier outdatedClientNotifier = Substitute.For<IOutdatedClientNotifier>();
             MockOfRetryingHandler mockOfRetryingHandler = new();
             MockOfBaseResponseMessageDeserializer mockOfBaseResponseDeserializer = new()
             {
-                ExpectedBaseResponse = new BaseResponse() { Code = code }
+                ExpectedBaseResponse = new BaseResponse { Code = code }
             };
             mockOfRetryingHandler.SetResponseAsSuccess(code);
-            OutdatedAppHandler handler = new(mockOfBaseResponseDeserializer) { InnerHandler = mockOfRetryingHandler };
-            handler.AppOutdated += (sender, args) => called++;
+            OutdatedAppHandler handler = new(mockOfBaseResponseDeserializer, outdatedClientNotifier) { InnerHandler = mockOfRetryingHandler };
             HttpClient httpClient = new(handler) {BaseAddress = new Uri("http://127.0.0.1")};
 
             // Act
             await httpClient.SendAsync(new HttpRequestMessage());
 
             // Assert
-            called.Should().Be(1);
+            await outdatedClientNotifier.Received(1).OnClientOutdatedAsync();
         }
     }
 }

@@ -25,8 +25,10 @@ namespace ProtonVPN.UI.Tests.Robots;
 public class HomeRobot
 {
     protected Element UnprotectedLabel = Element.ByName("Unprotected");
+    protected Element DisconnectButton = Element.ByName("Disconnect");
     protected Element ProtectedLabel = Element.ByName("Protected");
-    protected Element ConnectButton = Element.ByName("Connect");
+    protected Element ConnectButton = Element.ByName("Fastest country");
+    protected Element GetStartedButton = Element.ByName("Get started");
 
     public HomeRobot QuickConnect()
     {
@@ -34,9 +36,27 @@ public class HomeRobot
         return this;
     }
 
+    public HomeRobot Disconnect()
+    {
+        DisconnectButton.Click();
+        return this;
+    }
+
+    public HomeRobot DismissWelcomeModal()
+    {
+        GetStartedButton.Click();
+        return this;
+    }
+
     public class Verifications : HomeRobot
     {
         public Verifications IsLoggedIn()
+        {
+            UnprotectedLabel.WaitUntilDisplayed(TestConstants.OneMinuteTimeout);
+            return this;
+        }
+
+        public Verifications IsDisconnected()
         {
             UnprotectedLabel.WaitUntilDisplayed();
             return this;
@@ -44,10 +64,10 @@ public class HomeRobot
 
         public Verifications IsConnected()
         {
-            ProtectedLabel.WaitUntilDisplayed(TestConstants.TenSecondsTimeout);
+            ProtectedLabel.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
             return this;
         }
     }
 
-    public Verifications Verify => new Verifications();
+    public Verifications Verify => new();
 }

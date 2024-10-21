@@ -25,16 +25,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       xmlns:pathIcons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+      xmlns:attachedProperties="using:ProtonVPN.Client.Common.UI.AttachedProperties"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
       mc:Ignorable="d">
 
     <Page.Resources>
-        <Style x:Key="TwoFactorNumberBox" BasedOn="{StaticResource DefaultTextBoxStyle}" TargetType="TextBox">
+        <Style x:Key="TwoFactorNumberBox" BasedOn="{StaticResource StandardTextBoxStyle}" TargetType="TextBox">
             <Setter Property="HorizontalAlignment" Value="Center" />
-            <Setter Property="Width" Value="40" />
+            <Setter Property="Width" Value="52" />
             <Setter Property="Height" Value="40" />
-            <Setter Property="Margin" Value="4" />
             <Setter Property="Padding" Value="12,7,12,5" />
             <Setter Property="FontSize" Value="{StaticResource SubtitleFontSize}" />
             <Setter Property="FontWeight" Value="{StaticResource SubtitleFontWeight}" />
@@ -43,9 +43,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <StackPanel Margin="0,24,0,0"
                 VerticalAlignment="Center"
-                AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Login_TwoFactorForm_Title')}"
-                Width="{StaticResource LoginPageContentWidth}">
-
+                AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Login_TwoFactorForm_Title')}">
 
         <custom:GhostButton Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Back')}"
                             HorizontalAlignment="Left"
@@ -56,107 +54,160 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </custom:GhostButton.LeftIcon>
         </custom:GhostButton>
 
-        <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Login_TwoFactorForm_Title')}"
-                   HorizontalAlignment="Center"
-                   Margin="0,0,0,8"
-                   FontSize="{StaticResource SubtitleFontSize}"
-                   FontWeight="{StaticResource SubtitleFontWeight}" />
-        <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Login_TwoFactorForm_Subtitle')}"
-                   HorizontalAlignment="Center"
-                   FontSize="{StaticResource CaptionFontSize}"
-                   FontWeight="{StaticResource CaptionFontWeight}" />
+        <StackPanel Spacing="8">
+            <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Login_TwoFactorForm_Title')}"
+                       TextWrapping="NoWrap"
+                       Style="{ThemeResource TitleTextBlockStyle}" />
+            <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Login_TwoFactorForm_Subtitle')}"
+                       Foreground="{ThemeResource TextWeakColor}"
+                       Style="{ThemeResource BodyTextBlockStyle}" />
+        </StackPanel>
 
-        <Grid x:Name="DigitsContainer" Margin="0,24">
+        <Grid x:Name="DigitsContainer"
+              HorizontalAlignment="Center"
+              ColumnSpacing="8"
+              Margin="0,24">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="24" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <TextBox Grid.Column="0"
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <TextBox x:Name="FirstDigit"
+                     Grid.Row="0"
+                     Grid.Column="0"
+                     AutomationProperties.AutomationId="FirstDigit"
                      AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Login_TwoFactor_Digit1')}"
-                     x:Name="FirstDigit"
                      Paste="OnPaste"
                      MaxLength="1"
+                     TextAlignment="Center"
                      GotFocus="OnGotFocus"
                      KeyDown="OnDigitBoxKeyDown"
                      TextChanged="OnDigitChanged"
+                     attachedProperties:FieldValidation.HasErrors="{x:Bind ViewModel.IsToShowError}"
                      Style="{StaticResource TwoFactorNumberBox}" />
 
-            <TextBox Grid.Column="1"
+            <TextBox Grid.Row="0"
+                     Grid.Column="1"
+                     AutomationProperties.AutomationId="SecondDigit"
                      AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Login_TwoFactor_Digit2')}"
                      Paste="OnPaste"
                      MaxLength="1"
+                     TextAlignment="Center"
                      GotFocus="OnGotFocus"
                      KeyDown="OnDigitBoxKeyDown"
                      TextChanged="OnDigitChanged"
+                     attachedProperties:FieldValidation.HasErrors="{x:Bind ViewModel.IsToShowError}"
                      Style="{StaticResource TwoFactorNumberBox}" />
 
-            <TextBox Grid.Column="2"
+            <TextBox Grid.Row="0"
+                     Grid.Column="2"
+                     AutomationProperties.AutomationId="ThirdDigit"
                      AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Login_TwoFactor_Digit3')}"
                      Paste="OnPaste"
                      MaxLength="1"
+                     TextAlignment="Center"
                      GotFocus="OnGotFocus"
                      KeyDown="OnDigitBoxKeyDown"
                      TextChanged="OnDigitChanged"
+                     attachedProperties:FieldValidation.HasErrors="{x:Bind ViewModel.IsToShowError}"
                      Style="{StaticResource TwoFactorNumberBox}" />
 
-            <TextBlock Grid.Column="3"
+            <TextBlock Grid.Row="0"
+                       Grid.Column="3"
                        Text="-"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        Padding="16,0,16,5"
                        FontSize="22" />
 
-            <TextBox Grid.Column="4"
+            <TextBox Grid.Row="0"
+                     Grid.Column="4"
+                     AutomationProperties.AutomationId="FourthDigit"
                      AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Login_TwoFactor_Digit4')}"
                      Paste="OnPaste"
                      MaxLength="1"
+                     TextAlignment="Center"
                      GotFocus="OnGotFocus"
                      KeyDown="OnDigitBoxKeyDown"
                      TextChanged="OnDigitChanged"
+                     attachedProperties:FieldValidation.HasErrors="{x:Bind ViewModel.IsToShowError}"
                      Style="{StaticResource TwoFactorNumberBox}" />
 
-            <TextBox Grid.Column="5"
+            <TextBox Grid.Row="0"
+                     Grid.Column="5"
+                     AutomationProperties.AutomationId="FifthDigit"
                      AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Login_TwoFactor_Digit5')}"
                      Paste="OnPaste"
                      MaxLength="1"
+                     TextAlignment="Center"
                      GotFocus="OnGotFocus"
                      KeyDown="OnDigitBoxKeyDown"
                      TextChanged="OnDigitChanged"
+                     attachedProperties:FieldValidation.HasErrors="{x:Bind ViewModel.IsToShowError}"
                      Style="{StaticResource TwoFactorNumberBox}" />
 
-            <TextBox Grid.Column="6"
+            <TextBox x:Name="LastDigit"
+                     Grid.Row="0"
+                     Grid.Column="6"
+                     AutomationProperties.AutomationId="LastDigit"
                      AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Login_TwoFactor_Digit6')}"
-                     x:Name="LastDigit"
                      Paste="OnPaste"
                      MaxLength="1"
+                     TextAlignment="Center"
                      GotFocus="OnGotFocus"
                      KeyDown="OnDigitBoxKeyDown"
                      TextChanged="OnDigitChanged"
+                     attachedProperties:FieldValidation.HasErrors="{x:Bind ViewModel.IsToShowError}"
                      Style="{StaticResource TwoFactorNumberBox}" />
-        </Grid>
 
-        <Button x:Name="AuthenticateButton"
-                AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Login_TwoFactorForm_Authenticate')}"
-                Style="{StaticResource PrimaryButtonStyle}"
-                HorizontalAlignment="Stretch"
-                HorizontalContentAlignment="Stretch"
-                Command="{x:Bind ViewModel.AuthenticateCommand}"
-                CommandParameter="{x:Bind TwoFactorCode, Mode=TwoWay}">
-            <Grid HorizontalAlignment="Stretch">
-                <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Login_TwoFactorForm_Authenticate')}"
-                           HorizontalAlignment="Center" />
-                <ProgressRing IsActive="{x:Bind ViewModel.IsAuthenticating}"
-                              HorizontalAlignment="Right"
-                              Width="16"
-                              Height="16" />
-            </Grid>
-        </Button>
+            <StackPanel Grid.Row="1"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="7"
+                        Margin="0,8,0,0"
+                        HorizontalAlignment="Left"
+                        Orientation="Horizontal"
+                        Spacing="4"
+                        Visibility="{x:Bind ViewModel.IsToShowError, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <pathIcons:ExclamationTriangleFilled Size="Pixels16"
+                                                     Foreground="{ThemeResource SignalDangerColor}" />
+
+                <TextBlock Style="{ThemeResource ErrorTextBlock}"
+                           Text="{x:Bind ViewModel.Localizer.Get('Login_TwoFactor_EnterCode')}"/>
+            </StackPanel>
+
+            <Button Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="7"
+                    Margin="0,24,0,0"
+                    x:Name="AuthenticateButton"
+                    AutomationProperties.AutomationId="AuthenticateWithTwoFactorButton"
+                    AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Login_TwoFactorForm_Authenticate')}"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    Command="{x:Bind ViewModel.AuthenticateCommand}"
+                    CommandParameter="{x:Bind TwoFactorCode, Mode=TwoWay}">
+                <Grid HorizontalAlignment="Stretch">
+                    <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Login_TwoFactorForm_Authenticate')}"
+                               HorizontalAlignment="Center" />
+                    <ProgressRing IsActive="{x:Bind ViewModel.IsAuthenticating}"
+                                  HorizontalAlignment="Right"
+                                  Width="16"
+                                  Height="16" />
+                </Grid>
+            </Button>
+        </Grid>
     </StackPanel>
 
 </Page>

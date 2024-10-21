@@ -44,12 +44,12 @@ public partial class DebugLogsPageViewModel : SettingsPageViewModelBase
         IUrls urls,
         IStaticConfiguration staticConfig,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
-        ISettingsViewNavigator parentViewNavigator,
+        ISettingsViewNavigator settingsViewNavigator,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter,
         ISettings settings)
-        : base(settings, parentViewNavigator, localizer, logger, issueReporter)
+        : base(settings, settingsViewNavigator, localizer, logger, issueReporter)
     {
         _urls = urls;
         _staticConfig = staticConfig;

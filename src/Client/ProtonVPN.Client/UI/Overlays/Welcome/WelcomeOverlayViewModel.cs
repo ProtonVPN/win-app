@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,33 +18,32 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Contracts.Bases.ViewModels;
+using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Services.Navigation;
-using ProtonVPN.Client.UI.Main.Settings.Bases;
 
-namespace ProtonVPN.Client.UI.Main.Settings.Pages;
+namespace ProtonVPN.Client.UI.Overlays.Welcome;
 
-public partial class DeveloperToolsPageViewModel : SettingsPageViewModelBase
+public partial class WelcomeOverlayViewModel : OverlayViewModelBase<IMainWindowOverlayActivator>
 {
-    public override string Title => "Developer tools";
+    private readonly IUrls _urls;
 
-    public DeveloperToolsPageViewModel(
-        ISettingsViewNavigator parentViewNavigator,
-        ILocalizationProvider localizer,
+    public WelcomeOverlayViewModel(
+        IMainWindowOverlayActivator mainWindowOverlayActivator,
+        ILocalizationProvider localizationProvider,
         ILogger logger,
         IIssueReporter issueReporter,
-        ISettings settings)
-        : base(settings, parentViewNavigator, localizer, logger, issueReporter)
+        IUrls urls) : base(mainWindowOverlayActivator, localizationProvider, logger, issueReporter)
     {
-      
+        _urls = urls;
     }
 
     [RelayCommand]
-    public void TriggerAppCrash()
+    public void OpenNoLogsUrl()
     {
-        throw new StackOverflowException("Intentional crash test");
+        _urls.NavigateTo(_urls.NoLogs);
     }
 }

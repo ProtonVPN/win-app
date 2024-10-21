@@ -27,12 +27,16 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Logic.Updates.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.Common.Legacy.OS.Processes;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppUpdateLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Update;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.Update.Contracts;
 
 namespace ProtonVPN.Client.Logic.Updates;
@@ -42,12 +46,16 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
     IEventMessageReceiver<ConnectionStatusChanged>,
     IEventMessageReceiver<SettingChangedMessage>
 {
+    private const int APP_EXIT_TIMEOUT_IN_SECONDS = 3;
+
     private readonly IConnectionManager _connectionManager;
     private readonly IConfiguration _config;
     private readonly IEntityMapper _entityMapper;
     private readonly ISettings _settings;
     private readonly IUpdateServiceCaller _updateServiceCaller;
     private readonly IEventMessageSender _eventMessageSender;
+    private readonly IVpnServiceSettingsUpdater _vpnServiceSettingsUpdater;
+    private readonly IOsProcesses _osProcesses;
 
     private bool _manualCheck;
     private bool _requestedManualCheck;
@@ -55,7 +63,7 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
     private DateTime _lastCheckTime;
     private FeedType _feedType;
 
-    private AppUpdateStatus _status = AppUpdateStatus.None;
+    private AppUpdateStateContract? _lastUpdateState;
     private DateTime _lastNotifiedAt = DateTime.MinValue;
 
     private bool IsToCheckForUpdate => DateTime.UtcNow - _lastCheckTime >= _config.UpdateCheckInterval;
@@ -71,7 +79,9 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
         IEntityMapper entityMapper,
         ISettings settings,
         IUpdateServiceCaller updateServiceCaller,
-        IEventMessageSender eventMessageSender) : base(logger, issueReporter)
+        IEventMessageSender eventMessageSender,
+        IVpnServiceSettingsUpdater vpnServiceSettingsUpdater,
+        IOsProcesses osProcesses) : base(logger, issueReporter)
     {
         _connectionManager = connectionManager;
         _config = config;
@@ -79,6 +89,8 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
         _settings = settings;
         _updateServiceCaller = updateServiceCaller;
         _eventMessageSender = eventMessageSender;
+        _vpnServiceSettingsUpdater = vpnServiceSettingsUpdater;
+        _osProcesses = osProcesses;
     }
 
     protected async override Task OnTriggerAsync()
@@ -149,7 +161,7 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
 
     private void OnUpdateStateChanged(AppUpdateStateContract state)
     {
-        if (state.Status != _status)
+        if (state.Status != _lastUpdateState?.Status)
         {
             if (state.Status == AppUpdateStatus.Checking)
             {
@@ -166,7 +178,7 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
                 IsUpdateAvailable = isUpdateAvailable,
             });
 
-            _status = state.Status;
+            _lastUpdateState = state;
         }
     }
 
@@ -188,5 +200,101 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
             _feedType = feedType;
             CheckForUpdate(true);
         }
+    }
+
+    public async Task UpdateAsync()
+    {
+        if (_lastUpdateState == null)
+        {
+            return;
+        }
+
+        if (_lastUpdateState.Status == AppUpdateStatus.AutoUpdated)
+        {
+            RestartApp();
+        }
+        else if (_lastUpdateState.IsReady)
+        {
+            await UpdateManuallyAsync();
+        }
+    }
+
+    private void RestartApp()
+    {
+        string cmd = $"/c Timeout /t {APP_EXIT_TIMEOUT_IN_SECONDS} >nul & \"{_config.ClientLauncherExePath}\"";
+        using IOsProcess process = _osProcesses.CommandLineProcess(cmd);
+        process.Start();
+        SendUpdatingStatus();
+    }
+
+    private async Task UpdateManuallyAsync()
+    {
+        if (_lastUpdateState == null)
+        {
+            return;
+        }
+
+        LogUpdateStartingMessage();
+
+        if (_settings.IsKillSwitchEnabled && _settings.KillSwitchMode == KillSwitchMode.Advanced)
+        {
+            await _vpnServiceSettingsUpdater.SendAsync(KillSwitchModeIpcEntity.Off);
+        }
+
+        try
+        {
+            _osProcesses.ElevatedProcess(_lastUpdateState.FilePath, _lastUpdateState.FileArguments).Start();
+            SendUpdatingStatus();
+        }
+        catch (System.ComponentModel.Win32Exception)
+        {
+            // Privileges were not granted
+            if (_settings.IsKillSwitchEnabled && _settings.KillSwitchMode == KillSwitchMode.Advanced)
+            {
+                await _vpnServiceSettingsUpdater.SendAsync(KillSwitchModeIpcEntity.Hard);
+            }
+        }
+    }
+
+    private void SendUpdatingStatus()
+    {
+        if (_lastUpdateState == null)
+        {
+            return;
+        }
+
+        _lastUpdateState.Status = AppUpdateStatus.Updating;
+
+        SendClientUpdateStateChangeMessage(new ClientUpdateStateChangedMessage
+        {
+            State = _lastUpdateState,
+            IsUpdateAvailable = false,
+        });
+    }
+
+    private void LogUpdateStartingMessage()
+    {
+        string fileName = GetUpdateFileName();
+        string message = $"Closing the app and starting installer '{fileName}'. " +
+                         $"Current app version: {_config.ClientVersion}, OS: {Environment.OSVersion.VersionString}";
+
+        Logger.Info<AppUpdateStartLog>(message);
+    }
+
+    private string GetUpdateFileName()
+    {
+        string fileName;
+        string filePath = _lastUpdateState?.FilePath ?? string.Empty;
+        try
+        {
+            fileName = Path.GetFileNameWithoutExtension(filePath);
+        }
+        catch (Exception e)
+        {
+            Logger.Error<AppUpdateLog>($"Failed to parse file name of path '{filePath}'.", e);
+            fileName = filePath;
+        }
+
+        return fileName;
     }
 }

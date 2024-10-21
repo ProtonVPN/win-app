@@ -23,6 +23,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+      xmlns:pathIcons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+      xmlns:attachedProperties="using:ProtonVPN.Client.Common.UI.AttachedProperties"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
       mc:Ignorable="d">
@@ -30,6 +33,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <StackPanel Spacing="24"
                 VerticalAlignment="Center"
                 AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('SignIn_Form')}">
+
+        <custom:GhostButton Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Back')}"
+                            HorizontalAlignment="Left"
+                            Margin="0,0,0,24"
+                            Visibility="{x:Bind ViewModel.IsSsoFormType, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Command="{x:Bind ViewModel.SwitchLoginFormCommand, Mode=OneTime}">
+            <custom:GhostButton.LeftIcon>
+                <pathIcons:ArrowLeft/>
+            </custom:GhostButton.LeftIcon>
+        </custom:GhostButton>
 
         <StackPanel Spacing="8">
             <TextBlock Text="{x:Bind ViewModel.Localizer.Get('SignIn_Form_Title')}"
@@ -42,23 +55,47 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <StackPanel>
 
-            <TextBox AutomationProperties.AutomationId="UsernameTextBox"
-                     Header="{x:Bind ViewModel.UsernameFieldLabel}"
-                     IsEnabled="{x:Bind ViewModel.IsSignInFormEnabled}"
-                     IsSpellCheckEnabled="False"
-                     IsTextPredictionEnabled="False"
-                     KeyDown="OnFormBoxKeyDown"
-                     Style="{StaticResource DefaultTextBoxStyle}"
-                     Text="{x:Bind ViewModel.Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     x:Name="UsernameTextBox" />
-
-            <PasswordBox Margin="0,16,0,0"
-                         AutomationProperties.AutomationId="PasswordBox"
-                         Header="{x:Bind ViewModel.Localizer.Get('SignIn_Form_Password')}"
+            <StackPanel Spacing="4">
+                <TextBox AutomationProperties.AutomationId="UsernameTextBox"
+                         Header="{x:Bind ViewModel.UsernameFieldLabel}"
                          IsEnabled="{x:Bind ViewModel.IsSignInFormEnabled}"
+                         IsSpellCheckEnabled="False"
+                         IsTextPredictionEnabled="False"
                          KeyDown="OnFormBoxKeyDown"
-                         Password="{x:Bind ViewModel.Password, Mode=TwoWay}"
-                         Visibility="{x:Bind ViewModel.IsPasswordFieldVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                         Text="{x:Bind ViewModel.Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         x:Name="UsernameTextBox"
+                         attachedProperties:FieldValidation.HasErrors="{x:Bind ViewModel.IsToShowUsernameError}" />
+
+                <StackPanel Orientation="Horizontal"
+                            Spacing="4"
+                            Visibility="{x:Bind ViewModel.IsToShowUsernameError, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <pathIcons:ExclamationTriangleFilled Foreground="{ThemeResource SignalDangerColor}"
+                                                         Size="Pixels16" />
+                    <TextBlock Style="{ThemeResource ErrorTextBlock}"
+                               Text="{x:Bind ViewModel.Localizer.Get('SignIn_Form_UsernameError')}" />
+                </StackPanel>
+
+            </StackPanel>
+
+            <StackPanel Spacing="4">
+                <PasswordBox Margin="0,16,0,0"
+                             AutomationProperties.AutomationId="PasswordBox"
+                             Header="{x:Bind ViewModel.Localizer.Get('SignIn_Form_Password')}"
+                             IsEnabled="{x:Bind ViewModel.IsSignInFormEnabled}"
+                             KeyDown="OnFormBoxKeyDown"
+                             Password="{x:Bind ViewModel.Password, Mode=TwoWay}"
+                             Visibility="{x:Bind ViewModel.IsSrpFormType, Converter={StaticResource BooleanToVisibilityConverter}}"
+                             attachedProperties:FieldValidation.HasErrors="{x:Bind ViewModel.IsToShowPasswordError}" />
+
+                <StackPanel Orientation="Horizontal"
+                            Spacing="4"
+                            Visibility="{x:Bind ViewModel.IsToShowPasswordError, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <pathIcons:ExclamationTriangleFilled Foreground="{ThemeResource SignalDangerColor}"
+                                                         Size="Pixels16" />
+                    <TextBlock Style="{ThemeResource ErrorTextBlock}"
+                               Text="{x:Bind ViewModel.Localizer.Get('SignIn_Form_PasswordError')}" />
+                </StackPanel>
+            </StackPanel>
 
             <Button x:Name="SignInButton"
                     Margin="0,24,0,0"
@@ -87,16 +124,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('SignIn_Form_CreateAccount')}"
                     Content="{x:Bind ViewModel.Localizer.Get('SignIn_Form_CreateAccount')}"
                     Command="{x:Bind ViewModel.CreateAccountCommand, Mode=OneTime}"
-                    Visibility="{x:Bind ViewModel.IsCreateAccountButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    Visibility="{x:Bind ViewModel.IsSrpFormType, Converter={StaticResource BooleanToVisibilityConverter}}" />
         </StackPanel>
 
-        <HyperlinkButton Margin="0,16,0,0"
-                         HorizontalAlignment="Center"
-                         AutomationProperties.AutomationId="SwitchSignInButton"
-                         Command="{x:Bind ViewModel.SwitchLoginFormCommand, Mode=OneTime}"
-                         Content="{x:Bind ViewModel.SwitchPageLabel}"
-                         Style="{StaticResource NoIconHyperlinkButtonStyle}"
-                         Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}" />
+        <custom:GhostButton Margin="0,16,0,0"
+                            HorizontalAlignment="Center"
+                            AutomationProperties.AutomationId="SwitchSignInButton"
+                            Command="{x:Bind ViewModel.SwitchLoginFormCommand, Mode=OneTime}"
+                            Content="{x:Bind ViewModel.SwitchPageLabel}"
+                            Style="{StaticResource PrimaryGhostButtonStyle}"
+                            Visibility="{x:Bind ViewModel.IsSwitchFormButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
     </StackPanel>
 
 </Page>

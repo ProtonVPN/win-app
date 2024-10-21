@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -33,11 +32,12 @@ namespace ProtonVPN.Api.Handlers
     public class OutdatedAppHandler : DelegatingHandler
     {
         private readonly IBaseResponseMessageDeserializer _baseResponseDeserializer;
-        public event EventHandler<BaseResponse> AppOutdated;
+        private readonly IOutdatedClientNotifier _outdatedClientNotifier;
 
-        public OutdatedAppHandler(IBaseResponseMessageDeserializer baseResponseDeserializer)
+        public OutdatedAppHandler(IBaseResponseMessageDeserializer baseResponseDeserializer, IOutdatedClientNotifier outdatedClientNotifier)
         {
             _baseResponseDeserializer = baseResponseDeserializer;
+            _outdatedClientNotifier = outdatedClientNotifier;
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
@@ -52,7 +52,7 @@ namespace ProtonVPN.Api.Handlers
 
             if (ForceLogoutRequired(baseResponse.Code))
             {
-                AppOutdated?.Invoke(this, baseResponse);
+                await _outdatedClientNotifier.OnClientOutdatedAsync();
             }
 
             return response;

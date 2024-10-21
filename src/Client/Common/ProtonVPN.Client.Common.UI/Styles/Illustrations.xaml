@@ -62,6 +62,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/kill-switch-on-level-1.png" />
     <BitmapImage x:Key="KillSwitchAdvancedIllustrationSource"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/kill-switch-on-level-2.png" />
+    <BitmapImage x:Key="KillSwitchEnabledIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/kill-switch-enabled.png" />
     <BitmapImage x:Key="NetShieldOffIllustrationSource"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/netshield-off.png" />
     <BitmapImage x:Key="NetShieldOnIllustrationSource"
@@ -190,5 +192,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/profiles.svg" />
     <BitmapImage x:Key="RecentsIllustrationSource"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/recents.png" />
+
+    <BitmapImage x:Key="GlobeIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/globe-illustration.png" />
+    <BitmapImage x:Key="OpenSourceIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/open-source.png" />
+    <BitmapImage x:Key="SwissFlagIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/swiss-flag.png" />
 
 </ResourceDictionary>

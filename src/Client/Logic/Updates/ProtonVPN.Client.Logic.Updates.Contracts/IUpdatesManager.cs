@@ -24,4 +24,6 @@ public interface IUpdatesManager
     void Initialize();
 
     void CheckForUpdate(bool isManualCheck);
+
+    Task UpdateAsync();
 }

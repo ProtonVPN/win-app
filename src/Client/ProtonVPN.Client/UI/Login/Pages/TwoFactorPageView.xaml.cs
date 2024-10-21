@@ -125,7 +125,11 @@ public sealed partial class TwoFactorPageView : IContextAware
             }
 
             TwoFactorCode = GetTwoFactorCode();
-            SubmitTwoFactorCodeIfPossible();
+
+            if (textBox.Name == LastDigit.Name)
+            {
+                SubmitTwoFactorCodeIfPossible();
+            }
         }
     }
 
@@ -144,7 +148,7 @@ public sealed partial class TwoFactorPageView : IContextAware
     private void SubmitTwoFactorCodeIfPossible()
     {
         string twoFactorCode = TwoFactorCode;
-        if (AuthenticateButton.Command.CanExecute(twoFactorCode))
+        if (AuthenticateButton.Command.CanExecute(twoFactorCode) && twoFactorCode.Length == 6)
         {
             AuthenticateButton.Command.Execute(twoFactorCode);
         }
@@ -268,5 +272,6 @@ public sealed partial class TwoFactorPageView : IContextAware
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
         ViewModel.Deactivate();
+        ClearAllDigits();
     }
 }

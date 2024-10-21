@@ -59,12 +59,12 @@ public partial class AboutPageViewModel : SettingsPageViewModelBase,
     public AboutPageViewModel(
         IUpdatesManager updatesManager,
         ReleaseViewModelFactory releaseViewModelFactory,
-        ISettingsViewNavigator parentViewNavigator,
+        ISettingsViewNavigator settingsViewNavigator,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter,
         ISettings settings)
-        : base(settings, parentViewNavigator, localizer, logger, issueReporter)
+        : base(settings, settingsViewNavigator, localizer, logger, issueReporter)
     {
         _updatesManager = updatesManager;
         _releaseViewModelFactory = releaseViewModelFactory;
@@ -80,7 +80,7 @@ public partial class AboutPageViewModel : SettingsPageViewModelBase,
     private void HandleUpdateStateChangedMessage(ClientUpdateStateChangedMessage message)
     {
         IsUpdateAvailable = message.IsUpdateAvailable;
-        if (message.State?.Status is AppUpdateStatus.None or AppUpdateStatus.Ready && message.State?.ReleaseHistory.Count > 0)
+        if (message.State?.Status is AppUpdateStatus.None or AppUpdateStatus.Ready or AppUpdateStatus.AutoUpdated && message.State?.ReleaseHistory.Count > 0)
         {
             Releases = _releaseViewModelFactory.GetReleases(message.State.ReleaseHistory);
         }

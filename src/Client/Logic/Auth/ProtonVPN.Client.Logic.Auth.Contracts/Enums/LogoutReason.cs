@@ -24,4 +24,5 @@ public enum LogoutReason
     UserAction,
     SessionExpired,
     NoVpnConnectionsAssigned,
+    ClientOutdated,
 }

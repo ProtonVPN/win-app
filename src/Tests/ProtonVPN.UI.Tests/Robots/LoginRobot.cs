@@ -17,16 +17,28 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using FlaUI.Core.WindowsAPI;
+using System.Threading;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
+using FlaUI.Core.Input;
 
 namespace ProtonVPN.UI.Tests.Robots;
 
 public class LoginRobot
 {
-    protected Element UsernameTextBox => Element.ByAutomationId("UsernameTextBox");
-    protected Element PasswordTextBox => Element.ByAutomationId("PasswordBox");
-    protected Element SignInButton => Element.ByAutomationId("SignInButton");
+    protected Element UsernameTextBox = Element.ByAutomationId("UsernameTextBox");
+    protected Element PasswordTextBox = Element.ByAutomationId("PasswordBox");
+    protected Element TwoFactorFirstDigit = Element.ByAutomationId("FirstDigit");
+    protected Element TwoFactorSecondDigit = Element.ByAutomationId("SecondDigit");
+    protected Element TwoFactorThirdDigit = Element.ByAutomationId("ThirdDigit");
+    protected Element TwoFactorFourthDigit = Element.ByAutomationId("FourthDigit");
+    protected Element TwoFactorFifthDigit = Element.ByAutomationId("FifthDigit");
+    protected Element TwoFactorLastDigit = Element.ByAutomationId("LastDigit");
+    protected Element SignInButton = Element.ByAutomationId("SignInButton");
+    protected Element SsoWindow = Element.ByAutomationId("ContentScrollViewer");
+    protected Element SignInWithSsoButton = Element.ByName("Sign in with SSO");
+    protected Element AuthenticateWithTwoFactorButton = Element.ByAutomationId("AuthenticateWithTwoFactorButton");
 
     public LoginRobot Login(TestUserData user)
     {
@@ -37,10 +49,60 @@ public class LoginRobot
         return this;
     }
 
-    public class Verifications : LoginRobot
+    public LoginRobot EnterEmail(TestUserData user)
     {
-        
+        UsernameTextBox.SetText(user.Username);
+        return this;
     }
 
-    public Verifications Verify => new Verifications();
+    public LoginRobot ClickSignInButton()
+    {
+        SignInButton.Click();
+        return this;
+    }
+
+    public LoginRobot ClickSignInWithSso()
+    {
+        SignInWithSsoButton.Click();
+        return this;
+    }
+
+    public LoginRobot EnterTwoFactorCode(string twoFactorCode)
+    {
+        TwoFactorFirstDigit.SetText(twoFactorCode[0].ToString());
+        TwoFactorSecondDigit.SetText(twoFactorCode[1].ToString());
+        TwoFactorThirdDigit.SetText(twoFactorCode[2].ToString());
+        TwoFactorFourthDigit.SetText(twoFactorCode[3].ToString());
+        TwoFactorFifthDigit.SetText(twoFactorCode[4].ToString());
+        TwoFactorLastDigit.SetText(twoFactorCode[5].ToString());
+
+        AuthenticateWithTwoFactorButton.Click();
+
+        return this;
+    }
+
+    public LoginRobot DoLoginSsoWebview(string password)
+    {
+        //We have a very limited ability to use WebView, that is why we are using static pauses and keyboard strokes.
+        SsoWindow.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
+        Thread.Sleep(TestConstants.TenSecondsTimeout);
+        SsoWindow.Click();
+
+        Keyboard.Type(VirtualKeyShort.TAB);
+        Keyboard.Type(password);
+        Keyboard.Type(VirtualKeyShort.TAB);
+        Keyboard.Type(VirtualKeyShort.ENTER);
+        return this;
+    }
+
+    public class Verifications : LoginRobot
+    {
+        public Verifications ErrorMessageIsDisplayed(string errorMessage)
+        {
+            Element.ByName(errorMessage).WaitUntilDisplayed();
+            return this;
+        }
+    }
+
+    public Verifications Verify => new();
 }

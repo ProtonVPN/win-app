@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2023 Proton AG
+/*
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,16 +20,15 @@
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Contracts.Bases;
 
-namespace ProtonVPN.Client.UI.Main.Settings.Pages;
+namespace ProtonVPN.Client.UI.Overlays.Welcome;
 
-public sealed partial class DeveloperToolsPageView : IContextAware
+public sealed partial class WelcomeToVpnUnlimitedOverlayView : IContextAware
 {
-    public DeveloperToolsPageViewModel ViewModel { get; }
+    public WelcomeToVpnUnlimitedOverlayViewModel ViewModel { get; }
 
-    public DeveloperToolsPageView()
+    public WelcomeToVpnUnlimitedOverlayView()
     {
-        ViewModel = App.GetService<DeveloperToolsPageViewModel>();
-
+        ViewModel = App.GetService<WelcomeToVpnUnlimitedOverlayViewModel>();
         InitializeComponent();
 
         Loaded += OnLoaded;

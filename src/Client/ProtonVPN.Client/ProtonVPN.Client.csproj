@@ -88,11 +88,19 @@
     <None Remove="UI\Main\Widgets\SideWidgetsHostComponentView.xaml" />
     <None Remove="UI\NavigationMasterControllerView.xaml" />
     <None Remove="UI\Overlays\HumanVerification\HumanVerificationOverlayView.xaml" />
+    <None Remove="UI\Overlays\Information\OutdatedClientOverlayView.xaml" />
     <None Remove="UI\Overlays\Information\P2POverlayView.xaml" />
     <None Remove="UI\Overlays\Information\SecureCoreOverlayView.xaml" />
     <None Remove="UI\Overlays\Information\ServerLoadOverlayView.xaml" />
     <None Remove="UI\Overlays\Information\SmartRoutingOverlayView.xaml" />
     <None Remove="UI\Overlays\Information\TorOverlayView.xaml" />
+    <None Remove="UI\Overlays\Welcome\WelcomeOverlayView.xaml" />
+    <None Remove="UI\Overlays\Welcome\WelcomeToVpnB2BOverlayView.xaml" />
+    <None Remove="UI\Overlays\Welcome\WelcomeToVpnPlusOverlayView.xaml" />
+    <None Remove="UI\Overlays\Welcome\WelcomeToVpnUnlimitedOverlayView.xaml" />
+    <None Remove="UI\Overlays\WhatsNew\WhatsNewB2BOverlayView.xaml" />
+    <None Remove="UI\Overlays\WhatsNew\WhatsNewFreeOverlayView.xaml" />
+    <None Remove="UI\Overlays\WhatsNew\WhatsNewPaidOverlayView.xaml" />
     <None Remove="UI\Tray\TrayIconComponentView.xaml" />
   </ItemGroup>
 
@@ -180,6 +188,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="UI\Overlays\Information\Notification\" />
     <Page Update="UI\Main\Home\Details\Connection\VpnSpeedComponent.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
@@ -232,10 +241,37 @@
     <Page Update="UI\Login\Overlays\SsoLoginOverlayView.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
+    <Page Update="UI\Overlays\Information\OutdatedClientOverlayView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
     <Page Update="UI\Overlays\Information\TroubleshootingOverlayView.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="UI\Overlays\Welcome\WelcomeOverlayView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="UI\Overlays\Welcome\WelcomeToVpnB2BOverlayView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="UI\Overlays\Welcome\WelcomeToVpnPlusOverlayView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="UI\Overlays\Welcome\WelcomeToVpnUnlimitedOverlayView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Overlays\WhatsNew\WhatsNewB2BOverlayView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Overlays\WhatsNew\WhatsNewPaidOverlayView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Overlays\WhatsNew\WhatsNewFreeOverlayView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
     <Page Update="UI\Tray\TrayIconComponentView.xaml">
       <Generator>MSBuild:Compile</Generator>

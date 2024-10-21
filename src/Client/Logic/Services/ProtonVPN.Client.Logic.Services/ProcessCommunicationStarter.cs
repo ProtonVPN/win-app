@@ -30,14 +30,17 @@ public class ProcessCommunicationStarter : IProcessCommunicationStarter
     private readonly IGrpcClient _grpcClient;
     private readonly ILogger _logger;
     private readonly IClientControllerListener _clientControllerListener;
+    private readonly IVpnServiceCaller _vpnServiceCaller;
 
     public ProcessCommunicationStarter(IGrpcClient grpcClient,
         ILogger logger,
-        IClientControllerListener clientControllerListener)
+        IClientControllerListener clientControllerListener,
+        IVpnServiceCaller vpnServiceCaller)
     {
         _grpcClient = grpcClient;
         _logger = logger;
         _clientControllerListener = clientControllerListener;
+        _vpnServiceCaller = vpnServiceCaller;
     }
 
     public void Start()
@@ -46,6 +49,7 @@ public class ProcessCommunicationStarter : IProcessCommunicationStarter
         {
             _grpcClient.Create();
             _clientControllerListener.Start();
+            _vpnServiceCaller.RepeatStateAsync();
         }
         catch (Exception e)
         {

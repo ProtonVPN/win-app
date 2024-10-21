@@ -29,6 +29,9 @@ using ProtonVPN.Client.Contracts.Services.Mapping;
 using ProtonVPN.Client.Contracts.Services.Selection;
 using ProtonVPN.Client.UI.Overlays.HumanVerification;
 using ProtonVPN.Client.UI.Overlays.Information;
+using ProtonVPN.Client.UI.Overlays.Information.Notification;
+using ProtonVPN.Client.UI.Overlays.Welcome;
+using ProtonVPN.Client.UI.Overlays.WhatsNew;
 
 namespace ProtonVPN.Client.Services.Activation;
 
@@ -62,7 +65,7 @@ public class MainWindowOverlayActivator : OverlayActivatorBase<MainWindow>, IMai
     {
         return ShowOverlayAsync<TroubleshootingOverlayViewModel>();
     }
-    
+
     public Task<ContentDialogResult> ShowSettingsDiscardOverlayAsync(bool isReconnectionRequired)
     {
         return ShowMessageAsync(
@@ -92,9 +95,7 @@ public class MainWindowOverlayActivator : OverlayActivatorBase<MainWindow>, IMai
     {
         return ShowMessageAsync(new()
         {
-            Title = "Profiles Info overlay",
-            Message = "TODO",
-            CloseButtonText = "Close",
+            Title = "Profiles Info overlay", Message = "TODO", CloseButtonText = "Close",
         });
     }
 
@@ -106,5 +107,45 @@ public class MainWindowOverlayActivator : OverlayActivatorBase<MainWindow>, IMai
     public Task<ContentDialogResult> ShowServerLoadInfoOverlayAsync()
     {
         return ShowOverlayAsync<ServerLoadOverlayViewModel>();
+    }
+
+    public Task<ContentDialogResult> ShowOutdatedClientOverlayAsync()
+    {
+        return ShowOverlayAsync<OutdatedClientOverlayViewModel>();
+    }
+
+    public Task<ContentDialogResult> ShowWelcomeOverlayAsync()
+    {
+        return ShowOverlayAsync<WelcomeOverlayViewModel>();
+    }
+
+    public Task<ContentDialogResult> ShowWelcomeToVpnB2BOverlayAsync()
+    {
+        return ShowOverlayAsync<WelcomeToVpnB2BOverlayViewModel>();
+    }
+
+    public Task<ContentDialogResult> ShowWelcomeToVpnPlusOverlayAsync()
+    {
+        return ShowOverlayAsync<WelcomeToVpnPlusOverlayViewModel>();
+    }
+
+    public Task<ContentDialogResult> ShowWelcomeToVpnUnlimitedOverlayAsync()
+    {
+        return ShowOverlayAsync<WelcomeToVpnUnlimitedOverlayViewModel>();
+    }
+
+    public Task<ContentDialogResult> ShowWhatsNewB2BOverlayAsync()
+    {
+        return ShowOverlayAsync<WhatsNewB2BOverlayViewModel>();
+    }
+
+    public Task<ContentDialogResult> ShowWhatsNewFreeOverlayAsync()
+    {
+        return ShowOverlayAsync<WhatsNewFreeOverlayViewModel>();
+    }
+
+    public Task<ContentDialogResult> ShowWhatsNewPaidOverlayAsync()
+    {
+        return ShowOverlayAsync<WhatsNewPaidOverlayViewModel>();
     }
 }
