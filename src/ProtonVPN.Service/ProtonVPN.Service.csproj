@@ -80,7 +80,6 @@
         <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" />
         <PackageReference Include="Microsoft.Windows.Compatibility" />
         <PackageReference Include="System.Text.Encoding.CodePages" />
-        <PackageReference Include="System.Text.Json" />
     </ItemGroup>
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />

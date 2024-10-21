@@ -86,7 +86,6 @@
     <PackageVersion Include="System.Security.Cryptography.ProtectedData" Version="7.0.1" />
     <PackageVersion Include="System.ServiceProcess.ServiceController" Version="7.0.1" />
     <PackageVersion Include="System.Text.Encoding.CodePages" Version="7.0.0" />
-    <PackageVersion Include="System.Text.Json" Version="8.0.4" />
     <PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
     <PackageVersion Include="System.ValueTuple" Version="4.5.0" />
     <PackageVersion Include="Vanara.PInvoke.PowrProf" Version="3.4.17" />
