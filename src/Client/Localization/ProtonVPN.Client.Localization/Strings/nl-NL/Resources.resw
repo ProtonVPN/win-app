@@ -377,7 +377,7 @@
     <value>Profielen worden opgeslagen connecties met uw keuze van locatie, server en protocol.</value>
   </data>
   <data name="Connections_Profiles_Empty_Title">
-    <value>Maak je eerste profiel aan</value>
+    <value>Maak uw eerste profiel aan</value>
   </data>
   <data name="Connections_Profiles_Name">
     <value>Profielnaam</value>
@@ -2546,9 +2546,9 @@ Geniet van het beste van Proton-privacy.</value>
     <value>Ga naar profielen</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Message">
-    <value>Je bent momenteel verbonden met een VPN-profiel. 
+    <value>U bent momenteel verbonden met een VPN-profiel. 
 
-• Om het protocol voor deze verbinding te wijzigen, verbreek de verbinding en bewerk je profiel.
+• Om het protocol voor deze verbinding te wijzigen, verbreek de verbinding en bewerk uw profiel.
 
 • Om uw protocol voor andere VPN-verbindingen te wijzigen, moet u eerst de verbinding met uw profiel verbreken.</value>
   </data>
