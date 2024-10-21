@@ -40,7 +40,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StackPanel Width="400"
                         VerticalAlignment="Center"
                         Orientation="Vertical"
-                        Spacing="20">              
+                        Spacing="20">
+
+                <custom:ConnectionProfileIcon FlagType="Fastest" ProfileCategory="Gaming"/>
+                <custom:ConnectionProfileIcon FlagType="Fastest" ProfileCategory="Gaming" Width="30" />
 
                 <custom:DualConnectionRowButton>
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -25,6 +25,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:temp="using:ProtonVPN.Client.TEMP"
       x:DefaultBindMode="OneWay"
+      AutomationProperties.AutomationId="SearchResultsPage"
+      AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Automation_Properties_Sidebar_Search_Results_Page')}"
       NavigationCacheMode="Required"
       mc:Ignorable="d">
 

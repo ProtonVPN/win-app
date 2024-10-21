@@ -15,123 +15,470 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
--->
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses />.-->
 
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+                    xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons">
 
     <ResourceDictionary.ThemeDictionaries>
 
         <ResourceDictionary x:Key="Light">
 
-            <StaticResource x:Key="PivotBackground" ResourceKey="BackgroundNormColorBrush" />
-            <StaticResource x:Key="PivotHeaderBackground" ResourceKey="SystemControlTransparentBrush" />
-            <StaticResource x:Key="PivotNextButtonBackground" ResourceKey="SystemControlBackgroundBaseMediumLowBrush" />
-            <StaticResource x:Key="PivotNextButtonBackgroundPointerOver" ResourceKey="SystemControlHighlightBaseMediumBrush" />
-            <StaticResource x:Key="PivotNextButtonBackgroundPressed" ResourceKey="SystemControlHighlightBaseMediumHighBrush" />
-            <StaticResource x:Key="PivotNextButtonBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
-            <StaticResource x:Key="PivotNextButtonBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
-            <StaticResource x:Key="PivotNextButtonBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
-            <StaticResource x:Key="PivotNextButtonForeground" ResourceKey="SystemControlForegroundAltMediumHighBrush" />
-            <StaticResource x:Key="PivotNextButtonForegroundPointerOver" ResourceKey="SystemControlHighlightAltAltMediumHighBrush" />
-            <StaticResource x:Key="PivotNextButtonForegroundPressed" ResourceKey="SystemControlHighlightAltAltMediumHighBrush" />
-            <StaticResource x:Key="PivotPreviousButtonBackground" ResourceKey="SystemControlBackgroundBaseMediumLowBrush" />
-            <StaticResource x:Key="PivotPreviousButtonBackgroundPointerOver" ResourceKey="SystemControlHighlightBaseMediumBrush" />
-            <StaticResource x:Key="PivotPreviousButtonBackgroundPressed" ResourceKey="SystemControlHighlightBaseMediumHighBrush" />
-            <StaticResource x:Key="PivotPreviousButtonBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
-            <StaticResource x:Key="PivotPreviousButtonBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
-            <StaticResource x:Key="PivotPreviousButtonBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
-            <StaticResource x:Key="PivotPreviousButtonForeground" ResourceKey="SystemControlForegroundAltMediumHighBrush" />
-            <StaticResource x:Key="PivotPreviousButtonForegroundPointerOver" ResourceKey="SystemControlHighlightAltAltMediumHighBrush" />
-            <StaticResource x:Key="PivotPreviousButtonForegroundPressed" ResourceKey="SystemControlHighlightAltAltMediumHighBrush" />
-            <StaticResource x:Key="PivotItemBackground" ResourceKey="SystemControlTransparentBrush" />
-            <StaticResource x:Key="PivotHeaderItemBackgroundUnselected" ResourceKey="SystemControlTransparentBrush" />
-            <StaticResource x:Key="PivotHeaderItemBackgroundUnselectedPointerOver" ResourceKey="SystemControlHighlightTransparentBrush" />
-            <StaticResource x:Key="PivotHeaderItemBackgroundUnselectedPressed" ResourceKey="SystemControlHighlightTransparentBrush" />
-            <StaticResource x:Key="PivotHeaderItemBackgroundSelected" ResourceKey="SystemControlHighlightTransparentBrush" />
-            <StaticResource x:Key="PivotHeaderItemBackgroundSelectedPointerOver" ResourceKey="SystemControlHighlightTransparentBrush" />
-            <StaticResource x:Key="PivotHeaderItemBackgroundSelectedPressed" ResourceKey="SystemControlHighlightTransparentBrush" />
-            <StaticResource x:Key="PivotHeaderItemBackgroundDisabled" ResourceKey="TextWeakColorBrush" />
+            <StaticResource x:Key="PivotBackground" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="PivotHeaderBackground" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="PivotNextButtonBackground" ResourceKey="InteractionDefaultEmptyColorBrush" />
+            <StaticResource x:Key="PivotNextButtonBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
+            <StaticResource x:Key="PivotNextButtonBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
+            <StaticResource x:Key="PivotNextButtonBorderBrush" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="PivotNextButtonBorderBrushPointerOver" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="PivotNextButtonBorderBrushPressed" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="PivotNextButtonForeground" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="PivotNextButtonForegroundPointerOver" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="PivotNextButtonForegroundPressed" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="PivotPreviousButtonBackground" ResourceKey="InteractionDefaultEmptyColorBrush" />
+            <StaticResource x:Key="PivotPreviousButtonBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
+            <StaticResource x:Key="PivotPreviousButtonBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
+            <StaticResource x:Key="PivotPreviousButtonBorderBrush" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="PivotPreviousButtonBorderBrushPointerOver" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="PivotPreviousButtonBorderBrushPressed" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="PivotPreviousButtonForeground" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="PivotPreviousButtonForegroundPointerOver" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="PivotPreviousButtonForegroundPressed" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="PivotItemBackground" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="PivotHeaderItemBackgroundUnselected" ResourceKey="InteractionDefaultEmptyColorBrush" />
+            <StaticResource x:Key="PivotHeaderItemBackgroundUnselectedPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
+            <StaticResource x:Key="PivotHeaderItemBackgroundUnselectedPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
+            <StaticResource x:Key="PivotHeaderItemBackgroundSelected" ResourceKey="InteractionDefaultEmptyColorBrush" />
+            <StaticResource x:Key="PivotHeaderItemBackgroundSelectedPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
+            <StaticResource x:Key="PivotHeaderItemBackgroundSelectedPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
+            <StaticResource x:Key="PivotHeaderItemBackgroundDisabled" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="PivotHeaderItemForegroundUnselected" ResourceKey="TextWeakColorBrush" />
             <StaticResource x:Key="PivotHeaderItemForegroundUnselectedPointerOver" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="PivotHeaderItemForegroundUnselectedPressed" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="PivotHeaderItemForegroundSelected" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="PivotHeaderItemForegroundSelectedPointerOver" ResourceKey="TextNormColorBrush" />
-            <StaticResource x:Key="PivotHeaderItemForegroundSelectedPressed" ResourceKey="SystemControlHighlightAltBaseMediumHighBrush" />
-            <StaticResource x:Key="PivotHeaderItemForegroundDisabled" ResourceKey="SystemControlDisabledBaseMediumLowBrush" />
+            <StaticResource x:Key="PivotHeaderItemForegroundSelectedPressed" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="PivotHeaderItemForegroundDisabled" ResourceKey="TextHintColorBrush" />
             <StaticResource x:Key="PivotHeaderItemFocusPipeFill" ResourceKey="SystemControlHighlightAltAccentBrush" />
-            <StaticResource x:Key="PivotHeaderItemSelectedPipeFill" ResourceKey="PrimaryColorBrush" />
+            <StaticResource x:Key="PivotHeaderItemSelectedPipeFill" ResourceKey="TextNormColorBrush" />
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Dark">
 
-            <StaticResource x:Key="PivotBackground" ResourceKey="BackgroundNormColorBrush" />
-            <StaticResource x:Key="PivotHeaderBackground" ResourceKey="SystemControlTransparentBrush" />
-            <StaticResource x:Key="PivotNextButtonBackground" ResourceKey="SystemControlBackgroundBaseMediumLowBrush" />
-            <StaticResource x:Key="PivotNextButtonBackgroundPointerOver" ResourceKey="SystemControlHighlightBaseMediumBrush" />
-            <StaticResource x:Key="PivotNextButtonBackgroundPressed" ResourceKey="SystemControlHighlightBaseMediumHighBrush" />
-            <StaticResource x:Key="PivotNextButtonBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
-            <StaticResource x:Key="PivotNextButtonBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
-            <StaticResource x:Key="PivotNextButtonBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
-            <StaticResource x:Key="PivotNextButtonForeground" ResourceKey="SystemControlForegroundAltMediumHighBrush" />
-            <StaticResource x:Key="PivotNextButtonForegroundPointerOver" ResourceKey="SystemControlHighlightAltAltMediumHighBrush" />
-            <StaticResource x:Key="PivotNextButtonForegroundPressed" ResourceKey="SystemControlHighlightAltAltMediumHighBrush" />
-            <StaticResource x:Key="PivotPreviousButtonBackground" ResourceKey="SystemControlBackgroundBaseMediumLowBrush" />
-            <StaticResource x:Key="PivotPreviousButtonBackgroundPointerOver" ResourceKey="SystemControlHighlightBaseMediumBrush" />
-            <StaticResource x:Key="PivotPreviousButtonBackgroundPressed" ResourceKey="SystemControlHighlightBaseMediumHighBrush" />
-            <StaticResource x:Key="PivotPreviousButtonBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
-            <StaticResource x:Key="PivotPreviousButtonBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
-            <StaticResource x:Key="PivotPreviousButtonBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
-            <StaticResource x:Key="PivotPreviousButtonForeground" ResourceKey="SystemControlForegroundAltMediumHighBrush" />
-            <StaticResource x:Key="PivotPreviousButtonForegroundPointerOver" ResourceKey="SystemControlHighlightAltAltMediumHighBrush" />
-            <StaticResource x:Key="PivotPreviousButtonForegroundPressed" ResourceKey="SystemControlHighlightAltAltMediumHighBrush" />
-            <StaticResource x:Key="PivotItemBackground" ResourceKey="SystemControlTransparentBrush" />
-            <StaticResource x:Key="PivotHeaderItemBackgroundUnselected" ResourceKey="SystemControlTransparentBrush" />
-            <StaticResource x:Key="PivotHeaderItemBackgroundUnselectedPointerOver" ResourceKey="SystemControlHighlightTransparentBrush" />
-            <StaticResource x:Key="PivotHeaderItemBackgroundUnselectedPressed" ResourceKey="SystemControlHighlightTransparentBrush" />
-            <StaticResource x:Key="PivotHeaderItemBackgroundSelected" ResourceKey="SystemControlHighlightTransparentBrush" />
-            <StaticResource x:Key="PivotHeaderItemBackgroundSelectedPointerOver" ResourceKey="SystemControlHighlightTransparentBrush" />
-            <StaticResource x:Key="PivotHeaderItemBackgroundSelectedPressed" ResourceKey="SystemControlHighlightTransparentBrush" />
-            <StaticResource x:Key="PivotHeaderItemBackgroundDisabled" ResourceKey="TextWeakColorBrush" />
+            <StaticResource x:Key="PivotBackground" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="PivotHeaderBackground" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="PivotNextButtonBackground" ResourceKey="PaneOverlayBackgroundColorBrush" />
+            <StaticResource x:Key="PivotNextButtonBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
+            <StaticResource x:Key="PivotNextButtonBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
+            <StaticResource x:Key="PivotNextButtonBorderBrush" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="PivotNextButtonBorderBrushPointerOver" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="PivotNextButtonBorderBrushPressed" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="PivotNextButtonForeground" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="PivotNextButtonForegroundPointerOver" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="PivotNextButtonForegroundPressed" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="PivotPreviousButtonBackground" ResourceKey="InteractionDefaultEmptyColorBrush" />
+            <StaticResource x:Key="PivotPreviousButtonBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
+            <StaticResource x:Key="PivotPreviousButtonBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
+            <StaticResource x:Key="PivotPreviousButtonBorderBrush" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="PivotPreviousButtonBorderBrushPointerOver" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="PivotPreviousButtonBorderBrushPressed" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="PivotPreviousButtonForeground" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="PivotPreviousButtonForegroundPointerOver" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="PivotPreviousButtonForegroundPressed" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="PivotItemBackground" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="PivotHeaderItemBackgroundUnselected" ResourceKey="InteractionDefaultEmptyColorBrush" />
+            <StaticResource x:Key="PivotHeaderItemBackgroundUnselectedPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
+            <StaticResource x:Key="PivotHeaderItemBackgroundUnselectedPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
+            <StaticResource x:Key="PivotHeaderItemBackgroundSelected" ResourceKey="InteractionDefaultEmptyColorBrush" />
+            <StaticResource x:Key="PivotHeaderItemBackgroundSelectedPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
+            <StaticResource x:Key="PivotHeaderItemBackgroundSelectedPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
+            <StaticResource x:Key="PivotHeaderItemBackgroundDisabled" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="PivotHeaderItemForegroundUnselected" ResourceKey="TextWeakColorBrush" />
             <StaticResource x:Key="PivotHeaderItemForegroundUnselectedPointerOver" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="PivotHeaderItemForegroundUnselectedPressed" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="PivotHeaderItemForegroundSelected" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="PivotHeaderItemForegroundSelectedPointerOver" ResourceKey="TextNormColorBrush" />
-            <StaticResource x:Key="PivotHeaderItemForegroundSelectedPressed" ResourceKey="SystemControlHighlightAltBaseMediumHighBrush" />
-            <StaticResource x:Key="PivotHeaderItemForegroundDisabled" ResourceKey="SystemControlDisabledBaseMediumLowBrush" />
+            <StaticResource x:Key="PivotHeaderItemForegroundSelectedPressed" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="PivotHeaderItemForegroundDisabled" ResourceKey="TextHintColorBrush" />
             <StaticResource x:Key="PivotHeaderItemFocusPipeFill" ResourceKey="SystemControlHighlightAltAccentBrush" />
-            <StaticResource x:Key="PivotHeaderItemSelectedPipeFill" ResourceKey="PrimaryColorBrush" />
+            <StaticResource x:Key="PivotHeaderItemSelectedPipeFill" ResourceKey="TextNormColorBrush" />
+
         </ResourceDictionary>
+
     </ResourceDictionary.ThemeDictionaries>
 
-    <SolidColorBrush x:Key="PivotForegroundThemeBrush" Color="#FFFFFFFF" />
-    <SolidColorBrush x:Key="PivotHeaderBackgroundSelectedBrush" Color="Transparent" />
-    <SolidColorBrush x:Key="PivotHeaderBackgroundUnselectedBrush" Color="Transparent" />
-    <SolidColorBrush x:Key="PivotHeaderForegroundSelectedBrush" Color="#FFFFFFFF" />
-    <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush" Color="#66FFFFFF" />
-    <SolidColorBrush x:Key="PivotNavButtonBackgroundThemeBrush" Color="#59D5D5D5" />
-    <SolidColorBrush x:Key="PivotNavButtonBorderThemeBrush" Color="#59D5D5D5" />
-    <SolidColorBrush x:Key="PivotNavButtonForegroundThemeBrush" Color="#99000000" />
-    <SolidColorBrush x:Key="PivotNavButtonPointerOverBackgroundThemeBrush" Color="#F0D7D7D7" />
-    <SolidColorBrush x:Key="PivotNavButtonPointerOverBorderThemeBrush" Color="#9EC1C1C1" />
-    <SolidColorBrush x:Key="PivotNavButtonPointerOverForegroundThemeBrush" Color="#FF000000" />
-    <SolidColorBrush x:Key="PivotNavButtonPressedBackgroundThemeBrush" Color="#BD292929" />
-    <SolidColorBrush x:Key="PivotNavButtonPressedBorderThemeBrush" Color="#BD292929" />
-    <SolidColorBrush x:Key="PivotNavButtonPressedForegroundThemeBrush" Color="#FFFFFFFF" />
+    <StaticResource x:Key="PivotHeaderItemFontSize" ResourceKey="BodyFontSize" />
 
-    <x:Double x:Key="PivotHeaderItemFontSize">14</x:Double>
-    <x:Double x:Key="PivotHeaderItemLockedTranslation">40</x:Double>
-    <x:Double x:Key="PivotTitleFontSize">14</x:Double>
-    <x:Int32 x:Key="PivotHeaderItemCharacterSpacing">-25</x:Int32>
-    <Thickness x:Key="PivotHeaderItemMargin">12,0,12,0</Thickness>
-    <Thickness x:Key="PivotItemMargin">12,0,12,0</Thickness>
-    <Thickness x:Key="PivotLandscapeThemePadding">12,14,0,13</Thickness>
-    <Thickness x:Key="PivotNavButtonBorderThemeThickness">0</Thickness>
     <Thickness x:Key="PivotNavButtonMargin">0,6,0,0</Thickness>
-    <Thickness x:Key="PivotPortraitThemePadding">12,14,0,13</Thickness>
+    <Thickness x:Key="PivotHeaderItemMargin">12,8</Thickness>
 
-    <Style TargetType="Pivot" />
-    <Style TargetType="PivotItem" />
+    <Style TargetType="Pivot">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Background" Value="{ThemeResource PivotBackground}" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <Grid />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Pivot">
+
+                    <Grid x:Name="RootElement"
+                          HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                          VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                          Background="{TemplateBinding Background}">
+                        <Grid.Resources>
+                            <Style x:Key="BaseContentControlStyle" TargetType="ContentControl">
+                                <Setter Property="FontFamily" Value="XamlAutoFontFamily" />
+                                <Setter Property="FontWeight" Value="SemiBold" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ContentControl">
+                                            <ContentPresenter Margin="{TemplateBinding Padding}"
+                                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                              Content="{TemplateBinding Content}"
+                                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                              ContentTransitions="{TemplateBinding ContentTransitions}"
+                                                              CornerRadius="8"
+                                                              OpticalMarginAlignment="TrimSideBearings" />
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                            <Style x:Key="TitleContentControlStyle" BasedOn="{StaticResource BaseContentControlStyle}" TargetType="ContentControl">
+                                <Setter Property="FontFamily" Value="{ThemeResource PivotTitleFontFamily}" />
+                                <Setter Property="FontWeight" Value="{ThemeResource PivotTitleThemeFontWeight}" />
+                                <Setter Property="FontSize" Value="{ThemeResource PivotTitleFontSize}" />
+                            </Style>
+                        </Grid.Resources>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <ContentControl x:Name="TitleContentControl"
+                                        Margin="{StaticResource PivotPortraitThemePadding}"
+                                        Content="{TemplateBinding Title}"
+                                        ContentTemplate="{TemplateBinding TitleTemplate}"
+                                        IsTabStop="False"
+                                        Style="{StaticResource TitleContentControlStyle}"
+                                        Visibility="Collapsed" />
+
+                        <Grid Grid.Row="1">
+
+                            <ScrollViewer x:Name="ScrollViewer"
+                                          Margin="0"
+                                          Padding="0"
+                                          VerticalContentAlignment="Stretch"
+                                          BringIntoViewOnFocusChange="False"
+                                          HorizontalScrollBarVisibility="Hidden"
+                                          HorizontalSnapPointsAlignment="Center"
+                                          HorizontalSnapPointsType="MandatorySingle"
+                                          Template="{StaticResource ScrollViewerScrollBarlessTemplate}"
+                                          VerticalScrollBarVisibility="Disabled"
+                                          VerticalScrollMode="Disabled"
+                                          VerticalSnapPointsType="None"
+                                          ZoomMode="Disabled">
+
+                                <PivotPanel x:Name="Panel"
+                                            VerticalAlignment="Top">
+                                    <Grid x:Name="PivotLayoutElement"
+                                          RowSpacing="8">
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="40" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RenderTransform>
+                                            <CompositeTransform x:Name="PivotLayoutElementTranslateTransform" />
+                                        </Grid.RenderTransform>
+
+                                        <ContentControl x:Name="HeaderClipper"
+                                                        Grid.Column="0"
+                                                        Grid.ColumnSpan="3"
+                                                        Margin="0,-5,0,0"
+                                                        HorizontalContentAlignment="Stretch"
+                                                        UseSystemFocusVisuals="{StaticResource UseSystemFocusVisuals}">
+                                            <ContentControl.Clip>
+                                                <RectangleGeometry x:Name="HeaderClipperGeometry" />
+                                            </ContentControl.Clip>
+                                            <Grid>
+                                                <Grid.RenderTransform>
+                                                    <CompositeTransform x:Name="HeaderOffsetTranslateTransform" />
+                                                </Grid.RenderTransform>
+                                                <PivotHeaderPanel x:Name="StaticHeader"
+                                                                  Visibility="Collapsed">
+                                                    <PivotHeaderPanel.RenderTransform>
+                                                        <CompositeTransform x:Name="StaticHeaderTranslateTransform" />
+                                                    </PivotHeaderPanel.RenderTransform>
+                                                </PivotHeaderPanel>
+                                                <PivotHeaderPanel x:Name="Header">
+                                                    <PivotHeaderPanel.RenderTransform>
+                                                        <CompositeTransform x:Name="HeaderTranslateTransform" />
+                                                    </PivotHeaderPanel.RenderTransform>
+                                                </PivotHeaderPanel>
+                                                <Rectangle x:Name="FocusFollower"
+                                                           HorizontalAlignment="Stretch"
+                                                           VerticalAlignment="Stretch"
+                                                           Control.IsTemplateFocusTarget="True"
+                                                           IsHitTestVisible="False" />
+                                            </Grid>
+                                        </ContentControl>
+
+                                        <Grid Grid.Column="1"
+                                              Margin="0,-3,0,0"
+                                              VerticalAlignment="Center">
+
+                                            <Border x:Name="ButtonsBackground"
+                                                    Background="{ThemeResource PaneOverlayBackgroundColorBrush}"
+                                                    CornerRadius="{ThemeResource ControlCornerRadius}"
+                                                    IsHitTestVisible="False"
+                                                    Opacity="0" />
+
+                                            <StackPanel Padding="1"
+                                                        Orientation="Horizontal">
+
+                                                <custom:GhostButton x:Name="PreviousButton"
+                                                                    Padding="1,4,3,4"
+                                                                    IsEnabled="False"
+                                                                    IsTabStop="False"
+                                                                    Opacity="0"
+                                                                    UseSystemFocusVisuals="False">
+                                                    <custom:GhostButton.LeftIcon>
+                                                        <pathicons:ChevronLeft />
+                                                    </custom:GhostButton.LeftIcon>
+                                                </custom:GhostButton>
+
+                                                <custom:GhostButton x:Name="NextButton"
+                                                                    Padding="3,4,1,4"
+                                                                    IsEnabled="False"
+                                                                    IsTabStop="False"
+                                                                    Opacity="0"
+                                                                    UseSystemFocusVisuals="False">
+                                                    <custom:GhostButton.LeftIcon>
+                                                        <pathicons:ChevronRight />
+                                                    </custom:GhostButton.LeftIcon>
+                                                </custom:GhostButton>
+
+                                            </StackPanel>
+
+                                        </Grid>
+
+                                        <ItemsPresenter x:Name="PivotItemPresenter"
+                                                        Grid.Row="1"
+                                                        Grid.ColumnSpan="3">
+                                            <ItemsPresenter.RenderTransform>
+                                                <TransformGroup>
+                                                    <TranslateTransform x:Name="ItemsPresenterTranslateTransform" />
+                                                    <CompositeTransform x:Name="ItemsPresenterCompositeTransform" />
+                                                </TransformGroup>
+                                            </ItemsPresenter.RenderTransform>
+                                        </ItemsPresenter>
+                                    </Grid>
+                                </PivotPanel>
+                            </ScrollViewer>
+
+                        </Grid>
+
+                        <VisualStateManager.VisualStateGroups>
+
+                            <VisualStateGroup x:Name="Orientation">
+                                <VisualState x:Name="Portrait">
+                                    <VisualState.Setters>
+                                        <Setter Target="TitleContentControl.Margin" Value="{ThemeResource PivotPortraitThemePadding}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Landscape">
+                                    <VisualState.Setters>
+                                        <Setter Target="TitleContentControl.Margin" Value="{ThemeResource PivotLandscapeThemePadding}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+
+                            <VisualStateGroup x:Name="NavigationButtonsVisibility">
+                                <VisualState x:Name="NavigationButtonsHidden" />
+                                <VisualState x:Name="NavigationButtonsVisible">
+                                    <VisualState.Setters>
+                                        <Setter Target="NextButton.Opacity" Value="1" />
+                                        <Setter Target="NextButton.Visibility" Value="Visible" />
+                                        <Setter Target="NextButton.IsEnabled" Value="True" />
+                                        <Setter Target="PreviousButton.Opacity" Value="1" />
+                                        <Setter Target="PreviousButton.Visibility" Value="Visible" />
+                                        <Setter Target="PreviousButton.IsEnabled" Value="True" />
+                                        <Setter Target="ButtonsBackground.Opacity" Value="1" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="PreviousButtonVisible">
+                                    <VisualState.Setters>
+                                        <Setter Target="PreviousButton.Opacity" Value="1" />
+                                        <Setter Target="PreviousButton.Visibility" Value="Visible" />
+                                        <Setter Target="PreviousButton.IsEnabled" Value="True" />
+                                        <Setter Target="ButtonsBackground.Opacity" Value="1" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="NextButtonVisible">
+                                    <VisualState.Setters>
+                                        <Setter Target="NextButton.Opacity" Value="1" />
+                                        <Setter Target="NextButton.Visibility" Value="Visible" />
+                                        <Setter Target="NextButton.IsEnabled" Value="True" />
+                                        <Setter Target="ButtonsBackground.Opacity" Value="1" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="HeaderStates">
+                                <VisualState x:Name="HeaderDynamic" />
+                                <VisualState x:Name="HeaderStatic">
+                                    <VisualState.Setters>
+                                        <Setter Target="Header.Visibility" Value="Collapsed" />
+                                        <Setter Target="StaticHeader.Visibility" Value="Visible" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="PivotHeaderItem">
+        <Setter Property="FontSize" Value="{ThemeResource PivotHeaderItemFontSize}" />
+        <Setter Property="FontFamily" Value="{ThemeResource PivotHeaderItemFontFamily}" />
+        <Setter Property="FontWeight" Value="{ThemeResource PivotHeaderItemThemeFontWeight}" />
+        <Setter Property="CharacterSpacing" Value="{ThemeResource PivotHeaderItemCharacterSpacing}" />
+        <Setter Property="Background" Value="{ThemeResource PivotHeaderItemBackgroundUnselected}" />
+        <Setter Property="Foreground" Value="{ThemeResource PivotHeaderItemForegroundUnselected}" />
+        <Setter Property="Padding" Value="{ThemeResource PivotHeaderItemMargin}" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="UseSystemFocusVisuals" Value="False" />
+        <Setter Property="CornerRadius" Value="{ThemeResource PivotHeaderItemSelectedPipeCornerRadius}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="PivotHeaderItem">
+                    <Grid>
+                        <Grid x:Name="Grid"
+                              Margin="0,8,0,8"
+                              Padding="12,0,12,2"
+                              Background="{TemplateBinding Background}"
+                              CornerRadius="{ThemeResource ControlCornerRadius}">
+
+                            <Grid.RenderTransform>
+                                <TranslateTransform x:Name="ContentPresenterTranslateTransform" />
+                            </Grid.RenderTransform>
+
+                            <ContentPresenter x:Name="ContentPresenter"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Content="{TemplateBinding Content}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              FontFamily="{TemplateBinding FontFamily}"
+                                              FontSize="{TemplateBinding FontSize}"
+                                              FontWeight="{TemplateBinding FontWeight}"
+                                              OpticalMarginAlignment="TrimSideBearings" />
+
+                        </Grid>
+
+                        <Rectangle x:Name="SelectedPipe"
+                                   Width="16"
+                                   Height="3"
+                                   Margin="0,4"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Bottom"
+                                   Fill="{ThemeResource PivotHeaderItemSelectedPipeFill}"
+                                   RadiusX="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TopLeftCornerRadiusDoubleValueConverter}}"
+                                   RadiusY="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BottomRightCornerRadiusDoubleValueConverter}}" />
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="SelectionStates">
+
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0:0:0.33"
+                                                      From="Unselected"
+                                                      To="UnselectedLocked" />
+                                    <VisualTransition GeneratedDuration="0:0:0.33"
+                                                      From="UnselectedLocked"
+                                                      To="Unselected" />
+                                </VisualStateGroup.Transitions>
+
+                                <VisualState x:Name="Disabled">
+                                    <VisualState.Setters>
+                                        <Setter Target="SelectedPipe.Visibility" Value="Collapsed" />
+                                        <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource PivotHeaderItemForegroundDisabled}" />
+                                        <Setter Target="Grid.Background" Value="{ThemeResource PivotHeaderItemBackgroundDisabled}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Unselected">
+                                    <VisualState.Setters>
+                                        <Setter Target="SelectedPipe.Visibility" Value="Collapsed" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="UnselectedLocked">
+                                    <VisualState.Setters>
+                                        <Setter Target="SelectedPipe.Visibility" Value="Collapsed" />
+                                        <Setter Target="ContentPresenterTranslateTransform.X" Value="{ThemeResource PivotHeaderItemLockedTranslation}" />
+                                        <Setter Target="ContentPresenter.(UIElement.Opacity)" Value="0" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource PivotHeaderItemForegroundSelected}" />
+                                        <Setter Target="Grid.Background" Value="{ThemeResource PivotHeaderItemBackgroundSelected}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="UnselectedPointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Target="SelectedPipe.Visibility" Value="Collapsed" />
+                                        <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource PivotHeaderItemForegroundUnselectedPointerOver}" />
+                                        <Setter Target="Grid.Background" Value="{ThemeResource PivotHeaderItemBackgroundUnselectedPointerOver}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="SelectedPointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource PivotHeaderItemForegroundSelectedPointerOver}" />
+                                        <Setter Target="Grid.Background" Value="{ThemeResource PivotHeaderItemBackgroundSelectedPointerOver}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="UnselectedPressed">
+                                    <VisualState.Setters>
+                                        <Setter Target="SelectedPipe.Visibility" Value="Collapsed" />
+                                        <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource PivotHeaderItemForegroundUnselectedPressed}" />
+                                        <Setter Target="Grid.Background" Value="{ThemeResource PivotHeaderItemBackgroundUnselectedPressed}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="SelectedPressed">
+                                    <VisualState.Setters>
+                                        <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource PivotHeaderItemForegroundSelectedPressed}" />
+                                        <Setter Target="Grid.Background" Value="{ThemeResource PivotHeaderItemBackgroundSelectedPressed}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                            </VisualStateGroup>
+
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

@@ -26,6 +26,8 @@ using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Models.Connections.Countries;
 using ProtonVPN.Client.Models.Connections.Gateways;
+using ProtonVPN.Client.Models.Connections;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
 namespace ProtonVPN.Client.Factories;
 
@@ -57,6 +59,11 @@ public class LocationItemFactory : ILocationItemFactory
     public GenericCountryLocationItem GetGenericCountry(CountriesConnectionType connectionType, ConnectionIntentKind intentKind, bool excludeMyCountry)
     {
         return new GenericCountryLocationItem(_localizer, _serversLoader, _connectionManager, _upsellCarouselWindowActivator, _connectionGroupFactory, this, connectionType, intentKind, excludeMyCountry);
+    }
+
+    public GenericFastestLocationItem GetGenericFastestLocation(ConnectionGroupType groupType, ILocationIntent locationIntent)
+    {
+        return new GenericFastestLocationItem(_localizer, _serversLoader, _connectionManager, _upsellCarouselWindowActivator, groupType, locationIntent);
     }
 
     public CountryLocationItem GetCountry(string exitCountryCode)

@@ -19,6 +19,8 @@
 
 namespace ProtonVPN.Client.Models.Themes;
 
+
+[Obsolete("Use ProtonVPN.Client.Contracts.Services.Selection.IApplicationThemeSelector instead")]
 public interface IThemeSelector
 {
     IList<ApplicationElementTheme> GetAvailableThemes();

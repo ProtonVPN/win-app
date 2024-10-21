@@ -27,7 +27,6 @@ using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Contracts.Services.Activation;
-using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Models;
 
 namespace ProtonVPN.Client.Models.Connections.Countries;
 

@@ -18,8 +18,9 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
-using System.Runtime.CompilerServices;
 using ProtonVPN.Client.Common.Enums;
+using ProtonVPN.Client.Contracts.Enums;
+using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
@@ -31,9 +32,6 @@ using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Recents;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
-using ProtonVPN.Client.Contracts.Enums;
-using ProtonVPN.Client.Contracts.Services.Activation;
-using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Models;
 
 namespace ProtonVPN.Client.Models.Connections.Recents;
 
@@ -43,17 +41,21 @@ public partial class RecentConnectionItem : ConnectionItemBase
 
     public IRecentConnection RecentConnection { get; }
 
+    public IConnectionProfile? Profile => RecentConnection.ConnectionIntent as IConnectionProfile;
+
     public override ConnectionGroupType GroupType => RecentConnection.IsPinned
         ? ConnectionGroupType.PinnedRecents
         : ConnectionGroupType.Recents;
 
-    public override string Header => RecentConnection.ConnectionIntent is IConnectionProfile profile
-        ? profile.Name
+    public override string Header => IsProfileIntent
+        ? Profile!.Name
         : Localizer.GetConnectionIntentTitle(RecentConnection.ConnectionIntent);
 
-    public override string Description => RecentConnection.ConnectionIntent is IConnectionProfile profile
-        ? Localizer.GetConnectionProfileSubtitle(profile)
+    public override string Description => IsProfileIntent
+        ? Localizer.GetConnectionProfileSubtitle(Profile)
         : Localizer.GetConnectionIntentSubtitle(RecentConnection.ConnectionIntent);
+
+    public bool IsProfileIntent => Profile != null;
 
     public string? ExitCountry => RecentConnection.ConnectionIntent?.Location?.GetCountryCode();
 
@@ -115,7 +117,6 @@ public partial class RecentConnectionItem : ConnectionItemBase
     {
         return RecentConnection.ConnectionIntent.IsSameAs(currentConnectionDetails?.OriginalConnectionIntent);
     }
-
 
     [RelayCommand(CanExecute = nameof(CanPin))]
     private void Pin()

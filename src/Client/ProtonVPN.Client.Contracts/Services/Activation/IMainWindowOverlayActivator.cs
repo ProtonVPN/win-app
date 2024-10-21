@@ -33,8 +33,6 @@ public interface IMainWindowOverlayActivator : IOverlayActivator
 
     Task<ContentDialogResult> ShowTorInfoOverlayAsync();
 
-    Task<ContentDialogResult> ShowProfilesInfoOverlayAsync();
-
     Task<ContentDialogResult> ShowSmartRoutingInfoOverlayAsync();
 
     Task<ContentDialogResult> ShowServerLoadInfoOverlayAsync();

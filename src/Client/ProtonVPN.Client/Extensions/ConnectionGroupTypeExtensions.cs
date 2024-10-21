@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,8 +20,8 @@
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.UI.Assets.Icons.Base;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
-using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Contracts.Enums;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 
 namespace ProtonVPN.Client.Extensions;
 
@@ -67,8 +67,7 @@ public static class ConnectionGroupTypeExtensions
         {
             ConnectionGroupType.SecureCoreCountries or
             ConnectionGroupType.P2PCountries or
-            ConnectionGroupType.TorCountries or 
-            ConnectionGroupType.Profiles => true,
+            ConnectionGroupType.TorCountries => true,
             _ => false
         };
     }

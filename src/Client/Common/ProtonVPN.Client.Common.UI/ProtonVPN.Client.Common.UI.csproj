@@ -803,6 +803,7 @@
         <None Remove="Styles\Controls\InfoBannerStyles.xaml" />
         <None Remove="Styles\Controls\InfoBarStyles.xaml" />
         <None Remove="Styles\Controls\ListBoxStyles.xaml" />
+        <None Remove="Styles\Controls\ListViewStyles.xaml" />
         <None Remove="Styles\Controls\MessageContentDialogStyles.xaml" />
         <None Remove="Styles\Controls\NavigationViewStyles.xaml" />
         <None Remove="Styles\Controls\PageContentControlStyles.xaml" />
@@ -2326,6 +2327,11 @@
     </ItemGroup>
     <ItemGroup>
       <Resource Remove="Assets\Icons\Profiles\BotProfileIcon.xaml" />
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Styles\Controls\ListViewStyles.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
     </ItemGroup>
     <ItemGroup>
       <Page Update="Controls\MapControl.xaml">

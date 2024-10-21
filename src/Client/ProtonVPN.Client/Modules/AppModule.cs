@@ -109,6 +109,8 @@ using ProtonVPN.ProcessCommunication.Installers;
 using ProtonVPN.Serialization.Installers;
 using ProtonVPN.ProcessCommunication.Client.Installers;
 using ProtonVPN.Common.Legacy.OS.Processes;
+using ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles.Overlays;
+using ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles.Controls;
 
 namespace ProtonVPN.Client.Modules;
 
@@ -202,6 +204,7 @@ public class AppModule : Module
         builder.RegisterType<ConnectionGroupFactory>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ConnectionItemFactory>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<LocationItemFactory>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<CommonItemFactory>().AsImplementedInterfaces().SingleInstance();
 
         builder.Register(c =>
             new SafeSystemNetworkInterfaces(c.Resolve<ILogger>(), new SystemNetworkInterfaces()))
@@ -278,6 +281,10 @@ public class AppModule : Module
         RegisterViewModel<AutoStartupSettingsPageViewModel>(builder);
         RegisterViewModel<SideWidgetsHostComponentViewModel>(builder);
         RegisterViewModel<VpnSpeedViewModel>(builder);
+        RegisterViewModel<EditProfileOverlayViewModel>(builder);
+        RegisterViewModel<ConnectionIntentSelectorViewModel>(builder);
+        RegisterViewModel<ProfileIconSelectorViewModel>(builder);
+        RegisterViewModel<ProfileSettingsSelectorViewModel>(builder);
         RegisterViewModel<UpdateViewModel>(builder).AutoActivate();
 
         RegisterViewModel<ReportIssueShellViewModel>(builder);

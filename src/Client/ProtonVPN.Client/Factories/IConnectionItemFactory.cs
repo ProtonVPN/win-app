@@ -19,6 +19,7 @@
 
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Recents.Contracts;
+using ProtonVPN.Client.Models.Connections.Profiles;
 using ProtonVPN.Client.Models.Connections.Recents;
 
 namespace ProtonVPN.Client.Factories;
@@ -27,5 +28,5 @@ public interface IConnectionItemFactory
 {
     RecentConnectionItem GetRecent(IRecentConnection recentConnection);
 
-    void GetProfile(IConnectionProfile profile);
+    ProfileConnectionItem GetProfile(IConnectionProfile profile);
 }

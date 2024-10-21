@@ -64,7 +64,7 @@ public partial class AboutPageViewModel : SettingsPageViewModelBase,
         ILogger logger,
         IIssueReporter issueReporter,
         ISettings settings)
-        : base(settings, settingsViewNavigator, localizer, logger, issueReporter)
+        : base(settingsViewNavigator, localizer, logger, issueReporter, settings)
     {
         _updatesManager = updatesManager;
         _releaseViewModelFactory = releaseViewModelFactory;

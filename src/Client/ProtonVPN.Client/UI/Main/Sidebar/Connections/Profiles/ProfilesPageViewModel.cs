@@ -18,31 +18,37 @@
  */
 
 using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
+using ProtonVPN.Client.Contracts.Services.Navigation;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Factories;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Profiles.Contracts;
+using ProtonVPN.Client.Logic.Profiles.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Models.Connections;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;
+using ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Services.Navigation;
-using ProtonVPN.Client.Factories;
-using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Models;
-using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles;
 
-public class ProfilesPageViewModel : ConnectionPageViewModelBase
+public partial class ProfilesPageViewModel : ConnectionPageViewModelBase,
+    IEventMessageReceiver<ProfilesChangedMessage>
 {
-    public override string Header => "Profiles"; // Localizer.Get("Profiles_Page_Title");
+    private readonly IConnectionItemFactory _connectionItemFactory;
+    private readonly IProfilesManager _profilesManager;
+    private readonly IProfileEditor _profileEditor;
+
+    public override string Header => Localizer.Get("Profiles_Page_Title");
 
     public override IconElement Icon => new WindowTerminal();
-
-    public override bool IsAvailable => Profiles.Count > 0;
-
-    public ObservableCollection<string> Profiles { get; } = [];
 
     public override int SortIndex { get; } = 4;
 
@@ -54,24 +60,31 @@ public class ProfilesPageViewModel : ConnectionPageViewModelBase
         ISettings settings,
         IServersLoader serversLoader,
         IConnectionManager connectionManager,
-        IConnectionGroupFactory connectionGroupFactory)
+        IConnectionGroupFactory connectionGroupFactory,
+        IConnectionItemFactory connectionItemFactory,
+        IProfilesManager profilesManager,
+        IProfileEditor profileEditor)
         : base(parentViewNavigator, localizer, logger, issueReporter, settings, serversLoader, connectionManager, connectionGroupFactory)
-    { }
-
-    protected override void OnNavigation(NavigationEventArgs e)
     {
-        base.OnNavigation(e);
+        _connectionItemFactory = connectionItemFactory;
+        _profilesManager = profilesManager;
+        _profileEditor = profileEditor;
+    }
 
-        // Test to confirm that page can appear and disappear dynamically
-        if (e.SourcePageType.Name.Contains("Gateway"))
-        {
-            Profiles.Add("hello");
-            OnPropertyChanged(nameof(IsAvailable));
-        }
+    public void Receive(ProfilesChangedMessage message)
+    {
+        ExecuteOnUIThread(FetchItems);
     }
 
     protected override IEnumerable<ConnectionItemBase> GetItems()
     {
-        return [];
+        return _profilesManager.GetAll()
+                               .Select(_connectionItemFactory.GetProfile);
+    }
+
+    [RelayCommand]
+    private Task CreateProfileAsync()
+    {
+        return _profileEditor.CreateProfileAsync();
     }
 }

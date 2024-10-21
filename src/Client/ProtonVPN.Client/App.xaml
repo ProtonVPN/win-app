@@ -69,6 +69,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/UpsellFeatureContentControlStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/BulletHeaderedContentControlStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/ListBoxStyles.xaml" />
+                <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/ListViewStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/ProminentBannerControlStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/ConnectionProfileIconStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/WidgetButtonStyles.xaml" />
@@ -94,55 +95,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <Thickness x:Key="HomePageContentPadding">28,0</Thickness>
             <Thickness x:Key="PageContentPadding">28,0</Thickness>
-
-            <Style x:Key="PaneContentBorderStyle" TargetType="Border">
-                <Setter Property="Background" Value="{ThemeResource PaneBackgroundAcrylicBrush}" />
-                <Setter Property="BorderBrush" Value="{ThemeResource PaneBorderBrush}" />
-                <Setter Property="BorderThickness" Value="1" />
-                <Setter Property="CornerRadius" Value="8" />
-            </Style>
-
-            <HorizontalAlignment x:Key="PlaceholderHorizontalContentAlignment">Stretch</HorizontalAlignment>
-            <VerticalAlignment x:Key="PlaceholderVerticalContentAlignment">Stretch</VerticalAlignment>
-
-            <Style TargetType="temp:PlaceholderControl">
-                <Setter Property="Background" Value="{ThemeResource BackgroundNormColorBrush}" />
-                <Setter Property="BorderBrush" Value="{ThemeResource BorderWeakColorBrush}" />
-                <Setter Property="BorderThickness" Value="1" />
-                <Setter Property="CornerRadius" Value="4" />
-                <Setter Property="Padding" Value="8" />
-                <Setter Property="IsTabStop" Value="False" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="temp:PlaceholderControl">
-                            <Grid Background="{TemplateBinding Background}"
-                                  BorderBrush="{TemplateBinding BorderBrush}"
-                                  BorderThickness="{TemplateBinding BorderThickness}"
-                                  CornerRadius="{TemplateBinding CornerRadius}">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <Border Background="{ThemeResource BackgroundWeakColorBrush}"
-                                        Visibility="{Binding Header, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource StringVisibilityConverter}}"
-                                        Padding="12,4,12,5"
-                                        Grid.Row="0">                                    
-                                    <TextBlock Text="{TemplateBinding Header}"
-                                               Foreground="{ThemeResource TextWeakColorBrush}"
-                                               Style="{StaticResource BodyStrongTextBlockStyle}"/>
-                                </Border>
-                                <Grid Grid.Row="1"
-                                        Padding="{TemplateBinding Padding}">
-                                    <ContentPresenter FontSize="{StaticResource BodyMediumStrongFontSize}"
-                                                      FontWeight="{StaticResource BodyMediumStrongFontWeight}"
-                                                      HorizontalContentAlignment="{ThemeResource PlaceholderHorizontalContentAlignment}"
-                                                      VerticalContentAlignment="{ThemeResource PlaceholderVerticalContentAlignment}"/>
-                                </Grid>
-                            </Grid>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
 
         </ResourceDictionary>
     </Application.Resources>

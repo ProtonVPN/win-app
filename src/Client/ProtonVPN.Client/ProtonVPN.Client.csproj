@@ -74,6 +74,7 @@
     <None Remove="UI\Main\Settings\SettingsPageView.xaml" />
     <None Remove="UI\Main\Settings\SettingsWidgetView.xaml" />
     <None Remove="UI\Main\Sidebar\Connections\Bases\Controls\ConnectionItemsControl.xaml" />
+    <None Remove="UI\Main\Sidebar\Connections\Bases\Controls\LocationComboBox.xaml" />
     <None Remove="UI\Main\Sidebar\Connections\ConnectionsPageView.xaml" />
     <None Remove="UI\Main\Sidebar\Connections\Countries\All\AllCountriesComponentView.xaml" />
     <None Remove="UI\Main\Sidebar\Connections\Countries\CountriesPageView.xaml" />
@@ -81,6 +82,10 @@
     <None Remove="UI\Main\Sidebar\Connections\Countries\SecureCore\SecureCoreCountriesComponentView.xaml" />
     <None Remove="UI\Main\Sidebar\Connections\Countries\Tor\TorCountriesComponentView.xaml" />
     <None Remove="UI\Main\Sidebar\Connections\Gateways\GatewaysPageView.xaml" />
+    <None Remove="UI\Main\Sidebar\Connections\Profiles\Controls\ConnectionIntentSelectorView.xaml" />
+    <None Remove="UI\Main\Sidebar\Connections\Profiles\Controls\ProfileIconSelectorView.xaml" />
+    <None Remove="UI\Main\Sidebar\Connections\Profiles\Controls\ProfileSettingsSelectorView.xaml" />
+    <None Remove="UI\Main\Sidebar\Connections\Profiles\Overlays\EditProfileOverlayView.xaml" />
     <None Remove="UI\Main\Sidebar\Connections\Profiles\ProfilesPageView.xaml" />
     <None Remove="UI\Main\Sidebar\Connections\Recents\RecentsPageView.xaml" />
     <None Remove="UI\Main\Sidebar\Search\SearchResultsPageView.xaml" />
@@ -240,6 +245,21 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
     <Page Update="UI\Login\Overlays\SsoLoginOverlayView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="UI\Main\Sidebar\Connections\Bases\Controls\LocationComboBox.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="UI\Main\Sidebar\Connections\Profiles\Controls\ConnectionIntentSelectorView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="UI\Main\Sidebar\Connections\Profiles\Controls\ProfileIconSelectorView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="UI\Main\Sidebar\Connections\Profiles\Controls\ProfileSettingsSelectorView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="UI\Main\Sidebar\Connections\Profiles\Overlays\EditProfileOverlayView.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
     <Page Update="UI\Overlays\Information\OutdatedClientOverlayView.xaml">

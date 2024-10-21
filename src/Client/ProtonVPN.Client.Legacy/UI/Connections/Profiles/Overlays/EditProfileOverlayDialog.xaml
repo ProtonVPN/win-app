@@ -39,7 +39,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <Visibility x:Key="TextBoxDeleteButtonVisibility">Collapsed</Visibility>
 
-        <Style x:Key="ProfileTextBoxStyle" BasedOn="{StaticResource StandardTextBoxStyle}" TargetType="TextBox">
+        <Style x:Key="ProfileTextBoxStyle" BasedOn="{StaticResource DefaultTextBoxStyle}" TargetType="TextBox">
             <Setter Property="FontSize" Value="{StaticResource SubtitleFontSize}" />
             <Setter Property="BorderThickness" Value="0" />
         </Style>

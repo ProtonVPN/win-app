@@ -17,14 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
-using ProtonVPN.Client.Contracts.Services.Activation;
+using ProtonVPN.Client.Models.Connections.Profiles;
 using ProtonVPN.Client.Models.Connections.Recents;
+using ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles.Contracts;
 
 namespace ProtonVPN.Client.Factories;
 
@@ -36,6 +38,7 @@ public class ConnectionItemFactory : IConnectionItemFactory
     private readonly IConnectionManager _connectionManager;
     private readonly IRecentConnectionsManager _recentConnectionsManager;
     private readonly IProfilesManager _profilesManager;
+    private readonly IProfileEditor _profileEditor;
     private readonly IUpsellCarouselWindowActivator _upsellCarouselWindowActivator;
 
     public ConnectionItemFactory(
@@ -45,6 +48,7 @@ public class ConnectionItemFactory : IConnectionItemFactory
         IConnectionManager connectionManager,
         IRecentConnectionsManager recentConnectionsManager,
         IProfilesManager profilesManager,
+        IProfileEditor profileEditor,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator)
     {
         _localizer = localizer;
@@ -53,6 +57,7 @@ public class ConnectionItemFactory : IConnectionItemFactory
         _connectionManager = connectionManager;
         _recentConnectionsManager = recentConnectionsManager;
         _profilesManager = profilesManager;
+        _profileEditor = profileEditor;
         _upsellCarouselWindowActivator = upsellCarouselWindowActivator;
     }
 
@@ -61,8 +66,8 @@ public class ConnectionItemFactory : IConnectionItemFactory
         return new RecentConnectionItem(_localizer, _serversLoader, _connectionManager, _upsellCarouselWindowActivator, _recentConnectionsManager, recentConnection);
     }
 
-    public void GetProfile(IConnectionProfile profile)
+    public ProfileConnectionItem GetProfile(IConnectionProfile profile)
     {
-        throw new NotImplementedException();
+        return new ProfileConnectionItem(_localizer, _serversLoader, _connectionManager, _upsellCarouselWindowActivator, _mainWindowOverlayActivator, _profilesManager, _profileEditor, profile);
     }
 }

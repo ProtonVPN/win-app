@@ -22,6 +22,7 @@ using ProtonVPN.Client.Localization.Contracts;
 
 namespace ProtonVPN.Client.Models.Themes;
 
+[Obsolete("Use ProtonVPN.Client.Contracts.Models.ApplicationElementTheme instead")]
 public class ApplicationElementTheme
 {
     private readonly ILocalizationProvider _localizer;

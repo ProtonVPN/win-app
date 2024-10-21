@@ -20,8 +20,8 @@
 using System.ComponentModel;
 using ProtonVPN.Client.Contracts.Bases;
 using ProtonVPN.Client.Contracts.Enums;
+using ProtonVPN.Client.Models.Connections;
 using ProtonVPN.Client.Models.Connections.Countries;
-using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Models;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Contracts;
 

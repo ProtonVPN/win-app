@@ -50,6 +50,13 @@ public static class UiActions
         return desiredElement;
     }
 
+    public static T ClickItem<T>(this T desiredElement, int index) where T : Element
+    {
+        AutomationElement element = WaitUntilExists(desiredElement);
+        element.FindChildAt(index).Click();
+        return desiredElement;
+    }
+
     public static AutomationElement WaitUntilExists<T>(this T desiredElement, TimeSpan? time = null) where T : Element
     {
         if (time == null)

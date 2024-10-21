@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -32,6 +32,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:selectors="using:ProtonVPN.Client.Selectors"
       xmlns:tor="using:ProtonVPN.Client.UI.Main.Sidebar.Connections.Countries.Tor"
       x:DefaultBindMode="OneWay"
+      AutomationProperties.AutomationId="CountriesPage"
+      AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Automation_Properties_Sidebar_Connections_Countries_Page')}"
       NavigationCacheMode="Required"
       mc:Ignorable="d">
 
@@ -68,6 +70,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Grid.RowDefinitions>
 
         <Pivot Grid.Row="0"
+               AutomationProperties.AutomationControlType="Tab"
+               AutomationProperties.AutomationId="CountriesFeaturesList"
                ItemTemplateSelector="{StaticResource CountriesComponentItemTemplateSelector}"
                ItemsSource="{x:Bind ViewModel.CountriesComponents, Mode=OneTime}"
                SelectedItem="{x:Bind ViewModel.SelectedCountriesComponent, Mode=TwoWay}">

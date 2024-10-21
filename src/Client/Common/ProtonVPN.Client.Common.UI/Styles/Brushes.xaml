@@ -270,5 +270,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <SolidColorBrush x:Key="PaneOverlayBorderColorBrush" Opacity="0.82" Color="{StaticResource BorderWeakColor}" />
 
         </ResourceDictionary>
+        
     </ResourceDictionary.ThemeDictionaries>
 </ResourceDictionary>

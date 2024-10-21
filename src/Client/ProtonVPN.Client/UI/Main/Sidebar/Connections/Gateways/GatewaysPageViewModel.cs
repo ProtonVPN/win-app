@@ -30,8 +30,9 @@ using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.Factories;
-using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Models;
+
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;
+using ProtonVPN.Client.Models.Connections;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Gateways;
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -27,13 +27,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:temp="using:ProtonVPN.Client.TEMP"
       x:DefaultBindMode="OneWay"
+      AutomationProperties.AutomationId="ConnectionsPage"
+      AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Automation_Properties_Sidebar_Connections_Page')}"
       NavigationCacheMode="Required"
       mc:Ignorable="d">
 
     <Page.Resources>
         <DataTemplate x:Key="ConnectionPageItemTemplate"
                       x:DataType="bases:IConnectionPage">
-            <ListViewItem IsSelected="{x:Bind IsActive}"
+            <ListViewItem Padding="16,0"
+                          AutomationProperties.AutomationId="ConnectionsPageItem"
+                          AutomationProperties.Name="{x:Bind Header}"
+                          AutomationProperties.AutomationControlType="ListItem"
+                          HorizontalAlignment="Left"
+                          IsSelected="{x:Bind IsActive}"
                           Visibility="{x:Bind IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Grid ColumnSpacing="8">
                     <Grid.ColumnDefinitions>
@@ -58,7 +65,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <ListView Grid.Row="0"
                   ItemTemplate="{StaticResource ConnectionPageItemTemplate}"
                   ItemsSource="{x:Bind ViewModel.ConnectionPages, Mode=OneTime}"
-                  SelectedItem="{x:Bind ViewModel.SelectedConnectionPage, Mode=TwoWay}" />
+                  SelectedItem="{x:Bind ViewModel.SelectedConnectionPage, Mode=TwoWay}" 
+                  AutomationProperties.AutomationId="ConnectionsPagesList"
+                  AutomationProperties.AutomationControlType="List"/>
 
         <Frame x:Name="ConnectionsNavigationFrame"
                Grid.Row="1"

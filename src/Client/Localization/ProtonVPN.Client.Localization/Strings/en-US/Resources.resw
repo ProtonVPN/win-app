@@ -3152,8 +3152,11 @@ Enjoy the best of Proton privacy.</value>
     <value>Profiles are available with VPN Plus</value>
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
   </data>
-  <data name="Connections_Recents_Empty" xml:space="preserve">
-    <value>Your connection history will appear here</value>
+  <data name="Connections_Recents_Empty_Title" xml:space="preserve">
+    <value>No recents yet</value>
+  </data>
+  <data name="Connections_Recents_Empty_Description" xml:space="preserve">
+    <value>View your connection history here.</value>
   </data>
   <data name="Connections_Recents_One" xml:space="preserve">
     <value>Recent ({0})</value>
@@ -3382,6 +3385,63 @@ Enjoy the best of Proton privacy.</value>
   </data>
   <data name="SignIn_Form_Title" xml:space="preserve">
     <value>Sign in</value>
+  </data>  
+  <data name="Automation_Properties_Login_Page" xml:space="preserve">
+    <value>Login page</value>
+  </data> 
+  <data name="Automation_Properties_Main_Page" xml:space="preserve">
+    <value>Main page</value>
+  </data>
+  <data name="Automation_Properties_Sidebar" xml:space="preserve">
+    <value>Sidebar</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Search_Results_Page" xml:space="preserve">
+    <value>Search results</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Page" xml:space="preserve">
+    <value>Connections page</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Recents_Page" xml:space="preserve">
+    <value>Recents page</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Countries_Page" xml:space="preserve">
+    <value>Countries page</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Gateways_Page" xml:space="preserve">
+    <value>Gateways page</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Profiles_Page" xml:space="preserve">
+    <value>Profiles page</value>
+  </data>
+  <data name="Automation_Properties_Features_Bar" xml:space="preserve">
+    <value>Features bar</value>
+  </data>
+  <data name="Automation_Properties_Home_Page" xml:space="preserve">
+    <value>Home page</value>
+  </data>
+  <data name="Automation_Properties_NetShield_Page" xml:space="preserve">
+    <value>NetShield page</value>
+  </data>
+  <data name="Automation_Properties_KillSwitch_Page" xml:space="preserve">
+    <value>Kill switch page</value>
+  </data>
+  <data name="Automation_Properties_PortForwarding_Page" xml:space="preserve">
+    <value>Port forwarding page</value>
+  </data>
+  <data name="Automation_Properties_SplitTunneling_Page" xml:space="preserve">
+    <value>Split tunneling page</value>
+  </data>
+  <data name="Automation_Properties_Settings_Page" xml:space="preserve">
+    <value>Settings page</value>
+  </data>
+  <data name="Automation_Properties_Settings_Common_Page" xml:space="preserve">
+    <value>Common settings page</value>
+  </data>
+  <data name="Automation_Properties_Settings_Advanced_Page" xml:space="preserve">
+    <value>Advanced settings page</value>
+  </data>
+  <data name="Automation_Properties_Home_Page" xml:space="preserve">
+    <value>Home page</value>
   </data>
   <data name="LoadingPage_Tip" xml:space="preserve">
     <value>A better world starts with privacy and digital freedom.</value>

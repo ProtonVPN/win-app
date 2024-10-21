@@ -26,7 +26,7 @@ public class NotNullToBooleanConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, string language)
     {
-        return value is null || string.IsNullOrEmpty(value.ToString());
+        return value is not null && !string.IsNullOrEmpty(value.ToString());
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, string language)

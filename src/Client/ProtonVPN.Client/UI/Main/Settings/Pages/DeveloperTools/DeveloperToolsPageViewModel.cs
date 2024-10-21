@@ -17,19 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Reflection;
 using System.Text.RegularExpressions;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Contracts.Services.Navigation;
+using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
-using CommunityToolkit.Mvvm.ComponentModel;
-using ProtonVPN.Client.Contracts.Services.Activation;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.DeveloperTools;
 
@@ -39,13 +40,13 @@ public partial class DeveloperToolsPageViewModel : SettingsPageViewModelBase
     private readonly IServersUpdater _serversUpdater;
     private readonly IUserAuthenticator _userAuthenticator;
 
-    public override string Title => "Developer tools";
-
     [ObservableProperty]
     private List<Overlay> _overlaysList;
 
     [ObservableProperty]
-    private Overlay _selectedOverlay;
+    private Overlay? _selectedOverlay;
+
+    public override string Title => "Developer tools";
 
     public DeveloperToolsPageViewModel(
         IMainWindowOverlayActivator mainWindowOverlayActivator,
@@ -56,7 +57,7 @@ public partial class DeveloperToolsPageViewModel : SettingsPageViewModelBase
         ILogger logger,
         IIssueReporter issueReporter,
         ISettings settings)
-        : base(settings, settingsViewNavigator, localizer, logger, issueReporter)
+        : base(settingsViewNavigator, localizer, logger, issueReporter, settings)
     {
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
         _serversUpdater = serversUpdater;
@@ -82,28 +83,34 @@ public partial class DeveloperToolsPageViewModel : SettingsPageViewModelBase
     }
 
     [RelayCommand]
-    public async Task TriggerLogicalsRefresh()
+    public async Task TriggerLogicalsRefreshAsync()
     {
         await _serversUpdater.UpdateAsync(ServersRequestParameter.ForceFullUpdate, true);
     }
 
     [RelayCommand]
-    public async Task LogoutUserWithClientOutdatedReason()
+    public async Task LogoutUserWithClientOutdatedReasonAsync()
     {
         await _userAuthenticator.LogoutAsync(LogoutReason.ClientOutdated);
     }
 
     [RelayCommand]
-    public async Task ShowOverlay()
+    public void ShowOverlay()
     {
         if (SelectedOverlay != null)
         {
-            var methodInfo = _mainWindowOverlayActivator.GetType().GetMethod(SelectedOverlay.Id);
-            if (methodInfo != null)
-            {
-                methodInfo.Invoke(_mainWindowOverlayActivator, null);
-            }
+            MethodInfo? methodInfo = _mainWindowOverlayActivator.GetType().GetMethod(SelectedOverlay.Id);
+            methodInfo?.Invoke(_mainWindowOverlayActivator, null);
         }
+    }
+
+    [RelayCommand]
+    public void ResetInfoBanners()
+    {
+        Settings.IsGatewayInfoBannerDismissed = false;
+        Settings.IsP2PInfoBannerDismissed = false;
+        Settings.IsSecureCoreInfoBannerDismissed = false;
+        Settings.IsTorInfoBannerDismissed = false;
     }
 
     private string GenerateOverlayDisplayName(string methodName)

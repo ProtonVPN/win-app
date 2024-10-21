@@ -103,14 +103,17 @@ public class TestSession
             DeleteProtonData();
         }
 
-        if (_isDevelopmentModeEnabled)
-        {
-            LaunchDevelopmentApp();
-            return;
-        }
+        string installedClientPath = Path.Combine(
+            _isDevelopmentModeEnabled 
+                ? TestEnvironment.GetDevProtonClientFolder()
+                : TestEnvironment.GetProtonClientFolder(), 
+            CLIENT_NAME);
 
-        string installedClientPath = Path.Combine(TestEnvironment.GetProtonClientFolder(), CLIENT_NAME);
-        App = Application.Launch(installedClientPath);
+        ProcessStartInfo startInfo = new ProcessStartInfo(installedClientPath)
+        {
+            Arguments = "-ExitAppOnClose"
+        };
+        App = Application.Launch(startInfo);
 
         RetryResult<bool> result = WaitUntilAppIsRunning();
         if (!result.Success)
@@ -138,18 +141,6 @@ public class TestSession
             string testName = TestContext.CurrentContext.Test.MethodName;
             ArtifactsHelper.SaveScreenshotAndLogs(testName, TestEnvironment.GetServiceLogsPath());
         }
-    }
-
-    private static void LaunchDevelopmentApp()
-    {
-        string executingAssemblyFolderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-        string applicationPath = Path.Combine(executingAssemblyFolderPath, CLIENT_NAME);
-
-        App = Application.Launch(applicationPath);
-        RefreshWindow();
-        Window.WaitUntilClickable();
-        Window.Focus();
     }
 
     private static RetryResult<bool> WaitUntilAppIsRunning()

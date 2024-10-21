@@ -73,6 +73,10 @@ public class TestEnvironment : TestSession
         string versionFolder = $"v{GetAppVersion()}";
         return Path.Combine(TestConstants.AppFolderPath, versionFolder);
     }
+    public static string GetDevProtonClientFolder()
+    {
+        return Directory.GetParent(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)).ToString();
+    }
 
     public static string GetServiceLogsPath()
     {

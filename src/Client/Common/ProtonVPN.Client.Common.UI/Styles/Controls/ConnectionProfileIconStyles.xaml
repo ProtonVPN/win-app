@@ -45,12 +45,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Style BasedOn="{StaticResource DefaultConnectionProfileIconStyle}" TargetType="custom:ConnectionProfileIcon" />
 
     <Style x:Key="DefaultConnectionProfileIconStyle" TargetType="custom:ConnectionProfileIcon">
-        <Setter Property="Width" Value="44" />
+        <Setter Property="Width" Value="48" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:ConnectionProfileIcon">
                     <Viewbox>
-                        <Grid>
+                        <Grid Padding="0,4">
                             <ContentPresenter x:Name="IconContainer"
                                               Width="36"
                                               HorizontalAlignment="Left"
@@ -60,10 +60,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                             </ContentPresenter>
 
-                            <custom:SimpleCountryFlag Width="24"
-                                                      Margin="20,16,0,0"
-                                                      HorizontalAlignment="Right"
-                                                      VerticalAlignment="Bottom"
+                            <custom:SimpleCountryFlag Width="30"
+                                                      Margin="18,20,0,0"
                                                       CountryCode="{TemplateBinding CountryCode}"
                                                       FlagType="{TemplateBinding FlagType}"
                                                       Visibility="{Binding IsFlagVisible, RelativeSource={RelativeSource Mode=TemplatedParent}}" />

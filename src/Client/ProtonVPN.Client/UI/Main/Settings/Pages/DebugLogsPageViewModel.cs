@@ -49,7 +49,7 @@ public partial class DebugLogsPageViewModel : SettingsPageViewModelBase
         ILogger logger,
         IIssueReporter issueReporter,
         ISettings settings)
-        : base(settings, settingsViewNavigator, localizer, logger, issueReporter)
+        : base(settingsViewNavigator, localizer, logger, issueReporter, settings)
     {
         _urls = urls;
         _staticConfig = staticConfig;

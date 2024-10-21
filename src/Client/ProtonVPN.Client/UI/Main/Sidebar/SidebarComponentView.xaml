@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -26,16 +26,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:local="using:ProtonVPN.Client.UI.Main.Sidebar"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
-             xmlns:temp="using:ProtonVPN.Client.TEMP"
              x:DefaultBindMode="OneWay"
+             AutomationProperties.AutomationId="SidebarComponent"
+             AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Automation_Properties_Sidebar')}"
              mc:Ignorable="d">
-    
+
     <Grid x:Name="SidebarContainer"
           HorizontalAlignment="Left"
           Style="{StaticResource PaneOverlayGridStyle}">
-
         <!--  Collapsed  -->
-        <StackPanel Padding="8" 
+        <StackPanel Padding="8"
                     HorizontalAlignment="Left"
                     Orientation="Vertical"
                     Spacing="24"
@@ -74,13 +74,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <TextBox Name="searchtextbox"
                      Grid.Row="0"
                      PlaceholderText="Browse from..."
-                     Style="{StaticResource DefaultTextBoxStyle}"
+                     Style="{StaticResource SearchTextBoxStyle}"
                      Text="{x:Bind ViewModel.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
             <Frame x:Name="SidebarNavigationFrame"
                    Grid.Row="1"
-                   IsNavigationStackEnabled="{x:Bind Navigator.IsNavigationStackEnabled}" 
-                   Margin="0,0,8,0"/>
+                   Margin="0,0,8,0"
+                   IsNavigationStackEnabled="{x:Bind Navigator.IsNavigationStackEnabled}" />
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
@@ -93,10 +93,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Setter Target="SidebarContainer.HorizontalAlignment" Value="Stretch" />
                     </VisualState.Setters>
                 </VisualState>
-                <VisualState x:Name="Collapsed"/>
+                <VisualState x:Name="Collapsed" />
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-
     </Grid>
 
 </UserControl>

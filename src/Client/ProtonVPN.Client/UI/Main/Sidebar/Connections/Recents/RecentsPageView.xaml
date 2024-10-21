@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -26,6 +26,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       x:DefaultBindMode="OneWay"
+      AutomationProperties.AutomationId="RecentsPage"
+      AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Automation_Properties_Sidebar_Connections_Recents_Page')}"
       NavigationCacheMode="Required"
       mc:Ignorable="d">
 
@@ -35,22 +37,27 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" 
-                    HorizontalAlignment="Center"
-                    MaxWidth="180"
+        <StackPanel Grid.Row="0"
+                    MaxWidth="240"
                     Margin="8,24"
+                    HorizontalAlignment="Center"
                     Orientation="Vertical"
                     Spacing="16"
                     Visibility="{x:Bind ViewModel.HasItems, Converter={StaticResource NotBooleanToVisibilityConverter}}">
 
             <Image Width="64"
-                       Height="64"
-                       HorizontalAlignment="Center"
-                       Source="{ThemeResource RecentsIllustrationSource}" />
+                   Height="64"
+                   HorizontalAlignment="Center"
+                   Source="{ThemeResource RecentsIllustrationSource}" />
 
             <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}"
-                       Foreground="{ThemeResource TextWeakColorBrush}"
-                       Text="{x:Bind ViewModel.Localizer.Get('Connections_Recents_Empty')}"
+                       Text="{x:Bind ViewModel.Localizer.Get('Connections_Recents_Empty_Title')}"
+                       TextAlignment="Center"
+                       TextWrapping="Wrap" />
+
+            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                       Style="{StaticResource BodyTextBlockStyle}"
+                       Text="{x:Bind ViewModel.Localizer.Get('Connections_Recents_Empty_Description')}"
                        TextAlignment="Center"
                        TextWrapping="Wrap" />
 

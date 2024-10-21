@@ -22,6 +22,7 @@ using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Models.Connections;
 using ProtonVPN.Client.Models.Connections.Countries;
 using ProtonVPN.Client.Models.Connections.Gateways;
+using ProtonVPN.Client.Models.Connections.Profiles;
 using ProtonVPN.Client.Models.Connections.Recents;
 
 namespace ProtonVPN.Client.Selectors;
@@ -44,14 +45,18 @@ public class ConnectionItemTemplateSelector : DataTemplateSelector
 
     public DataTemplate? GatewayLocationItemTemplate { get; set; }
 
-    public DataTemplate? GatewayServerLocationItemTemplate { get; set; }   
+    public DataTemplate? GatewayServerLocationItemTemplate { get; set; }
 
-    public DataTemplate? RecentConnectionItemTemplate { get; set; } 
+    public DataTemplate? RecentConnectionItemTemplate { get; set; }
+
+    public DataTemplate? ProfileConnectionItemTemplate { get; set; }
 
     protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
     {
         DataTemplate? template = item switch
         {
+            ProfileConnectionItem => ProfileConnectionItemTemplate,
+
             RecentConnectionItem => RecentConnectionItemTemplate,
 
             GatewayLocationItem => GatewayLocationItemTemplate,

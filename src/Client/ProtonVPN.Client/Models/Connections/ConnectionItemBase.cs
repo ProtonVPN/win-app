@@ -19,6 +19,10 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Contracts.Bases.Models;
+using ProtonVPN.Client.Contracts.Enums;
+using ProtonVPN.Client.Contracts.Services.Activation;
+using ProtonVPN.Client.Extensions;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts;
@@ -26,15 +30,9 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
-using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Models;
-using ProtonVPN.Common.Core.Extensions;
-using ProtonVPN.Client.Contracts.Bases.Models;
-using ProtonVPN.Client.Contracts.Enums;
-using ProtonVPN.Client.Contracts.Services.Activation;
-using ProtonVPN.Client.Extensions;
 
-namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Models;
+namespace ProtonVPN.Client.Models.Connections;
 
 public abstract partial class ConnectionItemBase : ModelBase
 {
@@ -105,7 +103,7 @@ public abstract partial class ConnectionItemBase : ModelBase
     {
         ServersLoader = serversLoader;
         ConnectionManager = connectionManager;
-        UpsellCarouselWindowActivator = upsellCarouselWindowActivator;        
+        UpsellCarouselWindowActivator = upsellCarouselWindowActivator;
     }
 
     public abstract IConnectionIntent GetConnectionIntent();
@@ -126,7 +124,6 @@ public abstract partial class ConnectionItemBase : ModelBase
     }
 
     protected abstract bool MatchesActiveConnection(ConnectionDetails? currentConnectionDetails);
-
 
     [RelayCommand(CanExecute = nameof(CanToggleConnection))]
     private async Task ToggleConnectionAsync()

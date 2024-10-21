@@ -26,6 +26,7 @@ using ProtonVPN.Client.Contracts.Messages;
 
 namespace ProtonVPN.Client.Models.Themes;
 
+[Obsolete("Use ProtonVPN.Client.Services.Selection.ApplicationThemeSelector instead")]
 public class ThemeSelector : IThemeSelector, IEventMessageReceiver<SettingChangedMessage>
 {
     private readonly ISettings _settings;

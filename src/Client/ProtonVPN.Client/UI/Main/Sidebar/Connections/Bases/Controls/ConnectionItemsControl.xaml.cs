@@ -19,6 +19,7 @@
 
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Controls;
 
@@ -45,5 +46,10 @@ public sealed partial class ConnectionItemsControl
     public ConnectionItemsControl()
     {
         InitializeComponent();
+    }
+
+    private void OnMenuFlyoutClosing(FlyoutBase sender, FlyoutBaseClosingEventArgs args)
+    {
+        Focus(FocusState.Programmatic);
     }
 }

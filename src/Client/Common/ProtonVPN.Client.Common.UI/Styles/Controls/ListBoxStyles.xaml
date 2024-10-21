@@ -39,8 +39,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="ListBoxItemBackgroundSelectedPointerOver" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="ListBoxItemBackgroundSelectedPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="ListBoxItemBorderPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
-            <StaticResource x:Key="ListBoxItemBorderPressed" ResourceKey="BorderFocusRingColorBrush" />
-            <StaticResource x:Key="ListBoxItemBorderSelected" ResourceKey="BorderFocusColorBrush" />
+            <StaticResource x:Key="ListBoxItemBorderPressed" ResourceKey="BorderWeakColorBrush" />
+            <StaticResource x:Key="ListBoxItemBorderSelected" ResourceKey="BorderWeakColorBrush" />
 
         </ResourceDictionary>
 
@@ -59,8 +59,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="ListBoxItemBackgroundSelectedPointerOver" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="ListBoxItemBackgroundSelectedPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="ListBoxItemBorderPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
-            <StaticResource x:Key="ListBoxItemBorderPressed" ResourceKey="BorderFocusRingColorBrush" />
-            <StaticResource x:Key="ListBoxItemBorderSelected" ResourceKey="BorderFocusColorBrush" />
+            <StaticResource x:Key="ListBoxItemBorderPressed" ResourceKey="BorderWeakColorBrush" />
+            <StaticResource x:Key="ListBoxItemBorderSelected" ResourceKey="BorderWeakColorBrush" />
 
         </ResourceDictionary>
 
@@ -70,7 +70,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Thickness x:Key="ListBoxItemBorderThickness">2</Thickness>
 
     <x:Double x:Key="ListBoxItemOpacity">0.5</x:Double>
-    <x:Double x:Key="ListBoxItemOpacityPointerOver">1</x:Double>
+    <x:Double x:Key="ListBoxItemOpacityPointerOver">0.8</x:Double>
     <x:Double x:Key="ListBoxItemOpacitySelected">1</x:Double>
 
     <CornerRadius x:Key="ListBoxItemCornerRadius">8</CornerRadius>
@@ -195,7 +195,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <x:Double x:Key="ListBoxSelectionIndicatorHeight">3</x:Double>
     <x:Double x:Key="ListBoxSelectionIndicatorRadius">1.5</x:Double>
 
-    <Thickness x:Key="SelectorBarListBoxItemBorderThickness">0</Thickness>
+    <Thickness x:Key="SelectorBarListBoxItemBorderThickness">1</Thickness>
     <CornerRadius x:Key="SelectorBarListBoxItemCornerRadius">4</CornerRadius>
 
     <Style x:Key="SelectorBarListBoxItemStyle" BasedOn="{StaticResource DefaultListBoxItemStyle}" TargetType="ListBoxItem">
