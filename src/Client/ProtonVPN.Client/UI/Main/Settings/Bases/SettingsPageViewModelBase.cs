@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
@@ -26,7 +27,7 @@ using ProtonVPN.Client.Contracts.Services.Navigation;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Bases;
 
-public abstract class SettingsPageViewModelBase : PageViewModelBase<ISettingsViewNavigator>
+public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISettingsViewNavigator>
 {
     protected readonly ISettings Settings;
 

@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
@@ -24,6 +25,7 @@ using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Client.Contracts.Services.Mapping;
 using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.Contracts.Services.Navigation.Bases;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.UI.Login;
 using ProtonVPN.Client.UI.Main;
 
@@ -32,14 +34,17 @@ namespace ProtonVPN.Client.Services.Navigation;
 public class MainWindowViewNavigator : ViewNavigatorBase, IMainWindowViewNavigator,
     IEventMessageReceiver<AuthenticationStatusChanged>
 {
+    private readonly IEventMessageSender _eventMessageSender;
     private readonly IUserAuthenticator _userAuthenticator;
 
     public MainWindowViewNavigator(
         ILogger logger,
+        IEventMessageSender eventMessageSender,
         IPageViewMapper pageViewMapper,
         IUserAuthenticator userAuthenticator)
         : base(logger, pageViewMapper)
     {
+        _eventMessageSender = eventMessageSender;
         _userAuthenticator = userAuthenticator;
     }
 
@@ -56,6 +61,11 @@ public class MainWindowViewNavigator : ViewNavigatorBase, IMainWindowViewNavigat
     public void Receive(AuthenticationStatusChanged message)
     {
         NavigateToDefaultAsync();
+
+        if (message.AuthenticationStatus == AuthenticationStatus.LoggedIn)
+        {
+            _eventMessageSender.Send(new HomePageDisplayedAfterLoginMessage());
+        }
     }
 
     public override Task<bool> NavigateToDefaultAsync()

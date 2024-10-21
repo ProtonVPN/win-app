@@ -38,6 +38,7 @@ using ProtonVPN.Client.UI.Main.Settings.Pages;
 using ProtonVPN.Client.UI.Main.Settings.Pages.About;
 using ProtonVPN.Client.UI.Main.Settings.Pages.Advanced;
 using ProtonVPN.Client.UI.Main.Settings.Pages.DefaultConnections;
+using ProtonVPN.Client.UI.Main.Settings.Pages.DeveloperTools;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Countries;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Gateways;

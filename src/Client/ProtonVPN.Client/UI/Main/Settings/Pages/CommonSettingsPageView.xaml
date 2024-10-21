@@ -39,10 +39,69 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Page.Resources>
 
     <custom:PageContentControl x:Name="PageContentHost"
-                               PageHeader="{x:Bind ViewModel.Title}"
-                               Style="{StaticResource MainPageContentControlStyle}">
+                               PageHeader="{x:Bind ViewModel.Title}">
 
         <StackPanel x:Name="ContentArea">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <custom:GhostButton Grid.Column="0">
+                    <custom:GhostButton.RightIcon>
+                        <pathicons:ThreeDotsVertical />
+                    </custom:GhostButton.RightIcon>
+                    <custom:GhostButton.Flyout>
+                        <MenuFlyout AutomationProperties.AutomationId="AccountFlyoutMenu">
+                            <MenuFlyoutItem Command="{x:Bind ViewModel.OpenMyAccountUrlCommand, Mode=OneTime}"
+                                            Text="{x:Bind ViewModel.Localizer.Get('Settings_Account_MyAccount')}">
+                                <MenuFlyoutItem.Icon>
+                                    <pathicons:User />
+                                </MenuFlyoutItem.Icon>
+                            </MenuFlyoutItem>
+                            <MenuFlyoutItem Command="{x:Bind ViewModel.SignOutCommand, Mode=OneTime}"
+                                            Text="{x:Bind ViewModel.Localizer.Get('Settings_Account_SignOut')}">
+                                <MenuFlyoutItem.Icon>
+                                    <pathicons:ArrowOutFromRectangle />
+                                </MenuFlyoutItem.Icon>
+                            </MenuFlyoutItem>
+                            <MenuFlyoutItem Command="{x:Bind ViewModel.ExitApplicationCommand, Mode=OneTime}"
+                                            Text="{x:Bind ViewModel.Localizer.Get('Settings_Account_Exit')}">
+                                <MenuFlyoutItem.Icon>
+                                    <pathicons:CrossBig />
+                                </MenuFlyoutItem.Icon>
+                            </MenuFlyoutItem>
+                        </MenuFlyout>
+                    </custom:GhostButton.Flyout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="1"
+                                    Spacing="4">
+
+                            <TextBlock Style="{ThemeResource BodyMediumStrongTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Username}" />
+
+                            <Border BorderThickness="1"
+                                    HorizontalAlignment="Left"
+                                    CornerRadius="6"
+                                    Padding="6,2"
+                                    BorderBrush="{ThemeResource GradientVpnPlanBorderBrushColor}">
+
+                                <TextBlock Style="{ThemeResource CaptionTextBlockStyle}"
+                                           Text="{x:Bind ViewModel.VpnPlan}" />
+                            </Border>
+
+                        </StackPanel>
+                    </Grid>
+                </custom:GhostButton>
+
+            </Grid>
 
             <TextBlock Margin="2,8,0,12"
                        Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"

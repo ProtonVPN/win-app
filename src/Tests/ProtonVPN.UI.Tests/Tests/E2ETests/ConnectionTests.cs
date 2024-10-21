@@ -37,16 +37,19 @@ public class ConnectionTests : TestSession
     }
 
     [Test]
-    [Ignore("Unstable Client Connection")] // Uncomment it when connection is more stable
     public void QuickConnect()
     {
         _loginRobot
             .Login(TestUserData.PlusUser);
+
         _homeRobot
-            .Verify.IsLoggedIn();
-        _homeRobot
+            .Verify.IsLoggedIn()
+            .DismissWelcomeModal()
             .QuickConnect()
             .Verify.IsConnected();
+
+        _homeRobot.Disconnect()
+            .Verify.IsDisconnected();
     }
 
     [TearDown]

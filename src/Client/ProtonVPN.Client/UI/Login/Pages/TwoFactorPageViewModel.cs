@@ -44,6 +44,9 @@ public partial class TwoFactorPageViewModel : LoginPageViewModelBase
     public event EventHandler OnTwoFactorSuccess;
 
     [ObservableProperty]
+    private bool _isToShowError;
+
+    [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(AuthenticateCommand))]
     private bool _isAuthenticating;
 
@@ -65,6 +68,14 @@ public partial class TwoFactorPageViewModel : LoginPageViewModelBase
     [RelayCommand(CanExecute = nameof(CanAuthenticate))]
     public async Task AuthenticateAsync(string twoFactorCode)
     {
+        if (twoFactorCode is not { Length: 6 })
+        {
+            IsToShowError = true;
+            return;
+        }
+
+        IsToShowError = false;
+
         try
         {
             IsAuthenticating = true;
@@ -99,7 +110,7 @@ public partial class TwoFactorPageViewModel : LoginPageViewModelBase
 
     private bool CanAuthenticate(string twoFactorCode)
     {
-        return twoFactorCode is { Length: 6 } && !IsAuthenticating;
+        return !IsAuthenticating;
     }
 
     public void Receive(LoginStateChangedMessage message)
@@ -108,5 +119,10 @@ public partial class TwoFactorPageViewModel : LoginPageViewModelBase
         {
             OnTwoFactorFailure?.Invoke(this, EventArgs.Empty);
         }
+    }
+
+    protected override void OnDeactivated()
+    {
+        IsToShowError = false;
     }
 }

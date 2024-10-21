@@ -19,6 +19,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
@@ -34,13 +35,16 @@ using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.Services.Browsing;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.UI.Login.Pages;
 
 namespace ProtonVPN.Client.UI.Login;
 
 public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavigator, ILoginViewNavigator>,
     IEventMessageReceiver<LoginStateChangedMessage>,
-    IEventMessageReceiver<LoggedOutMessage>
+    IEventMessageReceiver<LoggedOutMessage>,
+    IEventMessageReceiver<SettingChangedMessage>
 {
     private readonly IUrls _urls;
     private readonly IMainWindowActivator _mainWindowActivator;
@@ -48,10 +52,13 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
 
     [ObservableProperty]
-    private string _errorMessage;
+    private string _message;
 
     [ObservableProperty]
-    private bool _isErrorVisible;
+    private bool _isMessageVisible;
+
+    [ObservableProperty]
+    private InfoBarSeverity _messageType = InfoBarSeverity.Error;
 
     [ObservableProperty]
     private bool _isHelpVisible;
@@ -72,7 +79,7 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
         _mainWindowActivator = mainWindowActivator;
         _reportIssueWindowActivator = reportIssueWindowActivator;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
-        _errorMessage = string.Empty;
+        _message = string.Empty;
     }
 
     public async void Receive(LoginStateChangedMessage message)
@@ -80,15 +87,15 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
         switch (message.Value)
         {
             case LoginState.Authenticating:
-                HideErrorMessage();
+                ClearMessage();
                 break;
 
             case LoginState.Success:
-                HideErrorMessage();
+                ClearMessage();
                 break;
 
             case LoginState.TwoFactorRequired:
-                HideErrorMessage();
+                ClearMessage();
                 await ChildViewNavigator.NavigateToTwoFactorViewAsync();
                 break;
 
@@ -191,12 +198,26 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
 
     private void SetErrorMessage(string message)
     {
-        ErrorMessage = message;
-        IsErrorVisible = true;
+        SetMessage(message, InfoBarSeverity.Error);
     }
 
-    private void HideErrorMessage()
+    private void SetMessage(string message, InfoBarSeverity messageType)
     {
-        IsErrorVisible = false;
+        MessageType = messageType;
+        Message = message;
+        IsMessageVisible = true;
+    }
+
+    private void ClearMessage()
+    {
+        IsMessageVisible = false;
+    }
+
+    public void Receive(SettingChangedMessage message)
+    {
+        if (message.PropertyName == nameof(ISettings.IsKillSwitchEnabled) && ChildViewNavigator.GetCurrentPageContext() is SignInPageViewModel)
+        {
+            SetMessage(Localizer.Get("SignIn_KillSwitch_Disabled"), InfoBarSeverity.Success);
+        }
     }
 }

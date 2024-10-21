@@ -18,6 +18,7 @@
  */
 
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Channels;
@@ -58,7 +59,13 @@ public class ClientControllerSender : IClientController, IClientControllerSender
     private ConnectionDetails _connectionDetails;
     private NetShieldStatistic _netShieldStatistic;
 
-    private readonly CancellationTokenSource _cancellationTokenSource = new();
+    private CancellationTokenSource _vpnStateCancellationTokenSource;
+    private CancellationTokenSource _portForwardingStateCancellationTokenSource;
+    private CancellationTokenSource _connectionDetailsCancellationTokenSource;
+    private CancellationTokenSource _netShieldStatisticCancellationTokenSource;
+    private CancellationTokenSource _updateStateCancellationTokenSource;
+    private object _streamCancellationTokenLock = new();
+
 
     private readonly Channel<VpnStateIpcEntity> _vpnStateChannel = Channel.CreateUnbounded<VpnStateIpcEntity>();
     private readonly Channel<PortForwardingStateIpcEntity> _portForwardingStateChannel = Channel.CreateUnbounded<PortForwardingStateIpcEntity>();
@@ -89,36 +96,67 @@ public class ClientControllerSender : IClientController, IClientControllerSender
 
     public IAsyncEnumerable<VpnStateIpcEntity> StreamVpnStateChangeAsync()
     {
-        return StreamAsync(_vpnStateChannel);
+        CancellationTokenSource cts = new();
+        lock (_streamCancellationTokenLock)
+        {
+            _vpnStateCancellationTokenSource?.Cancel();
+            _vpnStateCancellationTokenSource = cts;
+        }
+        return StreamAsync(_vpnStateChannel, cts.Token);
     }
 
-    private async IAsyncEnumerable<T> StreamAsync<T>(Channel<T> channel)
+    private async IAsyncEnumerable<T> StreamAsync<T>(Channel<T> channel,
+        [EnumeratorCancellation] CancellationToken cancellationToken)
     {
-        while (true)
+        while (!cancellationToken.IsCancellationRequested)
         {
-            T entity = await channel.Reader.ReadAsync(_cancellationTokenSource.Token);
+            T entity = await channel.Reader.ReadAsync(cancellationToken);
             yield return entity;
         }
     }
 
     public IAsyncEnumerable<PortForwardingStateIpcEntity> StreamPortForwardingStateChangeAsync()
     {
-        return StreamAsync(_portForwardingStateChannel);
+        CancellationTokenSource cts = new();
+        lock (_streamCancellationTokenLock)
+        {
+            _portForwardingStateCancellationTokenSource?.Cancel();
+            _portForwardingStateCancellationTokenSource = cts;
+        }
+        return StreamAsync(_portForwardingStateChannel, cts.Token);
     }
 
     public IAsyncEnumerable<ConnectionDetailsIpcEntity> StreamConnectionDetailsChangeAsync()
     {
-        return StreamAsync(_connectionDetailsChannel);
+        CancellationTokenSource cts = new();
+        lock (_streamCancellationTokenLock)
+        {
+            _connectionDetailsCancellationTokenSource?.Cancel();
+            _connectionDetailsCancellationTokenSource = cts;
+        }
+        return StreamAsync(_connectionDetailsChannel, cts.Token);
     }
 
     public IAsyncEnumerable<NetShieldStatisticIpcEntity> StreamNetShieldStatisticChangeAsync()
     {
-        return StreamAsync(_netShieldStatisticChannel);
+        CancellationTokenSource cts = new();
+        lock (_streamCancellationTokenLock)
+        {
+            _netShieldStatisticCancellationTokenSource?.Cancel();
+            _netShieldStatisticCancellationTokenSource = cts;
+        }
+        return StreamAsync(_netShieldStatisticChannel, cts.Token);
     }
 
     public IAsyncEnumerable<UpdateStateIpcEntity> StreamUpdateStateChangeAsync()
     {
-        return StreamAsync(_updateStateChannel);
+        CancellationTokenSource cts = new();
+        lock (_streamCancellationTokenLock)
+        {
+            _updateStateCancellationTokenSource?.Cancel();
+            _updateStateCancellationTokenSource = cts;
+        }
+        return StreamAsync(_updateStateChannel, cts.Token);
     }
 
     public async Task SendCurrentVpnStateAsync()

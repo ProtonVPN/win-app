@@ -40,9 +40,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <Image Grid.Column="0"
                    VerticalAlignment="Center"
-                   Source="{StaticResource KillSwitchAdvancedIllustrationSource}"
-                   Width="24"
-                   Height="24" />
+                   Source="{StaticResource KillSwitchEnabledIllustrationSource}"
+                   Width="40"
+                   Height="40" />
 
             <TextBlock Grid.Column="1"
                        VerticalAlignment="Center"

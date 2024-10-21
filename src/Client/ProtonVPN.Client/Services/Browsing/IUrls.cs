@@ -46,6 +46,7 @@ public interface IUrls
     string ProtonStatusPage { get; }
     string SupportForm { get; }
     string NoLogs { get; }
+    string DownloadsPage { get; }
 
     void NavigateTo(string url);
 }

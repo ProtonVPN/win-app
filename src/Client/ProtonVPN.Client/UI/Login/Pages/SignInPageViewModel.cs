@@ -64,8 +64,9 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
     [NotifyCanExecuteChangedFor(nameof(SignInCommand))]
     [NotifyPropertyChangedFor(nameof(UsernameFieldLabel))]
     [NotifyPropertyChangedFor(nameof(SwitchPageLabel))]
-    [NotifyPropertyChangedFor(nameof(IsPasswordFieldVisible))]
-    [NotifyPropertyChangedFor(nameof(IsCreateAccountButtonVisible))]
+    [NotifyPropertyChangedFor(nameof(IsSrpFormType))]
+    [NotifyPropertyChangedFor(nameof(IsSsoFormType))]
+    [NotifyPropertyChangedFor(nameof(IsSwitchFormButtonVisible))]
     private SignInFormType _signInFormType;
 
     [ObservableProperty]
@@ -80,11 +81,19 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
     [NotifyCanExecuteChangedFor(nameof(CreateAccountCommand))]
     private bool _isToShowCreateAccountSpinner;
 
+    [ObservableProperty]
+    private bool _isToShowUsernameError;
+
+    [ObservableProperty]
+    private bool _isToShowPasswordError;
+
     public bool IsSignInFormEnabled => !IsSigningIn;
 
-    public bool IsPasswordFieldVisible => SignInFormType == SignInFormType.SRP;
+    public bool IsSrpFormType => SignInFormType == SignInFormType.SRP;
 
-    public bool IsCreateAccountButtonVisible => SignInFormType == SignInFormType.SRP;
+    public bool IsSsoFormType => SignInFormType == SignInFormType.SSO;
+
+    public bool IsSwitchFormButtonVisible => CanSwitchLoginForm() && SignInFormType == SignInFormType.SRP;
 
     public string UsernameFieldLabel => SignInFormType switch
     {
@@ -96,7 +105,6 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
     public string SwitchPageLabel => SignInFormType switch
     {
         SignInFormType.SRP => Localizer.Get("SignIn_Form_SignInWithSso"),
-        SignInFormType.SSO => Localizer.Get("SignIn_Form_SignInWithPassword"),
         _ => string.Empty
     };
 
@@ -130,6 +138,11 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
     [RelayCommand(CanExecute = nameof(CanSignIn))]
     public async Task SignInAsync()
     {
+        if (!ValidateForm())
+        {
+            return;
+        }
+
         try
         {
             IsSigningIn = true;
@@ -162,17 +175,30 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
         }
     }
 
-    private bool CanSignIn()
+    private bool ValidateForm()
     {
-        return !IsSigningIn && SignInFormType switch
+        switch (SignInFormType)
         {
-            SignInFormType.SRP => !string.IsNullOrWhiteSpace(Username) && !string.IsNullOrEmpty(Password),
-            SignInFormType.SSO => !string.IsNullOrWhiteSpace(Username) && Username.IsValidEmailAddress() && _featureFlagsObserver.IsSsoEnabled,
-            _ => false
-        };
+            case SignInFormType.SRP:
+                IsToShowUsernameError = string.IsNullOrWhiteSpace(Username);
+                IsToShowPasswordError = string.IsNullOrWhiteSpace(Password);
+                break;
+            case SignInFormType.SSO when !_featureFlagsObserver.IsSsoEnabled:
+                return false;
+            case SignInFormType.SSO:
+                IsToShowUsernameError = string.IsNullOrWhiteSpace(Username) || !Username.IsValidEmailAddress();
+                break;
+        }
+
+        return !IsToShowUsernameError && !IsToShowPasswordError;
     }
 
-        private async Task<AuthResult> HandleSrpLoginAsync()
+    private bool CanSignIn()
+    {
+        return !IsSigningIn;
+    }
+
+    private async Task<AuthResult> HandleSrpLoginAsync()
     {
         SecureString securePassword = Password.ToSecureString();
         Password = string.Empty;
@@ -296,5 +322,11 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
         base.OnActivated();
 
         _userAuthenticator.ClearUnauthSessionDetails();
+    }
+
+    partial void OnSignInFormTypeChanged(SignInFormType oldValue, SignInFormType newValue)
+    {
+        IsToShowUsernameError = false;
+        IsToShowPasswordError = false;
     }
 }

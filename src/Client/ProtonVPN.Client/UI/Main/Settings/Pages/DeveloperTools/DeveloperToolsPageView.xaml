@@ -18,7 +18,7 @@ You should have received a copy of the GNU General Public License
 along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
-<Page x:Class="ProtonVPN.Client.UI.Main.Settings.Pages.DeveloperToolsPageView"
+<Page x:Class="ProtonVPN.Client.UI.Main.Settings.Pages.DeveloperTools.DeveloperToolsPageView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -43,6 +43,39 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         Content="Trigger Crash"
                         Style="{StaticResource PrimaryButtonStyle}" />
             </toolkit:SettingsCard>
+
+            <toolkit:SettingsCard Header="Refresh logicals"
+                                  IsTabStop="False"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                <Button Command="{x:Bind ViewModel.TriggerLogicalsRefreshCommand, Mode=OneTime}"
+                        Content="Trigger refresh"
+                        Style="{StaticResource PrimaryButtonStyle}" />
+            </toolkit:SettingsCard>
+
+            <toolkit:SettingsCard Header="Logout user with client outdated reason"
+                                  IsTabStop="False"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                <Button Command="{x:Bind ViewModel.LogoutUserWithClientOutdatedReasonCommand, Mode=OneTime}"
+                        Content="Trigger"
+                        Style="{StaticResource PrimaryButtonStyle}" />
+            </toolkit:SettingsCard>
+
+            <toolkit:SettingsCard Header="Show overlay"
+                                  IsTabStop="False"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
+
+                <StackPanel>
+                    <ComboBox ItemsSource="{x:Bind ViewModel.OverlaysList}"
+                              SelectedItem="{x:Bind ViewModel.SelectedOverlay, Mode=TwoWay}"
+                              DisplayMemberPath="Name" />
+
+                    <Button Command="{x:Bind ViewModel.ShowOverlayCommand, Mode=OneTime}"
+                            Content="Trigger"
+                            Style="{StaticResource PrimaryButtonStyle}" />
+                </StackPanel>
+
+            </toolkit:SettingsCard>
+
         </StackPanel>
     </custom:PageContentControl>
 </Page>

@@ -110,17 +110,13 @@ public class TestSession
         }
 
         string installedClientPath = Path.Combine(TestEnvironment.GetProtonClientFolder(), CLIENT_NAME);
-        ProcessStartInfo startInfo = new ProcessStartInfo(installedClientPath)
-        {
-            Arguments = "-ExitAppOnClose"
-        };
-        App = Application.Launch(startInfo);
+        App = Application.Launch(installedClientPath);
 
         RetryResult<bool> result = WaitUntilAppIsRunning();
         if (!result.Success)
         {
             //Sometimes app fails to launch on first try due to CI issues.
-            App = Application.Launch(startInfo);
+            App = Application.Launch(installedClientPath);
         }
 
         RefreshWindow(TestConstants.OneMinuteTimeout);

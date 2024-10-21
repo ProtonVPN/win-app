@@ -57,7 +57,6 @@ using ProtonVPN.Client.Services.Mapping;
 using ProtonVPN.Client.Services.Navigation;
 using ProtonVPN.Client.Services.Notification;
 using ProtonVPN.Client.Services.Selection;
-using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Services.Verification;
 using ProtonVPN.Client.TEMP;
 using ProtonVPN.Client.UI;
@@ -83,6 +82,7 @@ using ProtonVPN.Client.UI.Main.Settings.Pages;
 using ProtonVPN.Client.UI.Main.Settings.Pages.About;
 using ProtonVPN.Client.UI.Main.Settings.Pages.Advanced;
 using ProtonVPN.Client.UI.Main.Settings.Pages.DefaultConnections;
+using ProtonVPN.Client.UI.Main.Settings.Pages.DeveloperTools;
 using ProtonVPN.Client.UI.Main.Sidebar;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Countries;
@@ -97,13 +97,18 @@ using ProtonVPN.Client.UI.Main.Sidebar.Search;
 using ProtonVPN.Client.UI.Main.Widgets;
 using ProtonVPN.Client.UI.Overlays.HumanVerification;
 using ProtonVPN.Client.UI.Overlays.Information;
+using ProtonVPN.Client.UI.Overlays.Information.Notification;
+using ProtonVPN.Client.UI.Overlays.Welcome;
+using ProtonVPN.Client.UI.Overlays.WhatsNew;
 using ProtonVPN.Client.UI.Tray;
+using ProtonVPN.Client.UI.Update;
 using ProtonVPN.OperatingSystems.Processes.Installers;
 using ProtonVPN.OperatingSystems.Registries.Installers;
 using ProtonVPN.OperatingSystems.Services.Installers;
 using ProtonVPN.ProcessCommunication.Installers;
 using ProtonVPN.Serialization.Installers;
 using ProtonVPN.ProcessCommunication.Client.Installers;
+using ProtonVPN.Common.Legacy.OS.Processes;
 
 namespace ProtonVPN.Client.Modules;
 
@@ -117,6 +122,12 @@ public class AppModule : Module
         RegisterLocalServices(builder);
         RegisterLocalHandlers(builder);
         RegisterViewModels(builder);
+        RegisterExternalServices(builder);
+    }
+
+    private void RegisterExternalServices(ContainerBuilder builder)
+    {
+        builder.RegisterType<SystemProcesses>().As<IOsProcesses>().SingleInstance();
     }
 
     private void RegisterExternalModules(ContainerBuilder builder)
@@ -267,6 +278,7 @@ public class AppModule : Module
         RegisterViewModel<AutoStartupSettingsPageViewModel>(builder);
         RegisterViewModel<SideWidgetsHostComponentViewModel>(builder);
         RegisterViewModel<VpnSpeedViewModel>(builder);
+        RegisterViewModel<UpdateViewModel>(builder).AutoActivate();
 
         RegisterViewModel<ReportIssueShellViewModel>(builder);
         RegisterViewModel<ReportIssueCategoriesPageViewModel>(builder);
@@ -274,7 +286,7 @@ public class AppModule : Module
         RegisterViewModel<ReportIssueContactPageViewModel>(builder);
         RegisterViewModel<ReportIssueResultPageViewModel>(builder);
 
-        RegisterViewModel<HumanVerificationOverlayViewModel>(builder);
+        RegisterViewModel<HumanVerificationOverlayViewModel>(builder).AutoActivate();
         RegisterViewModel<P2POverlayViewModel>(builder);
         RegisterViewModel<SecureCoreOverlayViewModel>(builder);
         RegisterViewModel<TorOverlayViewModel>(builder);
@@ -282,6 +294,15 @@ public class AppModule : Module
         RegisterViewModel<ServerLoadOverlayViewModel>(builder);
         RegisterViewModel<TroubleshootingOverlayViewModel>(builder);
         RegisterViewModel<SsoLoginOverlayViewModel>(builder);
+        RegisterViewModel<OutdatedClientOverlayViewModel>(builder).AutoActivate();
+        RegisterViewModel<WelcomeOverlayViewModel>(builder);
+        RegisterViewModel<WelcomeToVpnPlusOverlayViewModel>(builder);
+        RegisterViewModel<WelcomeToVpnUnlimitedOverlayViewModel>(builder);
+        RegisterViewModel<WelcomeToVpnB2BOverlayViewModel>(builder);
+
+        RegisterViewModel<WhatsNewB2BOverlayViewModel>(builder);
+        RegisterViewModel<WhatsNewFreeOverlayViewModel>(builder);
+        RegisterViewModel<WhatsNewPaidOverlayViewModel>(builder);
 
         builder.RegisterType<ReleaseViewModelFactory>().SingleInstance();
     }

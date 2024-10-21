@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
 Copyright (c) 2023 Proton AG
 
@@ -23,11 +23,26 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+      xmlns:pathIcons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
       mc:Ignorable="d">
 
-    <Frame x:Name="SettingsNavigationFrame"
-           IsNavigationStackEnabled="{x:Bind Navigator.IsNavigationStackEnabled}" />
+    <Grid>
+
+        <Frame x:Name="SettingsNavigationFrame"
+               VerticalAlignment="Top"
+               IsNavigationStackEnabled="{x:Bind Navigator.IsNavigationStackEnabled}" />
+
+        <custom:GhostButton Command="{x:Bind ViewModel.CloseCommand, Mode=OneTime}"
+                            Margin="0,24,24,0"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Right">
+            <custom:GhostButton.RightIcon>
+                <pathIcons:CrossCircleFilled />
+            </custom:GhostButton.RightIcon>
+        </custom:GhostButton>
+    </Grid>
 
 </Page>

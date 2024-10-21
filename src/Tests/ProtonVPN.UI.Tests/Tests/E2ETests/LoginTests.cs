@@ -30,6 +30,10 @@ public class LoginTests : TestSession
     private LoginRobot _loginRobot = new();
     private HomeRobot _homeRobot = new();
 
+    private const string INCORRECT_CREDENTIALS_ERROR = "The password is not correct. Please try again with a different password.";
+    private const string INCORRECT_2FA_CODE_ERROR = "Incorrect code. Please try again.";
+    private const string INCORRECT_2FA_CODE = "123456";
+
     [SetUp]
     public void TestInitialize()
     {
@@ -42,17 +46,57 @@ public class LoginTests : TestSession
         LoginWithUser(TestUserData.PlusUser);
     }
 
-    public void LoginWithUser(TestUserData user)
+    [Test]
+    public void LoginWithSpecialCharsUser()
+    {
+        LoginWithUser(TestUserData.SpecialCharsUser);
+    }
+
+    [Test]
+    public void LoginWithTwoPassUser()
+    {
+        LoginWithUser(TestUserData.TwoPassUser);
+    }
+
+    [Test]
+    public void LoginWithIncorrectCredentials()
     {
         _loginRobot
-            .Login(user);
+            .Login(TestUserData.IncorrectUser);
+        _loginRobot
+            .Verify.ErrorMessageIsDisplayed(INCORRECT_CREDENTIALS_ERROR);
+    }
+
+    [Test]
+    public void LoginWithTwoFactor()
+    {
+        _loginRobot
+            .Login(TestUserData.TwoFactorUser)
+            .EnterTwoFactorCode(TestUserData.GetTwoFactorCode());
         _homeRobot
             .Verify.IsLoggedIn();
+    }
+
+    [Test]
+    public void LoginWithIncorrectTwoFactorCode()
+    {
+        _loginRobot
+            .Login(TestUserData.TwoFactorUser)
+            .EnterTwoFactorCode(INCORRECT_2FA_CODE)
+            .Verify.ErrorMessageIsDisplayed(INCORRECT_2FA_CODE_ERROR);
     }
 
     [TearDown]
     public void TestCleanup()
     {
         Cleanup();
+    }
+
+    private void LoginWithUser(TestUserData user)
+    {
+        _loginRobot
+            .Login(user);
+        _homeRobot
+            .Verify.IsLoggedIn();
     }
 }

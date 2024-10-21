@@ -38,7 +38,10 @@ using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Contracts.Services.Activation.Bases;
 using ProtonVPN.Client.Contracts.Services.Navigation;
+using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Models.Themes;
+using ProtonVPN.Client.Services.Bootstrapping;
 using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
 
@@ -52,6 +55,9 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
     private readonly ISettings _settings;
     private readonly ISettingsRestorer _settingsRestorer;
     private readonly IUrls _urls;
+    private readonly IBootstrapper _bootstrapper;
+    private readonly IUserAuthenticator _userAuthenticator;
+    private readonly IWebAuthenticator _webAuthenticator;
 
     private readonly IReportIssueWindowActivator _reportIssueWindowActivator;
 
@@ -62,9 +68,15 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
 
     public bool IsPaidUser => _settings.VpnPlan.IsPaid;
 
+    public string Username => Settings.Username ?? Settings.UserDisplayName ?? string.Empty;
+
+    public string VpnPlan => Localizer.GetVpnPlanName(Settings.VpnPlan.Title);
+
     public bool IsToShowDeveloperTools => _settings.IsDebugModeEnabled;
 
     public string ClientVersionDescription => $"{Localizer.Get("Settings_AppVersion")}: {AssemblyVersion.Get()}";
+
+    public override string Title => Localizer.Get("Settings_Page_Title");
 
     public string OperatingSystemVersionDescription => OSVersion.GetString();
 
@@ -114,6 +126,9 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
         IThemeSelector themeSelector,
         ILocalizationService localizationService,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
+        IBootstrapper bootstrapper,
+        IUserAuthenticator userAuthenticator,
+        IWebAuthenticator webAuthenticator,
         ISettings settings,
         ISettingsRestorer settingsRestorer,
         IUrls urls,
@@ -129,6 +144,9 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
         _themeSelector = themeSelector;
         _localizationService = localizationService;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
+        _bootstrapper = bootstrapper;
+        _userAuthenticator = userAuthenticator;
+        _webAuthenticator = webAuthenticator;
         _settings = settings;
         _settingsRestorer = settingsRestorer;
         _urls = urls;
@@ -266,6 +284,11 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
                 case nameof(ISettings.IsBetaAccessEnabled):
                     OnPropertyChanged(nameof(IsBetaAccessEnabled));
                     break;
+
+                case nameof(ISettings.VpnPlan):
+                    OnPropertyChanged(nameof(VpnPlan));
+                    OnPropertyChanged(nameof(IsPaidUser));
+                    break;
             }
         });
     }
@@ -302,5 +325,24 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
         OnPropertyChanged(nameof(ClientVersionDescription));
         OnPropertyChanged(nameof(Themes));
         OnPropertyChanged(nameof(SelectedTheme));
+        OnPropertyChanged(nameof(VpnPlan));
+    }
+
+    [RelayCommand]
+    public async Task OpenMyAccountUrlAsync()
+    {
+        _urls.NavigateTo(await _webAuthenticator.GetMyAccountUrlAsync());
+    }
+
+    [RelayCommand]
+    public async Task SignOutAsync()
+    {
+        await _userAuthenticator.LogoutAsync(LogoutReason.UserAction);
+    }
+
+    [RelayCommand]
+    public async Task ExitApplicationAsync()
+    {
+        await _bootstrapper.ExitAsync();
     }
 }

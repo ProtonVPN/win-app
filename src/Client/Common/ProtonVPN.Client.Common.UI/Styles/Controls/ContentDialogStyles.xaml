@@ -193,7 +193,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                               FontWeight="{StaticResource BodyFontWeight}"
                                                               Foreground="{TemplateBinding Foreground}"
                                                               LineHeight="{StaticResource BodyLineHeight}"
-                                                              Margin="8"
                                                               TextWrapping="Wrap" />
                                         </ScrollViewer>
                                     </Border>

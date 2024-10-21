@@ -161,16 +161,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
 
-            
-                            <custom:GhostButton Grid.Row="0"
-                                                Content="{TemplateBinding CloseButtonText}"
-                                                Command="{Binding CloseCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                                HorizontalAlignment="Right">
-                                <custom:GhostButton.RightIcon>
-                                    <pathicons:CrossCircleFilled />
-                                </custom:GhostButton.RightIcon>
-                            </custom:GhostButton>
-
                             <Grid x:Name="PART_HeaderContainer"
                                   Grid.Row="1"
                                   Margin="{StaticResource PageContentControlHeaderContainerMargin}"

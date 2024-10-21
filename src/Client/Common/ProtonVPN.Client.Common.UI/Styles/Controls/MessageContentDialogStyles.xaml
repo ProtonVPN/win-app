@@ -67,7 +67,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <ContentControl x:Name="Title"
                                                     Grid.Row="0"
                                                     Margin="{ThemeResource ContentDialogTitleMargin}"
-                                                    Padding="{TemplateBinding Padding}"
+                                                    Padding="24"
                                                     HorizontalAlignment="Left"
                                                     VerticalAlignment="Top"
                                                     Content="{TemplateBinding Title}"
@@ -95,7 +95,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <Border Grid.Row="1"
                                             Margin="{ThemeResource ContentDialogContentMargin}"
                                             Visibility="{Binding Content, ElementName=Content, Converter={StaticResource NotNullToVisibilityConverter}}"
-                                            Padding="{TemplateBinding Padding}">
+                                            Padding="24,0,24,24">
                                         <ScrollViewer x:Name="ContentScrollViewer"
                                                       Margin="0,0,-12,0"
                                                       Padding="0,0,12,0"
@@ -123,7 +123,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <!--  This section is collapsed for Info dialog. It cannot be removed cause the PART Names are required  -->
                                     <Grid x:Name="CommandSpace"
                                           Grid.Row="3"
-                                          Padding="{TemplateBinding Padding}"
+                                          Padding="24"
                                           HorizontalAlignment="Stretch"
                                           VerticalAlignment="Bottom"
                                           Background="{ThemeResource ContentDialogCommandSpaceBackground}"

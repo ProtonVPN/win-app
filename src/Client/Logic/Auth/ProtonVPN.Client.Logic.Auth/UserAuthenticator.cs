@@ -40,7 +40,7 @@ using ProtonVPN.Logging.Contracts.Events.UserLogs;
 
 namespace ProtonVPN.Client.Logic.Auth;
 
-public class UserAuthenticator : IUserAuthenticator
+public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<ClientOutdatedMessage>
 {
     private const string SRP_LOGIN_INTENT = "Proton";
     private const string SSO_LOGIN_INTENT = "SSO";
@@ -503,6 +503,14 @@ public class UserAuthenticator : IUserAuthenticator
         catch (Exception ex)
         {
             _logger.Error<UserLog>("An error occurred when sending a logout request.", ex);
+        }
+    }
+
+    public async void Receive(ClientOutdatedMessage message)
+    {
+        if (IsLoggedIn)
+        {
+            await LogoutAsync(LogoutReason.ClientOutdated);
         }
     }
 }

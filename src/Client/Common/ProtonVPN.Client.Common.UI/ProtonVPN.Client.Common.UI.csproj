@@ -729,6 +729,7 @@
         <None Remove="Assets\Illustrations\secure-core-countries.png" />
         <None Remove="Assets\Illustrations\split-tunneling-off.png" />
         <None Remove="Assets\Illustrations\split-tunneling-on.png" />
+        <None Remove="Assets\Illustrations\swiss-flag.png" />
         <None Remove="Assets\Illustrations\tor-countries.png" />
         <None Remove="Assets\Illustrations\update-proton-vpn.png" />
         <None Remove="Assets\Illustrations\upsell-customisation-large.png" />
@@ -1881,6 +1882,12 @@
         <Content Update="Assets\Illustrations\certified-no-logs.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Illustrations\kill-switch-enabled.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\swiss-flag.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Illustrations\Dark\default-connection.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -1909,6 +1916,9 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\gateways.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\globe-illustration.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\hyperlink-default.png">
@@ -1951,6 +1961,9 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\netshield.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\open-source.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\p2p-download.png">

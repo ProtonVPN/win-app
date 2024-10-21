@@ -42,4 +42,20 @@ public interface IMainWindowOverlayActivator : IOverlayActivator
     Task<ContentDialogResult> ShowTroubleshootingOverlayAsync();
 
     Task<ContentDialogResult> ShowSettingsDiscardOverlayAsync(bool isReconnectionRequired);
+
+    Task<ContentDialogResult> ShowOutdatedClientOverlayAsync();
+
+    Task<ContentDialogResult> ShowWelcomeOverlayAsync();
+
+    Task<ContentDialogResult> ShowWelcomeToVpnB2BOverlayAsync();
+
+    Task<ContentDialogResult> ShowWelcomeToVpnPlusOverlayAsync();
+
+    Task<ContentDialogResult> ShowWelcomeToVpnUnlimitedOverlayAsync();
+
+    Task<ContentDialogResult> ShowWhatsNewB2BOverlayAsync();
+
+    Task<ContentDialogResult> ShowWhatsNewFreeOverlayAsync();
+
+    Task<ContentDialogResult> ShowWhatsNewPaidOverlayAsync();
 }

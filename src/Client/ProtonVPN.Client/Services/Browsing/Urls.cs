@@ -82,6 +82,8 @@ public class Urls : IUrls
 
     public string SupportForm => "https://protonvpn.com/support-form";
 
+    public string DownloadsPage => "https://protonvpn.com/download";
+
     public void NavigateTo(string url)
     {
         try

@@ -21,17 +21,31 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Client.Contracts.Services.Navigation;
+using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.UI.Login.Bases;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 
 namespace ProtonVPN.Client.UI.Login.Pages;
 
 public class LoadingPageViewModel : LoginPageViewModelBase
 {
+    private readonly IUserAuthenticator _userAuthenticator;
+
+    public string? Message => _userAuthenticator.AuthenticationStatus switch
+    {
+        AuthenticationStatus.LoggingIn => Localizer.Get("Main_Loading_SigningIn"),
+        AuthenticationStatus.LoggingOut => Localizer.Get("Main_Loading_SigningOut"),
+        _ => null
+    };
+
     public LoadingPageViewModel(
+        IUserAuthenticator userAuthenticator,
         ILoginViewNavigator parentViewNavigator,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter)
         : base(parentViewNavigator, localizer, logger, issueReporter)
-    { }
+    {
+        _userAuthenticator = userAuthenticator;
+    }
 }
