@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.ServiceProcess;
 using Autofac;
 using ProtonVPN.Api.Installers;
@@ -78,7 +79,7 @@ namespace ProtonVPN.Service.Start
             ILogger logger = Resolve<ILogger>();
 
             logger.Info<AppServiceStartLog>(
-                $"= Booting ProtonVPN Service version: {config.AppVersion} os: {Environment.OSVersion.VersionString} {config.OsBits} bit =");
+                $"= Booting ProtonVPN Service version: {config.AppVersion} os: {Environment.OSVersion.VersionString} {RuntimeInformation.OSArchitecture.ToString()} =");
 
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 

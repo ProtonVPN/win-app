@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
 using ProtonVPN.BugReporting.Actions;
 using ProtonVPN.BugReporting.FormElements;
@@ -65,6 +66,7 @@ namespace ProtonVPN.BugReporting
             {
                 new KeyValuePair<string, string>("OS", "Windows"),
                 new KeyValuePair<string, string>("OSVersion", Environment.OSVersion.ToString()),
+                new KeyValuePair<string, string>("Platform", RuntimeInformation.OSArchitecture.ToString()),
                 new KeyValuePair<string, string>("Client", "Windows app"),
                 new KeyValuePair<string, string>("ClientVersion", _config.AppVersion),
                 new KeyValuePair<string, string>("Title", "Windows app form"),

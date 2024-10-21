@@ -20,6 +20,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using ProtonVPN.Builds.Variables;
 using ProtonVPN.Common.Extensions;
@@ -68,6 +69,7 @@ namespace ProtonVPN.IssueReporting
             {
                 LogSentryEvent(e);
                 e.SetTag("ProcessName", Process.GetCurrentProcess().ProcessName);
+                e.SetTag("Architecture", RuntimeInformation.OSArchitecture.ToString());
                 e.User.Id = DeviceIdStaticBuilder.GetDeviceId();
                 e.SetExtra("logs", GetLogs());
 

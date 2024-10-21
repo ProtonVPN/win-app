@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Runtime.InteropServices;
 using ProtonVPN.Common.Configuration;
 
 namespace ProtonVPN.Api
@@ -44,7 +45,7 @@ namespace ProtonVPN.Api
 
         public string UserAgent()
         {
-            return $"{_appConfig.UserAgent}/{GetVersion()} ({Environment.OSVersion})";
+            return $"{_appConfig.UserAgent}/{GetVersion()} ({Environment.OSVersion}; {RuntimeInformation.OSArchitecture.ToString()})";
         }
 
         private string GetVersion()
