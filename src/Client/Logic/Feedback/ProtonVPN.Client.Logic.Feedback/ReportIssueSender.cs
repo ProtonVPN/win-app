@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Runtime.InteropServices;
 using System.Text;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
@@ -102,6 +103,7 @@ public class ReportIssueSender : IReportIssueSender
         {
             new KeyValuePair<string, string>("OS", "Windows"),
             new KeyValuePair<string, string>("OSVersion", OSVersion.GetString()),
+            new KeyValuePair<string, string>("Platform", RuntimeInformation.OSArchitecture.ToString()),
             new KeyValuePair<string, string>("Client", "Windows app"),
             new KeyValuePair<string, string>("ClientVersion", AssemblyVersion.Get()),
             new KeyValuePair<string, string>("Title", "Windows app form"),
