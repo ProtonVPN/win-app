@@ -18,6 +18,7 @@
  */
 
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using Newtonsoft.Json;
 using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.Common.Legacy.Helpers;
@@ -33,7 +34,7 @@ public class Log4NetLogger : Log4NetLoggerInitializer, ILogger
     public Log4NetLogger(ILoggerConfiguration loggerConfiguration)
         : base(loggerConfiguration)
     {
-        Info<AppStartLog>($"=== Booting Proton VPN {AssemblyVersion.Get()} [{OSVersion.GetPlatformString()}] ===");
+        Info<AppStartLog>($"=== Booting Proton VPN {AssemblyVersion.Get()} [{OSVersion.GetPlatformString()}] {RuntimeInformation.OSArchitecture} ===");
     }
 
     public IList<string> GetRecentLogs()
