@@ -21,7 +21,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.ServiceModel;
 using System.Threading.Tasks;
 using System.Windows;
@@ -42,6 +41,7 @@ using ProtonVPN.Common.Cli;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Installers.Extensions;
+using ProtonVPN.Common.OS.Architecture;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Abstract;
@@ -149,7 +149,7 @@ namespace ProtonVPN.Core
 
             IConfiguration appConfig = Resolve<IConfiguration>();
 
-            Resolve<ILogger>().Info<AppStartLog>($"= Booting ProtonVPN version: {appConfig.AppVersion} os: {Environment.OSVersion.VersionString} {RuntimeInformation.OSArchitecture.ToString()} =");
+            Resolve<ILogger>().Info<AppStartLog>($"= Booting ProtonVPN version: {appConfig.AppVersion} os: {Environment.OSVersion.VersionString} {OsArchitecture.Value} =");
 
             Resolve<ILogCleaner>().Clean(appConfig.AppLogFolder, 10);
 

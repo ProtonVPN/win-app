@@ -18,8 +18,9 @@
  */
 
 using System;
-using System.Runtime.InteropServices;
+using System.Text;
 using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.OS.Architecture;
 
 namespace ProtonVPN.Api
 {
@@ -36,16 +37,18 @@ namespace ProtonVPN.Api
 
         public string Value()
         {
-            string value = $"{_appConfig.ApiClientId}@{GetVersion()}";
+            StringBuilder sb = new();
+            sb.Append($"{_appConfig.ApiClientId}@{GetVersion()}");
 #if DEBUG
-            value += DEVELOPMENT_SUFFIX;
+            sb.Append(DEVELOPMENT_SUFFIX);
 #endif
-            return value;
+            sb.Append($"+{OsArchitecture.Value}");
+            return sb.ToString();
         }
 
         public string UserAgent()
         {
-            return $"{_appConfig.UserAgent}/{GetVersion()} ({Environment.OSVersion}; {RuntimeInformation.OSArchitecture.ToString()})";
+            return $"{_appConfig.UserAgent}/{GetVersion()} ({Environment.OSVersion}; {OsArchitecture.Value})";
         }
 
         private string GetVersion()
