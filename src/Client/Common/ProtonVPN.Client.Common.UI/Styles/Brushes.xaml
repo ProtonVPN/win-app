@@ -144,6 +144,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           TintColor="{StaticResource BackgroundNormColor}"
                           TintOpacity="0.4" />
             <SolidColorBrush x:Key="PaneOverlayBorderColorBrush" Opacity="0.82" Color="{StaticResource BorderWeakColor}" />
+            
+            <AcrylicBrush x:Key="PaneOverlayDisabledBackgroundColorBrush"
+                          FallbackColor="{StaticResource BackgroundNormColor}"
+                          TintColor="{StaticResource BackgroundNormColor}"
+                          TintOpacity="0.2" />
+            <SolidColorBrush x:Key="PaneOverlayDisabledBorderColorBrush" Opacity="0.60" Color="{StaticResource BorderWeakColor}" />
 
         </ResourceDictionary>
 
@@ -268,6 +274,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           TintColor="{StaticResource BackgroundNormColor}"
                           TintOpacity="0.4" />
             <SolidColorBrush x:Key="PaneOverlayBorderColorBrush" Opacity="0.82" Color="{StaticResource BorderWeakColor}" />
+
+            <AcrylicBrush x:Key="PaneOverlayDisabledBackgroundColorBrush"
+                          FallbackColor="{StaticResource BackgroundNormColor}"
+                          TintColor="{StaticResource BackgroundNormColor}"
+                          TintOpacity="0.2" />
+            <SolidColorBrush x:Key="PaneOverlayDisabledBorderColorBrush" Opacity="0.60" Color="{StaticResource BorderWeakColor}" />
 
         </ResourceDictionary>
         

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -24,11 +24,11 @@ using ProtonVPN.Client.Contracts.Bases.ViewModels;
 using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Contracts.Services.Navigation;
-using ProtonVPN.Client.EventMessaging;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Main.Home;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -36,19 +36,24 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.UI.Main;
 
 public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNavigator, IMainViewNavigator>,
-    IEventMessageReceiver<ConnectionStatusChanged>
+    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<ApplicationStoppedMessage>
 {
     private const double EXPAND_SIDEBAR_WINDOW_WIDTH_THRESHOLD = 800;
     private const double EXPAND_WIDGETBAR_WINDOW_WIDTH_THRESHOLD = 1000;
 
     private readonly IMainWindowActivator _mainWindowActivator;
     private readonly IConnectionManager _connectionManager;
+    private readonly ISettings _settings;
 
     [ObservableProperty]
     private bool _isSidebarExpanded;
 
     [ObservableProperty]
     private SplitViewDisplayMode _sidebarDisplayMode;
+
+    [ObservableProperty]
+    private double _sidebarWidth;
 
     public double SidebarWindowWidthThreshold { get; } = EXPAND_SIDEBAR_WINDOW_WIDTH_THRESHOLD;
 
@@ -69,11 +74,13 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
         ILogger logger,
         IIssueReporter issueReporter,
         IMainWindowActivator mainWindowActivator,
-        IConnectionManager connectionManager)
+        IConnectionManager connectionManager,
+        ISettings settings)
         : base(parentViewNavigator, childViewNavigator, localizer, logger, issueReporter)
     {
         _mainWindowActivator = mainWindowActivator;
         _connectionManager = connectionManager;
+        _settings = settings;
     }
 
     public void OnSidebarInteractionStarted()
@@ -102,6 +109,11 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
         }
     }
 
+    public void Receive(ApplicationStoppedMessage message)
+    {
+        SaveSidebarWidth();
+    }
+
     protected override void OnActivated()
     {
         base.OnActivated();
@@ -110,6 +122,7 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
         SidebarDisplayMode = SplitViewDisplayMode.CompactInline;
 
         InvalidateCurrentConnectionStatus();
+        InvalidateSidebarWidth();
     }
 
     protected override void OnDeactivated()
@@ -118,6 +131,8 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
 
         IsSidebarExpanded = false;
         SidebarDisplayMode = SplitViewDisplayMode.CompactOverlay;
+
+        SaveSidebarWidth();
     }
 
     protected override void OnChildNavigation(NavigationEventArgs e)
@@ -132,5 +147,15 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
         OnPropertyChanged(nameof(IsConnected));
         OnPropertyChanged(nameof(IsConnecting));
         OnPropertyChanged(nameof(IsDisconnected));
+    }
+
+    private void InvalidateSidebarWidth()
+    {
+        SidebarWidth = _settings.SidebarWidth;
+    }
+
+    private void SaveSidebarWidth()
+    {
+        _settings.SidebarWidth = (int)SidebarWidth;
     }
 }

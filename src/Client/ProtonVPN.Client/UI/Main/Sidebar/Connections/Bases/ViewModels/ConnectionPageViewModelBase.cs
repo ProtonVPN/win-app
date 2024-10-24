@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,11 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Data;
 using ProtonVPN.Client.Common.Collections;
+using ProtonVPN.Client.Contracts.Bases.ViewModels;
+using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Factories;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
@@ -32,16 +34,12 @@ using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
+using ProtonVPN.Client.Models.Connections;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Models;
+using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Bases.ViewModels;
-using ProtonVPN.Client.Contracts.Services.Navigation;
-using ProtonVPN.Client.Factories;
-using ProtonVPN.Client.Models.Connections;
-using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Contracts;
-
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;
 
@@ -62,6 +60,8 @@ public abstract class ConnectionPageViewModelBase : PageViewModelBase<IConnectio
     public abstract int SortIndex { get; }
 
     public abstract string Header { get; }
+
+    public string ShortcutText => $"ctrl + {SortIndex}";
 
     public abstract IconElement Icon { get; }
 
@@ -212,5 +212,14 @@ public abstract class ConnectionPageViewModelBase : PageViewModelBase<IConnectio
                 item.InvalidateIsRestricted(isPaidUser);
             }
         }
+    }
+
+    protected override void OnLanguageChanged()
+    {
+        base.OnLanguageChanged();
+
+        OnPropertyChanged(nameof(Header));
+
+        FetchItems();
     }
 }

@@ -29,13 +29,14 @@ public static class DefaultSettings
 {
     public static string Theme = "Dark";
     public static int WindowWidth = 1016;
-    public static int WindowHeight = 758;
+    public static int WindowHeight = 759;
     public static string Language = "en-US";
     public static VpnProtocol VpnProtocol = VpnProtocol.Smart;
     public static NatType NatType = NatType.Strict;
     public static bool IsVpnAcceleratorEnabled = true;
     public static bool IsWindowMaximized = false;
     public static bool IsNavigationPaneOpened = true;
+    public static int SidebarWidth = 280;
     public static bool IsRecentsPaneOpened = true;
     public static bool IsConnectionDetailsPaneOpened = true;
     public static bool IsNotificationEnabled = true;

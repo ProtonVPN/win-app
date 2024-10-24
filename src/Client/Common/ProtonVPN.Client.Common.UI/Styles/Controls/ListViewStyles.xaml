@@ -32,7 +32,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="ListViewItemBackgroundSelectedPointerOver" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="ListViewItemBackgroundSelectedPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="ListViewItemBackgroundSelectedDisabled" ResourceKey="InteractionDefaultColorBrush" />
-            <StaticResource x:Key="ListViewItemForeground" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="ListViewItemForeground" ResourceKey="TextWeakColorBrush" />
             <StaticResource x:Key="ListViewItemForegroundPointerOver" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="ListViewItemForegroundSelected" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="ListViewItemFocusVisualPrimaryBrush" ResourceKey="FocusStrokeColorOuterBrush" />
@@ -55,7 +55,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="ListViewItemBackgroundSelectedPointerOver" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="ListViewItemBackgroundSelectedPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="ListViewItemBackgroundSelectedDisabled" ResourceKey="InteractionDefaultColorBrush" />
-            <StaticResource x:Key="ListViewItemForeground" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="ListViewItemForeground" ResourceKey="TextWeakColorBrush" />
             <StaticResource x:Key="ListViewItemForegroundPointerOver" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="ListViewItemForegroundSelected" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="ListViewItemFocusVisualPrimaryBrush" ResourceKey="FocusStrokeColorOuterBrush" />
@@ -70,5 +70,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </ResourceDictionary>
 
     </ResourceDictionary.ThemeDictionaries>
+
+    <x:Double x:Key="ListViewItemMinWidth">88</x:Double>
+    <x:Double x:Key="ListViewItemMinHeight">34</x:Double>
 
 </ResourceDictionary>

@@ -33,13 +33,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       mc:Ignorable="d">
 
     <Page.Resources>
+
         <DataTemplate x:Key="ConnectionPageItemTemplate"
                       x:DataType="bases:IConnectionPage">
             <ListViewItem Padding="16,0"
+                          HorizontalAlignment="Left"
+                          AutomationProperties.AutomationControlType="ListItem"
                           AutomationProperties.AutomationId="ConnectionsPageItem"
                           AutomationProperties.Name="{x:Bind Header}"
-                          AutomationProperties.AutomationControlType="ListItem"
-                          HorizontalAlignment="Left"
                           IsSelected="{x:Bind IsActive}"
                           Visibility="{x:Bind IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Grid ColumnSpacing="8">
@@ -48,29 +49,60 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <ContentControl Grid.Column="0"
+                                    Margin="-2,0,0,1"
+                                    VerticalAlignment="Center"
                                     Content="{x:Bind Icon, Mode=OneTime}" />
                     <TextBlock Grid.Column="1"
+                               VerticalAlignment="Center"
                                Text="{x:Bind Header}" />
                 </Grid>
             </ListViewItem>
         </DataTemplate>
+
+        <DataTemplate x:Key="ShortcutItemTemplate"
+                      x:DataType="bases:IConnectionPage">
+            <Border Height="{ThemeResource ListViewItemMinHeight}">
+                <TextBlock VerticalAlignment="Center"
+                       Foreground="{ThemeResource TextHintColorBrush}"
+                       Style="{StaticResource CaptionTextBlockStyle}"
+                       Text="{x:Bind ShortcutText, Mode=OneTime}"
+                       Visibility="{x:Bind IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            </Border>
+
+        </DataTemplate>
+
     </Page.Resources>
 
-    <Grid RowSpacing="16">
+    <Grid RowSpacing="16"
+          ColumnSpacing="8">
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <ItemsControl Grid.Row="0"
+                      Grid.Column="1"
+                      ItemTemplate="{StaticResource ShortcutItemTemplate}"
+                      ItemsSource="{x:Bind ViewModel.ConnectionPages, Mode=OneTime}" 
+                      IsHitTestVisible="False"/>
 
         <ListView Grid.Row="0"
+                  Grid.Column="0"
+                  AutomationProperties.AutomationControlType="List"
+                  AutomationProperties.AutomationId="ConnectionsPagesList"
                   ItemTemplate="{StaticResource ConnectionPageItemTemplate}"
                   ItemsSource="{x:Bind ViewModel.ConnectionPages, Mode=OneTime}"
-                  SelectedItem="{x:Bind ViewModel.SelectedConnectionPage, Mode=TwoWay}" 
-                  AutomationProperties.AutomationId="ConnectionsPagesList"
-                  AutomationProperties.AutomationControlType="List"/>
+                  SelectedItem="{x:Bind ViewModel.SelectedConnectionPage, Mode=TwoWay}" />
 
         <Frame x:Name="ConnectionsNavigationFrame"
                Grid.Row="1"
+               Grid.Column="0"
+               Grid.ColumnSpan="2"
                IsNavigationStackEnabled="{x:Bind Navigator.IsNavigationStackEnabled}" />
     </Grid>
 

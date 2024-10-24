@@ -29,6 +29,8 @@ public interface IConnectionPage : IActivationAware, INavigatorAware, INotifyPro
 
     string Header { get; }
 
+    string ShortcutText { get; }
+
     IconElement Icon { get; }
 
     bool IsAvailable { get; }
