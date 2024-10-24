@@ -30,7 +30,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
               xmlns:ui="using:ProtonVPN.Client.UI"
               xmlns:wex="using:WinUIEx"
               x:DefaultBindMode="OneWay"
+              MinWidth="566"
+              MinHeight="759"
               mc:Ignorable="d">
+    
+    <!--  There's a consistent difference between the size defined here and the actual size  -->
+    <!--  Adds 16px to the width and 9px to the height to compensate  -->
 
     <custom:WindowContentControl x:Name="WindowContainer"
                                  Title="{x:Bind Shell.ViewModel.Title, Mode=OneWay}"

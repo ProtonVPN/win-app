@@ -42,8 +42,8 @@ namespace ProtonVPN.Client.Services.Activation;
 public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowActivator,
     IEventMessageReceiver<AuthenticationStatusChanged>
 {
-    private const int LOGIN_WINDOW_WIDTH = 1000;
-    private const int LOGIN_WINDOW_HEIGHT = 750;
+    private const int LOGIN_WINDOW_WIDTH = 1016;
+    private const int LOGIN_WINDOW_HEIGHT = 759;
 
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IEventMessageSender _eventMessageSender;

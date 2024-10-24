@@ -33,6 +33,7 @@ using ProtonVPN.Client.Factories;
 
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;
 using ProtonVPN.Client.Models.Connections;
+using ProtonVPN.Client.Common.UI.Assets.Icons.Base;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Gateways;
 
@@ -43,7 +44,7 @@ public partial class GatewaysPageViewModel : ConnectionPageViewModelBase,
 
     public override string Header => Localizer.Get("Gateways_Page_Title");
 
-    public override IconElement Icon => new Buildings();
+    public override IconElement Icon => new Buildings() { Size = PathIconSize.Pixels16 };
 
     public override int SortIndex { get; } = 3;
 

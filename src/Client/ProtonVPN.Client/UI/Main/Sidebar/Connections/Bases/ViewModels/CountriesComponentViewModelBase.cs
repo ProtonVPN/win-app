@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,21 +18,19 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Contracts.Bases.ViewModels;
+using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Factories;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts;
-using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
+using ProtonVPN.Client.Models.Connections;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Bases.ViewModels;
-using ProtonVPN.Client.Contracts.Enums;
-using ProtonVPN.Client.Factories;
-using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Contracts;
-using ProtonVPN.Client.Models.Connections;
-
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;
 
@@ -68,25 +66,35 @@ public abstract partial class CountriesComponentViewModelBase : ActivatableViewM
     }
 
     public virtual IEnumerable<ConnectionItemBase> GetItems()
-    {        
+    {
         IEnumerable<ConnectionItemBase> genericCountries =
         [
             LocationItemFactory.GetGenericCountry(ConnectionType, ConnectionIntentKind.Fastest, false),
-            LocationItemFactory.GetGenericCountry(ConnectionType, ConnectionIntentKind.Fastest, true),
-            LocationItemFactory.GetGenericCountry(ConnectionType, ConnectionIntentKind.Random, false),
+
+            // Do not include 'Fastest (excluding my country)' and 'Random country' in the options
+            //LocationItemFactory.GetGenericCountry(ConnectionType, ConnectionIntentKind.Fastest, true),
+            //LocationItemFactory.GetGenericCountry(ConnectionType, ConnectionIntentKind.Random, false),
         ];
 
         return genericCountries;
     }
-
-    [RelayCommand]
-    protected abstract void DismissInfoBanner();
 
     public void Receive(SettingChangedMessage message)
     {
         ExecuteOnUIThread(() => OnSettingsChanged(message.PropertyName));
     }
 
+    [RelayCommand]
+    protected abstract void DismissInfoBanner();
+
     protected virtual void OnSettingsChanged(string propertyName)
     { }
+
+    protected override void OnLanguageChanged()
+    {
+        base.OnLanguageChanged();
+
+        OnPropertyChanged(nameof(Header));
+        OnPropertyChanged(nameof(Description));
+    }
 }

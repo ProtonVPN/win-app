@@ -31,56 +31,69 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Automation_Properties_Sidebar')}"
              mc:Ignorable="d">
 
-    <Grid x:Name="SidebarContainer"
-          HorizontalAlignment="Left"
-          Style="{StaticResource PaneOverlayGridStyle}">
-        <!--  Collapsed  -->
-        <StackPanel Padding="8"
+    <ContentControl x:Name="SidebarContainer"
                     HorizontalAlignment="Left"
-                    Orientation="Vertical"
-                    Spacing="24"
-                    Visibility="{x:Bind IsSidebarExpanded, Converter={StaticResource NotBooleanToVisibilityConverter}}">
+                    IsHitTestVisible="{x:Bind IsHitTestVisible}"
+                    Style="{StaticResource PaneContentControlStyle}">
+        <Grid>
+            <!--  Collapsed  -->
+            <StackPanel Padding="4"
+                        HorizontalAlignment="Left"
+                        Orientation="Vertical"
+                        Spacing="26"
+                        Visibility="{x:Bind IsSidebarExpanded, Converter={StaticResource NotBooleanToVisibilityConverter}}">
 
-            <!--  Search icon  -->
-            <pathicons:Magnifier />
+                <!--  Search icon  -->
+                <Border Padding="10,12,10,10"
+                        Background="{ThemeResource InteractionDefaultColorBrush}"
+                        CornerRadius="4">
+                    <pathicons:Magnifier HorizontalAlignment="Center"
+                                         VerticalAlignment="Center"
+                                         Foreground="{ThemeResource TextHintColorBrush}"
+                                         Size="Pixels16" />
+                </Border>
 
-            <!--  Connection page icons  -->
-            <ItemsControl ItemsSource="{x:Bind ViewModel.ConnectionPages, Mode=OneTime}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical"
-                                    Spacing="16" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate x:DataType="bases:IConnectionPage">
-                        <ContentControl Content="{x:Bind Icon, Mode=OneTime}"
-                                        Visibility="{x:Bind IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </StackPanel>
+                <!--  Connection page icons  -->
+                <ItemsControl HorizontalAlignment="Center"
+                              ItemsSource="{x:Bind ViewModel.ConnectionPages, Mode=OneTime}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical"
+                                        Spacing="24" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="bases:IConnectionPage">
+                            <ContentControl Content="{x:Bind Icon, Mode=OneTime}"
+                                            Foreground="{ThemeResource TextWeakColorBrush}"
+                                            Visibility="{x:Bind IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
 
-        <!--  Expanded  -->
-        <Grid RowSpacing="8"
-              Visibility="{x:Bind IsSidebarExpanded, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <!--  Expanded  -->
+            <Grid RowSpacing="8"
+                  Visibility="{x:Bind IsSidebarExpanded, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-            <!--  Search box  -->
-            <TextBox Name="searchtextbox"
-                     Grid.Row="0"
-                     PlaceholderText="Browse from..."
-                     Style="{StaticResource SearchTextBoxStyle}"
-                     Text="{x:Bind ViewModel.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <!--  Search box  -->
+                <TextBox Name="searchtextbox"
+                         Grid.Row="0"
+                         Margin="4"
+                         PlaceholderText="Browse from..."
+                         Style="{StaticResource SearchTextBoxStyle}"
+                         Text="{x:Bind ViewModel.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Frame x:Name="SidebarNavigationFrame"
-                   Grid.Row="1"
-                   Margin="0,0,8,0"
-                   IsNavigationStackEnabled="{x:Bind Navigator.IsNavigationStackEnabled}" />
+                <Frame x:Name="SidebarNavigationFrame"
+                       Grid.Row="1"
+                       Margin="0,0,8,0"
+                       IsNavigationStackEnabled="{x:Bind Navigator.IsNavigationStackEnabled}" />
+            </Grid>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
@@ -96,6 +109,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <VisualState x:Name="Collapsed" />
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-    </Grid>
+    </ContentControl>
 
 </UserControl>

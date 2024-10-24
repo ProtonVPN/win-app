@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -76,39 +76,44 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     </UserControl.Resources>
 
-    <Grid Style="{StaticResource PaneOverlayGridStyle}">
+    <ContentControl Style="{StaticResource PaneContentControlStyle}"
+                    IsHitTestVisible="{x:Bind IsHitTestVisible}">
         
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+        <Grid>
 
-        <ItemsControl Grid.Row="0"
-                      ItemTemplateSelector="{StaticResource SideWidgetItemTemplateSelector}"
-                      ItemsSource="{x:Bind ViewModel.HeaderWidgets}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Spacing="8" />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-        </ItemsControl>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-        <Border Grid.Row="1"
-                Height="1"
-                Margin="0,8"
-                Background="{ThemeResource BorderWeakColorBrush}"
-                Visibility="{x:Bind ViewModel.HasHeaderAndFooterWidgets}" />
+            <ItemsControl Grid.Row="0"
+                          ItemTemplateSelector="{StaticResource SideWidgetItemTemplateSelector}"
+                          ItemsSource="{x:Bind ViewModel.HeaderWidgets}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Spacing="8" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
 
-        <ItemsControl Grid.Row="2"
-                      ItemTemplateSelector="{StaticResource SideWidgetItemTemplateSelector}"
-                      ItemsSource="{x:Bind ViewModel.FooterWidgets}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Spacing="8" />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-        </ItemsControl>
-    </Grid>
+            <Border Grid.Row="1"
+                    Height="1"
+                    Margin="0,8"
+                    Background="{ThemeResource BorderWeakColorBrush}"
+                    Visibility="{x:Bind ViewModel.HasHeaderAndFooterWidgets}" />
+
+            <ItemsControl Grid.Row="2"
+                          ItemTemplateSelector="{StaticResource SideWidgetItemTemplateSelector}"
+                          ItemsSource="{x:Bind ViewModel.FooterWidgets}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Spacing="8" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </Grid>
+
+    </ContentControl>
 
 </UserControl>

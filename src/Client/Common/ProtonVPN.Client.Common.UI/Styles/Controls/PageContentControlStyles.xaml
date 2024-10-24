@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -28,12 +28,44 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Thickness x:Key="PageContentControlHeaderContainerMargin">0,16,0,11</Thickness>
     <Thickness x:Key="PageContentControlHeaderButtonMargin">16,6,0,0</Thickness>
 
-    <Style x:Key="PaneOverlayGridStyle" TargetType="Grid">
+    <Style x:Key="PaneContentControlStyle" TargetType="ContentControl">
         <Setter Property="Padding" Value="8" />
         <Setter Property="Background" Value="{ThemeResource PaneOverlayBackgroundColorBrush}" />
         <Setter Property="BorderBrush" Value="{ThemeResource PaneOverlayBorderColorBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl">
+
+                    <Grid x:Name="PaneContainer"
+                          Padding="{TemplateBinding Padding}"
+                          Background="{TemplateBinding Background}"
+                          BorderBrush="{TemplateBinding BorderBrush}"
+                          BorderThickness="{TemplateBinding BorderThickness}"
+                          CornerRadius="{TemplateBinding CornerRadius}">
+
+                        <ContentPresenter x:Name="PART_ContentPresenter" />
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup>
+                                <VisualState x:Name="FadeOutMode">
+                                    <VisualState.StateTriggers>
+                                        <StateTrigger IsActive="{Binding IsHitTestVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotBooleanToBooleanConverter}}" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Target="PaneContainer.Background" Value="{ThemeResource PaneOverlayDisabledBackgroundColorBrush}" />
+                                        <Setter Target="PaneContainer.BorderBrush" Value="{ThemeResource PaneOverlayDisabledBorderColorBrush}" />
+                                        <Setter Target="PART_ContentPresenter.Opacity" Value="0.4" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="StandardMode" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style BasedOn="{StaticResource DefaultPageContentControlStyle}" TargetType="custom:PageContentControl" />
@@ -52,13 +84,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter.Value>
                 <ControlTemplate TargetType="custom:PageContentControl">
 
-                    <Grid x:Name="PageContainer"
-                          Style="{StaticResource PaneOverlayGridStyle}">
-                        
+                    <ContentControl x:Name="PageContainer"
+                                    Style="{StaticResource PaneContentControlStyle}">
                         <Grid x:Name="PageContentContainer"
+                              MaxWidth="{TemplateBinding MaxContentWidth}"
                               Padding="{TemplateBinding Padding}"
-                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                              MaxWidth="{TemplateBinding MaxContentWidth}">
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
 
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -97,8 +128,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   FontSize="{TemplateBinding PageHeaderFontSize}"
                                                   FontWeight="{TemplateBinding PageHeaderFontWeight}"
                                                   LineHeight="{TemplateBinding PageHeaderLineHeight}"
-                                                  TextWrapping="Wrap"
-                                                  OpticalMarginAlignment="TrimSideBearings" />
+                                                  OpticalMarginAlignment="TrimSideBearings"
+                                                  TextWrapping="Wrap" />
                             </Grid>
 
                             <ScrollViewer x:Name="PART_ScrollViewer"
@@ -124,7 +155,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <VisualState x:Name="StandardMode" />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                    </Grid>
+                    </ContentControl>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -147,13 +178,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter.Value>
                 <ControlTemplate TargetType="custom:SettingsPageContentControl">
 
-                    <Grid x:Name="PageContainer"
-                          Style="{StaticResource PaneOverlayGridStyle}">
-
+                    <ContentControl x:Name="PageContainer"
+                                    Style="{StaticResource PaneContentControlStyle}">
                         <Grid x:Name="PageContentContainer"
+                              MaxWidth="{TemplateBinding MaxContentWidth}"
                               Padding="{TemplateBinding Padding}"
-                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                              MaxWidth="{TemplateBinding MaxContentWidth}">
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
 
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -186,6 +216,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                                 <ContentPresenter x:Name="PART_HeaderPresenter"
                                                   Grid.Column="1"
+                                                  MinHeight="32"
                                                   VerticalAlignment="Top"
                                                   AutomationProperties.AutomationId="PageTitleLabel"
                                                   AutomationProperties.HeadingLevel="Level1"
@@ -194,9 +225,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   FontSize="{TemplateBinding PageHeaderFontSize}"
                                                   FontWeight="{TemplateBinding PageHeaderFontWeight}"
                                                   LineHeight="{TemplateBinding PageHeaderLineHeight}"
-                                                  TextWrapping="Wrap"
-                                                  OpticalMarginAlignment="TrimSideBearings" 
-                                                  MinHeight="32"/>
+                                                  OpticalMarginAlignment="TrimSideBearings"
+                                                  TextWrapping="Wrap" />
 
                                 <Button Grid.Column="2"
                                         Margin="{ThemeResource PageContentControlHeaderButtonMargin}"
@@ -231,10 +261,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <VisualState x:Name="StandardMode" />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                    </Grid>
+                    </ContentControl>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-    
+
 </ResourceDictionary>

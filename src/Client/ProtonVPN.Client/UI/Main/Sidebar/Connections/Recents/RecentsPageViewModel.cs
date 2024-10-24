@@ -32,6 +32,7 @@ using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.Factories;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;
 using ProtonVPN.Client.Models.Connections;
+using ProtonVPN.Client.Common.UI.Assets.Icons.Base;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Recents;
 
@@ -43,7 +44,7 @@ public class RecentsPageViewModel : ConnectionPageViewModelBase,
 
     public override string Header => Localizer.Get("Home_Recents_Title");
 
-    public override IconElement Icon => new ClockRotateLeft();
+    public override IconElement Icon => new ClockRotateLeft() { Size = PathIconSize.Pixels16 };
 
     public override int SortIndex { get; } = 1;
 

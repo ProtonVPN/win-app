@@ -817,6 +817,7 @@
         <None Remove="Styles\Controls\ServerLoadStyles.xaml" />
         <None Remove="Styles\Controls\SettingsCardStyles.xaml" />
         <None Remove="Styles\Controls\SettingsExpanderStyles.xaml" />
+        <None Remove="Styles\Controls\SizerStyles.xaml" />
         <None Remove="Styles\Controls\StepContentControlStyles.xaml" />
         <None Remove="Styles\Controls\TextBoxStyles.xaml" />
         <None Remove="Styles\Controls\ToggleSwitchStyles.xaml" />
@@ -835,6 +836,7 @@
         <PackageReference Include="CommunityToolkit.WinUI.Controls.Primitives" />
         <PackageReference Include="CommunityToolkit.WinUI.Controls.RangeSelector" />
         <PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" />
+        <PackageReference Include="CommunityToolkit.WinUI.Controls.Sizers" />
         <PackageReference Include="CommunityToolkit.WinUI.Converters" />
         <PackageReference Include="CommunityToolkit.WinUI.Triggers" />
         <PackageReference Include="Microsoft.WindowsAppSDK" />
@@ -2327,6 +2329,11 @@
     </ItemGroup>
     <ItemGroup>
       <Resource Remove="Assets\Icons\Profiles\BotProfileIcon.xaml" />
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Styles\Controls\SizerStyles.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
     </ItemGroup>
     <ItemGroup>
       <Page Update="Styles\Controls\ListViewStyles.xaml">

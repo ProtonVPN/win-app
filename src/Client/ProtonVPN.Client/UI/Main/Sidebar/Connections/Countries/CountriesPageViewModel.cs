@@ -19,6 +19,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Client.Common.UI.Assets.Icons.Base;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Contracts.Services.Navigation;
@@ -42,7 +43,7 @@ public partial class CountriesPageViewModel : ConnectionPageViewModelBase
 
     public override string Header => Localizer.Get("Countries_Page_Title");
 
-    public override IconElement Icon => new Earth();
+    public override IconElement Icon => new Earth() { Size = PathIconSize.Pixels16 };
 
     public override int SortIndex { get; } = 2;
 

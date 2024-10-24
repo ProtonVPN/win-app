@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -30,219 +30,225 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       NavigationCacheMode="Required"
       mc:Ignorable="d">
 
-    <Grid Style="{StaticResource PaneOverlayGridStyle}">
+    <ContentControl Style="{StaticResource PaneContentControlStyle}">
 
-        <ScrollViewer Margin="20"
-                      Padding="80,20"
-                      HorizontalAlignment="Center"
-                      VerticalScrollBarVisibility="Auto">
+        <Grid>
 
-            <StackPanel Width="400"
-                        VerticalAlignment="Center"
-                        Orientation="Vertical"
-                        Spacing="20">
+            <ScrollViewer Margin="20"
+                          Padding="80,20"
+                          HorizontalAlignment="Center"
+                          VerticalScrollBarVisibility="Auto">
 
-                <custom:ConnectionProfileIcon FlagType="Fastest" ProfileCategory="Gaming"/>
-                <custom:ConnectionProfileIcon FlagType="Fastest" ProfileCategory="Gaming" Width="30" />
+                <StackPanel Width="400"
+                            VerticalAlignment="Center"
+                            Orientation="Vertical"
+                            Spacing="20">
 
-                <custom:DualConnectionRowButton>
-
-                    <custom:ConnectionRowButton ActionLabel="Connect"
-                                                Header="Fastest country (flyout)"
-                                                IsActiveConnection="True">
-                        <custom:ConnectionRowButton.Icon>
-                            <custom:SimpleCountryFlag Width="30"
-                                                      FlagType="Fastest" />
-                        </custom:ConnectionRowButton.Icon>
-                    </custom:ConnectionRowButton>
-
-                    <custom:DualConnectionRowButton.SecondaryCommandContent>
-                        <pathicons:ThreeDotsVertical Margin="8,0" />
-                    </custom:DualConnectionRowButton.SecondaryCommandContent>
-
-                    <custom:DualConnectionRowButton.SecondaryCommandFlyout>
-                        <MenuFlyout Placement="RightEdgeAlignedTop">
-                            <MenuFlyoutItem Text="Add" />
-                            <MenuFlyoutItem Text="Edit" />
-                            <MenuFlyoutItem Text="Delete" />
-                        </MenuFlyout>
-                    </custom:DualConnectionRowButton.SecondaryCommandFlyout>
-
-                </custom:DualConnectionRowButton>
-
-                <custom:DualConnectionRowExpander>
-
-                    <custom:ConnectionRowButton ActionLabel="Connect"
-                                                Header="Fastest country (expander)"
-                                                IsActiveConnection="True">
-                        <custom:ConnectionRowButton.Icon>
-                            <custom:SimpleCountryFlag Width="30"
-                                                      FlagType="Fastest" />
-                        </custom:ConnectionRowButton.Icon>
-                    </custom:ConnectionRowButton>
-
-                    <custom:DualConnectionRowExpander.ExpanderContent>
-                        <ListBox>
-                            <ListBoxItem Content="Add" />
-                            <ListBoxItem Content="Edit" />
-                            <ListBoxItem Content="Delete" />
-                        </ListBox>
-                    </custom:DualConnectionRowExpander.ExpanderContent>
-
-                </custom:DualConnectionRowExpander>
-
-                <custom:ConnectionRowButton ActionLabel="Connect"
-                                            Header="Fastest country"
-                                            IsActiveConnection="True"
-                                            IsRestricted="False">
-                    <custom:ConnectionRowButton.Icon>
-                        <custom:SimpleCountryFlag Width="30"
-                                                  FlagType="Fastest" />
-                    </custom:ConnectionRowButton.Icon>
-                </custom:ConnectionRowButton>
-
-                <custom:ConnectionRowButton ActionLabel="Connect"
-                                            Header="Fastest country"
-                                            IsRestricted="True"
-                                            IsUnderMaintenance="True">
-                    <custom:ConnectionRowButton.Icon>
-                        <custom:SimpleCountryFlag Width="30"
+                    <custom:ConnectionProfileIcon FlagType="Fastest"
+                                                  ProfileCategory="Gaming" />
+                    <custom:ConnectionProfileIcon Width="30"
                                                   FlagType="Fastest"
-                                                  IsSecureCore="True" />
-                    </custom:ConnectionRowButton.Icon>
-                </custom:ConnectionRowButton>
+                                                  ProfileCategory="Gaming" />
 
-                <custom:ConnectionRowButton ActionLabel="Connect"
-                                            Header="Los Angeles"
-                                            IsActiveConnection="True">
-                    <custom:ConnectionRowButton.Icon>
-                        <pathicons:MapPin />
-                    </custom:ConnectionRowButton.Icon>
-                </custom:ConnectionRowButton>
+                    <custom:DualConnectionRowButton>
 
-                <custom:ComplexCountryFlag EntryCountryCode="IS"
-                                           ExitCountryCode="ES"
-                                           IsCompact="False"
-                                           IsSecureCore="True"
-                                           MainFlagType="Country" />
+                        <custom:ConnectionRowButton ActionLabel="Connect"
+                                                    Header="Fastest country (flyout)"
+                                                    IsActiveConnection="True">
+                            <custom:ConnectionRowButton.Icon>
+                                <custom:SimpleCountryFlag Width="30"
+                                                          FlagType="Fastest" />
+                            </custom:ConnectionRowButton.Icon>
+                        </custom:ConnectionRowButton>
 
-                <custom:ConnectionRowButton ActionLabel="Connect"
-                                            Description="Paris #75"
-                                            Header="France"
-                                            IsUnderMaintenance="True"
-                                            P2PLabel="P2P"
-                                            SupportsP2P="True"
-                                            SupportsTor="True"
-                                            TorLabel="Tor">
-                    <custom:ConnectionRowButton.Icon>
-                        <custom:SimpleCountryFlag Width="30"
-                                                  FlagType="Fastest" />
-                    </custom:ConnectionRowButton.Icon>
-                </custom:ConnectionRowButton>
+                        <custom:DualConnectionRowButton.SecondaryCommandContent>
+                            <pathicons:ThreeDotsVertical Margin="8,0" />
+                        </custom:DualConnectionRowButton.SecondaryCommandContent>
 
-                <custom:ConnectionRowButton ActionLabel="Connect"
-                                            Description="via Sweden"
-                                            Header="Australia"
-                                            IsRestricted="False"
-                                            IsUnderMaintenance="False"
-                                            P2PLabel="P2P"
-                                            SupportsP2P="False"
-                                            SupportsTor="True"
-                                            TorLabel="Tor">
-                    <custom:ConnectionRowButton.Icon>
-                        <custom:ComplexCountryFlag Width="30"
-                                                   EntryCountryCode="SE"
-                                                   ExitCountryCode="AU"
-                                                   IsSecureCore="True"
-                                                   MainFlagType="Country" />
-                    </custom:ConnectionRowButton.Icon>
-                </custom:ConnectionRowButton>
+                        <custom:DualConnectionRowButton.SecondaryCommandFlyout>
+                            <MenuFlyout Placement="RightEdgeAlignedTop">
+                                <MenuFlyoutItem Text="Add" />
+                                <MenuFlyoutItem Text="Edit" />
+                                <MenuFlyoutItem Text="Delete" />
+                            </MenuFlyout>
+                        </custom:DualConnectionRowButton.SecondaryCommandFlyout>
 
-                <custom:ServerConnectionRowButton Header="AU#123"
-                                                  IsActiveConnection="True"
-                                                  ServerLoad="0.8"
-                                                  SupportsP2P="True"
-                                                  SupportsSmartRouting="True"
-                                                  SupportsTor="True"
-                                                  TorLabel="Tor" />
+                    </custom:DualConnectionRowButton>
 
-                <custom:ServerConnectionRowButton Header="CH#65"
-                                                  IsActiveConnection="False"
-                                                  IsRestricted="true"
-                                                  ServerLoad="0.4"
-                                                  SupportsP2P="True"
-                                                  SupportsSmartRouting="True"
-                                                  SupportsTor="True"
-                                                  TorLabel="Tor">
+                    <custom:DualConnectionRowExpander>
 
-                    <custom:ServerConnectionRowButton.Icon>
-                        <custom:SimpleCountryFlag Width="30"
-                                                  CountryCode="CH"
-                                                  FlagType="Country"
-                                                  IsSecureCore="False" />
-                    </custom:ServerConnectionRowButton.Icon>
-                </custom:ServerConnectionRowButton>
+                        <custom:ConnectionRowButton ActionLabel="Connect"
+                                                    Header="Fastest country (expander)"
+                                                    IsActiveConnection="True">
+                            <custom:ConnectionRowButton.Icon>
+                                <custom:SimpleCountryFlag Width="30"
+                                                          FlagType="Fastest" />
+                            </custom:ConnectionRowButton.Icon>
+                        </custom:ConnectionRowButton>
 
-                <custom:ServerConnectionRowButton Header="FR#100"
-                                                  IsUnderMaintenance="True"
-                                                  ServerLoad="0.8"
-                                                  SupportsP2P="True"
-                                                  SupportsSmartRouting="True"
-                                                  SupportsTor="True"
-                                                  TorLabel="Tor">
+                        <custom:DualConnectionRowExpander.ExpanderContent>
+                            <ListBox>
+                                <ListBoxItem Content="Add" />
+                                <ListBoxItem Content="Edit" />
+                                <ListBoxItem Content="Delete" />
+                            </ListBox>
+                        </custom:DualConnectionRowExpander.ExpanderContent>
 
-                    <custom:ServerConnectionRowButton.Icon>
-                        <custom:ComplexCountryFlag Width="30"
-                                                   ExitCountryCode="FR"
-                                                   MainFlagType="Gateway" />
-                    </custom:ServerConnectionRowButton.Icon>
-                </custom:ServerConnectionRowButton>
+                    </custom:DualConnectionRowExpander>
 
-                <SplitButton Content="Hello">
-                    <SplitButton.Flyout>
-                        <Flyout>
-                            <Border Width="200"
-                                    Height="80"
-                                    Margin="10"
-                                    Background="Red" />
-                        </Flyout>
-                    </SplitButton.Flyout>
-                </SplitButton>
+                    <custom:ConnectionRowButton ActionLabel="Connect"
+                                                Header="Fastest country"
+                                                IsActiveConnection="True"
+                                                IsRestricted="False">
+                        <custom:ConnectionRowButton.Icon>
+                            <custom:SimpleCountryFlag Width="30"
+                                                      FlagType="Fastest" />
+                        </custom:ConnectionRowButton.Icon>
+                    </custom:ConnectionRowButton>
 
-                <Expander MaxWidth="600"
-                          Margin="0"
-                          Header="Hello"
-                          Style="{StaticResource ConnectionRowExpanderStyle}">
-                    <Border Width="200"
-                            Height="80"
-                            HorizontalAlignment="Stretch"
-                            Background="Red" />
-                </Expander>
+                    <custom:ConnectionRowButton ActionLabel="Connect"
+                                                Header="Fastest country"
+                                                IsRestricted="True"
+                                                IsUnderMaintenance="True">
+                        <custom:ConnectionRowButton.Icon>
+                            <custom:SimpleCountryFlag Width="30"
+                                                      FlagType="Fastest"
+                                                      IsSecureCore="True" />
+                        </custom:ConnectionRowButton.Icon>
+                    </custom:ConnectionRowButton>
 
-                <ToggleButton Padding="0">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="40" />
-                        </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0"
-                                Content="Connect" />
-                        <pathicons:ThreeDotsVertical Grid.Column="1" />
-                    </Grid>
-                </ToggleButton>
-                
-            </StackPanel>
+                    <custom:ConnectionRowButton ActionLabel="Connect"
+                                                Header="Los Angeles"
+                                                IsActiveConnection="True">
+                        <custom:ConnectionRowButton.Icon>
+                            <pathicons:MapPin />
+                        </custom:ConnectionRowButton.Icon>
+                    </custom:ConnectionRowButton>
 
-        </ScrollViewer>
+                    <custom:ComplexCountryFlag EntryCountryCode="IS"
+                                               ExitCountryCode="ES"
+                                               IsCompact="False"
+                                               IsSecureCore="True"
+                                               MainFlagType="Country" />
 
-        <custom:GhostButton Margin="9"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Top"
-                            Command="{x:Bind ViewModel.CloseCommand, Mode=OneTime}">
-            <custom:GhostButton.LeftIcon>
-                <pathicons:Cross />
-            </custom:GhostButton.LeftIcon>
-        </custom:GhostButton>
-    </Grid>
+                    <custom:ConnectionRowButton ActionLabel="Connect"
+                                                Description="Paris #75"
+                                                Header="France"
+                                                IsUnderMaintenance="True"
+                                                P2PLabel="P2P"
+                                                SupportsP2P="True"
+                                                SupportsTor="True"
+                                                TorLabel="Tor">
+                        <custom:ConnectionRowButton.Icon>
+                            <custom:SimpleCountryFlag Width="30"
+                                                      FlagType="Fastest" />
+                        </custom:ConnectionRowButton.Icon>
+                    </custom:ConnectionRowButton>
+
+                    <custom:ConnectionRowButton ActionLabel="Connect"
+                                                Description="via Sweden"
+                                                Header="Australia"
+                                                IsRestricted="False"
+                                                IsUnderMaintenance="False"
+                                                P2PLabel="P2P"
+                                                SupportsP2P="False"
+                                                SupportsTor="True"
+                                                TorLabel="Tor">
+                        <custom:ConnectionRowButton.Icon>
+                            <custom:ComplexCountryFlag Width="30"
+                                                       EntryCountryCode="SE"
+                                                       ExitCountryCode="AU"
+                                                       IsSecureCore="True"
+                                                       MainFlagType="Country" />
+                        </custom:ConnectionRowButton.Icon>
+                    </custom:ConnectionRowButton>
+
+                    <custom:ServerConnectionRowButton Header="AU#123"
+                                                      IsActiveConnection="True"
+                                                      ServerLoad="0.8"
+                                                      SupportsP2P="True"
+                                                      SupportsSmartRouting="True"
+                                                      SupportsTor="True"
+                                                      TorLabel="Tor" />
+
+                    <custom:ServerConnectionRowButton Header="CH#65"
+                                                      IsActiveConnection="False"
+                                                      IsRestricted="true"
+                                                      ServerLoad="0.4"
+                                                      SupportsP2P="True"
+                                                      SupportsSmartRouting="True"
+                                                      SupportsTor="True"
+                                                      TorLabel="Tor">
+
+                        <custom:ServerConnectionRowButton.Icon>
+                            <custom:SimpleCountryFlag Width="30"
+                                                      CountryCode="CH"
+                                                      FlagType="Country"
+                                                      IsSecureCore="False" />
+                        </custom:ServerConnectionRowButton.Icon>
+                    </custom:ServerConnectionRowButton>
+
+                    <custom:ServerConnectionRowButton Header="FR#100"
+                                                      IsUnderMaintenance="True"
+                                                      ServerLoad="0.8"
+                                                      SupportsP2P="True"
+                                                      SupportsSmartRouting="True"
+                                                      SupportsTor="True"
+                                                      TorLabel="Tor">
+
+                        <custom:ServerConnectionRowButton.Icon>
+                            <custom:ComplexCountryFlag Width="30"
+                                                       ExitCountryCode="FR"
+                                                       MainFlagType="Gateway" />
+                        </custom:ServerConnectionRowButton.Icon>
+                    </custom:ServerConnectionRowButton>
+
+                    <SplitButton Content="Hello">
+                        <SplitButton.Flyout>
+                            <Flyout>
+                                <Border Width="200"
+                                        Height="80"
+                                        Margin="10"
+                                        Background="Red" />
+                            </Flyout>
+                        </SplitButton.Flyout>
+                    </SplitButton>
+
+                    <Expander MaxWidth="600"
+                              Margin="0"
+                              Header="Hello"
+                              Style="{StaticResource ConnectionRowExpanderStyle}">
+                        <Border Width="200"
+                                Height="80"
+                                HorizontalAlignment="Stretch"
+                                Background="Red" />
+                    </Expander>
+
+                    <ToggleButton Padding="0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="40" />
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0"
+                                    Content="Connect" />
+                            <pathicons:ThreeDotsVertical Grid.Column="1" />
+                        </Grid>
+                    </ToggleButton>
+
+                </StackPanel>
+
+            </ScrollViewer>
+
+            <custom:GhostButton Margin="9"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                Command="{x:Bind ViewModel.CloseCommand, Mode=OneTime}">
+                <custom:GhostButton.LeftIcon>
+                    <pathicons:Cross />
+                </custom:GhostButton.LeftIcon>
+            </custom:GhostButton>
+        </Grid>
+    </ContentControl>
 
 </Page>

@@ -85,7 +85,13 @@ public class UserSettings : GlobalSettings, IUserSettings
         get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsNavigationPaneOpened;
         set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
-    
+
+    public int SidebarWidth
+    {
+        get => _userCache.GetValueType<int>(SettingEncryption.Unencrypted) ?? DefaultSettings.SidebarWidth;
+        set => _userCache.SetValueType<int>(value, SettingEncryption.Unencrypted);
+    }
+
     public bool IsRecentsPaneOpened
     {
         get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsRecentsPaneOpened;

@@ -36,10 +36,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Page.Resources>
         <x:Double x:Key="ConnectionStatusGradientHeight">332.0</x:Double>
         <x:Double x:Key="BottomMapFadeoutGradientHeight">250.0</x:Double>
-        <x:Double x:Key="WidgetComponentMinWidth">58.0</x:Double>
+
+        <x:Double x:Key="WidgetComponentMinWidth">62.0</x:Double>
         <x:Double x:Key="WidgetComponentMaxWidth">120.0</x:Double>
 
+        <x:Double x:Key="SidebarComponentCompactWidth">62.0</x:Double>
+        <x:Double x:Key="SidebarComponentMinWidth">200.0</x:Double>
+        <x:Double x:Key="SidebarComponentMaxWidth">400.0</x:Double>
+        <x:Double x:Key="SidebarComponentDefaultWidth">280.0</x:Double>
+
         <Duration x:Key="ConnectionStatusBackgroundAnimationDuration">0:0:1</Duration>
+        
     </Page.Resources>
 
     <Grid>
@@ -91,10 +98,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <SplitView x:Name="MainSplitView"
                        Grid.Row="0"
-                       CompactPaneLength="54"
+                       CompactPaneLength="{StaticResource SidebarComponentCompactWidth}"
                        DisplayMode="{x:Bind ViewModel.SidebarDisplayMode}"
                        IsPaneOpen="{x:Bind ViewModel.IsSidebarExpanded, Mode=TwoWay}"
-                       OpenPaneLength="300"
+                       OpenPaneLength="{x:Bind ViewModel.SidebarWidth}"
                        PaneBackground="{ThemeResource TransparentColorBrush}">
 
                 <SplitView.Pane>
@@ -113,11 +120,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </Grid.ColumnDefinitions>
 
                     <Border Grid.Column="0"
-                            Width="12">
-                        <controls:PropertySizer Binding="{x:Bind MainSplitView.OpenPaneLength, Mode=TwoWay}"
-                                                Maximum="440"
-                                                Minimum="240"
-                                                Visibility="{x:Bind ViewModel.IsSidebarExpanded}" />
+                            Width="8">
+                        <controls:PropertySizer Binding="{x:Bind ViewModel.SidebarWidth, Mode=TwoWay}"
+                                                Maximum="{StaticResource SidebarComponentMaxWidth}"
+                                                Minimum="{StaticResource SidebarComponentMinWidth}"
+                                                Visibility="{x:Bind ViewModel.IsSidebarExpanded}" 
+                                                Margin="-8,0,0,0"/>
                     </Border>
 
                     <Frame x:Name="MainNavigationFrame"
@@ -200,14 +208,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <StateTrigger IsActive="{x:Bind ViewModel.IsHomePageDisplayed, Converter={StaticResource NotBooleanToBooleanConverter}}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="SidebarComponent.Opacity" Value="0.4" />
                         <Setter Target="SidebarComponent.IsHitTestVisible" Value="False" />
-                        <Setter Target="SideWidgetsHostComponent.Opacity" Value="0.4" />
                         <Setter Target="SideWidgetsHostComponent.IsHitTestVisible" Value="False" />
-                        <Setter Target="MapView.Visibility" Value="Collapsed" />
+                        <Setter Target="MapView.Opacity" Value="0.4" />
                     </VisualState.Setters>
                 </VisualState>
-                <VisualState x:Name="OnHomePage" />
+                <VisualState x:Name="OnHomePage">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsHomePageDisplayed}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="SidebarComponent.IsHitTestVisible" Value="True" />
+                        <Setter Target="SideWidgetsHostComponent.IsHitTestVisible" Value="True" />
+                        <Setter Target="MapView.Opacity" Value="1" />
+                    </VisualState.Setters>
+                </VisualState>
             </VisualStateGroup>
 
             <VisualStateGroup x:Name="SidebarStates">

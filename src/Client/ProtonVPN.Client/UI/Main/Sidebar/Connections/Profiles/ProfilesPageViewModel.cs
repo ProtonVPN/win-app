@@ -21,6 +21,7 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
+using ProtonVPN.Client.Common.UI.Assets.Icons.Base;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
@@ -48,7 +49,7 @@ public partial class ProfilesPageViewModel : ConnectionPageViewModelBase,
 
     public override string Header => Localizer.Get("Profiles_Page_Title");
 
-    public override IconElement Icon => new WindowTerminal();
+    public override IconElement Icon => new WindowTerminal() { Size = PathIconSize.Pixels16 };
 
     public override int SortIndex { get; } = 4;
 

@@ -53,7 +53,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses />.-->
             <StaticResource x:Key="PivotHeaderItemBackgroundSelected" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="PivotHeaderItemBackgroundSelectedPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
             <StaticResource x:Key="PivotHeaderItemBackgroundSelectedPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-            <StaticResource x:Key="PivotHeaderItemBackgroundDisabled" ResourceKey="InteractionDefaultActiveColorBrush" />
+            <StaticResource x:Key="PivotHeaderItemBackgroundDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="PivotHeaderItemForegroundUnselected" ResourceKey="TextWeakColorBrush" />
             <StaticResource x:Key="PivotHeaderItemForegroundUnselectedPointerOver" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="PivotHeaderItemForegroundUnselectedPressed" ResourceKey="TextNormColorBrush" />
@@ -94,7 +94,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses />.-->
             <StaticResource x:Key="PivotHeaderItemBackgroundSelected" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="PivotHeaderItemBackgroundSelectedPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
             <StaticResource x:Key="PivotHeaderItemBackgroundSelectedPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-            <StaticResource x:Key="PivotHeaderItemBackgroundDisabled" ResourceKey="InteractionDefaultActiveColorBrush" />
+            <StaticResource x:Key="PivotHeaderItemBackgroundDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="PivotHeaderItemForegroundUnselected" ResourceKey="TextWeakColorBrush" />
             <StaticResource x:Key="PivotHeaderItemForegroundUnselectedPointerOver" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="PivotHeaderItemForegroundUnselectedPressed" ResourceKey="TextNormColorBrush" />

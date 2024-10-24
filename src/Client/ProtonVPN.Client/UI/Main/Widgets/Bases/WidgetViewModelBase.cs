@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,11 +19,11 @@
 
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Client.Contracts.Bases.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.UI.Main.Widgets.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Bases.ViewModels;
-using ProtonVPN.Client.UI.Main.Widgets.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Widgets.Bases;
 
@@ -46,4 +46,11 @@ public abstract partial class WidgetViewModelBase : ViewModelBase, IWidget
 
     [RelayCommand]
     public abstract Task<bool> InvokeAsync();
+
+    protected override void OnLanguageChanged()
+    {
+        base.OnLanguageChanged();
+
+        OnPropertyChanged(nameof(Header));
+    }
 }
