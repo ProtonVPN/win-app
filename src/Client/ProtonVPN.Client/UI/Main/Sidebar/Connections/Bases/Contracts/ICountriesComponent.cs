@@ -21,7 +21,6 @@ using System.ComponentModel;
 using ProtonVPN.Client.Contracts.Bases;
 using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Models.Connections;
-using ProtonVPN.Client.Models.Connections.Countries;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Contracts;
 

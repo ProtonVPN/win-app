@@ -41,7 +41,7 @@ public partial class CountriesPageViewModel : ConnectionPageViewModelBase
     [ObservableProperty]
     private ICountriesComponent _selectedCountriesComponent;
 
-    public override string Header => Localizer.Get("Countries_Page_Title");
+    public override string Header => Localizer.Get("Countries");
 
     public override IconElement Icon => new Earth() { Size = PathIconSize.Pixels16 };
 

@@ -79,7 +79,7 @@ public partial class FreeConnectionsOverlayViewModel : OverlayViewModelBase,
     private void InvalidateFreeCountries()
     {
         FreeCountries.Reset(_serversLoader
-            .GetFreeCountryCodes()
+            .GetFreeCountries()
             .Select(GetCountry)
             .OrderBy(c => c.Name));
 

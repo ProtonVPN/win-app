@@ -158,7 +158,7 @@ public partial class FreeConnectionCardViewModel : ConnectionCardViewModelBase,
 
     private void InvalidateFreeCountriesCount()
     {
-        List<string> freeCountries = _serversLoader.GetFreeCountryCodes().ToList();
+        List<string> freeCountries = _serversLoader.GetFreeCountries().ToList();
 
         FreeCountriesCount = freeCountries.Count;
     }

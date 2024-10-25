@@ -62,7 +62,7 @@ public class SecureCoreCountriesComponentViewModel : CountriesComponentViewModel
         IEnumerable<ConnectionItemBase> genericCountries = base.GetItems();
 
         IEnumerable<ConnectionItemBase> countries =
-            ServersLoader.GetCountryCodesByFeatures(ServerFeatures.SecureCore)
+            ServersLoader.GetCountriesByFeatures(ServerFeatures.SecureCore)
                          .Select(LocationItemFactory.GetSecureCoreCountry);
 
         return genericCountries

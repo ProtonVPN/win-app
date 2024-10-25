@@ -33,7 +33,7 @@ public class SidebarCountriesViewModel : SidebarNavigationItemViewModelBase<Coun
 {
     public override IconElement? Icon { get; } = new Earth();
 
-    public override string Header => Localizer.Get("Countries_Page_Title");
+    public override string Header => Localizer.Get("Countries");
 
     public override string AutomationId => "Sidebar_Countries";
 

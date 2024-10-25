@@ -101,9 +101,9 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
 
     public string ThirdLevelHeader => Localizer.Get("Server");
 
-    public bool HasSecondLevel => SelectedFirstLevelLocationItem is HostLocationItemBase;
+    public bool HasSecondLevel => SelectedFirstLevelLocationItem is IHostLocationItem;
 
-    public bool HasThirdLevel => HasSecondLevel && SelectedSecondLevelLocationItem is HostLocationItemBase;
+    public bool HasThirdLevel => HasSecondLevel && SelectedSecondLevelLocationItem is IHostLocationItem;
 
     public ConnectionIntentSelectorViewModel(
         ILocalizationProvider localizationProvider,
@@ -182,7 +182,7 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
         ];
 
         IEnumerable<LocationItemBase> countries =
-            _serversLoader.GetCountryCodes()
+            _serversLoader.GetCountries()
                           .Select(_locationItemFactory.GetCountry);
 
         return genericCountries
@@ -200,7 +200,7 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
         ];
 
         IEnumerable<LocationItemBase> countries =
-            _serversLoader.GetCountryCodesByFeatures(ServerFeatures.P2P)
+            _serversLoader.GetCountriesByFeatures(ServerFeatures.P2P)
                           .Select(_locationItemFactory.GetP2PCountry);
 
         return genericCountries
@@ -218,7 +218,7 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
         ];
 
         IEnumerable<LocationItemBase> countries =
-            _serversLoader.GetCountryCodesByFeatures(ServerFeatures.SecureCore)
+            _serversLoader.GetCountriesByFeatures(ServerFeatures.SecureCore)
                           .Select(_locationItemFactory.GetSecureCoreCountry);
 
         return genericCountries
@@ -286,7 +286,7 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
                 CountryLocationIntent countryIntent when countryIntent.IsRandomCountry => FirstLevelLocationItems.OfType<GenericCountryLocationItem>().FirstOrDefault(c => c.IntentKind == ConnectionIntentKind.Random && !c.ExcludeMyCountry),
                 CountryLocationIntent countryIntent when countryIntent.IsRandomCountryExcludingMine => FirstLevelLocationItems.OfType<GenericCountryLocationItem>().FirstOrDefault(c => c.IntentKind == ConnectionIntentKind.Random && c.ExcludeMyCountry),
                 CountryLocationIntent countryIntent => FirstLevelLocationItems.OfType<CountryLocationItemBase>().FirstOrDefault(c => c.ExitCountryCode == countryIntent.CountryCode),
-                GatewayLocationIntent gatewayIntent => FirstLevelLocationItems.OfType<GatewayLocationItem>().FirstOrDefault(g => g.Gateway == gatewayIntent.GatewayName),
+                GatewayLocationIntent gatewayIntent => FirstLevelLocationItems.OfType<GatewayLocationItem>().FirstOrDefault(g => g.Gateway.Name == gatewayIntent.GatewayName),
                 _ => null
             };
             SelectedFirstLevelLocationItem ??= FirstLevelLocationItems.FirstOrDefault();
@@ -333,7 +333,7 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
     {
         List<ConnectionItemBase> locations = [];
 
-        if (SelectedFirstLevelLocationItem is HostLocationItemBase hostLocationItem)
+        if (SelectedFirstLevelLocationItem is IHostLocationItem hostLocationItem)
         {
             hostLocationItem.FetchSubItems();
 
@@ -353,7 +353,7 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
     {
         List<ConnectionItemBase> locations = [];
 
-        if (SelectedSecondLevelLocationItem is HostLocationItemBase hostLocationItem)
+        if (SelectedSecondLevelLocationItem is IHostLocationItem hostLocationItem)
         {
             hostLocationItem.FetchSubItems();
             

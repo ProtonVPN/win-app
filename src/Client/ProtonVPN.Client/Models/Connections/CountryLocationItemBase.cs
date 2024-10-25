@@ -26,12 +26,14 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 namespace ProtonVPN.Client.Models.Connections;
 
-public abstract class CountryLocationItemBase : HostLocationItemBase
+public abstract class CountryLocationItemBase : HostLocationItemBase<Country>
 {
-    public string ExitCountryCode { get; }
+    public Country Country { get; }
+    public string ExitCountryCode => Country.Code;
 
     public override string Header => Localizer.GetCountryName(ExitCountryCode);
 
@@ -56,17 +58,18 @@ public abstract class CountryLocationItemBase : HostLocationItemBase
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
         IConnectionGroupFactory connectionGroupFactory,
         ILocationItemFactory locationItemFactory,
-        string exitCountryCode)
+        Country country)
         : base(localizer,
                serversLoader,
                connectionManager,
                overlayActivator,
                upsellCarouselWindowActivator,
                connectionGroupFactory,
-               locationItemFactory)
+               locationItemFactory,
+               country)
     {
-        ExitCountryCode = exitCountryCode;
-
+        Country = country;
+        IsUnderMaintenance = country.IsLocationUnderMaintenance();
         LocationIntent = new CountryLocationIntent(ExitCountryCode);
     }
 

@@ -29,7 +29,7 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 namespace ProtonVPN.Client.Models.Connections;
 
-public abstract class CityLocationItemBase : HostLocationItemBase
+public abstract class CityLocationItemBase : HostLocationItemBase<City>
 {
     public City City { get; }
 
@@ -65,7 +65,8 @@ public abstract class CityLocationItemBase : HostLocationItemBase
                overlayActivator,
                upsellCarouselWindowActivator,
                connectionGroupFactory,
-               locationItemFactory)
+               locationItemFactory,
+               city)
     {
         City = city;
         IsDescriptionVisible = showBaseLocation;

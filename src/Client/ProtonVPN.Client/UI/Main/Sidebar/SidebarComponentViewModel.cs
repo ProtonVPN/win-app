@@ -19,25 +19,28 @@
 
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Client.Contracts.Bases.ViewModels;
 using ProtonVPN.Client.Contracts.Services.Navigation;
-using ProtonVPN.Client.Services.Navigation;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Contracts;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar;
 
-public partial class SidebarComponentViewModel : HostViewModelBase<ISidebarViewNavigator>
+public partial class SidebarComponentViewModel : HostViewModelBase<ISidebarViewNavigator>,
+    IEventMessageReceiver<LoggedInMessage>
 {
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(IsSearching))]
     private string _searchText = string.Empty;
 
-    public bool IsSearching => !string.IsNullOrWhiteSpace(SearchText);
+    private readonly ISearchInputReceiver _searchInputReceiver;
 
     public ObservableCollection<IConnectionPage> ConnectionPages { get; }
 
@@ -46,9 +49,12 @@ public partial class SidebarComponentViewModel : HostViewModelBase<ISidebarViewN
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter,
+        ISearchInputReceiver searchInputReceiver,
         IEnumerable<IConnectionPage> connectionPages)
         : base(childViewNavigator, localizer, logger, issueReporter)
     {
+        _searchInputReceiver = searchInputReceiver;
+
         ConnectionPages = new(connectionPages.OrderBy(p => p.SortIndex));
     }
 
@@ -64,18 +70,32 @@ public partial class SidebarComponentViewModel : HostViewModelBase<ISidebarViewN
 
     partial void OnSearchTextChanged(string value)
     {
-        if (IsSearching)
-        {
-            ChildViewNavigator.NavigateToSearchViewAsync();
-        }
-        else
-        {
-            ChildViewNavigator.NavigateToConnectionsViewAsync();
-        }
+        _searchInputReceiver.SearchAsync(value).Wait();
     }
 
     public void ClearSearch()
     {
         SearchText = string.Empty;
+    }
+
+    public void OnSearchTextBoxGotFocus(object sender, RoutedEventArgs _)
+    {
+        if (sender is TextBox)
+        {
+            ChildViewNavigator.NavigateToSearchViewAsync();
+        }
+    }
+
+    public void OnSearchTextBoxLostFocus(object sender, RoutedEventArgs _)
+    {
+        if (sender is TextBox && SearchText.Length <= 0)
+        {
+            ChildViewNavigator.NavigateToConnectionsViewAsync();
+        }
+    }
+
+    public void Receive(LoggedInMessage message)
+    {
+        ClearSearch();
     }
 }

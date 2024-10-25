@@ -45,21 +45,30 @@ public class ServersCache : IServersCache
 
     private readonly ReaderWriterLockSlim _lock = new();
 
-    private IReadOnlyList<Server> _originalServers = new List<Server>();
+    private IReadOnlyList<Server> _originalServers = [];
 
-    private IReadOnlyList<Server> _filteredServers = new List<Server>();
+    private IReadOnlyList<Server> _filteredServers = [];
     public IReadOnlyList<Server> Servers => GetWithReadLock(() => _filteredServers);
 
-    private IReadOnlyList<string> _countryCodes = new List<string>();
-    public IReadOnlyList<string> CountryCodes => GetWithReadLock(() => _countryCodes);
+    private IReadOnlyList<Country> _countries = [];
+    public IReadOnlyList<Country> Countries => GetWithReadLock(() => _countries);
 
-    private IReadOnlyList<string> _gateways = new List<string>();
-    public IReadOnlyList<string> Gateways => GetWithReadLock(() => _gateways);
+    private IReadOnlyList<State> _states = [];
+    public IReadOnlyList<State> States => GetWithReadLock(() => _states);
+
+    private IReadOnlyList<City> _cities = [];
+    public IReadOnlyList<City> Cities => GetWithReadLock(() => _cities);
+
+    private IReadOnlyList<Gateway> _gateways = [];
+    public IReadOnlyList<Gateway> Gateways => GetWithReadLock(() => _gateways);
+
+    private IReadOnlyList<SecureCoreCountryPair> _secureCoreCountryPairs = [];
+    public IReadOnlyList<SecureCoreCountryPair> SecureCoreCountryPairs => GetWithReadLock(() => _secureCoreCountryPairs);
 
     public ServersCache(IApiClient apiClient,
         IEntityMapper entityMapper,
         IServersFileReaderWriter serversFileReaderWriter,
-        IEventMessageSender eventMessageSender, 
+        IEventMessageSender eventMessageSender,
         ISettings settings,
         ILogger logger)
     {
@@ -90,6 +99,10 @@ public class ServersCache : IServersCache
         {
             _logger.Info<AppLog>("Loading servers from file as the user has none.");
             IReadOnlyList<Server> servers = _serversFileReaderWriter.Read();
+            if (servers.Count == 0)
+            {
+                _settings.LogicalsLastModifiedDate = DefaultSettings.LogicalsLastModifiedDate;
+            }
             ProcessServers(servers);
         }
     }
@@ -174,8 +187,11 @@ public class ServersCache : IServersCache
     {
         if (servers is not null && servers.Any())
         {
-            IReadOnlyList<string> countryCodes = GetCountryCodes(servers);
-            IReadOnlyList<string> gateways = GetGateways(servers);
+            IReadOnlyList<Country> countries = GetCountries(servers);
+            IReadOnlyList<State> states = GetStates(servers);
+            IReadOnlyList<City> cities = GetCities(servers);
+            IReadOnlyList<Gateway> gateways = GetGateways(servers);
+            IReadOnlyList<SecureCoreCountryPair> secureCoreCountryPairs = GetSecureCoreCountryPairs(servers);
             IReadOnlyList<Server> filteredServers = GetFilteredServers(servers);
 
             _lock.EnterWriteLock();
@@ -183,8 +199,11 @@ public class ServersCache : IServersCache
             {
                 _originalServers = servers;
                 _filteredServers = filteredServers;
-                _countryCodes = countryCodes;
+                _countries = countries;
+                _states = states;
+                _cities = cities;
                 _gateways = gateways;
+                _secureCoreCountryPairs = secureCoreCountryPairs;
             }
             finally
             {
@@ -195,17 +214,103 @@ public class ServersCache : IServersCache
         }
     }
 
-    private IReadOnlyList<string> GetCountryCodes(IEnumerable<Server> servers)
-    {
-        return servers.Select(s => s.ExitCountry).Distinct().ToList();
-    }
-
-    private IReadOnlyList<string> GetGateways(IReadOnlyList<Server> servers)
+    private IReadOnlyList<Country> GetCountries(IEnumerable<Server> servers)
     {
         return servers
-            .Where(s => s.Features.IsSupported(ServerFeatures.B2B) && !string.IsNullOrWhiteSpace(s.GatewayName))
-            .Select(s => s.GatewayName)
-            .Distinct()
+            .Where(s => !string.IsNullOrWhiteSpace(s.ExitCountry))
+            .GroupBy(s => s.ExitCountry)
+            .Select(s => new Country() {
+                Code = s.Key,
+                IsUnderMaintenance = IsUnderMaintenance(s),
+                Features = AggregateFeatures(s),
+                IsFree = HasAnyFreeServer(s),
+                IsPaid = HasAnyPaidServer(s),
+            })
+            .ToList();
+    }
+
+    private ServerFeatures AggregateFeatures<T>(IGrouping<T, Server> servers)
+    {
+        return servers.Aggregate(ServerFeatures.Standard, (combinedFeatures, s) => combinedFeatures | s.Features);
+    }
+
+    private bool IsUnderMaintenance<T>(IGrouping<T, Server> servers)
+    {
+        // This should be more performant than doing: servers.All(s => s.IsUnderMaintenance())
+        return !servers.Any(s => !s.IsLocationUnderMaintenance());
+    }
+
+    private bool HasAnyFreeServer<T>(IGrouping<T, Server> servers)
+    {
+        return servers.Any(s => s.Tier is ServerTiers.Free);
+    }
+
+    private bool HasAnyPaidServer<T>(IGrouping<T, Server> servers)
+    {
+        return servers.Any(s => s.Tier is ServerTiers.Basic or ServerTiers.Plus);
+    }
+
+    private IReadOnlyList<State> GetStates(IReadOnlyList<Server> servers)
+    {
+        return servers
+            .Where(s => !string.IsNullOrWhiteSpace(s.ExitCountry)
+                     && !string.IsNullOrWhiteSpace(s.State))
+            .GroupBy(s => new { Country = s.ExitCountry, State = s.State })
+            .Select(s => new State() {
+                CountryCode = s.Key.Country,
+                Name = s.Key.State,
+                IsUnderMaintenance = IsUnderMaintenance(s),
+                Features = AggregateFeatures(s),
+                IsFree = HasAnyFreeServer(s),
+                IsPaid = HasAnyPaidServer(s),
+            })
+            .ToList();
+    }
+
+    private IReadOnlyList<City> GetCities(IReadOnlyList<Server> servers)
+    {
+        return servers
+            .Where(s => !string.IsNullOrWhiteSpace(s.ExitCountry)
+                     && !string.IsNullOrWhiteSpace(s.City))
+            .GroupBy(s => new { Country = s.ExitCountry, State = s.State, City = s.City })
+            .Select(c => new City() {
+                CountryCode = c.Key.Country,
+                StateName = c.Key.State,
+                Name = c.Key.City,
+                IsUnderMaintenance = IsUnderMaintenance(c),
+                Features = AggregateFeatures(c),
+                IsFree = HasAnyFreeServer(c),
+                IsPaid = HasAnyPaidServer(c),
+            })
+            .ToList();
+    }
+
+    private IReadOnlyList<Gateway> GetGateways(IReadOnlyList<Server> servers)
+    {
+        return servers
+            .Where(s => s.Features.IsSupported(ServerFeatures.B2B) 
+                     && !string.IsNullOrWhiteSpace(s.GatewayName))
+            .GroupBy(s => s.GatewayName)
+            .Select(g => new Gateway() {
+                Name = g.Key,
+                IsUnderMaintenance = IsUnderMaintenance(g)
+            })
+            .ToList();
+    }
+
+    private IReadOnlyList<SecureCoreCountryPair> GetSecureCoreCountryPairs(IReadOnlyList<Server> servers)
+    {
+        return servers
+            .Where(s => s.Features.IsSupported(ServerFeatures.SecureCore)
+                     && !string.IsNullOrWhiteSpace(s.EntryCountry)
+                     && !string.IsNullOrWhiteSpace(s.ExitCountry))
+            .GroupBy(s => new { EntryCountry = s.EntryCountry, ExitCountry = s.ExitCountry })
+            .Select(sccp => new SecureCoreCountryPair()
+            {
+                EntryCountry = sccp.Key.EntryCountry,
+                ExitCountry = sccp.Key.ExitCountry,
+                IsUnderMaintenance = IsUnderMaintenance(sccp)
+            })
             .ToList();
     }
 
@@ -241,10 +346,13 @@ public class ServersCache : IServersCache
         _lock.EnterWriteLock();
         try
         {
-            _originalServers = new List<Server>();
-            _filteredServers = new List<Server>();
-            _countryCodes = new List<string>();
-            _gateways = new List<string>();
+            _originalServers = [];
+            _filteredServers = [];
+            _countries = [];
+            _states = [];
+            _cities = [];
+            _gateways = [];
+            _secureCoreCountryPairs = [];
         }
         finally
         {

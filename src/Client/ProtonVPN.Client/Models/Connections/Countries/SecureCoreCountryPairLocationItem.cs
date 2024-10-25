@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Contracts.Enums;
+using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
@@ -25,12 +27,10 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
-using ProtonVPN.Client.Contracts.Enums;
-using ProtonVPN.Client.Contracts.Services.Activation;
 
 namespace ProtonVPN.Client.Models.Connections.Countries;
 
-public class SecureCoreCountryPairLocationItem : LocationItemBase
+public class SecureCoreCountryPairLocationItem : LocationItemBase<SecureCoreCountryPair>
 {
     public SecureCoreCountryPair CountryPair { get; }
 
@@ -60,7 +60,8 @@ public class SecureCoreCountryPairLocationItem : LocationItemBase
         : base(localizer,
                serversLoader,
                connectionManager,
-               upsellCarouselWindowActivator)
+               upsellCarouselWindowActivator,
+               countryPair)
     {
         CountryPair = countryPair;
 

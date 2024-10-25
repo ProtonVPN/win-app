@@ -24,7 +24,6 @@ using ProtonVPN.Logging.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Communication;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 

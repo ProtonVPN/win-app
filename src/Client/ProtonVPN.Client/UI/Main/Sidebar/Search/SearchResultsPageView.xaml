@@ -23,7 +23,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:temp="using:ProtonVPN.Client.TEMP"
+      xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+      xmlns:controls="using:ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Controls"
+      xmlns:bases="using:ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Contracts"
       x:DefaultBindMode="OneWay"
       AutomationProperties.AutomationId="SearchResultsPage"
       AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Automation_Properties_Sidebar_Search_Results_Page')}"
@@ -33,8 +35,124 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Page.Resources>
         <HorizontalAlignment x:Key="PlaceholderHorizontalContentAlignment">Center</HorizontalAlignment>
         <VerticalAlignment x:Key="PlaceholderVerticalContentAlignment">Center</VerticalAlignment>
+        
+        <Thickness x:Key="PivotItemContentMargin">-12,8,-12,0</Thickness>
+
+        <DataTemplate x:Key="EmptyItemTemplate" />
     </Page.Resources>
 
-    <temp:PlaceholderControl Content="Search results" />
+    <Grid Margin="12,0">
+
+        <Grid Visibility="{x:Bind ViewModel.HasSearchInput, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <Pivot Grid.Row="0"
+                   ItemTemplate="{StaticResource EmptyItemTemplate}"
+                   ItemsSource="{x:Bind ViewModel.CountriesComponents, Mode=OneTime}"
+                   SelectedItem="{x:Bind ViewModel.SelectedCountriesComponent, Mode=TwoWay}">
+                <Pivot.HeaderTemplate>
+                    <DataTemplate x:DataType="bases:ICountriesComponent">
+                        <TextBlock Text="{x:Bind Header}" />
+                    </DataTemplate>
+                </Pivot.HeaderTemplate>
+            </Pivot>
+
+            <StackPanel Grid.Row="1"
+                        Orientation="Vertical"
+                        Margin="0,36,0,0"
+                        Visibility="{x:Bind ViewModel.HasItems, Converter={StaticResource NotBooleanToVisibilityConverter}}">
+                
+                <TextBlock HorizontalAlignment="Center"
+                           Style="{ThemeResource BodyLargeStrongTextBlockStyle}"
+                           Text="{x:Bind ViewModel.Localizer.Get('Search_NoResults_Title')}" />
+
+                <TextBlock HorizontalAlignment="Center"
+                           Margin="0,8,0,0"
+                           Style="{ThemeResource BodyTextBlockStyle}"
+                           Foreground="{ThemeResource TextWeakColorBrush}"
+                           Text="{x:Bind ViewModel.Localizer.Get('Search_NoResults_Description')}" />
+                
+            </StackPanel>
+
+            <controls:ConnectionItemsControl Grid.Row="2"
+                                             ItemsSource="{x:Bind ViewModel.GroupsCvs.View, Mode=OneTime}" />
+        </Grid>
+        <StackPanel Orientation="Vertical"
+                    Visibility="{x:Bind ViewModel.HasSearchInput, Converter={StaticResource NotBooleanToVisibilityConverter}}">
+
+            <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Search_NoInput_TrySearchingFor')}"
+                       Style="{ThemeResource BodyTextBlockStyle}"
+                       Margin="0,24,0,12" />
+        
+            <StackPanel Orientation="Horizontal"
+                        Margin="0,12,0,0">
+
+                <pathicons:Earth VerticalAlignment="Top"
+                             Foreground="{ThemeResource TextWeakColorBrush}"
+                             Size="Pixels20"
+                             Margin="0,0,12,0"/>
+            
+                <StackPanel Orientation="Vertical">
+
+                    <TextBlock Style="{ThemeResource BodyMediumStrongTextBlockStyle}"
+                               Text="{x:Bind ViewModel.Localizer.Get('Search_NoInput_Country')}" />
+
+                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}"
+                               Foreground="{ThemeResource TextWeakColorBrush}"
+                               Text="{x:Bind ViewModel.ExampleCountries}"
+                               Margin="0,2,0,0" />
+                
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        Margin="0,12,0,0">
+
+                <pathicons:MapPin VerticalAlignment="Top"
+                              Foreground="{ThemeResource TextWeakColorBrush}"
+                              Size="Pixels20"
+                              Margin="0,0,12,0"/>
+
+                <StackPanel Orientation="Vertical">
+
+                    <TextBlock Style="{ThemeResource BodyMediumStrongTextBlockStyle}"
+                               Text="{x:Bind ViewModel.Localizer.Get('Search_NoInput_CityOrState')}" />
+
+                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}"
+                               Foreground="{ThemeResource TextWeakColorBrush}"
+                               Text="{x:Bind ViewModel.ExampleCities}"
+                               Margin="0,2,0,0" />
+
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        Margin="0,12,0,0">
+
+                <pathicons:Servers VerticalAlignment="Top"
+                               Foreground="{ThemeResource TextWeakColorBrush}"
+                               Size="Pixels20"
+                               Margin="0,0,12,0"/>
+
+                <StackPanel Orientation="Vertical">
+
+                    <TextBlock Style="{ThemeResource BodyMediumStrongTextBlockStyle}"
+                               Text="{x:Bind ViewModel.Localizer.Get('Search_NoInput_Server')}" />
+
+                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}"
+                               Foreground="{ThemeResource TextWeakColorBrush}"
+                               Text="{x:Bind ViewModel.ExampleServers}"
+                               Margin="0,2,0,0" />
+
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
 
 </Page>

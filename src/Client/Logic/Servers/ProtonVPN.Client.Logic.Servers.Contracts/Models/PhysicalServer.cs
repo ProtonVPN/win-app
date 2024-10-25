@@ -30,8 +30,5 @@ public class PhysicalServer
     public required string X25519PublicKey { get; init; }
     public required string Signature { get; init; }
 
-    public bool IsUnderMaintenance()
-    {
-        return Status == 0;
-    }
+    public bool IsUnderMaintenance() => Status == 0;
 }

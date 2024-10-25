@@ -44,7 +44,7 @@ public class ServerCountCache : IServerCountCache
 
     public int GetCountryCount()
     {
-        int countryCount = _serversCache.CountryCodes.Count;
+        int countryCount = _serversCache.Countries.Count;
 
         return Math.Max(COUNTRY_FALLBACK_COUNT, countryCount);
     }

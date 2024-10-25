@@ -29,12 +29,10 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Servers.Contracts;
-using ProtonVPN.Client.Logic.Servers.Contracts.Models;
-using ProtonVPN.Client.Settings.Contracts.Models;
 
 namespace ProtonVPN.Client.Models.Connections;
 
-public abstract partial class ConnectionItemBase : ModelBase
+public abstract partial class ConnectionItemBase : ModelBase, IConnectionItem
 {
     protected readonly IServersLoader ServersLoader;
     protected readonly IConnectionManager ConnectionManager;
@@ -111,11 +109,6 @@ public abstract partial class ConnectionItemBase : ModelBase
     public virtual void InvalidateIsActiveConnection(ConnectionDetails? currentConnectionDetails)
     {
         IsActiveConnection = MatchesActiveConnection(currentConnectionDetails);
-    }
-
-    public virtual void InvalidateIsUnderMaintenance(IEnumerable<Server> servers, DeviceLocation? deviceLocation)
-    {
-        IsUnderMaintenance = GetConnectionIntent().AreAllServersUnderMaintenance(servers, deviceLocation);
     }
 
     public virtual void InvalidateIsRestricted(bool isPaidUser)

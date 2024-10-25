@@ -25,6 +25,7 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Factories;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 namespace ProtonVPN.Client.Models.Connections.Countries;
 
@@ -42,7 +43,7 @@ public class TorCountryLocationItem : CountryLocationItemBase
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
         IConnectionGroupFactory connectionGroupFactory,
         ILocationItemFactory locationItemFactory,
-        string exitCountryCode)
+        Country country)
         : base(localizer,
                serversLoader,
                connectionManager,
@@ -50,10 +51,10 @@ public class TorCountryLocationItem : CountryLocationItemBase
                upsellCarouselWindowActivator,
                connectionGroupFactory,
                locationItemFactory,
-               exitCountryCode)
+               country)
     { }
 
-    protected override IEnumerable<LocationItemBase> GetSubItems()
+    protected override IEnumerable<ConnectionItemBase> GetSubItems()
     {
         return ServersLoader.GetServersByFeaturesAndCountryCode(ServerFeatures.Tor, ExitCountryCode)
                             .Select(LocationItemFactory.GetTorServer);

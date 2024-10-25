@@ -143,6 +143,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\ProcessCommunication\Client\ProtonVPN.ProcessCommunication.Client.Installers\ProtonVPN.ProcessCommunication.Client.Installers.csproj" />
     <ProjectReference Include="..\Logic\Profiles\ProtonVPN.Client.Logic.Profiles.Installers\ProtonVPN.Client.Logic.Profiles.Installers.csproj" />
+    <ProjectReference Include="..\Logic\Searches\ProtonVPN.Client.Logic.Searches.Contracts\ProtonVPN.Client.Logic.Searches.Contracts.csproj" />
+    <ProjectReference Include="..\Logic\Searches\ProtonVPN.Client.Logic.Searches.Installers\ProtonVPN.Client.Logic.Searches.Installers.csproj" />
     <ProjectReference Include="..\ProtonVPN.Client.Contracts\ProtonVPN.Client.Contracts.csproj" />
     <ProjectReference Include="..\..\Api\ProtonVPN.Api.Installers\ProtonVPN.Api.Installers.csproj" />
     <ProjectReference Include="..\..\Configurations\ProtonVPN.Configurations.Installers\ProtonVPN.Configurations.Installers.csproj" />

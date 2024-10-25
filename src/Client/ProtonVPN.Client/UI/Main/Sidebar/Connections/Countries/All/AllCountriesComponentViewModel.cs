@@ -62,7 +62,7 @@ public class AllCountriesComponentViewModel : CountriesComponentViewModelBase
         IEnumerable<ConnectionItemBase> genericCountries = base.GetItems();
 
         IEnumerable<ConnectionItemBase> countries =
-            ServersLoader.GetCountryCodes()
+            ServersLoader.GetCountries()
                          .Select(LocationItemFactory.GetCountry);
 
         return genericCountries

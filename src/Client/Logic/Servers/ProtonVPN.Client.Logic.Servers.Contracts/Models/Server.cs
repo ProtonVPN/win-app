@@ -22,7 +22,7 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 
 namespace ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
-public class Server
+public class Server : ILocation
 {
     public required string Id { get; init; }
     public required string Name { get; init; }
@@ -42,14 +42,11 @@ public class Server
     public bool IsVirtual { get; init; }
     public required string GatewayName { get; init; }
 
-    public bool IsUnderMaintenance()
-    {
-        return Status == 0;
-    }
+    public bool IsLocationUnderMaintenance() => Status == 0;
 
     public bool IsAvailable()
     {
-        return !IsUnderMaintenance() && Servers is not null && Servers.Any(s => !s.IsUnderMaintenance());
+        return !IsLocationUnderMaintenance() && Servers is not null && Servers.Any(s => !s.IsUnderMaintenance());
     }
 
     public bool IsStandard()

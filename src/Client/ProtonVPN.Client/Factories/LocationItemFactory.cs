@@ -17,17 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Contracts.Enums;
+using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
-using ProtonVPN.Client.Contracts.Enums;
-using ProtonVPN.Client.Contracts.Services.Activation;
+using ProtonVPN.Client.Models.Connections;
 using ProtonVPN.Client.Models.Connections.Countries;
 using ProtonVPN.Client.Models.Connections.Gateways;
-using ProtonVPN.Client.Models.Connections;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
 namespace ProtonVPN.Client.Factories;
 
@@ -58,7 +58,7 @@ public class LocationItemFactory : ILocationItemFactory
 
     public GenericCountryLocationItem GetGenericCountry(CountriesConnectionType connectionType, ConnectionIntentKind intentKind, bool excludeMyCountry)
     {
-        return new GenericCountryLocationItem(_localizer, _serversLoader, _connectionManager, _upsellCarouselWindowActivator, _connectionGroupFactory, this, connectionType, intentKind, excludeMyCountry);
+        return new GenericCountryLocationItem(_localizer, _serversLoader, _connectionManager, _upsellCarouselWindowActivator, connectionType, intentKind, excludeMyCountry);
     }
 
     public GenericFastestLocationItem GetGenericFastestLocation(ConnectionGroupType groupType, ILocationIntent locationIntent)
@@ -66,9 +66,9 @@ public class LocationItemFactory : ILocationItemFactory
         return new GenericFastestLocationItem(_localizer, _serversLoader, _connectionManager, _upsellCarouselWindowActivator, groupType, locationIntent);
     }
 
-    public CountryLocationItem GetCountry(string exitCountryCode)
+    public CountryLocationItem GetCountry(Country country)
     {
-        return new CountryLocationItem(_localizer, _serversLoader, _connectionManager, _overlayActivator, _upsellCarouselWindowActivator, _connectionGroupFactory, this, exitCountryCode);
+        return new CountryLocationItem(_localizer, _serversLoader, _connectionManager, _overlayActivator, _upsellCarouselWindowActivator, _connectionGroupFactory, this, country);
     }
 
     public StateLocationItem GetState(State state, bool showBaseLocation = false)
@@ -86,9 +86,9 @@ public class LocationItemFactory : ILocationItemFactory
         return new ServerLocationItem(_localizer, _serversLoader, _connectionManager, _upsellCarouselWindowActivator, server);
     }
 
-    public SecureCoreCountryLocationItem GetSecureCoreCountry(string exitCountryCode)
+    public SecureCoreCountryLocationItem GetSecureCoreCountry(Country country)
     {
-        return new SecureCoreCountryLocationItem(_localizer, _serversLoader, _connectionManager, _overlayActivator, _upsellCarouselWindowActivator, _connectionGroupFactory, this, exitCountryCode);
+        return new SecureCoreCountryLocationItem(_localizer, _serversLoader, _connectionManager, _overlayActivator, _upsellCarouselWindowActivator, _connectionGroupFactory, this, country);
     }
 
     public SecureCoreCountryPairLocationItem GetSecureCoreCountryPair(SecureCoreCountryPair countryPair)
@@ -96,9 +96,9 @@ public class LocationItemFactory : ILocationItemFactory
         return new SecureCoreCountryPairLocationItem(_localizer, _serversLoader, _connectionManager, _upsellCarouselWindowActivator, countryPair);
     }
 
-    public P2PCountryLocationItem GetP2PCountry(string exitCountryCode)
+    public P2PCountryLocationItem GetP2PCountry(Country country)
     {
-        return new P2PCountryLocationItem(_localizer, _serversLoader, _connectionManager, _overlayActivator, _upsellCarouselWindowActivator, _connectionGroupFactory, this, exitCountryCode);
+        return new P2PCountryLocationItem(_localizer, _serversLoader, _connectionManager, _overlayActivator, _upsellCarouselWindowActivator, _connectionGroupFactory, this, country);
     }
 
     public P2PStateLocationItem GetP2PState(State state, bool showBaseLocation = false)
@@ -116,9 +116,9 @@ public class LocationItemFactory : ILocationItemFactory
         return new P2PServerLocationItem(_localizer, _serversLoader, _connectionManager, _upsellCarouselWindowActivator, server);
     }
 
-    public TorCountryLocationItem GetTorCountry(string exitCountryCode)
+    public TorCountryLocationItem GetTorCountry(Country country)
     {
-        return new TorCountryLocationItem(_localizer, _serversLoader, _connectionManager, _overlayActivator, _upsellCarouselWindowActivator, _connectionGroupFactory, this, exitCountryCode);
+        return new TorCountryLocationItem(_localizer, _serversLoader, _connectionManager, _overlayActivator, _upsellCarouselWindowActivator, _connectionGroupFactory, this, country);
     }
 
     public TorServerLocationItem GetTorServer(Server server)
@@ -126,7 +126,7 @@ public class LocationItemFactory : ILocationItemFactory
         return new TorServerLocationItem(_localizer, _serversLoader, _connectionManager, _upsellCarouselWindowActivator, server);
     }
 
-    public GatewayLocationItem GetGateway(string gateway)
+    public GatewayLocationItem GetGateway(Gateway gateway)
     {
         return new GatewayLocationItem(_localizer, _serversLoader, _connectionManager, _overlayActivator, _upsellCarouselWindowActivator, _connectionGroupFactory, this, gateway);
     }

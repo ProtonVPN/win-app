@@ -18,6 +18,8 @@
  */
 
 using ProtonVPN.Client.Common.Enums;
+using ProtonVPN.Client.Contracts.Enums;
+using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
@@ -26,9 +28,6 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts;
-using ProtonVPN.Client.Contracts.Enums;
-using ProtonVPN.Client.Contracts.Services.Activation;
-using ProtonVPN.Client.Factories;
 
 namespace ProtonVPN.Client.Models.Connections.Countries;
 
@@ -88,8 +87,6 @@ public class GenericCountryLocationItem : LocationItemBase
         IServersLoader serversLoader,
         IConnectionManager connectionManager,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
-        IConnectionGroupFactory connectionGroupFactory,
-        ILocationItemFactory locationItemFactory,
         CountriesConnectionType connectionType,
         ConnectionIntentKind intentKind,
         bool excludeMyCountry)

@@ -177,9 +177,6 @@
   <data name="Countries_Section_Header" xml:space="preserve">
     <value>VPN connections</value>
   </data>
-  <data name="Countries_Page_Title" xml:space="preserve">
-    <value>Countries</value>
-  </data>
   <data name="Countries_Page_FreeUser_Description" xml:space="preserve">
     <value>Unlock country selection with VPN Plus</value>
   </data>
@@ -2234,6 +2231,9 @@
   <data name="Settings_Features_PortForwarding_Conflict_Title" xml:space="preserve">
     <value>Enable port forwarding?</value>
   </data>
+  <data name="Countries" xml:space="preserve">
+    <value>Countries</value>
+  </data>
   <data name="Cities" xml:space="preserve">
     <value>Cities</value>
   </data>
@@ -2542,8 +2542,11 @@ This higher level of protection may cause higher latency and slower speeds.</val
     <value>Tor servers ({0})</value>
     <comment>{0} represents a number of tor servers in the country</comment>
   </data>
-  <data name="Countries_Server" xml:space="preserve">
+  <data name="Server" xml:space="preserve">
     <value>Server</value>
+  </data>
+    <data name="Servers" xml:space="preserve">
+    <value>Servers</value>
   </data>
   <data name="Countries_ServerLoad" xml:space="preserve">
     <value>Server load</value>
@@ -3445,5 +3448,29 @@ Enjoy the best of Proton privacy.</value>
   </data>
   <data name="LoadingPage_Tip" xml:space="preserve">
     <value>A better world starts with privacy and digital freedom.</value>
+  </data>
+  <data name="Search_NoInput_TrySearchingFor" xml:space="preserve">
+    <value>Try searching for...</value>
+  </data>
+  <data name="Search_InputBox_Placeholder" xml:space="preserve">
+    <value>Browse from...</value>
+  </data>
+  <data name="Search_NoInput_Country" xml:space="preserve">
+    <value>Country</value>
+    <comment>The word used for one single country</comment>
+  </data>
+  <data name="Search_NoInput_CityOrState" xml:space="preserve">
+    <value>City or US state</value>
+    <comment>The word used for one single city and one single United States state</comment>
+  </data>
+  <data name="Search_NoInput_Server" xml:space="preserve">
+    <value>Server</value>
+    <comment>The word used for one single server</comment>
+  </data>
+  <data name="Search_NoResults_Title" xml:space="preserve">
+    <value>No results found</value>
+  </data>
+  <data name="Search_NoResults_Description" xml:space="preserve">
+    <value>Try a different keyword.</value>
   </data>
 </root>

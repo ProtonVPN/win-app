@@ -23,7 +23,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:bases="using:ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Contracts"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="using:ProtonVPN.Client.UI.Main.Sidebar"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
              x:DefaultBindMode="OneWay"
@@ -81,13 +80,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <!--  Search box  -->
-                <TextBox Name="searchtextbox"
-                         Grid.Row="0"
-                         Margin="4"
-                         PlaceholderText="Browse from..."
-                         Style="{StaticResource SearchTextBoxStyle}"
-                         Text="{x:Bind ViewModel.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <!--  Search box  -->
+            <TextBox Name="SearchTextBox"
+                     Grid.Row="0"
+                     Margin="4"
+                     PlaceholderText="{x:Bind ViewModel.Localizer.Get('Search_InputBox_Placeholder')}"
+                     Style="{StaticResource SearchTextBoxStyle}"
+                     Text="{x:Bind ViewModel.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     GotFocus="{x:Bind ViewModel.OnSearchTextBoxGotFocus}"
+                     LostFocus="{x:Bind ViewModel.OnSearchTextBoxLostFocus}" />
 
                 <Frame x:Name="SidebarNavigationFrame"
                        Grid.Row="1"

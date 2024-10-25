@@ -17,10 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Common.UI.Assets.Icons.Base;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Contracts.Services.Navigation;
@@ -31,8 +29,11 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Models.Connections;
+using ProtonVPN.Client.Models.Connections.Profiles;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
@@ -87,5 +88,19 @@ public partial class ProfilesPageViewModel : ConnectionPageViewModelBase,
     private Task CreateProfileAsync()
     {
         return _profileEditor.CreateProfileAsync();
+    }
+
+    protected override void InvalidateMaintenanceStates()
+    {
+        if (IsActive)
+        {
+            IEnumerable<Server> servers = ServersLoader.GetServers();
+            DeviceLocation? deviceLocation = Settings.DeviceLocation;
+
+            foreach (ProfileConnectionItem item in Items.OfType<ProfileConnectionItem>())
+            {
+                item.InvalidateIsUnderMaintenance(servers, deviceLocation);
+            }
+        }
     }
 }
