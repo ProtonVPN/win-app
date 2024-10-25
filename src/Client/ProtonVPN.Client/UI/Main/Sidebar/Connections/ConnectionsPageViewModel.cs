@@ -19,17 +19,14 @@
 
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.UI.Xaml.Navigation;
+using ProtonVPN.Client.Contracts.Bases.ViewModels;
+using ProtonVPN.Client.Contracts.Services.Mapping;
+using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Bases.ViewModels;
-using ProtonVPN.Client.Contracts.Services.Navigation;
-using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Contracts;
-using Microsoft.UI.Xaml.Navigation;
-using ProtonVPN.Client.Contracts.Bases;
-using ProtonVPN.Client.Contracts.Services.Mapping.Bases;
-using ProtonVPN.Client.Contracts.Services.Mapping;
-using System.Linq;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections;
 

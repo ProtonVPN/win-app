@@ -45,9 +45,9 @@ public partial class GatewaysPageViewModel : ConnectionPageViewModelBase,
 
     public override IconElement Icon => new Buildings() { Size = PathIconSize.Pixels16 };
 
-    public override int SortIndex { get; } = 3;
+    public override int SortIndex { get; } = 4;
 
-    public override bool IsAvailable => ServersLoader.GetGateways().Any();
+    public override bool IsAvailable => ServersLoader.HasAnyGateways();
 
     public string BannerDescription => Localizer.Get("Gateways_Page_Description");
 

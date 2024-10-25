@@ -212,6 +212,11 @@ public class ServersLoader : IServersLoader
         return GetGatewayServersByFilter(s => s.GatewayName == gatewayName);
     }
 
+    public bool HasAnyGateways()
+    {
+        return _serversCache.Gateways.Any();
+    }
+
     public string? GetHostCountryCode(string countryCode)
     {
         return GetPaidServersByFilter(s => s.ExitCountry == countryCode

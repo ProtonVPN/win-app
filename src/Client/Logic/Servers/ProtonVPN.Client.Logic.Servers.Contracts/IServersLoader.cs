@@ -58,6 +58,7 @@ public interface IServersLoader
 
     IEnumerable<Gateway> GetGateways();
     IEnumerable<Server> GetServersByGatewayName(string gatewayName);
+    bool HasAnyGateways();
 
     string? GetHostCountryCode(string countryCode);
 }

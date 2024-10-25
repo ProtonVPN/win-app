@@ -18,22 +18,24 @@
  */
 
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Input;
+using ProtonVPN.Client.Common.UI.Keyboards;
 using ProtonVPN.Client.Contracts.Bases;
 using ProtonVPN.Client.Services.Navigation;
+using Windows.System;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections;
 
 public sealed partial class ConnectionsPageView : IContextAware
 {
     public ConnectionsPageViewModel ViewModel { get; }
-
     public ConnectionsViewNavigator Navigator { get; }
 
     public ConnectionsPageView()
     {
         ViewModel = App.GetService<ConnectionsPageViewModel>();
         Navigator = App.GetService<ConnectionsViewNavigator>();
-
+         
         InitializeComponent();
 
         Loaded += OnLoaded;
@@ -49,6 +51,34 @@ public sealed partial class ConnectionsPageView : IContextAware
     {
         Navigator.Initialize(ConnectionsNavigationFrame);
         ViewModel.Activate();
+        KeyboardAccelerators.AddHandler(OnCtrl1Invoked, VirtualKey.Number1, VirtualKeyModifiers.Control);
+        KeyboardAccelerators.AddHandler(OnCtrl2Invoked, VirtualKey.Number2, VirtualKeyModifiers.Control);
+        KeyboardAccelerators.AddHandler(OnCtrl3Invoked, VirtualKey.Number3, VirtualKeyModifiers.Control);
+        KeyboardAccelerators.AddHandler(OnCtrl4Invoked, VirtualKey.Number4, VirtualKeyModifiers.Control);
+    }
+
+    private void OnCtrl1Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        Navigator.NavigateToRecentsViewAsync();
+    }
+
+    private void OnCtrl2Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        Navigator.NavigateToCountriesViewAsync();
+    }
+
+    private void OnCtrl3Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        Navigator.NavigateToProfilesViewAsync();
+    }
+
+    private void OnCtrl4Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        Navigator.NavigateToGatewaysViewAsync();
     }
 
     private void OnUnloaded(object sender, RoutedEventArgs e)
