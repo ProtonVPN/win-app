@@ -61,12 +61,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <DataTemplate x:Key="ShortcutItemTemplate"
                       x:DataType="bases:IConnectionPage">
-            <Border Height="{ThemeResource ListViewItemMinHeight}">
+            <Border Height="{ThemeResource ListViewItemMinHeight}"
+                    Visibility="{x:Bind IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <TextBlock VerticalAlignment="Center"
                        Foreground="{ThemeResource TextHintColorBrush}"
                        Style="{StaticResource CaptionTextBlockStyle}"
-                       Text="{x:Bind ShortcutText, Mode=OneTime}"
-                       Visibility="{x:Bind IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                       Text="{x:Bind ShortcutText, Mode=OneTime}" />
             </Border>
 
         </DataTemplate>

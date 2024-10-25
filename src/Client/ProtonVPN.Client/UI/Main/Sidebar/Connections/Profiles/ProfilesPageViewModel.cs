@@ -52,7 +52,7 @@ public partial class ProfilesPageViewModel : ConnectionPageViewModelBase,
 
     public override IconElement Icon => new WindowTerminal() { Size = PathIconSize.Pixels16 };
 
-    public override int SortIndex { get; } = 4;
+    public override int SortIndex { get; } = 3;
 
     public ProfilesPageViewModel(
         IConnectionsViewNavigator parentViewNavigator,

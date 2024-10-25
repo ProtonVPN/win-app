@@ -62,7 +62,11 @@ public class ConnectionsViewNavigator : ViewNavigatorBase, IConnectionsViewNavig
 
     public Task<bool> NavigateToGatewaysViewAsync()
     {
-        return NavigateToAsync<GatewaysPageViewModel>();
+        if (_serversLoader.HasAnyGateways())
+        {
+            return NavigateToAsync<GatewaysPageViewModel>();
+        }
+        return Task.FromResult(false);
     }
 
     public Task<bool> NavigateToProfilesViewAsync()
