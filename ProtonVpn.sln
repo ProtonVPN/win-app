@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{313DCA3D-B3E4-4E06-9B5C-516E2C06154A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client", "src\Client\ProtonVPN.Client\ProtonVPN.Client.csproj", "{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Legacy", "src\Client\ProtonVPN.Client.Legacy\ProtonVPN.Client.Legacy.csproj", "{98D95B32-CB06-4C92-89D9-0143D9405AA6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Service", "src\ProtonVPN.Service\ProtonVPN.Service.csproj", "{25781B52-5858-4387-80A5-C9C38C32B3CC}"
@@ -388,8 +390,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Logic.Profiles.Installers", "src\Client\Logic\Profiles\ProtonVPN.Client.Logic.Profiles.Installers\ProtonVPN.Client.Logic.Profiles.Installers.csproj", "{C08C3A49-3EC5-47CC-A2C6-D151B3549946}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Logic.Profiles.EntityMapping", "src\Client\Logic\Profiles\ProtonVPN.Client.Logic.Profiles.EntityMapping\ProtonVPN.Client.Logic.Profiles.EntityMapping.csproj", "{70D24BBE-0585-438D-B61E-EA257FA8E727}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client", "src\Client\ProtonVPN.Client\ProtonVPN.Client.csproj", "{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Contracts", "src\Client\ProtonVPN.Client.Contracts\ProtonVPN.Client.Contracts.csproj", "{48B9406E-D827-414D-AB42-FB4D216698F0}"
 EndProject
