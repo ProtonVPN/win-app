@@ -26,16 +26,17 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 namespace ProtonVPN.Client.Models.Connections.Gateways;
 
-public class GatewayLocationItem : HostLocationItemBase
+public class GatewayLocationItem : HostLocationItemBase<Gateway>
 {
-    public string Gateway { get; }
+    public Gateway Gateway { get; }
 
     public override ConnectionGroupType GroupType => ConnectionGroupType.Gateways;
 
-    public override string Header => Gateway;
+    public override string Header => Gateway.Name;
 
     public override string? ToolTip =>
         IsRestricted
@@ -56,18 +57,19 @@ public class GatewayLocationItem : HostLocationItemBase
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
         IConnectionGroupFactory connectionGroupFactory,
         ILocationItemFactory locationItemFactory,
-        string gateway)
+        Gateway gateway)
         : base(localizer,
                serversLoader,
                connectionManager,
                overlayActivator,
                upsellCarouselWindowActivator,
                connectionGroupFactory,
-               locationItemFactory)
+               locationItemFactory,
+               gateway)
     {
         Gateway = gateway;
 
-        LocationIntent = new GatewayLocationIntent(gateway);
+        LocationIntent = new GatewayLocationIntent(gateway.Name);
     }
 
     public void OnExpandGateway()
@@ -84,13 +86,13 @@ public class GatewayLocationItem : HostLocationItemBase
     {
         return currentConnectionDetails is not null
             && currentConnectionDetails.IsGateway
-            && Gateway == currentConnectionDetails.GatewayName
+            && Gateway.Name == currentConnectionDetails.GatewayName
             && (FeatureIntent?.GetType().IsAssignableTo(currentConnectionDetails.OriginalConnectionIntent.Feature?.GetType()) ?? true);
     }
 
     protected override IEnumerable<ConnectionItemBase> GetSubItems()
     {
-        return ServersLoader.GetServersByGateway(Gateway)
+        return ServersLoader.GetServersByGatewayName(Gateway.Name)
                             .Select(LocationItemFactory.GetGatewayServer);
     }
 }

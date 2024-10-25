@@ -17,11 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
+
 namespace ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
-public class City
+public class City : ILocation
 {
     public required string Name { get; init; }
     public required string StateName { get; init; }
     public required string CountryCode { get; init; }
+    public required bool IsUnderMaintenance { get; init; }
+    public required ServerFeatures Features { get; init; }
+    public required bool IsFree { get; init; } // ServerTier.Free
+    public required bool IsPaid { get; init; } // ServerTier.Basic || ServerTier.Plus
+
+    public bool IsLocationUnderMaintenance() => IsUnderMaintenance;
 }

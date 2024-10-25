@@ -74,7 +74,7 @@ public class SecureCoreCountriesPageViewModel : CountriesPageViewModelBase
         ];
 
         IEnumerable<LocationItemBase> countries =
-            ServersLoader.GetCountryCodesByFeatures(ServerFeatures.SecureCore)
+            ServersLoader.GetCountriesByFeatures(ServerFeatures.SecureCore)
                          .Select(LocationItemFactory.GetSecureCoreCountry);
 
         return genericCountries

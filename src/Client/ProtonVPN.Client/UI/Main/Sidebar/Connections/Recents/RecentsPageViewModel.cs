@@ -18,21 +18,24 @@
  */
 
 using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Client.Common.UI.Assets.Icons.Base;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
+using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Factories;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Client.Models.Connections;
+using ProtonVPN.Client.Models.Connections.Recents;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Models;
+using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Services.Navigation;
-using ProtonVPN.Client.Factories;
-using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;
-using ProtonVPN.Client.Models.Connections;
-using ProtonVPN.Client.Common.UI.Assets.Icons.Base;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Recents;
 
@@ -81,5 +84,19 @@ public class RecentsPageViewModel : ConnectionPageViewModelBase,
     {
         return _recentConnectionsManager.GetRecentConnections()
                                         .Select(_connectionItemFactory.GetRecent);
+    }
+
+    protected override void InvalidateMaintenanceStates()
+    {
+        if (IsActive)
+        {
+            IEnumerable<Server> servers = ServersLoader.GetServers();
+            DeviceLocation? deviceLocation = Settings.DeviceLocation;
+
+            foreach (RecentConnectionItem item in Items.OfType<RecentConnectionItem>())
+            {
+                item.InvalidateIsUnderMaintenance(servers, deviceLocation);
+            }
+        }
     }
 }

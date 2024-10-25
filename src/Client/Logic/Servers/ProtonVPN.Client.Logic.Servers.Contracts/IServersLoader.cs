@@ -26,9 +26,9 @@ public interface IServersLoader
 {
     Server? GetById(string serverId);
 
-    IEnumerable<string> GetCountryCodes();
-    IEnumerable<string> GetCountryCodesByFeatures(ServerFeatures serverFeatures);
-    IEnumerable<string> GetFreeCountryCodes();
+    IEnumerable<Country> GetCountries();
+    IEnumerable<Country> GetCountriesByFeatures(ServerFeatures serverFeatures);
+    IEnumerable<Country> GetFreeCountries();
 
     IEnumerable<State> GetStates();
     IEnumerable<State> GetStatesByCountryCode(string countryCode);
@@ -56,8 +56,8 @@ public interface IServersLoader
     IEnumerable<SecureCoreCountryPair> GetSecureCoreCountryPairsByExitCountryCode(string exitCountryCode);
     IEnumerable<Server> GetServersBySecureCoreCountryPair(SecureCoreCountryPair countryPair);
 
-    IEnumerable<string> GetGateways();
-    IEnumerable<Server> GetServersByGateway(string gatewayName);
+    IEnumerable<Gateway> GetGateways();
+    IEnumerable<Server> GetServersByGatewayName(string gatewayName);
 
     string? GetHostCountryCode(string countryCode);
 }

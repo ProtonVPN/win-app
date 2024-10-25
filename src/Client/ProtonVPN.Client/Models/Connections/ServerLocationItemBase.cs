@@ -29,7 +29,7 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 namespace ProtonVPN.Client.Models.Connections;
 
-public abstract class ServerLocationItemBase : LocationItemBase
+public abstract class ServerLocationItemBase : LocationItemBase<Server>
 {
     public Server Server { get; }
 
@@ -67,7 +67,8 @@ public abstract class ServerLocationItemBase : LocationItemBase
         : base(localizer,
                serversLoader,
                connectionManager,
-               upsellCarouselWindowActivator)
+               upsellCarouselWindowActivator,
+               server)
     {
         Server = server;
 

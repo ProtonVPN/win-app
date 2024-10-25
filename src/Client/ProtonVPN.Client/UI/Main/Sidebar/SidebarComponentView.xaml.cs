@@ -18,8 +18,11 @@
  */
 
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Input;
+using ProtonVPN.Client.Common.UI.Keyboards;
 using ProtonVPN.Client.Contracts.Bases;
 using ProtonVPN.Client.Services.Navigation;
+using Windows.System;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar;
 
@@ -58,6 +61,13 @@ public sealed partial class SidebarComponentView : IContextAware
     {
         Navigator.Initialize(SidebarNavigationFrame);
         ViewModel.Activate();
+        KeyboardAccelerators.AddHandler(OnCtrlFInvoked, VirtualKey.F, VirtualKeyModifiers.Control);
+    }
+
+    private void OnCtrlFInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        SearchTextBox.Focus(FocusState.Programmatic);
     }
 
     private void OnUnloaded(object sender, RoutedEventArgs e)

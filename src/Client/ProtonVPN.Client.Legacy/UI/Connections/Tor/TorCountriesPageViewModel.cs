@@ -74,7 +74,7 @@ public class TorCountriesPageViewModel : CountriesPageViewModelBase
         ];
 
         IEnumerable<LocationItemBase> countries =
-            ServersLoader.GetCountryCodesByFeatures(ServerFeatures.Tor)
+            ServersLoader.GetCountriesByFeatures(ServerFeatures.Tor)
                          .Select(LocationItemFactory.GetTorCountry);
 
         return genericCountries

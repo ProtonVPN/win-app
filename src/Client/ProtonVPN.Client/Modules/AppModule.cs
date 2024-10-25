@@ -111,6 +111,7 @@ using ProtonVPN.ProcessCommunication.Client.Installers;
 using ProtonVPN.Common.Legacy.OS.Processes;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles.Overlays;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles.Controls;
+using ProtonVPN.Client.Logic.Searches.Installers;
 
 namespace ProtonVPN.Client.Modules;
 
@@ -164,7 +165,8 @@ public class AppModule : Module
                .RegisterModule<ClientFilesModule>()
                .RegisterModule<PowerEventsModule>()
                .RegisterModule<UsersLogicModule>()
-               .RegisterModule<AnnouncementsModule>();
+               .RegisterModule<AnnouncementsModule>()
+               .RegisterModule<SearchesModule>();
     }
 
     private void RegisterLocalServices(ContainerBuilder builder)

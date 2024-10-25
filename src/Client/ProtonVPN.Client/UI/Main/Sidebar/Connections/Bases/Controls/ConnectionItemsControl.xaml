@@ -661,11 +661,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                       ItemTemplateSelector="{StaticResource LocationItemTemplateSelector}"
                       ItemsSource="{x:Bind ItemsSource, Mode=OneTime}">
 
-            <ItemsControl.ItemContainerTransitions>
+            <!--<ItemsControl.ItemContainerTransitions>
                 <TransitionCollection>
                     <AddDeleteThemeTransition />
                 </TransitionCollection>
-            </ItemsControl.ItemContainerTransitions>
+            </ItemsControl.ItemContainerTransitions>-->
 
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>

@@ -71,7 +71,7 @@ public class P2PCountriesPageViewModel : CountriesPageViewModelBase
         ];
 
         IEnumerable<LocationItemBase> countries =
-            ServersLoader.GetCountryCodesByFeatures(ServerFeatures.P2P)
+            ServersLoader.GetCountriesByFeatures(ServerFeatures.P2P)
                          .Select(LocationItemFactory.GetP2PCountry);
 
         return genericCountries

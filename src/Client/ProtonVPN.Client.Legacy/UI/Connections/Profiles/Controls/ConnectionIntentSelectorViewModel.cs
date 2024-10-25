@@ -195,7 +195,7 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
         ];
 
         IEnumerable<P2PCountryLocationItem> countries =
-            _serversLoader.GetCountryCodesByFeatures(ServerFeatures.P2P)
+            _serversLoader.GetCountriesByFeatures(ServerFeatures.P2P)
                           .Select(_locationItemFactory.GetP2PCountry);
 
         return genericCountries
@@ -213,7 +213,7 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
         ];
 
         IEnumerable<SecureCoreCountryLocationItem> countries =
-            _serversLoader.GetCountryCodesByFeatures(ServerFeatures.SecureCore)
+            _serversLoader.GetCountriesByFeatures(ServerFeatures.SecureCore)
                           .Select(_locationItemFactory.GetSecureCoreCountry);
 
         return genericCountries

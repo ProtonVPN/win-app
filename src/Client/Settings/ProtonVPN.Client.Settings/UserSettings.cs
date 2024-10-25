@@ -373,7 +373,7 @@ public class UserSettings : GlobalSettings, IUserSettings
 
     public DateTimeOffset LogicalsLastModifiedDate
     {
-        get => _userCache.GetValueType<DateTimeOffset>(SettingEncryption.Encrypted)?.Max(DateTimeOffset.UnixEpoch) ?? DateTimeOffset.UnixEpoch;
+        get => _userCache.GetValueType<DateTimeOffset>(SettingEncryption.Encrypted)?.Max(DateTimeOffset.UnixEpoch) ?? DefaultSettings.LogicalsLastModifiedDate;
         set => _userCache.SetValueType<DateTimeOffset>(value.Max(DateTimeOffset.UnixEpoch), SettingEncryption.Encrypted);
     }
 

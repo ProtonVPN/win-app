@@ -25,6 +25,7 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Factories;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 namespace ProtonVPN.Client.Models.Connections.Countries;
 
@@ -42,7 +43,7 @@ public class P2PCountryLocationItem : CountryLocationItemBase
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
         IConnectionGroupFactory connectionGroupFactory,
         ILocationItemFactory locationItemFactory,
-        string exitCountryCode)
+        Country country)
         : base(localizer,
                serversLoader,
                connectionManager,
@@ -50,14 +51,14 @@ public class P2PCountryLocationItem : CountryLocationItemBase
                upsellCarouselWindowActivator,
                connectionGroupFactory,
                locationItemFactory,
-               exitCountryCode)
+               country)
     {
         FetchSubItems();
     }
 
-    protected override IEnumerable<LocationItemBase> GetSubItems()
+    protected override IEnumerable<ConnectionItemBase> GetSubItems()
     {
-        IEnumerable<LocationItemBase> states =
+        IEnumerable<ConnectionItemBase> states =
             ServersLoader.GetStatesByFeaturesAndCountryCode(ServerFeatures.P2P, ExitCountryCode)
                          .Select(state => LocationItemFactory.GetP2PState(state, showBaseLocation: false));
 

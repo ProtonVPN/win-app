@@ -96,7 +96,7 @@ public abstract partial class ServerLocationItemBase : LocationItemBase
 
     public override void InvalidateIsUnderMaintenance()
     {
-        IsUnderMaintenance = Server.IsUnderMaintenance();
+        IsUnderMaintenance = Server.IsLocationUnderMaintenance();
     }
 
     public override void InvalidateIsActiveConnection(ConnectionDetails? currentConnectionDetails)

@@ -19,10 +19,13 @@
 
 namespace ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
-public class SecureCoreCountryPair : IEquatable<SecureCoreCountryPair>
+public class SecureCoreCountryPair : IEquatable<SecureCoreCountryPair>, ILocation
 {
     public required string EntryCountry { get; init; }
     public required string ExitCountry { get; init; }
+    public required bool IsUnderMaintenance { get; init; }
+
+    public bool IsLocationUnderMaintenance() => IsUnderMaintenance;
 
     public bool Equals(SecureCoreCountryPair? other)
     {

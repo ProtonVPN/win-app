@@ -34,7 +34,8 @@ using ProtonVPN.Client.Settings.Contracts.Models;
 
 namespace ProtonVPN.Client.Models.Connections;
 
-public abstract partial class HostLocationItemBase : LocationItemBase
+public abstract partial class HostLocationItemBase<TLocation> : LocationItemBase<TLocation>, IHostLocationItem
+    where TLocation : ILocation
 {
     protected readonly IMainWindowOverlayActivator OverlayActivator;
     protected readonly IConnectionGroupFactory ConnectionGroupFactory;
@@ -65,11 +66,13 @@ public abstract partial class HostLocationItemBase : LocationItemBase
         IMainWindowOverlayActivator overlayActivator,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
         IConnectionGroupFactory connectionGroupFactory,
-        ILocationItemFactory locationItemFactory)
+        ILocationItemFactory locationItemFactory,
+        TLocation location)
         : base(localizer,
                serversLoader,
                connectionManager,
-               upsellCarouselWindowActivator)
+               upsellCarouselWindowActivator,
+               location)
     {
         OverlayActivator = overlayActivator;
         ConnectionGroupFactory = connectionGroupFactory;
@@ -91,19 +94,6 @@ public abstract partial class HostLocationItemBase : LocationItemBase
         foreach (ConnectionItemBase item in SubItems)
         {
             item.InvalidateIsActiveConnection(currentConnectionDetails);
-        }
-    }
-
-    public override void InvalidateIsUnderMaintenance(IEnumerable<Server> servers, DeviceLocation? deviceLocation)
-    {
-        _lastKnownServers = servers;
-        _lastKnownDeviceLocation = deviceLocation;
-
-        base.InvalidateIsUnderMaintenance(servers, deviceLocation);
-
-        foreach (ConnectionItemBase item in SubItems)
-        {
-            item.InvalidateIsUnderMaintenance(servers, deviceLocation);
         }
     }
 
@@ -131,7 +121,6 @@ public abstract partial class HostLocationItemBase : LocationItemBase
         GroupSubItems();
 
         InvalidateIsActiveConnection(_lastKnownConnectionDetails);
-        InvalidateIsUnderMaintenance(_lastKnownServers, _lastKnownDeviceLocation);
         InvalidateIsRestricted(_lastKnownIsPaidUser);
 
         ServerLocationItemBase? virtualServer = SubItems.OfType<ServerLocationItemBase>().FirstOrDefault(s => s.IsVirtual);

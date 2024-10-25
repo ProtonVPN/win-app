@@ -33,7 +33,7 @@ public interface ILocationItemFactory
 
     GenericFastestLocationItem GetGenericFastestLocation(ConnectionGroupType groupType, ILocationIntent locationIntent);
 
-    CountryLocationItem GetCountry(string exitCountryCode);
+    CountryLocationItem GetCountry(Country country);
 
     StateLocationItem GetState(State state, bool showBaseLocation = false);
 
@@ -41,11 +41,11 @@ public interface ILocationItemFactory
 
     ServerLocationItem GetServer(Server server);
 
-    SecureCoreCountryLocationItem GetSecureCoreCountry(string exitCountryCode);
+    SecureCoreCountryLocationItem GetSecureCoreCountry(Country country);
 
     SecureCoreCountryPairLocationItem GetSecureCoreCountryPair(SecureCoreCountryPair countryPair);
 
-    P2PCountryLocationItem GetP2PCountry(string exitCountryCode);
+    P2PCountryLocationItem GetP2PCountry(Country country);
 
     P2PStateLocationItem GetP2PState(State state, bool showBaseLocation = false);
 
@@ -53,11 +53,11 @@ public interface ILocationItemFactory
 
     P2PServerLocationItem GetP2PServer(Server server);
 
-    TorCountryLocationItem GetTorCountry(string exitCountryCode);
+    TorCountryLocationItem GetTorCountry(Country country);
 
     TorServerLocationItem GetTorServer(Server server);
 
-    GatewayLocationItem GetGateway(string gateway);
+    GatewayLocationItem GetGateway(Gateway gateway);
 
     GatewayServerLocationItem GetGatewayServer(Server server);
 }

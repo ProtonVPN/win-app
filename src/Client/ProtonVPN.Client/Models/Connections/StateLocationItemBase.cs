@@ -29,7 +29,7 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 namespace ProtonVPN.Client.Models.Connections;
 
-public abstract class StateLocationItemBase : HostLocationItemBase
+public abstract class StateLocationItemBase : HostLocationItemBase<State>
 {
     public State State { get; }
 
@@ -54,7 +54,7 @@ public abstract class StateLocationItemBase : HostLocationItemBase
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
         IConnectionGroupFactory connectionGroupFactory,
         ILocationItemFactory locationItemFactory,
-        State city,
+        State state,
         bool showBaseLocation)
         : base(localizer,
                serversLoader,
@@ -62,9 +62,10 @@ public abstract class StateLocationItemBase : HostLocationItemBase
                overlayActivator,
                upsellCarouselWindowActivator,
                connectionGroupFactory,
-               locationItemFactory)
+               locationItemFactory,
+               state)
     {
-        State = city;
+        State = state;
         IsDescriptionVisible = showBaseLocation;
 
         LocationIntent = new StateLocationIntent(State.CountryCode, State.Name);

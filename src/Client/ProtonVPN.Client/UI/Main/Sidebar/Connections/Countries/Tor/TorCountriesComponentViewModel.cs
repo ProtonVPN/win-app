@@ -62,7 +62,7 @@ public class TorCountriesComponentViewModel : CountriesComponentViewModelBase
         IEnumerable<ConnectionItemBase> genericCountries = base.GetItems();
 
         IEnumerable<ConnectionItemBase> countries =
-            ServersLoader.GetCountryCodesByFeatures(ServerFeatures.Tor)
+            ServersLoader.GetCountriesByFeatures(ServerFeatures.Tor)
                          .Select(LocationItemFactory.GetTorCountry);
 
         return genericCountries

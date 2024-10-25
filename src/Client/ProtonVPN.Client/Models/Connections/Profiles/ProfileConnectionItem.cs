@@ -35,6 +35,8 @@ using ProtonVPN.Client.Logic.Profiles.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Models;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 namespace ProtonVPN.Client.Models.Connections.Profiles;
 
@@ -139,5 +141,10 @@ public partial class ProfileConnectionItem : ConnectionItemBase
     private bool CanDeleteProfile()
     {
         return !IsActiveConnection;
+    }
+
+    public void InvalidateIsUnderMaintenance(IEnumerable<Server> servers, DeviceLocation? deviceLocation)
+    {
+        IsUnderMaintenance = GetConnectionIntent().AreAllServersUnderMaintenance(servers, deviceLocation);
     }
 }

@@ -35,7 +35,7 @@ namespace ProtonVPN.Client.Legacy.UI.Connections.Countries;
 
 public class CountriesPageViewModel : CountriesPageViewModelBase
 {
-    public override string? Title => Localizer.Get("Countries_Page_Title");
+    public override string? Title => Localizer.Get("Countries");
 
     public override string Description => Settings.VpnPlan.IsPaid
         ? string.Empty

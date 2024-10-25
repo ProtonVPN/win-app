@@ -21,7 +21,6 @@ using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
-using ProtonVPN.Client.Settings.Contracts;
 
 namespace ProtonVPN.Client.Logic.Servers;
 
@@ -39,107 +38,79 @@ public class ServersLoader : IServersLoader
         return GetServers().FirstOrDefault(s => s.Id == serverId);
     }
 
-    public IEnumerable<string> GetCountryCodes()
+    public IEnumerable<Country> GetCountries()
     {
-        return _serversCache.CountryCodes;
+        return _serversCache.Countries;
     }
 
-    public IEnumerable<string> GetCountryCodesByFeatures(ServerFeatures serverFeatures)
+    public IEnumerable<Country> GetCountriesByFeatures(ServerFeatures serverFeatures)
     {
-        return GetPaidServersByFilter(s => !string.IsNullOrWhiteSpace(s.ExitCountry)
-                                        && s.Features.IsSupported(serverFeatures))
-            .Select(s => s.ExitCountry)
-            .Distinct();
+        return _serversCache.Countries.Where(c => c.Features.IsSupported(serverFeatures));
     }
 
-    public IEnumerable<string> GetFreeCountryCodes()
+    public IEnumerable<Country> GetFreeCountries()
     {
-        return GetFreeServersByFilter(s => !string.IsNullOrWhiteSpace(s.ExitCountry))
-            .Select(s => s.ExitCountry)
-            .Distinct();
+        return _serversCache.Countries.Where(c => c.IsFree);
     }
 
     public IEnumerable<State> GetStates()
     {
-        return GetStatesByFilter();
-    }
-
-    private IEnumerable<State> GetStatesByFilter(Func<Server, bool>? filterFunc = null)
-    {
-        return GetPaidServersByFilter(s => !string.IsNullOrWhiteSpace(s.State)
-                                        && (filterFunc is null || filterFunc(s)))
-            .GroupBy(s => new { Name = s.State, CountryCode = s.ExitCountry })
-            .Select(g => new State { Name = g.Key.Name, CountryCode = g.Key.CountryCode });
+        return _serversCache.States;
     }
 
     public IEnumerable<State> GetStatesByCountryCode(string countryCode)
     {
-        return GetStatesByFilter(s => s.ExitCountry == countryCode);
+        return _serversCache.States.Where(s => s.CountryCode == countryCode);
     }
 
     public IEnumerable<State> GetStatesByFeatures(ServerFeatures serverFeatures)
     {
-        return GetStatesByFilter(s => s.Features.IsSupported(serverFeatures));
+        return _serversCache.States.Where(s => s.Features.IsSupported(serverFeatures));
     }
 
     public IEnumerable<State> GetStatesByFeaturesAndCountryCode(ServerFeatures serverFeatures, string countryCode)
     {
-        return GetStatesByFilter(s => s.ExitCountry == countryCode
-                                   && s.Features.IsSupported(serverFeatures));
+        return _serversCache.States.Where(s => s.CountryCode == countryCode
+                                            && s.Features.IsSupported(serverFeatures));
     }
 
     public IEnumerable<City> GetCities()
     {
-        return GetCitiesByFilter();
-    }
-
-    private IEnumerable<City> GetCitiesByFilter(Func<Server, bool>? filterFunc = null)
-    {
-        return GetPaidServersByFilter(s => !string.IsNullOrWhiteSpace(s.City)
-                                        && (filterFunc is null || filterFunc(s)))
-            .GroupBy(s => new { Name = s.City, CountryCode = s.ExitCountry, StateName = s.State })
-            .Select(g => new City { Name = g.Key.Name, CountryCode = g.Key.CountryCode, StateName = g.Key.StateName });
+        return _serversCache.Cities;
     }
 
     public IEnumerable<City> GetCitiesByCountryCode(string countryCode)
     {
-        return GetCitiesByFilter(s => s.ExitCountry == countryCode);
+        return _serversCache.Cities.Where(c => c.CountryCode == countryCode);
     }
 
     public IEnumerable<City> GetCitiesByState(State state)
     {
-        return GetCitiesByFilter(s => s.ExitCountry == state.CountryCode
-                                   && s.State == state.Name);
+        return _serversCache.Cities.Where(c => c.CountryCode == state.CountryCode
+                                            && c.StateName == state.Name);
     }
 
     public IEnumerable<City> GetCitiesByFeatures(ServerFeatures serverFeatures)
     {
-        return GetCitiesByFilter(s => s.Features.IsSupported(serverFeatures));
+        return _serversCache.Cities.Where(c => c.Features.IsSupported(serverFeatures));
     }
 
     public IEnumerable<City> GetCitiesByFeaturesAndCountryCode(ServerFeatures serverFeatures, string countryCode)
     {
-        return GetCitiesByFilter(s => s.ExitCountry == countryCode
-                                   && s.Features.IsSupported(serverFeatures));
+        return _serversCache.Cities.Where(c => c.CountryCode == countryCode
+                                            && c.Features.IsSupported(serverFeatures));
     }
 
     public IEnumerable<City> GetCitiesByFeaturesAndState(ServerFeatures serverFeatures, State state)
     {
-        return GetCitiesByFilter(s => s.ExitCountry == state.CountryCode
-                                   && s.State == state.Name
-                                   && s.Features.IsSupported(serverFeatures));
+        return _serversCache.Cities.Where(c => c.CountryCode == state.CountryCode
+                                            && c.StateName == state.Name
+                                            && c.Features.IsSupported(serverFeatures));
     }
 
     public IEnumerable<Server> GetServers()
     {
         return _serversCache.Servers;
-    }
-
-    private IEnumerable<Server> GetServersByFilter(Func<Server, bool>? filterFunc)
-    {
-        return GetServers()
-            .Where(s => (filterFunc is null || filterFunc(s))
-                     && !s.Features.IsSupported(ServerFeatures.B2B));
     }
 
     private IEnumerable<Server> GetPaidServersByFilter(Func<Server, bool>? filterFunc)
@@ -215,16 +186,13 @@ public class ServersLoader : IServersLoader
 
     public IEnumerable<SecureCoreCountryPair> GetSecureCoreCountryPairs()
     {
-        return GetServersByFeatures(ServerFeatures.SecureCore)
-            .Select(GetSecureCoreCountryPair)
-            .Distinct();
+        return _serversCache.SecureCoreCountryPairs;
     }
 
     public IEnumerable<SecureCoreCountryPair> GetSecureCoreCountryPairsByExitCountryCode(string exitCountryCode)
     {
-        return GetServersByFeaturesAndCountryCode(ServerFeatures.SecureCore, exitCountryCode)
-            .Select(GetSecureCoreCountryPair)
-            .Distinct();
+        return GetSecureCoreCountryPairs()
+            .Where(sccp => sccp.ExitCountry == exitCountryCode);
     }
 
     public IEnumerable<Server> GetServersBySecureCoreCountryPair(SecureCoreCountryPair countryPair)
@@ -234,21 +202,12 @@ public class ServersLoader : IServersLoader
                                     && s.Features.IsSupported(ServerFeatures.SecureCore));
     }
 
-    private SecureCoreCountryPair GetSecureCoreCountryPair(Server server)
-    {
-        return new()
-        {
-            ExitCountry = server.ExitCountry,
-            EntryCountry = server.EntryCountry,
-        };
-    }
-
-    public IEnumerable<string> GetGateways()
+    public IEnumerable<Gateway> GetGateways()
     {
         return _serversCache.Gateways;
     }
 
-    public IEnumerable<Server> GetServersByGateway(string gatewayName)
+    public IEnumerable<Server> GetServersByGatewayName(string gatewayName)
     {
         return GetGatewayServersByFilter(s => s.GatewayName == gatewayName);
     }
@@ -257,7 +216,7 @@ public class ServersLoader : IServersLoader
     {
         return GetPaidServersByFilter(s => s.ExitCountry == countryCode
                                     && !string.IsNullOrEmpty(s.HostCountry))
-            .FirstOrDefault()?
+            .FirstOrDefault()? // WARNING: There can be more than one host country, we are ignoring others
             .HostCountry;
     }
 }
