@@ -38,7 +38,7 @@ public class ApiResponseResult<T> : Result<T>
     {
         ResponseMessage = responseMessage;
         Actions = value?.Details?.Actions;
-        LastModified = responseMessage.Content.Headers.LastModified;
+        LastModified = responseMessage?.Content?.Headers?.LastModified;
         IsNotModified = isNotModified;
     }
 
@@ -46,7 +46,7 @@ public class ApiResponseResult<T> : Result<T>
         : base(default(T), success, error)
     {
         ResponseMessage = responseMessage;
-        LastModified = responseMessage.Content.Headers.LastModified;
+        LastModified = responseMessage?.Content?.Headers?.LastModified;
         IsNotModified = isNotModified;
     }
 
