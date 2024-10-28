@@ -306,19 +306,19 @@
     <value>Free-tjenere ({0})</value>
   </data>
   <data name="Connections_Gateway">
-    <value>Mellomtjener</value>
+    <value>Porttjener</value>
   </data>
   <data name="Connections_Gateway_Restricted">
-    <value>Tjenere i denne mellomtjeneren er tilgjengelig med VPN Plus</value>
+    <value>Tjenere i denne porttjeneren er tilgjengelig med VPN Plus</value>
   </data>
   <data name="Connections_Gateway_UnderMaintenance">
-    <value>All tjenere i denne mellomtjeneren er under vedlikehold</value>
+    <value>All tjenere i denne porttjeneren er under vedlikehold</value>
   </data>
   <data name="Connections_Gateways_One">
-    <value>Mellomtjener ({0})</value>
+    <value>Porttjener ({0})</value>
   </data>
   <data name="Connections_Gateways_Other">
-    <value>Mellomtjenere ({0})</value>
+    <value>Porttjenere ({0})</value>
   </data>
   <data name="Connections_Gateways_Server">
     <value>Dedikert tjener</value>
@@ -2032,13 +2032,13 @@ Nyt det beste av Proton-personvern.</value>
     <value>Bruk Tor-nettverket over VPN-tilkoblingen for ekstra personvern</value>
   </data>
   <data name="FreeConnections_WorldwideCoverageUpsell">
-    <value>Få verdensomspennende dekning med VPN Plus</value>
+    <value>Skaff deg verdensomspennende dekning med VPN Plus</value>
   </data>
   <data name="Gateways_Page_Description">
-    <value>Koble til en mellomtjener for å få tilgang til organisasjonens VPN.</value>
+    <value>Koble til en porttjener for å få tilgang til organisasjonens VPN.</value>
   </data>
   <data name="Gateways_Page_Title">
-    <value>Mellomtjenere</value>
+    <value>Porttjenere</value>
   </data>
   <data name="Gateways_Server">
     <value>Dedikert tjener</value>
@@ -2092,7 +2092,7 @@ Nyt det beste av Proton-personvern.</value>
     <value>Nedlasting</value>
   </data>
   <data name="Home_ConnectionDetails_Gateway">
-    <value>Mellomtjener</value>
+    <value>Porttjener</value>
   </data>
   <data name="Home_ConnectionDetails_Hide">
     <value>Skjul forbindelsesdetaljer</value>
@@ -2372,7 +2372,7 @@ Nyt det beste av Proton-personvern.</value>
     <value>Raskeste gratis tjener</value>
   </data>
   <data name="Server_Feature_B2B">
-    <value>Mellomtjenere</value>
+    <value>Porttjenere</value>
   </data>
   <data name="Server_Feature_None">
     <value>Alle land</value>
