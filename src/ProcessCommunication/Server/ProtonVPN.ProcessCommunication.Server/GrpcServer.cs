@@ -26,17 +26,18 @@ using Microsoft.AspNetCore.Connections.Features;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using ProtoBuf.Grpc.Server;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Crypto;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ProcessCommunicationLogs;
 using ProtonVPN.OperatingSystems.Processes.Contracts;
 using ProtonVPN.OperatingSystems.Registries.Contracts;
 using ProtonVPN.ProcessCommunication.Common;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
+using ILogger = ProtonVPN.Logging.Contracts.ILogger;
 
 namespace ProtonVPN.ProcessCommunication.Server;
 
@@ -111,6 +112,7 @@ public class GrpcServer : IGrpcServer
         DeletePipeNameFromRegistry();
         string pipeName = GeneratePipeName();
         WebApplicationBuilder builder = WebApplication.CreateBuilder();
+        builder.Logging.ClearProviders();
         ConfigureKestrel(builder, pipeName);
         PipeSecurity pipeSecurity = CreatePipeSecurity();
         ConfigureNamedPipes(builder, pipeSecurity);
