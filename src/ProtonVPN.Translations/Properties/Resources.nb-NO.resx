@@ -2064,7 +2064,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <comment>The part of text displayed in a balloon above Secure Core Pin in Map. The full text is "(Secure Core) country name".</comment>
   </data>
   <data name="Modal_ChangeServer_Subtitle">
-    <value>Få ubegrensede bytter med VPN Plus</value>
+    <value>Skaff deg ubegrensede bytter med VPN Plus</value>
   </data>
   <data name="Modal_ChangeServer_Title">
     <value>Du har nådd maksimalt antall gratis tjenerbytter for nå.</value>
@@ -2256,7 +2256,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <comment>The error message displayed in the Profile window when a country is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_GatewayEmpty">
-    <value>Vennligst velg en mellomtjener</value>
+    <value>Velg en porttjener</value>
     <comment>The error message displayed in the Profile window when a gateway is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameEmpty">
@@ -2282,7 +2282,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <comment>The watermark text displayed in empty Exit Country combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Gateway_Watermark">
-    <value>Velg mellomtjener</value>
+    <value>Velg porttjener</value>
     <comment>The watermark text displayed in empty Gateway combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Name_Watermark">
@@ -2322,7 +2322,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <comment>The label for Exit Country combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Gateway">
-    <value>Mellomtjener:</value>
+    <value>Porttjener:</value>
     <comment>The label for Gateway combo box in Profile window</comment>
   </data>
   <data name="Profiles_Profile_lbl_Name">
@@ -2524,7 +2524,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <value>{0} sikre tjenere</value>
   </data>
   <data name="ServerType_val_B2B">
-    <value>Mellomtjenere</value>
+    <value>Porttjenere</value>
     <comment>The server type in Profile window</comment>
   </data>
   <data name="ServerType_val_None">
@@ -2598,7 +2598,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_UpsellBanner">
-    <value>Få verdensomspennende dekning med VPN Plus</value>
+    <value>Skaff deg verdensomspennende dekning med VPN Plus</value>
   </data>
   <data name="Servers_UpsellBanner_NotTheCountryYouWanted">
     <value>Ikke det landet du ønsket? Oppgrader for å velge hvilken som helst tjener</value>
@@ -2908,11 +2908,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text of "Recommended" category text in the Profile sidebar, that has the predefined profiles below</comment>
   </data>
   <data name="Sidebar_B2BPopup_Desc">
-    <value>En VPN-mellomtjener er en sikker tilkobling som gir kontrollert tilgang til bedriftens data og tjenester gjennom dedikerte tjenere.</value>
+    <value>En VPN-porttjener er en sikker tilkobling som gir kontrollert tilgang til bedriftens data og tjenester gjennom dedikerte tjenere.</value>
     <comment>Description of what a Gateway is, written inside the help popup when the Gateways info button is clicked.</comment>
   </data>
   <data name="Sidebar_B2BPopup_Title">
-    <value>Hva er en gateway (mellomtjener)?</value>
+    <value>Hva er en gateway (porttjener)?</value>
     <comment>Title of the help popup when the Gateways info button is clicked.</comment>
   </data>
   <data name="Sidebar_Connection_btn_ChangeServer">
