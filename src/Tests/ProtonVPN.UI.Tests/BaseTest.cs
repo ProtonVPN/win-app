@@ -29,19 +29,38 @@ using FlaUI.Core.Tools;
 using FlaUI.UIA3;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
+using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestsHelper;
 using TimeoutException = System.TimeoutException;
 
 namespace ProtonVPN.UI.Tests;
 
-public class TestSession
+public class BaseTest
 {
     public static Application App;
     public static Window Window;
 
+    protected static LoginRobot LoginRobot { get; } = new();
+    protected static HomeRobot HomeRobot { get; } = new();
+    protected static NavigationRobot NavigationRobot { get; } = new();
+    protected static ProfileRobot ProfileRobot { get; } = new();
+    protected static SidebarRobot SidebarRobot { get; } = new();
+
     private const string CLIENT_NAME = "ProtonVPN.Client.exe";
 
     private static readonly bool _isDevelopmentModeEnabled = false;
+
+    [SetUp]
+    public void BeforeTest()
+    {
+        LaunchApp();
+    }
+
+    [TearDown]
+    public void AfterTest()
+    {
+        Cleanup();
+    }
 
     public static void RefreshWindow(TimeSpan? timeout = null)
     {
@@ -124,14 +143,6 @@ public class TestSession
 
         RefreshWindow(TestConstants.OneMinuteTimeout);
         Window.Focus();
-    }
-
-    protected static void CloseProtonVPN()
-    {
-        Process.GetProcesses()
-            .Where(process => process.ProcessName.StartsWith("ProtonVPN"))
-            .ToList()
-            .ForEach(process => process.Kill());
     }
 
     protected static void SaveScreenshotAndLogsIfFailed()

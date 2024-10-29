@@ -25,33 +25,18 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
 [Category("1")]
-public class ConnectionTests : TestSession
+public class ConnectionTests : BaseTest
 {
-    private LoginRobot _loginRobot = new();
-    private HomeRobot _homeRobot = new();
-    private NavigationRobot _navigationRobot = new();
-    private SidebarRobot _sidebarRobot = new();
-
     [SetUp]
     public void TestInitialize()
     {
-        LaunchApp();
-
-        _loginRobot
-            .Login(TestUserData.PlusUser);
-
-        _navigationRobot
-            .Verify.IsOnMainPage()
-                   .IsOnHomePage();
-
-        _homeRobot
-            .DismissWelcomeModal();
+        CommonUiFlows.FullLogin(TestUserData.PlusUser);
     }
 
     [Test]
     public void QuickConnect()
     {
-        _homeRobot
+        HomeRobot
             .QuickConnect()
             .Verify.IsConnected();
     }
@@ -61,25 +46,19 @@ public class ConnectionTests : TestSession
     {
         const string country = "Australia";
 
-        _navigationRobot
+        NavigationRobot
             .Verify.IsOnConnectionsPage();
-        _sidebarRobot
+        SidebarRobot
             .NavigateToAllCountriesTab();
-        _navigationRobot
+        NavigationRobot
             .Verify.IsOnCountriesPage();
-        _sidebarRobot
+        SidebarRobot
             .ConnectToCountry(country);
-        _homeRobot
+        HomeRobot
             .Verify.IsConnected();
-        _sidebarRobot
+        SidebarRobot
             .DisconnectFromCountry(country);
-        _homeRobot
+        HomeRobot
             .Verify.IsDisconnected();
-    }
-
-    [TearDown]
-    public void TestCleanup()
-    {
-        Cleanup();
     }
 }

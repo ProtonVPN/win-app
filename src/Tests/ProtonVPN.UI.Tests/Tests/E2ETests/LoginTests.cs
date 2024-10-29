@@ -25,20 +25,11 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
 [Category("1")]
-public class LoginTests : TestSession
+public class LoginTests : BaseTest
 {
-    private NavigationRobot _navigationRobot = new();
-    private LoginRobot _loginRobot = new();
-
     private const string INCORRECT_CREDENTIALS_ERROR = "The password is not correct. Please try again with a different password.";
     private const string INCORRECT_2FA_CODE_ERROR = "Incorrect code. Please try again.";
     private const string INCORRECT_2FA_CODE = "123456";
-
-    [SetUp]
-    public void TestInitialize()
-    {
-        LaunchApp();
-    }
 
     [Test]
     public void LoginWithPlusUser()
@@ -61,10 +52,10 @@ public class LoginTests : TestSession
     [Test]
     public void LoginWithIncorrectCredentials()
     {
-        _navigationRobot
+        NavigationRobot
             .Verify.IsOnLoginPage();
 
-        _loginRobot
+        LoginRobot
             .Login(TestUserData.IncorrectUser)
             .Verify.ErrorMessageIsDisplayed(INCORRECT_CREDENTIALS_ERROR);
     }
@@ -72,41 +63,35 @@ public class LoginTests : TestSession
     [Test]
     public void LoginWithTwoFactor()
     {
-        _navigationRobot
+        NavigationRobot
             .Verify.IsOnLoginPage();
 
-        _loginRobot
+        LoginRobot
             .Login(TestUserData.TwoFactorUser)
             .EnterTwoFactorCode(TestUserData.GetTwoFactorCode());
 
-        _navigationRobot
+        NavigationRobot
             .Verify.IsOnMainPage();
     }
 
     [Test]
     public void LoginWithIncorrectTwoFactorCode()
     {
-        _loginRobot
+        LoginRobot
             .Login(TestUserData.TwoFactorUser)
             .EnterTwoFactorCode(INCORRECT_2FA_CODE)
             .Verify.ErrorMessageIsDisplayed(INCORRECT_2FA_CODE_ERROR);
     }
 
-    [TearDown]
-    public void TestCleanup()
-    {
-        Cleanup();
-    }
-
     private void LoginWithUser(TestUserData user)
     {
-        _navigationRobot
+        NavigationRobot
             .Verify.IsOnLoginPage();
 
-        _loginRobot
+        LoginRobot
             .Login(user);
 
-        _navigationRobot
+        NavigationRobot
             .Verify.IsOnMainPage();
     }
 }

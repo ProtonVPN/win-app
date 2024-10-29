@@ -17,16 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Diagnostics;
+using System.Linq;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Tests;
 
 [SetUpFixture]
-public class SetUp : TestSession
+public class SetUp
 {
     [OneTimeSetUp]
-    public void TestInitialize()
+    public void BeforeTestSuite()
     {
         ArtifactsHelper.ClearEventViewerLogs();
         CloseProtonVPN();
@@ -35,10 +37,18 @@ public class SetUp : TestSession
     }
 
     [OneTimeTearDown]
-    public void TestFinalTearDown()
+    public void AfterTestSuite()
     {
         CloseProtonVPN();
         ArtifactsHelper.StopRecording();
         ArtifactsHelper.SaveEventViewerLogs();
+    }
+
+    private static void CloseProtonVPN()
+    {
+        Process.GetProcesses()
+            .Where(process => process.ProcessName.StartsWith("ProtonVPN"))
+            .ToList()
+            .ForEach(process => process.Kill());
     }
 }
