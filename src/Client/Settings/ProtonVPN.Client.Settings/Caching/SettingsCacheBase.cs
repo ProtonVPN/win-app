@@ -20,6 +20,7 @@
 using System.Collections.Concurrent;
 using System.Runtime.CompilerServices;
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Settings.Caching;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.Settings.Files;
 using ProtonVPN.Client.Settings.Repositories.Contracts;
@@ -40,7 +41,8 @@ public abstract class SettingsCacheBase : ISettingsCache
     private readonly IEventMessageSender _eventMessageSender;
     private readonly ISettingsFileReaderWriter _settingsFileReaderWriter;
 
-    protected readonly ResettableLazy<ConcurrentDictionary<string, string?>> Cache;
+    protected readonly ResettableLazy<ConcurrentDictionary<string, string?>> JsonCache;
+    protected readonly ConcurrentDictionary<string, dynamic?> Cache;
 
     public SettingsCacheBase(ILogger logger,
         IJsonSerializer jsonSerializer,
@@ -52,7 +54,8 @@ public abstract class SettingsCacheBase : ISettingsCache
         _eventMessageSender = eventMessageSender;
         _settingsFileReaderWriter = settingsFileReaderWriter;
 
-        Cache = new ResettableLazy<ConcurrentDictionary<string, string?>>(() => new(_settingsFileReaderWriter.Read()));
+        JsonCache = new ResettableLazy<ConcurrentDictionary<string, string?>>(() => new(_settingsFileReaderWriter.Read()));
+        Cache = new();
     }
 
     public T? GetValueType<T>(SettingEncryption encryption, [CallerMemberName] string propertyName = "")
@@ -60,14 +63,29 @@ public abstract class SettingsCacheBase : ISettingsCache
     {
         try
         {
-            string? json = GetJson(propertyName, encryption);
-            return json is null ? null : Deserialize<T>(json);
+            return Get<T?>(encryption, propertyName, (pjp) => DeserializeAndCache<T?>(pjp, () => null));
         }
         catch (Exception ex)
         {
             Logger.Error<SettingsLog>($"Failed to read the setting '{propertyName}'.", ex);
             return null;
         }
+    }
+
+    private T? Get<T>(SettingEncryption encryption, string propertyName,
+        Func<PropertyJsonPair, T?> deserializationFunction)
+    {
+        if (Cache.TryGetValue(propertyName, out dynamic? value))
+        {
+            return value;
+        }
+
+        PropertyJsonPair propertyJsonPair = new()
+        {
+            PropertyName = propertyName,
+            JsonValue = GetJson(propertyName, encryption)
+        };
+        return deserializationFunction(propertyJsonPair);
     }
 
     private string? GetJson(string propertyName, SettingEncryption encryption)
@@ -85,8 +103,7 @@ public abstract class SettingsCacheBase : ISettingsCache
     {
         try
         {
-            string? json = GetJson(propertyName, encryption);
-            return json is null ? null : Deserialize<T>(json);
+            return Get<T?>(encryption, propertyName, (pjp) => DeserializeAndCache<T?>(pjp, () => null));
         }
         catch (Exception ex)
         {
@@ -95,13 +112,13 @@ public abstract class SettingsCacheBase : ISettingsCache
         }
     }
 
-    public List<T>? GetListValueType<T>(SettingEncryption encryption, [CallerMemberName] string propertyName = "")
+    public List<T>? GetListValueType<T>(SettingEncryption encryption,
+        [CallerMemberName] string propertyName = "")
         where T : struct
     {
         try
         {
-            string? json = GetJson(propertyName, encryption);
-            return Deserialize<List<T>>(json ?? string.Empty);
+            return Get<List<T>?>(encryption, propertyName, (pjp) => DeserializeAndCache<List<T>>(pjp, () => []));
         }
         catch (Exception ex)
         {
@@ -110,18 +127,50 @@ public abstract class SettingsCacheBase : ISettingsCache
         }
     }
 
-    private T? Deserialize<T>(string json)
+    private T? DeserializeAndCache<T>(PropertyJsonPair propertyJsonPair, Func<T?> nullJsonResult)
     {
+        T? value = Deserialize<T>(propertyJsonPair, nullJsonResult);
+        Cache.AddOrUpdate(propertyJsonPair.PropertyName, value, (_, _) => value);
+        return value;
+    }
+
+    private T? Deserialize<T>(PropertyJsonPair propertyJsonPair, Func<T?> nullJsonResult)
+    {
+        if (propertyJsonPair.JsonValue is null)
+        {
+            return nullJsonResult();
+        }
+
         Type type = typeof(T);
         if (type == typeof(string))
         {
-            return (dynamic)json;
+            return (dynamic)propertyJsonPair.JsonValue;
         }
-        if (type.IsEnum && Enum.TryParse(type, json, out dynamic? result))
+
+        if (IsEnum(type, propertyJsonPair, out dynamic? enumResult))
         {
-            return result;
+            return enumResult;
         }
-        return _jsonSerializer.DeserializeFromString<T>(json);
+
+        if (IsNullableEnum(type, propertyJsonPair, out dynamic? underlyingEnumResult))
+        {
+            return underlyingEnumResult;
+        }
+
+        return _jsonSerializer.DeserializeFromString<T>(propertyJsonPair.JsonValue);
+    }
+
+    private bool IsEnum(Type type, PropertyJsonPair propertyJsonPair, out dynamic? enumResult)
+    {
+        enumResult = null;
+        return type.IsEnum && Enum.TryParse(type, propertyJsonPair.JsonValue, out enumResult);
+    }
+
+    private bool IsNullableEnum(Type type, PropertyJsonPair propertyJsonPair, out dynamic? underlyingEnumResult)
+    {
+        underlyingEnumResult = null;
+        Type? underlyingType = Nullable.GetUnderlyingType(type);
+        return underlyingType != null && IsEnum(underlyingType, propertyJsonPair, out underlyingEnumResult);
     }
 
     private string? GetUnencrypted(string propertyName)
@@ -131,7 +180,7 @@ public abstract class SettingsCacheBase : ISettingsCache
 
     private string? Get(string propertyName)
     {
-        return Cache.Value.TryGetValue(propertyName, out string? value) ? value : null;
+        return JsonCache.Value.TryGetValue(propertyName, out string? value) ? value : null;
     }
 
     private string? GetEncrypted(string propertyName)
@@ -139,7 +188,8 @@ public abstract class SettingsCacheBase : ISettingsCache
         return GetUnencrypted(propertyName)?.Decrypt();
     }
 
-    public void SetValueType<T>(T? newValue, SettingEncryption encryption, [CallerMemberName] string propertyName = "")
+    public void SetValueType<T>(T? newValue, SettingEncryption encryption,
+        [CallerMemberName] string propertyName = "")
         where T : struct
     {
         try
@@ -168,7 +218,8 @@ public abstract class SettingsCacheBase : ISettingsCache
         return toType is not null && (toType.IsValueType || toType == typeof(string));
     }
 
-    public void SetReferenceType<T>(T? newValue, SettingEncryption encryption, [CallerMemberName] string propertyName = "")
+    public void SetReferenceType<T>(T? newValue, SettingEncryption encryption,
+        [CallerMemberName] string propertyName = "")
         where T : class
     {
         try
@@ -190,7 +241,8 @@ public abstract class SettingsCacheBase : ISettingsCache
         }
     }
 
-    public void SetListValueType<T>(List<T>? newValue, SettingEncryption encryption, [CallerMemberName] string propertyName = "")
+    public void SetListValueType<T>(List<T>? newValue, SettingEncryption encryption,
+        [CallerMemberName] string propertyName = "")
         where T : struct
     {
         try
@@ -218,16 +270,17 @@ public abstract class SettingsCacheBase : ISettingsCache
         {
             json = json?.Encrypt();
         }
-        Set(propertyName, json);
+        Set(propertyName, newValue, json);
 
         OnPropertyChanged(oldValue, newValue, propertyName);
         LogChange(propertyName, oldValue, newValue, encryption);
     }
 
-    private void Set(string propertyName, string? json)
+    private void Set<T>(string propertyName, T? newValue, string? json)
     {
-        Cache.Value.AddOrUpdate(propertyName, json, (_, _) => json);
-        _settingsFileReaderWriter.Write(Cache.Value);
+        JsonCache.Value.AddOrUpdate(propertyName, json, (_, _) => json);
+        _settingsFileReaderWriter.Write(JsonCache.Value);
+        Cache.AddOrUpdate(propertyName, newValue, (_, _) => newValue);
     }
 
     private Type? UnwrapNullable(Type type)
@@ -287,8 +340,7 @@ public abstract class SettingsCacheBase : ISettingsCache
     {
         try
         {
-            string? json = GetJson(propertyName, encryption);
-            return Deserialize<List<T>>(json ?? string.Empty);
+            return Get<List<T>?>(encryption, propertyName, (pjp) => DeserializeAndCache<List<T>>(pjp, () => []));
         }
         catch (Exception ex)
         {
@@ -297,14 +349,15 @@ public abstract class SettingsCacheBase : ISettingsCache
         }
     }
 
-    public void SetListReferenceType<T>(List<T>? newValue, SettingEncryption encryption, [CallerMemberName] string propertyName = "")
+    public void SetListReferenceType<T>(List<T>? newValue, SettingEncryption encryption,
+        [CallerMemberName] string propertyName = "")
         where T : class
     {
         try
         {
             List<T>? oldValue = GetListReferenceType<T>(encryption, propertyName);
 
-            if ((oldValue is null && newValue is null) || 
+            if ((oldValue is null && newValue is null) ||
                 (oldValue is not null && newValue is not null && oldValue.SequenceEqual(newValue)))
             {
                 return;

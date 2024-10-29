@@ -41,7 +41,8 @@ public class UserSettingsCache : SettingsCacheBase, IUserSettingsCache, IEventMe
     {
         if (message.PropertyName == nameof(ISettings.UserId))
         {
-            Cache.Reset();
+            JsonCache.Reset();
+            Cache.Clear();
         }
     }
 }
