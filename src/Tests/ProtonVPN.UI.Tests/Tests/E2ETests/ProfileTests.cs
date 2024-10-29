@@ -25,28 +25,12 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
 [Category("1")]
-public class ProfileTests : TestSession
+public class ProfileTests : BaseTest
 {
-    private LoginRobot _loginRobot = new();
-    private HomeRobot _homeRobot = new();
-    private NavigationRobot _navigationRobot = new();
-    private SidebarRobot _sidebarRobot = new();
-    private ProfileRobot _profileRobot = new();
-
     [SetUp]
     public void TestInitialize()
     {
-        LaunchApp();
-
-        _loginRobot
-            .Login(TestUserData.PlusUser);
-
-        _navigationRobot
-            .Verify.IsOnMainPage()
-                   .IsOnHomePage();
-
-        _homeRobot
-            .DismissWelcomeModal();
+        CommonUiFlows.FullLogin(TestUserData.PlusUser);
     }
 
     [Test]
@@ -54,26 +38,20 @@ public class ProfileTests : TestSession
     {
         const string profileName = "Profile A";
 
-        _navigationRobot
+        NavigationRobot
             .Verify.IsOnConnectionsPage();
-        _sidebarRobot
+        SidebarRobot
             .NavigateToProfiles();
-        _navigationRobot
+        NavigationRobot
             .Verify.IsOnProfilesPage();
 
-        _sidebarRobot
+        SidebarRobot
             .CreateProfile();
-        _profileRobot
+        ProfileRobot
             .Verify.IsProfileOverlayDisplayed()
             .SetProfileName(profileName)
             .SaveProfile();
-        _sidebarRobot
+        SidebarRobot
             .Verify.ConnectionItemExists(profileName);
-    }
-
-    [TearDown]
-    public void TestCleanup()
-    {
-        Cleanup();
     }
 }

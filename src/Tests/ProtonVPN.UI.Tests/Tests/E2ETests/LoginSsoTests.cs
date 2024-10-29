@@ -26,18 +26,9 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
 [Category("1")]
-public class LoginSsoTests : TestSession
+public class LoginSsoTests : BaseTest
 {
-    private LoginRobot _loginRobot = new();
-    private HomeRobot _homeRobot = new();
-
     private const string SSO_LOGIN_ERROR = "Email domain associated to an existing organization. Please sign in with SSO";
-
-    [SetUp]
-    public void TestInitialize()
-    {
-        LaunchApp();
-    }
 
     [Test]
     public void LoginSsoDomainDetection()
@@ -45,7 +36,7 @@ public class LoginSsoTests : TestSession
         //Delay to allow app to setup unauth session
         Thread.Sleep(TestConstants.FiveSecondsTimeout);
 
-        _loginRobot.Login(TestUserData.SsoUser)
+        LoginRobot.Login(TestUserData.SsoUser)
             .Verify.ErrorMessageIsDisplayed(SSO_LOGIN_ERROR);
 
         CompleteSsoLogin();
@@ -57,23 +48,17 @@ public class LoginSsoTests : TestSession
         //Delay to allow app to setup unauth session
         Thread.Sleep(TestConstants.FiveSecondsTimeout);
 
-        _loginRobot.EnterEmail(TestUserData.SsoUser)
+        LoginRobot.EnterEmail(TestUserData.SsoUser)
             .ClickSignInWithSso();
             
         CompleteSsoLogin();
     }
 
-    [TearDown]
-    public void TestCleanup()
-    {
-        Cleanup();
-    }
-
     private void CompleteSsoLogin()
     {
-        _loginRobot.ClickSignInButton()
+       LoginRobot.ClickSignInButton()
             .DoLoginSsoWebview(TestUserData.SsoUser.Password);
-        _homeRobot
+       HomeRobot
             .Verify.IsLoggedIn();
     }
 }

@@ -67,7 +67,7 @@ public static class UiActions
         AutomationElement elementToWaitFor = null;
         WaitForElement(() =>
         {
-            TestSession.RefreshWindow();
+            BaseTest.RefreshWindow();
             elementToWaitFor = FindFirstDescendantUsingChildren(desiredElement.Condition);
             return elementToWaitFor != null;
         }, time, desiredElement.SelectorValue);
@@ -85,7 +85,7 @@ public static class UiActions
         AutomationElement elementToWaitFor = null;
         WaitForElement(() =>
         {
-            TestSession.RefreshWindow();
+            BaseTest.RefreshWindow();
             elementToWaitFor = FindFirstDescendantUsingChildren(desiredElement.Condition);
             if (elementToWaitFor == null)
             {
@@ -105,7 +105,7 @@ public static class UiActions
             {
                 try
                 {
-                    TestSession.App.WaitWhileBusy();
+                    BaseTest.App.WaitWhileBusy();
                     return function();
                 }
                 catch (COMException)
@@ -130,13 +130,13 @@ public static class UiActions
 
     private static AutomationElement FindFirstDescendantUsingChildren(Func<ConditionFactory, ConditionBase> conditionFunc)
     {
-        AutomationElement child = TestSession.Window.FindFirstChild(conditionFunc);
+        AutomationElement child = BaseTest.Window.FindFirstChild(conditionFunc);
         if (child != null)
         {
             return child;
         }
 
-        AutomationElement[] children = TestSession.Window.FindAllChildren();
+        AutomationElement[] children = BaseTest.Window.FindAllChildren();
         foreach (AutomationElement windowChild in children)
         {
             AutomationElement descendant = windowChild.FindFirstDescendant(conditionFunc);
