@@ -204,6 +204,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <custom:ConnectionRowButton Grid.Row="0"
                                                         Description="{x:Bind Description}"
                                                         Header="{x:Bind Header}"
+                                                        Padding="4"
+                                                        Margin="0,0,0,8"
                                                         IsHitTestVisible="False">
                                 <custom:ConnectionRowButton.Icon>
                                     <custom:SimpleCountryFlag Width="30"
@@ -214,7 +216,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </custom:ConnectionRowButton>
 
                             <toolkit:SettingsCard Grid.Row="1"
-                                                  Margin="8,0,0,0"
                                                   AutomationProperties.AutomationId="SmartRoutingButton"
                                                   Command="{x:Bind ShowSmartRoutingOverlayCommand, Mode=OneTime}"
                                                   Description="{x:Bind SmartRoutingDescription}"
@@ -231,6 +232,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </toolkit:SettingsCard>
 
                             <local:ConnectionItemsControl Grid.Row="2"
+                                                          Margin="-8,0,0,0"
                                                           ItemsSource="{x:Bind SubGroupsCvs.View, Mode=OneTime}" />
                         </Grid>
 
@@ -304,6 +306,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <custom:ConnectionRowButton Grid.Row="0"
                                                         Description="{x:Bind Header}"
                                                         Header="{x:Bind Description}"
+                                                        Padding="4"
+                                                        Margin="0,0,0,8"
                                                         IsHitTestVisible="False">
                                 <custom:ConnectionRowButton.Icon>
                                     <custom:SimpleCountryFlag Width="30"
@@ -313,7 +317,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </custom:ConnectionRowButton>
 
                             <toolkit:SettingsCard Grid.Row="1"
-                                                  Margin="8,0,0,0"
                                                   AutomationProperties.AutomationId="SmartRoutingButton"
                                                   Command="{x:Bind ShowSmartRoutingOverlayCommand, Mode=OneTime}"
                                                   Description="{x:Bind SmartRoutingDescription}"
@@ -330,6 +333,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </toolkit:SettingsCard>
 
                             <local:ConnectionItemsControl Grid.Row="2"
+                                                          Margin="-8,0,0,0"
                                                           ItemsSource="{x:Bind SubGroupsCvs.View, Mode=OneTime}" />
                         </Grid>
                     </Flyout>
@@ -380,6 +384,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <custom:ConnectionRowButton Grid.Row="0"
                                                         Description="{x:Bind Header}"
                                                         Header="{x:Bind Description}"
+                                                        Padding="4"
+                                                        Margin="0,0,0,8"
                                                         IsHitTestVisible="False">
                                 <custom:ConnectionRowButton.Icon>
                                     <custom:SimpleCountryFlag Width="30"
@@ -389,7 +395,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </custom:ConnectionRowButton>
 
                             <toolkit:SettingsCard Grid.Row="1"
-                                                  Margin="8,0,0,0"
                                                   AutomationProperties.AutomationId="SmartRoutingButton"
                                                   Command="{x:Bind ShowSmartRoutingOverlayCommand, Mode=OneTime}"
                                                   Description="{x:Bind SmartRoutingDescription}"
@@ -406,6 +411,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </toolkit:SettingsCard>
 
                             <local:ConnectionItemsControl Grid.Row="2"
+                                                          Margin="-8,0,0,0"
                                                           ItemsSource="{x:Bind SubGroupsCvs.View, Mode=OneTime}" />
                         </Grid>
                     </Flyout>
@@ -472,6 +478,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </Grid.RowDefinitions>
 
                             <custom:ConnectionRowButton Grid.Row="0"
+                                                        Padding="4"
+                                                        Margin="0,0,0,8"
                                                         Header="{x:Bind Header}"
                                                         IsHitTestVisible="False">
                                 <custom:ConnectionRowButton.Icon>
@@ -481,6 +489,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </custom:ConnectionRowButton>
 
                             <local:ConnectionItemsControl Grid.Row="1"
+                                                          Margin="-8,0,0,0"
                                                           ItemsSource="{x:Bind SubGroupsCvs.View, Mode=OneTime}" />
                         </Grid>
 

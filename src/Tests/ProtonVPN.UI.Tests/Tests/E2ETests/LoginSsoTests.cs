@@ -50,15 +50,16 @@ public class LoginSsoTests : BaseTest
 
         LoginRobot.EnterEmail(TestUserData.SsoUser)
             .ClickSignInWithSso();
-            
+
         CompleteSsoLogin();
     }
 
     private void CompleteSsoLogin()
     {
-       LoginRobot.ClickSignInButton()
-            .DoLoginSsoWebview(TestUserData.SsoUser.Password);
-       HomeRobot
-            .Verify.IsLoggedIn();
+        LoginRobot.ClickSignInButton()
+             .DoLoginSsoWebview(TestUserData.SsoUser.Password);
+
+        NavigationRobot
+            .Verify.IsOnMainPage();
     }
 }

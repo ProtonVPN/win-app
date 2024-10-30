@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -26,18 +26,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <ResourceDictionary.ThemeDictionaries>
 
         <ResourceDictionary x:Key="Light">
-            <LinearGradientBrush x:Key="InfoBannerBackgroundColorBrush" StartPoint="0,0" EndPoint="0,1" Opacity="0.6">
-                <GradientStop Offset="0" Color="#60000000" />
-                <GradientStop Offset="1" Color="#10000000" />
+            <LinearGradientBrush x:Key="InfoBannerBackgroundColorBrush" Opacity="0.2" StartPoint="0,0" EndPoint="0,0.7">
+                <GradientStop Offset="0" Color="#AA000000" />
+                <GradientStop Offset="1" Color="#00000000" />
             </LinearGradientBrush>
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Dark">
-            <LinearGradientBrush x:Key="InfoBannerBackgroundColorBrush" StartPoint="0,0" EndPoint="0,1" Opacity="0.6">
-                <GradientStop Offset="0" Color="#50FFFFFF" />
-                <GradientStop Offset="1" Color="#10FFFFFF" />
+            <LinearGradientBrush x:Key="InfoBannerBackgroundColorBrush" Opacity="0.2" StartPoint="0,0" EndPoint="0,0.7">
+                <GradientStop Offset="0" Color="#AAFFFFFF" />
+                <GradientStop Offset="1" Color="#00FFFFFF" />
             </LinearGradientBrush>
         </ResourceDictionary>
+        
     </ResourceDictionary.ThemeDictionaries>
 
     <x:Double x:Key="InfoBannerIllustrationSize">108.0</x:Double>
@@ -60,12 +61,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           BorderThickness="{TemplateBinding BorderThickness}"
                           CornerRadius="{TemplateBinding CornerRadius}"
                           Visibility="{Binding IsOpen, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
-
-                        <!--  Visibility="{Binding Opacity, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource OpacityToVisibilityConverter}}"  -->
-
+                        
                         <UIElement.RenderTransform>
                             <TranslateTransform x:Name="BannerContainerTranslateTransform" />
                         </UIElement.RenderTransform>
+
+                        <Border Background="{ThemeResource InteractionDefaultColorBrush}"/>
 
                         <StackPanel Margin="{TemplateBinding Padding}"
                                     Orientation="Vertical"

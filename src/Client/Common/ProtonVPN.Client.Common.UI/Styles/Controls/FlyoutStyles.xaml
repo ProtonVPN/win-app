@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -25,11 +25,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <ResourceDictionary x:Key="Light">
 
-            <StaticResource x:Key="FlyoutPresenterBackground" ResourceKey="BackgroundNormColorBrush" />
-            <StaticResource x:Key="FlyoutBorderThemeBrush" ResourceKey="BorderNormColorBrush" />
+            <StaticResource x:Key="FlyoutPresenterBackground" ResourceKey="FlyoutOverlayBackgroundColorBrush" />
+            <StaticResource x:Key="FlyoutBorderThemeBrush" ResourceKey="FlyoutOverlayBorderColorBrush" />
 
-            <StaticResource x:Key="MenuFlyoutPresenterBackground" ResourceKey="BackgroundNormColorBrush" />
-            <StaticResource x:Key="MenuFlyoutPresenterBorderBrush" ResourceKey="BorderNormColorBrush" />
+            <StaticResource x:Key="MenuFlyoutPresenterBackground" ResourceKey="FlyoutOverlayBackgroundColorBrush" />
+            <StaticResource x:Key="MenuFlyoutPresenterBorderBrush" ResourceKey="FlyoutOverlayBorderColorBrush" />
 
             <StaticResource x:Key="MenuFlyoutItemBackground" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="MenuFlyoutItemBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
@@ -49,11 +49,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <ResourceDictionary x:Key="Dark">
 
-            <StaticResource x:Key="FlyoutPresenterBackground" ResourceKey="BackgroundNormColorBrush" />
-            <StaticResource x:Key="FlyoutBorderThemeBrush" ResourceKey="BorderNormColorBrush" />
+            <StaticResource x:Key="FlyoutPresenterBackground" ResourceKey="FlyoutOverlayBackgroundColorBrush" />
+            <StaticResource x:Key="FlyoutBorderThemeBrush" ResourceKey="FlyoutOverlayBorderColorBrush" />
 
-            <StaticResource x:Key="MenuFlyoutPresenterBackground" ResourceKey="BackgroundNormColorBrush" />
-            <StaticResource x:Key="MenuFlyoutPresenterBorderBrush" ResourceKey="BorderNormColorBrush" />
+            <StaticResource x:Key="MenuFlyoutPresenterBackground" ResourceKey="FlyoutOverlayBackgroundColorBrush" />
+            <StaticResource x:Key="MenuFlyoutPresenterBorderBrush" ResourceKey="FlyoutOverlayBorderColorBrush" />
 
             <StaticResource x:Key="MenuFlyoutItemBackground" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="MenuFlyoutItemBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
@@ -72,11 +72,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <Thickness x:Key="FlyoutContentPadding">8,8,16,8</Thickness>
+    <Thickness x:Key="FlyoutContentPadding">16</Thickness>
     <Thickness x:Key="FlyoutBorderThemeThickness">1</Thickness>
 
     <Thickness x:Key="MenuFlyoutItemBorderThickness">0</Thickness>
     <Thickness x:Key="MenuFlyoutItemThemePadding">0,10,10,10</Thickness>
+
+    <x:Double x:Key="InfoFlyoutContentSpacing">16</x:Double>
 
     <x:Double x:Key="FlyoutThemeMaxHeight">758</x:Double>
     <x:Double x:Key="FlyoutThemeMaxWidth">456</x:Double>
@@ -94,7 +96,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="Background" Value="{ThemeResource FlyoutPresenterBackground}" />
         <Setter Property="BorderBrush" Value="{ThemeResource FlyoutBorderThemeBrush}" />
         <Setter Property="BorderThickness" Value="{ThemeResource FlyoutBorderThemeThickness}" />
-        <Setter Property="Padding" Value="{StaticResource FlyoutContentPadding}" />
+        <Setter Property="Padding" Value="{ThemeResource FlyoutContentPadding}" />
         <Setter Property="MinWidth" Value="{ThemeResource FlyoutThemeMinWidth}" />
         <Setter Property="MaxWidth" Value="{ThemeResource FlyoutThemeMaxWidth}" />
         <Setter Property="MinHeight" Value="{ThemeResource FlyoutThemeMinHeight}" />
@@ -226,4 +228,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Setter.Value>
         </Setter>
     </Style>
+    
 </ResourceDictionary>

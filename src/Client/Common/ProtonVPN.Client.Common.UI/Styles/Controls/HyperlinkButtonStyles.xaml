@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -302,15 +302,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Setter>
     </Style>
 
+    <x:Double x:Key="HyperlinkIllustrationWidth">90</x:Double>
+    <x:Double x:Key="HyperlinkIllustrationHeight">60</x:Double>
+
     <Style x:Key="DefaultIllustratedHyperlinkButtonStyle" TargetType="custom:IllustratedHyperlinkButton">
         <Setter Property="Foreground" Value="{ThemeResource TextNormColorBrush}" />
         <Setter Property="Background" Value="{ThemeResource InteractionDefaultEmptyColorBrush}" />
-        <Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
-        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BackgroundSizing" Value="InnerBorderEdge" />
+        <Setter Property="BorderBrush" Value="{ThemeResource TransparentColorBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="FontSize" Value="{StaticResource CaptionStrongFontSize}" />
         <Setter Property="FontWeight" Value="{StaticResource CaptionStrongFontWeight}" />
         <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
-        <Setter Property="Padding" Value="8,8,16,8" />
+        <Setter Property="Padding" Value="0,0,12,0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:IllustratedHyperlinkButton">
@@ -323,10 +328,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           BorderBrush="{TemplateBinding BorderBrush}"
                           BorderThickness="{TemplateBinding BorderThickness}"
                           ColumnSpacing="16"
-                          CornerRadius="{TemplateBinding CornerRadius}"                          
-                          ToolTipService.ToolTip="{TemplateBinding NavigateUri}"
-                          ToolTipService.Placement="Top">
-
+                          CornerRadius="{TemplateBinding CornerRadius}"
+                          ToolTipService.Placement="Top"
+                          ToolTipService.ToolTip="{TemplateBinding NavigateUri}">
                         <Grid.BackgroundTransition>
                             <BrushTransition Duration="0:0:0.083" />
                         </Grid.BackgroundTransition>
@@ -337,13 +341,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <Image x:Name="HyperlinkIllustration"
-                               Grid.Column="0"
-                               Width="68"
-                               Height="48"
+                        <Border Grid.Column="0"
+                               Width="{ThemeResource HyperlinkIllustrationWidth}"
+                               Height="{ThemeResource HyperlinkIllustrationHeight}"
+                               CornerRadius="{TemplateBinding CornerRadius}">
+                            <Image x:Name="HyperlinkIllustration"
                                Source="{TemplateBinding IllustrationSource}"
                                Stretch="Uniform" />
-                        
+                        </Border>
+
+
                         <TextBlock x:Name="ContentPresenter"
                                    Grid.Column="1"
                                    HorizontalAlignment="Left"
@@ -359,7 +366,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   Grid.Column="2"
                                                   VerticalAlignment="Center"
                                                   Foreground="{ThemeResource TextHintColorBrush}"
-                                                  Size="Pixels16"/>
+                                                  Size="Pixels16" />
 
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">

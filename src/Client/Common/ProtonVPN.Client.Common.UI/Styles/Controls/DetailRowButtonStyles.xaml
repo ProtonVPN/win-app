@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -22,9 +22,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom">
 
+    <Style BasedOn="{StaticResource DetailRowButtonStyle}" TargetType="custom:DetailRowButton" />
+
     <Style x:Key="DetailRowButtonStyle" TargetType="custom:DetailRowButton">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="Padding" Value="8" />
+        <Setter Property="Padding" Value="12,8" />
         <Setter Property="CornerRadius" Value="8" />
         <Setter Property="Template">
             <Setter.Value>
@@ -34,18 +39,34 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           Background="{TemplateBinding Background}"
                           BackgroundSizing="{TemplateBinding BackgroundSizing}"
                           CornerRadius="{TemplateBinding CornerRadius}">
+                        
+                        <StackPanel Padding="{TemplateBinding Padding}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Spacing="2">
 
-                        <ContentPresenter x:Name="ContentPresenter"
-                                          Padding="8"
-                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          Content="{TemplateBinding Content}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                          ContentTransitions="{TemplateBinding ContentTransitions}"
-                                          Foreground="{ThemeResource TextNormColorBrush}" />
+                            <ContentPresenter x:Name="HeaderPresenter"
+                                              Content="{TemplateBinding Header}"
+                                              FontSize="{StaticResource CaptionFontSize}"
+                                              FontWeight="{StaticResource CaptionFontWeight}"
+                                              Foreground="{ThemeResource TextWeakColorBrush}"
+                                              LineHeight="{StaticResource CaptionLineHeight}"
+                                              TextWrapping="Wrap"
+                                              Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
+
+                            <ContentPresenter x:Name="ContentPresenter"
+                                              Content="{TemplateBinding Content}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              ContentTransitions="{TemplateBinding ContentTransitions}"
+                                              FontSize="{StaticResource BodyStrongFontSize}"
+                                              FontWeight="{StaticResource BodyStrongFontWeight}"
+                                              Foreground="{ThemeResource TextNormColorBrush}"
+                                              LineHeight="{StaticResource BodyStrongLineHeight}"
+                                              TextWrapping="Wrap" />
+
+                        </StackPanel>
 
                         <Border x:Name="Indicator"
-                                Grid.Column="0"
                                 Width="3"
                                 Height="16"
                                 HorizontalAlignment="Left"
@@ -54,10 +75,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 CornerRadius="1.5"
                                 Opacity="0" />
 
+                        <VisualStateManager.CustomVisualStateManager>
+                            <custom:DetailRowButtonVisualStateManager />
+                        </VisualStateManager.CustomVisualStateManager>
+
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
 
                                 <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Disabled" />
 
                                 <VisualState x:Name="PointerOver">
                                     <VisualState.Setters>
@@ -67,7 +93,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                                 <VisualState x:Name="Pressed">
                                     <VisualState.Setters>
-                                        <Setter Target="ContentPresenter.Background" Value="{ThemeResource InteractionDefaultActiveColorBrush}" />
+                                        <Setter Target="ContentContainer.Background" Value="{ThemeResource InteractionDefaultActiveColorBrush}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Active">
+                                    <VisualState.Setters>
+                                        <Setter Target="ContentContainer.Background" Value="{ThemeResource InteractionDefaultActiveColorBrush}" />
                                         <Setter Target="Indicator.Opacity" Value="1" />
                                     </VisualState.Setters>
                                 </VisualState>

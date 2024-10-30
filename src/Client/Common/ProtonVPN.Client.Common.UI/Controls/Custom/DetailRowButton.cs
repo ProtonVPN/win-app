@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,8 +17,39 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
 namespace ProtonVPN.Client.Common.UI.Controls.Custom;
 
-public class DetailRowButton : Button;
+public class DetailRowButton : Button
+{
+    public static readonly DependencyProperty HeaderProperty =
+        DependencyProperty.Register(nameof(Header), typeof(object), typeof(DetailRowButton), new PropertyMetadata(null));
+
+    public object Header
+    {
+        get => (object)GetValue(HeaderProperty);
+        set => SetValue(HeaderProperty, value);
+    }
+}
+
+public class DetailRowButtonVisualStateManager : VisualStateManager
+{
+    protected override bool GoToStateCore(Control control, FrameworkElement templateRoot, string stateName, VisualStateGroup group, VisualState state, bool useTransitions)
+    {
+        if (control is not DetailRowButton drb)
+        {
+            return base.GoToStateCore(control, templateRoot, stateName, group, state, useTransitions);
+        }
+
+        if (drb.Flyout != null && drb.Flyout.IsOpen)
+        {
+            return base.GoToStateCore(control, templateRoot, "Active", group, state, useTransitions);
+        }
+        else
+        {
+            return base.GoToStateCore(control, templateRoot, stateName, group, state, useTransitions);
+        }
+    }
+}

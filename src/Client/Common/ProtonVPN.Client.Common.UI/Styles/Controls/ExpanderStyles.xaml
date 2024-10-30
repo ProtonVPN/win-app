@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -325,14 +325,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ControlTemplate TargetType="Expander">
                     <Grid x:Name="ContentContainer"
                           CornerRadius="8">
-                        
                         <Grid.RowDefinitions>
                             <RowDefinition x:Name="Row0"
                                            Height="Auto" />
                             <RowDefinition x:Name="Row1"
                                            Height="*" />
                         </Grid.RowDefinitions>
-                        
+
                         <ToggleButton x:Name="ExpanderHeader"
                                       Padding="{StaticResource ExpanderHeaderPadding}"
                                       HorizontalAlignment="Stretch"
@@ -349,11 +348,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                       IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                       IsEnabled="{TemplateBinding IsEnabled}"
                                       Style="{StaticResource ConnectionRowExpanderHeaderButtonStyle}" />
-                        
+
                         <!--  The clip is a composition clip applied in code  -->
                         <Border x:Name="ExpanderContentClip"
                                 Grid.Row="1">
-                            
+
                             <Border x:Name="ExpanderContent"
                                     MinHeight="{TemplateBinding MinHeight}"
                                     Padding="{TemplateBinding Padding}"
@@ -379,7 +378,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <VisualStateGroup x:Name="ExpandStates">
                                 <VisualState x:Name="ExpandUp">
                                     <VisualState.Setters>
-                                        <Setter Target="ContentContainer.Background" Value="{ThemeResource InteractionDefaultHoverColorBrush}"/>
+                                        <Setter Target="ContentContainer.Background" Value="{ThemeResource InteractionDefaultHoverColorBrush}" />
                                     </VisualState.Setters>
                                     <VisualState.Storyboard>
                                         <Storyboard>
@@ -420,7 +419,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 </VisualState>
                                 <VisualState x:Name="ExpandDown">
                                     <VisualState.Setters>
-                                        <Setter Target="ContentContainer.Background" Value="{ThemeResource InteractionDefaultHoverColorBrush}"/>
+                                        <Setter Target="ContentContainer.Background" Value="{ThemeResource InteractionDefaultHoverColorBrush}" />
                                     </VisualState.Setters>
                                     <VisualState.Storyboard>
                                         <Storyboard>
@@ -461,11 +460,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 </VisualState>
 
                             </VisualStateGroup>
-                            
+
                             <VisualStateGroup x:Name="ExpandDirectionStates">
-                                
+
                                 <VisualState x:Name="Down" />
-                                
+
                                 <VisualState x:Name="Up">
                                     <VisualState.Setters>
                                         <Setter Target="ExpanderHeader.Style" Value="{StaticResource ExpanderHeaderUpStyle}" />

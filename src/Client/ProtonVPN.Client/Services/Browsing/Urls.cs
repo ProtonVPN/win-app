@@ -84,6 +84,12 @@ public class Urls : IUrls
 
     public string DownloadsPage => "https://protonvpn.com/download";
 
+    public string IpAddressLearnMore => "https://protonvpn.com/blog/what-is-an-ip-address";
+
+    public string IspLearnMore => "https://protonvpn.com/blog/isp";
+
+    public string IncreaseVpnSpeeds => "https://protonvpn.com/support/increase-vpn-speeds";
+
     public void NavigateTo(string url)
     {
         try

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -114,6 +114,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ControlTemplate TargetType="InfoBar">
 
                     <Border x:Name="ContentRoot"
+                            Margin="0,0,0,8"
                             Padding="{TemplateBinding Padding}"
                             VerticalAlignment="Top"
                             Background="{TemplateBinding Background}"
@@ -121,13 +122,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{TemplateBinding CornerRadius}"
                             Opacity="0"
-                            Visibility="{Binding Opacity, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource OpacityToVisibilityConverter}}"
-                            Margin="0,0,0,8">
-
+                            Visibility="{Binding Opacity, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource OpacityToVisibilityConverter}}">
                         <UIElement.RenderTransform>
                             <TranslateTransform x:Name="ContentRootTranslateTransform" />
                         </UIElement.RenderTransform>
-                        
+
                         <Grid HorizontalAlignment="Stretch"
                               ColumnSpacing="8"
                               Grid.ColumnDefinitions="Auto,*,Auto,Auto">
@@ -267,7 +266,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </VisualStateGroup>
 
                             <VisualStateGroup x:Name="InfoBarVisibility">
-                                <VisualState x:Name="InfoBarVisible" >
+                                <VisualState x:Name="InfoBarVisible">
                                     <Storyboard>
                                         <!--  Fade in Info bar  -->
                                         <DoubleAnimation BeginTime="0:0:0.5"
@@ -288,7 +287,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 </VisualState>
                                 <VisualState x:Name="InfoBarCollapsed">
                                     <Storyboard>
-                                        <!--  Fade out Info bar -->
+                                        <!--  Fade out Info bar  -->
                                         <DoubleAnimation BeginTime="0:0:0"
                                                          Storyboard.TargetName="ContentRoot"
                                                          Storyboard.TargetProperty="Opacity"

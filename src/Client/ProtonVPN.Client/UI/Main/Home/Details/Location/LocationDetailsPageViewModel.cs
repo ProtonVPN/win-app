@@ -18,99 +18,94 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using ProtonVPN.Client.Contracts.Bases.ViewModels;
+using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
-using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Bases.ViewModels;
-using ProtonVPN.Client.Contracts.Services.Navigation;
 
 namespace ProtonVPN.Client.UI.Main.Home.Details.Location;
 
 public partial class LocationDetailsPageViewModel : PageViewModelBase<IDetailsViewNavigator>,
-    IEventMessageReceiver<SettingChangedMessage>,
+    IEventMessageReceiver<DeviceLocationChangedMessage>,
     IEventMessageReceiver<ConnectionStatusChanged>
 {
     private readonly ISettings _settings;
+    private readonly IConnectionManager _connectionManager;
 
     [ObservableProperty]
-    private string _country;
+    [NotifyPropertyChangedFor(nameof(Country))]
+    [NotifyPropertyChangedFor(nameof(IpAddress))]
+    [NotifyPropertyChangedFor(nameof(Isp))]
+    private DeviceLocation _deviceLocation = DeviceLocation.Unknown;
 
-    [ObservableProperty]
-    private string _ipAddress;
+    public string Country => Localizer.GetCountryName(DeviceLocation.CountryCode);
+    public string IpAddress => DeviceLocation.IpAddress;
+    public string Isp => DeviceLocation.Isp;
 
-    [ObservableProperty]
-    private string _isp;
-
-    [ObservableProperty]
-    private bool _isConnected;
-
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(ProtectionLabel))]
-    [NotifyPropertyChangedFor(nameof(ProtectionSubLabel))]
-    private bool _isConnecting;
-
-    [ObservableProperty]
-    private bool _isDisconnected;
-
-    public string ProtectionLabel => Localizer.Get(IsConnecting
-        ? "Home_ConnectionDetails_Connecting"
-        : "Home_ConnectionDetails_Unprotected");
-
-    public string ProtectionSubLabel => Localizer.Get(IsConnecting
-        ? "Home_ConnectionDetails_ConnectingSubLabel"
-        : "Home_ConnectionDetails_UnprotectedSubLabel");
+    public bool IsDisconnected => _connectionManager.IsDisconnected;
+    public bool IsConnecting => _connectionManager.IsConnecting;
 
     public LocationDetailsPageViewModel(
         ISettings settings,
         IDetailsViewNavigator viewNavigator,
         ILocalizationProvider localizer,
         ILogger logger,
-        IIssueReporter issueReporter)
+        IIssueReporter issueReporter,
+        IConnectionManager connectionManager)
+
         : base(viewNavigator, localizer, logger, issueReporter)
     {
         _settings = settings;
-
-        InvalidateLocation();
+        _connectionManager = connectionManager;
     }
 
-    public void Receive(SettingChangedMessage message)
+    public void Receive(DeviceLocationChangedMessage message)
     {
-        ExecuteOnUIThread(() =>
+        if (IsActive)
         {
-            if (message.PropertyName == nameof(ISettings.DeviceLocation))
-            {
-                InvalidateLocation();
-            }
-        });
+            ExecuteOnUIThread(InvalidateLocation);
+        }
+    }
+
+    public void Receive(ConnectionStatusChanged message)
+    {
+        if (IsActive)
+        {
+            ExecuteOnUIThread(InvalidateConnectionStatus);
+        }
+    }
+
+    protected override void OnActivated()
+    {
+        base.OnActivated();
+
+        InvalidateLocation();
+        InvalidateConnectionStatus();
     }
 
     protected override void OnLanguageChanged()
     {
         base.OnLanguageChanged();
 
-        InvalidateLocation();
+        OnPropertyChanged(nameof(Country));
     }
 
     private void InvalidateLocation()
     {
-        IpAddress = _settings.DeviceLocation?.IpAddress ?? string.Empty;
-        Country = Localizer.GetCountryName(_settings.DeviceLocation?.CountryCode) ?? string.Empty;
-        Isp = _settings.DeviceLocation?.Isp ?? string.Empty;
+        DeviceLocation = _settings.DeviceLocation ?? DeviceLocation.Unknown;
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    private void InvalidateConnectionStatus()
     {
-        ExecuteOnUIThread(() =>
-        {
-            IsConnected = message.ConnectionStatus == ConnectionStatus.Connected;
-            IsConnecting = message.ConnectionStatus == ConnectionStatus.Connecting;
-            IsDisconnected = message.ConnectionStatus == ConnectionStatus.Disconnected;
-        });
+        OnPropertyChanged(nameof(IsDisconnected));
+        OnPropertyChanged(nameof(IsConnecting));
     }
 }

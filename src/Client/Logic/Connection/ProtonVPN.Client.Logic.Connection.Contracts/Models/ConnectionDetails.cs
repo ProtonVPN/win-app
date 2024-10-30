@@ -30,12 +30,15 @@ public class ConnectionDetails
 {
     public IConnectionIntent OriginalConnectionIntent { get; }
 
-    public Server Server { get; }
-    public PhysicalServer PhysicalServer { get; }
-
-    public VpnProtocol Protocol { get;  }
-
     public DateTime EstablishedConnectionTimeUtc { get; }
+
+
+    public Server Server { get; private set; }
+
+    public PhysicalServer PhysicalServer { get; private set; }
+
+    public VpnProtocol Protocol { get; private set; }
+
 
     public string ExitCountryCode => Server.ExitCountry;
     public bool IsSecureCore => Server.Features.IsSupported(ServerFeatures.SecureCore);
@@ -48,7 +51,6 @@ public class ConnectionDetails
     public ServerTiers? ServerTier => Server.Tier;
     public string ServerName => Server.Name;
     public double ServerLoad => Server.Load / 100D;
-    public TimeSpan? ServerLatency { get; } // VPNWIN-2095 - Calculate latency
     public bool IsGateway => Server.Features.IsSupported(ServerFeatures.B2B);
     public string GatewayName => Server.GatewayName;
 
@@ -56,6 +58,14 @@ public class ConnectionDetails
     {
         OriginalConnectionIntent = connectionIntent;
         EstablishedConnectionTimeUtc = DateTime.UtcNow;
+
+        Server = server;
+        PhysicalServer = physicalServer;
+        Protocol = protocol;
+    }
+
+    public void Update(Server server, PhysicalServer physicalServer, VpnProtocol protocol)
+    {
         Server = server;
         PhysicalServer = physicalServer;
         Protocol = protocol;

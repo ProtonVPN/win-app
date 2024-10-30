@@ -48,38 +48,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <StackPanel x:Name="ContentArea"
                 Margin="16,8">
 
-        <gallery:SampleControl Header="User Location">
-            <controls:DeviceLocationControl Country="{Binding Text, ElementName=tbCountry, Mode=OneWay}"
-                                            IpAddress="{Binding Text, ElementName=tbIpAddress, Mode=OneWay}"
-                                            IsLocationHidden="{Binding IsChecked, ElementName=rbConnected, Mode=OneWay}"
-                                            IsLocationVisible="{Binding IsChecked, ElementName=rbDisconnected, Mode=OneWay}"
-                                            IsScrambling="{Binding IsChecked, ElementName=rbConnecting, Mode=OneWay}" />
-            <gallery:SampleControl.Options>
-                <StackPanel Orientation="Vertical"
-                            Spacing="4">
-                    <TextBox Name="tbCountry"
-                             PlaceholderText="Country"
-                             Text="Lithuania" />
-                    <TextBox Name="tbIpAddress"
-                             PlaceholderText="Ip Address"
-                             Text="158.6.140.191" />
-                    <RadioButton Name="rbDisconnected"
-                                 Margin="4,4,0,0"
-                                 Content="Disconnected"
-                                 GroupName="ConnectionStatusGroup"
-                                 IsChecked="True" />
-                    <RadioButton Name="rbConnecting"
-                                 Margin="4,4,0,0"
-                                 Content="Connecting"
-                                 GroupName="ConnectionStatusGroup" />
-                    <RadioButton Name="rbConnected"
-                                 Margin="4,4,0,0"
-                                 Content="Connected"
-                                 GroupName="ConnectionStatusGroup" />
-                </StackPanel>
-            </gallery:SampleControl.Options>
-        </gallery:SampleControl>
-
         <gallery:SampleControl Header="Server load">
             <controls:ServerLoadControl FirstThreshold="{Binding RangeStart, ElementName=rsThresholds, Mode=OneWay}"
                                         SecondThreshold="{Binding RangeEnd, ElementName=rsThresholds, Mode=OneWay}"

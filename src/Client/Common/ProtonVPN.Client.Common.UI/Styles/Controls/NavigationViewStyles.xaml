@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -288,7 +288,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <ContentPresenter Content="{TemplateBinding Content}"
                                           ContentTemplate="{TemplateBinding ContentTemplate}"
                                           ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                          ContentTransitions="{TemplateBinding ContentTransitions}"/>
+                                          ContentTransitions="{TemplateBinding ContentTransitions}" />
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="ItemOnNavigationViewListPositionStates">
                                 <VisualState x:Name="OnLeftNavigation" />
@@ -342,8 +342,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                    Header="{TemplateBinding Header}"
                                                                    Icon="{TemplateBinding Icon}"
                                                                    InfoBadge="{TemplateBinding InfoBadge}"
-                                                                   OnHoverContent="{TemplateBinding OnHoverContent}"
                                                                    IsTabStop="false"
+                                                                   OnHoverContent="{TemplateBinding OnHoverContent}"
                                                                    UseSystemFocusVisuals="{TemplateBinding UseSystemFocusVisuals}" />
                         <ItemsRepeater x:Name="NavigationViewItemMenuItemsHost"
                                        Grid.Row="1"
@@ -469,7 +469,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     </Viewbox>
                                 </Border>
 
-                                <TextBlock x:Name="HeaderPresenter" 
+                                <TextBlock x:Name="HeaderPresenter"
                                            Grid.Column="1"
                                            Margin="{ThemeResource NavigationViewItemContentPresenterMargin}"
                                            Padding="{TemplateBinding Padding}"
@@ -477,12 +477,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                            AutomationProperties.AccessibilityView="Raw"
                                            Foreground="{TemplateBinding Foreground}"
-                                           Text="{TemplateBinding Header}" 
-                                           TextTrimming="CharacterEllipsis"/>
+                                           Text="{TemplateBinding Header}"
+                                           TextTrimming="CharacterEllipsis" />
 
                                 <StackPanel Grid.Column="2"
-                                            Orientation="Horizontal"
-                                            Margin="{ThemeResource NavigationViewItemContentPresenterMargin}">
+                                            Margin="{ThemeResource NavigationViewItemContentPresenterMargin}"
+                                            Orientation="Horizontal">
 
                                     <ContentPresenter x:Name="HoverContentPresenter"
                                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -491,7 +491,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                       Content="{TemplateBinding OnHoverContent}"
                                                       ContentTransitions="{TemplateBinding ContentTransitions}"
                                                       Foreground="{ThemeResource TextWeakColorBrush}"
-                                                      Visibility="Collapsed"/>
+                                                      Visibility="Collapsed" />
 
                                     <ContentPresenter x:Name="ContentPresenter"
                                                       Margin="4,0,0,0"
@@ -504,12 +504,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                       ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
                                                       ContentTransitions="{TemplateBinding ContentTransitions}"
                                                       Foreground="{ThemeResource TextWeakColorBrush}"
-                                                      Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}"/>
+                                                      Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
 
                                     <ContentPresenter x:Name="InfoBadgePresenter"
                                                       VerticalAlignment="Center"
-                                                      Content="{TemplateBinding InfoBadge}" 
-                                                      Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}"/>
+                                                      Content="{TemplateBinding InfoBadge}"
+                                                      Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
 
                                     <Grid xmlns:local="using:Microsoft.UI.Xaml.Controls"
                                           x:Name="ExpandCollapseChevron"
@@ -713,5 +713,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Setter.Value>
         </Setter>
     </Style>
-    
+
 </ResourceDictionary>
