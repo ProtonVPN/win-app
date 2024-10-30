@@ -49,6 +49,9 @@ public class SetUp
         Process.GetProcesses()
             .Where(process => process.ProcessName.StartsWith("ProtonVPN"))
             .ToList()
-            .ForEach(process => process.Kill());
+            .ForEach(process => {
+                process.Kill();
+                process.Dispose();
+            });
     }
 }
