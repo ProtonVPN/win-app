@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -20,8 +20,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:toolkitConverters="using:CommunityToolkit.WinUI.Converters"
-                    xmlns:converters="using:ProtonVPN.Client.Common.UI.Converters">
+                    xmlns:converters="using:ProtonVPN.Client.Common.UI.Converters"
+                    xmlns:toolkitConverters="using:CommunityToolkit.WinUI.Converters">
 
     <converters:NotNullToVisibilityConverter x:Key="NotNullToVisibilityConverter" />
     <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
@@ -31,25 +31,25 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <converters:BooleanToNavigationBackButtonVisibilityConverter x:Key="BooleanToNavigationBackButtonVisibilityConverter" />
     <converters:BooleanToNavigationPaneDisplayModeConverter x:Key="BooleanToNavigationPaneDisplayModeConverter" />
     <converters:NotBooleanToVisibilityConverter x:Key="NotBooleanToVisibilityConverter" />
-    <converters:BooleanToScrollBarVisibilityConverter x:Key="BooleanToScrollBarVisibilityConverter"/>
+    <converters:BooleanToScrollBarVisibilityConverter x:Key="BooleanToScrollBarVisibilityConverter" />
     <converters:DoubleToGridLengthConverter x:Key="DoubleToStarGridLengthConverter"
-                                            UnitType="Star"/>
+                                            UnitType="Star" />
     <converters:DoubleToGridLengthConverter x:Key="ReverseDoubleToStarGridLengthConverter"
-                                            UnitType="Star"
-                                            IsReverse="True"/>
+                                            IsReverse="True"
+                                            UnitType="Star" />
     <converters:DoubleToGridLengthConverter x:Key="DoubleToPixelGridLengthConverter"
-                                            UnitType="Pixel"/>
-    <converters:DoubleToPercentFormatConverter x:Key="DoubleToPercentFormatConverter"/>
+                                            UnitType="Pixel" />
+    <converters:DoubleToPercentFormatConverter x:Key="DoubleToPercentFormatConverter" />
     <converters:FocusStateToBooleanConverter x:Key="FocusStateToBooleanConverter" />
-    <converters:OpacityToVisibilityConverter x:Key="OpacityToVisibilityConverter"/>
+    <converters:OpacityToVisibilityConverter x:Key="OpacityToVisibilityConverter" />
     <toolkitConverters:StringVisibilityConverter x:Key="StringVisibilityConverter" />
     <converters:IsStringNotEmptyConverter x:Key="IsStringNotEmptyConverter" />
-    <converters:ProfileColorToBrushConverter x:Key="ProfileColorToBrushConverter" 
-                                            BlueColor="#7B7BFB"
-                                            PurpleColor="#A257FF"
-                                            GreenColor="#7FDF66"
-                                            RedColor="#F45E5E"
-                                            OrangeColor="#F79F4D"
-                                            YellowColor="#F9E646"/>
-    <converters:CountryCodeToFlagImageSourceConverter x:Key="CountryCodeToFlagImageSourceConverter"/>
+    <converters:ProfileColorToBrushConverter x:Key="ProfileColorToBrushConverter"
+                                             BlueColor="#7B7BFB"
+                                             GreenColor="#7FDF66"
+                                             OrangeColor="#F79F4D"
+                                             PurpleColor="#A257FF"
+                                             RedColor="#F45E5E"
+                                             YellowColor="#F9E646" />
+    <converters:CountryCodeToFlagImageSourceConverter x:Key="CountryCodeToFlagImageSourceConverter" />
 </ResourceDictionary>

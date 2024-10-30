@@ -112,6 +112,7 @@ using ProtonVPN.Common.Legacy.OS.Processes;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles.Overlays;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles.Controls;
 using ProtonVPN.Client.Logic.Searches.Installers;
+using ProtonVPN.Client.UI.Main.Home.Details.Flyouts;
 
 namespace ProtonVPN.Client.Modules;
 
@@ -312,6 +313,14 @@ public class AppModule : Module
         RegisterViewModel<WhatsNewB2BOverlayViewModel>(builder);
         RegisterViewModel<WhatsNewFreeOverlayViewModel>(builder);
         RegisterViewModel<WhatsNewPaidOverlayViewModel>(builder);
+
+        RegisterViewModel<IpAddressFlyoutViewModel>(builder);
+        RegisterViewModel<CountryFlyoutViewModel>(builder);
+        RegisterViewModel<IspFlyoutViewModel>(builder);
+        RegisterViewModel<ServerLoadFlyoutViewModel>(builder);
+        RegisterViewModel<ProtocolFlyoutViewModel>(builder);
+        RegisterViewModel<VolumeFlyoutViewModel>(builder).AutoActivate();
+        RegisterViewModel<SpeedFlyoutViewModel>(builder).AutoActivate();
 
         builder.RegisterType<ReleaseViewModelFactory>().SingleInstance();
     }

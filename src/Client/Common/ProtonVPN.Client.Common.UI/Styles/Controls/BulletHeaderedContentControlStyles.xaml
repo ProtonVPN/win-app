@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -48,7 +48,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        
+
                         <ContentPresenter x:Name="BulletPresenter"
                                           Grid.Row="0"
                                           Grid.Column="0"
@@ -180,7 +180,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                           Grid.Column="0"
                                           Width="{ThemeResource DefaultConnectionIntentBulletPresenterWidth}"
                                           VerticalAlignment="Top"
-                                          Content="{TemplateBinding BulletContent}"/>
+                                          Content="{TemplateBinding BulletContent}" />
 
                         <ContentPresenter x:Name="HeaderPresenter"
                                           Grid.Row="0"
@@ -200,8 +200,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                           Content="{TemplateBinding Content}"
                                           FontSize="{StaticResource BodyFontSize}"
                                           FontWeight="{StaticResource BodyFontWeight}"
-                                          LineHeight="{StaticResource BodyLineHeight}"
                                           Foreground="{ThemeResource TextWeakColorBrush}"
+                                          LineHeight="{StaticResource BodyLineHeight}"
                                           TextWrapping="Wrap"
                                           Visibility="{Binding Content, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}" />
 

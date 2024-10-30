@@ -147,6 +147,9 @@
   <data name="Common_Actions_Upgrade" xml:space="preserve">
     <value>Upgrade</value>
   </data>
+  <data name="Common_Actions_Change" xml:space="preserve">
+    <value>Change</value>
+  </data>
   <data name="Common_Links_LearnMore" xml:space="preserve">
     <value>Learn more</value>
   </data>
@@ -1351,7 +1354,7 @@
     <comment>Unit for Terabytes per second</comment>
   </data>
   <data name="Format_SpeedUnit" xml:space="preserve">
-    <value>Speed {0}</value>
+    <value>Speed ({0})</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Time_Day_One" xml:space="preserve">
@@ -1457,9 +1460,6 @@
   <data name="Home_ConnectionDetails_Country" xml:space="preserve">
     <value>Country</value>
   </data>
-  <data name="Home_ConnectionDetails_Download" xml:space="preserve">
-    <value>Download</value>
-  </data>
   <data name="Home_ConnectionDetails_Hide" xml:space="preserve">
     <value>Hide connection details</value>
   </data>
@@ -1474,8 +1474,8 @@
     <value>Connection details</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
-  <data name="Home_ConnectionDetails_Latency" xml:space="preserve">
-    <value>Latency</value>
+  <data name="Home_ConnectionDetails_Volume" xml:space="preserve">
+    <value>Volume</value>
   </data>
   <data name="Home_ConnectionDetails_MyIp" xml:space="preserve">
     <value>My IP</value>
@@ -1504,9 +1504,6 @@
   </data>
   <data name="Home_ConnectionDetails_Title" xml:space="preserve">
     <value>Connection details</value>
-  </data>
-  <data name="Home_ConnectionDetails_Upload" xml:space="preserve">
-    <value>Upload</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp" xml:space="preserve">
     <value>VPN IP</value>
@@ -2574,8 +2571,14 @@ This higher level of protection may cause higher latency and slower speeds.</val
   <data name="VpnProtocol_OpenVPN_Tcp" xml:space="preserve">
     <value>OpenVPN (TCP)</value>
   </data>
+  <data name="VpnProtocol_OpenVPN_Tcp_Description" xml:space="preserve">
+    <value>Established, well-tested, and secure</value>
+  </data>
   <data name="VpnProtocol_OpenVPN_Udp" xml:space="preserve">
     <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Udp_Description" xml:space="preserve">
+    <value>Established, well-tested, and secure</value>
   </data>
   <data name="VpnProtocol_Smart" xml:space="preserve">
     <value>Smart</value>
@@ -2583,11 +2586,20 @@ This higher level of protection may cause higher latency and slower speeds.</val
   <data name="VpnProtocol_WireGuard_Udp" xml:space="preserve">
     <value>WireGuard (UDP)</value>
   </data>
+  <data name="VpnProtocol_WireGuard_Udp_Description" xml:space="preserve">
+    <value>State-of-the-art protocol for security and performance</value>
+  </data>
   <data name="VpnProtocol_WireGuard_Tcp" xml:space="preserve">
     <value>WireGuard (TCP)</value>
   </data>
+  <data name="VpnProtocol_WireGuard_Tcp_Description" xml:space="preserve">
+    <value>State-of-the-art protocol for security and performance</value>
+  </data>
   <data name="VpnProtocol_WireGuard_Tls" xml:space="preserve">
     <value>Stealth</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls_Description" xml:space="preserve">
+    <value>Overcomes VPN blocks by hiding your connection from censors</value>
   </data>
   <data name="SignIn_Form_Email" xml:space="preserve">
     <value>Email</value>
@@ -3446,8 +3458,138 @@ Enjoy the best of Proton privacy.</value>
   <data name="Automation_Properties_Home_Page" xml:space="preserve">
     <value>Home page</value>
   </data>
+  <data name="Automation_Properties_LocationDetails_Page" xml:space="preserve">
+    <value>Location details page</value>
+  </data>
+  <data name="Automation_Properties_ConnectionDetails_Page" xml:space="preserve">
+    <value>Connection details page</value>
+  </data>
   <data name="LoadingPage_Tip" xml:space="preserve">
     <value>A better world starts with privacy and digital freedom.</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIp" xml:space="preserve">
+    <value>VPN IP</value>
+  </data>
+  <data name="Flyouts_IpAddress_YourIp" xml:space="preserve">
+    <value>Your IP</value>
+  </data>
+  <data name="Flyouts_IpAddress_Title" xml:space="preserve">
+    <value>IP address</value>
+  </data>
+  <data name="Flyouts_IpAddress_YourIpIsVisible" xml:space="preserve">
+    <value>Your IP address is visible</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Connected" xml:space="preserve">
+    <value>Your VPN IP masks your real IP address. This makes it look like you’re browsing from your VPN location, so your online activity can’t be linked to your device.</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected" xml:space="preserve">
+    <value>This unique code can be used by websites and ISPs (Internet Service Providers) to link your location and browsing history to your device. 
+
+A VPN masks your IP address, making it harder for your activity to be traced back to you.</value>
+  </data>
+  <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle" xml:space="preserve">
+    <value>What is an IP address?</value>
+  </data>
+  <data name="Flyouts_Country_Title" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="Flyouts_Country_Warning" xml:space="preserve">
+    <value>Connect to VPN to change your virtual location</value>
+  </data>
+  <data name="Flyouts_Country_Description" xml:space="preserve">
+    <value>Browsing without a VPN leaves you vulnerable to location-based internet restrictions.
+
+Websites can use geoblocks to restrict content to certain locations. Governments can also instruct ISPs (Internet Service Providers) to block certain websites in their country.
+
+A VPN makes it looks like you’re browsing from somewhere else, protecting you from surveillance and censorship.</value>
+  </data>
+  <data name="Flyouts_Isp_Title" xml:space="preserve">
+    <value>Provider</value>
+  </data>
+  <data name="Flyouts_Isp_Warning" xml:space="preserve">
+    <value>Your provider can see which websites you visit</value>
+  </data>
+  <data name="Flyouts_Isp_Description" xml:space="preserve">
+    <value>Your ISP (Internet Service Provider) is the company that connects you to the internet. 
+
+They can log your online activity. In some countries, they can sell your data to advertisers. In others, they can be required to hand it over to the government. 
+
+A VPN hides your IP address, protecting you from ISP interference.</value>
+  </data>
+  <data name="Flyouts_Isp_KnowledgeBaseLinkTitle" xml:space="preserve">
+    <value>What is an Internet Service Provider (ISP)?</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Title" xml:space="preserve">
+    <value>Server load</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Description" xml:space="preserve">
+    <value>Server load shows how close a server is to its maximum capacity. A high server load can slow down your connection.</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Low" xml:space="preserve">
+    <value>Low (1-75%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Low_Description" xml:space="preserve">
+    <value>Lightning fast speeds</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Medium" xml:space="preserve">
+    <value>Medium (76-90%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Medium_Description" xml:space="preserve">
+    <value>Unlikely to affect connection speed</value>
+  </data>
+  <data name="Flyouts_ServerLoad_High" xml:space="preserve">
+    <value>High (91-100%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_High_Description" xml:space="preserve">
+    <value>VPN may run slower than normal</value>
+  </data>
+  <data name="Flyouts_ServerLoad_KnowledgeBaseLinkTitle" xml:space="preserve">
+    <value>What is server load?</value>
+  </data>
+  <data name="Flyouts_Protocol_Title" xml:space="preserve">
+    <value>Protocol</value>
+  </data>
+  <data name="Flyouts_Protocol_Description" xml:space="preserve">
+    <value>A VPN protocol determines how traffic is encrypted and transmitted over the VPN.</value>
+  </data>
+  <data name="Flyouts_Protocol_KnowledgeBaseLinkTitle" xml:space="preserve">
+    <value>Which VPN protocol is the best?</value>
+  </data>
+  <data name="Flyouts_Volume_Title" xml:space="preserve">
+    <value>Volume</value>
+  </data>
+  <data name="Flyouts_Volume_Download" xml:space="preserve">
+    <value>Download</value>
+    <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
+  </data>
+  <data name="Flyouts_Volume_Upload" xml:space="preserve">
+    <value>Upload</value>
+    <comment>Refers to the uploaded volume (e.g., Upload [new line] 250 MB).</comment>
+  </data>
+  <data name="Flyouts_Volume_Description" xml:space="preserve">
+    <value>This shows how much traffic has routed through your VPN.</value>
+  </data>
+  <data name="Flyouts_Speed_Title" xml:space="preserve">
+    <value>Speed</value>
+  </data>
+  <data name="Flyouts_Speed_Download" xml:space="preserve">
+    <value>Download</value>
+    <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
+  </data>
+  <data name="Flyouts_Speed_Upload" xml:space="preserve">
+    <value>Upload</value>
+    <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
+  </data>
+  <data name="Flyouts_Speed_BoostedByVpnAccelerator" xml:space="preserve">
+    <value>Boosted by VPN Accelerator</value>
+  </data>
+  <data name="Flyouts_Speed_Description" xml:space="preserve">
+    <value>This shows how much data gets transmitted through Proton VPN each second.
+
+Speed is based on your device’s current activity — it doesn’t represent the VPN’s maximum speed.</value>
+  </data>
+  <data name="Flyouts_Speed_KnowledgeBaseLinkTitle" xml:space="preserve">
+    <value>Understanding and increasing VPN connection speeds</value>
   </data>
   <data name="Search_NoInput_TrySearchingFor" xml:space="preserve">
     <value>Try searching for...</value>

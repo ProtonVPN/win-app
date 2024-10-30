@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -64,7 +64,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
-                            
+
                             <ContentPresenter x:Name="WindowContentContainer"
                                               Grid.Row="0"
                                               Grid.RowSpan="2"
@@ -95,7 +95,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                            VerticalAlignment="Center"
                                            AutomationProperties.AutomationId="ApplicationIcon"
                                            Source="{TemplateBinding IconSource}"
-                                           Stretch="Uniform"/>
+                                           Stretch="Uniform" />
 
                                     <TextBlock x:Name="WindowTitle"
                                                VerticalAlignment="Center"

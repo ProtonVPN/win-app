@@ -29,23 +29,24 @@ using ProtonVPN.Client.Common.Collections;
 using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Common.Helpers;
 using ProtonVPN.Client.Common.Queues;
-using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Contracts.Bases.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
-using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models;
+using ProtonVPN.Client.UI.Main.Home.Details.Contracts;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Bases.ViewModels;
 using SkiaSharp;
 
 namespace ProtonVPN.Client.UI.Main.Home.Details.Connection;
 
-public partial class VpnSpeedViewModel : ViewModelBase,
-    IEventMessageReceiver<ConnectionStatusChanged>
+public partial class VpnSpeedViewModel : ActivatableViewModelBase, IConnectionDetailsAware
 {
+    public SmartObservableCollection<double> ScaledDownloadDataPoints = [];
+    public SmartObservableCollection<double> ScaledUploadDataPoints = [];
+
     private const int MAX_DATA_POINTS = 30;
     private const int DEFAULT_VALUE = 0;
 
@@ -53,6 +54,8 @@ public partial class VpnSpeedViewModel : ViewModelBase,
 
     private readonly FixedSizeQueue<long> _downloadDataPoints = new(MAX_DATA_POINTS, DEFAULT_VALUE);
     private readonly FixedSizeQueue<long> _uploadDataPoints = new(MAX_DATA_POINTS, DEFAULT_VALUE);
+
+    private ICartesianAxis _yAxis;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(FormattedDownloadSpeed))]
@@ -72,6 +75,10 @@ public partial class VpnSpeedViewModel : ViewModelBase,
     [NotifyPropertyChangedFor(nameof(FormattedTotalVolume))]
     private long _uploadVolume;
 
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(SpeedUnit))]
+    private ByteMetrics _metric;
+
     public string FormattedDownloadSpeed => Localizer.GetFormattedSpeed(DownloadSpeed);
 
     public string FormattedUploadSpeed => Localizer.GetFormattedSpeed(UploadSpeed);
@@ -82,11 +89,7 @@ public partial class VpnSpeedViewModel : ViewModelBase,
 
     public string FormattedTotalVolume => Localizer.GetFormattedSize(DownloadVolume + UploadVolume);
 
-    public string SpeedUnit => Localizer.GetFormat("Format_SpeedUnit", Localizer.GetSpeedUnit(_metric));
-
-    private ByteMetrics _metric;
-
-    private ICartesianAxis _yAxis;
+    public string SpeedUnit => Localizer.GetFormat("Format_SpeedUnit", Localizer.GetSpeedUnit(Metric));
 
     public ISeries[] Series { get; set; } = [];
 
@@ -95,11 +98,6 @@ public partial class VpnSpeedViewModel : ViewModelBase,
     public IEnumerable<ICartesianAxis> YAxes { get; set; } = [];
 
     public Margin DrawMargin { get; } = new(Margin.Auto);
-
-    public SmartObservableCollection<double> ScaledDownloadDataPoints = [];
-
-    public SmartObservableCollection<double> ScaledUploadDataPoints = [];
-
     public SmartObservableCollection<double> Separators { get; } = [];
 
     public VpnSpeedViewModel(
@@ -114,42 +112,79 @@ public partial class VpnSpeedViewModel : ViewModelBase,
         InitializeSpeedGraph();
     }
 
+    public void Refresh(ConnectionDetails? connectionDetails, TrafficBytes volume, TrafficBytes speed)
+    {
+        DownloadSpeed = (long)speed.BytesIn;
+        UploadSpeed = (long)speed.BytesOut;
+
+        DownloadVolume = (long)volume.BytesIn;
+        UploadVolume = (long)volume.BytesOut;
+
+        _downloadDataPoints.Enqueue(DownloadSpeed);
+        _uploadDataPoints.Enqueue(UploadSpeed);
+
+        if (IsActive)
+        {
+            InvalidateSpeedGraph();
+        }
+    }
+
+    protected override void OnActivated()
+    {
+        base.OnActivated();
+
+        InvalidateSpeedGraph();
+    }
+
+    protected override void OnLanguageChanged()
+    {
+        base.OnLanguageChanged();
+
+        OnPropertyChanged(nameof(FormattedDownloadSpeed));
+        OnPropertyChanged(nameof(FormattedUploadSpeed));
+        OnPropertyChanged(nameof(FormattedDownloadVolume));
+        OnPropertyChanged(nameof(FormattedUploadVolume));
+        OnPropertyChanged(nameof(FormattedTotalVolume));
+        OnPropertyChanged(nameof(SpeedUnit));
+    }
+
     private void InitializeSpeedGraph()
     {
         Series =
         [
+            GetLineSeries(ScaledUploadDataPoints, new SKColor(247, 96, 123, 255), useDashEffect: true),
             GetLineSeries(ScaledDownloadDataPoints, new SKColor(75, 185, 157, 255)),
-            GetLineSeries(ScaledUploadDataPoints, new SKColor(247, 96, 123, 255)),
         ];
 
         _yAxis = new Axis
         {
-            Position = AxisPosition.End,
-            LabelsAlignment = Align.End,
+            Position = AxisPosition.Start,
+            LabelsAlignment = Align.Start,
             LabelsPaint = new SolidColorPaint(new SKColor(167, 164, 181, 255)),
-            TextSize = 12,
+            TextSize = 10,
             SeparatorsPaint = new SolidColorPaint(new SKColor(74, 70, 88, 255))
             {
                 StrokeThickness = 1,
                 PathEffect = new DashEffect([3, 3]),
                 ZIndex = 0,
             },
-            CustomSeparators = Separators,
+            CustomSeparators = Separators, 
         };
 
         XAxes = new List<ICartesianAxis> { new Axis { IsVisible = false, CustomSeparators = [], } };
         YAxes = new List<ICartesianAxis> { _yAxis };
     }
 
-    private LineSeries<double> GetLineSeries(IEnumerable<double> values, SKColor color)
+    private LineSeries<double> GetLineSeries(IEnumerable<double> values, SKColor color, bool useDashEffect = false)
     {
         return new()
         {
             Values = values,
             Stroke = new SolidColorPaint(color)
             {
-                StrokeThickness = 2,
-                ZIndex = 1,
+                StrokeThickness = 1,
+                PathEffect = useDashEffect ? new DashEffect([3, 3]) : null,
+                ZIndex = 2,
             },
             Fill = new LinearGradientPaint(
                 [
@@ -165,37 +200,25 @@ public partial class VpnSpeedViewModel : ViewModelBase,
         };
     }
 
-    public async void RefreshAsync(bool isToUpdateGraph)
+    private void InvalidateSpeedGraph()
     {
-        TrafficBytes speed = await _connectionManager.GetCurrentSpeedAsync();
+        long maxSpeed = Math.Max(_downloadDataPoints.Max(), _uploadDataPoints.Max());
+        (double scaledMaxSpeed, ByteMetrics metric) = ByteConversionHelper.CalculateSize(maxSpeed);
 
-        DownloadSpeed = (long)speed.BytesIn;
-        UploadSpeed = (long)speed.BytesOut;
-
-        TrafficBytes volume = await _connectionManager.GetTrafficBytesAsync();
-
-        DownloadVolume = (long)volume.BytesIn;
-        UploadVolume = (long)volume.BytesOut;
-
-        _downloadDataPoints.Enqueue(DownloadSpeed);
-        _uploadDataPoints.Enqueue(UploadSpeed);
-
-        if (isToUpdateGraph)
-        {
-            UpdateScaledDataPoints();
-            UpdateSeparators();
-        }
-    }
-
-    private void UpdateScaledDataPoints()
-    {
-        _metric = GetMetric();
-        double scaleFactor = ByteConversionHelper.GetScaleFactor(_metric);
+        Metric = metric;
+        double scaleFactor = ByteConversionHelper.GetScaleFactor(Metric);
 
         OnPropertyChanged(nameof(SpeedUnit));
 
         ScaledDownloadDataPoints.Reset(_downloadDataPoints.Select(n => GetScaledDataPoint(n, scaleFactor)).ToList());
         ScaledUploadDataPoints.Reset(_uploadDataPoints.Select(n => GetScaledDataPoint(n, scaleFactor)).ToList());
+
+        double roundedScaledMaxSpeed = CalculateYAxisLimit(scaledMaxSpeed);
+
+        _yAxis.MinLimit = 0;
+        _yAxis.MaxLimit = roundedScaledMaxSpeed;
+
+        Separators.Reset([0, roundedScaledMaxSpeed / 2.0, roundedScaledMaxSpeed]);
     }
 
     private double GetScaledDataPoint(long number, double scaleFactor)
@@ -203,31 +226,38 @@ public partial class VpnSpeedViewModel : ViewModelBase,
         return Math.Round(number / scaleFactor, 1);
     }
 
-    private ByteMetrics GetMetric()
+    private double CalculateYAxisLimit(double maxValue)
     {
-        long maxSpeed = Math.Max(_downloadDataPoints.Max(), _uploadDataPoints.Max());
-        (_, ByteMetrics metric) = ByteConversionHelper.CalculateSize(maxSpeed);
-        return metric;
-    }
-
-    private void UpdateSeparators()
-    {
-        double maxSpeed = Math.Max(ScaledDownloadDataPoints.Max(), ScaledUploadDataPoints.Max());
-
-        _yAxis.MinLimit = 0;
-        _yAxis.MaxLimit = maxSpeed;
-
-        Separators.Reset([0, Math.Round(maxSpeed / 2, 1), Math.Round(maxSpeed, 1)]);
-    }
-
-    public void Receive(ConnectionStatusChanged message)
-    {
-        if (message.ConnectionStatus != ConnectionStatus.Connected && message.ConnectionStatus != ConnectionStatus.Disconnected)
+        if (maxValue <= 0)
         {
-            return;
+            return 0;
         }
 
-        ExecuteOnUIThread(InvalidateDataPoints);
+        double roundedLimit;
+
+        if (maxValue < 1)
+        {
+            // For values less than 1, round up to the nearest 0.2
+            roundedLimit = Math.Ceiling(maxValue * 5) / 5;
+        }
+        else if (maxValue <= 5)
+        {
+            // For values between 1 and 5, round up to the nearest 1
+            roundedLimit = Math.Ceiling(maxValue);
+        }
+        else if (maxValue <= 20)
+        {
+            // For values between 5 and 20, round up to the nearest 2
+            roundedLimit = Math.Ceiling(maxValue / 2) * 2;
+        }
+        else
+        {
+            // For values greater than 10, use a scale-based rounding factor
+            double scale = Math.Pow(10, Math.Floor(Math.Log10(maxValue)));
+            roundedLimit = Math.Ceiling(maxValue / scale) * scale;
+        }
+
+        return roundedLimit;
     }
 
     private void InvalidateDataPoints()
@@ -235,16 +265,6 @@ public partial class VpnSpeedViewModel : ViewModelBase,
         _downloadDataPoints.Reset();
         _uploadDataPoints.Reset();
 
-        UpdateScaledDataPoints();
-        UpdateSeparators();
-    }
-
-    protected override void OnLanguageChanged()
-    {
-        OnPropertyChanged(nameof(FormattedDownloadSpeed));
-        OnPropertyChanged(nameof(FormattedUploadSpeed));
-        OnPropertyChanged(nameof(FormattedDownloadVolume));
-        OnPropertyChanged(nameof(FormattedUploadVolume));
-        OnPropertyChanged(nameof(FormattedTotalVolume));
+        InvalidateSpeedGraph();
     }
 }

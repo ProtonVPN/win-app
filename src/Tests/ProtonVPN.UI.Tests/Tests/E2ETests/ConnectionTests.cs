@@ -36,9 +36,12 @@ public class ConnectionTests : BaseTest
     [Test]
     public void QuickConnect()
     {
+        NavigationRobot
+            .Verify.IsOnLocationDetailsPage();
         HomeRobot
-            .QuickConnect()
-            .Verify.IsConnected();
+            .QuickConnect();
+        NavigationRobot
+            .Verify.IsOnConnectionDetailsPage();
     }
 
     [Test]
@@ -47,18 +50,19 @@ public class ConnectionTests : BaseTest
         const string country = "Australia";
 
         NavigationRobot
-            .Verify.IsOnConnectionsPage();
+            .Verify.IsOnConnectionsPage()
+                   .IsOnLocationDetailsPage();
         SidebarRobot
             .NavigateToAllCountriesTab();
         NavigationRobot
             .Verify.IsOnCountriesPage();
         SidebarRobot
             .ConnectToCountry(country);
-        HomeRobot
-            .Verify.IsConnected();
+        NavigationRobot
+            .Verify.IsOnConnectionDetailsPage();
         SidebarRobot
             .DisconnectFromCountry(country);
-        HomeRobot
-            .Verify.IsDisconnected();
+        NavigationRobot
+            .Verify.IsOnLocationDetailsPage();
     }
 }

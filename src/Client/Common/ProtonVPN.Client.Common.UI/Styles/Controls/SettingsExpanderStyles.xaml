@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -67,7 +67,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <toolkit:SettingsCard Header="{Binding}" Style="{StaticResource GhostSettingsCardStyle}"/>
+                    <toolkit:SettingsCard Header="{Binding}"
+                                          Style="{StaticResource GhostSettingsCardStyle}" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>
@@ -82,12 +83,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               Style="{StaticResource SettingsExpanderExpanderStyle}">
                         <Expander.Header>
                             <toolkit:SettingsCard Content="{TemplateBinding Content}"
-                                               Description="{TemplateBinding Description}"
-                                               Header="{TemplateBinding Header}"
-                                               HeaderIcon="{TemplateBinding HeaderIcon}"
-                                               IsClickEnabled="False"
-                                               IsTabStop="{TemplateBinding IsTabStop}"
-                                               Style="{StaticResource DefaultSettingsCardStyle}" />
+                                                  Description="{TemplateBinding Description}"
+                                                  Header="{TemplateBinding Header}"
+                                                  HeaderIcon="{TemplateBinding HeaderIcon}"
+                                                  IsClickEnabled="False"
+                                                  IsTabStop="{TemplateBinding IsTabStop}"
+                                                  Style="{StaticResource DefaultSettingsCardStyle}" />
                         </Expander.Header>
                         <Expander.Content>
                             <Grid>
@@ -100,7 +101,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <ItemsRepeater x:Name="PART_ItemsRepeater"
                                                Grid.Row="1"
                                                ItemTemplate="{TemplateBinding ItemTemplate}"
-                                               TabFocusNavigation="Local"> 
+                                               TabFocusNavigation="Local">
                                     <ItemsRepeater.Layout>
                                         <StackLayout Orientation="Vertical" />
                                     </ItemsRepeater.Layout>

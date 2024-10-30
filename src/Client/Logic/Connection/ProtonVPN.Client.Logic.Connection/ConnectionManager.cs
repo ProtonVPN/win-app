@@ -260,7 +260,15 @@ public class ConnectionManager : IInternalConnectionManager,
                 if (server is not null && physicalServer is not null)
                 {
                     VpnProtocol vpnProtocol = _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(message.VpnProtocol);
-                    CurrentConnectionDetails = new ConnectionDetails(connectionIntent, server, physicalServer, vpnProtocol);
+
+                    if (CurrentConnectionDetails is null)
+                    {
+                        CurrentConnectionDetails = new ConnectionDetails(connectionIntent, server, physicalServer, vpnProtocol);
+                    }
+                    else
+                    {
+                        CurrentConnectionDetails.Update(server, physicalServer, vpnProtocol);
+                    }
                 }
                 else if (server is null)
                 {

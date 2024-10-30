@@ -41,6 +41,8 @@ public class NavigationRobot
     protected Element ProfilesPage => Element.ByAutomationId("ProfilesPage");
     protected Element CommonSettingsPage => Element.ByAutomationId("CommonSettingsPage");
     protected Element AdvancedSettingsPage => Element.ByAutomationId("AdvancedSettingsPage");
+    protected Element LocationDetailsPage => Element.ByAutomationId("LocationDetailsPage");
+    protected Element ConnectionDetailsPage => Element.ByAutomationId("ConnectionDetailsPage");
 
     public class Verifications : NavigationRobot
     {
@@ -65,5 +67,9 @@ public class NavigationRobot
         public Verifications IsOnGatewaysPage() => IsOnPage(GatewaysPage);
 
         public Verifications IsOnProfilesPage() => IsOnPage(ProfilesPage);
+
+        public Verifications IsOnLocationDetailsPage() => IsOnPage(LocationDetailsPage);
+
+        public Verifications IsOnConnectionDetailsPage() => IsOnPage(ConnectionDetailsPage);
     }
 }

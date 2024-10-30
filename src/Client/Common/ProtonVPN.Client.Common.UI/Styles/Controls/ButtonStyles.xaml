@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -59,7 +59,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="ButtonBorderBrushPointerOver" ResourceKey="BorderNormColorBrush" />
             <StaticResource x:Key="ButtonBorderBrushPressed" ResourceKey="BorderNormColorBrush" />
             <StaticResource x:Key="ButtonBorderBrushDisabled" ResourceKey="InteractionWeakColorBrush" />
-            
+
             <!--  Tertiary Button Brushes  -->
 
             <StaticResource x:Key="TertiaryButtonBackground" ResourceKey="BackgroundNormColorBrush" />
@@ -150,7 +150,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="FontSize" Value="{StaticResource BodyStrongFontSize}" />
         <Setter Property="FontWeight" Value="{StaticResource BodyStrongFontWeight}" />
     </Style>
-    
+
     <Style x:Key="TertiaryButtonStyle" BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
         <Setter Property="Background" Value="{ThemeResource TertiaryButtonBackground}" />
         <Setter Property="BackgroundSizing" Value="InnerBorderEdge" />
@@ -185,14 +185,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                       ContentTransitions="{TemplateBinding ContentTransitions}"
                                       CornerRadius="{TemplateBinding CornerRadius}"
                                       Foreground="{TemplateBinding Foreground}">
-                        
                         <ContentPresenter.BackgroundTransition>
                             <BrushTransition Duration="0:0:0.083" />
                         </ContentPresenter.BackgroundTransition>
 
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
-                                
+
                                 <VisualState x:Name="Normal" />
 
                                 <VisualState x:Name="PointerOver">
@@ -296,8 +295,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 VerticalAlignment="Center"
                                 Background="{ThemeResource PrimaryColorBrush}"
                                 CornerRadius="1.5"
-                                Opacity="0" 
-                                Visibility="{StaticResource SidebarButtonIndicatorVisibility}"/>
+                                Opacity="0"
+                                Visibility="{StaticResource SidebarButtonIndicatorVisibility}" />
 
                         <ContentPresenter x:Name="ContentPresenter"
                                           Padding="{TemplateBinding Padding}"
@@ -409,7 +408,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                       ContentTransitions="{TemplateBinding ContentTransitions}"
                                       CornerRadius="{TemplateBinding CornerRadius}"
                                       Foreground="{TemplateBinding Foreground}">
-
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal" />

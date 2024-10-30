@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -23,7 +23,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <ResourceDictionary.ThemeDictionaries>
 
         <ResourceDictionary x:Key="Light">
-            
+
             <StaticResource x:Key="RadioButtonCheckGlyphBorderBrush" ResourceKey="TransparentColorBrush" />
 
             <StaticResource x:Key="RadioButtonForeground" ResourceKey="TextNormColorBrush" />
@@ -78,7 +78,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Dark">
-            
+
             <StaticResource x:Key="RadioButtonCheckGlyphBorderBrush" ResourceKey="TransparentColorBrush" />
 
             <StaticResource x:Key="RadioButtonForeground" ResourceKey="TextNormColorBrush" />

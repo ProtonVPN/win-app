@@ -47,6 +47,9 @@ public interface IUrls
     string SupportForm { get; }
     string NoLogs { get; }
     string DownloadsPage { get; }
+    string IpAddressLearnMore { get; }
+    string IspLearnMore { get; }
+    string IncreaseVpnSpeeds { get; }
 
     void NavigateTo(string url);
 }

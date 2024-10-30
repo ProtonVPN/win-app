@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -66,6 +66,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <x:Double x:Key="ConnectionRowDisabledIconOpacity">0.5</x:Double>
     <x:Double x:Key="ConnectionRowDisabledFeaturesOpacity">0.6</x:Double>
 
+    <Thickness x:Key="ConnectionRowPadding">12,10</Thickness>
+
     <StaticResource x:Key="ExpanderHeaderDownStyle" ResourceKey="ConnectionRowExpanderHeaderButtonStyle" />
 
     <Style BasedOn="{StaticResource DefaultConnectionRowStyle}" TargetType="custom:ConnectionRowButton" />
@@ -78,11 +80,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Style x:Key="DefaultConnectionRowStyle" TargetType="custom:ConnectionRowButton">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="Padding" Value="{ThemeResource ConnectionRowPadding}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:ConnectionRowButton">
                     <Grid x:Name="ConnectionRowContainer"
-                          Padding="12,10"
+                          Padding="{TemplateBinding Padding}"
                           Background="{ThemeResource InteractionDefaultEmptyColorBrush}"
                           ColumnSpacing="12"
                           CornerRadius="8">
@@ -257,11 +260,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Style x:Key="DefaultServerConnectionRowStyle" TargetType="custom:ServerConnectionRowButton">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="Padding" Value="{ThemeResource ConnectionRowPadding}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:ServerConnectionRowButton">
                     <Grid x:Name="ConnectionRowContainer"
-                          Padding="12,10"
+                          Padding="{TemplateBinding Padding}"
                           Background="{ThemeResource InteractionDefaultEmptyColorBrush}"
                           CornerRadius="8">
                         <Grid.ColumnDefinitions>
@@ -327,20 +331,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         Orientation="Horizontal"
                                         Spacing="0">
                                 <Border Style="{StaticResource ServerConnectionRowFeatureCardStyle}"
-                                        Visibility="{Binding SupportsP2P, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                        ToolTipService.ToolTip="{Binding P2PLabel, RelativeSource={RelativeSource Mode=TemplatedParent}, TargetNullValue='P2P'}">
+                                        ToolTipService.ToolTip="{Binding P2PLabel, RelativeSource={RelativeSource Mode=TemplatedParent}, TargetNullValue='P2P'}"
+                                        Visibility="{Binding SupportsP2P, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <pathicons:ArrowRightArrowLeft Foreground="{ThemeResource TextWeakColorBrush}"
                                                                    Size="Pixels20" />
                                 </Border>
                                 <Border Style="{StaticResource ServerConnectionRowFeatureCardStyle}"
-                                        Visibility="{Binding SupportsSmartRouting, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                        ToolTipService.ToolTip="{Binding SmartRoutingLabel, RelativeSource={RelativeSource Mode=TemplatedParent}, TargetNullValue='Smart routing'}">
+                                        ToolTipService.ToolTip="{Binding SmartRoutingLabel, RelativeSource={RelativeSource Mode=TemplatedParent}, TargetNullValue='Smart routing'}"
+                                        Visibility="{Binding SupportsSmartRouting, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <pathicons:Globe Foreground="{ThemeResource TextWeakColorBrush}"
                                                      Size="Pixels20" />
                                 </Border>
                                 <Border Style="{StaticResource ServerConnectionRowFeatureCardStyle}"
-                                        Visibility="{Binding SupportsTor, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                        ToolTipService.ToolTip="{Binding TorLabel, RelativeSource={RelativeSource Mode=TemplatedParent}, TargetNullValue='Tor'}">
+                                        ToolTipService.ToolTip="{Binding TorLabel, RelativeSource={RelativeSource Mode=TemplatedParent}, TargetNullValue='Tor'}"
+                                        Visibility="{Binding SupportsTor, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <pathicons:BrandTor Foreground="{ThemeResource TextWeakColorBrush}"
                                                         Size="Pixels20" />
                                 </Border>

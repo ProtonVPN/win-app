@@ -20,7 +20,6 @@
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Contracts.Bases;
-using ProtonVPN.Client.Contracts.Services.Navigation;
 
 namespace ProtonVPN.Client.UI.Main.Home;
 

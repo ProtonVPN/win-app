@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,82 +17,47 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
+using ProtonVPN.Client.Contracts.Bases.ViewModels;
+using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
+using ProtonVPN.Client.UI.Main.Home.Details.Contracts;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Bases.ViewModels;
-using ProtonVPN.Client.Contracts.Messages;
-using ProtonVPN.Client.Contracts.Services.Navigation;
 
 namespace ProtonVPN.Client.UI.Main.Home.Details.Connection;
 
-public partial class ConnectionDetailsPageViewModel : PageViewModelBase<IDetailsViewNavigator>,
-    IEventMessageReceiver<ConnectionStatusChanged>,
-    IEventMessageReceiver<ConnectionDetailsChanged>,
-    IEventMessageReceiver<MainWindowVisibilityChangedMessage>
+public partial class ConnectionDetailsPageViewModel : PageViewModelBase<IDetailsViewNavigator>, IConnectionDetailsAware,
+    IEventMessageReceiver<ConnectionDetailsChanged>
 {
-    private const int REFRESH_TIMER_INTERVAL_IN_MS = 1000;
-
     private readonly IConnectionManager _connectionManager;
-    private readonly VpnSpeedViewModel _vpnSpeedViewModel;
-    private readonly DispatcherTimer _refreshTimer;
-
-    private bool _isMainWindowVisible;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(HasState))]
-    [NotifyPropertyChangedFor(nameof(HasCity))]
-    [NotifyPropertyChangedFor(nameof(HasServer))]
-    [NotifyPropertyChangedFor(nameof(ServerLoad))]
-    [NotifyPropertyChangedFor(nameof(FormattedServerLoad))]
-    [NotifyPropertyChangedFor(nameof(HasServerLatency))]
-    [NotifyPropertyChangedFor(nameof(ServerLatency))]
-    [NotifyPropertyChangedFor(nameof(HasVpnProtocol))]
-    [NotifyPropertyChangedFor(nameof(VpnProtocol))]
-    private ConnectionDetails? _currentConnectionDetails;
+    private string? _serverIpAddress;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(FormattedSessionLength))]
-    private TimeSpan? _sessionLength;
+    [NotifyPropertyChangedFor(nameof(FormattedVolume))]
+    private long? _volume;
 
     [ObservableProperty]
-    private string _serverIpAddress;
+    private double _serverLoad;
 
-    public string? FormattedSessionLength => Localizer.GetFormattedTime(SessionLength ?? TimeSpan.Zero);
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(FormattedProtocol))]
+    private VpnProtocol? _protocol;
 
-    public bool HasState => CurrentConnectionDetails?.Server != null
-                         && !string.IsNullOrEmpty(CurrentConnectionDetails.State);
+    public string FormattedVolume => Localizer.GetFormattedSize(Volume);
 
-    public bool HasCity => CurrentConnectionDetails?.Server != null
-                        && !string.IsNullOrEmpty(CurrentConnectionDetails.City);
-
-    public bool HasServer => CurrentConnectionDetails?.Server != null
-                          && !string.IsNullOrEmpty(CurrentConnectionDetails.ServerName);
-
-    public double ServerLoad => CurrentConnectionDetails?.ServerLoad ?? 0;
-
-    public string FormattedServerLoad => $"{ServerLoad:P0}";
-
-    public bool HasServerLatency => CurrentConnectionDetails?.ServerLatency != null;
-
-    public string ServerLatency => Localizer.GetFormat("Format_Milliseconds", CurrentConnectionDetails?.ServerLatency?.TotalMilliseconds ?? 0);
-
-    public bool HasVpnProtocol => CurrentConnectionDetails?.Protocol != null;
-
-    public string VpnProtocol => CurrentConnectionDetails is null
-        ? string.Empty
-        : Localizer.GetVpnProtocol(CurrentConnectionDetails.Protocol);
+    public string FormattedProtocol => Localizer.GetVpnProtocol(Protocol);
 
     public ConnectionDetailsPageViewModel(
         IConnectionManager connectionManager,
-        VpnSpeedViewModel vpnSpeedViewModel,
         IDetailsViewNavigator viewNavigator,
         ILocalizationProvider localizer,
         ILogger logger,
@@ -100,26 +65,6 @@ public partial class ConnectionDetailsPageViewModel : PageViewModelBase<IDetails
         : base(viewNavigator, localizer, logger, issueReporter)
     {
         _connectionManager = connectionManager;
-        _vpnSpeedViewModel = vpnSpeedViewModel;
-
-        _refreshTimer = new()
-        {
-            Interval = TimeSpan.FromMilliseconds(REFRESH_TIMER_INTERVAL_IN_MS)
-        };
-        _refreshTimer.Tick += OnRefreshTimerTick;
-    }
-
-    public void Receive(ConnectionStatusChanged message)
-    {
-        ExecuteOnUIThread(() =>
-        {
-            CurrentConnectionDetails = _connectionManager.IsConnected
-                ? _connectionManager.CurrentConnectionDetails
-                : null;
-
-            InvalidateSessionLength();
-            InvalidateAutoRefreshTimer();
-        });
     }
 
     public void Receive(ConnectionDetailsChanged message)
@@ -130,53 +75,30 @@ public partial class ConnectionDetailsPageViewModel : PageViewModelBase<IDetails
         });
     }
 
+    public void Refresh(ConnectionDetails? connectionDetails, TrafficBytes volume, TrafficBytes speed)
+    {
+        if (IsActive)
+        {
+            Volume = (long)volume.BytesIn + (long)volume.BytesOut;
+            ServerLoad = connectionDetails?.ServerLoad ?? 0;
+            Protocol = connectionDetails?.Protocol;
+        }
+    }
+
     protected override void OnLanguageChanged()
     {
-        OnPropertyChanged(nameof(FormattedSessionLength));
-        OnPropertyChanged(nameof(ServerLatency));
-        OnPropertyChanged(nameof(VpnProtocol));
+        base.OnLanguageChanged();
+
+        OnPropertyChanged(nameof(FormattedVolume));
+        OnPropertyChanged(nameof(FormattedProtocol));
     }
 
-    private void InvalidateSessionLength()
+    protected override void OnActivated()
     {
-        SessionLength = CurrentConnectionDetails is null
-            ? null
-            : DateTime.UtcNow - CurrentConnectionDetails.EstablishedConnectionTimeUtc;
-    }
+        base.OnActivated();
 
-    private void InvalidateAutoRefreshTimer()
-    {
-        if (_connectionManager.IsConnected)
-        {
-            if (!_refreshTimer.IsEnabled)
-            {
-                Refresh();
-                _refreshTimer.Start();
-            }
-        }
-        else
-        {
-            if (_refreshTimer.IsEnabled)
-            {
-                _refreshTimer.Stop();
-            }
-        }
-    }
-
-    private void Refresh()
-    {
-        InvalidateSessionLength();
-
-        _vpnSpeedViewModel.RefreshAsync(IsActive && _isMainWindowVisible);
-    }
-
-    private void OnRefreshTimerTick(object? sender, EventArgs e)
-    {
-        Refresh();
-    }
-
-    public void Receive(MainWindowVisibilityChangedMessage message)
-    {
-        _isMainWindowVisible = message.IsMainWindowVisible;
+        Volume = null;
+        ServerLoad = 0;
+        Protocol = null;
     }
 }

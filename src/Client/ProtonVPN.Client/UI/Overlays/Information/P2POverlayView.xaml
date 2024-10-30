@@ -101,11 +101,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         </Grid>
 
-        <custom:IllustratedHyperlinkButton Margin="-8"
-                                           HorizontalAlignment="Stretch"
-                                           AutomationProperties.AutomationId="LearnMoreHyperlinkButton"
+        <custom:IllustratedHyperlinkButton AutomationProperties.AutomationId="LearnMoreHyperlinkButton"
                                            Content="{x:Bind ViewModel.Localizer.Get('Overlay_P2P_LearnMore')}"
-                                           IllustrationSource="{StaticResource DefaultHyperlinkIllustrationSource}"
+                                           IllustrationSource="{StaticResource P2PThumbnailIllustrationSource}"
                                            NavigateUri="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}" />
     </StackPanel>
 

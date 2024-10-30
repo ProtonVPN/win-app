@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-
+<?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -23,80 +22,74 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:lvc="using:LiveChartsCore.SkiaSharpView.WinUI"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
-             xmlns:lvc="using:LiveChartsCore.SkiaSharpView.WinUI"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
-    <StackPanel Orientation="Vertical"
-                HorizontalAlignment="Stretch"
-                Spacing="8">
+    <Grid ColumnSpacing="8"
+          RowSpacing="8">
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="0"
-                       HorizontalAlignment="Right"
-                       Padding="0,0,12,0"
-                       Foreground="{ThemeResource TextWeakColorBrush}"
-                       Style="{ThemeResource CaptionStrongTextBlockStyle}"
-                       Text="{x:Bind ViewModel.SpeedUnit}" />
+        <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Foreground="{ThemeResource TextWeakColorBrush}"
+                   Style="{ThemeResource CaptionTextBlockStyle}"
+                   Text="{x:Bind ViewModel.SpeedUnit}" />
 
-            <Grid Grid.Column="1"
-                  Padding="8"
-                  HorizontalAlignment="Right"
-                  ColumnSpacing="8"
-                  RowSpacing="4">
+        <StackPanel Grid.Row="0"
+                    Grid.Column="1"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal"
+                    Spacing="8">
+            <StackPanel Orientation="Horizontal"
+                        Spacing="4">
+                <pathicons:ArrowDownLine Margin="0,1,0,-1"
+                                         Foreground="{ThemeResource SignalSuccessColorBrush}"
+                                         Size="Pixels16" />
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-
-                <StackPanel Grid.Column="0"
-                            HorizontalAlignment="Center"
-                            Orientation="Horizontal">
-                    <TextBlock Foreground="{ThemeResource SignalSuccessColorBrush}"
-                               Style="{StaticResource BodyTextBlockStyle}"
-                               Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Download')}" />
-                    <pathicons:ArrowDownLine Foreground="{ThemeResource SignalSuccessColorBrush}" />
-                </StackPanel>
-
-                <TextBlock Grid.Column="1"
-                           HorizontalAlignment="Center"
+                <TextBlock HorizontalAlignment="Center"
                            Style="{StaticResource CaptionStrongTextBlockStyle}"
                            Text="{x:Bind ViewModel.FormattedDownloadSpeed}" />
+            </StackPanel>
 
-                <StackPanel Grid.Column="2"
-                            HorizontalAlignment="Center"
-                            Orientation="Horizontal">
-                    <TextBlock Foreground="{ThemeResource SignalDangerColorBrush}"
-                               Style="{StaticResource BodyTextBlockStyle}"
-                               Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Upload')}" />
-                    <pathicons:ArrowUpLine Foreground="{ThemeResource SignalDangerColorBrush}" />
-                </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Spacing="4">
+                <pathicons:ArrowUpLine Margin="0,1,0,-1"
+                                       Foreground="{ThemeResource SignalDangerColorBrush}"
+                                       Size="Pixels16" />
 
-                <TextBlock Grid.Column="3"
-                           HorizontalAlignment="Center"
+                <TextBlock HorizontalAlignment="Center"
                            Style="{StaticResource CaptionStrongTextBlockStyle}"
                            Text="{x:Bind ViewModel.FormattedUploadSpeed}" />
+            </StackPanel>
+        </StackPanel>
 
-            </Grid>
-        </Grid>
-
-        <lvc:CartesianChart Height="76"
+        <lvc:CartesianChart Grid.Row="1"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Height="95"
+                            Margin="-12,-10,-2,-15"
+                            VerticalAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
+                            DrawMargin="{x:Bind ViewModel.DrawMargin}"
                             EasingFunction="{x:Null}"
                             Series="{x:Bind ViewModel.Series}"
                             XAxes="{x:Bind ViewModel.XAxes}"
-                            YAxes="{x:Bind ViewModel.YAxes}"
-                            DrawMargin="{x:Bind ViewModel.DrawMargin}" />
+                            YAxes="{x:Bind ViewModel.YAxes}" />
 
-    </StackPanel>
+    </Grid>
 
 </UserControl>

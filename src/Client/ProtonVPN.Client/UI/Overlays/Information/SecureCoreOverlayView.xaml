@@ -117,11 +117,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    Margin="2,0"
                    TextWrapping="Wrap" />
 
-        <custom:IllustratedHyperlinkButton Margin="-8"
-                                           HorizontalAlignment="Stretch"
-                                           AutomationProperties.AutomationId="LearnMoreHyperlinkButton"
+        <custom:IllustratedHyperlinkButton AutomationProperties.AutomationId="LearnMoreHyperlinkButton"
                                            Content="{x:Bind ViewModel.Localizer.Get('Overlay_SecureCore_LearnMore')}"
-                                           IllustrationSource="{StaticResource DefaultHyperlinkIllustrationSource}"
+                                           IllustrationSource="{StaticResource SecureCoreThumbnailIllustrationSource}"
                                            NavigateUri="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}" />
     </StackPanel>
 </ContentDialog>

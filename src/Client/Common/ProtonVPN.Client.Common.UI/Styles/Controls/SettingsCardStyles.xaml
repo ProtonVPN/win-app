@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -784,7 +784,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Style>
 
     <Style x:Key="InfoSettingsCardStyle" BasedOn="{StaticResource DefaultSettingsCardStyle}" TargetType="toolkit:SettingsCard">
-        <Setter Property="Padding" Value="12"/>
+        <Setter Property="Padding" Value="12" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="toolkit:SettingsCard">
@@ -815,15 +815,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <ContentPresenter x:Name="PART_HeaderIconPresenter"
                                           Grid.Row="0"
                                           Grid.Column="0"
+                                          Margin="0,0,8,0"
                                           AutomationProperties.AccessibilityView="Raw"
                                           Content="{TemplateBinding HeaderIcon}"
-                                          HighContrastAdjustment="None" 
-                                          Margin="0,0,8,0"/>
+                                          HighContrastAdjustment="None" />
 
                         <ContentPresenter x:Name="PART_HeaderPresenter"
                                           Grid.Row="0"
-                                          Margin="0,-2,0,0"
                                           Grid.Column="1"
+                                          Margin="0,-2,0,0"
                                           HorizontalAlignment="Left"
                                           VerticalAlignment="Top"
                                           Content="{TemplateBinding Header}"

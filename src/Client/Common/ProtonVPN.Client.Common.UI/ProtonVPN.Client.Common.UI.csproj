@@ -704,6 +704,8 @@
         <None Remove="Assets\Illustrations\free-connection-flags.svg" />
         <None Remove="Assets\Illustrations\gateways.png" />
         <None Remove="Assets\Illustrations\hyperlink-default.png" />
+        <None Remove="Assets\Illustrations\ip-thumbnail.png" />
+        <None Remove="Assets\Illustrations\isp-thumbnail.png" />
         <None Remove="Assets\Illustrations\kill-switch-off.png" />
         <None Remove="Assets\Illustrations\kill-switch-on-level-1.png" />
         <None Remove="Assets\Illustrations\kill-switch-on-level-2.png" />
@@ -718,19 +720,26 @@
         <None Remove="Assets\Illustrations\netshield-on.png" />
         <None Remove="Assets\Illustrations\p2p-countries.png" />
         <None Remove="Assets\Illustrations\netshield.png" />
+        <None Remove="Assets\Illustrations\p2p-thumbnail.png" />
         <None Remove="Assets\Illustrations\placeholder.svg" />
         <None Remove="Assets\Illustrations\port-forwarding-off.png" />
         <None Remove="Assets\Illustrations\port-forwarding-on.png" />
         <None Remove="Assets\Illustrations\profile-new.svg" />
         <None Remove="Assets\Illustrations\profiles.png" />
+        <None Remove="Assets\Illustrations\protocol-thumbnail.png" />
         <None Remove="Assets\Illustrations\recents.png" />
         <None Remove="Assets\Illustrations\report-error.png" />
         <None Remove="Assets\Illustrations\report-success.png" />
+        <None Remove="Assets\Illustrations\routing-thumbnail.png" />
         <None Remove="Assets\Illustrations\secure-core-countries.png" />
+        <None Remove="Assets\Illustrations\secure-core-thumbnail.png" />
+        <None Remove="Assets\Illustrations\server-load-thumbnail.png" />
+        <None Remove="Assets\Illustrations\speed-thumbnail.png" />
         <None Remove="Assets\Illustrations\split-tunneling-off.png" />
         <None Remove="Assets\Illustrations\split-tunneling-on.png" />
         <None Remove="Assets\Illustrations\swiss-flag.png" />
         <None Remove="Assets\Illustrations\tor-countries.png" />
+        <None Remove="Assets\Illustrations\tor-thumbnail.png" />
         <None Remove="Assets\Illustrations\update-proton-vpn.png" />
         <None Remove="Assets\Illustrations\upsell-customisation-large.png" />
         <None Remove="Assets\Illustrations\upsell-customisation-small.png" />
@@ -766,6 +775,7 @@
         <None Remove="Controls\DeviceLocationControl.xaml" />
         <None Remove="Controls\Map\CountryPin.xaml" />
         <None Remove="Controls\Map\MapControl.xaml" />
+        <None Remove="Controls\ScramblingTextControl.xaml" />
         <None Remove="Controls\ServerLoadControl.xaml" />
         <None Remove="Assets\Icons\ActiveDot.xaml" />
         <None Remove="Controls\UpsellBannerControl.xaml" />
@@ -793,7 +803,6 @@
         <None Remove="Styles\Controls\ContentDialogStyles.xaml" />
         <None Remove="Styles\Controls\CountryFlagStyles.xaml" />
         <None Remove="Styles\Controls\DetailRowButtonStyles.xaml" />
-        <None Remove="Styles\Controls\DeviceLocationStyles.xaml" />
         <None Remove="Styles\Controls\DualCommandsRowStyles.xaml" />
         <None Remove="Styles\Controls\ExpanderStyles.xaml" />
         <None Remove="Styles\Controls\FlyoutStyles.xaml" />
@@ -862,13 +871,6 @@
         <Page Update="Assets\Icons\ActiveDot.xaml">
             <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
             <SubType>Designer</SubType>
-        </Page>
-        <Page Update="Controls\DeviceLocationControl.xaml">
-            <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-            <SubType>Designer</SubType>
-        </Page>
-        <Page Update="Styles\Controls\DeviceLocationStyles.xaml">
-          <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
         </Page>
         <Page Update="Styles\Controls\HyperlinkStyles.xaml">
             <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
@@ -1892,7 +1894,31 @@
         <Content Update="Assets\Illustrations\certified-no-logs.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Illustrations\ip-thumbnail.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\isp-thumbnail.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Illustrations\kill-switch-enabled.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\p2p-thumbnail.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\protocol-thumbnail.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\routing-thumbnail.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\secure-core-thumbnail.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\server-load-thumbnail.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\speed-thumbnail.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\swiss-flag.png">
@@ -2037,6 +2063,9 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Icons\NetShield\trackers-stopped.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\tor-thumbnail.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\update-proton-vpn.png">
@@ -2337,6 +2366,11 @@
     </ItemGroup>
     <ItemGroup>
       <Page Update="Styles\Controls\ListViewStyles.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Controls\ScramblingTextControl.xaml">
         <Generator>MSBuild:Compile</Generator>
       </Page>
     </ItemGroup>

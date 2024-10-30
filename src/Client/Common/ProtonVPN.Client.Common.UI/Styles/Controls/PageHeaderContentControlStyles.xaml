@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -35,7 +35,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                     <Grid ColumnDefinitions="Auto,*"
                           ColumnSpacing="16">
-                        
                         <Image Grid.Column="0"
                                Width="{StaticResource PageHeaderIllustrationSize}"
                                Height="{StaticResource PageHeaderIllustrationSize}"
@@ -60,8 +59,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               ContentTemplate="{TemplateBinding HeaderTemplate}"
                                               FontSize="{StaticResource TitleFontSize}"
                                               FontWeight="{StaticResource TitleFontWeight}"
-                                              LineHeight="{StaticResource TitleLineHeight}" 
-                                              TextWrapping="Wrap"/>
+                                              LineHeight="{StaticResource TitleLineHeight}"
+                                              TextWrapping="Wrap" />
 
                             <ContentPresenter x:Name="ContentPresenter"
                                               Grid.Row="1"
@@ -71,9 +70,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               Content="{TemplateBinding Content}"
                                               FontSize="{StaticResource BodyFontSize}"
                                               FontWeight="{StaticResource BodyFontWeight}"
-                                              LineHeight="{StaticResource BodyLineHeight}" 
                                               Foreground="{ThemeResource TextWeakColorBrush}"
-                                              TextWrapping="Wrap"/>
+                                              LineHeight="{StaticResource BodyLineHeight}"
+                                              TextWrapping="Wrap" />
 
                         </Grid>
 

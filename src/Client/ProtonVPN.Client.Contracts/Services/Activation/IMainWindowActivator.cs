@@ -25,6 +25,8 @@ namespace ProtonVPN.Client.Contracts.Services.Activation;
 
 public interface IMainWindowActivator : IWindowActivator
 {
+    bool IsWindowVisible { get; }
+
     Size CurrentWindowSize { get; }
 
     Window? Window { get; }

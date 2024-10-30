@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -85,7 +85,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
-        <Setter Property="CornerRadius" Value="{StaticResource ListBoxItemCornerRadius}"/>
+        <Setter Property="CornerRadius" Value="{StaticResource ListBoxItemCornerRadius}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListBoxItem">
@@ -94,7 +94,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           BorderBrush="{TemplateBinding BorderBrush}"
                           BorderThickness="{TemplateBinding BorderThickness}"
                           CornerRadius="{TemplateBinding CornerRadius}">
-
                         <ContentPresenter x:Name="ContentPresenter"
                                           Margin="{TemplateBinding Padding}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -102,8 +101,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                           Content="{TemplateBinding Content}"
                                           ContentTemplate="{TemplateBinding ContentTemplate}"
                                           ContentTransitions="{TemplateBinding ContentTransitions}"
-                                          Opacity="{ThemeResource ListBoxItemOpacity}"
                                           Foreground="{TemplateBinding Foreground}"
+                                          Opacity="{ThemeResource ListBoxItemOpacity}"
                                           TextWrapping="NoWrap" />
 
                         <VisualStateManager.VisualStateGroups>
@@ -184,7 +183,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter.Value>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"
-                                Spacing="4"/>
+                                Spacing="4" />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
@@ -208,36 +207,35 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
-        <Setter Property="CornerRadius" Value="{StaticResource SelectorBarListBoxItemCornerRadius}"/>
+        <Setter Property="CornerRadius" Value="{StaticResource SelectorBarListBoxItemCornerRadius}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListBoxItem">
                     <Grid x:Name="LayoutRoot"
-                      Background="{TemplateBinding Background}"
-                      BorderBrush="{TemplateBinding BorderBrush}"
-                      BorderThickness="{TemplateBinding BorderThickness}"
-                      CornerRadius="{TemplateBinding CornerRadius}">
-
+                          Background="{TemplateBinding Background}"
+                          BorderBrush="{TemplateBinding BorderBrush}"
+                          BorderThickness="{TemplateBinding BorderThickness}"
+                          CornerRadius="{TemplateBinding CornerRadius}">
                         <ContentPresenter x:Name="ContentPresenter"
-                                      Margin="{TemplateBinding Padding}"
-                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                      Content="{TemplateBinding Content}"
-                                      ContentTemplate="{TemplateBinding ContentTemplate}"
-                                      ContentTransitions="{TemplateBinding ContentTransitions}"
-                                      Opacity="{StaticResource ListBoxItemOpacity}"
-                                      Foreground="{TemplateBinding Foreground}"
-                                      TextWrapping="NoWrap" />
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          ContentTransitions="{TemplateBinding ContentTransitions}"
+                                          Foreground="{TemplateBinding Foreground}"
+                                          Opacity="{StaticResource ListBoxItemOpacity}"
+                                          TextWrapping="NoWrap" />
 
                         <Rectangle x:Name="SelectionIndicator"
                                    Width="{ThemeResource ListBoxSelectionIndicatorWidth}"
                                    Height="{ThemeResource ListBoxSelectionIndicatorHeight}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Bottom"
                                    Fill="{ThemeResource PrimaryColorBrush}"
                                    Opacity="0.0"
                                    RadiusX="{ThemeResource ListBoxSelectionIndicatorRadius}"
-                                   RadiusY="{ThemeResource ListBoxSelectionIndicatorRadius}" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Bottom" />
+                                   RadiusY="{ThemeResource ListBoxSelectionIndicatorRadius}" />
 
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
@@ -320,7 +318,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <controls:UniformGrid Orientation="Horizontal" ColumnSpacing="8" Rows="1"/>
+                    <controls:UniformGrid ColumnSpacing="8"
+                                          Orientation="Horizontal"
+                                          Rows="1" />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
@@ -340,25 +340,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ControlTemplate TargetType="ListBoxItem">
                     <Grid x:Name="LayoutRoot"
                           Background="{TemplateBinding Background}">
-
                         <Ellipse x:Name="SelectionIndicator"
                                  Width="28"
                                  Height="28"
                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                  VerticalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                 Stroke="{TemplateBinding BorderBrush}"
                                  Fill="{TemplateBinding Background}"
                                  Opacity="{ThemeResource ListBoxItemOpacity}"
+                                 Stroke="{TemplateBinding BorderBrush}"
                                  StrokeThickness="2" />
 
                         <ContentPresenter x:Name="ContentPresenter"
-                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                      Content="{TemplateBinding Content}"
-                                      ContentTemplate="{TemplateBinding ContentTemplate}"
-                                      ContentTransitions="{TemplateBinding ContentTransitions}"
-                                      Foreground="{TemplateBinding Foreground}"
-                                      TextWrapping="NoWrap" />
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          ContentTransitions="{TemplateBinding ContentTransitions}"
+                                          Foreground="{TemplateBinding Foreground}"
+                                          TextWrapping="NoWrap" />
 
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">

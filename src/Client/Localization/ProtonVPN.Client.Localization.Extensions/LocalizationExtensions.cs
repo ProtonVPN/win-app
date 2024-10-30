@@ -34,6 +34,8 @@ namespace ProtonVPN.Client.Localization.Extensions;
 
 public static class LocalizationExtensions
 {
+    private const string NULL_VALUE_PLACEHOLDER = "-";
+
     public static string GetToggleValue(this ILocalizationProvider localizer, bool value)
     {
         return value
@@ -208,9 +210,14 @@ public static class LocalizationExtensions
         }
     }
 
-    public static string GetFormattedSize(this ILocalizationProvider localizer, long sizeInBytes)
+    public static string GetFormattedSize(this ILocalizationProvider localizer, long? sizeInBytes)
     {
-        (double size, ByteMetrics metric) result = ByteConversionHelper.CalculateSize(sizeInBytes);
+        if (!sizeInBytes.HasValue)
+        {
+            return NULL_VALUE_PLACEHOLDER;
+        }
+
+        (double size, ByteMetrics metric) result = ByteConversionHelper.CalculateSize(sizeInBytes.Value);
 
         return result.metric switch
         {
@@ -225,9 +232,14 @@ public static class LocalizationExtensions
         };
     }
 
-    public static string GetFormattedSpeed(this ILocalizationProvider localizer, long sizeInBytes)
+    public static string GetFormattedSpeed(this ILocalizationProvider localizer, long? sizeInBytes)
     {
-        (double size, ByteMetrics metric) result = ByteConversionHelper.CalculateSize(sizeInBytes);
+        if (!sizeInBytes.HasValue)
+        {
+            return NULL_VALUE_PLACEHOLDER;
+        }
+
+        (double size, ByteMetrics metric) result = ByteConversionHelper.CalculateSize(sizeInBytes.Value);
 
         return result.metric switch
         {
@@ -276,8 +288,13 @@ public static class LocalizationExtensions
         };
     }
 
-    public static string GetVpnProtocol(this ILocalizationProvider localizer, VpnProtocol vpnProtocol)
+    public static string GetVpnProtocol(this ILocalizationProvider localizer, VpnProtocol? vpnProtocol)
     {
+        if (vpnProtocol == null)
+        {
+            return NULL_VALUE_PLACEHOLDER;
+        }
+
         return vpnProtocol switch
         {
             VpnProtocol.Smart => localizer.Get("VpnProtocol_Smart"),
@@ -286,6 +303,19 @@ public static class LocalizationExtensions
             VpnProtocol.WireGuardUdp => localizer.Get("VpnProtocol_WireGuard_Udp"),
             VpnProtocol.WireGuardTcp => localizer.Get("VpnProtocol_WireGuard_Tcp"),
             VpnProtocol.WireGuardTls => localizer.Get("VpnProtocol_WireGuard_Tls"),
+            _ => string.Empty
+        };
+    }
+
+    public static string GetVpnProtocolDescription(this ILocalizationProvider localizer, VpnProtocol? vpnProtocol)
+    {
+        return vpnProtocol switch
+        {
+            VpnProtocol.OpenVpnTcp => localizer.Get("VpnProtocol_OpenVPN_Tcp_Description"),
+            VpnProtocol.OpenVpnUdp => localizer.Get("VpnProtocol_OpenVPN_Udp_Description"),
+            VpnProtocol.WireGuardUdp => localizer.Get("VpnProtocol_WireGuard_Udp_Description"),
+            VpnProtocol.WireGuardTcp => localizer.Get("VpnProtocol_WireGuard_Tcp_Description"),
+            VpnProtocol.WireGuardTls => localizer.Get("VpnProtocol_WireGuard_Tls_Description"),
             _ => string.Empty
         };
     }

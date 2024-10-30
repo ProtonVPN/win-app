@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -24,12 +24,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:triggers="using:CommunityToolkit.WinUI">
 
     <CornerRadius x:Key="ServerLoadCornerRadius">2</CornerRadius>
+    <x:Double x:Key="ServerLoadBarWidth">32</x:Double>
+    <x:Double x:Key="ServerLoadBarHeight">4</x:Double>
+    <x:Double x:Key="ServerLoadTextFontSize">14</x:Double>
 
     <Style BasedOn="{StaticResource ServerLoadDefaultStyle}" TargetType="custom:ServerLoad" />
 
     <Style x:Key="ServerLoadDefaultStyle" TargetType="custom:ServerLoad">
         <Setter Property="Background" Value="{ThemeResource BackgroundStrongColorBrush}" />
-        <Setter Property="Foreground" Value="{ThemeResource TextWeakColorBrush}" />
+        <Setter Property="Foreground" Value="{ThemeResource TextNormColorBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:ServerLoad">
@@ -37,16 +40,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Spacing="8">
                         <TextBlock Margin="0,0,0,2"
                                    VerticalAlignment="Center"
+                                   FontSize="{ThemeResource ServerLoadTextFontSize}"
                                    Foreground="{TemplateBinding Foreground}"
-                                   Style="{StaticResource BodyMediumTextBlockStyle}"
+                                   Style="{ThemeResource BodyMediumTextBlockStyle}"
                                    Text="{Binding Load, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource DoubleToPercentFormatConverter}}"
                                    Visibility="{Binding IsTextVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
-                        <Grid Width="32"
-                              Height="4"
+                        <Grid Width="{ThemeResource ServerLoadBarWidth}"
+                              Height="{ThemeResource ServerLoadBarHeight}"
                               VerticalAlignment="Center"
                               Background="{TemplateBinding Background}"
-                              CornerRadius="{StaticResource ServerLoadCornerRadius}">
+                              CornerRadius="{ThemeResource ServerLoadCornerRadius}">
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition x:Name="ServerLoadFillColumn"
@@ -58,7 +62,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <Border x:Name="ServerLoadIndicator"
                                     Grid.Column="0"
                                     Background="{ThemeResource SignalSuccessColorBrush}"
-                                    CornerRadius="{StaticResource ServerLoadCornerRadius}">
+                                    CornerRadius="{ThemeResource ServerLoadCornerRadius}">
                                 <Border.BackgroundTransition>
                                     <BrushTransition Duration="0:0:0.5" />
                                 </Border.BackgroundTransition>

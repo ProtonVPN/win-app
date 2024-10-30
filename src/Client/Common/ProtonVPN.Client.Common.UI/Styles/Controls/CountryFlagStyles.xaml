@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -59,7 +59,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Style BasedOn="{StaticResource DefaultComplexCountryFlagStyle}" TargetType="custom:ComplexCountryFlag" />
 
     <Style x:Key="DefaultSimpleCountryFlagStyle" TargetType="custom:SimpleCountryFlag">
-        <Setter Property="Width" Value="24"/>
+        <Setter Property="Width" Value="24" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:SimpleCountryFlag">
@@ -169,7 +169,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Style>
 
     <Style x:Key="DefaultComplexCountryFlagStyle" TargetType="custom:ComplexCountryFlag">
-        <Setter Property="Width" Value="30"/>
+        <Setter Property="Width" Value="30" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:ComplexCountryFlag">
@@ -177,10 +177,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Grid x:Name="PART_Container">
 
                             <Grid x:Name="PART_BackFlagContainer"
-                                  Visibility="Collapsed"
+                                  Margin="0,12,0,0"
                                   HorizontalAlignment="Left"
                                   VerticalAlignment="Bottom"
-                                  Margin="0,12,0,0">
+                                  Visibility="Collapsed">
 
                                 <custom:SimpleCountryFlag x:Name="PART_BackFlag"
                                                           Width="{StaticResource SmallFlagWidth}"
@@ -198,9 +198,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </Grid>
 
                             <custom:SimpleCountryFlag x:Name="PART_MainFlag"
-                                                      Margin="0"
                                                       Width="{StaticResource MainFlagWidth}"
                                                       Height="{StaticResource MainFlagHeight}"
+                                                      Margin="0"
                                                       HorizontalAlignment="Left"
                                                       VerticalAlignment="Top"
                                                       CountryCode="{TemplateBinding ExitCountryCode}"
@@ -208,10 +208,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                       IsSecureCore="{TemplateBinding IsSecureCore}" />
 
                             <Grid x:Name="PART_FrontFlagContainer"
-                                  Visibility="Collapsed"
+                                  Margin="12,12,0,0"
                                   HorizontalAlignment="Left"
                                   VerticalAlignment="Bottom"
-                                  Margin="12,12,0,0">
+                                  Visibility="Collapsed">
 
                                 <Border Name="PART_FrontFlagShadow"
                                         Width="{StaticResource FlagShadowWidth}"
@@ -223,10 +223,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         CornerRadius="{StaticResource FrontFlagShadowCornerRadius}" />
 
                                 <custom:SimpleCountryFlag x:Name="PART_FrontFlag"
-                                                          CountryCode="{TemplateBinding ExitCountryCode}"
-                                                          FlagType="Country"
                                                           Width="{StaticResource SmallFlagWidth}"
-                                                          Height="{StaticResource SmallFlagHeight}"/>
+                                                          Height="{StaticResource SmallFlagHeight}"
+                                                          CountryCode="{TemplateBinding ExitCountryCode}"
+                                                          FlagType="Country" />
                             </Grid>
 
                         </Grid>
@@ -264,7 +264,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 </VisualState>
                                 <VisualState />
                             </VisualStateGroup>
-                            
+
                         </VisualStateManager.VisualStateGroups>
                     </Viewbox>
                 </ControlTemplate>

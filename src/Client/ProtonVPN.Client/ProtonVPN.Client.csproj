@@ -54,6 +54,13 @@
     <None Remove="UI\Main\Home\Details\Connection\VpnSpeedComponent.xaml" />
     <None Remove="UI\Main\Home\Details\DetailsComponentView.xaml" />
     <None Remove="UI\Main\Home\Details\Connection\ConnectionDetailsPageView.xaml" />
+    <None Remove="UI\Main\Home\Details\Flyouts\CountryFlyoutView.xaml" />
+    <None Remove="UI\Main\Home\Details\Flyouts\IpAddressFlyout.xaml" />
+    <None Remove="UI\Main\Home\Details\Flyouts\IspFlyoutView.xaml" />
+    <None Remove="UI\Main\Home\Details\Flyouts\ProtocolFlyoutView.xaml" />
+    <None Remove="UI\Main\Home\Details\Flyouts\ServerLoadFlyoutView.xaml" />
+    <None Remove="UI\Main\Home\Details\Flyouts\SpeedFlyoutView.xaml" />
+    <None Remove="UI\Main\Home\Details\Flyouts\VolumeFlyoutView.xaml" />
     <None Remove="UI\Main\Home\Details\Location\LocationDetailsPageView.xaml" />
     <None Remove="UI\Main\Home\HomePageView.xaml" />
     <None Remove="UI\Main\Home\Map\MapComponentView.xaml" />
@@ -205,6 +212,30 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Update="UI\Main\Home\Details\Flyouts\SpeedFlyoutView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Main\Home\Details\Flyouts\VolumeFlyoutView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Main\Home\Details\Flyouts\CountryFlyoutView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Main\Home\Details\Flyouts\ProtocolFlyoutView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Main\Home\Details\Flyouts\ServerLoadFlyoutView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Main\Home\Details\Flyouts\IspFlyoutView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UI\Main\Settings\Pages\About\AboutPageView.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
@@ -307,6 +338,12 @@
 
   <ItemGroup>
     <Resource Remove="UI\MainWindowShellView.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Main\Home\Details\Flyouts\IpAddressFlyout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>

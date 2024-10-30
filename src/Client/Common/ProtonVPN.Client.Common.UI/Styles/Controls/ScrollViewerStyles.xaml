@@ -1,8 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2024 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style TargetType="ScrollViewer" BasedOn="{StaticResource DefaultScrollViewer}" />
+    <Style BasedOn="{StaticResource DefaultScrollViewer}" TargetType="ScrollViewer" />
 
     <Thickness x:Key="DefaultScrollViewerMargin">0,0,0,0</Thickness>
     <Thickness x:Key="DefaultScrollViewerPadding">0,0,0,0</Thickness>
@@ -11,13 +30,13 @@
         <Setter Property="Margin" Value="{ThemeResource DefaultScrollViewerMargin}" />
         <Setter Property="Padding" Value="{ThemeResource DefaultScrollViewerPadding}" />
     </Style>
-    
+
     <Thickness x:Key="OffsetScrollViewerMargin">0,0,-12,0</Thickness>
     <Thickness x:Key="OffsetScrollViewerPadding">0,0,12,0</Thickness>
 
-    <Style x:Key="OffsetScrollViewer" TargetType="ScrollViewer" BasedOn="{StaticResource DefaultScrollViewer}" >
+    <Style x:Key="OffsetScrollViewer" BasedOn="{StaticResource DefaultScrollViewer}" TargetType="ScrollViewer">
         <Setter Property="Margin" Value="{ThemeResource OffsetScrollViewerMargin}" />
         <Setter Property="Padding" Value="{ThemeResource OffsetScrollViewerPadding}" />
     </Style>
-    
+
 </ResourceDictionary>

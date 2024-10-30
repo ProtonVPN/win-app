@@ -21,6 +21,8 @@ namespace ProtonVPN.Client.Settings.Contracts.Models;
 
 public struct DeviceLocation
 {
+    public static DeviceLocation Unknown => new DeviceLocation();
+
     public string IpAddress { get; init; }
     public string CountryCode { get; init; }
     public string Isp { get; init; }

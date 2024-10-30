@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -151,6 +151,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           TintOpacity="0.2" />
             <SolidColorBrush x:Key="PaneOverlayDisabledBorderColorBrush" Opacity="0.60" Color="{StaticResource BorderWeakColor}" />
 
+
+            <AcrylicBrush x:Key="FlyoutOverlayBackgroundColorBrush"
+                          FallbackColor="{StaticResource BackgroundNormColor}"
+                          TintColor="{StaticResource BackgroundNormColor}"
+                          TintOpacity="0.6" />
+            <SolidColorBrush x:Key="FlyoutOverlayBorderColorBrush" Opacity="0.82" Color="{StaticResource BorderWeakColor}" />
+
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Dark">
@@ -280,6 +287,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           TintColor="{StaticResource BackgroundNormColor}"
                           TintOpacity="0.2" />
             <SolidColorBrush x:Key="PaneOverlayDisabledBorderColorBrush" Opacity="0.60" Color="{StaticResource BorderWeakColor}" />
+            
+            <AcrylicBrush x:Key="FlyoutOverlayBackgroundColorBrush"
+                          FallbackColor="{StaticResource BackgroundNormColor}"
+                          TintColor="{StaticResource BackgroundNormColor}"
+                          TintOpacity="0.6" />
+            <SolidColorBrush x:Key="FlyoutOverlayBorderColorBrush" Opacity="0.82" Color="{StaticResource BorderWeakColor}" />
 
         </ResourceDictionary>
         
