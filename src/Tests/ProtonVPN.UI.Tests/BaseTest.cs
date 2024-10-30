@@ -113,6 +113,7 @@ public class BaseTest
             //Do nothing, since artifact collection shouldn't block cleanup.
         }
         App.Close();
+        App.Dispose();
     }
 
     protected static void LaunchApp(bool isFreshStart = true)
