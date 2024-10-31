@@ -58,6 +58,8 @@ public abstract class ServerLocationItemBase : LocationItemBase<Server>
 
     public override ILocationIntent LocationIntent { get; }
 
+    protected override string AutomationName => "Spectific_Server";
+
     protected ServerLocationItemBase(
         ILocalizationProvider localizer,
         IServersLoader serversLoader,

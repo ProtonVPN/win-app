@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -114,6 +114,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                       x:DataType="countries:GenericCountryLocationItem">
 
             <custom:ConnectionRowButton ActionLabel="{x:Bind PrimaryActionLabel}"
+                                        AutomationProperties.AutomationId="{x:Bind PrimaryCommandAutomationId}"
                                         Command="{x:Bind ToggleConnectionCommand, Mode=OneTime}"
                                         Description="{x:Bind Description}"
                                         Header="{x:Bind Header}"
@@ -134,9 +135,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <DataTemplate x:Key="CountryLocationWithExpanderItemTemplate"
                       x:DataType="connections:CountryLocationItemBase">
 
-            <custom:DualConnectionRowExpander ToolTipService.ToolTip="{x:Bind ToolTip}">
+            <custom:DualConnectionRowExpander AutomationProperties.AutomationId="{x:Bind SecondaryCommandAutomationId}"
+                                              AutomationProperties.Name="{x:Bind Header}"
+                                              ToolTipService.ToolTip="{x:Bind ToolTip}">
 
                 <custom:ConnectionRowButton ActionLabel="{x:Bind PrimaryActionLabel}"
+                                            AutomationProperties.AutomationId="{x:Bind PrimaryCommandAutomationId}"
                                             Command="{x:Bind ToggleConnectionCommand, Mode=OneTime}"
                                             Description="{x:Bind Description}"
                                             Header="{x:Bind Header}"
@@ -164,9 +168,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <DataTemplate x:Key="CountryLocationWithFlyoutItemTemplate"
                       x:DataType="connections:CountryLocationItemBase">
 
-            <custom:DualConnectionRowButton ToolTipService.ToolTip="{x:Bind ToolTip}">
+            <custom:DualConnectionRowButton AutomationProperties.AutomationId="{x:Bind SecondaryCommandAutomationId}"
+                                            AutomationProperties.Name="{x:Bind Header}"
+                                            ToolTipService.ToolTip="{x:Bind ToolTip}">
 
                 <custom:ConnectionRowButton ActionLabel="{x:Bind PrimaryActionLabel}"
+                                            AutomationProperties.AutomationId="{x:Bind PrimaryCommandAutomationId}"
                                             Command="{x:Bind ToggleConnectionCommand, Mode=OneTime}"
                                             Description="{x:Bind Description}"
                                             Header="{x:Bind Header}"
@@ -202,10 +209,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </Grid.RowDefinitions>
 
                             <custom:ConnectionRowButton Grid.Row="0"
+                                                        Margin="0,0,0,8"
+                                                        Padding="4"
                                                         Description="{x:Bind Description}"
                                                         Header="{x:Bind Header}"
-                                                        Padding="4"
-                                                        Margin="0,0,0,8"
                                                         IsHitTestVisible="False">
                                 <custom:ConnectionRowButton.Icon>
                                     <custom:SimpleCountryFlag Width="30"
@@ -247,6 +254,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                       x:DataType="countries:SecureCoreCountryPairLocationItem">
 
             <custom:ConnectionRowButton ActionLabel="{x:Bind PrimaryActionLabel}"
+                                        AutomationProperties.AutomationId="{x:Bind PrimaryCommandAutomationId}"
+                                        AutomationProperties.Name="{x:Bind Header}"
                                         Command="{x:Bind ToggleConnectionCommand, Mode=OneTime}"
                                         Description="{x:Bind Description}"
                                         Header="{x:Bind Header}"
@@ -269,9 +278,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <DataTemplate x:Key="StateLocationItemTemplate"
                       x:DataType="connections:StateLocationItemBase">
 
-            <custom:DualConnectionRowButton ToolTipService.ToolTip="{x:Bind ToolTip}">
+            <custom:DualConnectionRowButton AutomationProperties.AutomationId="{x:Bind SecondaryCommandAutomationId}"
+                                            AutomationProperties.Name="{x:Bind Header}"
+                                            ToolTipService.ToolTip="{x:Bind ToolTip}">
 
                 <custom:ConnectionRowButton ActionLabel="{x:Bind PrimaryActionLabel}"
+                                            AutomationProperties.AutomationId="{x:Bind PrimaryCommandAutomationId}"
                                             Command="{x:Bind ToggleConnectionCommand, Mode=OneTime}"
                                             Description="{x:Bind Description}"
                                             Header="{x:Bind Header}"
@@ -304,10 +316,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </Grid.RowDefinitions>
 
                             <custom:ConnectionRowButton Grid.Row="0"
+                                                        Margin="0,0,0,8"
+                                                        Padding="4"
                                                         Description="{x:Bind Header}"
                                                         Header="{x:Bind Description}"
-                                                        Padding="4"
-                                                        Margin="0,0,0,8"
                                                         IsHitTestVisible="False">
                                 <custom:ConnectionRowButton.Icon>
                                     <custom:SimpleCountryFlag Width="30"
@@ -346,9 +358,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <DataTemplate x:Key="CityLocationItemTemplate"
                       x:DataType="connections:CityLocationItemBase">
 
-            <custom:DualConnectionRowButton ToolTipService.ToolTip="{x:Bind ToolTip}">
+            <custom:DualConnectionRowButton AutomationProperties.AutomationId="{x:Bind SecondaryCommandAutomationId}"
+                                            AutomationProperties.Name="{x:Bind Header}"
+                                            ToolTipService.ToolTip="{x:Bind ToolTip}">
 
                 <custom:ConnectionRowButton ActionLabel="{x:Bind PrimaryActionLabel}"
+                                            AutomationProperties.AutomationId="{x:Bind PrimaryCommandAutomationId}"
                                             Command="{x:Bind ToggleConnectionCommand, Mode=OneTime}"
                                             Description="{x:Bind Description}"
                                             Header="{x:Bind Header}"
@@ -382,10 +397,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </Grid.RowDefinitions>
 
                             <custom:ConnectionRowButton Grid.Row="0"
+                                                        Margin="0,0,0,8"
+                                                        Padding="4"
                                                         Description="{x:Bind Header}"
                                                         Header="{x:Bind Description}"
-                                                        Padding="4"
-                                                        Margin="0,0,0,8"
                                                         IsHitTestVisible="False">
                                 <custom:ConnectionRowButton.Icon>
                                     <custom:SimpleCountryFlag Width="30"
@@ -424,7 +439,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <DataTemplate x:Key="ServerLocationItemTemplate"
                       x:DataType="connections:ServerLocationItemBase">
 
-            <custom:ServerConnectionRowButton Command="{x:Bind ToggleConnectionCommand, Mode=OneTime}"
+            <custom:ServerConnectionRowButton AutomationProperties.AutomationId="{x:Bind PrimaryCommandAutomationId}"
+                                              AutomationProperties.Name="{x:Bind Header}"
+                                              Command="{x:Bind ToggleConnectionCommand, Mode=OneTime}"
                                               Header="{x:Bind Header}"
                                               IsActiveConnection="{x:Bind IsActiveConnection}"
                                               IsRestricted="{x:Bind IsRestricted}"
@@ -443,7 +460,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <DataTemplate x:Key="GatewayLocationItemTemplate"
                       x:DataType="gateways:GatewayLocationItem">
 
-            <custom:DualConnectionRowButton ToolTipService.ToolTip="{x:Bind ToolTip}">
+            <custom:DualConnectionRowButton AutomationProperties.AutomationId="{x:Bind SecondaryCommandAutomationId}"
+                                            AutomationProperties.Name="{x:Bind Header}"
+                                            ToolTipService.ToolTip="{x:Bind ToolTip}">
 
                 <custom:ConnectionRowButton ActionLabel="{x:Bind PrimaryActionLabel}"
                                             Command="{x:Bind ToggleConnectionCommand, Mode=OneTime}"
@@ -478,8 +497,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </Grid.RowDefinitions>
 
                             <custom:ConnectionRowButton Grid.Row="0"
-                                                        Padding="4"
                                                         Margin="0,0,0,8"
+                                                        Padding="4"
                                                         Header="{x:Bind Header}"
                                                         IsHitTestVisible="False">
                                 <custom:ConnectionRowButton.Icon>
@@ -503,7 +522,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <DataTemplate x:Key="GatewayServerLocationItemTemplate"
                       x:DataType="gateways:GatewayServerLocationItem">
 
-            <custom:ServerConnectionRowButton Command="{x:Bind ToggleConnectionCommand, Mode=OneTime}"
+            <custom:ServerConnectionRowButton AutomationProperties.AutomationId="{x:Bind PrimaryCommandAutomationId}"
+                                              AutomationProperties.Name="{x:Bind Header}"
+                                              Command="{x:Bind ToggleConnectionCommand, Mode=OneTime}"
                                               Header="{x:Bind Header}"
                                               IsActiveConnection="{x:Bind IsActiveConnection}"
                                               IsRestricted="{x:Bind IsRestricted}"
@@ -528,9 +549,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <DataTemplate x:Key="RecentConnectionItemTemplate"
                       x:DataType="recents:RecentConnectionItem">
 
-            <custom:DualConnectionRowButton ToolTipService.ToolTip="{x:Bind ToolTip}">
+            <custom:DualConnectionRowButton AutomationProperties.AutomationId="{x:Bind SecondaryCommandAutomationId}"
+                                            AutomationProperties.Name="{x:Bind Header}"
+                                            ToolTipService.ToolTip="{x:Bind ToolTip}">
 
                 <custom:ConnectionRowButton ActionLabel="{x:Bind PrimaryActionLabel}"
+                                            AutomationProperties.AutomationId="{x:Bind PrimaryCommandAutomationId}"
                                             Command="{x:Bind ToggleConnectionCommand, Mode=OneTime}"
                                             Description="{x:Bind Description}"
                                             Header="{x:Bind Header}"
@@ -598,9 +622,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <DataTemplate x:Key="ProfileConnectionItemTemplate"
                       x:DataType="profiles:ProfileConnectionItem">
 
-            <custom:DualConnectionRowButton ToolTipService.ToolTip="{x:Bind ToolTip}">
+            <custom:DualConnectionRowButton AutomationProperties.AutomationId="{x:Bind SecondaryCommandAutomationId}"
+                                            AutomationProperties.Name="{x:Bind Header}"
+                                            ToolTipService.ToolTip="{x:Bind ToolTip}">
 
                 <custom:ConnectionRowButton ActionLabel="{x:Bind PrimaryActionLabel}"
+                                            AutomationProperties.AutomationId="{x:Bind PrimaryCommandAutomationId}"
                                             Command="{x:Bind ToggleConnectionCommand, Mode=OneTime}"
                                             Description="{x:Bind Description}"
                                             Header="{x:Bind Header}"
