@@ -51,7 +51,7 @@ public partial class DetailsComponentViewModel : HostViewModelBase<ISidebarViewN
     private readonly IEnumerable<IConnectionDetailsAware> _connectionDetailsComponents;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(ProtectionSubLabel))]
+    [NotifyPropertyChangedFor(nameof(ProtectionDescription))]
     private TimeSpan? _sessionLength;
 
     public bool IsConnected => _connectionManager.IsConnected;
@@ -60,7 +60,7 @@ public partial class DetailsComponentViewModel : HostViewModelBase<ISidebarViewN
 
     public bool IsDisconnected => _connectionManager.IsDisconnected;
 
-    public string ProtectionLabel =>
+    public string ProtectionTitle =>
         _connectionManager.ConnectionStatus switch
         {
             ConnectionStatus.Disconnected => Localizer.Get("Home_ConnectionDetails_Unprotected"),
@@ -69,7 +69,7 @@ public partial class DetailsComponentViewModel : HostViewModelBase<ISidebarViewN
             _ => string.Empty,
         };
 
-    public string ProtectionSubLabel =>
+    public string ProtectionDescription =>
         _connectionManager.ConnectionStatus switch
         {
             ConnectionStatus.Disconnected => Localizer.Get("Home_ConnectionDetails_UnprotectedSubLabel"),
@@ -129,8 +129,8 @@ public partial class DetailsComponentViewModel : HostViewModelBase<ISidebarViewN
         OnPropertyChanged(nameof(IsConnected));
         OnPropertyChanged(nameof(IsConnecting));
         OnPropertyChanged(nameof(IsDisconnected));
-        OnPropertyChanged(nameof(ProtectionLabel));
-        OnPropertyChanged(nameof(ProtectionSubLabel));
+        OnPropertyChanged(nameof(ProtectionTitle));
+        OnPropertyChanged(nameof(ProtectionDescription));
 
         InvalidateAutoRefreshTimer();
     }
