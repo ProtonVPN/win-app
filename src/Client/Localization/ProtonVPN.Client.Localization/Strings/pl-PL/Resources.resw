@@ -120,6 +120,75 @@
   <data name="Account_VpnPlan_Free">
     <value>Proton VPN Free</value>
   </data>
+  <data name="Automation_Properties_ConnectionDetails_Page">
+    <value>Connection details page</value>
+  </data>
+  <data name="Automation_Properties_Features_Bar">
+    <value>Features bar</value>
+  </data>
+  <data name="Automation_Properties_Home_Page_One">
+    <value></value>
+  </data>
+  <data name="Automation_Properties_Home_Page_Few">
+    <value></value>
+  </data>
+  <data name="Automation_Properties_Home_Page_Many">
+    <value></value>
+  </data>
+  <data name="Automation_Properties_Home_Page_Other">
+    <value></value>
+  </data>
+  <data name="Automation_Properties_KillSwitch_Page">
+    <value>Kill switch page</value>
+  </data>
+  <data name="Automation_Properties_LocationDetails_Page">
+    <value>Location details page</value>
+  </data>
+  <data name="Automation_Properties_Login_Page">
+    <value>Login page</value>
+  </data>
+  <data name="Automation_Properties_Main_Page">
+    <value>Main page</value>
+  </data>
+  <data name="Automation_Properties_NetShield_Page">
+    <value>NetShield page</value>
+  </data>
+  <data name="Automation_Properties_PortForwarding_Page">
+    <value>Port forwarding page</value>
+  </data>
+  <data name="Automation_Properties_Settings_Advanced_Page">
+    <value>Advanced settings page</value>
+  </data>
+  <data name="Automation_Properties_Settings_Common_Page">
+    <value>Common settings page</value>
+  </data>
+  <data name="Automation_Properties_Settings_Page">
+    <value>Settings page</value>
+  </data>
+  <data name="Automation_Properties_Sidebar">
+    <value>Sidebar</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Countries_Page">
+    <value>Countries page</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Gateways_Page">
+    <value>Gateways page</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Page">
+    <value>Connections page</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Profiles_Page">
+    <value>Profiles page</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Recents_Page">
+    <value>Recents page</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Search_Results_Page">
+    <value>Search results</value>
+  </data>
+  <data name="Automation_Properties_SplitTunneling_Page">
+    <value>Split tunneling page</value>
+  </data>
   <data name="Cities">
     <value>Miasta</value>
   </data>
@@ -130,8 +199,14 @@
   <data name="Common_Actions_Add">
     <value>Dodaj</value>
   </data>
+  <data name="Common_Actions_Back">
+    <value>Back</value>
+  </data>
   <data name="Common_Actions_Cancel">
     <value>Anuluj</value>
+  </data>
+  <data name="Common_Actions_Change">
+    <value>Change</value>
   </data>
   <data name="Common_Actions_Close">
     <value>Zamknij</value>
@@ -456,6 +531,36 @@
   <data name="Connections_Random">
     <value>Losowy</value>
   </data>
+  <data name="Connections_Recents_One">
+    <value>Recent ({0})</value>
+  </data>
+  <data name="Connections_Recents_Few">
+    <value>Recents ({0})</value>
+  </data>
+  <data name="Connections_Recents_Many">
+    <value>Recents ({0})</value>
+  </data>
+  <data name="Connections_Recents_Other">
+    <value>Recents ({0})</value>
+  </data>
+  <data name="Connections_Recents_Empty_Description">
+    <value>View your connection history here.</value>
+  </data>
+  <data name="Connections_Recents_Empty_Title">
+    <value>No recents yet</value>
+  </data>
+  <data name="Connections_Recents_Pinned_One">
+    <value>Pinned ({0})</value>
+  </data>
+  <data name="Connections_Recents_Pinned_Few">
+    <value>Pinned ({0})</value>
+  </data>
+  <data name="Connections_Recents_Pinned_Many">
+    <value>Pinned ({0})</value>
+  </data>
+  <data name="Connections_Recents_Pinned_Other">
+    <value>Pinned ({0})</value>
+  </data>
   <data name="Connections_SecureCore_Countries_One">
     <value>Kraj Secure Core ({0})</value>
   </data>
@@ -584,6 +689,9 @@
   <data name="Connections_Tor_Servers_Other">
     <value>Serwery Tor ({0})</value>
   </data>
+  <data name="Countries">
+    <value>Countries</value>
+  </data>
   <data name="Countries_All">
     <value>Wszystkie</value>
   </data>
@@ -639,13 +747,10 @@
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
   <data name="Countries_P2P_Description">
-    <value>Bezpieczne udostępnianie i pobieranie plików w sieciach peer-to-peer (P2P).</value>
+    <value>Download files over P2P (peer-to-peer) networks and enhance your online gaming and video calling experience.</value>
   </data>
   <data name="Countries_Page_FreeUser_Description">
     <value>Odblokuj wybór krajów w planie VPN Plus</value>
-  </data>
-  <data name="Countries_Page_Title">
-    <value>Kraje</value>
   </data>
   <data name="Countries_SearchPlaceholder">
     <value>Chcę przeglądać Internet z...</value>
@@ -1796,29 +1901,37 @@ Wysokie opóźnienie może spowolnić połączenie.</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>Jak używać torrentów z P2P</value>
+    <comment>obsolete</comment>
   </data>
   <data name="Dialogs_P2P_Title">
     <value>P2P</value>
+    <comment>obsolete</comment>
   </data>
   <data name="Dialogs_P2P_WhatIsP2PServer">
     <value>Co to jest serwer P2P?</value>
+    <comment>obsolete</comment>
   </data>
   <data name="Dialogs_P2P_WhatIsP2PServer_Description">
     <value>Serwer VPN peer-to-peer (P2P) odblokowuje dostęp do stron z torrentami.</value>
+    <comment>obsolete</comment>
   </data>
   <data name="Dialogs_P2P_WhatIsTorrenting">
     <value>Co to jest torrenting?</value>
+    <comment>obsolete</comment>
   </data>
   <data name="Dialogs_P2P_WhatIsTorrenting_Description">
     <value>To szybkie udostępnianie i pobieranie dużych plików za pomocą sieci peer-to-peer (P2P).</value>
+    <comment>obsolete</comment>
   </data>
   <data name="Dialogs_P2P_WhyUse">
     <value>Dlaczego warto używać serwera P2P podczas pobierania torrentów?</value>
+    <comment>obsolete</comment>
   </data>
   <data name="Dialogs_P2P_WhyUse_Description">
     <value>• Zwiększa prędkość przesyłania i pobierania
 • Nie przechowuje logów
 • Ukrywa adres IP przed dostawcą usługi i użytkownikami sieci</value>
+    <comment>obsolete</comment>
   </data>
   <data name="Dialogs_Protocol_Description">
     <value>Protokół to zestaw instrukcji wykonywanych przez urządzenie w celu nawiązania połączenia i komunikacji z serwerem.</value>
@@ -1887,31 +2000,39 @@ Wysokie opóźnienie może spowolnić połączenie.</value>
   </data>
   <data name="Dialogs_SecureCore_AdvancedPrivacy">
     <value>Zaawansowana prywatność</value>
+    <comment>obsolete</comment>
   </data>
   <data name="Dialogs_SecureCore_Description">
     <value>Funkcja Secure Core łączy użytkownika z serwerem docelowym za pośrednictwem drugiego bezpiecznego serwera VPN.
 
 Ten wyższy poziom ochrony może powodować wyższe opóźnienia i wolniejsze prędkości.</value>
+    <comment>obsolete</comment>
   </data>
   <data name="Dialogs_SecureCore_HighPrivacy">
     <value>Wysoki poziom prywatności</value>
+    <comment>obsolete</comment>
   </data>
   <data name="Dialogs_SecureCore_HigherLatency">
     <value>Wyższe opóźnienie</value>
+    <comment>obsolete</comment>
   </data>
   <data name="Dialogs_SecureCore_LowerLatency">
     <value>Niższe opóźnienie</value>
+    <comment>obsolete</comment>
   </data>
   <data name="Dialogs_SecureCore_SecureCoreConnection">
     <value>Połączenie VPN
 Secure Core</value>
+    <comment>obsolete</comment>
   </data>
   <data name="Dialogs_SecureCore_StandardConnection">
     <value>Standardowe
 połączenie VPN</value>
+    <comment>obsolete</comment>
   </data>
   <data name="Dialogs_SecureCore_Title">
     <value>Secure Core</value>
+    <comment>obsolete</comment>
   </data>
   <data name="Dialogs_ServerLoad_Description">
     <value>Obciążenie serwera informuje o stopniu wykorzystanej maksymalnej wydajności serwera.
@@ -2062,6 +2183,130 @@ Ciesz się tym, co najlepsze w prywatności Proton.</value>
   <data name="Exit_Title">
     <value>Wyjdź z Proton VPN</value>
   </data>
+  <data name="Flyouts_Country_Description">
+    <value>Browsing without a VPN leaves you vulnerable to location-based internet restrictions.
+
+Websites can use geoblocks to restrict content to certain locations. Governments can also instruct ISPs (Internet Service Providers) to block certain websites in their country.
+
+A VPN makes it looks like you’re browsing from somewhere else, protecting you from surveillance and censorship.</value>
+  </data>
+  <data name="Flyouts_Country_Title">
+    <value>Country</value>
+  </data>
+  <data name="Flyouts_Country_Warning">
+    <value>Connect to VPN to change your virtual location</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Connected">
+    <value>Your VPN IP masks your real IP address. This makes it look like you’re browsing from your VPN location, so your online activity can’t be linked to your device.</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected">
+    <value>This unique code can be used by websites and ISPs (Internet Service Providers) to link your location and browsing history to your device. 
+
+A VPN masks your IP address, making it harder for your activity to be traced back to you.</value>
+  </data>
+  <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
+    <value>What is an IP address?</value>
+  </data>
+  <data name="Flyouts_IpAddress_Title">
+    <value>IP address</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIp">
+    <value>VPN IP</value>
+  </data>
+  <data name="Flyouts_IpAddress_YourIp">
+    <value>Your IP</value>
+  </data>
+  <data name="Flyouts_IpAddress_YourIpIsVisible">
+    <value>Your IP address is visible</value>
+  </data>
+  <data name="Flyouts_Isp_Description">
+    <value>Your ISP (Internet Service Provider) is the company that connects you to the internet. 
+
+They can log your online activity. In some countries, they can sell your data to advertisers. In others, they can be required to hand it over to the government. 
+
+A VPN hides your IP address, protecting you from ISP interference.</value>
+  </data>
+  <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
+    <value>What is an Internet Service Provider (ISP)?</value>
+  </data>
+  <data name="Flyouts_Isp_Title">
+    <value>Provider</value>
+  </data>
+  <data name="Flyouts_Isp_Warning">
+    <value>Your provider can see which websites you visit</value>
+  </data>
+  <data name="Flyouts_Protocol_Description">
+    <value>A VPN protocol determines how traffic is encrypted and transmitted over the VPN.</value>
+  </data>
+  <data name="Flyouts_Protocol_KnowledgeBaseLinkTitle">
+    <value>Which VPN protocol is the best?</value>
+  </data>
+  <data name="Flyouts_Protocol_Title">
+    <value>Protocol</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Description">
+    <value>Server load shows how close a server is to its maximum capacity. A high server load can slow down your connection.</value>
+  </data>
+  <data name="Flyouts_ServerLoad_High">
+    <value>High (91-100%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_High_Description">
+    <value>VPN may run slower than normal</value>
+  </data>
+  <data name="Flyouts_ServerLoad_KnowledgeBaseLinkTitle">
+    <value>What is server load?</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Low">
+    <value>Low (1-75%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Low_Description">
+    <value>Lightning fast speeds</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Medium">
+    <value>Medium (76-90%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Medium_Description">
+    <value>Unlikely to affect connection speed</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Title">
+    <value>Server load</value>
+  </data>
+  <data name="Flyouts_Speed_BoostedByVpnAccelerator">
+    <value>Boosted by VPN Accelerator</value>
+  </data>
+  <data name="Flyouts_Speed_Description">
+    <value>This shows how much data gets transmitted through Proton VPN each second.
+
+Speed is based on your device’s current activity — it doesn’t represent the VPN’s maximum speed.</value>
+  </data>
+  <data name="Flyouts_Speed_Download">
+    <value>Download</value>
+    <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
+  </data>
+  <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
+    <value>Understanding and increasing VPN connection speeds</value>
+  </data>
+  <data name="Flyouts_Speed_Title">
+    <value>Speed</value>
+  </data>
+  <data name="Flyouts_Speed_Upload">
+    <value>Upload</value>
+    <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
+  </data>
+  <data name="Flyouts_Volume_Description">
+    <value>This shows how much traffic has routed through your VPN.</value>
+  </data>
+  <data name="Flyouts_Volume_Download">
+    <value>Download</value>
+    <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
+  </data>
+  <data name="Flyouts_Volume_Title">
+    <value>Volume</value>
+  </data>
+  <data name="Flyouts_Volume_Upload">
+    <value>Upload</value>
+    <comment>Refers to the uploaded volume (e.g., Upload [new line] 250 MB).</comment>
+  </data>
   <data name="Format_Milliseconds">
     <value>{0} ms</value>
     <comment>Format a number as a time in milliseconds. {0} is a place holder for the number of milliseconds (eg. 46ms)</comment>
@@ -2095,7 +2340,7 @@ Ciesz się tym, co najlepsze w prywatności Proton.</value>
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_SpeedUnit">
-    <value>Prędkość {0}</value>
+    <value>Speed ({0})</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
@@ -2241,11 +2486,14 @@ Ciesz się tym, co najlepsze w prywatności Proton.</value>
     <value>Połączono</value>
     <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
   </data>
+  <data name="Home_ConnectionDetails_Connecting">
+    <value>Connecting</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectingSubLabel">
+    <value>Protecting your digital identity...</value>
+  </data>
   <data name="Home_ConnectionDetails_Country">
     <value>Kraj</value>
-  </data>
-  <data name="Home_ConnectionDetails_Download">
-    <value>Pobieranie</value>
   </data>
   <data name="Home_ConnectionDetails_Gateway">
     <value>Brama</value>
@@ -2260,15 +2508,18 @@ Ciesz się tym, co najlepsze w prywatności Proton.</value>
   <data name="Home_ConnectionDetails_HideIP_Description">
     <value>Ukryj adres IP użytkownika</value>
   </data>
+  <data name="Home_ConnectionDetails_Isp">
+    <value>Provider</value>
+  </data>
   <data name="Home_ConnectionDetails_Landmark">
     <value>Szczegóły połączenia</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
-  <data name="Home_ConnectionDetails_Latency">
-    <value>Opóźnienie</value>
-  </data>
   <data name="Home_ConnectionDetails_MyIp">
     <value>Mój adres IP</value>
+  </data>
+  <data name="Home_ConnectionDetails_Protected">
+    <value>Protected</value>
   </data>
   <data name="Home_ConnectionDetails_Protocol">
     <value>Protokół</value>
@@ -2295,8 +2546,14 @@ Ciesz się tym, co najlepsze w prywatności Proton.</value>
   <data name="Home_ConnectionDetails_Title">
     <value>Szczegóły połączenia</value>
   </data>
-  <data name="Home_ConnectionDetails_Upload">
-    <value>Wysyłanie</value>
+  <data name="Home_ConnectionDetails_Unprotected">
+    <value>Unprotected</value>
+  </data>
+  <data name="Home_ConnectionDetails_UnprotectedSubLabel">
+    <value>Encrypt your online activity by connecting to VPN.</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume">
+    <value>Volume</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
     <value>Pobrano</value>
@@ -2307,14 +2564,11 @@ Ciesz się tym, co najlepsze w prywatności Proton.</value>
   <data name="Home_ConnectionDetails_Volume_Upload">
     <value>Wysłano</value>
   </data>
-  <data name="Home_ConnectionDetails_VpnAccelerator">
-    <value>Przyśpieszono przez VPN Accelerator</value>
-  </data>
-  <data name="Home_ConnectionDetails_VpnAccelerator_ToolTip">
-    <value>Zaawansowana wydajność i stabilność zwiększająca prędkość połączenia VPN.</value>
-  </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>Adres IP VPN</value>
+  </data>
+  <data name="Home_ConnectionDetails_YourIpAddress">
+    <value>Your IP address</value>
   </data>
   <data name="Home_FreeConnections_About">
     <value>Więcej informacji o bezpłatnych połączeniach</value>
@@ -2379,6 +2633,9 @@ Ciesz się tym, co najlepsze w prywatności Proton.</value>
   <data name="Home_Recents_Pin">
     <value>Przypnij</value>
   </data>
+  <data name="Home_Recents_Restricted">
+    <value>Server is available with VPN Plus</value>
+  </data>
   <data name="Home_Recents_SecondaryActions_ToolTip">
     <value>Akcje</value>
   </data>
@@ -2409,13 +2666,16 @@ Ciesz się tym, co najlepsze w prywatności Proton.</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_VpnStatus_Subtitle_Connecting">
-    <value>Ochrona cyfrowej tożsamości</value>
+    <value>Protecting your digital identity...</value>
   </data>
   <data name="Home_VpnStatus_Subtitle_Disconnected">
     <value>Nie jesteś chroniony</value>
   </data>
   <data name="Home_VpnStatus_Title_Connected">
     <value>Chroniony</value>
+  </data>
+  <data name="LoadingPage_Tip">
+    <value>A better world starts with privacy and digital freedom.</value>
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
     <value>Wystąpił błąd podczas pobierania szczegółów sesji. Spróbuj ponownie.</value>
@@ -2431,69 +2691,17 @@ Ciesz się tym, co najlepsze w prywatności Proton.</value>
     <value>Uwierzytelnianie SSO nie powiodło się. Spróbuj ponownie.</value>
   </data>
   <data name="Login_Error_TwoFactorAuthFailed">
-    <value>Dane logowania są nieprawidłowe. Spróbuj ponownie.</value>
+    <value>Incorrect username or password. Please try again.</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
     <value>Uwierzytelnianie dwustopniowe nie powiodło się. Zaloguj się ponownie.</value>
-  </data>
-  <data name="Login_Form">
-    <value>Logowanie</value>
-  </data>
-  <data name="Login_Form_AdvancedKillSwitchDescription">
-    <value>Funkcja Kill Switch blokuje wszystkie połączenia wychodzące</value>
-  </data>
-  <data name="Login_Form_CreateAccount">
-    <value>Utwórz konto</value>
-    <comment>A button inside sign in form</comment>
-  </data>
-  <data name="Login_Form_DisableKillSwitch">
-    <value>Wyłącz Kill Switch</value>
-  </data>
-  <data name="Login_Form_Email">
-    <value>Adres e-mail</value>
-  </data>
-  <data name="Login_Form_ForgotUsername">
-    <value>Przypomnij nazwę użytkownika</value>
-    <comment>Help button at the bottom of the login window</comment>
-  </data>
-  <data name="Login_Form_Help">
-    <value>Pomoc</value>
-    <comment>Help button at the bottom of the login window</comment>
-  </data>
-  <data name="Login_Form_Password">
-    <value>Hasło</value>
-  </data>
-  <data name="Login_Form_ReportAnIssue">
-    <value>Zgłoś problem</value>
-    <comment>Help button at the bottom of the login window</comment>
-  </data>
-  <data name="Login_Form_ResetPassword">
-    <value>Resetowanie hasła</value>
-    <comment>Help button at the bottom of the login window</comment>
-  </data>
-  <data name="Login_Form_SignIn">
-    <value>Zaloguj się</value>
-    <comment>A button inside sign in form</comment>
-  </data>
-  <data name="Login_Form_SignInWithPassword">
-    <value>Zaloguj się za pomocą hasła</value>
-  </data>
-  <data name="Login_Form_SignInWithSso">
-    <value>Zaloguj się przez SSO</value>
-  </data>
-  <data name="Login_Form_TroubleSigningIn">
-    <value>Problem z logowaniem</value>
-    <comment>Help button at the bottom of the login window</comment>
-  </data>
-  <data name="Login_Form_Username">
-    <value>Adres e-mail lub nazwa użytkownika</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate">
     <value>Uwierzytelnij</value>
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle">
-    <value>Wpisz kod z aplikacji uwierzytelniającej</value>
+    <value>Enter the code from your authenticator app.</value>
   </data>
   <data name="Login_TwoFactorForm_Title">
     <value>Uwierzytelnianie dwustopniowe</value>
@@ -2516,6 +2724,9 @@ Ciesz się tym, co najlepsze w prywatności Proton.</value>
   <data name="Login_TwoFactor_Digit6">
     <value>Szósta cyfra</value>
   </data>
+  <data name="Login_TwoFactor_EnterCode">
+    <value>Enter your code</value>
+  </data>
   <data name="Main_Loading_SigningIn">
     <value>Trwa logowanie. Poczekaj chwilę...</value>
     <comment>Message in the loading screen when signing in or starting the app</comment>
@@ -2530,11 +2741,161 @@ Ciesz się tym, co najlepsze w prywatności Proton.</value>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
     <value>Twój plan został obniżony do planu Proton Free. Zostaniesz ponownie połączony z najszybszym darmowym serwerem.</value>
   </data>
+  <data name="Overlay_OutdatedClient_Action">
+    <value>Update now</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Message">
+    <value>This app version is outdated. You must update the app to continue using Proton VPN.</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Title">
+    <value>Update Proton VPN to continue</value>
+  </data>
+  <data name="Overlay_P2P_Bullet1_Description">
+    <value>Our P2P (peer-to-peer) servers let you access P2P networks while still protecting your IP address and online activity.</value>
+  </data>
+  <data name="Overlay_P2P_Bullet1_Header">
+    <value>What is P2P VPN?</value>
+  </data>
+  <data name="Overlay_P2P_Bullet2_Description">
+    <value>P2P networks allow two devices to connect and transfer data without passing through a central server. </value>
+  </data>
+  <data name="Overlay_P2P_Bullet2_Header">
+    <value>What is a P2P network?</value>
+  </data>
+  <data name="Overlay_P2P_Bullet3_Description">
+    <value>  •  Downloading torrent files
+  •  Improving online gaming and video call performance
+  •  Connecting to local area network (LAN) devices</value>
+  </data>
+  <data name="Overlay_P2P_Bullet3_Header">
+    <value>What are P2P networks used for?</value>
+  </data>
+  <data name="Overlay_P2P_LearnMore">
+    <value>What is P2P?</value>
+  </data>
+  <data name="Overlay_P2P_Title">
+    <value>P2P</value>
+  </data>
+  <data name="Overlay_SecureCore_Description">
+    <value>Secure Core connects you to your destination server via a second, maximum security VPN server.
+
+This higher level of protection may cause higher latency and slower speeds.</value>
+  </data>
+  <data name="Overlay_SecureCore_LearnMore">
+    <value>What is Secure Core?</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection">
+    <value>Secure Core
+VPN connection</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection_Latency">
+    <value>Higher latency</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection_Privacy">
+    <value>Advanced privacy</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection">
+    <value>Standard
+VPN connection</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection_Latency">
+    <value>Lower latency</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection_Privacy">
+    <value>High privacy</value>
+  </data>
+  <data name="Overlay_SecureCore_Title">
+    <value>Secure Core</value>
+  </data>
+  <data name="Overlay_ServerLoad_Description">
+    <value>Server load shows how close a server is to its maximum capacity.
+
+A high server load can slow down your connection.</value>
+  </data>
+  <data name="Overlay_ServerLoad_HighRange_Description">
+    <value>VPN may run slower than normal</value>
+  </data>
+  <data name="Overlay_ServerLoad_HighRange_Title">
+    <value>High (91-100%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_LearnMore">
+    <value>What is server load?</value>
+  </data>
+  <data name="Overlay_ServerLoad_LowRange_Description">
+    <value>Lightning fast speeds</value>
+  </data>
+  <data name="Overlay_ServerLoad_LowRange_Title">
+    <value>Low (1-75%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_MediumRange_Description">
+    <value>Unlikely to affect VPN speed</value>
+  </data>
+  <data name="Overlay_ServerLoad_MediumRange_Title">
+    <value>Medium (76-90%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_Title">
+    <value>Server Load</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description">
+    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
+    
+When you connect to a Smart Routing server, you’ll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+
+Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Header">
+    <value>Servers are physically located in {0}, but you'll appear to be browsing from {1}</value>
+    <comment>{0} is a placeholder for the physical server location country. {1} is a placeholder for the destination country
+    Warning: country names are inserted in the nominative case. For INFLECTED languages, use alternative wording as follows:
+    Connects you to your destination country ({1}) through servers that are physically located somewhere else ({0})</comment>
+  </data>
+  <data name="Overlay_SmartRouting_LearnMore">
+    <value>What is Smart Routing?</value>
+  </data>
+  <data name="Overlay_SmartRouting_Title">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Overlay_Tor_Description">
+    <value>Connect to a Tor server to access hidden services and onion sites using any browser.</value>
+  </data>
+  <data name="Overlay_Tor_LearnMore">
+    <value>How to access the Tor network</value>
+  </data>
+  <data name="Overlay_Tor_Title">
+    <value>Tor</value>
+  </data>
   <data name="Profiles_Page_Description">
     <value>Skonfiguruj własne ustawienia VPN i połącz się za pomocą jednego kliknięcia.</value>
   </data>
   <data name="Profiles_Page_Title">
     <value>Profile</value>
+  </data>
+  <data name="Search_InputBox_Placeholder">
+    <value>Browse from...</value>
+  </data>
+  <data name="Search_NoInput_CityOrState">
+    <value>City or US state</value>
+    <comment>The word used for one single city and one single United States state</comment>
+  </data>
+  <data name="Search_NoInput_Country">
+    <value>Country</value>
+    <comment>The word used for one single country</comment>
+  </data>
+  <data name="Search_NoInput_Server">
+    <value>Server</value>
+    <comment>The word used for one single server</comment>
+  </data>
+  <data name="Search_NoInput_TrySearchingFor">
+    <value>Try searching for...</value>
+  </data>
+  <data name="Search_NoResults_Description">
+    <value>Try a different keyword.</value>
+  </data>
+  <data name="Search_NoResults_Title">
+    <value>No results found</value>
+  </data>
+  <data name="Server">
+    <value>Server</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Najszybszy darmowy serwer</value>
@@ -2556,6 +2917,9 @@ Ciesz się tym, co najlepsze w prywatności Proton.</value>
   </data>
   <data name="Server_Free">
     <value>Darmowy serwer</value>
+  </data>
+  <data name="Servers">
+    <value>Servers</value>
   </data>
   <data name="Settings_About">
     <value>Informacje</value>
@@ -2592,6 +2956,15 @@ Ciesz się tym, co najlepsze w prywatności Proton.</value>
   </data>
   <data name="Settings_About_Update_Description">
     <value>Wykorzystaj w pełni możliwości usługi VPN, aktualizując aplikację do najnowszej wersji.</value>
+  </data>
+  <data name="Settings_Account_Exit">
+    <value>Exit the app</value>
+  </data>
+  <data name="Settings_Account_MyAccount">
+    <value>My account</value>
+  </data>
+  <data name="Settings_Account_SignOut">
+    <value>Sign out</value>
   </data>
   <data name="Settings_AppVersion">
     <value>Wersja aplikacji</value>
@@ -3053,6 +3426,84 @@ Ciesz się tym, co najlepsze w prywatności Proton.</value>
   <data name="Settings_VpnAccelerator_Description">
     <value>Zwiększ prędkość połączenia nawet o 400% dzięki technologii zwiększających wydajność.</value>
   </data>
+  <data name="SignIn_Form">
+    <value>Sign in form</value>
+  </data>
+  <data name="SignIn_Form_AdvancedKillSwitchDescription">
+    <value>Advanced kill switch is blocking your internet connection.</value>
+  </data>
+  <data name="SignIn_Form_BestSecureVpnForSpeed">
+    <value>The best secure VPN for speed</value>
+  </data>
+  <data name="SignIn_Form_CreateAccount">
+    <value>Create account</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="SignIn_Form_Description">
+    <value>Enter your Proton Account details.</value>
+  </data>
+  <data name="SignIn_Form_DisableKillSwitch">
+    <value>Disable kill switch</value>
+  </data>
+  <data name="SignIn_Form_Email">
+    <value>Email</value>
+  </data>
+  <data name="SignIn_Form_ForgotUsername">
+    <value>Forgot username</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_Help">
+    <value>Help</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_NoLogsPolicy">
+    <value>No-logs policy</value>
+  </data>
+  <data name="SignIn_Form_OpenSource">
+    <value>Open-source</value>
+  </data>
+  <data name="SignIn_Form_Password">
+    <value>Password</value>
+  </data>
+  <data name="SignIn_Form_PasswordError">
+    <value>Enter your password</value>
+    <comment>An error message is displayed when the user attempts to sign in without entering a password</comment>
+  </data>
+  <data name="SignIn_Form_ReportAnIssue">
+    <value>Report an issue</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_ResetPassword">
+    <value>Reset password</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_SignIn">
+    <value>Sign in</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="SignIn_Form_SignInWithSso">
+    <value>Sign in with SSO</value>
+  </data>
+  <data name="SignIn_Form_SwissBased">
+    <value>Swiss-based</value>
+  </data>
+  <data name="SignIn_Form_Title">
+    <value>Sign in</value>
+  </data>
+  <data name="SignIn_Form_TroubleSigningIn">
+    <value>Trouble signing in</value>
+    <comment>A button at the bottom of the login window inside Get help popup</comment>
+  </data>
+  <data name="SignIn_Form_Username">
+    <value>Email or username</value>
+  </data>
+  <data name="SignIn_Form_UsernameError">
+    <value>Enter your email or username</value>
+    <comment>An error message is displayed when the user attempts to sign in without entering a username</comment>
+  </data>
+  <data name="SignIn_KillSwitch_Disabled">
+    <value>Kill switch is disabled</value>
+  </data>
   <data name="SystemNotification_Connected">
     <value>Jesteś chroniony</value>
   </data>
@@ -3286,8 +3737,14 @@ Ciesz się tym, co najlepsze w prywatności Proton.</value>
   <data name="VpnProtocol_OpenVPN_Tcp">
     <value>OpenVPN (TCP)</value>
   </data>
+  <data name="VpnProtocol_OpenVPN_Tcp_Description">
+    <value>Established, well-tested, and secure</value>
+  </data>
   <data name="VpnProtocol_OpenVPN_Udp">
     <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Udp_Description">
+    <value>Established, well-tested, and secure</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>
@@ -3295,10 +3752,19 @@ Ciesz się tym, co najlepsze w prywatności Proton.</value>
   <data name="VpnProtocol_WireGuard_Tcp">
     <value>WireGuard (TCP)</value>
   </data>
+  <data name="VpnProtocol_WireGuard_Tcp_Description">
+    <value>State-of-the-art protocol for security and performance</value>
+  </data>
   <data name="VpnProtocol_WireGuard_Tls">
     <value>Stealth</value>
   </data>
+  <data name="VpnProtocol_WireGuard_Tls_Description">
+    <value>Overcomes VPN blocks by hiding your connection from censors</value>
+  </data>
   <data name="VpnProtocol_WireGuard_Udp">
     <value>WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Udp_Description">
+    <value>State-of-the-art protocol for security and performance</value>
   </data>
 </root>
