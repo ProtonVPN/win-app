@@ -41,7 +41,11 @@ namespace ProtonVPN.Core.Service.Update
 
         public Task StartAutoUpdate()
         {
-            return Invoke((c, ct) => c.StartAutoUpdate(ct).Wrap());
+            StartAutoUpdateIpcEntity startAutoUpdateIpcEntity = new()
+            {
+                RetryId = Guid.NewGuid()
+            };
+            return Invoke((c, ct) => c.StartAutoUpdate(startAutoUpdateIpcEntity, ct).Wrap());
         }
     }
 }

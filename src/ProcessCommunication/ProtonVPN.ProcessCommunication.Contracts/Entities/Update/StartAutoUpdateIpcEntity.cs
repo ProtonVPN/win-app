@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,15 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.ServiceModel;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Update;
+using System.Runtime.Serialization;
 
-namespace ProtonVPN.ProcessCommunication.Contracts.Controllers;
-
-[ServiceContract]
-public interface IUpdateController : IServiceController
+namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Update
 {
-    Task CheckForUpdate(UpdateSettingsIpcEntity updateSettingsIpcEntity, CancellationToken cancelToken);
-
-    Task StartAutoUpdate(StartAutoUpdateIpcEntity startAutoUpdateIpcEntity, CancellationToken cancelToken);
+    [DataContract]
+    public class StartAutoUpdateIpcEntity
+    {
+        [DataMember(Order = 1, IsRequired = true)]
+        public Guid RetryId { get; set; }
+    }
 }

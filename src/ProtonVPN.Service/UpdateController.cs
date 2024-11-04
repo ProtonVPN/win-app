@@ -18,12 +18,17 @@
  */
 
 using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppUpdateLogs;
+using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Update;
 using ProtonVPN.Service.ProcessCommunication;
@@ -31,11 +36,15 @@ using ProtonVPN.Service.Update;
 using ProtonVPN.Update;
 using ProtonVPN.Update.Contracts;
 using ProtonVPN.Update.Contracts.Config;
+using Timer = System.Timers.Timer;
 
 namespace ProtonVPN.Service
 {
     public class UpdateController : IUpdateController
     {
+        private readonly TimeSpan _retryIdCleanupTimerInterval = TimeSpan.FromMinutes(10);
+        private readonly TimeSpan _retryIdExpirationInterval = TimeSpan.FromHours(1);
+
         private readonly INotifyingAppUpdate _notifyingAppUpdate;
         private readonly IAppUpdates _appUpdates;
         private readonly IFeedUrlProvider _feedUrlProvider;
@@ -44,8 +53,12 @@ namespace ProtonVPN.Service
         private readonly ICurrentAppVersionProvider _currentAppVersionProvider;
         private readonly ILogger _logger;
         private readonly SemaphoreSlim _semaphore = new(1, 1);
+        private readonly Timer _timer;
+        private readonly object _lock = new object();
+        private readonly ConcurrentDictionary<Guid, DateTimeOffset> _receivedRetryIds = [];
 
         private AppUpdateStateContract _lastUpdateState;
+        private Version _lastInstalledVersion;
 
         public UpdateController(
             INotifyingAppUpdate notifyingAppUpdate,
@@ -65,6 +78,26 @@ namespace ProtonVPN.Service
             _logger = logger;
 
             _notifyingAppUpdate.StateChanged += OnUpdateStateChanged;
+
+            _timer = new(_retryIdCleanupTimerInterval);
+            _timer.Elapsed += OnTimedEvent;
+            _timer.AutoReset = true;
+            _timer.Enabled = true;
+        }
+
+        private void OnTimedEvent(object sender, EventArgs e)
+        {
+            lock (_lock)
+            {
+                List<KeyValuePair<Guid, DateTimeOffset>> list = _receivedRetryIds.ToList();
+                foreach (KeyValuePair<Guid, DateTimeOffset> pair in list)
+                {
+                    if (pair.Value <= DateTimeOffset.UtcNow)
+                    {
+                        _receivedRetryIds.TryRemove(pair.Key, out _);
+                    }
+                }
+            }
         }
 
         public async Task CheckForUpdate(UpdateSettingsIpcEntity updateSettingsIpcEntity,
@@ -75,19 +108,39 @@ namespace ProtonVPN.Service
             _notifyingAppUpdate.StartCheckingForUpdate(updateSettingsIpcEntity.IsEarlyAccess);
         }
 
-        public async Task StartAutoUpdate(CancellationToken cancelToken)
+        public async Task StartAutoUpdate(StartAutoUpdateIpcEntity startAutoUpdateIpcEntity,
+            CancellationToken cancelToken)
         {
+            EnforceRetryId(startAutoUpdateIpcEntity.RetryId);
+
             if (_lastUpdateState.IsReady)
             {
-                if (_lastUpdateState.Version > _currentAppVersionProvider.GetVersion())
+                Version lastRegistryVersion = _currentAppVersionProvider.GetVersion();
+
+                if (_lastUpdateState.Version > lastRegistryVersion)
                 {
                     await HandleAutoUpdate(_lastUpdateState);
                 }
-                else if (_lastUpdateState.Version == _currentAppVersionProvider.GetVersion())
+                else if (_lastUpdateState.Version == lastRegistryVersion)
                 {
                     _lastUpdateState.Status = AppUpdateStatus.AutoUpdated;
                     await SendUpdateStateAsync(_lastUpdateState);
                 }
+            }
+        }
+
+        private void EnforceRetryId(Guid retryId, [CallerMemberName] string sourceMemberName = "")
+        {
+            lock (_lock)
+            {
+                if (_receivedRetryIds.ContainsKey(retryId))
+                {
+                    string message = $"{sourceMemberName} request dropped because the retry ID is repeated.";
+                    _logger.Info<ConnectLog>(message);
+                    throw new ArgumentException(message);
+                }
+                DateTimeOffset expirationDate = DateTimeOffset.UtcNow + _retryIdExpirationInterval;
+                _receivedRetryIds.AddOrUpdate(retryId, _ => expirationDate, (_, _) => expirationDate);
             }
         }
 
@@ -104,12 +157,23 @@ namespace ProtonVPN.Service
         private async Task HandleAutoUpdate(AppUpdateStateContract appUpdateStateContract)
         {
             await _semaphore.WaitAsync();
+
             try
             {
+                if (_lastInstalledVersion is not null && _lastInstalledVersion >= appUpdateStateContract.Version)
+                {
+                    _logger.Info<AppUpdateLog>($"Ignoring request to update the app to version " +
+                        $"{appUpdateStateContract.Version} because the last successfully installed " +
+                        $"version by this running service was equal or higher ({_lastInstalledVersion}).");
+                    return;
+                }
+
                 int exitCode = RunInstaller(appUpdateStateContract);
                 if (exitCode == 0)
                 {
                     _logger.Info<AppUpdateLog>($"The app was updated to version {appUpdateStateContract.Version}.");
+                    CheckRegistryVersionVersusInstalledVersion(appUpdateStateContract);
+                    _lastInstalledVersion = appUpdateStateContract.Version;
                     appUpdateStateContract.Status = AppUpdateStatus.AutoUpdated;
                 }
                 else
@@ -125,6 +189,17 @@ namespace ProtonVPN.Service
             finally
             {
                 _semaphore.Release();
+            }
+        }
+
+        private void CheckRegistryVersionVersusInstalledVersion(AppUpdateStateContract appUpdateStateContract)
+        {
+            Version lastInstalledVersion = _currentAppVersionProvider.GetVersion();
+            if (appUpdateStateContract.Version != lastInstalledVersion)
+            {
+                _logger.Warn<AppUpdateLog>($"There is a mismatch between the version " +
+                    $"just installed ({appUpdateStateContract.Version}) and the " +
+                    $"version provided by the registry {lastInstalledVersion}.");
             }
         }
 
