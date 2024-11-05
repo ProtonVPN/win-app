@@ -76,8 +76,8 @@ public class NetShieldTests : BaseTest
 
     private void ConnectAndVerifyIsConnected()
     {
+        SidebarRobot.ConnectToFastest();
         HomeRobot
-            .QuickConnect()
             .Verify.IsConnected();
     }
 }

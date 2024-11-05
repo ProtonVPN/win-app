@@ -27,6 +27,8 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("1")]
 public class ConnectionTests : BaseTest
 {
+    private const string COUNTRY_CODE = "AU";
+
     [SetUp]
     public void TestInitialize()
     {
@@ -38,17 +40,15 @@ public class ConnectionTests : BaseTest
     {
         NavigationRobot
             .Verify.IsOnLocationDetailsPage();
+        SidebarRobot
+            .ConnectToFastest();
         HomeRobot
-            .QuickConnect();
-        NavigationRobot
-            .Verify.IsOnConnectionDetailsPage();
+            .Verify.IsConnected();
     }
 
     [Test]
     public void ConnectToCountry()
     {
-        const string country = "Australia";
-
         NavigationRobot
             .Verify.IsOnConnectionsPage()
                    .IsOnLocationDetailsPage();
@@ -57,11 +57,11 @@ public class ConnectionTests : BaseTest
         NavigationRobot
             .Verify.IsOnCountriesPage();
         SidebarRobot
-            .ConnectToCountry(country);
-        NavigationRobot
-            .Verify.IsOnConnectionDetailsPage();
+            .ConnectToCountry(COUNTRY_CODE);
+        HomeRobot
+            .Verify.IsConnected();
         SidebarRobot
-            .DisconnectFromCountry(country);
+            .DisconnectFromCountry(COUNTRY_CODE);
         NavigationRobot
             .Verify.IsOnLocationDetailsPage();
     }

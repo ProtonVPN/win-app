@@ -28,6 +28,7 @@ public class SidebarRobot
     private const int SECURE_CORE_COUNTRIES_TAB_INDEX = 1;
     private const int P2P_COUNTRIES_TAB_INDEX = 2;
     private const int TOR_COUNTRIES_TAB_INDEX = 3;
+    private const string FASTEST_PROFILE = "Fastest";
 
     protected Element SidebarComponent = Element.ByAutomationId("SidebarComponent");
 
@@ -85,17 +86,23 @@ public class SidebarRobot
         return this;
     }
 
-    public SidebarRobot ConnectToCountry(string countryName)
+    public SidebarRobot ConnectToCountry(string countryCode)
     {
-        Element countryButton = Element.ByName(countryName);
-        countryButton.Click();
+        Element countryButton = Element.ByAutomationId($"Connect_to_{countryCode}");
+        countryButton.FindChild(Element.ByAutomationId("ConnectionRowHeader")).Click();
         return this;
     }
 
-    public SidebarRobot DisconnectFromCountry(string countryName)
+    public SidebarRobot ConnectToFastest()
     {
-        Element countryButton = Element.ByName(countryName);
-        countryButton.Click();
+        ConnectToCountry(FASTEST_PROFILE);
+        return this;
+    }
+
+    public SidebarRobot DisconnectFromCountry(string countryCode)
+    {
+        Element countryButton = Element.ByAutomationId($"Disconnect_from_{countryCode}");
+        countryButton.FindChild(Element.ByAutomationId("ConnectionRowHeader")).Click();
         return this;
     }
 

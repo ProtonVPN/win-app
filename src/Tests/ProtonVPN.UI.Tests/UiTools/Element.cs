@@ -24,13 +24,15 @@ namespace ProtonVPN.UI.Tests.UiTools;
 
 public class Element
 {
-    public string SelectorValue;
+    public string SelectorName;
     public Func<ConditionFactory, ConditionBase> Condition;
+    public Element ChildElement;
 
-    public Element(Func<ConditionFactory, ConditionBase> selector, string selectorValue)
+    public Element(Func<ConditionFactory, ConditionBase> selector, string selectorName, Element child = null)
     {
-        SelectorValue = selectorValue;
+        SelectorName = selectorName;
         Condition = selector;
+        ChildElement = child;
     }
 
     public static Element ByAutomationId(string automationId)
