@@ -26,16 +26,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <ResourceDictionary x:Key="Light">
 
-            <StaticResource x:Key="SettingsExpanderBackground" ResourceKey="BackgroundWeakColorBrush" />
+            <StaticResource x:Key="SettingsExpanderBackground" ResourceKey="InteractionDefaultColor" />
             <StaticResource x:Key="SettingsExpanderForeground" ResourceKey="TextNormColorBrush" />
-            <StaticResource x:Key="SettingsExpanderBorderBrush" ResourceKey="BorderWeakColorBrush" />
+            <StaticResource x:Key="SettingsExpanderBorderBrush" ResourceKey="BorderWeakColor" />
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Dark">
 
-            <StaticResource x:Key="SettingsExpanderBackground" ResourceKey="BackgroundWeakColorBrush" />
+            <StaticResource x:Key="SettingsExpanderBackground" ResourceKey="InteractionDefaultColor" />
             <StaticResource x:Key="SettingsExpanderForeground" ResourceKey="TextNormColorBrush" />
-            <StaticResource x:Key="SettingsExpanderBorderBrush" ResourceKey="BorderWeakColorBrush" />
+            <StaticResource x:Key="SettingsExpanderBorderBrush" ResourceKey="BorderWeakColor" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
@@ -82,13 +82,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               IsExpanded="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                               Style="{StaticResource SettingsExpanderExpanderStyle}">
                         <Expander.Header>
-                            <toolkit:SettingsCard Content="{TemplateBinding Content}"
+                            <toolkit:SettingsCard x:Name="SettingsCard"
+                                                  Content="{TemplateBinding Content}"
                                                   Description="{TemplateBinding Description}"
                                                   Header="{TemplateBinding Header}"
                                                   HeaderIcon="{TemplateBinding HeaderIcon}"
                                                   IsClickEnabled="False"
                                                   IsTabStop="{TemplateBinding IsTabStop}"
-                                                  Style="{StaticResource DefaultSettingsCardStyle}" />
+                                                  Style="{StaticResource DefaultSettingsCardStyle}"
+                                                  BorderThickness="1"
+                                                  CornerRadius="4" />
                         </Expander.Header>
                         <Expander.Content>
                             <Grid>
@@ -110,6 +113,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   Content="{TemplateBinding ItemsFooter}" />
                             </Grid>
                         </Expander.Content>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="ExpandDirectionStates">
+                                <VisualState x:Name="Collapsed" />
+                                <VisualState x:Name="Expanded">
+                                    <VisualState.StateTriggers>
+                                        <StateTrigger IsActive="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Target="SettingsCard.BorderThickness" Value="1,1,1,0" />
+                                        <Setter Target="SettingsCard.CornerRadius" Value="4,4,0,0" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
                     </Expander>
                 </ControlTemplate>
             </Setter.Value>
@@ -149,7 +168,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <!--  The clip is a composition clip applied in code  -->
                         <Border x:Name="ExpanderContentClip"
                                 Grid.Row="1"
-                                Margin="0,-8,0,0">
+                                Margin="0,-3,0,0">
                             <Border x:Name="ExpanderContent"
                                     MinHeight="{StaticResource SettingsExpanderContentMinHeight}"
                                     Padding="{TemplateBinding Padding}"
@@ -158,8 +177,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     Background="{TemplateBinding Background}"
                                     BackgroundSizing="{TemplateBinding BackgroundSizing}"
                                     BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BottomCornerRadiusFilterConverter}}">
+                                    BorderThickness="1,0,1,1"
+                                    CornerRadius="0,0,4,4">
                                 <ContentPresenter Margin="0,-2,0,0"
                                                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"

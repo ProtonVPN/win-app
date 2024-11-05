@@ -41,6 +41,7 @@ public sealed partial class MainWindow : IActivationStateAware
         OverlayActivator.Initialize(this);
     }
 
+
     public void InvalidateTitleBarOpacity(WindowActivationState activationState)
     {
         WindowContainer.TitleBarOpacity = activationState.GetTitleBarOpacity();

@@ -18,7 +18,6 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Contracts.Bases.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.UI.Main.Widgets.Contracts;
@@ -32,8 +31,6 @@ public abstract partial class WidgetViewModelBase : ViewModelBase, IWidget
     public abstract int SortIndex { get; }
 
     public abstract string Header { get; }
-
-    public abstract IconElement Icon { get; }
 
     public virtual bool IsAvailable => true;
 

@@ -647,6 +647,7 @@
         <None Remove="Assets\Icons\LatencyLow.xaml" />
         <None Remove="Assets\Icons\LatencyMedium.xaml" />
         <None Remove="Assets\Icons\LoadingLogo.xaml" />
+        <None Remove="Assets\Icons\profile.png" />
         <None Remove="Assets\Icons\Profiles\AnonymousProfileIcon.xaml" />
         <None Remove="Assets\Icons\Profiles\BotProfileIcon.xaml" />
         <None Remove="Assets\Icons\Profiles\BrowsingProfileIcon.xaml" />
@@ -696,7 +697,17 @@
         <None Remove="Assets\Icons\Streaming\tf1.png" />
         <None Remove="Assets\Illustrations\Dark\default-connection.svg" />
         <None Remove="Assets\Illustrations\Dark\free-countries.svg" />
+        <None Remove="Assets\Illustrations\Dark\kill-switch-off.png" />
+        <None Remove="Assets\Illustrations\Dark\kill-switch-on-advanced.png" />
+        <None Remove="Assets\Illustrations\Dark\kill-switch-on-standard.png" />
+        <None Remove="Assets\Illustrations\Dark\port-forwarding-off.png" />
+        <None Remove="Assets\Illustrations\Dark\port-forwarding-on.png" />
         <None Remove="Assets\Illustrations\Dark\product-logo.svg" />
+        <None Remove="Assets\Illustrations\Dark\settings.png" />
+        <None Remove="Assets\Illustrations\Dark\split-tunneling-off.png" />
+        <None Remove="Assets\Illustrations\Dark\split-tunneling-on.png" />
+        <None Remove="Assets\Illustrations\Dark\vpn-accelerator-off.png" />
+        <None Remove="Assets\Illustrations\Dark\vpn-accelerator-on.png" />
         <None Remove="Assets\Illustrations\Dark\vpn-plus.svg" />
         <None Remove="Assets\Illustrations\Dark\welcome.png" />
         <None Remove="Assets\Illustrations\feature-kill-switch.png" />
@@ -712,18 +723,29 @@
         <None Remove="Assets\Illustrations\latency.png" />
         <None Remove="Assets\Illustrations\Light\default-connection.svg" />
         <None Remove="Assets\Illustrations\Light\free-countries.svg" />
+        <None Remove="Assets\Illustrations\Light\kill-switch-off.png" />
+        <None Remove="Assets\Illustrations\Light\kill-switch-on-advanced.png" />
+        <None Remove="Assets\Illustrations\Light\kill-switch-on-standard.png" />
+        <None Remove="Assets\Illustrations\Light\netshield-off.png" />
+        <None Remove="Assets\Illustrations\Light\netshield-on-level-1.png" />
+        <None Remove="Assets\Illustrations\Light\netshield-on-level-2.png" />
+        <None Remove="Assets\Illustrations\Light\port-forwarding-off.png" />
+        <None Remove="Assets\Illustrations\Light\port-forwarding-on.png" />
         <None Remove="Assets\Illustrations\Light\product-logo.svg" />
         <None Remove="Assets\Illustrations\Light\profile-new.svg" />
+        <None Remove="Assets\Illustrations\Light\settings.png" />
+        <None Remove="Assets\Illustrations\Light\split-tunneling-off.png" />
+        <None Remove="Assets\Illustrations\Light\split-tunneling-on.png" />
+        <None Remove="Assets\Illustrations\Light\vpn-accelerator-off.png" />
+        <None Remove="Assets\Illustrations\Light\vpn-accelerator-on.png" />
+        <None Remove="Assets\Illustrations\Light\vpn-feature-protocol.svg" />
         <None Remove="Assets\Illustrations\Light\vpn-plus.svg" />
         <None Remove="Assets\Illustrations\Light\welcome.png" />
-        <None Remove="Assets\Illustrations\netshield-off.png" />
-        <None Remove="Assets\Illustrations\netshield-on.png" />
+        <None Remove="Assets\Illustrations\multiple-devices.png" />
         <None Remove="Assets\Illustrations\p2p-countries.png" />
         <None Remove="Assets\Illustrations\netshield.png" />
         <None Remove="Assets\Illustrations\p2p-thumbnail.png" />
         <None Remove="Assets\Illustrations\placeholder.svg" />
-        <None Remove="Assets\Illustrations\port-forwarding-off.png" />
-        <None Remove="Assets\Illustrations\port-forwarding-on.png" />
         <None Remove="Assets\Illustrations\profile-new.svg" />
         <None Remove="Assets\Illustrations\profiles.png" />
         <None Remove="Assets\Illustrations\protocol-thumbnail.png" />
@@ -803,6 +825,7 @@
         <None Remove="Styles\Controls\ContentDialogStyles.xaml" />
         <None Remove="Styles\Controls\CountryFlagStyles.xaml" />
         <None Remove="Styles\Controls\DetailRowButtonStyles.xaml" />
+        <None Remove="Styles\Controls\DimmableImageStyles.xaml" />
         <None Remove="Styles\Controls\DualCommandsRowStyles.xaml" />
         <None Remove="Styles\Controls\ExpanderStyles.xaml" />
         <None Remove="Styles\Controls\FlyoutStyles.xaml" />
@@ -906,6 +929,9 @@
     <ItemGroup>
         <Page Update="Gallery\Controls\TypographyControl.xaml">
             <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="Styles\Controls\DimmableImageStyles.xaml">
+          <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
         </Page>
     </ItemGroup>
     <ItemGroup>
@@ -1801,6 +1827,9 @@
         <Content Update="Assets\Flags\ZW.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Icons\profile.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Icons\Streaming\10play.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -1894,13 +1923,58 @@
         <Content Update="Assets\Illustrations\certified-no-logs.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Illustrations\Dark\settings.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Illustrations\ip-thumbnail.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\isp-thumbnail.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Illustrations\Dark\kill-switch-off.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Dark\kill-switch-on-advanced.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Dark\kill-switch-on-standard.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Dark\netshield-off.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Dark\netshield-on-level-1.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Dark\netshield-on-level-2.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Dark\port-forwarding-off.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Dark\port-forwarding-on.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Dark\split-tunneling-off.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Dark\split-tunneling-on.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Dark\vpn-accelerator-off.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Dark\vpn-accelerator-on.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Dark\vpn-feature-protocol.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Illustrations\kill-switch-enabled.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Light\settings.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\p2p-thumbnail.png">
@@ -1919,6 +1993,30 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\speed-thumbnail.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Light\port-forwarding-off.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Light\port-forwarding-on.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Light\split-tunneling-off.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Light\split-tunneling-on.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Light\vpn-accelerator-off.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Light\vpn-accelerator-on.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Light\vpn-feature-protocol.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\multiple-devices.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\swiss-flag.png">
@@ -1960,15 +2058,6 @@
         <Content Update="Assets\Illustrations\hyperlink-default.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
-        <Content Update="Assets\Illustrations\kill-switch-off.png">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-        <Content Update="Assets\Illustrations\kill-switch-on-level-1.png">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-        <Content Update="Assets\Illustrations\kill-switch-on-level-2.png">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
         <Content Update="Assets\Illustrations\latency.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -1990,12 +2079,6 @@
         <Content Update="Assets\Illustrations\Light\welcome.png">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
-        <Content Update="Assets\Illustrations\netshield-off.png">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-        <Content Update="Assets\Illustrations\netshield-on.png">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
         <Content Update="Assets\Illustrations\netshield.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -2013,12 +2096,6 @@
         </Content>
         <Content Update="Assets\Illustrations\placeholder.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-        <Content Update="Assets\Illustrations\port-forwarding-off.png">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-        <Content Update="Assets\Illustrations\port-forwarding-on.png">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\Dark\profile-new.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -2363,6 +2440,26 @@
       <Page Update="Styles\Controls\SizerStyles.xaml">
         <Generator>MSBuild:Compile</Generator>
       </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Content Update="Assets\Illustrations\Light\kill-switch-off.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Assets\Illustrations\Light\kill-switch-on-advanced.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Assets\Illustrations\Light\kill-switch-on-standard.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Assets\Illustrations\Light\netshield-off.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Assets\Illustrations\Light\netshield-on-level-1.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Assets\Illustrations\Light\netshield-on-level-2.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
     <ItemGroup>
       <Page Update="Styles\Controls\ListViewStyles.xaml">

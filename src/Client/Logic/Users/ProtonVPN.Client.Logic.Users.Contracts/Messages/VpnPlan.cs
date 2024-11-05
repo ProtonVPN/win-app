@@ -42,5 +42,11 @@ public readonly struct VpnPlan
 
     public bool IsB2B => Name is "vpnpro2023" or "vpnbiz2023" or "bundlepro2022";
 
+    public bool IsDuo => Name is "duo2024";
+
     public bool IsDefault => Title is null && Name is null && MaxTier == 0;
+
+    public bool IsVpnPlan => IsPlus || IsB2B;
+
+    public bool IsProtonPlan => IsUnlimited || IsDuo;
 }

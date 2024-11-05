@@ -17,15 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Contracts.Services.Mapping;
 using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.Contracts.Services.Navigation.Bases;
+using ProtonVPN.Client.UI.Main.Settings.Connection;
 using ProtonVPN.Client.UI.Main.Settings.Pages;
 using ProtonVPN.Client.UI.Main.Settings.Pages.About;
 using ProtonVPN.Client.UI.Main.Settings.Pages.Advanced;
+using ProtonVPN.Client.UI.Main.Settings.Pages.Connection;
 using ProtonVPN.Client.UI.Main.Settings.Pages.DefaultConnections;
 using ProtonVPN.Client.UI.Main.Settings.Pages.DeveloperTools;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Services.Navigation;
 
@@ -39,6 +42,8 @@ public class SettingsViewNavigator : ViewNavigatorBase, ISettingsViewNavigator
         : base(logger, pageViewMapper)
     {
     }
+
+    public override FrameInitializationBehavior InitializationBehavior { get; protected set; } = FrameInitializationBehavior.NavigateToDefaultViewIfEmpty;
 
     public Task<bool> NavigateToAdvancedSettingsViewAsync()
     {
@@ -58,6 +63,26 @@ public class SettingsViewNavigator : ViewNavigatorBase, ISettingsViewNavigator
     public Task<bool> NavigateToProtocolSettingsViewAsync()
     {
         return NavigateToAsync<ProtocolSettingsPageViewModel>();
+    }
+
+    public Task<bool> NavigateToNetShieldSettingsViewAsync()
+    {
+        return NavigateToAsync<NetShieldPageViewModel>();
+    }
+
+    public Task<bool> NavigateToKillSwitchSettingsViewAsync()
+    {
+        return NavigateToAsync<KillSwitchPageViewModel>();
+    }
+
+    public Task<bool> NavigateToPortForwardingSettingsViewAsync()
+    {
+        return NavigateToAsync<PortForwardingPageViewModel>();
+    }
+
+    public Task<bool> NavigateToSplitTunnelingSettingsViewAsync()
+    {
+        return NavigateToAsync<SplitTunnelingPageViewModel>();
     }
 
     public Task<bool> NavigateToVpnAcceleratorSettingsViewAsync()

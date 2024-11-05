@@ -25,8 +25,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:triggers="using:CommunityToolkit.WinUI">
 
     <Thickness x:Key="PageContentControlPadding">28,16</Thickness>
-    <Thickness x:Key="PageContentControlHeaderContainerMargin">0,16,0,11</Thickness>
-    <Thickness x:Key="PageContentControlHeaderButtonMargin">16,6,0,0</Thickness>
+    <Thickness x:Key="PageContentControlHeaderContainerMargin">0,0,0,11</Thickness>
+    <Thickness x:Key="PageContentControlHeaderButtonMargin">0</Thickness>
 
     <Style x:Key="PaneContentControlStyle" TargetType="ContentControl">
         <Setter Property="Padding" Value="8" />
@@ -71,7 +71,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Style BasedOn="{StaticResource DefaultPageContentControlStyle}" TargetType="custom:PageContentControl" />
 
     <Style x:Key="StretchPageContentControlStyle" TargetType="custom:PageContentControl">
-        <Setter Property="Padding" Value="{StaticResource PageContentControlPadding}" />
+        <Setter Property="Padding" Value="{ThemeResource PageContentControlPadding}" />
         <Setter Property="Background" Value="{ThemeResource BackgroundNormColorBrush}" />
         <Setter Property="BorderBrush" Value="{ThemeResource BorderWeakColorBrush}" />
         <Setter Property="BorderThickness" Value="1,1,0,0" />
@@ -85,7 +85,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ControlTemplate TargetType="custom:PageContentControl">
 
                     <ContentControl x:Name="PageContainer"
-                                    Style="{StaticResource PaneContentControlStyle}">
+                                    HorizontalContentAlignment="Stretch">
                         <Grid x:Name="PageContentContainer"
                               MaxWidth="{TemplateBinding MaxContentWidth}"
                               Padding="{TemplateBinding Padding}"
@@ -97,7 +97,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </Grid.RowDefinitions>
 
                             <Grid x:Name="PART_HeaderContainer"
-                                  Grid.Row="0"
+                                  Grid.Row="0" 
                                   Margin="{StaticResource PageContentControlHeaderContainerMargin}"
                                   Visibility="Collapsed">
 
@@ -136,7 +136,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                           Grid.Row="1"
                                           HorizontalScrollBarVisibility="Disabled"
                                           VerticalScrollBarVisibility="{Binding CanContentScroll, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToScrollBarVisibilityConverter}}">
-                                <ContentPresenter Margin="0,0,0,16" />
+                                <ContentPresenter Margin="0,0,16,16" />
                             </ScrollViewer>
                         </Grid>
 
@@ -162,7 +162,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Style>
 
     <Style x:Key="DefaultPageContentControlStyle" BasedOn="{StaticResource StretchPageContentControlStyle}" TargetType="custom:PageContentControl">
-        <Setter Property="MaxContentWidth" Value="{StaticResource MaximumPageContentWidth}" />
+        <Setter Property="MaxContentWidth" Value="{ThemeResource MaximumPageContentWidth}" />
     </Style>
 
     <Style x:Key="MainPageContentControlStyle" BasedOn="{StaticResource DefaultPageContentControlStyle}" TargetType="custom:PageContentControl">
@@ -179,11 +179,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ControlTemplate TargetType="custom:SettingsPageContentControl">
 
                     <ContentControl x:Name="PageContainer"
-                                    Style="{StaticResource PaneContentControlStyle}">
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Stretch">
                         <Grid x:Name="PageContentContainer"
-                              MaxWidth="{TemplateBinding MaxContentWidth}"
-                              Padding="{TemplateBinding Padding}"
-                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
+                              HorizontalAlignment="Stretch">
 
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -193,18 +192,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                             <Grid x:Name="PART_HeaderContainer"
                                   Grid.Row="1"
-                                  Margin="{StaticResource PageContentControlHeaderContainerMargin}"
+                                  MaxWidth="{TemplateBinding MaxContentWidth}"
+                                  Padding="24,24,8,16"
                                   Visibility="Collapsed">
 
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
 
                                 <custom:GhostButton Grid.Column="0"
-                                                    Margin="0,8,16,0"
-                                                    VerticalAlignment="Top"
+                                                    Margin="0,0,12,0"
                                                     AutomationProperties.AutomationId="GoBackButton"
                                                     Command="{Binding BackCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                                     CommandParameter="{Binding BackCommandParameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
@@ -217,7 +217,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <ContentPresenter x:Name="PART_HeaderPresenter"
                                                   Grid.Column="1"
                                                   MinHeight="32"
-                                                  VerticalAlignment="Top"
                                                   AutomationProperties.AutomationId="PageTitleLabel"
                                                   AutomationProperties.HeadingLevel="Level1"
                                                   Content="{TemplateBinding PageHeader}"
@@ -229,21 +228,42 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   TextWrapping="Wrap" />
 
                                 <Button Grid.Column="2"
-                                        Margin="{ThemeResource PageContentControlHeaderButtonMargin}"
-                                        VerticalAlignment="Top"
+                                        Margin="12,0,0,0"
                                         AutomationProperties.AutomationId="ApplyButton"
                                         Command="{Binding ApplyCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                         CommandParameter="{Binding ApplyCommandParameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                         Content="{TemplateBinding ApplyCommandText}"
                                         Style="{StaticResource PrimaryButtonStyle}"
                                         Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}" />
+
+                                <custom:GhostButton Grid.Column="3"
+                                                    Command="{Binding CloseCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                    Margin="12,0,16,0"
+                                                    VerticalAlignment="Center"
+                                                    HorizontalAlignment="Right">
+                                    <custom:GhostButton.RightIcon>
+                                        <pathicons:CrossCircleFilled />
+                                    </custom:GhostButton.RightIcon>
+                                    <custom:GhostButton.KeyboardAccelerators>
+                                        <KeyboardAccelerator Key="Escape" />
+                                    </custom:GhostButton.KeyboardAccelerators>
+                                </custom:GhostButton>
                             </Grid>
 
-                            <ScrollViewer Grid.Row="2"
+                            <ScrollViewer x:Name="ScrollViewer"
+                                          Grid.Row="2"
+                                          MaxWidth="{TemplateBinding MaxContentWidth}"
                                           HorizontalScrollBarVisibility="Disabled"
                                           VerticalScrollBarVisibility="{Binding CanContentScroll, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToScrollBarVisibilityConverter}}">
-                                <ContentPresenter Margin="0,0,0,16" />
+                                <ContentPresenter Padding="24,0" />
                             </ScrollViewer>
+
+                            <Border Grid.Row="2"
+                                    VerticalAlignment="Top"
+                                    Height="25"
+                                    Opacity="0.3"
+                                    Background="{ThemeResource GradientFadingColorBrush}"
+                                    Visibility="{Binding VerticalOffset, ElementName=ScrollViewer, Converter={StaticResource PositiveNumberToVisibilityConverter}}" />
                         </Grid>
 
                         <VisualStateManager.VisualStateGroups>

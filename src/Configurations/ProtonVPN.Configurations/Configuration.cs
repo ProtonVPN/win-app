@@ -70,6 +70,7 @@ public partial class Configuration : StaticConfiguration, IConfiguration
     public TimeSpan DohClientTimeout => Get();
     public TimeSpan VpnStatePollingInterval => Get();
     public TimeSpan VpnPlanRequestInterval => GetWithRandomizedDeviation();
+    public TimeSpan SessionsRequestInterval => GetWithRandomizedDeviation();
     public TimeSpan VpnPlanMinimumRequestInterval => GetWithRandomizedDeviation();
     public TimeSpan NetShieldStatisticRequestInterval => GetWithRandomizedDeviation();
 

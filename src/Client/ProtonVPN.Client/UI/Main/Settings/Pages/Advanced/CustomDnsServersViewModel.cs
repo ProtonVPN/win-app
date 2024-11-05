@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -37,7 +37,7 @@ using ProtonVPN.Client.UI.Settings.Pages.Entities;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.Advanced;
 
-public partial class CustomDnsServersViewModel : CommonSettingsPageBase<ISettingsViewNavigator>
+public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
 {
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(AddDnsServerCommand))]
@@ -56,22 +56,16 @@ public partial class CustomDnsServersViewModel : CommonSettingsPageBase<ISetting
     public int ActiveCustomDnsServersCount => CustomDnsServers.Count(s => s.IsActive);
 
     public CustomDnsServersViewModel(
-        ISettingsViewNavigator viewNavigator,
-        ILocalizationProvider localizationProvider,
+        IMainViewNavigator mainViewNavigator,
+        ISettingsViewNavigator settingsViewNavigator,
+        ILocalizationProvider localizer,
+        ILogger logger,
+        IIssueReporter issueReporter,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
-        IConnectionManager connectionManager,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(viewNavigator, 
-               localizationProvider,
-               logger,
-               issueReporter,
-               mainWindowOverlayActivator,
-               settings, 
-               settingsConflictResolver, 
-               connectionManager)
+        IConnectionManager connectionManager)
+        : base(mainViewNavigator, settingsViewNavigator, localizer, logger, issueReporter, mainWindowOverlayActivator, settings, settingsConflictResolver, connectionManager)
     {
         _currentIpAddress = string.Empty;
 

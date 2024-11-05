@@ -32,6 +32,7 @@ public static class UiActions
     public static T Click<T>(this T desiredElement) where T : Element
     {
         AutomationElement elementToClick = WaitUntilExists(desiredElement);
+        elementToClick.WaitUntilClickable();
         elementToClick.Click();
         return desiredElement;
     }
@@ -39,6 +40,7 @@ public static class UiActions
     public static T Invoke<T>(this T desiredElement) where T : Element
     {
         AutomationElement elementToClick = WaitUntilExists(desiredElement);
+        elementToClick.WaitUntilClickable();
         elementToClick.AsButton().Invoke();
         return desiredElement;
     }

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -29,11 +28,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       NavigationCacheMode="Required"
       mc:Ignorable="d">
 
-    <custom:PageContentControl x:Name="PageContentHost"
+    <custom:SettingsPageContentControl x:Name="PageContentHost"
                                BackCommand="{x:Bind ViewModel.NavigateBackCommand, Mode=OneTime}"
                                CanContentScroll="True"
                                IsBackButtonVisible="{x:Bind ViewModel.CanGoBack}"
-                               PageHeader="{x:Bind ViewModel.Title}">
+                               ApplyCommand="{x:Bind ViewModel.ApplyCommand}"
+                               CloseCommand="{x:Bind ViewModel.CloseCommand, Mode=OneTime}">
+
+        <custom:SettingsPageContentControl.PageHeader>
+            <custom:SettingsPageHeaderContentControl Header="{x:Bind ViewModel.Title}" />
+        </custom:SettingsPageContentControl.PageHeader>
 
         <RichTextBlock Foreground="{ThemeResource TextNormColorBrush}"
                        TextAlignment="Justify">
@@ -199,5 +203,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Hyperlink NavigateUri="https://github.com/dotMorten/WinUIEx/blob/main/LICENSE">The MIT License</Hyperlink>
             </Paragraph>
         </RichTextBlock>
-    </custom:PageContentControl>
+    </custom:SettingsPageContentControl>
 </Page>

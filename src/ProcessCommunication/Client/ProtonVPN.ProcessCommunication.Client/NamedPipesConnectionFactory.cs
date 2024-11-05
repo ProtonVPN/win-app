@@ -19,14 +19,16 @@
 
 using System.IO.Pipes;
 using System.Security.Principal;
+using ProtonVPN.Client.Common.Messages;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.OperatingSystems.Registries.Contracts;
 using ProtonVPN.ProcessCommunication.Common;
 
 namespace ProtonVPN.ProcessCommunication.Client;
 
-public class NamedPipesConnectionFactory : INamedPipesConnectionFactory
-    //IEventMessageReceiver<MainWindowClosedMessage>
+public class NamedPipesConnectionFactory : INamedPipesConnectionFactory,
+    IEventMessageReceiver<ApplicationStoppedMessage>
 {
     private readonly RegistryUri _registryUri = RegistryUri.CreateLocalMachineUri(
         NamedPipeConfiguration.REGISTRY_PATH, NamedPipeConfiguration.REGISTRY_KEY);
@@ -46,11 +48,10 @@ public class NamedPipesConnectionFactory : INamedPipesConnectionFactory
         _registryEditor = registryEditor;
     }
 
-    // TODO: fix this
-    // public void Receive(MainWindowClosedMessage message)
-    // {
-    //     _cancellationTokenSource.Cancel();
-    // }
+    public void Receive(ApplicationStoppedMessage message)
+    {
+        _cancellationTokenSource.Cancel();
+    }
 
     public async ValueTask<Stream> ConnectAsync(SocketsHttpConnectionContext _,
         CancellationToken cancellationToken = default)

@@ -20,20 +20,34 @@
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Bases.ViewModels;
 using ProtonVPN.Client.Contracts.Services.Navigation;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Contracts.Services.Activation;
+using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.UI.Settings.Pages.Entities;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.About;
 
-public class LicensingViewModel : PageViewModelBase<ISettingsViewNavigator>
+public class LicensingViewModel : SettingsPageViewModelBase
 {
     public override string Title => Localizer.Get("Settings_About_Licensing");
 
     public LicensingViewModel(
-        ISettingsViewNavigator viewNavigator,
-        ILocalizationProvider localizationProvider,
+        IMainViewNavigator mainViewNavigator,
+        ISettingsViewNavigator settingsViewNavigator,
+        ILocalizationProvider localizer,
         ILogger logger,
-        IIssueReporter issueReporter) : base(viewNavigator, localizationProvider, logger, issueReporter)
+        IIssueReporter issueReporter,
+        IMainWindowOverlayActivator mainWindowOverlayActivator,
+        ISettings settings,
+        ISettingsConflictResolver settingsConflictResolver,
+        IConnectionManager connectionManager)
+        : base(mainViewNavigator, settingsViewNavigator, localizer, logger, issueReporter, mainWindowOverlayActivator, settings, settingsConflictResolver, connectionManager)
     {
+    }
+
+    protected override IEnumerable<ChangedSettingArgs> GetSettings()
+    {
+        return [];
     }
 }

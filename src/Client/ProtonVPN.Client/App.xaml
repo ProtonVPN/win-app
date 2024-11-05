@@ -79,6 +79,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/ConnectionProfileIconStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/DetailRowButtonStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/SizerStyles.xaml" />
+                <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/DimmableImageStyles.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
 
@@ -89,9 +90,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <x:Double x:Key="LoginPageContentWidth">328</x:Double>
 
-            <!--  Maximum content width is 600px but we need to compensate 28px content padding on each side for scrollbars  -->
-            <x:Double x:Key="MaximumHomePageContentWidth">656.0</x:Double>
-            <x:Double x:Key="MaximumPageContentWidth">656.0</x:Double>
+            <!--  Maximum content width is 800px but we need to compensate 28px content padding on each side for scrollbars  -->
+            <x:Double x:Key="MaximumHomePageContentWidth">856.0</x:Double>
+            <x:Double x:Key="MaximumPageContentWidth">856.0</x:Double>
 
             <Thickness x:Key="HomePageContentPadding">28,0</Thickness>
             <Thickness x:Key="PageContentPadding">28,0</Thickness>

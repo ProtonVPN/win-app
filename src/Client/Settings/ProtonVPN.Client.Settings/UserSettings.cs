@@ -122,6 +122,12 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userCache.SetValueType<VpnPlan>(value, SettingEncryption.Encrypted);
     }
 
+    public int MaxDevicesAllowed
+    {
+        get => _userCache.GetValueType<int>(SettingEncryption.Unencrypted) ?? DefaultSettings.MaxDevicesAllowed;
+        set => _userCache.SetValueType<int>(value, SettingEncryption.Unencrypted);
+    }
+
     public ConnectionAsymmetricKeyPair? ConnectionKeyPair
 {
         get => _userCache.GetValueType<ConnectionAsymmetricKeyPair>(SettingEncryption.Encrypted);
@@ -218,6 +224,12 @@ public class UserSettings : GlobalSettings, IUserSettings
             return DefaultSettings.IsNetShieldEnabled(false);
         }
         set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
+    public NetShieldMode NetShieldMode
+    {
+        get => _userCache.GetValueType<NetShieldMode>(SettingEncryption.Unencrypted) ?? DefaultSettings.NetShieldMode;
+        set => _userCache.SetValueType<NetShieldMode>(value, SettingEncryption.Unencrypted);
     }
 
     public bool IsPortForwardingEnabled

@@ -76,7 +76,7 @@ public partial class PortForwardingViewModel : SettingsPageViewModelBase,
 
     public override bool IsBackEnabled => false;
 
-    public override string? Title => Localizer.Get("Settings_Features_PortForwarding");
+    public override string? Title => Localizer.Get("Settings_Connection_PortForwarding");
 
     public ImageSource PortForwardingFeatureIconSource => GetFeatureIconSource(IsPortForwardingEnabled);
 
@@ -172,7 +172,7 @@ public partial class PortForwardingViewModel : SettingsPageViewModelBase,
         ActivePortNumber = activePort;
 
         StatusMessage = activePort is null && _portForwardingManager.IsFetchingPort
-            ? Localizer.Get("Settings_Features_PortForwarding_Loading")
+            ? Localizer.Get("Settings_Connection_PortForwarding_Loading")
             : null;
     }
 

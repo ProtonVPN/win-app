@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -40,7 +40,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        ApplyCommandText="{x:Bind ViewModel.ApplyCommandText}"
                                        BackCommand="{x:Bind ViewModel.NavigateBackCommand, Mode=OneTime}"
                                        IsBackButtonVisible="{x:Bind ViewModel.CanGoBack}"
-                                       PageHeader="{x:Bind ViewModel.Title}">
+                                       CloseCommand="{x:Bind ViewModel.CloseCommand, Mode=OneTime}">
+
+        <custom:SettingsPageContentControl.PageHeader>
+            <custom:SettingsPageHeaderContentControl Header="{x:Bind ViewModel.Title}" />
+        </custom:SettingsPageContentControl.PageHeader>
 
         <StackPanel x:Name="ContentArea">
 

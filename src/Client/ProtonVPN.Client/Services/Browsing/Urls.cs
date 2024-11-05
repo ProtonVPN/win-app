@@ -50,6 +50,8 @@ public class Urls : IUrls
 
     public string NatTypeLearnMore => "https://protonvpn.com/support/moderate-nat";
 
+    public string Ipv6LeakProtectionLearnMore => "https://protonvpn.com/support/prevent-ipv6-vpn-leaks";
+
     public string SupportCenter => "https://protonvpn.com/support";
 
     public string UsageStatisticsLearnMore => "https://protonvpn.com/support/share-usage-statistics";

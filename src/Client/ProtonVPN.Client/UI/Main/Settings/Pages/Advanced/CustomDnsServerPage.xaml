@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -34,9 +34,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <custom:SettingsPageContentControl x:Name="PageContentHost"
                                        BackCommand="{x:Bind ViewModel.NavigateBackCommand, Mode=OneTime}"
                                        IsBackButtonVisible="{x:Bind ViewModel.CanGoBack}"
+                                       CloseCommand="{x:Bind ViewModel.CloseCommand, Mode=OneTime}"
                                        ApplyCommand="{x:Bind ViewModel.ApplyCommand, Mode=OneTime}"
-                                       ApplyCommandText="{x:Bind ViewModel.ApplyCommandText}"
-                                       PageHeader="{x:Bind ViewModel.Title}">
+                                       ApplyCommandText="{x:Bind ViewModel.ApplyCommandText}">
+
+        <custom:SettingsPageContentControl.PageHeader>
+            <custom:SettingsPageHeaderContentControl Header="{x:Bind ViewModel.Title}" />
+        </custom:SettingsPageContentControl.PageHeader>
 
         <StackPanel x:Name="ContentArea"
                     Spacing="16">

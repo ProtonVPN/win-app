@@ -40,8 +40,8 @@ public class KillSwitchSettingsConflict : SettingsConflictBase
 
     public override MessageDialogParameters MessageParameters => new()
     {
-        Title = Localizer.Get("Settings_Features_KillSwitch_Conflict_Title"),
-        Message = Localizer.Get("Settings_Features_KillSwitch_Conflict_Description"),
+        Title = Localizer.Get("Settings_Connection_KillSwitch_Conflict_Title"),
+        Message = Localizer.Get("Settings_Connection_KillSwitch_Conflict_Description"),
         PrimaryButtonText = Localizer.Get("Common_Actions_Enable"),
         CloseButtonText = Localizer.Get("Common_Actions_Cancel"),
     };

@@ -28,8 +28,10 @@ using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Client.Contracts.Services.Navigation;
-using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Update.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Contracts.Services.Activation;
+using ProtonVPN.Client.UI.Settings.Pages.Entities;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.About;
 
@@ -59,12 +61,16 @@ public partial class AboutPageViewModel : SettingsPageViewModelBase,
     public AboutPageViewModel(
         IUpdatesManager updatesManager,
         ReleaseViewModelFactory releaseViewModelFactory,
+        IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter,
-        ISettings settings)
-        : base(settingsViewNavigator, localizer, logger, issueReporter, settings)
+        IMainWindowOverlayActivator mainWindowOverlayActivator,
+        ISettings settings,
+        ISettingsConflictResolver settingsConflictResolver,
+        IConnectionManager connectionManager)
+        : base(mainViewNavigator, settingsViewNavigator, localizer, logger, issueReporter, mainWindowOverlayActivator, settings, settingsConflictResolver, connectionManager)
     {
         _updatesManager = updatesManager;
         _releaseViewModelFactory = releaseViewModelFactory;
@@ -128,5 +134,10 @@ public partial class AboutPageViewModel : SettingsPageViewModelBase,
 
         Releases = [];
         StartCheckingForUpdate();
+    }
+
+    protected override IEnumerable<ChangedSettingArgs> GetSettings()
+    {
+        return [];
     }
 }

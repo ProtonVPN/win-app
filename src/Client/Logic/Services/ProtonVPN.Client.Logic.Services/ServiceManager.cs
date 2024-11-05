@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,13 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Common.Messages;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.OperatingSystems.Services.Contracts;
 
 namespace ProtonVPN.Client.Logic.Services;
 
-public class ServiceManager : IServiceManager/*, IEventMessageReceiver<MainWindowClosedMessage>*/
+public class ServiceManager : IServiceManager, IEventMessageReceiver<ApplicationStoppedMessage>
 {
     private readonly IService _service;
     private readonly CancellationTokenSource _cancellationTokenSource = new();
@@ -34,11 +36,10 @@ public class ServiceManager : IServiceManager/*, IEventMessageReceiver<MainWindo
         _service = serviceFactory.Get(configuration.ServiceName);
     }
 
-    // TODO: fix
-    // public void Receive(MainWindowClosedMessage message)
-    // {
-    //     _cancellationTokenSource.Cancel();
-    // }
+    public void Receive(ApplicationStoppedMessage message)
+    {
+        _cancellationTokenSource.Cancel();
+    }
 
     public Task StartAsync()
     {

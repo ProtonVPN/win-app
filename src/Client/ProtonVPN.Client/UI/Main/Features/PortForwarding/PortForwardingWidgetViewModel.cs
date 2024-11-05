@@ -18,22 +18,22 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
-using Microsoft.UI.Xaml.Media;
+using ProtonVPN.Client.Contracts.Enums;
+using ProtonVPN.Client.Contracts.Services.Navigation;
+using ProtonVPN.Client.Contracts.Services.Selection;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.UI.Main.Features.Bases;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Enums;
-using ProtonVPN.Client.Contracts.Helpers;
-using ProtonVPN.Client.Contracts.Services.Navigation;
-using ProtonVPN.Client.UI.Main.Features.Bases;
 
 namespace ProtonVPN.Client.UI.Main.Features.PortForwarding;
 
 public partial class PortForwardingWidgetViewModel : FeatureWidgetViewModelBase
 {
+    private readonly IApplicationThemeSelector _applicationThemeSelector;
     private readonly IConnectionManager _connectionManager;
     private readonly IPortForwardingManager _portForwardingManager;
 
@@ -43,9 +43,10 @@ public partial class PortForwardingWidgetViewModel : FeatureWidgetViewModelBase
 
     public bool HasActivePortNumber => ActivePortNumber.HasValue;
 
-    public override string Header => Localizer.Get("Settings_Features_PortForwarding");
+    public override string Header => Localizer.Get("Settings_Connection_PortForwarding");
 
     public PortForwardingWidgetViewModel(
+        IApplicationThemeSelector applicationThemeSelector,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter,
@@ -55,6 +56,7 @@ public partial class PortForwardingWidgetViewModel : FeatureWidgetViewModelBase
         IPortForwardingManager portForwardingManager)
         : base(localizer, logger, issueReporter, mainViewNavigator, settings, ConnectionFeature.PortForwarding)
     {
+        _applicationThemeSelector = applicationThemeSelector;
         _connectionManager = connectionManager;
         _portForwardingManager = portForwardingManager;
     }
@@ -68,20 +70,7 @@ public partial class PortForwardingWidgetViewModel : FeatureWidgetViewModelBase
 
         return ActivePortNumber?.ToString()
             ?? (_portForwardingManager.IsFetchingPort
-                ? Localizer.Get("Settings_Features_PortForwarding_Loading")
+                ? Localizer.Get("Settings_Connection_PortForwarding_Loading")
                 : Localizer.GetToggleValue(Settings.IsPortForwardingEnabled));
-    }
-
-    protected override ImageSource GetFeatureIconSource()
-    {
-        return ResourceHelper.GetIllustration(
-            Settings.IsPortForwardingEnabled
-                ? "PortForwardingOnIllustrationSource"
-                : "PortForwardingOffIllustrationSource");
-    }
-
-    protected override string GetFeatureToggleSettingName()
-    {
-        return nameof(Settings.IsPortForwardingEnabled);
     }
 }

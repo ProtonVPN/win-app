@@ -19,6 +19,7 @@
 
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Client.TEMP;
 using ProtonVPN.Client.UI.Main.Features.KillSwitch;
 using ProtonVPN.Client.UI.Main.Features.NetShield;
 using ProtonVPN.Client.UI.Main.Features.PortForwarding;
@@ -39,6 +40,8 @@ public class SideWidgetItemTemplateSelector : DataTemplateSelector
 
     public DataTemplate? SplitTunnelingWidgetTemplate { get; set; }
 
+    public DataTemplate? GalleryWidgetTemplate { get; set; }
+
     public DataTemplate? SettingsWidgetTemplate { get; set; }
 
     protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
@@ -49,6 +52,7 @@ public class SideWidgetItemTemplateSelector : DataTemplateSelector
             NetShieldWidgetViewModel => NetShieldWidgetTemplate,
             PortForwardingWidgetViewModel => PortForwardingWidgetTemplate,
             SplitTunnelingWidgetViewModel => SplitTunnelingWidgetTemplate,
+            GalleryWidgetViewModel => GalleryWidgetTemplate,
             SettingsWidgetViewModel => SettingsWidgetTemplate,
             _ => DefaultWidgetTemplate
         };

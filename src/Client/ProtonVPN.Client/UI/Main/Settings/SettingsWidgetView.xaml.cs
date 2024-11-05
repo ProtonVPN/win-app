@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,12 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Input;
 using ProtonVPN.Client.Contracts.Bases;
 
 namespace ProtonVPN.Client.UI.Main.Settings;
 
 public sealed partial class SettingsWidgetView : IContextAware
 {
+    private const int COMMA_KEY = 188;
+
     public SettingsWidgetViewModel ViewModel { get; }
 
     public SettingsWidgetView()
@@ -30,6 +34,24 @@ public sealed partial class SettingsWidgetView : IContextAware
         ViewModel = App.GetService<SettingsWidgetViewModel>();
 
         InitializeComponent();
+
+        Loaded += OnSettingsWidgetLoaded;
+        Unloaded += OnSettingsWidgetUnloaded;
+    }
+
+    private void OnSettingsWidgetLoaded(object sender, RoutedEventArgs e)
+    {
+        SettingsButton.KeyboardAccelerators.Add(
+            new KeyboardAccelerator()
+            {
+                Modifiers = Windows.System.VirtualKeyModifiers.Control,
+                Key = (Windows.System.VirtualKey)COMMA_KEY
+            });
+    }
+
+    private void OnSettingsWidgetUnloaded(object sender, RoutedEventArgs e)
+    {
+        SettingsButton.KeyboardAccelerators.Clear();
     }
 
     public object GetContext()

@@ -176,6 +176,7 @@ public static class DefaultConfiguration
     public static TimeSpan DohClientTimeout => TimeSpan.FromSeconds(10);
     public static TimeSpan VpnStatePollingInterval => TimeSpan.FromSeconds(3);
     public static TimeSpan VpnPlanRequestInterval => TimeSpan.FromHours(12);
+    public static TimeSpan SessionsRequestInterval => TimeSpan.FromSeconds(10);
     public static TimeSpan VpnPlanMinimumRequestInterval => TimeSpan.FromMinutes(5);
     public static TimeSpan NetShieldStatisticRequestInterval => TimeSpan.FromSeconds(60);
 

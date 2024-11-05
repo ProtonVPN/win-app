@@ -22,7 +22,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom">
 
-    <x:Double x:Key="PageHeaderIllustrationSize">100.0</x:Double>
+    <x:Double x:Key="PageHeaderIllustrationSize">32.0</x:Double>
 
     <Style BasedOn="{StaticResource DefaultPageHeaderContentControlStyle}" TargetType="custom:PageHeaderContentControl" />
 
@@ -33,21 +33,34 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter.Value>
                 <ControlTemplate TargetType="custom:PageHeaderContentControl">
 
-                    <Grid ColumnDefinitions="Auto,*"
-                          ColumnSpacing="16">
-                        <Image Grid.Column="0"
-                               Width="{StaticResource PageHeaderIllustrationSize}"
-                               Height="{StaticResource PageHeaderIllustrationSize}"
-                               VerticalAlignment="Top"
-                               Source="{TemplateBinding IllustrationSource}"
-                               Stretch="Uniform" />
+                    <Grid>
+                        
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <ContentPresenter Grid.Column="0"
+                                          Content="{TemplateBinding Illustration}"
+                                          Width="{StaticResource PageHeaderIllustrationSize}"
+                                          Height="{StaticResource PageHeaderIllustrationSize}"
+                                          Margin="0,0,16,0"
+                                          Visibility="{Binding Illustration, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}" />
 
                         <Grid Grid.Column="1"
                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                              ColumnDefinitions="Auto,*"
                               ColumnSpacing="8"
-                              RowDefinitions="Auto,*"
                               RowSpacing="4">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
 
                             <ContentPresenter x:Name="HeaderPresenter"
                                               Grid.Row="0"
@@ -59,8 +72,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               ContentTemplate="{TemplateBinding HeaderTemplate}"
                                               FontSize="{StaticResource TitleFontSize}"
                                               FontWeight="{StaticResource TitleFontWeight}"
-                                              LineHeight="{StaticResource TitleLineHeight}"
-                                              TextWrapping="Wrap" />
+                                              LineHeight="{StaticResource TitleLineHeight}" />
 
                             <ContentPresenter x:Name="ContentPresenter"
                                               Grid.Row="1"
@@ -70,8 +82,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               Content="{TemplateBinding Content}"
                                               FontSize="{StaticResource BodyFontSize}"
                                               FontWeight="{StaticResource BodyFontWeight}"
+                                              LineHeight="{StaticResource BodyLineHeight}" 
                                               Foreground="{ThemeResource TextWeakColorBrush}"
-                                              LineHeight="{StaticResource BodyLineHeight}"
                                               TextWrapping="Wrap" />
 
                         </Grid>
@@ -94,4 +106,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style BasedOn="{StaticResource SettingsPageHeaderContentControlStyle}" TargetType="custom:SettingsPageHeaderContentControl" />
+
+    <Style x:Key="SettingsPageHeaderContentControlStyle" BasedOn="{StaticResource DefaultPageHeaderContentControlStyle}" TargetType="custom:SettingsPageHeaderContentControl">
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}"
+                               TextTrimming="CharacterEllipsis"
+                               TextWrapping="NoWrap" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

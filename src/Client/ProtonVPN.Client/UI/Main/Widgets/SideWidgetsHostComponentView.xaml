@@ -31,6 +31,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:selectors="using:ProtonVPN.Client.Selectors"
              xmlns:settings="using:ProtonVPN.Client.UI.Main.Settings"
              xmlns:st="using:ProtonVPN.Client.UI.Main.Features.SplitTunneling"
+             xmlns:temp="using:ProtonVPN.Client.TEMP"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
@@ -39,7 +40,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <DataTemplate x:Key="SideWidgetItemTemplate"
                       x:DataType="bases:SideWidgetViewModelBase">
             <custom:WidgetButton Command="{x:Bind InvokeCommand, Mode=OneTime}"
-                                 Content="{x:Bind Icon}"
                                  IsActive="{x:Bind IsSelected}"
                                  Style="{StaticResource SideWidgetButtonStyle}"
                                  Text="{x:Bind Header}"
@@ -65,12 +65,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                       x:DataType="settings:SettingsWidgetViewModel">
             <settings:SettingsWidgetView />
         </DataTemplate>
+        <DataTemplate x:Key="GalleryWidgetItemTemplate"
+                      x:DataType="temp:GalleryWidgetViewModel">
+            <temp:GalleryWidgetView />
+        </DataTemplate>
 
         <selectors:SideWidgetItemTemplateSelector x:Key="SideWidgetItemTemplateSelector"
                                                   DefaultWidgetTemplate="{StaticResource SideWidgetItemTemplate}"
                                                   KillSwitchWidgetTemplate="{StaticResource KillSwitchWidgetItemTemplate}"
                                                   NetShieldWidgetTemplate="{StaticResource NetShieldWidgetItemTemplate}"
                                                   PortForwardingWidgetTemplate="{StaticResource PortForwardingWidgetItemTemplate}"
+                                                  GalleryWidgetTemplate="{StaticResource GalleryWidgetItemTemplate}"
                                                   SettingsWidgetTemplate="{StaticResource SettingsWidgetItemTemplate}"
                                                   SplitTunnelingWidgetTemplate="{StaticResource SplitTunnelingWidgetItemTemplate}" />
 

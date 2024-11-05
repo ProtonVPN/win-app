@@ -1614,6 +1614,9 @@
   <data name="Login_Error_TwoFactorAuthFailed" xml:space="preserve">
     <value>Incorrect username or password. Please try again.</value>
   </data>
+  <data name="Settings_DevicesConnected" xml:space="preserve">
+    <value>Devices connected</value>
+  </data>
   <data name="Settings_About" xml:space="preserve">
     <value>About</value>
   </data>
@@ -1722,17 +1725,23 @@
   <data name="Settings_Features" xml:space="preserve">
     <value>VPN features</value>
   </data>
-  <data name="Settings_Features_KillSwitch" xml:space="preserve">
+  <data name="Settings_Connection_KillSwitch" xml:space="preserve">
     <value>Kill switch</value>
   </data>
-  <data name="Settings_Features_NetShield" xml:space="preserve">
+  <data name="Settings_Connection_NetShield" xml:space="preserve">
     <value>NetShield</value>
   </data>
-  <data name="Settings_Features_PortForwarding" xml:space="preserve">
+  <data name="Settings_Connection_NetShield_PrivacyPanel" xml:space="preserve">
+    <value>NetShield Privacy Panel</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding" xml:space="preserve">
     <value>Port forwarding</value>
   </data>
-  <data name="Settings_Features_SplitTunneling" xml:space="preserve">
+  <data name="Settings_Connection_SplitTunneling" xml:space="preserve">
     <value>Split tunneling</value>
+  </data>
+  <data name="Settings_Connection_VpnAccelerator" xml:space="preserve">
+    <value>VPN Accelerator</value>
   </data>
   <data name="Settings_General" xml:space="preserve">
     <value>General</value>
@@ -1828,7 +1837,7 @@
     <value>Stealth</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Description" xml:space="preserve">
-    <value>Overcomes VPN blocks by hiding your VPN connection from censors. This protocol is DPI (deep packet inspection) resistant, but may not be as fast as other protocols. Stealth is exclusive to Proton VPN.</value>
+    <value>Overcomes VPN blocks by hiding your VPN connection from censors. Stealth is DPI (deep packet inspection) resistant, but may not be as fast as other protocols.</value>
   </data>
   <data name="Settings_RestoreDefault" xml:space="preserve">
     <value>Restore default settings</value>
@@ -2090,90 +2099,90 @@
   <data name="Settings_Support_DebugLogs_ErrorMessage" xml:space="preserve">
     <value>The logs folder could not be found.</value>
   </data>
-  <data name="Settings_Features_KillSwitch_Advanced" xml:space="preserve">
+  <data name="Settings_Connection_KillSwitch_Advanced" xml:space="preserve">
     <value>Advanced</value>
   </data>
-  <data name="Settings_Features_KillSwitch_Advanced_Description" xml:space="preserve">
+  <data name="Settings_Connection_KillSwitch_Advanced_Description" xml:space="preserve">
     <value>Only allow internet access when connected to Proton VPN. Advanced kill switch will remain active even when you restart your device.</value>
   </data>
-  <data name="Settings_Features_KillSwitch_Description" xml:space="preserve">
+  <data name="Settings_Connection_KillSwitch_Description" xml:space="preserve">
     <value>Protects your IP address by disconnecting you from the internet if you lose your VPN connection.</value>
   </data>
-  <data name="Settings_Features_KillSwitch_Footer" xml:space="preserve">
+  <data name="Settings_Connection_KillSwitch_Footer" xml:space="preserve">
     <value>When kill switch is on, you won't be able to connect to websites and apps excluded from your VPN connection through split tunneling.</value>
   </data>
-  <data name="Settings_Features_KillSwitch_Standard" xml:space="preserve">
+  <data name="Settings_Connection_KillSwitch_Standard" xml:space="preserve">
     <value>Standard</value>
   </data>
-  <data name="Settings_Features_KillSwitch_Standard_Description" xml:space="preserve">
+  <data name="Settings_Connection_KillSwitch_Standard_Description" xml:space="preserve">
     <value>Automatically disconnect from the internet if VPN connection is lost.</value>
   </data>
-  <data name="Settings_Features_NetShield_Description" xml:space="preserve">
+  <data name="Settings_Connection_NetShield_Description" xml:space="preserve">
     <value>Protect yourself from ads, malware, and trackers on websites and apps.</value>
   </data>
-  <data name="Settings_Features_NetShield_Footer" xml:space="preserve">
+  <data name="Settings_Connection_NetShield_Footer" xml:space="preserve">
     <value>Some websites may not load properly when ads and trackers are blocked.</value>
   </data>
-  <data name="Settings_Features_PortForwarding_ActivePort" xml:space="preserve">
+  <data name="Settings_Connection_PortForwarding_ActivePort" xml:space="preserve">
     <value>Active port:</value>
   </data>
-  <data name="Settings_Features_PortForwarding_Loading" xml:space="preserve">
+  <data name="Settings_Connection_PortForwarding_Loading" xml:space="preserve">
     <value>Loading...</value>
   </data>
-  <data name="Settings_Features_PortForwarding_ActivePort_Copy" xml:space="preserve">
+  <data name="Settings_Connection_PortForwarding_ActivePort_Copy" xml:space="preserve">
     <value>Copy port number</value>
   </data>
-  <data name="Settings_Features_PortForwarding_Description" xml:space="preserve">
+  <data name="Settings_Connection_PortForwarding_Description" xml:space="preserve">
     <value>Bypass firewalls to connect to P2P servers and devices in your local network.</value>
   </data>
-  <data name="Settings_Features_PortForwarding_Footer" xml:space="preserve">
+  <data name="Settings_Connection_PortForwarding_Footer" xml:space="preserve">
     <value>To use port forwarding, please connect to a server that supports P2P.</value>
   </data>
-  <data name="Settings_Features_PortForwarding_Notifications" xml:space="preserve">
+  <data name="Settings_Connection_PortForwarding_Notifications" xml:space="preserve">
     <value>Notifications</value>
   </data>
-  <data name="Settings_Features_PortForwarding_Notifications_Description" xml:space="preserve">
+  <data name="Settings_Connection_PortForwarding_Notifications_Description" xml:space="preserve">
     <value>Get notified when the port forwarding number changes</value>
   </data>
-  <data name="Settings_Features_SplitTunneling_Apps_Add" xml:space="preserve">
+  <data name="Settings_Connection_SplitTunneling_Apps_Add" xml:space="preserve">
     <value>Add app</value>
   </data>
-  <data name="Settings_Features_SplitTunneling_Apps_Header" xml:space="preserve">
+  <data name="Settings_Connection_SplitTunneling_Apps_Header" xml:space="preserve">
     <value>Selected apps ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
-  <data name="Settings_Features_SplitTunneling_Apps_Remove" xml:space="preserve">
+  <data name="Settings_Connection_SplitTunneling_Apps_Remove" xml:space="preserve">
     <value>Remove app</value>
   </data>
-  <data name="Settings_Features_SplitTunneling_Description" xml:space="preserve">
+  <data name="Settings_Connection_SplitTunneling_Description" xml:space="preserve">
     <value>Customize your connection by deciding which apps and IP addresses are protected by VPN.</value>
   </data>
-  <data name="Settings_Features_SplitTunneling_Inverse" xml:space="preserve">
+  <data name="Settings_Connection_SplitTunneling_Inverse" xml:space="preserve">
     <value>Inverse</value>
   </data>
-  <data name="Settings_Features_SplitTunneling_Inverse_Description" xml:space="preserve">
+  <data name="Settings_Connection_SplitTunneling_Inverse_Description" xml:space="preserve">
     <value>Only selected apps and IP addresses connect via VPN, all other traffic is unprotected</value>
   </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Add" xml:space="preserve">
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Add" xml:space="preserve">
     <value>Add IP</value>
   </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Header" xml:space="preserve">
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Header" xml:space="preserve">
     <value>Selected IP addresses ({0})</value>
     <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
   </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Remove" xml:space="preserve">
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove" xml:space="preserve">
     <value>Remove IP</value>
   </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Watermark" xml:space="preserve">
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Watermark" xml:space="preserve">
     <value>Add IPv4 address</value>
   </data>
-  <data name="Settings_Features_SplitTunneling_Standard" xml:space="preserve">
+  <data name="Settings_Connection_SplitTunneling_Standard" xml:space="preserve">
     <value>Standard</value>
   </data>
-  <data name="Settings_Features_SplitTunneling_Standard_Description" xml:space="preserve">
+  <data name="Settings_Connection_SplitTunneling_Standard_Description" xml:space="preserve">
     <value>Selected apps and IP addresses are excluded from VPN connection</value>
   </data>
-  <data name="Settings_Features_SplitTunneling_Apps_FilesFilterName" xml:space="preserve">
+  <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName" xml:space="preserve">
     <value>App files</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
   </data>
@@ -2198,22 +2207,28 @@
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title" xml:space="preserve">
     <value>Enable custom DNS servers?</value>
   </data>
-  <data name="Settings_Features_KillSwitch_Conflict_Description" xml:space="preserve">
+  <data name="Settings_Connection_KillSwitch_Conflict_Description" xml:space="preserve">
     <value>This will disable split tunneling.</value>
   </data>
-  <data name="Settings_Features_KillSwitch_Conflict_Title" xml:space="preserve">
+  <data name="Settings_Connection_KillSwitch_Conflict_Title" xml:space="preserve">
     <value>Enable kill switch?</value>
   </data>
-  <data name="Settings_Features_NetShield_Conflict_Description" xml:space="preserve">
+  <data name="Settings_Connection_NetShield_Conflict_Description" xml:space="preserve">
     <value>You won't be able to connect with a custom DNS server when NetShield is enabled.</value>
   </data>
-  <data name="Settings_Features_NetShield_Conflict_Title" xml:space="preserve">
+  <data name="Settings_Connection_NetShield_Conflict_Title" xml:space="preserve">
     <value>Enable NetShield?</value>
   </data>
-  <data name="Settings_Features_SplitTunneling_Conflict_Description" xml:space="preserve">
+  <data name="Settings_Connection_NetShield_BlockMalwareOnly" xml:space="preserve">
+    <value>Block malware only</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers" xml:space="preserve">
+    <value>Block ads, malware and trackers</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Conflict_Description" xml:space="preserve">
     <value>This will disable kill switch.</value>
   </data>
-  <data name="Settings_Features_SplitTunneling_Conflict_Title" xml:space="preserve">
+  <data name="Settings_Connection_SplitTunneling_Conflict_Title" xml:space="preserve">
     <value>Enable split tunneling?</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Description" xml:space="preserve">
@@ -2222,10 +2237,10 @@
   <data name="Settings_Connection_Advanced_NatType_Conflict_Title" xml:space="preserve">
     <value>Enable Moderate NAT?</value>
   </data>
-  <data name="Settings_Features_PortForwarding_Conflict_Description" xml:space="preserve">
+  <data name="Settings_Connection_PortForwarding_Conflict_Description" xml:space="preserve">
     <value>You won't be able to use Moderate NAT when port forwarding is enabled.</value>
   </data>
-  <data name="Settings_Features_PortForwarding_Conflict_Title" xml:space="preserve">
+  <data name="Settings_Connection_PortForwarding_Conflict_Title" xml:space="preserve">
     <value>Enable port forwarding?</value>
   </data>
   <data name="Countries" xml:space="preserve">
@@ -2660,10 +2675,10 @@ This higher level of protection may cause higher latency and slower speeds.</val
     <value>We're not sure what happened here. Please try again or contact our customer support team.</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection" xml:space="preserve">
-    <value>IPv6 leak protection</value>
+    <value>Disable IPv6 traffic</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description" xml:space="preserve">
-    <value>Prevent leaking IPv6 address.</value>
+    <value>Prevents IPv6 leaks by blocking connections to IPv6 addresses.</value>
   </data>
   <data name="Settings_General_AutomaticUpdates" xml:space="preserve">
     <value>Automatic updates</value>
@@ -2676,6 +2691,12 @@ This higher level of protection may cause higher latency and slower speeds.</val
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver_Description" xml:space="preserve">
     <value>Network drivers can impact your connection speed. The new TUN adapter provides higher speed and falls back on the TAP adapter if it encounters any connectivity problems.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description" xml:space="preserve">
+    <value>Uses bridging to connect networks. TUN provides higher speeds than TAP, but may be less stable.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap" xml:space="preserve">
+    <value>Routes traffic between different networks.</value>
   </data>
   <data name="Gateways_Page_Title" xml:space="preserve">
     <value>Gateways</value>

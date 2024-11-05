@@ -26,9 +26,10 @@ using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.UI.Main.Settings.Bases;
+using ProtonVPN.Client.UI.Settings.Pages.Entities;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
@@ -49,15 +50,18 @@ public partial class DeveloperToolsPageViewModel : SettingsPageViewModelBase
     public override string Title => "Developer tools";
 
     public DeveloperToolsPageViewModel(
-        IMainWindowOverlayActivator mainWindowOverlayActivator,
-        ISettingsViewNavigator settingsViewNavigator,
         IServersUpdater serversUpdater,
         IUserAuthenticator userAuthenticator,
+        IMainViewNavigator mainViewNavigator,
+        ISettingsViewNavigator settingsViewNavigator,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter,
-        ISettings settings)
-        : base(settingsViewNavigator, localizer, logger, issueReporter, settings)
+        IMainWindowOverlayActivator mainWindowOverlayActivator,
+        ISettings settings,
+        ISettingsConflictResolver settingsConflictResolver,
+        IConnectionManager connectionManager)
+        : base(mainViewNavigator, settingsViewNavigator, localizer, logger, issueReporter, mainWindowOverlayActivator, settings, settingsConflictResolver, connectionManager)
     {
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
         _serversUpdater = serversUpdater;
@@ -122,5 +126,10 @@ public partial class DeveloperToolsPageViewModel : SettingsPageViewModelBase
         displayName = Regex.Replace(displayName, "(?<=[a-z])([A-Z])", " $1");
 
         return displayName.Trim();
+    }
+
+    protected override IEnumerable<ChangedSettingArgs> GetSettings()
+    {
+        return [];
     }
 }

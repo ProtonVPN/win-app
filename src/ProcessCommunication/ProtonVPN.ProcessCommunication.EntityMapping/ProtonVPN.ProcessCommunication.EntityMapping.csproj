@@ -17,6 +17,7 @@
         <ProjectReference Include="..\..\Client\Settings\ProtonVPN.Client.Settings.Contracts\ProtonVPN.Client.Settings.Contracts.csproj" />
         <ProjectReference Include="..\..\EntityMapping\ProtonVPN.EntityMapping.Contracts\ProtonVPN.EntityMapping.Contracts.csproj" />
         <ProjectReference Include="..\..\ProtonVPN.Core\ProtonVPN.Core.csproj" />
+        <ProjectReference Include="..\..\Update\ProtonVPN.Update.Contracts\ProtonVPN.Update.Contracts.csproj" />
         <ProjectReference Include="..\ProtonVPN.ProcessCommunication.Contracts\ProtonVPN.ProcessCommunication.Contracts.csproj" />
     </ItemGroup>
 </Project>

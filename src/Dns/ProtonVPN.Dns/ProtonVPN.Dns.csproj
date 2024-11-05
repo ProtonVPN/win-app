@@ -15,11 +15,11 @@
     <ItemGroup>
         <ProjectReference Include="..\..\Client\Settings\ProtonVPN.Client.Settings.Contracts\ProtonVPN.Client.Settings.Contracts.csproj" />
         <ProjectReference Include="..\..\ProtonVPN.Common.Legacy\ProtonVPN.Common.Legacy.csproj" />
-        <ProjectReference Include="..\..\ProtonVPN.Core\ProtonVPN.Core.csproj" />
         <ProjectReference Include="..\ProtonVPN.Dns.Contracts\ProtonVPN.Dns.Contracts.csproj" />
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Albireo.Base32" />
+        <PackageReference Include="ARSoft.Tools.Net.Dns" />
         <PackageReference Include="DnsClient" />
     </ItemGroup>
 </Project>

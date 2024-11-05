@@ -26,6 +26,7 @@ using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Contracts.Services.Activation.Bases;
 using ProtonVPN.Client.Contracts.Services.Selection;
 using ProtonVPN.Client.UI.Dialogs.Upsell;
+using ProtonVPN.Client.Common.Messages;
 
 namespace ProtonVPN.Client.Services.Activation;
 

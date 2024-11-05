@@ -110,6 +110,7 @@ Source: "..\{#SourcePath}\Assets\Illustrations\Light\*"; DestDir: "{app}\{#Versi
 Source: "..\{#SourcePath}\Assets\Illustrations\*"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Illustrations";
 
 Source: "..\{#SourcePath}\Assets\Icons\App\*"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Icons\App";
+Source: "..\{#SourcePath}\Assets\Icons\*.png"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Icons";
 Source: "..\{#SourcePath}\Assets\Icons\Streaming\*"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Icons\Streaming";
 Source: "..\{#SourcePath}\Assets\Icons\NetShield\*"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Icons\NetShield";
 

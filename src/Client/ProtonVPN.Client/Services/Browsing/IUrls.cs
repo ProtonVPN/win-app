@@ -30,6 +30,7 @@ public interface IUrls
     string ServerLoadLearnMore { get; }
     string InternetSpeedLearnMore { get; }
     string NatTypeLearnMore { get; }
+    string Ipv6LeakProtectionLearnMore { get; }
     string SupportCenter { get; }
     string UsageStatisticsLearnMore { get; }
     string NetShieldLearnMore { get; }

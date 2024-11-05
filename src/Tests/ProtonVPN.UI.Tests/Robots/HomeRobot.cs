@@ -50,6 +50,23 @@ public class HomeRobot
 
     public class Verifications : HomeRobot
     {
+        public Verifications IsLoggedIn()
+        {
+            UnprotectedLabel.WaitUntilDisplayed(TestConstants.OneMinuteTimeout);
+            return this;
+        }
+
+        public Verifications IsDisconnected()
+        {
+            UnprotectedLabel.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications IsConnected()
+        {
+            ProtectedLabel.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
+            return this;
+        }
     }
 
     public Verifications Verify => new();

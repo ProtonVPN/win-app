@@ -42,6 +42,12 @@
     <None Remove="UI\Login\Pages\TwoFactorPageView.xaml" />
     <None Remove="UI\Login\LoginPageView.xaml" />
     <None Remove="UI\MainWindowShellView.xaml" />
+    <None Remove="UI\Main\FeatureIcons\KillSwitchIconView.xaml" />
+    <None Remove="UI\Main\FeatureIcons\NetShieldIconView.xaml" />
+    <None Remove="UI\Main\FeatureIcons\PortForwardingIconView.xaml" />
+    <None Remove="UI\Main\FeatureIcons\ProtocolIconView.xaml" />
+    <None Remove="UI\Main\FeatureIcons\SplitTunnelingIconView.xaml" />
+    <None Remove="UI\Main\FeatureIcons\VpnAcceleratorIconView.xaml" />
     <None Remove="UI\Main\Features\KillSwitch\KillSwitchPageView.xaml" />
     <None Remove="UI\Main\Features\KillSwitch\KillSwitchWidgetView.xaml" />
     <None Remove="UI\Main\Features\NetShield\NetShieldPageView.xaml" />
@@ -73,10 +79,12 @@
     <None Remove="UI\Main\Settings\Pages\AutoStartupSettingsPageView.xaml" />
     <None Remove="UI\Main\Settings\Pages\CensorshipSettingsPageView.xaml" />
     <None Remove="UI\Main\Settings\Pages\CommonSettingsPageView.xaml" />
+    <None Remove="UI\Main\Settings\Pages\Connection\ConnectionSettingsView.xaml" />
     <None Remove="UI\Main\Settings\Pages\DebugLogsPageView.xaml" />
     <None Remove="UI\Main\Settings\Pages\DefaultConnections\DefaultConnectionPageView.xaml" />
     <None Remove="UI\Main\Settings\Pages\DeveloperToolsPageView.xaml" />
     <None Remove="UI\Main\Settings\Pages\ProtocolSettingsPageView.xaml" />
+    <None Remove="UI\Main\Settings\Pages\UserDetailsComponent.xaml" />
     <None Remove="UI\Main\Settings\Pages\VpnAcceleratorSettingsPageView.xaml" />
     <None Remove="UI\Main\Settings\SettingsPageView.xaml" />
     <None Remove="UI\Main\Settings\SettingsWidgetView.xaml" />
@@ -204,6 +212,23 @@
   <ItemGroup>
     <Folder Include="UI\Overlays\Information\Notification\" />
     <Folder Include="UI\Main\Map\" />
+    <Page Update="UI\Main\FeatureIcons\PortForwardingIconView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="UI\Main\FeatureIcons\NetShieldIconView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="UI\Main\FeatureIcons\VpnAcceleratorIconView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Main\FeatureIcons\SplitTunnelingIconView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Main\FeatureIcons\ProtocolIconView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
     <Page Update="UI\Main\Home\Details\Connection\VpnSpeedComponent.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
@@ -338,6 +363,24 @@
 
   <ItemGroup>
     <Resource Remove="UI\MainWindowShellView.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Main\FeatureIcons\KillSwitchIconView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Main\Settings\Pages\Connection\ConnectionSettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Main\Settings\Pages\UserDetailsComponent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>

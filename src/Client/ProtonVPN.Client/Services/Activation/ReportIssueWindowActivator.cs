@@ -29,9 +29,9 @@ using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Contracts.Services.Activation.Bases;
 using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.Contracts.Services.Selection;
-using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue.Pages;
+using ProtonVPN.Client.Common.Messages;
 
 namespace ProtonVPN.Client.Services.Activation;
 

@@ -34,7 +34,7 @@ namespace ProtonVPN.Client.Legacy.UI.Sidebar;
 
 public class SidebarKillSwitchViewModel : SidebarFeatureNavigationItemViewModelBase<KillSwitchViewModel>
 {
-    public override string Header => Localizer.Get("Settings_Features_KillSwitch");
+    public override string Header => Localizer.Get("Settings_Connection_KillSwitch");
 
     protected override ModalSources UpsellModalSource => ModalSources.Undefined;
 
@@ -72,8 +72,8 @@ public class SidebarKillSwitchViewModel : SidebarFeatureNavigationItemViewModelB
             Settings.IsKillSwitchEnabled
                 ? Settings.KillSwitchMode switch
                 {
-                    KillSwitchMode.Standard => "Settings_Features_KillSwitch_Standard",
-                    KillSwitchMode.Advanced => "Settings_Features_KillSwitch_Advanced",
+                    KillSwitchMode.Standard => "Settings_Connection_KillSwitch_Standard",
+                    KillSwitchMode.Advanced => "Settings_Connection_KillSwitch_Advanced",
                     _ => throw new ArgumentOutOfRangeException(nameof(ISettings.KillSwitchMode))
                 }
                 : "Common_States_Off");

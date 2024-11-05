@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,15 +19,16 @@
 
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Common.Models;
+using ProtonVPN.Client.Contracts.Services.Activation;
+using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.UI.Settings.Pages.Entities;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Services.Activation;
-using ProtonVPN.Client.Contracts.Services.Navigation;
-using ProtonVPN.Client.Services.Browsing;
-using ProtonVPN.Client.UI.Main.Settings.Bases;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages;
 
@@ -39,17 +40,19 @@ public partial class DebugLogsPageViewModel : SettingsPageViewModelBase
 
     public override string Title => Localizer.Get("Settings_Support_DebugLogs");
 
-
     public DebugLogsPageViewModel(
         IUrls urls,
         IStaticConfiguration staticConfig,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
+        IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter,
-        ISettings settings)
-        : base(settingsViewNavigator, localizer, logger, issueReporter, settings)
+        ISettings settings,
+        ISettingsConflictResolver settingsConflictResolver,
+        IConnectionManager connectionManager)
+        : base(mainViewNavigator, settingsViewNavigator, localizer, logger, issueReporter, mainWindowOverlayActivator, settings, settingsConflictResolver, connectionManager)
     {
         _urls = urls;
         _staticConfig = staticConfig;
@@ -82,5 +85,10 @@ public partial class DebugLogsPageViewModel : SettingsPageViewModelBase
         }
 
         _urls.NavigateTo(logFolder);
+    }
+
+    protected override IEnumerable<ChangedSettingArgs> GetSettings()
+    {
+        return [];
     }
 }
