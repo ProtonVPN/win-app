@@ -288,7 +288,7 @@ public class DeviceLocationControl : ContentControl
         } while (deviceLocation.ElementAt(index) == SCRAMBLING_CHAR);
         
         deviceLocation = $"{deviceLocation.Remove(index)}{SCRAMBLING_CHAR}{deviceLocation.Remove(0, index + 1)}";
-        
+
         PART_ScrambledCountry.Text = deviceLocation.Substring(0, Country.Length);
         PART_ScrambledIpAddress.Text = deviceLocation.Substring(Country.Length, IpAddress.Length);
         PART_ScrambledIsp.Text = deviceLocation.Substring(Isp.Length, Isp.Length);

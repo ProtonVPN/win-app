@@ -37,9 +37,9 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
     private readonly IReadOnlyList<VpnProtocolIpcEntity> _smartPreferredProtocols = [
         VpnProtocolIpcEntity.WireGuardUdp,
         VpnProtocolIpcEntity.WireGuardTcp,
+        VpnProtocolIpcEntity.WireGuardTls,
         VpnProtocolIpcEntity.OpenVpnUdp,
         VpnProtocolIpcEntity.OpenVpnTcp,
-        VpnProtocolIpcEntity.WireGuardTls,
     ];
 
     protected ConnectionRequestCreatorBase(
@@ -79,6 +79,7 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
         List<VpnProtocolIpcEntity> preferredProtocols = _smartPreferredProtocols.ToList();
         if (!FeatureFlagsObserver.IsStealthEnabled)
         {
+            preferredProtocols.Remove(VpnProtocolIpcEntity.WireGuardTcp);
             preferredProtocols.Remove(VpnProtocolIpcEntity.WireGuardTls);
         }
 
@@ -98,6 +99,7 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
 
         if (!FeatureFlagsObserver.IsStealthEnabled)
         {
+            ports.Remove(VpnProtocolIpcEntity.WireGuardTcp);
             ports.Remove(VpnProtocolIpcEntity.WireGuardTls);
         }
 

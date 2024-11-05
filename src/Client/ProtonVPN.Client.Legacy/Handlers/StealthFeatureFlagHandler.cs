@@ -54,14 +54,14 @@ public class StealthFeatureFlagHandler : IHandler, IEventMessageReceiver<Feature
             return;
         }
 
-        if (_settings.VpnProtocol == VpnProtocol.WireGuardTls)
+        if (_settings.VpnProtocol is VpnProtocol.WireGuardTls or VpnProtocol.WireGuardTcp)
         {
             _logger.Info<AppLog>("Switching to smart protocol because Stealth was disabled by the feature flag.");
             _settings.VpnProtocol = VpnProtocol.Smart;
         }
 
         if (_connectionManager.IsConnected &&
-            _connectionManager.CurrentConnectionDetails?.Protocol is VpnProtocol.WireGuardTls)
+            (_connectionManager.CurrentConnectionDetails?.Protocol is VpnProtocol.WireGuardTls or VpnProtocol.WireGuardTcp))
         {
             await _connectionManager.ReconnectAsync();
         }
