@@ -18,8 +18,10 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
-using ProtonVPN.Client.Common.Attributes;
 using ProtonVPN.Client.Common.Collections;
+using ProtonVPN.Client.Common.Attributes;
+using ProtonVPN.Client.Contracts.Services.Activation;
+using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
@@ -30,15 +32,13 @@ using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
+using ProtonVPN.Client.UI.Settings.Pages.Entities;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Services.Activation;
-using ProtonVPN.Client.Contracts.Services.Navigation;
-using ProtonVPN.Client.UI.Settings.Pages.Entities;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.DefaultConnections;
 
-public partial class DefaultConnectionSettingsPageViewModel : CommonSettingsPageBase<ISettingsViewNavigator>,
+public partial class DefaultConnectionSettingsPageViewModel : SettingsPageViewModelBase,
     IEventMessageReceiver<ProfilesChangedMessage>,
     IEventMessageReceiver<LoggedInMessage>
 {
@@ -70,7 +70,8 @@ public partial class DefaultConnectionSettingsPageViewModel : CommonSettingsPage
 
     public DefaultConnectionSettingsPageViewModel(
         IProfilesManager profilesManager,
-        ISettingsViewNavigator parentViewNavigator,
+        IMainViewNavigator mainViewNavigator,
+        ISettingsViewNavigator settingsViewNavigator,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter,
@@ -78,8 +79,7 @@ public partial class DefaultConnectionSettingsPageViewModel : CommonSettingsPage
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager)
-        : base(parentViewNavigator, localizer, logger, issueReporter, mainWindowOverlayActivator, settings,
-            settingsConflictResolver, connectionManager)
+        : base(mainViewNavigator, settingsViewNavigator, localizer, logger, issueReporter, mainWindowOverlayActivator, settings, settingsConflictResolver, connectionManager)
     {
         _profilesManager = profilesManager;
         InvalidateProfiles();

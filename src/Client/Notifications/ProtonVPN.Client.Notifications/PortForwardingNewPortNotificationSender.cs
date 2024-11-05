@@ -35,7 +35,7 @@ public class PortForwardingNewPortNotificationSender : IPortForwardingNewPortNot
     public void Send(int activePort)
     {
         new ToastContentBuilder()
-            .AddText($"{_localizer.Get("Settings_Features_PortForwarding_ActivePort")} {activePort}")
+            .AddText($"{_localizer.Get("Settings_Connection_PortForwarding_ActivePort")} {activePort}")
             .AddText(_localizer.Get("Notifications_PortForwarding_Description"))
             .AddAppLogoOverride(new Uri(Environment.CurrentDirectory + "\\Assets\\Illustrations\\large-port-forwarding-on.png"))
             .Show();

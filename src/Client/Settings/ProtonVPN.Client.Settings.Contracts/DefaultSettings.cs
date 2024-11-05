@@ -68,6 +68,7 @@ public static class DefaultSettings
     public static bool IsIpv6LeakProtectionEnabled = true;
     public static OpenVpnAdapter OpenVpnAdapter = OpenVpnAdapter.Tun;
     public static VpnPlan VpnPlan = VpnPlan.Default;
+    public static int MaxDevicesAllowed = 0;
     public static List<FeatureFlag> FeatureFlags = [];
     public static bool IsFeatureConnectedServerCheckEnabled = true;
     public static TimeSpan ConnectedServerCheckInterval = TimeSpan.FromMinutes(30);
@@ -77,6 +78,7 @@ public static class DefaultSettings
     public static bool IsSecureCoreInfoBannerDismissed = false;
     public static bool IsTorInfoBannerDismissed = false;
     public static bool IsGatewayInfoBannerDismissed = false;
+    public static NetShieldMode NetShieldMode = NetShieldMode.BlockMalwareOnly;
 
     public static ChangeServerSettings ChangeServerSettings = new()
     {

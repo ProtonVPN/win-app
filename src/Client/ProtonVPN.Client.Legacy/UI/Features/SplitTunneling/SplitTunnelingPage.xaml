@@ -50,7 +50,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <custom:PageHeaderContentControl Header="{x:Bind ViewModel.Title}"
                                              IllustrationSource="{StaticResource SplitTunnelingFeatureIllustrationSource}">
                 <TextBlock TextWrapping="Wrap">
-                    <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_SplitTunneling_Description')}" />
+                    <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_SplitTunneling_Description')}" />
                     <Hyperlink NavigateUri="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}"
                                ToolTipService.ToolTip="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}">
                         <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
@@ -63,7 +63,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <StackPanel x:Name="ContentArea"
                     Spacing="16">
 
-            <toolkit:SettingsExpander Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_SplitTunneling')}"
+            <toolkit:SettingsExpander Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_SplitTunneling')}"
                                       IsExpanded="{x:Bind ViewModel.IsSplitTunnelingEnabled}"
                                       IsTabStop="False">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsSplitTunnelingEnabled, Mode=TwoWay}"
@@ -74,10 +74,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                      Style="{StaticResource SplitTunnelingRadioButtonStyle}">
                             <StackPanel>
                                 <TextBlock Style="{StaticResource BodyTextBlockStyle}"
-                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_SplitTunneling_Standard')}" />
+                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_SplitTunneling_Standard')}" />
                                 <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                                            Style="{StaticResource CaptionTextBlockStyle}"
-                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_SplitTunneling_Standard_Description')}"
+                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_SplitTunneling_Standard_Description')}"
                                            TextWrapping="Wrap" />
                             </StackPanel>
                         </RadioButton>
@@ -85,10 +85,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                      Style="{StaticResource SplitTunnelingRadioButtonStyle}">
                             <StackPanel>
                                 <TextBlock Style="{StaticResource BodyTextBlockStyle}"
-                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_SplitTunneling_Inverse')}" />
+                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_SplitTunneling_Inverse')}" />
                                 <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                                            Style="{StaticResource CaptionTextBlockStyle}"
-                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_SplitTunneling_Inverse_Description')}"
+                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_SplitTunneling_Inverse_Description')}"
                                            TextWrapping="Wrap" />
                             </StackPanel>
                         </RadioButton>
@@ -101,7 +101,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Style="{StaticResource CaptionTextBlockStyle}"
-                           Text="{x:Bind ViewModel.Localizer.GetFormat('Settings_Features_SplitTunneling_Apps_Header', ViewModel.ActiveAppsCount)}" />
+                           Text="{x:Bind ViewModel.Localizer.GetFormat('Settings_Connection_SplitTunneling_Apps_Header', ViewModel.ActiveAppsCount)}" />
 
                 <toolkit:SettingsCard IsTabStop="False"
                                       Style="{StaticResource VerticalSettingsCardStyle}">
@@ -143,9 +143,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         </CheckBox>
                                         <custom:GhostButton Grid.Column="1"
                                                             AutomationProperties.AutomationId="RemoveAppButton"
-                                                            AutomationProperties.Name="{x:Bind Localizer.Get('Settings_Features_SplitTunneling_Apps_Remove')}"
+                                                            AutomationProperties.Name="{x:Bind Localizer.Get('Settings_Connection_SplitTunneling_Apps_Remove')}"
                                                             Command="{x:Bind RemoveAppCommand, Mode=OneTime}"
-                                                            ToolTipService.ToolTip="{x:Bind Localizer.Get('Settings_Features_SplitTunneling_Apps_Remove')}">
+                                                            ToolTipService.ToolTip="{x:Bind Localizer.Get('Settings_Connection_SplitTunneling_Apps_Remove')}">
                                             <custom:GhostButton.LeftIcon>
                                                 <pathicons:Trash />
                                             </custom:GhostButton.LeftIcon>
@@ -187,9 +187,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         </CheckBox>
                                         <custom:GhostButton Grid.Column="1"
                                                             AutomationProperties.AutomationId="RemoveAppButton"
-                                                            AutomationProperties.Name="{x:Bind Localizer.Get('Settings_Features_SplitTunneling_Apps_Remove')}"
+                                                            AutomationProperties.Name="{x:Bind Localizer.Get('Settings_Connection_SplitTunneling_Apps_Remove')}"
                                                             Command="{x:Bind RemoveAppCommand, Mode=OneTime}"
-                                                            ToolTipService.ToolTip="{x:Bind Localizer.Get('Settings_Features_SplitTunneling_Apps_Remove')}">
+                                                            ToolTipService.ToolTip="{x:Bind Localizer.Get('Settings_Connection_SplitTunneling_Apps_Remove')}">
                                             <custom:GhostButton.LeftIcon>
                                                 <pathicons:Trash />
                                             </custom:GhostButton.LeftIcon>
@@ -203,7 +203,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 HorizontalAlignment="Left"
                                 AutomationProperties.AutomationId="AddAppButton"
                                 Command="{x:Bind ViewModel.AddAppCommand, Mode=OneTime}"
-                                Content="{x:Bind ViewModel.Localizer.Get('Settings_Features_SplitTunneling_Apps_Add')}" />
+                                Content="{x:Bind ViewModel.Localizer.Get('Settings_Connection_SplitTunneling_Apps_Add')}" />
                     </Grid>
                 </toolkit:SettingsCard>
             </StackPanel>
@@ -213,7 +213,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                            Style="{StaticResource CaptionTextBlockStyle}"
-                           Text="{x:Bind ViewModel.Localizer.GetFormat('Settings_Features_SplitTunneling_IpAddresses_Header', ViewModel.ActiveIpAddressesCount)}" />
+                           Text="{x:Bind ViewModel.Localizer.GetFormat('Settings_Connection_SplitTunneling_IpAddresses_Header', ViewModel.ActiveIpAddressesCount)}" />
 
                 <toolkit:SettingsCard IsTabStop="False"
                                       Style="{StaticResource VerticalSettingsCardStyle}">
@@ -250,9 +250,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   IsChecked="{x:Bind IsActive, Mode=TwoWay}" />
                                         <custom:GhostButton Grid.Column="1"
                                                             AutomationProperties.AutomationId="RemoveIpAddressButton"
-                                                            AutomationProperties.Name="{x:Bind Localizer.Get('Settings_Features_SplitTunneling_IpAddresses_Remove')}"
+                                                            AutomationProperties.Name="{x:Bind Localizer.Get('Settings_Connection_SplitTunneling_IpAddresses_Remove')}"
                                                             Command="{x:Bind RemoveIpAddressCommand, Mode=OneTime}"
-                                                            ToolTipService.ToolTip="{x:Bind Localizer.Get('Settings_Features_SplitTunneling_IpAddresses_Remove')}">
+                                                            ToolTipService.ToolTip="{x:Bind Localizer.Get('Settings_Connection_SplitTunneling_IpAddresses_Remove')}">
                                             <custom:GhostButton.LeftIcon>
                                                 <pathicons:Trash />
                                             </custom:GhostButton.LeftIcon>
@@ -283,9 +283,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   IsChecked="{x:Bind IsActive, Mode=TwoWay}" />
                                         <custom:GhostButton Grid.Column="1"
                                                             AutomationProperties.AutomationId="RemoveIpAddressButton"
-                                                            AutomationProperties.Name="{x:Bind Localizer.Get('Settings_Features_SplitTunneling_IpAddresses_Remove')}"
+                                                            AutomationProperties.Name="{x:Bind Localizer.Get('Settings_Connection_SplitTunneling_IpAddresses_Remove')}"
                                                             Command="{x:Bind RemoveIpAddressCommand, Mode=OneTime}"
-                                                            ToolTipService.ToolTip="{x:Bind Localizer.Get('Settings_Features_SplitTunneling_IpAddresses_Remove')}">
+                                                            ToolTipService.ToolTip="{x:Bind Localizer.Get('Settings_Connection_SplitTunneling_IpAddresses_Remove')}">
                                             <custom:GhostButton.LeftIcon>
                                                 <pathicons:Trash />
                                             </custom:GhostButton.LeftIcon>
@@ -298,14 +298,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <TextBox Grid.Row="1"
                                  Grid.Column="0"
                                  KeyDown="{x:Bind ViewModel.OnIpAddressKeyDownHandler, Mode=OneTime}"
-                                 PlaceholderText="{x:Bind ViewModel.Localizer.Get('Settings_Features_SplitTunneling_IpAddresses_Watermark')}"
+                                 PlaceholderText="{x:Bind ViewModel.Localizer.Get('Settings_Connection_SplitTunneling_IpAddresses_Watermark')}"
                                  Text="{x:Bind ViewModel.CurrentIpAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                         <Button Grid.Row="1"
                                 Grid.Column="1"
                                 AutomationProperties.AutomationId="AddIpAddressButton"
                                 Command="{x:Bind ViewModel.AddIpAddressCommand, Mode=OneTime}"
-                                Content="{x:Bind ViewModel.Localizer.Get('Settings_Features_SplitTunneling_IpAddresses_Add')}" />
+                                Content="{x:Bind ViewModel.Localizer.Get('Settings_Connection_SplitTunneling_IpAddresses_Add')}" />
                     </Grid>
                 </toolkit:SettingsCard>
             </StackPanel>

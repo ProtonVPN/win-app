@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -36,11 +35,5 @@ public partial class SettingsPageViewModel : PageViewModelBase<IMainViewNavigato
         IIssueReporter issueReporter)
         : base(parentViewNavigator, childViewNavigator, localizer, logger, issueReporter)
     {
-    }
-
-    [RelayCommand]
-    private Task CloseAsync()
-    {
-        return ParentViewNavigator.NavigateToHomeViewAsync();
     }
 }

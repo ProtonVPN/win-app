@@ -22,7 +22,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using FlaUI.Core;
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Tools;
@@ -45,6 +44,7 @@ public class BaseTest
     protected static NavigationRobot NavigationRobot { get; } = new();
     protected static ProfileRobot ProfileRobot { get; } = new();
     protected static SidebarRobot SidebarRobot { get; } = new();
+    protected static SettingRobot SettingRobot { get; } = new();
 
     private const string CLIENT_NAME = "ProtonVPN.Client.exe";
 
@@ -118,15 +118,15 @@ public class BaseTest
 
     protected static void LaunchApp(bool isFreshStart = true)
     {
-        if(isFreshStart)
+        if (isFreshStart)
         {
             DeleteProtonData();
         }
 
         string installedClientPath = Path.Combine(
-            _isDevelopmentModeEnabled 
+            _isDevelopmentModeEnabled
                 ? TestEnvironment.GetDevProtonClientFolder()
-                : TestEnvironment.GetProtonClientFolder(), 
+                : TestEnvironment.GetProtonClientFolder(),
             CLIENT_NAME);
 
         ProcessStartInfo startInfo = new ProcessStartInfo(installedClientPath)
@@ -158,7 +158,8 @@ public class BaseTest
     private static RetryResult<bool> WaitUntilAppIsRunning()
     {
         RetryResult<bool> retry = Retry.WhileFalse(
-            () => {
+            () =>
+            {
                 Process[] pname = Process.GetProcessesByName("ProtonVPN.Client");
                 return pname.Length > 0;
             },

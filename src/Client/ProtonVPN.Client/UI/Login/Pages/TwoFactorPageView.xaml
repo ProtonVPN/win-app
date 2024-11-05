@@ -32,6 +32,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       mc:Ignorable="d">
 
     <Page.Resources>
+        <x:Double x:Key="TextControlThemeMinWidth">52</x:Double>
+
         <Style x:Key="TwoFactorNumberBox" BasedOn="{StaticResource DefaultTextBoxStyle}" TargetType="TextBox">
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="Width" Value="52" />

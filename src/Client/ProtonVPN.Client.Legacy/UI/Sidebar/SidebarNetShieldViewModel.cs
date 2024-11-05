@@ -34,7 +34,7 @@ namespace ProtonVPN.Client.Legacy.UI.Sidebar;
 
 public class SidebarNetShieldViewModel : SidebarFeatureNavigationItemViewModelBase<NetShieldViewModel>
 {
-    public override string Header => Localizer.Get("Settings_Features_NetShield");
+    public override string Header => Localizer.Get("Settings_Connection_NetShield");
 
     public override bool RequiresPaidAccess => true;
 

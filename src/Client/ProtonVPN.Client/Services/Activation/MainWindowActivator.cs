@@ -19,7 +19,14 @@
 
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Common.Dispatching;
+using ProtonVPN.Client.Common.Messages;
 using ProtonVPN.Client.Common.Models;
+using ProtonVPN.Client.Contracts.Extensions;
+using ProtonVPN.Client.Contracts.Helpers;
+using ProtonVPN.Client.Contracts.Messages;
+using ProtonVPN.Client.Contracts.Services.Activation;
+using ProtonVPN.Client.Contracts.Services.Activation.Bases;
+using ProtonVPN.Client.Contracts.Services.Selection;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
@@ -28,12 +35,6 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
-using ProtonVPN.Client.Contracts.Extensions;
-using ProtonVPN.Client.Contracts.Helpers;
-using ProtonVPN.Client.Contracts.Messages;
-using ProtonVPN.Client.Contracts.Services.Activation;
-using ProtonVPN.Client.Contracts.Services.Activation.Bases;
-using ProtonVPN.Client.Contracts.Services.Selection;
 using Windows.Foundation;
 using WinUIEx;
 

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -30,7 +30,7 @@ using ProtonVPN.Client.UI.Settings.Pages.Entities;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages;
 
-public partial class CensorshipSettingsPageViewModel : CommonSettingsPageBase<ISettingsViewNavigator>
+public partial class CensorshipSettingsPageViewModel : SettingsPageViewModelBase
 {
     private readonly IUrls _urls;
 
@@ -40,12 +40,14 @@ public partial class CensorshipSettingsPageViewModel : CommonSettingsPageBase<IS
     [ObservableProperty]
     private bool _isShareCrashReportsEnabled;
 
-    public override string? Title => Localizer.Get("Settings_Improve_Censorship");
+    public override string Title => Localizer.Get("Settings_Improve_Censorship");
+
     public string LearnMoreUrl => _urls.UsageStatisticsLearnMore;
 
     public CensorshipSettingsPageViewModel(
         IUrls urls,
-        ISettingsViewNavigator parentViewNavigator,
+        IMainViewNavigator mainViewNavigator,
+        ISettingsViewNavigator settingsViewNavigator,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter,
@@ -53,8 +55,7 @@ public partial class CensorshipSettingsPageViewModel : CommonSettingsPageBase<IS
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager)
-        : base(parentViewNavigator, localizer, logger, issueReporter, mainWindowOverlayActivator, settings,
-            settingsConflictResolver, connectionManager)
+        : base(mainViewNavigator, settingsViewNavigator, localizer, logger, issueReporter, mainWindowOverlayActivator, settings, settingsConflictResolver, connectionManager)
     {
         _urls = urls;
     }

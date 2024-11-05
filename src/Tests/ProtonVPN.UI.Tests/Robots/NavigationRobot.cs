@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
 
 namespace ProtonVPN.UI.Tests.Robots;
@@ -54,7 +55,11 @@ public class NavigationRobot
 
         public Verifications IsOnLoginPage() => IsOnPage(LoginPage);
 
-        public Verifications IsOnMainPage() => IsOnPage(MainPage);
+        public Verifications IsOnMainPage()
+        {
+            MainPage.WaitUntilDisplayed(TestConstants.OneMinuteTimeout);
+            return this;
+        }
 
         public Verifications IsOnHomePage() => IsOnPage(HomePage);
 

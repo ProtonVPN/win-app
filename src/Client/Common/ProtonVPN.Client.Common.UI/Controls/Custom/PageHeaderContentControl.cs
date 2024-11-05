@@ -19,19 +19,18 @@
 
 using CommunityToolkit.WinUI.Controls;
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Media;
 
 namespace ProtonVPN.Client.Common.UI.Controls.Custom;
 
 public class PageHeaderContentControl : HeaderedContentControl
 {
-    public static readonly DependencyProperty IllustrationSourceProperty =
-        DependencyProperty.Register(nameof(IllustrationSource), typeof(ImageSource), typeof(PageHeaderContentControl), new PropertyMetadata(default));
+    public static readonly DependencyProperty IllustrationProperty =
+        DependencyProperty.Register(nameof(Illustration), typeof(object), typeof(PageHeaderContentControl), new PropertyMetadata(default));
 
-    public ImageSource IllustrationSource
+    public object Illustration
     {
-        get => (ImageSource)GetValue(IllustrationSourceProperty);
-        set => SetValue(IllustrationSourceProperty, value);
+        get => (object)GetValue(IllustrationProperty);
+        set => SetValue(IllustrationProperty, value);
     }
 
     public PageHeaderContentControl()

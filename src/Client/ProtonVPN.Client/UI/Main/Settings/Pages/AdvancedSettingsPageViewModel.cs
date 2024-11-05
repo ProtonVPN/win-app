@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,42 +20,42 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Common.Attributes;
+using ProtonVPN.Client.Contracts.Services.Activation;
+using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
+using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.UI.Settings.Pages.Entities;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Services.Activation;
-using ProtonVPN.Client.Contracts.Services.Navigation;
-using ProtonVPN.Client.Services.Browsing;
-using ProtonVPN.Client.UI.Settings.Pages.Entities;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages;
 
-public partial class AdvancedSettingsPageViewModel : CommonSettingsPageBase<ISettingsViewNavigator>,
+public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
     IEventMessageReceiver<LoggedInMessage>,
     IEventMessageReceiver<VpnPlanChangedMessage>
 {
-    public List<OpenVpnAdapter> OpenVpnAdapters =
-    [
-        OpenVpnAdapter.Tap,
-        OpenVpnAdapter.Tun
-    ];
-
     private readonly IUrls _urls;
 
-    //private readonly IUpsellCarouselDialogActivator _upsellCarouselDialogActivator;
-    [ObservableProperty] private bool _isAlternativeRoutingEnabled;
+    private readonly IUpsellCarouselWindowActivator _upsellCarouselWindowActivator;
+    [ObservableProperty]
+    private bool _isAlternativeRoutingEnabled;
 
-    [ObservableProperty] private bool _isIpv6LeakProtectionEnabled;
+    [ObservableProperty]
+    private bool _isIpv6LeakProtectionEnabled;
 
-    [ObservableProperty] private OpenVpnAdapter _selectedOpenVpnAdapter;
+    [ObservableProperty]
+    [property: SettingName(nameof(ISettings.OpenVpnAdapter))]
+    [NotifyPropertyChangedFor(nameof(IsTunAdapter))]
+    [NotifyPropertyChangedFor(nameof(IsTapAdapter))]
+    private OpenVpnAdapter _currentOpenVpnAdapter;
 
     [ObservableProperty]
     [property: SettingName(nameof(ISettings.NatType))]
@@ -71,6 +71,8 @@ public partial class AdvancedSettingsPageViewModel : CommonSettingsPageBase<ISet
 
     public string NatTypeLearnMoreUrl => _urls.NatTypeLearnMore;
 
+    public string Ipv6LeakProtectionLearnMoreUrl => _urls.Ipv6LeakProtectionLearnMore;
+
     public bool IsStrictNatType
     {
         get => IsNatType(NatType.Strict);
@@ -83,9 +85,23 @@ public partial class AdvancedSettingsPageViewModel : CommonSettingsPageBase<ISet
         set => SetNatType(value, NatType.Moderate);
     }
 
+    public bool IsTunAdapter
+    {
+        get => IsOpenVpnAdapter(OpenVpnAdapter.Tun);
+        set => SetOpenVpnAdapter(value, OpenVpnAdapter.Tun);
+    }
+
+    public bool IsTapAdapter
+    {
+        get => IsOpenVpnAdapter(OpenVpnAdapter.Tap);
+        set => SetOpenVpnAdapter(value, OpenVpnAdapter.Tap);
+    }
+
     public AdvancedSettingsPageViewModel(
         IUrls urls,
-        ISettingsViewNavigator parentViewNavigator,
+        IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
+        IMainViewNavigator mainViewNavigator,
+        ISettingsViewNavigator settingsViewNavigator,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter,
@@ -93,10 +109,10 @@ public partial class AdvancedSettingsPageViewModel : CommonSettingsPageBase<ISet
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager)
-        : base(parentViewNavigator, localizer, logger, issueReporter, mainWindowOverlayActivator, settings,
-            settingsConflictResolver, connectionManager)
+        : base(mainViewNavigator, settingsViewNavigator, localizer, logger, issueReporter, mainWindowOverlayActivator, settings, settingsConflictResolver, connectionManager)
     {
         _urls = urls;
+        _upsellCarouselWindowActivator = upsellCarouselWindowActivator;
     }
 
     public void Receive(LoggedInMessage message)
@@ -131,7 +147,7 @@ public partial class AdvancedSettingsPageViewModel : CommonSettingsPageBase<ISet
         Settings.NatType = CurrentNatType;
         Settings.IsAlternativeRoutingEnabled = IsAlternativeRoutingEnabled;
         Settings.IsIpv6LeakProtectionEnabled = IsIpv6LeakProtectionEnabled;
-        Settings.OpenVpnAdapter = SelectedOpenVpnAdapter;
+        Settings.OpenVpnAdapter = CurrentOpenVpnAdapter;
     }
 
     protected override void OnRetrieveSettings()
@@ -139,7 +155,7 @@ public partial class AdvancedSettingsPageViewModel : CommonSettingsPageBase<ISet
         CurrentNatType = Settings.NatType;
         IsAlternativeRoutingEnabled = Settings.IsAlternativeRoutingEnabled;
         IsIpv6LeakProtectionEnabled = Settings.IsIpv6LeakProtectionEnabled;
-        SelectedOpenVpnAdapter = Settings.OpenVpnAdapter;
+        CurrentOpenVpnAdapter = Settings.OpenVpnAdapter;
     }
 
     protected override IEnumerable<ChangedSettingArgs> GetSettings()
@@ -147,8 +163,8 @@ public partial class AdvancedSettingsPageViewModel : CommonSettingsPageBase<ISet
         yield return new(nameof(ISettings.NatType), CurrentNatType, Settings.NatType != CurrentNatType);
         yield return new(nameof(ISettings.IsAlternativeRoutingEnabled), IsAlternativeRoutingEnabled,
             Settings.IsAlternativeRoutingEnabled != IsAlternativeRoutingEnabled);
-        yield return new(nameof(ISettings.OpenVpnAdapter), SelectedOpenVpnAdapter,
-            Settings.OpenVpnAdapter != SelectedOpenVpnAdapter);
+        yield return new(nameof(ISettings.OpenVpnAdapter), CurrentOpenVpnAdapter,
+            Settings.OpenVpnAdapter != CurrentOpenVpnAdapter);
         yield return new(nameof(ISettings.IsIpv6LeakProtectionEnabled), IsIpv6LeakProtectionEnabled,
             Settings.IsIpv6LeakProtectionEnabled != IsIpv6LeakProtectionEnabled);
     }
@@ -158,7 +174,7 @@ public partial class AdvancedSettingsPageViewModel : CommonSettingsPageBase<ISet
     {
         if (!IsPaidUser)
         {
-            //_upsellCarouselDialogActivator.ShowDialog(ModalSources.CustomDns);
+            _upsellCarouselWindowActivator.Activate();
             return;
         }
 
@@ -168,7 +184,7 @@ public partial class AdvancedSettingsPageViewModel : CommonSettingsPageBase<ISet
     [RelayCommand]
     private void TriggerNatTypeUpsellProcess()
     {
-        //_upsellCarouselDialogActivator.ShowDialog(ModalSources.ModerateNat);
+        _upsellCarouselWindowActivator.Activate();
     }
 
     private bool IsNatType(NatType natType)
@@ -181,6 +197,19 @@ public partial class AdvancedSettingsPageViewModel : CommonSettingsPageBase<ISet
         if (value)
         {
             CurrentNatType = natType;
+        }
+    }
+
+    private bool IsOpenVpnAdapter(OpenVpnAdapter adapter)
+    {
+        return CurrentOpenVpnAdapter == adapter;
+    }
+
+    private void SetOpenVpnAdapter(bool value, OpenVpnAdapter adapter)
+    {
+        if (value)
+        {
+            CurrentOpenVpnAdapter = adapter;
         }
     }
 }

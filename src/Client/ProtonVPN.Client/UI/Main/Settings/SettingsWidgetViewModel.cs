@@ -17,15 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml.Controls;
-using ProtonVPN.Client.Common.UI.Assets.Icons.Base;
-using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Client.Contracts.Services.Navigation;
+using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.UI.Main.Widgets.Bases;
 using ProtonVPN.Client.UI.Main.Widgets.Contracts;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Settings;
 
@@ -34,8 +31,6 @@ public class SettingsWidgetViewModel : SideWidgetViewModelBase, ISideFooterWidge
     public override int SortIndex { get; } = 1;
 
     public override string Header => Localizer.Get("Settings_Page_Title");
-
-    public override IconElement Icon { get; } = new CogWheel() { Size = PathIconSize.Pixels24 };
 
     public SettingsWidgetViewModel(
                     ILocalizationProvider localizer,

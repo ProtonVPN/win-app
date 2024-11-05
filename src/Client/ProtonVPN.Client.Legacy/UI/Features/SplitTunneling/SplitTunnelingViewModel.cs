@@ -71,7 +71,7 @@ public partial class SplitTunnelingViewModel : SettingsPageViewModelBase
 
     public override bool IsBackEnabled => false;
 
-    public override string? Title => Localizer.Get("Settings_Features_SplitTunneling");
+    public override string? Title => Localizer.Get("Settings_Connection_SplitTunneling");
 
     public ImageSource SplitTunnelingFeatureIconSource => GetFeatureIconSource(IsSplitTunnelingEnabled);
 
@@ -162,7 +162,7 @@ public partial class SplitTunnelingViewModel : SettingsPageViewModelBase
     public async Task AddAppAsync()
     {
         ObservableCollection<SplitTunnelingAppViewModel> apps = GetApps();
-        string filePath = await ViewNavigator.Window.PickSingleFileAsync(Localizer.Get("Settings_Features_SplitTunneling_Apps_FilesFilterName"), [EXE_FILE_EXTENSION]);
+        string filePath = await ViewNavigator.Window.PickSingleFileAsync(Localizer.Get("Settings_Connection_SplitTunneling_Apps_FilesFilterName"), [EXE_FILE_EXTENSION]);
         if (!IsValidAppPath(filePath))
         {
             return;

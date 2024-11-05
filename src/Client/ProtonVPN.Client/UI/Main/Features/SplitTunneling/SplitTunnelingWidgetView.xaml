@@ -24,6 +24,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:featureicons="using:ProtonVPN.Client.UI.Main.FeatureIcons"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
@@ -33,10 +34,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </UserControl.Resources>
 
     <custom:WidgetButton Command="{x:Bind ViewModel.InvokeCommand, Mode=OneTime}"
-                         Content="{x:Bind ViewModel.Icon}"
                          Text="{x:Bind ViewModel.Header}"
                          IsActive="{x:Bind ViewModel.IsSelected}"
                          Style="{StaticResource SideWidgetButtonStyle}"
-                         Visibility="{x:Bind ViewModel.IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                         Visibility="{x:Bind ViewModel.IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <featureicons:SplitTunnelingIconView />
+    </custom:WidgetButton>
 
 </UserControl>

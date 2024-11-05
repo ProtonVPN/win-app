@@ -69,6 +69,7 @@ public interface IConfiguration : IStaticConfiguration
     TimeSpan DohClientTimeout { get; }
     TimeSpan VpnStatePollingInterval { get; }
     TimeSpan VpnPlanRequestInterval { get; }
+    TimeSpan SessionsRequestInterval { get; }
     TimeSpan VpnPlanMinimumRequestInterval { get; }
     TimeSpan NetShieldStatisticRequestInterval { get; }
 

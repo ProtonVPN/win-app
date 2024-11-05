@@ -54,7 +54,7 @@ public partial class SidebarPortForwardingViewModel : SidebarFeatureNavigationIt
 
     public bool HasActivePortNumber => ActivePortNumber.HasValue;
 
-    public override string Header => Localizer.Get("Settings_Features_PortForwarding");
+    public override string Header => Localizer.Get("Settings_Connection_PortForwarding");
 
     public override bool RequiresPaidAccess => true;
 
@@ -128,7 +128,7 @@ public partial class SidebarPortForwardingViewModel : SidebarFeatureNavigationIt
 
         return ActivePortNumber?.ToString()
             ?? (_portForwardingManager.IsFetchingPort
-                ? Localizer.Get("Settings_Features_PortForwarding_Loading")
+                ? Localizer.Get("Settings_Connection_PortForwarding_Loading")
                 : Localizer.GetToggleValue(Settings.IsPortForwardingEnabled));
     }
 

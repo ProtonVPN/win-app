@@ -42,6 +42,7 @@ public interface IUserSettings
     VpnProtocol VpnProtocol { get; set; }
     OpenVpnAdapter OpenVpnAdapter { get; set; }
     VpnPlan VpnPlan { get; set; }
+    int MaxDevicesAllowed { get; set; }
     ConnectionAsymmetricKeyPair? ConnectionKeyPair { get; set; }
     ConnectionCertificate? ConnectionCertificate { get; set; }
     NatType NatType { get; set; }
@@ -53,6 +54,7 @@ public interface IUserSettings
     List<CustomDnsServer> CustomDnsServersList { get; set; }
     bool IsAutoConnectEnabled { get; set; }
     bool IsNetShieldEnabled { get; set; }
+    NetShieldMode NetShieldMode { get; set; }
     bool IsPortForwardingEnabled { get; set; }
     bool IsPortForwardingNotificationEnabled { get; set; }
     bool IsSplitTunnelingEnabled { get; set; }

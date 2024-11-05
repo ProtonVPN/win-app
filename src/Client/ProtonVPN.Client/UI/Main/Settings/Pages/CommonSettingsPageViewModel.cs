@@ -21,56 +21,45 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Models;
+using ProtonVPN.Client.Contracts.Messages;
+using ProtonVPN.Client.Contracts.Models;
+using ProtonVPN.Client.Contracts.Services.Activation;
+using ProtonVPN.Client.Contracts.Services.Activation.Bases;
+using ProtonVPN.Client.Contracts.Services.Navigation;
+using ProtonVPN.Client.Contracts.Services.Selection;
 using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Messages;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
+using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.Client.UI.Settings.Pages.Entities;
 using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Messages;
-using ProtonVPN.Client.Contracts.Services.Activation;
-using ProtonVPN.Client.Contracts.Services.Activation.Bases;
-using ProtonVPN.Client.Contracts.Services.Navigation;
-using ProtonVPN.Client.Logic.Auth.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
-using ProtonVPN.Client.Models.Themes;
-using ProtonVPN.Client.Services.Bootstrapping;
-using ProtonVPN.Client.Services.Browsing;
-using ProtonVPN.Client.UI.Main.Settings.Bases;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages;
 
 public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
 {
-    private readonly IThemeSelector _themeSelector;
+    private readonly IApplicationThemeSelector _themeSelector;
     private readonly ILocalizationService _localizationService;
     private readonly IOverlayActivator _mainWindowOverlayActivator;
     private readonly ISettings _settings;
     private readonly ISettingsRestorer _settingsRestorer;
     private readonly IUrls _urls;
-    private readonly IBootstrapper _bootstrapper;
-    private readonly IUserAuthenticator _userAuthenticator;
-    private readonly IWebAuthenticator _webAuthenticator;
 
     private readonly IReportIssueWindowActivator _reportIssueWindowActivator;
 
-    //private readonly IUpsellCarouselDialogActivator _upsellCarouselDialogActivator;
     private readonly IConnectionManager _connectionManager;
     private readonly IProfilesManager _profilesManager;
     private readonly Lazy<ObservableCollection<Language>> _languages;
 
     public bool IsPaidUser => _settings.VpnPlan.IsPaid;
-
-    public string Username => Settings.Username ?? Settings.UserDisplayName ?? string.Empty;
-
-    public string VpnPlan => Localizer.GetVpnPlanName(Settings.VpnPlan.Title);
 
     public bool IsToShowDeveloperTools => _settings.IsDebugModeEnabled;
 
@@ -82,8 +71,8 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
 
     public ApplicationElementTheme SelectedTheme
     {
-        get => _themeSelector.GetTheme();
-        set => _themeSelector.SetTheme(value);
+        get => Themes.First(theme => _themeSelector.GetTheme() == theme.Theme);
+        set => _themeSelector.SetTheme(value.Theme);
     }
 
     public Language SelectedLanguage
@@ -95,10 +84,6 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
     public string DefaultConnectionState => _settings.DefaultConnection.Type == DefaultConnectionType.Profile
         ? _profilesManager.GetById(_settings.DefaultConnection.ProfileId)?.Name ?? string.Empty
         : Localizer.Get($"Settings_Connection_Default_{_settings.DefaultConnection.Type}");
-
-    public string ConnectionProtocolState => Localizer.Get($"Settings_SelectedProtocol_{_settings.VpnProtocol}");
-
-    public string VpnAcceleratorSettingsState => Localizer.GetToggleValue(_settings.IsVpnAcceleratorEnabled);
 
     public bool IsNotificationEnabled
     {
@@ -118,45 +103,42 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
         set => _settings.AreAutomaticUpdatesEnabled = value;
     }
 
-    public ObservableCollection<ApplicationElementTheme> Themes => new(_themeSelector.GetAvailableThemes());
+    public List<ApplicationElementTheme> Themes { get; }
 
     public ObservableCollection<Language> Languages => _languages.Value;
 
     public CommonSettingsPageViewModel(
-        IThemeSelector themeSelector,
+        IMainViewNavigator mainViewNavigator,
+        IApplicationThemeSelector themeSelector,
         ILocalizationService localizationService,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
-        IBootstrapper bootstrapper,
-        IUserAuthenticator userAuthenticator,
-        IWebAuthenticator webAuthenticator,
         ISettings settings,
         ISettingsRestorer settingsRestorer,
         IUrls urls,
         IReportIssueWindowActivator reportIssueWindowActivator,
+        ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager,
         IProfilesManager profilesManager,
-        ISettingsViewNavigator parentViewNavigator,
+        ISettingsViewNavigator settingsViewNavigator,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter)
-        : base(parentViewNavigator, localizer, logger, issueReporter, settings)
+        : base(mainViewNavigator, settingsViewNavigator, localizer, logger, issueReporter, mainWindowOverlayActivator, settings, settingsConflictResolver, connectionManager)
     {
         _themeSelector = themeSelector;
         _localizationService = localizationService;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
-        _bootstrapper = bootstrapper;
-        _userAuthenticator = userAuthenticator;
-        _webAuthenticator = webAuthenticator;
         _settings = settings;
         _settingsRestorer = settingsRestorer;
         _urls = urls;
         _reportIssueWindowActivator = reportIssueWindowActivator;
-        //_upsellCarouselDialogActivator = upsellCarouselDialogActivator;
         _connectionManager = connectionManager;
         _profilesManager = profilesManager;
 
         _languages = new Lazy<ObservableCollection<Language>>(
             () => new ObservableCollection<Language>(_localizationService.GetAvailableLanguages()));
+
+        Themes = _themeSelector.GetAvailableThemes().Select(theme => new ApplicationElementTheme(Localizer, theme)).ToList();
     }
 
     [RelayCommand]
@@ -206,30 +188,6 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
     }
 
     [RelayCommand]
-    private async Task NavigateToProtocolPageAsync()
-    {
-        await ParentViewNavigator.NavigateToProtocolSettingsViewAsync();
-    }
-
-    [RelayCommand]
-    private async Task NavigateToVpnAcceleratorPageAsync()
-    {
-        // if (!IsPaidUser)
-        // {
-        //     _upsellCarouselDialogActivator.ShowDialog(ModalSources.VpnAccelerator);
-        //     return;
-        // }
-
-        await ParentViewNavigator.NavigateToVpnAcceleratorSettingsViewAsync();
-    }
-
-    [RelayCommand]
-    private async Task NavigateToAdvancedSettingsPageAsync()
-    {
-        await ParentViewNavigator.NavigateToAdvancedSettingsViewAsync();
-    }
-
-    [RelayCommand]
     private async Task NavigateToAutoStartupPageAsync()
     {
         await ParentViewNavigator.NavigateToAutoStartupSettingsViewAsync();
@@ -267,14 +225,6 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
             {
                 case nameof(ISettings.DefaultConnection):
                     OnPropertyChanged(nameof(DefaultConnectionState));
-                    break;
-
-                case nameof(ISettings.VpnProtocol):
-                    OnPropertyChanged(nameof(ConnectionProtocolState));
-                    break;
-
-                case nameof(ISettings.IsVpnAcceleratorEnabled):
-                    OnPropertyChanged(nameof(VpnAcceleratorSettingsState));
                     break;
 
                 case nameof(ISettings.IsNotificationEnabled):
@@ -318,31 +268,14 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
         base.OnLanguageChanged();
 
         OnPropertyChanged(nameof(DefaultConnectionState));
-        OnPropertyChanged(nameof(ConnectionProtocolState));
-        OnPropertyChanged(nameof(VpnAcceleratorSettingsState));
         OnPropertyChanged(nameof(SelectedLanguage));
-        OnPropertyChanged(nameof(SelectedTheme));
         OnPropertyChanged(nameof(ClientVersionDescription));
         OnPropertyChanged(nameof(Themes));
         OnPropertyChanged(nameof(SelectedTheme));
-        OnPropertyChanged(nameof(VpnPlan));
     }
 
-    [RelayCommand]
-    public async Task OpenMyAccountUrlAsync()
+    protected override IEnumerable<ChangedSettingArgs> GetSettings()
     {
-        _urls.NavigateTo(await _webAuthenticator.GetMyAccountUrlAsync());
-    }
-
-    [RelayCommand]
-    public async Task SignOutAsync()
-    {
-        await _userAuthenticator.LogoutAsync(LogoutReason.UserAction);
-    }
-
-    [RelayCommand]
-    public async Task ExitApplicationAsync()
-    {
-        await _bootstrapper.ExitAsync();
+        return [];
     }
 }

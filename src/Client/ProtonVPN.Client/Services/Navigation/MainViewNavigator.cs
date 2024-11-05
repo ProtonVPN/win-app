@@ -17,38 +17,49 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Contracts.Services.Mapping;
 using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.Contracts.Services.Navigation.Bases;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.TEMP;
-using ProtonVPN.Client.UI.Main.Features.KillSwitch;
-using ProtonVPN.Client.UI.Main.Features.NetShield;
-using ProtonVPN.Client.UI.Main.Features.PortForwarding;
-using ProtonVPN.Client.UI.Main.Features.SplitTunneling;
 using ProtonVPN.Client.UI.Main.Home;
 using ProtonVPN.Client.UI.Main.Settings;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Services.Navigation;
 
-public class MainViewNavigator : ViewNavigatorBase, IMainViewNavigator
+public class MainViewNavigator : ViewNavigatorBase, IMainViewNavigator,
+    IEventMessageReceiver<ConnectionStatusChanged>
 {
+    private readonly ISettingsViewNavigator _settingsViewNavigator;
+
+    private ConnectionStatus _connectionStatus = ConnectionStatus.Disconnected;
+
     public MainViewNavigator(
         ILogger logger,
-        IPageViewMapper pageViewMapper)
-        : base(logger, pageViewMapper)
-    { }
-
-    public Task<bool> NavigateToFeatureViewAsync(ConnectionFeature feature)
+        IPageViewMapper pageViewMapper,
+        ISettingsViewNavigator settingsViewNavigator) : base(logger, pageViewMapper)
     {
+        _settingsViewNavigator = settingsViewNavigator;
+    }
+
+    public async Task<bool> NavigateToFeatureViewAsync(ConnectionFeature feature)
+    {
+        await NavigateToSettingsViewAsync();
+
+        // TODO: this causes some flickering, need to find a better way
+        await Task.Delay(50);
+
         return feature switch
         {
-            ConnectionFeature.NetShield => NavigateToAsync<NetShieldPageViewModel>(),
-            ConnectionFeature.KillSwitch => NavigateToAsync<KillSwitchPageViewModel>(),
-            ConnectionFeature.PortForwarding => NavigateToAsync<PortForwardingPageViewModel>(),
-            ConnectionFeature.SplitTunneling => NavigateToAsync<SplitTunnelingPageViewModel>(),
-            _ => Task.FromResult(false),
+            ConnectionFeature.NetShield => await _settingsViewNavigator.NavigateToNetShieldSettingsViewAsync(),
+            ConnectionFeature.KillSwitch => await _settingsViewNavigator.NavigateToKillSwitchSettingsViewAsync(),
+            ConnectionFeature.PortForwarding => await _settingsViewNavigator.NavigateToPortForwardingSettingsViewAsync(),
+            ConnectionFeature.SplitTunneling => await _settingsViewNavigator.NavigateToSplitTunnelingSettingsViewAsync(),
+            _ => await Task.FromResult(false),
         };
     }
 
@@ -70,5 +81,26 @@ public class MainViewNavigator : ViewNavigatorBase, IMainViewNavigator
     public Task<bool> NavigateToGalleryViewAsync()
     {
         return NavigateToAsync<GalleryPageViewModel>();
+    }
+
+    // TODO: prevent NavigateToDefaultAsync from being called multiple times due out of order messages
+    // Disconnected
+    // Connecting
+    // Disconnected
+    // Connecting
+    // Connected
+    public void Receive(ConnectionStatusChanged message)
+    {
+        if (_connectionStatus == message.ConnectionStatus)
+        {
+            return;
+        }
+
+        _connectionStatus = message.ConnectionStatus;
+
+        if (message.ConnectionStatus == ConnectionStatus.Connecting)
+        {
+            NavigateToDefaultAsync();
+        }
     }
 }

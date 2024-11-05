@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -31,7 +31,7 @@ using ProtonVPN.Client.UI.Settings.Pages.Entities;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages;
 
-public partial class AutoStartupSettingsPageViewModel : CommonSettingsPageBase<ISettingsViewNavigator>
+public partial class AutoStartupSettingsPageViewModel : SettingsPageViewModelBase
 {
     [ObservableProperty] private bool _isAutoLaunchEnabled;
 
@@ -66,7 +66,8 @@ public partial class AutoStartupSettingsPageViewModel : CommonSettingsPageBase<I
     public override string Title => Localizer.Get("Settings_General_AutoStartup");
 
     public AutoStartupSettingsPageViewModel(
-        ISettingsViewNavigator parentViewNavigator,
+        IMainViewNavigator mainViewNavigator,
+        ISettingsViewNavigator settingsViewNavigator,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter,
@@ -74,8 +75,7 @@ public partial class AutoStartupSettingsPageViewModel : CommonSettingsPageBase<I
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager)
-        : base(parentViewNavigator, localizer, logger, issueReporter, mainWindowOverlayActivator, settings,
-            settingsConflictResolver, connectionManager)
+        : base(mainViewNavigator, settingsViewNavigator, localizer, logger, issueReporter, mainWindowOverlayActivator, settings, settingsConflictResolver, connectionManager)
     {
     }
 

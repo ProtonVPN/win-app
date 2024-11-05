@@ -41,7 +41,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             UnitType="Pixel" />
     <converters:DoubleToPercentFormatConverter x:Key="DoubleToPercentFormatConverter" />
     <converters:FocusStateToBooleanConverter x:Key="FocusStateToBooleanConverter" />
-    <converters:OpacityToVisibilityConverter x:Key="OpacityToVisibilityConverter" />
+    <converters:OpacityToVisibilityConverter x:Key="OpacityToVisibilityConverter"/>
+    <converters:PositiveNumberToVisibilityConverter x:Key="PositiveNumberToVisibilityConverter"/>
     <toolkitConverters:StringVisibilityConverter x:Key="StringVisibilityConverter" />
     <converters:IsStringNotEmptyConverter x:Key="IsStringNotEmptyConverter" />
     <converters:ProfileColorToBrushConverter x:Key="ProfileColorToBrushConverter"

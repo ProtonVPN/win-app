@@ -17,31 +17,35 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml.Media;
+using ProtonVPN.Client.Contracts.Enums;
+using ProtonVPN.Client.Contracts.Services.Navigation;
+using ProtonVPN.Client.Contracts.Services.Selection;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.UI.Main.Features.Bases;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Enums;
-using ProtonVPN.Client.Contracts.Helpers;
-using ProtonVPN.Client.Contracts.Services.Navigation;
-using ProtonVPN.Client.UI.Main.Features.Bases;
 
 namespace ProtonVPN.Client.UI.Main.Features.KillSwitch;
 
 public class KillSwitchWidgetViewModel : FeatureWidgetViewModelBase
 {
-    public override string Header => Localizer.Get("Settings_Features_KillSwitch");
+    private readonly IApplicationThemeSelector _applicationThemeSelector;
+
+    public override string Header => Localizer.Get("Settings_Connection_KillSwitch");
 
     public KillSwitchWidgetViewModel(
+        IApplicationThemeSelector applicationThemeSelector,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter,
         ISettings settings,
         IMainViewNavigator mainViewNavigator)
         : base(localizer, logger, issueReporter, mainViewNavigator, settings, ConnectionFeature.KillSwitch)
-    { }
+    {
+        _applicationThemeSelector = applicationThemeSelector;
+    }
 
     protected override string GetFeatureStatus()
     {
@@ -49,28 +53,10 @@ public class KillSwitchWidgetViewModel : FeatureWidgetViewModelBase
             Settings.IsKillSwitchEnabled
                 ? Settings.KillSwitchMode switch
                 {
-                    KillSwitchMode.Standard => "Settings_Features_KillSwitch_Standard",
-                    KillSwitchMode.Advanced => "Settings_Features_KillSwitch_Advanced",
+                    KillSwitchMode.Standard => "Settings_Connection_KillSwitch_Standard",
+                    KillSwitchMode.Advanced => "Settings_Connection_KillSwitch_Advanced",
                     _ => throw new ArgumentOutOfRangeException(nameof(ISettings.KillSwitchMode))
                 }
                 : "Common_States_Off");
-    }
-
-    protected override ImageSource GetFeatureIconSource()
-    {
-        return ResourceHelper.GetIllustration(
-            Settings.IsKillSwitchEnabled
-                ? Settings.KillSwitchMode switch
-                {
-                    KillSwitchMode.Standard => "KillSwitchStandardIllustrationSource",
-                    KillSwitchMode.Advanced => "KillSwitchAdvancedIllustrationSource",
-                    _ => throw new ArgumentOutOfRangeException(nameof(ISettings.KillSwitchMode))
-                }
-                : "KillSwitchOffIllustrationSource");
-    }
-
-    protected override string GetFeatureToggleSettingName()
-    {
-        return nameof(Settings.IsKillSwitchEnabled);
     }
 }

@@ -46,7 +46,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                              IllustrationSource="{StaticResource PortForwardingFeatureIllustrationSource}">
 
                 <TextBlock TextWrapping="Wrap">
-                    <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding_Description')}" />
+                    <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_PortForwarding_Description')}" />
                     <Hyperlink NavigateUri="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}"
                                ToolTipService.ToolTip="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}">
                         <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
@@ -58,7 +58,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <StackPanel x:Name="ContentArea">
 
-            <toolkit:SettingsExpander Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding')}"
+            <toolkit:SettingsExpander Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_PortForwarding')}"
                                       IsExpanded="{x:Bind ViewModel.IsExpanded}"
                                       IsTabStop="False"
                                       Style="{StaticResource SettingsExpanderStyle}">
@@ -74,15 +74,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    Style="{StaticResource CaptionStrongTextBlockStyle}">
                             <Run FontWeight="{StaticResource CaptionFontWeight}"
                                  Foreground="{ThemeResource TextWeakColorBrush}"
-                                 Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding_ActivePort')}" />
+                                 Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_PortForwarding_ActivePort')}" />
                             <Run Text="{x:Bind ViewModel.ActivePortNumberOrStatusMessage}" />
                         </TextBlock>
 
                         <custom:GhostButton VerticalAlignment="Center"
                                             AutomationProperties.AutomationId="CopyPortNumberButton"
-                                            AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding_ActivePort_Copy')}"
+                                            AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Settings_Connection_PortForwarding_ActivePort_Copy')}"
                                             Command="{x:Bind ViewModel.CopyPortNumberCommand, Mode=OneTime}"
-                                            ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding_ActivePort_Copy')}"
+                                            ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Settings_Connection_PortForwarding_ActivePort_Copy')}"
                                             Visibility="{x:Bind ViewModel.HasActivePortNumber, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <custom:GhostButton.LeftIcon>
                                 <pathicons:Squares />
@@ -101,10 +101,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <TextBlock Margin="0,8,0,16"
                        Foreground="{ThemeResource TextWeakColorBrush}"
                        Style="{StaticResource CaptionTextBlockStyle}"
-                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding_Footer')}" />
+                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_PortForwarding_Footer')}" />
 
-            <toolkit:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding_Notifications_Description')}"
-                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_PortForwarding_Notifications')}"
+            <toolkit:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_PortForwarding_Notifications_Description')}"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_PortForwarding_Notifications')}"
                                   IsTabStop="False"
                                   Style="{StaticResource DefaultSettingsCardStyle}"
                                   Visibility="{x:Bind ViewModel.IsPortForwardingEnabled, Converter={StaticResource BooleanToVisibilityConverter}}">

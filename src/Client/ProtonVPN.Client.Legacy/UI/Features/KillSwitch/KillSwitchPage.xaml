@@ -48,7 +48,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <custom:PageHeaderContentControl Header="{x:Bind ViewModel.Title}"
                                              IllustrationSource="{StaticResource KillSwitchFeatureIllustrationSource}">
                 <TextBlock TextWrapping="Wrap">
-                    <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_KillSwitch_Description')}" />
+                    <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_KillSwitch_Description')}" />
                     <Hyperlink NavigateUri="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}"
                                ToolTipService.ToolTip="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}">
                         <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
@@ -60,7 +60,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <StackPanel x:Name="ContentArea">
 
-            <toolkit:SettingsExpander Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_KillSwitch')}"
+            <toolkit:SettingsExpander Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_KillSwitch')}"
                                       IsExpanded="{x:Bind ViewModel.IsKillSwitchEnabled}"
                                       IsTabStop="False">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsKillSwitchEnabled, Mode=TwoWay}"
@@ -71,10 +71,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                      Style="{StaticResource KillSwitchRadioButtonStyle}">
                             <StackPanel>
                                 <TextBlock Style="{StaticResource BodyTextBlockStyle}"
-                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_KillSwitch_Standard')}" />
+                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_KillSwitch_Standard')}" />
                                 <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                                            Style="{StaticResource CaptionTextBlockStyle}"
-                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_KillSwitch_Standard_Description')}"
+                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_KillSwitch_Standard_Description')}"
                                            TextWrapping="Wrap" />
                             </StackPanel>
                         </RadioButton>
@@ -82,10 +82,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                      Style="{StaticResource KillSwitchRadioButtonStyle}">
                             <StackPanel>
                                 <TextBlock Style="{StaticResource BodyTextBlockStyle}"
-                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_KillSwitch_Advanced')}" />
+                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_KillSwitch_Advanced')}" />
                                 <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                                            Style="{StaticResource CaptionTextBlockStyle}"
-                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_KillSwitch_Advanced_Description')}"
+                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_KillSwitch_Advanced_Description')}"
                                            TextWrapping="Wrap" />
                             </StackPanel>
                         </RadioButton>
@@ -96,7 +96,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <TextBlock Margin="0,8,0,0"
                        Foreground="{ThemeResource TextWeakColorBrush}"
                        Style="{StaticResource CaptionTextBlockStyle}"
-                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_KillSwitch_Footer')}" />
+                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_KillSwitch_Footer')}" />
 
         </StackPanel>
 

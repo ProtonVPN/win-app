@@ -18,7 +18,6 @@
  */
 
 using System.ComponentModel;
-using Microsoft.UI.Xaml.Controls;
 
 namespace ProtonVPN.Client.UI.Main.Widgets.Contracts;
 
@@ -27,8 +26,6 @@ public interface IWidget : INotifyPropertyChanged
     int SortIndex { get; }
 
     string Header { get; }
-
-    IconElement Icon { get; }
 
     bool IsAvailable { get; }
 

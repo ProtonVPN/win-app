@@ -32,6 +32,14 @@ public interface ISettingsViewNavigator : IViewNavigator
 
     Task<bool> NavigateToProtocolSettingsViewAsync();
 
+    Task<bool> NavigateToNetShieldSettingsViewAsync();
+
+    Task<bool> NavigateToKillSwitchSettingsViewAsync();
+
+    Task<bool> NavigateToPortForwardingSettingsViewAsync();
+
+    Task<bool> NavigateToSplitTunnelingSettingsViewAsync();
+
     Task<bool> NavigateToVpnAcceleratorSettingsViewAsync();
 
     Task<bool> NavigateToCustomDnsSettingsViewAsync();

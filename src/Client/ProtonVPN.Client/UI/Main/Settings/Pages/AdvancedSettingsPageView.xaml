@@ -36,6 +36,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Style x:Key="NatTypeRadioButtonStyle" BasedOn="{StaticResource RadioButtonStyle}" TargetType="RadioButton">
             <Setter Property="GroupName" Value="NatTypeSetting" />
         </Style>
+        <Style x:Key="OpenVpnDriverRadioButtonStyle" BasedOn="{StaticResource RadioButtonStyle}" TargetType="RadioButton">
+            <Setter Property="GroupName" Value="OpenVpnDriverSetting" />
+        </Style>
     </Page.Resources>
 
     <custom:SettingsPageContentControl x:Name="PageContentHost"
@@ -43,7 +46,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        ApplyCommandText="{x:Bind ViewModel.ApplyCommandText}"
                                        BackCommand="{x:Bind ViewModel.NavigateBackCommand, Mode=OneTime}"
                                        IsBackButtonVisible="{x:Bind ViewModel.CanGoBack}"
-                                       PageHeader="{x:Bind ViewModel.Title}">
+                                       CloseCommand="{x:Bind ViewModel.CloseCommand, Mode=OneTime}">
+
+        <custom:SettingsPageContentControl.PageHeader>
+            <custom:SettingsPageHeaderContentControl Header="{x:Bind ViewModel.Title}" />
+        </custom:SettingsPageContentControl.PageHeader>
 
         <StackPanel x:Name="ContentArea">
 
@@ -142,19 +149,51 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </toolkit:SettingsCard>
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="OpenVpnNetworkDriverSettingsCard"
-                                  Description="{x:Bind ViewModel.Localizer.Get('Settings_General_OpenVpnNetworkDriver_Description')}"
                                   Header="{x:Bind ViewModel.Localizer.Get('Settings_General_OpenVpnNetworkDriver')}"
                                   IsTabStop="False"
-                                  Style="{StaticResource DefaultSettingsCardStyle}">
-                <ComboBox ItemsSource="{x:Bind ViewModel.OpenVpnAdapters}"
-                          SelectedItem="{x:Bind ViewModel.SelectedOpenVpnAdapter, Mode=TwoWay}" />
+                                  Style="{StaticResource VerticalSettingsCardStyle}">
+                <StackPanel Spacing="8">
+                    <RadioButton AutomationProperties.AutomationId="TapAdapterRadioButton"
+                                    IsChecked="{x:Bind ViewModel.IsTapAdapter, Mode=TwoWay}"
+                                    Style="{StaticResource OpenVpnDriverRadioButtonStyle}">
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                        Text="TAP" />
+                            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                                        Style="{StaticResource CaptionTextBlockStyle}"
+                                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_OpenVpnDriver_Tap')}"
+                                        TextWrapping="Wrap" />
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton AutomationProperties.AutomationId="TunAdapterRadioButton"
+                                    IsChecked="{x:Bind ViewModel.IsTunAdapter, Mode=TwoWay}"
+                                    Style="{StaticResource OpenVpnDriverRadioButtonStyle}">
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                        Text="TUN" />
+                            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                                        Style="{StaticResource CaptionTextBlockStyle}"
+                                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_OpenVpnDriver_Tun_Description')}"
+                                        TextWrapping="Wrap" />
+                        </StackPanel>
+                    </RadioButton>
+                </StackPanel>
             </toolkit:SettingsCard>
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="Ipv6LeakProtectionSettingsCard"
-                                  Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_Ipv6LeakProtection_Description')}"
                                   Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_Ipv6LeakProtection')}"
                                   IsTabStop="False"
                                   Style="{StaticResource DefaultSettingsCardStyle}">
+                <toolkit:SettingsCard.Description>
+                    <TextBlock TextWrapping="Wrap">
+                        <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_Ipv6LeakProtection_Description')}" />
+                        <Hyperlink NavigateUri="{x:Bind ViewModel.Ipv6LeakProtectionLearnMoreUrl, Mode=OneTime}"
+                                   ToolTipService.ToolTip="{x:Bind ViewModel.Ipv6LeakProtectionLearnMoreUrl, Mode=OneTime}">
+                            <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
+                        </Hyperlink>
+                        <Run />
+                    </TextBlock>
+                </toolkit:SettingsCard.Description>
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsIpv6LeakProtectionEnabled, Mode=TwoWay}"
                               Style="{StaticResource ToggleSwitchStyle}" />
             </toolkit:SettingsCard>

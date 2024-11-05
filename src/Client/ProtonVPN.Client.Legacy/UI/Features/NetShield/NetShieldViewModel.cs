@@ -43,7 +43,7 @@ public partial class NetShieldViewModel : SettingsPageViewModelBase
 
     public override bool IsBackEnabled => false;
 
-    public override string? Title => Localizer.Get("Settings_Features_NetShield");
+    public override string? Title => Localizer.Get("Settings_Connection_NetShield");
 
     public ImageSource NetShieldFeatureIconSource => GetFeatureIconSource(IsNetShieldEnabled);
 

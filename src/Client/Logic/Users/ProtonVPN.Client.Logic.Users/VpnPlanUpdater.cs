@@ -82,6 +82,8 @@ public class VpnPlanUpdater : IVpnPlanUpdater
 
                 if (response.Success)
                 {
+                    _settings.MaxDevicesAllowed = response.Value.Vpn.MaxConnect;
+
                     vpnPlanChangedMessage = GetVpnPlanChangeMessage(response.Value.Vpn);
                     OnResponseSuccess(vpnPlanChangedMessage);
                 }

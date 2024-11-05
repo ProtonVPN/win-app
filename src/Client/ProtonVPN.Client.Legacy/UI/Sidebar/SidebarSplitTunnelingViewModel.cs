@@ -34,7 +34,7 @@ namespace ProtonVPN.Client.Legacy.UI.Sidebar;
 
 public class SidebarSplitTunnelingViewModel : SidebarFeatureNavigationItemViewModelBase<SplitTunnelingViewModel>
 {
-    public override string Header => Localizer.Get("Settings_Features_SplitTunneling");
+    public override string Header => Localizer.Get("Settings_Connection_SplitTunneling");
 
     public override bool RequiresPaidAccess => true;
 
@@ -74,8 +74,8 @@ public class SidebarSplitTunnelingViewModel : SidebarFeatureNavigationItemViewMo
             Settings.IsSplitTunnelingEnabled
                 ? Settings.SplitTunnelingMode switch
                 {
-                    SplitTunnelingMode.Standard => "Settings_Features_SplitTunneling_Standard",
-                    SplitTunnelingMode.Inverse => "Settings_Features_SplitTunneling_Inverse",
+                    SplitTunnelingMode.Standard => "Settings_Connection_SplitTunneling_Standard",
+                    SplitTunnelingMode.Inverse => "Settings_Connection_SplitTunneling_Inverse",
                     _ => throw new ArgumentOutOfRangeException(nameof(ISettings.KillSwitchMode))
                 }
                 : "Common_States_Off");

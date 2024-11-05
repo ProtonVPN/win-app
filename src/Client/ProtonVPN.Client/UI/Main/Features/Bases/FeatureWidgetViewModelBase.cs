@@ -18,34 +18,24 @@
  */
 
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media;
-using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Messages;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Bases.ViewModels;
 using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Contracts.Services.Navigation;
-using ProtonVPN.Client.UI.Main.Features.KillSwitch;
-using ProtonVPN.Client.UI.Main.Features.NetShield;
-using ProtonVPN.Client.UI.Main.Features.PortForwarding;
-using ProtonVPN.Client.UI.Main.Features.SplitTunneling;
+using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Main.Widgets.Bases;
 using ProtonVPN.Client.UI.Main.Widgets.Contracts;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Features.Bases;
 
-public abstract class FeatureWidgetViewModelBase : SideWidgetViewModelBase, ISideHeaderWidget, IEventMessageReceiver<SettingChangedMessage>
+public abstract class FeatureWidgetViewModelBase : SideWidgetViewModelBase, ISideHeaderWidget
 {
     protected readonly ISettings Settings;
 
     private readonly ImageIcon _featureIcon = new();
 
     public override int SortIndex => (int)ConnectionFeature;
-
-    public override IconElement Icon => GetFeatureIcon();
 
     public string Status => GetFeatureStatus();
 
@@ -72,36 +62,7 @@ public abstract class FeatureWidgetViewModelBase : SideWidgetViewModelBase, ISid
 
     protected abstract string GetFeatureStatus();
 
-    protected abstract string GetFeatureToggleSettingName();
-
-    protected abstract ImageSource GetFeatureIconSource();
-
-    private ImageIcon GetFeatureIcon()
-    {
-        _featureIcon.Source = GetFeatureIconSource();
-        return _featureIcon;
-    }
-
     protected override void InvalidateIsSelected()
     {
-        PageViewModelBase? currentPageContext = MainViewNavigator.GetCurrentPageContext();
-
-        IsSelected = ConnectionFeature switch
-        {
-            ConnectionFeature.KillSwitch => currentPageContext is KillSwitchPageViewModel,
-            ConnectionFeature.NetShield => currentPageContext is NetShieldPageViewModel,
-            ConnectionFeature.PortForwarding => currentPageContext is PortForwardingPageViewModel,
-            ConnectionFeature.SplitTunneling => currentPageContext is SplitTunnelingPageViewModel,
-            _ => false
-        };
-    }
-
-
-    public void Receive(SettingChangedMessage message)
-    {
-        if (message.PropertyName == GetFeatureToggleSettingName())
-        {
-            OnPropertyChanged(nameof(Icon));
-        }
     }
 }

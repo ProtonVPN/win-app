@@ -24,8 +24,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:pages="using:ProtonVPN.Client.UI.Main.Settings.Pages"
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
+      xmlns:connection="using:ProtonVPN.Client.UI.Main.Settings.Pages.Connection"
       x:DefaultBindMode="OneWay"
       AutomationProperties.AutomationId="CommonSettingsPage"
       AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Automation_Properties_Settings_Common_Page')}"
@@ -33,145 +35,29 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       mc:Ignorable="d">
 
     <Page.Resources>
+        <Thickness x:Key="PageContentControlPadding">16,8,16,0</Thickness>
+        
         <Style x:Key="SettingsSectionHeaderTextBlockStyle" BasedOn="{StaticResource BodyStrongTextBlockStyle}" TargetType="TextBlock">
             <Setter Property="Margin" Value="2,20,0,12" />
             <Setter Property="AutomationProperties.HeadingLevel" Value="Level2" />
         </Style>
     </Page.Resources>
 
-    <custom:PageContentControl x:Name="PageContentHost"
-                               PageHeader="{x:Bind ViewModel.Title}">
+    <custom:SettingsPageContentControl x:Name="PageContentHost"
+                                       CloseCommand="{x:Bind ViewModel.CloseCommand, Mode=OneTime}"
+                                       BackCommand="{x:Bind ViewModel.NavigateBackCommand, Mode=OneTime}"
+                                       ApplyCommand="{x:Bind ViewModel.ApplyCommand}"
+                                       IsBackButtonVisible="{x:Bind ViewModel.CanGoBack}">
+
+        <custom:SettingsPageContentControl.PageHeader>
+            <custom:SettingsPageHeaderContentControl Header="{x:Bind ViewModel.Title}" />
+        </custom:SettingsPageContentControl.PageHeader>
 
         <StackPanel x:Name="ContentArea">
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
+            <pages:UserDetailsComponent />
 
-                <custom:GhostButton Grid.Column="0">
-                    <custom:GhostButton.RightIcon>
-                        <pathicons:ThreeDotsVertical />
-                    </custom:GhostButton.RightIcon>
-                    <custom:GhostButton.Flyout>
-                        <MenuFlyout AutomationProperties.AutomationId="AccountFlyoutMenu">
-                            <MenuFlyoutItem Command="{x:Bind ViewModel.OpenMyAccountUrlCommand, Mode=OneTime}"
-                                            Text="{x:Bind ViewModel.Localizer.Get('Settings_Account_MyAccount')}">
-                                <MenuFlyoutItem.Icon>
-                                    <pathicons:User />
-                                </MenuFlyoutItem.Icon>
-                            </MenuFlyoutItem>
-                            <MenuFlyoutItem Command="{x:Bind ViewModel.SignOutCommand, Mode=OneTime}"
-                                            Text="{x:Bind ViewModel.Localizer.Get('Settings_Account_SignOut')}">
-                                <MenuFlyoutItem.Icon>
-                                    <pathicons:ArrowOutFromRectangle />
-                                </MenuFlyoutItem.Icon>
-                            </MenuFlyoutItem>
-                            <MenuFlyoutItem Command="{x:Bind ViewModel.ExitApplicationCommand, Mode=OneTime}"
-                                            Text="{x:Bind ViewModel.Localizer.Get('Settings_Account_Exit')}">
-                                <MenuFlyoutItem.Icon>
-                                    <pathicons:CrossBig />
-                                </MenuFlyoutItem.Icon>
-                            </MenuFlyoutItem>
-                        </MenuFlyout>
-                    </custom:GhostButton.Flyout>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-
-                        <StackPanel Grid.Column="1"
-                                    Spacing="4">
-
-                            <TextBlock Style="{ThemeResource BodyMediumStrongTextBlockStyle}"
-                                       Text="{x:Bind ViewModel.Username}" />
-
-                            <Border BorderThickness="1"
-                                    HorizontalAlignment="Left"
-                                    CornerRadius="6"
-                                    Padding="6,2"
-                                    BorderBrush="{ThemeResource GradientVpnPlanBorderBrushColor}">
-
-                                <TextBlock Style="{ThemeResource CaptionTextBlockStyle}"
-                                           Text="{x:Bind ViewModel.VpnPlan}" />
-                            </Border>
-
-                        </StackPanel>
-                    </Grid>
-                </custom:GhostButton>
-
-            </Grid>
-
-            <TextBlock Margin="2,8,0,12"
-                       Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
-                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection')}" />
-
-            <toolkit:SettingsCard AutomationProperties.AutomationId="DefaultConnectionSettingsCard"
-                                  Command="{x:Bind ViewModel.NavigateToDefaultConnectionPageCommand, Mode=OneTime}"
-                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default')}"
-                                  IsClickEnabled="True"
-                                  Style="{StaticResource DefaultSettingsCardStyle}"
-                                  Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <toolkit:SettingsCard.HeaderIcon>
-                    <pathicons:Bookmark />
-                </toolkit:SettingsCard.HeaderIcon>
-                <toolkit:SettingsCard.ActionIcon>
-                    <pathicons:ChevronRight />
-                </toolkit:SettingsCard.ActionIcon>
-                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
-                           Text="{x:Bind ViewModel.DefaultConnectionState}" />
-            </toolkit:SettingsCard>
-
-            <toolkit:SettingsCard AutomationProperties.AutomationId="ProtocolSettingsCard"
-                                  Command="{x:Bind ViewModel.NavigateToProtocolPageCommand, Mode=OneTime}"
-                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Protocol')}"
-                                  IsClickEnabled="True"
-                                  Style="{StaticResource DefaultSettingsCardStyle}">
-                <toolkit:SettingsCard.HeaderIcon>
-                    <pathicons:Servers />
-                </toolkit:SettingsCard.HeaderIcon>
-                <toolkit:SettingsCard.ActionIcon>
-                    <pathicons:ChevronRight />
-                </toolkit:SettingsCard.ActionIcon>
-                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
-                           Text="{x:Bind ViewModel.ConnectionProtocolState}" />
-            </toolkit:SettingsCard>
-
-            <toolkit:SettingsCard AutomationProperties.AutomationId="VpnAcceleratorSettingsCard"
-                                  Command="{x:Bind ViewModel.NavigateToVpnAcceleratorPageCommand, Mode=OneTime}"
-                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_VpnAccelerator')}"
-                                  IsClickEnabled="True"
-                                  Style="{StaticResource DefaultSettingsCardStyle}">
-                <toolkit:SettingsCard.HeaderIcon>
-                    <pathicons:Rocket />
-                </toolkit:SettingsCard.HeaderIcon>
-                <toolkit:SettingsCard.ActionIcon>
-                    <pathicons:ChevronRight />
-                </toolkit:SettingsCard.ActionIcon>
-                <Grid>
-                    <Image Height="24"
-                           Source="{ThemeResource VpnPlusIllustrationSource}"
-                           Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
-                    <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
-                               Text="{x:Bind ViewModel.VpnAcceleratorSettingsState}"
-                               Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                </Grid>
-            </toolkit:SettingsCard>
-
-            <toolkit:SettingsCard AutomationProperties.AutomationId="AdvancedSettingsCard"
-                                  Command="{x:Bind ViewModel.NavigateToAdvancedSettingsPageCommand, Mode=OneTime}"
-                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_AdvancedSettings')}"
-                                  IsClickEnabled="True"
-                                  Style="{StaticResource DefaultSettingsCardStyle}">
-                <toolkit:SettingsCard.HeaderIcon>
-                    <pathicons:Sliders />
-                </toolkit:SettingsCard.HeaderIcon>
-                <toolkit:SettingsCard.ActionIcon>
-                    <pathicons:ChevronRight />
-                </toolkit:SettingsCard.ActionIcon>
-            </toolkit:SettingsCard>
+            <connection:ConnectionSettingsView />
 
             <TextBlock Style="{ThemeResource SettingsSectionHeaderTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('Settings_General')}" />
@@ -188,6 +74,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <toolkit:SettingsCard.ActionIcon>
                     <pathicons:ChevronRight />
                 </toolkit:SettingsCard.ActionIcon>
+            </toolkit:SettingsCard>
+
+            <toolkit:SettingsCard AutomationProperties.AutomationId="DefaultConnectionSettingsCard"
+                                  Command="{x:Bind ViewModel.NavigateToDefaultConnectionPageCommand, Mode=OneTime}"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default')}"
+                                  IsClickEnabled="True"
+                                  Style="{StaticResource DefaultSettingsCardStyle}"
+                                  Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <toolkit:SettingsCard.HeaderIcon>
+                    <pathicons:Bookmark />
+                </toolkit:SettingsCard.HeaderIcon>
+                <toolkit:SettingsCard.ActionIcon>
+                    <pathicons:ChevronRight />
+                </toolkit:SettingsCard.ActionIcon>
+                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                           Text="{x:Bind ViewModel.DefaultConnectionState}" />
             </toolkit:SettingsCard>
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="NotificationsSettingsCard"
@@ -350,6 +252,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </TextBlock>
             </StackPanel>
         </StackPanel>
-    </custom:PageContentControl>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VpnPlanStates">
+                <VisualState x:Name="PaidUser">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsPaidUser, Mode=OneWay}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="VpnPlanBorder.BorderBrush" Value="{ThemeResource GradientVpnPlanBorderBrushColor}" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="FreeUser" />
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </custom:SettingsPageContentControl>
 
 </Page>

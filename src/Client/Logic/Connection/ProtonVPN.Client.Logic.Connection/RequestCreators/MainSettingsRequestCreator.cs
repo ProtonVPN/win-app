@@ -56,7 +56,7 @@ public class MainSettingsRequestCreator : IMainSettingsRequestCreator
                 Ips = GetSplitTunnelingIpAddresses()
             },
             ModerateNat = _settings.NatType == NatType.Moderate,
-            NetShieldMode = _settings.IsNetShieldEnabled ? 2 : 0,
+            NetShieldMode = _settings.IsNetShieldEnabled ? (int)_settings.NetShieldMode : 0,
             Ipv6LeakProtection = _settings.IsIpv6LeakProtectionEnabled,
             IsShareCrashReportsEnabled = _settings.IsShareCrashReportsEnabled,
             PortForwarding = _settings.IsPortForwardingEnabled,

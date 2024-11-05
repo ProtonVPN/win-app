@@ -44,7 +44,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <custom:PageHeaderContentControl Header="{x:Bind ViewModel.Title}"
                                              IllustrationSource="{StaticResource NetShieldFeatureIllustrationSource}">
                 <TextBlock TextWrapping="Wrap">
-                    <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_NetShield_Description')}" />
+                    <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_NetShield_Description')}" />
                     <Hyperlink NavigateUri="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}"
                                ToolTipService.ToolTip="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}">
                         <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
@@ -56,7 +56,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <StackPanel x:Name="ContentArea">
 
-            <toolkit:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_Features_NetShield')}"
+            <toolkit:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_NetShield')}"
                                   IsTabStop="False"
                                   Style="{StaticResource DefaultSettingsCardStyle}">
                 <ToggleSwitch AutomationProperties.AutomationId="NetshieldToggle"
@@ -67,7 +67,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <TextBlock Margin="0,8,0,0"
                        Foreground="{ThemeResource TextWeakColorBrush}"
                        Style="{StaticResource CaptionTextBlockStyle}"
-                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Features_NetShield_Footer')}" />
+                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_NetShield_Footer')}" />
             
         </StackPanel>
         

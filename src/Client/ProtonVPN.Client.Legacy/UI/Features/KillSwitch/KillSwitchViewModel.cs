@@ -53,7 +53,7 @@ public partial class KillSwitchViewModel : SettingsPageViewModelBase
 
     public override bool IsBackEnabled => false;
 
-    public override string? Title => Localizer.Get("Settings_Features_KillSwitch");
+    public override string? Title => Localizer.Get("Settings_Connection_KillSwitch");
 
     public ImageSource KillSwitchFeatureIconSource => GetFeatureIconSource(IsKillSwitchEnabled, CurrentKillSwitchMode);
 
