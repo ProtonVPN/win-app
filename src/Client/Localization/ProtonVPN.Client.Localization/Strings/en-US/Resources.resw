@@ -1918,11 +1918,11 @@
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_ResetPassword" xml:space="preserve">
-    <value>Reset password</value>
+    <value>Forgot password</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_TroubleSigningIn" xml:space="preserve">
-    <value>Trouble signing in</value>
+    <value>Support Center</value>
     <comment>A button at the bottom of the login window inside Get help popup</comment>
   </data>
   <data name="SignIn_Form_UsernameError" xml:space="preserve">
