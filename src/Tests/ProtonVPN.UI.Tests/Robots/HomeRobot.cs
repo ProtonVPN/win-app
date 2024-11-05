@@ -27,20 +27,7 @@ public class HomeRobot
     protected Element UnprotectedLabel = Element.ByName("Unprotected");
     protected Element DisconnectButton = Element.ByName("Disconnect");
     protected Element ProtectedLabel = Element.ByName("Protected");
-    protected Element ConnectButton = Element.ByName("Fastest country");
     protected Element GetStartedButton = Element.ByName("Get started");
-
-    public HomeRobot QuickConnect()
-    {
-        ConnectButton.Click();
-        return this;
-    }
-
-    public HomeRobot Disconnect()
-    {
-        DisconnectButton.Click();
-        return this;
-    }
 
     public HomeRobot DismissWelcomeModal()
     {

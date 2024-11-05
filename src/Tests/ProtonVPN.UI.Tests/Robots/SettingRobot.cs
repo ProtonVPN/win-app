@@ -82,7 +82,7 @@ public class SettingRobot
 
     public SettingRobot ApplySettings()
     {
-        ApplyButton.Click();
+        ApplyButton.Invoke();
         return this;
     }
 

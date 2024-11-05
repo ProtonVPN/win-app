@@ -59,59 +59,52 @@ public static class UiActions
         return desiredElement;
     }
 
+    public static Element FindChild<T>(this T desiredElement, Element childSelector) where T : Element
+    {
+        desiredElement.ChildElement = childSelector;
+        return desiredElement;
+    }
+
     public static AutomationElement WaitUntilExists<T>(this T desiredElement, TimeSpan? time = null) where T : Element
     {
-        if (time == null)
-        { 
-            time = TestConstants.DefaultElementWaitingTime; 
-        }
-
-        AutomationElement elementToWaitFor = null;
-        WaitForElement(() =>
-        {
-            BaseTest.RefreshWindow();
-            elementToWaitFor = FindFirstDescendantUsingChildren(desiredElement.Condition);
-            return elementToWaitFor != null;
-        }, time, desiredElement.SelectorValue);
-
-        return elementToWaitFor;
+        return WaitForElement(desiredElement, time, element => element != null);
     }
 
     public static AutomationElement WaitUntilDisplayed<T>(this T desiredElement, TimeSpan? time = null) where T : Element
     {
-        if (time == null)
-        { 
-            time = TestConstants.DefaultElementWaitingTime; 
-        }
-
-        AutomationElement elementToWaitFor = null;
-        WaitForElement(() =>
-        {
-            BaseTest.RefreshWindow();
-            elementToWaitFor = FindFirstDescendantUsingChildren(desiredElement.Condition);
-            if (elementToWaitFor == null)
-            {
-                return false;
-            }
-
-            return elementToWaitFor.IsOffscreen == false;
-        }, time, desiredElement.SelectorValue);
-
-        return elementToWaitFor;
+        return WaitForElement(desiredElement, time, element => element != null && !element.IsOffscreen);
     }
 
-    private static void WaitForElement(Func<bool> function, TimeSpan? time, string selector, string customMessage = null)
+    private static AutomationElement WaitForElement<T>(
+        T desiredElement,
+        TimeSpan? time,
+        Func<AutomationElement, bool> condition,
+        string customMessage = null) where T : Element
     {
+        time ??= TestConstants.DefaultElementWaitingTime;
+        AutomationElement elementToWaitFor = null;
+
         RetryResult<bool> retry = Retry.WhileFalse(
             () =>
             {
                 try
                 {
+                    BaseTest.RefreshWindow();
                     BaseTest.App.WaitWhileBusy();
-                    return function();
+
+                    elementToWaitFor = FindFirstDescendantUsingChildren(desiredElement.Condition);
+
+                    if (desiredElement.ChildElement != null && elementToWaitFor != null)
+                    {
+                        elementToWaitFor = elementToWaitFor.FindFirstChild(desiredElement.ChildElement.Condition);
+                    }
+
+                    return condition(elementToWaitFor);
                 }
                 catch (COMException)
                 {
+                    // Sometimes framework throws these exceptions when searching for elements.
+                    // Ignoring it, does not introduce side effects and increases stability.
                     return false;
                 }
             },
@@ -119,15 +112,15 @@ public static class UiActions
 
         if (!retry.Success)
         {
-            if (customMessage == null)
-            {
-                Assert.Fail($"Failed to get {selector} element within {time?.TotalSeconds} seconds.");
-            }
-            else
-            {
-                Assert.Fail(customMessage);
-            }
+            string errorMessage = customMessage ??
+                (desiredElement.ChildElement != null
+                    ? $"Failed to get child element {desiredElement.ChildElement.SelectorName} inside {desiredElement.SelectorName} element within {time?.TotalSeconds} seconds."
+                    : $"Failed to get {desiredElement.SelectorName} element within {time?.TotalSeconds} seconds.");
+
+            Assert.Fail(errorMessage);
         }
+
+        return elementToWaitFor;
     }
 
     private static AutomationElement FindFirstDescendantUsingChildren(Func<ConditionFactory, ConditionBase> conditionFunc)
