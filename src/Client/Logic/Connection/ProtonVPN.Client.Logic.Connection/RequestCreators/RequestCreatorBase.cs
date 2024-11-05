@@ -64,7 +64,8 @@ public abstract class RequestCreatorBase
             settings.VpnProtocol = EntityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(connectionProfile.Settings.Protocol);
         }
 
-        if (!FeatureFlagsObserver.IsStealthEnabled && settings.VpnProtocol == VpnProtocolIpcEntity.WireGuardTls)
+        if (!FeatureFlagsObserver.IsStealthEnabled && 
+            (settings.VpnProtocol is VpnProtocolIpcEntity.WireGuardTls or VpnProtocolIpcEntity.WireGuardTcp))
         {
             Logger.Warn<AppLog>("Stealth protocol is currently disabled. Switch to Smart protocol instead.");
 

@@ -79,8 +79,8 @@ public partial class ProfileSettingsSelectorViewModel : ViewModelBase, IProfileS
         yield return VpnProtocol.Smart;
         yield return VpnProtocol.WireGuardUdp;
         yield return VpnProtocol.WireGuardTcp;
+        yield return VpnProtocol.WireGuardTls;
         yield return VpnProtocol.OpenVpnUdp;
         yield return VpnProtocol.OpenVpnTcp;
-        yield return VpnProtocol.WireGuardTls;
     }
 }
