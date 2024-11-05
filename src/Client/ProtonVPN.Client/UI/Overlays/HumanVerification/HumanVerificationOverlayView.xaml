@@ -26,6 +26,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                x:DefaultBindMode="OneWay"
                Background="{ThemeResource TextInvertColorBrush}"
                Style="{StaticResource CaptchaContentDialogStyle}"
+               CloseButtonCommand="{x:Bind ViewModel.CloseOverlayCommand}"
                mc:Ignorable="d">
     
     <Viewbox Stretch="Uniform"

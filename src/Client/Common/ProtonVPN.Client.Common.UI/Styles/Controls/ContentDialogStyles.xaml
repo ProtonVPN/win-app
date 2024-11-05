@@ -456,6 +456,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     Margin="{StaticResource ContentDialogMargin}"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
+                                    Padding="24"
                                     Background="{TemplateBinding Background}"
                                     BackgroundSizing="InnerBorderEdge"
                                     BorderBrush="{TemplateBinding BorderBrush}"
@@ -503,6 +504,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             </ControlTemplate>
                                         </ContentControl.Template>
                                     </ContentControl>
+
+                                    <custom:GhostButton Grid.Row="0"
+                                                        Margin="0"
+                                                        VerticalAlignment="Top"
+                                                        HorizontalAlignment="Right"
+                                                        AutomationProperties.AutomationId="CloseContentDialogButton"
+                                                        Command="{TemplateBinding CloseButtonCommand}"
+                                                        IsEnabled="True"
+                                                        Visibility="{ThemeResource ContentDialogCloseButtonVisibility}">
+                                        <custom:GhostButton.LeftIcon>
+                                            <pathicons:CrossCircleFilled />
+                                        </custom:GhostButton.LeftIcon>
+                                        <custom:GhostButton.KeyboardAccelerators>
+                                            <KeyboardAccelerator Key="Escape" />
+                                        </custom:GhostButton.KeyboardAccelerators>
+                                    </custom:GhostButton>
 
                                     <Border Grid.Row="1"
                                             Padding="{TemplateBinding Padding}">
