@@ -272,10 +272,10 @@ public class ServersCache : IServersCache
         return servers
             .Where(s => !string.IsNullOrWhiteSpace(s.ExitCountry)
                      && !string.IsNullOrWhiteSpace(s.City))
-            .GroupBy(s => new { Country = s.ExitCountry, State = s.State, City = s.City })
+            .GroupBy(s => new { Country = s.ExitCountry, City = s.City })
             .Select(c => new City() {
                 CountryCode = c.Key.Country,
-                StateName = c.Key.State,
+                StateName = c.Select(s => s.State).Distinct().FirstOrDefault(s => !string.IsNullOrWhiteSpace(s)) ?? string.Empty,
                 Name = c.Key.City,
                 IsUnderMaintenance = IsUnderMaintenance(c),
                 Features = AggregateFeatures(c),

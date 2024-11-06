@@ -24,5 +24,5 @@ namespace ProtonVPN.Client.Logic.Searches.Contracts;
 
 public interface IGlobalSearch
 {
-    Task<List<ILocation>> SearchAsync(string input, ServerFeatures? serverFeatures = null);
+    Task<List<ILocation>> SearchAsync(string? input, ServerFeatures? serverFeatures = null);
 }
