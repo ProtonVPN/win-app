@@ -51,8 +51,10 @@ public partial class GlobalSearch : IGlobalSearch
         _settings = settings;
     }
 
-    public async Task<List<ILocation>> SearchAsync(string input, ServerFeatures? serverFeatures = null)
+    public async Task<List<ILocation>> SearchAsync(string? input, ServerFeatures? serverFeatures = null)
     {
+        input = input?.Trim();
+
         if (string.IsNullOrWhiteSpace(input))
         {
             return [];
