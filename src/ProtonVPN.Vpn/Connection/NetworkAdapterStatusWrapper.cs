@@ -77,7 +77,7 @@ internal class NetworkAdapterStatusWrapper : ISingleVpnConnection
         remove => _origin.ConnectionDetailsChanged -= value;
     }
 
-    public TrafficBytes Total => _origin.Total;
+    public NetworkTraffic NetworkTraffic => _origin.NetworkTraffic;
 
     public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
     {

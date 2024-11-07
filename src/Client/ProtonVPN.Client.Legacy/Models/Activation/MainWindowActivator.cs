@@ -49,7 +49,7 @@ public class MainWindowActivator :
     WindowActivatorBase,
     IMainWindowActivator,
     IEventMessageReceiver<AuthenticationStatusChanged>,
-    IEventMessageReceiver<ConnectionStatusChanged>
+    IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
     private const int LOGIN_WINDOW_WIDTH = 620;
     private const int LOGIN_WINDOW_HEIGHT = 700;
@@ -210,7 +210,7 @@ public class MainWindowActivator :
         _uiThreadDispatcher.TryEnqueue(async () => await InvalidateWindowAsync());
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         _uiThreadDispatcher.TryEnqueue(InvalidateAppIcon);
     }

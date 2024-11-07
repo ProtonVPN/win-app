@@ -31,8 +31,8 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.Legacy.UI.Home.Status;
 
 public partial class NetShieldStatsViewModel : ViewModelBase,
-    IEventMessageReceiver<NetShieldStatsChanged>,
-    IEventMessageReceiver<ConnectionStatusChanged>
+    IEventMessageReceiver<NetShieldStatsChangedMessage>,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
     private const int AVG_AD_SIZE_IN_BYTES = 200000;
     private const int AVG_TRACKER_SIZE_IN_BYTES = 50000;
@@ -72,7 +72,7 @@ public partial class NetShieldStatsViewModel : ViewModelBase,
         InvalidateAllProperties();
     }
 
-    public void Receive(NetShieldStatsChanged message)
+    public void Receive(NetShieldStatsChangedMessage message)
     {
         ExecuteOnUIThread(() =>
         {
@@ -87,7 +87,7 @@ public partial class NetShieldStatsViewModel : ViewModelBase,
         });
     }
 
-    private void SetNetShieldStats(NetShieldStatsChanged stats)
+    private void SetNetShieldStats(NetShieldStatsChangedMessage stats)
     {
         NumberOfAdsBlocked = stats.NumOfAdvertisementUrlsBlocked;
         NumberOfTrackersStopped = stats.NumOfTrackingUrlsBlocked;
@@ -105,7 +105,7 @@ public partial class NetShieldStatsViewModel : ViewModelBase,
         DataSavedInBytes = 0;
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         if (message.ConnectionStatus != ConnectionStatus.Connected)
         {

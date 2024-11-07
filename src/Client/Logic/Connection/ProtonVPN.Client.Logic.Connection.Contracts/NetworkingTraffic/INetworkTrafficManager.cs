@@ -17,41 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Common.Queues;
+using ProtonVPN.Common.Core.Networking;
 
-public class FixedSizeQueue<T> : Queue<T>
+namespace ProtonVPN.Client.Logic.Connection.Contracts.History;
+
+public interface INetworkTrafficManager
 {
-    private readonly int _maxSize;
-    private readonly T _defaultValue;
+    NetworkTraffic GetSpeed();
+    NetworkTraffic GetVolume();
 
-    public FixedSizeQueue(int maxSize, T defaultValue)
-    {
-        _maxSize = maxSize;
-        _defaultValue = defaultValue;
-
-        FillInitialValues();
-    }
-
-    public new void Enqueue(T item)
-    {
-        if (Count >= _maxSize)
-        {
-            Dequeue();
-        }
-        base.Enqueue(item);
-    }
-
-    public void Reset()
-    {
-        Clear();
-        FillInitialValues();
-    }
-
-    private void FillInitialValues()
-    {
-        for (int i = 0; i < _maxSize; i++)
-        {
-            Enqueue(_defaultValue);
-        }
-    }
+    IReadOnlyList<NetworkTraffic> GetSpeedHistory();
 }

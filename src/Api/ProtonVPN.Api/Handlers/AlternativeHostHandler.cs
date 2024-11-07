@@ -43,7 +43,7 @@ using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 namespace ProtonVPN.Api.Handlers;
 
 public class AlternativeHostHandler : DelegatingHandler,
-    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<LoggedInMessage>,
     IEventMessageReceiver<LoggedOutMessage>,
     IEventMessageReceiver<GuestHoleStatusChangedMessage>
@@ -83,7 +83,7 @@ public class AlternativeHostHandler : DelegatingHandler,
         _alternativeRoutingCheckInterval = config.AlternativeRoutingCheckInterval;
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         _isDisconnected = message.ConnectionStatus == ConnectionStatus.Disconnected;
     }

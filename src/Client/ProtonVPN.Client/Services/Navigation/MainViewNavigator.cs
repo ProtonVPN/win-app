@@ -32,7 +32,7 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.Services.Navigation;
 
 public class MainViewNavigator : ViewNavigatorBase, IMainViewNavigator,
-    IEventMessageReceiver<ConnectionStatusChanged>
+    IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
     private readonly ISettingsViewNavigator _settingsViewNavigator;
 
@@ -89,7 +89,7 @@ public class MainViewNavigator : ViewNavigatorBase, IMainViewNavigator,
     // Disconnected
     // Connecting
     // Connected
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         if (_connectionStatus == message.ConnectionStatus)
         {

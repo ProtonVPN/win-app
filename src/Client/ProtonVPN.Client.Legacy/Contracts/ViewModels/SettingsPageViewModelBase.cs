@@ -46,7 +46,7 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.Legacy.Contracts.ViewModels;
 
 public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMainViewNavigator>,
-    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<SettingChangedMessage>,
     IEventMessageReceiver<VpnPlanChangedMessage>
 {
@@ -100,7 +100,7 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<IMai
         return IsPageReady && HasChangedSettings();
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         ExecuteOnUIThread(() =>
         {

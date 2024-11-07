@@ -70,11 +70,11 @@ public class PortForwardingManager : IPortForwardingManager, IEventMessageReceiv
 
     private void NotifyPortChange(int? newActivePort)
     {
-        _eventMessageSender.Send(new PortForwardingPortChanged(newActivePort));
+        _eventMessageSender.Send(new PortForwardingPortChangedMessage(newActivePort));
     }
 
     private void NotifyStatusChange(PortMappingStatus newStatus)
     {
-        _eventMessageSender.Send(new PortForwardingStatusChanged(newStatus));
+        _eventMessageSender.Send(new PortForwardingStatusChangedMessage(newStatus));
     }
 }

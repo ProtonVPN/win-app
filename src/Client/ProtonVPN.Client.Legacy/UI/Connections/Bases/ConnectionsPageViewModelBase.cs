@@ -39,7 +39,7 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.Legacy.UI.Connections.Bases;
 
 public abstract class ConnectionsPageViewModelBase : PageViewModelBase<IMainViewNavigator>,
-    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<ServerListChangedMessage>,
     IEventMessageReceiver<VpnPlanChangedMessage>,
     IEventMessageReceiver<LoggedInMessage>
@@ -89,7 +89,7 @@ public abstract class ConnectionsPageViewModelBase : PageViewModelBase<IMainView
         InvalidateRestrictions();
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         ExecuteOnUIThread(InvalidateActiveConnection);
     }

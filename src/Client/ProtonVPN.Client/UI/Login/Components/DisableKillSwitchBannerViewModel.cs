@@ -36,7 +36,7 @@ using ProtonVPN.Client.UI.Login.Pages;
 namespace ProtonVPN.Client.UI.Login.Components;
 
 public partial class DisableKillSwitchBannerViewModel : ViewModelBase,
-    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<SettingChangedMessage>
 {
     private readonly ISettings _settings;
@@ -66,7 +66,7 @@ public partial class DisableKillSwitchBannerViewModel : ViewModelBase,
         InvalidateKillSwitchNotification();
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         ExecuteOnUIThread(InvalidateKillSwitchNotification);
     }

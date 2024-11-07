@@ -24,19 +24,21 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.History;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
-using ProtonVPN.Client.UI.Main.Home.Details.Contracts;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Home.Details.Connection;
 
-public partial class ConnectionDetailsPageViewModel : PageViewModelBase<IDetailsViewNavigator>, IConnectionDetailsAware,
-    IEventMessageReceiver<ConnectionDetailsChanged>
+public partial class ConnectionDetailsPageViewModel : PageViewModelBase<IDetailsViewNavigator>,
+    IEventMessageReceiver<ConnectionDetailsChangedMessage>,
+    IEventMessageReceiver<NetworkTrafficChangedMessage>
 {
     private readonly IConnectionManager _connectionManager;
+    private readonly INetworkTrafficManager _networkTrafficManager;
 
     [ObservableProperty]
     private string? _serverIpAddress;
@@ -58,6 +60,7 @@ public partial class ConnectionDetailsPageViewModel : PageViewModelBase<IDetails
 
     public ConnectionDetailsPageViewModel(
         IConnectionManager connectionManager,
+        INetworkTrafficManager networkTrafficManager,
         IDetailsViewNavigator viewNavigator,
         ILocalizationProvider localizer,
         ILogger logger,
@@ -65,24 +68,15 @@ public partial class ConnectionDetailsPageViewModel : PageViewModelBase<IDetails
         : base(viewNavigator, localizer, logger, issueReporter)
     {
         _connectionManager = connectionManager;
+        _networkTrafficManager = networkTrafficManager;
     }
 
-    public void Receive(ConnectionDetailsChanged message)
+    public void Receive(ConnectionDetailsChangedMessage message)
     {
         ExecuteOnUIThread(() =>
         {
             ServerIpAddress = message.ServerIpAddress;
         });
-    }
-
-    public void Refresh(ConnectionDetails? connectionDetails, TrafficBytes volume, TrafficBytes speed)
-    {
-        if (IsActive)
-        {
-            Volume = (long)volume.BytesIn + (long)volume.BytesOut;
-            ServerLoad = connectionDetails?.ServerLoad ?? 0;
-            Protocol = connectionDetails?.Protocol;
-        }
     }
 
     protected override void OnLanguageChanged()
@@ -97,8 +91,22 @@ public partial class ConnectionDetailsPageViewModel : PageViewModelBase<IDetails
     {
         base.OnActivated();
 
-        Volume = null;
-        ServerLoad = 0;
-        Protocol = null;
+        SetDetails();
+    }
+
+    public void Receive(NetworkTrafficChangedMessage message)
+    {
+        if (IsActive)
+        {
+            ExecuteOnUIThread(SetDetails);
+        }
+    }
+
+    private void SetDetails()
+    {
+        ConnectionDetails? connectionDetails = _connectionManager.CurrentConnectionDetails;
+        ServerLoad = connectionDetails?.ServerLoad ?? 0;
+        Protocol = connectionDetails?.Protocol;
+        Volume = (long)_networkTrafficManager.GetVolume().Sum();
     }
 }

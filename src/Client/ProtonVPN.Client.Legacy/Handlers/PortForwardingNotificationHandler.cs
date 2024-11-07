@@ -25,7 +25,7 @@ using ProtonVPN.Client.Settings.Contracts;
 
 namespace ProtonVPN.Client.Legacy.Handlers;
 
-public class PortForwardingNotificationHandler : IHandler, IEventMessageReceiver<PortForwardingPortChanged>
+public class PortForwardingNotificationHandler : IHandler, IEventMessageReceiver<PortForwardingPortChangedMessage>
 {
     private readonly ISettings _settings;
     private readonly IPortForwardingNewPortNotificationSender _portForwardingNewPortNotificationSender;
@@ -41,7 +41,7 @@ public class PortForwardingNotificationHandler : IHandler, IEventMessageReceiver
         _portForwardingManager = portForwardingManager;
     }
 
-    public void Receive(PortForwardingPortChanged message)
+    public void Receive(PortForwardingPortChangedMessage message)
     {
         int? activePortNumber = _portForwardingManager.ActivePort;
         if (activePortNumber is not null && _settings.IsPortForwardingNotificationEnabled)

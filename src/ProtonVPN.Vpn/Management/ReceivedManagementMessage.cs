@@ -63,25 +63,25 @@ namespace ProtonVPN.Vpn.Management
 
         public bool IsControlMessage => _messageText.ContainsIgnoringCase("PUSH: Received control message");
 
-        public TrafficBytes Bandwidth()
+        public NetworkTraffic Bandwidth()
         {
             string[] byteCountArr = _messageText.Split(':')[1].Split(',');
             if (byteCountArr.Length <= 1)
             {
-                return TrafficBytes.Zero;
+                return NetworkTraffic.Zero;
             }
 
             if (!ulong.TryParse(byteCountArr[0], out ulong bytesIn))
             {
-                return TrafficBytes.Zero;
+                return NetworkTraffic.Zero;
             }
 
             if (!ulong.TryParse(byteCountArr[1], out ulong bytesOut))
             {
-                return TrafficBytes.Zero;
+                return NetworkTraffic.Zero;
             }
 
-            return new TrafficBytes(bytesIn, bytesOut);
+            return new NetworkTraffic(bytesIn, bytesOut);
         }
 
         public ManagementState State()

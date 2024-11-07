@@ -17,21 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Legacy;
-using ProtonVPN.Common.Legacy.Vpn;
+namespace ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 
-namespace ProtonVPN.Vpn.Common
+public class ConnectionDetailsChangedMessage
 {
-    public interface IAdapterSingleVpnConnection
-    {
-        event EventHandler<EventArgs<VpnState>> StateChanged;
-        event EventHandler<ConnectionDetails> ConnectionDetailsChanged;
-
-        NetworkTraffic NetworkTraffic { get; }
-
-        void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config);
-        void Disconnect(VpnError error);
-    }
+    public required string ClientCountryCode { get; init; }
+    public required string ClientIpAddress { get; init; }
+    public required string ServerIpAddress { get; init; }
 }

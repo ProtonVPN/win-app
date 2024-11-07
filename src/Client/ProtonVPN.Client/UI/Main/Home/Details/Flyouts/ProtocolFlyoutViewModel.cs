@@ -21,19 +21,20 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.Bases.ViewModels;
 using ProtonVPN.Client.Contracts.Services.Navigation;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models;
+using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Services.Browsing;
-using ProtonVPN.Client.UI.Main.Home.Details.Contracts;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Home.Details.Flyouts;
 
-public partial class ProtocolFlyoutViewModel : ActivatableViewModelBase, IConnectionDetailsAware
+public partial class ProtocolFlyoutViewModel : ActivatableViewModelBase,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
     private readonly IUrls _urls;
     private readonly IConnectionManager _connectionManager;
@@ -67,19 +68,26 @@ public partial class ProtocolFlyoutViewModel : ActivatableViewModelBase, IConnec
         _settingsViewNavigator = settingsViewNavigator;
     }
 
-    public void Refresh(ConnectionDetails? connectionDetails, TrafficBytes volume, TrafficBytes speed)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
-        if (IsActive)
+        ExecuteOnUIThread(() =>
         {
-            Protocol = connectionDetails?.Protocol;
-        }
+            if (IsActive)
+            {
+                SetProtocol();
+            }
+        });
+    }
+
+    private void SetProtocol()
+    {
+        Protocol = _connectionManager.CurrentConnectionDetails?.Protocol;
     }
 
     protected override void OnActivated()
     {
         base.OnActivated();
-
-        Protocol = _connectionManager.CurrentConnectionDetails?.Protocol;
+        SetProtocol();
     }
 
     protected override void OnLanguageChanged()

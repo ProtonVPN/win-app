@@ -43,7 +43,7 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.Legacy.UI.Home;
 
 public partial class HomeViewModel : NavigationPageViewModelBase,
-    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<SettingChangedMessage>,
     IEventMessageReceiver<LoggedInMessage>,
     IEventMessageReceiver<ThemeChangedMessage>,
@@ -131,7 +131,7 @@ public partial class HomeViewModel : NavigationPageViewModelBase,
         }
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         ExecuteOnUIThread(() =>
         {

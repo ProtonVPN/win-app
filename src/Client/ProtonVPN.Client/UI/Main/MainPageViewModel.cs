@@ -36,7 +36,7 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.UI.Main;
 
 public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNavigator, IMainViewNavigator>,
-    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<ApplicationStoppedMessage>
 {
     private const double EXPAND_SIDEBAR_WINDOW_WIDTH_THRESHOLD = 800;
@@ -101,7 +101,7 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
         }
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         if (IsActive)
         {

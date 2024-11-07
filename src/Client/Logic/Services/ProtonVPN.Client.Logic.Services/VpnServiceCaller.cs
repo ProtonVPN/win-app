@@ -45,9 +45,9 @@ public class VpnServiceCaller : ServiceCallerBase<IVpnController>, IVpnServiceCa
         return InvokeAsync(c => c.Disconnect(disconnectionRequest).Wrap());
     }
 
-    public Task<Result<TrafficBytesIpcEntity>> GetTrafficBytesAsync()
+    public Task<Result<NetworkTrafficIpcEntity>> GetNetworkTrafficAsync()
     {
-         return InvokeAsync(c => c.GetTrafficBytes());
+         return InvokeAsync(c => c.GetNetworkTraffic());
     }
 
     public Task RequestNetShieldStatsAsync()

@@ -33,7 +33,7 @@ namespace ProtonVPN.Client.Legacy.UI.Home.Details;
 public partial class IpAddressViewModel :
     ViewModelBase,
     IEventMessageReceiver<DeviceLocationChangedMessage>,
-    IEventMessageReceiver<ConnectionDetailsChanged>
+    IEventMessageReceiver<ConnectionDetailsChangedMessage>
 {
     private const string HIDDEN_IP_ADDRESS = "***.***.***.***";
 
@@ -71,7 +71,7 @@ public partial class IpAddressViewModel :
         });
     }
 
-    public void Receive(ConnectionDetailsChanged message)
+    public void Receive(ConnectionDetailsChangedMessage message)
     {
         ExecuteOnUIThread(() =>
         {

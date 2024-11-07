@@ -39,8 +39,8 @@ namespace ProtonVPN.Client.Logic.Servers.Observers;
 public class DeviceLocationObserver :
     ObserverBase,
     IDeviceLocationObserver,
-    IEventMessageReceiver<ConnectionStatusChanged>,
-    IEventMessageReceiver<ConnectionDetailsChanged>,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
+    IEventMessageReceiver<ConnectionDetailsChangedMessage>,
     IEventMessageReceiver<SettingChangedMessage>
 {
     private const int DISCONNECTING_FETCH_DELAY_IN_MS = 8000;
@@ -73,7 +73,7 @@ public class DeviceLocationObserver :
         Initialize();
     }
 
-    public void Receive(ConnectionDetailsChanged message)
+    public void Receive(ConnectionDetailsChangedMessage message)
     {
         DeviceLocation? currentLocation = _settings.DeviceLocation;
 
@@ -95,7 +95,7 @@ public class DeviceLocationObserver :
         UpdateDeviceLocation(ip, countryCode, isp);
     }
 
-    public async void Receive(ConnectionStatusChanged message)
+    public async void Receive(ConnectionStatusChangedMessage message)
     {
         if (_connectionManager.IsDisconnected)
         {

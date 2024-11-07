@@ -43,7 +43,7 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.Legacy.UI.Connections.Profiles;
 
 public partial class ProfilesPageViewModel : PageViewModelBase<IMainViewNavigator>,
-    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<ServerListChangedMessage>,
     IEventMessageReceiver<VpnPlanChangedMessage>,
     IEventMessageReceiver<LoggedInMessage>,
@@ -94,7 +94,7 @@ public partial class ProfilesPageViewModel : PageViewModelBase<IMainViewNavigato
         FetchProfiles();
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         ExecuteOnUIThread(InvalidateActiveConnection);
     }

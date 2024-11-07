@@ -34,7 +34,7 @@ namespace ProtonVPN.Core.Vpn
             [CallerFilePath] string sourceFilePath = "",
             [CallerMemberName] string sourceMemberName = "",
             [CallerLineNumber] int sourceLineNumber = 0);
-        Task<TrafficBytes> GetTrafficBytes();
+        Task<NetworkTraffic> GetTrafficBytes();
         Task RepeatState();
 
         void RegisterVpnStateCallback(Action<VpnStateChangedEventArgs> callback);

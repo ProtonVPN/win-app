@@ -42,7 +42,7 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.Legacy.UI.Home.ConnectionCard;
 
 public abstract partial class ConnectionCardViewModelBase : ViewModelBase,
-    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<VpnPlanChangedMessage>
 {
     protected readonly IConnectionManager ConnectionManager;
@@ -169,7 +169,7 @@ public abstract partial class ConnectionCardViewModelBase : ViewModelBase,
         HomeViewModel = homeViewModel;
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         ExecuteOnUIThread(InvalidateCurrentConnectionStatus);
     }

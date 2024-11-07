@@ -36,7 +36,7 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.Legacy.UI.Home.ConnectionCard.Overlays;
 
 public partial class ChangeServerOverlayViewModel : OverlayViewModelBase,
-    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<ChangeServerAttemptInvalidatedMessage>
 {
     private readonly IChangeServerModerator _changeServerModerator;
@@ -74,7 +74,7 @@ public partial class ChangeServerOverlayViewModel : OverlayViewModelBase,
         _urls = urls;
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         if (_connectionManager.IsDisconnected)
         {

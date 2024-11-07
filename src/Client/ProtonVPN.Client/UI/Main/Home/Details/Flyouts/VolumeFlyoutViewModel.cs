@@ -19,18 +19,22 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Contracts.Bases.ViewModels;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models;
-using ProtonVPN.Client.UI.Main.Home.Details.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.History;
+using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Home.Details.Flyouts;
 
-public partial class VolumeFlyoutViewModel : ActivatableViewModelBase, IConnectionDetailsAware
+public partial class VolumeFlyoutViewModel : ActivatableViewModelBase,
+    IEventMessageReceiver<NetworkTrafficChangedMessage>
 {
+    private readonly INetworkTrafficManager _networkTrafficManager;
+
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(FormattedDownloadVolume))]
     private long? _downloadVolume;
@@ -46,26 +50,36 @@ public partial class VolumeFlyoutViewModel : ActivatableViewModelBase, IConnecti
     public VolumeFlyoutViewModel(
         ILocalizationProvider localizer,
         ILogger logger,
-        IIssueReporter issueReporter) :
+        IIssueReporter issueReporter,
+        INetworkTrafficManager networkTrafficManager) :
         base(localizer, logger, issueReporter)
     {
+        _networkTrafficManager = networkTrafficManager;
     }
 
-    public void Refresh(ConnectionDetails? connectionDetails, TrafficBytes volume, TrafficBytes speed)
+    public void Receive(NetworkTrafficChangedMessage message)
     {
-        if (IsActive)
+        ExecuteOnUIThread(() =>
         {
-            DownloadVolume = (long)volume.BytesIn;
-            UploadVolume = (long)volume.BytesOut;
-        }
+            if (IsActive)
+            {
+                SetVolume();
+            }
+        });
+    }
+
+    private void SetVolume()
+    {
+        NetworkTraffic volume = _networkTrafficManager.GetVolume();
+        DownloadVolume = (long)volume.BytesDownloaded;
+        UploadVolume = (long)volume.BytesUploaded;
     }
 
     protected override void OnActivated()
     {
         base.OnActivated();
 
-        DownloadVolume = null;
-        UploadVolume = null;
+        SetVolume();
     }
 
     protected override void OnLanguageChanged()

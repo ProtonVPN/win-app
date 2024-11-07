@@ -20,6 +20,7 @@
 using Autofac;
 using ProtonVPN.Client.Logic.Connection.EntityMapping;
 using ProtonVPN.Client.Logic.Connection.GuestHole;
+using ProtonVPN.Client.Logic.Connection.NetworkingTraffic;
 using ProtonVPN.Client.Logic.Connection.RequestCreators;
 using ProtonVPN.Client.Logic.Connection.ServerListGenerators;
 using ProtonVPN.Client.Logic.Connection.Validators;
@@ -46,6 +47,8 @@ public class ConnectionLogicModule : Module
         builder.RegisterType<VpnStatePollingObserver>().AsImplementedInterfaces().AutoActivate().SingleInstance();
         builder.RegisterType<ChangeServerModerator>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<NetShieldStatsObserver>().AsImplementedInterfaces().SingleInstance().AutoActivate();
+        builder.RegisterType<NetworkTrafficScheduler>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<NetworkTrafficManager>().AsImplementedInterfaces().SingleInstance();
 
         RegisterRequestCreators(builder);
         RegisterServerListGenerators(builder);

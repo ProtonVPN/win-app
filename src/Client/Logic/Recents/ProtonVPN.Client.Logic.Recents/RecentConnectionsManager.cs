@@ -44,7 +44,7 @@ using ProtonVPN.Logging.Contracts.Events.AppLogs;
 namespace ProtonVPN.Client.Logic.Recents;
 
 public class RecentConnectionsManager : IRecentConnectionsManager,
-    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<LoggedInMessage>,
     IEventMessageReceiver<LoggedOutMessage>,
     IEventMessageReceiver<ServerListChangedMessage>,
@@ -176,7 +176,7 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
         }
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         if (_guestHoleManager.IsActive)
         {

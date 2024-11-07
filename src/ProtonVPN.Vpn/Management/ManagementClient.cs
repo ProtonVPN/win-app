@@ -61,7 +61,7 @@ namespace ProtonVPN.Vpn.Management
             _managementChannel = managementChannel;
         }
 
-        public event EventHandler<EventArgs<TrafficBytes>> TransportStatsChanged;
+        public event EventHandler<EventArgs<NetworkTraffic>> TransportStatsChanged;
 
         public event EventHandler<EventArgs<VpnState>> VpnStateChanged;
 
@@ -229,7 +229,7 @@ namespace ProtonVPN.Vpn.Management
 
         private void HandleByteMessage(ReceivedManagementMessage message)
         {
-            TrafficBytes bandwidth = message.Bandwidth();
+            NetworkTraffic bandwidth = message.Bandwidth();
             OnTransportStatsChanged(bandwidth);
         }
 
@@ -303,9 +303,9 @@ namespace ProtonVPN.Vpn.Management
             VpnStateChanged?.Invoke(this, new EventArgs<VpnState>(state));
         }
 
-        private void OnTransportStatsChanged(TrafficBytes bandwidth)
+        private void OnTransportStatsChanged(NetworkTraffic bandwidth)
         {
-            TransportStatsChanged?.Invoke(this, new EventArgs<TrafficBytes>(bandwidth));
+            TransportStatsChanged?.Invoke(this, new EventArgs<NetworkTraffic>(bandwidth));
         }
     }
 }

@@ -36,7 +36,7 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.Legacy.UI.Home.Details;
 
 public partial class ConnectionDetailsViewModel : ActivatableViewModelBase,
-    IEventMessageReceiver<ConnectionStatusChanged>
+    IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
     private const int REFRESH_TIMER_INTERVAL_IN_MS = 1000;
 
@@ -153,7 +153,7 @@ public partial class ConnectionDetailsViewModel : ActivatableViewModelBase,
         await _overlayActivator.ShowOverlayAsync<ProtocolOverlayViewModel>();
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         ExecuteOnUIThread(() =>
         {

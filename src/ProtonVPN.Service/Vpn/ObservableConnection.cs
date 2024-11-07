@@ -47,7 +47,7 @@ namespace ProtonVPN.Service.Vpn
             remove => _origin.ConnectionDetailsChanged -= value;
         }
 
-        public TrafficBytes Total => _origin.Total;
+        public NetworkTraffic NetworkTraffic => _origin.NetworkTraffic;
 
         public void Connect(IReadOnlyList<VpnHost> servers, VpnConfig config, VpnCredentials credentials)
         {

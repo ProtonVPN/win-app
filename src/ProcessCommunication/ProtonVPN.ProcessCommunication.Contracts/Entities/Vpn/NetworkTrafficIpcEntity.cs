@@ -18,15 +18,17 @@
  */
 using System.Runtime.Serialization;
 
-namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
-{
-    [DataContract]
-    public class TrafficBytesIpcEntity
-    {
-        [DataMember(Order = 1, IsRequired = true)]
-        public ulong BytesIn { get; set; }
+namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
-        [DataMember(Order = 2, IsRequired = true)]
-        public ulong BytesOut { get; set; }
-    }
+[DataContract]
+public class NetworkTrafficIpcEntity
+{
+    [DataMember(Order = 1, IsRequired = true)]
+    public ulong BytesDownloaded { get; set; }
+
+    [DataMember(Order = 2, IsRequired = true)]
+    public ulong BytesUploaded { get; set; }
+
+    [DataMember(Order = 3, IsRequired = true)]
+    public DateTime UtcDate { get; set; }
 }

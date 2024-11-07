@@ -35,7 +35,7 @@ namespace ProtonVPN.Client.Logic.Connection;
 
 public class NetShieldStatsObserver : PollingObserverBase,
     INetShieldStatsObserver,
-    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<SettingChangedMessage>,
     IEventMessageReceiver<NetShieldStatisticIpcEntity>
     //IEventMessageReceiver<MainWindowStateChangedMessage>
@@ -77,7 +77,7 @@ public class NetShieldStatsObserver : PollingObserverBase,
         _logger.Info<AppLog>($"NetShield Stats - Request timeout set to {_requestTimeout}.");
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         InvalidateTimer();
     }
@@ -98,7 +98,7 @@ public class NetShieldStatsObserver : PollingObserverBase,
 
     public void Receive(NetShieldStatisticIpcEntity message)
     {
-        _eventMessageSender.Send(new NetShieldStatsChanged
+        _eventMessageSender.Send(new NetShieldStatsChangedMessage
         {
             NumOfMaliciousUrlsBlocked = message.NumOfMaliciousUrlsBlocked,
             NumOfAdvertisementUrlsBlocked = message.NumOfAdvertisementUrlsBlocked,

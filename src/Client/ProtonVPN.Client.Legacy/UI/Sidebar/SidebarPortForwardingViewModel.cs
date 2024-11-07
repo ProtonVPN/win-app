@@ -39,8 +39,8 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.Legacy.UI.Sidebar;
 
 public partial class SidebarPortForwardingViewModel : SidebarFeatureNavigationItemViewModelBase<PortForwardingViewModel>,
-    IEventMessageReceiver<PortForwardingPortChanged>,
-    IEventMessageReceiver<PortForwardingStatusChanged>
+    IEventMessageReceiver<PortForwardingPortChangedMessage>,
+    IEventMessageReceiver<PortForwardingStatusChangedMessage>
 {
     private readonly IConnectionManager _connectionManager;
     private readonly IPortForwardingManager _portForwardingManager;
@@ -79,12 +79,12 @@ public partial class SidebarPortForwardingViewModel : SidebarFeatureNavigationIt
         _clipboardEditor = clipboardEditor;
     }
 
-    public void Receive(PortForwardingStatusChanged message)
+    public void Receive(PortForwardingStatusChangedMessage message)
     {
         ExecuteOnUIThread(InvalidateActivePort);
     }
 
-    public void Receive(PortForwardingPortChanged message)
+    public void Receive(PortForwardingPortChangedMessage message)
     {
         ExecuteOnUIThread(InvalidateActivePort);
     }

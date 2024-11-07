@@ -40,7 +40,7 @@ namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;
 
 public abstract class ConnectionPageViewModelBase : ConnectionListViewModelBase<IConnectionsViewNavigator>,
     IConnectionPage,
-    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<VpnPlanChangedMessage>,
     IEventMessageReceiver<LoggedInMessage>,
     IEventMessageReceiver<ServerListChangedMessage>
@@ -68,7 +68,7 @@ public abstract class ConnectionPageViewModelBase : ConnectionListViewModelBase<
     {
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         ExecuteOnUIThread(() => OnConnectionStatusChanged(message.ConnectionStatus));
     }

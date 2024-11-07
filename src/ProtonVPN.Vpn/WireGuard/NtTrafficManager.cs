@@ -35,7 +35,7 @@ namespace ProtonVPN.Vpn.WireGuard
         private readonly SingleAction _updateBytesTransferredAction;
         private readonly ILogger _logger;
 
-        public event EventHandler<TrafficBytes> TrafficSent;
+        public event EventHandler<NetworkTraffic> TrafficSent;
 
         public NtTrafficManager(string adapterName, ILogger logger)
         {
@@ -81,7 +81,7 @@ namespace ProtonVPN.Vpn.WireGuard
                         //or computer is put to sleep.
                     }
 
-                    TrafficSent?.Invoke(this, new TrafficBytes(rx, tx));
+                    TrafficSent?.Invoke(this, new NetworkTraffic(rx, tx));
 
                     await Task.Delay(1000, cancellationToken);
                 }

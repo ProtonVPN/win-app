@@ -244,7 +244,7 @@ public class AlternativeHostHandlerTest
 
     private void SetConnectionStatus(ConnectionStatus status)
     {
-        _alternativeHostHandler.Receive(new ConnectionStatusChanged(status));
+        _alternativeHostHandler.Receive(new ConnectionStatusChangedMessage(status));
     }
 
     [TestMethod]

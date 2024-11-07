@@ -40,7 +40,7 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.UI.Main.Sidebar.Search;
 
 public partial class SearchResultsPageViewModel : ConnectionListViewModelBase<ISidebarViewNavigator>,
-    ISearchInputReceiver, IEventMessageReceiver<ConnectionStatusChanged>,
+    ISearchInputReceiver, IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<ServerListChangedMessage>
 {
     private readonly IGlobalSearch _globalSearch;
@@ -224,7 +224,7 @@ public partial class SearchResultsPageViewModel : ConnectionListViewModelBase<IS
         return null;
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         InvalidateActiveConnection();
     }

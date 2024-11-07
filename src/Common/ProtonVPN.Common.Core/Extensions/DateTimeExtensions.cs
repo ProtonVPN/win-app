@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,21 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Legacy;
-using ProtonVPN.Common.Legacy.Vpn;
+namespace ProtonVPN.Common.Core.Extensions;
 
-namespace ProtonVPN.Vpn.Common
+public static class DateTimeExtensions
 {
-    public interface IAdapterSingleVpnConnection
+    public static DateTime TruncateToSeconds(this DateTime date)
     {
-        event EventHandler<EventArgs<VpnState>> StateChanged;
-        event EventHandler<ConnectionDetails> ConnectionDetailsChanged;
-
-        NetworkTraffic NetworkTraffic { get; }
-
-        void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config);
-        void Disconnect(VpnError error);
+        return new(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second);
     }
 }
