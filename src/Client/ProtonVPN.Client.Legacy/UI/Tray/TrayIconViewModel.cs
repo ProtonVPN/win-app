@@ -40,7 +40,7 @@ namespace ProtonVPN.Client.Legacy.UI.Tray;
 
 public partial class TrayIconViewModel : 
     ViewModelBase, 
-    IEventMessageReceiver<ConnectionStatusChanged>, 
+    IEventMessageReceiver<ConnectionStatusChangedMessage>, 
     IEventMessageReceiver<LoggedInMessage>, 
     IEventMessageReceiver<LoggedOutMessage>
 {
@@ -107,7 +107,7 @@ public partial class TrayIconViewModel :
         await _connectionManager.DisconnectAsync();
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         ExecuteOnUIThread(InvalidateTray);
     }

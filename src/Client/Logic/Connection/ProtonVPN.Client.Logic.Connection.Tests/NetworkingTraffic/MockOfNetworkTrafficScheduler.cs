@@ -17,12 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts.Models;
+using ProtonVPN.Client.Logic.Connection.NetworkingTraffic;
 using ProtonVPN.Common.Core.Networking;
 
-namespace ProtonVPN.Client.UI.Main.Home.Details.Contracts;
+namespace ProtonVPN.Client.Logic.Connection.Tests.NetworkingTraffic;
 
-public interface IConnectionDetailsAware
+public class MockOfNetworkTrafficScheduler : INetworkTrafficScheduler
 {
-    void Refresh(ConnectionDetails? connectionDetails, TrafficBytes volume, TrafficBytes speed);
+    public event EventHandler<NetworkTraffic>? NetworkTrafficChanged;
+
+    public void InvokeEvent(NetworkTraffic networkTraffic)
+    {
+        NetworkTrafficChanged?.Invoke(this, networkTraffic);
+    }
 }

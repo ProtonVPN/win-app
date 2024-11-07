@@ -51,7 +51,7 @@ public partial class VpnSpeedViewModel : ViewModelBase,
     IEventMessageReceiver<SettingChangedMessage>,
     IEventMessageReceiver<LoggedInMessage>,
     IEventMessageReceiver<VpnPlanChangedMessage>,
-    IEventMessageReceiver<ConnectionStatusChanged>
+    IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
     private const int MAX_DATA_POINTS = 30;
     private const int DEFAULT_VALUE = 0;
@@ -178,15 +178,15 @@ public partial class VpnSpeedViewModel : ViewModelBase,
 
     public async void RefreshAsync(bool isToUpdateGraph)
     {
-        TrafficBytes speed = await _connectionManager.GetCurrentSpeedAsync();
+        NetworkTraffic speed = await _connectionManager.GetCurrentSpeedAsync();
 
-        DownloadSpeed = (long)speed.BytesIn;
-        UploadSpeed = (long)speed.BytesOut;
+        DownloadSpeed = (long)speed.BytesDownloaded;
+        UploadSpeed = (long)speed.BytesUploaded;
 
-        TrafficBytes volume = await _connectionManager.GetTrafficBytesAsync();
+        NetworkTraffic volume = await _connectionManager.GetTrafficBytesAsync();
 
-        DownloadVolume = (long)volume.BytesIn;
-        UploadVolume = (long)volume.BytesOut;
+        DownloadVolume = (long)volume.BytesDownloaded;
+        UploadVolume = (long)volume.BytesUploaded;
 
         _downloadDataPoints.Enqueue(DownloadSpeed);
         _uploadDataPoints.Enqueue(UploadSpeed);
@@ -249,7 +249,7 @@ public partial class VpnSpeedViewModel : ViewModelBase,
         ExecuteOnUIThread(() => OnPropertyChanged(nameof(IsVpnAcceleratorTaglineVisible)));
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         if (message.ConnectionStatus != ConnectionStatus.Connected && message.ConnectionStatus != ConnectionStatus.Disconnected)
         {

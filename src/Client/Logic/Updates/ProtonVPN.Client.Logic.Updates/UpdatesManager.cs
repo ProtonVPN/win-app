@@ -43,7 +43,7 @@ namespace ProtonVPN.Client.Logic.Updates;
 
 public class UpdatesManager : PollingObserverBase, IUpdatesManager,
     IEventMessageReceiver<UpdateStateIpcEntity>,
-    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<SettingChangedMessage>
 {
     private const int APP_EXIT_TIMEOUT_IN_SECONDS = 3;
@@ -187,7 +187,7 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
         return status is AppUpdateStatus.Ready or AppUpdateStatus.AutoUpdated or AppUpdateStatus.AutoUpdateFailed;
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         ConnectionDetails? connectionDetails = _connectionManager.CurrentConnectionDetails;
         FeedType feedType = message.ConnectionStatus == ConnectionStatus.Connected &&

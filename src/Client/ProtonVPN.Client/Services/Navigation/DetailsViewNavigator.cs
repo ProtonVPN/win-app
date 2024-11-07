@@ -30,7 +30,7 @@ using ProtonVPN.Client.UI.Main.Home.Details.Location;
 namespace ProtonVPN.Client.Services.Navigation;
 
 public class DetailsViewNavigator : ViewNavigatorBase, IDetailsViewNavigator,
-    IEventMessageReceiver<ConnectionStatusChanged>
+    IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
     private readonly IConnectionManager _connectionManager;
 
@@ -53,7 +53,7 @@ public class DetailsViewNavigator : ViewNavigatorBase, IDetailsViewNavigator,
         return NavigateToAsync<ConnectionDetailsPageViewModel>();
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         NavigateToDefaultAsync();
     }

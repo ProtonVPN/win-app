@@ -35,7 +35,7 @@ namespace ProtonVPN.Client.UI.Main.Home.Details.Location;
 
 public partial class LocationDetailsPageViewModel : PageViewModelBase<IDetailsViewNavigator>,
     IEventMessageReceiver<DeviceLocationChangedMessage>,
-    IEventMessageReceiver<ConnectionStatusChanged>
+    IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
     private readonly ISettings _settings;
     private readonly IConnectionManager _connectionManager;
@@ -75,7 +75,7 @@ public partial class LocationDetailsPageViewModel : PageViewModelBase<IDetailsVi
         }
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         if (IsActive)
         {

@@ -40,7 +40,7 @@ namespace ProtonVPN.Client.Legacy.UI.Home.ConnectionError;
 
 public partial class ConnectionErrorViewModel : ViewModelBase,
     IEventMessageReceiver<ConnectionErrorMessage>,
-    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<LoggingOutMessage>
 {
     private readonly IUrls _urls;
@@ -94,7 +94,7 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
         });
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         ExecuteOnUIThread(() =>
         {

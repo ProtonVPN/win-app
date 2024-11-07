@@ -32,7 +32,6 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Legacy.Abstract;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
@@ -59,7 +58,6 @@ public class ConnectionManager : IInternalConnectionManager,
     private readonly IGuestHoleManager _guestHoleManager;
     private readonly TimeSpan _reconnectInterval = TimeSpan.FromMinutes(1);
 
-    private TrafficBytes? _bytesTransferred;
     private DateTime _minReconnectionDateUtc = DateTime.MinValue;
     private bool _isNetworkBlocked;
     private bool _isConnectionStatusHandled;
@@ -209,38 +207,6 @@ public class ConnectionManager : IInternalConnectionManager,
         await _vpnServiceCaller.DisconnectAsync(request);
     }
 
-    public async Task<TrafficBytes> GetTrafficBytesAsync()
-    {
-        Result<TrafficBytesIpcEntity> trafficBytes = await _vpnServiceCaller.GetTrafficBytesAsync();
-        return trafficBytes.Success
-            ? _entityMapper.Map<TrafficBytesIpcEntity, TrafficBytes>(trafficBytes.Value)
-            : TrafficBytes.Zero;
-    }
-
-    public async Task<TrafficBytes> GetCurrentSpeedAsync()
-    {
-        TrafficBytes bytesTransferred = await GetTrafficBytesAsync();
-
-        // If the app starts after a crash and an active VPN connection, skip the first bytes
-        // as it will display a huge spike equal to the amount of data downloaded/uploaded.
-        if (_bytesTransferred is null)
-        {
-            _bytesTransferred = bytesTransferred;
-            return TrafficBytes.Zero;
-        }
-
-        ulong downloadSpeed = bytesTransferred.BytesIn >= _bytesTransferred.Value.BytesIn
-            ? bytesTransferred.BytesIn - _bytesTransferred.Value.BytesIn
-            : 0;
-        ulong uploadSpeed = bytesTransferred.BytesOut >= _bytesTransferred.Value.BytesOut
-            ? bytesTransferred.BytesOut - _bytesTransferred.Value.BytesOut
-            : 0;
-
-        _bytesTransferred = bytesTransferred;
-
-        return new TrafficBytes(downloadSpeed, uploadSpeed);
-    }
-
     public async Task HandleAsync(VpnStateIpcEntity message)
     {
         IConnectionIntent connectionIntent = CurrentConnectionIntent ?? ConnectionIntent.Default;
@@ -313,14 +279,14 @@ public class ConnectionManager : IInternalConnectionManager,
 
         ConnectionStatus = connectionStatus;
         CurrentError = error;
-        _eventMessageSender.Send(new ConnectionStatusChanged(connectionStatus));
+        _eventMessageSender.Send(new ConnectionStatusChangedMessage(connectionStatus));
 
         _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Status updated to {ConnectionStatus}.{(IsConnected ? $" Connected to server {CurrentConnectionDetails?.ServerName}" : string.Empty)}");
     }
 
     public void Receive(ConnectionDetailsIpcEntity message)
     {
-        _eventMessageSender.Send(new ConnectionDetailsChanged
+        _eventMessageSender.Send(new ConnectionDetailsChangedMessage
         {
             ClientCountryCode = message.ClientCountryIsoCode,
             ClientIpAddress = message.ClientIpAddress,

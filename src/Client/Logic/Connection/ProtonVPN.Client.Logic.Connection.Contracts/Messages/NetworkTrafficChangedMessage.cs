@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,12 +19,4 @@
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 
-public class PortForwardingPortChanged
-{
-    public int? ActivePort { get; }
-
-    public PortForwardingPortChanged(int? activePort)
-    {
-        ActivePort = activePort;
-    }
-}
+public class NetworkTrafficChangedMessage;

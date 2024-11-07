@@ -37,7 +37,7 @@ public class ChangeServerModerator :
     IChangeServerModerator,
     IEventMessageReceiver<LoggedInMessage>,
     IEventMessageReceiver<SettingChangedMessage>,
-    IEventMessageReceiver<ConnectionStatusChanged>
+    IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
     private readonly ISettings _settings;
     private readonly IConnectionManager _connectionManager;
@@ -114,7 +114,7 @@ public class ChangeServerModerator :
         }
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         if (_connectionManager.IsConnected &&
             _connectionManager.CurrentConnectionIntent?.Location is FreeServerLocationIntent intent &&

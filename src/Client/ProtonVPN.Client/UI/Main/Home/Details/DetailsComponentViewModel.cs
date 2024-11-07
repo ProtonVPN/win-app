@@ -30,15 +30,13 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
-using ProtonVPN.Client.UI.Main.Home.Details.Contracts;
-using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Home.Details;
 
-public partial class DetailsComponentViewModel : HostViewModelBase<ISidebarViewNavigator>, 
-    IEventMessageReceiver<ConnectionStatusChanged>,
+public partial class DetailsComponentViewModel : HostViewModelBase<ISidebarViewNavigator>,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<MainWindowVisibilityChangedMessage>
 {
     private const int REFRESH_TIMER_INTERVAL_IN_MS = 1000;
@@ -47,8 +45,6 @@ public partial class DetailsComponentViewModel : HostViewModelBase<ISidebarViewN
 
     private readonly IConnectionManager _connectionManager;
     private readonly IMainWindowActivator _mainWindowActivator;
-
-    private readonly IEnumerable<IConnectionDetailsAware> _connectionDetailsComponents;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ProtectionDescription))]
@@ -84,14 +80,11 @@ public partial class DetailsComponentViewModel : HostViewModelBase<ISidebarViewN
         ILogger logger,
         IIssueReporter issueReporter,
         IConnectionManager connectionManager,
-        IMainWindowActivator mainWindowActivator,
-        IEnumerable<IConnectionDetailsAware> connectionDetailsComponents)
+        IMainWindowActivator mainWindowActivator)
         : base(childViewNavigator, localizer, logger, issueReporter)
     {
         _connectionManager = connectionManager;
         _mainWindowActivator = mainWindowActivator;
-
-        _connectionDetailsComponents = connectionDetailsComponents;
 
         _refreshTimer = new()
         {
@@ -100,14 +93,14 @@ public partial class DetailsComponentViewModel : HostViewModelBase<ISidebarViewN
         _refreshTimer.Tick += OnRefreshTimerTick;
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         ExecuteOnUIThread(InvalidateConnectionStatus);
     }
 
     public void Receive(MainWindowVisibilityChangedMessage message)
     {
-        InvalidateAutoRefreshTimer();
+        ExecuteOnUIThread(InvalidateAutoRefreshTimer);
     }
 
     protected override void OnActivated()
@@ -137,12 +130,11 @@ public partial class DetailsComponentViewModel : HostViewModelBase<ISidebarViewN
 
     private void InvalidateAutoRefreshTimer()
     {
-        // Ideally the timer should stop whenever the component is not visible, but because the speed graph shows the history, we need to keep track of the data
         if (_connectionManager.IsConnected) // && IsActive && _mainWindowActivator.IsWindowVisible) 
         {
             if (!_refreshTimer.IsEnabled)
             {
-                Refresh();
+                InvalidateSessionLength();
                 _refreshTimer.Start();
             }
         }
@@ -157,26 +149,12 @@ public partial class DetailsComponentViewModel : HostViewModelBase<ISidebarViewN
 
     private void OnRefreshTimerTick(object? sender, EventArgs e)
     {
-        Refresh();
+        InvalidateSessionLength();
     }
 
-    private async void Refresh()
+    private void InvalidateSessionLength()
     {
         ConnectionDetails? connectionDetails = _connectionManager.CurrentConnectionDetails;
-
-        TrafficBytes volume = await _connectionManager.GetTrafficBytesAsync();
-        TrafficBytes speed = await _connectionManager.GetCurrentSpeedAsync();
-
-        InvalidateSessionLength(connectionDetails);
-
-        foreach (IConnectionDetailsAware component in _connectionDetailsComponents)
-        {
-            component.Refresh(connectionDetails, volume, speed);
-        }
-    }
-
-    private void InvalidateSessionLength(ConnectionDetails? connectionDetails)
-    {
         SessionLength = connectionDetails is null
             ? null
             : DateTime.UtcNow - connectionDetails?.EstablishedConnectionTimeUtc;

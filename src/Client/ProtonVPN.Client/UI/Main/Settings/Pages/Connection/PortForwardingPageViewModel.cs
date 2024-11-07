@@ -141,12 +141,12 @@ public partial class PortForwardingPageViewModel : SettingsPageViewModelBase
             Settings.IsPortForwardingNotificationEnabled != IsPortForwardingNotificationEnabled);
     }
 
-    public void Receive(PortForwardingStatusChanged message)
+    public void Receive(PortForwardingStatusChangedMessage message)
     {
         ExecuteOnUIThread(InvalidateStatusMessageAndActivePortNumber);
     }
 
-    public void Receive(PortForwardingPortChanged message)
+    public void Receive(PortForwardingPortChangedMessage message)
     {
         ExecuteOnUIThread(InvalidateStatusMessageAndActivePortNumber);
     }

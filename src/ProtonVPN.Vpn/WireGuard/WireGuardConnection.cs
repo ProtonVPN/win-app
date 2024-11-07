@@ -96,7 +96,7 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
 
     public event EventHandler<EventArgs<VpnState>> StateChanged;
     public event EventHandler<ConnectionDetails> ConnectionDetailsChanged;
-    public TrafficBytes Total { get; private set; } = TrafficBytes.Zero;
+    public NetworkTraffic NetworkTraffic { get; private set; } = NetworkTraffic.Zero;
 
     public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
     {
@@ -197,9 +197,9 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         _lastVpnError = VpnError.None;
     }
 
-    private void OnTrafficSent(object sender, TrafficBytes total)
+    private void OnTrafficSent(object sender, NetworkTraffic total)
     {
-        Total = total;
+        NetworkTraffic = total;
     }
 
     private async Task EnsureServiceIsStopped(CancellationToken cancellationToken)
@@ -235,7 +235,7 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
                 break;
             case VpnStatus.Disconnected:
                 OnVpnDisconnected(state);
-                Total = TrafficBytes.Zero;
+                NetworkTraffic = NetworkTraffic.Zero;
                 break;
         }
     }

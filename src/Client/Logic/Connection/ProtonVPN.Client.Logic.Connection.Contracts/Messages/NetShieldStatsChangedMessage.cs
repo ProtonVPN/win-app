@@ -19,9 +19,9 @@
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 
-public class ConnectionDetailsChanged
+public class NetShieldStatsChangedMessage
 {
-    public required string ClientCountryCode { get; init; }
-    public required string ClientIpAddress { get; init; }
-    public required string ServerIpAddress { get; init; }
+    public required long NumOfMaliciousUrlsBlocked { get; init; }
+    public required long NumOfAdvertisementUrlsBlocked { get; init; }
+    public required long NumOfTrackingUrlsBlocked { get; init; }
 }

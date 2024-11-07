@@ -39,8 +39,8 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.Legacy.UI.Features.PortForwarding;
 
 public partial class PortForwardingViewModel : SettingsPageViewModelBase,
-    IEventMessageReceiver<PortForwardingPortChanged>,
-    IEventMessageReceiver<PortForwardingStatusChanged>
+    IEventMessageReceiver<PortForwardingPortChangedMessage>,
+    IEventMessageReceiver<PortForwardingStatusChangedMessage>
 {
     private readonly IUrls _urls;
     private readonly IClipboardEditor _clipboardEditor;
@@ -155,12 +155,12 @@ public partial class PortForwardingViewModel : SettingsPageViewModelBase,
             Settings.IsPortForwardingNotificationEnabled != IsPortForwardingNotificationEnabled);
     }
 
-    public void Receive(PortForwardingStatusChanged message)
+    public void Receive(PortForwardingStatusChangedMessage message)
     {
         ExecuteOnUIThread(InvalidateStatusMessageAndActivePortNumber);
     }
 
-    public void Receive(PortForwardingPortChanged message)
+    public void Receive(PortForwardingPortChangedMessage message)
     {
         ExecuteOnUIThread(InvalidateStatusMessageAndActivePortNumber);
     }

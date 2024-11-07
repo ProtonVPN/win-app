@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Common.Core.Networking;
 
-public class NetShieldStatsChanged
+namespace ProtonVPN.Client.Logic.Connection.NetworkingTraffic;
+
+public interface INetworkTrafficScheduler
 {
-    public required long NumOfMaliciousUrlsBlocked { get; init; }
-    public required long NumOfAdvertisementUrlsBlocked { get; init; }
-    public required long NumOfTrackingUrlsBlocked { get; init; }
+    event EventHandler<NetworkTraffic> NetworkTrafficChanged;
 }

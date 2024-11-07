@@ -34,8 +34,8 @@ namespace ProtonVPN.Client.UI.Main.Home.Details.Flyouts;
 
 public partial class IpAddressFlyoutViewModel : ActivatableViewModelBase,
     IEventMessageReceiver<DeviceLocationChangedMessage>,
-    IEventMessageReceiver<ConnectionDetailsChanged>,
-    IEventMessageReceiver<ConnectionStatusChanged>
+    IEventMessageReceiver<ConnectionDetailsChangedMessage>,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
     private const string HIDDEN_IP_ADDRESS = "***.***.***.***";
 
@@ -95,7 +95,7 @@ public partial class IpAddressFlyoutViewModel : ActivatableViewModelBase,
         }
     }
 
-    public void Receive(ConnectionDetailsChanged message)
+    public void Receive(ConnectionDetailsChangedMessage message)
     {
         ExecuteOnUIThread(() =>
         {
@@ -103,7 +103,7 @@ public partial class IpAddressFlyoutViewModel : ActivatableViewModelBase,
         });
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         if (IsActive)
         {

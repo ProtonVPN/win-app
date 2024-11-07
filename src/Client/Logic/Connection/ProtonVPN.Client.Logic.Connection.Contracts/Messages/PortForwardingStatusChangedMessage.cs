@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,19 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Common.Core.Networking;
+using ProtonVPN.Common.Legacy.PortForwarding;
 
-public struct TrafficBytes
+namespace ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+
+public class PortForwardingStatusChangedMessage
 {
-    public TrafficBytes(ulong bytesIn, ulong bytesOut)
+    public PortMappingStatus Status { get; }
+
+    public PortForwardingStatusChangedMessage(PortMappingStatus status)
     {
-        BytesIn = bytesIn;
-        BytesOut = bytesOut;
+        Status = status;
     }
-
-    public ulong BytesIn { get; }
-
-    public ulong BytesOut { get; }
-
-    public static TrafficBytes Zero { get; } = new(0, 0);
 }

@@ -40,7 +40,7 @@ using ProtonVPN.Client.Services.Bootstrapping;
 namespace ProtonVPN.Client.UI.Tray;
 
 public partial class TrayIconComponentViewModel : ViewModelBase,
-    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<LoggedInMessage>,
     IEventMessageReceiver<LoggedOutMessage>
 {
@@ -107,7 +107,7 @@ public partial class TrayIconComponentViewModel : ViewModelBase,
         await _connectionManager.DisconnectAsync();
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         ExecuteOnUIThread(InvalidateTray);
     }

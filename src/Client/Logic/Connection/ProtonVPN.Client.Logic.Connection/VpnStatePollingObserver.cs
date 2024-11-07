@@ -33,7 +33,7 @@ namespace ProtonVPN.Client.Logic.Connection;
 
 public class VpnStatePollingObserver : PollingObserverBase,
     IVpnStatePollingObserver,
-    IEventMessageReceiver<ConnectionStatusChanged>
+    IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
     private readonly ISettings _settings;
     private readonly IConfiguration _configuration;
@@ -69,7 +69,7 @@ public class VpnStatePollingObserver : PollingObserverBase,
         }
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         lock (_timerLock)
         {

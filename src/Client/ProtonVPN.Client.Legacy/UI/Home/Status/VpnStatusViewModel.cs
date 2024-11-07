@@ -36,7 +36,7 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.Legacy.UI.Home.Status;
 
 public partial class VpnStatusViewModel : ViewModelBase,
-    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<DeviceLocationChangedMessage>,
     IEventMessageReceiver<SettingChangedMessage>,
     IEventMessageReceiver<VpnPlanChangedMessage>
@@ -113,7 +113,7 @@ public partial class VpnStatusViewModel : ViewModelBase,
         InvalidateDeviceLocation();
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         ExecuteOnUIThread(InvalidateCurrentConnectionStatus);
     }

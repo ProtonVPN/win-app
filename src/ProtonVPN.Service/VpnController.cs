@@ -98,9 +98,9 @@ public class VpnController : IVpnController
         _connectionCertificateCache.Set(new ConnectionCertificate(certificate.Pem, certificate.ExpirationDateUtc));
     }
 
-    public async Task<TrafficBytesIpcEntity> GetTrafficBytes()
+    public async Task<NetworkTrafficIpcEntity> GetNetworkTraffic()
     {
-        return _entityMapper.Map<TrafficBytes, TrafficBytesIpcEntity>(_vpnConnection.Total);
+        return _entityMapper.Map<NetworkTraffic, NetworkTrafficIpcEntity>(_vpnConnection.NetworkTraffic);
     }
 
     public async Task ApplySettings(MainSettingsIpcEntity settings)

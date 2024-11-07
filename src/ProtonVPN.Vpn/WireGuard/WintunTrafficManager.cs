@@ -34,7 +34,7 @@ public class WintunTrafficManager
     private NamedPipeClientStream _stream;
     private readonly SingleAction _updateBytesTransferredAction;
 
-    public event EventHandler<TrafficBytes> TrafficSent;
+    public event EventHandler<NetworkTraffic> TrafficSent;
 
     public WintunTrafficManager(string pipeName)
     {
@@ -87,7 +87,7 @@ public class WintunTrafficManager
                         tx += ulong.Parse(line.Substring(9));
                     }
 
-                    TrafficSent?.Invoke(this, new TrafficBytes(rx, tx));
+                    TrafficSent?.Invoke(this, new NetworkTraffic(rx, tx));
                 }
 
                 Thread.Sleep(1000);

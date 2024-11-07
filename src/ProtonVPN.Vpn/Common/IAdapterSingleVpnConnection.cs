@@ -29,7 +29,7 @@ namespace ProtonVPN.Vpn.Common
         event EventHandler<EventArgs<VpnState>> StateChanged;
         event EventHandler<ConnectionDetails> ConnectionDetailsChanged;
 
-        TrafficBytes Total { get; }
+        NetworkTraffic NetworkTraffic { get; }
 
         void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config);
         void Disconnect(VpnError error);

@@ -20,6 +20,7 @@
         <PackageReference Include="MSTest.TestAdapter" />
         <PackageReference Include="MSTest.TestFramework" />
         <PackageReference Include="coverlet.collector" />
+        <PackageReference Include="NSubstitute" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\ProtonVPN.Client.Logic.Connection.Contracts\ProtonVPN.Client.Logic.Connection.Contracts.csproj" />

@@ -33,7 +33,7 @@ namespace ProtonVPN.Client.UI.Main.FeatureIcons;
 public abstract class FeatureIconViewModelBase : ViewModelBase,
     IEventMessageReceiver<ThemeChangedMessage>,
     IEventMessageReceiver<SettingChangedMessage>,
-    IEventMessageReceiver<ConnectionStatusChanged>
+    IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
     private readonly IConnectionManager _connectionManager;
 
@@ -70,7 +70,7 @@ public abstract class FeatureIconViewModelBase : ViewModelBase,
         }
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         ExecuteOnUIThread(() =>
         {

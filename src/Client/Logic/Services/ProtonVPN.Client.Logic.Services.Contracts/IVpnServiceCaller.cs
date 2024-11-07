@@ -29,7 +29,7 @@ public interface IVpnServiceCaller
     Task ConnectAsync(ConnectionRequestIpcEntity connectionRequest);
     Task DisconnectAsync(DisconnectionRequestIpcEntity connectionRequest);
 
-    Task<Result<TrafficBytesIpcEntity>> GetTrafficBytesAsync();
+    Task<Result<NetworkTrafficIpcEntity>> GetNetworkTrafficAsync();
     Task RequestNetShieldStatsAsync();
     Task RequestConnectionDetailsAsync();
 

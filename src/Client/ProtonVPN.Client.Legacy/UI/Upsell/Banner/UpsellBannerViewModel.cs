@@ -36,7 +36,7 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.Legacy.UI.Upsell.Banner;
 
 public partial class UpsellBannerViewModel : ViewModelBase,
-    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<VpnPlanChangedMessage>,
     IEventMessageReceiver<ChangeServerAttemptInvalidatedMessage>
 {
@@ -83,7 +83,7 @@ public partial class UpsellBannerViewModel : ViewModelBase,
         ExecuteOnUIThread(InvalidateProperties);
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         ExecuteOnUIThread(InvalidateProperties);
     }

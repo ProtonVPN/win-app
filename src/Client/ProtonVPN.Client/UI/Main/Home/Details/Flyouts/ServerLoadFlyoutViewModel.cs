@@ -19,18 +19,19 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Contracts.Bases.ViewModels;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models;
+using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Services.Browsing;
-using ProtonVPN.Client.UI.Main.Home.Details.Contracts;
-using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Home.Details.Flyouts;
 
-public partial class ServerLoadFlyoutViewModel : ActivatableViewModelBase, IConnectionDetailsAware
+public partial class ServerLoadFlyoutViewModel : ActivatableViewModelBase,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
+    IEventMessageReceiver<NetworkTrafficChangedMessage>
 {
     private readonly IUrls _urls;
     private readonly IConnectionManager _connectionManager;
@@ -52,18 +53,33 @@ public partial class ServerLoadFlyoutViewModel : ActivatableViewModelBase, IConn
         _connectionManager = connectionManager;
     }
 
-    public void Refresh(ConnectionDetails? connectionDetails, TrafficBytes volume, TrafficBytes speed)
+    public void Receive(ConnectionStatusChangedMessage message)
+    {
+        ExecuteOnUIThread(Refresh);
+    }
+
+    public void Receive(NetworkTrafficChangedMessage message)
+    {
+        ExecuteOnUIThread(Refresh);
+    }
+
+    private void Refresh()
     {
         if (IsActive)
         {
-            ServerLoad = connectionDetails?.ServerLoad ?? 0;
+            SetServerLoad();
         }
+    }
+
+    private void SetServerLoad()
+    {
+        ServerLoad = _connectionManager.CurrentConnectionDetails?.ServerLoad ?? 0;
     }
 
     protected override void OnActivated()
     {
         base.OnActivated();
 
-        ServerLoad = 0;
+        SetServerLoad();
     }
 }

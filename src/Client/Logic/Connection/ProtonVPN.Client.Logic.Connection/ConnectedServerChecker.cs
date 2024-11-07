@@ -38,7 +38,7 @@ using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 namespace ProtonVPN.Client.Logic.Connection;
 
 public class ConnectedServerChecker : PollingObserverBase,
-    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<SettingChangedMessage>
 {
     private readonly ILogger _logger;
@@ -165,7 +165,7 @@ public class ConnectedServerChecker : PollingObserverBase,
         }
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         SetTimer();
     }

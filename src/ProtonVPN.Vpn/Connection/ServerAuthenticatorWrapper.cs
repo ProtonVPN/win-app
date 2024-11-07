@@ -40,7 +40,7 @@ namespace ProtonVPN.Vpn.Connection
             _origin.StateChanged += Origin_StateChanged;
         }
 
-        public TrafficBytes Total => _origin.Total;
+        public NetworkTraffic NetworkTraffic => _origin.NetworkTraffic;
 
         public event EventHandler<EventArgs<VpnState>> StateChanged;
 

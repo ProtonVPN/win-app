@@ -22,24 +22,24 @@ using ProtonVPN.Client.Contracts.Bases.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
-using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models;
+using ProtonVPN.Client.Logic.Connection.Contracts.History;
+using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
-using ProtonVPN.Client.UI.Main.Home.Details.Contracts;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Home.Details.Flyouts;
 
-public partial class SpeedFlyoutViewModel : ActivatableViewModelBase, IConnectionDetailsAware,
-    IEventMessageReceiver<SettingChangedMessage>
+public partial class SpeedFlyoutViewModel : ActivatableViewModelBase,
+    IEventMessageReceiver<SettingChangedMessage>,
+    IEventMessageReceiver<NetworkTrafficChangedMessage>
 {
     private readonly IUrls _urls;
     private readonly ISettings _settings;
-    private readonly IConnectionManager _connectionManager;
+    private readonly INetworkTrafficManager _networkTrafficManager;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(FormattedDownloadSpeed))]
@@ -60,7 +60,7 @@ public partial class SpeedFlyoutViewModel : ActivatableViewModelBase, IConnectio
     public SpeedFlyoutViewModel(
         IUrls urls,
         ISettings settings,
-        IConnectionManager connectionManager,
+        INetworkTrafficManager networkTrafficManager,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter) :
@@ -68,16 +68,25 @@ public partial class SpeedFlyoutViewModel : ActivatableViewModelBase, IConnectio
     {
         _urls = urls;
         _settings = settings;
-        _connectionManager = connectionManager;
+        _networkTrafficManager = networkTrafficManager;
     }
 
-    public void Refresh(ConnectionDetails? connectionDetails, TrafficBytes volume, TrafficBytes speed)
+    public void Receive(NetworkTrafficChangedMessage message)
     {
-        if (IsActive)
+        ExecuteOnUIThread(() =>
         {
-            DownloadSpeed = (long)speed.BytesIn;
-            UploadSpeed = (long)speed.BytesOut;
-        }
+            if (IsActive)
+            {
+                SetSpeed();
+            }
+        });
+    }
+
+    private void SetSpeed()
+    {
+        NetworkTraffic speed = _networkTrafficManager.GetSpeed();
+        DownloadSpeed = (long)speed.BytesDownloaded;
+        UploadSpeed = (long)speed.BytesUploaded;
     }
 
     public void Receive(SettingChangedMessage message)
@@ -93,8 +102,7 @@ public partial class SpeedFlyoutViewModel : ActivatableViewModelBase, IConnectio
     {
         base.OnActivated();
 
-        DownloadSpeed = null;
-        UploadSpeed = null;
+        SetSpeed();
     }
 
     protected override void OnLanguageChanged()

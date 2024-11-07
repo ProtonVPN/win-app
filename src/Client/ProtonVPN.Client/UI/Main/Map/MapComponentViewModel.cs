@@ -33,7 +33,7 @@ using ProtonVPN.Client.Contracts.Messages;
 namespace ProtonVPN.Client.UI.Main.Map;
 
 public partial class MapComponentViewModel : ViewModelBase,
-    IEventMessageReceiver<ConnectionStatusChanged>,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<SettingChangedMessage>,
     IEventMessageReceiver<MainWindowVisibilityChangedMessage>
 {
@@ -86,7 +86,7 @@ public partial class MapComponentViewModel : ViewModelBase,
         }
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         ExecuteOnUIThread(() =>
         {

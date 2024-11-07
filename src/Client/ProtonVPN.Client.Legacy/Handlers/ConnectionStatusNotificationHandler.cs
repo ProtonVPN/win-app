@@ -23,7 +23,7 @@ using ProtonVPN.Client.Notifications;
 
 namespace ProtonVPN.Client.Legacy.Handlers;
 
-public class ConnectionStatusNotificationHandler : IHandler, IEventMessageReceiver<ConnectionStatusChanged>
+public class ConnectionStatusNotificationHandler : IHandler, IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
     private readonly IConnectionStatusNotificationSender _connectionStatusNotificationSender;
 
@@ -32,7 +32,7 @@ public class ConnectionStatusNotificationHandler : IHandler, IEventMessageReceiv
         _connectionStatusNotificationSender = connectionStatusNotificationSender;
     }
 
-    public void Receive(ConnectionStatusChanged message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         _connectionStatusNotificationSender.Send(message.ConnectionStatus);
     }

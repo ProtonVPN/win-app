@@ -27,7 +27,7 @@ using ProtonVPN.Logging.Contracts.Events.GuestHoleLogs;
 
 namespace ProtonVPN.Client.Logic.Connection.GuestHole;
 
-public class GuestHoleManager : IGuestHoleManager, IEventMessageReceiver<ConnectionStatusChanged>
+public class GuestHoleManager : IGuestHoleManager, IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
     private readonly ILogger _logger;
     private readonly IEventMessageSender _eventMessageSender;
@@ -72,7 +72,7 @@ public class GuestHoleManager : IGuestHoleManager, IEventMessageReceiver<Connect
         _eventMessageSender.Send(new GuestHoleStatusChangedMessage(isActive));
     }
 
-    public async void Receive(ConnectionStatusChanged message)
+    public async void Receive(ConnectionStatusChangedMessage message)
     {
         if (!_isActive || _lastVpnStatus == message.ConnectionStatus)
         {

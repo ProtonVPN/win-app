@@ -25,9 +25,9 @@ using ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
 namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn;
 
 [TestClass]
-public class TrafficBytesMapperTest
+public class NetworkTrafficMapperTest
 {
-    private TrafficBytesMapper _mapper;
+    private NetworkTrafficMapper _mapper;
 
     [TestInitialize]
     public void Initialize()
@@ -44,52 +44,52 @@ public class TrafficBytesMapperTest
     [TestMethod]
     public void TestMapLeftToRight_WhenZero()
     {
-        TrafficBytes entityToTest = TrafficBytes.Zero;
+        NetworkTraffic entityToTest = NetworkTraffic.Zero;
 
-        TrafficBytesIpcEntity result = _mapper.Map(entityToTest);
+        NetworkTrafficIpcEntity result = _mapper.Map(entityToTest);
 
         Assert.IsNotNull(result);
-        Assert.AreEqual(0u, result.BytesIn);
-        Assert.AreEqual(0u, result.BytesOut);
+        Assert.AreEqual(0u, result.BytesDownloaded);
+        Assert.AreEqual(0u, result.BytesUploaded);
     }
 
     [TestMethod]
     public void TestMapLeftToRight()
     {
-        TrafficBytes entityToTest = new((ulong)DateTime.UtcNow.Ticks, (ulong)DateTime.UtcNow.Millisecond);
+        NetworkTraffic entityToTest = new((ulong)DateTime.UtcNow.Ticks, (ulong)DateTime.UtcNow.Millisecond);
 
-        TrafficBytesIpcEntity result = _mapper.Map(entityToTest);
+        NetworkTrafficIpcEntity result = _mapper.Map(entityToTest);
 
         Assert.IsNotNull(result);
-        Assert.AreEqual(entityToTest.BytesIn, result.BytesIn);
-        Assert.AreEqual(entityToTest.BytesOut, result.BytesOut);
+        Assert.AreEqual(entityToTest.BytesDownloaded, result.BytesDownloaded);
+        Assert.AreEqual(entityToTest.BytesUploaded, result.BytesUploaded);
     }
 
     [TestMethod]
     public void TestMapRightToLeft_WhenNull()
     {
-        TrafficBytesIpcEntity entityToTest = null;
+        NetworkTrafficIpcEntity entityToTest = null;
 
-        TrafficBytes result = _mapper.Map(entityToTest);
+        NetworkTraffic result = _mapper.Map(entityToTest);
 
         Assert.IsNotNull(result);
-        Assert.AreEqual(0u, result.BytesIn);
-        Assert.AreEqual(0u, result.BytesOut);
+        Assert.AreEqual(0u, result.BytesDownloaded);
+        Assert.AreEqual(0u, result.BytesUploaded);
     }
 
     [TestMethod]
     public void TestMapRightToLeft()
     {
-        TrafficBytesIpcEntity entityToTest = new()
+        NetworkTrafficIpcEntity entityToTest = new()
         {
-            BytesIn = (ulong)DateTime.UtcNow.Ticks,
-            BytesOut = (ulong)DateTime.UtcNow.Millisecond,
+            BytesDownloaded = (ulong)DateTime.UtcNow.Ticks,
+            BytesUploaded = (ulong)DateTime.UtcNow.Millisecond,
         };
 
-        TrafficBytes result = _mapper.Map(entityToTest);
+        NetworkTraffic result = _mapper.Map(entityToTest);
 
         Assert.IsNotNull(result);
-        Assert.AreEqual(entityToTest.BytesIn, result.BytesIn);
-        Assert.AreEqual(entityToTest.BytesOut, result.BytesOut);
+        Assert.AreEqual(entityToTest.BytesDownloaded, result.BytesDownloaded);
+        Assert.AreEqual(entityToTest.BytesUploaded, result.BytesUploaded);
     }
 }

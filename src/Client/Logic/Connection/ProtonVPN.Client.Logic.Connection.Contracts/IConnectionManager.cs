@@ -19,7 +19,6 @@
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
-using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ConnectionDetails = ProtonVPN.Client.Logic.Connection.Contracts.Models.ConnectionDetails;
 
@@ -43,7 +42,5 @@ public interface IConnectionManager
     Task<bool> ReconnectAsync();
     Task DisconnectAsync();
 
-    Task<TrafficBytes> GetTrafficBytesAsync();
-    Task<TrafficBytes> GetCurrentSpeedAsync();
     Task InitializeAsync(IConnectionIntent? connectionIntent);
 }

@@ -42,7 +42,7 @@ namespace ProtonVPN.Client.Legacy.Handlers;
 
 public class VpnPlanChangedHandler : IHandler,
     IEventMessageReceiver<VpnPlanChangedMessage>,
-    IEventMessageReceiver<ConnectionStatusChanged>
+    IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
     private readonly DispatcherQueue _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
     private readonly ILogger _logger;
@@ -137,7 +137,7 @@ public class VpnPlanChangedHandler : IHandler,
         _urls.NavigateTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSources.Downgrade));
     }
 
-    public async void Receive(ConnectionStatusChanged message)
+    public async void Receive(ConnectionStatusChangedMessage message)
     {
         if (_notifyOnNextConnection && message.ConnectionStatus == ConnectionStatus.Connected)
         {

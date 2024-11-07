@@ -30,7 +30,7 @@ public interface IVpnConnection
     event EventHandler<EventArgs<VpnState>> StateChanged;
     event EventHandler<ConnectionDetails> ConnectionDetailsChanged;
 
-    TrafficBytes Total { get; }
+    NetworkTraffic NetworkTraffic { get; }
 
     void Connect(IReadOnlyList<VpnHost> servers, VpnConfig config, VpnCredentials credentials);
     void ResetConnection();

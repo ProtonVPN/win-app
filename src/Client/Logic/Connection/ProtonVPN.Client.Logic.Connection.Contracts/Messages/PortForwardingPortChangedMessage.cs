@@ -17,16 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
-
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 
-public class ConnectionStatusChanged
+public class PortForwardingPortChangedMessage
 {
-    public ConnectionStatus ConnectionStatus { get; }
+    public int? ActivePort { get; }
 
-    public ConnectionStatusChanged(ConnectionStatus connectionStatus)
+    public PortForwardingPortChangedMessage(int? activePort)
     {
-        ConnectionStatus = connectionStatus;
+        ActivePort = activePort;
     }
 }

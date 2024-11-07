@@ -90,7 +90,7 @@ internal class OpenVpnConnection : IAdapterSingleVpnConnection
     public event EventHandler<EventArgs<VpnState>> StateChanged;
     public event EventHandler<ConnectionDetails> ConnectionDetailsChanged;
 
-    public TrafficBytes Total { get; private set; } = TrafficBytes.Zero;
+    public NetworkTraffic NetworkTraffic { get; private set; } = NetworkTraffic.Zero;
 
     public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig vpnConfig)
     {
@@ -312,9 +312,9 @@ internal class OpenVpnConnection : IAdapterSingleVpnConnection
         OnStateChanged(state);
     }
 
-    private void ManagementClient_TransportStatsChanged(object sender, EventArgs<TrafficBytes> e)
+    private void ManagementClient_TransportStatsChanged(object sender, EventArgs<NetworkTraffic> e)
     {
-        Total = e.Data;
+        NetworkTraffic = e.Data;
     }
 
     private void OnStateChanged(VpnStatus status)
@@ -330,7 +330,7 @@ internal class OpenVpnConnection : IAdapterSingleVpnConnection
             case VpnStatus.Disconnecting:
             case VpnStatus.Disconnected:
                 state = new VpnState(status, _disconnectError, _vpnConfig?.VpnProtocol ?? VpnProtocol.Smart);
-                Total = TrafficBytes.Zero;
+                NetworkTraffic = NetworkTraffic.Zero;
                 break;
             default:
                 state = new VpnState(status, VpnError.None, _vpnConfig?.VpnProtocol ?? VpnProtocol.Smart);

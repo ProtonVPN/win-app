@@ -28,13 +28,12 @@ using LiveChartsCore.SkiaSharpView.Painting.Effects;
 using ProtonVPN.Client.Common.Collections;
 using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Common.Helpers;
-using ProtonVPN.Client.Common.Queues;
 using ProtonVPN.Client.Contracts.Bases.ViewModels;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
-using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models;
-using ProtonVPN.Client.UI.Main.Home.Details.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.History;
+using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -42,18 +41,15 @@ using SkiaSharp;
 
 namespace ProtonVPN.Client.UI.Main.Home.Details.Connection;
 
-public partial class VpnSpeedViewModel : ActivatableViewModelBase, IConnectionDetailsAware
+public partial class VpnSpeedViewModel : ActivatableViewModelBase,
+    IEventMessageReceiver<NetworkTrafficChangedMessage>
 {
+    private const double Y_AXIS_BUFFER = 1.1;
+
     public SmartObservableCollection<double> ScaledDownloadDataPoints = [];
     public SmartObservableCollection<double> ScaledUploadDataPoints = [];
 
-    private const int MAX_DATA_POINTS = 30;
-    private const int DEFAULT_VALUE = 0;
-
-    private readonly IConnectionManager _connectionManager;
-
-    private readonly FixedSizeQueue<long> _downloadDataPoints = new(MAX_DATA_POINTS, DEFAULT_VALUE);
-    private readonly FixedSizeQueue<long> _uploadDataPoints = new(MAX_DATA_POINTS, DEFAULT_VALUE);
+    private readonly INetworkTrafficManager _networkTrafficManager;
 
     private ICartesianAxis _yAxis;
 
@@ -102,26 +98,31 @@ public partial class VpnSpeedViewModel : ActivatableViewModelBase, IConnectionDe
 
     public VpnSpeedViewModel(
         ILocalizationProvider localizationProvider,
-        IConnectionManager connectionManager,
+        INetworkTrafficManager networkTrafficManager,
         ILogger logger,
         IIssueReporter issueReporter)
         : base(localizationProvider, logger, issueReporter)
     {
-        _connectionManager = connectionManager;
+        _networkTrafficManager = networkTrafficManager;
 
         InitializeSpeedGraph();
     }
 
-    public void Refresh(ConnectionDetails? connectionDetails, TrafficBytes volume, TrafficBytes speed)
+    public void Receive(NetworkTrafficChangedMessage message)
     {
-        DownloadSpeed = (long)speed.BytesIn;
-        UploadSpeed = (long)speed.BytesOut;
+        ExecuteOnUIThread(InvalidateAll);
+    }
 
-        DownloadVolume = (long)volume.BytesIn;
-        UploadVolume = (long)volume.BytesOut;
+    private void InvalidateAll()
+    {
+        NetworkTraffic speed = _networkTrafficManager.GetSpeed();
+        NetworkTraffic volume = _networkTrafficManager.GetVolume();
 
-        _downloadDataPoints.Enqueue(DownloadSpeed);
-        _uploadDataPoints.Enqueue(UploadSpeed);
+        DownloadSpeed = (long)speed.BytesDownloaded;
+        UploadSpeed = (long)speed.BytesUploaded;
+
+        DownloadVolume = (long)volume.BytesDownloaded;
+        UploadVolume = (long)volume.BytesUploaded;
 
         if (IsActive)
         {
@@ -202,7 +203,11 @@ public partial class VpnSpeedViewModel : ActivatableViewModelBase, IConnectionDe
 
     private void InvalidateSpeedGraph()
     {
-        long maxSpeed = Math.Max(_downloadDataPoints.Max(), _uploadDataPoints.Max());
+        IReadOnlyList<NetworkTraffic> speedHistory = _networkTrafficManager.GetSpeedHistory();
+        IEnumerable<long> downloadHistory = speedHistory.Select(nt => (long)nt.BytesDownloaded);
+        IEnumerable<long> uploadHistory = speedHistory.Select(nt => (long)nt.BytesUploaded);
+
+        long maxSpeed = Math.Max(downloadHistory.Max(), uploadHistory.Max());
         (double scaledMaxSpeed, ByteMetrics metric) = ByteConversionHelper.CalculateSize(maxSpeed);
 
         Metric = metric;
@@ -210,8 +215,8 @@ public partial class VpnSpeedViewModel : ActivatableViewModelBase, IConnectionDe
 
         OnPropertyChanged(nameof(SpeedUnit));
 
-        ScaledDownloadDataPoints.Reset(_downloadDataPoints.Select(n => GetScaledDataPoint(n, scaleFactor)).ToList());
-        ScaledUploadDataPoints.Reset(_uploadDataPoints.Select(n => GetScaledDataPoint(n, scaleFactor)).ToList());
+        ScaledDownloadDataPoints.Reset(downloadHistory.Select(n => GetScaledDataPoint(n, scaleFactor)).ToList());
+        ScaledUploadDataPoints.Reset(uploadHistory.Select(n => GetScaledDataPoint(n, scaleFactor)).ToList());
 
         double roundedScaledMaxSpeed = CalculateYAxisLimit(scaledMaxSpeed);
 
@@ -232,6 +237,8 @@ public partial class VpnSpeedViewModel : ActivatableViewModelBase, IConnectionDe
         {
             return 0;
         }
+
+        maxValue *= Y_AXIS_BUFFER;
 
         double roundedLimit;
 
@@ -258,13 +265,5 @@ public partial class VpnSpeedViewModel : ActivatableViewModelBase, IConnectionDe
         }
 
         return roundedLimit;
-    }
-
-    private void InvalidateDataPoints()
-    {
-        _downloadDataPoints.Reset();
-        _uploadDataPoints.Reset();
-
-        InvalidateSpeedGraph();
     }
 }
