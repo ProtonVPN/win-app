@@ -275,7 +275,7 @@ public class ServersCache : IServersCache
             .GroupBy(s => new { Country = s.ExitCountry, City = s.City })
             .Select(c => new City() {
                 CountryCode = c.Key.Country,
-                StateName = c.Select(s => s.State).Distinct().FirstOrDefault(s => !string.IsNullOrWhiteSpace(s)) ?? string.Empty,
+                StateName = c.Select(s => s.State).Distinct().FirstOrDefault(s => !string.IsNullOrWhiteSpace(s)),
                 Name = c.Key.City,
                 IsUnderMaintenance = IsUnderMaintenance(c),
                 Features = AggregateFeatures(c),
