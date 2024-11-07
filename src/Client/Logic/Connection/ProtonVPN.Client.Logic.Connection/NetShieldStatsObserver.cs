@@ -38,7 +38,6 @@ public class NetShieldStatsObserver : PollingObserverBase,
     IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<SettingChangedMessage>,
     IEventMessageReceiver<NetShieldStatisticIpcEntity>
-    //IEventMessageReceiver<MainWindowStateChangedMessage>
 {
     private const int TIMER_INTERVAL_IN_SECONDS = 20;
     private const int MINIMUM_REQUEST_TIMEOUT_IN_SECONDS = 20;
@@ -89,12 +88,6 @@ public class NetShieldStatsObserver : PollingObserverBase,
             InvalidateTimer();
         }
     }
-
-    // TODO: fix
-    // public void Receive(MainWindowStateChangedMessage message)
-    // {
-    //     InvalidateTimer();
-    // }
 
     public void Receive(NetShieldStatisticIpcEntity message)
     {

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -25,6 +25,7 @@ using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
@@ -38,6 +39,7 @@ public partial class NetShieldStatsViewModel : ActivatableViewModelBase,
     private const int AVG_TRACKER_SIZE_IN_BYTES = 50000;
     private const int AVG_MALWARE_SIZE_IN_BYTES = 750000;
 
+    private readonly IVpnServiceCaller _vpnServiceCaller;
     private readonly IConnectionManager _connectionManager;
 
     [ObservableProperty]
@@ -56,12 +58,14 @@ public partial class NetShieldStatsViewModel : ActivatableViewModelBase,
     public string TrackersStoppedLabel => Localizer.GetPlural("Home_NetShield_TrackersStopped", NumberOfTrackersStopped);
 
     public NetShieldStatsViewModel(
+        IVpnServiceCaller vpnServiceCaller,
         ILocalizationProvider localizationProvider,
         ILogger logger,
         IIssueReporter issueReporter,
         IConnectionManager connectionManager)
         : base(localizationProvider, logger, issueReporter)
     {
+        _vpnServiceCaller = vpnServiceCaller;
         _connectionManager = connectionManager;
     }
 
@@ -116,5 +120,12 @@ public partial class NetShieldStatsViewModel : ActivatableViewModelBase,
         {
             ExecuteOnUIThread(ClearNetShieldStats);
         }
+    }
+
+    protected override void OnActivated()
+    {
+        base.OnActivated();
+
+        _vpnServiceCaller.RequestNetShieldStatsAsync();
     }
 }
