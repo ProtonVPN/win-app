@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,15 +17,37 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Xaml;
+using ProtonVPN.Client.Contracts.Bases;
+
 namespace ProtonVPN.Client.UI.Main.Components;
 
-public sealed partial class NetShieldStatsComponent
+public sealed partial class NetShieldStatsComponent : IContextAware
 {
+    public NetShieldStatsViewModel ViewModel { get; }
+
     public NetShieldStatsComponent()
     {
         ViewModel = App.GetService<NetShieldStatsViewModel>();
+
         InitializeComponent();
+
+        Loaded += OnLoaded;
+        Unloaded += OnUnloaded;
     }
 
-    public NetShieldStatsViewModel ViewModel { get; }
+    public object GetContext()
+    {
+        return ViewModel;
+    }
+
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        ViewModel.Activate();
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        ViewModel.Deactivate();
+    }
 }
