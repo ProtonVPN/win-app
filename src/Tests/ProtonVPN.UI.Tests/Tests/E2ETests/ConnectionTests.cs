@@ -60,34 +60,6 @@ public class ConnectionTests : BaseTest
     }
 
     [Test]
-    public void ConnectToCountry()
-    {
-        NavigationRobot
-            .Verify.IsOnHomePage()
-                   .IsOnConnectionsPage()
-                   .IsOnLocationDetailsPage();
-        HomeRobot
-            .Verify.IsDisconnected();
-        SidebarRobot
-            .NavigateToAllCountriesTab();
-        NavigationRobot
-            .Verify.IsOnCountriesPage();
-        SidebarRobot
-            .ConnectToCountry(COUNTRY_CODE);
-        HomeRobot
-            .Verify.IsConnecting()
-                   .IsConnected();
-        NavigationRobot
-            .Verify.IsOnConnectionDetailsPage();
-        SidebarRobot
-            .DisconnectFromCountry(COUNTRY_CODE);
-        HomeRobot
-            .Verify.IsDisconnected();
-        NavigationRobot
-            .Verify.IsOnLocationDetailsPage();
-    }
-
-    [Test]
     public void ConnectToFastestCountry()
     {
         NavigationRobot

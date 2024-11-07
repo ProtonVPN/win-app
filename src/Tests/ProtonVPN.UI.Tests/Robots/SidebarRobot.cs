@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
 
@@ -37,10 +38,14 @@ public class SidebarRobot
     protected Element GatewaysListItem = Element.ByName("Gateways");
     protected Element ProfilesListItem = Element.ByName("Profiles");
 
-
     protected Element CountryTabs = Element.ByAutomationId("CountriesFeaturesList");
 
     protected Element CreateProfileButton = Element.ByAutomationId("CreateProfileButton");
+
+    protected Element SearchTextBox = Element.ByAutomationId("SearchTextBox");
+    protected Element CountryExpanderButton = Element.ByAutomationId("ExpanderButton");
+    protected Element CitySecondaryButton = Element.ByAutomationId("SecondaryButton");
+    protected Element SpecificServerConnectionButton = Element.ByAutomationId("ConnectionRowHeader");
 
     public SidebarRobot NavigateToRecents()
     {
@@ -86,23 +91,44 @@ public class SidebarRobot
         return this;
     }
 
-    public SidebarRobot ConnectToCountry(string countryCode)
+    public SidebarRobot ConnectToCountry(string country)
     {
-        Element countryButton = Element.ByAutomationId($"Connect_to_{countryCode}");
-        countryButton.FindChild(Element.ByAutomationId("ConnectionRowHeader")).Click();
+        ConnectViaServerList(country);
+        return this;
+    }
+
+    public SidebarRobot ConnectToCity(string cityName)
+    {
+        ConnectViaServerList(cityName);
         return this;
     }
 
     public SidebarRobot ConnectToFastest()
     {
-        ConnectToCountry(FASTEST_PROFILE);
+        ConnectViaServerList(FASTEST_PROFILE);
+        return this;
+    }
+    public SidebarRobot ConnectToFirstSpecificServer()
+    {
+        ConnectViaServerList("Spectific_Server");
         return this;
     }
 
-    public SidebarRobot DisconnectFromCountry(string countryCode)
+    public SidebarRobot DisconnectViaCountry(string country)
     {
-        Element countryButton = Element.ByAutomationId($"Disconnect_from_{countryCode}");
-        countryButton.FindChild(Element.ByAutomationId("ConnectionRowHeader")).Click();
+        DisconnectViaSidebarButton(country);
+        return this;
+    }
+
+    public SidebarRobot DisconnectViaCity(string city)
+    {
+        DisconnectViaSidebarButton(city);
+        return this;
+    }
+
+    public SidebarRobot DisconnectViaSpecificServer()
+    {
+        DisconnectViaSidebarButton("Spectific_Server");
         return this;
     }
 
@@ -112,10 +138,45 @@ public class SidebarRobot
         return this;
     }
 
+    public SidebarRobot SearchFor(string query)
+    {
+        SearchTextBox.Click();
+        SearchTextBox.SetText(query);
+        return this;
+    }
+
+    public SidebarRobot ExpandCities()
+    {
+        CountryExpanderButton.Click();
+        // Remove when VPNWIN-2261 is implemented. 
+        Thread.Sleep(TestConstants.AnimationDelay);
+        return this;
+    }
+
+    public SidebarRobot ExpandSpecificServerList()
+    {
+        CitySecondaryButton.Click();
+        return this;
+    }
+
     private SidebarRobot NavigateToCountriesTab(int index)
     {
         NavigateToCountries();
         CountryTabs.ClickItem(index);
+        return this;
+    }
+
+    private SidebarRobot DisconnectViaSidebarButton(string connectionValue)
+    {
+        Element countryButton = Element.ByAutomationId($"Disconnect_from_{connectionValue}");
+        countryButton.FindChild(Element.ByAutomationId("ConnectionRowHeader")).Click();
+        return this;
+    }
+
+    private SidebarRobot ConnectViaServerList(string connectionValue)
+    {
+        Element countryButton = Element.ByAutomationId($"Connect_to_{connectionValue}");
+        countryButton.FindChild(Element.ByAutomationId("ConnectionRowHeader")).Click();
         return this;
     }
 
