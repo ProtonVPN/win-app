@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,6 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
 using ProtonVPN.Client.Contracts.Bases;
 
 namespace ProtonVPN.Client.UI.Main.Home.Card;
@@ -30,10 +33,37 @@ public sealed partial class ConnectionCardComponentView : IContextAware
         ViewModel = App.GetService<ConnectionCardComponentViewModel>();
 
         InitializeComponent();
+
+        Loaded += OnLoaded;
+        Unloaded += OnUnloaded;
     }
 
     public object GetContext()
     {
         return ViewModel;
+    }
+
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        ViewModel.Activate();
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        ViewModel.Deactivate();
+    }
+
+    private void OnButtonIsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+    {
+        // This code makes sure the button to connect/cancel/disconnect receives focus automatically when enabled
+        if (sender is Button button && button.IsEnabled)
+        {
+            button.Focus(FocusState.Programmatic);
+        }
+    }
+
+    private void OnHeaderPointerPressed(object sender, PointerRoutedEventArgs e)
+    {
+        ViewModel.UseInlineLayout = !ViewModel.UseInlineLayout;
     }
 }

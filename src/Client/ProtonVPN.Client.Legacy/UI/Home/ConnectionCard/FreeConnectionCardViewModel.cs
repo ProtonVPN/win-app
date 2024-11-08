@@ -35,6 +35,7 @@ using ProtonVPN.Client.Legacy.Models.Activation.Custom;
 using ProtonVPN.Client.Legacy.UI.Home.ConnectionCard.Overlays;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 namespace ProtonVPN.Client.Legacy.UI.Home.ConnectionCard;
 
@@ -158,7 +159,7 @@ public partial class FreeConnectionCardViewModel : ConnectionCardViewModelBase,
 
     private void InvalidateFreeCountriesCount()
     {
-        List<string> freeCountries = _serversLoader.GetFreeCountries().ToList();
+        List<Country> freeCountries = _serversLoader.GetFreeCountries().ToList();
 
         FreeCountriesCount = freeCountries.Count;
     }

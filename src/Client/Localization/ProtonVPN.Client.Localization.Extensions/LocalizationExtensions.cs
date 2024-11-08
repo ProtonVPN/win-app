@@ -78,23 +78,6 @@ public static class LocalizationExtensions
         };
     }
 
-    public static string GetConnectionDetailsTitle(this ILocalizationProvider localizer, ConnectionDetails connectionDetails)
-    {
-        return connectionDetails?.OriginalConnectionIntent.Location switch
-        {
-            CountryLocationIntent countryIntent => countryIntent.IsSpecificCountry
-                ? localizer.GetCountryName(connectionDetails.ExitCountryCode)
-                : localizer.GetCountryName(countryIntent.CountryCode, countryIntent.Kind, countryIntent.IsToExcludeMyCountry),
-            GatewayLocationIntent gatewayIntent => connectionDetails.GatewayName,
-            FreeServerLocationIntent freeServerIntent => freeServerIntent.Kind switch
-            {
-                ConnectionIntentKind.Random => localizer.GetCountryName(connectionDetails.ExitCountryCode, freeServerIntent.Kind),
-                _ => localizer.GetFreeServerName(freeServerIntent.Kind)
-            },
-            _ => localizer.Get("Country_Fastest")
-        };
-    }
-
     public static string GetConnectionIntentSubtitle(this ILocalizationProvider localizer, IConnectionIntent? connectionIntent, bool useDetailedSubtitle = false)
     {
         if (connectionIntent?.Feature is SecureCoreFeatureIntent secureCoreIntent)
@@ -104,13 +87,41 @@ public static class LocalizationExtensions
 
         return connectionIntent?.Location switch
         {
-            ServerLocationIntent serverIntent => localizer.GetFormat("Connection_Intent_City_Server", GetStateOrCityName(serverIntent.State, serverIntent.City), serverIntent.Number).Trim(),
+            ServerLocationIntent serverIntent => ConcatenateLocations(GetStateOrCityName(serverIntent.State, serverIntent.City), serverIntent.Name),
             CityLocationIntent cityIntent => cityIntent.City,
             StateLocationIntent stateIntent => stateIntent.State,
-            GatewayServerLocationIntent gatewayServerIntent => localizer.GetFormat("Connection_Intent_Country_Server", localizer.GetCountryName(gatewayServerIntent.CountryCode), gatewayServerIntent.Number).Trim(),
-            FreeServerLocationIntent freeServerIntent => useDetailedSubtitle ? localizer.Get("Connection_Intent_AutoSelected") : string.Empty,
-            CountryLocationIntent countryIntent => useDetailedSubtitle && countryIntent.IsFastestCountry ? localizer.Get("Settings_Connection_Default_Fastest_Description") : string.Empty,
+            GatewayServerLocationIntent gatewayServerIntent => ConcatenateLocations(localizer.GetCountryName(gatewayServerIntent.CountryCode), gatewayServerIntent.Name),
+            CountryLocationIntent countryIntent => useDetailedSubtitle && countryIntent.IsFastestCountry
+                ? localizer.Get("Settings_Connection_Default_Fastest_Description")
+                : string.Empty,
             _ => string.Empty,
+        };
+    }
+
+    public static string GetConnectionProfileSubtitle(this ILocalizationProvider localizer, IConnectionProfile profile)
+    {
+        string title = localizer.GetConnectionIntentTitle(profile);
+        string subtitle = localizer.GetConnectionIntentSubtitle(profile);
+
+        return profile.Feature is SecureCoreFeatureIntent secureCoreIntent && secureCoreIntent.IsFastest
+            ? ConcatenateLocations(title, subtitle)
+            : $"{title} {subtitle}".Trim();
+    }
+
+    public static string GetConnectionDetailsTitle(this ILocalizationProvider localizer, ConnectionDetails connectionDetails)
+    {
+        return connectionDetails?.OriginalConnectionIntent.Location switch
+        {
+            CountryLocationIntent countryIntent => countryIntent.IsSpecificCountry
+                ? localizer.GetCountryName(connectionDetails.ExitCountryCode)
+                : localizer.GetCountryName(countryCode: string.Empty, countryIntent.Kind, countryIntent.IsToExcludeMyCountry),
+            GatewayLocationIntent gatewayIntent => connectionDetails.GatewayName,
+            FreeServerLocationIntent freeServerIntent => freeServerIntent.Kind switch
+            {
+                ConnectionIntentKind.Random => localizer.GetCountryName(connectionDetails.ExitCountryCode, freeServerIntent.Kind),
+                _ => localizer.GetFreeServerName(freeServerIntent.Kind)
+            },
+            _ => localizer.Get("Country_Fastest")
         };
     }
 
@@ -126,17 +137,14 @@ public static class LocalizationExtensions
 
         return connectionDetails?.OriginalConnectionIntent.Location switch
         {
-            ServerLocationIntent serverIntent => localizer.GetFormat("Connection_Intent_City_Server", GetStateOrCityName(connectionDetails.State, connectionDetails.City), connectionDetails.ServerNumber),
-            CityLocationIntent cityIntent => connectionDetails.City,
-            StateLocationIntent stateIntent => connectionDetails.State,
             CountryLocationIntent countryIntent => countryIntent.IsSpecificCountry
-                ? string.Empty
-                : localizer.GetCountryName(connectionDetails.ExitCountryCode, countryIntent.Kind, countryIntent.IsToExcludeMyCountry),
-            GatewayServerLocationIntent gatewayServerIntent => localizer.GetFormat("Connection_Intent_Country_Server", localizer.GetCountryName(connectionDetails.ExitCountryCode), connectionDetails.ServerNumber),
+                ? ConcatenateLocations(GetStateOrCityName(connectionDetails.State, connectionDetails.City), connectionDetails.ServerName)
+                : ConcatenateLocations(localizer.GetCountryName(connectionDetails.ExitCountryCode), GetStateOrCityName(connectionDetails.State, connectionDetails.City), connectionDetails.ServerName),
+            GatewayLocationIntent => ConcatenateLocations(localizer.GetCountryName(connectionDetails.ExitCountryCode), connectionDetails.ServerName),
             FreeServerLocationIntent freeServerIntent => freeServerIntent.Kind switch
             {
-                ConnectionIntentKind.Fastest => localizer.GetFormat("Connection_Intent_Country_Server", localizer.GetCountryName(connectionDetails.ExitCountryCode, freeServerIntent.Kind), connectionDetails.ServerNumber),
-                ConnectionIntentKind.Random => $"#{connectionDetails.ServerNumber}",
+                ConnectionIntentKind.Fastest => ConcatenateLocations(localizer.GetCountryName(connectionDetails.ExitCountryCode, freeServerIntent.Kind), connectionDetails.ServerName),
+                ConnectionIntentKind.Random => connectionDetails.ServerName,
                 _ => string.Empty
             },
             _ => string.Empty,
@@ -148,29 +156,20 @@ public static class LocalizationExtensions
         string title = localizer.GetConnectionDetailsTitle(connectionDetails);
         string subtitle = localizer.GetConnectionDetailsSubtitle(connectionDetails);
 
-        return string.IsNullOrWhiteSpace(subtitle)
-            ? title
-            : connectionDetails.IsSecureCore
-                ? $"{title} {subtitle}"
-                : $"{title} - {subtitle}";
+        return connectionDetails.IsSecureCore && connectionDetails.OriginalConnectionIntent.Location is CountryLocationIntent countryIntent && countryIntent.IsSpecificCountry
+            ? $"{title} {subtitle}".Trim()
+            : ConcatenateLocations(title, subtitle); 
     }
 
-    public static string GetConnectionProfileSubtitle(this ILocalizationProvider localizer, IConnectionProfile profile)
+    private static string ConcatenateLocations(params string[] locations)
     {
-        string title = localizer.GetConnectionIntentTitle(profile);
-        string subtitle = localizer.GetConnectionIntentSubtitle(profile);
-
-        return string.IsNullOrWhiteSpace(subtitle)
-            ? title
-            : profile?.Feature is SecureCoreFeatureIntent
-                ? $"{title} {subtitle}"
-                : $"{title} - {subtitle}";
+        return string.Join(" - ", locations.Where(s => !string.IsNullOrEmpty(s))).Trim();
     }
 
     public static string GetSecureCoreLabel(this ILocalizationProvider localizer, string? entryCountryCode)
     {
         return string.IsNullOrEmpty(entryCountryCode)
-            ? localizer.GetFormat("Connection_Via_SecureCore", localizer.Get("Countries_SecureCore"))
+            ? localizer.Get("Countries_SecureCore")
             : localizer.GetFormat("Connection_Via_SecureCore", localizer.GetCountryName(entryCountryCode));
     }
 

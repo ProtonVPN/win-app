@@ -42,26 +42,47 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <enums:ProfileCategory x:Key="HomeCategory">Home</enums:ProfileCategory>
     <enums:ProfileCategory x:Key="FingerprintingCategory">Fingerprinting</enums:ProfileCategory>
 
+    <x:Double x:Key="StandardProfileWidth">48.0</x:Double>
+    <x:Double x:Key="StandardProfileHeight">48.0</x:Double>
+    <Thickness x:Key="StandardProfilePadding">0,4</Thickness>
+    <x:Double x:Key="StandardProfileIconWidth">36.0</x:Double>
+    <x:Double x:Key="StandardProfileFlagWidth">30.0</x:Double>
+
+    <x:Double x:Key="CompactProfileWidth">54.0</x:Double>
+    <x:Double x:Key="CompactProfileHeight">36.0</x:Double>
+    <Thickness x:Key="CompactProfilePadding">0</Thickness>
+    <x:Double x:Key="CompactProfileIconWidth">42.0</x:Double>
+    <x:Double x:Key="CompactProfileFlagWidth">30.0</x:Double>
+
     <Style BasedOn="{StaticResource DefaultConnectionProfileIconStyle}" TargetType="custom:ConnectionProfileIcon" />
 
     <Style x:Key="DefaultConnectionProfileIconStyle" TargetType="custom:ConnectionProfileIcon">
-        <Setter Property="Width" Value="48" />
+        <Setter Property="Width" Value="{StaticResource StandardProfileWidth}" />
+        <Setter Property="Height" Value="{StaticResource StandardProfileHeight}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:ConnectionProfileIcon">
                     <Viewbox>
-                        <Grid Padding="0,4">
-                            <ContentPresenter x:Name="IconContainer"
-                                              Width="36"
-                                              HorizontalAlignment="Left"
-                                              VerticalAlignment="Top">
+                        <Grid x:Name="ProfileContainer"
+                              Width="{StaticResource StandardProfileWidth}"
+                              Height="{StaticResource StandardProfileHeight}"
+                              Padding="{StaticResource StandardProfilePadding}">
 
-                                <profiles:DefaultProfileIcon AccentColor="{TemplateBinding ProfileColor}" />
+                            <Viewbox x:Name="IconContainer"
+                                     Width="{StaticResource StandardProfileIconWidth}"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Top">
 
-                            </ContentPresenter>
+                                <ContentPresenter x:Name="IconPresenter">
+                                    <profiles:DefaultProfileIcon AccentColor="{TemplateBinding ProfileColor}" />
+                                </ContentPresenter>
 
-                            <custom:SimpleCountryFlag Width="30"
-                                                      Margin="18,20,0,0"
+                            </Viewbox>
+
+                            <custom:SimpleCountryFlag x:Name="FlagContainer"
+                                                      Width="{StaticResource StandardProfileFlagWidth}"
+                                                      HorizontalAlignment="Right"
+                                                      VerticalAlignment="Bottom"
                                                       CountryCode="{TemplateBinding CountryCode}"
                                                       FlagType="{TemplateBinding FlagType}"
                                                       Visibility="{Binding IsFlagVisible, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
@@ -75,7 +96,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                       To="{StaticResource GamingCategory}" />
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
-                                        <Setter Target="IconContainer.Content">
+                                        <Setter Target="IconPresenter.Content">
                                             <Setter.Value>
                                                 <profiles:GamingProfileIcon AccentColor="{TemplateBinding ProfileColor}" />
                                             </Setter.Value>
@@ -88,7 +109,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                       To="{StaticResource StreamingCategory}" />
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
-                                        <Setter Target="IconContainer.Content">
+                                        <Setter Target="IconPresenter.Content">
                                             <Setter.Value>
                                                 <profiles:StreamingProfileIcon AccentColor="{TemplateBinding ProfileColor}" />
                                             </Setter.Value>
@@ -101,7 +122,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                       To="{StaticResource ProtectionCategory}" />
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
-                                        <Setter Target="IconContainer.Content">
+                                        <Setter Target="IconPresenter.Content">
                                             <Setter.Value>
                                                 <profiles:ProtectionProfileIcon AccentColor="{TemplateBinding ProfileColor}" />
                                             </Setter.Value>
@@ -114,7 +135,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                       To="{StaticResource PrivacyCategory}" />
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
-                                        <Setter Target="IconContainer.Content">
+                                        <Setter Target="IconPresenter.Content">
                                             <Setter.Value>
                                                 <profiles:PrivacyProfileIcon AccentColor="{TemplateBinding ProfileColor}" />
                                             </Setter.Value>
@@ -127,7 +148,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                       To="{StaticResource AnonymousCategory}" />
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
-                                        <Setter Target="IconContainer.Content">
+                                        <Setter Target="IconPresenter.Content">
                                             <Setter.Value>
                                                 <profiles:AnonymousProfileIcon AccentColor="{TemplateBinding ProfileColor}" />
                                             </Setter.Value>
@@ -140,7 +161,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                       To="{StaticResource SpeedCategory}" />
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
-                                        <Setter Target="IconContainer.Content">
+                                        <Setter Target="IconPresenter.Content">
                                             <Setter.Value>
                                                 <profiles:SpeedProfileIcon AccentColor="{TemplateBinding ProfileColor}" />
                                             </Setter.Value>
@@ -153,7 +174,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                       To="{StaticResource DownloadCategory}" />
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
-                                        <Setter Target="IconContainer.Content">
+                                        <Setter Target="IconPresenter.Content">
                                             <Setter.Value>
                                                 <profiles:DownloadProfileIcon AccentColor="{TemplateBinding ProfileColor}" />
                                             </Setter.Value>
@@ -166,7 +187,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                       To="{StaticResource BusinessCategory}" />
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
-                                        <Setter Target="IconContainer.Content">
+                                        <Setter Target="IconPresenter.Content">
                                             <Setter.Value>
                                                 <profiles:BusinessProfileIcon AccentColor="{TemplateBinding ProfileColor}" />
                                             </Setter.Value>
@@ -179,7 +200,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                       To="{StaticResource ShoppingCategory}" />
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
-                                        <Setter Target="IconContainer.Content">
+                                        <Setter Target="IconPresenter.Content">
                                             <Setter.Value>
                                                 <profiles:ShoppingProfileIcon AccentColor="{TemplateBinding ProfileColor}" />
                                             </Setter.Value>
@@ -192,7 +213,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                       To="{StaticResource SecurityCategory}" />
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
-                                        <Setter Target="IconContainer.Content">
+                                        <Setter Target="IconPresenter.Content">
                                             <Setter.Value>
                                                 <profiles:SecurityProfileIcon AccentColor="{TemplateBinding ProfileColor}" />
                                             </Setter.Value>
@@ -205,21 +226,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                       To="{StaticResource BrowsingCategory}" />
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
-                                        <Setter Target="IconContainer.Content">
+                                        <Setter Target="IconPresenter.Content">
                                             <Setter.Value>
                                                 <profiles:BrowsingProfileIcon AccentColor="{TemplateBinding ProfileColor}" />
                                             </Setter.Value>
                                         </Setter>
                                     </VisualState.Setters>
                                 </VisualState>
-
                                 <VisualState x:Name="Bot">
                                     <VisualState.StateTriggers>
                                         <triggers:IsEqualStateTrigger Value="{Binding ProfileCategory, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                                                       To="{StaticResource BotCategory}" />
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
-                                        <Setter Target="IconContainer.Content">
+                                        <Setter Target="IconPresenter.Content">
                                             <Setter.Value>
                                                 <profiles:BotProfileIcon AccentColor="{TemplateBinding ProfileColor}" />
                                             </Setter.Value>
@@ -232,7 +252,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                       To="{StaticResource GatewayCategory}" />
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
-                                        <Setter Target="IconContainer.Content">
+                                        <Setter Target="IconPresenter.Content">
                                             <Setter.Value>
                                                 <profiles:GatewayProfileIcon AccentColor="{TemplateBinding ProfileColor}" />
                                             </Setter.Value>
@@ -245,7 +265,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                       To="{StaticResource HomeCategory}" />
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
-                                        <Setter Target="IconContainer.Content">
+                                        <Setter Target="IconPresenter.Content">
                                             <Setter.Value>
                                                 <profiles:HomeProfileIcon AccentColor="{TemplateBinding ProfileColor}" />
                                             </Setter.Value>
@@ -258,14 +278,44 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                       To="{StaticResource FingerprintingCategory}" />
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
-                                        <Setter Target="IconContainer.Content">
+                                        <Setter Target="IconPresenter.Content">
                                             <Setter.Value>
                                                 <profiles:FingerprintingProfileIcon AccentColor="{TemplateBinding ProfileColor}" />
                                             </Setter.Value>
                                         </Setter>
                                     </VisualState.Setters>
                                 </VisualState>
+                                <VisualState />
 
+                            </VisualStateGroup>
+
+                            <VisualStateGroup x:Name="LayoutModes">
+                                <VisualState x:Name="Compact">
+                                    <VisualState.StateTriggers>
+                                        <StateTrigger IsActive="{Binding IsCompact, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Target="ProfileContainer.Width" Value="{StaticResource CompactProfileWidth}" />
+                                        <Setter Target="ProfileContainer.Height" Value="{StaticResource CompactProfileHeight}" />
+                                        <Setter Target="ProfileContainer.Padding" Value="{StaticResource CompactProfilePadding}" />
+                                        <Setter Target="IconContainer.Width" Value="{StaticResource CompactProfileIconWidth}" />
+                                        <Setter Target="FlagContainer.Width" Value="{StaticResource CompactProfileFlagWidth}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState />
+                            </VisualStateGroup>
+
+                            <VisualStateGroup x:Name="FlagStates">
+                                <VisualState x:Name="NoFlag">
+                                    <VisualState.StateTriggers>
+                                        <StateTrigger IsActive="{Binding IsFlagVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotBooleanToBooleanConverter}}" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Target="IconContainer.Width" Value="{StaticResource StandardProfileWidth}" />
+                                        <Setter Target="IconContainer.HorizontalAlignment" Value="Stretch" />
+                                        <Setter Target="IconContainer.VerticalAlignment" Value="Center" />
+                                    </VisualState.Setters>
+                                </VisualState>
                                 <VisualState />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>

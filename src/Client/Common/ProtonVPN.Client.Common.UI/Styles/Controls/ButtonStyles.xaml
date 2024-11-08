@@ -55,9 +55,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="ButtonForegroundPressed" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="ButtonForegroundDisabled" ResourceKey="TextHintColorBrush" />
 
-            <StaticResource x:Key="ButtonBorderBrush" ResourceKey="BorderNormColorBrush" />
-            <StaticResource x:Key="ButtonBorderBrushPointerOver" ResourceKey="BorderNormColorBrush" />
-            <StaticResource x:Key="ButtonBorderBrushPressed" ResourceKey="BorderNormColorBrush" />
+            <StaticResource x:Key="ButtonBorderBrush" ResourceKey="BorderWeakColorBrush" />
+            <StaticResource x:Key="ButtonBorderBrushPointerOver" ResourceKey="BorderWeakColorBrush" />
+            <StaticResource x:Key="ButtonBorderBrushPressed" ResourceKey="BorderWeakColorBrush" />
             <StaticResource x:Key="ButtonBorderBrushDisabled" ResourceKey="InteractionWeakColorBrush" />
 
             <!--  Tertiary Button Brushes  -->
@@ -110,9 +110,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="ButtonForegroundPressed" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="ButtonForegroundDisabled" ResourceKey="TextHintColorBrush" />
 
-            <StaticResource x:Key="ButtonBorderBrush" ResourceKey="BorderNormColorBrush" />
-            <StaticResource x:Key="ButtonBorderBrushPointerOver" ResourceKey="BorderNormColorBrush" />
-            <StaticResource x:Key="ButtonBorderBrushPressed" ResourceKey="BorderNormColorBrush" />
+            <StaticResource x:Key="ButtonBorderBrush" ResourceKey="BorderWeakColorBrush" />
+            <StaticResource x:Key="ButtonBorderBrushPointerOver" ResourceKey="BorderWeakColorBrush" />
+            <StaticResource x:Key="ButtonBorderBrushPressed" ResourceKey="BorderWeakColorBrush" />
             <StaticResource x:Key="ButtonBorderBrushDisabled" ResourceKey="InteractionWeakColorBrush" />
 
             <!--  Tertiary Button Brushes  -->
@@ -136,6 +136,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </ResourceDictionary.ThemeDictionaries>
 
     <Thickness x:Key="DefaultButtonPadding">16,5,16,6</Thickness>
+    <Thickness x:Key="LargeButtonPadding">24,8,24,10</Thickness>
 
     <Style BasedOn="{StaticResource SecondaryButtonStyle}" TargetType="Button" />
 
@@ -145,10 +146,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="FontWeight" Value="{StaticResource BodyStrongFontWeight}" />
     </Style>
 
+    <Style x:Key="LargePrimaryButtonStyle" BasedOn="{StaticResource PrimaryButtonStyle}" TargetType="Button">
+        <Setter Property="Padding" Value="{StaticResource LargeButtonPadding}" />
+        <Setter Property="FontSize" Value="{StaticResource BodyMediumStrongFontSize}" />
+        <Setter Property="FontWeight" Value="{StaticResource BodyMediumStrongFontWeight}" />
+    </Style>
+
     <Style x:Key="SecondaryButtonStyle" BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
         <Setter Property="Padding" Value="{StaticResource DefaultButtonPadding}" />
         <Setter Property="FontSize" Value="{StaticResource BodyStrongFontSize}" />
         <Setter Property="FontWeight" Value="{StaticResource BodyStrongFontWeight}" />
+    </Style>
+
+    <Style x:Key="LargeSecondaryButtonStyle" BasedOn="{StaticResource SecondaryButtonStyle}" TargetType="Button">
+        <Setter Property="Padding" Value="{StaticResource LargeButtonPadding}" />
+        <Setter Property="FontSize" Value="{StaticResource BodyMediumStrongFontSize}" />
+        <Setter Property="FontWeight" Value="{StaticResource BodyMediumStrongFontWeight}" />
     </Style>
 
     <Style x:Key="TertiaryButtonStyle" BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">

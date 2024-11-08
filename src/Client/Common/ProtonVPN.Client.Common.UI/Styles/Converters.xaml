@@ -53,4 +53,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                              RedColor="#F45E5E"
                                              YellowColor="#F9E646" />
     <converters:CountryCodeToFlagImageSourceConverter x:Key="CountryCodeToFlagImageSourceConverter" />
+    <converters:BooleanToOrientationConverter x:Key="BooleanToHorizontalOrientationConverter" 
+                                              OrientationWhenFalse="Vertical"
+                                              OrientationWhenTrue="Horizontal"/>
+    <converters:BooleanToOrientationConverter x:Key="BooleanToVerticalOrientationConverter" 
+                                              OrientationWhenFalse="Horizontal"
+                                              OrientationWhenTrue="Vertical"/>
 </ResourceDictionary>

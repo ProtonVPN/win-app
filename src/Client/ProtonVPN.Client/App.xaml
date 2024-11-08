@@ -76,6 +76,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/ServerLoadStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/ConnectionRowStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/InfoBannerStyles.xaml" />
+                <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/UpsellBannerStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/ConnectionProfileIconStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/DetailRowButtonStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/SizerStyles.xaml" />

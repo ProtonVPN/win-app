@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2024 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<UserControl x:Class="ProtonVPN.Client.UI.Main.Home.Upsell.ChangeServerComponentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:DefaultBindMode="OneWay"
+             mc:Ignorable="d">
+
+    <Grid>
+
+        <Button x:Name="ConnectionCardChangeServerButton"
+                HorizontalAlignment="Stretch"
+                AutomationProperties.AutomationId="ConnectionCardChangeServerButton"
+                Command="{x:Bind ViewModel.ChangeServerCommand, Mode=OneTime}"
+                Content="{x:Bind ViewModel.Localizer.Get('Home_ConnectionCard_ChangeServer')}"
+                Style="{StaticResource LargeSecondaryButtonStyle}"
+                Visibility="{x:Bind ViewModel.IsChangeServerTimerVisible, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+
+        <Button x:Name="ConnectionCardChangeServerTimeoutButton"
+                HorizontalAlignment="Stretch"
+                AutomationProperties.AutomationId="ConnectionCardChangeServerTimeoutButton"
+                Style="{StaticResource LargeSecondaryButtonStyle}"
+                Visibility="{x:Bind ViewModel.IsChangeServerTimerVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+            <Grid ColumnSpacing="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto"
+                                      MinWidth="40" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                           Foreground="{ThemeResource TextHintColorBrush}"
+                           Text="{x:Bind ViewModel.Localizer.Get('Home_ConnectionCard_ChangeServer')}"
+                           TextTrimming="CharacterEllipsis" />
+                <TextBlock Grid.Column="1"
+                           HorizontalAlignment="Center"
+                           Text="{x:Bind ViewModel.FormattedRemainingTime}" />
+            </Grid>
+
+            <Button.Flyout>
+                <Flyout Placement="BottomEdgeAlignedLeft">
+                    <StackPanel MaxWidth="312"
+                                Orientation="Vertical"
+                                Spacing="16">
+
+                        <StackPanel Orientation="Horizontal"
+                                    Spacing="8"
+                                    Visibility="{x:Bind ViewModel.IsChangeServerTimerVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                            <ProgressRing x:Name="CountdownRing"
+                                          Width="24"
+                                          Height="24"
+                                          AutomationProperties.AutomationId="ChangeServerCountdownProgressRing"
+                                          IsActive="{x:Bind ViewModel.IsChangeServerTimerVisible}"
+                                          IsIndeterminate="False"
+                                          Maximum="{x:Bind ViewModel.DelayInSeconds}"
+                                          Minimum="0"
+                                          Style="{StaticResource CountdownProgressRingStyle}"
+                                          Value="{x:Bind ViewModel.RemainingDelayInSeconds}" />
+
+                            <TextBlock x:Name="CountdownTextBlock"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="{ThemeResource TextNormColorBrush}"
+                                       Style="{StaticResource BodyLargeStrongTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.FormattedRemainingTime}" />
+
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical"
+                                    Spacing="4">
+
+                            <TextBlock Foreground="{ThemeResource TextNormColorBrush}"
+                                       Style="{StaticResource BodyStrongTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Dialogs_ChangeServer_MaximumServerChangesReached')}"
+                                       TextWrapping="Wrap"
+                                       Visibility="{x:Bind ViewModel.IsAttemptsLimitReached, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Dialogs_ChangeServer_GetUnlimitedServerChanges')}"
+                                       TextWrapping="Wrap" />
+
+                        </StackPanel>
+
+                        <Button HorizontalAlignment="Stretch"
+                                Command="{x:Bind ViewModel.UpgradePlanCommand, Mode=OneTime}"
+                                Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Upgrade')}"
+                                Style="{StaticResource PrimaryButtonStyle}" />
+
+                    </StackPanel>
+                </Flyout>
+            </Button.Flyout>
+        </Button>
+    </Grid>
+
+</UserControl>

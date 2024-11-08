@@ -25,13 +25,44 @@ namespace ProtonVPN.UI.Tests.Robots;
 public class HomeRobot
 {
     protected Element UnprotectedLabel = Element.ByName("Unprotected");
-    protected Element DisconnectButton = Element.ByName("Disconnect");
+    protected Element ConnectingLabel = Element.ByName("Connecting");
     protected Element ProtectedLabel = Element.ByName("Protected");
     protected Element GetStartedButton = Element.ByName("Get started");
+
+
+    protected Element ConnectionCardTitle = Element.ByAutomationId("ConnectionCardTitle");
+    protected Element ConnectionCardDescription = Element.ByAutomationId("ConnectionCardDescription");
+    protected Element ConnectionCardP2PTag = Element.ByAutomationId("ConnectionCardP2PTag");
+    protected Element ConnectionCardTorTag = Element.ByAutomationId("ConnectionCardTorTag");
+    protected Element ConnectionCardFreeConnectionsTagline = Element.ByAutomationId("ConnectionCardFreeConnectionsTagline");
+    protected Element ConnectionCardConnectButton = Element.ByAutomationId("ConnectionCardConnectButton");
+    protected Element ConnectionCardCancelButton = Element.ByAutomationId("ConnectionCardCancelButton");
+    protected Element ConnectionCardDisconnectButton = Element.ByAutomationId("ConnectionCardDisconnectButton");
+    protected Element ConnectionCardChangeServerButton = Element.ByAutomationId("ConnectionCardChangeServerButton");
+    protected Element ConnectionCardChangeServerTimeoutButton = Element.ByAutomationId("ConnectionCardChangeServerTimeoutButton");
+    protected Element ConnectionCardUpsellBanner = Element.ByAutomationId("ConnectionCardUpsellBanner");
 
     public HomeRobot DismissWelcomeModal()
     {
         GetStartedButton.Click();
+        return this;
+    }
+
+    public HomeRobot ConnectToDefaultConnection()
+    {
+        ConnectionCardConnectButton.Click();
+        return this;
+    }
+
+    public HomeRobot CancelConnection()
+    {
+        ConnectionCardCancelButton.Click();
+        return this;
+    }
+
+    public HomeRobot Disconnect()
+    {
+        ConnectionCardDisconnectButton.Click();
         return this;
     }
 
@@ -46,12 +77,33 @@ public class HomeRobot
         public Verifications IsDisconnected()
         {
             UnprotectedLabel.WaitUntilDisplayed();
+            ConnectionCardConnectButton.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications IsConnecting()
+        {
+            ConnectingLabel.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
+            ConnectionCardDisconnectButton.WaitUntilDisplayed();
             return this;
         }
 
         public Verifications IsConnected()
         {
             ProtectedLabel.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
+            ConnectionCardDisconnectButton.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications IsP2PConnection()
+        {
+            ConnectionCardP2PTag.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications IsTorConnection()
+        {
+            ConnectionCardTorTag.WaitUntilDisplayed();
             return this;
         }
     }

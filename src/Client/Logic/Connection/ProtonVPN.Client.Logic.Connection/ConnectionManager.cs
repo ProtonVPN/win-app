@@ -227,7 +227,7 @@ public class ConnectionManager : IInternalConnectionManager,
                 {
                     VpnProtocol vpnProtocol = _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(message.VpnProtocol);
 
-                    if (CurrentConnectionDetails is null)
+                    if (CurrentConnectionDetails is null || !CurrentConnectionDetails.OriginalConnectionIntent.IsSameAs(connectionIntent))
                     {
                         CurrentConnectionDetails = new ConnectionDetails(connectionIntent, server, physicalServer, vpnProtocol);
                     }

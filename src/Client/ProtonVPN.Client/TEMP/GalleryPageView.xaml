@@ -39,10 +39,126 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           HorizontalAlignment="Center"
                           VerticalScrollBarVisibility="Auto">
 
-                <StackPanel Width="400"
+                <StackPanel Width="500"
                             VerticalAlignment="Center"
-                            Orientation="Vertical"
+                            Orientation="Vertical" 
                             Spacing="20">
+
+                    <Button Style="{StaticResource PrimaryButtonStyle}" Content="Button"/>
+                    <Button Style="{StaticResource LargePrimaryButtonStyle}" Content="Button"/>
+                    <Button Style="{StaticResource SecondaryButtonStyle}" Content="Button"/>
+                    <Button Style="{StaticResource LargeSecondaryButtonStyle}" Content="Button"/>
+
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <custom:GhostButton Style="{StaticResource PrimaryGhostButtonStyle}" Content="Button">
+                            <custom:GhostButton.LeftIcon>
+                                <pathicons:Placeholder Size="Pixels16"/>
+                            </custom:GhostButton.LeftIcon>
+                            <custom:GhostButton.RightIcon>
+                                <pathicons:Placeholder Size="Pixels16"/>
+                            </custom:GhostButton.RightIcon>
+                        </custom:GhostButton>
+                        <custom:GhostButton Style="{StaticResource PrimaryGhostButtonStyle}" Content="Button" >
+                            <custom:GhostButton.RightIcon>
+                                <pathicons:Placeholder Size="Pixels16"/>
+                            </custom:GhostButton.RightIcon>
+                        </custom:GhostButton>
+                        <custom:GhostButton Style="{StaticResource PrimaryGhostButtonStyle}" Content="Button">
+                            <custom:GhostButton.LeftIcon>
+                                <pathicons:Placeholder Size="Pixels16"/>
+                            </custom:GhostButton.LeftIcon>
+                        </custom:GhostButton>
+                        <custom:GhostButton Style="{StaticResource PrimaryGhostButtonStyle}" Content="Button"/>
+
+                        <custom:GhostButton Style="{StaticResource PrimaryGhostButtonStyle}">
+                            <custom:GhostButton.LeftIcon>
+                                <pathicons:Placeholder Size="Pixels16"/>
+                            </custom:GhostButton.LeftIcon>
+                        </custom:GhostButton>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <custom:GhostButton Style="{StaticResource SecondaryGhostButtonStyle}" Content="Button">
+                            <custom:GhostButton.LeftIcon>
+                                <pathicons:Placeholder Size="Pixels16"/>
+                            </custom:GhostButton.LeftIcon>
+                            <custom:GhostButton.RightIcon>
+                                <pathicons:Placeholder Size="Pixels16"/>
+                            </custom:GhostButton.RightIcon>
+                        </custom:GhostButton>
+                        <custom:GhostButton Style="{StaticResource SecondaryGhostButtonStyle}" Content="Button" >
+                            <custom:GhostButton.RightIcon>
+                                <pathicons:Placeholder Size="Pixels16"/>
+                            </custom:GhostButton.RightIcon>
+                        </custom:GhostButton>
+                        <custom:GhostButton Style="{StaticResource SecondaryGhostButtonStyle}" Content="Button">
+                            <custom:GhostButton.LeftIcon>
+                                <pathicons:Placeholder Size="Pixels16"/>
+                            </custom:GhostButton.LeftIcon>
+                        </custom:GhostButton>
+                        <custom:GhostButton Style="{StaticResource SecondaryGhostButtonStyle}" Content="Button"/>
+
+                        <custom:GhostButton Style="{StaticResource SecondaryGhostButtonStyle}">
+                            <custom:GhostButton.LeftIcon>
+                                <pathicons:Placeholder Size="Pixels16"/>
+                            </custom:GhostButton.LeftIcon>
+                        </custom:GhostButton>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <custom:GhostButton Style="{StaticResource LargePrimaryGhostButtonStyle}" Content="Button">
+                            <custom:GhostButton.LeftIcon>
+                                <pathicons:Placeholder />
+                            </custom:GhostButton.LeftIcon>
+                            <custom:GhostButton.RightIcon>
+                                <pathicons:Placeholder />
+                            </custom:GhostButton.RightIcon>
+                        </custom:GhostButton>
+                        <custom:GhostButton Style="{StaticResource LargePrimaryGhostButtonStyle}" Content="Button" >
+                            <custom:GhostButton.RightIcon>
+                                <pathicons:Placeholder />
+                            </custom:GhostButton.RightIcon>
+                        </custom:GhostButton>
+                        <custom:GhostButton Style="{StaticResource LargePrimaryGhostButtonStyle}" Content="Button">
+                            <custom:GhostButton.LeftIcon>
+                                <pathicons:Placeholder />
+                            </custom:GhostButton.LeftIcon>
+                        </custom:GhostButton>
+                        <custom:GhostButton Style="{StaticResource LargePrimaryGhostButtonStyle}" Content="Button"/>
+                        <custom:GhostButton Style="{StaticResource LargePrimaryGhostButtonStyle}">
+                            <custom:GhostButton.LeftIcon>
+                                <pathicons:Placeholder />
+                            </custom:GhostButton.LeftIcon>
+                        </custom:GhostButton>
+                    </StackPanel>
+                    
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <custom:GhostButton Style="{StaticResource LargeSecondaryGhostButtonStyle}" Content="Button">
+                            <custom:GhostButton.LeftIcon>
+                                <pathicons:Placeholder />
+                            </custom:GhostButton.LeftIcon>
+                            <custom:GhostButton.RightIcon>
+                                <pathicons:Placeholder />
+                            </custom:GhostButton.RightIcon>
+                        </custom:GhostButton>
+                        <custom:GhostButton Style="{StaticResource LargeSecondaryGhostButtonStyle}" Content="Button" >
+                            <custom:GhostButton.RightIcon>
+                                <pathicons:Placeholder />
+                            </custom:GhostButton.RightIcon>
+                        </custom:GhostButton>
+                        <custom:GhostButton Style="{StaticResource LargeSecondaryGhostButtonStyle}" Content="Button">
+                            <custom:GhostButton.LeftIcon>
+                                <pathicons:Placeholder />
+                            </custom:GhostButton.LeftIcon>
+                        </custom:GhostButton>
+                        <custom:GhostButton Style="{StaticResource LargeSecondaryGhostButtonStyle}" Content="Button"/>
+                        <custom:GhostButton Style="{StaticResource LargeSecondaryGhostButtonStyle}">
+                            <custom:GhostButton.LeftIcon>
+                                <pathicons:Placeholder />
+                            </custom:GhostButton.LeftIcon>
+                        </custom:GhostButton>
+                    </StackPanel>
+
 
                     <custom:ConnectionProfileIcon FlagType="Fastest"
                                                   ProfileCategory="Gaming" />

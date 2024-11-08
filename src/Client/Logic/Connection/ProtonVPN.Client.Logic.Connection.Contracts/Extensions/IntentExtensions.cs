@@ -46,13 +46,14 @@ public static class IntentExtensions
         return serverIntent.Name.GetServerNumber();
     }
 
-    public static FlagType GetFlagType(this ILocationIntent? locationIntent)
+    public static FlagType GetFlagType(this ILocationIntent? locationIntent, bool isConnected = false)
     {
         return locationIntent switch
         {
             GatewayLocationIntent gatewayIntent => FlagType.Gateway,
             CountryLocationIntent countryIntent when countryIntent.IsSpecificCountry => FlagType.Country,
             CountryLocationIntent countryIntent when countryIntent.IsGenericRandomIntent() => FlagType.Random,
+            FreeServerLocationIntent freeServerIntent when freeServerIntent.IsGenericRandomIntent() => isConnected ? FlagType.Country : FlagType.Random,
             _ => FlagType.Fastest,
         };
     }

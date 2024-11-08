@@ -854,6 +854,7 @@
         <None Remove="Styles\Controls\TextBoxStyles.xaml" />
         <None Remove="Styles\Controls\ToggleSwitchStyles.xaml" />
         <None Remove="Styles\Controls\TooltipStyles.xaml" />
+        <None Remove="Styles\Controls\UpsellBannerStyles.xaml" />
         <None Remove="Styles\Controls\UpsellFeatureContentControlStyles.xaml" />
         <None Remove="Styles\Controls\WidgetButtonStyles.xaml" />
         <None Remove="Styles\Controls\WindowContentControlStyles.xaml" />
@@ -2435,6 +2436,11 @@
     </ItemGroup>
     <ItemGroup>
       <Resource Remove="Assets\Icons\Profiles\BotProfileIcon.xaml" />
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Styles\Controls\UpsellBannerStyles.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
     </ItemGroup>
     <ItemGroup>
       <Page Update="Styles\Controls\SizerStyles.xaml">

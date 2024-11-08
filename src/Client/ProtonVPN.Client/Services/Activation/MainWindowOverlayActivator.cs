@@ -32,6 +32,7 @@ using ProtonVPN.Client.UI.Overlays.Information;
 using ProtonVPN.Client.UI.Overlays.Information.Notification;
 using ProtonVPN.Client.UI.Overlays.Welcome;
 using ProtonVPN.Client.UI.Overlays.WhatsNew;
+using ProtonVPN.Client.UI.Overlays.Upsell;
 
 namespace ProtonVPN.Client.Services.Activation;
 
@@ -139,5 +140,10 @@ public class MainWindowOverlayActivator : OverlayActivatorBase<MainWindow>, IMai
     public Task<ContentDialogResult> ShowWhatsNewPaidOverlayAsync()
     {
         return ShowOverlayAsync<WhatsNewPaidOverlayViewModel>();
+    }
+
+    public Task<ContentDialogResult> ShowFreeConnectionsOverlayAsync()
+    {
+        return ShowOverlayAsync<FreeConnectionsOverlayViewModel>();
     }
 }

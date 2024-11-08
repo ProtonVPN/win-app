@@ -1,0 +1,132 @@
+﻿/*
+ * Copyright (c) 2024 Proton AG
+ *
+ * This file is part of ProtonVPN.
+ *
+ * ProtonVPN is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ProtonVPN is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Contracts.Bases.ViewModels;
+using ProtonVPN.Client.Contracts.Services.Activation;
+using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Localization.Extensions;
+using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
+
+namespace ProtonVPN.Client.UI.Main.Home.Upsell;
+
+public partial class ChangeServerComponentViewModel : ActivatableViewModelBase,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
+    IEventMessageReceiver<ChangeServerAttemptInvalidatedMessage>
+{
+    private readonly IConnectionManager _connectionManager;
+    private readonly IChangeServerModerator _changeServerModerator;
+    private readonly IUpsellCarouselWindowActivator _upsellCarouselWindowActivator;
+    private readonly IUrlsBrowser _urlsBrowser;
+    private readonly IWebAuthenticator _webAuthenticator;
+
+    public bool IsChangeServerTimerVisible => !_changeServerModerator.CanChangeServer();
+
+    public bool IsAttemptsLimitReached => _changeServerModerator.IsAttemptsLimitReached();
+
+    public double DelayInSeconds => _changeServerModerator.GetDelayUntilNextAttempt().TotalSeconds;
+
+    public double RemainingDelayInSeconds => _changeServerModerator.GetRemainingDelayUntilNextAttempt().TotalSeconds;
+
+    public string? FormattedRemainingTime => Localizer.GetFormattedShortTime(_changeServerModerator.GetRemainingDelayUntilNextAttempt());
+
+    public ChangeServerComponentViewModel(
+        ILocalizationProvider localizer,
+        ILogger logger,
+        IIssueReporter issueReporter,
+        IConnectionManager connectionManager,
+        IChangeServerModerator changeServerModerator,
+        IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
+        IUrlsBrowser urlsBrowser,
+        IWebAuthenticator webAuthenticator)
+        : base(localizer, logger, issueReporter)
+    {
+        _connectionManager = connectionManager;
+        _changeServerModerator = changeServerModerator;
+        _upsellCarouselWindowActivator = upsellCarouselWindowActivator;
+        _urlsBrowser = urlsBrowser;
+        _webAuthenticator = webAuthenticator;
+    }
+
+    public void Receive(ConnectionStatusChangedMessage message)
+    {
+        if (IsActive)
+        {
+            ExecuteOnUIThread(InvalidateChangeServer);
+        }
+    }
+
+    public void Receive(ChangeServerAttemptInvalidatedMessage message)
+    {
+        if (IsActive)
+        {
+            ExecuteOnUIThread(InvalidateChangeServer);
+        }
+    }
+
+    protected override void OnActivated()
+    {
+        base.OnActivated();
+
+        InvalidateChangeServer();
+    }
+
+    [RelayCommand(CanExecute = nameof(CanChangeServer))]
+    private Task ChangeServerAsync()
+    {
+        string? logicalServerId = _connectionManager.CurrentConnectionDetails?.ServerId;
+
+        IConnectionIntent connectionIntent = logicalServerId is null
+            ? ConnectionIntent.FreeDefault
+            : new ConnectionIntent(new FreeServerLocationIntent(logicalServerId));
+
+        return _connectionManager.ConnectAsync(connectionIntent);
+    }
+
+    private bool CanChangeServer()
+    {
+        return _connectionManager.IsConnected && _changeServerModerator.CanChangeServer();
+    }
+
+    [RelayCommand]
+    private async Task UpgradePlanAsync()
+    {
+        _urlsBrowser.BrowseTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSources.ChangeServer));
+    }
+
+    private void InvalidateChangeServer()
+    {
+        OnPropertyChanged(nameof(IsChangeServerTimerVisible));
+        OnPropertyChanged(nameof(IsAttemptsLimitReached));
+        OnPropertyChanged(nameof(DelayInSeconds));
+        OnPropertyChanged(nameof(RemainingDelayInSeconds));
+        OnPropertyChanged(nameof(FormattedRemainingTime));
+
+        ChangeServerCommand.NotifyCanExecuteChanged();
+    }
+}
