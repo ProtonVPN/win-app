@@ -271,11 +271,12 @@ public class ServersCache : IServersCache
     {
         return servers
             .Where(s => !string.IsNullOrWhiteSpace(s.ExitCountry)
-                     && !string.IsNullOrWhiteSpace(s.City))
-            .GroupBy(s => new { Country = s.ExitCountry, City = s.City })
+                     && !string.IsNullOrWhiteSpace(s.City)
+                     && s.Tier is not ServerTiers.Free)
+            .GroupBy(s => new { Country = s.ExitCountry, State = s.State, City = s.City })
             .Select(c => new City() {
                 CountryCode = c.Key.Country,
-                StateName = c.Select(s => s.State).Distinct().FirstOrDefault(s => !string.IsNullOrWhiteSpace(s)),
+                StateName = c.Key.State,
                 Name = c.Key.City,
                 IsUnderMaintenance = IsUnderMaintenance(c),
                 Features = AggregateFeatures(c),
