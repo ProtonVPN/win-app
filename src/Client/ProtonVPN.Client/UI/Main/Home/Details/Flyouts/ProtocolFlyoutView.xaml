@@ -68,7 +68,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     VerticalAlignment="Center"
                     Command="{x:Bind ViewModel.OpenProtocolSettingsCommand}"
                     Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Change')}"
-                    Style="{StaticResource SecondaryButtonStyle}" />
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    AutomationProperties.AutomationId="ChangeProtocolFlyoutButton"/>
         </Grid>
 
         <StackPanel Orientation="Horizontal"

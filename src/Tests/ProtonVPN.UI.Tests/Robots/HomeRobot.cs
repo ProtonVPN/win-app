@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
 
@@ -28,6 +29,8 @@ public class HomeRobot
     protected Element ConnectingLabel = Element.ByName("Connecting");
     protected Element ProtectedLabel = Element.ByName("Protected");
     protected Element GetStartedButton = Element.ByName("Get started");
+    protected Element ConnectionDetailsProtocol = Element.ByAutomationId("ShowProtocolFlyoutButton");
+    protected Element ChangeProtocolButton = Element.ByAutomationId("ChangeProtocolFlyoutButton");
 
 
     protected Element ConnectionCardTitle = Element.ByAutomationId("ConnectionCardTitle");
@@ -63,6 +66,19 @@ public class HomeRobot
     public HomeRobot Disconnect()
     {
         ConnectionCardDisconnectButton.Click();
+        return this;
+    }
+    public HomeRobot ClickOnProtocolConnectionDetails()
+    {
+        ConnectionDetailsProtocol.Click();
+        return this;
+    }
+
+    public HomeRobot ClickChangeProtocolButton()
+    {
+        ChangeProtocolButton.Click();
+        // Remove when VPNWIN-2261 is implemented.
+        Thread.Sleep(TestConstants.AnimationDelay);
         return this;
     }
 
@@ -104,6 +120,30 @@ public class HomeRobot
         public Verifications IsTorConnection()
         {
             ConnectionCardTorTag.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications ProtocolIsDisplayed(TestConstants.Protocol protocol)
+        {
+            switch (protocol)
+            {
+                case TestConstants.Protocol.OpenVpnUdp:
+                    ConnectionDetailsProtocol.TextEquals("OpenVPN (UDP)");
+                    break;
+                case TestConstants.Protocol.OpenVpnTcp:
+                    ConnectionDetailsProtocol.TextEquals("OpenVPN (TCP)");
+                    break;
+                case TestConstants.Protocol.WireGuardTcp:
+                    ConnectionDetailsProtocol.TextEquals("WireGuard (TCP)");
+                    break;
+                case TestConstants.Protocol.WireGuardTls:
+                    ConnectionDetailsProtocol.TextEquals("Stealth");
+                    break;
+                case TestConstants.Protocol.WireGuardUdp:
+                    ConnectionDetailsProtocol.TextEquals("WireGuard (UDP)");
+                    break;
+            }
+
             return this;
         }
     }

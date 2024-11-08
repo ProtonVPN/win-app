@@ -65,6 +65,14 @@ public static class UiActions
         return desiredElement;
     }
 
+    public static Element TextEquals<T>(this T desiredElement, string text) where T : Element
+    {
+        AutomationElement element = WaitUntilExists(desiredElement);
+        string elementText = element.AsLabel().Text;
+        Assert.That(elementText.Equals(text), Is.True, $"Expected string: {text} But was: {elementText}");
+        return desiredElement;
+    }
+
     public static AutomationElement WaitUntilExists<T>(this T desiredElement, TimeSpan? time = null) where T : Element
     {
         return WaitForElement(desiredElement, time, element => element != null);

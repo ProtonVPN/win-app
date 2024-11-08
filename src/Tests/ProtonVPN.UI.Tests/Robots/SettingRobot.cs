@@ -33,13 +33,21 @@ public class SettingRobot
     private const string NETSHIELD_ADS_ENDPOINT = "netshield-2.protonvpn.net";
 
     protected Element ApplyButton = Element.ByAutomationId("ApplyButton");
+    protected Element ReconnectButton = Element.ByName("Reconnect");
     protected Element SettingsButton = Element.ByAutomationId("SettingsButton");
     protected Element NetShieldSettingsCard = Element.ByAutomationId("NetShieldSettingsCard");
+    protected Element ProtocolSettingsCard = Element.ByAutomationId("ProtocolSettingsCard");
 
     protected Element NetshieldToggle = Element.ByAutomationId("NetshieldToggle");
     protected Element NetShieldLevelOneRadioButton = Element.ByAutomationId("NetShieldLevelOne");
     protected Element NetShieldLevelTwoRadioButton = Element.ByAutomationId("NetShieldLevelTwo");
 
+    protected Element OpenVpnTcpProtocolRadioButton = Element.ByAutomationId("OpenVpnTcpProtocolRadioButton");
+    protected Element OpenVpnUdpProtocolRadioButton = Element.ByAutomationId("OpenVpnUdpProtocolRadioButton");
+    protected Element WireGuardUdpProtocolRadioButton = Element.ByAutomationId("WireGuardUdpProtocolRadioButton");
+    protected Element WireGuardTlsProtocolRadioButton = Element.ByAutomationId("WireGuardTlsProtocolRadioButton");
+    protected Element WireGuardTcpProtocolRadioButton = Element.ByAutomationId("WireGuardTcpProtocolRadioButton");
+    
     public SettingRobot OpenSettings()
     {
         SettingsButton.Click();
@@ -57,6 +65,41 @@ public class SettingRobot
         NetShieldSettingsCard.Click();
         // Remove when VPNWIN-2261 is implemented.
         Thread.Sleep(TestConstants.AnimationDelay);
+        return this;
+    }
+
+    public SettingRobot OpenProtocolSettings()
+    {
+        ProtocolSettingsCard.Click();
+        // Remove when VPNWIN-2261 is implemented.
+        Thread.Sleep(TestConstants.AnimationDelay);
+        return this;
+    }
+
+    public SettingRobot SelectProtocol(TestConstants.Protocol protocol)
+    {
+        switch (protocol)
+        {
+            case TestConstants.Protocol.OpenVpnUdp:
+                OpenVpnUdpProtocolRadioButton.Click();
+                break;
+
+            case TestConstants.Protocol.OpenVpnTcp:
+                OpenVpnTcpProtocolRadioButton.Click();
+                break;
+
+            case TestConstants.Protocol.WireGuardTcp:
+                WireGuardTcpProtocolRadioButton.Click();
+                break;
+
+            case TestConstants.Protocol.WireGuardTls:
+                WireGuardTlsProtocolRadioButton.Click();
+                break;
+
+            case TestConstants.Protocol.WireGuardUdp:
+                WireGuardUdpProtocolRadioButton.Click();
+                break;
+        }
         return this;
     }
 
@@ -83,6 +126,12 @@ public class SettingRobot
     public SettingRobot ApplySettings()
     {
         ApplyButton.Invoke();
+        return this;
+    }
+
+    public SettingRobot Reconnect()
+    {
+        ReconnectButton.Click();
         return this;
     }
 
