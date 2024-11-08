@@ -82,6 +82,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
     private bool _isTlsChannelActive;
     private bool _isConnectRequested;
     private bool _tlsConnected;
+    private bool _wasConnectEverRequested;
     private EventArgs<VpnState> _vpnState;
     private string _localIp = string.Empty;
     private DateTime _lastNetShieldStatsRequestDate = DateTime.MinValue;
@@ -124,6 +125,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
     {
         _logger.Info<LocalAgentLog>("Connect action started");
         _isConnectRequested = true;
+        _wasConnectEverRequested = true;
         _endpoint = endpoint;
         _credentials = credentials;
         _vpnConfig = config;
@@ -346,7 +348,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
 
     private void OnVpnStateChanged(object sender, EventArgs<VpnState> e)
     {
-        if (_isConnectRequested)
+        if (_wasConnectEverRequested)
         {
             switch (e.Data.Status)
             {

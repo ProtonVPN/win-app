@@ -118,7 +118,7 @@ public abstract class SettingsCacheBase : ISettingsCache
     {
         try
         {
-            return Get<List<T>?>(encryption, propertyName, (pjp) => DeserializeAndCache<List<T>>(pjp, () => []));
+            return Get<List<T>?>(encryption, propertyName, (pjp) => DeserializeAndCache<List<T>>(pjp, () => null));
         }
         catch (Exception ex)
         {
