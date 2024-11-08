@@ -39,19 +39,35 @@ public class ConnectionTests : BaseTest
     public void QuickConnect()
     {
         NavigationRobot
-            .Verify.IsOnLocationDetailsPage();
-        SidebarRobot
-            .ConnectToFastest();
+            .Verify.IsOnHomePage()
+                   .IsOnLocationDetailsPage();
+
         HomeRobot
-            .Verify.IsConnected();
+            .Verify.IsDisconnected()
+            .ConnectToDefaultConnection()
+            .Verify.IsConnecting()
+                   .IsConnected();
+
+        NavigationRobot
+            .Verify.IsOnConnectionDetailsPage();
+
+        HomeRobot
+            .Disconnect()
+            .Verify.IsDisconnected();
+
+        NavigationRobot
+            .Verify.IsOnLocationDetailsPage();
     }
 
     [Test]
     public void ConnectToCountry()
     {
         NavigationRobot
-            .Verify.IsOnConnectionsPage()
+            .Verify.IsOnHomePage()
+                   .IsOnConnectionsPage()
                    .IsOnLocationDetailsPage();
+        HomeRobot
+            .Verify.IsDisconnected();
         SidebarRobot
             .NavigateToAllCountriesTab();
         NavigationRobot
@@ -59,9 +75,43 @@ public class ConnectionTests : BaseTest
         SidebarRobot
             .ConnectToCountry(COUNTRY_CODE);
         HomeRobot
-            .Verify.IsConnected();
+            .Verify.IsConnecting()
+                   .IsConnected();
+        NavigationRobot
+            .Verify.IsOnConnectionDetailsPage();
         SidebarRobot
             .DisconnectFromCountry(COUNTRY_CODE);
+        HomeRobot
+            .Verify.IsDisconnected();
+        NavigationRobot
+            .Verify.IsOnLocationDetailsPage();
+    }
+
+    [Test]
+    public void ConnectToFastestCountry()
+    {
+        NavigationRobot
+            .Verify.IsOnHomePage()
+                   .IsOnConnectionsPage()
+                   .IsOnLocationDetailsPage();
+
+        HomeRobot
+            .Verify.IsDisconnected();
+
+        SidebarRobot
+            .ConnectToFastest();
+
+        HomeRobot
+            .Verify.IsConnecting()
+                   .IsConnected();
+
+        NavigationRobot
+            .Verify.IsOnConnectionDetailsPage();
+
+        HomeRobot
+            .Disconnect()
+            .Verify.IsDisconnected();
+
         NavigationRobot
             .Verify.IsOnLocationDetailsPage();
     }

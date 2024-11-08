@@ -24,6 +24,12 @@
     <DefineConstants>DISABLE_XAML_GENERATED_MAIN</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="UI\Main\Home\Details\Contracts\**" />
+    <EmbeddedResource Remove="UI\Main\Home\Details\Contracts\**" />
+    <None Remove="UI\Main\Home\Details\Contracts\**" />
+    <Page Remove="UI\Main\Home\Details\Contracts\**" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Assets\ProtonVPN.ico" />
     <None Remove="TEMP\GalleryPageView.xaml" />
     <None Remove="TEMP\GalleryWidgetView.xaml" />
@@ -70,6 +76,8 @@
     <None Remove="UI\Main\Home\Details\Location\LocationDetailsPageView.xaml" />
     <None Remove="UI\Main\Home\HomePageView.xaml" />
     <None Remove="UI\Main\Home\Map\MapComponentView.xaml" />
+    <None Remove="UI\Main\Home\Upsell\ChangeServerComponentView.xaml" />
+    <None Remove="UI\Main\Home\Upsell\ConnectionCardUpsellBannerView.xaml" />
     <None Remove="UI\Main\MainPageView.xaml" />
     <None Remove="UI\Main\Settings\Pages\About\AboutPageView.xaml" />
     <None Remove="UI\Main\Settings\Pages\About\LicensingPageView.xaml" />
@@ -107,6 +115,7 @@
     <None Remove="UI\Main\Sidebar\SidebarComponentView.xaml" />
     <None Remove="UI\Main\Widgets\SideWidgetsHostComponentView.xaml" />
     <None Remove="UI\NavigationMasterControllerView.xaml" />
+    <None Remove="UI\Overlays\Upsell\FreeConnectionsOverlayView.xaml" />
     <None Remove="UI\Overlays\HumanVerification\HumanVerificationOverlayView.xaml" />
     <None Remove="UI\Overlays\Information\OutdatedClientOverlayView.xaml" />
     <None Remove="UI\Overlays\Information\P2POverlayView.xaml" />
@@ -210,7 +219,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UI\Main\Home\Details\Contracts\" />
     <Folder Include="UI\Overlays\Information\Notification\" />
     <Folder Include="UI\Main\Map\" />
     <Page Update="UI\Main\FeatureIcons\PortForwardingIconView.xaml">
@@ -367,6 +375,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Update="UI\Main\Home\Upsell\ChangeServerComponentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
     <Page Update="UI\Main\FeatureIcons\KillSwitchIconView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -380,6 +394,18 @@
 
   <ItemGroup>
     <Page Update="UI\Main\Settings\Pages\UserDetailsComponent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Main\Home\Upsell\ConnectionCardUpsellBannerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Overlays\Free\FreeConnectionsOverlayView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
@@ -706,5 +732,9 @@
     <Page Update="UI\Login\LoginPageView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PRIResource Remove="UI\Main\Home\Details\Contracts\**" />
   </ItemGroup>
 </Project>

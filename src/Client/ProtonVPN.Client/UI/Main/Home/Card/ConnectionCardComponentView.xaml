@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -15,23 +15,222 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with ProtonVPN.  If not, see <https://www.gnu.org/licenses />.-->
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
 
 <UserControl x:Class="ProtonVPN.Client.UI.Main.Home.Card.ConnectionCardComponentView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="using:CommunityToolkit.WinUI.Controls"
+             xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:temp="using:ProtonVPN.Client.TEMP"
+             xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+             xmlns:upsell="using:ProtonVPN.Client.UI.Main.Home.Upsell"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
     <UserControl.Resources>
-        <HorizontalAlignment x:Key="PlaceholderHorizontalContentAlignment">Center</HorizontalAlignment>
-        <VerticalAlignment x:Key="PlaceholderVerticalContentAlignment">Center</VerticalAlignment>
+        <x:Double x:Key="MinButtonSpaceWidth">250.0</x:Double>
+        <x:Double x:Key="MinButtonWidth">180.0</x:Double>
+
+        <x:Double x:Key="ConnectionCardFlagWidth">54.0</x:Double>
+        <x:Double x:Key="ConnectionCardFlagHeight">36.0</x:Double>
+
+        <Style x:Key="FeatureTagGhostButtonStyle" BasedOn="{StaticResource SecondaryGhostButtonStyle}" TargetType="custom:GhostButton">
+            <Setter Property="Padding" Value="2,1" />
+        </Style>
     </UserControl.Resources>
 
-    <temp:PlaceholderControl Content="Connection Card" 
-                             CornerRadius="4,0,4,0"/>
+    <StackPanel Spacing="16">
+        <StackPanel HorizontalAlignment="Center"
+                    Orientation="{x:Bind ViewModel.UseInlineLayout, Converter={StaticResource BooleanToHorizontalOrientationConverter}}"
+                    PointerPressed="OnHeaderPointerPressed"
+                    Spacing="16">
+
+            <Grid HorizontalAlignment="Center">
+
+                <custom:ComplexCountryFlag Width="{StaticResource ConnectionCardFlagWidth}"
+                                           Height="{StaticResource ConnectionCardFlagHeight}"
+                                           EntryCountryCode="{x:Bind ViewModel.EntryCountry}"
+                                           ExitCountryCode="{x:Bind ViewModel.ExitCountry}"
+                                           IsCompact="True"
+                                           IsSecureCore="{x:Bind ViewModel.IsSecureCore}"
+                                           MainFlagType="{x:Bind ViewModel.FlagType}"
+                                           Visibility="{x:Bind ViewModel.IsProfileIntent, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+
+                <custom:ConnectionProfileIcon Width="{StaticResource ConnectionCardFlagWidth}"
+                                              Height="{StaticResource ConnectionCardFlagHeight}"
+                                              CountryCode="{x:Bind ViewModel.ExitCountry}"
+                                              FlagType="{x:Bind ViewModel.FlagType}"
+                                              IsCompact="True"
+                                              IsFlagVisible="True"
+                                              ProfileCategory="{x:Bind ViewModel.Profile.Category}"
+                                              ProfileColor="{x:Bind ViewModel.Profile.Color}"
+                                              Visibility="{x:Bind ViewModel.IsProfileIntent, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+            </Grid>
+
+            <TextBlock AutomationProperties.AutomationId="ConnectionCardTitle" 
+                       Style="{StaticResource TitleTextBlockStyle}"
+                       Text="{x:Bind ViewModel.Title}"
+                       TextAlignment="Center" />
+
+        </StackPanel>
+
+        <Grid Margin="0,-8,0,0"
+              HorizontalAlignment="Center"
+              Visibility="{x:Bind ViewModel.HasSubtitleOrFeature, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock AutomationProperties.AutomationId="ConnectionCardDescription" 
+                       Grid.Column="0"
+                       Margin="4,0"
+                       Foreground="{ThemeResource TextWeakColorBrush}"
+                       Style="{StaticResource BodyMediumStrongTextBlockStyle}"
+                       Text="{x:Bind ViewModel.Subtitle}"
+                       TextAlignment="Center"
+                       TextTrimming="CharacterEllipsis"
+                       TextWrapping="NoWrap"
+                       Visibility="{x:Bind ViewModel.HasSubtitle, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+            <custom:GhostButton AutomationProperties.AutomationId="ConnectionCardP2PTag" 
+                       Grid.Column="1"
+                                Margin="4,0"
+                                Background="{ThemeResource InteractionDefaultColorBrush}"
+                                Command="{x:Bind ViewModel.ShowP2PInfoOverlayCommand, Mode=OneTime}"
+                                Content="{x:Bind ViewModel.Localizer.Get('Countries_P2P')}"
+                                Style="{StaticResource FeatureTagGhostButtonStyle}"
+                                Visibility="{x:Bind ViewModel.IsP2P, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <custom:GhostButton.LeftIcon>
+                    <pathicons:ArrowRightArrowLeft Size="Pixels16" />
+                </custom:GhostButton.LeftIcon>
+            </custom:GhostButton>
+
+            <custom:GhostButton AutomationProperties.AutomationId="ConnectionCardTorTag" 
+                       Grid.Column="2"
+                                Margin="4,0"
+                                Background="{ThemeResource InteractionDefaultColorBrush}"
+                                Command="{x:Bind ViewModel.ShowTorInfoOverlayCommand, Mode=OneTime}"
+                                Content="{x:Bind ViewModel.Localizer.Get('Countries_Tor')}"
+                                Style="{StaticResource FeatureTagGhostButtonStyle}"
+                                Visibility="{x:Bind ViewModel.IsTor, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <custom:GhostButton.LeftIcon>
+                    <pathicons:BrandTor Size="Pixels16" />
+                </custom:GhostButton.LeftIcon>
+            </custom:GhostButton>
+
+        </Grid>
+
+        <custom:GhostButton AutomationProperties.AutomationId="ConnectionCardFreeConnectionsTagline" 
+                       Margin="0,-12,0,0"
+                            HorizontalAlignment="Center"
+                            Command="{x:Bind ViewModel.ShowFreeConnectionsOverlayCommand, Mode=OneTime}"
+                            Style="{StaticResource LargeSecondaryGhostButtonStyle}"
+                            ToolTipService.Placement="Top"
+                            ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_FreeConnections_About')}"
+                            Visibility="{x:Bind ViewModel.IsFreeConnectionsTaglineVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+            <StackPanel Orientation="Horizontal"
+                        Spacing="8">
+                <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Connection_Intent_AutoSelected')}"
+                           TextTrimming="CharacterEllipsis" />
+                <Image Height="20"
+                       VerticalAlignment="Center"
+                       Source="{ThemeResource FreeConnectionFlagsIllustrationSource}" />
+                <TextBlock Text="{x:Bind ViewModel.FormattedFreeCountriesCount}"
+                           TextTrimming="CharacterEllipsis" />
+            </StackPanel>
+
+            <custom:GhostButton.RightIcon>
+                <pathicons:InfoCircle />
+            </custom:GhostButton.RightIcon>
+
+        </custom:GhostButton>
+
+        <Grid MinWidth="{StaticResource MinButtonSpaceWidth}"
+              HorizontalAlignment="Center"
+              ColumnSpacing="12">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <upsell:ChangeServerComponentView x:Name="ConnectionCardChangeServerComponent"
+                                              Grid.Column="0"
+                                              MinWidth="{StaticResource MinButtonWidth}"
+                                              HorizontalAlignment="Stretch"
+                                              AutomationProperties.AutomationId="ConnectionCardChangeServerComponent"
+                                              TabIndex="3"
+                                              Visibility="{x:Bind ViewModel.IsChangeServerOptionVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+            <Button x:Name="ConnectionCardConnectButton"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    MinWidth="{StaticResource MinButtonWidth}"
+                    HorizontalAlignment="Stretch"
+                    AutomationProperties.AutomationId="ConnectionCardConnectButton"
+                    Command="{x:Bind ViewModel.ConnectCommand, Mode=OneTime}"
+                    Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Connect')}"
+                    IsEnabledChanged="OnButtonIsEnabledChanged"
+                    Style="{StaticResource LargePrimaryButtonStyle}"
+                    TabIndex="4"
+                    Visibility="{x:Bind ViewModel.IsDisconnected, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+            <Button x:Name="ConnectionCardCancelButton"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    MinWidth="{StaticResource MinButtonWidth}"
+                    HorizontalAlignment="Stretch"
+                    AutomationProperties.AutomationId="ConnectionCardCancelButton"
+                    Command="{x:Bind ViewModel.CancelConnectionCommand, Mode=OneTime}"
+                    Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Cancel')}"
+                    IsEnabledChanged="OnButtonIsEnabledChanged"
+                    Style="{StaticResource LargeSecondaryButtonStyle}"
+                    TabIndex="5"
+                    Visibility="{x:Bind ViewModel.IsConnecting, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+            <Button x:Name="ConnectionCardDisconnectButton"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    MinWidth="{StaticResource MinButtonWidth}"
+                    HorizontalAlignment="Stretch"
+                    AutomationProperties.AutomationId="ConnectionCardDisconnectButton"
+                    Command="{x:Bind ViewModel.DisconnectCommand, Mode=OneTime}"
+                    Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Disconnect')}"
+                    IsEnabledChanged="OnButtonIsEnabledChanged"
+                    Style="{StaticResource LargeSecondaryButtonStyle}"
+                    TabIndex="6"
+                    Visibility="{x:Bind ViewModel.IsConnected, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+        </Grid>
+
+        <upsell:ConnectionCardUpsellBannerView />
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="ButtonsLayout">
+                <VisualState x:Name="ChangeServerLayout">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsChangeServerOptionVisible}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ConnectionCardConnectButton.(Grid.Column)" Value="1" />
+                        <Setter Target="ConnectionCardConnectButton.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="ConnectionCardCancelButton.(Grid.Column)" Value="1" />
+                        <Setter Target="ConnectionCardCancelButton.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="ConnectionCardDisconnectButton.(Grid.Column)" Value="1" />
+                        <Setter Target="ConnectionCardDisconnectButton.(Grid.ColumnSpan)" Value="1" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="StandardLayout" />
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </StackPanel>
 
 </UserControl>

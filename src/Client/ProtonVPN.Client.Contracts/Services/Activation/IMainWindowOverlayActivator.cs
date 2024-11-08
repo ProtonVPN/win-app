@@ -56,4 +56,6 @@ public interface IMainWindowOverlayActivator : IOverlayActivator
     Task<ContentDialogResult> ShowWhatsNewFreeOverlayAsync();
 
     Task<ContentDialogResult> ShowWhatsNewPaidOverlayAsync();
+
+    Task<ContentDialogResult> ShowFreeConnectionsOverlayAsync();
 }

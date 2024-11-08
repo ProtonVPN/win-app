@@ -116,6 +116,14 @@ using ProtonVPN.OperatingSystems.Services.Installers;
 using ProtonVPN.ProcessCommunication.Client.Installers;
 using ProtonVPN.ProcessCommunication.Installers;
 using ProtonVPN.Serialization.Installers;
+using ProtonVPN.ProcessCommunication.Client.Installers;
+using ProtonVPN.Common.Legacy.OS.Processes;
+using ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles.Overlays;
+using ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles.Controls;
+using ProtonVPN.Client.Logic.Searches.Installers;
+using ProtonVPN.Client.UI.Main.Home.Details.Flyouts;
+using ProtonVPN.Client.UI.Overlays.Upsell;
+using ProtonVPN.Client.UI.Main.Home.Upsell;
 
 namespace ProtonVPN.Client.Modules;
 
@@ -260,6 +268,8 @@ public class AppModule : Module
         RegisterViewModel<HomePageViewModel>(builder);
         RegisterViewModel<MapComponentViewModel>(builder);
         RegisterViewModel<ConnectionCardComponentViewModel>(builder);
+        RegisterViewModel<ChangeServerComponentViewModel>(builder);
+        RegisterViewModel<ConnectionCardUpsellBannerViewModel>(builder);
         RegisterViewModel<DetailsComponentViewModel>(builder);
         RegisterViewModel<ConnectionDetailsPageViewModel>(builder).AutoActivate();
         RegisterViewModel<LocationDetailsPageViewModel>(builder);
@@ -325,6 +335,8 @@ public class AppModule : Module
         RegisterViewModel<PortForwardingIconViewModel>(builder);
         RegisterViewModel<SplitTunnelingIconViewModel>(builder);
         RegisterViewModel<VpnAcceleratorIconViewModel>(builder);
+
+        RegisterViewModel<FreeConnectionsOverlayViewModel>(builder);
 
         RegisterViewModel<IpAddressFlyoutViewModel>(builder);
         RegisterViewModel<CountryFlyoutViewModel>(builder);

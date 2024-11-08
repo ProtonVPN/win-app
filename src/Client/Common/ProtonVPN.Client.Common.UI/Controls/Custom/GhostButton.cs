@@ -22,7 +22,7 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace ProtonVPN.Client.Common.UI.Controls.Custom;
 
-public sealed class GhostButton : Button
+public class GhostButton : Button
 {
     public static readonly DependencyProperty LeftIconProperty =
         DependencyProperty.Register(nameof(LeftIcon), typeof(IconElement), typeof(GhostButton), new PropertyMetadata(default));

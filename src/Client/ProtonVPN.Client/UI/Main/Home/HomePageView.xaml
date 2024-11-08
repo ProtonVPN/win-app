@@ -33,9 +33,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Grid>
 
-        <card:ConnectionCardComponentView Width="250"
-                                          Height="50"
-                                          HorizontalAlignment="Center"
+        <card:ConnectionCardComponentView HorizontalAlignment="Center"
                                           VerticalAlignment="Top" />
 
         <details:DetailsComponentView HorizontalAlignment="Stretch"

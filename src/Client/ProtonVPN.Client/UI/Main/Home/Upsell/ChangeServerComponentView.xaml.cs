@@ -18,19 +18,19 @@
  */
 
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Input;
 using ProtonVPN.Client.Contracts.Bases;
 
-namespace ProtonVPN.Client.UI.Main.Home.Card;
+namespace ProtonVPN.Client.UI.Main.Home.Upsell;
 
-public sealed partial class ConnectionCardComponentView : IContextAware
+public sealed partial class ChangeServerComponentView : IContextAware
 {
-    public ConnectionCardComponentViewModel ViewModel { get; }
+    private long? _callbackToken;
 
-    public ConnectionCardComponentView()
+    public ChangeServerComponentViewModel ViewModel { get; }
+
+    public ChangeServerComponentView()
     {
-        ViewModel = App.GetService<ConnectionCardComponentViewModel>();
+        ViewModel = App.GetService<ChangeServerComponentViewModel>();
 
         InitializeComponent();
 
@@ -46,24 +46,35 @@ public sealed partial class ConnectionCardComponentView : IContextAware
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
         ViewModel.Activate();
+
+        _callbackToken = ConnectionCardChangeServerTimeoutButton.RegisterPropertyChangedCallback(UIElement.VisibilityProperty, OnTimeoutButtonVisibilityChanged);
     }
 
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
         ViewModel.Deactivate();
-    }
 
-    private void OnButtonIsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
-    {
-        // This code makes sure the button to connect/cancel/disconnect receives focus automatically when enabled
-        if (sender is Button button && button.IsEnabled)
+        HideChangeServerFlyout();
+
+        if (_callbackToken.HasValue)
         {
-            button.Focus(FocusState.Programmatic);
+            ConnectionCardChangeServerTimeoutButton.UnregisterPropertyChangedCallback(UIElement.VisibilityProperty, _callbackToken.Value);
         }
     }
 
-    private void OnHeaderPointerPressed(object sender, PointerRoutedEventArgs e)
+    private void OnTimeoutButtonVisibilityChanged(DependencyObject sender, DependencyProperty dp)
     {
-        ViewModel.UseInlineLayout = !ViewModel.UseInlineLayout;
+        if (ConnectionCardChangeServerTimeoutButton.Visibility == Visibility.Collapsed)
+        {
+            HideChangeServerFlyout();
+        }
+    }
+
+    private void HideChangeServerFlyout()
+    {
+        if (ConnectionCardChangeServerTimeoutButton?.Flyout?.IsOpen ?? false)
+        {
+            ConnectionCardChangeServerTimeoutButton.Flyout.Hide();
+        }
     }
 }

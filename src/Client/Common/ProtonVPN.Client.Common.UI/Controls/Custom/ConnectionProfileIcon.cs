@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -40,6 +40,9 @@ public class ConnectionProfileIcon : Control
     public static readonly DependencyProperty FlagTypeProperty =
         DependencyProperty.Register(nameof(FlagType), typeof(FlagType), typeof(ConnectionProfileIcon), new PropertyMetadata(default));
 
+    public static readonly DependencyProperty IsCompactProperty =
+        DependencyProperty.Register(nameof(IsCompact), typeof(bool), typeof(ConnectionProfileIcon), new PropertyMetadata(default));
+
     public string CountryCode
     {
         get => (string)GetValue(CountryCodeProperty);
@@ -68,5 +71,11 @@ public class ConnectionProfileIcon : Control
     {
         get => (FlagType)GetValue(FlagTypeProperty);
         set => SetValue(FlagTypeProperty, value);
+    }
+
+    public bool IsCompact
+    {
+        get => (bool)GetValue(IsCompactProperty);
+        set => SetValue(IsCompactProperty, value);
     }
 }

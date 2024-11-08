@@ -31,7 +31,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="FlagSecureCoreOutlineColorBrush" ResourceKey="BorderNormColorBrush" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="Dark">
-            <SolidColorBrush x:Key="FlagOutlineColorBrush" Color="#106D697D" />
+            <SolidColorBrush x:Key="FlagOutlineColorBrush" Color="#0DFFFFFF" />
             <SolidColorBrush x:Key="FlagShadowColorBrush" Color="#660C0C14" />
             <StaticResource x:Key="FlagSecureCoreOutlineColorBrush" ResourceKey="BorderNormColorBrush" />
         </ResourceDictionary>
@@ -71,7 +71,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     Margin="-1"
                                     Padding="1"
                                     Background="{ThemeResource FlagOutlineColorBrush}"
-                                    CornerRadius="5"
+                                    CornerRadius="4"
                                     Visibility="Collapsed">
                                 <Image Source="{Binding CountryCode, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource CountryCodeToFlagImageSourceConverter}, Mode=OneWay}"
                                        Stretch="Fill" />

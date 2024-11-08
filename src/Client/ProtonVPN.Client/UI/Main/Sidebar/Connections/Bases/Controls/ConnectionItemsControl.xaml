@@ -569,6 +569,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <custom:ConnectionRowButton.Icon>
                         <Grid Width="30">
                             <custom:ConnectionProfileIcon Width="30"
+                                                          Height="30"
                                                           CountryCode="{x:Bind ExitCountry}"
                                                           FlagType="{x:Bind FlagType}"
                                                           IsFlagVisible="True"
@@ -641,6 +642,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             TorLabel="{x:Bind Localizer.Get('Countries_Tor')}">
                     <custom:ConnectionRowButton.Icon>
                         <custom:ConnectionProfileIcon Width="30"
+                                                      Height="30"
                                                       CountryCode="{x:Bind ExitCountryCode}"
                                                       FlagType="{x:Bind FlagType}"
                                                       IsFlagVisible="True"
