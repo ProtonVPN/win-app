@@ -51,7 +51,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Grid.Row="0"
                                 Grid.Column="0"
                                 Content="{x:Bind ViewModel.ServerIpAddress}"
-                                Header="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_VpnIp')}">
+                                Header="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_VpnIp')}"
+                                AutomationProperties.AutomationId="ShowIpFlyoutButton">
             <custom:DetailRowButton.Flyout>
                 <Flyout x:Name="IpAddressFlyout">
                     <flyouts:IpAddressFlyout Flyout="{x:Bind IpAddressFlyout}" />
@@ -62,7 +63,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <custom:DetailRowButton x:Name="B"
                                 Grid.Row="0"
                                 Grid.Column="1"
-                                Header="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_ServerLoad')}">
+                                Header="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_ServerLoad')}"
+                                AutomationProperties.AutomationId="ShowServerLoadFlyoutButton">
             <custom:DetailRowButton.Flyout>
                 <Flyout x:Name="ServerLoadFlyout">
                     <flyouts:ServerLoadFlyoutView Flyout="{x:Bind ServerLoadFlyout}" />
@@ -78,7 +80,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Grid.Row="1"
                                 Grid.Column="0"
                                 Content="{x:Bind ViewModel.FormattedProtocol}"
-                                Header="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Protocol')}">
+                                Header="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Protocol')}"
+                                AutomationProperties.AutomationId="ShowProtocolFlyoutButton">
             <custom:DetailRowButton.Flyout>
                 <Flyout x:Name="ProtocolFlyout">
                     <flyouts:ProtocolFlyoutView Flyout="{x:Bind ProtocolFlyout}" />
@@ -90,7 +93,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 Content="{x:Bind ViewModel.FormattedVolume}"
-                                Header="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Volume')}">
+                                Header="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Volume')}"
+                                AutomationProperties.AutomationId="ShowVolumeFlyoutButton">
             <custom:DetailRowButton.Flyout>
                 <Flyout x:Name="VolumeFlyout">
                     <flyouts:VolumeFlyoutView Flyout="{x:Bind VolumeFlyout}" />
