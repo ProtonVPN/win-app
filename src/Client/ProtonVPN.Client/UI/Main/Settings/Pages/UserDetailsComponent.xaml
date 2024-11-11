@@ -32,8 +32,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <toolkit:WrapPanel HorizontalSpacing="32"
                        VerticalSpacing="16">
-        <Grid Grid.Column="0"
-              ColumnSpacing="12">
+        <Grid ColumnSpacing="12">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -92,33 +91,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </MenuFlyout>
                 </custom:GhostButton.Flyout>
             </custom:GhostButton>
-        </Grid>
-
-        <Grid Grid.Column="1"
-              ColumnSpacing="12">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <Image Grid.Column="0"
-                   Width="36"
-                   VerticalAlignment="Center"
-                   Source="{StaticResource MultipleDevicesIllustrationSource}" />
-
-            <StackPanel Grid.Column="1"
-                        Spacing="4">
-                <TextBlock Style="{ThemeResource BodyMediumStrongTextBlockStyle}">
-                    <Run Text="{x:Bind ViewModel.CurrentActiveDeviceCount}" />
-                    <Run Text="/" />
-                    <Run Text="{x:Bind ViewModel.MaxDevicesAllowed}" />
-                </TextBlock>
-
-                <TextBlock Foreground="{ThemeResource TextWeakColor}"
-                           Style="{ThemeResource CaptionTextBlockStyle}"
-                           Text="{x:Bind ViewModel.Localizer.Get('Settings_DevicesConnected')}" />
-            </StackPanel>
-
         </Grid>
 
         <VisualStateManager.VisualStateGroups>

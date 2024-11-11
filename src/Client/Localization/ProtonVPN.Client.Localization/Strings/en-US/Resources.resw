@@ -1614,9 +1614,6 @@
   <data name="Login_Error_TwoFactorAuthFailed" xml:space="preserve">
     <value>Incorrect username or password. Please try again.</value>
   </data>
-  <data name="Settings_DevicesConnected" xml:space="preserve">
-    <value>Devices connected</value>
-  </data>
   <data name="Settings_About" xml:space="preserve">
     <value>About</value>
   </data>
