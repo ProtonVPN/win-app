@@ -2751,10 +2751,10 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>IPv6 洩漏防護</value>
+    <value>Disable IPv6 traffic</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
-    <value>預防洩漏 IPv6 位址。</value>
+    <value>Prevents IPv6 leaks by blocking connections to IPv6 addresses.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
     <value>區域網路連線</value>
@@ -2786,6 +2786,12 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
     <value>限制數據流入您的網路。此選項較為安全，惟點對點遊戲連線或會較困難。</value>
   </data>
+  <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
+    <value>Routes traffic between different networks.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
+    <value>Uses bridging to connect networks. TUN provides higher speeds than TAP, but may be less stable.</value>
+  </data>
   <data name="Settings_Connection_Default">
     <value>預設連線</value>
   </data>
@@ -2800,6 +2806,87 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Your most recently used connection</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch">
+    <value>Kill switch</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Advanced">
+    <value>Advanced</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Advanced_Description">
+    <value>Only allow internet access when connected to Proton VPN. Advanced kill switch will remain active even when you restart your device.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Conflict_Description">
+    <value>This will disable split tunneling.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Conflict_Title">
+    <value>Enable kill switch?</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Description">
+    <value>Protects your IP address by disconnecting you from the internet if you lose your VPN connection.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Footer">
+    <value>When kill switch is on, you won't be able to connect to websites and apps excluded from your VPN connection through split tunneling.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Standard">
+    <value>Standard</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Standard_Description">
+    <value>Automatically disconnect from the internet if VPN connection is lost.</value>
+  </data>
+  <data name="Settings_Connection_NetShield">
+    <value>NetShield</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
+    <value>Block ads, malware and trackers</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockMalwareOnly">
+    <value>Block malware only</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Description">
+    <value>You won't be able to connect with a custom DNS server when NetShield is enabled.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Title">
+    <value>Enable NetShield?</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Description">
+    <value>Protect yourself from ads, malware, and trackers on websites and apps.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Footer">
+    <value>Some websites may not load properly when ads and trackers are blocked.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_PrivacyPanel">
+    <value>NetShield Privacy Panel</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding">
+    <value>Port forwarding</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_ActivePort">
+    <value>Active port:</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
+    <value>Copy port number</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Conflict_Description">
+    <value>You won't be able to use Moderate NAT when port forwarding is enabled.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Conflict_Title">
+    <value>Enable port forwarding?</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Description">
+    <value>Bypass firewalls to connect to P2P servers and devices in your local network.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Footer">
+    <value>To use port forwarding, please connect to a server that supports P2P.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Loading">
+    <value>Loading...</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Notifications">
+    <value>Notifications</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Notifications_Description">
+    <value>Get notified when the port forwarding number changes</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>通訊協定</value>
@@ -2817,134 +2904,65 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Settings_Connection_Protocol_NavigationFailed_Title">
     <value>Change protocol in profiles</value>
   </data>
-  <data name="Settings_Connection_VpnAccelerator">
-    <value>VPN 加速器</value>
+  <data name="Settings_Connection_SplitTunneling">
+    <value>Split tunneling</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Add">
+    <value>Add app</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
+    <value>App files</value>
+    <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Header">
+    <value>Selected apps ({0})</value>
+    <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Remove">
+    <value>Remove app</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Conflict_Description">
+    <value>This will disable kill switch.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Conflict_Title">
+    <value>Enable split tunneling?</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Description">
+    <value>Customize your connection by deciding which apps and IP addresses are protected by VPN.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse">
+    <value>Inverse</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Description">
+    <value>Only selected apps and IP addresses connect via VPN, all other traffic is unprotected</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
+    <value>Add IP</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
+    <value>Selected IP addresses ({0})</value>
+    <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
+    <value>Remove IP</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Watermark">
+    <value>Add IPv4 address</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard">
+    <value>Standard</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Description">
+    <value>Selected apps and IP addresses are excluded from VPN connection</value>
+  </data>
+  <data name="Settings_Connection_VpnAccelerator_Other">
+    <value></value>
+  </data>
+  <data name="Settings_DevicesConnected">
+    <value>Devices connected</value>
   </data>
   <data name="Settings_Features">
     <value>VPN features</value>
-  </data>
-  <data name="Settings_Features_KillSwitch">
-    <value>緊急終止開關（Kill switch）</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Advanced">
-    <value>進階</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Advanced_Description">
-    <value>只有當連線到 Proton VPN 時才允許存取網路。進階緊急中止開關將保持啟用，即使您重新啟動裝置。</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Conflict_Description">
-    <value>這將會停用分隔通道。</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Conflict_Title">
-    <value>啟用緊急終止開關？</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Description">
-    <value>如果 VPN 連線意外中斷，會暫停網路連線來保護您的 IP 位址。</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Footer">
-    <value>當緊急終止開關開啟時，您將無法透過分隔通道功能連線到被排除在 VPN 連線之外的網站和應用程式。</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Standard">
-    <value>標準</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Standard_Description">
-    <value>如果 VPN 連線中斷，會自動中斷網路連線。</value>
-  </data>
-  <data name="Settings_Features_NetShield">
-    <value>NetShield</value>
-  </data>
-  <data name="Settings_Features_NetShield_Conflict_Description">
-    <value>啟用 NetShield 時，將無法使用自訂 DNS 伺服器。</value>
-  </data>
-  <data name="Settings_Features_NetShield_Conflict_Title">
-    <value>啟用 NetShield？</value>
-  </data>
-  <data name="Settings_Features_NetShield_Description">
-    <value>在網站和應用程式中阻擋廣告、惡意軟體和追蹤器，保護您的安全。</value>
-  </data>
-  <data name="Settings_Features_NetShield_Footer">
-    <value>當廣告與追蹤器被封鎖時，部分網站可能無法正常載入。</value>
-  </data>
-  <data name="Settings_Features_PortForwarding">
-    <value>連接埠轉送</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_ActivePort">
-    <value>已啟用連接埠：</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_ActivePort_Copy">
-    <value>複製連接埠號碼</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Conflict_Description">
-    <value>啟用連接埠轉送時，您將無法使用 Moderate NAT。</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Conflict_Title">
-    <value>啟用連接埠轉送？</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Description">
-    <value>繞過防火牆連接到 P2P 伺服器以及本地網路中的裝置。</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Footer">
-    <value>To use port forwarding, please connect to a server that supports P2P.</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Loading">
-    <value>載入中...</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Notifications">
-    <value>通知</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Notifications_Description">
-    <value>Get notified when the port forwarding number changes</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling">
-    <value>分隔通道</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Apps_Add">
-    <value>加入應用程式</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Apps_FilesFilterName">
-    <value>應用程式檔案</value>
-    <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Apps_Header">
-    <value>已選取的應用程式 ({0})</value>
-    <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Apps_Remove">
-    <value>移除應用程式</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Conflict_Description">
-    <value>這將會停用緊急終止開關。</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Conflict_Title">
-    <value>啟用分隔通道？</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Description">
-    <value>透過決定哪些應用程式和 IP 位址受到 VPN 保護，來自訂您的連線設定。</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Inverse">
-    <value>反轉選取</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Inverse_Description">
-    <value>只有已選的應用程式及 IP 位址透過 VPN 連線，所有其他流量將不受保護。</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Add">
-    <value>加入 IP 位址</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Header">
-    <value>已選擇的 IP 位址 ({0})</value>
-    <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
-  </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Remove">
-    <value>移除 IP 位址</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Watermark">
-    <value>加入 IPv4 位址</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Standard">
-    <value>標準</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling_Standard_Description">
-    <value>已選的應用程式及 IP 位址會被排除在 VPN 連線之外</value>
   </data>
   <data name="Settings_General">
     <value>一般設定</value>
@@ -3070,7 +3088,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>WireGuard</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Description">
-    <value>Overcomes VPN blocks by hiding your VPN connection from censors. This protocol is DPI (deep packet inspection) resistant, but may not be as fast as other protocols. Stealth is exclusive to Proton VPN.</value>
+    <value>Overcomes VPN blocks by hiding your VPN connection from censors. Stealth is DPI (deep packet inspection) resistant, but may not be as fast as other protocols.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Title">
     <value>Stealth</value>
