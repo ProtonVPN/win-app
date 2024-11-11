@@ -79,7 +79,7 @@ public static class DefaultConfiguration
     public static string ClientLauncherExePath => Path.Combine(_baseDirectory.Value, "ProtonVPN.Launcher.exe");
 
     /// <returns>C:\Program Files\Proton\VPN\v4.0.0\Resources\ProtonVPN.InstallActions.dll</returns>
-    public static string InstallActionsPath => Path.Combine(_resourcesFolderPath.Value, "ProtonVPN.InstallActions.dll");
+    public static string InstallActionsPath => Path.Combine(_baseVersionDirectory.Value, "ProtonVPN.InstallActions.dll");
 
     /// <returns>C:\Program Files\Proton\VPN\v4.0.0\ProtonVPN.Client.exe</returns>
     public static string ClientExePath => Path.Combine(_baseVersionDirectory.Value, "ProtonVPN.Client.exe");
