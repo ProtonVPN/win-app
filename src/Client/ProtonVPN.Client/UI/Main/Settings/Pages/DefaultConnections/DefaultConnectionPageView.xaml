@@ -23,10 +23,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:defaultConnections="using:ProtonVPN.Client.UI.Main.Settings.Pages.DefaultConnections"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
-      xmlns:defaultConnections="using:ProtonVPN.Client.UI.Main.Settings.Pages.DefaultConnections"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
       mc:Ignorable="d">
@@ -48,144 +48,136 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <custom:SettingsPageHeaderContentControl Header="{x:Bind ViewModel.Title}" />
         </custom:SettingsPageContentControl.PageHeader>
 
-        <StackPanel x:Name="ContentArea"
-                    Spacing="8">
+        <toolkit:SettingsCard IsTabStop="False"
+                              Style="{StaticResource VerticalSettingsCardStyle}">
 
-            <Image Source="{ThemeResource DefaultConnectionIllustrationSource}"
-                   Stretch="Uniform" />
+            <StackPanel Spacing="16">
 
-            <toolkit:SettingsCard IsTabStop="False"
-                                  Style="{StaticResource VerticalSettingsCardStyle}">
+                <RadioButton AutomationProperties.AutomationId="FastestDefaultConnectionRadioButton"
+                             IsChecked="{x:Bind ViewModel.IsFastestConnection, Mode=TwoWay}"
+                             Style="{StaticResource DefaultConnectionRadioButtonStyle}">
+                    <custom:BulletHeaderedContentControl Margin="8,0,0,0"
+                                                         Content="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Fastest_Description')}"
+                                                         Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Fastest')}"
+                                                         Style="{StaticResource DefaultConnectionIntentBulletHeaderedContentControlStyle}">
+                        <custom:BulletHeaderedContentControl.BulletContent>
+                            <custom:SimpleCountryFlag Width="36"
+                                                      FlagType="Fastest" />
+                        </custom:BulletHeaderedContentControl.BulletContent>
+                    </custom:BulletHeaderedContentControl>
+                </RadioButton>
 
-                <StackPanel Spacing="16">
+                <RadioButton AutomationProperties.AutomationId="LastDefaultConnectionRadioButton"
+                             IsChecked="{x:Bind ViewModel.IsLastConnection, Mode=TwoWay}"
+                             Style="{StaticResource DefaultConnectionRadioButtonStyle}">
+                    <custom:BulletHeaderedContentControl Margin="8,0,0,0"
+                                                         Content="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Last_Description')}"
+                                                         Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Last')}"
+                                                         Style="{StaticResource DefaultConnectionIntentBulletHeaderedContentControlStyle}">
+                        <custom:BulletHeaderedContentControl.BulletContent>
+                            <custom:SimpleCountryFlag Width="36"
+                                                      FlagType="Latest" />
+                        </custom:BulletHeaderedContentControl.BulletContent>
+                    </custom:BulletHeaderedContentControl>
+                </RadioButton>
 
-                    <RadioButton AutomationProperties.AutomationId="FastestDefaultConnectionRadioButton"
-                                 IsChecked="{x:Bind ViewModel.IsFastestConnection, Mode=TwoWay}"
-                                 Style="{StaticResource DefaultConnectionRadioButtonStyle}">
-                        <custom:BulletHeaderedContentControl Margin="8,0,0,0"
-                                                             Content="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Fastest_Description')}"
-                                                             Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Fastest')}"
-                                                             Style="{StaticResource DefaultConnectionIntentBulletHeaderedContentControlStyle}">
-                            <custom:BulletHeaderedContentControl.BulletContent>
-                                <custom:SimpleCountryFlag Width="36"
-                                                          FlagType="Fastest" />
-                            </custom:BulletHeaderedContentControl.BulletContent>
-                        </custom:BulletHeaderedContentControl>
-                    </RadioButton>
+                <StackPanel Spacing="20"
+                            Visibility="{x:Bind ViewModel.HasProfiles, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-                    <RadioButton AutomationProperties.AutomationId="LastDefaultConnectionRadioButton"
-                                 IsChecked="{x:Bind ViewModel.IsLastConnection, Mode=TwoWay}"
-                                 Style="{StaticResource DefaultConnectionRadioButtonStyle}">
-                        <custom:BulletHeaderedContentControl Margin="8,0,0,0"
-                                                             Content="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Last_Description')}"
-                                                             Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Last')}"
-                                                             Style="{StaticResource DefaultConnectionIntentBulletHeaderedContentControlStyle}">
-                            <custom:BulletHeaderedContentControl.BulletContent>
-                                <custom:SimpleCountryFlag Width="36"
-                                                          FlagType="Latest" />
-                            </custom:BulletHeaderedContentControl.BulletContent>
-                        </custom:BulletHeaderedContentControl>
-                    </RadioButton>
+                    <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}"
+                               Text="{x:Bind ViewModel.Localizer.Get('Profiles_Page_Title')}" />
 
-                    <StackPanel Spacing="20"
-                                Visibility="{x:Bind ViewModel.HasProfiles, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <ItemsRepeater ItemsSource="{x:Bind ViewModel.Profiles}">
 
-                        <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}"
-                                   Text="{x:Bind ViewModel.Localizer.Get('Profiles_Page_Title')}" />
+                        <ItemsRepeater.Layout>
+                            <StackLayout Spacing="16" />
+                        </ItemsRepeater.Layout>
 
-                        <ItemsRepeater ItemsSource="{x:Bind ViewModel.Profiles}">
+                        <ItemsRepeater.ItemTemplate>
+                            <DataTemplate x:DataType="defaultConnections:ProfileDefaultConnectionObservable">
+                                <Grid>
+                                    <RadioButton Grid.Column="0"
+                                                 IsChecked="{x:Bind IsDefaultConnection, Mode=TwoWay}"
+                                                 Style="{StaticResource DefaultConnectionRadioButtonStyle}">
+                                        <RadioButton.Resources>
+                                            <x:Double x:Key="DefaultConnectionIntentBulletPresenterWidth">44</x:Double>
+                                        </RadioButton.Resources>
 
-                            <ItemsRepeater.Layout>
-                                <StackLayout Spacing="16" />
-                            </ItemsRepeater.Layout>
+                                        <custom:BulletHeaderedContentControl Margin="8,0,0,0"
+                                                                             Header="{x:Bind Header}"
+                                                                             Style="{StaticResource DefaultConnectionIntentBulletHeaderedContentControlStyle}">
+                                            <custom:BulletHeaderedContentControl.Content>
+                                                <toolkit:WrapPanel HorizontalSpacing="6"
+                                                                   Orientation="Horizontal"
+                                                                   VerticalSpacing="4">
 
-                            <ItemsRepeater.ItemTemplate>
-                                <DataTemplate x:DataType="defaultConnections:ProfileDefaultConnectionObservable">
-                                    <Grid>
-                                        <RadioButton Grid.Column="0"
-                                                     IsChecked="{x:Bind IsDefaultConnection, Mode=TwoWay}"
-                                                     Style="{StaticResource DefaultConnectionRadioButtonStyle}">
-                                            <RadioButton.Resources>
-                                                <x:Double x:Key="DefaultConnectionIntentBulletPresenterWidth">44</x:Double>
-                                            </RadioButton.Resources>
+                                                    <TextBlock AutomationProperties.AutomationId="ConnectionCardSubtitleLabel"
+                                                               Foreground="{ThemeResource TextWeakColorBrush}"
+                                                               Style="{StaticResource BodyTextBlockStyle}"
+                                                               Text="{x:Bind SubHeader}"
+                                                               TextTrimming="CharacterEllipsis"
+                                                               TextWrapping="WrapWholeWords" />
 
-                                            <custom:BulletHeaderedContentControl Margin="8,0,0,0"
-                                                                                 Header="{x:Bind Header}"
-                                                                                 Style="{StaticResource DefaultConnectionIntentBulletHeaderedContentControlStyle}">
-                                                <custom:BulletHeaderedContentControl.Content>
-                                                    <toolkit:WrapPanel HorizontalSpacing="6"
-                                                                       Orientation="Horizontal"
-                                                                       VerticalSpacing="4">
+                                                    <TextBlock VerticalAlignment="Center"
+                                                               Foreground="{ThemeResource TextWeakColorBrush}"
+                                                               Style="{StaticResource BodyTextBlockStyle}"
+                                                               Text="•"
+                                                               Visibility="{x:Bind HasFeature}" />
 
-                                                        <TextBlock AutomationProperties.AutomationId="ConnectionCardSubtitleLabel"
+                                                    <StackPanel Orientation="Horizontal"
+                                                                Spacing="4"
+                                                                Visibility="{x:Bind IsTor}">
+                                                        <pathicons:BrandTor Foreground="{ThemeResource TextWeakColorBrush}" />
+                                                        <TextBlock AutomationProperties.AutomationId="ConnectionCardFeatureTorLabel"
                                                                    Foreground="{ThemeResource TextWeakColorBrush}"
                                                                    Style="{StaticResource BodyTextBlockStyle}"
-                                                                   Text="{x:Bind SubHeader}"
+                                                                   Text="{x:Bind Localizer.Get('Server_Feature_Tor')}"
                                                                    TextTrimming="CharacterEllipsis"
                                                                    TextWrapping="WrapWholeWords" />
+                                                    </StackPanel>
 
-                                                        <TextBlock VerticalAlignment="Center"
+                                                    <StackPanel Orientation="Horizontal"
+                                                                Spacing="4"
+                                                                Visibility="{x:Bind IsP2P}">
+                                                        <pathicons:ArrowRightArrowLeft Foreground="{ThemeResource TextWeakColorBrush}" />
+                                                        <TextBlock AutomationProperties.AutomationId="ConnectionCardFeatureP2PLabel"
                                                                    Foreground="{ThemeResource TextWeakColorBrush}"
                                                                    Style="{StaticResource BodyTextBlockStyle}"
-                                                                   Text="•"
-                                                                   Visibility="{x:Bind HasFeature}" />
+                                                                   Text="{x:Bind Localizer.Get('Server_Feature_P2P')}"
+                                                                   TextTrimming="CharacterEllipsis"
+                                                                   TextWrapping="WrapWholeWords" />
+                                                    </StackPanel>
 
-                                                        <StackPanel Orientation="Horizontal"
-                                                                    Spacing="4"
-                                                                    Visibility="{x:Bind IsTor}">
-                                                            <pathicons:BrandTor Foreground="{ThemeResource TextWeakColorBrush}" />
-                                                            <TextBlock AutomationProperties.AutomationId="ConnectionCardFeatureTorLabel"
-                                                                       Foreground="{ThemeResource TextWeakColorBrush}"
-                                                                       Style="{StaticResource BodyTextBlockStyle}"
-                                                                       Text="{x:Bind Localizer.Get('Server_Feature_Tor')}"
-                                                                       TextTrimming="CharacterEllipsis"
-                                                                       TextWrapping="WrapWholeWords" />
-                                                        </StackPanel>
-
-                                                        <StackPanel Orientation="Horizontal"
-                                                                    Spacing="4"
-                                                                    Visibility="{x:Bind IsP2P}">
-                                                            <pathicons:ArrowRightArrowLeft Foreground="{ThemeResource TextWeakColorBrush}" />
-                                                            <TextBlock AutomationProperties.AutomationId="ConnectionCardFeatureP2PLabel"
-                                                                       Foreground="{ThemeResource TextWeakColorBrush}"
-                                                                       Style="{StaticResource BodyTextBlockStyle}"
-                                                                       Text="{x:Bind Localizer.Get('Server_Feature_P2P')}"
-                                                                       TextTrimming="CharacterEllipsis"
-                                                                       TextWrapping="WrapWholeWords" />
-                                                        </StackPanel>
-
-                                                        <StackPanel Orientation="Horizontal"
-                                                                    Spacing="4"
-                                                                    Visibility="{x:Bind IsSecureCore}">
-                                                            <pathicons:LockLayers Foreground="{ThemeResource TextWeakColorBrush}" />
-                                                            <TextBlock AutomationProperties.AutomationId="ConnectionCardFeatureSecureCoreLabel"
-                                                                       Foreground="{ThemeResource TextWeakColorBrush}"
-                                                                       Style="{StaticResource BodyTextBlockStyle}"
-                                                                       Text="{x:Bind Localizer.Get('Server_Feature_SecureCore')}"
-                                                                       TextTrimming="CharacterEllipsis"
-                                                                       TextWrapping="WrapWholeWords" />
-                                                        </StackPanel>
-                                                    </toolkit:WrapPanel>
-                                                </custom:BulletHeaderedContentControl.Content>
-                                                <custom:BulletHeaderedContentControl.BulletContent>
-                                                    <custom:ConnectionProfileIcon Width="44"
-                                                                                  VerticalAlignment="Top"
-                                                                                  CountryCode="{x:Bind ExitCountryCode}"
-                                                                                  FlagType="{x:Bind FlagType}"
-                                                                                  IsFlagVisible="True"
-                                                                                  ProfileCategory="{x:Bind Profile.Category}"
-                                                                                  ProfileColor="{x:Bind Profile.Color}" />
-                                                </custom:BulletHeaderedContentControl.BulletContent>
-                                            </custom:BulletHeaderedContentControl>
-                                        </RadioButton>
-                                    </Grid>
-                                </DataTemplate>
-                            </ItemsRepeater.ItemTemplate>
-                        </ItemsRepeater>
-                    </StackPanel>
+                                                    <StackPanel Orientation="Horizontal"
+                                                                Spacing="4"
+                                                                Visibility="{x:Bind IsSecureCore}">
+                                                        <pathicons:LockLayers Foreground="{ThemeResource TextWeakColorBrush}" />
+                                                        <TextBlock AutomationProperties.AutomationId="ConnectionCardFeatureSecureCoreLabel"
+                                                                   Foreground="{ThemeResource TextWeakColorBrush}"
+                                                                   Style="{StaticResource BodyTextBlockStyle}"
+                                                                   Text="{x:Bind Localizer.Get('Server_Feature_SecureCore')}"
+                                                                   TextTrimming="CharacterEllipsis"
+                                                                   TextWrapping="WrapWholeWords" />
+                                                    </StackPanel>
+                                                </toolkit:WrapPanel>
+                                            </custom:BulletHeaderedContentControl.Content>
+                                            <custom:BulletHeaderedContentControl.BulletContent>
+                                                <custom:ConnectionProfileIcon Width="44"
+                                                                              VerticalAlignment="Top"
+                                                                              CountryCode="{x:Bind ExitCountryCode}"
+                                                                              FlagType="{x:Bind FlagType}"
+                                                                              IsFlagVisible="True"
+                                                                              ProfileCategory="{x:Bind Profile.Category}"
+                                                                              ProfileColor="{x:Bind Profile.Color}" />
+                                            </custom:BulletHeaderedContentControl.BulletContent>
+                                        </custom:BulletHeaderedContentControl>
+                                    </RadioButton>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsRepeater.ItemTemplate>
+                    </ItemsRepeater>
                 </StackPanel>
-            </toolkit:SettingsCard>
-
-        </StackPanel>
+            </StackPanel>
+        </toolkit:SettingsCard>
     </custom:SettingsPageContentControl>
 </Page>
