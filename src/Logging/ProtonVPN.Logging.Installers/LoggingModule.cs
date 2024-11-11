@@ -21,14 +21,13 @@ using Autofac;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Log4Net;
 
-namespace ProtonVPN.Logging.Installers
+namespace ProtonVPN.Logging.Installers;
+
+public class LoggingModule : Module
 {
-    public class LoggingModule : Module
+    protected override void Load(ContainerBuilder builder)
     {
-        protected override void Load(ContainerBuilder builder)
-        {
-            builder.RegisterType<Log4NetLogger>().As<ILogger>().SingleInstance();
-            builder.RegisterType<LogCleaner>().As<ILogCleaner>().SingleInstance();
-        }
+        builder.RegisterType<Log4NetLogger>().As<ILogger>().SingleInstance();
+        builder.RegisterType<LogCleaner>().As<ILogCleaner>().SingleInstance();
     }
 }

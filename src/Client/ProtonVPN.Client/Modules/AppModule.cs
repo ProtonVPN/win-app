@@ -38,6 +38,7 @@ using ProtonVPN.Client.Logic.Services.Installers;
 using ProtonVPN.Client.Logic.Updates.Installers;
 using ProtonVPN.Client.Logic.Users.Installers;
 using ProtonVPN.Client.Models.Clipboards;
+using ProtonVPN.Client.Models.SystemTimes;
 using ProtonVPN.Client.Notifications.Installers;
 using ProtonVPN.Client.Services.Activation;
 using ProtonVPN.Client.Services.Bootstrapping;
@@ -110,6 +111,7 @@ using ProtonVPN.Files.Installers;
 using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Installers;
+using ProtonVPN.NetworkTimeProtocols.Installers;
 using ProtonVPN.OperatingSystems.Processes.Installers;
 using ProtonVPN.OperatingSystems.Registries.Installers;
 using ProtonVPN.OperatingSystems.Services.Installers;
@@ -178,7 +180,8 @@ public class AppModule : Module
                .RegisterModule<PowerEventsModule>()
                .RegisterModule<UsersLogicModule>()
                .RegisterModule<AnnouncementsModule>()
-               .RegisterModule<SearchesModule>();
+               .RegisterModule<SearchesModule>()
+               .RegisterModule<NetworkTimeProtocolsModule>();
     }
 
     private void RegisterLocalServices(ContainerBuilder builder)
@@ -219,6 +222,8 @@ public class AppModule : Module
         builder.RegisterType<LocationItemFactory>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<CommonItemFactory>().AsImplementedInterfaces().SingleInstance();
 
+        builder.RegisterType<SystemTimeValidator>().AsImplementedInterfaces().SingleInstance();
+        
         builder.Register(c =>
             new SafeSystemNetworkInterfaces(c.Resolve<ILogger>(), new SystemNetworkInterfaces()))
             .As<INetworkInterfaces>().SingleInstance();

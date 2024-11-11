@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,24 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.Messaging;
-using ProtonVPN.Client.EventMessaging.Contracts;
+using Autofac;
 
-namespace ProtonVPN.Client.EventMessaging;
+namespace ProtonVPN.NetworkTimeProtocols.Installers;
 
-public class EventMessageSender : IEventMessageSender
+public class NetworkTimeProtocolsModule : Module
 {
-    private readonly IMessenger _messenger = MessengerFactory.Get();
-
-    public void Send<TMessage>(TMessage message)
-        where TMessage : class
+    protected override void Load(ContainerBuilder builder)
     {
-        _messenger.Send(message);
-    }
-
-    public void Send<TMessage>()
-        where TMessage : class
-    {
-        Send(Activator.CreateInstance<TMessage>());
+        builder.RegisterType<NtpClient>().AsImplementedInterfaces().SingleInstance();
     }
 }

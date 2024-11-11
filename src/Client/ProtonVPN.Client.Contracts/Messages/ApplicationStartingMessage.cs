@@ -17,12 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
+namespace ProtonVPN.Client.Contracts.Messages;
 
-namespace ProtonVPN.Core.OS
-{
-    public interface INtpClient
-    {
-        DateTime? GetNetworkUtcTime();
-    }
-}
+public class ApplicationStartingMessage;

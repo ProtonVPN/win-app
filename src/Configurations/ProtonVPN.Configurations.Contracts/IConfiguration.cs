@@ -34,6 +34,8 @@ public interface IConfiguration : IStaticConfiguration
     string VpnUsernameSuffix { get; }
     string DoHVerifyApiHost { get; }
 
+    string NtpServerUrl { get; }
+
     int MaximumProfileNameLength { get; }
 
     long BugReportingMaxFileSize { get; }

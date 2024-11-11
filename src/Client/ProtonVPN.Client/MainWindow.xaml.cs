@@ -20,6 +20,8 @@
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Contracts.Bases;
 using ProtonVPN.Client.Contracts.Extensions;
+using ProtonVPN.Client.Contracts.Messages;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Services.Activation;
 
 namespace ProtonVPN.Client;
@@ -27,7 +29,6 @@ namespace ProtonVPN.Client;
 public sealed partial class MainWindow : IActivationStateAware
 {
     public MainWindowActivator WindowActivator { get; }
-
     public MainWindowOverlayActivator OverlayActivator { get; }
 
     public MainWindow()
@@ -40,7 +41,6 @@ public sealed partial class MainWindow : IActivationStateAware
         WindowActivator.Initialize(this);
         OverlayActivator.Initialize(this);
     }
-
 
     public void InvalidateTitleBarOpacity(WindowActivationState activationState)
     {
