@@ -740,7 +740,6 @@
         <None Remove="Assets\Illustrations\Light\vpn-feature-protocol.png" />
         <None Remove="Assets\Illustrations\Light\vpn-plus.svg" />
         <None Remove="Assets\Illustrations\Light\welcome.png" />
-        <None Remove="Assets\Illustrations\multiple-devices.png" />
         <None Remove="Assets\Illustrations\p2p-countries.png" />
         <None Remove="Assets\Illustrations\netshield.png" />
         <None Remove="Assets\Illustrations\p2p-thumbnail.png" />

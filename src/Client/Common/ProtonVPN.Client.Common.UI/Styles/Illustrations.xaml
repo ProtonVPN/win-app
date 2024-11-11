@@ -262,7 +262,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/secure-core-thumbnail.png" />
     <BitmapImage x:Key="TorThumbnailIllustrationSource"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/tor-thumbnail.png" />
-    <BitmapImage x:Key="MultipleDevicesIllustrationSource"
-                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/multiple-devices.png" />
 
 </ResourceDictionary>

@@ -28,7 +28,6 @@ using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Logic.Users.Contracts;
 using ProtonVPN.Client.Services.Bootstrapping;
 using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Settings.Contracts;
@@ -48,11 +47,6 @@ public partial class UserDetailsComponentViewModel : PageViewModelBase,
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IWebAuthenticator _webAuthenticator;
     private readonly IBootstrapper _bootstrapper;
-    private readonly IUserSessionsObserver _userSessionsObserver;
-
-    public int CurrentActiveDeviceCount => _userSessionsObserver.CurrentSessionCount;
-
-    public int MaxDevicesAllowed => _settings.MaxDevicesAllowed;
 
     public string Username => _settings.Username ?? _settings.UserDisplayName ?? string.Empty;
 
@@ -70,7 +64,6 @@ public partial class UserDetailsComponentViewModel : PageViewModelBase,
         IUserAuthenticator userAuthenticator,
         IWebAuthenticator webAuthenticator,
         IBootstrapper bootstrapper,
-        IUserSessionsObserver userSessionsObserver,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter) : base(localizer, logger, issueReporter)
@@ -82,7 +75,6 @@ public partial class UserDetailsComponentViewModel : PageViewModelBase,
         _userAuthenticator = userAuthenticator;
         _webAuthenticator = webAuthenticator;
         _bootstrapper = bootstrapper;
-        _userSessionsObserver = userSessionsObserver;
     }
 
     [RelayCommand]
@@ -132,7 +124,6 @@ public partial class UserDetailsComponentViewModel : PageViewModelBase,
             OnPropertyChanged(nameof(IsVpnPlan));
             OnPropertyChanged(nameof(IsProtonPlan));
             OnPropertyChanged(nameof(VpnPlan));
-            OnPropertyChanged(nameof(MaxDevicesAllowed));
         }
     }
 }

@@ -30,6 +30,5 @@ public class UsersLogicModule : Module
         builder.RegisterType<VpnPlanChangedHandler>().AsImplementedInterfaces().AutoActivate().SingleInstance();
         builder.RegisterType<VpnPlanUpdater>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<VpnPlanObserver>().AsImplementedInterfaces().AutoActivate().SingleInstance();
-        builder.RegisterType<UserSessionsObserver>().AsImplementedInterfaces().AutoActivate().SingleInstance();
     }
 }
