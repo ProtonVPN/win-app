@@ -708,6 +708,7 @@
         <None Remove="Assets\Illustrations\Dark\split-tunneling-on.png" />
         <None Remove="Assets\Illustrations\Dark\vpn-accelerator-off.png" />
         <None Remove="Assets\Illustrations\Dark\vpn-accelerator-on.png" />
+        <None Remove="Assets\Illustrations\Dark\vpn-feature-protocol.png" />
         <None Remove="Assets\Illustrations\Dark\vpn-plus.svg" />
         <None Remove="Assets\Illustrations\Dark\welcome.png" />
         <None Remove="Assets\Illustrations\feature-kill-switch.png" />
@@ -738,7 +739,7 @@
         <None Remove="Assets\Illustrations\Light\split-tunneling-on.png" />
         <None Remove="Assets\Illustrations\Light\vpn-accelerator-off.png" />
         <None Remove="Assets\Illustrations\Light\vpn-accelerator-on.png" />
-        <None Remove="Assets\Illustrations\Light\vpn-feature-protocol.svg" />
+        <None Remove="Assets\Illustrations\Light\vpn-feature-protocol.png" />
         <None Remove="Assets\Illustrations\Light\vpn-plus.svg" />
         <None Remove="Assets\Illustrations\Light\welcome.png" />
         <None Remove="Assets\Illustrations\multiple-devices.png" />
@@ -1927,6 +1928,9 @@
         <Content Update="Assets\Illustrations\Dark\settings.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Illustrations\Dark\vpn-feature-protocol.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Illustrations\ip-thumbnail.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -1969,13 +1973,13 @@
         <Content Update="Assets\Illustrations\Dark\vpn-accelerator-on.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
-        <Content Update="Assets\Illustrations\Dark\vpn-feature-protocol.svg">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
         <Content Update="Assets\Illustrations\kill-switch-enabled.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\Light\settings.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Light\vpn-feature-protocol.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\p2p-thumbnail.png">
@@ -2012,9 +2016,6 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\Light\vpn-accelerator-on.png">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-        <Content Update="Assets\Illustrations\Light\vpn-feature-protocol.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\multiple-devices.png">
