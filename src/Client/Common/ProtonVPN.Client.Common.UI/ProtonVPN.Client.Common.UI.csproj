@@ -695,7 +695,6 @@
         <None Remove="Assets\Icons\Streaming\sling.png" />
         <None Remove="Assets\Icons\Streaming\syfy.png" />
         <None Remove="Assets\Icons\Streaming\tf1.png" />
-        <None Remove="Assets\Illustrations\Dark\default-connection.svg" />
         <None Remove="Assets\Illustrations\Dark\free-countries.svg" />
         <None Remove="Assets\Illustrations\Dark\kill-switch-off.png" />
         <None Remove="Assets\Illustrations\Dark\kill-switch-on-advanced.png" />
@@ -722,7 +721,6 @@
         <None Remove="Assets\Illustrations\kill-switch-on-level-1.png" />
         <None Remove="Assets\Illustrations\kill-switch-on-level-2.png" />
         <None Remove="Assets\Illustrations\latency.png" />
-        <None Remove="Assets\Illustrations\Light\default-connection.svg" />
         <None Remove="Assets\Illustrations\Light\free-countries.svg" />
         <None Remove="Assets\Illustrations\Light\kill-switch-off.png" />
         <None Remove="Assets\Illustrations\Light\kill-switch-on-advanced.png" />
@@ -2024,9 +2022,6 @@
         <Content Update="Assets\Illustrations\swiss-flag.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
-        <Content Update="Assets\Illustrations\Dark\default-connection.svg">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
         <Content Update="Assets\Illustrations\Dark\free-countries.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -2061,9 +2056,6 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\latency.png">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-        <Content Update="Assets\Illustrations\Light\default-connection.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\Light\free-countries.svg">

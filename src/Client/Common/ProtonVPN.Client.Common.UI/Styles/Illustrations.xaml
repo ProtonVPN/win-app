@@ -56,8 +56,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
                             UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/product-logo.svg" />
             <SvgImageSource x:Key="VpnPlusIllustrationSource"
                             UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/vpn-plus.svg" />
-            <SvgImageSource x:Key="DefaultConnectionIllustrationSource"
-                            UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/default-connection.svg" />
             <SvgImageSource x:Key="NewProfileIllustrationSource"
                             UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/profile-new.svg" />
         </ResourceDictionary>
@@ -96,8 +94,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
                             UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Dark/product-logo.svg" />
             <SvgImageSource x:Key="VpnPlusIllustrationSource"
                             UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Dark/vpn-plus.svg" />
-            <SvgImageSource x:Key="DefaultConnectionIllustrationSource"
-                            UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Dark/default-connection.svg" />
             <SvgImageSource x:Key="NewProfileIllustrationSource"
                             UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Dark/profile-new.svg" />
 
