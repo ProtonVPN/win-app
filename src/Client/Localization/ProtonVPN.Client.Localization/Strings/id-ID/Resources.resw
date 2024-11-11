@@ -121,64 +121,64 @@
     <value>Proton VPN Free</value>
   </data>
   <data name="Automation_Properties_ConnectionDetails_Page">
-    <value>Connection details page</value>
+    <value>Halaman rincian koneksi</value>
   </data>
   <data name="Automation_Properties_Features_Bar">
-    <value>Features bar</value>
+    <value>Bilah fitur</value>
   </data>
   <data name="Automation_Properties_Home_Page_Other">
     <value></value>
   </data>
   <data name="Automation_Properties_KillSwitch_Page">
-    <value>Kill switch page</value>
+    <value>Halaman kill switch</value>
   </data>
   <data name="Automation_Properties_LocationDetails_Page">
-    <value>Location details page</value>
+    <value>Halaman rincian lokasi</value>
   </data>
   <data name="Automation_Properties_Login_Page">
-    <value>Login page</value>
+    <value>Halaman masuk</value>
   </data>
   <data name="Automation_Properties_Main_Page">
-    <value>Main page</value>
+    <value>Halaman utama</value>
   </data>
   <data name="Automation_Properties_NetShield_Page">
-    <value>NetShield page</value>
+    <value>Halaman NetShield</value>
   </data>
   <data name="Automation_Properties_PortForwarding_Page">
-    <value>Port forwarding page</value>
+    <value>Halaman penerusan port</value>
   </data>
   <data name="Automation_Properties_Settings_Advanced_Page">
-    <value>Advanced settings page</value>
+    <value>Halaman pengaturan lanjutan</value>
   </data>
   <data name="Automation_Properties_Settings_Common_Page">
-    <value>Common settings page</value>
+    <value>Halaman pengaturan umum</value>
   </data>
   <data name="Automation_Properties_Settings_Page">
-    <value>Settings page</value>
+    <value>Halaman pengaturan</value>
   </data>
   <data name="Automation_Properties_Sidebar">
-    <value>Sidebar</value>
+    <value>Bilah samping</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Countries_Page">
-    <value>Countries page</value>
+    <value>Halaman negara</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Gateways_Page">
-    <value>Gateways page</value>
+    <value>Halaman gateway</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Page">
-    <value>Connections page</value>
+    <value>Halaman koneksi</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Profiles_Page">
-    <value>Profiles page</value>
+    <value>Halaman profil</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Recents_Page">
-    <value>Recents page</value>
+    <value>Halaman terkini</value>
   </data>
   <data name="Automation_Properties_Sidebar_Search_Results_Page">
-    <value>Search results</value>
+    <value>Hasil pencarian</value>
   </data>
   <data name="Automation_Properties_SplitTunneling_Page">
-    <value>Split tunneling page</value>
+    <value>Halaman split tunneling</value>
   </data>
   <data name="Cities">
     <value>Kota</value>
@@ -191,13 +191,13 @@
     <value>Tambahkan</value>
   </data>
   <data name="Common_Actions_Back">
-    <value>Back</value>
+    <value>Kembali</value>
   </data>
   <data name="Common_Actions_Cancel">
     <value>Batal</value>
   </data>
   <data name="Common_Actions_Change">
-    <value>Change</value>
+    <value>Ubah</value>
   </data>
   <data name="Common_Actions_Close">
     <value>Tutup</value>
@@ -433,16 +433,16 @@
     <value>Acak</value>
   </data>
   <data name="Connections_Recents_Other">
-    <value>Recents ({0})</value>
+    <value>Terkini ({0})</value>
   </data>
   <data name="Connections_Recents_Empty_Description">
-    <value>View your connection history here.</value>
+    <value>Lihat riwayat koneksi Anda di sini.</value>
   </data>
   <data name="Connections_Recents_Empty_Title">
-    <value>No recents yet</value>
+    <value>Belum ada riwayat koneksi terkini</value>
   </data>
   <data name="Connections_Recents_Pinned_Other">
-    <value>Pinned ({0})</value>
+    <value>Disematkan ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_Other">
     <value>Negara Secure Core ({0})</value>
@@ -492,7 +492,7 @@
     <value>Server Tor ({0})</value>
   </data>
   <data name="Countries">
-    <value>Countries</value>
+    <value>Negara</value>
   </data>
   <data name="Countries_All">
     <value>Semua</value>
@@ -540,7 +540,7 @@
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
   <data name="Countries_P2P_Description">
-    <value>Download files over P2P (peer-to-peer) networks and enhance your online gaming and video calling experience.</value>
+    <value>Unduh berkas pada jaringan P2P (peer-to-peer) serta perkaya pengalaman gaming dan panggilan video online Anda.</value>
   </data>
   <data name="Countries_Page_FreeUser_Description">
     <value>Akses fitur pemilihan negara dengan VPN Plus</value>
@@ -1941,20 +1941,20 @@ Nikmati yang terbaik dari rangkaian privasi Proton.</value>
     <value>Keluar dari Proton VPN</value>
   </data>
   <data name="Flyouts_Country_Description">
-    <value>Browsing without a VPN leaves you vulnerable to location-based internet restrictions.
+    <value>Menjelajah internet tanpa VPN akan membuat Anda rentan terhadap pembatasan lokasi.
 
-Websites can use geoblocks to restrict content to certain locations. Governments can also instruct ISPs (Internet Service Providers) to block certain websites in their country.
+Situs web dapat menerapkan pemblokiran wilayah (geoblock) untuk membatasi konten hanya pada daerah tertentu. Pihak pemerintahan juga dapat meminta pengelola ISP (Internet Service Provider) untuk memblokir situs web tertentu di dalam negara mereka.
 
-A VPN makes it looks like you’re browsing from somewhere else, protecting you from surveillance and censorship.</value>
+VPN akan membuat Anda seolah-olah sedang menjelajah internet dari lokasi yang berbeda, yang melindungi Anda dari pemantauan dan penyensoran.</value>
   </data>
   <data name="Flyouts_Country_Title">
-    <value>Country</value>
+    <value>Negara</value>
   </data>
   <data name="Flyouts_Country_Warning">
-    <value>Connect to VPN to change your virtual location</value>
+    <value>Hubungkan ke VPN untuk mengubah lokasi virtual Anda</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Connected">
-    <value>Your VPN IP masks your real IP address. This makes it look like you’re browsing from your VPN location, so your online activity can’t be linked to your device.</value>
+    <value>IP VPN Anda sedang menyamarkan alamat IP asli Anda. Hal ini membuat Anda seolah-olah sedang menjelajah internet dari lokasi VPN Anda, sehingga aktivitas online Anda tidak dapat dihubungkan ke perangkat Anda.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected">
     <value>This unique code can be used by websites and ISPs (Internet Service Providers) to link your location and browsing history to your device. 
@@ -1962,19 +1962,19 @@ A VPN makes it looks like you’re browsing from somewhere else, protecting you 
 A VPN masks your IP address, making it harder for your activity to be traced back to you.</value>
   </data>
   <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
-    <value>What is an IP address?</value>
+    <value>Apa itu alamat IP?</value>
   </data>
   <data name="Flyouts_IpAddress_Title">
-    <value>IP address</value>
+    <value>Alamat IP</value>
   </data>
   <data name="Flyouts_IpAddress_VpnIp">
-    <value>VPN IP</value>
+    <value>IP VPN</value>
   </data>
   <data name="Flyouts_IpAddress_YourIp">
-    <value>Your IP</value>
+    <value>IP Anda</value>
   </data>
   <data name="Flyouts_IpAddress_YourIpIsVisible">
-    <value>Your IP address is visible</value>
+    <value>IP Anda dapat terlihat</value>
   </data>
   <data name="Flyouts_Isp_Description">
     <value>Your ISP (Internet Service Provider) is the company that connects you to the internet. 
@@ -1984,52 +1984,52 @@ They can log your online activity. In some countries, they can sell your data to
 A VPN hides your IP address, protecting you from ISP interference.</value>
   </data>
   <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
-    <value>What is an Internet Service Provider (ISP)?</value>
+    <value>Apa itu Penyedia Layanan Internet (ISP)?</value>
   </data>
   <data name="Flyouts_Isp_Title">
-    <value>Provider</value>
+    <value>Penyedia</value>
   </data>
   <data name="Flyouts_Isp_Warning">
-    <value>Your provider can see which websites you visit</value>
+    <value>Penyedia layanan internet Anda dapat melihat situs web mana saja yang Anda kunjungi</value>
   </data>
   <data name="Flyouts_Protocol_Description">
-    <value>A VPN protocol determines how traffic is encrypted and transmitted over the VPN.</value>
+    <value>Protokol VPN menentukan bagaimana lalu lintas data akan dienkripsi dan disalurkan melalui VPN.</value>
   </data>
   <data name="Flyouts_Protocol_KnowledgeBaseLinkTitle">
-    <value>Which VPN protocol is the best?</value>
+    <value>Protokol VPN manakah yang paling baik?</value>
   </data>
   <data name="Flyouts_Protocol_Title">
-    <value>Protocol</value>
+    <value>Protokol</value>
   </data>
   <data name="Flyouts_ServerLoad_Description">
-    <value>Server load shows how close a server is to its maximum capacity. A high server load can slow down your connection.</value>
+    <value>Muatan server menunjukkan seberapa sibuk suatu server relatif terhadap kapasitas maksimumnya. Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   </data>
   <data name="Flyouts_ServerLoad_High">
-    <value>High (91-100%)</value>
+    <value>Tinggi (91-100%)</value>
   </data>
   <data name="Flyouts_ServerLoad_High_Description">
-    <value>VPN may run slower than normal</value>
+    <value>VPN dapat berjalan lebih lambat dari biasanya</value>
   </data>
   <data name="Flyouts_ServerLoad_KnowledgeBaseLinkTitle">
-    <value>What is server load?</value>
+    <value>Apa itu muatan server?</value>
   </data>
   <data name="Flyouts_ServerLoad_Low">
-    <value>Low (1-75%)</value>
+    <value>Rendah (1-75%)</value>
   </data>
   <data name="Flyouts_ServerLoad_Low_Description">
-    <value>Lightning fast speeds</value>
+    <value>Kecepatan kilat</value>
   </data>
   <data name="Flyouts_ServerLoad_Medium">
-    <value>Medium (76-90%)</value>
+    <value>Sedang (76-90%)</value>
   </data>
   <data name="Flyouts_ServerLoad_Medium_Description">
-    <value>Unlikely to affect connection speed</value>
+    <value>Tidak berpotensi untuk memengaruhi kecepatan koneksi</value>
   </data>
   <data name="Flyouts_ServerLoad_Title">
-    <value>Server load</value>
+    <value>Muatan server</value>
   </data>
   <data name="Flyouts_Speed_BoostedByVpnAccelerator">
-    <value>Boosted by VPN Accelerator</value>
+    <value>Diperkuat oleh VPN Accelerator</value>
   </data>
   <data name="Flyouts_Speed_Description">
     <value>This shows how much data gets transmitted through Proton VPN each second.
@@ -2037,31 +2037,31 @@ A VPN hides your IP address, protecting you from ISP interference.</value>
 Speed is based on your device’s current activity — it doesn’t represent the VPN’s maximum speed.</value>
   </data>
   <data name="Flyouts_Speed_Download">
-    <value>Download</value>
+    <value>Unduh</value>
     <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
-    <value>Understanding and increasing VPN connection speeds</value>
+    <value>Memahami dan meningkatkan kecepatan koneksi VPN</value>
   </data>
   <data name="Flyouts_Speed_Title">
-    <value>Speed</value>
+    <value>Kecepatan</value>
   </data>
   <data name="Flyouts_Speed_Upload">
-    <value>Upload</value>
+    <value>Unggah</value>
     <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
   </data>
   <data name="Flyouts_Volume_Description">
-    <value>This shows how much traffic has routed through your VPN.</value>
+    <value>Angka ini menunjukkan seberapa banyak lalu lintas data yang telah dialihkan melalui VPN Anda</value>
   </data>
   <data name="Flyouts_Volume_Download">
-    <value>Download</value>
+    <value>Unduh</value>
     <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
   </data>
   <data name="Flyouts_Volume_Title">
     <value>Volume</value>
   </data>
   <data name="Flyouts_Volume_Upload">
-    <value>Upload</value>
+    <value>Unggah</value>
     <comment>Refers to the uploaded volume (e.g., Upload [new line] 250 MB).</comment>
   </data>
   <data name="Format_Milliseconds">
@@ -2097,7 +2097,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_SpeedUnit">
-    <value>Speed ({0})</value>
+    <value>Kecepatan ({0})</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
@@ -2226,10 +2226,10 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
   </data>
   <data name="Home_ConnectionDetails_Connecting">
-    <value>Connecting</value>
+    <value>Menghubungkan</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectingSubLabel">
-    <value>Protecting your digital identity...</value>
+    <value>Melindungi identitas digital Anda...</value>
   </data>
   <data name="Home_ConnectionDetails_Country">
     <value>Negara</value>
@@ -2248,7 +2248,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Sembunyikan alamat IP pengguna</value>
   </data>
   <data name="Home_ConnectionDetails_Isp">
-    <value>Provider</value>
+    <value>Penyedia</value>
   </data>
   <data name="Home_ConnectionDetails_Landmark">
     <value>Rincian koneksi</value>
@@ -2258,7 +2258,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>IP saya</value>
   </data>
   <data name="Home_ConnectionDetails_Protected">
-    <value>Protected</value>
+    <value>Terlindung</value>
   </data>
   <data name="Home_ConnectionDetails_Protocol">
     <value>Protokol</value>
@@ -2286,10 +2286,10 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Rincian koneksi</value>
   </data>
   <data name="Home_ConnectionDetails_Unprotected">
-    <value>Unprotected</value>
+    <value>Tidak terlindung</value>
   </data>
   <data name="Home_ConnectionDetails_UnprotectedSubLabel">
-    <value>Encrypt your online activity by connecting to VPN.</value>
+    <value>Enkripsi aktivitas online Anda dengan menghubungkan diri ke VPN</value>
   </data>
   <data name="Home_ConnectionDetails_Volume">
     <value>Volume</value>
@@ -2307,7 +2307,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>IP VPN</value>
   </data>
   <data name="Home_ConnectionDetails_YourIpAddress">
-    <value>Your IP address</value>
+    <value>Alamat IP Anda</value>
   </data>
   <data name="Home_FreeConnections_About">
     <value>Informasi lebih lanjut mengenai koneksi Free</value>
@@ -2355,7 +2355,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Sematkan</value>
   </data>
   <data name="Home_Recents_Restricted">
-    <value>Server is available with VPN Plus</value>
+    <value>Server tersedia dengan VPN Plus</value>
   </data>
   <data name="Home_Recents_SecondaryActions_ToolTip">
     <value>Tindakan</value>
@@ -2387,7 +2387,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_VpnStatus_Subtitle_Connecting">
-    <value>Protecting your digital identity...</value>
+    <value>Melindungi identitas digital Anda...</value>
   </data>
   <data name="Home_VpnStatus_Subtitle_Disconnected">
     <value>Anda tidak terlindung</value>
@@ -2396,7 +2396,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Terlindung</value>
   </data>
   <data name="LoadingPage_Tip">
-    <value>A better world starts with privacy and digital freedom.</value>
+    <value>Dunia yang lebih baik dimulai dengan privasi dan kemerdekaan digital.</value>
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
     <value>Terjadi kesalahan saat menerima detail sesi. Silakan coba lagi.</value>
@@ -2412,7 +2412,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Autentikasi SSO gagal. Silakan coba lagi.</value>
   </data>
   <data name="Login_Error_TwoFactorAuthFailed">
-    <value>Incorrect username or password. Please try again.</value>
+    <value>Nama pengguna atau kata sandi salah. Silakan coba lagi.</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
     <value>Autentikasi dua faktor gagal. Silakan masuk lagi.</value>
@@ -2422,7 +2422,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle">
-    <value>Enter the code from your authenticator app.</value>
+    <value>Masukkan kode dari aplikasi autentikator Anda.</value>
   </data>
   <data name="Login_TwoFactorForm_Title">
     <value>Autentikasi dua-faktor</value>
@@ -2446,7 +2446,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Digit keenam</value>
   </data>
   <data name="Login_TwoFactor_EnterCode">
-    <value>Enter your code</value>
+    <value>Masukkan kode Anda</value>
   </data>
   <data name="Main_Loading_SigningIn">
     <value>Memasukkan Anda ke akun, mohon tunggu…</value>
@@ -2463,25 +2463,25 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Paket Anda telah diturunkan ke Proton Free, dan kami akan menghubungkan ulang Anda ke server gratis tercepat.</value>
   </data>
   <data name="Overlay_OutdatedClient_Action">
-    <value>Update now</value>
+    <value>Perbarui sekarang</value>
   </data>
   <data name="Overlay_OutdatedClient_Message">
-    <value>This app version is outdated. You must update the app to continue using Proton VPN.</value>
+    <value>Versi aplikasi ini telah usang. Anda harus memperbarui aplikasi untuk lanjut menggunakan Proton VPN.</value>
   </data>
   <data name="Overlay_OutdatedClient_Title">
-    <value>Update Proton VPN to continue</value>
+    <value>Perbarui Proton VPN untuk melanjutkan</value>
   </data>
   <data name="Overlay_P2P_Bullet1_Description">
-    <value>Our P2P (peer-to-peer) servers let you access P2P networks while still protecting your IP address and online activity.</value>
+    <value>Server P2P (peer-to-peer) kami memungkinkan Anda untuk mengakses jaringan P2P sambil tetap melindungi alamat IP dan aktivitas online Anda.</value>
   </data>
   <data name="Overlay_P2P_Bullet1_Header">
-    <value>What is P2P VPN?</value>
+    <value>Apa itu VPN P2P?</value>
   </data>
   <data name="Overlay_P2P_Bullet2_Description">
-    <value>P2P networks allow two devices to connect and transfer data without passing through a central server. </value>
+    <value>Jaringan P2P memungkinkan dua perangkat untuk saling terhubung dan mentrasfer data antar satu sama lain tanpa melalui server pusat. </value>
   </data>
   <data name="Overlay_P2P_Bullet2_Header">
-    <value>What is a P2P network?</value>
+    <value>Apa itu jaringan P2P?</value>
   </data>
   <data name="Overlay_P2P_Bullet3_Description">
     <value>  •  Downloading torrent files
@@ -2489,10 +2489,10 @@ Speed is based on your device’s current activity — it doesn’t represent th
   •  Connecting to local area network (LAN) devices</value>
   </data>
   <data name="Overlay_P2P_Bullet3_Header">
-    <value>What are P2P networks used for?</value>
+    <value>Untuk apa jaringan P2P digunakan?</value>
   </data>
   <data name="Overlay_P2P_LearnMore">
-    <value>What is P2P?</value>
+    <value>Apa itu P2P?</value>
   </data>
   <data name="Overlay_P2P_Title">
     <value>P2P</value>
@@ -2503,59 +2503,59 @@ Speed is based on your device’s current activity — it doesn’t represent th
 This higher level of protection may cause higher latency and slower speeds.</value>
   </data>
   <data name="Overlay_SecureCore_LearnMore">
-    <value>What is Secure Core?</value>
+    <value>Apa itu Secure Core?</value>
   </data>
   <data name="Overlay_SecureCore_SecureCoreConnection">
     <value>Secure Core
-VPN connection</value>
+Koneksi VPN</value>
   </data>
   <data name="Overlay_SecureCore_SecureCoreConnection_Latency">
-    <value>Higher latency</value>
+    <value>Latensi lebih tinggi</value>
   </data>
   <data name="Overlay_SecureCore_SecureCoreConnection_Privacy">
-    <value>Advanced privacy</value>
+    <value>Privasi lanjutan</value>
   </data>
   <data name="Overlay_SecureCore_StandardConnection">
-    <value>Standard
-VPN connection</value>
+    <value>Koneksi VPN
+Standar</value>
   </data>
   <data name="Overlay_SecureCore_StandardConnection_Latency">
-    <value>Lower latency</value>
+    <value>Latensi lebih rendah</value>
   </data>
   <data name="Overlay_SecureCore_StandardConnection_Privacy">
-    <value>High privacy</value>
+    <value>Privasi tinggi</value>
   </data>
   <data name="Overlay_SecureCore_Title">
     <value>Secure Core</value>
   </data>
   <data name="Overlay_ServerLoad_Description">
-    <value>Server load shows how close a server is to its maximum capacity.
+    <value>Muatan server menunjukkan seberapa sibuk suatu server relatif terhadap kapasitas maksimumnya. 
 
-A high server load can slow down your connection.</value>
+Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   </data>
   <data name="Overlay_ServerLoad_HighRange_Description">
-    <value>VPN may run slower than normal</value>
+    <value>VPN dapat berjalan lebih lambat dari biasanya</value>
   </data>
   <data name="Overlay_ServerLoad_HighRange_Title">
-    <value>High (91-100%)</value>
+    <value>Tinggi (91-100%)</value>
   </data>
   <data name="Overlay_ServerLoad_LearnMore">
-    <value>What is server load?</value>
+    <value>Apa itu muatan server?</value>
   </data>
   <data name="Overlay_ServerLoad_LowRange_Description">
-    <value>Lightning fast speeds</value>
+    <value>Kecepatan kilat</value>
   </data>
   <data name="Overlay_ServerLoad_LowRange_Title">
-    <value>Low (1-75%)</value>
+    <value>Rendah (1-75%)</value>
   </data>
   <data name="Overlay_ServerLoad_MediumRange_Description">
-    <value>Unlikely to affect VPN speed</value>
+    <value>Tidak berpotensi untuk memengaruhi kecepatan VPN</value>
   </data>
   <data name="Overlay_ServerLoad_MediumRange_Title">
-    <value>Medium (76-90%)</value>
+    <value>Sedang (76-90%)</value>
   </data>
   <data name="Overlay_ServerLoad_Title">
-    <value>Server Load</value>
+    <value>Muatan Server</value>
   </data>
   <data name="Overlay_SmartRouting_Description">
     <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
@@ -2565,22 +2565,22 @@ When you connect to a Smart Routing server, you’ll appear to be browsing in yo
 Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
-    <value>Servers are physically located in {0}, but you'll appear to be browsing from {1}</value>
+    <value>Server yang melayani Anda secara fisik terletak di {0}, namun Anda akan terlihat seolah-olah Anda sedang menjelajah dari {1}</value>
     <comment>{0} is a placeholder for the physical server location country. {1} is a placeholder for the destination country
     Warning: country names are inserted in the nominative case. For INFLECTED languages, use alternative wording as follows:
     Connects you to your destination country ({1}) through servers that are physically located somewhere else ({0})</comment>
   </data>
   <data name="Overlay_SmartRouting_LearnMore">
-    <value>What is Smart Routing?</value>
+    <value>Apa itu Smart Routing?</value>
   </data>
   <data name="Overlay_SmartRouting_Title">
     <value>Smart Routing</value>
   </data>
   <data name="Overlay_Tor_Description">
-    <value>Connect to a Tor server to access hidden services and onion sites using any browser.</value>
+    <value>Hubungkan ke server Tor untuk mengakses layanan tersembunyi dan situs onion melalui browser mana pun.</value>
   </data>
   <data name="Overlay_Tor_LearnMore">
-    <value>How to access the Tor network</value>
+    <value>Cara mengakses jaringan Tor</value>
   </data>
   <data name="Overlay_Tor_Title">
     <value>Tor</value>
@@ -2592,14 +2592,14 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Profil</value>
   </data>
   <data name="Search_InputBox_Placeholder">
-    <value>Browse from...</value>
+    <value>Jelajahi internet dari...</value>
   </data>
   <data name="Search_NoInput_CityOrState">
-    <value>City or US state</value>
+    <value>Kota atau negara bagian AS</value>
     <comment>The word used for one single city and one single United States state</comment>
   </data>
   <data name="Search_NoInput_Country">
-    <value>Country</value>
+    <value>Negara</value>
     <comment>The word used for one single country</comment>
   </data>
   <data name="Search_NoInput_Server">
@@ -2607,13 +2607,13 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>The word used for one single server</comment>
   </data>
   <data name="Search_NoInput_TrySearchingFor">
-    <value>Try searching for...</value>
+    <value>Coba cari...</value>
   </data>
   <data name="Search_NoResults_Description">
-    <value>Try a different keyword.</value>
+    <value>Coba kata kunci pencarian yang berbeda.</value>
   </data>
   <data name="Search_NoResults_Title">
-    <value>No results found</value>
+    <value>Tidak ada hasil yang ditemukan</value>
   </data>
   <data name="Server">
     <value>Server</value>
@@ -2640,7 +2640,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Server Free</value>
   </data>
   <data name="Servers">
-    <value>Servers</value>
+    <value>Server</value>
   </data>
   <data name="Settings_About">
     <value>Tentang</value>
@@ -2679,13 +2679,13 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Dapatkan yang terbaik dari VPN Anda dengan memperbarui aplikasi ke versi terbaru.</value>
   </data>
   <data name="Settings_Account_Exit">
-    <value>Exit the app</value>
+    <value>Keluar aplikasi</value>
   </data>
   <data name="Settings_Account_MyAccount">
-    <value>My account</value>
+    <value>Akun saya</value>
   </data>
   <data name="Settings_Account_SignOut">
-    <value>Sign out</value>
+    <value>Keluar</value>
   </data>
   <data name="Settings_AppVersion">
     <value>Versi aplikasi</value>
@@ -2751,10 +2751,10 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>Perlindungan kebocoran IPv6</value>
+    <value>Nonaktifkan lalu lintas IPv6</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
-    <value>Mencegah kebocoran alamat IPv6.</value>
+    <value>Mencegah kebocoran IPv6 dengan memblokir koneksi ke alamat IPv6.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
     <value>Koneksi LAN</value>
@@ -2786,6 +2786,12 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
     <value>Membatasi data yang memasuki jaringan Anda. Opsi ini lebih aman, namun dapat mempersulit koneksi peer-to-peer antar aplikasi permainan.</value>
   </data>
+  <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
+    <value>Mengalihkan lalu lintas data melalui berbagai jaringan yang berbeda.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
+    <value>Menggunakan teknologi penjembatanan (bridging) untuk menghubungkan jaringan. TUN memberikan kecepatan yang lebih tinggi dari TAP, namun dapat berfungsi secara lebih tidak stabil.</value>
+  </data>
   <data name="Settings_Connection_Default">
     <value>Koneksi bawaan</value>
   </data>
@@ -2800,6 +2806,87 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Koneksi yang terakhir Anda gunakan</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch">
+    <value>Kill switch</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Advanced">
+    <value>Tingkat lanjut</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Advanced_Description">
+    <value>Membatasi agar akses internet hanya tersedia pada saat Anda terhubung ke Proton VPN. Kill switch lanjutan akan tetap aktif bahkan ketika Anda memulai ulang perangkat Anda.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Conflict_Description">
+    <value>Tindakan ini akan menonaktifkan split tunneling.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Conflict_Title">
+    <value>Aktifkan kill switch?</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Description">
+    <value>Melindungi alamat IP Anda dengan memutuskan Anda dari internet apabila koneksi VPN hilang.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Footer">
+    <value>Pada saat kill switch sedang aktif, Anda tidak akan dapat terhubung ke situs web dan aplikasi yang dikecualikan dari koneksi VPN Anda melalui split tunneling.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Standard">
+    <value>Standar</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Standard_Description">
+    <value>Memutuskan Anda dari internet secara otomatis apabila koneksi VPN hilang.</value>
+  </data>
+  <data name="Settings_Connection_NetShield">
+    <value>NetShield</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
+    <value>Blokir iklan, malware, dan pelacak</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockMalwareOnly">
+    <value>Hanya blokir malware</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Description">
+    <value>Anda tidak akan dapat terhubung ke server DNS khusus pada saat NetShield sedang aktif.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Title">
+    <value>Aktifkan NetShield?</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Description">
+    <value>Lindungi diri Anda dari iklan, malware, dan pelacak pada berbagai situs web dan aplikasi.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Footer">
+    <value>Beberapa situs web mungkin tidak akan dapat termuat dengan benar pada saat iklan dan pelacak diblokir.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_PrivacyPanel">
+    <value>Panel Privasi NetShield</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding">
+    <value>Penerusan port</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_ActivePort">
+    <value>Port yang aktif:</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
+    <value>Salin nomor port</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Conflict_Description">
+    <value>Anda tidak akan dapat menggunakan NAT Moderat pada saat penerusan port sedang aktif.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Conflict_Title">
+    <value>Aktifkan penerusan port?</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Description">
+    <value>Melewati firewall untuk menghubungkan Anda ke server dan perangkat P2P dalam jaringan lokal Anda.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Footer">
+    <value>Untuk menggunakan penerusan port, silakan hubungkan diri Anda ke server yang mendukung P2P.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Loading">
+    <value>Memuat...</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Notifications">
+    <value>Notifikasi</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Notifications_Description">
+    <value>Dapatkan notifikasi pada saat nomor port yang digunakan pada penerusan port berubah</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokol</value>
@@ -2817,134 +2904,65 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Settings_Connection_Protocol_NavigationFailed_Title">
     <value>Ubah protokol dalam profil</value>
   </data>
-  <data name="Settings_Connection_VpnAccelerator">
-    <value>VPN Accelerator</value>
-  </data>
-  <data name="Settings_Features">
-    <value>Fitur-fitur VPN</value>
-  </data>
-  <data name="Settings_Features_KillSwitch">
-    <value>Kill switch</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Advanced">
-    <value>Lanjutan</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Advanced_Description">
-    <value>Membatasi agar internet hanya tersedia pada saat Anda terhubung ke Proton VPN. Kill switch lanjutan akan tetap aktif bahkan ketika Anda memulai ulang perangkat Anda.</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Conflict_Description">
-    <value>Tindakan ini akan menonaktifkan split tunneling.</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Conflict_Title">
-    <value>Aktifkan kill switch?</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Description">
-    <value>Melindungi alamat IP Anda dengan memutuskan Anda dari internet apabila koneksi VPN hilang.</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Footer">
-    <value>Pada saat kill switch aktif, Anda tidak akan dapat terhubung ke situs web dan aplikasi yang tidak disertakan dalam koneksi VPN Anda melalui split tunneling.</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Standard">
-    <value>Standar</value>
-  </data>
-  <data name="Settings_Features_KillSwitch_Standard_Description">
-    <value>Memutuskan Anda dari internet secara otomatis apabila koneksi VPN hilang.</value>
-  </data>
-  <data name="Settings_Features_NetShield">
-    <value>NetShield</value>
-  </data>
-  <data name="Settings_Features_NetShield_Conflict_Description">
-    <value>Anda tidak akan dapat terhubung ke server DNS khusus pada saat NetShield diaktifkan.</value>
-  </data>
-  <data name="Settings_Features_NetShield_Conflict_Title">
-    <value>Aktifkan NetShield?</value>
-  </data>
-  <data name="Settings_Features_NetShield_Description">
-    <value>Lindungi diri Anda dari iklan, malware, dan pelacak pada berbagai situs web dan aplikasi.</value>
-  </data>
-  <data name="Settings_Features_NetShield_Footer">
-    <value>Beberapa situs web mungkin tidak akan termuat dengan benar ketika iklan dan pelacak diblokir.</value>
-  </data>
-  <data name="Settings_Features_PortForwarding">
-    <value>Penerusan port</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_ActivePort">
-    <value>Port yang aktif:</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_ActivePort_Copy">
-    <value>Salin nomor port</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Conflict_Description">
-    <value>Anda tidak akan dapat menggunakan NAT Moderat pada saat penerusan port diaktifkan.</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Conflict_Title">
-    <value>Aktifkan penerusan port?</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Description">
-    <value>Melewati firewall untuk menghubungkan Anda ke server dan perangkat P2P dalam jaringan lokal Anda.</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Footer">
-    <value>Untuk menggunakan penerusan port, silakan hubungkan diri Anda ke server yang mendukung P2P.</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Loading">
-    <value>Memuat...</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Notifications">
-    <value>Notifikasi</value>
-  </data>
-  <data name="Settings_Features_PortForwarding_Notifications_Description">
-    <value>Dapatkan notifikasi pada saat nomor port yang digunakan pada penerusan port berubah</value>
-  </data>
-  <data name="Settings_Features_SplitTunneling">
+  <data name="Settings_Connection_SplitTunneling">
     <value>Split tunneling</value>
   </data>
-  <data name="Settings_Features_SplitTunneling_Apps_Add">
-    <value>Tambahkan aplikasi</value>
+  <data name="Settings_Connection_SplitTunneling_Apps_Add">
+    <value>Tambah aplikasi</value>
   </data>
-  <data name="Settings_Features_SplitTunneling_Apps_FilesFilterName">
+  <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
     <value>Berkas aplikasi</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
   </data>
-  <data name="Settings_Features_SplitTunneling_Apps_Header">
+  <data name="Settings_Connection_SplitTunneling_Apps_Header">
     <value>Aplikasi terpilih ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
-  <data name="Settings_Features_SplitTunneling_Apps_Remove">
+  <data name="Settings_Connection_SplitTunneling_Apps_Remove">
     <value>Hapus aplikasi</value>
   </data>
-  <data name="Settings_Features_SplitTunneling_Conflict_Description">
+  <data name="Settings_Connection_SplitTunneling_Conflict_Description">
     <value>Tindakan ini akan menonaktifkan kill switch.</value>
   </data>
-  <data name="Settings_Features_SplitTunneling_Conflict_Title">
+  <data name="Settings_Connection_SplitTunneling_Conflict_Title">
     <value>Aktifkan split tunneling?</value>
   </data>
-  <data name="Settings_Features_SplitTunneling_Description">
+  <data name="Settings_Connection_SplitTunneling_Description">
     <value>Sesuaikan koneksi Anda dengan menentukan aplikasi dan alamat IP mana saja yang akan terlindung oleh VPN.</value>
   </data>
-  <data name="Settings_Features_SplitTunneling_Inverse">
+  <data name="Settings_Connection_SplitTunneling_Inverse">
     <value>Berkebalikan</value>
   </data>
-  <data name="Settings_Features_SplitTunneling_Inverse_Description">
+  <data name="Settings_Connection_SplitTunneling_Inverse_Description">
     <value>Hanya aplikasi dan alamat IP yang dipilih yang akan terhubung ke VPN, sedangkan lalu lintas lainnya tidak terlindung</value>
   </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Add">
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
     <value>Tambah IP</value>
   </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Header">
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
     <value>Alamat IP yang dipilih ({0})</value>
     <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
   </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Remove">
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
     <value>Hapus IP</value>
   </data>
-  <data name="Settings_Features_SplitTunneling_IpAddresses_Watermark">
-    <value>Tambah alamat IPv4</value>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Watermark">
+    <value>Tambahkan alamat IPv4</value>
   </data>
-  <data name="Settings_Features_SplitTunneling_Standard">
+  <data name="Settings_Connection_SplitTunneling_Standard">
     <value>Standar</value>
   </data>
-  <data name="Settings_Features_SplitTunneling_Standard_Description">
+  <data name="Settings_Connection_SplitTunneling_Standard_Description">
     <value>Aplikasi dan alamat IP yang terpilih dikecualikan dari koneksi VPN</value>
+  </data>
+  <data name="Settings_Connection_VpnAccelerator_Other">
+    <value></value>
+  </data>
+  <data name="Settings_DevicesConnected">
+    <value>Perangkat yang terhubung</value>
+  </data>
+  <data name="Settings_Features">
+    <value>Fitur-fitur VPN</value>
   </data>
   <data name="Settings_General">
     <value>Umum</value>
@@ -3070,7 +3088,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>WireGuard</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Description">
-    <value>Menangkal pemblokiran VPN dengan menyembunyikan koneksi VPN Anda dari sensor. Protokol ini tahan terhadap DPI (inspeksi paket mendalam/deep packet inspection), namun dapat tidak berfungsi secepat protokol lainnya. Stealth tersedia khusus pada Proton VPN.</value>
+    <value>Menangkal pemblokiran VPN dengan menyembunyikan koneksi VPN Anda dari sensor. Protokol ini tahan terhadap pemeriksaan DPI (deep packet inspection), namun dapat tidak berfungsi secepat protokol lainnya.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Title">
     <value>Stealth</value>
@@ -3148,82 +3166,82 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Tingkatkan kecepatan koneksi Anda hingga 400% dengan teknologi pemicu performa.</value>
   </data>
   <data name="SignIn_Form">
-    <value>Sign in form</value>
+    <value>Formulir masuk</value>
   </data>
   <data name="SignIn_Form_AdvancedKillSwitchDescription">
-    <value>Advanced kill switch is blocking your internet connection.</value>
+    <value>Kill switch lanjutan sedang memblokir koneksi internet Anda.</value>
   </data>
   <data name="SignIn_Form_BestSecureVpnForSpeed">
-    <value>The best secure VPN for speed</value>
+    <value>VPN aman terbaik untuk penjelajahan yang cepat</value>
   </data>
   <data name="SignIn_Form_CreateAccount">
-    <value>Create account</value>
+    <value>Buat akun</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="SignIn_Form_Description">
-    <value>Enter your Proton Account details.</value>
+    <value>Masukkan rincian Akun Proton Anda.</value>
   </data>
   <data name="SignIn_Form_DisableKillSwitch">
-    <value>Disable kill switch</value>
+    <value>Nonaktifkan kill switch</value>
   </data>
   <data name="SignIn_Form_Email">
     <value>Email</value>
   </data>
   <data name="SignIn_Form_ForgotUsername">
-    <value>Forgot username</value>
+    <value>Lupa nama pengguna</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_Help">
-    <value>Help</value>
+    <value>Bantuan</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_NoLogsPolicy">
-    <value>No-logs policy</value>
+    <value>Kebijakan tanpa log</value>
   </data>
   <data name="SignIn_Form_OpenSource">
-    <value>Open-source</value>
+    <value>Open source</value>
   </data>
   <data name="SignIn_Form_Password">
-    <value>Password</value>
+    <value>Kata sandi</value>
   </data>
   <data name="SignIn_Form_PasswordError">
-    <value>Enter your password</value>
+    <value>Masukkan kata sandi Anda</value>
     <comment>An error message is displayed when the user attempts to sign in without entering a password</comment>
   </data>
   <data name="SignIn_Form_ReportAnIssue">
-    <value>Report an issue</value>
+    <value>Laporkan masalah</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_ResetPassword">
-    <value>Reset password</value>
+    <value>Atur ulang kata sandi</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_SignIn">
-    <value>Sign in</value>
+    <value>Masuk</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="SignIn_Form_SignInWithSso">
-    <value>Sign in with SSO</value>
+    <value>Masuk dengan SSO</value>
   </data>
   <data name="SignIn_Form_SwissBased">
-    <value>Swiss-based</value>
+    <value>Berbasis di Swiss</value>
   </data>
   <data name="SignIn_Form_Title">
-    <value>Sign in</value>
+    <value>Masuk</value>
   </data>
   <data name="SignIn_Form_TroubleSigningIn">
-    <value>Trouble signing in</value>
+    <value>Saya tidak dapat masuk</value>
     <comment>A button at the bottom of the login window inside Get help popup</comment>
   </data>
   <data name="SignIn_Form_Username">
-    <value>Email or username</value>
+    <value>Email atau nama pengguna</value>
   </data>
   <data name="SignIn_Form_UsernameError">
-    <value>Enter your email or username</value>
+    <value>Masukkan email atau nama pengguna Anda</value>
     <comment>An error message is displayed when the user attempts to sign in without entering a username</comment>
   </data>
   <data name="SignIn_KillSwitch_Disabled">
-    <value>Kill switch is disabled</value>
+    <value>Kill switch sedang dinonaktifkan</value>
   </data>
   <data name="SystemNotification_Connected">
     <value>Anda kini terlindungi</value>
@@ -3441,13 +3459,13 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>OpenVPN (TCP)</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp_Description">
-    <value>Established, well-tested, and secure</value>
+    <value>Mapan, teruji, dan aman</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Udp">
     <value>OpenVPN (UDP)</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Udp_Description">
-    <value>Established, well-tested, and secure</value>
+    <value>Mapan, teruji, dan aman</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>
@@ -3456,18 +3474,18 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>WireGuard (TCP)</value>
   </data>
   <data name="VpnProtocol_WireGuard_Tcp_Description">
-    <value>State-of-the-art protocol for security and performance</value>
+    <value>Protokol mutakhir untuk keamanan dan performa</value>
   </data>
   <data name="VpnProtocol_WireGuard_Tls">
     <value>Stealth</value>
   </data>
   <data name="VpnProtocol_WireGuard_Tls_Description">
-    <value>Overcomes VPN blocks by hiding your connection from censors</value>
+    <value>Melewati pemblokiran VPN dengan menyembunyikan koneksi Anda dari sensor</value>
   </data>
   <data name="VpnProtocol_WireGuard_Udp">
     <value>WireGuard (UDP)</value>
   </data>
   <data name="VpnProtocol_WireGuard_Udp_Description">
-    <value>State-of-the-art protocol for security and performance</value>
+    <value>Protokol mutakhir untuk keamanan dan performa</value>
   </data>
 </root>
