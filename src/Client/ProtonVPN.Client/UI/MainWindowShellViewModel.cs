@@ -23,17 +23,31 @@ using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Client.Contracts.Bases.ViewModels;
 using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Contracts.Services.Navigation;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Contracts.Messages;
 
 namespace ProtonVPN.Client.UI;
 
 public class MainWindowShellViewModel : ShellViewModelBase<IMainWindowActivator, IMainWindowViewNavigator>
 {
+    private readonly IEventMessageSender _eventMessageSender;
+
     public MainWindowShellViewModel(
         IMainWindowActivator windowActivator,
         IMainWindowViewNavigator childViewNavigator,
         ILocalizationProvider localizer,
         ILogger logger,
-        IIssueReporter issueReporter)
+        IIssueReporter issueReporter,
+        IEventMessageSender eventMessageSender)
         : base(windowActivator, childViewNavigator, localizer, logger, issueReporter)
-    { }
+    {
+        _eventMessageSender = eventMessageSender;
+    }
+
+    protected override void OnActivated()
+    {
+        base.OnActivated();
+
+        _eventMessageSender.Send<ApplicationStartedMessage>();
+    }
 }

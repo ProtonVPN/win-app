@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Concurrent;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Client.Settings.Contracts;
@@ -77,7 +78,11 @@ namespace ProtonVPN.Dns.Caching
             {
                 cachedValue = dnsCache.AddOrUpdate(host, dnsResponse, (_, _) => dnsResponse);
             }
-            _settings.DnsCache = dnsCache;
+
+            // When setting the DnsCache, it needs to be a new entity to trigger the Settings.Set()
+            // code to actually recognize the value change and write it to the settings file
+            _settings.DnsCache = new ConcurrentDictionary<string, DnsResponse>(dnsCache);
+
             return cachedValue;
         }
 

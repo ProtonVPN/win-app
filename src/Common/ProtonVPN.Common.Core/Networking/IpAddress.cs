@@ -49,4 +49,9 @@ public class IpAddress
     {
         return _systemTypeIpAddress.ToString();
     }
+
+    public IPAddress GetSystemType()
+    {
+        return _systemTypeIpAddress;
+    }
 }

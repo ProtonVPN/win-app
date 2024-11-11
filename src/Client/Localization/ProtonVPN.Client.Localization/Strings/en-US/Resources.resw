@@ -3636,4 +3636,13 @@ Speed is based on your device’s current activity — it doesn’t represent th
   <data name="Search_NoResults_Description" xml:space="preserve">
     <value>Try a different keyword.</value>
   </data>
+  <data name="Dialogs_UpdateSystemClock_Title" xml:space="preserve">
+    <value>Update system clock</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_Description" xml:space="preserve">
+    <value>Looks like your system clock is out of sync. This may cause issues when connecting to VPN.</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_PrimaryButton" xml:space="preserve">
+    <value>How to update system clock</value>
+  </data>
 </root>

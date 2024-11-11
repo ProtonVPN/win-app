@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,11 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.EventMessaging.Contracts
+namespace ProtonVPN.Client.EventMessaging.Contracts;
+
+public interface IEventMessageSender
 {
-    public interface IEventMessageSender
-    {
-        void Send<TMessage>(TMessage message)
-            where TMessage : class;
-    }
+    void Send<TMessage>(TMessage message)
+        where TMessage : class;
+
+    void Send<TMessage>()
+        where TMessage : class;
 }

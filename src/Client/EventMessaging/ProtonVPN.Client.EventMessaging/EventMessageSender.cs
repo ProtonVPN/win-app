@@ -31,4 +31,10 @@ public class EventMessageSender : IEventMessageSender
     {
         _messenger.Send(message);
     }
+
+    public void Send<TMessage>()
+        where TMessage : class
+    {
+        Send(Activator.CreateInstance<TMessage>());
+    }
 }

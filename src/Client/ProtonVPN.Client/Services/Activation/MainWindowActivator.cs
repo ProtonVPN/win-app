@@ -93,7 +93,7 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
 
         InvalidateWindowTitleBarVisibility();
 
-        _eventMessageSender.Send(new ApplicationStartedMessage());
+        _eventMessageSender.Send(new ApplicationStartingMessage());
     }
 
     protected override void InvalidateWindowPosition()

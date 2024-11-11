@@ -18,23 +18,35 @@
  */
 
 using ProtonVPN.Client.Contracts.Messages;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Handlers.Bases;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Models.SystemTimes;
 
 namespace ProtonVPN.Client.Handlers;
 
-public class ClientStartHandler : IHandler, IEventMessageReceiver<ApplicationStartedMessage>
+public class ClientStartHandler : IHandler,
+    IEventMessageReceiver<ApplicationStartingMessage>,
+    IEventMessageReceiver<ApplicationStartedMessage>
 {
     private readonly IVpnStatePollingObserver _vpnStatePollingObserver;
+    private readonly ISystemTimeValidator _systemTimeValidator;
 
-    public ClientStartHandler(IVpnStatePollingObserver vpnStatePollingObserver)
+    public ClientStartHandler(
+        IVpnStatePollingObserver vpnStatePollingObserver,
+        ISystemTimeValidator systemTimeValidator)
     {
         _vpnStatePollingObserver = vpnStatePollingObserver;
+        _systemTimeValidator = systemTimeValidator;
     }
 
-    public void Receive(ApplicationStartedMessage message)
+    public void Receive(ApplicationStartingMessage message)
     {
         _vpnStatePollingObserver.Initialize();
+    }
+
+    public async void Receive(ApplicationStartedMessage message)
+    {
+        await _systemTimeValidator.CheckAsync(new CancellationTokenSource().Token);
     }
 }
