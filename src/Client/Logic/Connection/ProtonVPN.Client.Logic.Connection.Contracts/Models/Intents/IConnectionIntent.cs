@@ -37,4 +37,6 @@ public interface IConnectionIntent
     bool HasNoServers(IEnumerable<Server> servers, DeviceLocation? deviceLocation);
 
     bool AreAllServersUnderMaintenance(IEnumerable<Server> servers, DeviceLocation? deviceLocation);
+
+    bool IsPortForwardingSupported();
 }

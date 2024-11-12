@@ -27,6 +27,7 @@ using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.UI.Settings.Pages.Entities;
+using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages;
 
@@ -46,6 +47,7 @@ public partial class CensorshipSettingsPageViewModel : SettingsPageViewModelBase
 
     public CensorshipSettingsPageViewModel(
         IUrls urls,
+        IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
         ILocalizationProvider localizer,
@@ -55,7 +57,17 @@ public partial class CensorshipSettingsPageViewModel : SettingsPageViewModelBase
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager)
-        : base(mainViewNavigator, settingsViewNavigator, localizer, logger, issueReporter, mainWindowOverlayActivator, settings, settingsConflictResolver, connectionManager)
+        : base(
+            requiredReconnectionSettings,
+            mainViewNavigator,
+            settingsViewNavigator,
+            localizer,
+            logger,
+            issueReporter,
+            mainWindowOverlayActivator,
+            settings,
+            settingsConflictResolver,
+            connectionManager)
     {
         _urls = urls;
     }

@@ -53,7 +53,7 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
 
     protected abstract Task<VpnCredentialsIpcEntity> GetVpnCredentialsAsync();
 
-    protected virtual VpnConfigIpcEntity GetVpnConfig(MainSettingsIpcEntity settings)
+    protected virtual VpnConfigIpcEntity GetVpnConfig(MainSettingsIpcEntity settings, IConnectionIntent? connectionIntent = null)
     {
         return new VpnConfigIpcEntity
         {
@@ -62,7 +62,7 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
             SplitTunnelIPs = settings.SplitTunnel.Ips.ToList(),
             ModerateNat = settings.ModerateNat,
             NetShieldMode = settings.NetShieldMode,
-            PortForwarding = settings.PortForwarding,
+            PortForwarding = settings.PortForwarding && (connectionIntent is null || connectionIntent.IsPortForwardingSupported()),
             SplitTcp = settings.SplitTcp,
             PreferredProtocols = settings.VpnProtocol == VpnProtocolIpcEntity.Smart
                 ? GetPreferredSmartProtocols()

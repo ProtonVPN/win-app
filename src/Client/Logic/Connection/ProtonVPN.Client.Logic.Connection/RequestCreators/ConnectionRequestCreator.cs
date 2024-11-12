@@ -75,7 +75,7 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
 
         ConnectionRequestIpcEntity request = new()
         {
-            Config = GetVpnConfig(settings),
+            Config = GetVpnConfig(settings, connectionIntent),
             Credentials = await GetVpnCredentialsAsync(),
             Protocol = settings.VpnProtocol,
             Servers = PhysicalServersToVpnServerIpcEntities(GetPhysicalServers(connectionIntent)),

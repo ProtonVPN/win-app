@@ -35,6 +35,7 @@ using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.UI.Settings.Pages.Entities;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.DefaultConnections;
 
@@ -70,6 +71,7 @@ public partial class DefaultConnectionSettingsPageViewModel : SettingsPageViewMo
 
     public DefaultConnectionSettingsPageViewModel(
         IProfilesManager profilesManager,
+        IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
         ILocalizationProvider localizer,
@@ -79,7 +81,17 @@ public partial class DefaultConnectionSettingsPageViewModel : SettingsPageViewMo
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager)
-        : base(mainViewNavigator, settingsViewNavigator, localizer, logger, issueReporter, mainWindowOverlayActivator, settings, settingsConflictResolver, connectionManager)
+        : base(
+            requiredReconnectionSettings,
+            mainViewNavigator,
+            settingsViewNavigator,
+            localizer,
+            logger,
+            issueReporter,
+            mainWindowOverlayActivator,
+            settings,
+            settingsConflictResolver,
+            connectionManager)
     {
         _profilesManager = profilesManager;
         InvalidateProfiles();

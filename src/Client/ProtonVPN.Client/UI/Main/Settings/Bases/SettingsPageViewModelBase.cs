@@ -46,7 +46,9 @@ namespace ProtonVPN.Client.UI.Main;
 public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISettingsViewNavigator>,
     IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
+    private readonly IRequiredReconnectionSettings _requiredReconnectionSettings;
     private readonly IMainViewNavigator _mainViewNavigator;
+
     protected readonly IMainWindowOverlayActivator MainWindowOverlayActivator;
     protected readonly ISettings Settings;
     protected readonly ISettingsConflictResolver SettingsConflictResolver;
@@ -61,6 +63,7 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
         : "Settings_Common_Apply");
 
     protected SettingsPageViewModelBase(
+        IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
         ILocalizationProvider localizer,
@@ -72,7 +75,9 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
         IConnectionManager connectionManager)
         : base(settingsViewNavigator, localizer, logger, issueReporter)
     {
+        _requiredReconnectionSettings = requiredReconnectionSettings;
         _mainViewNavigator = mainViewNavigator;
+
         MainWindowOverlayActivator = mainWindowOverlayActivator;
         Settings = settings;
         SettingsConflictResolver = settingsConflictResolver;
@@ -261,7 +266,7 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
                 continue;
             }
 
-            if (RequiredReconnectionSettings.Contains(changedSetting.Name))
+            if (_requiredReconnectionSettings.IsReconnectionRequired(changedSetting.Name))
             {
                 return true;
             }

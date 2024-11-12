@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Observers;
@@ -63,7 +64,7 @@ public class GuestHoleConnectionRequestCreator : ConnectionRequestCreatorBase, I
         return request;
     }
 
-    protected override VpnConfigIpcEntity GetVpnConfig(MainSettingsIpcEntity settings)
+    protected override VpnConfigIpcEntity GetVpnConfig(MainSettingsIpcEntity settings, IConnectionIntent? connectionIntent = null)
     {
         return new()
         {
