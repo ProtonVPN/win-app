@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -27,9 +27,15 @@ namespace ProtonVPN.Client.Settings.Contracts.Conflicts;
 
 public class PortForwardingSettingsConflict : SettingsConflictBase
 {
-    public PortForwardingSettingsConflict(ILocalizationProvider localizer, ISettings settings)
-        : base(localizer, settings)
-    { }
+    private readonly IRequiredReconnectionSettings _requiredReconnectionSettings;
+
+    public PortForwardingSettingsConflict(
+        IRequiredReconnectionSettings requiredReconnectionSettings,
+        ILocalizationProvider localizer,
+        ISettings settings) : base(localizer, settings)
+    {
+        _requiredReconnectionSettings = requiredReconnectionSettings;
+    }
 
     public override string SettingsName => nameof(ISettings.IsPortForwardingEnabled);
 
@@ -49,5 +55,5 @@ public class PortForwardingSettingsConflict : SettingsConflictBase
 
     public override Action ResolveAction => () => Settings.NatType = NatType.Strict;
 
-    public override bool IsReconnectionRequired => RequiredReconnectionSettings.Contains(nameof(ISettings.NatType)) && IsConflicting;
+    public override bool IsReconnectionRequired => _requiredReconnectionSettings.IsReconnectionRequired(nameof(ISettings.NatType)) && IsConflicting;
 }

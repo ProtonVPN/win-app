@@ -34,6 +34,7 @@ using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Contracts.Services.Navigation;
 using Windows.System;
 using ProtonVPN.Client.UI.Settings.Pages.Entities;
+using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.Advanced;
 
@@ -56,6 +57,7 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
     public int ActiveCustomDnsServersCount => CustomDnsServers.Count(s => s.IsActive);
 
     public CustomDnsServersViewModel(
+        IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
         ILocalizationProvider localizer,
@@ -65,7 +67,17 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager)
-        : base(mainViewNavigator, settingsViewNavigator, localizer, logger, issueReporter, mainWindowOverlayActivator, settings, settingsConflictResolver, connectionManager)
+        : base(
+            requiredReconnectionSettings,
+            mainViewNavigator,
+            settingsViewNavigator,
+            localizer,
+            logger,
+            issueReporter,
+            mainWindowOverlayActivator,
+            settings,
+            settingsConflictResolver,
+            connectionManager)
     {
         _currentIpAddress = string.Empty;
 

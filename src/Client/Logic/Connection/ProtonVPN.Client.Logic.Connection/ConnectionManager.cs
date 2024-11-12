@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -100,7 +100,10 @@ public class ConnectionManager : IInternalConnectionManager,
     public async Task ConnectAsync(IConnectionIntent? connectionIntent = null)
     {
         connectionIntent ??= _settings.VpnPlan.IsPaid ? ConnectionIntent.Default : ConnectionIntent.FreeDefault;
-        CurrentConnectionIntent = CreateNewIntentIfUserPlanIsFree(connectionIntent);
+        connectionIntent = ChangeConnectionIntent(connectionIntent, CreateNewIntentIfPortForwardingEnabled);
+        connectionIntent = ChangeConnectionIntent(connectionIntent, CreateNewIntentIfUserPlanIsFree);
+
+        CurrentConnectionIntent = connectionIntent;
 
         _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Connection attempt to: {connectionIntent}.");
 
@@ -170,20 +173,10 @@ public class ConnectionManager : IInternalConnectionManager,
             return false;
         }
 
-        IConnectionIntent newConnectionIntent = CreateNewIntentIfUserPlanIsFree(connectionIntent);
-        if (newConnectionIntent is null)
-        {
-            await DisconnectAsync();
-            return false;
-        }
+        connectionIntent = ChangeConnectionIntent(connectionIntent, CreateNewIntentIfPortForwardingEnabled);
+        connectionIntent = ChangeConnectionIntent(connectionIntent, CreateNewIntentIfUserPlanIsFree);
 
-        if (newConnectionIntent != connectionIntent)
-        {
-            _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] The reconnection attempt is changing the intent from " +
-                $"{connectionIntent?.ToString() ?? "<no intent>"} to {newConnectionIntent?.ToString() ?? "<no intent>"}.");
-            CurrentConnectionIntent = newConnectionIntent;
-            connectionIntent = newConnectionIntent;
-        }
+        CurrentConnectionIntent = connectionIntent;
 
         _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Reconnection attempt to: {connectionIntent?.ToString() ?? "<no intent>"}.");
 
@@ -310,5 +303,24 @@ public class ConnectionManager : IInternalConnectionManager,
     {
         CurrentConnectionIntent = connectionIntent;
         await _vpnServiceCaller.RequestConnectionDetailsAsync();
+    }
+
+    private IConnectionIntent ChangeConnectionIntent(IConnectionIntent connectionIntent, Func<IConnectionIntent, IConnectionIntent> changeIntentFunc)
+    {
+        IConnectionIntent newConnectionIntent = changeIntentFunc(connectionIntent);
+        if (newConnectionIntent != connectionIntent)
+        {
+            _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] The connection intent is changing from " +
+                                            $"{connectionIntent} to {newConnectionIntent}.");
+        }
+
+        return newConnectionIntent;
+    }
+
+    private IConnectionIntent CreateNewIntentIfPortForwardingEnabled(IConnectionIntent connectionIntent)
+    {
+        return _settings.IsPortForwardingEnabled && !connectionIntent.IsPortForwardingSupported()
+            ? new ConnectionIntent(connectionIntent.Location, new P2PFeatureIntent())
+            : connectionIntent;
     }
 }

@@ -59,4 +59,9 @@ public abstract class ConnectionIntentBase : IntentBase, IConnectionIntent
     {
         return Location.IsSupported(server, deviceLocation) && (Feature == null || Feature.IsSupported(server));
     }
+
+    public bool IsPortForwardingSupported()
+    {
+        return Feature is not SecureCoreFeatureIntent and not TorFeatureIntent;
+    }
 }

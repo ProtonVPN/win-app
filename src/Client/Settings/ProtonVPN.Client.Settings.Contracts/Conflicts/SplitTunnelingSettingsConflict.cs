@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -26,9 +26,15 @@ namespace ProtonVPN.Client.Settings.Contracts.Conflicts;
 
 public class SplitTunnelingSettingsConflict : SettingsConflictBase
 {
-    public SplitTunnelingSettingsConflict(ILocalizationProvider localizer, ISettings settings)
-        : base(localizer, settings)
-    { }
+    private readonly IRequiredReconnectionSettings _requiredReconnectionSettings;
+
+    public SplitTunnelingSettingsConflict(
+        IRequiredReconnectionSettings requiredReconnectionSettings,
+        ILocalizationProvider localizer,
+        ISettings settings) : base(localizer, settings)
+    {
+        _requiredReconnectionSettings = requiredReconnectionSettings;
+    }
 
     public override string SettingsName => nameof(ISettings.IsSplitTunnelingEnabled);
 
@@ -48,5 +54,5 @@ public class SplitTunnelingSettingsConflict : SettingsConflictBase
 
     public override Action ResolveAction => () => Settings.IsKillSwitchEnabled = false;
 
-    public override bool IsReconnectionRequired => RequiredReconnectionSettings.Contains(nameof(ISettings.IsKillSwitchEnabled)) && IsConflicting;
+    public override bool IsReconnectionRequired => _requiredReconnectionSettings.IsReconnectionRequired(nameof(ISettings.IsKillSwitchEnabled)) && IsConflicting;
 }

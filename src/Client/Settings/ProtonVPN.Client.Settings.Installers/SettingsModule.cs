@@ -24,6 +24,7 @@ using ProtonVPN.Client.Settings.Files;
 using ProtonVPN.Client.Settings.Migrations;
 using ProtonVPN.Client.Settings.Observers;
 using ProtonVPN.Client.Settings.Repositories;
+using ProtonVPN.Client.Settings.RequiredReconnections;
 
 namespace ProtonVPN.Client.Settings.Installers;
 
@@ -49,6 +50,7 @@ public class SettingsModule : Module
         builder.RegisterType<FeatureFlagsObserver>().AsImplementedInterfaces().AutoActivate().SingleInstance();
 
         builder.RegisterType<SettingsConflictResolver>().AsImplementedInterfaces().AutoActivate().SingleInstance();
+        builder.RegisterType<RequiredReconnectionSettings>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterAssemblyTypes(typeof(ISettingsConflict).Assembly)
                .Where(t => typeof(ISettingsConflict).IsAssignableFrom(t))

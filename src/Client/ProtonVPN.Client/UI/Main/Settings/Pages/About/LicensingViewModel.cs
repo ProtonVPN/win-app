@@ -25,6 +25,7 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.UI.Settings.Pages.Entities;
+using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.About;
 
@@ -33,6 +34,7 @@ public class LicensingViewModel : SettingsPageViewModelBase
     public override string Title => Localizer.Get("Settings_About_Licensing");
 
     public LicensingViewModel(
+        IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
         ILocalizationProvider localizer,
@@ -42,7 +44,17 @@ public class LicensingViewModel : SettingsPageViewModelBase
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager)
-        : base(mainViewNavigator, settingsViewNavigator, localizer, logger, issueReporter, mainWindowOverlayActivator, settings, settingsConflictResolver, connectionManager)
+        : base(
+            requiredReconnectionSettings,
+            mainViewNavigator,
+            settingsViewNavigator,
+            localizer,
+            logger,
+            issueReporter,
+            mainWindowOverlayActivator,
+            settings,
+            settingsConflictResolver,
+            connectionManager)
     {
     }
 

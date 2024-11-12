@@ -31,6 +31,11 @@ public class SecureCoreFeatureIntent : FeatureIntentBase
 
     public bool IsFastest => string.IsNullOrEmpty(EntryCountryCode);
 
+    // Parameterless constructor is required for unit tests
+    public SecureCoreFeatureIntent()
+    {
+    }
+
     public SecureCoreFeatureIntent(string? entryCountryCode = null)
     {
         if (!string.IsNullOrWhiteSpace(entryCountryCode))

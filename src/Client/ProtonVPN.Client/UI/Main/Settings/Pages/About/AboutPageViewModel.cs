@@ -32,6 +32,7 @@ using ProtonVPN.Update.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.UI.Settings.Pages.Entities;
+using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.About;
 
@@ -59,6 +60,7 @@ public partial class AboutPageViewModel : SettingsPageViewModelBase,
     public override string Title => Localizer.Get("Settings_About_Title");
 
     public AboutPageViewModel(
+        IRequiredReconnectionSettings requiredReconnectionSettings,
         IUpdatesManager updatesManager,
         ReleaseViewModelFactory releaseViewModelFactory,
         IMainViewNavigator mainViewNavigator,
@@ -70,7 +72,17 @@ public partial class AboutPageViewModel : SettingsPageViewModelBase,
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager)
-        : base(mainViewNavigator, settingsViewNavigator, localizer, logger, issueReporter, mainWindowOverlayActivator, settings, settingsConflictResolver, connectionManager)
+        : base(
+            requiredReconnectionSettings,
+            mainViewNavigator,
+            settingsViewNavigator,
+            localizer,
+            logger,
+            issueReporter,
+            mainWindowOverlayActivator,
+            settings,
+            settingsConflictResolver,
+            connectionManager)
     {
         _updatesManager = updatesManager;
         _releaseViewModelFactory = releaseViewModelFactory;

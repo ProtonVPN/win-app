@@ -54,7 +54,7 @@ public class ReconnectionRequestCreator : ConnectionRequestCreator, IReconnectio
     public override async Task<ConnectionRequestIpcEntity> CreateAsync(IConnectionIntent connectionIntent)
     {
         MainSettingsIpcEntity settings = GetSettings(connectionIntent);
-        VpnConfigIpcEntity config = GetVpnConfig(settings);
+        VpnConfigIpcEntity config = GetVpnConfig(settings, connectionIntent);
 
         // If the protocol in the settings is a specific one (not Smart), put it at the top of the smart protocol list
         if (settings.VpnProtocol != VpnProtocolIpcEntity.Smart)

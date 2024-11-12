@@ -23,6 +23,7 @@ using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Contracts.Helpers;
 using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Contracts.Services.Navigation;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
@@ -30,13 +31,16 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Models.Clipboards;
 using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Settings.Pages.Entities;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Connection;
 
-public partial class PortForwardingPageViewModel : SettingsPageViewModelBase
+public partial class PortForwardingPageViewModel : SettingsPageViewModelBase,
+    IEventMessageReceiver<PortForwardingStatusChangedMessage>,
+    IEventMessageReceiver<PortForwardingPortChangedMessage>
 {
     public override string Title => Localizer.Get("Settings_Connection_PortForwarding");
 
@@ -82,6 +86,7 @@ public partial class PortForwardingPageViewModel : SettingsPageViewModelBase
         IUrls urls,
         IClipboardEditor clipboardEditor,
         IPortForwardingManager portForwardingManager,
+        IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
         ILocalizationProvider localizer,
@@ -91,7 +96,17 @@ public partial class PortForwardingPageViewModel : SettingsPageViewModelBase
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager)
-        : base(mainViewNavigator, settingsViewNavigator, localizer, logger, issueReporter, mainWindowOverlayActivator, settings, settingsConflictResolver, connectionManager)
+        : base(
+            requiredReconnectionSettings,
+            mainViewNavigator,
+            settingsViewNavigator,
+            localizer,
+            logger,
+            issueReporter,
+            mainWindowOverlayActivator,
+            settings,
+            settingsConflictResolver,
+            connectionManager)
     {
         _urls = urls;
         _clipboardEditor = clipboardEditor;

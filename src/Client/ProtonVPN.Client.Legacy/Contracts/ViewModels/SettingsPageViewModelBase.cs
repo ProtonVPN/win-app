@@ -42,6 +42,7 @@ using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.Legacy.UI.Settings.Pages.Entities;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Client.Settings.RequiredReconnections;
 
 namespace ProtonVPN.Client.Legacy.Contracts.ViewModels;
 
