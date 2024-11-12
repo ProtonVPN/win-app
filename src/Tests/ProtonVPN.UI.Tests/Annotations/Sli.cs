@@ -26,10 +26,11 @@ namespace ProtonVPN.UI.Tests.Annotations;
 
 public class Sli : Attribute, ITestAction
 {
+    private string _sliName;
     //Execute once when this Attribute is Initalized
     public Sli(string name)
     {
-        SliHelper.SliName = name;
+        _sliName = name;
     }
 
     public ActionTargets Targets => ActionTargets.Test;
@@ -41,6 +42,7 @@ public class Sli : Attribute, ITestAction
 
     public void BeforeTest(ITest test)
     {
-        // Do Nothing
+        SliHelper.SliName = _sliName;
+        SliHelper.RunId = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
     }
 }

@@ -21,6 +21,7 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using FlaUI.Core;
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Tools;
@@ -31,8 +32,9 @@ using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestsHelper;
 using TimeoutException = System.TimeoutException;
 
-namespace ProtonVPN.UI.Tests;
+namespace ProtonVPN.UI.Tests.TestBase;
 
+// Shared methods related to test session.
 public class BaseTest
 {
     public static Application App;
@@ -50,16 +52,53 @@ public class BaseTest
 
     private static readonly bool _isDevelopmentModeEnabled = false;
 
-    [SetUp]
-    public void BeforeTest()
+    // Shared SetUp, TearDown actions that will be performed accross all the tests.
+    [OneTimeSetUp]
+    public void GlobalOneTimeSetup()
     {
-        LaunchApp();
+        KillProtonVPNClient();
+        ArtifactsHelper.CreateTestFailureFolderIfNotExists();
+    }
+
+    [OneTimeTearDown]
+    public void GlobalOneTimeTearDown()
+    {
+        KillProtonVPNClient();
+    }
+
+    [SetUp]
+    public void GlobalSetUp()
+    {
+        string testName = TestContext.CurrentContext.Test.MethodName;
+        ArtifactsHelper.ClearEventViewerLogs();
+        ArtifactsHelper.DeleteArtifactFolder(testName);
+        ArtifactsHelper.StartVideoCapture(testName);
     }
 
     [TearDown]
-    public void AfterTest()
+    public void GlobalTeardown()
     {
-        Cleanup();
+        string testName = TestContext.CurrentContext.Test.MethodName;
+
+        ArtifactsHelper.Recorder.Stop();
+        ArtifactsHelper.Recorder.Dispose();
+        ArtifactsHelper.SaveEventViewerLogs(testName);
+        if (TestContext.CurrentContext.Result.Outcome.Status != TestStatus.Failed)
+        {
+            ArtifactsHelper.DeleteArtifactFolder(testName);
+        }
+    }
+
+    private static void KillProtonVPNClient()
+    {
+        Process.GetProcesses()
+            .Where(process => process.ProcessName.StartsWith("ProtonVPN"))
+            .ToList()
+            .ForEach(process =>
+            {
+                process.Kill();
+                process.Dispose();
+            });
     }
 
     public static void RefreshWindow(TimeSpan? timeout = null)

@@ -20,13 +20,14 @@
 using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots;
+using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
 [Category("1")]
-public class LoginSsoTests : BaseTest
+public class LoginSsoTests : FreshSessionSetUp
 {
     private const string SSO_LOGIN_ERROR = "Email domain associated to an existing organization. Please sign in with SSO";
 

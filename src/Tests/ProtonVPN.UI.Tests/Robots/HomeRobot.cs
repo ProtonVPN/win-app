@@ -84,6 +84,12 @@ public class HomeRobot
 
     public class Verifications : HomeRobot
     {
+        public Verifications WelcomeModalIsDisplayed()
+        {
+            GetStartedButton.WaitUntilDisplayed();
+            return this;
+        }
+
         public Verifications IsDisconnected()
         {
             UnprotectedLabel.WaitUntilDisplayed();
@@ -101,7 +107,7 @@ public class HomeRobot
         public Verifications IsConnected()
         {
             ProtectedLabel.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
-            ConnectionCardDisconnectButton.WaitUntilDisplayed();
+            ConnectionCardDisconnectButton.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
             return this;
         }
 

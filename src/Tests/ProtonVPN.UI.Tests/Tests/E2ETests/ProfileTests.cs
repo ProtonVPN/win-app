@@ -19,13 +19,14 @@
 
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots;
+using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
 [Category("1")]
-public class ProfileTests : BaseTest
+public class ProfileTests : FreshSessionSetUp
 {
     [SetUp]
     public void TestInitialize()

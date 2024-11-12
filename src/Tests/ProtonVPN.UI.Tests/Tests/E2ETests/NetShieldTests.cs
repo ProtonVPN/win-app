@@ -19,13 +19,14 @@
 
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
+using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
 [Category("1")]
-public class NetShieldTests : BaseTest
+public class NetShieldTests : FreshSessionSetUp
 {
     [SetUp]
     public void TestInitialize()
@@ -76,8 +77,8 @@ public class NetShieldTests : BaseTest
 
     private void ConnectAndVerifyIsConnected()
     {
-        SidebarRobot.ConnectToFastest();
         HomeRobot
+            .ConnectToDefaultConnection()
             .Verify.IsConnected();
     }
 }

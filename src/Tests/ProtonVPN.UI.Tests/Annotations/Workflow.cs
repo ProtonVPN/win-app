@@ -29,7 +29,6 @@ public class Workflow : Attribute, ITestAction
     //Execute once when this Attribute is Initalized
     public Workflow(string workflow) 
     {
-        SliHelper.RunId = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
         SliHelper.Workflow = workflow;
     }
 

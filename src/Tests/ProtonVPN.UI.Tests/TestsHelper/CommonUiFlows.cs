@@ -19,6 +19,7 @@
 
 using System.Threading;
 using ProtonVPN.UI.Tests.Robots;
+using ProtonVPN.UI.Tests.TestBase;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
 public class CommonUiFlows : BaseTest

@@ -24,6 +24,7 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.Win32;
 using Newtonsoft.Json.Linq;
+using ProtonVPN.UI.Tests.TestBase;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
 

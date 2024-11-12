@@ -18,13 +18,14 @@
  */
 
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
 [Category("1")]
-public class SearchTests : BaseTest
+public class SearchTests : FreshSessionSetUp
 {
     private const string COUNTRY_TO_SEARCH = "United States";
     private const string STATE = "Arizona";

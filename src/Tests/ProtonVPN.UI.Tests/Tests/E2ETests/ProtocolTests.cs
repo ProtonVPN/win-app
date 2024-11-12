@@ -18,6 +18,7 @@
  */
 
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
 
@@ -25,7 +26,7 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
 [Category("1")]
-public class ProtocolTests : BaseTest
+public class ProtocolTests : FreshSessionSetUp
 {
     [SetUp]
     public void TestInitialize()
