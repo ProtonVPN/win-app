@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,36 +18,80 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Contracts.Services.Activation;
+using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.UI.Dialogs.ReportIssue.Bases;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Services.Navigation;
-using ProtonVPN.Client.UI.Dialogs.ReportIssue.Bases;
 
 namespace ProtonVPN.Client.UI.Dialogs.ReportIssue.Pages;
 
 public partial class ReportIssueResultPageViewModel : ReportIssuePageViewModelBase
 {
+    private readonly IReportIssueWindowActivator _reportIssueWindowActivator;
+
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(Header))]
+    [NotifyPropertyChangedFor(nameof(Description))]
+    [NotifyCanExecuteChangedFor(nameof(CloseCommand))]
+    [NotifyCanExecuteChangedFor(nameof(RetryCommand))]
     private bool _isReportSent;
 
     public string Header => IsReportSent
         ? Localizer.Get("Dialogs_ReportIssue_Result_Success")
         : Localizer.Get("Dialogs_ReportIssue_Result_Fail");
 
+    public string Description => IsReportSent
+        ? Localizer.Get("Dialogs_ReportIssue_Result_Success_Description")
+        : Localizer.Get("Dialogs_ReportIssue_Result_Fail_Description");
+
     public ReportIssueResultPageViewModel(
+        IReportIssueWindowActivator reportIssueWindowActivator,
         IReportIssueViewNavigator parentViewNavigator,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter)
         : base(parentViewNavigator, localizer, logger, issueReporter)
-    { }
+    {
+        _reportIssueWindowActivator = reportIssueWindowActivator;
+    }
 
     public override void OnNavigatedTo(object parameter, bool isBackNavigation)
     {
         base.OnNavigatedTo(parameter, isBackNavigation);
 
         IsReportSent = Convert.ToBoolean(parameter);
+    }
+
+    [RelayCommand(CanExecute = nameof(CanClose))]
+    public void Close()
+    {
+        _reportIssueWindowActivator.Exit();
+    }
+
+    public bool CanClose()
+    {
+        return IsReportSent;
+    }
+
+    [RelayCommand(CanExecute = nameof(CanRetry))]
+    public async Task RetryAsync()
+    {
+        await ParentViewNavigator.GoBackAsync();
+    }
+
+    public bool CanRetry()
+    {
+        return !IsReportSent;
+    }
+
+    protected override void OnLanguageChanged()
+    {
+        base.OnLanguageChanged();
+
+        OnPropertyChanged(nameof(Header));
+        OnPropertyChanged(nameof(Description));
     }
 }

@@ -56,7 +56,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         BorderThickness="0,0,1,0"
                         Orientation="Horizontal"
                         Spacing="16">
-                <reportissue:ReportIssueComponentView  />
+                <reportissue:ReportIssueComponentView />
                 <temp:NavigationMasterControllerView />
             </StackPanel>
         </Grid>

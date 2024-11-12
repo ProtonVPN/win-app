@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -26,13 +26,39 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:local="using:ProtonVPN.Client.UI.Dialogs.ReportIssue"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+             xmlns:reportissue="using:ProtonVPN.Client.Contracts.Models.ReportIssue"
+             xmlns:aprop="using:ProtonVPN.Client.Common.UI.AttachedProperties"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
-
-    <custom:GhostButton ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_Title')}"
-                        Command="{x:Bind ViewModel.ReportIssueCommand, Mode=OneTime}">
+    
+    <custom:GhostButton ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_Title')}">
         <custom:GhostButton.LeftIcon>
             <pathicons:QuestionCircle Size="Pixels16" />
         </custom:GhostButton.LeftIcon>
+        <custom:GhostButton.Flyout>
+            <Flyout FlyoutPresenterStyle="{StaticResource ReportIssueFlyoutPresenterStyle}" Placement="BottomEdgeAlignedRight">
+                <StackPanel>
+                    <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                               Margin="16,16,16,8"
+                               Style="{ThemeResource BodyTextBlockStyle}"
+                               Text="What's the issue?" />
+                    <ItemsControl ItemsSource="{x:Bind ViewModel.Categories, Mode=OneTime}"
+                                  DataContext="{x:Bind ViewModel}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="reportissue:IssueCategory">
+                                <Grid>
+                                    <Border x:Name="proxy"
+                                            aprop:AncestorSource.AncestorType="ItemsControl" />
+                                    <MenuFlyoutItem Command="{Binding DataContext.DataContext.SelectCategoryCommand, ElementName=proxy}"
+                                                    CommandParameter="{x:Bind}"
+                                                    Icon="{x:Bind Icon}"
+                                                    Text="{x:Bind Name}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Flyout>
+        </custom:GhostButton.Flyout>
     </custom:GhostButton>
 </UserControl>

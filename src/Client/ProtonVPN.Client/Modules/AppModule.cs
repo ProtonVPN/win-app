@@ -101,8 +101,10 @@ using ProtonVPN.Client.UI.Overlays.Welcome;
 using ProtonVPN.Client.UI.Overlays.WhatsNew;
 using ProtonVPN.Client.UI.Tray;
 using ProtonVPN.Client.UI.Update;
+using ProtonVPN.Common.Legacy.OS.DeviceIds;
 using ProtonVPN.Common.Legacy.OS.Net.NetworkInterface;
 using ProtonVPN.Common.Legacy.OS.Processes;
+using ProtonVPN.Common.Legacy.OS.Systems;
 using ProtonVPN.Configurations.Installers;
 using ProtonVPN.Crypto.Installers;
 using ProtonVPN.Dns.Installers;
@@ -145,6 +147,8 @@ public class AppModule : Module
     private void RegisterExternalServices(ContainerBuilder builder)
     {
         builder.RegisterType<SystemProcesses>().As<IOsProcesses>().SingleInstance();
+        builder.RegisterType<SystemState>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<DeviceIdCache>().AsImplementedInterfaces().SingleInstance();
     }
 
     private void RegisterExternalModules(ContainerBuilder builder)

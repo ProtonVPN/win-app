@@ -220,30 +220,6 @@ public partial class NavigationMasterControllerViewModel : ViewModelBase
     }
 
     [RelayCommand]
-    private async Task NavigateToReportIssueCategoriesViewAsync()
-    {
-        await _reportIssueViewNavigator.NavigateToCategoriesViewAsync();
-    }
-
-    [RelayCommand]
-    private async Task NavigateToReportIssueCategoryViewAsync()
-    {
-        await _reportIssueViewNavigator.NavigateToCategoryViewAsync(string.Empty);
-    }
-
-    [RelayCommand]
-    private async Task NavigateToReportIssueContactViewAsync()
-    {
-        await _reportIssueViewNavigator.NavigateToContactViewAsync(string.Empty);
-    }
-
-    [RelayCommand]
-    private async Task NavigateToReportIssueResultViewAsync()
-    {
-        await _reportIssueViewNavigator.NavigateToResultViewAsync(false);
-    }
-
-    [RelayCommand]
     private async Task ShowMessageOverlayAsync()
     {
         await _mainWindowOverlayActivator.ShowMessageAsync(new()

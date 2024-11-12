@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -22,6 +22,7 @@ using ProtonVPN.Client.Contracts.Services.Mapping;
 using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.Contracts.Services.Navigation.Bases;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue.Pages;
+using ProtonVPN.Client.Contracts.Models.ReportIssue;
 
 namespace ProtonVPN.Client.Services.Navigation;
 
@@ -40,12 +41,12 @@ public class ReportIssueViewNavigator : ViewNavigatorBase, IReportIssueViewNavig
         return NavigateToAsync<ReportIssueCategoriesPageViewModel>();
     }
 
-    public Task<bool> NavigateToCategoryViewAsync(string category)
+    public Task<bool> NavigateToCategoryViewAsync(IssueCategory category)
     {
         return NavigateToAsync<ReportIssueCategoryPageViewModel>(category);
     }
 
-    public Task<bool> NavigateToContactViewAsync(string category)
+    public Task<bool> NavigateToContactViewAsync(IssueCategory category)
     {
         return NavigateToAsync<ReportIssueContactPageViewModel>(category);
     }
