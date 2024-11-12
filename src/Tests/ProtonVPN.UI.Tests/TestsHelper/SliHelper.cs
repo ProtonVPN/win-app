@@ -36,12 +36,19 @@ public class SliHelper
     private static bool IsMonitoring { get; set; }
     private static double Duration => Timer.Elapsed.TotalSeconds;
 
-    public static void Measure(Action method)
+    public static void MeasureTime(Action method)
     {
         Timer.Start();
         IsMonitoring = true;
         method();
         Timer.Stop();
+        IsMonitoring = false;
+    }
+
+    public static void MeasureTestStatus(Action method)
+    {
+        IsMonitoring = true;
+        method();
         IsMonitoring = false;
     }
 

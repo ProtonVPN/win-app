@@ -18,12 +18,13 @@
  */
 
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.TestBase;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
 [Category("1")]
-public class SupportTests : BaseTest
+public class SupportTests : FreshSessionSetUp
 {
     [Test]
     public void SendBugReportViaLoginScreen()

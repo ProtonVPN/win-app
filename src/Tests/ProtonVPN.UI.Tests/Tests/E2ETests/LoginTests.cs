@@ -17,15 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots;
+using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
 [Category("1")]
-public class LoginTests : BaseTest
+public class LoginTests : FreshSessionSetUp
 {
     private const string INCORRECT_CREDENTIALS_ERROR = "The password is not correct. Please try again with a different password.";
     private const string INCORRECT_2FA_CODE_ERROR = "Incorrect code. Please try again.";

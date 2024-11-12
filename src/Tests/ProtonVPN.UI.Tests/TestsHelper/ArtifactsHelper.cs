@@ -30,19 +30,14 @@ namespace ProtonVPN.UI.Tests.TestsHelper;
 
 public class ArtifactsHelper
 {
-    private static VideoRecorder _recorder;
+    public static VideoRecorder Recorder;
     private static string ArtifactsDirectory { get; set; }
     private static EventLog _eventViewerLogs = EventLog.GetEventLogs().Where(logs => logs.Log == "Application").FirstOrDefault();
 
-    public static void StartVideoCapture()
+    public static void StartVideoCapture(string testName)
     {
-        if (TestEnvironment.AreTestsRunningLocally() || !TestEnvironment.IsVideoRecorderPresent())
-        {
-            return;
-        }
-
-        string pathToVideo = Path.Combine(ArtifactsDirectory, "TestRun.mp4");
-        _recorder = new VideoRecorder(new VideoRecorderSettings { VideoQuality = 18, ffmpegPath = TestConstants.PathToRecorder, TargetVideoPath = pathToVideo }, recorder =>
+        string pathToVideo = Path.Combine(ArtifactsDirectory, testName, $"{testName}-recording.mp4");
+        Recorder = new VideoRecorder(new VideoRecorderSettings { VideoQuality = 18, FrameRate = 10u,ffmpegPath = TestConstants.PathToRecorder, TargetVideoPath = pathToVideo }, recorder =>
         {
             string testName = TestContext.CurrentContext.Test.MethodName;
             CaptureImage img = Capture.Screen(1);
@@ -54,18 +49,9 @@ public class ArtifactsHelper
         });
     }
 
-    public static void StopRecording()
-    {
-        if (TestEnvironment.AreTestsRunningLocally() || !TestEnvironment.IsVideoRecorderPresent())
-        {
-            return;
-        }
-        _recorder.Stop();
-    }
-
     public static void SaveScreenshotAndLogs(string testName, string serviceLogsPath)
     {
-        CreateTestFailureFolder();
+        CreateTestFailureFolderIfNotExists();
         string screenshotName = $"{testName} {DateTime.Now}.png".Replace("/", "-").Replace(":", "-");
         string pathToScreenshotFolder = Path.Combine(ArtifactsDirectory, testName);
         string pathToScreenshot = Path.Combine(pathToScreenshotFolder, screenshotName);
@@ -78,13 +64,22 @@ public class ArtifactsHelper
         }
     }
 
-    public static void SaveEventViewerLogs()
+    public static void SaveEventViewerLogs(string testName)
     {
-        string filePath = Path.Combine(ArtifactsDirectory, "EventViewerLogs.evtx");
+        string filePath = Path.Combine(ArtifactsDirectory, testName, "EventViewerLogs.evtx");
         
         using (EventLogSession session = new EventLogSession())
         {
             session.ExportLog(_eventViewerLogs.Log, PathType.LogName, "*", filePath, true);
+        }
+    }
+
+    public static void DeleteArtifactFolder(string testName)
+    {
+        string pathToVideo = Path.Combine(ArtifactsDirectory, testName);
+        if (Directory.Exists(pathToVideo))
+        {
+            Directory.Delete(pathToVideo, true);
         }
     }
 
@@ -93,7 +88,7 @@ public class ArtifactsHelper
         _eventViewerLogs.Clear();
     }
 
-    public static void CreateTestFailureFolder()
+    public static void CreateTestFailureFolderIfNotExists()
     {
         Assembly asm = Assembly.GetExecutingAssembly();
         ArtifactsDirectory = Path.Combine(Path.GetDirectoryName(asm.Location), "TestFailureData");

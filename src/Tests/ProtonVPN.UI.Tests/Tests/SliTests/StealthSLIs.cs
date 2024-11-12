@@ -17,68 +17,58 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
 using NUnit.Framework;
-using ProtonVPN.UI.Tests.Enums;
+using ProtonVPN.UI.Tests.Annotations;
+using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
+using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
 
-namespace ProtonVPN.UI.Tests.Tests.E2ETests;
+namespace ProtonVPN.UI.Tests.Tests.SliTests;
 
 [TestFixture]
-[Category("1")]
-public class NetShieldTests : FreshSessionSetUp
+[Category("SLI")]
+[Workflow("protocol_performance")]
+public class StealthSLIs : SliSetUp
 {
     [SetUp]
     public void TestInitialize()
     {
+        LaunchApp();
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
     }
 
     [Test]
-    public void NetshieldOnLevelOne()
-    {
-        ConnectAndVerifyIsConnected();
-
-        SettingRobot
-            .Verify.NetshieldIsBlocking(NetShieldMode.BlockMalwareOnly);
-    }
-
-    [Test]
-    public void NetshieldOnLevelTwo()
+    [Duration, TestStatus]
+    [Sli("wireguard_tls")]
+    public void WireguardTlsConnectionSpeed()
     {
         SettingRobot
             .OpenSettings()
-            .OpenNetShieldSettings()
-            .SelectNetShieldMode(NetShieldMode.BlockAdsMalwareTrackers)
+            .OpenProtocolSettings()
+            .SelectProtocol(Protocol.WireGuardTls)
             .ApplySettings()
             .CloseSettings();
 
-        ConnectAndVerifyIsConnected();
-
-        SettingRobot
-            .Verify.NetshieldIsBlocking(NetShieldMode.BlockAdsMalwareTrackers);
-    }
-
-    [Test]
-    public void NetshieldOff()
-    {
-        SettingRobot
-            .OpenSettings()
-            .OpenNetShieldSettings()
-            .ToggleNetShieldSetting()
-            .ApplySettings()
-            .CloseSettings();
-
-        ConnectAndVerifyIsConnected();
-
-        SettingRobot
-            .Verify.NetshieldIsNotBlocking();
-    }
-
-    private void ConnectAndVerifyIsConnected()
-    {
-        HomeRobot
-            .ConnectToDefaultConnection()
+        // Two time connection is needed to test real conditions, when everything was setup.
+        HomeRobot.ConnectToDefaultConnection()
             .Verify.IsConnected();
-    }
+        HomeRobot.Disconnect();
+
+        // Imitate users delay
+        Thread.Sleep(TestConstants.TenSecondsTimeout);
+
+        HomeRobot.ConnectToDefaultConnection();
+        SliHelper.MeasureTime(() =>
+        {
+            HomeRobot.Verify.IsConnected();
+        });
+        SliHelper.MeasureTestStatus(() =>
+        {
+            HomeRobot.Verify.ProtocolIsDisplayed(Protocol.WireGuardTls);
+        });
+
+        HomeRobot.Disconnect();
+    } 
 }

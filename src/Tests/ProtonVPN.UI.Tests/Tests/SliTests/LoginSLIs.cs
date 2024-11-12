@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,32 +17,38 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using NUnit.Framework;
-using NUnit.Framework.Interfaces;
+using ProtonVPN.UI.Tests.Annotations;
+using ProtonVPN.UI.Tests.Robots;
+using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 
-namespace ProtonVPN.UI.Tests.Annotations;
+namespace ProtonVPN.UI.Tests.Tests.SliTests;
 
-public class Sli : Attribute, ITestAction
+[TestFixture]
+[Category("SLI")]
+[Workflow("main_measurements")]
+public class LoginSLIs : SliSetUp
 {
-    private string _sliName;
-    //Execute once when this Attribute is Initalized
-    public Sli(string name)
+    [OneTimeSetUp]
+    public void TestInitialize()
     {
-        _sliName = name;
+        LaunchApp();
     }
 
-    public ActionTargets Targets => ActionTargets.Test;
-
-    public void AfterTest(ITest test)
+    [Test]
+    [Duration, TestStatus]
+    [Sli("login")]
+    public void LoginPerformance()
     {
-        // Do Nothing
-    }
+        LoginRobot
+            .Login(TestUserData.PlusUser);
 
-    public void BeforeTest(ITest test)
-    {
-        SliHelper.SliName = _sliName;
-        SliHelper.RunId = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+        SliHelper.MeasureTime(() =>
+        {
+            HomeRobot.Verify.WelcomeModalIsDisplayed();
+        });
+
+        HomeRobot.DismissWelcomeModal();
     }
 }

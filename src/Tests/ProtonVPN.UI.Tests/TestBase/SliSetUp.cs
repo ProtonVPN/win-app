@@ -17,41 +17,29 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Diagnostics;
-using System.Linq;
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.ApiClient.TestEnv;
 using ProtonVPN.UI.Tests.TestsHelper;
 
-namespace ProtonVPN.UI.Tests.Tests;
+namespace ProtonVPN.UI.Tests.TestBase;
 
-[SetUpFixture]
-public class SetUp
+// Setup dedicated for SLI tests to push all the metrics.
+public class SliSetUp : BaseTest
 {
-    [OneTimeSetUp]
-    public void BeforeTestSuite()
+    private LokiPusher _lokiPusher = new();
+
+    [SetUp]
+    public void SetUp()
     {
-        ArtifactsHelper.ClearEventViewerLogs();
-        CloseProtonVPN();
-        ArtifactsHelper.CreateTestFailureFolder();
-        ArtifactsHelper.StartVideoCapture();
+        SliHelper.Reset();
     }
 
-    [OneTimeTearDown]
-    public void AfterTestSuite()
+    [TearDown]
+    public void TestCleanup()
     {
-        CloseProtonVPN();
-        ArtifactsHelper.StopRecording();
-        ArtifactsHelper.SaveEventViewerLogs();
-    }
-
-    private static void CloseProtonVPN()
-    {
-        Process.GetProcesses()
-            .Where(process => process.ProcessName.StartsWith("ProtonVPN"))
-            .ToList()
-            .ForEach(process => {
-                process.Kill();
-                process.Dispose();
-            });
+        Cleanup();
+        _lokiPusher.PushMetrics();
+        _lokiPusher.PushAllLogs();
+        SliHelper.Reset();
     }
 }

@@ -91,6 +91,13 @@ public class SidebarRobot
         return this;
     }
 
+    public SidebarRobot ConnectViaServerList(string connectionValue)
+    {
+        Element countryButton = Element.ByAutomationId($"Connect_to_{connectionValue}");
+        countryButton.FindChild(Element.ByAutomationId("ConnectionRowHeader")).Click();
+        return this;
+    }
+
     public SidebarRobot ConnectToCountry(string country)
     {
         ConnectViaServerList(country);
@@ -169,13 +176,6 @@ public class SidebarRobot
     private SidebarRobot DisconnectViaSidebarButton(string connectionValue)
     {
         Element countryButton = Element.ByAutomationId($"Disconnect_from_{connectionValue}");
-        countryButton.FindChild(Element.ByAutomationId("ConnectionRowHeader")).Click();
-        return this;
-    }
-
-    private SidebarRobot ConnectViaServerList(string connectionValue)
-    {
-        Element countryButton = Element.ByAutomationId($"Connect_to_{connectionValue}");
         countryButton.FindChild(Element.ByAutomationId("ConnectionRowHeader")).Click();
         return this;
     }

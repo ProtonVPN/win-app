@@ -17,42 +17,46 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
 using NUnit.Framework;
-using ProtonVPN.UI.Tests.Robots;
+using ProtonVPN.UI.Tests.Annotations;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 
-namespace ProtonVPN.UI.Tests.Tests.E2ETests;
+namespace ProtonVPN.UI.Tests.Tests.SliTests;
 
 [TestFixture]
-[Category("1")]
-public class ProfileTests : FreshSessionSetUp
+[Category("SLI")]
+[Workflow("main_measurements")]
+public class VpnSpeedSLIs : SliSetUp
 {
+    private const string COUNTRY_NAME = "Germany";
+    private const string COUNTRY_CODE = "DE";
+
     [SetUp]
     public void TestInitialize()
     {
+        LaunchApp();
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
     }
 
     [Test]
-    public void CreateFastestProfile()
+    [Sli("network_speed")]
+    public void VpnSpeedMeasurements()
     {
-        const string profileName = "Profile A";
-
-        NavigationRobot
-            .Verify.IsOnConnectionsPage();
-        SidebarRobot
-            .NavigateToProfiles();
-        NavigationRobot
-            .Verify.IsOnProfilesPage();
+        SliHelper.AddNetworkSpeedToMetrics("download_speed_disconnected", "upload_speed_disconnected");
 
         SidebarRobot
-            .CreateProfile();
-        ProfileRobot
-            .Verify.IsProfileOverlayDisplayed()
-            .SetProfileName(profileName)
-            .SaveProfile();
-        SidebarRobot
-            .Verify.ConnectionItemExists(profileName);
-    }
+            .SearchFor(COUNTRY_NAME)
+            .ConnectToCountry(COUNTRY_CODE);
+
+        HomeRobot.Verify.IsConnected();
+
+        // Allow some time for the network to settle down.
+        Thread.Sleep(TestConstants.TenSecondsTimeout);
+
+        SliHelper.AddNetworkSpeedToMetrics("download_speed_connected", "upload_speed_connected");
+
+        HomeRobot.Disconnect();
+    }  
 }

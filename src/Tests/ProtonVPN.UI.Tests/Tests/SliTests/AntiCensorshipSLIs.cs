@@ -18,41 +18,34 @@
  */
 
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.Annotations;
+using ProtonVPN.UI.Tests.ApiClient.TestEnv;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 
-namespace ProtonVPN.UI.Tests.Tests.E2ETests;
+namespace ProtonVPN.UI.Tests.Tests.SliTests;
 
 [TestFixture]
-[Category("1")]
-public class ProfileTests : FreshSessionSetUp
+[Category("SLI-BTI-PROD")]
+[Workflow("anti-censorship")]
+public class AntiCensorshipSLIs : SliSetUp
 {
-    [SetUp]
-    public void TestInitialize()
-    {
-        CommonUiFlows.FullLogin(TestUserData.PlusUser);
-    }
-
     [Test]
-    public void CreateFastestProfile()
+    [Duration, TestStatus]
+    [Sli("alt_routing_login")]
+    public void AlternativeRoutingSliMeasurement()
     {
-        const string profileName = "Profile A";
+        // Scenario has to be set before app is launched
+        BtiController.SetScenario(Scenarios.RESET);
+        BtiController.SetScenario(Scenarios.BLOCK_PROD_ENDPOINT);
 
-        NavigationRobot
-            .Verify.IsOnConnectionsPage();
-        SidebarRobot
-            .NavigateToProfiles();
-        NavigationRobot
-            .Verify.IsOnProfilesPage();
+        LaunchApp();
 
-        SidebarRobot
-            .CreateProfile();
-        ProfileRobot
-            .Verify.IsProfileOverlayDisplayed()
-            .SetProfileName(profileName)
-            .SaveProfile();
-        SidebarRobot
-            .Verify.ConnectionItemExists(profileName);
+        LoginRobot.Login(TestUserData.PlusUser);
+        SliHelper.MeasureTime(() =>
+        {
+            HomeRobot.Verify.WelcomeModalIsDisplayed();
+        });
     }
 }

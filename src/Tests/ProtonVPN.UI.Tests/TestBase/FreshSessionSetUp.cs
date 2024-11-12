@@ -17,32 +17,22 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using NUnit.Framework;
-using NUnit.Framework.Interfaces;
-using ProtonVPN.UI.Tests.TestsHelper;
 
-namespace ProtonVPN.UI.Tests.Annotations;
+namespace ProtonVPN.UI.Tests.TestBase;
 
-public class Sli : Attribute, ITestAction
+// SetUp class that creates fresh client sessions for each test
+public class FreshSessionSetUp : BaseTest
 {
-    private string _sliName;
-    //Execute once when this Attribute is Initalized
-    public Sli(string name)
+    [SetUp]
+    public void BeforeTest()
     {
-        _sliName = name;
+        LaunchApp();
     }
 
-    public ActionTargets Targets => ActionTargets.Test;
-
-    public void AfterTest(ITest test)
+    [TearDown]
+    public void AfterTest()
     {
-        // Do Nothing
-    }
-
-    public void BeforeTest(ITest test)
-    {
-        SliHelper.SliName = _sliName;
-        SliHelper.RunId = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+        Cleanup();
     }
 }
