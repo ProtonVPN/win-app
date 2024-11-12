@@ -21,7 +21,6 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using FlaUI.Core;
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Tools;
@@ -45,6 +44,7 @@ public class BaseTest
     protected static ProfileRobot ProfileRobot { get; } = new();
     protected static SidebarRobot SidebarRobot { get; } = new();
     protected static SettingRobot SettingRobot { get; } = new();
+    protected static SupportRobot SupportRobot { get; } = new(() => Window);
 
     private const string CLIENT_NAME = "ProtonVPN.Client.exe";
 

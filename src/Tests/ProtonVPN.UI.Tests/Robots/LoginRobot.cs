@@ -39,6 +39,8 @@ public class LoginRobot
     protected Element SsoWindow = Element.ByAutomationId("ContentScrollViewer");
     protected Element SignInWithSsoButton = Element.ByName("Sign in with SSO");
     protected Element AuthenticateWithTwoFactorButton = Element.ByAutomationId("AuthenticateWithTwoFactorButton");
+    protected Element HelpButton = Element.ByAutomationId("HelpButton");
+    protected Element ReportIssueMenuItem = Element.ByAutomationId("ReportIssueMenuItem");
 
     public LoginRobot Login(TestUserData user)
     {
@@ -93,6 +95,12 @@ public class LoginRobot
         Keyboard.Type(VirtualKeyShort.TAB);
         Keyboard.Type(VirtualKeyShort.ENTER);
         return this;
+    }
+
+    public void NavigateToBugReport()
+    {
+        HelpButton.Click();
+        ReportIssueMenuItem.Click();
     }
 
     public class Verifications : LoginRobot

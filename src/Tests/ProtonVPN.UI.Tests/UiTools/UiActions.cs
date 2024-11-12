@@ -17,13 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Runtime.InteropServices;
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Conditions;
 using FlaUI.Core.Tools;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestsHelper;
-using System;
-using System.Runtime.InteropServices;
 
 namespace ProtonVPN.UI.Tests.UiTools;
 
