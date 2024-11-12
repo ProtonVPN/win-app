@@ -97,6 +97,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <Border x:Name="proxy"
                                     aprop:AncestorSource.AncestorType="ItemsRepeater" />
                             <toolkit:SettingsCard AutomationProperties.AutomationId="IssueSuggestionSettingsCard"
+                                                  AutomationProperties.Name="{x:Bind Name, Mode=OneTime}"
                                                   Command="{Binding DataContext.DataContext.BrowseLinkCommand, ElementName=proxy}"
                                                   CommandParameter="{x:Bind Link, Mode=OneTime}"
                                                   Header="{x:Bind Name, Mode=OneTime}"

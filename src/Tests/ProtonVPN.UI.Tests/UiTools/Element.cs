@@ -44,4 +44,9 @@ public class Element
     {
         return new Element(cf => cf.ByName(name), name);
     }
+
+    public static Element ByClassName(string name)
+    {
+        return new Element(cf => cf.ByClassName(name), name);
+    }
 }
