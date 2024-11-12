@@ -159,7 +159,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                  Foreground="{ThemeResource InfoBarErrorSeverityIconForeground}"
                                                                  Size="Pixels20"
                                                                  Visibility="Collapsed" />
-                                    <pathicons:ExclamationCircleFilled x:Name="WarningSeverityIcon"
+                                    <pathicons:ExclamationTriangleFilled x:Name="WarningSeverityIcon"
                                                                        Foreground="{ThemeResource InfoBarWarningSeverityIconForeground}"
                                                                        Size="Pixels20"
                                                                        Visibility="Collapsed" />

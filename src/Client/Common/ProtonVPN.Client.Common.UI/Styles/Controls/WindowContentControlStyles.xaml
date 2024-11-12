@@ -86,11 +86,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <ColumnDefinition Width="{Binding TitleBarButtonsLength, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                                 </Grid.ColumnDefinitions>
 
-                                <StackPanel Grid.Column="0"
-                                            Orientation="Horizontal"
-                                            Spacing="{TemplateBinding TitleBarSpacing}">
+                                <Grid Grid.Column="0"
+                                      ColumnSpacing="{TemplateBinding TitleBarSpacing}">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
 
                                     <Image x:Name="WindowIcon"
+                                           Grid.Column="0"
                                            Height="16"
                                            VerticalAlignment="Center"
                                            AutomationProperties.AutomationId="ApplicationIcon"
@@ -98,6 +103,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                            Stretch="Uniform" />
 
                                     <TextBlock x:Name="WindowTitle"
+                                               Grid.Column="1"
                                                VerticalAlignment="Center"
                                                AutomationProperties.AutomationId="WindowTitleLabel"
                                                Style="{StaticResource CaptionTextBlockStyle}"
@@ -105,14 +111,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                TextTrimming="CharacterEllipsis"
                                                TextWrapping="NoWrap" />
 
-                                </StackPanel>
-
+                                </Grid>
                             </Grid>
-
-
-
                         </Grid>
-
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

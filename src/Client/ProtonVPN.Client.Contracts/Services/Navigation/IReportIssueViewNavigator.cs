@@ -18,6 +18,7 @@
  */
 
 using System.Threading.Tasks;
+using ProtonVPN.Client.Contracts.Models.ReportIssue;
 using ProtonVPN.Client.Contracts.Services.Navigation.Bases;
 
 namespace ProtonVPN.Client.Contracts.Services.Navigation;
@@ -26,9 +27,9 @@ public interface IReportIssueViewNavigator : IViewNavigator
 {
     Task<bool> NavigateToCategoriesViewAsync();
 
-    Task<bool> NavigateToCategoryViewAsync(string category);
+    Task<bool> NavigateToCategoryViewAsync(IssueCategory category);
 
-    Task<bool> NavigateToContactViewAsync(string category);
+    Task<bool> NavigateToContactViewAsync(IssueCategory category);
 
     Task<bool> NavigateToResultViewAsync(bool isReportSent);
 }

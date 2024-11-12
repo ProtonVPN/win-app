@@ -35,8 +35,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="ToggleSwitchContainerBackgroundPressed" ResourceKey="TransparentColorBrush" />
             <StaticResource x:Key="ToggleSwitchContainerBackgroundDisabled" ResourceKey="TransparentColorBrush" />
 
-            <StaticResource x:Key="ToggleSwitchFillOff" ResourceKey="BackgroundWeakColorBrush" />
-            <StaticResource x:Key="ToggleSwitchFillOffPointerOver" ResourceKey="BackgroundWeakHoverColorBrush" />
+            <StaticResource x:Key="ToggleSwitchFillOff" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="ToggleSwitchFillOffPointerOver" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="ToggleSwitchFillOffPressed" ResourceKey="BackgroundWeakActiveColorBrush" />
             <StaticResource x:Key="ToggleSwitchFillOffDisabled" ResourceKey="BackgroundWeakColorBrush" />
 
@@ -78,8 +78,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="ToggleSwitchContainerBackgroundPressed" ResourceKey="TransparentColorBrush" />
             <StaticResource x:Key="ToggleSwitchContainerBackgroundDisabled" ResourceKey="TransparentColorBrush" />
 
-            <StaticResource x:Key="ToggleSwitchFillOff" ResourceKey="BackgroundWeakColorBrush" />
-            <StaticResource x:Key="ToggleSwitchFillOffPointerOver" ResourceKey="BackgroundWeakHoverColorBrush" />
+            <StaticResource x:Key="ToggleSwitchFillOff" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="ToggleSwitchFillOffPointerOver" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="ToggleSwitchFillOffPressed" ResourceKey="BackgroundWeakActiveColorBrush" />
             <StaticResource x:Key="ToggleSwitchFillOffDisabled" ResourceKey="BackgroundWeakColorBrush" />
 

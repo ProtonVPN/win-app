@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,6 +18,7 @@
  */
 
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Contracts.Bases;
 
 namespace ProtonVPN.Client.UI.Dialogs.ReportIssue.Pages;
@@ -34,6 +35,8 @@ public sealed partial class ReportIssueContactPageView : IContextAware
 
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
+
+        NoLogsWarningInfoBar.RegisterPropertyChangedCallback(InfoBar.IsOpenProperty, OnInfoBarIsOpenChanged);
     }
 
     public object GetContext()
@@ -49,5 +52,19 @@ public sealed partial class ReportIssueContactPageView : IContextAware
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
         ViewModel.Deactivate();
+    }
+
+    private void OnInfoBarIsOpenChanged(DependencyObject sender, DependencyProperty dp)
+    {
+        if (NoLogsWarningInfoBar.IsOpen)
+        {
+            NoLogsWarningInfoBar.SizeChanged += OnNoLogsWarningInfoBarSizeChanged;
+        }
+    }
+
+    private void OnNoLogsWarningInfoBarSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        NoLogsWarningInfoBar.SizeChanged -= OnNoLogsWarningInfoBarSizeChanged;
+        NoLogsWarningInfoBar.StartBringIntoView();
     }
 }

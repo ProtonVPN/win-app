@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,21 +17,79 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Api.Contracts.ReportAnIssue;
+using ProtonVPN.Client.Contracts.Models.ReportIssue;
+using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Feedback.Contracts;
+using ProtonVPN.Client.Mappers;
+using ProtonVPN.Client.UI.Dialogs.ReportIssue.Bases;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Services.Navigation;
-using ProtonVPN.Client.UI.Dialogs.ReportIssue.Bases;
 
 namespace ProtonVPN.Client.UI.Dialogs.ReportIssue.Pages;
 
-public class ReportIssueCategoriesPageViewModel : ReportIssuePageViewModelBase
+public partial class ReportIssueCategoriesPageViewModel : ReportIssuePageViewModelBase
 {
+    private readonly IReportIssueDataProvider _dataProvider;
+
+    private SemaphoreSlim _semaphore = new(1);
+
+    public ObservableCollection<IssueCategory> Categories { get; }
+
     public ReportIssueCategoriesPageViewModel(
+        IReportIssueDataProvider dataProvider,
         IReportIssueViewNavigator parentViewNavigator,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter)
         : base(parentViewNavigator, localizer, logger, issueReporter)
-    { }
+    {
+        _dataProvider = dataProvider;
+
+        Categories = [];
+    }
+
+    public override async void OnNavigatedTo(object parameter, bool isBackNavigation)
+    {
+        base.OnNavigatedTo(parameter, isBackNavigation);
+
+        await InvalidateCategoriesAsync();
+    }
+
+    [RelayCommand]
+    public async Task SelectCategoryAsync(IssueCategory category)
+    {
+        await ParentViewNavigator.NavigateToCategoryViewAsync(category);
+    }
+
+    protected override async void OnLanguageChanged()
+    {
+        base.OnLanguageChanged();
+
+        await InvalidateCategoriesAsync();
+    }
+
+    private async Task InvalidateCategoriesAsync()
+    {
+        await _semaphore.WaitAsync();
+
+        try
+        {
+            List<IssueCategoryResponse> categories = await _dataProvider.GetCategoriesAsync();
+
+            Categories.Clear();
+
+            foreach (IssueCategoryResponse category in categories)
+            {
+                Categories.Add(ReportIssueMapper.Map(category));
+            }
+        }
+        finally
+        {
+            _semaphore.Release();
+        }
+    }
 }

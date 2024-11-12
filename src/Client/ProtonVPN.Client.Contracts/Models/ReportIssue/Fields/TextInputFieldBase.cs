@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,22 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Contracts.Bases;
+namespace ProtonVPN.Client.Contracts.Models.ReportIssue.Fields;
 
-namespace ProtonVPN.Client.UI.Dialogs.ReportIssue;
-
-public sealed partial class ReportIssueComponentView : IContextAware
+public abstract class TextInputFieldBase : IssueInputField<string>
 {
-    public ReportIssueComponentViewModel ViewModel { get; }
+    protected TextInputFieldBase(bool isFieldMandatory)
+        : base(isFieldMandatory)
+    { }
 
-    public ReportIssueComponentView()
+    protected override string GetSerializedValue()
     {
-        ViewModel = App.GetService<ReportIssueComponentViewModel>();
-        InitializeComponent();
-    }
-
-    public object GetContext()
-    {
-        return ViewModel;
+        return Value ?? string.Empty;
     }
 }

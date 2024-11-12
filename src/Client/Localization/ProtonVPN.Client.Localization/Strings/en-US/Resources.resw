@@ -2027,6 +2027,9 @@
     <value>Error logs show us what went wrong, and which actions led to your issue. We'll only ever use them to help our engineers fix bugs.</value>
     <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
   </data>
+  <data name="Dialogs_ReportIssue_NoLogsWarning" xml:space="preserve">
+    <value>Error logs help us to get to the bottom of your issue. If you don’t include them, we may not be able to investigate fully.</value>
+  </data>
   <data name="Dialogs_ReportIssue_SendReport" xml:space="preserve">
     <value>Send report</value>
   </data>

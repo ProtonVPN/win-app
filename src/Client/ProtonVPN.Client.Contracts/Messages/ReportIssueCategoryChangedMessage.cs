@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,22 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Contracts.Bases;
+namespace ProtonVPN.Client.Contracts.Messages;
 
-namespace ProtonVPN.Client.UI.Dialogs.ReportIssue;
-
-public sealed partial class ReportIssueComponentView : IContextAware
-{
-    public ReportIssueComponentViewModel ViewModel { get; }
-
-    public ReportIssueComponentView()
-    {
-        ViewModel = App.GetService<ReportIssueComponentViewModel>();
-        InitializeComponent();
-    }
-
-    public object GetContext()
-    {
-        return ViewModel;
-    }
-}
+public class ReportIssueCategoryChangedMessage;

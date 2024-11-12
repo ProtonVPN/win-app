@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,21 +17,99 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Api.Contracts.ReportAnIssue;
+using ProtonVPN.Client.Contracts.Messages;
+using ProtonVPN.Client.Contracts.Models.ReportIssue;
+using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Contracts.Services.Navigation;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Feedback.Contracts;
+using ProtonVPN.Client.Mappers;
+using ProtonVPN.Client.UI.Dialogs.ReportIssue.Bases;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Services.Navigation;
-using ProtonVPN.Client.UI.Dialogs.ReportIssue.Bases;
 
 namespace ProtonVPN.Client.UI.Dialogs.ReportIssue.Pages;
 
-public class ReportIssueCategoryPageViewModel : ReportIssuePageViewModelBase
+public partial class ReportIssueCategoryPageViewModel : ReportIssuePageViewModelBase
 {
+    private readonly IEventMessageSender _eventMessageSender;
+    private readonly IReportIssueDataProvider _dataProvider;
+    private readonly IUrlsBrowser _urlsBrowser;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(Title))]
+    [NotifyPropertyChangedFor(nameof(Suggestions))]
+    private IssueCategory? _category;
+
+    public List<IssueSuggestion> Suggestions => Category?.Suggestions ?? [];
+
+    public override string Title => Category?.Name ?? string.Empty;
+
     public ReportIssueCategoryPageViewModel(
+        IEventMessageSender eventMessageSender,
+        IReportIssueDataProvider dataProvider,
+        IUrlsBrowser urlsBrowser,
         IReportIssueViewNavigator parentViewNavigator,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter)
         : base(parentViewNavigator, localizer, logger, issueReporter)
-    { }
+    {
+        _eventMessageSender = eventMessageSender;
+        _dataProvider = dataProvider;
+        _urlsBrowser = urlsBrowser;
+    }
+
+    public override void OnNavigatedTo(object parameter, bool isBackNavigation)
+    {
+        base.OnNavigatedTo(parameter, isBackNavigation);
+
+        Category = parameter as IssueCategory;
+    }
+
+    [RelayCommand]
+    public async Task GoToContactFormAsync()
+    {
+        if (Category is not null)
+        {
+            await ParentViewNavigator.NavigateToContactViewAsync(Category);
+        }
+    }
+
+    [RelayCommand]
+    public void BrowseLink(string parameter)
+    {
+        if (!string.IsNullOrEmpty(parameter))
+        {
+            _urlsBrowser.BrowseTo(parameter);
+        }
+    }
+
+    protected override async void OnLanguageChanged()
+    {
+        base.OnLanguageChanged();
+
+        await InvalidateCategoryAsync();
+    }
+
+    private async Task InvalidateCategoryAsync()
+    {
+        if (Category == null)
+        {
+            return;
+        }
+
+        List<IssueCategoryResponse> categories = await _dataProvider.GetCategoriesAsync();
+
+        Category = ReportIssueMapper.Map(categories.First(c => c.SubmitLabel == Category.Key));
+    }
+
+    partial void OnCategoryChanged(IssueCategory? value)
+    {
+        _eventMessageSender.Send(new ReportIssueCategoryChangedMessage());
+    }
 }

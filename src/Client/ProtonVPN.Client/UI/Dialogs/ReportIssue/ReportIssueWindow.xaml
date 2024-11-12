@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -29,14 +29,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
               IsResizable="False"
               IsMaximizable="False"
               IsMinimizable="False"
-              Width="400"
-              Height="500"
+              Width="456"
+              Height="700"
               x:DefaultBindMode="OneWay"
               mc:Ignorable="d">
 
     <custom:WindowContentControl x:Name="WindowContainer"
+                                 TitleBarButtonsLength="46"
+                                 IconSource="{StaticResource ProtonVpnOnApplicationIconSource}"
                                  Title="{x:Bind Shell.ViewModel.Title}">
 
+        <custom:WindowContentControl.Resources>
+            <Style TargetType="ScrollViewer" BasedOn="{StaticResource OffsetScrollViewer}" />
+        </custom:WindowContentControl.Resources>
+        
         <local:ReportIssueShellView x:Name="Shell" />
 
     </custom:WindowContentControl>

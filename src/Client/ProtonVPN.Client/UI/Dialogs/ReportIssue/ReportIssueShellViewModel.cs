@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,17 +18,44 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
+using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Contracts.Bases.ViewModels;
+using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Contracts.Services.Navigation;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.UI.Dialogs.ReportIssue.Pages;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Dialogs.ReportIssue;
 
-public partial class ReportIssueShellViewModel : ShellViewModelBase<IReportIssueWindowActivator, IReportIssueViewNavigator>
+public partial class ReportIssueShellViewModel : ShellViewModelBase<IReportIssueWindowActivator, IReportIssueViewNavigator>,
+    IEventMessageReceiver<ReportIssueCategoryChangedMessage>
 {
+    public string BaseTitle => Localizer.Get("Dialogs_ReportIssue_Title");
+
+    public override string Title => string.IsNullOrEmpty(CurrentPageTitle)
+        ? BaseTitle
+        : $"{BaseTitle} - {CurrentPageTitle}";
+
+    public int TotalSteps => 3;
+
+    public int CurrentStep => ChildViewNavigator.GetCurrentPageContext() switch
+    {
+        ReportIssueCategoriesPageViewModel => 1,
+        ReportIssueCategoryPageViewModel => 2,
+        ReportIssueContactPageViewModel => 3,
+        _ => 0,
+    };
+
+    public string CurrentPageTitle => ChildViewNavigator.GetCurrentPageContext()?.Title ?? string.Empty;
+
+    public string StepsHeader => Localizer.GetFormat("Dialogs_ReportIssue_Steps", CurrentStep, TotalSteps);
+
+    public bool IsHeaderVisible => CurrentStep > 0 && CurrentStep <= TotalSteps;
+
     public ReportIssueShellViewModel(
         IReportIssueWindowActivator windowActivator,
         IReportIssueViewNavigator childViewNavigator,
@@ -38,27 +65,60 @@ public partial class ReportIssueShellViewModel : ShellViewModelBase<IReportIssue
         : base(windowActivator, childViewNavigator, localizer, logger, issueReporter)
     { }
 
-    [RelayCommand]
-    private Task NavigateToCategoriesViewAsync()
+    [RelayCommand(CanExecute = nameof(CanNavigateBackward))]
+    public async Task NavigateBackwardAsync()
     {
-        return ChildViewNavigator.NavigateToCategoriesViewAsync();
+        if (ChildViewNavigator.CanGoBack)
+        {
+            await ChildViewNavigator.GoBackAsync();
+        }
+        else
+        {
+            await ChildViewNavigator.NavigateToCategoriesViewAsync();
+        }
     }
 
-    [RelayCommand]
-    private Task NavigateToCategoryViewAsync()
+    public bool CanNavigateBackward()
     {
-        return ChildViewNavigator.NavigateToCategoryViewAsync(string.Empty);
+        return CurrentStep > 1;
     }
 
-    [RelayCommand]
-    private Task NavigateToContactViewAsync()
+    [RelayCommand(CanExecute = nameof(CanNavigateForward))]
+    public void NavigateForward()
+    { }
+
+    public bool CanNavigateForward()
     {
-        return ChildViewNavigator.NavigateToContactViewAsync(string.Empty);
+        return false;
     }
 
-    [RelayCommand]
-    private Task NavigateToResultViewAsync()
+    protected override void OnChildNavigation(NavigationEventArgs e)
     {
-        return ChildViewNavigator.NavigateToResultViewAsync(true);
+        base.OnChildNavigation(e);
+
+        InvalidateWindowTitle();
+
+        OnPropertyChanged(nameof(StepsHeader));
+        OnPropertyChanged(nameof(IsHeaderVisible));
+
+        NavigateBackwardCommand.NotifyCanExecuteChanged();
+        NavigateForwardCommand.NotifyCanExecuteChanged();
+    }
+
+    protected override void OnLanguageChanged()
+    {
+        InvalidateWindowTitle();
+        OnPropertyChanged(nameof(StepsHeader));
+    }
+
+    private void InvalidateWindowTitle()
+    {
+        OnPropertyChanged(nameof(BaseTitle));
+        OnPropertyChanged(nameof(Title));
+    }
+
+    public void Receive(ReportIssueCategoryChangedMessage message)
+    {
+        OnPropertyChanged(nameof(Title));
     }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -25,67 +25,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
-             xmlns:temp="using:ProtonVPN.Client.TEMP"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
-    <Grid>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-
-        <Grid Grid.Row="0"
-              Padding="8,4"
-              Background="{ThemeResource BackgroundWeakColorBrush}">
-            <custom:GhostButton HorizontalAlignment="Left"
-                                Command="{x:Bind ViewModel.ChildNavigateBackCommand, Mode=OneTime}"
-                                ToolTipService.ToolTip="Back">
-                <custom:GhostButton.LeftIcon>
-                    <pathicons:ArrowLeft />
-                </custom:GhostButton.LeftIcon>
-            </custom:GhostButton>
-
-            <StackPanel HorizontalAlignment="Right"
-                        Orientation="Horizontal">
-
-                <custom:GhostButton Command="{x:Bind ViewModel.NavigateToCategoriesViewCommand, Mode=OneTime}"
-                                    ToolTipService.ToolTip="Categories">
-                    <custom:GhostButton.LeftIcon>
-                        <pathicons:ListBullets />
-                    </custom:GhostButton.LeftIcon>
-                </custom:GhostButton>
-
-                <custom:GhostButton Command="{x:Bind ViewModel.NavigateToCategoryViewCommand, Mode=OneTime}"
-                                    ToolTipService.ToolTip="Category">
-                    <custom:GhostButton.LeftIcon>
-                        <pathicons:Lightbulb />
-                    </custom:GhostButton.LeftIcon>
-                </custom:GhostButton>
-
-                <custom:GhostButton Command="{x:Bind ViewModel.NavigateToContactViewCommand, Mode=OneTime}"
-                                    ToolTipService.ToolTip="Contact form">
-                    <custom:GhostButton.LeftIcon>
-                        <pathicons:PenSquare />
-                    </custom:GhostButton.LeftIcon>
-                </custom:GhostButton>
-
-                <custom:GhostButton Command="{x:Bind ViewModel.NavigateToResultViewCommand, Mode=OneTime}"
-                                    ToolTipService.ToolTip="Result">
-                    <custom:GhostButton.LeftIcon>
-                        <pathicons:FileArrowOut />
-                    </custom:GhostButton.LeftIcon>
-                </custom:GhostButton>
-
-            </StackPanel>
-        </Grid>
-
+    <custom:StepContentControl Margin="64,64,64,24"
+                               CurrentStep="{x:Bind ViewModel.CurrentStep}"
+                               Header="{x:Bind ViewModel.StepsHeader}"
+                               IsHeaderVisible="{x:Bind ViewModel.IsHeaderVisible}"
+                               MoveBackwardCommand="{x:Bind ViewModel.NavigateBackwardCommand, Mode=OneTime}"
+                               MoveForwardCommand="{x:Bind ViewModel.NavigateForwardCommand, Mode=OneTime}"
+                               TotalSteps="{x:Bind ViewModel.TotalSteps}">
         <Frame x:Name="ReportIssueNavigationFrame"
-               Grid.Row="1"
-               Margin="8"
-               IsNavigationStackEnabled="{x:Bind Navigator.IsNavigationStackEnabled}" />
-
-    </Grid>
+               HorizontalAlignment="Stretch"
+               VerticalAlignment="Stretch" />
+    </custom:StepContentControl>
 
 </UserControl>

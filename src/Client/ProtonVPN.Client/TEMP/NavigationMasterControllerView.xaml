@@ -202,19 +202,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <MenuFlyoutItem Command="{x:Bind ViewModel.ShowReportIssueCommand, Mode=OneTime}"
                                     Style="{StaticResource SimpleMenuFlyoutItemStyle}"
                                     Text="Show Report an issue" />
-                    <MenuFlyoutSeparator />
-                    <MenuFlyoutItem Command="{x:Bind ViewModel.NavigateToReportIssueCategoriesViewCommand, Mode=OneTime}"
-                                    Style="{StaticResource SimpleMenuFlyoutItemStyle}"
-                                    Text="Go to Report Issue Categories" />
-                    <MenuFlyoutItem Command="{x:Bind ViewModel.NavigateToReportIssueCategoryViewCommand, Mode=OneTime}"
-                                    Style="{StaticResource SimpleMenuFlyoutItemStyle}"
-                                    Text="Go to Report Issue Category" />
-                    <MenuFlyoutItem Command="{x:Bind ViewModel.NavigateToReportIssueContactViewCommand, Mode=OneTime}"
-                                    Style="{StaticResource SimpleMenuFlyoutItemStyle}"
-                                    Text="Go to Report Issue Contact" />
-                    <MenuFlyoutItem Command="{x:Bind ViewModel.NavigateToReportIssueResultViewCommand, Mode=OneTime}"
-                                    Style="{StaticResource SimpleMenuFlyoutItemStyle}"
-                                    Text="Go to Report Issue Result" />
                 </MenuFlyoutSubItem>
 
                 <MenuFlyoutSeparator />
