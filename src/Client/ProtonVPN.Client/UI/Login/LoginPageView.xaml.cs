@@ -36,6 +36,8 @@ public sealed partial class LoginPageView : IContextAware
 
         InitializeComponent();
 
+        Navigator.Initialize(LoginNavigationFrame);
+
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
     }
@@ -47,13 +49,13 @@ public sealed partial class LoginPageView : IContextAware
 
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
-        Navigator.Initialize(LoginNavigationFrame);
+        Navigator.Load();
         ViewModel.Activate();
     }
 
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
         ViewModel.Deactivate();
-        Navigator.Reset();
+        Navigator.Unload();
     }
 }

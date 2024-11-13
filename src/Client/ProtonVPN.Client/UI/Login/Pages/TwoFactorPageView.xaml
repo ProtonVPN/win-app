@@ -28,6 +28,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:attachedProperties="using:ProtonVPN.Client.Common.UI.AttachedProperties"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
+      AutomationProperties.AutomationId="TwoFactorPage"
       AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Login_TwoFactorForm_Title')}"
       mc:Ignorable="d">
 

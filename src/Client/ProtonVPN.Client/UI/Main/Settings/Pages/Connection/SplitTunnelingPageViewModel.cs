@@ -35,7 +35,7 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
-using ProtonVPN.Client.UI.Settings.Pages.Entities;
+using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -129,17 +129,16 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager)
-        : base(
-            requiredReconnectionSettings,
-            mainViewNavigator,
-            settingsViewNavigator,
-            localizer,
-            logger,
-            issueReporter,
-            mainWindowOverlayActivator,
-            settings,
-            settingsConflictResolver,
-            connectionManager)
+        : base(requiredReconnectionSettings,
+               mainViewNavigator,
+               settingsViewNavigator,
+               localizer,
+               logger,
+               issueReporter,
+               mainWindowOverlayActivator,
+               settings,
+               settingsConflictResolver,
+               connectionManager)
     {
         _urls = urls;
         _vpnServiceSettingsUpdater = vpnServiceSettingsUpdater;

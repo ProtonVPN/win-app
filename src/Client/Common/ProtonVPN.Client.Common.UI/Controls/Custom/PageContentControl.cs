@@ -61,8 +61,8 @@ public class PageContentControl : ContentControl
     public static readonly DependencyProperty PageHeaderLineHeightProperty =
         DependencyProperty.Register(nameof(PageHeaderLineHeight), typeof(double), typeof(PageContentControl), new PropertyMetadata(default));
 
-    protected Panel PART_HeaderContainer;
-    protected ScrollViewer PART_ScrollViewer;
+    protected Panel? PART_HeaderContainer;
+    protected ScrollViewer? PART_ScrollViewer;
 
     public double PageHeaderFontSize
     {

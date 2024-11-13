@@ -102,7 +102,6 @@ public partial class ProtocolFlyoutViewModel : ActivatableViewModelBase,
     private async Task OpenProtocolSettingsAsync()
     {
         await _mainViewNavigator.NavigateToSettingsViewAsync();
-        await Task.Delay(50);
         await _settingsViewNavigator.NavigateToProtocolSettingsViewAsync();
     }
 }

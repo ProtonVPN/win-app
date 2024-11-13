@@ -76,7 +76,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         </StackPanel>
 
-        <controls:ConnectionItemsControl Grid.Row="1"
+        <controls:ConnectionItemsControl x:Name="ConnectionItemsControl"
+                                         Grid.Row="1"
                                          ItemsSource="{x:Bind ViewModel.GroupsCvs.View, Mode=OneTime}" />
 
         <custom:GhostButton Grid.Row="2"

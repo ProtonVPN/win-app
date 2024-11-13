@@ -68,12 +68,11 @@ public partial class ReportIssueComponentViewModel : ViewModelBase,
     }
 
     [RelayCommand]
-    public async Task SelectCategoryAsync(IssueCategory category)
+    public Task SelectCategoryAsync(IssueCategory category)
     {
         ReportIssue();
-        // TODO: find a proper solution
-        await Task.Delay(50);
-        await _reportIssueViewNavigator.NavigateToCategoryViewAsync(category);
+
+        return _reportIssueViewNavigator.NavigateToCategoryViewAsync(category);
     }
 
     protected override async void OnLanguageChanged()

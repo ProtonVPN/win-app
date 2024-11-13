@@ -30,7 +30,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
-using ProtonVPN.Client.UI.Settings.Pages.Entities;
+using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
@@ -63,17 +63,16 @@ public partial class DeveloperToolsPageViewModel : SettingsPageViewModelBase
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager)
-        : base(
-            requiredReconnectionSettings,
-            mainViewNavigator,
-            settingsViewNavigator,
-            localizer,
-            logger,
-            issueReporter,
-            mainWindowOverlayActivator,
-            settings,
-            settingsConflictResolver,
-            connectionManager)
+        : base(requiredReconnectionSettings,
+               mainViewNavigator,
+               settingsViewNavigator,
+               localizer,
+               logger,
+               issueReporter,
+               mainWindowOverlayActivator,
+               settings,
+               settingsConflictResolver,
+               connectionManager)
     {
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
         _serversUpdater = serversUpdater;

@@ -17,10 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Contracts.Services.Mapping;
 using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.Contracts.Services.Navigation.Bases;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.UI.Main.Settings.Connection;
 using ProtonVPN.Client.UI.Main.Settings.Pages;
 using ProtonVPN.Client.UI.Main.Settings.Pages.About;
@@ -32,7 +36,8 @@ using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Services.Navigation;
 
-public class SettingsViewNavigator : ViewNavigatorBase, ISettingsViewNavigator
+public class SettingsViewNavigator : ViewNavigatorBase, ISettingsViewNavigator,
+    IEventMessageReceiver<AuthenticationStatusChanged>
 {
     public override bool IsNavigationStackEnabled => true;
 
@@ -40,19 +45,40 @@ public class SettingsViewNavigator : ViewNavigatorBase, ISettingsViewNavigator
         ILogger logger,
         IPageViewMapper pageViewMapper)
         : base(logger, pageViewMapper)
+    { }
+
+    protected override void OnFrameNavigated(NavigationEventArgs e)
     {
+        base.OnFrameNavigated(e);
+
+        if (GetCurrentPageContext() is CommonSettingsPageViewModel)
+        {
+            ClearBackStack();
+        }
     }
 
-    public override FrameInitializationBehavior InitializationBehavior { get; protected set; } = FrameInitializationBehavior.NavigateToDefaultViewIfEmpty;
+    public override FrameLoadedBehavior LoadBehavior { get; protected set; } = FrameLoadedBehavior.NavigateToDefaultViewIfEmpty;
+
+    public Task<bool> NavigateToFeatureViewAsync(ConnectionFeature feature)
+    {
+        return feature switch
+        {
+            ConnectionFeature.NetShield => NavigateToNetShieldSettingsViewAsync(),
+            ConnectionFeature.KillSwitch => NavigateToKillSwitchSettingsViewAsync(),
+            ConnectionFeature.PortForwarding => NavigateToPortForwardingSettingsViewAsync(),
+            ConnectionFeature.SplitTunneling => NavigateToSplitTunnelingSettingsViewAsync(),
+            _ => Task.FromResult(false),
+        };
+    }
 
     public Task<bool> NavigateToAdvancedSettingsViewAsync()
     {
         return NavigateToAsync<AdvancedSettingsPageViewModel>();
     }
 
-    public Task<bool> NavigateToCommonSettingsViewAsync()
+    public Task<bool> NavigateToCommonSettingsViewAsync(bool forceNavigation = false)
     {
-        return NavigateToAsync<CommonSettingsPageViewModel>();
+        return NavigateToAsync<CommonSettingsPageViewModel>(forceNavigation: forceNavigation);
     }
 
     public Task<bool> NavigateToDefaultConnectionSettingsViewAsync()
@@ -128,5 +154,19 @@ public class SettingsViewNavigator : ViewNavigatorBase, ISettingsViewNavigator
     public override Task<bool> NavigateToDefaultAsync()
     {
         return NavigateToCommonSettingsViewAsync();
+    }
+
+    public void Receive(AuthenticationStatusChanged message)
+    {
+        switch (message.AuthenticationStatus)
+        {
+            case AuthenticationStatus.LoggingOut:
+            case AuthenticationStatus.LoggingIn:
+                // Force navigation to automatically discard any unsaved changes
+                NavigateToCommonSettingsViewAsync(forceNavigation: true);
+                break;
+            default:
+                break;
+        }
     }
 }

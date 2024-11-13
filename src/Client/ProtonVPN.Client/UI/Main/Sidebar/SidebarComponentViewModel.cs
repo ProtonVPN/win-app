@@ -29,6 +29,7 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Contracts;
+using ProtonVPN.Client.UI.Main.Sidebar.Search.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 

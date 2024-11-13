@@ -45,7 +45,10 @@ public abstract class ConnectionPageViewModelBase : ConnectionListViewModelBase<
     IEventMessageReceiver<LoggedInMessage>,
     IEventMessageReceiver<ServerListChangedMessage>
 {
+    protected bool WasInvalidatedWhileInactive { get; set; } = true;
+
     public abstract int SortIndex { get; }
+
     public abstract string Header { get; }
 
     public string ShortcutText => $"ctrl + {SortIndex}";
@@ -65,8 +68,7 @@ public abstract class ConnectionPageViewModelBase : ConnectionListViewModelBase<
         IConnectionGroupFactory connectionGroupFactory)
         : base(parentViewNavigator, localizer, logger, issueReporter, settings,
             serversLoader, connectionManager, connectionGroupFactory)
-    {
-    }
+    { }
 
     public void Receive(ConnectionStatusChangedMessage message)
     {
@@ -105,23 +107,33 @@ public abstract class ConnectionPageViewModelBase : ConnectionListViewModelBase<
 
     protected virtual void OnServerListChanged()
     {
-        if (IsActive)
-        {
-            FetchItems();
-        }
+        FetchItems();
     }
 
     protected override void OnActivated()
     {
-        FetchItems();
+        OnPropertyChanged(nameof(IsActive));
 
-        InvalidateActiveConnection();
-        InvalidateMaintenanceStates();
-        InvalidateRestrictions();
+        if (WasInvalidatedWhileInactive)
+        {
+            FetchItems();
+        }
+        else
+        {
+            InvalidateActiveConnection();
+            InvalidateMaintenanceStates();
+            InvalidateRestrictions();
+        }
     }
 
     protected void FetchItems()
     {
+        if (!IsActive)
+        {
+            WasInvalidatedWhileInactive = true;
+            return;
+        }
+
         ResetItems(GetItems());
 
         GroupItems();
@@ -129,6 +141,8 @@ public abstract class ConnectionPageViewModelBase : ConnectionListViewModelBase<
         InvalidateActiveConnection();
         InvalidateMaintenanceStates();
         InvalidateRestrictions();
+
+        WasInvalidatedWhileInactive = false;
     }
 
     protected abstract IEnumerable<ConnectionItemBase> GetItems();

@@ -33,6 +33,7 @@ public sealed partial class CustomDnsServersPageView : IContextAware
 
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
+
         ViewModel.ResetContentScrollRequested += OnResetContentScrollRequested;
     }
 

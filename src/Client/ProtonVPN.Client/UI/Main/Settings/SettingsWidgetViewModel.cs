@@ -33,7 +33,7 @@ public class SettingsWidgetViewModel : SideWidgetViewModelBase, ISideFooterWidge
     public override string Header => Localizer.Get("Settings_Page_Title");
 
     public SettingsWidgetViewModel(
-                    ILocalizationProvider localizer,
+        ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter,
         IMainViewNavigator mainViewNavigator)

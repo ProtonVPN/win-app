@@ -110,7 +110,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
         <Setter Property="FontSize" Value="{StaticResource ControlContentThemeFontSize}" />
         <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
         <Setter Property="FocusVisualMargin" Value="-3" />
-        <Setter Property="Margin" Value="0,3" />
+        <Setter Property="Margin" Value="0,4" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="toolkit:SettingsCard">
@@ -946,7 +946,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
         <Setter Property="FontSize" Value="{StaticResource ControlContentThemeFontSize}" />
         <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
         <Setter Property="FocusVisualMargin" Value="-3" />
-        <Setter Property="Margin" Value="0,3" />
+        <Setter Property="Margin" Value="0,4" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:GridSettingsCard">

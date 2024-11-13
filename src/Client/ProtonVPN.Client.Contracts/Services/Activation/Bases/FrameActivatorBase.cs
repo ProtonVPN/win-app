@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -29,6 +29,28 @@ public abstract class FrameActivatorBase : ActivatorBase<Frame>
     protected FrameActivatorBase(
         ILogger logger)
         : base(logger)
+    { }
+
+    public void Load()
+    {
+        if (Host != null)
+        {
+            OnLoaded();
+        }
+    }
+
+    public void Unload()
+    {
+        if (Host != null)
+        {
+            OnUnloaded();
+        }
+    }
+
+    protected virtual void OnLoaded()
+    { }
+
+    protected virtual void OnUnloaded()
     { }
 
     protected override void RegisterToHostEvents()

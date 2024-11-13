@@ -37,9 +37,9 @@ public abstract class ViewNavigatorBase : FrameActivatorBase, IViewNavigator
 
     private object? _lastParameterUsed;
 
-    public virtual FrameInitializationBehavior InitializationBehavior { get; protected set; } = FrameInitializationBehavior.NavigateToDefaultView;
+    public virtual FrameLoadedBehavior LoadBehavior { get; protected set; } = FrameLoadedBehavior.NavigateToDefaultView;
 
-    public virtual FrameResetBehavior ResetBehavior { get; protected set; } = FrameResetBehavior.DoNothing;
+    public virtual FrameUnloadedBehavior UnloadBehavior { get; protected set; } = FrameUnloadedBehavior.DoNothing;
 
     public virtual bool IsNavigationStackEnabled => false;
 
@@ -99,6 +99,16 @@ public abstract class ViewNavigatorBase : FrameActivatorBase, IViewNavigator
 
     public abstract Task<bool> NavigateToDefaultAsync();
 
+    public void ClearFrameContent()
+    {
+        ClearBackStack();
+
+        if (Host?.Content != null)
+        {
+            Host.Content = null;
+        }
+    }
+
     public Task<bool> NavigateToAsync(PageViewModelBase pageViewModel, object? parameter = null, bool clearNavigation = false, bool forceNavigation = false)
     {
         Type pageType = _pageViewMapper.GetViewType(pageViewModel.GetType());
@@ -114,18 +124,30 @@ public abstract class ViewNavigatorBase : FrameActivatorBase, IViewNavigator
         return NavigateToAsync(pageType, parameter, clearNavigation, forceNavigation);
     }
 
+    protected void ClearBackStack()
+    {
+        Host?.BackStack.Clear();
+    }
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
 
-        TriggerInitializationBehavior();
+        TriggerLoadBehavior();
     }
 
-    protected override void OnReset()
+    protected override void OnLoaded()
     {
-        base.OnInitialized();
+        base.OnLoaded();
 
-        TriggerResetBehavior();
+        TriggerLoadBehavior();
+    }
+
+    protected override void OnUnloaded()
+    {
+        base.OnUnloaded();
+
+        TriggerUnloadBehavior();
     }
 
     protected override void OnFrameNavigated(NavigationEventArgs e)
@@ -135,7 +157,7 @@ public abstract class ViewNavigatorBase : FrameActivatorBase, IViewNavigator
         bool clearNavigation = (bool)(Host?.Tag ?? false);
         if (clearNavigation)
         {
-            Host?.BackStack.Clear();
+            ClearBackStack();
         }
 
         if (GetCurrentPageContext() is INavigationAware context)
@@ -185,26 +207,26 @@ public abstract class ViewNavigatorBase : FrameActivatorBase, IViewNavigator
             return navigated;
         }
 
-        return false;
+        return true;
     }
 
-    private void TriggerInitializationBehavior()
+    private void TriggerLoadBehavior()
     {
-        switch (InitializationBehavior)
+        switch (LoadBehavior)
         {
-            case FrameInitializationBehavior.NavigateToDefaultView:
-            case FrameInitializationBehavior.NavigateToDefaultViewIfEmpty when Host?.Content == null:
+            case FrameLoadedBehavior.NavigateToDefaultView:
+            case FrameLoadedBehavior.NavigateToDefaultViewIfEmpty when Host?.Content == null:
                 NavigateToDefaultAsync();
                 break;
         }
     }
 
-    private void TriggerResetBehavior()
+    private void TriggerUnloadBehavior()
     {
-        switch (ResetBehavior)
+        switch (UnloadBehavior)
         {
-            case FrameResetBehavior.ClearFrameContent when Host != null:
-                Host.Content = null;
+            case FrameUnloadedBehavior.ClearFrameContent when Host != null:
+                ClearFrameContent();
                 break;
         }
     }

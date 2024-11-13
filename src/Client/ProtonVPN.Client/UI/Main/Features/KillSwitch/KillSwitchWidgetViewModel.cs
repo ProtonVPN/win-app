@@ -41,8 +41,9 @@ public class KillSwitchWidgetViewModel : FeatureWidgetViewModelBase
         ILogger logger,
         IIssueReporter issueReporter,
         ISettings settings,
-        IMainViewNavigator mainViewNavigator)
-        : base(localizer, logger, issueReporter, mainViewNavigator, settings, ConnectionFeature.KillSwitch)
+        IMainViewNavigator mainViewNavigator,
+        ISettingsViewNavigator settingsViewNavigator)
+        : base(localizer, logger, issueReporter, mainViewNavigator, settingsViewNavigator, settings, ConnectionFeature.KillSwitch)
     {
         _applicationThemeSelector = applicationThemeSelector;
     }

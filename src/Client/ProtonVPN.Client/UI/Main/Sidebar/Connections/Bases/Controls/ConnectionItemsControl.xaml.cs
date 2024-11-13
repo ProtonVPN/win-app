@@ -52,4 +52,12 @@ public sealed partial class ConnectionItemsControl
     {
         Focus(FocusState.Programmatic);
     }
+
+    public void ResetContentScroll()
+    {
+        if (ScrollViewer != null && ScrollViewer.ComputedVerticalScrollBarVisibility == Visibility.Visible)
+        {
+            ScrollViewer.ScrollToVerticalOffset(0);
+        }
+    }
 }

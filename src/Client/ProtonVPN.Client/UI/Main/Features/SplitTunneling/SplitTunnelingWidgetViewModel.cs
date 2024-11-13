@@ -41,8 +41,9 @@ public class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
         ILogger logger,
         IIssueReporter issueReporter,
         ISettings settings,
-        IMainViewNavigator mainViewNavigator)
-        : base(localizer, logger, issueReporter, mainViewNavigator, settings, ConnectionFeature.SplitTunneling)
+        IMainViewNavigator mainViewNavigator,
+        ISettingsViewNavigator settingsViewNavigator)
+        : base(localizer, logger, issueReporter, mainViewNavigator, settingsViewNavigator, settings, ConnectionFeature.SplitTunneling)
     {
         _applicationThemeSelector = applicationThemeSelector;
     }

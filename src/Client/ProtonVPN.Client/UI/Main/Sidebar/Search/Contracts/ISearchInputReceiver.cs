@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,18 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.UI.Settings.Pages.Entities;
+namespace ProtonVPN.Client.UI.Main.Sidebar.Search.Contracts;
 
-public class ChangedSettingArgs
+public interface ISearchInputReceiver
 {
-    public string Name { get; }
-    public dynamic? NewValue { get; }
-    public bool HasChanged { get; }
-
-    public ChangedSettingArgs(string name, dynamic? newValue, bool hasChanged)
-    {
-        Name = name;
-        NewValue = newValue;
-        HasChanged = hasChanged;
-    }
-}    
+    Task SearchAsync(string input);
+}

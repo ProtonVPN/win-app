@@ -19,7 +19,7 @@
 
 namespace ProtonVPN.Client.Contracts.Enums;
 
-public enum FrameInitializationBehavior
+public enum FrameLoadedBehavior
 {
     DoNothing,
     NavigateToDefaultView,

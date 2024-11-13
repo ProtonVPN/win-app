@@ -692,7 +692,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     </UserControl.Resources>
 
-    <ScrollViewer Style="{StaticResource OffsetScrollViewer}"
+    <ScrollViewer x:Name="ScrollViewer"
+                  Style="{StaticResource OffsetScrollViewer}"
                   VerticalScrollBarVisibility="{x:Bind ScrollBarVisibility}">
 
         <ItemsControl x:Name="connectionItemsControl"

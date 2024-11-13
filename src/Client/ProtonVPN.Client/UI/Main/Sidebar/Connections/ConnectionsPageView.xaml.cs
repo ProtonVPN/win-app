@@ -38,6 +38,8 @@ public sealed partial class ConnectionsPageView : IContextAware
          
         InitializeComponent();
 
+        Navigator.Initialize(ConnectionsNavigationFrame);
+
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
     }
@@ -49,8 +51,9 @@ public sealed partial class ConnectionsPageView : IContextAware
 
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
-        Navigator.Initialize(ConnectionsNavigationFrame);
+        Navigator.Load();
         ViewModel.Activate();
+
         KeyboardAccelerators.AddHandler(OnCtrl1Invoked, VirtualKey.Number1, VirtualKeyModifiers.Control);
         KeyboardAccelerators.AddHandler(OnCtrl2Invoked, VirtualKey.Number2, VirtualKeyModifiers.Control);
         KeyboardAccelerators.AddHandler(OnCtrl3Invoked, VirtualKey.Number3, VirtualKeyModifiers.Control);
@@ -84,6 +87,6 @@ public sealed partial class ConnectionsPageView : IContextAware
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
         ViewModel.Deactivate();
-        Navigator.Reset();
+        Navigator.Unload();
     }
 }
