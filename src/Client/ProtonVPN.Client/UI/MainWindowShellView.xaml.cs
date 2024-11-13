@@ -36,6 +36,8 @@ public sealed partial class MainWindowShellView : IContextAware
 
         InitializeComponent();
 
+        Navigator.Initialize(MainWindowNavigationFrame);
+
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
     }
@@ -47,13 +49,15 @@ public sealed partial class MainWindowShellView : IContextAware
 
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
-        Navigator.Initialize(MainWindowNavigationFrame);
+        Navigator.Load();
         ViewModel.Activate();
     }
 
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
         ViewModel.Deactivate();
+        Navigator.Unload();
+
         Navigator.Reset();
     }
 }

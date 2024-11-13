@@ -37,6 +37,8 @@ public sealed partial class MainPageView : IContextAware
 
         InitializeComponent();
 
+        Navigator.Initialize(MainNavigationFrame);
+
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
     }
@@ -48,14 +50,14 @@ public sealed partial class MainPageView : IContextAware
 
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
-        Navigator.Initialize(MainNavigationFrame);
+        Navigator.Load();
         ViewModel.Activate();
     }
 
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
         ViewModel.Deactivate();
-        Navigator.Reset();
+        Navigator.Unload();
     }
 
     private void OnSidebarPointerEntered(object sender, PointerRoutedEventArgs e)

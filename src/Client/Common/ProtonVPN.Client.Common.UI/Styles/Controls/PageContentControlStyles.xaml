@@ -250,7 +250,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 </custom:GhostButton>
                             </Grid>
 
-                            <ScrollViewer x:Name="ScrollViewer"
+                            <ScrollViewer x:Name="PART_ScrollViewer"
                                           Grid.Row="2"
                                           MaxWidth="{TemplateBinding MaxContentWidth}"
                                           HorizontalScrollBarVisibility="Disabled"
@@ -262,8 +262,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     VerticalAlignment="Top"
                                     Height="25"
                                     Opacity="0.3"
+                                    IsHitTestVisible="False"
                                     Background="{ThemeResource GradientFadingColorBrush}"
-                                    Visibility="{Binding VerticalOffset, ElementName=ScrollViewer, Converter={StaticResource PositiveNumberToVisibilityConverter}}" />
+                                    Visibility="{Binding VerticalOffset, ElementName=PART_ScrollViewer, Converter={StaticResource PositiveNumberToVisibilityConverter}}" />
                         </Grid>
 
                         <VisualStateManager.VisualStateGroups>

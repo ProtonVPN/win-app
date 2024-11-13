@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
 
@@ -27,6 +28,9 @@ public class NavigationRobot
     public Verifications Verify => new();
 
     protected Element LoginPage => Element.ByAutomationId("LoginPage");
+    protected Element SignInPage => Element.ByAutomationId("SignInPage");
+    protected Element LoadingPage => Element.ByAutomationId("LoadingPage");
+    protected Element TwoFactorPage => Element.ByAutomationId("TwoFactorPage");
     protected Element MainPage => Element.ByAutomationId("MainPage");
     protected Element HomePage => Element.ByAutomationId("HomePage");
     protected Element SettingsPage => Element.ByAutomationId("SettingsPage");
@@ -47,19 +51,21 @@ public class NavigationRobot
 
     public class Verifications : NavigationRobot
     {
-        private Verifications IsOnPage(Element page)
+        private Verifications IsOnPage(Element page, TimeSpan? timeout = null)
         {
-            page.WaitUntilDisplayed();
+            page.WaitUntilDisplayed(timeout);
             return this;
         }
 
         public Verifications IsOnLoginPage() => IsOnPage(LoginPage);
 
-        public Verifications IsOnMainPage()
-        {
-            MainPage.WaitUntilDisplayed(TestConstants.OneMinuteTimeout);
-            return this;
-        }
+        public Verifications IsOnSignInPage() => IsOnPage(SignInPage);
+
+        public Verifications IsOnTwoFactorPage() => IsOnPage(TwoFactorPage);
+
+        public Verifications IsOnLoadingPage() => IsOnPage(LoadingPage);
+
+        public Verifications IsOnMainPage() => IsOnPage(MainPage, TestConstants.OneMinuteTimeout);
 
         public Verifications IsOnHomePage() => IsOnPage(HomePage);
 

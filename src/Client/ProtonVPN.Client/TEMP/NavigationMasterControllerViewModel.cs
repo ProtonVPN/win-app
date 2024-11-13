@@ -126,25 +126,29 @@ public partial class NavigationMasterControllerViewModel : ViewModelBase
     [RelayCommand]
     private async Task NavigateToNetShieldFeatureViewAsync()
     {
-        await _mainViewNavigator.NavigateToFeatureViewAsync(ConnectionFeature.NetShield);
+        await _mainViewNavigator.NavigateToSettingsViewAsync();
+        await _settingsViewNavigator.NavigateToNetShieldSettingsViewAsync();
     }
 
     [RelayCommand]
     private async Task NavigateToKillSwitchFeatureViewAsync()
     {
-        await _mainViewNavigator.NavigateToFeatureViewAsync(ConnectionFeature.KillSwitch);
+        await _mainViewNavigator.NavigateToSettingsViewAsync();
+        await _settingsViewNavigator.NavigateToKillSwitchSettingsViewAsync();
     }
 
     [RelayCommand]
     private async Task NavigateToPortForwardingFeatureViewAsync()
     {
-        await _mainViewNavigator.NavigateToFeatureViewAsync(ConnectionFeature.PortForwarding);
+        await _mainViewNavigator.NavigateToSettingsViewAsync();
+        await _settingsViewNavigator.NavigateToPortForwardingSettingsViewAsync();
     }
 
     [RelayCommand]
     private async Task NavigateToSplitTunnelingFeatureViewAsync()
     {
-        await _mainViewNavigator.NavigateToFeatureViewAsync(ConnectionFeature.SplitTunneling);
+        await _mainViewNavigator.NavigateToSettingsViewAsync();
+        await _settingsViewNavigator.NavigateToSplitTunnelingSettingsViewAsync();
     }
 
     [RelayCommand]

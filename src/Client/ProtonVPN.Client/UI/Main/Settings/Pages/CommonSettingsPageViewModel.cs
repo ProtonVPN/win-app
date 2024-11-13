@@ -38,7 +38,7 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
-using ProtonVPN.Client.UI.Settings.Pages.Entities;
+using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -125,17 +125,16 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter)
-        : base(
-            requiredReconnectionSettings,
-            mainViewNavigator,
-            settingsViewNavigator,
-            localizer,
-            logger,
-            issueReporter,
-            mainWindowOverlayActivator,
-            settings,
-            settingsConflictResolver,
-            connectionManager)
+        : base(requiredReconnectionSettings,
+               mainViewNavigator,
+               settingsViewNavigator,
+               localizer,
+               logger,
+               issueReporter,
+               mainWindowOverlayActivator,
+               settings,
+               settingsConflictResolver,
+               connectionManager)
     {
         _themeSelector = themeSelector;
         _localizationService = localizationService;

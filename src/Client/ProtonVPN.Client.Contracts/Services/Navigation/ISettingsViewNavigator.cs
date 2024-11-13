@@ -18,13 +18,16 @@
  */
 
 using System.Threading.Tasks;
+using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Contracts.Services.Navigation.Bases;
 
 namespace ProtonVPN.Client.Contracts.Services.Navigation;
 
 public interface ISettingsViewNavigator : IViewNavigator
 {
-    Task<bool> NavigateToCommonSettingsViewAsync();
+    Task<bool> NavigateToFeatureViewAsync(ConnectionFeature feature);
+
+    Task<bool> NavigateToCommonSettingsViewAsync(bool forceNavigation = false);
 
     Task<bool> NavigateToAdvancedSettingsViewAsync();
 

@@ -33,12 +33,8 @@ public sealed partial class AboutPageView : IContextAware
 
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
-        ViewModel.ResetContentScrollRequested += OnResetContentScrollRequested;
-    }
 
-    private void OnResetContentScrollRequested(object? sender, EventArgs e)
-    {
-        PageContentHost.ResetContentScroll();
+        ViewModel.ResetContentScrollRequested += OnResetContentScrollRequested;
     }
 
     public object GetContext()
@@ -54,5 +50,10 @@ public sealed partial class AboutPageView : IContextAware
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
         ViewModel.Deactivate();
+    }
+
+    private void OnResetContentScrollRequested(object? sender, EventArgs e)
+    {
+        PageContentHost.ResetContentScroll();
     }
 }

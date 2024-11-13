@@ -191,7 +191,7 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
     }
 
     [RelayCommand]
-    public async Task ReportAnIssueAsync()
+    public void ReportAnIssue()
     {
         _reportIssueWindowActivator.Activate();
     }

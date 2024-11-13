@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -34,6 +34,8 @@ public sealed partial class DebugLogsPageView : IContextAware
 
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
+
+        ViewModel.ResetContentScrollRequested += OnResetContentScrollRequested;
     }
 
     public object GetContext()
@@ -49,5 +51,10 @@ public sealed partial class DebugLogsPageView : IContextAware
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
         ViewModel.Deactivate();
+    }
+
+    private void OnResetContentScrollRequested(object? sender, EventArgs e)
+    {
+        PageContentHost.ResetContentScroll();
     }
 }

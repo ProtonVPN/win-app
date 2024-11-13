@@ -17,9 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.UI.Main.Sidebar;
+namespace ProtonVPN.Client.Contracts.Enums;
 
-public interface ISearchInputReceiver
+public enum FrameUnloadedBehavior
 {
-    Task SearchAsync(string input);
+    DoNothing,
+    ClearFrameContent
 }

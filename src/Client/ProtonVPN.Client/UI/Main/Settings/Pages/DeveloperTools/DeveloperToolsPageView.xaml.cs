@@ -34,6 +34,8 @@ public sealed partial class DeveloperToolsPageView : IContextAware
 
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
+
+        ViewModel.ResetContentScrollRequested += OnResetContentScrollRequested;
     }
 
     public object GetContext()
@@ -49,5 +51,10 @@ public sealed partial class DeveloperToolsPageView : IContextAware
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
         ViewModel.Deactivate();
+    }
+
+    private void OnResetContentScrollRequested(object? sender, EventArgs e)
+    {
+        PageContentHost.ResetContentScroll();
     }
 }

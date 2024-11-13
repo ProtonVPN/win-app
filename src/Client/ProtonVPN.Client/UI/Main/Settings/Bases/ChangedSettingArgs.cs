@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,10 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Contracts.Enums;
+namespace ProtonVPN.Client.UI.Main.Settings.Bases;
 
-public enum FrameResetBehavior
+public class ChangedSettingArgs
 {
-    DoNothing,
-    ClearFrameContent
+    public string Name { get; }
+    public dynamic? NewValue { get; }
+    public bool HasChanged { get; }
+
+    public ChangedSettingArgs(string name, dynamic? newValue, bool hasChanged)
+    {
+        Name = name;
+        NewValue = newValue;
+        HasChanged = hasChanged;
+    }
 }

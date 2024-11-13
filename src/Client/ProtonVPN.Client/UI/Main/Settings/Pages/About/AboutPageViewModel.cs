@@ -31,8 +31,8 @@ using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Update.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Contracts.Services.Activation;
-using ProtonVPN.Client.UI.Settings.Pages.Entities;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
+using ProtonVPN.Client.UI.Main.Settings.Bases;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.About;
 
@@ -72,17 +72,16 @@ public partial class AboutPageViewModel : SettingsPageViewModelBase,
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager)
-        : base(
-            requiredReconnectionSettings,
-            mainViewNavigator,
-            settingsViewNavigator,
-            localizer,
-            logger,
-            issueReporter,
-            mainWindowOverlayActivator,
-            settings,
-            settingsConflictResolver,
-            connectionManager)
+        : base(requiredReconnectionSettings,
+               mainViewNavigator,
+               settingsViewNavigator,
+               localizer,
+               logger,
+               issueReporter,
+               mainWindowOverlayActivator,
+               settings,
+               settingsConflictResolver,
+               connectionManager)
     {
         _updatesManager = updatesManager;
         _releaseViewModelFactory = releaseViewModelFactory;

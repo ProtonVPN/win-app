@@ -41,8 +41,9 @@ public class NetShieldWidgetViewModel : FeatureWidgetViewModelBase
         ILogger logger,
         IIssueReporter issueReporter,
         ISettings settings,
-        IMainViewNavigator mainViewNavigator)
-        : base(localizer, logger, issueReporter, mainViewNavigator, settings, ConnectionFeature.NetShield)
+        IMainViewNavigator mainViewNavigator,
+        ISettingsViewNavigator settingsViewNavigator)
+        : base(localizer, logger, issueReporter, mainViewNavigator, settingsViewNavigator, settings, ConnectionFeature.NetShield)
     {
         _applicationThemeSelector = applicationThemeSelector;
     }

@@ -46,7 +46,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    Source="{StaticResource ProfileIcon}" />
 
             <StackPanel Grid.Column="1"
-                        Spacing="4">
+                        Spacing="4"
+                        MinWidth="100">
 
                 <TextBlock Style="{ThemeResource BodyMediumStrongTextBlockStyle}"
                            Text="{x:Bind ViewModel.Username}" />

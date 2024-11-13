@@ -25,23 +25,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <ResourceDictionary.ThemeDictionaries>
 
         <ResourceDictionary x:Key="Light">
-
-            <StaticResource x:Key="SettingsExpanderBackground" ResourceKey="InteractionDefaultColor" />
+            <StaticResource x:Key="SettingsExpanderBackground" ResourceKey="InteractionDefaultColorBrush" />
             <StaticResource x:Key="SettingsExpanderForeground" ResourceKey="TextNormColorBrush" />
-            <StaticResource x:Key="SettingsExpanderBorderBrush" ResourceKey="BorderWeakColor" />
+            <StaticResource x:Key="SettingsExpanderBorderBrush" ResourceKey="BorderWeakColorBrush" />
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Dark">
-
-            <StaticResource x:Key="SettingsExpanderBackground" ResourceKey="InteractionDefaultColor" />
+            <StaticResource x:Key="SettingsExpanderBackground" ResourceKey="InteractionDefaultColorBrush" />
             <StaticResource x:Key="SettingsExpanderForeground" ResourceKey="TextNormColorBrush" />
-            <StaticResource x:Key="SettingsExpanderBorderBrush" ResourceKey="BorderWeakColor" />
+            <StaticResource x:Key="SettingsExpanderBorderBrush" ResourceKey="BorderWeakColorBrush" />
         </ResourceDictionary>
+
     </ResourceDictionary.ThemeDictionaries>
 
     <Thickness x:Key="SettingsExpanderHeaderPadding">16,16,4,16</Thickness>
     <Thickness x:Key="SettingsExpanderItemPadding">58,8,44,8</Thickness>
-    <Thickness x:Key="SettingsExpanderItemBorderThickness">1,0,1,1</Thickness>
+    <Thickness x:Key="SettingsExpanderItemBorderThickness">1</Thickness>
     <Thickness x:Key="ClickableSettingsExpanderItemPadding">58,8,16,8</Thickness>
     <x:Double x:Key="SettingsExpanderContentMinHeight">16</x:Double>
     <x:Double x:Key="SettingsExpanderChevronButtonWidth">32</x:Double>
@@ -63,7 +62,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="FontSize" Value="{StaticResource ControlContentThemeFontSize}" />
         <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
         <Setter Property="FocusVisualMargin" Value="-3" />
-        <Setter Property="Margin" Value="0,3" />
+        <Setter Property="Margin" Value="0,4" />
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <DataTemplate>
@@ -83,15 +82,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               Style="{StaticResource SettingsExpanderExpanderStyle}">
                         <Expander.Header>
                             <toolkit:SettingsCard x:Name="SettingsCard"
+                                                  Margin="0"
+                                                  Background="{ThemeResource TransparentColorBrush}"
+                                                  BorderThickness="0"
                                                   Content="{TemplateBinding Content}"
+                                                  CornerRadius="0"
                                                   Description="{TemplateBinding Description}"
                                                   Header="{TemplateBinding Header}"
                                                   HeaderIcon="{TemplateBinding HeaderIcon}"
                                                   IsClickEnabled="False"
                                                   IsTabStop="{TemplateBinding IsTabStop}"
-                                                  Style="{StaticResource DefaultSettingsCardStyle}"
-                                                  BorderThickness="1"
-                                                  CornerRadius="4" />
+                                                  Style="{StaticResource DefaultSettingsCardStyle}" />
                         </Expander.Header>
                         <Expander.Content>
                             <Grid>
@@ -114,21 +115,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </Grid>
                         </Expander.Content>
 
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="ExpandDirectionStates">
-                                <VisualState x:Name="Collapsed" />
-                                <VisualState x:Name="Expanded">
-                                    <VisualState.StateTriggers>
-                                        <StateTrigger IsActive="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" />
-                                    </VisualState.StateTriggers>
-                                    <VisualState.Setters>
-                                        <Setter Target="SettingsCard.BorderThickness" Value="1,1,1,0" />
-                                        <Setter Target="SettingsCard.CornerRadius" Value="4,4,0,0" />
-                                    </VisualState.Setters>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-
                     </Expander>
                 </ControlTemplate>
             </Setter.Value>
@@ -147,12 +133,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="CornerRadius" Value="0,0,4,4" />
+        <Setter Property="CornerRadius" Value="4" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Expander">
                     <Grid MinWidth="{TemplateBinding MinWidth}"
-                          MaxWidth="{TemplateBinding MaxWidth}">
+                          MaxWidth="{TemplateBinding MaxWidth}"
+                          Background="{TemplateBinding Background}"
+                          BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                          BorderBrush="{TemplateBinding BorderBrush}"
+                          BorderThickness="{TemplateBinding BorderThickness}"
+                          CornerRadius="{TemplateBinding CornerRadius}">
                         <Grid.RowDefinitions>
                             <RowDefinition x:Name="Row0"
                                            Height="Auto" />
@@ -168,17 +159,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <!--  The clip is a composition clip applied in code  -->
                         <Border x:Name="ExpanderContentClip"
                                 Grid.Row="1"
-                                Margin="0,-3,0,0">
+                                Margin="0,-4,0,0">
                             <Border x:Name="ExpanderContent"
                                     MinHeight="{StaticResource SettingsExpanderContentMinHeight}"
                                     Padding="{TemplateBinding Padding}"
                                     HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch"
-                                    Background="{TemplateBinding Background}"
-                                    BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="1,0,1,1"
-                                    CornerRadius="0,0,4,4">
+                                    VerticalAlignment="Stretch">
                                 <ContentPresenter Margin="0,-2,0,0"
                                                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"

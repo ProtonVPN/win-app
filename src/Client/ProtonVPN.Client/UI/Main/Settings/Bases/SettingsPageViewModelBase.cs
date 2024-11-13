@@ -37,7 +37,7 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Conflicts.Bases;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
-using ProtonVPN.Client.UI.Settings.Pages.Entities;
+using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
@@ -49,6 +49,7 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
     private readonly IRequiredReconnectionSettings _requiredReconnectionSettings;
     private readonly IMainViewNavigator _mainViewNavigator;
 
+    protected readonly IMainViewNavigator MainViewNavigator;
     protected readonly IMainWindowOverlayActivator MainWindowOverlayActivator;
     protected readonly ISettings Settings;
     protected readonly ISettingsConflictResolver SettingsConflictResolver;
@@ -76,8 +77,7 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
         : base(settingsViewNavigator, localizer, logger, issueReporter)
     {
         _requiredReconnectionSettings = requiredReconnectionSettings;
-        _mainViewNavigator = mainViewNavigator;
-
+        MainViewNavigator = mainViewNavigator;
         MainWindowOverlayActivator = mainWindowOverlayActivator;
         Settings = settings;
         SettingsConflictResolver = settingsConflictResolver;
@@ -85,14 +85,22 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
     }
 
     [RelayCommand]
-    private async Task CloseAsync()
+    private async Task<bool> CloseAsync()
     {
-        await ParentViewNavigator.NavigateToDefaultAsync();
-        await _mainViewNavigator.NavigateToHomeViewAsync();
+        bool navigationCompleted = 
+            await ParentViewNavigator.NavigateToDefaultAsync() &&
+            await MainViewNavigator.NavigateToHomeViewAsync();
+
+        if (navigationCompleted)
+        {
+            RequestResetContentScroll();
+        }
+
+        return navigationCompleted;
     }
 
     [RelayCommand(CanExecute = nameof(CanApply))]
-    public async Task ApplyAsync()
+    public async Task<bool> ApplyAsync()
     {
         bool isReconnectionRequired = IsReconnectionRequired();
 
@@ -100,8 +108,10 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
 
         if (isReconnectionRequired)
         {
-            await ConnectionManager.ReconnectAsync();
+            return await ConnectionManager.ReconnectAsync();
         }
+
+        return true;
     }
 
     public bool CanApply()

@@ -36,6 +36,8 @@ public sealed partial class DetailsComponentView : IContextAware
 
         InitializeComponent();
 
+        Navigator.Initialize(DetailsNavigationFrame);
+
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
     }
@@ -47,13 +49,13 @@ public sealed partial class DetailsComponentView : IContextAware
 
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
-        Navigator.Initialize(DetailsNavigationFrame);
+        Navigator.Load();
         ViewModel.Activate();
     }
 
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
         ViewModel.Deactivate();
-        Navigator.Reset();
+        Navigator.Unload();
     }
 }

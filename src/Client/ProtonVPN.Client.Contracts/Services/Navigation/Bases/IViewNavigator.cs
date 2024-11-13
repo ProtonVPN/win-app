@@ -26,9 +26,9 @@ namespace ProtonVPN.Client.Contracts.Services.Navigation.Bases;
 
 public interface IViewNavigator
 {
-    FrameInitializationBehavior InitializationBehavior { get; }
+    FrameLoadedBehavior LoadBehavior { get; }
 
-    FrameResetBehavior ResetBehavior { get; }
+    FrameUnloadedBehavior UnloadBehavior { get; }
 
     bool IsNavigationStackEnabled { get; }
 

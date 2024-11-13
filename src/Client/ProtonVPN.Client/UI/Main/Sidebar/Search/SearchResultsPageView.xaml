@@ -79,7 +79,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 
             </StackPanel>
 
-            <controls:ConnectionItemsControl Grid.Row="2"
+            <controls:ConnectionItemsControl x:Name="ConnectionItemsControl"
+                                             Grid.Row="2"
                                              ItemsSource="{x:Bind ViewModel.GroupsCvs.View, Mode=OneTime}" />
         </Grid>
         <StackPanel Orientation="Vertical"

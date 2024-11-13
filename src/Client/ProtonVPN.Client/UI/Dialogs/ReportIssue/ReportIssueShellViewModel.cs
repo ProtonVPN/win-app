@@ -66,16 +66,11 @@ public partial class ReportIssueShellViewModel : ShellViewModelBase<IReportIssue
     { }
 
     [RelayCommand(CanExecute = nameof(CanNavigateBackward))]
-    public async Task NavigateBackwardAsync()
+    public Task NavigateBackwardAsync()
     {
-        if (ChildViewNavigator.CanGoBack)
-        {
-            await ChildViewNavigator.GoBackAsync();
-        }
-        else
-        {
-            await ChildViewNavigator.NavigateToCategoriesViewAsync();
-        }
+        return ChildViewNavigator.CanGoBack
+            ? ChildViewNavigator.GoBackAsync()
+            : ChildViewNavigator.NavigateToCategoriesViewAsync();
     }
 
     public bool CanNavigateBackward()
@@ -98,6 +93,7 @@ public partial class ReportIssueShellViewModel : ShellViewModelBase<IReportIssue
 
         InvalidateWindowTitle();
 
+        OnPropertyChanged(nameof(CurrentStep));
         OnPropertyChanged(nameof(StepsHeader));
         OnPropertyChanged(nameof(IsHeaderVisible));
 
@@ -107,6 +103,8 @@ public partial class ReportIssueShellViewModel : ShellViewModelBase<IReportIssue
 
     protected override void OnLanguageChanged()
     {
+        base.OnLanguageChanged();
+
         InvalidateWindowTitle();
         OnPropertyChanged(nameof(StepsHeader));
     }
@@ -114,11 +112,13 @@ public partial class ReportIssueShellViewModel : ShellViewModelBase<IReportIssue
     private void InvalidateWindowTitle()
     {
         OnPropertyChanged(nameof(BaseTitle));
+        OnPropertyChanged(nameof(CurrentPageTitle));
         OnPropertyChanged(nameof(Title));
     }
 
     public void Receive(ReportIssueCategoryChangedMessage message)
     {
+        OnPropertyChanged(nameof(CurrentPageTitle));
         OnPropertyChanged(nameof(Title));
     }
 }

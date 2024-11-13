@@ -21,6 +21,7 @@ using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Services.Navigation;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Main.Widgets.Bases;
 using ProtonVPN.Client.UI.Main.Widgets.Contracts;
@@ -31,6 +32,7 @@ namespace ProtonVPN.Client.UI.Main.Features.Bases;
 
 public abstract class FeatureWidgetViewModelBase : SideWidgetViewModelBase, ISideHeaderWidget
 {
+    protected readonly ISettingsViewNavigator SettingsViewNavigator;
     protected readonly ISettings Settings;
 
     private readonly ImageIcon _featureIcon = new();
@@ -46,18 +48,21 @@ public abstract class FeatureWidgetViewModelBase : SideWidgetViewModelBase, ISid
         ILogger logger,
         IIssueReporter issueReporter,
         IMainViewNavigator mainViewNavigator,
+        ISettingsViewNavigator settingsViewNavigator,
         ISettings settings,
         ConnectionFeature connectionFeature)
         : base(localizer, logger, issueReporter, mainViewNavigator)
     {
+        SettingsViewNavigator = settingsViewNavigator;
         Settings = settings;
 
         ConnectionFeature = connectionFeature;
     }
 
-    public override Task<bool> InvokeAsync()
+    public override async Task<bool> InvokeAsync()
     {
-        return MainViewNavigator.NavigateToFeatureViewAsync(ConnectionFeature);
+        return await MainViewNavigator.NavigateToSettingsViewAsync() &&        
+               await SettingsViewNavigator.NavigateToFeatureViewAsync(ConnectionFeature);
     }
 
     protected abstract string GetFeatureStatus();

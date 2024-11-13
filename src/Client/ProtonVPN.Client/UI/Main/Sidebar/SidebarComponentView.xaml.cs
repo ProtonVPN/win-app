@@ -48,6 +48,8 @@ public sealed partial class SidebarComponentView : IContextAware
 
         InitializeComponent();
 
+        Navigator.Initialize(SidebarNavigationFrame);
+
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
     }
@@ -59,8 +61,9 @@ public sealed partial class SidebarComponentView : IContextAware
 
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
-        Navigator.Initialize(SidebarNavigationFrame);
+        Navigator.Load();
         ViewModel.Activate();
+
         KeyboardAccelerators.AddHandler(OnCtrlFInvoked, VirtualKey.F, VirtualKeyModifiers.Control);
     }
 
@@ -73,6 +76,6 @@ public sealed partial class SidebarComponentView : IContextAware
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
         ViewModel.Deactivate();
-        Navigator.Reset();
+        Navigator.Unload();
     }
 }

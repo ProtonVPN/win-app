@@ -52,9 +52,10 @@ public partial class PortForwardingWidgetViewModel : FeatureWidgetViewModelBase
         IIssueReporter issueReporter,
         ISettings settings,
         IMainViewNavigator mainViewNavigator,
+        ISettingsViewNavigator settingsViewNavigator,
         IConnectionManager connectionManager,
         IPortForwardingManager portForwardingManager)
-        : base(localizer, logger, issueReporter, mainViewNavigator, settings, ConnectionFeature.PortForwarding)
+        : base(localizer, logger, issueReporter, mainViewNavigator, settingsViewNavigator, settings, ConnectionFeature.PortForwarding)
     {
         _applicationThemeSelector = applicationThemeSelector;
         _connectionManager = connectionManager;

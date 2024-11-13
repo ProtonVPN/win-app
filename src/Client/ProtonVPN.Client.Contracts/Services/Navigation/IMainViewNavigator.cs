@@ -29,7 +29,5 @@ public interface IMainViewNavigator : IViewNavigator
 
     Task<bool> NavigateToSettingsViewAsync();
 
-    Task<bool> NavigateToFeatureViewAsync(ConnectionFeature feature);
-
     Task<bool> NavigateToGalleryViewAsync(); // TEMP
 }

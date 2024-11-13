@@ -30,14 +30,17 @@ using ProtonVPN.Client.UI.Main.Sidebar.Connections.Countries;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Gateways;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Recents;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 
 namespace ProtonVPN.Client.Services.Navigation;
 
 public class ConnectionsViewNavigator : ViewNavigatorBase, IConnectionsViewNavigator,
-    IEventMessageReceiver<LoggedOutMessage>
+    IEventMessageReceiver<LoggedInMessage>
 {
     private readonly IRecentConnectionsManager _recentConnectionsManager;
     private readonly IServersLoader _serversLoader;
+
+    public override FrameLoadedBehavior LoadBehavior { get; protected set; } = FrameLoadedBehavior.DoNothing;
 
     public ConnectionsViewNavigator(
         ILogger logger,
@@ -81,10 +84,6 @@ public class ConnectionsViewNavigator : ViewNavigatorBase, IConnectionsViewNavig
 
     public override Task<bool> NavigateToDefaultAsync()
     {
-        // Check if logged in
-        // Check if free or paid user
-        // Check if user has recent connections, or gateways, or profiles (TBC)
-        // then navigate to the most appropriate page
         return _recentConnectionsManager.GetRecentConnections().Any()
                 ? NavigateToRecentsViewAsync()
                 : _serversLoader.GetGateways().Any()
@@ -92,17 +91,8 @@ public class ConnectionsViewNavigator : ViewNavigatorBase, IConnectionsViewNavig
                     : NavigateToCountriesViewAsync(CountriesConnectionType.All);
     }
 
-    public void Receive(LoggedOutMessage message)
+    public void Receive(LoggedInMessage message)
     {
-        // On logout, reset the behavior so default content is picked at the next login
-        InitializationBehavior = FrameInitializationBehavior.NavigateToDefaultView;
-    }
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        // After initializing the frame, set the behavior so we don't navigate to default every time
-        InitializationBehavior = FrameInitializationBehavior.NavigateToDefaultViewIfEmpty;
+        NavigateToDefaultAsync();
     }
 }

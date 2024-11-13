@@ -33,6 +33,7 @@ public sealed partial class LicensingPageView : IContextAware
 
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
+
         ViewModel.ResetContentScrollRequested += OnResetContentScrollRequested;
     }
 

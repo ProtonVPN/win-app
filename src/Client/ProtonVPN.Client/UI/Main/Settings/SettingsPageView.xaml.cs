@@ -36,6 +36,8 @@ public sealed partial class SettingsPageView : IContextAware
 
         InitializeComponent();
 
+        Navigator.Initialize(SettingsNavigationFrame);
+
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
     }
@@ -47,13 +49,13 @@ public sealed partial class SettingsPageView : IContextAware
 
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
-        Navigator.Initialize(SettingsNavigationFrame);
+        Navigator.Load();
         ViewModel.Activate();
     }
 
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
         ViewModel.Deactivate();
-        Navigator.Reset();
+        Navigator.Unload();
     }
 }

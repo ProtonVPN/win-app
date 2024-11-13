@@ -34,33 +34,13 @@ namespace ProtonVPN.Client.Services.Navigation;
 public class MainViewNavigator : ViewNavigatorBase, IMainViewNavigator,
     IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
-    private readonly ISettingsViewNavigator _settingsViewNavigator;
-
     private ConnectionStatus _connectionStatus = ConnectionStatus.Disconnected;
 
     public MainViewNavigator(
         ILogger logger,
-        IPageViewMapper pageViewMapper,
-        ISettingsViewNavigator settingsViewNavigator) : base(logger, pageViewMapper)
+        IPageViewMapper pageViewMapper) 
+        : base(logger, pageViewMapper)
     {
-        _settingsViewNavigator = settingsViewNavigator;
-    }
-
-    public async Task<bool> NavigateToFeatureViewAsync(ConnectionFeature feature)
-    {
-        await NavigateToSettingsViewAsync();
-
-        // TODO: this causes some flickering, need to find a better way
-        await Task.Delay(50);
-
-        return feature switch
-        {
-            ConnectionFeature.NetShield => await _settingsViewNavigator.NavigateToNetShieldSettingsViewAsync(),
-            ConnectionFeature.KillSwitch => await _settingsViewNavigator.NavigateToKillSwitchSettingsViewAsync(),
-            ConnectionFeature.PortForwarding => await _settingsViewNavigator.NavigateToPortForwardingSettingsViewAsync(),
-            ConnectionFeature.SplitTunneling => await _settingsViewNavigator.NavigateToSplitTunnelingSettingsViewAsync(),
-            _ => await Task.FromResult(false),
-        };
     }
 
     public Task<bool> NavigateToHomeViewAsync()

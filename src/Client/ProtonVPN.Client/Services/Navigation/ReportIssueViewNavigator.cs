@@ -23,12 +23,15 @@ using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.Contracts.Services.Navigation.Bases;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue.Pages;
 using ProtonVPN.Client.Contracts.Models.ReportIssue;
+using ProtonVPN.Client.Contracts.Enums;
 
 namespace ProtonVPN.Client.Services.Navigation;
 
 public class ReportIssueViewNavigator : ViewNavigatorBase, IReportIssueViewNavigator
 {
     public override bool IsNavigationStackEnabled => true;
+
+    public override FrameLoadedBehavior LoadBehavior { get; protected set; } = FrameLoadedBehavior.NavigateToDefaultViewIfEmpty;
 
     public ReportIssueViewNavigator(
         ILogger logger,
@@ -41,9 +44,16 @@ public class ReportIssueViewNavigator : ViewNavigatorBase, IReportIssueViewNavig
         return NavigateToAsync<ReportIssueCategoriesPageViewModel>();
     }
 
-    public Task<bool> NavigateToCategoryViewAsync(IssueCategory category)
+    public async Task<bool> NavigateToCategoryViewAsync(IssueCategory category)
     {
-        return NavigateToAsync<ReportIssueCategoryPageViewModel>(category);
+        bool navigated = category.Suggestions.Any()
+            ? await NavigateToAsync<ReportIssueCategoryPageViewModel>(category)
+            : await NavigateToContactViewAsync(category);
+
+        // Clear back stack so the back button brings to the category selection page
+        ClearBackStack();
+
+        return navigated;
     }
 
     public Task<bool> NavigateToContactViewAsync(IssueCategory category)
