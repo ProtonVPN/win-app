@@ -70,6 +70,10 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
 
         Host?.Show();
         Host?.SetForegroundWindow();
+        if (Host?.WindowState == WindowState.Minimized)
+        {
+            Host.WindowState = Settings.IsWindowMaximized ? WindowState.Maximized : WindowState.Normal; 
+        }
 
         OnWindowActivated();
     }
@@ -145,34 +149,46 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
 
     protected virtual void OnWindowActivated()
     {
-        Logger.Info<AppLog>($"Window '{Host?.Title}' is activated.");
+        Logger.Info<AppLog>($"Window '{GetHostTitle()}' is activated.");
+    }
+
+    private string? GetHostTitle()
+    {
+        try
+        {
+            return Host?.Title;
+        }
+        catch
+        {
+            return null;
+        }
     }
 
     protected virtual void OnWindowClosing(WindowEventArgs e)
     {
-        Logger.Info<AppLog>($"Closing window '{Host?.Title}' requested.");
+        Logger.Info<AppLog>($"Closing window '{GetHostTitle()}' requested.");
     }
 
     protected virtual void OnWindowCloseAborted()
     {
-        Logger.Info<AppLog>($"Closing window '{Host?.Title}' aborted.");
+        Logger.Info<AppLog>($"Closing window '{GetHostTitle()}' aborted.");
     }
 
     protected virtual void OnWindowClosed()
     {
-        Logger.Info<AppLog>($"Window '{Host?.Title}' is closed.");
+        Logger.Info<AppLog>($"Window '{GetHostTitle()}' is closed.");
 
         HandleClosedEvent = true;
     }
 
     protected virtual void OnWindowHidden()
     {
-        Logger.Info<AppLog>($"Window '{Host?.Title}' is hidden.");
+        Logger.Info<AppLog>($"Window '{GetHostTitle()}' is hidden.");
     }
 
     protected virtual void OnWindowStateChanged()
     {
-        Logger.Info<AppLog>($"Window '{Host?.Title}' state has changed to {CurrentWindowState}.");
+        Logger.Info<AppLog>($"Window '{GetHostTitle()}' state has changed to {CurrentWindowState}.");
     }
 
     protected virtual void OnWindowActivationStateChanged()
