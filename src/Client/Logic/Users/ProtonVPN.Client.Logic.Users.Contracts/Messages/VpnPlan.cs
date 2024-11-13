@@ -40,6 +40,8 @@ public readonly struct VpnPlan
 
     public bool IsUnlimited => Name == "bundle2022";
 
+    public bool IsVisionary => Name == "visionary2022";
+
     public bool IsB2B => Name is "vpnpro2023" or "vpnbiz2023" or "bundlepro2022";
 
     public bool IsDuo => Name is "duo2024";
@@ -48,5 +50,5 @@ public readonly struct VpnPlan
 
     public bool IsVpnPlan => IsPlus || IsB2B;
 
-    public bool IsProtonPlan => IsUnlimited || IsDuo;
+    public bool IsProtonPlan => IsUnlimited || IsDuo || IsVisionary;
 }
