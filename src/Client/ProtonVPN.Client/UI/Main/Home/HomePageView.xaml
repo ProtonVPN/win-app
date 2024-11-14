@@ -25,6 +25,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:details="using:ProtonVPN.Client.UI.Main.Home.Details"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:components="using:ProtonVPN.Client.UI.Main.Components"
       x:DefaultBindMode="OneWay"
       AutomationProperties.AutomationId="HomePage"
       AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Automation_Properties_Home_Page')}"
@@ -35,6 +36,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <card:ConnectionCardComponentView HorizontalAlignment="Center"
                                           VerticalAlignment="Top" />
+
+        <components:ConnectionErrorComponent VerticalAlignment="Top"
+                                             MaxWidth="{StaticResource MaximumPageContentWidth}"
+                                             HorizontalAlignment="Center" />
 
         <details:DetailsComponentView HorizontalAlignment="Stretch"
                                       VerticalAlignment="Bottom" />

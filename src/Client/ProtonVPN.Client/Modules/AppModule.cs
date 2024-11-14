@@ -312,6 +312,7 @@ public class AppModule : Module
         RegisterViewModel<ProfileSettingsSelectorViewModel>(builder);
         RegisterViewModel<UserDetailsComponentViewModel>(builder);
         RegisterViewModel<ConnectionSettingsViewModel>(builder);
+        RegisterViewModel<ConnectionErrorViewModel>(builder);
         RegisterViewModel<UpdateViewModel>(builder).AutoActivate();
 
         RegisterViewModel<ReportIssueShellViewModel>(builder);
