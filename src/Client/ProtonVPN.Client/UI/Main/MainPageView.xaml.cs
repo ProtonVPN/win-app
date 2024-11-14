@@ -19,13 +19,20 @@
 
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Contracts.Bases;
+using ProtonVPN.Client.Contracts.Bases.ViewModels;
+using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.Services.Navigation;
+using ProtonVPN.Client.UI.Main.Home;
+using Windows.Foundation;
 
 namespace ProtonVPN.Client.UI.Main;
 
 public sealed partial class MainPageView : IContextAware
 {
+    private const double MAIN_FRAME_LEFT_MARGIN = 10.0;
+
     public MainPageViewModel ViewModel { get; }
 
     public MainViewNavigator Navigator { get; }
@@ -41,6 +48,7 @@ public sealed partial class MainPageView : IContextAware
 
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
+        LayoutRoot.PointerPressed += OnPointerPressed;
     }
 
     public object GetContext()
@@ -68,5 +76,22 @@ public sealed partial class MainPageView : IContextAware
     private void OnSidebarPointerExited(object sender, PointerRoutedEventArgs e)
     {
         ViewModel.OnSidebarInteractionEnded();
+    }
+
+    private async void OnPointerPressed(object sender, PointerRoutedEventArgs e)
+    {
+        Point point = e.GetCurrentPoint(LayoutRoot).Position;
+        GeneralTransform transform = MainNavigationFrame.TransformToVisual(LayoutRoot);
+        Rect mainNavigationFrameRect = new(new Point(0, 0), MainNavigationFrame.RenderSize);
+        mainNavigationFrameRect = transform.TransformBounds(mainNavigationFrameRect);
+
+        // Add some margin to the left so that we can resize the sidebar without navigating to home page
+        mainNavigationFrameRect.X -= MAIN_FRAME_LEFT_MARGIN;
+        mainNavigationFrameRect.Width += MAIN_FRAME_LEFT_MARGIN;
+
+        if (!mainNavigationFrameRect.Contains(point))
+        {
+            await ViewModel.CloseCurrentSettingsPageAsync();
+        }
     }
 }

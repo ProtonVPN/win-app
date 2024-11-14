@@ -85,7 +85,7 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
     }
 
     [RelayCommand]
-    private async Task<bool> CloseAsync()
+    public async Task<bool> CloseAsync()
     {
         bool navigationCompleted = 
             await ParentViewNavigator.NavigateToDefaultAsync() &&
