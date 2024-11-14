@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Contracts.Services.Mapping;
 using ProtonVPN.Client.Contracts.Services.Navigation;
 using ProtonVPN.Client.Contracts.Services.Navigation.Bases;
@@ -40,8 +39,7 @@ public class MainViewNavigator : ViewNavigatorBase, IMainViewNavigator,
         ILogger logger,
         IPageViewMapper pageViewMapper) 
         : base(logger, pageViewMapper)
-    {
-    }
+    { }
 
     public Task<bool> NavigateToHomeViewAsync()
     {
@@ -69,7 +67,7 @@ public class MainViewNavigator : ViewNavigatorBase, IMainViewNavigator,
     // Disconnected
     // Connecting
     // Connected
-    public void Receive(ConnectionStatusChangedMessage message)
+    public async void Receive(ConnectionStatusChangedMessage message)
     {
         if (_connectionStatus == message.ConnectionStatus)
         {
@@ -80,7 +78,7 @@ public class MainViewNavigator : ViewNavigatorBase, IMainViewNavigator,
 
         if (message.ConnectionStatus == ConnectionStatus.Connecting)
         {
-            NavigateToDefaultAsync();
+            await NavigateToDefaultAsync();
         }
     }
 }

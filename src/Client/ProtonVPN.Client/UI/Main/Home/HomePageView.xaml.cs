@@ -18,7 +18,6 @@
  */
 
 using Microsoft.UI.Xaml;
-using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Contracts.Bases;
 
 namespace ProtonVPN.Client.UI.Main.Home;
@@ -50,15 +49,5 @@ public sealed partial class HomePageView : IContextAware
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
         ViewModel.Deactivate();
-    }
-
-    private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-    {
-        App.GetService<IConnectionManager>().ConnectAsync();
-    }
-
-    private void Disconnect(object sender, RoutedEventArgs e)
-    {
-        App.GetService<IConnectionManager>().DisconnectAsync();
     }
 }

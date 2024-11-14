@@ -45,6 +45,7 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
     private readonly IMainWindowActivator _mainWindowActivator;
     private readonly IConnectionManager _connectionManager;
     private readonly ISettings _settings;
+    private readonly ISettingsViewNavigator _settingsViewNavigator;
 
     [ObservableProperty]
     private bool _isSidebarExpanded;
@@ -75,12 +76,14 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
         IIssueReporter issueReporter,
         IMainWindowActivator mainWindowActivator,
         IConnectionManager connectionManager,
-        ISettings settings)
+        ISettings settings,
+        ISettingsViewNavigator settingsViewNavigator)
         : base(parentViewNavigator, childViewNavigator, localizer, logger, issueReporter)
     {
         _mainWindowActivator = mainWindowActivator;
         _connectionManager = connectionManager;
         _settings = settings;
+        _settingsViewNavigator = settingsViewNavigator;
     }
 
     public void OnSidebarInteractionStarted()
@@ -157,5 +160,18 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
     private void SaveSidebarWidth()
     {
         _settings.SidebarWidth = (int)SidebarWidth;
+    }
+
+    public async Task CloseCurrentSettingsPageAsync()
+    {
+        if (IsHomePageDisplayed) 
+        {
+            return;
+        }
+
+        if (_settingsViewNavigator.GetCurrentPageContext() is SettingsPageViewModelBase currentSettingsPage)
+        {
+            await currentSettingsPage.CloseAsync();
+        }
     }
 }
