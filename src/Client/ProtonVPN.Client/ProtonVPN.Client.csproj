@@ -48,6 +48,7 @@
     <None Remove="UI\Login\Pages\TwoFactorPageView.xaml" />
     <None Remove="UI\Login\LoginPageView.xaml" />
     <None Remove="UI\MainWindowShellView.xaml" />
+    <None Remove="UI\Main\Components\ConnectionErrorComponent.xaml" />
     <None Remove="UI\Main\FeatureIcons\KillSwitchIconView.xaml" />
     <None Remove="UI\Main\FeatureIcons\NetShieldIconView.xaml" />
     <None Remove="UI\Main\FeatureIcons\PortForwardingIconView.xaml" />
@@ -223,6 +224,9 @@
   <ItemGroup>
     <Folder Include="UI\Overlays\Information\Notification\" />
     <Folder Include="UI\Main\Map\" />
+    <Page Update="UI\Main\Components\ConnectionErrorComponent.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
     <Page Update="UI\Main\FeatureIcons\PortForwardingIconView.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
