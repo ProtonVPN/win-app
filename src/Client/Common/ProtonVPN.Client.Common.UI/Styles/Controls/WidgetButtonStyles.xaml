@@ -95,7 +95,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               CornerRadius="{TemplateBinding CornerRadius}">
 
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="24" />
+                                <RowDefinition Height="32" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
