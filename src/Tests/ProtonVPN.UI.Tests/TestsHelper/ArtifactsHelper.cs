@@ -23,6 +23,7 @@ using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using FlaUI.Core.Capturing;
 using NUnit.Framework;
 
@@ -34,10 +35,18 @@ public class ArtifactsHelper
     private static string ArtifactsDirectory { get; set; }
     private static EventLog _eventViewerLogs = EventLog.GetEventLogs().Where(logs => logs.Log == "Application").FirstOrDefault();
 
-    public static void StartVideoCapture(string testName)
+    public static async Task StartVideoCaptureAsync(string testName)
     {
+        string recorderFolder = @"C:\TestRecorder\";
+        string recorderFullPath = Path.Combine(recorderFolder, "ffmpeg.exe");
+
+        if (!File.Exists(recorderFullPath))
+        {
+            await VideoRecorder.DownloadFFMpeg(recorderFolder);
+        }
+
         string pathToVideo = Path.Combine(ArtifactsDirectory, testName, $"{testName}-recording.mp4");
-        Recorder = new VideoRecorder(new VideoRecorderSettings { VideoQuality = 18, FrameRate = 10u,ffmpegPath = TestConstants.PathToRecorder, TargetVideoPath = pathToVideo }, recorder =>
+        Recorder = new VideoRecorder(new VideoRecorderSettings { VideoQuality = 18, FrameRate = 10u,ffmpegPath = recorderFullPath, TargetVideoPath = pathToVideo }, recorder =>
         {
             string testName = TestContext.CurrentContext.Test.MethodName;
             CaptureImage img = Capture.Screen(1);

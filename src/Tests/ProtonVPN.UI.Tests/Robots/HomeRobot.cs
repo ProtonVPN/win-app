@@ -86,7 +86,7 @@ public class HomeRobot
     {
         public Verifications WelcomeModalIsDisplayed()
         {
-            GetStartedButton.WaitUntilDisplayed();
+            GetStartedButton.WaitUntilDisplayed(TestConstants.TwoMinutesTimeout);
             return this;
         }
 

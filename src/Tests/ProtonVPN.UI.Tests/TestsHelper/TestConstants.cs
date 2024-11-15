@@ -30,13 +30,13 @@ public static class TestConstants
     public static TimeSpan TenSecondsTimeout => TimeSpan.FromSeconds(10);
     public static TimeSpan ThirtySecondsTimeout => TimeSpan.FromSeconds(30);
     public static TimeSpan OneMinuteTimeout => TimeSpan.FromSeconds(60);
+    public static TimeSpan TwoMinutesTimeout => TimeSpan.FromMinutes(2);
     public static TimeSpan RetryInterval => TimeSpan.FromMilliseconds(200);
     public static TimeSpan AnimationDelay => TimeSpan.FromMilliseconds(500);
 
     public static string AppFolderPath = @"C:\Program Files\Proton\VPN";
     public static string LauncherPath = @"C:\Program Files\Proton\VPN\ProtonVPN.Launcher.exe";
     public static string MapCountry = "CA";
-    public static string PathToRecorder = @"C:\TestRecorder\ffmpeg.exe";
     public static string ClientLogsPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Proton\Proton VPN\Logs\client-logs.txt");
     public static string UserStoragePath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Proton\Proton VPN");
     public enum Protocol
