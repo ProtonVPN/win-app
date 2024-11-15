@@ -33,7 +33,7 @@ using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
-using ProtonVPN.Client.Contracts.Services.Activation;
+using ProtonVPN.Client.Core.Services.Activation;
 
 namespace ProtonVPN.Client.Services.Bootstrapping;
 

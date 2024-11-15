@@ -18,8 +18,8 @@
  */
 
 using Microsoft.UI.Xaml.Controls;
-using ProtonVPN.Client.Contracts.Enums;
-using ProtonVPN.Client.Contracts.Services.Navigation;
+using ProtonVPN.Client.Core.Enums;
+using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Services.Navigation;
 using ProtonVPN.Client.Settings.Contracts;

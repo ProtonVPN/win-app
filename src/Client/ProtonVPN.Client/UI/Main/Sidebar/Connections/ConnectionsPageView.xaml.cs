@@ -20,7 +20,7 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Input;
 using ProtonVPN.Client.Common.UI.Keyboards;
-using ProtonVPN.Client.Contracts.Bases;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Services.Navigation;
 using Windows.System;
 

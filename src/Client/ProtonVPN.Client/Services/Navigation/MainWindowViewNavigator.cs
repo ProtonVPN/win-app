@@ -17,14 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Contracts.Messages;
+using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Services.Mapping;
-using ProtonVPN.Client.Contracts.Services.Navigation;
-using ProtonVPN.Client.Contracts.Services.Navigation.Bases;
+using ProtonVPN.Client.Core.Services.Mapping;
+using ProtonVPN.Client.Core.Services.Navigation;
+using ProtonVPN.Client.Core.Services.Navigation.Bases;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.UI.Login;
 using ProtonVPN.Client.UI.Main;

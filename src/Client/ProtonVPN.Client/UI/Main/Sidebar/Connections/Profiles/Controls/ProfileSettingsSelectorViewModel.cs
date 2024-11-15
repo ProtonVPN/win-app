@@ -19,7 +19,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Common.Collections;
-using ProtonVPN.Client.Contracts.Bases.ViewModels;
+using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Factories;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;

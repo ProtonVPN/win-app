@@ -47,7 +47,6 @@ public static class VpnErrorExtensions
         VpnError.AdapterTimeoutError,
         VpnError.PlanNeedsToBeUpgraded,
         VpnError.Unpaid,
-        VpnError.PasswordChanged,
         VpnError.ServerSessionError,
         VpnError.Unknown,
     ];

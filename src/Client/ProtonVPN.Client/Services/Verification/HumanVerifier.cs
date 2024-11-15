@@ -19,7 +19,7 @@
 
 using ProtonVPN.Api.Contracts.HumanVerification;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Contracts.Services.Activation;
+using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Services.Verification.Messages;
 
 namespace ProtonVPN.Client.Services.Verification;

@@ -18,7 +18,7 @@
  */
 
 using Microsoft.UI.Xaml;
-using ProtonVPN.Client.Contracts.Bases;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Services.Navigation;
 
 namespace ProtonVPN.Client.UI.Main.Home.Details;

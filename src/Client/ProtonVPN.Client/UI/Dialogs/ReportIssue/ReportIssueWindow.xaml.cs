@@ -18,8 +18,8 @@
  */
 
 using Microsoft.UI.Xaml;
-using ProtonVPN.Client.Contracts.Bases;
-using ProtonVPN.Client.Contracts.Extensions;
+using ProtonVPN.Client.Core.Bases;
+using ProtonVPN.Client.Core.Extensions;
 using ProtonVPN.Client.Services.Activation;
 
 namespace ProtonVPN.Client.UI.Dialogs.ReportIssue;

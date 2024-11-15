@@ -20,10 +20,10 @@
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Services.Activation;
-using ProtonVPN.Client.Contracts.Services.Activation.Bases;
-using ProtonVPN.Client.Contracts.Services.Mapping;
-using ProtonVPN.Client.Contracts.Services.Selection;
+using ProtonVPN.Client.Core.Services.Activation;
+using ProtonVPN.Client.Core.Services.Activation.Bases;
+using ProtonVPN.Client.Core.Services.Mapping;
+using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue;
 
 namespace ProtonVPN.Client.Services.Activation;

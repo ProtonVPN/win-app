@@ -20,10 +20,10 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
-using ProtonVPN.Client.Contracts.Messages;
-using ProtonVPN.Client.Contracts.Models.ReportIssue;
 using ProtonVPN.Client.Contracts.Services.Browsing;
-using ProtonVPN.Client.Contracts.Services.Navigation;
+using ProtonVPN.Client.Core.Messages;
+using ProtonVPN.Client.Core.Models.ReportIssue;
+using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Feedback.Contracts;

@@ -19,7 +19,7 @@
 
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using ProtonVPN.Client.Contracts.Models.ReportIssue.Fields;
+using ProtonVPN.Client.Core.Models.ReportIssue.Fields;
 
 namespace ProtonVPN.Client.UI.Dialogs.ReportIssue.Selectors;
 

@@ -18,8 +18,8 @@
  */
 
 using Microsoft.UI.Xaml.Media;
-using ProtonVPN.Client.Contracts.Helpers;
-using ProtonVPN.Client.Contracts.Services.Selection;
+using ProtonVPN.Client.Core.Helpers;
+using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Settings.Contracts;

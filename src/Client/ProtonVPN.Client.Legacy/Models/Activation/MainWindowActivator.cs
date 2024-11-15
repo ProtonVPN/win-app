@@ -23,7 +23,7 @@ using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Legacy.Contracts;
-using ProtonVPN.Client.Contracts.Messages;
+using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Legacy.Helpers;
 using ProtonVPN.Client.Localization.Contracts;

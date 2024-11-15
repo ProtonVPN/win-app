@@ -319,48 +319,6 @@ public static class LocalizationExtensions
         };
     }
 
-    public static string GetVpnErrorMessage(this ILocalizationProvider localizer, VpnError vpnError, IConnectionIntent connectionIntent, bool isPaidUser)
-    {
-        return vpnError switch
-        {
-            VpnError.None or
-            VpnError.NoneKeepEnabledKillSwitch => string.Empty,
-
-            VpnError.NoServers when connectionIntent is IConnectionProfile profile => localizer.GetFormat("Connection_Error_NoServers_Profile", profile.Name),
-            VpnError.NoServers => localizer.Get("Connection_Error_NoServers"),
-
-            VpnError.WireGuardAdapterInUseError => localizer.Get("Connection_Error_WireGuardAdapterInUse"),
-            VpnError.NoTapAdaptersError => localizer.Get("Connection_Error_NoTapAdapters"),
-            VpnError.TapAdapterInUseError => localizer.Get("Connection_Error_TapAdapterInUse"),
-            VpnError.TapRequiresUpdateError => localizer.Get("Connection_Error_TapRequiresUpdate"),
-            VpnError.TlsCertificateError => localizer.Get("Connection_Error_TlsCertificate"),
-            VpnError.RpcServerUnavailable => localizer.Get("Connection_Error_RpcServerUnavailable"),
-            VpnError.MissingConnectionCertificate => localizer.Get("Connection_Error_MissingConnectionCertificate"),
-            VpnError.SessionLimitReachedBasic or
-            VpnError.SessionLimitReachedFree or
-            VpnError.SessionLimitReachedPlus or
-            VpnError.SessionLimitReachedPro or
-            VpnError.SessionLimitReachedVisionary or
-            VpnError.SessionLimitReachedUnknown => localizer.Get(isPaidUser
-                    ? "Connection_Error_SessionLimitReachedPaidUser"
-                    : "Connection_Error_SessionLimitReachedFreeUser"),
-            _ => localizer.Get("Connection_Error_Unknown")
-        };
-    }
-
-    public static string GetVpnErrorActionLabel(this ILocalizationProvider localizer, VpnError vpnError, IConnectionIntent connectionIntent)
-    {
-        return vpnError switch
-        {
-            VpnError.NoServers when connectionIntent is IConnectionProfile => localizer.Get("Connection_Error_EditProfile"),
-            VpnError.RpcServerUnavailable or 
-            VpnError.TapAdapterInUseError or 
-            VpnError.NoTapAdaptersError or 
-            VpnError.TapRequiresUpdateError => localizer.Get("Connection_Error_ViewPossibleSolutions"),
-            _ => localizer.Get("Connection_Error_ReportAnIssue")
-        };
-    }
-
     public static string? GetExitOrSignOutConfirmationMessage(this ILocalizationProvider localizer, bool isDisconnected, ISettings settings)
     {
         bool isAdvancedKillSwitchActive = settings.IsKillSwitchEnabled &&

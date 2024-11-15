@@ -387,7 +387,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Logic.Prof
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Logic.Profiles.EntityMapping", "src\Client\Logic\Profiles\ProtonVPN.Client.Logic.Profiles.EntityMapping\ProtonVPN.Client.Logic.Profiles.EntityMapping.csproj", "{70D24BBE-0585-438D-B61E-EA257FA8E727}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Contracts", "src\Client\ProtonVPN.Client.Contracts\ProtonVPN.Client.Contracts.csproj", "{48B9406E-D827-414D-AB42-FB4D216698F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Core", "src\Client\ProtonVPN.Client.Core\ProtonVPN.Client.Core.csproj", "{48B9406E-D827-414D-AB42-FB4D216698F0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{395365A5-6EA3-478C-B42D-CAE751EC899E}"
 EndProject
@@ -413,19 +413,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Logic.Sear
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Logic.Searches.Installers", "src\Client\Logic\Searches\ProtonVPN.Client.Logic.Searches.Installers\ProtonVPN.Client.Logic.Searches.Installers.csproj", "{941B265D-6BB8-4846-B6F9-47D1601530E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Client.Logic.Searches.Tests", "src\Client\Logic\Searches\ProtonVPN.Client.Logic.Searches.Tests\ProtonVPN.Client.Logic.Searches.Tests.csproj", "{9B50F5DD-B210-4117-AC3B-05DD7958C747}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Logic.Searches.Tests", "src\Client\Logic\Searches\ProtonVPN.Client.Logic.Searches.Tests\ProtonVPN.Client.Logic.Searches.Tests.csproj", "{9B50F5DD-B210-4117-AC3B-05DD7958C747}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NetworkTimeProtocols", "NetworkTimeProtocols", "{B92103ED-1ECE-476A-9AFC-7CFB831B6953}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.NetworkTimeProtocols", "src\NetworkTimeProtocols\ProtonVPN.NetworkTimeProtocols\ProtonVPN.NetworkTimeProtocols.csproj", "{7FF2D625-A879-4C18-A924-9AD0AEF2D907}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.NetworkTimeProtocols", "src\NetworkTimeProtocols\ProtonVPN.NetworkTimeProtocols\ProtonVPN.NetworkTimeProtocols.csproj", "{7FF2D625-A879-4C18-A924-9AD0AEF2D907}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.NetworkTimeProtocols.Contracts", "src\NetworkTimeProtocols\ProtonVPN.NetworkTimeProtocols.Contracts\ProtonVPN.NetworkTimeProtocols.Contracts.csproj", "{737F0DBA-AAD1-4563-9EC9-63E26EA891BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.NetworkTimeProtocols.Contracts", "src\NetworkTimeProtocols\ProtonVPN.NetworkTimeProtocols.Contracts\ProtonVPN.NetworkTimeProtocols.Contracts.csproj", "{737F0DBA-AAD1-4563-9EC9-63E26EA891BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.NetworkTimeProtocols.Installers", "src\NetworkTimeProtocols\ProtonVPN.NetworkTimeProtocols.Installers\ProtonVPN.NetworkTimeProtocols.Installers.csproj", "{B9D49890-5E1A-4778-99D0-18F049C3A1A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.NetworkTimeProtocols.Installers", "src\NetworkTimeProtocols\ProtonVPN.NetworkTimeProtocols.Installers\ProtonVPN.NetworkTimeProtocols.Installers.csproj", "{B9D49890-5E1A-4778-99D0-18F049C3A1A7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Legacy", "src\Client\ProtonVPN.Client.Legacy\ProtonVPN.Client.Legacy.csproj", "{32C595EA-AE6B-4739-830A-42A923842324}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtonVPN.Client.Legacy.Contracts", "src\Client\ProtonVPN.Client.Legacy.Contracts\ProtonVPN.Client.Legacy.Contracts.csproj", "{7037D458-79B7-41F8-9BDD-DAF7CFC35557}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.Client.Contracts", "src\Client\ProtonVPN.Client.Contracts\ProtonVPN.Client.Contracts.csproj", "{382C013E-CF29-406A-A18E-FDF8A0EB9516}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -439,30 +441,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}.Debug|Any CPU.Build.0 = Debug|x64
-		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}.Debug|Any CPU.Deploy.0 = Debug|x64
-		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}.Debug|ARM64.ActiveCfg = Debug|ARM64
-		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}.Debug|ARM64.Build.0 = Debug|ARM64
-		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}.Debug|ARM64.Deploy.0 = Debug|ARM64
-		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}.Debug|x64.ActiveCfg = Debug|x64
-		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}.Debug|x64.Build.0 = Debug|x64
-		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}.Debug|x64.Deploy.0 = Debug|x64
-		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}.Debug|x86.ActiveCfg = Debug|x86
-		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}.Debug|x86.Build.0 = Debug|x86
-		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}.Debug|x86.Deploy.0 = Debug|x86
-		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}.Release|Any CPU.ActiveCfg = Release|x64
-		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}.Release|Any CPU.Build.0 = Release|x64
-		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}.Release|Any CPU.Deploy.0 = Release|x64
-		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}.Release|ARM64.ActiveCfg = Release|ARM64
-		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}.Release|ARM64.Build.0 = Release|ARM64
-		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}.Release|ARM64.Deploy.0 = Release|ARM64
-		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}.Release|x64.ActiveCfg = Release|x64
-		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}.Release|x64.Build.0 = Release|x64
-		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}.Release|x64.Deploy.0 = Release|x64
-		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}.Release|x86.ActiveCfg = Release|x86
-		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}.Release|x86.Build.0 = Release|x86
-		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}.Release|x86.Deploy.0 = Release|x86
 		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}.Debug|Any CPU.Build.0 = Debug|x64
 		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D}.Debug|Any CPU.Deploy.0 = Debug|x64
@@ -3047,12 +3025,27 @@ Global
 		{7037D458-79B7-41F8-9BDD-DAF7CFC35557}.Release|ARM64.ActiveCfg = Release|Any CPU
 		{7037D458-79B7-41F8-9BDD-DAF7CFC35557}.Release|x64.ActiveCfg = Release|Any CPU
 		{7037D458-79B7-41F8-9BDD-DAF7CFC35557}.Release|x86.ActiveCfg = Release|Any CPU
+		{382C013E-CF29-406A-A18E-FDF8A0EB9516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{382C013E-CF29-406A-A18E-FDF8A0EB9516}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{382C013E-CF29-406A-A18E-FDF8A0EB9516}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{382C013E-CF29-406A-A18E-FDF8A0EB9516}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{382C013E-CF29-406A-A18E-FDF8A0EB9516}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{382C013E-CF29-406A-A18E-FDF8A0EB9516}.Debug|x64.Build.0 = Debug|Any CPU
+		{382C013E-CF29-406A-A18E-FDF8A0EB9516}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{382C013E-CF29-406A-A18E-FDF8A0EB9516}.Debug|x86.Build.0 = Debug|Any CPU
+		{382C013E-CF29-406A-A18E-FDF8A0EB9516}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{382C013E-CF29-406A-A18E-FDF8A0EB9516}.Release|Any CPU.Build.0 = Release|Any CPU
+		{382C013E-CF29-406A-A18E-FDF8A0EB9516}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{382C013E-CF29-406A-A18E-FDF8A0EB9516}.Release|ARM64.Build.0 = Release|Any CPU
+		{382C013E-CF29-406A-A18E-FDF8A0EB9516}.Release|x64.ActiveCfg = Release|Any CPU
+		{382C013E-CF29-406A-A18E-FDF8A0EB9516}.Release|x64.Build.0 = Release|Any CPU
+		{382C013E-CF29-406A-A18E-FDF8A0EB9516}.Release|x86.ActiveCfg = Release|Any CPU
+		{382C013E-CF29-406A-A18E-FDF8A0EB9516}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D} = {313DCA3D-B3E4-4E06-9B5C-516E2C06154A}
 		{4D2C3333-F1C6-4108-A0E6-579DFA6C121D} = {313DCA3D-B3E4-4E06-9B5C-516E2C06154A}
 		{FA0D86B4-2B86-4DFE-B7E6-7C809DB74A13} = {A592E157-F76B-49CE-A5A4-EF130CDD757F}
 		{90FDF2B3-25C9-428D-B264-5A5FAEB2D988} = {7B4E6671-D28C-4159-BB16-40CEAC76EE73}
@@ -3226,6 +3219,7 @@ Global
 		{B9D49890-5E1A-4778-99D0-18F049C3A1A7} = {B92103ED-1ECE-476A-9AFC-7CFB831B6953}
 		{32C595EA-AE6B-4739-830A-42A923842324} = {313DCA3D-B3E4-4E06-9B5C-516E2C06154A}
 		{7037D458-79B7-41F8-9BDD-DAF7CFC35557} = {313DCA3D-B3E4-4E06-9B5C-516E2C06154A}
+		{382C013E-CF29-406A-A18E-FDF8A0EB9516} = {313DCA3D-B3E4-4E06-9B5C-516E2C06154A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5CFD3EA5-ADCA-48F0-9E3F-BBC76CCBF1C2}

@@ -19,7 +19,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Common.Enums;
-using ProtonVPN.Client.Contracts.Bases.ViewModels;
+using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles.Contracts;
 using ProtonVPN.IssueReporting.Contracts;

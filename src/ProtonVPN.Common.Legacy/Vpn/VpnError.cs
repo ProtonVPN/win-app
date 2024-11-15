@@ -31,7 +31,6 @@ public enum VpnError
     TlsCertificateError,
     PingTimeoutError,
     Unpaid,
-    PasswordChanged,
     ServerOffline,
     ServerRemoved,
     NoServers,

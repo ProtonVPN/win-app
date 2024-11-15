@@ -18,9 +18,9 @@
  */
 
 using Microsoft.UI.Xaml;
-using ProtonVPN.Client.Contracts.Bases;
-using ProtonVPN.Client.Contracts.Extensions;
-using ProtonVPN.Client.Contracts.Messages;
+using ProtonVPN.Client.Core.Bases;
+using ProtonVPN.Client.Core.Extensions;
+using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Services.Activation;
 

@@ -18,7 +18,7 @@
  */
 
 using Microsoft.Toolkit.Uwp.Notifications;
-using ProtonVPN.Client.Contracts.Services.Notification;
+using ProtonVPN.Client.Core.Services.Notification;
 
 namespace ProtonVPN.Client.Services.Notification;
 

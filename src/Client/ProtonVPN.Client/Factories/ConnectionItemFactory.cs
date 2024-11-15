@@ -17,7 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Contracts.Services.Activation;
+using ProtonVPN.Client.Contracts.Profiles;
+using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts;
@@ -26,7 +27,6 @@ using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Models.Connections.Profiles;
 using ProtonVPN.Client.Models.Connections.Recents;
-using ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles.Contracts;
 
 namespace ProtonVPN.Client.Factories;
 
