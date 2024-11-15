@@ -19,7 +19,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using System.ServiceProcess;
 using Autofac;
 using ProtonVPN.Api.Installers;
@@ -38,7 +37,6 @@ using ProtonVPN.Service.Settings;
 using ProtonVPN.Service.Vpn;
 using ProtonVPN.Update.Installers;
 using ProtonVPN.Vpn.Common;
-using ProtonVPN.Vpn.Networks;
 using ProtonVPN.Vpn.OpenVpn;
 
 namespace ProtonVPN.Service.Start
@@ -87,20 +85,12 @@ namespace ProtonVPN.Service.Start
             RegisterEvents();
 
             Resolve<ILogCleaner>().Clean(config.ServiceLogFolder, 10);
-            FixNetworkAdapters();
 
             VpnService vpnService = Resolve<VpnService>();
             ServiceBase.Run(vpnService);
             vpnService.CancellationToken.WaitHandle.WaitOne();
 
             logger.Info<AppServiceStopLog>("= ProtonVPN Service has exited =");
-        }
-
-        private void FixNetworkAdapters()
-        {
-            INetworkAdapterManager networkAdapterManager = Resolve<INetworkAdapterManager>();
-            networkAdapterManager.DisableDuplicatedWireGuardAdapters();
-            networkAdapterManager.EnableOpenVpnAdapters();
         }
 
         private void RegisterEvents()

@@ -19,13 +19,13 @@
 
 using Autofac;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Common.OS.Net;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Crypto;
 using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Connection;
 using ProtonVPN.Vpn.Gateways;
@@ -33,7 +33,6 @@ using ProtonVPN.Vpn.LocalAgent;
 using ProtonVPN.Vpn.Management;
 using ProtonVPN.Vpn.NetShield;
 using ProtonVPN.Vpn.NetworkAdapters;
-using ProtonVPN.Vpn.Networks;
 using ProtonVPN.Vpn.OpenVpn;
 using ProtonVPN.Vpn.PortMapping;
 using ProtonVPN.Vpn.PortMapping.Serializers.Common;
@@ -93,7 +92,6 @@ namespace ProtonVPN.Vpn.Config
         public IVpnConnection GetVpnConnection(IComponentContext c)
         {
             ILogger logger = c.Resolve<ILogger>();
-            INetworkAdapterManager networkAdapterManager = c.Resolve<INetworkAdapterManager>();
             INetworkInterfaceLoader networkInterfaceLoader = c.Resolve<INetworkInterfaceLoader>();
             ITaskQueue taskQueue = c.Resolve<ITaskQueue>();
             IEndpointScanner endpointScanner = c.Resolve<VpnEndpointScanner>();
@@ -121,7 +119,6 @@ namespace ProtonVPN.Vpn.Config
                                     new NetworkAdapterStatusWrapper(
                                         logger,
                                         issueReporter,
-                                        networkAdapterManager,
                                         networkInterfaceLoader,
                                         c.Resolve<WintunAdapter>(),
                                         c.Resolve<TapAdapter>(),
