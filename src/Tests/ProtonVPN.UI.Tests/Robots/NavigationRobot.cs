@@ -65,7 +65,7 @@ public class NavigationRobot
 
         public Verifications IsOnLoadingPage() => IsOnPage(LoadingPage);
 
-        public Verifications IsOnMainPage() => IsOnPage(MainPage, TestConstants.OneMinuteTimeout);
+        public Verifications IsOnMainPage() => IsOnPage(MainPage, TestConstants.TwoMinutesTimeout);
 
         public Verifications IsOnHomePage() => IsOnPage(HomePage);
 

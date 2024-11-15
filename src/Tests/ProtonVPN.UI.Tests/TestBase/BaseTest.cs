@@ -21,7 +21,7 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
+using System.Threading.Tasks;
 using FlaUI.Core;
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Tools;
@@ -53,26 +53,13 @@ public class BaseTest
     private static readonly bool _isDevelopmentModeEnabled = false;
 
     // Shared SetUp, TearDown actions that will be performed accross all the tests.
-    [OneTimeSetUp]
-    public void GlobalOneTimeSetup()
-    {
-        KillProtonVPNClient();
-        ArtifactsHelper.CreateTestFailureFolderIfNotExists();
-    }
-
-    [OneTimeTearDown]
-    public void GlobalOneTimeTearDown()
-    {
-        KillProtonVPNClient();
-    }
-
     [SetUp]
-    public void GlobalSetUp()
+    public async Task GlobalSetUp()
     {
         string testName = TestContext.CurrentContext.Test.MethodName;
         ArtifactsHelper.ClearEventViewerLogs();
         ArtifactsHelper.DeleteArtifactFolder(testName);
-        ArtifactsHelper.StartVideoCapture(testName);
+        await ArtifactsHelper.StartVideoCaptureAsync(testName);
     }
 
     [TearDown]
@@ -87,18 +74,6 @@ public class BaseTest
         {
             ArtifactsHelper.DeleteArtifactFolder(testName);
         }
-    }
-
-    private static void KillProtonVPNClient()
-    {
-        Process.GetProcesses()
-            .Where(process => process.ProcessName.StartsWith("ProtonVPN"))
-            .ToList()
-            .ForEach(process =>
-            {
-                process.Kill();
-                process.Dispose();
-            });
     }
 
     public static void RefreshWindow(TimeSpan? timeout = null)

@@ -58,11 +58,6 @@ public class TestEnvironment : BaseTest
         return version.Split("-").Last();
     }
 
-    public static bool IsVideoRecorderPresent()
-    {
-        return File.Exists(TestConstants.PathToRecorder);
-    }
-
     public static string GetOperatingSystem()
     {
         return $"Windows {Environment.OSVersion.Version.Major}";
