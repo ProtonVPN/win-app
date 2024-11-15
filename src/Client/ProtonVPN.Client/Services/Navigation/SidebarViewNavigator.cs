@@ -18,9 +18,9 @@
  */
 
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Services.Mapping;
-using ProtonVPN.Client.Contracts.Services.Navigation;
-using ProtonVPN.Client.Contracts.Services.Navigation.Bases;
+using ProtonVPN.Client.Core.Services.Mapping;
+using ProtonVPN.Client.Core.Services.Navigation;
+using ProtonVPN.Client.Core.Services.Navigation.Bases;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections;
 using ProtonVPN.Client.UI.Main.Sidebar.Search;
 

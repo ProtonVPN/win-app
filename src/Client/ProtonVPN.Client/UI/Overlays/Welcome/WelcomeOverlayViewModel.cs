@@ -18,8 +18,8 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
-using ProtonVPN.Client.Contracts.Bases.ViewModels;
-using ProtonVPN.Client.Contracts.Services.Activation;
+using ProtonVPN.Client.Core.Bases.ViewModels;
+using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.IssueReporting.Contracts;

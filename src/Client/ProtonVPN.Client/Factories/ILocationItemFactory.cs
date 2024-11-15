@@ -19,7 +19,7 @@
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
-using ProtonVPN.Client.Contracts.Enums;
+using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Models.Connections.Countries;
 using ProtonVPN.Client.Models.Connections.Gateways;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;

@@ -28,7 +28,7 @@ using LiveChartsCore.SkiaSharpView.Painting.Effects;
 using ProtonVPN.Client.Common.Collections;
 using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Common.Helpers;
-using ProtonVPN.Client.Contracts.Bases.ViewModels;
+using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;

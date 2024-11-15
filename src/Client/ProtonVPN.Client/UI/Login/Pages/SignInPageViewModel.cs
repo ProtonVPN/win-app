@@ -30,7 +30,7 @@ using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Services.Navigation;
+using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.UI.Login.Bases;
 using ProtonVPN.Client.UI.Login.Enums;
 using Windows.System;
@@ -38,10 +38,10 @@ using ProtonVPN.Api.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Common.Legacy.Abstract;
 using ProtonVPN.Client.Settings.Contracts.Observers;
-using ProtonVPN.Client.Contracts.Messages;
+using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.UI.Login.Overlays;
 using ProtonVPN.Client.Services.Browsing;
-using ProtonVPN.Client.Contracts.Enums;
+using ProtonVPN.Client.Core.Enums;
 
 namespace ProtonVPN.Client.UI.Login.Pages;
 

@@ -27,9 +27,9 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Enums;
-using ProtonVPN.Client.Contracts.Messages;
-using ProtonVPN.Client.Contracts.Services.Navigation;
+using ProtonVPN.Client.Core.Enums;
+using ProtonVPN.Client.Core.Messages;
+using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.UI.Login.Bases;
 
 namespace ProtonVPN.Client.UI.Login.Pages;

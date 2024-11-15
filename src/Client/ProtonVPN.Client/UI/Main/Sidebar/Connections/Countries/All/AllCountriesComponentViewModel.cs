@@ -22,7 +22,7 @@ using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Enums;
+using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Factories;
 
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;

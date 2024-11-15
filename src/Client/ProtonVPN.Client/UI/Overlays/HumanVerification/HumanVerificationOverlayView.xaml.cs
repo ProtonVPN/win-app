@@ -28,7 +28,7 @@ using ProtonVPN.Api.Handlers.TlsPinning;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
-using ProtonVPN.Client.Contracts.Bases;
+using ProtonVPN.Client.Core.Bases;
 
 namespace ProtonVPN.Client.UI.Overlays.HumanVerification;
 

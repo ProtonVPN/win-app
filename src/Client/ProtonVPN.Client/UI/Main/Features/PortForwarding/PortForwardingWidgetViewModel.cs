@@ -18,9 +18,9 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
-using ProtonVPN.Client.Contracts.Enums;
-using ProtonVPN.Client.Contracts.Services.Navigation;
-using ProtonVPN.Client.Contracts.Services.Selection;
+using ProtonVPN.Client.Core.Enums;
+using ProtonVPN.Client.Core.Services.Navigation;
+using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;

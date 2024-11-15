@@ -18,12 +18,12 @@
  */
 
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Services.Mapping;
-using ProtonVPN.Client.Contracts.Services.Navigation;
-using ProtonVPN.Client.Contracts.Services.Navigation.Bases;
+using ProtonVPN.Client.Core.Services.Mapping;
+using ProtonVPN.Client.Core.Services.Navigation;
+using ProtonVPN.Client.Core.Services.Navigation.Bases;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue.Pages;
-using ProtonVPN.Client.Contracts.Models.ReportIssue;
-using ProtonVPN.Client.Contracts.Enums;
+using ProtonVPN.Client.Core.Models.ReportIssue;
+using ProtonVPN.Client.Core.Enums;
 
 namespace ProtonVPN.Client.Services.Navigation;
 

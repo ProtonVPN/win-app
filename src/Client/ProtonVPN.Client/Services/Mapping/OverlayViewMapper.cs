@@ -18,8 +18,8 @@
  */
 
 using Microsoft.UI.Xaml.Controls;
-using ProtonVPN.Client.Contracts.Bases.ViewModels;
-using ProtonVPN.Client.Contracts.Services.Mapping;
+using ProtonVPN.Client.Core.Bases.ViewModels;
+using ProtonVPN.Client.Core.Services.Mapping;
 using ProtonVPN.Client.Services.Mapping.Bases;
 using ProtonVPN.Client.UI.Login.Overlays;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles.Overlays;

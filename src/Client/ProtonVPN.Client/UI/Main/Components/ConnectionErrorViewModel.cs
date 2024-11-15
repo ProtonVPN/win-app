@@ -19,19 +19,13 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using ProtonVPN.Client.Contracts.Bases.ViewModels;
-using ProtonVPN.Client.Contracts.Services.Activation;
+using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
-using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
-using ProtonVPN.Client.Services.Browsing;
-using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
@@ -42,54 +36,42 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
     IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<LoggingOutMessage>
 {
-    private readonly IUrls _urls;
-    private readonly ISettings _settings;
-    private readonly IReportIssueWindowActivator _reportIssueWindowActivator;
-    private readonly IConnectionManager _connectionManager;
-    private readonly IProfileEditor _profileEditor;
+    private readonly IConnectionErrorFactory _connectionErrorFactory;
+
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(TriggerActionButtonCommand))]
+    [NotifyCanExecuteChangedFor(nameof(CloseErrorCommand))]
+    private bool _isConnectionErrorVisible;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ActionButtonTitle))]
     [NotifyPropertyChangedFor(nameof(ConnectionErrorMessage))]
     [NotifyPropertyChangedFor(nameof(IsConnectionErrorVisible))]
     [NotifyCanExecuteChangedFor(nameof(TriggerActionButtonCommand))]
-    private VpnError _vpnError = VpnError.None;
+    private IConnectionError? _connectionError;
 
-    [ObservableProperty]
-    [NotifyCanExecuteChangedFor(nameof(TriggerActionButtonCommand))]
-    [NotifyCanExecuteChangedFor(nameof(CloseErrorCommand))]
-    private bool _isConnectionErrorVisible = false;
+    public string ConnectionErrorMessage => ConnectionError?.Message ?? string.Empty;
 
-    public string ConnectionErrorTitle => Localizer.Get("Connection_Error_Title");
-
-    public string ConnectionErrorMessage => Localizer.GetVpnErrorMessage(VpnError, _connectionManager.CurrentConnectionIntent, _settings.VpnPlan.IsPaid);
-
-    public string ActionButtonTitle => Localizer.GetVpnErrorActionLabel(VpnError, _connectionManager.CurrentConnectionIntent);
+    public string ActionButtonTitle => ConnectionError?.ActionLabel ?? string.Empty;
 
     public ConnectionErrorViewModel(
+        IConnectionErrorFactory connectionErrorFactory,
         ILocalizationProvider localizer,
-        IUrls urls,
-        ISettings settings,
-        IReportIssueWindowActivator reportIssueWindowActivator,
         ILogger logger,
-        IIssueReporter issueReporter,
-        IConnectionManager connectionManager,
-        IProfileEditor profileEditor)
+        IIssueReporter issueReporter)
         : base(localizer, logger, issueReporter)
     {
-        _urls = urls;
-        _settings = settings;
-        _reportIssueWindowActivator = reportIssueWindowActivator;
-        _connectionManager = connectionManager;
-        _profileEditor = profileEditor;
+        _connectionErrorFactory = connectionErrorFactory;
     }
 
     public void Receive(ConnectionErrorMessage message)
     {
         ExecuteOnUIThread(() =>
         {
-            VpnError = message.VpnError;
+            ConnectionError = _connectionErrorFactory.GetConnectionError(message.VpnError);
             IsConnectionErrorVisible = !string.IsNullOrEmpty(ConnectionErrorMessage);
+
+            OnPropertyChanged(nameof(ConnectionErrorMessage));
         });
     }
 
@@ -114,36 +96,9 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
     {
         CloseError();
 
-        switch (VpnError)
+        if (ConnectionError is not null)
         {
-            case VpnError.NoServers:
-                if (_connectionManager.CurrentConnectionIntent is IConnectionProfile profile)
-                {
-                    await _profileEditor.EditProfileAsync(profile);
-                }
-                else
-                {
-                    goto default;
-                }
-                break;
-
-            case VpnError.TlsCertificateError:
-                ReportAnIssue();
-                break;
-
-            case VpnError.RpcServerUnavailable:
-                _urls.NavigateTo(_urls.RpcServerProblem);
-                break;
-
-            case VpnError.NoTapAdaptersError:
-            case VpnError.TapAdapterInUseError:
-            case VpnError.TapRequiresUpdateError:
-                _urls.NavigateTo(_urls.Troubleshooting);
-                break;
-
-            default:
-                ReportAnIssue();
-                break;
+            await ConnectionError.ExecuteActionAsync();
         }
     }
 
@@ -161,10 +116,5 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
     private bool CanCloseError()
     {
         return IsConnectionErrorVisible;
-    }
-
-    private void ReportAnIssue()
-    {
-        _reportIssueWindowActivator.Activate();
     }
 }

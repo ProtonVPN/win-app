@@ -20,8 +20,8 @@
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
-using ProtonVPN.Client.Contracts.Models.ReportIssue;
-using ProtonVPN.Client.Contracts.Models.ReportIssue.Fields;
+using ProtonVPN.Client.Core.Models.ReportIssue;
+using ProtonVPN.Client.Core.Models.ReportIssue.Fields;
 
 namespace ProtonVPN.Client.Mappers;
 

@@ -55,9 +55,6 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
         Unpaid,
 
         [EnumMember]
-        PasswordChanged,
-
-        [EnumMember]
         ServerOffline,
 
         [EnumMember]

@@ -20,9 +20,9 @@
 using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Contracts.Helpers;
-using ProtonVPN.Client.Contracts.Models;
-using ProtonVPN.Client.Contracts.Services.Selection;
+using ProtonVPN.Client.Core.Helpers;
+using ProtonVPN.Client.Core.Models;
+using ProtonVPN.Client.Core.Services.Selection;
 
 namespace ProtonVPN.Client.Services.Selection;
 

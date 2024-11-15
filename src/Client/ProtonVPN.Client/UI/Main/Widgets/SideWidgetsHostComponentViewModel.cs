@@ -21,7 +21,7 @@ using System.Collections.ObjectModel;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Bases.ViewModels;
+using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.UI.Main.Widgets.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Widgets;

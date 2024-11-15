@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Contracts.Bases;
+using ProtonVPN.Client.Core.Bases;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles.Controls;
 

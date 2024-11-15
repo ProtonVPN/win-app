@@ -27,7 +27,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
-    <InfoBar Title="{x:Bind ViewModel.ConnectionErrorTitle}"
+    <InfoBar Title="{x:Bind ViewModel.Localizer.Get('Connection_Error_Title')}"
              AutomationProperties.AutomationId="ConnectionErrorPanel"
              CloseButtonCommand="{x:Bind ViewModel.CloseErrorCommand}"
              IsOpen="{x:Bind ViewModel.IsConnectionErrorVisible, Mode=TwoWay}"

@@ -20,8 +20,8 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
-using ProtonVPN.Client.Contracts.Models.ReportIssue;
-using ProtonVPN.Client.Contracts.Services.Navigation;
+using ProtonVPN.Client.Core.Models.ReportIssue;
+using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Feedback.Contracts;
 using ProtonVPN.Client.Mappers;

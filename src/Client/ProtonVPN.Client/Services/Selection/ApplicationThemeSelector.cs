@@ -23,8 +23,8 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
-using ProtonVPN.Client.Contracts.Services.Selection;
-using ProtonVPN.Client.Contracts.Messages;
+using ProtonVPN.Client.Core.Services.Selection;
+using ProtonVPN.Client.Core.Messages;
 
 namespace ProtonVPN.Client.Services.Selection;
 

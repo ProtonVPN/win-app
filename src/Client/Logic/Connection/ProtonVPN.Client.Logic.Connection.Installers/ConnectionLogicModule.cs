@@ -18,6 +18,8 @@
  */
 
 using Autofac;
+using ProtonVPN.Client.Logic.Connection.ConnectionErrors;
+using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.EntityMapping;
 using ProtonVPN.Client.Logic.Connection.GuestHole;
 using ProtonVPN.Client.Logic.Connection.NetworkingTraffic;
@@ -49,11 +51,22 @@ public class ConnectionLogicModule : Module
         builder.RegisterType<NetShieldStatsObserver>().AsImplementedInterfaces().SingleInstance().AutoActivate();
         builder.RegisterType<NetworkTrafficScheduler>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<NetworkTrafficManager>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ConnectionErrorFactory>().AsImplementedInterfaces().SingleInstance();
 
         RegisterRequestCreators(builder);
         RegisterServerListGenerators(builder);
+        RegisterConnectionErrors(builder);
 
         builder.RegisterAllMappersInAssembly<ConnectionIntentMapper>();
+    }
+
+    private void RegisterConnectionErrors(ContainerBuilder builder)
+    {
+        builder.RegisterAssemblyTypes(typeof(ConnectionErrorBase).Assembly)
+               .Where(typeof(IConnectionError).IsAssignableFrom)
+               .AsSelf()
+               .AsImplementedInterfaces()
+               .SingleInstance();
     }
 
     private void RegisterRequestCreators(ContainerBuilder builder)

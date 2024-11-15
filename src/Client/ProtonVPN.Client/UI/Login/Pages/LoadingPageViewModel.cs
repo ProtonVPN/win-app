@@ -20,7 +20,7 @@
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Services.Navigation;
+using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.UI.Login.Bases;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;

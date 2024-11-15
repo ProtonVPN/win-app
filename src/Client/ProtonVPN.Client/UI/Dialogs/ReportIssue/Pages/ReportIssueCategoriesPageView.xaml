@@ -26,7 +26,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
       xmlns:aprop="using:ProtonVPN.Client.Common.UI.AttachedProperties"
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
-      xmlns:reportissue="using:ProtonVPN.Client.Contracts.Models.ReportIssue"
+      xmlns:reportissue="using:ProtonVPN.Client.Core.Models.ReportIssue"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
       mc:Ignorable="d">

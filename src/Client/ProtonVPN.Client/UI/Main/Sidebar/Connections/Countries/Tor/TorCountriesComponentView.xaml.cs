@@ -18,7 +18,7 @@
  */
 
 using Microsoft.UI.Xaml;
-using ProtonVPN.Client.Contracts.Bases;
+using ProtonVPN.Client.Core.Bases;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Countries.Tor;
 

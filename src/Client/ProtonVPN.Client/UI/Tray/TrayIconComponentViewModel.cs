@@ -31,10 +31,10 @@ using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Bases.ViewModels;
-using ProtonVPN.Client.Contracts.Models;
-using ProtonVPN.Client.Contracts.Services.Activation;
-using ProtonVPN.Client.Contracts.Services.Selection;
+using ProtonVPN.Client.Core.Bases.ViewModels;
+using ProtonVPN.Client.Core.Models;
+using ProtonVPN.Client.Core.Services.Activation;
+using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.Services.Bootstrapping;
 
 namespace ProtonVPN.Client.UI.Tray;

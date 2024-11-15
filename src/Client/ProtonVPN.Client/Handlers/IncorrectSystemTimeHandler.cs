@@ -20,9 +20,9 @@
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Common.Models;
-using ProtonVPN.Client.Contracts.Messages;
-using ProtonVPN.Client.Contracts.Services.Activation;
-using ProtonVPN.Client.Contracts.Services.Notification;
+using ProtonVPN.Client.Core.Messages;
+using ProtonVPN.Client.Core.Services.Activation;
+using ProtonVPN.Client.Core.Services.Notification;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Handlers.Bases;
 using ProtonVPN.Client.Localization.Contracts;
