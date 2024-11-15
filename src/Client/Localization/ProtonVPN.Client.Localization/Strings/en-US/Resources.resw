@@ -1716,9 +1716,6 @@
   <data name="Settings_Connection_Protocol_NavigationFailed_Action" xml:space="preserve">
     <value>Go to profiles</value>
   </data>
-  <data name="Settings_Connection_VpnAccelerator" xml:space="preserve">
-    <value>VPN Accelerator</value>
-  </data>
   <data name="Settings_Features" xml:space="preserve">
     <value>VPN features</value>
   </data>
@@ -3475,9 +3472,6 @@ Enjoy the best of Proton privacy.</value>
   </data>
   <data name="Automation_Properties_Settings_Advanced_Page" xml:space="preserve">
     <value>Advanced settings page</value>
-  </data>
-  <data name="Automation_Properties_Home_Page" xml:space="preserve">
-    <value>Home page</value>
   </data>
   <data name="Automation_Properties_LocationDetails_Page" xml:space="preserve">
     <value>Location details page</value>
