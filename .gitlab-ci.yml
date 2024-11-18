@@ -16,7 +16,7 @@ include:
   - component: $CI_SERVER_HOST/proton/devops/cicd-components/devsecops/grype/scan-code@0.0.15
     inputs:
       stage: test
-      cli-args: "-c .grype"
+      cli-args: "-c .grype.yaml"
 
   - component: $CI_SERVER_HOST/proton/devops/cicd-components/devsecops/gitleaks/scan-repository@0.0.18
     inputs:
