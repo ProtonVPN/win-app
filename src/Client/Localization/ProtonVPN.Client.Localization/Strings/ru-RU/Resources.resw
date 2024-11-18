@@ -126,17 +126,8 @@
   <data name="Automation_Properties_Features_Bar">
     <value>Features bar</value>
   </data>
-  <data name="Automation_Properties_Home_Page_One">
-    <value></value>
-  </data>
-  <data name="Automation_Properties_Home_Page_Few">
-    <value></value>
-  </data>
-  <data name="Automation_Properties_Home_Page_Many">
-    <value></value>
-  </data>
-  <data name="Automation_Properties_Home_Page_Other">
-    <value></value>
+  <data name="Automation_Properties_Home_Page">
+    <value>Home page</value>
   </data>
   <data name="Automation_Properties_KillSwitch_Page">
     <value>Kill switch page</value>
@@ -1961,6 +1952,9 @@
   <data name="Dialogs_ReportIssue_Header">
     <value>В чём проблема?</value>
   </data>
+  <data name="Dialogs_ReportIssue_NoLogsWarning">
+    <value>Error logs help us to get to the bottom of your issue. If you don’t include them, we may not be able to investigate fully.</value>
+  </data>
   <data name="Dialogs_ReportIssue_QuickFixes">
     <value>Быстрые исправления</value>
   </data>
@@ -2114,6 +2108,15 @@ Smart Routing обычно используется для обхода зако
   </data>
   <data name="Dialogs_Troubleshooting_Title">
     <value>Помощь по подключению</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_Description">
+    <value>Looks like your system clock is out of sync. This may cause issues when connecting to VPN.</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_PrimaryButton">
+    <value>How to update system clock</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_Title">
+    <value>Update system clock</value>
   </data>
   <data name="Dialogs_WelcomeB2B_Description">
     <value>Простота. Безупречность. Защищенность. Защитите себя в Интернете и обеспечьте безопасный доступ к сайтам, программному обеспечению и файлам вашей организации.</value>
@@ -3234,20 +3237,8 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
     <value>Selected apps and IP addresses are excluded from VPN connection</value>
   </data>
-  <data name="Settings_Connection_VpnAccelerator_One">
-    <value></value>
-  </data>
-  <data name="Settings_Connection_VpnAccelerator_Few">
-    <value></value>
-  </data>
-  <data name="Settings_Connection_VpnAccelerator_Many">
-    <value></value>
-  </data>
-  <data name="Settings_Connection_VpnAccelerator_Other">
-    <value></value>
-  </data>
-  <data name="Settings_DevicesConnected">
-    <value>Devices connected</value>
+  <data name="Settings_Connection_VpnAccelerator">
+    <value>VPN Accelerator</value>
   </data>
   <data name="Settings_Features">
     <value>Функции VPN</value>
