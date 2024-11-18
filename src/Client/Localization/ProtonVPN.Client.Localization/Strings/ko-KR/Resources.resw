@@ -126,8 +126,8 @@
   <data name="Automation_Properties_Features_Bar">
     <value>기능 바</value>
   </data>
-  <data name="Automation_Properties_Home_Page_Other">
-    <value></value>
+  <data name="Automation_Properties_Home_Page">
+    <value>Home page</value>
   </data>
   <data name="Automation_Properties_KillSwitch_Page">
     <value>킬 스위치 페이지</value>
@@ -1727,6 +1727,9 @@
   <data name="Dialogs_ReportIssue_Header">
     <value>문제가 무엇인가요?</value>
   </data>
+  <data name="Dialogs_ReportIssue_NoLogsWarning">
+    <value>Error logs help us to get to the bottom of your issue. If you don’t include them, we may not be able to investigate fully.</value>
+  </data>
   <data name="Dialogs_ReportIssue_QuickFixes">
     <value>빠른 수정</value>
   </data>
@@ -1881,6 +1884,15 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   <data name="Dialogs_Troubleshooting_Title">
     <value>연결 지원</value>
   </data>
+  <data name="Dialogs_UpdateSystemClock_Description">
+    <value>Looks like your system clock is out of sync. This may cause issues when connecting to VPN.</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_PrimaryButton">
+    <value>How to update system clock</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_Title">
+    <value>Update system clock</value>
+  </data>
   <data name="Dialogs_WelcomeB2B_Description">
     <value>간단하고. 매끄럽고. 안전한. 나 자신을 온라인에서 보호하고 내 조직의 사이트, 소프트웨어 및 파일을 안전하게 접근하세요.</value>
   </data>
@@ -1957,9 +1969,9 @@ VPN은 마치 다른 지역에서 탐색하는 것처럼 보이게 하여 감시
     <value>VPN IP는 사용자의 실제 IP 주소를 가립니다. 이것은 사용자가 VPN의 위치에서 브라우징하는 것처럼 보이게 하므로 사용자의 온라인 활동이 사용자의 기기와 연결되지 않습니다.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected">
-    <value>This unique code can be used by websites and ISPs (Internet Service Providers) to link your location and browsing history to your device. 
+    <value>이 고유 코드는 웹사이트 및 ISP(인터넷 서비스 제공업체)에서 나의 위치 및 검색 기록을 내 장치와 연결하는 데 사용할 수 있습니다. 
 
-A VPN masks your IP address, making it harder for your activity to be traced back to you.</value>
+VPN이 IP주소를 가려, 당신의 활동내역들이 당신을 추적하는데 더 어렵게 만듭니다.</value>
   </data>
   <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
     <value>IP 주소란?</value>
@@ -1977,11 +1989,11 @@ A VPN masks your IP address, making it harder for your activity to be traced bac
     <value>나의 IP 주소를 확인할 수 있음</value>
   </data>
   <data name="Flyouts_Isp_Description">
-    <value>Your ISP (Internet Service Provider) is the company that connects you to the internet. 
+    <value>ISP(인터넷 서비스 제공업체)는 인터넷을 연결하는 업체입니다.
 
-They can log your online activity. In some countries, they can sell your data to advertisers. In others, they can be required to hand it over to the government. 
+ISP는 나의 온라인 활동을 기록(로그)할 수 있으며, 내 데이터를 광고 업체에 판매할 수 있습니다. 다른 지역에서는, ISP가 내 데이터를 정부에 넘기도록 요구받을 수도 있습니다. 
 
-A VPN hides your IP address, protecting you from ISP interference.</value>
+VPN은 ISP의 간섭으로부터 보호하며 IP주소를 감춥니다.</value>
   </data>
   <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
     <value>인터넷 서비스 제공자 (ISP)란?</value>
@@ -2032,9 +2044,9 @@ A VPN hides your IP address, protecting you from ISP interference.</value>
     <value>VPN Accelerator로 가속됨</value>
   </data>
   <data name="Flyouts_Speed_Description">
-    <value>This shows how much data gets transmitted through Proton VPN each second.
+    <value>이 그래프는 Proton VPN이 초당 얼마나 데이터를 전달하는지 보여줍니다.
 
-Speed is based on your device’s current activity — it doesn’t represent the VPN’s maximum speed.</value>
+속도는 기기의 현재 활동을 기반으로 합니다 — 이 그래프는 VPN의 최고 속도를 나타내지 않습니다.</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>다운로드</value>
@@ -2484,9 +2496,9 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>P2P 네트워크란?</value>
   </data>
   <data name="Overlay_P2P_Bullet3_Description">
-    <value>  •  Downloading torrent files
-  •  Improving online gaming and video call performance
-  •  Connecting to local area network (LAN) devices</value>
+    <value>  •  토렌트 파일 다운로드
+  •  온라인 게이밍과 화상 회의 성능 향상
+  •  LAN 장치에 연결</value>
   </data>
   <data name="Overlay_P2P_Bullet3_Header">
     <value>P2P 네트워크가 사용되는 곳은?</value>
@@ -2498,9 +2510,9 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>P2P</value>
   </data>
   <data name="Overlay_SecureCore_Description">
-    <value>Secure Core connects you to your destination server via a second, maximum security VPN server.
+    <value>Secure Core는 최대의 보안을 갖는 두 번째 VPN 서버를 경유하여 목적지 서버로 연결합니다.
 
-This higher level of protection may cause higher latency and slower speeds.</value>
+이런 높은 수준의 보호는 높아진 레이턴시와 느려진 속도를 유발할 수 있습니다.</value>
   </data>
   <data name="Overlay_SecureCore_LearnMore">
     <value>Secure Core란?</value>
@@ -2558,11 +2570,11 @@ VPN 연결</value>
     <value>서버 부하율</value>
   </data>
   <data name="Overlay_SmartRouting_Description">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
-    
-When you connect to a Smart Routing server, you’ll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+    <value>Smart Routing은 가상 서버를 이용하여 접근이 어려운 국가에 VPN 커버리지를 제공합니다.
 
-Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+Smart Routing 서버에 접속했다면 물리적 서버의 위치와 상관없이 목적지 국가에서 탐색하는 것으로 보이게 됩니다.  
+
+Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열을 우회하는 데 쓸모가 있습니다.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
     <value>{0}에 위치한 서버지만, {1}에서 브라우징하는 것으로 보일 것입니다</value>
@@ -2955,11 +2967,8 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
     <value>VPN 연결에서 제외될 앱들과 IP주소들을 선택하세요</value>
   </data>
-  <data name="Settings_Connection_VpnAccelerator_Other">
-    <value></value>
-  </data>
-  <data name="Settings_DevicesConnected">
-    <value>연결된 기기</value>
+  <data name="Settings_Connection_VpnAccelerator">
+    <value>VPN Accelerator</value>
   </data>
   <data name="Settings_Features">
     <value>VPN 기능</value>

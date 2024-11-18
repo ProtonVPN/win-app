@@ -126,11 +126,8 @@
   <data name="Automation_Properties_Features_Bar">
     <value>Barra delle funzionalità</value>
   </data>
-  <data name="Automation_Properties_Home_Page_One">
-    <value></value>
-  </data>
-  <data name="Automation_Properties_Home_Page_Other">
-    <value></value>
+  <data name="Automation_Properties_Home_Page">
+    <value>Home page</value>
   </data>
   <data name="Automation_Properties_KillSwitch_Page">
     <value>Pagina Kill Switch</value>
@@ -1805,6 +1802,9 @@ Una latenza elevata può rallentare la connessione.</value>
   <data name="Dialogs_ReportIssue_Header">
     <value>Quale è il problema?</value>
   </data>
+  <data name="Dialogs_ReportIssue_NoLogsWarning">
+    <value>Error logs help us to get to the bottom of your issue. If you don’t include them, we may not be able to investigate fully.</value>
+  </data>
   <data name="Dialogs_ReportIssue_QuickFixes">
     <value>Soluzioni veloci</value>
   </data>
@@ -1959,6 +1959,15 @@ Smart Routing viene solitamente utilizzato per raggirare le leggi anti-privacy e
   <data name="Dialogs_Troubleshooting_Title">
     <value>Aiuto per la connessione</value>
   </data>
+  <data name="Dialogs_UpdateSystemClock_Description">
+    <value>Looks like your system clock is out of sync. This may cause issues when connecting to VPN.</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_PrimaryButton">
+    <value>How to update system clock</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_Title">
+    <value>Update system clock</value>
+  </data>
   <data name="Dialogs_WelcomeB2B_Description">
     <value>Semplice. Senza soluzione di continuità. Sicuro. Proteggiti online e accedi in modo sicuro ai siti, al software e ai file della tua organizzazione.</value>
   </data>
@@ -2038,9 +2047,9 @@ Una VPN fa sembrare che tu stia navigando da un altra parte, proteggendoti dalla
     <value>Il tuo IP VPN maschera il tuo vero indirizzo IP. In questo modo sembrerà che tu stia navigando dalla tua posizione VPN, quindi la tua attività online non può essere collegata al tuo dispositivo.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected">
-    <value>This unique code can be used by websites and ISPs (Internet Service Providers) to link your location and browsing history to your device. 
+    <value>Questo codice univoco può essere utilizzato da siti Web e ISP (provider di servizi Internet) per collegare la tua posizione e la cronologia di navigazione al tuo dispositivo. 
 
-A VPN masks your IP address, making it harder for your activity to be traced back to you.</value>
+Una VPN maschera il tuo indirizzo IP, rendendo più difficile risalire alla tua attività.</value>
   </data>
   <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
     <value>Che cos'è un indirizzo IP?</value>
@@ -2058,11 +2067,11 @@ A VPN masks your IP address, making it harder for your activity to be traced bac
     <value>Il tuo indirizzo IP è visibile</value>
   </data>
   <data name="Flyouts_Isp_Description">
-    <value>Your ISP (Internet Service Provider) is the company that connects you to the internet. 
+    <value>Il tuo ISP (Internet Service Provider) è la società che ti connette a Internet. 
 
-They can log your online activity. In some countries, they can sell your data to advertisers. In others, they can be required to hand it over to the government. 
+Possono registrare la tua attività online. In alcuni paesi, possono vendere i tuoi dati agli inserzionisti. In altri, può essere loro richiesto di consegnarlo al governo. 
 
-A VPN hides your IP address, protecting you from ISP interference.</value>
+Una VPN nasconde il tuo indirizzo IP, proteggendoti dalle interferenze dell’ISP.</value>
   </data>
   <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
     <value>Che cos'è un provider di servizi Internet (ISP)?</value>
@@ -2113,9 +2122,9 @@ A VPN hides your IP address, protecting you from ISP interference.</value>
     <value>Potenziato da VPN Accelerator</value>
   </data>
   <data name="Flyouts_Speed_Description">
-    <value>This shows how much data gets transmitted through Proton VPN each second.
+    <value>Questo mostra la quantità di dati trasmessi tramite Proton VPN ogni secondo.
 
-Speed is based on your device’s current activity — it doesn’t represent the VPN’s maximum speed.</value>
+La velocità si basa sull’attività corrente del tuo dispositivo e non rappresenta la velocità massima della VPN.</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>Download</value>
@@ -2577,9 +2586,9 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Cos'è una rete P2P?</value>
   </data>
   <data name="Overlay_P2P_Bullet3_Description">
-    <value>  •  Downloading torrent files
-  •  Improving online gaming and video call performance
-  •  Connecting to local area network (LAN) devices</value>
+    <value>  • Scaricare file torrent
+  • Migliorare le prestazioni dei giochi online e delle videochiamate
+  • Connettere a dispositivi di rete locale (LAN).</value>
   </data>
   <data name="Overlay_P2P_Bullet3_Header">
     <value>A cosa servono le reti P2P?</value>
@@ -2591,9 +2600,9 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>P2P</value>
   </data>
   <data name="Overlay_SecureCore_Description">
-    <value>Secure Core connects you to your destination server via a second, maximum security VPN server.
+    <value>Secure Core ti connette al tuo server di destinazione tramite un secondo server VPN di massima sicurezza.
 
-This higher level of protection may cause higher latency and slower speeds.</value>
+Questo livello di protezione più elevato può causare una latenza più alta e velocità più lente.</value>
   </data>
   <data name="Overlay_SecureCore_LearnMore">
     <value>Cos'è SecureCore?</value>
@@ -2651,11 +2660,11 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Carico del Server</value>
   </data>
   <data name="Overlay_SmartRouting_Description">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
-    
-When you connect to a Smart Routing server, you’ll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+    <value>Smart Routing utilizza server virtuali per fornire copertura VPN nei paesi difficili da raggiungere.
 
-Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+Quando ti connetti a un server Smart Routing, sembrerà che tu stia navigando nel Paese di destinazione, anche se il server fisico si trova altrove.
+
+Lo Smart Routing viene generalmente utilizzato per aggirare le leggi anti-privacy e altre forme di censura.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
     <value>I server si trovano fisicamente in {0}, ma sembrerà che tu stia navigando da {1}</value>
@@ -3048,14 +3057,8 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
     <value>Le app e gli indirizzi IP selezionati sono esclusi dalla connessione VPN</value>
   </data>
-  <data name="Settings_Connection_VpnAccelerator_One">
-    <value></value>
-  </data>
-  <data name="Settings_Connection_VpnAccelerator_Other">
-    <value></value>
-  </data>
-  <data name="Settings_DevicesConnected">
-    <value>Dispositivi collegati</value>
+  <data name="Settings_Connection_VpnAccelerator">
+    <value>VPN Accelerator</value>
   </data>
   <data name="Settings_Features">
     <value>Funzionalità VPN</value>
