@@ -1,0 +1,17 @@
+.OPTION EXPLICIT
+.Set CabinetFileCountThreshold=0
+.Set FolderFileCountThreshold=0
+.Set FolderSizeThreshold=0
+.Set MaxCabinetSize=0
+.Set MaxDiskFileCount=0
+.Set MaxDiskSize=0
+.Set CompressionType=MSZIP
+.Set Cabinet=on
+.Set Compress=on
+.Set CabinetNameTemplate=ProtonVPN.CalloutDriver.x64.cab
+.Set DestinationDir=ProtonVPN.CalloutDriver.x64
+
+bin\Release\x64\ProtonVPN.CalloutDriver\protonvpn.calloutdriver.cat
+bin\Release\x64\ProtonVPN.CalloutDriver\ProtonVPN.CalloutDriver.inf
+bin\Release\x64\ProtonVPN.CalloutDriver\ProtonVPN.CalloutDriver.pdb
+bin\Release\x64\ProtonVPN.CalloutDriver\ProtonVPN.CalloutDriver.sys

@@ -602,7 +602,7 @@ var
 begin
   SetSilentModes();
   SetIsToDisableAutoUpdate();
-  if IsWindowsVersionEqualOrHigher(10, 0, 17763) = False then begin
+  if IsWindowsVersionEqualOrHigher(10, 0, 19041) = False then begin
     if WizardSilent() = false then begin
       MsgBox('This application does not support your Windows version. You will be redirected to a download page with an application suitable for your Windows version. ', mbInformation, MB_OK);
       ShellExec('open', 'https://protonvpn.com/free-vpn/windows/windows7', '', '', SW_SHOW, ewNoWait, ErrCode);

@@ -9,6 +9,7 @@ ClassGuid   = {57465043-616C-6C6F-7574-5F636C617373}
 Provider    = %ManufacturerName%
 CatalogFile = ProtonVPN.CalloutDriver.cat
 DriverVer   = 10/15/2020,1.0.4.0
+PnpLockdown = 1
 
 [SourceDisksNames]
 1 = %DiskName%,,,""
@@ -26,7 +27,10 @@ CopyFiles  = ProtonVPN.CalloutDriver.Files
 
 [DefaultUninstall.NT$ARCH$]
 LegacyUninstall = 1
-DelFiles = ProtonVPN.CalloutDriver.Files
+; With DelFiles the driver doesn't build. But it's fine since we use the
+; callout driver as a service, so only sys file is used, but inf file is
+; required signing and certification process, so we keep it.
+;DelFiles = ProtonVPN.CalloutDriver.Files
 
 [DefaultInstall.NT$ARCH$.Services]
 AddService = %ServiceName%,,ProtonVPN.CalloutDriver.Service
