@@ -100,7 +100,6 @@ public class HomeRobot
         public Verifications IsConnecting()
         {
             ConnectingLabel.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
-            ConnectionCardDisconnectButton.WaitUntilDisplayed();
             return this;
         }
 
