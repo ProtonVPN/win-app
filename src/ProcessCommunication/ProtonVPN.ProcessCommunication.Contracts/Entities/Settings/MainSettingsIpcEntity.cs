@@ -16,41 +16,47 @@
  * You should have received a copy of the GNU General Public License
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 using System.Runtime.Serialization;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
-namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Settings
+namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
+
+[DataContract]
+public class MainSettingsIpcEntity
 {
-    [DataContract]
-    public class MainSettingsIpcEntity
+    [DataMember(Order = 1)]
+    public KillSwitchModeIpcEntity KillSwitchMode { get; set; }
+
+    [DataMember(Order = 2)]
+    public SplitTunnelSettingsIpcEntity SplitTunnel { get; set; }
+
+    [DataMember(Order = 3)]
+    public int NetShieldMode { get; set; }
+
+    [DataMember(Order = 4)]
+    public bool ModerateNat { get; set; }
+
+    [DataMember(Order = 5)]
+    public bool SplitTcp { get; set; }
+
+    [DataMember(Order = 6)]
+    public bool Ipv6LeakProtection { get; set; }
+
+    [DataMember(Order = 7)]
+    public bool IsShareCrashReportsEnabled { get; set; }
+
+    [DataMember(Order = 8)]
+    public VpnProtocolIpcEntity VpnProtocol { get; set; }
+
+    [DataMember(Order = 9)]
+    public OpenVpnAdapterIpcEntity OpenVpnAdapter { get; set; }
+
+    [DataMember(Order = 10)]
+    public bool PortForwarding { get; set; }
+
+    public MainSettingsIpcEntity()
     {
-        [DataMember(Order = 1)]
-        public KillSwitchModeIpcEntity KillSwitchMode { get; set; }
-        [DataMember(Order = 2)]
-        public SplitTunnelSettingsIpcEntity SplitTunnel { get; set; }
-
-        [DataMember(Order = 3)]
-        public int NetShieldMode { get; set; }
-
-        [DataMember(Order = 4)]
-        public bool ModerateNat { get; set; }
-
-        [DataMember(Order = 5)]
-        public bool? SplitTcp { get; set; }
-        [DataMember(Order = 6)]
-        public bool? AllowNonStandardPorts { get; set; }
-        [DataMember(Order = 7)]
-        public bool Ipv6LeakProtection { get; set; }
-        [DataMember(Order = 8)]
-        public VpnProtocolIpcEntity VpnProtocol { get; set; }
-        [DataMember(Order = 9)]
-        public OpenVpnAdapterIpcEntity OpenVpnAdapter { get; set; }
-        [DataMember(Order = 10)]
-        public bool PortForwarding { get; set; }
-
-        public MainSettingsIpcEntity()
-        {
-            SplitTunnel = new();
-        }
+        SplitTunnel = new();
     }
 }

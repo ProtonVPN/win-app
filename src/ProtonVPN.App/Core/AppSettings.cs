@@ -486,12 +486,6 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
-        public bool ShowNonStandardPortsToFreeUsers
-        {
-            get => Get<bool>();
-            set => Set(value);
-        }
-
         public bool ConnectOnAppStart
         {
             get => Get<bool>();
@@ -511,12 +505,6 @@ namespace ProtonVPN.Core
         {
             get => Get<bool>();
             set => Set(value);
-        }
-
-        public bool AllowNonStandardPorts
-        {
-            get => GetPerUser<bool>();
-            set => SetPerUser(value);
         }
 
         public string AuthenticationPublicKey
@@ -645,10 +633,22 @@ namespace ProtonVPN.Core
             set => SetPerUserEncrypted(value);
         }
 
+        public string UnauthStatisticalEvents
+        {
+            get => GetDecrypted();
+            set => SetEncrypted(value);
+        }
+
         public DateTimeOffset LogicalsLastModifiedDate
         {
             get => Get<string>().FromJsonDateTimeOffset() ?? DateTimeOffset.UnixEpoch;
             set => Set(value.ToJsonDateTimeOffset());
+        }
+
+        public VpnProtocol[] DisabledSmartProtocols
+        {
+            get => Get<VpnProtocol[]>() ?? new List<VpnProtocol>().ToArray();
+            set => Set(value);
         }
 
         public TimeSpan MaintenanceCheckInterval

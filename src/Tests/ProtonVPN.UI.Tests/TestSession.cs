@@ -103,8 +103,13 @@ namespace ProtonVPN.UI.Tests
             }
         }
 
-        public static void LaunchApp()
+        public static void LaunchApp(bool isFreshStart = true)
         {
+            if (isFreshStart)
+            {
+                DeleteUserConfig();
+            }
+
             string appExecutable = TestData.AppVersionFolder + @"\ProtonVPN.exe";
             ProcessStartInfo startInfo = new ProcessStartInfo(appExecutable)
             {
@@ -119,6 +124,7 @@ namespace ProtonVPN.UI.Tests
                 App = Application.Launch(startInfo);
             }
             RefreshWindow(TestData.LongTimeout);
+            Window.Focus();
         }
 
 
@@ -167,7 +173,7 @@ namespace ProtonVPN.UI.Tests
 
         private static void SaveScreenshotAndLogsIfFailed()
         {
-            if (!TestEnvironment.AreTestsRunningLocally() && !TestEnvironment.IsWindows11())
+            if (!TestEnvironment.AreTestsRunningLocally())
             {
                 TestStatus status = TestContext.CurrentContext.Result.Outcome.Status;
                 string testName = TestContext.CurrentContext.Test.MethodName;

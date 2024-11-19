@@ -47,7 +47,7 @@ namespace ProtonVPN.Update.Storage
         private readonly ILogger _logger;
         private readonly IDeviceIdCache _deviceIdCache;
         private readonly IConfiguration _configuration;
-        private readonly Lazy<decimal> _deviceRolloutPercentage;
+        private readonly Lazy<decimal> _deviceRolloutProportion;
 
         public WebReleaseStorage(IAppUpdateConfig config,
             ILogger logger,
@@ -58,74 +58,56 @@ namespace ProtonVPN.Update.Storage
             _logger = logger;
             _deviceIdCache = deviceIdCache;
             _configuration = configuration;
-            _deviceRolloutPercentage = new(() => CreateDeviceRolloutPercentage());
+            _deviceRolloutProportion = new(CreateDeviceRolloutProportion);
         }
 
-        private decimal CreateDeviceRolloutPercentage()
+        private decimal CreateDeviceRolloutProportion()
         {
-            decimal deviceRolloutPercentage;
-            if (_configuration.DeviceRolloutPercentage.HasValue)
+            decimal deviceRolloutProportion;
+            if (_configuration.DeviceRolloutProportion.HasValue)
             {
-                deviceRolloutPercentage = _configuration.DeviceRolloutPercentage.Value;
-                _logger.Info<AppUpdateCheckLog>($"Using device rollout percentage {deviceRolloutPercentage} " +
+                deviceRolloutProportion = _configuration.DeviceRolloutProportion.Value;
+                _logger.Info<AppUpdateCheckLog>($"Using device rollout proportion {deviceRolloutProportion} " +
                     $"from configuration.");
             }
             else
             {
-                deviceRolloutPercentage =
-                    HashGenerator.HashToPercentage(_deviceIdCache.GetDeviceId() + _config.CurrentVersion) * 100M;
-                _logger.Info<AppUpdateCheckLog>($"Generated device rollout percentage {deviceRolloutPercentage} " +
+                deviceRolloutProportion = HashGenerator.HashToPercentage(_deviceIdCache.GetDeviceId() + _config.CurrentVersion);
+                _logger.Info<AppUpdateCheckLog>($"Generated device rollout proportion {deviceRolloutProportion} " +
                     $"for device Id '{_deviceIdCache.GetDeviceId()}' and version '{_config.CurrentVersion}'.");
             }
-            return deviceRolloutPercentage;
+            return deviceRolloutProportion;
         }
 
-        public async Task<IEnumerable<Release>> Releases()
-        {
-            CategoriesResponse categories = await Categories();
-            Releases.Releases releases = new(_logger, categories.Categories, _config.CurrentVersion, _config.EarlyAccessCategoryName);
-            return releases;
-        }
-
-        private async Task<CategoriesResponse> Categories()
+        public async Task<IEnumerable<Release>> GetReleasesAsync()
         {
             Uri feedUrl = _config.FeedUriProvider.GetFeedUrl();
-            CategoriesResponse response = await GetFilteredAsync(feedUrl);
-            return response;
-        }
-
-        private async Task<CategoriesResponse> GetFilteredAsync(Uri feedUrl)
-        {
-            CategoriesResponse response = await GetAsync(feedUrl);
-            foreach (CategoryResponse category in response.Categories)
-            {
-                category.Releases = category.Releases.Where(ReleaseFilter).ToList();
-            }
-            return response;
+            IEnumerable<ReleaseResponse> releases = (await GetAsync(feedUrl)).Releases.Where(ReleaseFilter);
+            return new Releases.Releases(_logger, releases, _config.CurrentVersion, _config.EarlyAccessCategoryName);
         }
 
         private bool ReleaseFilter(ReleaseResponse r)
         {
-            return (r.ReleaseDate is null || r.ReleaseDate.Value <= DateTimeOffset.UtcNow) &&
-                   (r.MinimumOsVersion is null ||
-                    !Version.TryParse(r.MinimumOsVersion, out Version minimumOsVersion) ||
+            return (r.ReleaseDate is null || r.ReleaseDate <= DateTimeOffset.UtcNow) &&
+                   (r.SystemVersion?.Minimum is null ||
+                    !Version.TryParse(r.SystemVersion.Minimum, out Version minimumOsVersion) ||
                     Environment.OSVersion.Version >= minimumOsVersion) &&
-                   IsCoveredByRollout(r.RolloutPercentage);
+                   IsCoveredByRollout(r.RolloutProportion);
         }
 
-        private bool IsCoveredByRollout(decimal? rolloutPercentage)
+        private bool IsCoveredByRollout(decimal? rolloutProportion)
         {
-            if (rolloutPercentage is null || rolloutPercentage.Value >= 100M)
+            if (rolloutProportion is null || rolloutProportion.Value >= 1M)
             {
                 return true;
             }
-            if (rolloutPercentage.Value <= 0M)
+            if (rolloutProportion.Value <= 0M)
             {
                 return false;
             }
             try
             {   // deviceRolloutPercentage <= rolloutPercentage
-                return decimal.Compare(_deviceRolloutPercentage.Value, rolloutPercentage.Value) <= 0;
+                return decimal.Compare(_deviceRolloutProportion.Value, rolloutProportion.Value) <= 0;
             }
             catch
             {
@@ -133,7 +115,7 @@ namespace ProtonVPN.Update.Storage
             }
         }
 
-        private async Task<CategoriesResponse> GetAsync(Uri feedUrl)
+        private async Task<ReleasesResponse> GetAsync(Uri feedUrl)
         {
             try
             {
@@ -145,7 +127,7 @@ namespace ProtonVPN.Update.Storage
                 }
 
                 using Stream stream = await response.Content.ReadAsStreamAsync();
-                return ResponseStreamResult<CategoriesResponse>(stream);
+                return ResponseStreamResult<ReleasesResponse>(stream);
             }
             catch (Exception ex)
             {

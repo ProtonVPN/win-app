@@ -47,18 +47,18 @@ namespace ProtonVPN.Update.Tests.Storage
         {
             SafeReleaseStorage storage = new SafeReleaseStorage(_origin);
 
-            await storage.Releases();
+            await storage.GetReleasesAsync();
 
-            await _origin.Received(1).Releases();
+            await _origin.Received(1).GetReleasesAsync();
         }
 
         [TestMethod]
         public void Releases_ShouldPassException_WhenOriginThrows()
         {
-            _origin.When(x => x.Releases()).Throw<Exception>();
+            _origin.When(x => x.GetReleasesAsync()).Throw<Exception>();
             SafeReleaseStorage storage = new SafeReleaseStorage(_origin);
 
-            Func<Task> action = () => storage.Releases();
+            Func<Task> action = () => storage.GetReleasesAsync();
 
             action.Should().ThrowAsync<Exception>();
         }
@@ -84,10 +84,10 @@ namespace ProtonVPN.Update.Tests.Storage
         private void Releases_ShouldThrow_AppUpdateException_WhenOriginThrows(Exception ex)
         {
             TestInitialize();
-            _origin.When(x => x.Releases()).Throw(ex);
+            _origin.When(x => x.GetReleasesAsync()).Throw(ex);
             SafeReleaseStorage storage = new SafeReleaseStorage(_origin);
 
-            Func<Task> action = () => storage.Releases();
+            Func<Task> action = () => storage.GetReleasesAsync();
 
             action.Should().ThrowAsync<AppUpdateException>();
         }
@@ -95,10 +95,10 @@ namespace ProtonVPN.Update.Tests.Storage
         private void Releases_ShouldThrow_AppUpdateException_WhenOriginThrowsAsync(Exception ex)
         {
             TestInitialize();
-            _origin.Releases().Returns(Task.FromException<IEnumerable<Release>>(ex));
+            _origin.GetReleasesAsync().Returns(Task.FromException<IEnumerable<Release>>(ex));
             SafeReleaseStorage storage = new SafeReleaseStorage(_origin);
 
-            Func<Task> action = () => storage.Releases();
+            Func<Task> action = () => storage.GetReleasesAsync();
 
             action.Should().ThrowAsync<AppUpdateException>();
         }

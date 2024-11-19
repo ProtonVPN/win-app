@@ -107,10 +107,8 @@ namespace ProtonVPN.Core.Settings
         bool FeatureFreeRescopeEnabled { get; set; }
         bool ConnectOnAppStart { get; set; }
         bool FeatureSmartReconnectEnabled { get; set; }
-        bool ShowNonStandardPortsToFreeUsers { get; set; }
         bool SmartReconnectEnabled { get; set; }
         bool SmartReconnectNotificationsEnabled { get; set; }
-        bool AllowNonStandardPorts { get; set; }
         string AuthenticationPublicKey { get; set; }
         string AuthenticationSecretKey { get; set; }
         string AuthenticationCertificatePem { get; set; }
@@ -132,8 +130,10 @@ namespace ProtonVPN.Core.Settings
         int ChangeServerLongDelayInSeconds { get; set; }
         bool IsTelemetryGloballyEnabled { get; set; }
         string StatisticalEvents { get; set; }
+        string UnauthStatisticalEvents { get; set; }
         DateTimeOffset LogicalsLastModifiedDate { get; set; }
-        
+        VpnProtocol[] DisabledSmartProtocols { get; set; }
+
         bool IsNetShieldEnabled();
         bool IsPortForwardingEnabled();
         bool IsVpnAcceleratorEnabled();

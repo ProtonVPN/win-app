@@ -25,6 +25,7 @@ namespace ProtonVPN.UI.Tests.Tests
 {
     [TestFixture]
     [Category("UI")]
+    [Category("ARM")]
     public class SupportTests : TestSession
     {
         private readonly LoginWindow _loginWindow = new LoginWindow();

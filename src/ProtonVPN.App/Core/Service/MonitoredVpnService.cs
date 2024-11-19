@@ -22,18 +22,15 @@ using System.Threading.Tasks;
 using System.Windows.Threading;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Configuration;
+using ProtonVPN.Common.OS.Services;
+using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
-using ProtonVPN.Common.OS.Services;
-using ProtonVPN.Common.Vpn;
-using ProtonVPN.Core.Service.Vpn;
-using ProtonVPN.Core.Vpn;
 
 namespace ProtonVPN.Core.Service
 {
-    public class MonitoredVpnService : IMonitoredVpnService, IVpnStateAware, IConcurrentService
+    public class MonitoredVpnService : IMonitoredVpnService, IConcurrentService
     {
-        private VpnStatus _vpnStatus;
         private readonly DispatcherTimer _timer = new();
         private readonly VpnSystemService _service;
         private readonly IVpnManager _vpnManager;
@@ -50,6 +47,7 @@ namespace ProtonVPN.Core.Service
             _logger = logger;
             _timer.Interval = appConfig.ServiceCheckInterval;
             _timer.Tick += OnTimerTick;
+            _timer.Start();
         }
 
         public string Name => _service.Name;
@@ -67,31 +65,22 @@ namespace ProtonVPN.Core.Service
 
         public Task<Result> StopAsync() => _service.StopAsync();
 
-        public async Task OnVpnStateChanged(VpnStateChangedEventArgs e)
-        {
-            _vpnStatus = e.State.Status;
-
-            if (!_timer.IsEnabled && _vpnStatus != VpnStatus.Disconnected)
-            {
-                _timer.Start();
-            }
-
-            if (_timer.IsEnabled && _vpnStatus == VpnStatus.Disconnected)
-            {
-                _timer.Stop();
-            }
-        }
-
         private void OnTimerTick(object sender, EventArgs e)
         {
-            if (_vpnStatus == VpnStatus.Disconnected || _vpnStatus == VpnStatus.Disconnecting || IsRunning())
+            StartIfNotRunningAsync().Wait();
+        }
+
+        public async Task StartIfNotRunningAsync()
+        {
+            if (IsRunning())
             {
                 return;
             }
 
-            _logger.Warn<AppServiceStartLog>($"The service is not running and the VPN status is '{_vpnStatus}'. " +
+            _logger.Warn<AppServiceStartLog>($"The service is not running. " +
                 "Starting the service and reconnecting.");
             StartAsync();
+            _vpnManager.GetStateAsync();
             _vpnManager.ReconnectAsync();
         }
     }

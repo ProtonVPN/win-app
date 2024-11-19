@@ -103,7 +103,7 @@ namespace ProtonVPN.Service
                     _ipv6.Enable();
                 }
 
-                await _grpcServer?.KillAsync();
+                await _grpcServer?.StopAsync();
             }
             catch (Exception ex)
             {

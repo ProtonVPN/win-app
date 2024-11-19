@@ -20,6 +20,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppUpdateLogs;
 using ProtonVPN.Update.Responses;
@@ -27,51 +28,47 @@ using ProtonVPN.Update.Responses;
 namespace ProtonVPN.Update.Releases
 {
     /// <summary>
-    /// Transforms deserialized release data (stream of <see cref="CategoryResponse"/>) into stream of <see cref="Release"/>.
+    /// Transforms deserialized release data (stream of <see cref="ReleaseResponse"/>) into stream of <see cref="Release"/>.
     /// </summary>
     public class Releases : IEnumerable<Release>
     {
         private readonly ILogger _logger;
-        private readonly IEnumerable<CategoryResponse> _categories;
+        private readonly IEnumerable<ReleaseResponse> _releases;
         private readonly Version _currentVersion;
         private readonly string _earlyAccessCategoryName;
 
-        public Releases(ILogger logger, IEnumerable<CategoryResponse> categories, Version currentVersion, string earlyAccessCategoryName)
+        public Releases(ILogger logger, IEnumerable<ReleaseResponse> releases, Version currentVersion, string earlyAccessCategoryName)
         {
             _logger = logger;
-            _categories = categories;
+            _releases = releases;
             _currentVersion = currentVersion;
             _earlyAccessCategoryName = earlyAccessCategoryName;
         }
 
         public IEnumerator<Release> GetEnumerator()
         {
-            foreach (CategoryResponse category in _categories)
+            foreach (ReleaseResponse release in _releases)
             {
-                if (category.Releases == null)
+                if (release == null)
                 {
                     continue;
                 }
 
-                bool isEarlyAccess = string.Equals(_earlyAccessCategoryName, category.Name, StringComparison.OrdinalIgnoreCase);
-
-                foreach (ReleaseResponse release in category.Releases)
+                bool isEarlyAccess = string.Equals(_earlyAccessCategoryName, release.CategoryName, StringComparison.OrdinalIgnoreCase);
+                if (Version.TryParse(release.Version, out Version version))
                 {
-                    if (Version.TryParse(release.Version, out Version version))
+                    yield return new Release
                     {
-                        yield return new Release
-                        {
-                            ChangeLog = release.ChangeLog,
-                            EarlyAccess = isEarlyAccess,
-                            File = release.File,
-                            New = version > _currentVersion,
-                            Version = version,
-                        };
-                    }
-                    else
-                    {
-                        _logger.Error<AppUpdateLog>($"Failed to parse release version {release.Version}.");
-                    }
+                        ChangeLog = release.ReleaseNotes.FirstOrDefault()?.Notes ?? [],
+                        EarlyAccess = isEarlyAccess,
+                        File = release.File,
+                        New = version > _currentVersion,
+                        Version = version,
+                    };
+                }
+                else
+                {
+                    _logger.Error<AppUpdateLog>($"Failed to parse release version {release.Version}.");
                 }
             }
         }

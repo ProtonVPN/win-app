@@ -1960,7 +1960,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The text displayed in login window when login takes longer than expected</comment>
   </data>
   <data name="Login_lbl_TwoFactorAuthCode">
-    <value>Toisen vaiheen todennuskoodi</value>
+    <value>Toisen vaiheen vahvistuskoodi</value>
   </data>
   <data name="Login_lbl_Username">
     <value>Käyttäjätunnus</value>

@@ -89,7 +89,7 @@ namespace ProtonVPN.Update.Updates
 
         internal async Task<IReadOnlyList<Release>> ReleaseHistory(bool earlyAccess)
         {
-            IEnumerable<Release> releases = await _releaseStorage.Releases();
+            IEnumerable<Release> releases = await _releaseStorage.GetReleasesAsync();
             return releases.ToList();
         }
 
@@ -105,7 +105,7 @@ namespace ProtonVPN.Update.Updates
 
         internal Task StartUpdate(Release release)
         {
-            _launchable.Launch(FilePath(release), release.File.Arguments);
+            _launchable.Launch(FilePath(release), release.File.Args);
             return Task.CompletedTask;
         }
 

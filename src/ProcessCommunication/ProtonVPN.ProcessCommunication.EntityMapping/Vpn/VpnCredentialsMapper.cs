@@ -23,31 +23,33 @@ using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Crypto;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
+
+public class VpnCredentialsMapper : IMapper<VpnCredentials, VpnCredentialsIpcEntity>
 {
-    public class VpnCredentialsMapper : IMapper<VpnCredentials, VpnCredentialsIpcEntity>
+    private readonly IEntityMapper _entityMapper;
+
+    public VpnCredentialsMapper(IEntityMapper entityMapper)
     {
-        private readonly IEntityMapper _entityMapper;
+        _entityMapper = entityMapper;
+    }
 
-        public VpnCredentialsMapper(IEntityMapper entityMapper)
+    public VpnCredentialsIpcEntity Map(VpnCredentials leftEntity)
+    {
+        return new()
         {
-            _entityMapper = entityMapper;
-        }
+            Certificate = new()
+            {
+                Pem = leftEntity.ClientCertPem ?? string.Empty,
+                ExpirationDateUtc = DateTime.MinValue,
+            },
+            ClientKeyPair = _entityMapper.Map<AsymmetricKeyPair, AsymmetricKeyPairIpcEntity>(leftEntity.ClientKeyPair)
+        };
+    }
 
-        public VpnCredentialsIpcEntity Map(VpnCredentials leftEntity)
-        {
-            return new()
-                {
-                    ClientCertPem = leftEntity.ClientCertPem,
-                    ClientKeyPair = _entityMapper.Map<AsymmetricKeyPair, AsymmetricKeyPairIpcEntity>(leftEntity.ClientKeyPair)
-                };
-        }
-
-        public VpnCredentials Map(VpnCredentialsIpcEntity rightEntity)
-        {
-            return rightEntity is null
-                ? throw new ArgumentNullException($"The {nameof(VpnCredentialsIpcEntity)} to be mapped is null.")
-                : new(rightEntity.ClientCertPem, _entityMapper.Map<AsymmetricKeyPairIpcEntity, AsymmetricKeyPair>(rightEntity.ClientKeyPair));
-        }
+    public VpnCredentials Map(VpnCredentialsIpcEntity rightEntity)
+    {
+        return new(rightEntity.Certificate.Pem,
+            _entityMapper.Map<AsymmetricKeyPairIpcEntity, AsymmetricKeyPair>(rightEntity.ClientKeyPair));
     }
 }

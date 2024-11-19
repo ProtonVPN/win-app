@@ -1401,42 +1401,6 @@ namespace ProtonVPN.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string UserAllowNonStandardPorts {
-            get {
-                return ((string)(this["UserAllowNonStandardPorts"]));
-            }
-            set {
-                this["UserAllowNonStandardPorts"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool UserAllowNonStandardPortsDefault {
-            get {
-                return ((bool)(this["UserAllowNonStandardPortsDefault"]));
-            }
-            set {
-                this["UserAllowNonStandardPortsDefault"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool ShowNonStandardPortsToFreeUsers {
-            get {
-                return ((bool)(this["ShowNonStandardPortsToFreeUsers"]));
-            }
-            set {
-                this["ShowNonStandardPortsToFreeUsers"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string UserModerateNat {
             get {
                 return ((string)(this["UserModerateNat"]));
@@ -1713,6 +1677,18 @@ namespace ProtonVPN.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UnauthStatisticalEvents {
+            get {
+                return ((string)(this["UnauthStatisticalEvents"]));
+            }
+            set {
+                this["UnauthStatisticalEvents"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string FeatureFlags {
             get {
                 return ((string)(this["FeatureFlags"]));
@@ -1755,6 +1731,18 @@ namespace ProtonVPN.Properties {
             }
             set {
                 this["LogicalsLastModifiedDate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DisabledSmartProtocols {
+            get {
+                return ((string)(this["DisabledSmartProtocols"]));
+            }
+            set {
+                this["DisabledSmartProtocols"] = value;
             }
         }
     }

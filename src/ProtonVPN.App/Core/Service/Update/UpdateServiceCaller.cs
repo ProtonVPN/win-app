@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Logging.Contracts;
@@ -28,19 +29,23 @@ namespace ProtonVPN.Core.Service.Update
 {
     public class UpdateServiceCaller : ServiceControllerCaller<IUpdateController>
     {
-        public UpdateServiceCaller(ILogger logger, IAppGrpcClient grpcClient, VpnSystemService vpnSystemService) 
-            : base(logger, grpcClient, vpnSystemService)
+        public UpdateServiceCaller(ILogger logger, IGrpcClient grpcClient, Lazy<IMonitoredVpnService> monitoredVpnService) 
+            : base(logger, grpcClient, monitoredVpnService)
         {
         }
 
         public Task CheckForUpdates(UpdateSettingsIpcEntity updateSettingsIpcEntity)
         {
-            return Invoke(c => c.CheckForUpdate(updateSettingsIpcEntity).Wrap());
+            return Invoke((c, ct) => c.CheckForUpdate(updateSettingsIpcEntity, ct).Wrap());
         }
 
         public Task StartAutoUpdate()
         {
-            return Invoke(c => c.StartAutoUpdate().Wrap());
+            StartAutoUpdateIpcEntity startAutoUpdateIpcEntity = new()
+            {
+                RetryId = Guid.NewGuid()
+            };
+            return Invoke((c, ct) => c.StartAutoUpdate(startAutoUpdateIpcEntity, ct).Wrap());
         }
     }
 }

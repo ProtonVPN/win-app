@@ -340,7 +340,7 @@
     <comment>The question displayed when trying to logout while connected to VPN</comment>
   </data>
   <data name="App_msg_UpdateConnectedConfirm">
-    <value>Pentru a finaliza procesul de actualizare, Proton VPN va întrerupe temporar conexiunea și dezactiva blocarea permanentă a conexiunii dacă una din acestea este activă. Continuați?</value>
+    <value>Pentru a finaliza procesul de actualizare, Proton VPN se va deconecta temporar și se va dezactiva întrerupătorul de conexiune dacă una din aceste funcții este activă. Continuați?</value>
     <comment>The question displayed when trying to update the app while connected to VPN</comment>
   </data>
   <data name="App_ttl">
@@ -1607,7 +1607,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>Unele componente ale Proton VPN ar putea fi blocate sau dezactivate, împiedicându-vă să vă conectați. Faceți clic pe «Activare» pentru a remedia problema.&lt;LineBreak/&gt;Rețineți că această operațiune necesită privilegii de administrator.</value>
   </data>
   <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
-    <value>Dezactivare blocare conexiune</value>
+    <value>Dezactivare întrerupător de conexiune</value>
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
@@ -1623,7 +1623,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The message displayed in Disconnect modal window while trying to identify connection problem</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_KillSwitch">
-    <value>Blocarea conexiunii vă protejează adresa IP blocând toate conexiunile. În caz de probleme puteți dezactiva blocarea conexiunilor.</value>
+    <value>Întrerupătorul de conexiune vă protejează adresa IP blocând toate conexiunile. În caz de probleme îl puteți dezactiva.</value>
     <comment>The text displayed in Disconnect modal window if the disconnect occurred with kill switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoServers">
@@ -1679,10 +1679,10 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>Închizând aplicația se va deconecta de la VPN.</value>
   </data>
   <data name="Dialogs_Exit_msg_KillSwitchOn">
-    <value>Blocarea conexiunii blochează toate conexiunile pentru a evita divulgarea datelor. Ieșirea din aplicație va dezactiva blocarea conexiunii.</value>
+    <value>Întrerupătorul de conexiune blochează toate conexiunile pentru a evita divulgarea datelor. Ieșirea din aplicație îl va dezactiva.</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch">
-    <value>Blocarea conexiunii este activată. Închizând aplicația veți bloca toate conexiunile până când vă veți reconecta în Proton VPN.</value>
+    <value>Întrerupătorul de conexiune este activat. Închizând aplicația veți bloca toate conexiunile până când vă veți reconecta la Proton VPN.</value>
   </data>
   <data name="Dialogs_HumanVerification_ttl">
     <value>Verificare persoană</value>
@@ -1691,10 +1691,10 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>Ceasul sistemului pare să nu fie sincronizat, ceea ce ar putea împiedica conectarea cu succes a VPN-ului. Vedeți &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;aici&lt;/Hyperlink&gt; pentru mai multe informații.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
-    <value>Cu blocarea permanentă a conexiunii, dacă nu există conexiune la VPN din orice motiv, nu veți putea accesa internetul.</value>
+    <value>Cu întrerupătorul permanent de conexiune, dacă nu există conexiune la VPN din orice motiv, nu veți putea accesa internetul.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
-    <value>Activare blocare permanentă conexiune?</value>
+    <value>Activați întrerupătorul permanent de conexiune?</value>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok">
     <value>Am înțeles</value>
@@ -1741,7 +1741,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
-    <value>Blocarea conexiunii este activată. Actualizarea sau închiderea aplicației o va dezactiva.</value>
+    <value>Țineți cont că întrerupătorul de conexiune este activat. Actualizarea sau închiderea aplicației îl va dezactiva.</value>
     <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
@@ -1768,7 +1768,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>Am înțeles</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
-    <value>Pentru ca divizarea traficului să funcționeze, trebuie să dezactivați blocarea conexiunii.</value>
+    <value>Pentru ca divizarea traficului să funcționeze, trebuie să dezactivați întrerupătorul de conexiune.</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1_One">
     <value>Sute de servere în {0} țară</value>
@@ -1928,7 +1928,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>Reparați instalarea.</value>
   </data>
   <data name="KillSwitch">
-    <value>Blocare conexiune</value>
+    <value>Întrerupător de conexiune</value>
     <comment>Title for the kill switch feature. This feature is available from the side bar as a quick settings.</comment>
   </data>
   <data name="License_ttl">
@@ -1955,7 +1955,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The text on Login button in Login window (logs in the user)</comment>
   </data>
   <data name="Login_lbl_KillSwitch">
-    <value>Blocarea conexiunii este activă</value>
+    <value>Întrerupătorul de conexiune este activ</value>
     <comment>The text displayed on the login window when user was force logged out while kill switch is active</comment>
   </data>
   <data name="Login_lbl_Password">
@@ -2455,11 +2455,11 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The label for Profiles list in combo box in Quick Launch window</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOff">
-    <value>Blocare conexiune oprită</value>
+    <value>Întrerupător de conexiune oprit</value>
     <comment>The text for the clickable option to disable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_KillSwitchOn">
-    <value>Blocare conexiune pornită</value>
+    <value>Întrerupător de conexiune pornit</value>
     <comment>The text for the clickable option to enable the kill switch feature.</comment>
   </data>
   <data name="QuickSettings_btn_LearnMore">
@@ -2475,7 +2475,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <value>Blocare malware, reclame și instrumente de urmărire</value>
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
-    <value>Blocare permanentă conexiune</value>
+    <value>Întrerupător permanent de conexiune</value>
     <comment>The text for the clickable option to enable the kill switch feature permanently (even when the VPN app is not running).</comment>
   </data>
   <data name="QuickSettings_btn_PortForwardingOff">
@@ -2776,7 +2776,7 @@ Urmați &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="th
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info">
-    <value>Excludeți o aplicație sau o adresă IP din traficul VPN sau includeți numai anumite aplicații. Nu poate fi pornit împreună cu blocarea conexiunii.</value>
+    <value>Excludeți o aplicație sau o adresă IP din traficul VPN sau includeți numai anumite aplicații. Nu poate fi pornită împreună cu întrerupătorul de conexiune.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_btn_LearnMore">
@@ -2973,11 +2973,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text displayed in a tooltip of Connection section of Sidebar section of main app window</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch">
-    <value>Blocare conexiune activată!</value>
+    <value>Întrerupător de conexiune activat!</value>
     <comment>The text displayed in the sidebar when connection dropped and kill switch is turned on</comment>
   </data>
   <data name="Sidebar_Connection_lbl_KillSwitch_Info">
-    <value>Blocarea conexiunii blochează toate conexiunile pentru e preveni divulgarea datelor.</value>
+    <value>Întrerupător de conexiune blochează toate conexiunile pentru e preveni divulgarea datelor.</value>
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">
@@ -3113,7 +3113,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Conectați-vă la un server Plus din această țară pentru a reda transmisii în flux.</value>
   </data>
   <data name="Sidebar_Streaming_InfoNote">
-    <value>Notă: Folosiți un alt navigator și/sau goliți bufferul pentru a vă asigura că apare conținut nou.</value>
+    <value>Observație: Folosiți un alt navigator și/sau goliți bufferul pentru a vă asigura că apare conținut nou.</value>
   </data>
   <data name="Sidebar_Streaming_More">
     <value>și mai multe</value>
@@ -3123,11 +3123,11 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="StartMinimizedMode_val_ToSystray">
-    <value>în Zona de notificare</value>
+    <value>în zona de notificare</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="StartMinimizedMode_val_ToTaskbar">
-    <value>în Bara de sarcini</value>
+    <value>în bara de sarcini</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="TextBoxPlaceholder">

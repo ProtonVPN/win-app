@@ -33,8 +33,10 @@ using ProtonVPN.Common.Threading;
 using ProtonVPN.EntityMapping.Installers;
 using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.OperatingSystems.Processes.Installers;
+using ProtonVPN.OperatingSystems.Registries.Installers;
 using ProtonVPN.ProcessCommunication.Installers;
-using ProtonVPN.ProcessCommunication.Service.Installers;
+using ProtonVPN.ProcessCommunication.Server.Installers;
 using ProtonVPN.Service.Config;
 using ProtonVPN.Service.Driver;
 using ProtonVPN.Service.Firewall;
@@ -62,9 +64,10 @@ namespace ProtonVPN.Service.Start
 
             builder.RegisterType<JsonSerializerFactory>().As<ITextSerializerFactory>().SingleInstance();
 
+            builder.RegisterType<UiController>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<VpnController>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<UpdateController>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<AppControllerCaller>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<ClientControllerSender>().AsImplementedInterfaces().SingleInstance();
 
             builder.Register(_ => new ServiceRetryPolicy(2, TimeSpan.FromSeconds(1))).SingleInstance();
             builder.Register(c => new CalloutDriver(
@@ -141,8 +144,10 @@ namespace ProtonVPN.Service.Start
         private void RegisterModules(ContainerBuilder builder)
         {
             builder.RegisterAssemblyModule<EntityMappingModule>()
+                   .RegisterAssemblyModule<ProcessesModule>()
+                   .RegisterAssemblyModule<RegistriesModule>()
                    .RegisterAssemblyModule<ProcessCommunicationModule>()
-                   .RegisterAssemblyModule<ServiceProcessCommunicationModule>()
+                   .RegisterAssemblyModule<ServerProcessCommunicationModule>()
                    .RegisterAssemblyModule<IssueReportingModule>();
         }
 

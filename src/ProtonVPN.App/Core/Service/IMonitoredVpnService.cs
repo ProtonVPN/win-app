@@ -32,5 +32,7 @@ namespace ProtonVPN.Core.Service
         bool IsRunning();
         Task<Result> StartAsync();
         Task<Result> StopAsync();
+
+        Task StartIfNotRunningAsync();
     }
 }

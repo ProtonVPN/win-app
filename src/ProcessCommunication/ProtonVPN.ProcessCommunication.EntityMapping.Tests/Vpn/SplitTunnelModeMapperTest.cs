@@ -24,14 +24,13 @@ using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.ProcessCommunication.EntityMapping.Tests.Common;
 using ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn;
+
+[TestClass]
+public class SplitTunnelModeMapperTest : EnumMapperTestBase<SplitTunnelMode, SplitTunnelModeIpcEntity>
 {
-    [TestClass]
-    public class SplitTunnelModeMapperTest : EnumMapperTestBase<SplitTunnelMode, SplitTunnelModeIpcEntity>
+    protected override IMapper<SplitTunnelMode, SplitTunnelModeIpcEntity> CreateMapper()
     {
-        protected override IMapper<SplitTunnelMode, SplitTunnelModeIpcEntity> CreateMapper()
-        {
-            return new SplitTunnelModeMapper();
-        }
+        return new SplitTunnelModeMapper();
     }
 }

@@ -22,75 +22,74 @@ using ProtonVPN.Common.Vpn;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn;
+
+[TestClass]
+public class TrafficBytesMapperTest
 {
-    [TestClass]
-    public class TrafficBytesMapperTest
+    private TrafficBytesMapper _mapper;
+
+    [TestInitialize]
+    public void Initialize()
     {
-        private TrafficBytesMapper _mapper;
+        _mapper = new();
+    }
 
-        [TestInitialize]
-        public void Initialize()
+    [TestCleanup]
+    public void Cleanup()
+    {
+        _mapper = null;
+    }
+
+    [TestMethod]
+    public void TestMapLeftToRight_WhenZero()
+    {
+        InOutBytes entityToTest = InOutBytes.Zero;
+
+        TrafficBytesIpcEntity result = _mapper.Map(entityToTest);
+
+        Assert.IsNotNull(result);
+        Assert.AreEqual(0u, result.BytesIn);
+        Assert.AreEqual(0u, result.BytesOut);
+    }
+
+    [TestMethod]
+    public void TestMapLeftToRight()
+    {
+        InOutBytes entityToTest = new((ulong)DateTime.UtcNow.Ticks, (ulong)DateTime.UtcNow.Millisecond);
+
+        TrafficBytesIpcEntity result = _mapper.Map(entityToTest);
+
+        Assert.IsNotNull(result);
+        Assert.AreEqual(entityToTest.BytesIn, result.BytesIn);
+        Assert.AreEqual(entityToTest.BytesOut, result.BytesOut);
+    }
+
+    [TestMethod]
+    public void TestMapRightToLeft_WhenNull()
+    {
+        TrafficBytesIpcEntity entityToTest = null;
+
+        InOutBytes result = _mapper.Map(entityToTest);
+
+        Assert.IsNotNull(result);
+        Assert.AreEqual(0u, result.BytesIn);
+        Assert.AreEqual(0u, result.BytesOut);
+    }
+
+    [TestMethod]
+    public void TestMapRightToLeft()
+    {
+        TrafficBytesIpcEntity entityToTest = new()
         {
-            _mapper = new();
-        }
+            BytesIn = (ulong)DateTime.UtcNow.Ticks,
+            BytesOut = (ulong)DateTime.UtcNow.Millisecond,
+        };
 
-        [TestCleanup]
-        public void Cleanup()
-        {
-            _mapper = null;
-        }
+        InOutBytes result = _mapper.Map(entityToTest);
 
-        [TestMethod]
-        public void TestMapLeftToRight_WhenZero()
-        {
-            InOutBytes entityToTest = InOutBytes.Zero;
-
-            TrafficBytesIpcEntity result = _mapper.Map(entityToTest);
-
-            Assert.IsNotNull(result);
-            Assert.AreEqual(0, result.BytesIn);
-            Assert.AreEqual(0, result.BytesOut);
-        }
-
-        [TestMethod]
-        public void TestMapLeftToRight()
-        {
-            InOutBytes entityToTest = new(DateTime.UtcNow.Ticks, DateTime.UtcNow.Millisecond);
-
-            TrafficBytesIpcEntity result = _mapper.Map(entityToTest);
-
-            Assert.IsNotNull(result);
-            Assert.AreEqual(entityToTest.BytesIn, result.BytesIn);
-            Assert.AreEqual(entityToTest.BytesOut, result.BytesOut);
-        }
-
-        [TestMethod]
-        public void TestMapRightToLeft_WhenNull()
-        {
-            TrafficBytesIpcEntity entityToTest = null;
-
-            InOutBytes result = _mapper.Map(entityToTest);
-
-            Assert.IsNotNull(result);
-            Assert.AreEqual(0, result.BytesIn);
-            Assert.AreEqual(0, result.BytesOut);
-        }
-
-        [TestMethod]
-        public void TestMapRightToLeft()
-        {
-            TrafficBytesIpcEntity entityToTest = new()
-            {
-                BytesIn = DateTime.UtcNow.Ticks,
-                BytesOut = DateTime.UtcNow.Millisecond,
-            };
-
-            InOutBytes result = _mapper.Map(entityToTest);
-
-            Assert.IsNotNull(result);
-            Assert.AreEqual(entityToTest.BytesIn, result.BytesIn);
-            Assert.AreEqual(entityToTest.BytesOut, result.BytesOut);
-        }
+        Assert.IsNotNull(result);
+        Assert.AreEqual(entityToTest.BytesIn, result.BytesIn);
+        Assert.AreEqual(entityToTest.BytesOut, result.BytesOut);
     }
 }

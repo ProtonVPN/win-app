@@ -21,30 +21,29 @@ using ProtonVPN.Common;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn
-{
-    public class SplitTunnelModeMapper : IMapper<SplitTunnelMode, SplitTunnelModeIpcEntity>
-    {
-        public SplitTunnelModeIpcEntity Map(SplitTunnelMode leftEntity)
-        {
-            return leftEntity switch
-            {
-                SplitTunnelMode.Disabled => SplitTunnelModeIpcEntity.Disabled,
-                SplitTunnelMode.Block => SplitTunnelModeIpcEntity.Block,
-                SplitTunnelMode.Permit => SplitTunnelModeIpcEntity.Permit,
-                _ => throw new NotImplementedException("SplitTunnelMode has an unknown value.")
-            };
-        }
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
 
-        public SplitTunnelMode Map(SplitTunnelModeIpcEntity rightEntity)
+public class SplitTunnelModeMapper : IMapper<SplitTunnelMode, SplitTunnelModeIpcEntity>
+{
+    public SplitTunnelModeIpcEntity Map(SplitTunnelMode leftEntity)
+    {
+        return leftEntity switch
         {
-            return rightEntity switch
-            {
-                SplitTunnelModeIpcEntity.Disabled => SplitTunnelMode.Disabled,
-                SplitTunnelModeIpcEntity.Block => SplitTunnelMode.Block,
-                SplitTunnelModeIpcEntity.Permit => SplitTunnelMode.Permit,
-                _ => throw new NotImplementedException("SplitTunnelMode has an unknown value.")
-            };
-        }
+            SplitTunnelMode.Disabled => SplitTunnelModeIpcEntity.Disabled,
+            SplitTunnelMode.Block => SplitTunnelModeIpcEntity.Block,
+            SplitTunnelMode.Permit => SplitTunnelModeIpcEntity.Permit,
+            _ => throw new NotImplementedException("SplitTunnelMode has an unknown value.")
+        };
+    }
+
+    public SplitTunnelMode Map(SplitTunnelModeIpcEntity rightEntity)
+    {
+        return rightEntity switch
+        {
+            SplitTunnelModeIpcEntity.Disabled => SplitTunnelMode.Disabled,
+            SplitTunnelModeIpcEntity.Block => SplitTunnelMode.Block,
+            SplitTunnelModeIpcEntity.Permit => SplitTunnelMode.Permit,
+            _ => throw new NotImplementedException("SplitTunnelMode has an unknown value.")
+        };
     }
 }

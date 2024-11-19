@@ -176,7 +176,7 @@ namespace ProtonVPN.Common.Configuration
         [Range(1, 255)]
         int MaxProfileNameLength { get; set; }
 
-        [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
+        [Range(typeof(TimeSpan), "00:00:01", "23:59:59")]
         TimeSpan ServiceCheckInterval { get; set; }
 
         [Required]
@@ -250,7 +250,7 @@ namespace ProtonVPN.Common.Configuration
 
         public bool IsCertificateValidationDisabled { get; set; }
 
-        public decimal? DeviceRolloutPercentage { get; set; }
+        public decimal? DeviceRolloutProportion { get; set; }
 
         [Range(typeof(TimeSpan), "00:00:10", "23:59:59")]
         TimeSpan StatisticalEventSendTriggerInterval { get; set; }

@@ -34,7 +34,6 @@ using ProtonVPN.Api;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Api.Contracts.Servers;
-using ProtonVPN.Api.Handlers;
 using ProtonVPN.Api.Installers;
 using ProtonVPN.BugReporting;
 using ProtonVPN.Common.Abstract;
@@ -42,6 +41,7 @@ using ProtonVPN.Common.Cli;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Installers.Extensions;
+using ProtonVPN.Common.OS.Architecture;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Core.Abstract;
@@ -72,7 +72,6 @@ using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
-using ProtonVPN.Logging.Contracts.Events.ProcessCommunicationLogs;
 using ProtonVPN.Logging.Installers;
 using ProtonVPN.Login;
 using ProtonVPN.Login.ViewModels;
@@ -83,16 +82,19 @@ using ProtonVPN.Modals.ApiActions;
 using ProtonVPN.Modals.Welcome;
 using ProtonVPN.Notifications;
 using ProtonVPN.Onboarding;
+using ProtonVPN.OperatingSystems.Processes.Installers;
+using ProtonVPN.OperatingSystems.Registries.Installers;
 using ProtonVPN.P2PDetection;
-using ProtonVPN.ProcessCommunication.App.Installers;
+using ProtonVPN.ProcessCommunication.Client.Installers;
 using ProtonVPN.ProcessCommunication.Contracts;
-using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 using ProtonVPN.ProcessCommunication.Installers;
 using ProtonVPN.QuickLaunch;
 using ProtonVPN.Settings;
 using ProtonVPN.Settings.Migrations;
 using ProtonVPN.Sidebar;
 using ProtonVPN.Sidebar.Announcements;
+using ProtonVPN.StatisticalEvents.Contracts;
+using ProtonVPN.StatisticalEvents.Installers;
 using ProtonVPN.Streaming;
 using ProtonVPN.Translations;
 using ProtonVPN.Update;
@@ -132,8 +134,10 @@ namespace ProtonVPN.Core
                    .RegisterAssemblyModule<AnnouncementsModule>()
                    .RegisterAssemblyModule<DnsModule>()
                    .RegisterAssemblyModule<EntityMappingModule>()
+                   .RegisterAssemblyModule<ProcessesModule>()
+                   .RegisterAssemblyModule<RegistriesModule>()
                    .RegisterAssemblyModule<ProcessCommunicationModule>()
-                   .RegisterAssemblyModule<AppProcessCommunicationModule>()
+                   .RegisterAssemblyModule<ClientProcessCommunicationModule>()
                    .RegisterAssemblyModule<StatisticalEventsModule>();
 
             _container = builder.Build();
@@ -145,7 +149,7 @@ namespace ProtonVPN.Core
 
             IConfiguration appConfig = Resolve<IConfiguration>();
 
-            Resolve<ILogger>().Info<AppStartLog>($"= Booting ProtonVPN version: {appConfig.AppVersion} os: {Environment.OSVersion.VersionString} {appConfig.OsBits} bit =");
+            Resolve<ILogger>().Info<AppStartLog>($"= Booting ProtonVPN version: {appConfig.AppVersion} os: {Environment.OSVersion.VersionString} {OsArchitecture.Value} =");
 
             Resolve<ILogCleaner>().Clean(appConfig.AppLogFolder, 10);
 
@@ -161,6 +165,7 @@ namespace ProtonVPN.Core
             RegisterEvents();
             Resolve<Language>().Initialize(e.Args);
             InitializeUpdates(e.Args);
+            HandleProtonInstallerArguments(e.Args);
 
             if (Resolve<IAppSettings>().StartMinimized == StartMinimizedMode.Disabled)
             {
@@ -170,7 +175,7 @@ namespace ProtonVPN.Core
             Resolve<IReportAnIssueFormDataProvider>().FetchDataAsync();
             StartVpnServiceAsync();
 
-            StartGrpcServerAsync();
+            StartProcessCommunication();
 
             if (Resolve<IUserStorage>().GetUser().Empty() || !await IsUserValid() || await SessionExpired())
             {
@@ -192,15 +197,26 @@ namespace ProtonVPN.Core
             Resolve<UpdateService>().Initialize();
         }
 
-        private async Task StartGrpcServerAsync()
+        private void HandleProtonInstallerArguments(string[] args)
+        {
+            bool isCleanInstall = new CommandLineOption("CleanInstall", args).Exists();
+            if (isCleanInstall)
+            {
+                bool isMailInstalled = new CommandLineOption("MailInstalled", args).Exists();
+                bool isDriveInstalled = new CommandLineOption("DriveInstalled", args).Exists();
+                bool isPassInstalled = new CommandLineOption("PassInstalled", args).Exists();
+
+                IClientInstallsStatisticalEventSender statisticalEventSender = Resolve<IClientInstallsStatisticalEventSender>();
+                statisticalEventSender.Send(isMailInstalled, isDriveInstalled, isPassInstalled);
+            }
+        }
+
+        private async Task StartProcessCommunication()
         {
             try
             {
-                IGrpcServer grpcServer = Resolve<IGrpcServer>();
-                grpcServer.CreateAndStart();
-                int appServerPort = grpcServer.Port.Value;
-                Resolve<ILogger>().Info<ProcessCommunicationLog>($"Sending app gRPC server port {appServerPort} to service.");
-                await Resolve<VpnServiceCaller>().RegisterVpnClient(appServerPort);
+                IProcessCommunicationStarter processCommunicationStarter = Resolve<IProcessCommunicationStarter>();
+                processCommunicationStarter.Start();
             }
             catch (Exception e)
             {
@@ -211,12 +227,13 @@ namespace ProtonVPN.Core
 
         public void OnExit()
         {
-            Resolve<IGrpcServer>().KillAsync();
+            Resolve<IClientControllerListener>().Stop();
+            Resolve<IGrpcClient>().Stop();
             Resolve<ILogger>().Info<AppStopLog>("The app is exiting. Requesting services to stop.");
             Resolve<TrayIcon>().Hide();
             Resolve<IMonitoredVpnService>().StopAsync();
         }
-
+        
         private async Task<bool> SessionExpired()
         {
             if (string.IsNullOrEmpty(Resolve<IAppSettings>().AccessToken))
@@ -440,7 +457,7 @@ namespace ProtonVPN.Core
                 }
             });
 
-            Resolve<IAppController>().OnOpenWindowInvoked += (_, _) =>
+            Resolve<IClientControllerEventHandler>().OnOpenWindowInvoked += (_, _) =>
             {
                 IEnumerable<IOpenMainWindowAware> instances = Resolve<IEnumerable<IOpenMainWindowAware>>();
                 foreach (IOpenMainWindowAware instance in instances)

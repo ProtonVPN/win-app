@@ -21,6 +21,7 @@ using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using FlaUI.Core.AutomationElements;
+using FlaUI.Core.Tools;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.Windows;
@@ -35,22 +36,27 @@ namespace ProtonVPN.UI.Tests.Results
 
         public HomeResult CheckIfDnsIsResolved(string url)
         {
-            Assert.That(TryToResolveDns(url), Is.True, $"Dns was not resolved for {url}.");
+            RetryResult<bool> retry = Retry.WhileFalse(() =>
+            {
+                return TryToResolveDns(url);
+            },
+            TestData.ShortTimeout, TestData.RetryInterval);
+
+            Assert.That(retry.Result, Is.True, $"Dns was not resolved for {url}.");
+
             return this;
         }
 
         public HomeResult CheckIfDnsIsNotResolved(string url)
         {
-            Assert.That(TryToResolveDns(url), Is.False, $"DNS was resolved for {url}");
-            return this;
-        }
+            RetryResult<bool> retry = Retry.WhileTrue(() =>
+            {
+                return TryToResolveDns(url);
+            },
+            TestData.ShortTimeout, TestData.RetryInterval);
 
-        public HomeResult KillClientAndCheckIfConnectionIsKept()
-        {
-            string ipAddress = IpAddressLabelText;
-            KillAndRestartProtonVpnClient();
-            new HomeWindow().WaitUntilConnected();
-            Assert.That(ipAddress == IpAddressLabelText, Is.True, "IP Address: " + IpAddressLabelText + " does not match previous " + ipAddress + " address");
+            Assert.That(retry.Result, Is.True, $"Dns was resolved for {url}.");
+
             return this;
         }
 
@@ -66,27 +72,6 @@ namespace ProtonVPN.UI.Tests.Results
             ConnectionDataHelper client = new ConnectionDataHelper();
             string currentIpAddress = await client.GetIpAddress();
             Assert.That(currentIpAddress == IpAddressLabelText, Is.True, $"IP Address: {IpAddressLabelText} does not match expected {currentIpAddress} address from API");
-        }
-
-        private static bool TryToResolveDns(string url)
-        {
-            bool isConnected = true;
-            try
-            {
-                System.Net.Dns.GetHostEntry(url);
-            }
-            catch (SocketException)
-            {
-                isConnected = false;
-            }
-            return isConnected;
-        }
-
-        private void KillAndRestartProtonVpnClient()
-        {
-            KillProtonVpnProcess();
-            LaunchApp();
-            WaitUntilElementExistsByAutomationId("MenuHamburgerButton", TestData.LongTimeout);
         }
 
         public HomeResult CheckIfLoggedIn()
@@ -143,6 +128,27 @@ namespace ProtonVPN.UI.Tests.Results
             WaitUntilElementExistsByName("No Thanks", TestData.ShortTimeout);
             WaitUntilElementExistsByName("Upgrade Again", TestData.ShortTimeout);
             return this;
+        }
+
+        private static bool TryToResolveDns(string url)
+        {
+            bool isConnected = true;
+            try
+            {
+                System.Net.Dns.GetHostEntry(url);
+            }
+            catch (SocketException)
+            {
+                isConnected = false;
+            }
+            return isConnected;
+        }
+
+        private void KillAndRestartProtonVpnClient()
+        {
+            KillProtonVpnProcess();
+            LaunchApp();
+            WaitUntilElementExistsByAutomationId("MenuHamburgerButton", TestData.LongTimeout);
         }
     }
 }

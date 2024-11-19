@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,15 +20,15 @@
 using System;
 using System.Collections.Generic;
 
-namespace ProtonVPN.Update.Responses
+namespace ProtonVPN.Update.Responses;
+
+public class ReleaseResponse
 {
-    public class ReleaseResponse
-    {
-        public string Version;
-        public FileResponse File;
-        public IReadOnlyList<string> ChangeLog;
-        public DateTimeOffset? ReleaseDate;
-        public string MinimumOsVersion;
-        public decimal? RolloutPercentage;
-    }
+    public string CategoryName { get; set; }
+    public string Version { get; set; }
+    public DateTimeOffset? ReleaseDate { get; set; }
+    public FileResponse File { get; set; }
+    public IReadOnlyList<ReleaseNote> ReleaseNotes { get; set; }
+    public SystemVersion SystemVersion { get; set; }
+    public decimal? RolloutProportion { get; set; }
 }

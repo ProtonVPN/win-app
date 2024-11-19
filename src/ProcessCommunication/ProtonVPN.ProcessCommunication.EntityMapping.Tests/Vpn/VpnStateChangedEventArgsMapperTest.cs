@@ -27,173 +27,172 @@ using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn;
+
+[TestClass]
+public class VpnStateChangedEventArgsMapperTest
 {
-    [TestClass]
-    public class VpnStateChangedEventArgsMapperTest
+    private IEntityMapper _entityMapper;
+    private VpnStateChangedEventArgsMapper _mapper;
+
+    private VpnStatusIpcEntity? _expectedVpnStatusIpcEntity;
+    private VpnErrorTypeIpcEntity? _expectedVpnErrorTypeIpcEntity;
+    private OpenVpnAdapterIpcEntity? _expectedOpenVpnAdapterIpcEntity;
+    private VpnProtocolIpcEntity? _expectedVpnProtocolIpcEntity;
+    private VpnStatus? _expectedVpnStatus;
+    private VpnError? _expectedVpnError;
+    private OpenVpnAdapter? _expectedOpenVpnAdapter;
+    private VpnProtocol? _expectedVpnProtocol;
+
+    [TestInitialize]
+    public void Initialize()
     {
-        private IEntityMapper _entityMapper;
-        private VpnStateChangedEventArgsMapper _mapper;
+        _entityMapper = Substitute.For<IEntityMapper>();
+        _mapper = new(_entityMapper);
 
-        private VpnStatusIpcEntity? _expectedVpnStatusIpcEntity;
-        private VpnErrorTypeIpcEntity? _expectedVpnErrorTypeIpcEntity;
-        private OpenVpnAdapterIpcEntity? _expectedOpenVpnAdapterIpcEntity;
-        private VpnProtocolIpcEntity? _expectedVpnProtocolIpcEntity;
-        private VpnStatus? _expectedVpnStatus;
-        private VpnError? _expectedVpnError;
-        private OpenVpnAdapter? _expectedOpenVpnAdapter;
-        private VpnProtocol? _expectedVpnProtocol;
+        _expectedVpnStatusIpcEntity = VpnStatusIpcEntity.Connecting;
+        _entityMapper.Map<VpnStatus, VpnStatusIpcEntity>(Arg.Any<VpnStatus>())
+            .Returns(_expectedVpnStatusIpcEntity.Value);
 
-        [TestInitialize]
-        public void Initialize()
-        {
-            _entityMapper = Substitute.For<IEntityMapper>();
-            _mapper = new(_entityMapper);
+        _expectedVpnErrorTypeIpcEntity = VpnErrorTypeIpcEntity.TapAdapterInUseError;
+        _entityMapper.Map<VpnError, VpnErrorTypeIpcEntity>(Arg.Any<VpnError>())
+            .Returns(_expectedVpnErrorTypeIpcEntity.Value);
 
-            _expectedVpnStatusIpcEntity = VpnStatusIpcEntity.Connecting;
-            _entityMapper.Map<VpnStatus, VpnStatusIpcEntity>(Arg.Any<VpnStatus>())
-                .Returns(_expectedVpnStatusIpcEntity.Value);
+        _expectedOpenVpnAdapterIpcEntity = OpenVpnAdapterIpcEntity.Tun;
+        _entityMapper.MapNullableStruct<OpenVpnAdapter, OpenVpnAdapterIpcEntity>(Arg.Any<OpenVpnAdapter?>())
+            .Returns(_expectedOpenVpnAdapterIpcEntity);
 
-            _expectedVpnErrorTypeIpcEntity = VpnErrorTypeIpcEntity.TapAdapterInUseError;
-            _entityMapper.Map<VpnError, VpnErrorTypeIpcEntity>(Arg.Any<VpnError>())
-                .Returns(_expectedVpnErrorTypeIpcEntity.Value);
+        _expectedVpnProtocolIpcEntity = VpnProtocolIpcEntity.OpenVpnUdp;
+        _entityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(Arg.Any<VpnProtocol>())
+            .Returns(_expectedVpnProtocolIpcEntity.Value);
 
-            _expectedOpenVpnAdapterIpcEntity = OpenVpnAdapterIpcEntity.Tun;
-            _entityMapper.MapNullableStruct<OpenVpnAdapter, OpenVpnAdapterIpcEntity>(Arg.Any<OpenVpnAdapter?>())
-                .Returns(_expectedOpenVpnAdapterIpcEntity);
+        _expectedVpnStatus = VpnStatus.Authenticating;
+        _entityMapper.Map<VpnStatusIpcEntity, VpnStatus>(Arg.Any<VpnStatusIpcEntity>())
+            .Returns(_expectedVpnStatus.Value);
 
-            _expectedVpnProtocolIpcEntity = VpnProtocolIpcEntity.OpenVpnUdp;
-            _entityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(Arg.Any<VpnProtocol>())
-                .Returns(_expectedVpnProtocolIpcEntity.Value);
+        _expectedVpnError = VpnError.CertificateRevoked;
+        _entityMapper.Map<VpnErrorTypeIpcEntity, VpnError>(Arg.Any<VpnErrorTypeIpcEntity>())
+            .Returns(_expectedVpnError.Value);
 
-            _expectedVpnStatus = VpnStatus.Authenticating;
-            _entityMapper.Map<VpnStatusIpcEntity, VpnStatus>(Arg.Any<VpnStatusIpcEntity>())
-                .Returns(_expectedVpnStatus.Value);
+        _expectedOpenVpnAdapter = OpenVpnAdapter.Tun;
+        _entityMapper.MapNullableStruct<OpenVpnAdapterIpcEntity, OpenVpnAdapter>(Arg.Any<OpenVpnAdapterIpcEntity?>())
+            .Returns(_expectedOpenVpnAdapter);
 
-            _expectedVpnError = VpnError.CertificateRevoked;
-            _entityMapper.Map<VpnErrorTypeIpcEntity, VpnError>(Arg.Any<VpnErrorTypeIpcEntity>())
-                .Returns(_expectedVpnError.Value);
+        _expectedVpnProtocol = VpnProtocol.OpenVpnTcp;
+        _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(Arg.Any<VpnProtocolIpcEntity>())
+            .Returns(_expectedVpnProtocol.Value);
+    }
 
-            _expectedOpenVpnAdapter = OpenVpnAdapter.Tun;
-            _entityMapper.MapNullableStruct<OpenVpnAdapterIpcEntity, OpenVpnAdapter>(Arg.Any<OpenVpnAdapterIpcEntity?>())
-                .Returns(_expectedOpenVpnAdapter);
+    [TestCleanup]
+    public void Cleanup()
+    {
+        _entityMapper = null;
+        _mapper = null;
 
-            _expectedVpnProtocol = VpnProtocol.OpenVpnTcp;
-            _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(Arg.Any<VpnProtocolIpcEntity>())
-                .Returns(_expectedVpnProtocol.Value);
-        }
+        _expectedVpnStatusIpcEntity = null;
+        _expectedVpnErrorTypeIpcEntity = null;
+        _expectedOpenVpnAdapterIpcEntity = null;
+        _expectedVpnProtocolIpcEntity = null;
+        _expectedVpnStatus = null;
+        _expectedVpnError = null;
+        _expectedOpenVpnAdapter = null;
+        _expectedVpnProtocol = null;
+    }
 
-        [TestCleanup]
-        public void Cleanup()
-        {
-            _entityMapper = null;
-            _mapper = null;
+    [TestMethod]
+    public void TestMapLeftToRight_UsingMultipleArgumentConstructor()
+    {
+        VpnStateChangedEventArgs entityToTest = new(
+            status: VpnStatus.AssigningIp,
+            error: VpnError.TlsError,
+            endpointIp: "192.168.0.0",
+            networkBlocked: true,
+            vpnProtocol: VpnProtocol.OpenVpnTcp,
+            networkAdapterType: OpenVpnAdapter.Tun,
+            label: "Proton VPN");
 
-            _expectedVpnStatusIpcEntity = null;
-            _expectedVpnErrorTypeIpcEntity = null;
-            _expectedOpenVpnAdapterIpcEntity = null;
-            _expectedVpnProtocolIpcEntity = null;
-            _expectedVpnStatus = null;
-            _expectedVpnError = null;
-            _expectedOpenVpnAdapter = null;
-            _expectedVpnProtocol = null;
-        }
+        VpnStateIpcEntity result = _mapper.Map(entityToTest);
 
-        [TestMethod]
-        public void TestMapLeftToRight_UsingMultipleArgumentConstructor()
-        {
-            VpnStateChangedEventArgs entityToTest = new(
-                status: VpnStatus.AssigningIp, 
-                error: VpnError.TlsError, 
-                endpointIp: "192.168.0.0",
-                networkBlocked: true, 
-                vpnProtocol: VpnProtocol.OpenVpnTcp, 
+        Assert.IsNotNull(result);
+        Assert.AreEqual(_expectedVpnStatusIpcEntity, result.Status);
+        Assert.AreEqual(_expectedVpnErrorTypeIpcEntity, result.Error);
+        Assert.AreEqual(entityToTest.NetworkBlocked, result.NetworkBlocked);
+        Assert.AreEqual(entityToTest.State.EntryIp, result.EndpointIp);
+        Assert.AreEqual(_expectedOpenVpnAdapterIpcEntity, result.OpenVpnAdapterType);
+        Assert.AreEqual(_expectedVpnProtocolIpcEntity, result.VpnProtocol);
+        Assert.AreEqual(entityToTest.State.Label, result.Label);
+    }
+
+    [TestMethod]
+    public void TestMapLeftToRight_UsingStateArgumentConstructor()
+    {
+        VpnStateChangedEventArgs entityToTest = new(
+            status: VpnStatus.Authenticating,
+            error: VpnError.NoServers,
+            server: Server.Empty(),
+            networkBlocked: true);
+
+        VpnStateIpcEntity result = _mapper.Map(entityToTest);
+
+        Assert.IsNotNull(result);
+        Assert.AreEqual(_expectedVpnStatusIpcEntity, result.Status);
+        Assert.AreEqual(_expectedVpnErrorTypeIpcEntity, result.Error);
+        Assert.AreEqual(entityToTest.NetworkBlocked, result.NetworkBlocked);
+        Assert.AreEqual(entityToTest.State.EntryIp, result.EndpointIp);
+        Assert.AreEqual(_expectedOpenVpnAdapterIpcEntity, result.OpenVpnAdapterType);
+        Assert.AreEqual(_expectedVpnProtocolIpcEntity, result.VpnProtocol);
+        Assert.AreEqual(entityToTest.State.Label, result.Label);
+    }
+
+    [TestMethod]
+    public void TestMapLeftToRight_UsingVpnStateArgumentConstructor()
+    {
+        VpnStateChangedEventArgs entityToTest = new(
+            state: new VpnState(
+                status: VpnStatus.RetrievingConfiguration,
+                entryIp: "172.16.0.0",
+                vpnProtocol: VpnProtocol.WireGuardUdp,
                 networkAdapterType: OpenVpnAdapter.Tun,
-                label: "Proton VPN");
+                label: "Proton VPN"
+            ),
+            error: VpnError.Unknown,
+            networkBlocked: true);
 
-            VpnStateIpcEntity result = _mapper.Map(entityToTest);
+        VpnStateIpcEntity result = _mapper.Map(entityToTest);
 
-            Assert.IsNotNull(result);
-            Assert.AreEqual(_expectedVpnStatusIpcEntity, result.Status);
-            Assert.AreEqual(_expectedVpnErrorTypeIpcEntity, result.Error);
-            Assert.AreEqual(entityToTest.NetworkBlocked, result.NetworkBlocked);
-            Assert.AreEqual(entityToTest.State.EntryIp, result.EndpointIp);
-            Assert.AreEqual(_expectedOpenVpnAdapterIpcEntity, result.OpenVpnAdapterType);
-            Assert.AreEqual(_expectedVpnProtocolIpcEntity, result.VpnProtocol);
-            Assert.AreEqual(entityToTest.State.Label, result.Label);
-        }
+        Assert.IsNotNull(result);
+        Assert.AreEqual(_expectedVpnStatusIpcEntity, result.Status);
+        Assert.AreEqual(_expectedVpnErrorTypeIpcEntity, result.Error);
+        Assert.AreEqual(entityToTest.NetworkBlocked, result.NetworkBlocked);
+        Assert.AreEqual(entityToTest.State.EntryIp, result.EndpointIp);
+        Assert.AreEqual(_expectedOpenVpnAdapterIpcEntity, result.OpenVpnAdapterType);
+        Assert.AreEqual(_expectedVpnProtocolIpcEntity, result.VpnProtocol);
+        Assert.AreEqual(entityToTest.State.Label, result.Label);
+    }
 
-        [TestMethod]
-        public void TestMapLeftToRight_UsingStateArgumentConstructor()
-        {
-            VpnStateChangedEventArgs entityToTest = new(
-                status: VpnStatus.Authenticating,
-                error: VpnError.NoServers,
-                server: Server.Empty(), 
-                networkBlocked: true);
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void TestMapRightToLeft_ThrowsWhenNull()
+    {
+        VpnStateIpcEntity entityToTest = null;
 
-            VpnStateIpcEntity result = _mapper.Map(entityToTest);
+        _mapper.Map(entityToTest);
+    }
 
-            Assert.IsNotNull(result);
-            Assert.AreEqual(_expectedVpnStatusIpcEntity, result.Status);
-            Assert.AreEqual(_expectedVpnErrorTypeIpcEntity, result.Error);
-            Assert.AreEqual(entityToTest.NetworkBlocked, result.NetworkBlocked);
-            Assert.AreEqual(entityToTest.State.EntryIp, result.EndpointIp);
-            Assert.AreEqual(_expectedOpenVpnAdapterIpcEntity, result.OpenVpnAdapterType);
-            Assert.AreEqual(_expectedVpnProtocolIpcEntity, result.VpnProtocol);
-            Assert.AreEqual(entityToTest.State.Label, result.Label);
-        }
+    [TestMethod]
+    public void TestMapRightToLeft()
+    {
+        VpnStateIpcEntity entityToTest = new();
 
-        [TestMethod]
-        public void TestMapLeftToRight_UsingVpnStateArgumentConstructor()
-        {
-            VpnStateChangedEventArgs entityToTest = new(
-                state: new VpnState(
-                    status: VpnStatus.RetrievingConfiguration,
-                    entryIp: "172.16.0.0", 
-                    vpnProtocol: VpnProtocol.WireGuardUdp,
-                    networkAdapterType: OpenVpnAdapter.Tun,
-                    label: "Proton VPN"
-                ),
-                error: VpnError.IncorrectVpnConfig,
-                networkBlocked: true);
+        VpnStateChangedEventArgs result = _mapper.Map(entityToTest);
 
-            VpnStateIpcEntity result = _mapper.Map(entityToTest);
-
-            Assert.IsNotNull(result);
-            Assert.AreEqual(_expectedVpnStatusIpcEntity, result.Status);
-            Assert.AreEqual(_expectedVpnErrorTypeIpcEntity, result.Error);
-            Assert.AreEqual(entityToTest.NetworkBlocked, result.NetworkBlocked);
-            Assert.AreEqual(entityToTest.State.EntryIp, result.EndpointIp);
-            Assert.AreEqual(_expectedOpenVpnAdapterIpcEntity, result.OpenVpnAdapterType);
-            Assert.AreEqual(_expectedVpnProtocolIpcEntity, result.VpnProtocol);
-            Assert.AreEqual(entityToTest.State.Label, result.Label);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void TestMapRightToLeft_ThrowsWhenNull()
-        {
-            VpnStateIpcEntity entityToTest = null;
-
-            _mapper.Map(entityToTest);
-        }
-
-        [TestMethod]
-        public void TestMapRightToLeft()
-        {
-            VpnStateIpcEntity entityToTest = new();
-
-            VpnStateChangedEventArgs result = _mapper.Map(entityToTest);
-
-            Assert.IsNotNull(result);
-            Assert.AreEqual(_expectedVpnStatus, result.State.Status);
-            Assert.AreEqual(_expectedVpnError, result.Error);
-            Assert.AreEqual(entityToTest.NetworkBlocked, result.NetworkBlocked);
-            Assert.AreEqual(entityToTest.EndpointIp, result.State.EntryIp);
-            Assert.AreEqual(_expectedOpenVpnAdapter, result.State.NetworkAdapterType);
-            Assert.AreEqual(_expectedVpnProtocol, result.State.VpnProtocol);
-            Assert.AreEqual(entityToTest.Label, result.State.Label);
-        }
+        Assert.IsNotNull(result);
+        Assert.AreEqual(_expectedVpnStatus, result.State.Status);
+        Assert.AreEqual(_expectedVpnError, result.Error);
+        Assert.AreEqual(entityToTest.NetworkBlocked, result.NetworkBlocked);
+        Assert.AreEqual(entityToTest.EndpointIp, result.State.EntryIp);
+        Assert.AreEqual(_expectedOpenVpnAdapter, result.State.NetworkAdapterType);
+        Assert.AreEqual(_expectedVpnProtocol, result.State.VpnProtocol);
+        Assert.AreEqual(entityToTest.Label, result.State.Label);
     }
 }

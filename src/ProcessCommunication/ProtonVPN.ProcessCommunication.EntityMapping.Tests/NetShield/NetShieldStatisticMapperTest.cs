@@ -22,85 +22,84 @@ using ProtonVPN.Common.NetShield;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.NetShield;
 using ProtonVPN.ProcessCommunication.EntityMapping.NetShield;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.NetShield
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.NetShield;
+
+[TestClass]
+public class NetShieldStatisticMapperTest
 {
-    [TestClass]
-    public class NetShieldStatisticMapperTest
+    private NetShieldStatisticMapper _mapper;
+
+    [TestInitialize]
+    public void Initialize()
     {
-        private NetShieldStatisticMapper _mapper;
+        _mapper = new();
+    }
 
-        [TestInitialize]
-        public void Initialize()
+    [TestCleanup]
+    public void Cleanup()
+    {
+        _mapper = null;
+    }
+
+    [TestMethod]
+    public void TestMapLeftToRight_WhenNull()
+    {
+        NetShieldStatistic entityToTest = null;
+
+        NetShieldStatisticIpcEntity result = _mapper.Map(entityToTest);
+
+        Assert.IsNull(result);
+    }
+
+    [TestMethod]
+    public void TestMapLeftToRight()
+    {
+        NetShieldStatistic entityToTest = new()
         {
-            _mapper = new();
-        }
+            NumOfMaliciousUrlsBlocked = DateTime.UtcNow.Millisecond,
+            NumOfAdvertisementUrlsBlocked = DateTime.UtcNow.Ticks,
+            NumOfTrackingUrlsBlocked = DateTime.UtcNow.Year
+        };
+        Assert.IsNotNull(entityToTest.TimestampUtc);
 
-        [TestCleanup]
-        public void Cleanup()
+        NetShieldStatisticIpcEntity result = _mapper.Map(entityToTest);
+
+        Assert.IsNotNull(result);
+        Assert.AreEqual(entityToTest.NumOfMaliciousUrlsBlocked, result.NumOfMaliciousUrlsBlocked);
+        Assert.AreEqual(entityToTest.NumOfAdvertisementUrlsBlocked, result.NumOfAdvertisementUrlsBlocked);
+        Assert.AreEqual(entityToTest.NumOfTrackingUrlsBlocked, result.NumOfTrackingUrlsBlocked);
+        Assert.IsNotNull(result.TimestampUtc);
+        Assert.AreEqual(entityToTest.TimestampUtc, result.TimestampUtc);
+    }
+
+    [TestMethod]
+    public void TestMapRightToLeft_WhenNull()
+    {
+        NetShieldStatisticIpcEntity entityToTest = null;
+
+        NetShieldStatistic result = _mapper.Map(entityToTest);
+
+        Assert.IsNull(result);
+    }
+
+    [TestMethod]
+    public void TestMapRightToLeft()
+    {
+        NetShieldStatisticIpcEntity entityToTest = new()
         {
-            _mapper = null;
-        }
+            NumOfMaliciousUrlsBlocked = DateTime.UtcNow.Millisecond,
+            NumOfAdvertisementUrlsBlocked = DateTime.UtcNow.Ticks,
+            NumOfTrackingUrlsBlocked = DateTime.UtcNow.Year,
+            TimestampUtc = DateTime.UtcNow,
+        };
 
-        [TestMethod]
-        public void TestMapLeftToRight_WhenNull()
-        {
-            NetShieldStatistic entityToTest = null;
+        NetShieldStatistic result = _mapper.Map(entityToTest);
 
-            NetShieldStatisticIpcEntity result = _mapper.Map(entityToTest);
-
-            Assert.IsNull(result);
-        }
-
-        [TestMethod]
-        public void TestMapLeftToRight()
-        {
-            NetShieldStatistic entityToTest = new()
-            {
-                NumOfMaliciousUrlsBlocked = DateTime.UtcNow.Millisecond,
-                NumOfAdvertisementUrlsBlocked = DateTime.UtcNow.Ticks,
-                NumOfTrackingUrlsBlocked = DateTime.UtcNow.Year
-            };
-            Assert.IsNotNull(entityToTest.TimestampUtc);
-
-            NetShieldStatisticIpcEntity result = _mapper.Map(entityToTest);
-
-            Assert.IsNotNull(result);
-            Assert.AreEqual(entityToTest.NumOfMaliciousUrlsBlocked, result.NumOfMaliciousUrlsBlocked);
-            Assert.AreEqual(entityToTest.NumOfAdvertisementUrlsBlocked, result.NumOfAdvertisementUrlsBlocked);
-            Assert.AreEqual(entityToTest.NumOfTrackingUrlsBlocked, result.NumOfTrackingUrlsBlocked);
-            Assert.IsNotNull(result.TimestampUtc);
-            Assert.AreEqual(entityToTest.TimestampUtc, result.TimestampUtc);
-        }
-
-        [TestMethod]
-        public void TestMapRightToLeft_WhenNull()
-        {
-            NetShieldStatisticIpcEntity entityToTest = null;
-
-            NetShieldStatistic result = _mapper.Map(entityToTest);
-
-            Assert.IsNull(result);
-        }
-
-        [TestMethod]
-        public void TestMapRightToLeft()
-        {
-            NetShieldStatisticIpcEntity entityToTest = new()
-            {
-                NumOfMaliciousUrlsBlocked = DateTime.UtcNow.Millisecond,
-                NumOfAdvertisementUrlsBlocked = DateTime.UtcNow.Ticks,
-                NumOfTrackingUrlsBlocked = DateTime.UtcNow.Year,
-                TimestampUtc = DateTime.UtcNow,
-            };
-
-            NetShieldStatistic result = _mapper.Map(entityToTest);
-
-            Assert.IsNotNull(result);
-            Assert.AreEqual(entityToTest.NumOfMaliciousUrlsBlocked, result.NumOfMaliciousUrlsBlocked);
-            Assert.AreEqual(entityToTest.NumOfAdvertisementUrlsBlocked, result.NumOfAdvertisementUrlsBlocked);
-            Assert.AreEqual(entityToTest.NumOfTrackingUrlsBlocked, result.NumOfTrackingUrlsBlocked);
-            Assert.IsNotNull(result.TimestampUtc);
-            Assert.AreEqual(entityToTest.TimestampUtc, result.TimestampUtc);
-        }
+        Assert.IsNotNull(result);
+        Assert.AreEqual(entityToTest.NumOfMaliciousUrlsBlocked, result.NumOfMaliciousUrlsBlocked);
+        Assert.AreEqual(entityToTest.NumOfAdvertisementUrlsBlocked, result.NumOfAdvertisementUrlsBlocked);
+        Assert.AreEqual(entityToTest.NumOfTrackingUrlsBlocked, result.NumOfTrackingUrlsBlocked);
+        Assert.IsNotNull(result.TimestampUtc);
+        Assert.AreEqual(entityToTest.TimestampUtc, result.TimestampUtc);
     }
 }

@@ -21,39 +21,38 @@ using ProtonVPN.Common.PortForwarding;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.PortForwarding;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.PortForwarding
+namespace ProtonVPN.ProcessCommunication.EntityMapping.PortForwarding;
+
+public class PortForwardingStateMapper : IMapper<PortForwardingState, PortForwardingStateIpcEntity>
 {
-    public class PortForwardingStateMapper : IMapper<PortForwardingState, PortForwardingStateIpcEntity>
+    private readonly IEntityMapper _entityMapper;
+
+    public PortForwardingStateMapper(IEntityMapper entityMapper)
     {
-        private readonly IEntityMapper _entityMapper;
+        _entityMapper = entityMapper;
+    }
 
-        public PortForwardingStateMapper(IEntityMapper entityMapper)
-        {
-            _entityMapper = entityMapper;
-        }
+    public PortForwardingStateIpcEntity Map(PortForwardingState leftEntity)
+    {
+        return leftEntity is null
+            ? null
+            : new PortForwardingStateIpcEntity()
+            {
+                MappedPort = _entityMapper.Map<TemporaryMappedPort, TemporaryMappedPortIpcEntity>(leftEntity.MappedPort),
+                Status = _entityMapper.Map<PortMappingStatus, PortMappingStatusIpcEntity>(leftEntity.Status),
+                TimestampUtc = leftEntity.TimestampUtc,
+            };
+    }
 
-        public PortForwardingStateIpcEntity Map(PortForwardingState leftEntity)
-        {
-            return leftEntity is null
-                ? null
-                : new PortForwardingStateIpcEntity()
-                {
-                    MappedPort = _entityMapper.Map<TemporaryMappedPort, TemporaryMappedPortIpcEntity>(leftEntity.MappedPort),
-                    Status = _entityMapper.Map<PortMappingStatus, PortMappingStatusIpcEntity>(leftEntity.Status),
-                    TimestampUtc = leftEntity.TimestampUtc,
-                };
-        }
-
-        public PortForwardingState Map(PortForwardingStateIpcEntity rightEntity)
-        {
-            return rightEntity is null
-                ? null
-                : new PortForwardingState()
-                {
-                    MappedPort = _entityMapper.Map<TemporaryMappedPortIpcEntity, TemporaryMappedPort>(rightEntity.MappedPort),
-                    Status = _entityMapper.Map<PortMappingStatusIpcEntity, PortMappingStatus>(rightEntity.Status),
-                    TimestampUtc = rightEntity.TimestampUtc,
-                };
-        }
+    public PortForwardingState Map(PortForwardingStateIpcEntity rightEntity)
+    {
+        return rightEntity is null
+            ? null
+            : new PortForwardingState()
+            {
+                MappedPort = _entityMapper.Map<TemporaryMappedPortIpcEntity, TemporaryMappedPort>(rightEntity.MappedPort),
+                Status = _entityMapper.Map<PortMappingStatusIpcEntity, PortMappingStatus>(rightEntity.Status),
+                TimestampUtc = rightEntity.TimestampUtc,
+            };
     }
 }

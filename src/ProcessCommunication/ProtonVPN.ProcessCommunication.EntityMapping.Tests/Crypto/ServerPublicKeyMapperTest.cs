@@ -23,24 +23,23 @@ using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Crypto;
 using ProtonVPN.ProcessCommunication.EntityMapping.Crypto;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Crypto
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Crypto;
+
+[TestClass]
+public class ServerPublicKeyMapperTest : KeyMapperTestBase<PublicKey, ServerPublicKeyIpcEntity>
 {
-    [TestClass]
-    public class ServerPublicKeyMapperTest : KeyMapperTestBase<PublicKey, ServerPublicKeyIpcEntity>
+    protected override IMapper<PublicKey, ServerPublicKeyIpcEntity> CreateKeyMapper()
     {
-        protected override IMapper<PublicKey, ServerPublicKeyIpcEntity> CreateKeyMapper()
-        {
-            return new ServerPublicKeyMapper();
-        }
+        return new ServerPublicKeyMapper();
+    }
 
-        protected override PublicKey CreateKey(string base64, KeyAlgorithm algorithm)
-        {
-            return new(base64, algorithm);
-        }
+    protected override PublicKey CreateKey(string base64, KeyAlgorithm algorithm)
+    {
+        return new(base64, algorithm);
+    }
 
-        protected override string CreateExpectedPem(string base64)
-        {
-            return $"-----BEGIN PUBLIC KEY-----\r\n{base64}\r\n-----END PUBLIC KEY-----";
-        }
+    protected override string CreateExpectedPem(string base64)
+    {
+        return $"-----BEGIN PUBLIC KEY-----\r\n{base64}\r\n-----END PUBLIC KEY-----";
     }
 }

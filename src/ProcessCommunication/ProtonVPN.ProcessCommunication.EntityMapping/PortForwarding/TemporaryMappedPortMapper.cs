@@ -21,33 +21,32 @@ using ProtonVPN.Common.PortForwarding;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.PortForwarding;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.PortForwarding
-{
-    public class TemporaryMappedPortMapper : IMapper<TemporaryMappedPort, TemporaryMappedPortIpcEntity>
-    {
-        public TemporaryMappedPortIpcEntity Map(TemporaryMappedPort leftEntity)
-        {
-            return leftEntity?.MappedPort is null
-                ? null
-                : new TemporaryMappedPortIpcEntity()
-                {
-                    InternalPort = leftEntity.MappedPort.InternalPort,
-                    ExternalPort = leftEntity.MappedPort.ExternalPort,
-                    Lifetime = leftEntity.Lifetime,
-                    ExpirationDateUtc = leftEntity.ExpirationDateUtc,
-                };
-        }
+namespace ProtonVPN.ProcessCommunication.EntityMapping.PortForwarding;
 
-        public TemporaryMappedPort Map(TemporaryMappedPortIpcEntity rightEntity)
-        {
-            return rightEntity is null
-                ? null
-                : new TemporaryMappedPort()
-                {
-                    MappedPort = new MappedPort(internalPort: rightEntity.InternalPort, externalPort: rightEntity.ExternalPort),
-                    Lifetime = rightEntity.Lifetime,
-                    ExpirationDateUtc = rightEntity.ExpirationDateUtc,
-                };
-        }
+public class TemporaryMappedPortMapper : IMapper<TemporaryMappedPort, TemporaryMappedPortIpcEntity>
+{
+    public TemporaryMappedPortIpcEntity Map(TemporaryMappedPort leftEntity)
+    {
+        return leftEntity?.MappedPort is null
+            ? null
+            : new TemporaryMappedPortIpcEntity()
+            {
+                InternalPort = leftEntity.MappedPort.InternalPort,
+                ExternalPort = leftEntity.MappedPort.ExternalPort,
+                Lifetime = leftEntity.Lifetime,
+                ExpirationDateUtc = leftEntity.ExpirationDateUtc,
+            };
+    }
+
+    public TemporaryMappedPort Map(TemporaryMappedPortIpcEntity rightEntity)
+    {
+        return rightEntity is null
+            ? null
+            : new TemporaryMappedPort()
+            {
+                MappedPort = new MappedPort(internalPort: rightEntity.InternalPort, externalPort: rightEntity.ExternalPort),
+                Lifetime = rightEntity.Lifetime,
+                ExpirationDateUtc = rightEntity.ExpirationDateUtc,
+            };
     }
 }

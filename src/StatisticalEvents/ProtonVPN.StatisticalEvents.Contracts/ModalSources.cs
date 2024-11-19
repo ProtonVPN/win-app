@@ -33,7 +33,6 @@ namespace ProtonVPN.StatisticalEvents.Contracts
         SplitTunneling,
         CustomDns,
         ModerateNat,
-        NonStandardPorts,
         ChangeServer,
         PromoOffer,
         Downgrade,

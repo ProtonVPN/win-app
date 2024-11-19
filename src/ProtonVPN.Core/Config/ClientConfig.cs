@@ -27,6 +27,7 @@ using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.VpnConfig;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
@@ -107,11 +108,11 @@ namespace ProtonVPN.Core.Config
                 if (response.Success)
                 {
                     _lastSuccessfulUpdateTime = DateTime.UtcNow;
-                    _appSettings.OpenVpnTcpPorts = response.Value.DefaultPorts.OpenVpn.Tcp;
-                    _appSettings.OpenVpnUdpPorts = response.Value.DefaultPorts.OpenVpn.Udp;
-                    _appSettings.WireGuardPorts = response.Value.DefaultPorts.WireGuard.Udp.Where(IsWireGuardPortSupported).ToArray();
-                    _appSettings.WireGuardTcpPorts = response.Value.DefaultPorts.WireGuard.Tcp.Where(IsWireGuardPortSupported).ToArray();
-                    _appSettings.WireGuardTlsPorts = response.Value.DefaultPorts.WireGuard.Tls.Where(IsWireGuardPortSupported).ToArray();
+                    _appSettings.OpenVpnTcpPorts = CreateEmptyArrayIfNull(response.Value.DefaultPorts?.OpenVpn?.Tcp);
+                    _appSettings.OpenVpnUdpPorts = CreateEmptyArrayIfNull(response.Value.DefaultPorts?.OpenVpn?.Udp);
+                    _appSettings.WireGuardPorts = CreateEmptyArrayIfNull(response.Value.DefaultPorts?.WireGuard?.Udp).Where(IsWireGuardPortSupported).ToArray();
+                    _appSettings.WireGuardTcpPorts = CreateEmptyArrayIfNull(response.Value.DefaultPorts?.WireGuard?.Tcp).Where(IsWireGuardPortSupported).ToArray();
+                    _appSettings.WireGuardTlsPorts = CreateEmptyArrayIfNull(response.Value.DefaultPorts?.WireGuard?.Tls).Where(IsWireGuardPortSupported).ToArray();
                     _appSettings.FeatureNetShieldEnabled = response.Value.FeatureFlags.NetShield;
                     _appSettings.FeatureNetShieldStatsEnabled = response?.Value?.FeatureFlags?.NetShieldStats ?? false;
 
@@ -141,7 +142,6 @@ namespace ProtonVPN.Core.Config
                     bool smartReconnectFeatureFlag = response.Value.FeatureFlags.SmartReconnect ?? true;
                     _appSettings.FeatureSmartReconnectEnabled = vpnAcceleratorFeatureFlag && smartReconnectFeatureFlag;
 
-                    _appSettings.ShowNonStandardPortsToFreeUsers = response.Value.FeatureFlags.SafeMode ?? false;
                     _appSettings.FeatureStreamingServicesLogosEnabled = response.Value.FeatureFlags.StreamingServicesLogos ?? true;
                     _appSettings.FeaturePromoCodeEnabled = response.Value.FeatureFlags.PromoCode ?? false;
                     _appSettings.FeatureFreeRescopeEnabled = response.Value.FeatureFlags.ShowNewFreePlan ?? false;
@@ -162,11 +162,43 @@ namespace ProtonVPN.Core.Config
                         _appSettings.ChangeServerLongDelayInSeconds =
                             response.Value.ChangeServerLongDelayInSeconds.Value;
                     }
+
+                    if (response.Value.SmartProtocol is not null)
+                    {
+                        List<VpnProtocol> disabledVpnProtocols = [];
+                        if (!response.Value.SmartProtocol.WireGuardUdp)
+                        {
+                            disabledVpnProtocols.Add(VpnProtocol.WireGuardUdp);
+                        }
+                        if (!response.Value.SmartProtocol.WireGuardTcp)
+                        {
+                            disabledVpnProtocols.Add(VpnProtocol.WireGuardTcp);
+                        }
+                        if (!response.Value.SmartProtocol.WireGuardTls)
+                        {
+                            disabledVpnProtocols.Add(VpnProtocol.WireGuardTls);
+                        }
+                        if (!response.Value.SmartProtocol.OpenVpnUdp)
+                        {
+                            disabledVpnProtocols.Add(VpnProtocol.OpenVpnUdp);
+                        }
+                        if (!response.Value.SmartProtocol.OpenVpnTcp)
+                        {
+                            disabledVpnProtocols.Add(VpnProtocol.OpenVpnTcp);
+                        }
+                        _appSettings.DisabledSmartProtocols = disabledVpnProtocols.ToArray();
+                    }
+
                 }
             }
             catch
             {
             }
+        }
+
+        private static int[] CreateEmptyArrayIfNull(int[]? array)
+        {
+            return array ?? [];
         }
 
         private bool IsWireGuardPortSupported(int port)

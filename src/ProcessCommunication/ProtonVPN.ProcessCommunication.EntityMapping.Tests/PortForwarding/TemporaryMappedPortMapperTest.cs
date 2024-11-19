@@ -22,101 +22,100 @@ using ProtonVPN.Common.PortForwarding;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.PortForwarding;
 using ProtonVPN.ProcessCommunication.EntityMapping.PortForwarding;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.PortForwarding
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.PortForwarding;
+
+[TestClass]
+public class TemporaryMappedPortMapperTest
 {
-    [TestClass]
-    public class TemporaryMappedPortMapperTest
+    private TemporaryMappedPortMapper _mapper;
+
+    [TestInitialize]
+    public void Initialize()
     {
-        private TemporaryMappedPortMapper _mapper;
+        _mapper = new();
+    }
 
-        [TestInitialize]
-        public void Initialize()
+    [TestCleanup]
+    public void Cleanup()
+    {
+        _mapper = null;
+    }
+
+    [TestMethod]
+    public void TestMapLeftToRight_WhenNull()
+    {
+        TemporaryMappedPort entityToTest = null;
+
+        TemporaryMappedPortIpcEntity result = _mapper.Map(entityToTest);
+
+        Assert.IsNull(result);
+    }
+
+    [TestMethod]
+    public void TestMapLeftToRight_WhenMappedPortIsNull()
+    {
+        TemporaryMappedPort entityToTest = new()
         {
-            _mapper = new();
-        }
+            Lifetime = TimeSpan.FromMinutes(1),
+            ExpirationDateUtc = DateTime.UtcNow
+        };
 
-        [TestCleanup]
-        public void Cleanup()
+        TemporaryMappedPortIpcEntity result = _mapper.Map(entityToTest);
+
+        Assert.IsNull(result);
+    }
+
+    [TestMethod]
+    public void TestMapLeftToRight()
+    {
+        int internalPort = 7;
+        int externalPort = 28;
+        TemporaryMappedPort entityToTest = new()
         {
-            _mapper = null;
-        }
+            MappedPort = new MappedPort(internalPort, externalPort),
+            Lifetime = TimeSpan.FromMinutes(4),
+            ExpirationDateUtc = DateTime.UtcNow
+        };
 
-        [TestMethod]
-        public void TestMapLeftToRight_WhenNull()
+        TemporaryMappedPortIpcEntity result = _mapper.Map(entityToTest);
+
+        Assert.IsNotNull(result);
+        Assert.AreEqual(internalPort, result.InternalPort);
+        Assert.AreEqual(externalPort, result.ExternalPort);
+        Assert.AreEqual(entityToTest.Lifetime, result.Lifetime);
+        Assert.AreEqual(entityToTest.ExpirationDateUtc, result.ExpirationDateUtc);
+    }
+
+    [TestMethod]
+    public void TestMapRightToLeft_WhenNull()
+    {
+        TemporaryMappedPortIpcEntity entityToTest = null;
+
+        TemporaryMappedPort result = _mapper.Map(entityToTest);
+
+        Assert.IsNull(result);
+    }
+
+    [TestMethod]
+    public void TestMapRightToLeft()
+    {
+        int internalPort = 7;
+        int externalPort = 28;
+        TemporaryMappedPortIpcEntity entityToTest = new()
         {
-            TemporaryMappedPort entityToTest = null;
+            InternalPort = internalPort,
+            ExternalPort = externalPort,
+            Lifetime = TimeSpan.FromMinutes(3),
+            ExpirationDateUtc = DateTime.UtcNow
+        };
 
-            TemporaryMappedPortIpcEntity result = _mapper.Map(entityToTest);
+        TemporaryMappedPort result = _mapper.Map(entityToTest);
 
-            Assert.IsNull(result);
-        }
-
-        [TestMethod]
-        public void TestMapLeftToRight_WhenMappedPortIsNull()
-        {
-            TemporaryMappedPort entityToTest = new()
-            {
-                Lifetime = TimeSpan.FromMinutes(1),
-                ExpirationDateUtc = DateTime.UtcNow
-            };
-
-            TemporaryMappedPortIpcEntity result = _mapper.Map(entityToTest);
-
-            Assert.IsNull(result);
-        }
-
-        [TestMethod]
-        public void TestMapLeftToRight()
-        {
-            int internalPort = 7;
-            int externalPort = 28;
-            TemporaryMappedPort entityToTest = new()
-            {
-                MappedPort = new MappedPort(internalPort, externalPort),
-                Lifetime = TimeSpan.FromMinutes(4),
-                ExpirationDateUtc = DateTime.UtcNow
-            };
-
-            TemporaryMappedPortIpcEntity result = _mapper.Map(entityToTest);
-
-            Assert.IsNotNull(result);
-            Assert.AreEqual(internalPort, result.InternalPort);
-            Assert.AreEqual(externalPort, result.ExternalPort);
-            Assert.AreEqual(entityToTest.Lifetime, result.Lifetime);
-            Assert.AreEqual(entityToTest.ExpirationDateUtc, result.ExpirationDateUtc);
-        }
-
-        [TestMethod]
-        public void TestMapRightToLeft_WhenNull()
-        {
-            TemporaryMappedPortIpcEntity entityToTest = null;
-
-            TemporaryMappedPort result = _mapper.Map(entityToTest);
-
-            Assert.IsNull(result);
-        }
-
-        [TestMethod]
-        public void TestMapRightToLeft()
-        {
-            int internalPort = 7;
-            int externalPort = 28;
-            TemporaryMappedPortIpcEntity entityToTest = new()
-            {
-                InternalPort = internalPort,
-                ExternalPort = externalPort,
-                Lifetime = TimeSpan.FromMinutes(3),
-                ExpirationDateUtc = DateTime.UtcNow
-            };
-
-            TemporaryMappedPort result = _mapper.Map(entityToTest);
-
-            Assert.IsNotNull(result);
-            Assert.IsNotNull(result.MappedPort);
-            Assert.AreEqual(entityToTest.InternalPort, result.MappedPort.InternalPort);
-            Assert.AreEqual(entityToTest.ExternalPort, result.MappedPort.ExternalPort);
-            Assert.AreEqual(entityToTest.Lifetime, result.Lifetime);
-            Assert.AreEqual(entityToTest.ExpirationDateUtc, result.ExpirationDateUtc);
-        }
+        Assert.IsNotNull(result);
+        Assert.IsNotNull(result.MappedPort);
+        Assert.AreEqual(entityToTest.InternalPort, result.MappedPort.InternalPort);
+        Assert.AreEqual(entityToTest.ExternalPort, result.MappedPort.ExternalPort);
+        Assert.AreEqual(entityToTest.Lifetime, result.Lifetime);
+        Assert.AreEqual(entityToTest.ExpirationDateUtc, result.ExpirationDateUtc);
     }
 }

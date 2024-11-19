@@ -43,9 +43,9 @@ namespace ProtonVPN.Update.Tests.Storage
         {
             OrderedReleaseStorage storage = new OrderedReleaseStorage(_origin);
 
-            await storage.Releases();
+            await storage.GetReleasesAsync();
 
-            await _origin.Received(1).Releases();
+            await _origin.Received(1).GetReleasesAsync();
         }
 
         [TestMethod]
@@ -59,10 +59,10 @@ namespace ProtonVPN.Update.Tests.Storage
                 new() {Version = new(2, 1, 0)}
             };
 
-            _origin.Releases().Returns(releases);
+            _origin.GetReleasesAsync().Returns(releases);
             OrderedReleaseStorage storage = new OrderedReleaseStorage(_origin);
 
-            IEnumerable<Release> result = await storage.Releases();
+            IEnumerable<Release> result = await storage.GetReleasesAsync();
 
             result.Should().BeInDescendingOrder();
         }

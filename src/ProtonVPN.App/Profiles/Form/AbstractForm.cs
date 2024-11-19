@@ -47,9 +47,9 @@ namespace ProtonVPN.Profiles.Form
             VpnProtocol.Smart,
             VpnProtocol.WireGuardUdp,
             VpnProtocol.WireGuardTcp,
+            VpnProtocol.WireGuardTls,
             VpnProtocol.OpenVpnUdp,
             VpnProtocol.OpenVpnTcp,
-            VpnProtocol.WireGuardTls,
         };
 
         private readonly IConfiguration _appConfig;

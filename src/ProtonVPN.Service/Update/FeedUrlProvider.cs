@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Runtime.InteropServices;
 using ProtonVPN.Builds.Variables;
 using ProtonVPN.Common.Configuration;
 using ProtonVPN.Update.Contracts;
@@ -37,17 +38,29 @@ namespace ProtonVPN.Service.Update
 
         public Uri GetFeedUrl()
         {
-            if (_feedType is FeedType.Internal)
-            {
-                return new Uri(GlobalConfig.InternalReleaseUpdateUrl);
-            }
+            string url = _feedType is FeedType.Internal
+                ? GlobalConfig.InternalReleaseUpdateUrl
+                : _config.Urls.UpdateUrl;
+            string architecture = GetArchitecture();
 
-            return new Uri(_config.Urls.UpdateUrl);
+            return new Uri(string.Format(url, architecture));
         }
 
         public void SetFeedType(FeedType feedType)
         {
             _feedType = feedType;
+        }
+
+        private string GetArchitecture()
+        {
+            Architecture osArchitecture = RuntimeInformation.OSArchitecture;
+
+            return osArchitecture switch
+            {
+                Architecture.X64 => "x64",
+                Architecture.Arm64 => "arm64",
+                _ => throw new NotSupportedException($"Unsupported OS architecture: {osArchitecture}")
+            };
         }
     }
 }

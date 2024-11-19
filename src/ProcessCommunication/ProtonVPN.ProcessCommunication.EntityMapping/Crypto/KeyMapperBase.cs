@@ -21,20 +21,19 @@ using ProtonVPN.Common.Extensions;
 using ProtonVPN.Crypto;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Crypto;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Crypto
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Crypto;
+
+public abstract class KeyMapperBase<TIpcEntity>
+    where TIpcEntity : KeyIpcEntity, new()
 {
-    public abstract class KeyMapperBase<TIpcEntity>
-        where TIpcEntity : KeyIpcEntity, new()
+    protected TIpcEntity MapKeyToIpcEntity(Key key)
     {
-        protected TIpcEntity MapKeyToIpcEntity(Key key)
+        return new()
         {
-            return new()
-            {
-                Bytes = key.Bytes,
-                Base64 = key.Base64,
-                Algorithm = key.Algorithm.ToString().ToEnum<KeyAlgorithmIpcEntity>(),
-                Pem = key.Pem,
-            };
-        }
+            Bytes = key.Bytes,
+            Base64 = key.Base64,
+            Algorithm = key.Algorithm.ToString().ToEnum<KeyAlgorithmIpcEntity>(),
+            Pem = key.Pem,
+        };
     }
 }

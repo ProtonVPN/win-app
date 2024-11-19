@@ -23,39 +23,39 @@ using ProtonVPN.Core.Vpn;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
+
+public class ConnectionRequestMapper : IMapper<VpnConnectionRequest, ConnectionRequestIpcEntity>
 {
-    public class ConnectionRequestMapper : IMapper<VpnConnectionRequest, ConnectionRequestIpcEntity>
+    private readonly IEntityMapper _entityMapper;
+
+    public ConnectionRequestMapper(IEntityMapper entityMapper)
     {
-        private readonly IEntityMapper _entityMapper;
+        _entityMapper = entityMapper;
+    }
 
-        public ConnectionRequestMapper(IEntityMapper entityMapper)
-        {
-            _entityMapper = entityMapper;
-        }
-
-        public ConnectionRequestIpcEntity Map(VpnConnectionRequest leftEntity)
-        {
-            return leftEntity is null
-                ? null
-                : new()
+    public ConnectionRequestIpcEntity Map(VpnConnectionRequest leftEntity)
+    {
+        return leftEntity is null
+            ? null
+            : new()
             {
+                RetryId = Guid.NewGuid(),
                 Servers = _entityMapper.Map<VpnHost, VpnServerIpcEntity>(leftEntity.Servers).ToArray(),
                 Protocol = _entityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(leftEntity.VpnProtocol),
                 Config = _entityMapper.Map<VpnConfig, VpnConfigIpcEntity>(leftEntity.Config),
                 Credentials = _entityMapper.Map<VpnCredentials, VpnCredentialsIpcEntity>(leftEntity.Credentials)
             };
-        }
+    }
 
-        public VpnConnectionRequest Map(ConnectionRequestIpcEntity rightEntity)
-        {
-            return rightEntity is null
-                ? null
-                : new(
-                servers: _entityMapper.Map<VpnServerIpcEntity, VpnHost>(rightEntity.Servers),
-                vpnProtocol: _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(rightEntity.Protocol),
-                config: _entityMapper.Map<VpnConfigIpcEntity, VpnConfig>(rightEntity.Config),
-                credentials: _entityMapper.Map<VpnCredentialsIpcEntity, VpnCredentials>(rightEntity.Credentials));
-        }
+    public VpnConnectionRequest Map(ConnectionRequestIpcEntity rightEntity)
+    {
+        return rightEntity is null
+            ? null
+            : new(
+            servers: _entityMapper.Map<VpnServerIpcEntity, VpnHost>(rightEntity.Servers),
+            vpnProtocol: _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(rightEntity.Protocol),
+            config: _entityMapper.Map<VpnConfigIpcEntity, VpnConfig>(rightEntity.Config),
+            credentials: _entityMapper.Map<VpnCredentialsIpcEntity, VpnCredentials>(rightEntity.Credentials));
     }
 }

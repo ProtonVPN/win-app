@@ -24,14 +24,13 @@ using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.ProcessCommunication.EntityMapping.Tests.Common;
 using ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn;
+
+[TestClass]
+public class VpnErrorTypeMapperTest : EnumMapperTestBase<VpnError, VpnErrorTypeIpcEntity>
 {
-    [TestClass]
-    public class VpnErrorTypeMapperTest : EnumMapperTestBase<VpnError, VpnErrorTypeIpcEntity>
+    protected override IMapper<VpnError, VpnErrorTypeIpcEntity> CreateMapper()
     {
-        protected override IMapper<VpnError, VpnErrorTypeIpcEntity> CreateMapper()
-        {
-            return new VpnErrorTypeMapper();
-        }
+        return new VpnErrorMapper();
     }
 }

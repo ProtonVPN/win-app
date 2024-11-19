@@ -21,34 +21,33 @@ using ProtonVPN.Common.NetShield;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.NetShield;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.NetShield
-{
-    public class NetShieldStatisticMapper : IMapper<NetShieldStatistic, NetShieldStatisticIpcEntity>
-    {
-        public NetShieldStatisticIpcEntity Map(NetShieldStatistic leftEntity)
-        {
-            return leftEntity is null
-                ? null
-                : new NetShieldStatisticIpcEntity()
-                {
-                    NumOfMaliciousUrlsBlocked = leftEntity.NumOfMaliciousUrlsBlocked,
-                    NumOfAdvertisementUrlsBlocked = leftEntity.NumOfAdvertisementUrlsBlocked,
-                    NumOfTrackingUrlsBlocked = leftEntity.NumOfTrackingUrlsBlocked,
-                    TimestampUtc = leftEntity.TimestampUtc,
-                };
-        }
+namespace ProtonVPN.ProcessCommunication.EntityMapping.NetShield;
 
-        public NetShieldStatistic Map(NetShieldStatisticIpcEntity rightEntity)
-        {
-            return rightEntity is null
-                ? null
-                : new NetShieldStatistic()
-                {
-                    NumOfMaliciousUrlsBlocked = rightEntity.NumOfMaliciousUrlsBlocked,
-                    NumOfAdvertisementUrlsBlocked = rightEntity.NumOfAdvertisementUrlsBlocked,
-                    NumOfTrackingUrlsBlocked = rightEntity.NumOfTrackingUrlsBlocked,
-                    TimestampUtc = rightEntity.TimestampUtc,
-                };
-        }
+public class NetShieldStatisticMapper : IMapper<NetShieldStatistic, NetShieldStatisticIpcEntity>
+{
+    public NetShieldStatisticIpcEntity Map(NetShieldStatistic leftEntity)
+    {
+        return leftEntity is null
+            ? null
+            : new NetShieldStatisticIpcEntity()
+            {
+                NumOfMaliciousUrlsBlocked = leftEntity.NumOfMaliciousUrlsBlocked,
+                NumOfAdvertisementUrlsBlocked = leftEntity.NumOfAdvertisementUrlsBlocked,
+                NumOfTrackingUrlsBlocked = leftEntity.NumOfTrackingUrlsBlocked,
+                TimestampUtc = leftEntity.TimestampUtc,
+            };
+    }
+
+    public NetShieldStatistic Map(NetShieldStatisticIpcEntity rightEntity)
+    {
+        return rightEntity is null
+            ? null
+            : new NetShieldStatistic()
+            {
+                NumOfMaliciousUrlsBlocked = rightEntity.NumOfMaliciousUrlsBlocked,
+                NumOfAdvertisementUrlsBlocked = rightEntity.NumOfAdvertisementUrlsBlocked,
+                NumOfTrackingUrlsBlocked = rightEntity.NumOfTrackingUrlsBlocked,
+                TimestampUtc = rightEntity.TimestampUtc,
+            };
     }
 }

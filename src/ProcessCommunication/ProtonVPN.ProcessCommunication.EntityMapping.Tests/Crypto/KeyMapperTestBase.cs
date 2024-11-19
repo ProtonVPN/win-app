@@ -22,141 +22,140 @@ using ProtonVPN.Crypto;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Crypto;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Crypto
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Crypto;
+
+[TestClass]
+public abstract class KeyMapperTestBase<TKey, TKeyIpcEntity>
+    where TKey : Key
+    where TKeyIpcEntity : KeyIpcEntity, new()
 {
-    [TestClass]
-    public abstract class KeyMapperTestBase<TKey, TKeyIpcEntity>
-        where TKey : Key
-        where TKeyIpcEntity : KeyIpcEntity, new()
+    private IMapper<TKey, TKeyIpcEntity> _mapper;
+
+    [TestInitialize]
+    public void Initialize()
     {
-        private IMapper<TKey, TKeyIpcEntity> _mapper;
-
-        [TestInitialize]
-        public void Initialize()
-        {
-            _mapper = CreateKeyMapper();
-        }
-
-        protected abstract IMapper<TKey, TKeyIpcEntity> CreateKeyMapper();
-
-        [TestCleanup]
-        public void Cleanup()
-        {
-            _mapper = null;
-        }
-
-        [TestMethod]
-        public void TestMapLeftToRight_WhenNull()
-        {
-            TKey entityToMap = null;
-
-            TKeyIpcEntity result = _mapper.Map(entityToMap);
-
-            Assert.AreEqual(null, result);
-        }
-
-        [TestMethod]
-        public void TestMapLeftToRight()
-        {
-            TKey entityToMap = CreateKey("PVPN", KeyAlgorithm.Ed25519);
-
-            TKeyIpcEntity result = _mapper.Map(entityToMap);
-
-            Assert.IsNotNull(result);
-            Assert.AreEqual(entityToMap.Bytes, result.Bytes);
-            Assert.AreEqual(entityToMap.Base64, result.Base64);
-            Assert.AreEqual((int)entityToMap.Algorithm, (int)result.Algorithm);
-            Assert.AreEqual(entityToMap.Pem, result.Pem);
-        }
-
-        protected abstract TKey CreateKey(string base64, KeyAlgorithm algorithm);
-
-        [TestMethod]
-        public void TestMapRightToLeft_WhenNull()
-        {
-            TKeyIpcEntity entityToMap = null;
-
-            TKey result = _mapper.Map(entityToMap);
-
-            Assert.AreEqual(null, result);
-        }
-
-        [TestMethod]
-        public void TestMapRightToLeft()
-        {
-            string base64 = "PVPN";
-            byte[] bytes = Convert.FromBase64String(base64);
-            TKeyIpcEntity entityToMap = new()
-            {
-                Bytes = bytes,
-                Base64 = base64,
-                Algorithm = KeyAlgorithmIpcEntity.X25519,
-                Pem = CreateExpectedPem(base64)
-            };
-
-            TKey result = _mapper.Map(entityToMap);
-
-            Assert.IsNotNull(result);
-            Assert.AreEqual(entityToMap.Bytes.Count(), result.Bytes.Count());
-            for (int i = 0; i < entityToMap.Bytes.Length; i++)
-            {
-                Assert.AreEqual(entityToMap.Bytes[i], result.Bytes[i]);
-            }
-            Assert.AreEqual(entityToMap.Base64, result.Base64);
-            Assert.AreEqual((int)entityToMap.Algorithm, (int)result.Algorithm);
-            Assert.AreEqual(entityToMap.Pem, result.Pem);
-        }
-
-        protected abstract string CreateExpectedPem(string base64);
-
-        [TestMethod]
-        public void TestMapRightToLeft_WhenBytesAreNull()
-        {
-            string base64 = "PVPN";
-            byte[] bytes = Convert.FromBase64String(base64);
-            TKeyIpcEntity entityToMap = new()
-            {
-                Base64 = base64,
-                Algorithm = KeyAlgorithmIpcEntity.X25519,
-                Pem = CreateExpectedPem(base64)
-            };
-
-            TKey result = _mapper.Map(entityToMap);
-
-            Assert.IsNotNull(result);
-            Assert.AreEqual(bytes.Count(), result.Bytes.Count());
-            for (int i = 0; i < bytes.Length; i++)
-            {
-                Assert.AreEqual(bytes[i], result.Bytes[i]);
-            }
-            Assert.AreEqual(entityToMap.Base64, result.Base64);
-            Assert.AreEqual((int)entityToMap.Algorithm, (int)result.Algorithm);
-            Assert.AreEqual(entityToMap.Pem, result.Pem);
-        }
-
-        [TestMethod]
-        public void TestMapRightToLeft_WhenBase64IsNull()
-        {
-            string base64 = "PVPN";
-            byte[] bytes = Convert.FromBase64String(base64);
-            TKeyIpcEntity entityToMap = new()
-            {
-                Bytes = bytes,
-                Algorithm = KeyAlgorithmIpcEntity.X25519,
-                Pem = CreateExpectedPem(base64)
-            };
-
-            TKey result = _mapper.Map(entityToMap);
-
-            Assert.IsNotNull(result);
-            Assert.AreEqual(entityToMap.Bytes.Count(), result.Bytes.Count());
-            for (int i = 0; i < entityToMap.Bytes.Length; i++)
-            {
-                Assert.AreEqual(entityToMap.Bytes[i], result.Bytes[i]);
-            }
-            Assert.AreEqual(base64, result.Base64);
-            Assert.AreEqual((int)entityToMap.Algorithm, (int)result.Algorithm);
-            Assert.AreEqual(entityToMap.Pem, result.Pem);
-        }
+        _mapper = CreateKeyMapper();
     }
+
+    [TestCleanup]
+    public void Cleanup()
+    {
+        _mapper = null;
+    }
+
+    [TestMethod]
+    public void TestMapLeftToRight_WhenNull()
+    {
+        TKey entityToMap = null;
+
+        TKeyIpcEntity result = _mapper.Map(entityToMap);
+
+        Assert.AreEqual(null, result);
+    }
+
+    [TestMethod]
+    public void TestMapLeftToRight()
+    {
+        TKey entityToMap = CreateKey("PVPN", KeyAlgorithm.Ed25519);
+
+        TKeyIpcEntity result = _mapper.Map(entityToMap);
+
+        Assert.IsNotNull(result);
+        Assert.AreEqual(entityToMap.Bytes, result.Bytes);
+        Assert.AreEqual(entityToMap.Base64, result.Base64);
+        Assert.AreEqual((int)entityToMap.Algorithm, (int)result.Algorithm);
+        Assert.AreEqual(entityToMap.Pem, result.Pem);
+    }
+
+    [TestMethod]
+    public void TestMapRightToLeft_WhenNull()
+    {
+        TKeyIpcEntity entityToMap = null;
+
+        TKey result = _mapper.Map(entityToMap);
+
+        Assert.AreEqual(null, result);
+    }
+
+    [TestMethod]
+    public void TestMapRightToLeft()
+    {
+        string base64 = "PVPN";
+        byte[] bytes = Convert.FromBase64String(base64);
+        TKeyIpcEntity entityToMap = new()
+        {
+            Bytes = bytes,
+            Base64 = base64,
+            Algorithm = KeyAlgorithmIpcEntity.X25519,
+            Pem = CreateExpectedPem(base64)
+        };
+
+        TKey result = _mapper.Map(entityToMap);
+
+        Assert.IsNotNull(result);
+        Assert.AreEqual(entityToMap.Bytes.Count(), result.Bytes.Count());
+        for (int i = 0; i < entityToMap.Bytes.Length; i++)
+        {
+            Assert.AreEqual(entityToMap.Bytes[i], result.Bytes[i]);
+        }
+        Assert.AreEqual(entityToMap.Base64, result.Base64);
+        Assert.AreEqual((int)entityToMap.Algorithm, (int)result.Algorithm);
+        Assert.AreEqual(entityToMap.Pem, result.Pem);
+    }
+
+    [TestMethod]
+    public void TestMapRightToLeft_WhenBytesAreNull()
+    {
+        string base64 = "PVPN";
+        byte[] bytes = Convert.FromBase64String(base64);
+        TKeyIpcEntity entityToMap = new()
+        {
+            Base64 = base64,
+            Algorithm = KeyAlgorithmIpcEntity.X25519,
+            Pem = CreateExpectedPem(base64)
+        };
+
+        TKey result = _mapper.Map(entityToMap);
+
+        Assert.IsNotNull(result);
+        Assert.AreEqual(bytes.Count(), result.Bytes.Count());
+        for (int i = 0; i < bytes.Length; i++)
+        {
+            Assert.AreEqual(bytes[i], result.Bytes[i]);
+        }
+        Assert.AreEqual(entityToMap.Base64, result.Base64);
+        Assert.AreEqual((int)entityToMap.Algorithm, (int)result.Algorithm);
+        Assert.AreEqual(entityToMap.Pem, result.Pem);
+    }
+
+    [TestMethod]
+    public void TestMapRightToLeft_WhenBase64IsNull()
+    {
+        string base64 = "PVPN";
+        byte[] bytes = Convert.FromBase64String(base64);
+        TKeyIpcEntity entityToMap = new()
+        {
+            Bytes = bytes,
+            Algorithm = KeyAlgorithmIpcEntity.X25519,
+            Pem = CreateExpectedPem(base64)
+        };
+
+        TKey result = _mapper.Map(entityToMap);
+
+        Assert.IsNotNull(result);
+        Assert.AreEqual(entityToMap.Bytes.Count(), result.Bytes.Count());
+        for (int i = 0; i < entityToMap.Bytes.Length; i++)
+        {
+            Assert.AreEqual(entityToMap.Bytes[i], result.Bytes[i]);
+        }
+        Assert.AreEqual(base64, result.Base64);
+        Assert.AreEqual((int)entityToMap.Algorithm, (int)result.Algorithm);
+        Assert.AreEqual(entityToMap.Pem, result.Pem);
+    }
+
+    protected abstract IMapper<TKey, TKeyIpcEntity> CreateKeyMapper();
+
+    protected abstract TKey CreateKey(string base64, KeyAlgorithm algorithm);
+
+    protected abstract string CreateExpectedPem(string base64);
 }

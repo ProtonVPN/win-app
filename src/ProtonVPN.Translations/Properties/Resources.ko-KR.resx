@@ -201,7 +201,7 @@
     <value>&lt;Bold&gt;{0}&lt;/Bold&gt; VPN 연결</value>
   </data>
   <data name="Account_lbl_Countries_Other">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt;개 국가에서</value>
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt;개 국가 연결</value>
   </data>
   <data name="Account_lbl_CurrentPlan">
     <value>현재 요금제</value>
@@ -1558,7 +1558,7 @@
     <comment>The subtitle of the Delinquency window</comment>
   </data>
   <data name="Dialogs_Delinquency_Title">
-    <value>귀하의 Proton VPN 계정에 보류 중인 청구서가 있습니다.</value>
+    <value>나의 Proton VPN 계정에 보류 중인 청구서가 있습니다.</value>
     <comment>The title of the Delinquency window</comment>
   </data>
   <data name="Dialogs_DisabledService_btn_Enable">
@@ -2096,7 +2096,7 @@
     <comment>The description of the Delinquency notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_Delinquency_Title">
-    <value>귀하의 Proton VPN 계정에 보류 중인 청구서가 있습니다.</value>
+    <value>나의 Proton VPN 계정에 보류 중인 청구서가 있습니다.</value>
     <comment>The title of the Delinquency notification</comment>
   </data>
   <data name="Notifications_EnableSmartProtocol_msg">

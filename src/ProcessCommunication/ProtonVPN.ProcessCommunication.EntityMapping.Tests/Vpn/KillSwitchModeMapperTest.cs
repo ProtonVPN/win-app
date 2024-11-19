@@ -24,14 +24,13 @@ using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.ProcessCommunication.EntityMapping.Tests.Common;
 using ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn;
+
+[TestClass]
+public class KillSwitchModeMapperTest : EnumMapperTestBase<KillSwitchMode, KillSwitchModeIpcEntity>
 {
-    [TestClass]
-    public class KillSwitchModeMapperTest : EnumMapperTestBase<KillSwitchMode, KillSwitchModeIpcEntity>
+    protected override IMapper<KillSwitchMode, KillSwitchModeIpcEntity> CreateMapper()
     {
-        protected override IMapper<KillSwitchMode, KillSwitchModeIpcEntity> CreateMapper()
-        {
-            return new KillSwitchModeMapper();
-        }
+        return new KillSwitchModeMapper();
     }
 }

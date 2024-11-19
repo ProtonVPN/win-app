@@ -30,6 +30,8 @@ namespace ProtonVPN.Core.Service.Settings
 {
     public class MainSettingsProvider
     {
+        private const bool DEFAULT_SPLIT_TCP_VALUE = true;
+
         private readonly IAppSettings _appSettings;
         private readonly IUserStorage _userStorage;
         private readonly IEntityMapper _entityMapper;
@@ -59,8 +61,7 @@ namespace ProtonVPN.Core.Service.Settings
                 },
                 ModerateNat = !_userStorage.GetUser().Empty() && _appSettings.ModerateNat && isPaidFeatureAllowed,
                 NetShieldMode = _appSettings.IsNetShieldEnabled() ? _appSettings.NetShieldMode : 0,
-                SplitTcp = isPaidFeatureAllowed ? _appSettings.IsVpnAcceleratorEnabled() : null,
-                AllowNonStandardPorts = _appSettings.ShowNonStandardPortsToFreeUsers ? _appSettings.AllowNonStandardPorts : null,
+                SplitTcp = isPaidFeatureAllowed ? _appSettings.IsVpnAcceleratorEnabled() : DEFAULT_SPLIT_TCP_VALUE,
                 Ipv6LeakProtection = _appSettings.Ipv6LeakProtection,
                 VpnProtocol = _entityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(_appSettings.GetProtocol()),
                 OpenVpnAdapter = _entityMapper.MapNullableStruct<OpenVpnAdapter, OpenVpnAdapterIpcEntity>(openVpnAdapter) ??

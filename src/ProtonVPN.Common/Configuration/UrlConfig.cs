@@ -120,9 +120,6 @@ namespace ProtonVPN.Common.Configuration
         public string AssignVpnConnectionsUrl { get; set; }
 
         [Required]
-        public string NonStandardPortsUrl { get; set; }
-
-        [Required]
         public string LoginProblemsUrl { get; set; }
 
         [Required]

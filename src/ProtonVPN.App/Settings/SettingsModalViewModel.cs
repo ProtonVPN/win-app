@@ -55,9 +55,9 @@ namespace ProtonVPN.Settings
             new(PROTOCOL_AUTO, Translation.Get("Settings_Connection_DefaultProtocol_val_Smart")),
             new(PROTOCOL_WIREGUARD_UDP, Translation.Get("Settings_Connection_DefaultProtocol_val_WireGuardUdp")),
             new(PROTOCOL_WIREGUARD_TCP, Translation.Get("Settings_Connection_DefaultProtocol_val_WireGuardTcp")),
+            new(PROTOCOL_STEALTH, Translation.Get("Settings_Connection_DefaultProtocol_val_WireGuardTls")),
             new(PROTOCOL_OPENVPN_UDP, Translation.Get("Settings_Connection_DefaultProtocol_val_Udp")),
             new(PROTOCOL_OPENVPN_TCP, Translation.Get("Settings_Connection_DefaultProtocol_val_Tcp")),
-            new(PROTOCOL_STEALTH, Translation.Get("Settings_Connection_DefaultProtocol_val_WireGuardTls")),
         };
 
         private const string PROTOCOL_AUTO = "auto";
@@ -214,29 +214,6 @@ namespace ProtonVPN.Settings
                 NotifyOfPropertyChange();
             }
         }
-
-        public bool AllowNonStandardPorts
-        {
-            get => _appSettings.AllowNonStandardPorts;
-            set
-            {
-                if (value && !IsPaidUser)
-                {
-                    ShowNonStandardPortsUpsellModal();
-                    return;
-                }
-
-                _appSettings.AllowNonStandardPorts = value;
-                NotifyOfPropertyChange();
-            }
-        }
-
-        private async void ShowNonStandardPortsUpsellModal()
-        {
-            await _modals.ShowAsync<NonStandardPortsUpsellModalViewModel>();
-        }
-
-        public bool ShowAllowNonStandardPorts => _appSettings.ShowNonStandardPortsToFreeUsers;
 
         public bool ModerateNat
         {
@@ -613,10 +590,6 @@ namespace ProtonVPN.Settings
             else if (e.PropertyName.Equals(nameof(IAppSettings.ModerateNat)))
             {
                 NotifyOfPropertyChange(() => ModerateNat);
-            }
-            else if (e.PropertyName.Equals(nameof(IAppSettings.AllowNonStandardPorts)))
-            {
-                NotifyOfPropertyChange(() => AllowNonStandardPorts);
             }
             else if (e.PropertyName.Equals(nameof(IAppSettings.HardwareAccelerationEnabled)))
             {

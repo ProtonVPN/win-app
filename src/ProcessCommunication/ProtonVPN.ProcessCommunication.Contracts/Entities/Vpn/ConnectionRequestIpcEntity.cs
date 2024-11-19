@@ -25,18 +25,21 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
     public class ConnectionRequestIpcEntity
     {
         [DataMember(Order = 1, IsRequired = true)]
-        public VpnServerIpcEntity[] Servers { get; set; }
+        public Guid RetryId { get; set; }
 
         [DataMember(Order = 2, IsRequired = true)]
-        public VpnProtocolIpcEntity Protocol { get; set; }
+        public VpnServerIpcEntity[] Servers { get; set; }
 
         [DataMember(Order = 3, IsRequired = true)]
-        public VpnConfigIpcEntity Config { get; set; }
+        public VpnProtocolIpcEntity Protocol { get; set; }
 
         [DataMember(Order = 4, IsRequired = true)]
-        public VpnCredentialsIpcEntity Credentials { get; set; }
+        public VpnConfigIpcEntity Config { get; set; }
 
         [DataMember(Order = 5, IsRequired = true)]
+        public VpnCredentialsIpcEntity Credentials { get; set; }
+
+        [DataMember(Order = 6, IsRequired = true)]
         public MainSettingsIpcEntity Settings { get; set; }
 
         public ConnectionRequestIpcEntity()

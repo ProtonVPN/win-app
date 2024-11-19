@@ -21,18 +21,17 @@ using ProtonVPN.Common.Vpn;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn
-{
-    public class VpnStatusMapper : IMapper<VpnStatus, VpnStatusIpcEntity>
-    {
-        public VpnStatusIpcEntity Map(VpnStatus leftEntity)
-        {
-            return (VpnStatusIpcEntity)leftEntity;
-        }
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
 
-        public VpnStatus Map(VpnStatusIpcEntity rightEntity)
-        {
-            return (VpnStatus)rightEntity;
-        }
+public class VpnStatusMapper : IMapper<VpnStatus, VpnStatusIpcEntity>
+{
+    public VpnStatusIpcEntity Map(VpnStatus leftEntity)
+    {
+        return (VpnStatusIpcEntity)leftEntity;
+    }
+
+    public VpnStatus Map(VpnStatusIpcEntity rightEntity)
+    {
+        return (VpnStatus)rightEntity;
     }
 }

@@ -220,7 +220,7 @@ namespace ProtonVPN.Update.Tests.Updates
         [TestMethod]
         public async Task Available_ShouldBe_False_WhenLatestRelease_HasNoFile()
         {
-            const string json = "{\"Categories\": [{\"Name\": \"Stable\", \"Releases\": [{\"Version\": \"2.0.0\", \"ChangeLog\": [\"line 1\"] }] }] }";
+            const string json = "{\"Releases\": [{\"Version\": \"2.0.0\", \"ReleaseNotes\": [{\"Notes\": [\"line 1\"]}] }] }";
             IAppUpdate update = AppUpdate(new Version(1, 0, 0), HttpResponseFromString(json));
 
             update = await update.Latest(false);
@@ -231,7 +231,7 @@ namespace ProtonVPN.Update.Tests.Updates
         [TestMethod]
         public async Task Available_ShouldBe_False_WhenLatestRelease_FileHasNoUrl()
         {
-            const string json = "{\"Categories\": [{\"Name\": \"Stable\", \"Releases\": [{\"Version\": \"2.0.0\", \"ChangeLog\": [\"line 1\"], \"File\": {\"Sha512CheckSum\": \"a b c d e f g h\"}} ] }] }";
+            const string json = "{\"Releases\": [{\"Version\": \"2.0.0\", \"ReleaseNotes\": [{\"Notes\": [\"line 1\"]}], \"File\": {\"Sha512CheckSum\": \"a b c d e f g h\"}} ] }";
             IAppUpdate update = AppUpdate(new Version(1, 0, 0), HttpResponseFromString(json));
 
             update = await update.Latest(false);
@@ -242,7 +242,7 @@ namespace ProtonVPN.Update.Tests.Updates
         [TestMethod]
         public async Task Available_ShouldBe_False_WhenLatestRelease_FileHasNoChecksum()
         {
-            const string json = "{\"Categories\": [{\"Name\": \"Stable\", \"Releases\": [{\"Version\": \"2.0.0\", \"ChangeLog\": [\"line 1\"], \"File\": {\"Url\": \"https://protonvpn.com/download/ProtonVPN_win_v1.5.2.exe\"}} ] }] }";
+            const string json = "{\"Releases\": [{\"Version\": \"2.0.0\", \"ReleaseNotes\": [{\"Notes\": [\"line 1\"]}], \"File\": {\"Url\": \"https://protonvpn.com/download/ProtonVPN_win_v1.5.2.exe\"}} ]}";
             IAppUpdate update = AppUpdate(new Version(1, 0, 0), HttpResponseFromString(json));
 
             update = await update.Latest(false);

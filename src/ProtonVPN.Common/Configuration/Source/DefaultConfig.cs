@@ -150,7 +150,7 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 MaxProfileNameLength = 25,
 
-                ServiceCheckInterval = TimeSpan.FromSeconds(30),
+                ServiceCheckInterval = TimeSpan.FromSeconds(3),
 
                 DefaultOpenVpnUdpPorts = new[] { 443, 1194, 4569, 5060, 80 },
 
@@ -175,7 +175,7 @@ namespace ProtonVPN.Common.Configuration.Source
                     BfeArticleUrl = "https://protonvpn.com/support/how-to-enable-the-base-filtering-engine",
                     PasswordResetUrl = "https://account.protonvpn.com/reset-password",
                     ForgetUsernameUrl = "https://account.protonvpn.com/forgot-username",
-                    UpdateUrl = "https://protonvpn.com/download/windows-releases.json",
+                    UpdateUrl = "https://protonvpn.com/download/windows/{0}/v1/version.json",
                     DownloadUrl = "https://protonvpn.com/download",
                     ApiUrl = "https://vpn-api.proton.me",
                     TlsReportUrl = "https://reports.protonmail.ch/reports/tls",
@@ -204,7 +204,6 @@ namespace ProtonVPN.Common.Configuration.Source
                     AboutSmartProtocolUrl = "https://protonvpn.com/support/how-to-change-vpn-protocols",
                     IncorrectSystemTimeArticleUrl = "https://protonvpn.com/support/update-windows-clock",
                     AssignVpnConnectionsUrl = "https://protonvpn.com/support/assign-vpn-connection",
-                    NonStandardPortsUrl = "https://protonvpn.com/support/non-standard-ports",
                     LoginProblemsUrl = "https://protonvpn.com/support/login-problems",
                     RebrandingUrl = "https://protonvpn.com/blog/updated-proton-vpn",
                     RpcServerProblemUrl = "https://protonvpn.com/support/rpc-server-unavailable",
@@ -347,11 +346,11 @@ namespace ProtonVPN.Common.Configuration.Source
 
                 WintunAdapterName = "ProtonVPN TUN",
 
-                InstallActionsPath = Path.Combine(resourcesFolder, "ProtonVPN.InstallActions.dll"),
+                InstallActionsPath = Path.Combine(baseFolder, "ProtonVPN.InstallActions.dll"),
 
                 IsCertificateValidationDisabled = false,
 
-                DeviceRolloutPercentage = null,
+                DeviceRolloutProportion = null,
 
                 StatisticalEventSendTriggerInterval = TimeSpan.FromMinutes(15),
                 StatisticalEventMinimumWaitInterval = TimeSpan.FromMinutes(10)

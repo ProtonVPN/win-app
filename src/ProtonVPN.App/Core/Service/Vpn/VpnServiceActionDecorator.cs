@@ -59,11 +59,11 @@ namespace ProtonVPN.Core.Service.Vpn
             });
         }
 
-        public async Task UpdateAuthCertificate(string certificate)
+        public async Task UpdateAuthCertificate(string certificate, DateTimeOffset? expirationDateUtc)
         {
             await InvokeAction(async () =>
             {
-                await _decorated.UpdateAuthCertificate(certificate);
+                await _decorated.UpdateAuthCertificate(certificate, expirationDateUtc);
                 return Result.Ok();
             });
         }

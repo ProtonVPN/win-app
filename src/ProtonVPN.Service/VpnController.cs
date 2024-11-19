@@ -17,38 +17,48 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Helpers;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
-using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
 using ProtonVPN.Common.Threading;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.EntityMapping.Contracts;
-using ProtonVPN.ProcessCommunication.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
+using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Communication;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.Service.ProcessCommunication;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.PortMapping;
+using Timer = System.Timers.Timer;
 
 namespace ProtonVPN.Service
 {
     public class VpnController : IVpnController
     {
+        private readonly TimeSpan _retryIdCleanupTimerInterval = TimeSpan.FromMinutes(10);
+        private readonly TimeSpan _retryIdExpirationInterval = TimeSpan.FromHours(1);
+
         private readonly IVpnConnection _vpnConnection;
         private readonly ILogger _logger;
         private readonly IServiceSettings _serviceSettings;
         private readonly ITaskQueue _taskQueue;
         private readonly IPortMappingProtocolClient _portMappingProtocolClient;
-        private readonly IServiceGrpcClient _grpcClient;
-        private readonly IAppControllerCaller _appControllerCaller;
+        private readonly IClientControllerSender _clientControllerSender;
         private readonly IEntityMapper _entityMapper;
+        private readonly Timer _timer;
+
+        private readonly object _lock = new object();
+        private readonly ConcurrentDictionary<Guid, DateTimeOffset> _receivedRetryIds = [];
 
         public VpnController(
             IVpnConnection vpnConnection,
@@ -56,8 +66,7 @@ namespace ProtonVPN.Service
             IServiceSettings serviceSettings,
             ITaskQueue taskQueue,
             IPortMappingProtocolClient portMappingProtocolClient,
-            IServiceGrpcClient grpcClient,
-            IAppControllerCaller appControllerCaller,
+            IClientControllerSender clientControllerSender,
             IEntityMapper entityMapper)
         {
             _vpnConnection = vpnConnection;
@@ -65,29 +74,36 @@ namespace ProtonVPN.Service
             _serviceSettings = serviceSettings;
             _taskQueue = taskQueue;
             _portMappingProtocolClient = portMappingProtocolClient;
-            _grpcClient = grpcClient;
-            _appControllerCaller = appControllerCaller;
+            _clientControllerSender = clientControllerSender;
             _entityMapper = entityMapper;
+
+            _timer = new(_retryIdCleanupTimerInterval);
+            _timer.Elapsed += OnTimedEvent;
+            _timer.AutoReset = true;
+            _timer.Enabled = true;
         }
 
-        public async Task RegisterStateConsumer(StateConsumerIpcEntity stateConsumer)
+        private void OnTimedEvent(object sender, EventArgs e)
         {
-            if (stateConsumer?.ServerPort is null || stateConsumer.ServerPort < 1 || stateConsumer.ServerPort > ushort.MaxValue)
+            lock(_lock)
             {
-                _logger.Error<ConnectLog>($"Received a new but invalid VPN Client gRPC port '{stateConsumer?.ServerPort}' to be registered.");
-                return;
+                List<KeyValuePair<Guid, DateTimeOffset>> list = _receivedRetryIds.ToList();
+                foreach (KeyValuePair<Guid, DateTimeOffset> pair in list)
+                {
+                    if (pair.Value <= DateTimeOffset.UtcNow)
+                    {
+                        _receivedRetryIds.TryRemove(pair.Key, out _);
+                    }
+                }
             }
-
-            _logger.Info<ConnectLog>($"Received new VPN Client gRPC port {stateConsumer.ServerPort} to be registered.");
-            await _grpcClient.CreateAsync(stateConsumer.ServerPort);
         }
 
-        public async Task Connect(ConnectionRequestIpcEntity connectionRequest)
+        public async Task Connect(ConnectionRequestIpcEntity connectionRequest, CancellationToken cancelToken)
         {
             Ensure.NotNull(connectionRequest, nameof(connectionRequest));
+            EnforceRetryId(connectionRequest.RetryId);
 
             _logger.Info<ConnectLog>("Connect requested");
-
             _serviceSettings.Apply(connectionRequest.Settings);
 
             VpnConfig config = _entityMapper.Map<VpnConfigIpcEntity, VpnConfig>(connectionRequest.Config);
@@ -97,43 +113,61 @@ namespace ProtonVPN.Service
             _vpnConnection.Connect(endpoints, config, credentials);
         }
 
-        public async Task Disconnect(DisconnectionRequestIpcEntity disconnectionRequest)
+        private void EnforceRetryId(Guid retryId, [CallerMemberName] string sourceMemberName = "")
         {
+            lock (_lock)
+            {
+                if (_receivedRetryIds.ContainsKey(retryId))
+                {
+                    string message = $"{sourceMemberName} request dropped because the retry ID is repeated.";
+                    _logger.Info<ConnectLog>(message);
+                    throw new ArgumentException(message);
+                }
+                DateTimeOffset expirationDate = DateTimeOffset.UtcNow + _retryIdExpirationInterval;
+                _receivedRetryIds.AddOrUpdate(retryId, _ => expirationDate, (_, _) => expirationDate);
+            }
+        }
+
+        public async Task Disconnect(DisconnectionRequestIpcEntity disconnectionRequest, CancellationToken cancelToken)
+        {
+            Ensure.NotNull(disconnectionRequest, nameof(disconnectionRequest));
+            EnforceRetryId(disconnectionRequest.RetryId);
+
             _logger.Info<DisconnectLog>($"Disconnect requested (Error: {disconnectionRequest.ErrorType})");
             _serviceSettings.Apply(disconnectionRequest.Settings);
             _vpnConnection.Disconnect((VpnError)disconnectionRequest.ErrorType);
         }
 
-        public async Task UpdateAuthCertificate(AuthCertificateIpcEntity certificate)
+        public async Task UpdateConnectionCertificate(ConnectionCertificateIpcEntity certificate, CancellationToken cancelToken)
         {
-            _vpnConnection.UpdateAuthCertificate(certificate.Certificate);
+            _vpnConnection.UpdateAuthCertificate(certificate.Pem);
         }
 
-        public async Task<TrafficBytesIpcEntity> GetTrafficBytes()
+        public async Task<TrafficBytesIpcEntity> GetTrafficBytes(CancellationToken cancelToken)
         {
             return _entityMapper.Map<InOutBytes, TrafficBytesIpcEntity>(_vpnConnection.Total);
         }
 
-        public async Task ApplySettings(MainSettingsIpcEntity settings)
+        public async Task ApplySettings(MainSettingsIpcEntity settings, CancellationToken cancelToken)
         {
             Ensure.NotNull(settings, nameof(settings));
             _serviceSettings.Apply(settings);
         }
 
-        public async Task RepeatState()
+        public async Task RepeatState(CancellationToken cancelToken)
         {
             _taskQueue.Enqueue(async () =>
             {
-                await _appControllerCaller.SendCurrentVpnStateAsync();
+                await _clientControllerSender.SendCurrentVpnStateAsync();
             });
         }
 
-        public async Task RepeatPortForwardingState()
+        public async Task RepeatPortForwardingState(CancellationToken cancelToken)
         {
             _portMappingProtocolClient.RepeatState();
         }
 
-        public async Task RequestNetShieldStats()
+        public async Task RequestNetShieldStats(CancellationToken cancelToken)
         {
             _vpnConnection.RequestNetShieldStats();
         }

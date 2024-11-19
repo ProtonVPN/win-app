@@ -631,23 +631,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </DockPanel>
                         </Border>
 
-                        <Border DockPanel.Dock="Top"
-                                Style="{StaticResource BorderSettingContainer}"
-                                Visibility="{Binding ShowAllowNonStandardPorts, Converter={StaticResource BoolToVis}}">
-                            <DockPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Style="{StaticResource SettingName}" Content="{translations:Loc Settings_Advanced_lbl_NonStandardPorts}"/>
-                                    <icons:InfoCircleFilled Style="{StaticResource InfoCircle}"
-                                                            ToolTip="{translations:Loc Settings_Advanced_lbl_NonStandardPorts_Info}"/>
-                                </StackPanel>
-
-                                <CheckBox HorizontalAlignment="Right"
-                                          Style="{StaticResource ToggleSwitch}"
-                                          IsChecked="{Binding AllowNonStandardPorts}"
-                                          AutomationProperties.AutomationId="{StaticResource AllowNonStandardPortsCheckbox}"/>
-                            </DockPanel>
-                        </Border>
-
                         <Border DockPanel.Dock="Top" Style="{StaticResource BorderlessSettingContainer}">
                             <DockPanel>
                                 <StackPanel Orientation="Horizontal">
