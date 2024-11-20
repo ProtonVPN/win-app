@@ -31,7 +31,7 @@ namespace ProtonVPN.Common.Extensions
             Ensure.IsTrue(value > TimeSpan.Zero, $"{nameof(value)} must be positive");
             Ensure.IsTrue(deviation is >= 0 and < 1, $"{nameof(deviation)} must be between zero and one");
 
-            return value + TimeSpan.FromMilliseconds(value.TotalMilliseconds * deviation * (2.0 * Random.NextDouble() - 1.0));
+            return value + TimeSpan.FromMilliseconds(value.TotalMilliseconds * deviation * Random.NextDouble());
         }
 
         public static TimeSpan Min(TimeSpan value1, TimeSpan value2)

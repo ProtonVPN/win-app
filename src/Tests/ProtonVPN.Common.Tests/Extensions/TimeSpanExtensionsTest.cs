@@ -44,26 +44,33 @@ namespace ProtonVPN.Common.Tests.Extensions
         public void RandomizedWithDeviation_ShouldBe_WithinDeviation()
         {
             // Arrange
+            int numOfGenerations = 100000;
             TimeSpan interval = TimeSpan.FromSeconds(20);
             const double deviation = 0.2;
-            TimeSpan minValue = interval;
-            TimeSpan maxValue = interval;
+            TimeSpan? minValue = null;
+            TimeSpan? maxValue = null;
             TimeSpan sumValue = TimeSpan.Zero;
 
             // Act
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < numOfGenerations; i++)
             {
                 TimeSpan result = interval.RandomizedWithDeviation(deviation);
-                if (result < minValue) minValue = result;
-                if (result > maxValue) maxValue = result;
+                if (minValue is null || result < minValue)
+                {
+                    minValue = result;
+                }
+                if (maxValue is null || result > maxValue)
+                {
+                    maxValue = result;
+                }
                 sumValue += result;
             }
 
-            TimeSpan medianValue = TimeSpan.FromMilliseconds(sumValue.TotalMilliseconds / 1000.0);
+            TimeSpan medianValue = TimeSpan.FromMilliseconds(sumValue.TotalMilliseconds / numOfGenerations);
 
             // Assert
-            minValue.Should().BeCloseTo(TimeSpan.FromSeconds(16), TimeSpan.FromMilliseconds(100));
-            medianValue.Should().BeCloseTo(interval, TimeSpan.FromMilliseconds(300));
+            minValue.Should().BeCloseTo(TimeSpan.FromSeconds(20), TimeSpan.FromMilliseconds(100));
+            medianValue.Should().BeCloseTo(TimeSpan.FromSeconds(22), TimeSpan.FromMilliseconds(100));
             maxValue.Should().BeCloseTo(TimeSpan.FromSeconds(24), TimeSpan.FromMilliseconds(100));
         }
     }
