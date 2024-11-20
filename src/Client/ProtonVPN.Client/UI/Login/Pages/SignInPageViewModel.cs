@@ -20,32 +20,33 @@
 using System.Security;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Client.Core.Enums;
+using ProtonVPN.Client.Core.Messages;
+using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
+using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
+using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Settings.Contracts.Messages;
-using ProtonVPN.Common.Core.Extensions;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Core.Services.Navigation;
+using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Client.UI.Login.Bases;
 using ProtonVPN.Client.UI.Login.Enums;
-using Windows.System;
-using ProtonVPN.Api.Contracts;
-using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
-using ProtonVPN.Common.Legacy.Abstract;
-using ProtonVPN.Client.Settings.Contracts.Observers;
-using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.UI.Login.Overlays;
-using ProtonVPN.Client.Services.Browsing;
-using ProtonVPN.Client.Core.Enums;
+using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.Common.Legacy.Abstract;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
+using Windows.System;
 
 namespace ProtonVPN.Client.UI.Login.Pages;
 
-public partial class SignInPageViewModel : LoginPageViewModelBase
+public partial class SignInPageViewModel : LoginPageViewModelBase,
+    IEventMessageReceiver<FeatureFlagsChangedMessage>
 {
     private readonly IUrls _urls;
     private readonly IUserAuthenticator _userAuthenticator;
