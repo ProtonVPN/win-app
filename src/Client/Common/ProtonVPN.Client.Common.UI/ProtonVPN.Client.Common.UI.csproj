@@ -792,7 +792,6 @@
         <None Remove="Assets\Illustrations\world-map.svg" />
         <None Remove="Assets\Illustrations\worldwide-coverage.png" />
         <None Remove="Assets\Illustrations\wrong-country.png" />
-        <None Remove="Controls\DeviceLocationControl.xaml" />
         <None Remove="Controls\Map\CountryPin.xaml" />
         <None Remove="Controls\Map\MapControl.xaml" />
         <None Remove="Controls\ScramblingTextControl.xaml" />
@@ -810,7 +809,6 @@
         <None Remove="Gallery\Pages\MapPage.xaml" />
         <None Remove="Gallery\Pages\OtherControlsPage.xaml" />
         <None Remove="Gallery\Pages\TextFieldsPage.xaml" />
-        <None Remove="Gallery\Pages\VpnSpecificPage.xaml" />
         <None Remove="Styles\Brushes.xaml" />
         <None Remove="Styles\Colors.xaml" />
         <None Remove="Styles\Controls\BulletHeaderedContentControlStyles.xaml" />
@@ -1003,11 +1001,6 @@
     </ItemGroup>
     <ItemGroup>
         <Page Update="Gallery\Controls\SampleControl.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-    </ItemGroup>
-    <ItemGroup>
-        <Page Update="Gallery\Pages\VpnSpecificPage.xaml">
             <Generator>MSBuild:Compile</Generator>
         </Page>
     </ItemGroup>

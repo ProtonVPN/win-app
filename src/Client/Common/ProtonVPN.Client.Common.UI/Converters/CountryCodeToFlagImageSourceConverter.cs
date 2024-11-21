@@ -17,12 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml;
 using System;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Media.Imaging;
 using System.IO;
+using Microsoft.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace ProtonVPN.Client.Common.UI.Converters;
 
@@ -34,7 +32,7 @@ public class CountryCodeToFlagImageSourceConverter : IValueConverter
 
     public object Convert(object value, Type targetType, object parameter, string language)
     {
-        string countryCode = value?.ToString();
+        string countryCode = value?.ToString() ?? string.Empty;
 
         return GetImageSource(countryCode);
     }

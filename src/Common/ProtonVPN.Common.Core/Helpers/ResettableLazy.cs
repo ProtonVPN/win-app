@@ -25,7 +25,7 @@ public class ResettableLazy<T>
     private readonly object _lock = new();
 
     private bool _isValueCreated;
-    private T _value;
+    private T _value = default!;
 
     public ResettableLazy(Func<T> function)
     {

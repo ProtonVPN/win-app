@@ -29,7 +29,7 @@ public class InstalledAppsLogTest : LogBaseTest
     public void ItShouldCreateLogFile()
     {
         // Act
-        new InstalledAppsLog(StaticConfig).Write();
+        new InstalledAppsLog(StaticConfig!).Write();
 
         // Assert
         File.Exists(Path.Combine(TMP_PATH, "Apps.txt")).Should().BeTrue();

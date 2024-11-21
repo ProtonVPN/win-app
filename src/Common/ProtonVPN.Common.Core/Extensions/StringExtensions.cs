@@ -217,7 +217,7 @@ public static class StringExtensions
         return length >= value.Length ? value : value.Substring(value.Length - length);
     }
 
-    public static string GetFirstChars(this string value, int maxLength)
+    public static string? GetFirstChars(this string? value, int maxLength)
     {
         return value?.Length > maxLength ? value.Substring(0, maxLength) : value;
     }
@@ -243,7 +243,7 @@ public static class StringExtensions
 
     public static uint ToIPAddressBytes(this string value)
     {
-        if (IPAddress.TryParse(value, out IPAddress address))
+        if (IPAddress.TryParse(value, out IPAddress? address))
         {
             return BitConverter.ToUInt32(address.GetAddressBytes(), 0);
         }
@@ -261,24 +261,24 @@ public static class StringExtensions
         return string.Format(format, value);
     }
 
-    public static IEnumerable<string> SplitToEnumerable(this string value, char separator)
+    public static IEnumerable<string>? SplitToEnumerable(this string value, char separator)
     {
         return string.IsNullOrWhiteSpace(value)
             ? null
             : value.Split(separator).Select(e => e.Trim());
     }
 
-    public static HashSet<string> SplitToHashSet(this string value, char separator)
+    public static HashSet<string>? SplitToHashSet(this string value, char separator)
     {
         return value.SplitToEnumerable(separator)?.ToHashSet();
     }
 
-    public static List<string> SplitToList(this string value, char separator)
+    public static List<string>? SplitToList(this string value, char separator)
     {
         return value.SplitToEnumerable(separator)?.ToList();
     }
 
-    public static bool IsHttpUri(this string uriString, out Uri uri)
+    public static bool IsHttpUri(this string uriString, out Uri? uri)
     {
         return Uri.TryCreate(uriString, UriKind.Absolute, out uri) && (uri.Scheme == Uri.UriSchemeHttps || uri.Scheme == Uri.UriSchemeHttp)
             || Uri.TryCreate($"https://{uriString}", UriKind.Absolute, out uri);

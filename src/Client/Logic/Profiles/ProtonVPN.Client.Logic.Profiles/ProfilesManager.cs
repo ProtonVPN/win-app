@@ -31,8 +31,7 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.Logic.Profiles;
 
 public class ProfilesManager : IProfilesManager,
-    IEventMessageReceiver<LoggedInMessage>,
-    IEventMessageReceiver<LoggedOutMessage>
+    IEventMessageReceiver<LoggedInMessage>
 {
     private readonly ILogger _logger;
     private readonly IEventMessageSender _eventMessageSender;
@@ -41,8 +40,6 @@ public class ProfilesManager : IProfilesManager,
     private readonly ISettings _settings;
 
     private readonly object _lock = new();
-
-    private bool _areProfilesLoaded;
 
     private List<IConnectionProfile> _profiles = new();
 
@@ -70,7 +67,7 @@ public class ProfilesManager : IProfilesManager,
         return _profiles.FirstOrDefault(p => p.Id == profileId);
     }
 
-    public void OverrideProfiles(IEnumerable<IConnectionProfile> profiles, IConnectionProfile quickConnectionProfile = null)
+    public void OverrideProfiles(IEnumerable<IConnectionProfile> profiles, IConnectionProfile? quickConnectionProfile = null)
     {
         lock (_lock)
         {
@@ -144,14 +141,7 @@ public class ProfilesManager : IProfilesManager,
             LoadProfiles();
         }
 
-        _areProfilesLoaded = true;
-
         BroadcastProfileChanges();
-    }
-
-    public void Receive(LoggedOutMessage message)
-    {
-        _areProfilesLoaded = false;
     }
 
     private void SaveAndBroadcastProfileChanges()

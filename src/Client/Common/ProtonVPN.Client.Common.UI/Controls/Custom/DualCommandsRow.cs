@@ -72,7 +72,7 @@ public abstract class DualCommandsRowBase : ContentControl
     public static readonly DependencyProperty SecondaryCommandAutomationNameProperty =
         DependencyProperty.Register(nameof(SecondaryCommandAutomationName), typeof(string), typeof(DualCommandsRowBase), new PropertyMetadata(default));
 
-    protected UIElement PART_SecondaryContainer;
+    protected UIElement? PART_SecondaryContainer;
 
     public bool IsContentEnabled
     {
@@ -256,12 +256,12 @@ public class DualCommandsRow : DualCommandsRowBase
         }
     }
 
-    private void OnFlyoutOpened(object sender, object e)
+    private void OnFlyoutOpened(object? sender, object e)
     {
         VisualStateManager.GoToState(this, FLYOUT_OPENED_VISUAL_STATE, false);
     }
 
-    private void OnFlyoutClosed(object sender, object e)
+    private void OnFlyoutClosed(object? sender, object e)
     {
         VisualStateManager.GoToState(this, FLYOUT_CLOSED_VISUAL_STATE, false);
     }

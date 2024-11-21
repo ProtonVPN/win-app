@@ -27,7 +27,7 @@ namespace ProtonVPN.Client.Logic.Feedback.Tests.Diagnostics;
 [TestClass]
 public class NetworkAdapterLogTest : LogBaseTest
 {
-    private INetworkInterfaces _networkInterfaces;
+    private INetworkInterfaces? _networkInterfaces;
 
     [TestInitialize]
     public override void Initialize()
@@ -35,6 +35,14 @@ public class NetworkAdapterLogTest : LogBaseTest
         base.Initialize();
 
         _networkInterfaces = Substitute.For<INetworkInterfaces>();
+    }
+
+    [TestCleanup]
+    public override void Cleanup()
+    {
+        base.Cleanup();
+
+        _networkInterfaces = null;
     }
 
     [TestMethod]
@@ -46,9 +54,9 @@ public class NetworkAdapterLogTest : LogBaseTest
             CreateInterface("interface1"),
             CreateInterface("interface2"),
         };
-        _networkInterfaces.GetInterfaces().Returns(interfaces);
+        _networkInterfaces!.GetInterfaces().Returns(interfaces);
 
-        NetworkAdapterLog log = new NetworkAdapterLog(_networkInterfaces, StaticConfig);
+        NetworkAdapterLog log = new NetworkAdapterLog(_networkInterfaces, StaticConfig!);
 
         // Act
         log.Write();

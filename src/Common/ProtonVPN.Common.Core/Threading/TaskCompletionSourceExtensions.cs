@@ -21,7 +21,7 @@ namespace ProtonVPN.Common.Core.Threading;
 
 public static class TaskCompletionSourceExtensions
 {
-    public static Task Wrap(this TaskCompletionSource<object> source, Func<Task> action)
+    public static Task Wrap(this TaskCompletionSource<object?> source, Func<Task> action)
     {
         return source.Wrap(async () =>
         {
@@ -30,7 +30,7 @@ public static class TaskCompletionSourceExtensions
         });
     }
 
-    public static async Task Wrap<T>(this TaskCompletionSource<T> source, Func<Task<T>> function)
+    public static async Task Wrap<T>(this TaskCompletionSource<T?> source, Func<Task<T?>> function)
     {
         try
         {

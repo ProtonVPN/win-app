@@ -64,7 +64,7 @@ public class MonitorCalculator
             }
             W32Point cursorPosition = nullableCursorPosition.Value;
 
-            Monitor monitor = GetCursorMonitor(cursorPosition);
+            Monitor? monitor = GetCursorMonitor(cursorPosition);
             if (monitor is null)
             {
                 return null; // Error when obtaining monitor information
@@ -96,13 +96,13 @@ public class MonitorCalculator
         return GetCursorPos(ref point) ? point : null;
     }
 
-    private static Monitor GetCursorMonitor(W32Point cursorPosition)
+    private static Monitor? GetCursorMonitor(W32Point cursorPosition)
     {
         IntPtr monitorHandle = MonitorFromPoint(cursorPosition, MONITOR_DEFAULTTONEAREST);
         return GetMonitorByHandle(monitorHandle);
     }
 
-    private static Monitor GetMonitorByHandle(IntPtr monitorHandle)
+    private static Monitor? GetMonitorByHandle(IntPtr monitorHandle)
     {
         W32MonitorInfo monitorInfo = new()
         {
@@ -178,7 +178,7 @@ public class MonitorCalculator
             }
             W32Point cursorPosition = nullableCursorPosition.Value;
 
-            Monitor monitor = GetCursorMonitor(cursorPosition);
+            Monitor? monitor = GetCursorMonitor(cursorPosition);
             if (monitor is null)
             {
                 return null; // Error when obtaining monitor information
@@ -196,7 +196,7 @@ public class MonitorCalculator
     {
         try
         {
-            Monitor monitor = GetWindowMonitor(windowRectangle);
+            Monitor? monitor = GetWindowMonitor(windowRectangle);
             if (monitor is null)
             {
                 return null; // Error when obtaining monitor information
@@ -230,7 +230,7 @@ public class MonitorCalculator
         }
     }
 
-    private static Monitor GetWindowMonitor(W32Rect windowRectangle)
+    private static Monitor? GetWindowMonitor(W32Rect windowRectangle)
     {
         IntPtr monitorHandle = MonitorFromRect(windowRectangle, MONITOR_DEFAULTTONEAREST);
         return GetMonitorByHandle(monitorHandle);

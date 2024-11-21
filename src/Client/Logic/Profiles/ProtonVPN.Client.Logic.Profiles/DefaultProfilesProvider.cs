@@ -26,14 +26,9 @@ namespace ProtonVPN.Client.Logic.Profiles;
 
 public class DefaultProfilesProvider : IDefaultProfilesProvider
 {
-    private List<IConnectionProfile> _defaultProfiles;
+    private readonly List<IConnectionProfile> _defaultProfiles;
 
     public DefaultProfilesProvider()
-    {
-        ResetDefaultProfiles();
-    }
-
-    private void ResetDefaultProfiles()
     {
         _defaultProfiles =
         [

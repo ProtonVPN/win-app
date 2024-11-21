@@ -68,7 +68,7 @@ public sealed partial class MapPage
             canvas.Children.Remove(connection);
         }
 
-        MapPinControl previousPin = null;
+        MapPinControl? previousPin = null;
         foreach (MapPinControl pin in canvas.Children.OfType<MapPinControl>().ToList())
         {
             if (previousPin != null)
