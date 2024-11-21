@@ -191,7 +191,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                 <DiscreteDoubleKeyFrame KeyTime="0"
                                                                         Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.ContentHeight}" />
                                                 <SplineDoubleKeyFrame KeySpline="0.0, 0.0, 0.0, 1.0"
-                                                                      KeyTime="0:0:0.333"
+                                                                      KeyTime="{StaticResource ControlFastAnimationDuration}"
                                                                       Value="0" />
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
@@ -202,7 +202,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ExpanderContent"
                                                                            Storyboard.TargetProperty="Visibility">
-                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.2"
+                                                <DiscreteObjectKeyFrame KeyTime="{StaticResource ControlFastAnimationAfterDuration}"
                                                                         Value="Collapsed" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ExpanderContent"
@@ -210,7 +210,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                 <DiscreteDoubleKeyFrame KeyTime="0"
                                                                         Value="0" />
                                                 <SplineDoubleKeyFrame KeySpline="1.0, 1.0, 0.0, 1.0"
-                                                                      KeyTime="0:0:0.167"
+                                                                      KeyTime="{StaticResource ControlFastAnimationDuration}"
                                                                       Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.ContentHeight}" />
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
@@ -229,7 +229,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                 <DiscreteDoubleKeyFrame KeyTime="0"
                                                                         Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.NegativeContentHeight}" />
                                                 <SplineDoubleKeyFrame KeySpline="0.0, 0.0, 0.0, 1.0"
-                                                                      KeyTime="0:0:0.333"
+                                                                      KeyTime="{StaticResource ControlFastAnimationDuration}"
                                                                       Value="0" />
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
@@ -240,7 +240,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ExpanderContent"
                                                                            Storyboard.TargetProperty="Visibility">
-                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.167"
+                                                <DiscreteObjectKeyFrame KeyTime="{StaticResource ControlFastAnimationAfterDuration}"
                                                                         Value="Collapsed" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ExpanderContent"
@@ -248,7 +248,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                 <DiscreteDoubleKeyFrame KeyTime="0"
                                                                         Value="0" />
                                                 <SplineDoubleKeyFrame KeySpline="1.0, 1.0, 0.0, 1.0"
-                                                                      KeyTime="0:0:0.167"
+                                                                      KeyTime="{StaticResource ControlFastAnimationDuration}"
                                                                       Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.NegativeContentHeight}" />
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
