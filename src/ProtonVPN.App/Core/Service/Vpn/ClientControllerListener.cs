@@ -101,7 +101,7 @@ public class ClientControllerListener : IClientControllerListener
         await foreach (VpnStateIpcEntity state in _grpcClient.ClientController.StreamVpnStateChangeAsync())
         {
 
-            _logger.Debug<ProcessCommunicationLog>($"Received VPN Status '{state.Status}', " +
+            _logger.Info<ProcessCommunicationLog>($"Received VPN Status '{state.Status}', " +
                 $"NetworkBlocked: {state.NetworkBlocked} Error: '{state.Error}', EndpointIp: '{state.EndpointIp}', " +
                 $"Label: '{state.Label}', VpnProtocol: '{state.VpnProtocol}', OpenVpnAdapter: '{state.OpenVpnAdapterType}'");
             InvokeOnUiThread(() => { _clientControllerEventHandler.InvokeVpnStateChanged(state); });
@@ -126,7 +126,7 @@ public class ClientControllerListener : IClientControllerListener
                 logMessage.Append($", Port pair {mappedPort.InternalPort}->{mappedPort.ExternalPort}, expiring in " +
                                   $"{mappedPort.Lifetime} at {mappedPort.ExpirationDateUtc}");
             }
-            _logger.Debug<ProcessCommunicationLog>(logMessage.ToString());
+            _logger.Info<ProcessCommunicationLog>(logMessage.ToString());
             InvokeOnUiThread(() => _clientControllerEventHandler.InvokePortForwardingStateChanged(state));
         }
     }
@@ -136,7 +136,7 @@ public class ClientControllerListener : IClientControllerListener
         await foreach (ConnectionDetailsIpcEntity connectionDetails in
             _grpcClient.ClientController.StreamConnectionDetailsChangeAsync())
         {
-            _logger.Debug<ProcessCommunicationLog>($"Received connection details change while " +
+            _logger.Info<ProcessCommunicationLog>($"Received connection details change while " +
                 $"connected to server with IP '{connectionDetails.ServerIpAddress}'");
             InvokeOnUiThread(() => _clientControllerEventHandler.InvokeConnectionDetailsChanged(connectionDetails));
         }
@@ -147,7 +147,7 @@ public class ClientControllerListener : IClientControllerListener
         await foreach (UpdateStateIpcEntity state in
             _grpcClient.ClientController.StreamUpdateStateChangeAsync())
         {
-            _logger.Debug<ProcessCommunicationLog>(
+            _logger.Info<ProcessCommunicationLog>(
                 $"Received update state change with status {state.Status}.");
             InvokeOnUiThread(() => _clientControllerEventHandler.InvokeUpdateStateChanged(state));
         }
@@ -158,7 +158,7 @@ public class ClientControllerListener : IClientControllerListener
         await foreach (NetShieldStatisticIpcEntity netShieldStatistic in
             _grpcClient.ClientController.StreamNetShieldStatisticChangeAsync())
         {
-            _logger.Debug<ProcessCommunicationLog>(
+            _logger.Info<ProcessCommunicationLog>(
                 $"Received NetShield statistic change with timestamp '{netShieldStatistic.TimestampUtc}' " +
                 $"[Ads: '{netShieldStatistic.NumOfAdvertisementUrlsBlocked}']" +
                 $"[Malware: '{netShieldStatistic.NumOfMaliciousUrlsBlocked}']" +
@@ -171,7 +171,7 @@ public class ClientControllerListener : IClientControllerListener
     {
         await foreach (string args in _grpcClient.ClientController.StreamOpenWindowAsync())
         {
-            _logger.Debug<ProcessCommunicationLog>("Received open window request.");
+            _logger.Info<ProcessCommunicationLog>("Received open window request.");
             await ProcessCommandArgumentsAsync(args);
             InvokeOnUiThread(() => _clientControllerEventHandler.InvokeOpenWindowInvoked());
         }
