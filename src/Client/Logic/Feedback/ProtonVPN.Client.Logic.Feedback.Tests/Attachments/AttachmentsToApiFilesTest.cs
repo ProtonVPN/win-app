@@ -30,7 +30,7 @@ namespace ProtonVPN.Client.Logic.Feedback.Tests.Attachments;
 [SuppressMessage("ReSharper", "ReturnValueOfPureMethodIsNotUsed")]
 public class AttachmentsToApiFilesTest
 {
-    private IEnumerable<Attachment> _source;
+    private IEnumerable<Attachment>? _source;
 
     [TestInitialize]
     public void TestInitialize()
@@ -38,11 +38,17 @@ public class AttachmentsToApiFilesTest
         _source = Substitute.For<IEnumerable<Attachment>>();
     }
 
+    [TestCleanup]
+    public void Cleanup()
+    {
+        _source = null;
+    }
+
     [TestMethod]
     public void Enumerable_ShouldBeEmpty_WhenSource_IsEmpty()
     {
         // Arrange
-        _source.GetEnumerator().Returns(Enumerable.Empty<Attachment>().GetEnumerator());
+        _source!.GetEnumerator().Returns(Enumerable.Empty<Attachment>().GetEnumerator());
         AttachmentsToApiFiles converter = new(_source);
         // Act
         List<File> result = converter.ToList();
@@ -56,7 +62,7 @@ public class AttachmentsToApiFilesTest
         // Arrange
         string[] fileNames = { "bug-report-test.txt", "bug-report-test-2.txt", "bug-report-test-3.txt" };
         IEnumerable<Attachment> attachments = fileNames.Select(f => new Attachment($"TestData\\{f}"));
-        _source.GetEnumerator().Returns(attachments.GetEnumerator());
+        _source!.GetEnumerator().Returns(attachments.GetEnumerator());
         AttachmentsToApiFiles converter = new AttachmentsToApiFiles(_source);
         // Act
         List<File> result = converter.ToList();
@@ -69,7 +75,7 @@ public class AttachmentsToApiFilesTest
     {
         // Arrange
         Attachment[] attachments = { new("TestData\\bug-report-test-3.txt") };
-        _source.GetEnumerator().Returns(attachments.Cast<Attachment>().GetEnumerator());
+        _source!.GetEnumerator().Returns(attachments.Cast<Attachment>().GetEnumerator());
         byte[] expected = Encoding.UTF8.GetPreamble().Concat(Encoding.UTF8.GetBytes("bug-report-test-3")).ToArray();
         AttachmentsToApiFiles converter = new(_source);
         // Act
@@ -83,7 +89,7 @@ public class AttachmentsToApiFilesTest
     {
         // Arrange
         Attachment[] attachments = { new("Lost folder\\test.txt") };
-        _source.GetEnumerator().Returns(attachments.Cast<Attachment>().GetEnumerator());
+        _source!.GetEnumerator().Returns(attachments.Cast<Attachment>().GetEnumerator());
         AttachmentsToApiFiles converter = new(_source);
         // Act
         Action action = () => converter.ToList();
@@ -96,7 +102,7 @@ public class AttachmentsToApiFilesTest
     {
         // Arrange
         Attachment[] attachments = { new Attachment("TestData\\not-a-test.txt") };
-        _source.GetEnumerator().Returns(attachments.Cast<Attachment>().GetEnumerator());
+        _source!.GetEnumerator().Returns(attachments.Cast<Attachment>().GetEnumerator());
         AttachmentsToApiFiles converter = new(_source);
         // Act
         Action action = () => converter.ToList();

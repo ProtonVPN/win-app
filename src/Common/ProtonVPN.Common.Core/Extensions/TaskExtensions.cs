@@ -23,7 +23,7 @@ public static class TaskExtensions
 {
     public static void IgnoreExceptions(this Task task)
     {
-        task.ContinueWith(c => { AggregateException ignored = c.Exception; },
+        task.ContinueWith(c => { AggregateException? ignored = c.Exception; },
             TaskContinuationOptions.OnlyOnFaulted |
             TaskContinuationOptions.ExecuteSynchronously);
     }

@@ -23,9 +23,9 @@ using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Legacy.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Legacy.UI.Features;
-using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Client.Common.UI.Extensions;
 
 namespace ProtonVPN.Client.Legacy.UI.Features.SplitTunneling;
 

@@ -29,7 +29,7 @@ public class DriverInstallLogTest : LogBaseTest
     public void ItShouldCreateLogFile()
     {
         // Act
-        new DriverInstallLog(StaticConfig).Write();
+        new DriverInstallLog(StaticConfig!).Write();
 
         // Assert
         File.Exists(Path.Combine(TMP_PATH, "setupapi.dev.zip")).Should().BeTrue();

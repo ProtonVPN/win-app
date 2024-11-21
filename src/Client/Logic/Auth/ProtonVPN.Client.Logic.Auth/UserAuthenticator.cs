@@ -56,7 +56,7 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
     private readonly IServersUpdater _serversUpdater;
     private readonly IUserSettingsMigrator _userSettingsMigrator;
     private readonly IVpnPlanUpdater _vpnPlanUpdater;
-    private AuthResponse _authResponse;
+    private AuthResponse? _authResponse;
 
     public AuthenticationStatus AuthenticationStatus { get; private set; }
 
@@ -231,8 +231,12 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
 
         try
         {
-            SrpPInvoke.GoProofs proofs = SrpPInvoke.GenerateProofs(4, username, password, authInfoResponse.Value.Salt,
+            SrpPInvoke.GoProofs? proofs = SrpPInvoke.GenerateProofs(4, username, password, authInfoResponse.Value.Salt,
                 authInfoResponse.Value.Modulus, authInfoResponse.Value.ServerEphemeral);
+            if (proofs is null)
+            {
+                return AuthResult.Fail(AuthError.Unknown);
+            }
 
             AuthRequest authRequest = GetAuthRequestData(proofs, authInfoResponse.Value.SrpSession, username);
             ApiResponseResult<AuthResponse> response = await _apiClient.GetAuthResponse(authRequest);
@@ -266,8 +270,8 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
     {
         TwoFactorRequest request = new() { TwoFactorCode = code };
         ApiResponseResult<BaseResponse> response =
-            await _apiClient.GetTwoFactorAuthResponse(request, _authResponse.AccessToken,
-                _authResponse.UniqueSessionId);
+            await _apiClient.GetTwoFactorAuthResponse(request, _authResponse?.AccessToken ?? string.Empty,
+                _authResponse?.UniqueSessionId ?? string.Empty);
 
         if (response.Failure)
         {
@@ -353,8 +357,13 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
         _settings.RefreshToken = null;
     }
 
-    private void SaveAuthSessionDetails(AuthResponse authResponse)
+    private void SaveAuthSessionDetails(AuthResponse? authResponse)
     {
+        if (authResponse is null)
+        {
+            return;
+        }
+
         _settings.UserId = authResponse.UserId;
         _settings.AccessToken = authResponse.AccessToken;
         _settings.UniqueSessionId = authResponse.UniqueSessionId;

@@ -83,12 +83,12 @@ public class DualConnectionRowButton : DualConnectionRowButtonBase
         }
     }
 
-    private void OnFlyoutOpened(object sender, object e)
+    private void OnFlyoutOpened(object? sender, object e)
     {
         VisualStateManager.GoToState(this, FLYOUT_OPENED_VISUAL_STATE, false);
     }
 
-    private void OnFlyoutClosed(object sender, object e)
+    private void OnFlyoutClosed(object? sender, object e)
     {
         VisualStateManager.GoToState(this, FLYOUT_CLOSED_VISUAL_STATE, false);
     }

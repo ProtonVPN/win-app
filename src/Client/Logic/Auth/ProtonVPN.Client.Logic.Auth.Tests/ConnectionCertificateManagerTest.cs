@@ -69,16 +69,16 @@ public class ConnectionCertificateManagerTest
         _certificateManager = new ConnectionCertificateManager(_appSettings, _connectionKeyManager, _apiClient, _logger, _eventMessageSender);
     }
 
-    private async Task<ApiResponseResult<CertificateResponse>> MockOfRequestCertificateAsync(CertificateRequest arg)
+    private Task<ApiResponseResult<CertificateResponse>> MockOfRequestCertificateAsync(CertificateRequest arg)
     {
         if (string.IsNullOrEmpty(arg.ClientPublicKey) || _usedClientPublicKeys.Contains(arg.ClientPublicKey))
         {
-            return ApiResponseResult<CertificateResponse>.Fail(CreateClientPublicKeyConflictCertificateResponseData(),
-                new HttpResponseMessage(HttpStatusCode.BadRequest), string.Empty);
+            return Task.FromResult(ApiResponseResult<CertificateResponse>.Fail(CreateClientPublicKeyConflictCertificateResponseData(),
+                new HttpResponseMessage(HttpStatusCode.BadRequest), string.Empty));
         }
         _usedClientPublicKeys.Add(arg.ClientPublicKey);
         _certificateResponse ??= CreateCertificateResponseData();
-        return ApiResponseResult<CertificateResponse>.Ok(new HttpResponseMessage(), _certificateResponse);
+        return Task.FromResult(ApiResponseResult<CertificateResponse>.Ok(new HttpResponseMessage(), _certificateResponse));
     }
 
     private CertificateResponse CreateCertificateResponseData()

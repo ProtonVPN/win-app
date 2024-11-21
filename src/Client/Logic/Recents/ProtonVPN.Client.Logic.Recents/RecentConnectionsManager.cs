@@ -94,7 +94,7 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
 
     public IRecentConnection? GetMostRecentConnection()
     {
-        IRecentConnection mostRecentConnection =
+        IRecentConnection? mostRecentConnection =
             _recentConnections.FirstOrDefault(c => c.IsActiveConnection) ??
             _recentConnections.FirstOrDefault();
 
@@ -185,7 +185,7 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
 
         lock (_lock)
         {
-            IConnectionIntent connectionIntent = _connectionManager.CurrentConnectionIntent;
+            IConnectionIntent? connectionIntent = _connectionManager.CurrentConnectionIntent;
 
             try
             {
@@ -265,7 +265,7 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
         }
     }
 
-    private bool TryInsertRecentConnection(IConnectionIntent recentIntent)
+    private bool TryInsertRecentConnection(IConnectionIntent? recentIntent)
     {
         if (recentIntent == null || recentIntent.Location is FreeServerLocationIntent)
         {
@@ -333,7 +333,7 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
     private void InvalidateActiveConnection()
     {
         ConnectionStatus currentConnectionStatus = _connectionManager.ConnectionStatus;
-        IConnectionIntent currentConnectionIntent = _connectionManager.CurrentConnectionIntent;
+        IConnectionIntent? currentConnectionIntent = _connectionManager.CurrentConnectionIntent;
 
         foreach (IRecentConnection connection in _recentConnections)
         {
@@ -352,7 +352,7 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
 
         foreach (IRecentConnection connection in recentConnections.Where(c => c.ConnectionIntent is IConnectionProfile))
         {
-            IConnectionProfile profile = profiles.FirstOrDefault(p => p.IsSameAs(connection.ConnectionIntent));
+            IConnectionProfile? profile = profiles.FirstOrDefault(p => p.IsSameAs(connection.ConnectionIntent));
             if (profile != null)
             {
                 // Profile may have changed, update the recent connection item

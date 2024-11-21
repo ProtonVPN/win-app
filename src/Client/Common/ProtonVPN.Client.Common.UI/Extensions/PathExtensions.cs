@@ -26,7 +26,7 @@ using Microsoft.UI.Xaml.Media.Imaging;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 
-namespace ProtonVPN.Common.Core.Extensions;
+namespace ProtonVPN.Client.Common.UI.Extensions;
 
 public static class PathExtensions
 {
@@ -35,7 +35,7 @@ public static class PathExtensions
         try
         {
             FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(filePath);
-            string name = versionInfo.FileDescription?.Trim();
+            string? name = versionInfo.FileDescription?.Trim();
 
             if (string.IsNullOrEmpty(name))
             {
@@ -56,7 +56,7 @@ public static class PathExtensions
         return string.Empty;
     }
 
-    public static async Task<ImageSource> GetAppIconAsync(this string filePath)
+    public static async Task<ImageSource?> GetAppIconAsync(this string filePath)
     {
         try
         {

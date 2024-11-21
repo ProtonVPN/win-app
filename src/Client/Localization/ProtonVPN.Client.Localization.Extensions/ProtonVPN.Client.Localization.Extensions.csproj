@@ -5,6 +5,7 @@
         <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
         <ImplicitUsings>enable</ImplicitUsings>
         <OutputPath>..\..\..\bin</OutputPath>
+        <Nullable>enable</Nullable>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     </PropertyGroup>

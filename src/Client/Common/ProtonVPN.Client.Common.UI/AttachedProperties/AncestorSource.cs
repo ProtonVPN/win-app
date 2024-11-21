@@ -71,7 +71,7 @@ public class AncestorSource
         }
     }
 
-    private static object FindParent(DependencyObject dependencyObject, Type ancestorType)
+    private static object? FindParent(DependencyObject dependencyObject, Type ancestorType)
     {
         DependencyObject parent = VisualTreeHelper.GetParent(dependencyObject);
 

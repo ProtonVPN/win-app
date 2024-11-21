@@ -21,10 +21,10 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Client.Core.Bases.ViewModels;
+using ProtonVPN.Client.Common.UI.Extensions;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Connection;
 

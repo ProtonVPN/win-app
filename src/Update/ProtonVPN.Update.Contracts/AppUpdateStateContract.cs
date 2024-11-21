@@ -21,12 +21,12 @@ namespace ProtonVPN.Update.Contracts
 {
     public class AppUpdateStateContract
     {
-        public IReadOnlyList<ReleaseContract> ReleaseHistory { get; set; }
-        public bool IsAvailable { get; set; }
-        public bool IsReady { get; set; }
-        public AppUpdateStatus Status { get; set; }
-        public string FilePath { get; set; }
-        public string FileArguments { get; set; }
-        public Version Version { get; set; }
+        public required IReadOnlyList<ReleaseContract> ReleaseHistory { get; set; }
+        public required bool IsAvailable { get; set; }
+        public required bool IsReady { get; set; }
+        public required AppUpdateStatus Status { get; set; }
+        public required string FilePath { get; set; }
+        public required string FileArguments { get; set; }
+        public required Version Version { get; set; }
     }
 }

@@ -53,7 +53,7 @@ public static class LocalizationExtensions
         };
     }
 
-    public static string GetCountryName(this ILocalizationProvider localizer, string countryCode, ConnectionIntentKind intentKind = ConnectionIntentKind.Fastest, bool excludeMyCountry = false)
+    public static string GetCountryName(this ILocalizationProvider localizer, string? countryCode, ConnectionIntentKind intentKind = ConnectionIntentKind.Fastest, bool excludeMyCountry = false)
     {
         return string.IsNullOrEmpty(countryCode)
             ? intentKind switch
@@ -191,7 +191,7 @@ public static class LocalizationExtensions
         };
     }
 
-    public static string GetFormattedShortTime(this ILocalizationProvider localizer, TimeSpan time)
+    public static string? GetFormattedShortTime(this ILocalizationProvider localizer, TimeSpan time)
     {
         try
         {

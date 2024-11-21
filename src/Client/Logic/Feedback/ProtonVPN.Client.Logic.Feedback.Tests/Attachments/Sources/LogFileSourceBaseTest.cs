@@ -40,7 +40,7 @@ public abstract class LogFileSourceBaseTest<T>
         T fileSource = Construct(folderPath, 5);
 
         // Act
-        List<string> result = fileSource.Get().Select(Path.GetFileName).ToList();
+        List<string?> result = fileSource.Get().Select(Path.GetFileName).ToList();
 
         // Assert
         result.Should().Contain(fileNames);
@@ -75,7 +75,7 @@ public abstract class LogFileSourceBaseTest<T>
         T fileSource = Construct(folderPath, 3);
 
         // Act
-        List<string> result = fileSource.Get().Select(Path.GetFileName).ToList();
+        List<string?> result = fileSource.Get().Select(Path.GetFileName).ToList();
 
         // Assert
         result.Should().ContainInOrder("Log 1.txt", "Log 3.txt", "Log 2.txt");
@@ -92,7 +92,7 @@ public abstract class LogFileSourceBaseTest<T>
         T fileSource = Construct(folderPath, 4);
 
         // Act
-        List<string> result = fileSource.Get().Select(Path.GetFileName).ToList();
+        List<string?> result = fileSource.Get().Select(Path.GetFileName).ToList();
 
         // Assert
         result.Contains("tooBigFile.txt").Should().BeFalse();
@@ -113,7 +113,7 @@ public abstract class LogFileSourceBaseTest<T>
         }
     }
 
-    private static void CopyFile(string sourcePath, string destPath, string newFilename = null)
+    private static void CopyFile(string sourcePath, string destPath, string? newFilename = null)
     {
         if (!string.IsNullOrEmpty(destPath))
         {

@@ -48,7 +48,7 @@ public class SingleAction : ISingleAction
         _cancellationHandle = new CancellationHandle();
     }
 
-    public event EventHandler<TaskCompletedEventArgs> Completed;
+    public event EventHandler<TaskCompletedEventArgs>? Completed;
 
     public Task Run()
     {
@@ -57,8 +57,8 @@ public class SingleAction : ISingleAction
             return Task;
         }
 
-        TaskCompletionSource<object> taskCompletion = new();
-        Task<object> newTask = taskCompletion.Task;
+        TaskCompletionSource<object?> taskCompletion = new();
+        Task<object?> newTask = taskCompletion.Task;
         Task newExternalTask = newTask.ContinueWith(OnCompleted, TaskContinuationOptions.ExecuteSynchronously);
 
         Task task = Task;
@@ -69,7 +69,6 @@ public class SingleAction : ISingleAction
         }
 
         CancellationToken cancellationToken = _cancellationHandle.Token;
-        // ReSharper disable once MethodSupportsCancellation
         Task.Run(async () =>
         {
             await taskCompletion.Wrap(() => _action(cancellationToken));

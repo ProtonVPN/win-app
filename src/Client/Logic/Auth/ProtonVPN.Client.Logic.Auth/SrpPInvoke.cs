@@ -47,12 +47,12 @@ public static class SrpPInvoke
 
     public class GoProofs
     {
-        public byte[] ClientProof;
-        public byte[] ClientEphemeral;
-        public byte[] ExpectedServerProof;
+        public required byte[] ClientProof;
+        public required byte[] ClientEphemeral;
+        public required byte[] ExpectedServerProof;
     }
 
-    public static GoProofs GenerateProofs(int version, string username, SecureString password, string salt,
+    public static GoProofs? GenerateProofs(int version, string username, SecureString password, string salt,
         string signedModulus, string serverEphemeral, int bitLength = 2048)
     {
         byte[] bytes;

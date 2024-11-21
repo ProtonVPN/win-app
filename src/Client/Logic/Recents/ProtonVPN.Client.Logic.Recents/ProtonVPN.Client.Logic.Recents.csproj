@@ -4,6 +4,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <OutputPath>..\..\..\..\bin</OutputPath>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <Nullable>enable</Nullable>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     </PropertyGroup>
     <ItemGroup>

@@ -52,7 +52,7 @@ public class WindowContentControl : ContentControl
     public static readonly DependencyProperty TitleBarSpacingProperty =
         DependencyProperty.Register(nameof(TitleBarSpacing), typeof(double), typeof(WindowContentControl), new PropertyMetadata(8.0));
 
-    private Image PART_WindowIcon;
+    private Image? PART_WindowIcon;
 
     public Brush InnerBackground
     {
