@@ -526,7 +526,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Storyboard>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ExpanderButtonContent"
                                                                            Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)">
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0.187"
+                                                <EasingDoubleKeyFrame KeyTime="{StaticResource ControlFastAnimationDuration}"
                                                                       Value="-90" />
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
@@ -540,7 +540,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Storyboard>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ExpanderButtonContent"
                                                                            Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)">
-                                                <EasingDoubleKeyFrame KeyTime="0:0:0.187"
+                                                <EasingDoubleKeyFrame KeyTime="{StaticResource ControlFastAnimationDuration}"
                                                                       Value="90" />
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
