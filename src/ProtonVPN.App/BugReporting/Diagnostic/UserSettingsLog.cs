@@ -71,6 +71,7 @@ namespace ProtonVPN.BugReporting.Diagnostic
             yield return new(nameof(IAppSettings.AppFirstRun), _appSettings.AppFirstRun);
             yield return new(nameof(IAppSettings.ShowNotifications), _appSettings.ShowNotifications);
             yield return new(nameof(IAppSettings.ConnectOnAppStart), _appSettings.ConnectOnAppStart);
+            yield return new(nameof(IAppSettings.ConnectOnInsecureWifi), _appSettings.ConnectOnInsecureWifi);
             yield return new(nameof(IAppSettings.QuickConnect), _appSettings.QuickConnect);
             yield return new(nameof(IAppSettings.StartOnBoot), _appSettings.StartOnBoot);
             yield return new(nameof(IAppSettings.StartMinimized), _appSettings.StartMinimized);
