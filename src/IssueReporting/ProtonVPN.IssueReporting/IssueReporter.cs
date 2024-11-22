@@ -40,7 +40,7 @@ namespace ProtonVPN.IssueReporting
             [CallerLineNumber] int sourceLineNumber = 0)
         {
             CallerProfile callerProfile = new(sourceFilePath, sourceMemberName, sourceLineNumber);
-            SentrySdk.WithScope(scope =>
+            SentrySdk.ConfigureScope(scope =>
             {
                 scope.Level = SentryLevel.Error;
                 scope.SetTag("captured_in",
