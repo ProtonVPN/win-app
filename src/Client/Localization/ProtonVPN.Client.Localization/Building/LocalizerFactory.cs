@@ -81,7 +81,6 @@ public class LocalizerFactory : ILocalizerFactory
         builder.SetOptions(options =>
         {
             options.DefaultLanguage = DEFAULT_LANGUAGE;
-            options.UseUidWhenLocalizedStringNotFound = true;
         });
 
         return await builder.Build();

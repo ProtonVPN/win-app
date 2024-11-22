@@ -110,7 +110,7 @@ public class UnauthorizedResponseHandlerTest
         UnauthorizedResponseHandler handler = GetUnauthorizedResponseHandler(new MockOfHumanVerificationHandler(_innerHandler));
         HttpClient client = new(handler) { BaseAddress = _baseAddress };
 
-        _innerHandler.Expect(HttpMethod.Get, LOGICALS_API_URL)
+        _innerHandler.When(HttpMethod.Get, LOGICALS_API_URL)
             .Respond(HttpStatusCode.Unauthorized);
 
         // Act
@@ -229,7 +229,7 @@ public class UnauthorizedResponseHandlerTest
         UnauthorizedResponseHandler handler = GetUnauthorizedResponseHandler(new MockOfHumanVerificationHandler(_innerHandler));
         HttpClient client = new(handler) { BaseAddress = _baseAddress };
 
-        _innerHandler.Expect(HttpMethod.Get, LOGICALS_API_URL)
+        _innerHandler.When(HttpMethod.Get, LOGICALS_API_URL)
             .Respond(HttpStatusCode.Unauthorized);
 
         // Act
