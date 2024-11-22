@@ -24,21 +24,33 @@ using NUnit.Framework;
 using System.Linq;
 using System;
 using System.Collections.Generic;
+using FlaUI.Core.Tools;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
 
 public class DnsLeakHelper
 {
     private const string DNS_LEAK_TEST_URL = "https://bash.ws/";
+    private static HttpClient _httpClient = new HttpClient();
 
-    public static async Task VerifyIsNotLeakingAsync(List<string> dnsListNotConnected)
+    public static void VerifyIsNotLeaking(List<string> dnsListNotConnected)
     {
-        List<string> currentDnsList = await GetDnsServersAsync();
+        List<string> currentDnsList = GetDnsServers();
         bool isLeaking = AnalyzeIsLeaking(currentDnsList, dnsListNotConnected);
         Assert.That(isLeaking, Is.False, "DNS Requests are being leaked while connected to VPN server.");
     }
 
-    public static async Task<List<string>> GetDnsServersAsync()
+    public static List<string> GetDnsServers()
+    {
+        RetryResult<List<string>> retry = Retry.WhileEmpty(
+            () => {
+                return GetDnsServersAsync().Result;
+            },
+            TestConstants.ThirtySecondsTimeout, TestConstants.RetryInterval, ignoreException: true);
+        return retry.Result ?? throw new HttpRequestException("Failed to get DNS servers.");
+    }
+
+    private static async Task<List<string>> GetDnsServersAsync()
     {
         string leakId = await GetTestIdAsync();
         for (int i = 1; i <= 10; i++)
@@ -57,10 +69,7 @@ public class DnsLeakHelper
 
     private static async Task<string> GetTestIdAsync()
     {
-        using (HttpClient client = new HttpClient())
-        {
-            return await client.GetStringAsync($"{DNS_LEAK_TEST_URL}id");
-        }
+          return await _httpClient.GetStringAsync($"{DNS_LEAK_TEST_URL}id");
     }
 
     private static void PingDomain(string domain)
@@ -80,11 +89,8 @@ public class DnsLeakHelper
 
     private static async Task<string> FetchTestResultsAsync(string leakId)
     {
-        using (HttpClient client = new HttpClient())
-        {
-            string url = $"{DNS_LEAK_TEST_URL}dnsleak/test/{leakId}?txt";
-            return await client.GetStringAsync(url);
-        }
+        string url = $"{DNS_LEAK_TEST_URL}dnsleak/test/{leakId}?txt";
+        return await _httpClient.GetStringAsync(url);
     }
 
     // It checks if NOT CONNECTED DNS server list, does not contain same DNS server names when CONNECTRED.

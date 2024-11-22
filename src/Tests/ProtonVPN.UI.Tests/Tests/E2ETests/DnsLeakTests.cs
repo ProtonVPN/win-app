@@ -40,9 +40,9 @@ public class DnsLeakTests : FreshSessionSetUp
     }
 
     [Test]
-    public async Task DnsIsNotLeaking()
+    public void DnsIsNotLeaking()
     {
-        List<string> dnsListNotConnected = await DnsLeakHelper.GetDnsServersAsync();
+        List<string> dnsListNotConnected = DnsLeakHelper.GetDnsServers();
         
         SidebarRobot
             .SearchFor(COUNTRY_NAME)
@@ -54,6 +54,6 @@ public class DnsLeakTests : FreshSessionSetUp
         NavigationRobot
             .Verify.IsOnConnectionDetailsPage();
 
-        await DnsLeakHelper.VerifyIsNotLeakingAsync(dnsListNotConnected);
+        DnsLeakHelper.VerifyIsNotLeaking(dnsListNotConnected);
     }
 }
