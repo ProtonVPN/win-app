@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,27 +21,9 @@ using Newtonsoft.Json;
 
 namespace ProtonVPN.Api.Contracts.Servers
 {
-    public class PhysicalServerResponse
+    public class EntryPerProtocolEntryResponse
     {
-        [JsonProperty("ID")]
-        public string Id;
-
-        [JsonProperty("EntryIP")]
-        public string EntryIp;
-
-        [JsonProperty("ExitIP")]
-        public string ExitIp;
-
-        public string Domain;
-
-        public sbyte Status;
-
-        public string Label;
-
-        public string X25519PublicKey;
-
-        public string Signature;
-
-        public EntryPerProtocolResponse EntryPerProtocol { get; set; }
+        [JsonProperty("IPv4")]
+        public string Ipv4 { get; set; }
     }
 }

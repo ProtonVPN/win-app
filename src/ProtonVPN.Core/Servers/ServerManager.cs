@@ -103,7 +103,7 @@ namespace ProtonVPN.Core.Servers
             }
         }
 
-        public IReadOnlyCollection<Server> GetServers(ISpecification<LogicalServerResponse> spec, 
+        public IReadOnlyCollection<Server> GetServers(ISpecification<LogicalServerResponse> spec,
             Features orderBy = Features.None)
         {
             sbyte userTier = _userStorage.GetUser().MaxTier;
@@ -140,7 +140,9 @@ namespace ProtonVPN.Core.Servers
             {
                 foreach (PhysicalServer physicalServer in server.Servers)
                 {
-                    if (entryIp == physicalServer.EntryIp && (string.IsNullOrEmpty(label) || label == physicalServer.Label))
+                    if ((entryIp == physicalServer.EntryIp || 
+                            (physicalServer.RelayIpByProtocol is not null && physicalServer.RelayIpByProtocol.ContainsValue(entryIp))) && 
+                        (string.IsNullOrEmpty(label) || label == physicalServer.Label))
                     {
                         Server clone = server.Clone();
                         clone.ExitIp = physicalServer.ExitIp;
@@ -340,6 +342,9 @@ namespace ProtonVPN.Core.Servers
 
         private static PhysicalServer Map(PhysicalServerResponse server)
         {
+            Dictionary<VpnProtocol, string> relayIpByProtocol = server.EntryPerProtocol is not null
+                ? Map(server.EntryPerProtocol)
+                : null;
             return new(
                 id: server.Id,
                 entryIp: server.EntryIp,
@@ -348,7 +353,40 @@ namespace ProtonVPN.Core.Servers
                 label: server.Label,
                 status: server.Status,
                 x25519PublicKey: server.X25519PublicKey,
-                signature: server.Signature);
+                signature: server.Signature,
+                relayIpByProtocol: relayIpByProtocol);
+        }
+
+        private static Dictionary<VpnProtocol, string> Map(EntryPerProtocolResponse entryPerProtocol)
+        {
+            Dictionary<VpnProtocol, string> relayIpByProtocol = new();
+
+            if (!string.IsNullOrWhiteSpace(entryPerProtocol.WireGuardUdp?.Ipv4))
+            {
+                relayIpByProtocol.Add(VpnProtocol.WireGuardUdp, entryPerProtocol.WireGuardUdp.Ipv4);
+            }
+
+            if (!string.IsNullOrWhiteSpace(entryPerProtocol.WireGuardTcp?.Ipv4))
+            {
+                relayIpByProtocol.Add(VpnProtocol.WireGuardTcp, entryPerProtocol.WireGuardTcp.Ipv4);
+            }
+
+            if (!string.IsNullOrWhiteSpace(entryPerProtocol.WireGuardTls?.Ipv4))
+            {
+                relayIpByProtocol.Add(VpnProtocol.WireGuardTls, entryPerProtocol.WireGuardTls.Ipv4);
+            }
+
+            if (!string.IsNullOrWhiteSpace(entryPerProtocol.OpenVpnUdp?.Ipv4))
+            {
+                relayIpByProtocol.Add(VpnProtocol.OpenVpnUdp, entryPerProtocol.OpenVpnUdp.Ipv4);
+            }
+
+            if (!string.IsNullOrWhiteSpace(entryPerProtocol.OpenVpnTcp?.Ipv4))
+            {
+                relayIpByProtocol.Add(VpnProtocol.OpenVpnTcp, entryPerProtocol.OpenVpnTcp.Ipv4);
+            }
+
+            return relayIpByProtocol;
         }
 
         /// <summary>

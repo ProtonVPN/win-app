@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,27 +21,21 @@ using Newtonsoft.Json;
 
 namespace ProtonVPN.Api.Contracts.Servers
 {
-    public class PhysicalServerResponse
+    public class EntryPerProtocolResponse
     {
-        [JsonProperty("ID")]
-        public string Id;
+        [JsonProperty("WireGuardUDP")]
+        public EntryPerProtocolEntryResponse WireGuardUdp { get; set; }
 
-        [JsonProperty("EntryIP")]
-        public string EntryIp;
+        [JsonProperty("WireGuardTCP")]
+        public EntryPerProtocolEntryResponse WireGuardTcp { get; set; }
 
-        [JsonProperty("ExitIP")]
-        public string ExitIp;
+        [JsonProperty("WireGuardTLS")]
+        public EntryPerProtocolEntryResponse WireGuardTls { get; set; }
 
-        public string Domain;
+        [JsonProperty("OpenVPNUDP")]
+        public EntryPerProtocolEntryResponse OpenVpnUdp { get; set; }
 
-        public sbyte Status;
-
-        public string Label;
-
-        public string X25519PublicKey;
-
-        public string Signature;
-
-        public EntryPerProtocolResponse EntryPerProtocol { get; set; }
+        [JsonProperty("OpenVPNTCP")]
+        public EntryPerProtocolEntryResponse OpenVpnTcp { get; set; }
     }
 }
