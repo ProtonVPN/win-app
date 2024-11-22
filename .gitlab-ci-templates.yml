@@ -1,4 +1,4 @@
-.test_execution_script:
+.ui_test_execution_script:
   stage: ui-test
   tags:
     - redesign
@@ -17,6 +17,14 @@
     paths:
       - $SCREENSHOT_PATH
     expire_in: 1 weeks
+  
+.unit_test_config:
+  stage: test
+  tags:
+    - windows-dot-net
+  needs: []
+  variables:
+    GIT_SUBMODULE_STRATEGY: normal
     
 .build-script:
   stage: build
