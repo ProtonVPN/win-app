@@ -10,7 +10,6 @@
     <PackageVersion Include="Autofac.Extensions.DependencyInjection" Version="10.0.0" />
     <PackageVersion Include="BouncyCastle.NetCore" Version="2.2.1" />
     <PackageVersion Include="Caliburn.Micro.Core" Version="4.0.212" />
-    <PackageVersion Include="CommunityToolkit.Labs.WinUI.SettingsControls" Version="0.0.17" />
     <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.3.2" />
     <PackageVersion Include="CommunityToolkit.WinUI" Version="7.1.2" />
     <PackageVersion Include="CommunityToolkit.WinUI.Collections" Version="8.1.240916" />
