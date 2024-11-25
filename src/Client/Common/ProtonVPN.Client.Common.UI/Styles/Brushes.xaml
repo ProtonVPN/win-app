@@ -80,6 +80,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <SolidColorBrush x:Key="BackdropNormColorBrush" Color="{StaticResource BackdropNormColor}" />
             <!--  VPN  -->
             <SolidColorBrush x:Key="VpnGreenColorBrush" Color="{StaticResource VpnGreenColor}" />
+            <SolidColorBrush x:Key="VpnGreenWeakColorBrush" Color="{StaticResource VpnGreenColor}" Opacity="0.3"/>
             <!--  Gradient  -->
             <LinearGradientBrush x:Key="GradientFadingColorBrush" StartPoint="0,0" EndPoint="0,1">
                 <GradientStop Offset="0" Color="{StaticResource GradientFadingStartColor}" />
@@ -224,6 +225,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <SolidColorBrush x:Key="BackdropNormColorBrush" Color="{StaticResource BackdropNormColor}" />
             <!--  VPN  -->
             <SolidColorBrush x:Key="VpnGreenColorBrush" Color="{StaticResource VpnGreenColor}" />
+            <SolidColorBrush x:Key="VpnGreenWeakColorBrush" Color="{StaticResource VpnGreenColor}" Opacity="0.3"/>
             <!--  Gradient  -->
             <LinearGradientBrush x:Key="GradientFadingColorBrush" StartPoint="0,0" EndPoint="0,1">
                 <GradientStop Offset="0" Color="{StaticResource GradientFadingStartColor}" />

@@ -24,6 +24,15 @@ namespace ProtonVPN.Client.UI.Main.Components;
 
 public sealed partial class NetShieldStatsComponent : IContextAware
 {
+    public static readonly DependencyProperty UseVerticalLayoutProperty =
+        DependencyProperty.Register(nameof(UseVerticalLayout), typeof(bool), typeof(NetShieldStatsComponent), new PropertyMetadata(false));
+
+    public bool UseVerticalLayout
+    {
+        get => (bool)GetValue(UseVerticalLayoutProperty);
+        set => SetValue(UseVerticalLayoutProperty, value);
+    }
+
     public NetShieldStatsViewModel ViewModel { get; }
 
     public NetShieldStatsComponent()

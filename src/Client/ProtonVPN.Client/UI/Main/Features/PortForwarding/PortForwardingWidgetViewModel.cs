@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,15 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.ComponentModel;
+using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
+using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
-using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
+using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Main.Features.Bases;
+using ProtonVPN.Client.UI.Main.Settings.Connection;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
@@ -33,20 +36,25 @@ namespace ProtonVPN.Client.UI.Main.Features.PortForwarding;
 
 public partial class PortForwardingWidgetViewModel : FeatureWidgetViewModelBase
 {
-    private readonly IApplicationThemeSelector _applicationThemeSelector;
-    private readonly IConnectionManager _connectionManager;
-    private readonly IPortForwardingManager _portForwardingManager;
-
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(HasActivePortNumber))]
-    private int? _activePortNumber;
-
-    public bool HasActivePortNumber => ActivePortNumber.HasValue;
-
     public override string Header => Localizer.Get("Settings_Connection_PortForwarding");
 
+    public string InfoMessage => IsActivePortComponentVisible
+        ? Localizer.Get("Flyouts_PortForwarding_ActivePort_Info")
+        : Localizer.Get("Flyouts_PortForwarding_Info");
+
+    public string WarningMessage => Localizer.Get("Flyouts_PortForwarding_Warning");
+
+    public bool IsInfoMessageVisible => !ConnectionManager.IsConnected
+                                     || !Settings.IsPortForwardingEnabled
+                                     || DoesServerSupportP2P();
+
+    public bool IsWarningMessageVisible => ConnectionManager.IsConnected
+                                        && !DoesServerSupportP2P();
+
+    public bool IsActivePortComponentVisible => ConnectionManager.IsConnected
+                                             && Settings.IsPortForwardingEnabled;
+
     public PortForwardingWidgetViewModel(
-        IApplicationThemeSelector applicationThemeSelector,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter,
@@ -54,24 +62,62 @@ public partial class PortForwardingWidgetViewModel : FeatureWidgetViewModelBase
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
         IConnectionManager connectionManager,
-        IPortForwardingManager portForwardingManager)
-        : base(localizer, logger, issueReporter, mainViewNavigator, settingsViewNavigator, settings, ConnectionFeature.PortForwarding)
+        IUpsellCarouselWindowActivator upsellCarouselWindowActivator)
+        : base(localizer,
+               logger,
+               issueReporter,
+               mainViewNavigator,
+               settingsViewNavigator,
+               settings,
+               connectionManager,
+               upsellCarouselWindowActivator,
+               ConnectionFeature.PortForwarding)
+    { }
+
+    protected override IEnumerable<string> GetSettingsChangedForUpdate()
     {
-        _applicationThemeSelector = applicationThemeSelector;
-        _connectionManager = connectionManager;
-        _portForwardingManager = portForwardingManager;
+        yield return nameof(ISettings.IsPortForwardingEnabled);
     }
 
     protected override string GetFeatureStatus()
     {
-        if (!_connectionManager.IsConnected || !Settings.IsPortForwardingEnabled)
-        {
-            return Localizer.GetToggleValue(Settings.IsPortForwardingEnabled);
-        }
+        return Localizer.GetToggleValue(Settings.IsPortForwardingEnabled);
+    }
 
-        return ActivePortNumber?.ToString()
-            ?? (_portForwardingManager.IsFetchingPort
-                ? Localizer.Get("Settings_Connection_PortForwarding_Loading")
-                : Localizer.GetToggleValue(Settings.IsPortForwardingEnabled));
+    protected override void OnLanguageChanged()
+    {
+        base.OnLanguageChanged();
+
+        OnPropertyChanged(nameof(InfoMessage));
+        OnPropertyChanged(nameof(WarningMessage));
+    }
+
+    protected override void OnSettingsChanged()
+    {
+        OnPropertyChanged(nameof(Status));
+        OnPropertyChanged(nameof(InfoMessage));
+        OnPropertyChanged(nameof(IsInfoMessageVisible));
+        OnPropertyChanged(nameof(IsWarningMessageVisible));
+        OnPropertyChanged(nameof(IsActivePortComponentVisible));
+    }
+
+    protected override void OnConnectionStatusChanged()
+    {
+        OnPropertyChanged(nameof(InfoMessage));
+        OnPropertyChanged(nameof(IsInfoMessageVisible));
+        OnPropertyChanged(nameof(IsWarningMessageVisible));
+        OnPropertyChanged(nameof(IsActivePortComponentVisible));
+    }
+
+    protected override bool IsOnFeaturePage(PageViewModelBase? currentPageContext)
+    {
+        return currentPageContext is PortForwardingPageViewModel;
+    }
+
+    private bool DoesServerSupportP2P()
+    {
+        return ConnectionManager.IsConnected
+            && ConnectionManager.CurrentConnectionDetails != null
+            && ConnectionManager.CurrentConnectionDetails.IsP2P;
     }
 }

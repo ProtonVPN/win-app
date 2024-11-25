@@ -50,6 +50,7 @@ public partial class NetShieldPageViewModel : SettingsPageViewModelBase
     [NotifyPropertyChangedFor(nameof(IsNetShieldLevelOne))]
     [NotifyPropertyChangedFor(nameof(IsNetShieldLevelTwo))]
     [NotifyPropertyChangedFor(nameof(NetShieldFeatureIconSource))]
+    [NotifyPropertyChangedFor(nameof(IsNetShieldStatsPanelVisible))]
     private NetShieldMode _currentNetShieldMode;
 
     public bool IsNetShieldLevelOne
@@ -64,7 +65,11 @@ public partial class NetShieldPageViewModel : SettingsPageViewModelBase
         set => SetNetShieldMode(value, NetShieldMode.BlockAdsMalwareTrackers);
     }
 
-    public bool IsNetShieldStatsPanelVisible => IsNetShieldEnabled && ConnectionManager.IsConnected;
+    public bool IsNetShieldStatsPanelVisible => ConnectionManager.IsConnected
+                                             && IsNetShieldEnabled
+                                             && Settings.IsNetShieldEnabled
+                                             && CurrentNetShieldMode == NetShieldMode.BlockAdsMalwareTrackers
+                                             && Settings.NetShieldMode == NetShieldMode.BlockAdsMalwareTrackers;
 
     public override string Title => Localizer.Get("Settings_Connection_NetShield");
 
@@ -105,10 +110,19 @@ public partial class NetShieldPageViewModel : SettingsPageViewModelBase
             : ResourceHelper.GetIllustration("NetShieldOffIllustrationSource");
     }
 
+    protected override void OnActivated()
+    {
+        base.OnActivated();
+
+        OnPropertyChanged(nameof(IsNetShieldStatsPanelVisible));
+    }
+
     protected override void OnSaveSettings()
     {
         Settings.IsNetShieldEnabled = IsNetShieldEnabled;
         Settings.NetShieldMode = CurrentNetShieldMode;
+
+        OnPropertyChanged(nameof(IsNetShieldStatsPanelVisible));
     }
 
     protected override void OnRetrieveSettings()
@@ -139,5 +153,14 @@ public partial class NetShieldPageViewModel : SettingsPageViewModelBase
     protected override void OnConnectionStatusChanged(ConnectionStatus connectionStatus)
     {
         OnPropertyChanged(nameof(IsNetShieldStatsPanelVisible));
+    }
+
+    protected override void OnSettingsChanged(string propertyName)
+    {
+        if (propertyName == nameof(ISettings.IsNetShieldEnabled) ||
+            propertyName == nameof(ISettings.NetShieldMode))
+        {
+            OnPropertyChanged(nameof(IsNetShieldStatsPanelVisible));
+        }
     }
 }

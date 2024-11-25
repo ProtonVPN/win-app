@@ -220,6 +220,7 @@ public class AppModule : Module
         builder.RegisterType<ConnectionItemFactory>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<LocationItemFactory>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<CommonItemFactory>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<SplitTunnelingItemFactory>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<SystemTimeValidator>().AsImplementedInterfaces().SingleInstance();
         
@@ -254,6 +255,7 @@ public class AppModule : Module
         RegisterViewModel<DisableKillSwitchBannerViewModel>(builder);
 
         RegisterViewModel<NetShieldStatsViewModel>(builder);
+        RegisterViewModel<ActivePortComponentViewModel>(builder);
         RegisterViewModel<MainPageViewModel>(builder);
         RegisterViewModel<SidebarComponentViewModel>(builder);
         RegisterViewModel<ConnectionsPageViewModel>(builder);

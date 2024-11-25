@@ -42,6 +42,8 @@ public class ConnectionDetails
 
     public string ExitCountryCode => Server.ExitCountry;
     public bool IsSecureCore => Server.Features.IsSupported(ServerFeatures.SecureCore);
+    public bool IsP2P => Server.Features.IsSupported(ServerFeatures.P2P);
+    public bool IsTor => Server.Features.IsSupported(ServerFeatures.Tor);
     public string? EntryCountryCode => IsSecureCore ? Server.EntryCountry : null;
     public string State => Server.State;
     public string City => Server.City;

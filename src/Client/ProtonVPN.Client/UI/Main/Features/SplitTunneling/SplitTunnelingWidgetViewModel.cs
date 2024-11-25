@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,13 +17,22 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Xaml.Data;
+using ProtonVPN.Client.Common.Collections;
+using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
+using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Core.Services.Selection;
+using ProtonVPN.Client.Factories;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Models.Features.SplitTunneling;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.UI.Main.Features.Bases;
+using ProtonVPN.Client.UI.Main.Settings.Connection;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
@@ -31,9 +40,31 @@ namespace ProtonVPN.Client.UI.Main.Features.SplitTunneling;
 
 public class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
 {
-    private readonly IApplicationThemeSelector _applicationThemeSelector;
+    private readonly ISplitTunnelingItemFactory _splitTunnelingItemFactory;
 
     public override string Header => Localizer.Get("Settings_Connection_SplitTunneling");
+
+    public string InfoMessage => !ConnectionManager.IsConnected || !Settings.IsSplitTunnelingEnabled
+        ? Localizer.Get("Flyouts_SplitTunneling_Info")
+        : Settings.SplitTunnelingMode switch
+        {
+            SplitTunnelingMode.Standard => Localizer.Get("Flyouts_SplitTunneling_Standard_Info"),
+            SplitTunnelingMode.Inverse => Localizer.Get("Flyouts_SplitTunneling_Inverse_Info"),
+            _ => Localizer.Get("Flyouts_SplitTunneling_Info")
+        };
+
+    public bool IsInfoMessageVisible => true;
+
+    public bool IsSplitTunnelingComponentVisible => ConnectionManager.IsConnected
+                                                 && Settings.IsSplitTunnelingEnabled
+                                                 && HasItems;
+
+    public SmartObservableCollection<SplitTunnelingGroup> Groups { get; } = [];
+    public SmartObservableCollection<SplitTunnelingItemBase> Items { get; } = [];
+
+    public CollectionViewSource GroupsCvs { get; }
+
+    public bool HasItems => GroupsCvs.View.Any();
 
     public SplitTunnelingWidgetViewModel(
         IApplicationThemeSelector applicationThemeSelector,
@@ -42,10 +73,37 @@ public class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
         IIssueReporter issueReporter,
         ISettings settings,
         IMainViewNavigator mainViewNavigator,
-        ISettingsViewNavigator settingsViewNavigator)
-        : base(localizer, logger, issueReporter, mainViewNavigator, settingsViewNavigator, settings, ConnectionFeature.SplitTunneling)
+        ISettingsViewNavigator settingsViewNavigator,
+        IConnectionManager connectionManager,
+        IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
+        ISplitTunnelingItemFactory splitTunnelingItemFactory)
+        : base(localizer,
+               logger,
+               issueReporter,
+               mainViewNavigator,
+               settingsViewNavigator,
+               settings,
+               connectionManager,
+               upsellCarouselWindowActivator,
+               ConnectionFeature.SplitTunneling)
     {
-        _applicationThemeSelector = applicationThemeSelector;
+        _splitTunnelingItemFactory = splitTunnelingItemFactory;
+
+        GroupsCvs = new()
+        {
+            Source = Groups,
+            IsSourceGrouped = true
+        };
+    }
+
+    protected override IEnumerable<string> GetSettingsChangedForUpdate()
+    {
+        yield return nameof(ISettings.IsSplitTunnelingEnabled);
+        yield return nameof(ISettings.SplitTunnelingMode);
+        yield return nameof(ISettings.SplitTunnelingStandardAppsList);
+        yield return nameof(ISettings.SplitTunnelingStandardIpAddressesList);
+        yield return nameof(ISettings.SplitTunnelingInverseAppsList);
+        yield return nameof(ISettings.SplitTunnelingInverseIpAddressesList);
     }
 
     protected override string GetFeatureStatus()
@@ -56,8 +114,86 @@ public class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
                 {
                     SplitTunnelingMode.Standard => "Settings_Connection_SplitTunneling_Standard",
                     SplitTunnelingMode.Inverse => "Settings_Connection_SplitTunneling_Inverse",
-                    _ => throw new ArgumentOutOfRangeException(nameof(ISettings.KillSwitchMode))
+                    _ => throw new ArgumentOutOfRangeException(nameof(ISettings.SplitTunnelingMode))
                 }
                 : "Common_States_Off");
+    }
+
+    protected override async void OnLanguageChanged()
+    {
+        base.OnLanguageChanged();
+
+        OnPropertyChanged(nameof(InfoMessage));
+
+        await InvalidateAppsAndIpsAsync();
+    }
+
+    protected override async void OnSettingsChanged()
+    {
+        OnPropertyChanged(nameof(Status));
+        OnPropertyChanged(nameof(InfoMessage));
+        OnPropertyChanged(nameof(IsSplitTunnelingComponentVisible));
+
+        await InvalidateAppsAndIpsAsync();
+    }
+
+    protected override async void OnConnectionStatusChanged()
+    {
+        OnPropertyChanged(nameof(InfoMessage));
+        OnPropertyChanged(nameof(IsSplitTunnelingComponentVisible));
+
+        await InvalidateAppsAndIpsAsync();
+    }
+
+    protected override bool IsOnFeaturePage(PageViewModelBase? currentPageContext)
+    {
+        return currentPageContext is SplitTunnelingPageViewModel;
+    }
+
+    private async Task InvalidateAppsAndIpsAsync()
+    {
+        if (!Settings.IsSplitTunnelingEnabled || !ConnectionManager.IsConnected)
+        {
+            Items.Clear();
+            Groups.Clear();
+            return;
+        }
+
+        SplitTunnelingMode splitTunnelingMode = Settings.SplitTunnelingMode;
+
+        List<SplitTunnelingItemBase> items = [];
+
+        List<SplitTunnelingApp> apps = splitTunnelingMode switch
+        {
+            SplitTunnelingMode.Standard => Settings.SplitTunnelingStandardAppsList,
+            SplitTunnelingMode.Inverse => Settings.SplitTunnelingInverseAppsList,
+            _ => []
+        };
+
+        List<SplitTunnelingIpAddress> ips = splitTunnelingMode switch
+        {
+            SplitTunnelingMode.Standard => Settings.SplitTunnelingStandardIpAddressesList,
+            SplitTunnelingMode.Inverse => Settings.SplitTunnelingInverseIpAddressesList,
+            _ => []
+        };
+
+        foreach (SplitTunnelingApp app in apps.Where(a => a.IsActive))
+        {
+            items.Add(await _splitTunnelingItemFactory.GetAppAsync(app, splitTunnelingMode));
+        }
+
+        items.AddRange(
+            ips.Where(i => i.IsActive)
+               .Select(i => _splitTunnelingItemFactory.GetIpAddress(i, splitTunnelingMode))
+               .ToList());
+
+        Items.Reset(items.OrderBy(i => i.GroupType));
+
+        Groups.Reset(Items
+              .GroupBy(item => item.GroupType)
+              .OrderBy(group => group.Key)
+              .Select(group => _splitTunnelingItemFactory.GetGroup(group.Key, group)));
+
+        OnPropertyChanged(nameof(IsSplitTunnelingComponentVisible));
     }
 }

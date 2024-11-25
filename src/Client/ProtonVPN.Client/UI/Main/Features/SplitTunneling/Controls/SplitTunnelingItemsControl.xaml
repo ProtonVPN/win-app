@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2024 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<UserControl x:Class="ProtonVPN.Client.UI.Main.Features.SplitTunneling.Controls.SplitTunnelingItemsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="using:ProtonVPN.Client.UI.Main.Features.SplitTunneling.Controls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:selectors="using:ProtonVPN.Client.Selectors"
+             xmlns:splittunneling="using:ProtonVPN.Client.Models.Features.SplitTunneling"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+
+        <DataTemplate x:Key="SplitTunnelingGroupLocationItemTemplate"
+                      x:DataType="splittunneling:SplitTunnelingGroup">
+            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                       Style="{StaticResource CaptionTextBlockStyle}"
+                       Text="{x:Bind Header}"
+                       TextTrimming="CharacterEllipsis" 
+                       Margin="0,8,0,8"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="AppSplitTunnelingItemTemplate"
+                      x:DataType="splittunneling:AppSplitTunnelingItem">
+            <Grid ColumnSpacing="8"
+                  Margin="0,0,0,8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0"
+                       Width="20"
+                       Height="20"
+                       Source="{x:Bind Icon}" />
+                <TextBlock Grid.Column="1"
+                           Text="{x:Bind Name}"
+                           TextTrimming="CharacterEllipsis" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="IpAddressSplitTunnelingItemTemplate"
+                      x:DataType="splittunneling:IpAddressSplitTunnelingItem">
+            <TextBlock Text="{x:Bind IpAddress.IpAddress}" 
+                       Margin="0,0,0,4"/>
+        </DataTemplate>
+
+        <selectors:SplitTunnelingItemTemplateSelector x:Key="SplitTunnelingItemTemplateSelector"
+                                                      AppSplitTunnelingItemTemplate="{StaticResource AppSplitTunnelingItemTemplate}"
+                                                      IpAddressSplitTunnelingItemTemplate="{StaticResource IpAddressSplitTunnelingItemTemplate}" />
+
+    </UserControl.Resources>
+
+    <ScrollViewer x:Name="ScrollViewer"
+                  Style="{StaticResource OffsetScrollViewer}"
+                  VerticalScrollBarVisibility="Auto">
+
+        <ItemsControl x:Name="splitTunnelingItemsControl"
+                      ItemTemplateSelector="{StaticResource SplitTunnelingItemTemplateSelector}"
+                      ItemsSource="{x:Bind ItemsSource, Mode=OneTime}">
+
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsStackPanel AreStickyGroupHeadersEnabled="True"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ItemsControl.GroupStyle>
+                <GroupStyle HeaderTemplate="{StaticResource SplitTunnelingGroupLocationItemTemplate}"
+                            HidesIfEmpty="True">
+                    <GroupStyle.HeaderContainerStyle>
+                        <Style TargetType="ContentControl">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </GroupStyle.HeaderContainerStyle>
+                </GroupStyle>
+            </ItemsControl.GroupStyle>
+
+        </ItemsControl>
+
+    </ScrollViewer>
+</UserControl>

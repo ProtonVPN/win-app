@@ -70,4 +70,46 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Setter>
     </Style>
 
+    <Style x:Key="FlyoutUpsellFeatureContentControlStyle" TargetType="custom:UpsellFeatureContentControl">
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="custom:UpsellFeatureContentControl">
+
+                    <Grid x:Name="Container"
+                          Background="{TemplateBinding Background}"
+                          RowSpacing="8">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Image Grid.Row="0"
+                               Margin="0,0,0,8"
+                               Source="{TemplateBinding IllustrationSource}"
+                               Stretch="Uniform" />
+
+                        <TextBlock Grid.Row="1"
+                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                   Style="{StaticResource BodyLargeStrongTextBlockStyle}"
+                                   Text="{TemplateBinding Header}"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap" />
+
+                        <TextBlock Grid.Row="2"
+                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                   Foreground="{ThemeResource TextWeakColorBrush}"
+                                   Text="{TemplateBinding Content}"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap" />
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -23,15 +23,72 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:featureicons="using:ProtonVPN.Client.UI.Main.FeatureIcons"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
-    <custom:WidgetButton Command="{x:Bind ViewModel.InvokeCommand, Mode=OneTime}"
-                         Text="{x:Bind ViewModel.Header}"
+    <UserControl.Resources>
+        <Flyout x:Name="WidgetFlyout"
+                Closed="OnWidgetFlyoutClosed"
+                Opened="OnWidgetFlyoutOpened">
+
+            <StackPanel MaxWidth="226"
+                        Orientation="Vertical"
+                        Spacing="16">
+
+                <Grid ColumnSpacing="8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0"
+                               Style="{StaticResource BodyStrongTextBlockStyle}"
+                               Text="{x:Bind ViewModel.Header}" />
+                    <TextBlock Grid.Column="1"
+                               Foreground="{ThemeResource TextWeakColorBrush}"
+                               Text="{x:Bind ViewModel.Status}" />
+                </Grid>
+
+                <Border Height="1"
+                        Background="{ThemeResource BorderWeakColorBrush}" />
+
+                <custom:BulletContentControl Content="{x:Bind ViewModel.InfoMessage}"
+                                             Visibility="{x:Bind ViewModel.IsInfoMessageVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <custom:BulletContentControl.BulletContent>
+                        <pathicons:InfoCircleFilled Foreground="{ThemeResource TextWeakColorBrush}"
+                                                    Size="Pixels16" />
+                    </custom:BulletContentControl.BulletContent>
+                </custom:BulletContentControl>
+
+                <custom:BulletContentControl Content="{x:Bind ViewModel.SuccessMessage}"
+                                             Visibility="{x:Bind ViewModel.IsSuccessMessageVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <custom:BulletContentControl.BulletContent>
+                        <pathicons:CheckmarkCircleFilled Foreground="{ThemeResource VpnGreenColorBrush}"
+                                                         Size="Pixels16" />
+                    </custom:BulletContentControl.BulletContent>
+                </custom:BulletContentControl>
+
+                <custom:BulletContentControl Content="{x:Bind ViewModel.WarningMessage}"
+                                             Visibility="{x:Bind ViewModel.IsWarningMessageVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <custom:BulletContentControl.BulletContent>
+                        <pathicons:ExclamationTriangleFilled Foreground="{ThemeResource SignalWarningColorBrush}"
+                                                             Size="Pixels16" />
+                    </custom:BulletContentControl.BulletContent>
+                </custom:BulletContentControl>
+
+            </StackPanel>
+        </Flyout>
+    </UserControl.Resources>
+
+    <custom:WidgetButton x:Name="WidgetButton"
+                         Command="{x:Bind ViewModel.InvokeCommand, Mode=OneTime}"
                          IsActive="{x:Bind ViewModel.IsSelected}"
+                         PointerEntered="OnWidgetButtonPointerEntered"
+                         PointerExited="OnWidgetButtonPointerExited"
                          Style="{StaticResource SideWidgetButtonStyle}"
+                         Text="{x:Bind ViewModel.Header}"
                          Visibility="{x:Bind ViewModel.IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
         <featureicons:KillSwitchIconView />
     </custom:WidgetButton>

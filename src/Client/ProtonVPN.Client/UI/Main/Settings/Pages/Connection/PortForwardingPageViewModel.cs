@@ -18,17 +18,13 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Core.Helpers;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
-using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
-using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
-using ProtonVPN.Client.Models.Clipboards;
 using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
@@ -38,54 +34,30 @@ using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Connection;
 
-public partial class PortForwardingPageViewModel : SettingsPageViewModelBase,
-    IEventMessageReceiver<PortForwardingStatusChangedMessage>,
-    IEventMessageReceiver<PortForwardingPortChangedMessage>
+public partial class PortForwardingPageViewModel : SettingsPageViewModelBase
 {
-    public override string Title => Localizer.Get("Settings_Connection_PortForwarding");
-
     private readonly IUrls _urls;
-    private readonly IClipboardEditor _clipboardEditor;
-    private readonly IPortForwardingManager _portForwardingManager;
-
-    [ObservableProperty]
-    [NotifyCanExecuteChangedFor(nameof(CopyPortNumberCommand))]
-    [NotifyPropertyChangedFor(nameof(HasActivePortNumber))]
-    [NotifyPropertyChangedFor(nameof(HasStatusMessage))]
-    [NotifyPropertyChangedFor(nameof(IsExpanded))]
-    [NotifyPropertyChangedFor(nameof(ActivePortNumberOrStatusMessage))]
-    private int? _activePortNumber;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(PortForwardingFeatureIconSource))]
     [NotifyPropertyChangedFor(nameof(IsExpanded))]
     private bool _isPortForwardingEnabled;
 
-    [ObservableProperty] private bool _isPortForwardingNotificationEnabled;
-
-    public bool IsExpanded => IsPortForwardingEnabled && ConnectionManager.IsConnected &&
-                              (HasActivePortNumber || HasStatusMessage);
-
-    public bool HasActivePortNumber => ActivePortNumber.HasValue;
-
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(HasStatusMessage))]
-    [NotifyPropertyChangedFor(nameof(IsExpanded))]
-    [NotifyPropertyChangedFor(nameof(ActivePortNumberOrStatusMessage))]
-    private string? _statusMessage;
+    private bool _isPortForwardingNotificationEnabled;
 
-    public bool HasStatusMessage => !HasActivePortNumber && StatusMessage is not null;
+    public override string Title => Localizer.Get("Settings_Connection_PortForwarding");
+
+    public bool IsExpanded => IsPortForwardingEnabled
+                           && Settings.IsPortForwardingEnabled
+                           && ConnectionManager.IsConnected;
 
     public ImageSource PortForwardingFeatureIconSource => GetFeatureIconSource(IsPortForwardingEnabled);
 
     public string LearnMoreUrl => _urls.PortForwardingLearnMore;
 
-    public string? ActivePortNumberOrStatusMessage => ActivePortNumber?.ToString() ?? StatusMessage;
-
     public PortForwardingPageViewModel(
         IUrls urls,
-        IClipboardEditor clipboardEditor,
-        IPortForwardingManager portForwardingManager,
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
@@ -108,8 +80,6 @@ public partial class PortForwardingPageViewModel : SettingsPageViewModelBase,
                connectionManager)
     {
         _urls = urls;
-        _clipboardEditor = clipboardEditor;
-        _portForwardingManager = portForwardingManager;
     }
 
     public static ImageSource GetFeatureIconSource(bool isEnabled)
@@ -119,25 +89,19 @@ public partial class PortForwardingPageViewModel : SettingsPageViewModelBase,
             : ResourceHelper.GetIllustration("PortForwardingOffIllustrationSource");
     }
 
-    [RelayCommand(CanExecute = nameof(CanCopyPortNumber))]
-    public async Task CopyPortNumberAsync()
+    protected override void OnActivated()
     {
-        int? activePortNumber = ActivePortNumber;
-        if (activePortNumber is not null)
-        {
-            await _clipboardEditor.SetTextAsync($"{activePortNumber}");
-        }
-    }
+        base.OnActivated();
 
-    public bool CanCopyPortNumber()
-    {
-        return HasActivePortNumber;
+        OnPropertyChanged(nameof(IsExpanded));
     }
 
     protected override void OnSaveSettings()
     {
         Settings.IsPortForwardingEnabled = IsPortForwardingEnabled;
         Settings.IsPortForwardingNotificationEnabled = IsPortForwardingNotificationEnabled;
+
+        OnPropertyChanged(nameof(IsExpanded));
     }
 
     protected override void OnRetrieveSettings()
@@ -155,29 +119,16 @@ public partial class PortForwardingPageViewModel : SettingsPageViewModelBase,
             Settings.IsPortForwardingNotificationEnabled != IsPortForwardingNotificationEnabled);
     }
 
-    public void Receive(PortForwardingStatusChangedMessage message)
-    {
-        ExecuteOnUIThread(InvalidateStatusMessageAndActivePortNumber);
-    }
-
-    public void Receive(PortForwardingPortChangedMessage message)
-    {
-        ExecuteOnUIThread(InvalidateStatusMessageAndActivePortNumber);
-    }
-
-    private void InvalidateStatusMessageAndActivePortNumber()
-    {
-        int? activePort = _portForwardingManager.ActivePort;
-
-        ActivePortNumber = activePort;
-
-        StatusMessage = activePort is null && _portForwardingManager.IsFetchingPort
-            ? Localizer.Get("Settings_Connection_PortForwarding_Loading")
-            : null;
-    }
-
     protected override void OnConnectionStatusChanged(ConnectionStatus connectionStatus)
     {
         OnPropertyChanged(nameof(IsExpanded));
+    }
+
+    protected override void OnSettingsChanged(string propertyName)
+    {
+        if (propertyName == nameof(ISettings.IsPortForwardingEnabled))
+        {
+            OnPropertyChanged(nameof(IsExpanded));
+        }
     }
 }

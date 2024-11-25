@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2024 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom">
+
+    <x:Double x:Key="BulletContentControlColumnSpacing">8</x:Double>
+
+    <Style BasedOn="{StaticResource DefaultBulletContentControlStyle}" TargetType="custom:BulletContentControl" />
+
+    <Style x:Key="DefaultBulletContentControlStyle" TargetType="custom:BulletContentControl">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="custom:BulletContentControl">
+
+                    <Grid x:Name="Container"
+                          Padding="{TemplateBinding Padding}"
+                          Background="{TemplateBinding Background}"
+                          ColumnSpacing="{StaticResource BulletHeaderedContentControlColumnSpacing}">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <ContentPresenter x:Name="BulletPresenter"
+                                          MinHeight="{StaticResource BodyLineHeight}" 
+                                          Grid.Column="0"
+                                          VerticalAlignment="Top"
+                                          VerticalContentAlignment="Center"
+                                          Padding="0,0,0,2"
+                                          Content="{TemplateBinding BulletContent}" />
+
+                        <ContentPresenter x:Name="ContentPresenter"
+                                          Grid.Column="1"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Content="{TemplateBinding Content}"
+                                          FontSize="{StaticResource BodyFontSize}"
+                                          FontWeight="{StaticResource BodyFontWeight}"
+                                          LineHeight="{StaticResource BodyLineHeight}"
+                                          TextWrapping="Wrap" />
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

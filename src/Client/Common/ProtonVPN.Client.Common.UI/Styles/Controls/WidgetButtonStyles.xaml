@@ -50,7 +50,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <ResourceDictionary x:Key="Dark">
 
             <StaticResource x:Key="SideWidgetButtonBackgroundInactive" ResourceKey="InteractionDefaultEmptyColorBrush" />
-            <StaticResource x:Key="SideWidgetButtonBackgroundActive" ResourceKey="InteractionDefaultActiveColorBrush" />
+            <StaticResource x:Key="SideWidgetButtonBackgroundActive" ResourceKey="InteractionDefaultHoverColorBrush" />
 
             <StaticResource x:Key="SideWidgetButtonBackground" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="SideWidgetButtonBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
@@ -85,6 +85,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           Background="{ThemeResource SideWidgetButtonBackgroundInactive}"
                           BackgroundSizing="{TemplateBinding BackgroundSizing}"
                           CornerRadius="{TemplateBinding CornerRadius}">
+                        
                         <Grid x:Name="ContentPresenter"
                               Padding="{TemplateBinding Padding}"
                               AutomationProperties.AccessibilityView="Raw"
@@ -119,16 +120,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        TextTrimming="CharacterEllipsis"
                                        TextWrapping="WrapWholeWords" />
                         </Grid>
-
-                        <Border x:Name="Indicator"
-                                Grid.Column="0"
-                                Width="3"
-                                Height="16"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                Background="{ThemeResource PrimaryColorBrush}"
-                                CornerRadius="1.5"
-                                Opacity="0" />
 
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
@@ -170,8 +161,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <StateTrigger IsActive="{Binding IsActive, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
-                                        <Setter Target="ContentContainer.Background" Value="#22FFFFFF" />
-                                        <Setter Target="Indicator.Opacity" Value="1" />
+                                        <Setter Target="ContentContainer.Background" Value="{ThemeResource SideWidgetButtonBackgroundActive}" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="Inactive" />

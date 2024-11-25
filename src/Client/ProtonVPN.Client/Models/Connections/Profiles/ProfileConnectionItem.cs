@@ -21,7 +21,7 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Common.Models;
-using ProtonVPN.Client.Core.Enums;
+using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Localization.Contracts;

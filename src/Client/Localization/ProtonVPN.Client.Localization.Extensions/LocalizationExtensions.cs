@@ -29,6 +29,7 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Common.Core.Networking;
+using ProtonVPN.Client.Contracts.Enums;
 
 namespace ProtonVPN.Client.Localization.Extensions;
 
@@ -351,5 +352,46 @@ public static class LocalizationExtensions
         return string.IsNullOrWhiteSpace(state)
             ? city
             : state;
+    }
+
+    public static string GetConnectionGroupName(this ILocalizationProvider localizer, ConnectionGroupType groupType, int itemsCount)
+    {
+        return localizer.GetPluralFormat(
+            groupType switch
+            {
+                ConnectionGroupType.Countries => "Connections_Countries",
+                ConnectionGroupType.States => "Connections_States",
+                ConnectionGroupType.Cities => "Connections_Cities",
+                ConnectionGroupType.Servers => "Connections_Servers",
+                ConnectionGroupType.FreeServers => "Connections_Free_Servers",
+                ConnectionGroupType.SecureCoreCountries => "Connections_SecureCore_Countries",
+                ConnectionGroupType.SecureCoreCountryPairs or
+                ConnectionGroupType.SecureCoreServers => "Connections_SecureCore_Servers",
+                ConnectionGroupType.P2PCountries => "Connections_P2P_Countries",
+                ConnectionGroupType.P2PStates => "Connections_P2P_States",
+                ConnectionGroupType.P2PCities => "Connections_P2P_Cities",
+                ConnectionGroupType.P2PServers => "Connections_P2P_Servers",
+                ConnectionGroupType.TorCountries => "Connections_Tor_Countries",
+                ConnectionGroupType.TorServers => "Connections_Tor_Servers",
+                ConnectionGroupType.Gateways => "Connections_Gateways",
+                ConnectionGroupType.GatewayServers => "Connections_Gateways_Servers",
+                ConnectionGroupType.PinnedRecents => "Connections_Recents_Pinned",
+                ConnectionGroupType.Recents => "Connections_Recents",
+                ConnectionGroupType.Profiles => "Connections_Profiles",
+                _ => throw new NotSupportedException($"Group type '{groupType}' is not supported.")
+            }, itemsCount);
+    }
+
+    public static string GetSplitTunnelingGroupName(this ILocalizationProvider localizer, SplitTunnelingGroupType groupType, int itemsCount)
+    {
+        return localizer.GetPluralFormat(
+            groupType switch
+            {
+                SplitTunnelingGroupType.ProtectedApps => "Flyouts_SplitTunneling_Protected_Apps",
+                SplitTunnelingGroupType.ExcludedApps => "Flyouts_SplitTunneling_Excluded_Apps",
+                SplitTunnelingGroupType.ProtectedIpAddresses => "Flyouts_SplitTunneling_Protected_Ips",
+                SplitTunnelingGroupType.ExcludedIpAddresses => "Flyouts_SplitTunneling_Excluded_Ips",
+                _ => throw new NotSupportedException($"Group type '{groupType}' is not supported.")
+            }, itemsCount);
     }
 }

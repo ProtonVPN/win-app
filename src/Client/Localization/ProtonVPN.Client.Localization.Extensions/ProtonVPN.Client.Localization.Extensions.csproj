@@ -16,6 +16,7 @@
         <ProjectReference Include="..\..\Common\ProtonVPN.Client.Common\ProtonVPN.Client.Common.csproj" />
         <ProjectReference Include="..\..\Logic\Connection\ProtonVPN.Client.Logic.Connection.Contracts\ProtonVPN.Client.Logic.Connection.Contracts.csproj" />
         <ProjectReference Include="..\..\Logic\Profiles\ProtonVPN.Client.Logic.Profiles.Contracts\ProtonVPN.Client.Logic.Profiles.Contracts.csproj" />
+        <ProjectReference Include="..\..\ProtonVPN.Client.Contracts\ProtonVPN.Client.Contracts.csproj" />
         <ProjectReference Include="..\ProtonVPN.Client.Localization.Contracts\ProtonVPN.Client.Localization.Contracts.csproj" />
     </ItemGroup>
 </Project>

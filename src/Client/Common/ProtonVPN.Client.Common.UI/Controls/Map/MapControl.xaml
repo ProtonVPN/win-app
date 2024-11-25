@@ -45,8 +45,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Canvas.RenderTransform>
                 <Canvas.Resources>
                     <Style TargetType="Path">
-                        <Setter Property="Fill" Value="{ThemeResource BackgroundWeakColorBrush}" />
-                        <Setter Property="Stroke" Value="{ThemeResource BorderNormColorBrush}" />
+                        <Setter Property="Fill" Value="{ThemeResource MapNormColorBrush}" />
+                        <Setter Property="Stroke" Value="{ThemeResource MapHighlightColorBrush}" />
                         <Setter Property="StrokeThickness" Value="{ThemeResource CountryStrokeThickness}" />
                     </Style>
                 </Canvas.Resources>

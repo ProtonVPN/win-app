@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -27,10 +27,19 @@ public class BulletHeaderedContentControl : HeaderedContentControl
     public static readonly DependencyProperty BulletContentProperty =
         DependencyProperty.Register(nameof(BulletContent), typeof(object), typeof(BulletHeaderedContentControl), new PropertyMetadata(default));
 
+    public static readonly DependencyProperty BulletSizeProperty =
+        DependencyProperty.Register(nameof(BulletSize), typeof(double), typeof(BulletHeaderedContentControl), new PropertyMetadata(24.0));
+
     public object BulletContent
     {
         get => GetValue(BulletContentProperty);
         set => SetValue(BulletContentProperty, value);
+    }
+
+    public double BulletSize
+    {
+        get => (double)GetValue(BulletSizeProperty);
+        set => SetValue(BulletSizeProperty, value);
     }
 
     public BulletHeaderedContentControl()
