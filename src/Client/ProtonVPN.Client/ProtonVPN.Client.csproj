@@ -31,8 +31,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Assets\ProtonVPN.ico" />
-    <None Remove="TEMP\GalleryPageView.xaml" />
-    <None Remove="TEMP\GalleryWidgetView.xaml" />
+    <None Remove="UI\Dialogs\DebugTools\DebugToolsShellView.xaml" />
+    <None Remove="UI\Dialogs\DebugTools\DebugToolsWindow.xaml" />
     <None Remove="UI\Dialogs\ReportIssue\Pages\ReportIssueCategoriesPageView.xaml" />
     <None Remove="UI\Dialogs\ReportIssue\Pages\ReportIssueCategoryPageView.xaml" />
     <None Remove="UI\Dialogs\ReportIssue\Pages\ReportIssueContactPageView.xaml" />
@@ -434,18 +434,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="TEMP\GalleryWidgetView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="TEMP\GalleryPageView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
     <Page Update="UI\Overlays\Information\TorOverlayView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -741,5 +729,17 @@
 
   <ItemGroup>
     <PRIResource Remove="UI\Main\Home\Details\Contracts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Dialogs\DebugTools\DebugToolsShellView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Dialogs\DebugTools\DebugToolsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 </Project>

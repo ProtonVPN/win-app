@@ -25,7 +25,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
               xmlns:reportissue="using:ProtonVPN.Client.UI.Dialogs.ReportIssue"
-              xmlns:temp="using:ProtonVPN.Client.TEMP"
               xmlns:tray="using:ProtonVPN.Client.UI.Tray"
               xmlns:ui="using:ProtonVPN.Client.UI"
               xmlns:wex="using:WinUIEx"
@@ -49,15 +48,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <StackPanel Margin="0,0,140,0"
                         Padding="16,0"
-                        Height="32"
+                        Height="31"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top"
-                        BorderBrush="{ThemeResource TextWeakColorBrush}"
+                        BorderBrush="{ThemeResource BorderWeakColorBrush}"
                         BorderThickness="0,0,1,0"
                         Orientation="Horizontal"
                         Spacing="16">
                 <reportissue:ReportIssueComponentView />
-                <temp:NavigationMasterControllerView />
             </StackPanel>
         </Grid>
     </custom:WindowContentControl>

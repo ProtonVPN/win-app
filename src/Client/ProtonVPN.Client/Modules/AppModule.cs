@@ -50,8 +50,8 @@ using ProtonVPN.Client.Services.Notification;
 using ProtonVPN.Client.Services.Selection;
 using ProtonVPN.Client.Services.Verification;
 using ProtonVPN.Client.Settings.Installers;
-using ProtonVPN.Client.TEMP;
 using ProtonVPN.Client.UI;
+using ProtonVPN.Client.UI.Dialogs.DebugTools;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue.Pages;
 using ProtonVPN.Client.UI.Login;
@@ -80,7 +80,6 @@ using ProtonVPN.Client.UI.Main.Settings.Pages.About;
 using ProtonVPN.Client.UI.Main.Settings.Pages.Advanced;
 using ProtonVPN.Client.UI.Main.Settings.Pages.Connection;
 using ProtonVPN.Client.UI.Main.Settings.Pages.DefaultConnections;
-using ProtonVPN.Client.UI.Main.Settings.Pages.DeveloperTools;
 using ProtonVPN.Client.UI.Main.Sidebar;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Countries;
@@ -210,6 +209,8 @@ public class AppModule : Module
 
         builder.RegisterType<UpsellCarouselWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
 
+        builder.RegisterType<DebugToolsWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
+
         builder.RegisterType<AppNotificationSender>().AsSelf().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<ApplicationIconSelector>().AsSelf().AsImplementedInterfaces().SingleInstance();
@@ -241,9 +242,6 @@ public class AppModule : Module
     private void RegisterViewModels(ContainerBuilder builder)
     {
         RegisterViewModel<MainWindowShellViewModel>(builder);
-        RegisterViewModel<NavigationMasterControllerViewModel>(builder); // TEMP
-        RegisterViewModel<GalleryPageViewModel>(builder); // TEMP
-        RegisterViewModel<GalleryWidgetViewModel>(builder); // TEMP
 
         RegisterViewModel<TrayIconComponentViewModel>(builder);
 
@@ -296,7 +294,6 @@ public class AppModule : Module
         RegisterViewModel<AboutPageViewModel>(builder);
         RegisterViewModel<LicensingViewModel>(builder);
         RegisterViewModel<CensorshipSettingsPageViewModel>(builder);
-        RegisterViewModel<DeveloperToolsPageViewModel>(builder);
         RegisterViewModel<AutoStartupSettingsPageViewModel>(builder);
         RegisterViewModel<SideWidgetsHostComponentViewModel>(builder);
         RegisterViewModel<VpnSpeedViewModel>(builder);
@@ -349,6 +346,8 @@ public class AppModule : Module
         RegisterViewModel<ProtocolFlyoutViewModel>(builder);
         RegisterViewModel<VolumeFlyoutViewModel>(builder).AutoActivate();
         RegisterViewModel<SpeedFlyoutViewModel>(builder).AutoActivate();
+
+        RegisterViewModel<DebugToolsShellViewModel>(builder);
 
         builder.RegisterType<ReleaseViewModelFactory>().SingleInstance();
     }

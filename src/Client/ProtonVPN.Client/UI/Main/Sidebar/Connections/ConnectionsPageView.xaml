@@ -25,7 +25,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:ProtonVPN.Client.UI.Main.Sidebar.Connections"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:temp="using:ProtonVPN.Client.TEMP"
       x:DefaultBindMode="OneWay"
       AutomationProperties.AutomationId="ConnectionsPage"
       AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Automation_Properties_Sidebar_Connections_Page')}"

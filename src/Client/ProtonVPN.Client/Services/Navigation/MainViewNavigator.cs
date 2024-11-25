@@ -23,7 +23,6 @@ using ProtonVPN.Client.Core.Services.Navigation.Bases;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
-using ProtonVPN.Client.TEMP;
 using ProtonVPN.Client.UI.Main.Home;
 using ProtonVPN.Client.UI.Main.Settings;
 using ProtonVPN.Logging.Contracts;
@@ -54,11 +53,6 @@ public class MainViewNavigator : ViewNavigatorBase, IMainViewNavigator,
     public override Task<bool> NavigateToDefaultAsync()
     {
         return NavigateToHomeViewAsync();
-    }
-
-    public Task<bool> NavigateToGalleryViewAsync()
-    {
-        return NavigateToAsync<GalleryPageViewModel>();
     }
 
     // TODO: prevent NavigateToDefaultAsync from being called multiple times due out of order messages

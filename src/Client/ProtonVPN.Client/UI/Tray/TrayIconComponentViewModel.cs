@@ -36,6 +36,7 @@ using ProtonVPN.Client.Core.Models;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.Services.Bootstrapping;
+using ProtonVPN.Client.Settings.Contracts;
 
 namespace ProtonVPN.Client.UI.Tray;
 
@@ -51,6 +52,8 @@ public partial class TrayIconComponentViewModel : ViewModelBase,
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IGuestHoleManager _guestHoleManager;
     private readonly IApplicationIconSelector _applicationIconSelector;
+    private readonly ISettings _settings;
+    private readonly IDebugToolsWindowActivator _debugToolsWindowActivator;
 
     public ImageSource IconSource => _applicationIconSelector.GetStatusIcon(GetIconStatusParameters());
 
@@ -58,6 +61,8 @@ public partial class TrayIconComponentViewModel : ViewModelBase,
     public Guid TrayIconGuid => OSVersion.IsWindows11OrHigher() ? new("{50487227-4f3b-071d-baec-cd22bfff900d}") : Guid.Empty;
 
     public string OpenApplicationLabel => Localizer.GetFormat("Tray_Actions_OpenApplication", App.APPLICATION_NAME);
+
+    public bool IsDebugModeEnabled => _settings.IsDebugModeEnabled;
 
     public TrayIconComponentViewModel(
         ILocalizationProvider localizer,
@@ -69,7 +74,9 @@ public partial class TrayIconComponentViewModel : ViewModelBase,
         IConnectionManager connectionManager,
         IUserAuthenticator userAuthenticator,
         IGuestHoleManager guestHoleManager,
-        IApplicationIconSelector applicationIconSelector)
+        IApplicationIconSelector applicationIconSelector,
+        ISettings settings,
+        IDebugToolsWindowActivator debugToolsWindowActivator)
         : base(localizer, logger, issueReporter)
     {
         _bootstrapper = bootstrapper;
@@ -79,6 +86,8 @@ public partial class TrayIconComponentViewModel : ViewModelBase,
         _userAuthenticator = userAuthenticator;
         _guestHoleManager = guestHoleManager;
         _applicationIconSelector = applicationIconSelector;
+        _settings = settings;
+        _debugToolsWindowActivator = debugToolsWindowActivator;
     }
 
     [RelayCommand]
@@ -105,6 +114,12 @@ public partial class TrayIconComponentViewModel : ViewModelBase,
     public async Task DisconnectAsync()
     {
         await _connectionManager.DisconnectAsync();
+    }
+
+    [RelayCommand(CanExecute = nameof(CanShowDebugTools))]
+    private void ShowDebugTools()
+    {
+        _debugToolsWindowActivator.Activate();
     }
 
     public void Receive(ConnectionStatusChangedMessage message)
@@ -139,6 +154,11 @@ public partial class TrayIconComponentViewModel : ViewModelBase,
     {
         return _userAuthenticator.IsLoggedIn
             && _connectionManager.IsConnected;
+    }    
+    
+    private bool CanShowDebugTools()
+    {
+        return IsDebugModeEnabled;
     }
 
     private void InvalidateTray()

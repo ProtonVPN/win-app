@@ -27,7 +27,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:local="using:ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
-      xmlns:temp="using:ProtonVPN.Client.TEMP"
       x:DefaultBindMode="OneWay"
       AutomationProperties.AutomationId="ProfilesPage"
       AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Automation_Properties_Sidebar_Connections_Profiles_Page')}"

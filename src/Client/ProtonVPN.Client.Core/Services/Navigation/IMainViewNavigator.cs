@@ -28,6 +28,4 @@ public interface IMainViewNavigator : IViewNavigator
     Task<bool> NavigateToHomeViewAsync();
 
     Task<bool> NavigateToSettingsViewAsync();
-
-    Task<bool> NavigateToGalleryViewAsync(); // TEMP
 }

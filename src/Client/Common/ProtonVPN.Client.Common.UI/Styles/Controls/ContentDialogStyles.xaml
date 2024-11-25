@@ -185,7 +185,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                       IsTabStop="False"
                                                       VerticalScrollBarVisibility="{Binding (ScrollViewer.VerticalScrollBarVisibility), RelativeSource={RelativeSource Mode=TemplatedParent}}">
                                             <ContentPresenter x:Name="Content"
-                                                              Margin="8"
+                                                              Margin="{TemplateBinding Padding}"
                                                               Content="{TemplateBinding Content}"
                                                               ContentTemplate="{TemplateBinding ContentTemplate}"
                                                               FontFamily="{StaticResource ContentControlThemeFontFamily}"

@@ -21,7 +21,6 @@ using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Mapping;
 using ProtonVPN.Client.Services.Mapping.Bases;
-using ProtonVPN.Client.TEMP;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue.Pages;
 using ProtonVPN.Client.UI.Login;
 using ProtonVPN.Client.UI.Login.Pages;
@@ -36,7 +35,6 @@ using ProtonVPN.Client.UI.Main.Settings.Pages.About;
 using ProtonVPN.Client.UI.Main.Settings.Pages.Advanced;
 using ProtonVPN.Client.UI.Main.Settings.Pages.Connection;
 using ProtonVPN.Client.UI.Main.Settings.Pages.DefaultConnections;
-using ProtonVPN.Client.UI.Main.Settings.Pages.DeveloperTools;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Countries;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Gateways;
@@ -50,8 +48,6 @@ public class PageViewMapper : ViewMapperBase<PageViewModelBase, Page>, IPageView
 {
     protected override void ConfigureMappings()
     {
-        ConfigureMapping<GalleryPageViewModel, GalleryPageView>(); // TEMP
-
         ConfigureMapping<LoginPageViewModel, LoginPageView>();
         ConfigureMapping<SignInPageViewModel, SignInPageView>();
         ConfigureMapping<TwoFactorPageViewModel, TwoFactorPageView>();
@@ -67,7 +63,6 @@ public class PageViewMapper : ViewMapperBase<PageViewModelBase, Page>, IPageView
         ConfigureMapping<CustomDnsServersViewModel, CustomDnsServersPageView>();
         ConfigureMapping<AutoStartupSettingsPageViewModel, AutoStartupSettingsPageView>();
         ConfigureMapping<DebugLogsPageViewModel, DebugLogsPageView>();
-        ConfigureMapping<DeveloperToolsPageViewModel, DeveloperToolsPageView>();
         ConfigureMapping<ConnectionsPageViewModel, ConnectionsPageView>();
         ConfigureMapping<CensorshipSettingsPageViewModel, CensorshipSettingsPageView>();
         ConfigureMapping<AboutPageViewModel, AboutPageView>();

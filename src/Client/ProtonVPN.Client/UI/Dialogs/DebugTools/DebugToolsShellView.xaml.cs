@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,23 +17,37 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Core.Bases;
 
-namespace ProtonVPN.Client.TEMP;
+namespace ProtonVPN.Client.UI.Dialogs.DebugTools;
 
-public sealed partial class GalleryWidgetView : IContextAware
+public sealed partial class DebugToolsShellView : IContextAware
 {
-    public GalleryWidgetViewModel ViewModel { get; }
+    public DebugToolsShellViewModel ViewModel { get; }
 
-    public GalleryWidgetView()
+    public DebugToolsShellView()
     {
-        ViewModel = App.GetService<GalleryWidgetViewModel>();
+        ViewModel = App.GetService<DebugToolsShellViewModel>();
 
         InitializeComponent();
+
+        Loaded += OnLoaded;
+        Unloaded += OnUnloaded;
     }
 
     public object GetContext()
     {
         return ViewModel;
+    }
+
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        ViewModel.Activate();
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        ViewModel.Deactivate();
     }
 }
