@@ -354,7 +354,7 @@
     <value>Actualizar</value>
   </data>
   <data name="BugReport_btn_GotIt">
-    <value>Feito</value>
+    <value>Terminado</value>
   </data>
   <data name="BugReport_btn_LearnMore">
     <value>Saiba mais</value>
@@ -2041,7 +2041,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The label for uploaded data amount in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_UpgradeTooltip">
-    <value>Faça "upgrade" para o plano Plus</value>
+    <value>Melhore para o plano Plus</value>
   </data>
   <data name="Map_VpnStatus_val_Connected">
     <value>LIGADO</value>
@@ -2601,7 +2601,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <value>Obtenha uma cobertura global com a VPN Plus</value>
   </data>
   <data name="Servers_UpsellBanner_NotTheCountryYouWanted">
-    <value>Não é o país que pretendia? Faça 'upgrade' para escolher qualquer servidor</value>
+    <value>Não é o país que pretendia? Melhore para escolher qualquer servidor.</value>
   </data>
   <data name="Servers_btn_Connect">
     <value>Ligar</value>
@@ -2616,7 +2616,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="these
     <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
   </data>
   <data name="Servers_lbl_UpgradeToPlus">
-    <value>Faça 'upgrade' para o plano Plus</value>
+    <value>Melhore para o plano Plus</value>
   </data>
   <data name="Servers_lbl_ViaCountry">
     <value>via</value>
@@ -2884,7 +2884,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of General tab in Settings window</comment>
   </data>
   <data name="Settings_btn_UpgradeToPlus">
-    <value>Faça 'upgrade' para o plano Plus</value>
+    <value>Melhore para o plano Plus</value>
     <comment>A message insde a tooltip which is displayed on mouse hover in the settings next to a paid feature.</comment>
   </data>
   <data name="Settings_lnk_Reconnect">

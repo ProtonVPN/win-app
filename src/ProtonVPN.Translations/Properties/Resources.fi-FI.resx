@@ -1628,7 +1628,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The text displayed in Disconnect modal window if TAP error is detected</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TlsCertificateError">
-    <value>VPN-palvelimen varmenteen vahvistuksessa on ongelma, joka saattaa viitata siihen, että verkkoyhteyttä on peukaloitu tai palvelimella on asetusongelma. Pyydä tueltamme apua lähettämällä &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="ongelmaraportti"/&gt;&lt;/Hyperlink&gt;.</value>
+    <value>VPN-palvelimen varmenteen vahvistuksessa on ongelma, joka saattaa viitata siihen, että verkkoyhteyttä on peukaloitu tai palvelimella on asetusongelma. Pyydä asiakastueltamme apua lähettämällä &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="ongelmaraportti"/&gt;&lt;/Hyperlink&gt;.</value>
     <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occurred</comment>
   </data>
   <data name="Dialogs_DoNotShowThisMessageAgain">
@@ -2488,7 +2488,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <value>Mainossivustot käyttävät evästeitä ja seurantoja kohdistettuun markkinointiin.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
-    <value>Tiedonsiirtoa säästetty</value>
+    <value>Säästetty</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
     <value>NetShieldin estämien mainosten, seurantojen ja haittaohjelmien arvioitu yhteiskoko.</value>

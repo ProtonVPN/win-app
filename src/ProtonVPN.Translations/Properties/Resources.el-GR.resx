@@ -2594,7 +2594,7 @@
     <comment>The label for server status in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_ViaCountry">
-    <value>Μέσω {0} από {1}</value>
+    <value>Μέσω {0} σε {1}</value>
     <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_UpsellBanner">
@@ -3225,7 +3225,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Αναβαθμίστε την εμπειρία παιχνιδιού σας</value>
   </data>
   <data name="Upsell_Netshield_BlockAds">
-    <value>Φραγή διαφημίσεων και ιχνηλατών</value>
+    <value>Αποκλεισμός διαφημίσεων και ιχνηλατών</value>
   </data>
   <data name="Upsell_Netshield_BrowseFast">
     <value>Περιήγηση με ύψιστη ταχύτητα</value>
