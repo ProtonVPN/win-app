@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2023 Proton AG
+/*
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,23 +18,27 @@
  */
 
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Client.Core.Bases;
+using ProtonVPN.Client.Core.Extensions;
+using ProtonVPN.Client.Services.Activation;
 
-namespace ProtonVPN.Client.TEMP;
+namespace ProtonVPN.Client.UI.Dialogs.DebugTools;
 
-public class PlaceholderControl : ContentControl
+public sealed partial class DebugToolsWindow : IActivationStateAware
 {
-    public static readonly DependencyProperty HeaderProperty =
-        DependencyProperty.Register(nameof(Header), typeof(string), typeof(PlaceholderControl), new PropertyMetadata(default));
+    public DebugToolsWindowActivator WindowActivator { get; }
 
-    public string Header
+    public DebugToolsWindow()
     {
-        get => (string)GetValue(HeaderProperty);
-        set => SetValue(HeaderProperty, value);
+        WindowActivator = App.GetService<DebugToolsWindowActivator>();
+
+        InitializeComponent();
+
+        WindowActivator.Initialize(this);
     }
 
-    public PlaceholderControl()
+    public void InvalidateTitleBarOpacity(WindowActivationState activationState)
     {
-        DefaultStyleKey = typeof(PlaceholderControl);
+        WindowContainer.TitleBarOpacity = activationState.GetTitleBarOpacity();
     }
 }

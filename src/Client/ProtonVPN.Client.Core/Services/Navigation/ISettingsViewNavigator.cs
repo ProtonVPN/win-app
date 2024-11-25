@@ -53,8 +53,6 @@ public interface ISettingsViewNavigator : IViewNavigator
 
     Task<bool> NavigateToAboutViewAsync();
 
-    Task<bool> NavigateToDeveloperToolsViewAsync();
-
     Task<bool> NavigateToCensorshipViewAsync();
 
     Task<bool> NavigateToLicensingViewAsync();

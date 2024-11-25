@@ -17,15 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading.Tasks;
-using ProtonVPN.Client.Core.Enums;
-using ProtonVPN.Client.Core.Services.Navigation.Bases;
+namespace ProtonVPN.Client.Notifications.Contracts.Arguments;
 
-namespace ProtonVPN.Client.Core.Services.Navigation;
-
-public interface IMainViewNavigator : IViewNavigator
+public static class NotificationArguments
 {
-    Task<bool> NavigateToHomeViewAsync();
-
-    Task<bool> NavigateToSettingsViewAsync();
+    public const string UPGRADE = "Upgrade";
 }

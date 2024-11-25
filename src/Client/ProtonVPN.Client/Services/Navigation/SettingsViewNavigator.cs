@@ -31,7 +31,6 @@ using ProtonVPN.Client.UI.Main.Settings.Pages.About;
 using ProtonVPN.Client.UI.Main.Settings.Pages.Advanced;
 using ProtonVPN.Client.UI.Main.Settings.Pages.Connection;
 using ProtonVPN.Client.UI.Main.Settings.Pages.DefaultConnections;
-using ProtonVPN.Client.UI.Main.Settings.Pages.DeveloperTools;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Services.Navigation;
@@ -139,11 +138,6 @@ public class SettingsViewNavigator : ViewNavigatorBase, ISettingsViewNavigator,
     public Task<bool> NavigateToLicensingViewAsync()
     {
         return NavigateToAsync<LicensingViewModel>();
-    }
-
-    public Task<bool> NavigateToDeveloperToolsViewAsync()
-    {
-        return NavigateToAsync<DeveloperToolsPageViewModel>();
     }
 
     public Task<bool> NavigateToCensorshipViewAsync()

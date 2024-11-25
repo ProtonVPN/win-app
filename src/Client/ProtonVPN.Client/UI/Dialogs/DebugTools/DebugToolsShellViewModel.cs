@@ -21,73 +21,83 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
-using ProtonVPN.Client.UI.Main.Settings.Bases;
+using ProtonVPN.Client.UI.Dialogs.DebugTools.Models;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
-namespace ProtonVPN.Client.UI.Main.Settings.Pages.DeveloperTools;
+namespace ProtonVPN.Client.UI.Dialogs.DebugTools;
 
-public partial class DeveloperToolsPageViewModel : SettingsPageViewModelBase
+public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWindowActivator>
 {
-    private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
     private readonly IServersUpdater _serversUpdater;
     private readonly IUserAuthenticator _userAuthenticator;
-
-    [ObservableProperty]
-    private List<Overlay> _overlaysList;
+    private readonly IRequiredReconnectionSettings _requiredReconnectionSettings;
+    private readonly IMainViewNavigator _mainViewNavigator;
+    private readonly ISettingsViewNavigator _settingsViewNavigator;
+    private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
+    private readonly ISettings _settings;
+    private readonly ISettingsConflictResolver _settingsConflictResolver;
+    private readonly IConnectionManager _connectionManager;
+    private readonly IEventMessageSender _eventMessageSender;
 
     [ObservableProperty]
     private Overlay? _selectedOverlay;
 
-    public override string Title => "Developer tools";
+    public List<Overlay> OverlaysList { get; }
 
-    public DeveloperToolsPageViewModel(
+    public DebugToolsShellViewModel(
+        IDebugToolsWindowActivator windowActivator,
+        ILocalizationProvider localizer,
+        ILogger logger,
+        IIssueReporter issueReporter,
         IServersUpdater serversUpdater,
         IUserAuthenticator userAuthenticator,
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
-        IConnectionManager connectionManager)
-        : base(requiredReconnectionSettings,
-               mainViewNavigator,
-               settingsViewNavigator,
+        IConnectionManager connectionManager,
+        IEventMessageSender eventMessageSender)
+        : base(windowActivator,
                localizer,
                logger,
-               issueReporter,
-               mainWindowOverlayActivator,
-               settings,
-               settingsConflictResolver,
-               connectionManager)
+               issueReporter)
     {
-        _mainWindowOverlayActivator = mainWindowOverlayActivator;
         _serversUpdater = serversUpdater;
         _userAuthenticator = userAuthenticator;
+        _requiredReconnectionSettings = requiredReconnectionSettings;
+        _mainViewNavigator = mainViewNavigator;
+        _settingsViewNavigator = settingsViewNavigator;
+        _mainWindowOverlayActivator = mainWindowOverlayActivator;
+        _settings = settings;
+        _settingsConflictResolver = settingsConflictResolver;
+        _connectionManager = connectionManager;
+        _eventMessageSender = eventMessageSender;
 
         OverlaysList =
         [
             ..typeof(IMainWindowOverlayActivator).GetMethods()
-                .Where(m => m.GetParameters().Length == 0)
-                .Select(m => new Overlay
-                {
-                    Id =  m.Name,
-                    Name = GenerateOverlayDisplayName(m.Name)
-                })
-                .ToList()
+                    .Where(m => m.GetParameters().Length == 0)
+                    .Select(m => new Overlay
+                    {
+                        Id =  m.Name,
+                        Name = GenerateOverlayDisplayName(m.Name)
+                    })
+            .ToList()
         ];
     }
 
@@ -122,10 +132,30 @@ public partial class DeveloperToolsPageViewModel : SettingsPageViewModelBase
     [RelayCommand]
     public void ResetInfoBanners()
     {
-        Settings.IsGatewayInfoBannerDismissed = false;
-        Settings.IsP2PInfoBannerDismissed = false;
-        Settings.IsSecureCoreInfoBannerDismissed = false;
-        Settings.IsTorInfoBannerDismissed = false;
+        _settings.IsGatewayInfoBannerDismissed = false;
+        _settings.IsP2PInfoBannerDismissed = false;
+        _settings.IsSecureCoreInfoBannerDismissed = false;
+        _settings.IsTorInfoBannerDismissed = false;
+    }
+
+    [RelayCommand]
+    public void SimulatePlanChangedToPlus()
+    {
+        VpnPlan oldPlan = _settings.VpnPlan;
+        VpnPlan newPlan = new("VPN Plus (simulation)", "vpnplus", 1);
+
+        _settings.VpnPlan = newPlan;
+        _eventMessageSender.Send(new VpnPlanChangedMessage(oldPlan, newPlan));
+    }
+
+    [RelayCommand]
+    public void SimulatePlanChangedToFree()
+    {
+        VpnPlan oldPlan = _settings.VpnPlan;
+        VpnPlan newPlan = new("VPN Free (simulation)", "vpnfree", 0);
+
+        _settings.VpnPlan = newPlan;
+        _eventMessageSender.Send(new VpnPlanChangedMessage(oldPlan, newPlan));
     }
 
     private string GenerateOverlayDisplayName(string methodName)
@@ -137,10 +167,5 @@ public partial class DeveloperToolsPageViewModel : SettingsPageViewModelBase
         displayName = Regex.Replace(displayName, "(?<=[a-z])([A-Z])", " $1");
 
         return displayName.Trim();
-    }
-
-    protected override IEnumerable<ChangedSettingArgs> GetSettings()
-    {
-        return [];
     }
 }

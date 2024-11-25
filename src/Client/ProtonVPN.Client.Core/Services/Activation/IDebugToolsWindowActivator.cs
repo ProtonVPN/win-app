@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2023 Proton AG
+﻿/*
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,22 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Core.Bases;
+using ProtonVPN.Client.Contracts.Services.Activation.Bases;
 
-namespace ProtonVPN.Client.TEMP;
+namespace ProtonVPN.Client.Core.Services.Activation;
 
-public sealed partial class NavigationMasterControllerView : IContextAware
-{
-    public NavigationMasterControllerViewModel ViewModel { get; }
-
-    public NavigationMasterControllerView()
-    {
-        ViewModel = App.GetService<NavigationMasterControllerViewModel>();
-        InitializeComponent();
-    }
-
-    public object GetContext()
-    {
-        return ViewModel;
-    }
-}
+public interface IDebugToolsWindowActivator : IWindowActivator;

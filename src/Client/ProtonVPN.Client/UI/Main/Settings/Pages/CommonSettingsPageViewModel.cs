@@ -56,7 +56,7 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
     private readonly IUrls _urls;
 
     private readonly IReportIssueWindowActivator _reportIssueWindowActivator;
-
+    private readonly IDebugToolsWindowActivator _debugToolsWindowActivator;
     private readonly IConnectionManager _connectionManager;
     private readonly IProfilesManager _profilesManager;
     private readonly Lazy<ObservableCollection<Language>> _languages;
@@ -119,6 +119,7 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
         ISettingsRestorer settingsRestorer,
         IUrls urls,
         IReportIssueWindowActivator reportIssueWindowActivator,
+        IDebugToolsWindowActivator debugToolsWindowActivator,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager,
         IProfilesManager profilesManager,
@@ -144,6 +145,7 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
         _settingsRestorer = settingsRestorer;
         _urls = urls;
         _reportIssueWindowActivator = reportIssueWindowActivator;
+        _debugToolsWindowActivator = debugToolsWindowActivator;
         _connectionManager = connectionManager;
         _profilesManager = profilesManager;
 
@@ -218,9 +220,9 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
     }
 
     [RelayCommand]
-    private async Task NavigateToDeveloperToolsPageAsync()
+    private void ShowDebugTools()
     {
-        await ParentViewNavigator.NavigateToDeveloperToolsViewAsync();
+        _debugToolsWindowActivator.Activate();
     }
 
     [RelayCommand]

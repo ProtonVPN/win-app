@@ -17,24 +17,42 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Handlers.Bases;
+using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Notifications.Contracts;
+using ProtonVPN.Client.Notifications.Contracts.Arguments;
 
 namespace ProtonVPN.Client.Handlers;
 
 public class NotificationActivationHandler : IHandler, IEventMessageReceiver<NotificationActivationMessage>
 {
     private readonly IMainWindowActivator _mainWindowActivator;
+    private readonly IUrlsBrowser _urlsBrowser;
+    private readonly IWebAuthenticator _webAuthenticator;
 
-    public NotificationActivationHandler(IMainWindowActivator mainWindowActivator)
+    public NotificationActivationHandler(
+        IMainWindowActivator mainWindowActivator,
+        IUrlsBrowser urlsBrowser,
+        IWebAuthenticator webAuthenticator)
     {
         _mainWindowActivator = mainWindowActivator;
+        _urlsBrowser = urlsBrowser;
+        _webAuthenticator = webAuthenticator;
     }
 
-    public void Receive(NotificationActivationMessage message)
+    public async void Receive(NotificationActivationMessage message)
     {
         _mainWindowActivator.Activate();
+
+        switch (message.Argument)
+        {
+            case NotificationArguments.UPGRADE:
+                _urlsBrowser.BrowseTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSources.Downgrade));
+                break;
+        }
     }
 }

@@ -18,10 +18,10 @@
  */
 
 using Microsoft.Toolkit.Uwp.Notifications;
-using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Notifications.Contracts;
+using ProtonVPN.Client.Notifications.Contracts.Arguments;
 
 namespace ProtonVPN.Client.Notifications;
 
@@ -33,7 +33,9 @@ public class SubscriptionExpiredNotificationSender : ISubscriptionExpiredNotific
 
     private bool _isMainWindowActive;
 
-    public SubscriptionExpiredNotificationSender(ILocalizationProvider localizer, IConnectionManager connectionManager)
+    public SubscriptionExpiredNotificationSender(
+        ILocalizationProvider localizer, 
+        IConnectionManager connectionManager)
     {
         _localizer = localizer;
         _connectionManager = connectionManager;
@@ -55,7 +57,8 @@ public class SubscriptionExpiredNotificationSender : ISubscriptionExpiredNotific
         }
 
         tcb.AddText(_localizer.Get("Dialogs_Common_UpgradeToGetPlusFeatures"));
-        tcb.AddButton(_localizer.Get("Common_Actions_Upgrade"), ToastActivationType.Foreground, string.Empty);
+        tcb.AddButton(_localizer.Get("Common_Actions_Upgrade"), ToastActivationType.Foreground, NotificationArguments.UPGRADE);
+
         tcb.Show();
     }
 

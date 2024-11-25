@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -24,32 +24,38 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="using:ProtonVPN.Client.UI.Tray"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:tray="using:H.NotifyIcon" 
              xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+             xmlns:tray="using:H.NotifyIcon"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
-    <tray:TaskbarIcon Id="{x:Bind ViewModel.TrayIconGuid, Mode=OneTime}"
-                      IconSource="{x:Bind ViewModel.IconSource}"
-                      LeftClickCommand="{x:Bind ViewModel.ShowApplicationCommand, Mode=OneTime}"
+    <tray:TaskbarIcon ContextMenuMode="PopupMenu"
                       DoubleClickCommand="{x:Bind ViewModel.ShowApplicationCommand, Mode=OneTime}"
-                      ContextMenuMode="PopupMenu">
+                      IconSource="{x:Bind ViewModel.IconSource}"
+                      Id="{x:Bind ViewModel.TrayIconGuid, Mode=OneTime}"
+                      LeftClickCommand="{x:Bind ViewModel.ShowApplicationCommand, Mode=OneTime}">
         <tray:TaskbarIcon.ContextFlyout>
             <MenuFlyout>
+
                 <MenuFlyoutItem Command="{x:Bind ViewModel.ShowApplicationCommand, Mode=OneTime}"
-                                Text="{x:Bind ViewModel.OpenApplicationLabel}">
-                    <MenuFlyoutItem.Icon>
-                        <pathicons:BrandProtonVpn />
-                    </MenuFlyoutItem.Icon>
-                </MenuFlyoutItem>
+                                Text="{x:Bind ViewModel.OpenApplicationLabel}"/>
+
                 <MenuFlyoutSeparator />
+
                 <MenuFlyoutItem Command="{x:Bind ViewModel.ConnectCommand, Mode=OneTime}"
-                                Text="{x:Bind ViewModel.Localizer.Get('Common_Actions_Connect')}"/>
+                                Text="{x:Bind ViewModel.Localizer.Get('Common_Actions_Connect')}" />
                 <MenuFlyoutItem Command="{x:Bind ViewModel.DisconnectCommand, Mode=OneTime}"
-                                Text="{x:Bind ViewModel.Localizer.Get('Common_Actions_Disconnect')}"/>
+                                Text="{x:Bind ViewModel.Localizer.Get('Common_Actions_Disconnect')}" />
+                
+                <MenuFlyoutItem Command="{x:Bind ViewModel.ShowDebugToolsCommand, Mode=OneTime}"
+                                Text="Debug tools"
+                                Visibility="{x:Bind ViewModel.IsDebugModeEnabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
                 <MenuFlyoutSeparator />
+
                 <MenuFlyoutItem Command="{x:Bind ViewModel.ExitApplicationCommand, Mode=OneTime}"
-                                Text="{x:Bind ViewModel.Localizer.Get('Tray_Actions_ExitApplication')}"/>
+                                Text="{x:Bind ViewModel.Localizer.Get('Tray_Actions_ExitApplication')}" />
+
             </MenuFlyout>
         </tray:TaskbarIcon.ContextFlyout>
     </tray:TaskbarIcon>

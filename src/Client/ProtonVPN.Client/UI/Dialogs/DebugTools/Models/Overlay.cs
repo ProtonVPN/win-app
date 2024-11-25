@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.UI.Main.Settings.Pages.DeveloperTools;
+namespace ProtonVPN.Client.UI.Dialogs.DebugTools.Models;
 
 public class Overlay
 {

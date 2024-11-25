@@ -24,14 +24,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:temp="using:ProtonVPN.Client.TEMP" xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+             xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
-
-    <UserControl.Resources>
-        <HorizontalAlignment x:Key="PlaceholderHorizontalContentAlignment">Center</HorizontalAlignment>
-        <VerticalAlignment x:Key="PlaceholderVerticalContentAlignment">Center</VerticalAlignment>
-    </UserControl.Resources>
 
     <custom:WidgetButton x:Name="SettingsButton"
                          AutomationProperties.AutomationId="SettingsButton"
