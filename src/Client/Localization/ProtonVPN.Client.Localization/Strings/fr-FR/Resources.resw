@@ -606,7 +606,7 @@
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
   <data name="Countries_P2P_Description">
-    <value>Téléchargez des fichiers sur les réseaux P2P (peer-to-peer) ou améliorez votre expérience de jeux en ligne ou en appels vidéo.</value>
+    <value>Téléchargez des fichiers sur les réseaux P2P (peer-to-peer) est amélioré votre expérience de jeux en ligne ou en appels vidéo.</value>
   </data>
   <data name="Countries_Page_FreeUser_Description">
     <value>Débloquez la sélection de pays avec VPN Plus</value>
@@ -1803,7 +1803,7 @@ Une latence élevée peut ralentir votre connexion.</value>
     <value>Quel est le problème ?</value>
   </data>
   <data name="Dialogs_ReportIssue_NoLogsWarning">
-    <value>Les journaux d'erreurs nous aident à comprendre les causes de votre problème. Si vous ne les incluez pas, nous ne serions peut-être ne pas en mesure de mener une analyse approfondie.</value>
+    <value>Les journaux d'erreurs nous aident à comprendre les causes de votre problème. Si vous ne les incluez pas, nous ne serions peut-être pas en mesure de mener une analyse approfondie.</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes">
     <value>Solutions rapides</value>
@@ -2074,7 +2074,7 @@ Ils peuvent enregistrer votre activité en ligne. Dans certains pays, ils peuven
 Un VPN masque votre adresse IP, vous protégeant ainsi des interventions de votre FAI.</value>
   </data>
   <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
-    <value>Qu'est-ce qu'un fournisseur d'accès internet (FAI) ?</value>
+    <value>Qu'est-ce qu'un fournisseur d'accès à internet (FAI) ?</value>
   </data>
   <data name="Flyouts_Isp_Title">
     <value>Fournisseur</value>
@@ -2137,7 +2137,7 @@ La vitesse dépend de l’activité actuelle de votre appareil et ne représente
     <value>Vitesse</value>
   </data>
   <data name="Flyouts_Speed_Upload">
-    <value>Chargement</value>
+    <value>Envoie</value>
     <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
   </data>
   <data name="Flyouts_Volume_Description">
@@ -2148,10 +2148,10 @@ La vitesse dépend de l’activité actuelle de votre appareil et ne représente
     <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
   </data>
   <data name="Flyouts_Volume_Title">
-    <value>Volume </value>
+    <value>Volume</value>
   </data>
   <data name="Flyouts_Volume_Upload">
-    <value>Chargement</value>
+    <value>Envoi</value>
     <comment>Refers to the uploaded volume (e.g., Upload [new line] 250 MB).</comment>
   </data>
   <data name="Format_Milliseconds">
@@ -2388,7 +2388,7 @@ La vitesse dépend de l’activité actuelle de votre appareil et ne représente
     <value>Chiffrez vos activités en ligne en vous connectant à un VPN.</value>
   </data>
   <data name="Home_ConnectionDetails_Volume">
-    <value>Volume </value>
+    <value>Volume</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
     <value>Volume de téléchargement</value>

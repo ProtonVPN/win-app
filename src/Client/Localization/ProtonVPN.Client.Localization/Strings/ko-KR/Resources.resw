@@ -127,7 +127,7 @@
     <value>기능 바</value>
   </data>
   <data name="Automation_Properties_Home_Page">
-    <value>Home page</value>
+    <value>홈페이지</value>
   </data>
   <data name="Automation_Properties_KillSwitch_Page">
     <value>킬 스위치 페이지</value>
@@ -1728,7 +1728,7 @@
     <value>문제가 무엇인가요?</value>
   </data>
   <data name="Dialogs_ReportIssue_NoLogsWarning">
-    <value>Error logs help us to get to the bottom of your issue. If you don’t include them, we may not be able to investigate fully.</value>
+    <value>오류 로그는 저희가 문제의 근원으로 다가서는 데 도움을 줍니다. 이것을 포함하지 않는다면 저희는 제대로 조사하지 못할 수도 있습니다.</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes">
     <value>빠른 수정</value>
@@ -1885,13 +1885,13 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
     <value>연결 지원</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Description">
-    <value>Looks like your system clock is out of sync. This may cause issues when connecting to VPN.</value>
+    <value>회원님의 시스템 시계가 동기화되지 않은 것으로 보입니다. 이 문제는 VPN 사용 중일때 발생할 수 있습니다.</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_PrimaryButton">
-    <value>How to update system clock</value>
+    <value>시스템 시계 업데이트 방법</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Title">
-    <value>Update system clock</value>
+    <value>시스템 시계 업데이트</value>
   </data>
   <data name="Dialogs_WelcomeB2B_Description">
     <value>간단하고. 매끄럽고. 안전한. 나 자신을 온라인에서 보호하고 내 조직의 사이트, 소프트웨어 및 파일을 안전하게 접근하세요.</value>

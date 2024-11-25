@@ -124,10 +124,10 @@
     <value>Connection details page</value>
   </data>
   <data name="Automation_Properties_Features_Bar">
-    <value>Features bar</value>
+    <value>Barra de recursos</value>
   </data>
   <data name="Automation_Properties_Home_Page">
-    <value>Home page</value>
+    <value>Página inicial</value>
   </data>
   <data name="Automation_Properties_KillSwitch_Page">
     <value>Kill switch page</value>
@@ -139,10 +139,10 @@
     <value>Login page</value>
   </data>
   <data name="Automation_Properties_Main_Page">
-    <value>Main page</value>
+    <value>Página principal</value>
   </data>
   <data name="Automation_Properties_NetShield_Page">
-    <value>NetShield page</value>
+    <value>Página do NetShield</value>
   </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>Port forwarding page</value>
@@ -157,10 +157,10 @@
     <value>Settings page</value>
   </data>
   <data name="Automation_Properties_Sidebar">
-    <value>Sidebar</value>
+    <value>Barra lateral</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Countries_Page">
-    <value>Countries page</value>
+    <value>Página de países</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Gateways_Page">
     <value>Gateways page</value>
@@ -175,7 +175,7 @@
     <value>Recents page</value>
   </data>
   <data name="Automation_Properties_Sidebar_Search_Results_Page">
-    <value>Search results</value>
+    <value>Resultados da pesquisa</value>
   </data>
   <data name="Automation_Properties_SplitTunneling_Page">
     <value>Split tunneling page</value>
@@ -191,13 +191,13 @@
     <value>Adicionar</value>
   </data>
   <data name="Common_Actions_Back">
-    <value>Back</value>
+    <value>Voltar</value>
   </data>
   <data name="Common_Actions_Cancel">
     <value>Cancelar</value>
   </data>
   <data name="Common_Actions_Change">
-    <value>Change</value>
+    <value>Alterar</value>
   </data>
   <data name="Common_Actions_Close">
     <value>Fechar</value>
@@ -213,7 +213,7 @@
     <value>Contacte-nos</value>
   </data>
   <data name="Common_Actions_Delete">
-    <value>Delete</value>
+    <value>Eliminar</value>
   </data>
   <data name="Common_Actions_Disconnect">
     <value>Desligar</value>
@@ -265,7 +265,7 @@
     <value>A atualizar...</value>
   </data>
   <data name="Connection_Error_EditProfile">
-    <value>Edit profile</value>
+    <value>Editar o perfil</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>O Proton VPN não conseguiu obter o certificado de autenticação devido a problemas de rede.</value>
@@ -354,7 +354,7 @@
     <value>País</value>
   </data>
   <data name="Connections_Country_Middle">
-    <value>Middle country</value>
+    <value>País intermediário</value>
   </data>
   <data name="Connections_Country_Restricted">
     <value>Servers in this country are available with VPN Plus</value>
@@ -420,17 +420,17 @@
     <value>Estados P2P ({0})</value>
   </data>
   <data name="Connections_Profiles_One">
-    <value>Profile ({0})</value>
+    <value>Perfil ({0})</value>
   </data>
   <data name="Connections_Profiles_Other">
-    <value>Profiles ({0})</value>
+    <value>Perfis ({0})</value>
   </data>
   <data name="Connections_Profiles_Create">
     <value>Criar um perfil</value>
     <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
   </data>
   <data name="Connections_Profiles_Delete">
-    <value>Delete profile</value>
+    <value>Eliminar o perfil</value>
   </data>
   <data name="Connections_Profiles_Delete_Message">
     <value>'{0}' will be permanently removed.</value>
@@ -446,7 +446,7 @@
     <value>Create your first profile</value>
   </data>
   <data name="Connections_Profiles_Name">
-    <value>Profile name</value>
+    <value>Nome do perfil</value>
   </data>
   <data name="Connections_Profiles_New">
     <value>Novo perfil</value>
@@ -460,7 +460,7 @@
     <value>Gravar o perfil</value>
   </data>
   <data name="Connections_Random">
-    <value>Random</value>
+    <value>Aleatório</value>
   </data>
   <data name="Connections_Recents_One">
     <value>Recent ({0})</value>
@@ -511,7 +511,7 @@
     <value>See states ({0})</value>
   </data>
   <data name="Connections_Server">
-    <value>Server</value>
+    <value>Servidor</value>
   </data>
   <data name="Connections_Server_Restricted">
     <value>Server available with VPN Plus</value>
@@ -555,7 +555,7 @@
     <value>Servidores Tor ({0})</value>
   </data>
   <data name="Countries">
-    <value>Countries</value>
+    <value>Países</value>
   </data>
   <data name="Countries_All">
     <value>Todos</value>
@@ -675,7 +675,7 @@
     <value>Fastest (excluding my country)</value>
   </data>
   <data name="Country_Random">
-    <value>Random country</value>
+    <value>País aleatório</value>
   </data>
   <data name="Country_Random_ExcludingMyCountry">
     <value>Random (excluding my country)</value>
@@ -2038,7 +2038,7 @@ Websites can use geoblocks to restrict content to certain locations. Governments
 A VPN makes it looks like you’re browsing from somewhere else, protecting you from surveillance and censorship.</value>
   </data>
   <data name="Flyouts_Country_Title">
-    <value>Country</value>
+    <value>País</value>
   </data>
   <data name="Flyouts_Country_Warning">
     <value>Connect to VPN to change your virtual location</value>
@@ -2055,13 +2055,13 @@ A VPN masks your IP address, making it harder for your activity to be traced bac
     <value>What is an IP address?</value>
   </data>
   <data name="Flyouts_IpAddress_Title">
-    <value>IP address</value>
+    <value>Endereço IP</value>
   </data>
   <data name="Flyouts_IpAddress_VpnIp">
-    <value>VPN IP</value>
+    <value>IP da VPN</value>
   </data>
   <data name="Flyouts_IpAddress_YourIp">
-    <value>Your IP</value>
+    <value>O seu IP</value>
   </data>
   <data name="Flyouts_IpAddress_YourIpIsVisible">
     <value>Your IP address is visible</value>
@@ -2077,7 +2077,7 @@ A VPN hides your IP address, protecting you from ISP interference.</value>
     <value>What is an Internet Service Provider (ISP)?</value>
   </data>
   <data name="Flyouts_Isp_Title">
-    <value>Provider</value>
+    <value>Fornecedor</value>
   </data>
   <data name="Flyouts_Isp_Warning">
     <value>Your provider can see which websites you visit</value>
@@ -2089,13 +2089,13 @@ A VPN hides your IP address, protecting you from ISP interference.</value>
     <value>Which VPN protocol is the best?</value>
   </data>
   <data name="Flyouts_Protocol_Title">
-    <value>Protocol</value>
+    <value>Protocolo</value>
   </data>
   <data name="Flyouts_ServerLoad_Description">
     <value>Server load shows how close a server is to its maximum capacity. A high server load can slow down your connection.</value>
   </data>
   <data name="Flyouts_ServerLoad_High">
-    <value>High (91-100%)</value>
+    <value>Alta (91-100%)</value>
   </data>
   <data name="Flyouts_ServerLoad_High_Description">
     <value>VPN may run slower than normal</value>
@@ -2104,19 +2104,19 @@ A VPN hides your IP address, protecting you from ISP interference.</value>
     <value>What is server load?</value>
   </data>
   <data name="Flyouts_ServerLoad_Low">
-    <value>Low (1-75%)</value>
+    <value>Baixa (1-75%)</value>
   </data>
   <data name="Flyouts_ServerLoad_Low_Description">
     <value>Lightning fast speeds</value>
   </data>
   <data name="Flyouts_ServerLoad_Medium">
-    <value>Medium (76-90%)</value>
+    <value>Média (76 – 90%)</value>
   </data>
   <data name="Flyouts_ServerLoad_Medium_Description">
     <value>Unlikely to affect connection speed</value>
   </data>
   <data name="Flyouts_ServerLoad_Title">
-    <value>Server load</value>
+    <value>Carga do servidor</value>
   </data>
   <data name="Flyouts_Speed_BoostedByVpnAccelerator">
     <value>Boosted by VPN Accelerator</value>
@@ -2127,14 +2127,14 @@ A VPN hides your IP address, protecting you from ISP interference.</value>
 Speed is based on your device’s current activity — it doesn’t represent the VPN’s maximum speed.</value>
   </data>
   <data name="Flyouts_Speed_Download">
-    <value>Download</value>
+    <value>Transferir</value>
     <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
     <value>Understanding and increasing VPN connection speeds</value>
   </data>
   <data name="Flyouts_Speed_Title">
-    <value>Speed</value>
+    <value>Velocidade</value>
   </data>
   <data name="Flyouts_Speed_Upload">
     <value>Upload</value>
@@ -2144,7 +2144,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>This shows how much traffic has routed through your VPN.</value>
   </data>
   <data name="Flyouts_Volume_Download">
-    <value>Download</value>
+    <value>Transferir</value>
     <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
   </data>
   <data name="Flyouts_Volume_Title">
@@ -2187,7 +2187,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_SpeedUnit">
-    <value>Speed ({0})</value>
+    <value>Velocidade ({0})</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
@@ -2344,7 +2344,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Oculte o endereço IP do utilizador</value>
   </data>
   <data name="Home_ConnectionDetails_Isp">
-    <value>Provider</value>
+    <value>Fornecedor</value>
   </data>
   <data name="Home_ConnectionDetails_Landmark">
     <value>Detalhes da ligação</value>
@@ -2354,7 +2354,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>O meu IP</value>
   </data>
   <data name="Home_ConnectionDetails_Protected">
-    <value>Protected</value>
+    <value>Protegido</value>
   </data>
   <data name="Home_ConnectionDetails_Protocol">
     <value>Protocolo</value>
@@ -2382,7 +2382,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Detalhes da ligação</value>
   </data>
   <data name="Home_ConnectionDetails_Unprotected">
-    <value>Unprotected</value>
+    <value>Sem proteção</value>
   </data>
   <data name="Home_ConnectionDetails_UnprotectedSubLabel">
     <value>Encrypt your online activity by connecting to VPN.</value>
@@ -2594,7 +2594,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>What are P2P networks used for?</value>
   </data>
   <data name="Overlay_P2P_LearnMore">
-    <value>What is P2P?</value>
+    <value>O que é o P2P?</value>
   </data>
   <data name="Overlay_P2P_Title">
     <value>P2P</value>
@@ -2612,7 +2612,7 @@ This higher level of protection may cause higher latency and slower speeds.</val
 VPN connection</value>
   </data>
   <data name="Overlay_SecureCore_SecureCoreConnection_Latency">
-    <value>Higher latency</value>
+    <value>Latência mais alta</value>
   </data>
   <data name="Overlay_SecureCore_SecureCoreConnection_Privacy">
     <value>Advanced privacy</value>
@@ -2622,10 +2622,10 @@ VPN connection</value>
 VPN connection</value>
   </data>
   <data name="Overlay_SecureCore_StandardConnection_Latency">
-    <value>Lower latency</value>
+    <value>Latência mais baixa</value>
   </data>
   <data name="Overlay_SecureCore_StandardConnection_Privacy">
-    <value>High privacy</value>
+    <value>Privacidade alta</value>
   </data>
   <data name="Overlay_SecureCore_Title">
     <value>Secure Core</value>
@@ -2639,7 +2639,7 @@ A high server load can slow down your connection.</value>
     <value>VPN may run slower than normal</value>
   </data>
   <data name="Overlay_ServerLoad_HighRange_Title">
-    <value>High (91-100%)</value>
+    <value>Alta (91-100%)</value>
   </data>
   <data name="Overlay_ServerLoad_LearnMore">
     <value>What is server load?</value>
@@ -2648,16 +2648,16 @@ A high server load can slow down your connection.</value>
     <value>Lightning fast speeds</value>
   </data>
   <data name="Overlay_ServerLoad_LowRange_Title">
-    <value>Low (1-75%)</value>
+    <value>Baixa (1-75%)</value>
   </data>
   <data name="Overlay_ServerLoad_MediumRange_Description">
     <value>Unlikely to affect VPN speed</value>
   </data>
   <data name="Overlay_ServerLoad_MediumRange_Title">
-    <value>Medium (76-90%)</value>
+    <value>Média (76 – 90%)</value>
   </data>
   <data name="Overlay_ServerLoad_Title">
-    <value>Server Load</value>
+    <value>Carga do servidor</value>
   </data>
   <data name="Overlay_SmartRouting_Description">
     <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
@@ -2691,21 +2691,21 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Configure your own VPN settings and connect in one click.</value>
   </data>
   <data name="Profiles_Page_Title">
-    <value>Profiles</value>
+    <value>Perfis</value>
   </data>
   <data name="Search_InputBox_Placeholder">
-    <value>Browse from...</value>
+    <value>Navegar de...</value>
   </data>
   <data name="Search_NoInput_CityOrState">
     <value>City or US state</value>
     <comment>The word used for one single city and one single United States state</comment>
   </data>
   <data name="Search_NoInput_Country">
-    <value>Country</value>
+    <value>País</value>
     <comment>The word used for one single country</comment>
   </data>
   <data name="Search_NoInput_Server">
-    <value>Server</value>
+    <value>Servidor</value>
     <comment>The word used for one single server</comment>
   </data>
   <data name="Search_NoInput_TrySearchingFor">
@@ -2718,7 +2718,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>No results found</value>
   </data>
   <data name="Server">
-    <value>Server</value>
+    <value>Servidor</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Servidor gratuito mais rápido</value>
@@ -2727,7 +2727,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Gateways</value>
   </data>
   <data name="Server_Feature_None">
-    <value>All countries</value>
+    <value>Todos os países</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
@@ -2742,7 +2742,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Servidor gratuito</value>
   </data>
   <data name="Servers">
-    <value>Servers</value>
+    <value>Servidores</value>
   </data>
   <data name="Settings_About">
     <value>Acerca</value>
@@ -2781,13 +2781,13 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Get the most from your VPN by updating to the latest version of the app.</value>
   </data>
   <data name="Settings_Account_Exit">
-    <value>Exit the app</value>
+    <value>Sair da aplicação</value>
   </data>
   <data name="Settings_Account_MyAccount">
-    <value>My account</value>
+    <value>A minha conta</value>
   </data>
   <data name="Settings_Account_SignOut">
-    <value>Sign out</value>
+    <value>Encerrar sessão</value>
   </data>
   <data name="Settings_AppVersion">
     <value>Versão da aplicação</value>
@@ -2913,7 +2913,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Kill switch</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced">
-    <value>Advanced</value>
+    <value>Avançado</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
     <value>Only allow internet access when connected to Proton VPN. Advanced kill switch will remain active even when you restart your device.</value>
@@ -2931,7 +2931,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>When kill switch is on, you won't be able to connect to websites and apps excluded from your VPN connection through split tunneling.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Standard">
-    <value>Standard</value>
+    <value>Padrão</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Standard_Description">
     <value>Automatically disconnect from the internet if VPN connection is lost.</value>
@@ -2961,10 +2961,10 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>NetShield Privacy Panel</value>
   </data>
   <data name="Settings_Connection_PortForwarding">
-    <value>Port forwarding</value>
+    <value>Encaminhamento de portas</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Active port:</value>
+    <value>Porta ativa:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Copy port number</value>
@@ -2985,7 +2985,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Loading...</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications">
-    <value>Notifications</value>
+    <value>Notificações</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>Get notified when the port forwarding number changes</value>
@@ -2994,7 +2994,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Protocolo</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Action">
-    <value>Go to profiles</value>
+    <value>Ir para perfis</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Message">
     <value>You’re currently connected to a VPN profile. 
@@ -3007,13 +3007,13 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Change protocol in profiles</value>
   </data>
   <data name="Settings_Connection_SplitTunneling">
-    <value>Split tunneling</value>
+    <value>Tunelamento dividido</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Add">
-    <value>Add app</value>
+    <value>Adicionar a aplicação</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
-    <value>App files</value>
+    <value>Ficheiros da aplicação</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Header">
@@ -3021,7 +3021,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
-    <value>Remove app</value>
+    <value>Remover a aplicação</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Conflict_Description">
     <value>This will disable kill switch.</value>
@@ -3033,26 +3033,26 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Customize your connection by deciding which apps and IP addresses are protected by VPN.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
-    <value>Inverse</value>
+    <value>Inverso</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
     <value>Only selected apps and IP addresses connect via VPN, all other traffic is unprotected</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
-    <value>Add IP</value>
+    <value>Adicionar um IP</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
     <value>Selected IP addresses ({0})</value>
     <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
-    <value>Remove IP</value>
+    <value>Remover o IP</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Watermark">
     <value>Add IPv4 address</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
-    <value>Standard</value>
+    <value>Padrão</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
     <value>Selected apps and IP addresses are excluded from VPN connection</value>
@@ -3265,7 +3265,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Increase your connection speed by up to 400% with performance enhancing technologies.</value>
   </data>
   <data name="SignIn_Form">
-    <value>Sign in form</value>
+    <value>Formulário de início de sessão</value>
   </data>
   <data name="SignIn_Form_AdvancedKillSwitchDescription">
     <value>Advanced kill switch is blocking your internet connection.</value>
@@ -3274,7 +3274,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>The best secure VPN for speed</value>
   </data>
   <data name="SignIn_Form_CreateAccount">
-    <value>Create account</value>
+    <value>Criar uma conta</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="SignIn_Form_Description">
@@ -3284,49 +3284,49 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Disable kill switch</value>
   </data>
   <data name="SignIn_Form_Email">
-    <value>Email</value>
+    <value>E-mail</value>
   </data>
   <data name="SignIn_Form_ForgotUsername">
-    <value>Forgot username</value>
+    <value>Esqueci-me do nome de utilizador</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_Help">
-    <value>Help</value>
+    <value>Ajuda</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_NoLogsPolicy">
-    <value>No-logs policy</value>
+    <value>Política de inexistência de registos</value>
   </data>
   <data name="SignIn_Form_OpenSource">
-    <value>Open-source</value>
+    <value>Código aberto</value>
   </data>
   <data name="SignIn_Form_Password">
-    <value>Password</value>
+    <value>Palavra-passe</value>
   </data>
   <data name="SignIn_Form_PasswordError">
     <value>Enter your password</value>
     <comment>An error message is displayed when the user attempts to sign in without entering a password</comment>
   </data>
   <data name="SignIn_Form_ReportAnIssue">
-    <value>Report an issue</value>
+    <value>Reportar um problema</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_ResetPassword">
-    <value>Reset password</value>
+    <value>Redefinir a palavra-passe</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_SignIn">
-    <value>Sign in</value>
+    <value>Iniciar sessão</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="SignIn_Form_SignInWithSso">
     <value>Sign in with SSO</value>
   </data>
   <data name="SignIn_Form_SwissBased">
-    <value>Swiss-based</value>
+    <value>Sediado na Suíça</value>
   </data>
   <data name="SignIn_Form_Title">
-    <value>Sign in</value>
+    <value>Iniciar sessão</value>
   </data>
   <data name="SignIn_Form_TroubleSigningIn">
     <value>Trouble signing in</value>
@@ -3394,7 +3394,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>NetShield</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
-    <value>Faça 'upgrade' para escolher qualquer servidor.</value>
+    <value>Melhore para escolher qualquer servidor.</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Title">
     <value>Não é o país que pretendia?</value>

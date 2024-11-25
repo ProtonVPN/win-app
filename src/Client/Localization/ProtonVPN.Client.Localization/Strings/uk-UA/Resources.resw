@@ -2290,7 +2290,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Understanding and increasing VPN connection speeds</value>
   </data>
   <data name="Flyouts_Speed_Title">
-    <value>Speed</value>
+    <value>Швидкість</value>
   </data>
   <data name="Flyouts_Speed_Upload">
     <value>Upload</value>
@@ -3464,7 +3464,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Disable kill switch</value>
   </data>
   <data name="SignIn_Form_Email">
-    <value>Email</value>
+    <value>Е-пошта</value>
   </data>
   <data name="SignIn_Form_ForgotUsername">
     <value>Forgot username</value>
