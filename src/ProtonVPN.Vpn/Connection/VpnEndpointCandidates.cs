@@ -62,7 +62,15 @@ namespace ProtonVPN.Vpn.Connection
                 _skippedHosts[config.VpnProtocol].Add(Current.Server);
             }
 
-            VpnHost server = _all.FirstOrDefault(h => _skippedHosts[config.VpnProtocol].All(skippedHost => h != skippedHost));
+            return NextEndpoint(config);
+        }
+
+        private VpnEndpoint NextEndpoint(VpnConfig config)
+        {
+            VpnHost server = _all.FirstOrDefault(h =>
+                _skippedHosts[config.VpnProtocol].All(skippedHost => h != skippedHost) &&
+                _skippedIps[config.VpnProtocol].All(skippedIp => h.Ip != skippedIp));
+
             Current = CreateVpnEndpoint(server, config.VpnProtocol);
 
             return Current;
@@ -75,10 +83,7 @@ namespace ProtonVPN.Vpn.Connection
                 _skippedIps[config.VpnProtocol].Add(Current.Server.Ip);
             }
 
-            VpnHost server = _all.FirstOrDefault(h => _skippedIps[config.VpnProtocol].All(skippedIp => h.Ip != skippedIp));
-            Current = CreateVpnEndpoint(server, config.VpnProtocol);
-
-            return Current;
+            return NextEndpoint(config);
         }
 
         private static VpnEndpoint CreateVpnEndpoint(VpnHost server, VpnProtocol protocol)
