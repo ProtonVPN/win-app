@@ -26,7 +26,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:featureicons="using:ProtonVPN.Client.UI.Main.FeatureIcons"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+      xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons" 
+      xmlns:components="using:ProtonVPN.Client.UI.Main.Components"
       x:DefaultBindMode="OneWay"
       AutomationProperties.AutomationId="PortForwardingPage"
       AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Automation_Properties_PortForwarding_Page')}"
@@ -74,35 +75,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               Style="{StaticResource ToggleSwitchStyle}" />
 
                 <controls:SettingsExpander.Items>
-                    <StackPanel Orientation="Horizontal"
-                                Spacing="8">
 
-                        <TextBlock VerticalAlignment="Center"
-                                   Style="{StaticResource CaptionStrongTextBlockStyle}">
-                            <Run FontWeight="{StaticResource CaptionFontWeight}"
-                                 Foreground="{ThemeResource TextWeakColorBrush}"
-                                 Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_PortForwarding_ActivePort')}" />
-                            <Run Text="{x:Bind ViewModel.ActivePortNumberOrStatusMessage}" />
-                        </TextBlock>
-
-                        <custom:GhostButton VerticalAlignment="Center"
-                                            AutomationProperties.AutomationId="CopyPortNumberButton"
-                                            AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Settings_Connection_PortForwarding_ActivePort_Copy')}"
-                                            Command="{x:Bind ViewModel.CopyPortNumberCommand, Mode=OneTime}"
-                                            ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Settings_Connection_PortForwarding_ActivePort_Copy')}"
-                                            Visibility="{x:Bind ViewModel.HasActivePortNumber, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <custom:GhostButton.LeftIcon>
-                                <pathicons:Squares />
-                            </custom:GhostButton.LeftIcon>
-                        </custom:GhostButton>
-
-                        <ProgressRing Width="16"
-                                      Height="16"
-                                      IsActive="{x:Bind ViewModel.HasStatusMessage}"
-                                      Visibility="{x:Bind ViewModel.HasStatusMessage, Converter={StaticResource BooleanToVisibilityConverter}}" />
-
-                    </StackPanel>
+                    <components:ActivePortComponentView Margin="-4,0,0,0"/>
+                    
                 </controls:SettingsExpander.Items>
+                
             </controls:SettingsExpander>
 
             <TextBlock Margin="0,8,0,16"

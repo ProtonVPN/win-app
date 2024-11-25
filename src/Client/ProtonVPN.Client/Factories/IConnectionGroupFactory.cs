@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Core.Enums;
+using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Models.Connections;
 
 

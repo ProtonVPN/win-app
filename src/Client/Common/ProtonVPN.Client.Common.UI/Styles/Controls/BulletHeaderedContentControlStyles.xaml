@@ -30,6 +30,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Style x:Key="DefaultBulletHeaderedContentControlStyle" TargetType="custom:BulletHeaderedContentControl">
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="BulletSize" Value="24" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:BulletHeaderedContentControl">
@@ -52,7 +53,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <ContentPresenter x:Name="BulletPresenter"
                                           Grid.Row="0"
                                           Grid.Column="0"
-                                          VerticalAlignment="Top"
+                                          VerticalAlignment="Top" 
+                                          VerticalContentAlignment="Top"
+                                          Width="{TemplateBinding BulletSize}"
                                           Content="{TemplateBinding BulletContent}" />
 
                         <ContentPresenter x:Name="HeaderPresenter"
@@ -91,6 +94,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Style x:Key="UpsellBulletHeaderedContentControlStyle" BasedOn="{StaticResource DefaultBulletHeaderedContentControlStyle}" TargetType="custom:BulletHeaderedContentControl">
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="BulletSize" Value="24" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:BulletHeaderedContentControl">
@@ -113,10 +117,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <ContentPresenter x:Name="BulletPresenter"
                                           Grid.Row="0"
                                           Grid.Column="0"
-                                          Width="24"
-                                          Height="24"
+                                          VerticalAlignment="Top" 
+                                          VerticalContentAlignment="Top"
+                                          Width="{TemplateBinding BulletSize}"
                                           Margin="0,-2,0,0"
-                                          VerticalAlignment="Top"
                                           Content="{TemplateBinding BulletContent}"
                                           Foreground="{ThemeResource VpnGreenColorBrush}" />
 
@@ -148,13 +152,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Setter>
     </Style>
 
-    <x:Double x:Key="DefaultConnectionIntentBulletPresenterWidth">36</x:Double>
     <x:Double x:Key="DefaultConnectionIntentBulletHeaderedContentControlColumnSpacing">12</x:Double>
     <x:Double x:Key="DefaultConnectionIntentBulletHeaderedContentControlRowSpacing">4</x:Double>
 
     <Style x:Key="DefaultConnectionIntentBulletHeaderedContentControlStyle" BasedOn="{StaticResource DefaultBulletHeaderedContentControlStyle}" TargetType="custom:BulletHeaderedContentControl">
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="BulletSize" Value="36" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:BulletHeaderedContentControl">
@@ -178,8 +182,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                           Grid.Row="0"
                                           Grid.RowSpan="2"
                                           Grid.Column="0"
-                                          Width="{ThemeResource DefaultConnectionIntentBulletPresenterWidth}"
-                                          VerticalAlignment="Top"
+                                          VerticalAlignment="Top" 
+                                          VerticalContentAlignment="Top"
+                                          Width="{TemplateBinding BulletSize}"
                                           Content="{TemplateBinding BulletContent}" />
 
                         <ContentPresenter x:Name="HeaderPresenter"
@@ -203,6 +208,73 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                           Foreground="{ThemeResource TextWeakColorBrush}"
                                           LineHeight="{StaticResource BodyLineHeight}"
                                           TextWrapping="Wrap"
+                                          Visibility="{Binding Content, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}" />
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <x:Double x:Key="FeatureWidgetBulletHeaderedContentControlColumnSpacing">8</x:Double>
+    <x:Double x:Key="FeatureWidgetBulletHeaderedContentControlRowSpacing">0</x:Double>
+
+    <Style x:Key="FeatureWidgetBulletHeaderedContentControlStyle" BasedOn="{StaticResource DefaultBulletHeaderedContentControlStyle}" TargetType="custom:BulletHeaderedContentControl">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="BulletSize" Value="24" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="custom:BulletHeaderedContentControl">
+
+                    <Grid x:Name="Container"
+                          Padding="{TemplateBinding Padding}"
+                          Background="{TemplateBinding Background}"
+                          ColumnSpacing="{StaticResource FeatureWidgetBulletHeaderedContentControlColumnSpacing}"
+                          RowSpacing="{StaticResource FeatureWidgetBulletHeaderedContentControlRowSpacing}">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <ContentPresenter x:Name="BulletPresenter"
+                                          Grid.Row="0"
+                                          Grid.RowSpan="2"
+                                          Grid.Column="0"
+                                          VerticalAlignment="Top" 
+                                          VerticalContentAlignment="Top"
+                                          Width="{TemplateBinding BulletSize}"
+                                          Margin="0,1,0,0"
+                                          Content="{TemplateBinding BulletContent}"
+                                          Foreground="{ThemeResource VpnGreenColorBrush}" />
+
+                        <ContentPresenter x:Name="HeaderPresenter"
+                                          Grid.Row="0"
+                                          Grid.Column="1"
+                                          Foreground="{ThemeResource TextNormColorBrush}"
+                                          Content="{TemplateBinding Header}"
+                                          ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                          FontSize="{StaticResource BodyLargeStrongFontSize}"
+                                          FontWeight="{StaticResource BodyLargeStrongFontWeight}"
+                                          LineHeight="{StaticResource BodyLargeStrongLineHeight}"
+                                          TextWrapping="Wrap" />
+
+                        <ContentPresenter x:Name="ContentPresenter"
+                                          Grid.Row="1"
+                                          Grid.Column="1"
+                                          Foreground="{ThemeResource TextWeakColorBrush}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Content="{TemplateBinding Content}"
+                                          FontSize="{StaticResource CaptionStrongFontSize}"
+                                          FontWeight="{StaticResource CaptionStrongFontWeight}"
+                                          LineHeight="{StaticResource CaptionStrongLineHeight}"
+                                          TextWrapping="WrapWholeWords"
                                           Visibility="{Binding Content, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}" />
 
                     </Grid>

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+        <TargetFramework>net8.0-windows10.0.22621.0</TargetFramework>
         <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
         <RootNamespace>ProtonVPN.Client.Legacy</RootNamespace>
         <ApplicationIcon>Assets/ProtonVPN.ico</ApplicationIcon>
@@ -53,8 +53,8 @@
         <PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" />
         <PackageReference Include="CommunityToolkit.WinUI.Converters" />
         <PackageReference Include="CommunityToolkit.WinUI.Triggers" />
-        <PackageReference Include="CSharpMarkup.WinUI.LiveChartsCore.SkiaSharpView" />
         <PackageReference Include="H.NotifyIcon.WinUI" />
+        <PackageReference Include="LiveChartsCore.SkiaSharpView.WinUI" />
         <PackageReference Include="Microsoft.Extensions.Hosting" />
         <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" />
         <PackageReference Include="Microsoft.WindowsAppSDK" />

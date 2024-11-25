@@ -30,6 +30,7 @@
     <PackageVersion Include="Grpc.Net.Client" Version="2.66.0" />
     <PackageVersion Include="H.NotifyIcon.WinUI" Version="2.1.4" />
     <PackageVersion Include="log4net" Version="3.0.3" />
+    <PackageVersion Include="LiveChartsCore.SkiaSharpView.WinUI" Version="2.0.0-rc4.5" />
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.2.0" />
     <PackageVersion Include="Microsoft.CSharp" Version="4.7.0" />

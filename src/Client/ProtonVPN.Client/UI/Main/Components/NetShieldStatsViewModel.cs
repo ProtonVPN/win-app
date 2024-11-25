@@ -78,11 +78,6 @@ public partial class NetShieldStatsViewModel : ActivatableViewModelBase,
 
     public void Receive(NetShieldStatsChangedMessage message)
     {
-        if (!IsActive)
-        {
-            return;
-        }
-
         ExecuteOnUIThread(() =>
         {
             if (_connectionManager.IsConnected)
@@ -120,12 +115,5 @@ public partial class NetShieldStatsViewModel : ActivatableViewModelBase,
         {
             ExecuteOnUIThread(ClearNetShieldStats);
         }
-    }
-
-    protected override void OnActivated()
-    {
-        base.OnActivated();
-
-        _vpnServiceCaller.RequestNetShieldStatsAsync();
     }
 }

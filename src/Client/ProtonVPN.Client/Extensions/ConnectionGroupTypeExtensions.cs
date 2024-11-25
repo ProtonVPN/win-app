@@ -20,7 +20,7 @@
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.UI.Assets.Icons.Base;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
-using ProtonVPN.Client.Core.Enums;
+using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 
 namespace ProtonVPN.Client.Extensions;
@@ -83,33 +83,6 @@ public static class ConnectionGroupTypeExtensions
             ConnectionGroupType.SecureCoreServers or
             ConnectionGroupType.GatewayServers => true,
             _ => false
-        };
-    }
-
-    public static string GetLocalizationKey(this ConnectionGroupType groupType)
-    {
-        return groupType switch
-        {
-            ConnectionGroupType.Countries => "Connections_Countries",
-            ConnectionGroupType.States => "Connections_States",
-            ConnectionGroupType.Cities => "Connections_Cities",
-            ConnectionGroupType.Servers => "Connections_Servers",
-            ConnectionGroupType.FreeServers => "Connections_Free_Servers",
-            ConnectionGroupType.SecureCoreCountries => "Connections_SecureCore_Countries",
-            ConnectionGroupType.SecureCoreCountryPairs or
-            ConnectionGroupType.SecureCoreServers => "Connections_SecureCore_Servers",
-            ConnectionGroupType.P2PCountries => "Connections_P2P_Countries",
-            ConnectionGroupType.P2PStates => "Connections_P2P_States",
-            ConnectionGroupType.P2PCities => "Connections_P2P_Cities",
-            ConnectionGroupType.P2PServers => "Connections_P2P_Servers",
-            ConnectionGroupType.TorCountries => "Connections_Tor_Countries",
-            ConnectionGroupType.TorServers => "Connections_Tor_Servers",
-            ConnectionGroupType.Gateways => "Connections_Gateways",
-            ConnectionGroupType.GatewayServers => "Connections_Gateways_Servers",
-            ConnectionGroupType.PinnedRecents => "Connections_Recents_Pinned",
-            ConnectionGroupType.Recents => "Connections_Recents",
-            ConnectionGroupType.Profiles => "Connections_Profiles",
-            _ => throw new NotSupportedException($"Group type '{groupType}' is not supported.")
         };
     }
 

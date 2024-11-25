@@ -46,12 +46,15 @@ public partial class VpnSpeedViewModel : ActivatableViewModelBase,
 {
     private const double Y_AXIS_BUFFER = 1.1;
 
-    public SmartObservableCollection<double> ScaledDownloadDataPoints = [];
-    public SmartObservableCollection<double> ScaledUploadDataPoints = [];
+    private readonly SKColor _uploadGraphColor = new(247, 96, 123, 255);
+    private readonly SKColor _downloadGraphColor = new(75, 185, 157, 255);
 
     private readonly INetworkTrafficManager _networkTrafficManager;
 
+    private ICartesianAxis _xAxis;
     private ICartesianAxis _yAxis;
+    private ISeries _downloadSeries;
+    private ISeries _uploadSeries;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(FormattedDownloadSpeed))]
@@ -94,6 +97,11 @@ public partial class VpnSpeedViewModel : ActivatableViewModelBase,
     public IEnumerable<ICartesianAxis> YAxes { get; set; } = [];
 
     public Margin DrawMargin { get; } = new(Margin.Auto);
+
+    public SmartObservableCollection<double> ScaledDownloadDataPoints { get; } = [];
+
+    public SmartObservableCollection<double> ScaledUploadDataPoints { get; } = [];
+
     public SmartObservableCollection<double> Separators { get; } = [];
 
     public VpnSpeedViewModel(
@@ -105,29 +113,19 @@ public partial class VpnSpeedViewModel : ActivatableViewModelBase,
     {
         _networkTrafficManager = networkTrafficManager;
 
-        InitializeSpeedGraph();
+        _xAxis = GetXAxis();
+        _yAxis = GetYAxis();
+        _uploadSeries = GetLineSeries(ScaledUploadDataPoints, _uploadGraphColor, useDashEffect: true);
+        _downloadSeries = GetLineSeries(ScaledDownloadDataPoints, _downloadGraphColor);
+
+        XAxes = [_xAxis];
+        YAxes = [_yAxis];
+        Series = [_uploadSeries, _downloadSeries];
     }
 
     public void Receive(NetworkTrafficChangedMessage message)
     {
         ExecuteOnUIThread(InvalidateAll);
-    }
-
-    private void InvalidateAll()
-    {
-        NetworkTraffic speed = _networkTrafficManager.GetSpeed();
-        NetworkTraffic volume = _networkTrafficManager.GetVolume();
-
-        DownloadSpeed = (long)speed.BytesDownloaded;
-        UploadSpeed = (long)speed.BytesUploaded;
-
-        DownloadVolume = (long)volume.BytesDownloaded;
-        UploadVolume = (long)volume.BytesUploaded;
-
-        if (IsActive)
-        {
-            InvalidateSpeedGraph();
-        }
     }
 
     protected override void OnActivated()
@@ -149,15 +147,35 @@ public partial class VpnSpeedViewModel : ActivatableViewModelBase,
         OnPropertyChanged(nameof(SpeedUnit));
     }
 
-    private void InitializeSpeedGraph()
+    private void InvalidateAll()
     {
-        Series =
-        [
-            GetLineSeries(ScaledUploadDataPoints, new SKColor(247, 96, 123, 255), useDashEffect: true),
-            GetLineSeries(ScaledDownloadDataPoints, new SKColor(75, 185, 157, 255)),
-        ];
+        NetworkTraffic speed = _networkTrafficManager.GetSpeed();
+        NetworkTraffic volume = _networkTrafficManager.GetVolume();
 
-        _yAxis = new Axis
+        DownloadSpeed = (long)speed.BytesDownloaded;
+        UploadSpeed = (long)speed.BytesUploaded;
+
+        DownloadVolume = (long)volume.BytesDownloaded;
+        UploadVolume = (long)volume.BytesUploaded;
+
+        if (IsActive)
+        {
+            InvalidateSpeedGraph();
+        }
+    }
+
+    private Axis GetXAxis()
+    {
+        return new Axis()
+        {
+            IsVisible = false,
+            CustomSeparators = []
+        };
+    }
+
+    private Axis GetYAxis()
+    {
+        return new Axis
         {
             Position = AxisPosition.Start,
             LabelsAlignment = Align.Start,
@@ -169,18 +187,14 @@ public partial class VpnSpeedViewModel : ActivatableViewModelBase,
                 PathEffect = new DashEffect([3, 3]),
                 ZIndex = 0,
             },
-            CustomSeparators = Separators, 
+            CustomSeparators = Separators,
         };
-
-        XAxes = new List<ICartesianAxis> { new Axis { IsVisible = false, CustomSeparators = [], } };
-        YAxes = new List<ICartesianAxis> { _yAxis };
     }
 
-    private LineSeries<double> GetLineSeries(IEnumerable<double> values, SKColor color, bool useDashEffect = false)
+    private LineSeries<double> GetLineSeries(ICollection<double> values, SKColor color, bool useDashEffect = false)
     {
-        return new()
+        return new(values)
         {
-            Values = values,
             Stroke = new SolidColorPaint(color)
             {
                 StrokeThickness = 1,
@@ -235,7 +249,7 @@ public partial class VpnSpeedViewModel : ActivatableViewModelBase,
     {
         if (maxValue <= 0)
         {
-            return 0;
+            return 10;
         }
 
         maxValue *= Y_AXIS_BUFFER;

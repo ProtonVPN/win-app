@@ -18,7 +18,7 @@
  */
 
 using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Core.Enums;
+using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Models.Connections;
 

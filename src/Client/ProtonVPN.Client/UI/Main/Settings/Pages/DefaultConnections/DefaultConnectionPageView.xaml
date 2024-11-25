@@ -34,6 +34,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Page.Resources>
         <Style x:Key="DefaultConnectionRadioButtonStyle" BasedOn="{StaticResource RadioButtonStyle}" TargetType="RadioButton">
             <Setter Property="GroupName" Value="DefaultConnectionSetting" />
+            <Setter Property="Padding" Value="12,-2,0,0" />
         </Style>
     </Page.Resources>
 
@@ -56,13 +57,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <RadioButton AutomationProperties.AutomationId="FastestDefaultConnectionRadioButton"
                              IsChecked="{x:Bind ViewModel.IsFastestConnection, Mode=TwoWay}"
                              Style="{StaticResource DefaultConnectionRadioButtonStyle}">
-                    <custom:BulletHeaderedContentControl Margin="8,0,0,0"
-                                                         Content="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Fastest_Description')}"
+                    <custom:BulletHeaderedContentControl Content="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Fastest_Description')}"
                                                          Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Fastest')}"
                                                          Style="{StaticResource DefaultConnectionIntentBulletHeaderedContentControlStyle}">
                         <custom:BulletHeaderedContentControl.BulletContent>
                             <custom:SimpleCountryFlag Width="36"
-                                                      FlagType="Fastest" />
+                                                      FlagType="Fastest" 
+                                                      Margin="0,2,0,0"/>
                         </custom:BulletHeaderedContentControl.BulletContent>
                     </custom:BulletHeaderedContentControl>
                 </RadioButton>
@@ -70,13 +71,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <RadioButton AutomationProperties.AutomationId="LastDefaultConnectionRadioButton"
                              IsChecked="{x:Bind ViewModel.IsLastConnection, Mode=TwoWay}"
                              Style="{StaticResource DefaultConnectionRadioButtonStyle}">
-                    <custom:BulletHeaderedContentControl Margin="8,0,0,0"
-                                                         Content="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Last_Description')}"
+                    <custom:BulletHeaderedContentControl Content="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Last_Description')}"
                                                          Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Last')}"
                                                          Style="{StaticResource DefaultConnectionIntentBulletHeaderedContentControlStyle}">
                         <custom:BulletHeaderedContentControl.BulletContent>
                             <custom:SimpleCountryFlag Width="36"
-                                                      FlagType="Latest" />
+                                                      FlagType="Latest" 
+                                                      Margin="0,2,0,0"/>
                         </custom:BulletHeaderedContentControl.BulletContent>
                     </custom:BulletHeaderedContentControl>
                 </RadioButton>
@@ -103,8 +104,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             <x:Double x:Key="DefaultConnectionIntentBulletPresenterWidth">44</x:Double>
                                         </RadioButton.Resources>
 
-                                        <custom:BulletHeaderedContentControl Margin="8,0,0,0"
-                                                                             Header="{x:Bind Header}"
+                                        <custom:BulletHeaderedContentControl Header="{x:Bind Header}"
+                                                                             BulletSize="44"
                                                                              Style="{StaticResource DefaultConnectionIntentBulletHeaderedContentControlStyle}">
                                             <custom:BulletHeaderedContentControl.Content>
                                                 <toolkit:WrapPanel HorizontalSpacing="6"
@@ -163,6 +164,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             </custom:BulletHeaderedContentControl.Content>
                                             <custom:BulletHeaderedContentControl.BulletContent>
                                                 <custom:ConnectionProfileIcon Width="44"
+                                                                              Margin="0,-2,0,0"
                                                                               VerticalAlignment="Top"
                                                                               CountryCode="{x:Bind ExitCountryCode}"
                                                                               FlagType="{x:Bind FlagType}"

@@ -47,7 +47,6 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
     IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
     private readonly IRequiredReconnectionSettings _requiredReconnectionSettings;
-    private readonly IMainViewNavigator _mainViewNavigator;
 
     protected readonly IMainViewNavigator MainViewNavigator;
     protected readonly IMainWindowOverlayActivator MainWindowOverlayActivator;

@@ -48,6 +48,7 @@
     <None Remove="UI\Login\Pages\TwoFactorPageView.xaml" />
     <None Remove="UI\Login\LoginPageView.xaml" />
     <None Remove="UI\MainWindowShellView.xaml" />
+    <None Remove="UI\Main\Components\ActivePortComponentView.xaml" />
     <None Remove="UI\Main\Components\ConnectionErrorComponent.xaml" />
     <None Remove="UI\Main\FeatureIcons\KillSwitchIconView.xaml" />
     <None Remove="UI\Main\FeatureIcons\NetShieldIconView.xaml" />
@@ -61,6 +62,7 @@
     <None Remove="UI\Main\Features\NetShield\NetShieldWidgetView.xaml" />
     <None Remove="UI\Main\Features\PortForwarding\PortForwardingPageView.xaml" />
     <None Remove="UI\Main\Features\PortForwarding\PortForwardingWidgetView.xaml" />
+    <None Remove="UI\Main\Features\SplitTunneling\Controls\SplitTunnelingItemsControl.xaml" />
     <None Remove="UI\Main\Features\SplitTunneling\SplitTunnelingPageView.xaml" />
     <None Remove="UI\Main\Features\SplitTunneling\SplitTunnelingWidgetView.xaml" />
     <None Remove="UI\Main\Home\Card\ConnectionCardComponentView.xaml" />
@@ -151,8 +153,8 @@
     <PackageReference Include="CommunityToolkit.WinUI.Controls.Sizers" />
     <PackageReference Include="CommunityToolkit.WinUI.Converters" />
     <PackageReference Include="CommunityToolkit.WinUI.Triggers" />
-    <PackageReference Include="CSharpMarkup.WinUI.LiveChartsCore.SkiaSharpView" />
     <PackageReference Include="H.NotifyIcon.WinUI" />
+    <PackageReference Include="LiveChartsCore.SkiaSharpView.WinUI" />
     <PackageReference Include="Microsoft.Extensions.Hosting" />
     <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" />
     <PackageReference Include="Microsoft.WindowsAppSDK" />
@@ -739,6 +741,18 @@
 
   <ItemGroup>
     <Page Update="UI\Dialogs\DebugTools\DebugToolsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Main\Features\SplitTunneling\Controls\SplitTunnelingItemsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Main\Components\ActivePortComponentView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

@@ -19,10 +19,11 @@
 
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
-using ProtonVPN.Client.Core.Enums;
+using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Extensions;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Localization.Extensions;
 
 namespace ProtonVPN.Client.Models.Connections;
 
@@ -40,7 +41,7 @@ public partial class ConnectionGroup : List<ConnectionItemBase>
 
     public IconElement? Icon => GroupType.GetIcon();
 
-    public string Header => Localizer.GetPluralFormat(GroupType.GetLocalizationKey(), ItemsCount);
+    public string Header => Localizer.GetConnectionGroupName(GroupType, ItemsCount);
 
     public virtual bool IsInfoButtonVisible => GroupType.IsInfoButtonVisible();
 

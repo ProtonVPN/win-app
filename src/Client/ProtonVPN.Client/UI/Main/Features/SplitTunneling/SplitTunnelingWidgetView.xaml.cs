@@ -17,6 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Input;
+using Windows.Foundation;
 using ProtonVPN.Client.Core.Bases;
 
 namespace ProtonVPN.Client.UI.Main.Features.SplitTunneling;
@@ -35,5 +38,44 @@ public sealed partial class SplitTunnelingWidgetView : IContextAware
     public object GetContext()
     {
         return ViewModel;
+    }
+
+    private void OnWidgetButtonPointerEntered(object sender, PointerRoutedEventArgs e)
+    {
+        if (!ViewModel.IsFeatureFlyoutOpened)
+        {
+            FlyoutShowOptions options = new()
+            {
+                ShowMode = FlyoutShowMode.Transient,
+                Placement = FlyoutPlacementMode.LeftEdgeAlignedTop,
+                Position = new Point(-16, -1)
+            };
+            WidgetFlyout.ShowAt(WidgetButton, options);
+        }
+        else
+        {
+            // When pointer is over the button, switch to transient mode so the flyout cannot be dismissed
+            WidgetFlyout.ShowMode = FlyoutShowMode.Transient;
+        }
+    }
+
+    private void OnWidgetButtonPointerExited(object sender, PointerRoutedEventArgs e)
+    {
+        if (ViewModel.IsFeatureFlyoutOpened)
+        {
+            // When pointer is not over the button, flyout can be dismissed when the pointer moves away
+            WidgetFlyout.ShowMode = FlyoutShowMode.TransientWithDismissOnPointerMoveAway;
+        }
+    }
+
+    private void OnWidgetFlyoutOpened(object sender, object e)
+    {
+        ViewModel.IsFeatureFlyoutOpened = true;
+        SplitTunnelingItemsControl.ResetContentScroll();
+    }
+
+    private void OnWidgetFlyoutClosed(object sender, object e)
+    {
+        ViewModel.IsFeatureFlyoutOpened = false;
     }
 }

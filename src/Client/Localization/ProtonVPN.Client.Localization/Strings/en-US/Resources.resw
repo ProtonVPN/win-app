@@ -3638,5 +3638,102 @@ Speed is based on your device’s current activity — it doesn’t represent th
   </data>
   <data name="Dialogs_UpdateSystemClock_PrimaryButton" xml:space="preserve">
     <value>How to update system clock</value>
+  </data>  
+  <data name="Flyouts_KillSwitch_Info" xml:space="preserve">
+    <value>Your IP address could be exposed if your VPN connection drops</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Advanced_Success" xml:space="preserve">
+    <value>Blocks all internet access when you’re not connected to Proton VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Standard_Success" xml:space="preserve">
+    <value>If your VPN connection drops, you’ll be disconnected from the internet until VPN is restored</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Disconnected" xml:space="preserve">
+    <value>To get back online, connect to VPN or disable advanced kill switch</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Connected" xml:space="preserve">
+    <value>Advanced kill switch applies even if you intentionally disconnect from VPN</value>
+  </data>
+  <data name="Flyouts_NetShield_Info" xml:space="preserve">
+    <value>Protect yourself from ads, trackers, and malware on websites and apps</value>
+  </data>
+  <data name="Flyouts_NetShield_MalwareOnly_Success" xml:space="preserve">
+    <value>You’re protected from malware only</value>
+  </data>
+  <data name="Flyouts_NetShield_AdsMalwareTrackers_Success" xml:space="preserve">
+    <value>You’re protected from ads, trackers, and malware</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Title" xml:space="preserve">
+    <value>Enjoy ad-free browsing</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Description" xml:space="preserve">
+    <value>Block ads, trackers, and malware with VPN Plus.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Info" xml:space="preserve">
+    <value>Improves peer-to-peer download speeds</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort" xml:space="preserve">
+    <value>Active port number</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Info" xml:space="preserve">
+    <value>Enter the active port number into your BitTorrent app to improve your P2P speeds</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Warning" xml:space="preserve">
+    <value>To use port forwarding, connect to a P2P server</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Title" xml:space="preserve">
+    <value>Improve P2P speed</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Description" xml:space="preserve">
+    <value>Supercharge peer-to-peer (P2P) file sharing performance with VPN Plus.</value>
+  </data>
+
+  
+  <data name="Flyouts_SplitTunneling_Info" xml:space="preserve">
+    <value>Allows trusted apps and IP addresses to connect without VPN protection</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Standard_Info" xml:space="preserve">
+    <value>These apps and IP addresses connect without VPN protection. All other traffic is protected.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Inverse_Info" xml:space="preserve">
+    <value>Only these apps and IP addresses connect through VPN. All other traffic is unprotected.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Title" xml:space="preserve">
+    <value>Get the best of both worlds</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Description" xml:space="preserve">
+    <value>Divide your traffic into VPN and non-VPN tunnels with VPN Plus.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_One" xml:space="preserve">
+    <value>Protected app ({0})</value>
+    <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of protected apps in the list. (eg. "Protected app (1)")</comment>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_Other" xml:space="preserve">
+    <value>Protected apps ({0})</value>
+    <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of protected apps in the list. (eg. "Protected apps (2)")</comment>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_One" xml:space="preserve">
+    <value>Protected IP address ({0})</value>
+    <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of protected IP addresses in the list. (eg. "Protected IP address (1)")</comment>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_Other" xml:space="preserve">
+    <value>Protected IP addresses ({0})</value>
+    <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of protected IP addresses in the list. (eg. "Protected IP addresses (2)")</comment>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_One" xml:space="preserve">
+    <value>Excluded app ({0})</value>
+    <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of excluded apps in the list. (eg. "Excluded app (1)")</comment>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_Other" xml:space="preserve">
+    <value>Excluded apps ({0})</value>
+    <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of excluded apps in the list. (eg. "Excluded apps (2)")</comment>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_One" xml:space="preserve">
+    <value>Excluded IP address ({0})</value>
+    <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of excluded IP addresses in the list. (eg. "Excluded IP address (1)")</comment>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_Other" xml:space="preserve">
+    <value>Excluded IP addresses ({0})</value>
+    <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of excluded IP addresses in the list. (eg. "Excluded IP addresses (2)")</comment>
   </data>
 </root>

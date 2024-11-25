@@ -179,6 +179,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-speed-large.png" />
     <BitmapImage x:Key="StreamingUpsellLargeIllustrationSource"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-streaming-large.png" />
+    <BitmapImage x:Key="PortForwardingUpsellLargeIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-port-forwarding-large.png" />
     <BitmapImage x:Key="NetShieldUpsellLargeIllustrationSource"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/upsell-netshield-large.png" />
     <BitmapImage x:Key="SecureCoreUpsellLargeIllustrationSource"

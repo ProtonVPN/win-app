@@ -41,40 +41,51 @@ public abstract class FeatureIconViewModelBase : ViewModelBase,
 
     public bool IsDimmed => IsFeatureEnabled && !_connectionManager.IsConnected;
 
+    protected abstract bool IsFeatureEnabled { get; }
+
     protected FeatureIconViewModelBase(
         IConnectionManager connectionManager,
         ILocalizationProvider localizer,
-        ILogger logger, IIssueReporter
-        issueReporter) : base(localizer, logger, issueReporter)
+        ILogger logger,
+        IIssueReporter issueReporter)
+        : base(localizer, logger, issueReporter)
     {
         _connectionManager = connectionManager;
     }
 
-    protected abstract ImageSource GetImageSource();
-
-    protected abstract IEnumerable<string> GetSettingsChangedForIconUpdate();
-
-    protected abstract bool IsFeatureEnabled { get; }
-
     public void Receive(ThemeChangedMessage message)
     {
-        OnPropertyChanged(nameof(Icon));
+        ExecuteOnUIThread(InvalidateIcon);
     }
 
     public void Receive(SettingChangedMessage message)
     {
         if (GetSettingsChangedForIconUpdate().Contains(message.PropertyName))
         {
-            OnPropertyChanged(nameof(Icon));
-            OnPropertyChanged(nameof(IsDimmed));
+            ExecuteOnUIThread(() =>
+            {
+                InvalidateIcon();
+                InvalidateIsDimmed();
+            });
         }
     }
 
     public void Receive(ConnectionStatusChangedMessage message)
     {
-        ExecuteOnUIThread(() =>
-        {
-            OnPropertyChanged(nameof(IsDimmed));
-        });
+        ExecuteOnUIThread(InvalidateIsDimmed);
+    }
+
+    protected abstract ImageSource GetImageSource();
+
+    protected abstract IEnumerable<string> GetSettingsChangedForIconUpdate();
+
+    private void InvalidateIcon()
+    {
+        OnPropertyChanged(nameof(Icon));
+    }
+
+    private void InvalidateIsDimmed()
+    {
+        OnPropertyChanged(nameof(IsDimmed));
     }
 }

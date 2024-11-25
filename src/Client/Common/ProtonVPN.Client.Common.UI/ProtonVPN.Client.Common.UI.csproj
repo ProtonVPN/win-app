@@ -12,6 +12,8 @@
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     </PropertyGroup>
     <ItemGroup>
+        <Content Remove="Assets\Icons\ActivePortNumber.xaml" />
+        <Content Remove="Assets\Icons\ActivePortNumber.xaml.cs" />
         <Content Remove="Assets\Icons\Base\CustomPathIcon.cs" />
         <Content Remove="Assets\Icons\Base\IconUserControl.cs" />
         <Content Remove="Assets\Icons\Base\PathIconSize.cs" />
@@ -634,6 +636,7 @@
         <None Remove="Assets\Flags\ZA.svg" />
         <None Remove="Assets\Flags\ZM.svg" />
         <None Remove="Assets\Flags\ZW.svg" />
+        <None Remove="Assets\Icons\ActivePortNumber.xaml" />
         <None Remove="Assets\Icons\App\proton-vpn-off.svg" />
         <None Remove="Assets\Icons\App\proton-vpn-on.svg" />
         <None Remove="Assets\Icons\App\vpn-off.ico" />
@@ -769,6 +772,7 @@
         <None Remove="Assets\Illustrations\upsell-netshield-small.png" />
         <None Remove="Assets\Illustrations\upsell-p2p-large.png" />
         <None Remove="Assets\Illustrations\upsell-p2p-small.png" />
+        <None Remove="Assets\Illustrations\upsell-port-forwarding-large.png" />
         <None Remove="Assets\Illustrations\upsell-secure-core-large.png" />
         <None Remove="Assets\Illustrations\upsell-secure-core-small.png" />
         <None Remove="Assets\Illustrations\upsell-speed-large.png" />
@@ -811,6 +815,7 @@
         <None Remove="Gallery\Pages\TextFieldsPage.xaml" />
         <None Remove="Styles\Brushes.xaml" />
         <None Remove="Styles\Colors.xaml" />
+        <None Remove="Styles\Controls\BulletContentControlStyles.xaml" />
         <None Remove="Styles\Controls\BulletHeaderedContentControlStyles.xaml" />
         <None Remove="Styles\Controls\ButtonStyles.xaml" />
         <None Remove="Styles\Controls\CheckBoxStyles.xaml" />
@@ -2158,6 +2163,9 @@
         <Content Update="Assets\Illustrations\upsell-p2p-small.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Illustrations\upsell-port-forwarding-large.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Illustrations\upsell-secure-core-large.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -2451,6 +2459,16 @@
       <Content Update="Assets\Illustrations\Light\netshield-on-level-2.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Assets\Icons\ActivePortNumber.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Styles\Controls\BulletContentControlStyles.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
     </ItemGroup>
     <ItemGroup>
       <Page Update="Styles\Controls\ListViewStyles.xaml">
