@@ -127,7 +127,7 @@
     <value>Ominaisuudet-palkki</value>
   </data>
   <data name="Automation_Properties_Home_Page">
-    <value>Home page</value>
+    <value>Kotisivu</value>
   </data>
   <data name="Automation_Properties_KillSwitch_Page">
     <value>Tappokytkin-sivu</value>
@@ -472,7 +472,7 @@
     <value>Tarkastele yhteyshistoriaasi täällä.</value>
   </data>
   <data name="Connections_Recents_Empty_Title">
-    <value>No recents yet</value>
+    <value>Viimeisimpiä ei vielä ole</value>
   </data>
   <data name="Connections_Recents_Pinned_One">
     <value>Kiinnitetty ({0})</value>
@@ -1803,7 +1803,7 @@ Korkea viive voi hidastaa yhteyttäsi.</value>
     <value>Mikä on ongelmana?</value>
   </data>
   <data name="Dialogs_ReportIssue_NoLogsWarning">
-    <value>Error logs help us to get to the bottom of your issue. If you don’t include them, we may not be able to investigate fully.</value>
+    <value>Virhelokit auttavat meitä selvittämään ongelmasi perusteellisesti. Jos et halua sisällyttää niitä, emme välttämättä pysty tutkimaan ongelmaa täysin.</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes">
     <value>Pikaratkaisut</value>
@@ -1960,13 +1960,13 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
     <value>Yhteysapua</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Description">
-    <value>Looks like your system clock is out of sync. This may cause issues when connecting to VPN.</value>
+    <value>Näyttää siltä, että järjestelmäsi kello ei ole synkronoitu. Tämä voi aiheuttaa ongelmia VPN:ään yhdistämisessä.</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_PrimaryButton">
-    <value>How to update system clock</value>
+    <value>Miten päivität järjestelmän kellon</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Title">
-    <value>Update system clock</value>
+    <value>Päivitä järjestelmän kello</value>
   </data>
   <data name="Dialogs_WelcomeB2B_Description">
     <value>Helppoa. Sujuvaa. Turvallista. Suojaa itseäsi verkossa ja käytä organisaatiosi sivustoja, ohjelmistoja ja tiedostoja turvallisesti.</value>
@@ -2425,10 +2425,10 @@ Nopeus perustuu laitteesi tämänhetkiseen toimintaan — se ei ilmaise VPN:n ma
     <value>Mainokset ovat verkkosivustoilla ja sovelluksissa näkyviä mainosbannereita tai ponnahdusikkunoita.</value>
   </data>
   <data name="Home_NetShield_DataSaved">
-    <value>Tiedonsiirtoa säästetty</value>
+    <value>Säästetty</value>
   </data>
   <data name="Home_NetShield_DataSaved_Description">
-    <value>Arvio haluamattomien mainosten, jäljittäjien ja haittaohjelmien estämisellä säästetystä tietomäärästä.</value>
+    <value>Arvio ei-toivottujen mainosten, seurantojen ja haittaohjelmien estolla säästetystä tiedonsiirtomäärästä.</value>
   </data>
   <data name="Home_NetShield_Landmark">
     <value>NetShield-tilastot</value>

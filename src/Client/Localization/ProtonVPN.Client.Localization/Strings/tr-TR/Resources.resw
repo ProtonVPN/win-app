@@ -127,7 +127,7 @@
     <value>Özellikler çubuğu</value>
   </data>
   <data name="Automation_Properties_Home_Page">
-    <value>Home page</value>
+    <value>Giriş</value>
   </data>
   <data name="Automation_Properties_KillSwitch_Page">
     <value>Bağlantı kesici sayfası</value>
@@ -1803,7 +1803,7 @@ Yüksek gecikme değeri bağlantınızı yavaşlatabilir.</value>
     <value>Sorun neydi?</value>
   </data>
   <data name="Dialogs_ReportIssue_NoLogsWarning">
-    <value>Error logs help us to get to the bottom of your issue. If you don’t include them, we may not be able to investigate fully.</value>
+    <value>Hata günlüğü, sorununuzun temeline inmemize yardımcı olur. Bunu göndermezeniz, sorunu tam olarak araştıramayabiliriz.</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes">
     <value>Hızlı çözümler</value>
@@ -1960,13 +1960,13 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
     <value>Bağlantı yardımı</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Description">
-    <value>Looks like your system clock is out of sync. This may cause issues when connecting to VPN.</value>
+    <value>Sistem saatiniz eşitlenmemiş gibi görünüyor. Bu durum VPN bağlantısı kurulurken sorun çıkarabilir.</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_PrimaryButton">
-    <value>How to update system clock</value>
+    <value>Sistem saati nasıl güncellenir</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Title">
-    <value>Update system clock</value>
+    <value>Sistem saatini güncelle</value>
   </data>
   <data name="Dialogs_WelcomeB2B_Description">
     <value>Basit. Sorunsuz. Güvenli. Çevrim içi olduğunuzda kendinizi koruyun ve kuruluşunuzun sitelerine, yazılımlarına ve dosyalarına güvenli bir şekilde erişin.</value>

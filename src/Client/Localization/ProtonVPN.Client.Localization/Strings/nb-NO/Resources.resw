@@ -127,7 +127,7 @@
     <value>Funksjonslinje</value>
   </data>
   <data name="Automation_Properties_Home_Page">
-    <value>Home page</value>
+    <value>Hjemmeside</value>
   </data>
   <data name="Automation_Properties_KillSwitch_Page">
     <value>Nødstoppside</value>
@@ -1803,7 +1803,7 @@ Høy latens kan redusere tilkoblingen.</value>
     <value>Hva er problemet?</value>
   </data>
   <data name="Dialogs_ReportIssue_NoLogsWarning">
-    <value>Error logs help us to get to the bottom of your issue. If you don’t include them, we may not be able to investigate fully.</value>
+    <value>Feillogger hjelper oss med å komme til bunns i problemet ditt. Hvis du ikke inkluderer dem, kan det hende at vi ikke kan undersøke dem fullt ut.</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes">
     <value>Hurtigløsninger</value>
@@ -1960,13 +1960,13 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
     <value>Hjelp for tilkobling</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Description">
-    <value>Looks like your system clock is out of sync. This may cause issues when connecting to VPN.</value>
+    <value>Det ser ut til at systemklokken din er ute av synkronisering. Dette kan forårsake problemer når du kobler til VPN.</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_PrimaryButton">
-    <value>How to update system clock</value>
+    <value>Hvordan oppdatere systemklokken</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Title">
-    <value>Update system clock</value>
+    <value>Oppdater systemklokken</value>
   </data>
   <data name="Dialogs_WelcomeB2B_Description">
     <value>Enkelt. Sømløst. Trygt. Beskytt deg selv på nettet og få sikker tilgang til nettsider, programvarer og filer i organisasjonen din.</value>

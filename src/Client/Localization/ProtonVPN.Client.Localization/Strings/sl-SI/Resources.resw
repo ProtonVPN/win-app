@@ -191,7 +191,7 @@
     <value>Dodaj</value>
   </data>
   <data name="Common_Actions_Back">
-    <value>Back</value>
+    <value>Nazaj</value>
   </data>
   <data name="Common_Actions_Cancel">
     <value>Prekliči</value>
@@ -2194,7 +2194,7 @@ Websites can use geoblocks to restrict content to certain locations. Governments
 A VPN makes it looks like you’re browsing from somewhere else, protecting you from surveillance and censorship.</value>
   </data>
   <data name="Flyouts_Country_Title">
-    <value>Country</value>
+    <value>Država</value>
   </data>
   <data name="Flyouts_Country_Warning">
     <value>Connect to VPN to change your virtual location</value>
@@ -2245,7 +2245,7 @@ A VPN hides your IP address, protecting you from ISP interference.</value>
     <value>Which VPN protocol is the best?</value>
   </data>
   <data name="Flyouts_Protocol_Title">
-    <value>Protocol</value>
+    <value>Protokol</value>
   </data>
   <data name="Flyouts_ServerLoad_Description">
     <value>Server load shows how close a server is to its maximum capacity. A high server load can slow down your connection.</value>
@@ -2881,11 +2881,11 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>The word used for one single city and one single United States state</comment>
   </data>
   <data name="Search_NoInput_Country">
-    <value>Country</value>
+    <value>Država</value>
     <comment>The word used for one single country</comment>
   </data>
   <data name="Search_NoInput_Server">
-    <value>Server</value>
+    <value>Strežnik</value>
     <comment>The word used for one single server</comment>
   </data>
   <data name="Search_NoInput_TrySearchingFor">
@@ -2898,7 +2898,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>No results found</value>
   </data>
   <data name="Server">
-    <value>Server</value>
+    <value>Strežnik</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Najhitrejši brezplačni strežnik</value>
@@ -2922,7 +2922,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Brezplačni strežnik</value>
   </data>
   <data name="Servers">
-    <value>Servers</value>
+    <value>Strežniki</value>
   </data>
   <data name="Settings_About">
     <value>O nas</value>
@@ -3190,7 +3190,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Split tunneling</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Add">
-    <value>Add app</value>
+    <value>Dodaj aplikacijo</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
     <value>App files</value>
@@ -3213,13 +3213,13 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Customize your connection by deciding which apps and IP addresses are protected by VPN.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
-    <value>Inverse</value>
+    <value>Obratno</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
     <value>Only selected apps and IP addresses connect via VPN, all other traffic is unprotected</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
-    <value>Add IP</value>
+    <value>Dodajte IP</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
     <value>Selected IP addresses ({0})</value>
@@ -3471,7 +3471,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_Help">
-    <value>Help</value>
+    <value>Pomoč</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_NoLogsPolicy">
@@ -3481,7 +3481,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Open-source</value>
   </data>
   <data name="SignIn_Form_Password">
-    <value>Password</value>
+    <value>Geslo</value>
   </data>
   <data name="SignIn_Form_PasswordError">
     <value>Enter your password</value>
@@ -3496,7 +3496,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_SignIn">
-    <value>Sign in</value>
+    <value>Prijava</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="SignIn_Form_SignInWithSso">
@@ -3506,7 +3506,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Swiss-based</value>
   </data>
   <data name="SignIn_Form_Title">
-    <value>Sign in</value>
+    <value>Prijava</value>
   </data>
   <data name="SignIn_Form_TroubleSigningIn">
     <value>Trouble signing in</value>

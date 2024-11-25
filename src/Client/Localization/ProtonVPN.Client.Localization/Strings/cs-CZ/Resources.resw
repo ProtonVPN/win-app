@@ -127,7 +127,7 @@
     <value>Panel funkcí</value>
   </data>
   <data name="Automation_Properties_Home_Page">
-    <value>Home page</value>
+    <value>Domovská stránka</value>
   </data>
   <data name="Automation_Properties_KillSwitch_Page">
     <value>Stránka Kill Switch</value>
@@ -1953,7 +1953,7 @@
     <value>V čem je problém?</value>
   </data>
   <data name="Dialogs_ReportIssue_NoLogsWarning">
-    <value>Error logs help us to get to the bottom of your issue. If you don’t include them, we may not be able to investigate fully.</value>
+    <value>Logy chyb nám pomohou přijít vašemu problému na kloub. Pokud je neuvedete, je možné, že to nebudeme moci plně prošetřit.</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes">
     <value>Rychlé opravy</value>
@@ -2110,13 +2110,13 @@ Smart Routing se obvykle používá k obcházení zákonů potlačujících ochr
     <value>Pomoc s připojením</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Description">
-    <value>Looks like your system clock is out of sync. This may cause issues when connecting to VPN.</value>
+    <value>Zdá se, že vaše systémové hodiny nejsou synchronizovány. To může způsobovat problémy při připojení k VPN.</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_PrimaryButton">
-    <value>How to update system clock</value>
+    <value>Jak aktualizovat systémové hodiny</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Title">
-    <value>Update system clock</value>
+    <value>Aktualizovat systémové hodiny</value>
   </data>
   <data name="Dialogs_WelcomeB2B_Description">
     <value>Jednoduché. Bezproblémové. Bezpečné. Chraňte se online a bezpečně přistupujte k webům, softwaru a souborům své organizace.</value>
