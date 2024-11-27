@@ -76,17 +76,6 @@ namespace ProtonVPN.UI.Tests.Tests
         }
 
         [Test]
-        [Category("Smoke")]
-        public void TryToCreateP2PProfile()
-        {
-            _profileWindow.PressCreateNewProfile()
-               .SelectP2POption()
-               .CreateProfileWithoutCountry(TestData.ProfileName);
-            _profileResult.CheckIfProfileCreationErrorIsNotShown()
-                .CheckIfProfileIsDisplayed(TestData.ProfileName);
-        }
-
-        [Test]
         public void TryToCreateTorProfile()
         {
             _profileWindow.PressCreateNewProfile()

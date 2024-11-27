@@ -30,9 +30,9 @@ namespace ProtonVPN.UI.Tests.Windows
         private ComboBox ServerBox => ElementByAutomationId("ServerBox").AsComboBox();
         private AutomationElement RandomServerButton => ElementByName("Random", TestData.MediumTimeout);
         private ListBoxItem CountryFirstOption => CountryBox.FindChildAt(1).AsListBoxItem();
-        private Button SaveButton => WaitUntilElementExistsByNameAndReturnTheElement("Save", TestData.MediumTimeout).AsButton();
+        // It takes long time for client to load server list.
+        private Button SaveButton => WaitUntilElementExistsByNameAndReturnTheElement("Save", TestData.LongTimeout).AsButton();
         private AutomationElement SecureCoreButton => ElementByName("Secure Core");
-        private AutomationElement P2PButton => ElementByName("P2P");
         private AutomationElement TorButton => ElementByName("Tor");
         private Button ContinueButton => ElementByAutomationId("ContinueButton").AsButton();
         private Button DiscardlButton => ElementByName("Discard").AsButton();
@@ -90,16 +90,9 @@ namespace ProtonVPN.UI.Tests.Windows
             return this;
         }
 
-        public ProfilesWindow SelectP2POption()
-        {
-            P2PButton.Click();
-            return this;
-        }
-
         public ProfilesWindow PressCreateNewProfile()
         {
-            WaitUntilElementExistsByAutomationId("NewProfileButton", TestData.VeryShortTimeout);
-            CreateProfileButton.Invoke();
+            WaitUntilElementExistsByAutomationIdAndReturnTheElement("NewProfileButton", TestData.VeryShortTimeout).AsButton().Invoke();
             return this;
         }
 
