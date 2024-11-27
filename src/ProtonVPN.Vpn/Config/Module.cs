@@ -35,7 +35,6 @@ using ProtonVPN.Vpn.LocalAgent;
 using ProtonVPN.Vpn.Management;
 using ProtonVPN.Vpn.NetShield;
 using ProtonVPN.Vpn.NetworkAdapters;
-using ProtonVPN.Vpn.Networks;
 using ProtonVPN.Vpn.OpenVpn;
 using ProtonVPN.Vpn.PortMapping;
 using ProtonVPN.Vpn.PortMapping.Serializers.Common;
@@ -95,7 +94,6 @@ public class Module
     public IVpnConnection GetVpnConnection(IComponentContext c)
     {
         ILogger logger = c.Resolve<ILogger>();
-        INetworkAdapterManager networkAdapterManager = c.Resolve<INetworkAdapterManager>();
         INetworkInterfaceLoader networkInterfaceLoader = c.Resolve<INetworkInterfaceLoader>();
         ITaskQueue taskQueue = c.Resolve<ITaskQueue>();
         TcpPortScanner tcpPortScanner = c.Resolve<TcpPortScanner>();
@@ -125,7 +123,6 @@ public class Module
                                 new NetworkAdapterStatusWrapper(
                                     logger,
                                     issueReporter,
-                                    networkAdapterManager,
                                     networkInterfaceLoader,
                                     c.Resolve<WintunAdapter>(),
                                     c.Resolve<TapAdapter>(),
