@@ -217,7 +217,8 @@ public class ServersCache : IServersCache
     private IReadOnlyList<Country> GetCountries(IEnumerable<Server> servers)
     {
         return servers
-            .Where(s => !string.IsNullOrWhiteSpace(s.ExitCountry))
+            .Where(s => !string.IsNullOrWhiteSpace(s.ExitCountry)
+                     && IsPaidNonB2B(s))
             .GroupBy(s => s.ExitCountry)
             .Select(s => new Country() {
                 Code = s.Key,
@@ -227,6 +228,16 @@ public class ServersCache : IServersCache
                 IsPaid = HasAnyPaidServer(s),
             })
             .ToList();
+    }
+
+    private bool IsPaidNonB2B(Server server)
+    {
+        return IsPaid(server) && !server.Features.IsSupported(ServerFeatures.B2B);
+    }
+
+    private bool IsPaid(Server server)
+    {
+        return server.Tier is ServerTiers.Basic or ServerTiers.Plus;
     }
 
     private ServerFeatures AggregateFeatures<T>(IGrouping<T, Server> servers)
@@ -247,14 +258,15 @@ public class ServersCache : IServersCache
 
     private bool HasAnyPaidServer<T>(IGrouping<T, Server> servers)
     {
-        return servers.Any(s => s.Tier is ServerTiers.Basic or ServerTiers.Plus);
+        return servers.Any(IsPaid);
     }
 
     private IReadOnlyList<State> GetStates(IReadOnlyList<Server> servers)
     {
         return servers
             .Where(s => !string.IsNullOrWhiteSpace(s.ExitCountry)
-                     && !string.IsNullOrWhiteSpace(s.State))
+                     && !string.IsNullOrWhiteSpace(s.State)
+                     && IsPaidNonB2B(s))
             .GroupBy(s => new { Country = s.ExitCountry, State = s.State })
             .Select(s => new State() {
                 CountryCode = s.Key.Country,
@@ -272,7 +284,7 @@ public class ServersCache : IServersCache
         return servers
             .Where(s => !string.IsNullOrWhiteSpace(s.ExitCountry)
                      && !string.IsNullOrWhiteSpace(s.City)
-                     && s.Tier is not ServerTiers.Free)
+                     && IsPaidNonB2B(s))
             .GroupBy(s => new { Country = s.ExitCountry, State = s.State, City = s.City })
             .Select(c => new City() {
                 CountryCode = c.Key.Country,

@@ -28,6 +28,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Searches.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
+using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Models.Connections;
@@ -45,8 +46,8 @@ public partial class SearchResultsPageViewModel : ConnectionListViewModelBase<IS
     IEventMessageReceiver<ServerListChangedMessage>
 {
     private readonly IGlobalSearch _globalSearch;
-    private readonly ILocationItemFactory _locationItemFactory; 
-    
+    private readonly ILocationItemFactory _locationItemFactory;
+
     private string _input = string.Empty;
 
     [ObservableProperty]
@@ -207,7 +208,14 @@ public partial class SearchResultsPageViewModel : ConnectionListViewModelBase<IS
     {
         if (location is Server server)
         {
-            return _locationItemFactory.GetServer(server);
+            if (server.Features.IsSupported(ServerFeatures.B2B))
+            {
+                return _locationItemFactory.GetGatewayServer(server);
+            }
+            else
+            {
+                return _locationItemFactory.GetServer(server);
+            }
         }
         else if (location is City city)
         {
