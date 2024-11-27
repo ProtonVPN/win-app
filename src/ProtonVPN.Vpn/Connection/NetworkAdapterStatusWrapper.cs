@@ -19,8 +19,8 @@
 
 using System;
 using ProtonVPN.Common.Core.Extensions;
-using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Core.Networking;
+using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Legacy.OS.Net;
 using ProtonVPN.Common.Legacy.OS.Net.NetworkInterface;
 using ProtonVPN.Common.Legacy.Vpn;
@@ -31,7 +31,6 @@ using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
 using ProtonVPN.Logging.Contracts.Events.NetworkLogs;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.NetworkAdapters;
-using ProtonVPN.Vpn.Networks;
 
 namespace ProtonVPN.Vpn.Connection;
 
@@ -39,7 +38,6 @@ internal class NetworkAdapterStatusWrapper : ISingleVpnConnection
 {
     private readonly ILogger _logger;
     private readonly IIssueReporter _issueReporter;
-    private readonly INetworkAdapterManager _networkAdapterManager;
     private readonly INetworkInterfaceLoader _networkInterfaceLoader;
     private readonly WintunAdapter _wintunAdapter;
     private readonly TapAdapter _tapAdapter;
@@ -53,7 +51,6 @@ internal class NetworkAdapterStatusWrapper : ISingleVpnConnection
     public NetworkAdapterStatusWrapper(
         ILogger logger,
         IIssueReporter issueReporter,
-        INetworkAdapterManager networkAdapterManager,
         INetworkInterfaceLoader networkInterfaceLoader,
         WintunAdapter wintunAdapter,
         TapAdapter tapAdapter,
@@ -61,7 +58,6 @@ internal class NetworkAdapterStatusWrapper : ISingleVpnConnection
     {
         _logger = logger;
         _issueReporter = issueReporter;
-        _networkAdapterManager = networkAdapterManager;
         _wintunAdapter = wintunAdapter;
         _tapAdapter = tapAdapter;
         _networkInterfaceLoader = networkInterfaceLoader;
@@ -141,7 +137,6 @@ internal class NetworkAdapterStatusWrapper : ISingleVpnConnection
 
     private void HandleOpenVpnAdapterUnavailable()
     {
-        EnableOpenVpnAdapters();
         if (IsOpenVpnNetworkAdapterAvailable(_config.OpenVpnAdapter))
         {
             _logger.Info<ConnectLog>("OpenVPN network adapter successfully enabled " +
@@ -156,13 +151,6 @@ internal class NetworkAdapterStatusWrapper : ISingleVpnConnection
         {
             HandleNoTapError();
         }
-    }
-
-    private void EnableOpenVpnAdapters()
-    {
-        _logger.Warn<NetworkUnavailableLog>($"OpenVPN network adapter not found (Protocol '{_endpoint.VpnProtocol}', " +
-            $"Adapter '{_config.OpenVpnAdapter}'). Attempting to enable them if disabled.");
-        _networkAdapterManager.EnableOpenVpnAdapters();
     }
 
     private void HandleNoTunError()
@@ -243,11 +231,7 @@ internal class NetworkAdapterStatusWrapper : ISingleVpnConnection
 
     private void Origin_StateChanged(object sender, EventArgs<VpnState> e)
     {
-        if (e.Data.Status == VpnStatus.Connected && e.Data.VpnProtocol.IsWireGuard())
-        {
-            HandleConnectedWithWireGuard();
-        }
-        else if (e.Data.Status == VpnStatus.Disconnected && e.Data.VpnProtocol is VpnProtocol.OpenVpnTcp or VpnProtocol.OpenVpnUdp)
+        if (e.Data.Status == VpnStatus.Disconnected && e.Data.VpnProtocol.IsOpenVpn())
         {
             _wintunAdapter.Close();
         }
@@ -259,12 +243,6 @@ internal class NetworkAdapterStatusWrapper : ISingleVpnConnection
         }
 
         StateChanged?.Invoke(this, e);
-    }
-
-    private void HandleConnectedWithWireGuard()
-    {
-        _logger.Info<NetworkLog>("Connected with WireGuard. Disabling duplicated WireGuard adapters.");
-        _networkAdapterManager.DisableDuplicatedWireGuardAdapters();
     }
 
     private void HandleVpnError(VpnState vpnState)
@@ -290,14 +268,12 @@ internal class NetworkAdapterStatusWrapper : ISingleVpnConnection
     private void HandleWireGuardError(VpnState vpnState)
     {
         _logger.Warn<NetworkLog>($"Connection error '{vpnState.Error}' while using " +
-            $"protocol '{vpnState.VpnProtocol}'. Disabling duplicated WireGuard adapters.");
-        _networkAdapterManager.DisableDuplicatedWireGuardAdapters();
+            $"protocol '{vpnState.VpnProtocol}'.");
     }
 
     private void HandleOpenVpnError(VpnState vpnState)
     {
         _logger.Warn<NetworkLog>($"Connection error '{vpnState.Error}' while using " +
-            $"protocol '{vpnState.VpnProtocol}'. Enabling disabled OpenVPN adapters.");
-        _networkAdapterManager.EnableOpenVpnAdapters();
+            $"protocol '{vpnState.VpnProtocol}'.");
     }
 }
