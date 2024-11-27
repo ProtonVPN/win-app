@@ -21,23 +21,29 @@ namespace ProtonVPN.Client.Contracts.Enums;
 
 public enum ConnectionGroupType
 {
-    Countries,
-    States,
-    Cities,
-    Servers,
-    FreeServers,
-    SecureCoreCountries,
-    SecureCoreCountryPairs,
-    SecureCoreServers,
-    P2PCountries,
-    P2PStates,
-    P2PCities,
-    P2PServers,
-    TorCountries,
-    TorServers,
+    Profiles,
+
     Gateways,
     GatewayServers,
+
+    SecureCoreCountries,
+    SecureCoreCountryPairs,
+    P2PCountries,
+    TorCountries,
+    Countries,
+
+    P2PStates,
+    States,
+
+    P2PCities,
+    Cities,
+
+    SecureCoreServers,
+    P2PServers,
+    TorServers,
+    Servers,
+    FreeServers,
+
     PinnedRecents,
-    Recents,
-    Profiles
+    Recents
 }
