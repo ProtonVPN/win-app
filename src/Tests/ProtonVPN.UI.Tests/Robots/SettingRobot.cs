@@ -33,15 +33,17 @@ public class SettingRobot
     private const string NETSHIELD_ADS_ENDPOINT = "netshield-2.protonvpn.net";
 
     protected Element ApplyButton = Element.ByAutomationId("ApplyButton");
+    protected Element CloseSettingsButton = Element.ByAutomationId("CloseSettingsButton");
     protected Element ReconnectButton = Element.ByName("Reconnect");
     protected Element SettingsButton = Element.ByAutomationId("SettingsButton");
     protected Element NetShieldSettingsCard = Element.ByAutomationId("NetShieldSettingsCard");
     protected Element ProtocolSettingsCard = Element.ByAutomationId("ProtocolSettingsCard");
+    protected Element AdvancedSettingsCard = Element.ByAutomationId("AdvancedSettingsCard");
+    protected Element GoBackButton = Element.ByAutomationId("GoBackButton");
 
     protected Element NetshieldToggle = Element.ByAutomationId("NetshieldToggle");
     protected Element NetShieldLevelOneRadioButton = Element.ByAutomationId("NetShieldLevelOne");
     protected Element NetShieldLevelTwoRadioButton = Element.ByAutomationId("NetShieldLevelTwo");
-    protected Element CloseSettingsButton = Element.ByAutomationId("CloseSettingsButton");
 
     protected Element OpenVpnTcpProtocolRadioButton = Element.ByAutomationId("OpenVpnTcpProtocolRadioButton");
     protected Element OpenVpnUdpProtocolRadioButton = Element.ByAutomationId("OpenVpnUdpProtocolRadioButton");
@@ -66,6 +68,12 @@ public class SettingRobot
         NetShieldSettingsCard.Click();
         // Remove when VPNWIN-2261 is implemented.
         Thread.Sleep(TestConstants.AnimationDelay);
+        return this;
+    }
+
+    public SettingRobot OpenAdvancedSettings()
+    {
+        AdvancedSettingsCard.Click();
         return this;
     }
 
@@ -136,6 +144,12 @@ public class SettingRobot
         return this;
     }
 
+    public SettingRobot GoBack()
+    {
+        GoBackButton.Click();
+        return this;
+    }
+
     public class Verifications : SettingRobot
     {
         public Verifications NetshieldIsBlocking(NetShieldMode netShieldMode)
@@ -153,6 +167,18 @@ public class SettingRobot
                 CommonAssertions.AssertDnsIsNotResolved(NETSHIELD_ADS_ENDPOINT);
             }
 
+            return this;
+        }
+
+        public Verifications NetshieldShowsDisableState()
+        {
+            NetShieldSettingsCard.FindChild(Element.ByName("Off")).WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications NetshieldShowsEnabledState()
+        {
+            NetShieldSettingsCard.FindChild(Element.ByName("On")).WaitUntilDisplayed();
             return this;
         }
 
