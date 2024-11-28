@@ -32,7 +32,6 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Services.Browsing;
-using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Client.UI.Login.Bases;
 using ProtonVPN.Client.UI.Login.Enums;
@@ -45,8 +44,7 @@ using Windows.System;
 
 namespace ProtonVPN.Client.UI.Login.Pages;
 
-public partial class SignInPageViewModel : LoginPageViewModelBase,
-    IEventMessageReceiver<FeatureFlagsChangedMessage>
+public partial class SignInPageViewModel : LoginPageViewModelBase
 {
     private readonly IUrls _urls;
     private readonly IUserAuthenticator _userAuthenticator;
@@ -94,7 +92,7 @@ public partial class SignInPageViewModel : LoginPageViewModelBase,
 
     public bool IsSsoFormType => SignInFormType == SignInFormType.SSO;
 
-    public bool IsSwitchFormButtonVisible => CanSwitchLoginForm() && SignInFormType == SignInFormType.SRP;
+    public bool IsSwitchFormButtonVisible => SignInFormType == SignInFormType.SRP;
 
     public string UsernameFieldLabel => SignInFormType switch
     {
@@ -184,8 +182,6 @@ public partial class SignInPageViewModel : LoginPageViewModelBase,
                 IsToShowUsernameError = string.IsNullOrWhiteSpace(Username);
                 IsToShowPasswordError = string.IsNullOrWhiteSpace(Password);
                 break;
-            case SignInFormType.SSO when !_featureFlagsObserver.IsSsoEnabled:
-                return false;
             case SignInFormType.SSO:
                 IsToShowUsernameError = string.IsNullOrWhiteSpace(Username) || !Username.IsValidEmailAddress();
                 break;
@@ -231,10 +227,7 @@ public partial class SignInPageViewModel : LoginPageViewModelBase,
 
             case AuthError.SwitchToSSO:
             case AuthError.SwitchToSRP:
-                if (CanSwitchLoginForm())
-                {
-                    SwitchLoginForm();
-                }
+                SwitchLoginForm();
                 goto default;
 
             default:
@@ -243,17 +236,7 @@ public partial class SignInPageViewModel : LoginPageViewModelBase,
         }
     }
 
-    private bool CanSwitchLoginForm()
-    {
-        return SignInFormType switch
-        {
-            SignInFormType.SRP => _featureFlagsObserver.IsSsoEnabled,
-            SignInFormType.SSO => true,
-            _ => false,
-        };
-    }
-
-    [RelayCommand(CanExecute = nameof(CanSwitchLoginForm))]
+    [RelayCommand]
     public void SwitchLoginForm()
     {
         SignInFormType = SignInFormType switch
@@ -301,21 +284,6 @@ public partial class SignInPageViewModel : LoginPageViewModelBase,
     {
         await Launcher.LaunchUriAsync(new Uri(_urls.CreateAccount));
         return Result.Ok();
-    }
-
-    public void Receive(FeatureFlagsChangedMessage message)
-    {
-        ExecuteOnUIThread(() =>
-        {            
-            // If currently on SSO login page but SSO feature flag is not enabled, switch back to SRP login form
-            if (!_featureFlagsObserver.IsSsoEnabled && SignInFormType == SignInFormType.SSO)
-            {
-                SwitchLoginForm();
-            }
-
-            SignInCommand.NotifyCanExecuteChanged();
-            SwitchLoginFormCommand.NotifyCanExecuteChanged();
-        });
     }
 
     protected override void OnActivated()
