@@ -44,8 +44,6 @@ public class FeatureFlagsObserver :
 
     protected override TimeSpan PollingInterval => _config.FeatureFlagsUpdateInterval;
 
-    public bool IsSsoEnabled => IsFlagEnabled("ExternalSSO");
-
     public bool IsStealthEnabled => IsFlagEnabled("Stealth");
 
     public FeatureFlagsObserver(
