@@ -18,44 +18,55 @@
  */
 
 using System;
+using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 
-namespace ProtonVPN.Api.Handlers
+namespace ProtonVPN.Api.Handlers;
+
+/// <summary>Logs all Http requests and responses.</summary>
+public class LoggingHandler : LoggingHandlerBase
 {
-    /// <summary>
-    /// Logs all Http requests and responses.
-    /// </summary>
-    public class LoggingHandler : LoggingHandlerBase
+    private readonly ILogger _logger;
+
+    public LoggingHandler(ILogger logger)
     {
-        private readonly ILogger _logger;
+        _logger = logger;
+    }
 
-        public LoggingHandler(ILogger logger)
+    protected override async Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage request,
+        CancellationToken cancellationToken)
+    {
+        string req = $"{request.Method.Method} \"{request.RequestUri}\"";
+        try
         {
-            _logger = logger;
+            _logger.Info<ApiRequestLog>(req);
+#if DEBUG
+            LogHttpHeaders($"{req} request", request.Headers);
+#endif
+            HttpResponseMessage result = await base.SendAsync(request, cancellationToken);
+            _logger.Info<ApiResponseLog>($"{req}: {(int)result.StatusCode} {result.StatusCode}");
+#if DEBUG
+            LogHttpHeaders($"{req} response", result.Headers);
+#endif
+            return result;
         }
+        catch (Exception ex)
+        {
+            _logger.Error<ApiErrorLog>($"{req} failed: {ex.CombinedMessage()}");
+            throw;
+        }
+    }
 
-        protected override async Task<HttpResponseMessage> SendAsync(
-            HttpRequestMessage request,
-            CancellationToken cancellationToken)
-        {
-            string req = $"{request.Method.Method} \"{request.RequestUri}\"";
-            try
-            {
-                _logger.Info<ApiRequestLog>(req);
-                HttpResponseMessage result = await base.SendAsync(request, cancellationToken);
-                _logger.Info<ApiResponseLog>($"{req}: {(int)result.StatusCode} {result.StatusCode}");
-                return result;
-            }
-            catch (Exception ex)
-            {
-                _logger.Error<ApiErrorLog>($"{req} failed: {ex.CombinedMessage()}");
-                throw;
-            }
-        }
+    private void LogHttpHeaders(string req, HttpHeaders headers)
+    {
+        string mergedHeaders = string.Join(',', headers.Select(kvp => $"{kvp.Key}: [{string.Join("],[", kvp.Value)}]"));
+        _logger.Debug<ApiRequestLog>($"{req} headers: {mergedHeaders}");
     }
 }
