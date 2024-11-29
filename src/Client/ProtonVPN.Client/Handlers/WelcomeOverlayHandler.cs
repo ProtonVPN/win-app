@@ -35,18 +35,15 @@ public class WelcomeOverlayHandler : IHandler,
 {
     private readonly DispatcherQueue _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
     private readonly ISettings _settings;
-    private readonly IUserSettingsMigrator _userSettingsMigrator;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
     private readonly IUserAuthenticator _userAuthenticator;
 
     public WelcomeOverlayHandler(
         ISettings settings,
-        IUserSettingsMigrator userSettingsMigrator,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         IUserAuthenticator userAuthenticator)
     {
         _settings = settings;
-        _userSettingsMigrator = userSettingsMigrator;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
         _userAuthenticator = userAuthenticator;
     }
@@ -55,11 +52,7 @@ public class WelcomeOverlayHandler : IHandler,
     {
         _dispatcherQueue.TryEnqueue(() =>
         {
-            if (_userSettingsMigrator.HasUserSettingsMigrationRun)
-            {
-                ShowWhatsNewOverlay();
-            }
-            else if (!_settings.VpnPlan.IsB2B && !_settings.WasWelcomeOverlayDisplayed)
+            if (!_settings.VpnPlan.IsB2B && !_settings.WasWelcomeOverlayDisplayed)
             {
                 _settings.WasWelcomeOverlayDisplayed = true;
                 _mainWindowOverlayActivator.ShowWelcomeOverlayAsync();
@@ -70,22 +63,6 @@ public class WelcomeOverlayHandler : IHandler,
                 _mainWindowOverlayActivator.ShowWelcomeToVpnB2BOverlayAsync();
             }
         });
-    }
-
-    private void ShowWhatsNewOverlay()
-    {
-        if (_settings.VpnPlan.IsB2B)
-        {
-            _mainWindowOverlayActivator.ShowWhatsNewB2BOverlayAsync();
-        }
-        else if (_settings.VpnPlan.IsPaid)
-        {
-            _mainWindowOverlayActivator.ShowWhatsNewPaidOverlayAsync();
-        }
-        else
-        {
-            _mainWindowOverlayActivator.ShowWhatsNewFreeOverlayAsync();
-        }
     }
 
     public void Receive(VpnPlanChangedMessage message)
