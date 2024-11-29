@@ -95,7 +95,7 @@ public class ClientControllerListener : IClientControllerListener, IEventMessage
     {
         await foreach (VpnStateIpcEntity state in _grpcClient.ClientController.StreamVpnStateChangeAsync())
         {
-            _logger.Debug<ProcessCommunicationLog>($"Received VPN Status '{state.Status}', NetworkBlocked: {state.NetworkBlocked} " +
+            _logger.Info<ProcessCommunicationLog>($"Received VPN Status '{state.Status}', NetworkBlocked: {state.NetworkBlocked} " +
             $"Error: '{state.Error}', EndpointIp: '{state.EndpointIp}', Label: '{state.Label}', " +
             $"VpnProtocol: '{state.VpnProtocol}', OpenVpnAdapter: '{state.OpenVpnAdapterType}'");
 
@@ -115,7 +115,7 @@ public class ClientControllerListener : IClientControllerListener, IEventMessage
                 logMessage.Append($", Port pair {mappedPort.InternalPort}->{mappedPort.ExternalPort}, expiring in " +
                                   $"{mappedPort.Lifetime} at {mappedPort.ExpirationDateUtc}");
             }
-            _logger.Debug<ProcessCommunicationLog>(logMessage.ToString());
+            _logger.Info<ProcessCommunicationLog>(logMessage.ToString());
 
             _uiThreadDispatcher.TryEnqueue(() => _eventMessageSender.Send(state));
         }
