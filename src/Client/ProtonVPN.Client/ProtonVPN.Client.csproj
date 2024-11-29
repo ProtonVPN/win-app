@@ -130,9 +130,6 @@
     <None Remove="UI\Overlays\Welcome\WelcomeToVpnB2BOverlayView.xaml" />
     <None Remove="UI\Overlays\Welcome\WelcomeToVpnPlusOverlayView.xaml" />
     <None Remove="UI\Overlays\Welcome\WelcomeToVpnUnlimitedOverlayView.xaml" />
-    <None Remove="UI\Overlays\WhatsNew\WhatsNewB2BOverlayView.xaml" />
-    <None Remove="UI\Overlays\WhatsNew\WhatsNewFreeOverlayView.xaml" />
-    <None Remove="UI\Overlays\WhatsNew\WhatsNewPaidOverlayView.xaml" />
     <None Remove="UI\Tray\TrayIconComponentView.xaml" />
     <None Remove="UI\Update\UpdateComponent.xaml" />
   </ItemGroup>
@@ -354,17 +351,6 @@
     <Page Update="UI\Overlays\Welcome\WelcomeToVpnUnlimitedOverlayView.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Overlays\WhatsNew\WhatsNewB2BOverlayView.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Overlays\WhatsNew\WhatsNewPaidOverlayView.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UI\Overlays\WhatsNew\WhatsNewFreeOverlayView.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
     <Page Update="UI\Tray\TrayIconComponentView.xaml">
       <Generator>MSBuild:Compile</Generator>

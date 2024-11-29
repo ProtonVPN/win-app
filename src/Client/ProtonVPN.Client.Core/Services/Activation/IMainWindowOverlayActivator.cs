@@ -51,11 +51,5 @@ public interface IMainWindowOverlayActivator : IOverlayActivator
 
     Task<ContentDialogResult> ShowWelcomeToVpnUnlimitedOverlayAsync();
 
-    Task<ContentDialogResult> ShowWhatsNewB2BOverlayAsync();
-
-    Task<ContentDialogResult> ShowWhatsNewFreeOverlayAsync();
-
-    Task<ContentDialogResult> ShowWhatsNewPaidOverlayAsync();
-
     Task<ContentDialogResult> ShowFreeConnectionsOverlayAsync();
 }
