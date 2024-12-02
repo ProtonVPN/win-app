@@ -39,7 +39,7 @@ public sealed partial class ReportIssueShellView : IContextAware
         Navigator.Initialize(ReportIssueNavigationFrame);
 
         Loaded += OnLoaded;
-        Unloaded += OnUnloaded;        
+        Unloaded += OnUnloaded;
     }
 
     public object GetContext()

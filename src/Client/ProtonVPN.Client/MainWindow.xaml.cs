@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,14 +20,16 @@
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Extensions;
-using ProtonVPN.Client.Core.Messages;
-using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Services.Activation;
 
 namespace ProtonVPN.Client;
 
 public sealed partial class MainWindow : IActivationStateAware
 {
+    private const double TITLE_BAR_HEIGHT = 36.0;
+    private const int TITLE_BAR_DRAG_AREA_OFFSET_BUTTON = 40;
+    private const int TITLE_BAR_DRAG_AREA_OFFSET_EMPTY = 1;
+
     public MainWindowActivator WindowActivator { get; }
     public MainWindowOverlayActivator OverlayActivator { get; }
 
@@ -54,5 +56,9 @@ public sealed partial class MainWindow : IActivationStateAware
         IsMinimizable = isTitleBarVisible;
         IsMaximizable = isTitleBarVisible;
         IsResizable = isTitleBarVisible;
+
+        this.SetDragArea(Width, TITLE_BAR_HEIGHT, isTitleBarVisible
+            ? TITLE_BAR_DRAG_AREA_OFFSET_BUTTON
+            : TITLE_BAR_DRAG_AREA_OFFSET_EMPTY);
     }
 }

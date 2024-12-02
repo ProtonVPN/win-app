@@ -22,7 +22,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:resource="clr-namespace:ProtonVPN.Resource"
                     xmlns:logos="clr-namespace:ProtonVPN.Resource.Graphics.Logos">
 
-    <Style x:Key="Titlebar" TargetType="StackPanel">
+    <Style x:Key="TitleBar" TargetType="StackPanel">
         <Setter Property="Height" Value="36"/>
         <Setter Property="Background" Value="{StaticResource BackgroundWeakBrushColor}"/>
         <Style.Triggers>

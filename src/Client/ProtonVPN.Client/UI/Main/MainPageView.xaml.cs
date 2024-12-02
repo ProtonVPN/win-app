@@ -21,10 +21,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Core.Bases;
-using ProtonVPN.Client.Core.Bases.ViewModels;
-using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Services.Navigation;
-using ProtonVPN.Client.UI.Main.Home;
 using Windows.Foundation;
 
 namespace ProtonVPN.Client.UI.Main;

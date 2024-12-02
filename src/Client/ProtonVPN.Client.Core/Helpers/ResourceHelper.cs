@@ -32,6 +32,7 @@ public static class ResourceHelper
     private const string COLORS_DICTIONARY = "Styles/Colors.xaml";
     private const string ILLUSTRATIONS_DICTIONARY = "Styles/Illustrations.xaml";
     private const string ICONS_DICTIONARY = "Styles/Icons.xaml";
+    private const string FLYOUT_STYLES_DICTIONARY = "Styles/Controls/FlyoutStyles.xaml";
 
     public static Color GetColor(string resourceKey, ElementTheme theme)
     {
@@ -75,6 +76,14 @@ public static class ResourceHelper
         }
 
         return string.Empty;
+    }
+
+    public static Style GetFlyoutStyle(string resourceKey)
+    {
+        string dictionaryName = FLYOUT_STYLES_DICTIONARY;
+
+        return TryGetResource<Style>(dictionaryName, resourceKey)
+            ?? throw new ArgumentException($"Resource '{resourceKey}' not found in {dictionaryName}");
     }
 
     private static string GetThemeKey(ElementTheme theme)

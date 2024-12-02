@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2024 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<UserControl x:Class="ProtonVPN.Client.UI.Main.Components.TitleBarMenuComponent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+             x:DefaultBindMode="OneWay"
+             mc:Ignorable="d">
+
+    <custom:GhostButton Visibility="{x:Bind ViewModel.IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <custom:GhostButton.LeftIcon>
+            <pathicons:ThreeDotsVertical Size="Pixels16" />
+        </custom:GhostButton.LeftIcon>
+        <custom:GhostButton.Flyout>
+            <MenuFlyout Placement="BottomEdgeAlignedLeft">
+
+                <MenuFlyoutItem Style="{StaticResource TitleBarMenuFlyoutItemStyle}"
+                                Text="{x:Bind ViewModel.Localizer.Get('Home_TitleBar_Menu_UpdateNow')}"
+                                Visibility="{x:Bind ViewModel.IsUpdateAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <MenuFlyoutItem.Icon>
+                        <pathicons:ArrowsRotate Size="Pixels16" />
+                    </MenuFlyoutItem.Icon>
+                </MenuFlyoutItem>
+
+                <MenuFlyoutSeparator Visibility="{x:Bind ViewModel.IsUpdateAvailable, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                <MenuFlyoutSubItem x:Name="HelpMenu"
+                                   Style="{StaticResource TitleBarMenuFlyoutSubItemStyle}"
+                                   Text="{x:Bind ViewModel.Localizer.Get('Home_TitleBar_Menu_Help')}">
+                    <MenuFlyoutSubItem.Icon>
+                        <pathicons:QuestionCircle Size="Pixels16" />
+                    </MenuFlyoutSubItem.Icon>
+                </MenuFlyoutSubItem>
+
+                <MenuFlyoutItem Command="{x:Bind ViewModel.OpenMyAccountUrlCommand, Mode=OneTime}"
+                                Style="{StaticResource TitleBarMenuHyperlinkMenuFlyoutItemStyle}"
+                                Text="{x:Bind ViewModel.Localizer.Get('Home_TitleBar_Menu_MyAccount')}">
+                    <MenuFlyoutItem.Icon>
+                        <pathicons:User Size="Pixels16" />
+                    </MenuFlyoutItem.Icon>
+                </MenuFlyoutItem>
+
+                <MenuFlyoutItem Command="{x:Bind ViewModel.NavigateToSettingsCommand, Mode=OneTime}"
+                                Style="{StaticResource TitleBarMenuFlyoutItemStyle}"
+                                Text="{x:Bind ViewModel.Localizer.Get('Home_TitleBar_Menu_Settings')}">
+                    <MenuFlyoutItem.Icon>
+                        <pathicons:CogWheel Size="Pixels16" />
+                    </MenuFlyoutItem.Icon>
+                </MenuFlyoutItem>
+
+                <MenuFlyoutSeparator />
+
+                <MenuFlyoutItem Command="{x:Bind ViewModel.SignoutCommand, Mode=OneTime}"
+                                Style="{StaticResource TitleBarMenuFlyoutItemStyle}"
+                                Text="{x:Bind ViewModel.Localizer.Get('Home_TitleBar_Menu_Signout')}">
+                    <MenuFlyoutItem.Icon>
+                        <pathicons:ArrowOutFromRectangle Size="Pixels16" />
+                    </MenuFlyoutItem.Icon>
+                </MenuFlyoutItem>
+
+                <MenuFlyoutItem Command="{x:Bind ViewModel.ExitApplicationCommand, Mode=OneTime}"
+                                Style="{StaticResource TitleBarMenuFlyoutItemStyle}"
+                                Text="{x:Bind ViewModel.Localizer.Get('Home_TitleBar_Menu_ExitTheApp')}">
+                    <MenuFlyoutItem.Icon>
+                        <pathicons:Cross Size="Pixels16" />
+                    </MenuFlyoutItem.Icon>
+                </MenuFlyoutItem>
+
+            </MenuFlyout>
+        </custom:GhostButton.Flyout>
+
+    </custom:GhostButton>
+</UserControl>
