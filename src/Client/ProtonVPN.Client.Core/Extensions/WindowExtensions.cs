@@ -81,10 +81,10 @@ public static class WindowExtensions
         }
     }
 
-    public static void SetDragArea(this Window window, double width, double height)
+    public static void SetDragArea(this Window window, double width, double height, int horizontalOffset)
     {
         double scaleAdjustment = window.GetDpiForWindow() / 96.0;
-        Point relativeFromWindow = new Point(1, 1);
+        Point relativeFromWindow = new Point(horizontalOffset, 1);
 
         RectInt32 dragRect;
         dragRect.Height = (int)(height * scaleAdjustment);

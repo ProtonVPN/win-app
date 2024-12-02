@@ -48,6 +48,7 @@ using ProtonVPN.Client.Services.Mapping;
 using ProtonVPN.Client.Services.Navigation;
 using ProtonVPN.Client.Services.Notification;
 using ProtonVPN.Client.Services.Selection;
+using ProtonVPN.Client.Services.SignoutHandling;
 using ProtonVPN.Client.Services.Verification;
 using ProtonVPN.Client.Settings.Installers;
 using ProtonVPN.Client.UI;
@@ -190,6 +191,7 @@ public class AppModule : Module
         builder.RegisterType<HumanVerifier>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<HumanVerificationConfig>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<UrlsBrowser>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<SignOutHandler>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<MainWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<MainWindowOverlayActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
@@ -254,6 +256,7 @@ public class AppModule : Module
         RegisterViewModel<LoadingPageViewModel>(builder);
         RegisterViewModel<DisableKillSwitchBannerViewModel>(builder);
 
+        RegisterViewModel<TitleBarMenuViewModel>(builder);
         RegisterViewModel<NetShieldStatsViewModel>(builder);
         RegisterViewModel<ActivePortComponentViewModel>(builder);
         RegisterViewModel<MainPageViewModel>(builder);

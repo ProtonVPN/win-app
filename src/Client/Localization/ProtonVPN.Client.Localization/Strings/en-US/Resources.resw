@@ -2717,6 +2717,27 @@ This higher level of protection may cause higher latency and slower speeds.</val
     <value>Sign out from {0}?</value>
     <comment>{0} is a placeholder for the username</comment>
   </data>
+  <data name="Home_TitleBar_Menu_UpdateNow" xml:space="preserve">
+    <value>Update now</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help_WhatsTheIssue" xml:space="preserve">
+    <value>What's the issue?</value>
+  </data>
+  <data name="Home_TitleBar_Menu_MyAccount" xml:space="preserve">
+    <value>My account</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Signout" xml:space="preserve">
+    <value>Sign out</value>
+  </data>
+  <data name="Home_TitleBar_Menu_ExitTheApp" xml:space="preserve">
+    <value>Exit the app</value>
+  </data>
   <data name="Tray_Actions_ExitApplication" xml:space="preserve">
     <value>Exit</value>
   </data>

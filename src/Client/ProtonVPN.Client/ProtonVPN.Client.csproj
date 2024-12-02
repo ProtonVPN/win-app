@@ -50,6 +50,7 @@
     <None Remove="UI\MainWindowShellView.xaml" />
     <None Remove="UI\Main\Components\ActivePortComponentView.xaml" />
     <None Remove="UI\Main\Components\ConnectionErrorComponent.xaml" />
+    <None Remove="UI\Main\Components\TitleBarMenuComponent.xaml" />
     <None Remove="UI\Main\FeatureIcons\KillSwitchIconView.xaml" />
     <None Remove="UI\Main\FeatureIcons\NetShieldIconView.xaml" />
     <None Remove="UI\Main\FeatureIcons\PortForwardingIconView.xaml" />
@@ -756,6 +757,12 @@
 
   <ItemGroup>
     <Page Update="UI\Update\UpdateComponent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Main\Components\TitleBarMenuComponent.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

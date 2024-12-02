@@ -18,19 +18,18 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.UI.Xaml.Controls;
-using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Services.Bootstrapping;
 using ProtonVPN.Client.Services.Browsing;
+using ProtonVPN.Client.Services.SignoutHandling;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Extensions;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -40,15 +39,13 @@ namespace ProtonVPN.Client.UI.Main.Settings.Pages;
 public partial class UserDetailsComponentViewModel : PageViewModelBase,
     IEventMessageReceiver<SettingChangedMessage>
 {
+    private readonly ISignOutHandler _signoutHandler;
     private readonly IUrls _urls;
-    private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
-    private readonly IConnectionManager _connectionManager;
     private readonly ISettings _settings;
-    private readonly IUserAuthenticator _userAuthenticator;
     private readonly IWebAuthenticator _webAuthenticator;
     private readonly IBootstrapper _bootstrapper;
 
-    public string Username => _settings.Username ?? _settings.UserDisplayName ?? string.Empty;
+    public string Username => _settings.GetUsername();
 
     public string VpnPlan => Localizer.GetVpnPlanName(_settings.VpnPlan.Title);
 
@@ -57,22 +54,20 @@ public partial class UserDetailsComponentViewModel : PageViewModelBase,
     public bool IsProtonPlan => _settings.VpnPlan.IsProtonPlan;
 
     public UserDetailsComponentViewModel(
+        ISignOutHandler signoutHandler,
         IUrls urls,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         IConnectionManager connectionManager,
         ISettings settings,
-        IUserAuthenticator userAuthenticator,
         IWebAuthenticator webAuthenticator,
         IBootstrapper bootstrapper,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter) : base(localizer, logger, issueReporter)
     {
+        _signoutHandler = signoutHandler;
         _urls = urls;
-        _mainWindowOverlayActivator = mainWindowOverlayActivator;
-        _connectionManager = connectionManager;
         _settings = settings;
-        _userAuthenticator = userAuthenticator;
         _webAuthenticator = webAuthenticator;
         _bootstrapper = bootstrapper;
     }
@@ -84,24 +79,9 @@ public partial class UserDetailsComponentViewModel : PageViewModelBase,
     }
 
     [RelayCommand]
-    public async Task SignOutAsync()
+    private Task SignOutAsync()
     {
-        ContentDialogResult result = await _mainWindowOverlayActivator.ShowMessageAsync(
-            new MessageDialogParameters
-            {
-                Title = Localizer.GetFormat("Home_Account_SignOut_Confirmation_Title", Username),
-                Message = Localizer.GetExitOrSignOutConfirmationMessage(_connectionManager.IsDisconnected, _settings),
-                MessageType = DialogMessageType.RichText,
-                PrimaryButtonText = Localizer.Get("Home_Account_SignOut"),
-                CloseButtonText = Localizer.Get("Common_Actions_Cancel"),
-            });
-
-        if (result is not ContentDialogResult.Primary)
-        {
-            return;
-        }
-
-        await _userAuthenticator.LogoutAsync(LogoutReason.UserAction);
+        return _signoutHandler.SignOutAsync();
     }
 
     [RelayCommand]
