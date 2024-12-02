@@ -127,7 +127,7 @@
     <value>Ominaisuudet-palkki</value>
   </data>
   <data name="Automation_Properties_Home_Page">
-    <value>Kotisivu</value>
+    <value>Aloitussivu</value>
   </data>
   <data name="Automation_Properties_KillSwitch_Page">
     <value>Tappokytkin-sivu</value>
@@ -2580,7 +2580,7 @@ Nopeus perustuu laitteesi tämänhetkiseen toimintaan — se ei ilmaise VPN:n ma
     <value>Mitä P2P VPN tarkoittaa?</value>
   </data>
   <data name="Overlay_P2P_Bullet2_Description">
-    <value>P2P-verkkojen avulla kaksi laitetta voi olla yhteydessä toisiinsa ja siirtää tietoja ilman keskitettyä palvelinta. </value>
+    <value>P2P-verkkojen avulla kaksi laitetta voi olla yhteydessä toisiinsa ja siirtää tietoja suoraan ilman välittävää palvelinta. </value>
   </data>
   <data name="Overlay_P2P_Bullet2_Header">
     <value>Mikä on P2P-verkko?</value>
@@ -2928,7 +2928,7 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
     <value>Suojaa IP-osoitettasi estämällä yhteytesi Internetiin, VPN-yhteytesi katketessa odottamattomasti.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Footer">
-    <value>Kun tappokytkin on käytössä, et voi muodostaa yhteyttä verkkosivustoihin tai sovelluksiin, jotka on suljettu VPN-yhteyden ulkopuolelle jaetun tunneloinnin avulla.</value>
+    <value>Tappokytkimen olessa käytössä et voi muodostaa yhteyttä verkkosivustoihin ja sovelluksiin, jotka on jaetun tunneloinnn avulla suljettu VPN-yhteyden ulkopuolelle.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Standard">
     <value>Tavallinen</value>
@@ -3487,7 +3487,7 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
     <value>Hanki molempien parhaat puolet</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling_Browsing">
-    <value>Jaettu tunnelointi mahdollistaa saman aikaisen selauksen kahdesta eri sijainnista</value>
+    <value>Jaetun tunneloinnin avulla voit samanaikaisesti selata kahdesta eri sijainnista</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling_Configuration">
     <value>Salli luotettujen sovellusten ja IP-osoitteiden yhdistää Internetiin suoraan, samalla kun kaikki muut suojataan VPN-yhteydellä.</value>

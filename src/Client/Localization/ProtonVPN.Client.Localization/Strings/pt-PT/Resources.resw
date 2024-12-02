@@ -2137,7 +2137,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Velocidade</value>
   </data>
   <data name="Flyouts_Speed_Upload">
-    <value>Upload</value>
+    <value>Envios</value>
     <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
   </data>
   <data name="Flyouts_Volume_Description">
@@ -2151,7 +2151,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Volume</value>
   </data>
   <data name="Flyouts_Volume_Upload">
-    <value>Upload</value>
+    <value>Envios</value>
     <comment>Refers to the uploaded volume (e.g., Upload [new line] 250 MB).</comment>
   </data>
   <data name="Format_Milliseconds">
@@ -2322,7 +2322,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
   </data>
   <data name="Home_ConnectionDetails_Connecting">
-    <value>Connecting</value>
+    <value>A ligar</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectingSubLabel">
     <value>Protecting your digital identity...</value>
@@ -2982,7 +2982,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>To use port forwarding, please connect to a server that supports P2P.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Loading">
-    <value>Loading...</value>
+    <value>A carregar...</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications">
     <value>Notificações</value>
