@@ -84,7 +84,6 @@
     <None Remove="UI\Main\MainPageView.xaml" />
     <None Remove="UI\Main\Settings\Pages\About\AboutPageView.xaml" />
     <None Remove="UI\Main\Settings\Pages\About\LicensingPageView.xaml" />
-    <None Remove="UI\Main\Settings\Pages\About\UpdateBannerComponent.xaml" />
     <None Remove="UI\Main\Settings\Pages\AdvancedSettingsPageView.xaml" />
     <None Remove="UI\Main\Settings\Pages\Advanced\CustomDnsServerPage.xaml" />
     <None Remove="UI\Main\Settings\Pages\AutoStartupSettingsPageView.xaml" />
@@ -134,6 +133,7 @@
     <None Remove="UI\Overlays\WhatsNew\WhatsNewFreeOverlayView.xaml" />
     <None Remove="UI\Overlays\WhatsNew\WhatsNewPaidOverlayView.xaml" />
     <None Remove="UI\Tray\TrayIconComponentView.xaml" />
+    <None Remove="UI\Update\UpdateComponent.xaml" />
   </ItemGroup>
 
 
@@ -281,9 +281,6 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
     <Page Update="UI\Main\Settings\Pages\About\LicensingPageView.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-    </Page>
-    <Page Update="UI\Main\Settings\Pages\About\UpdateBannerComponent.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
     <Page Update="UI\Main\Settings\Pages\Advanced\CustomDnsServerPage.xaml">
@@ -753,6 +750,12 @@
 
   <ItemGroup>
     <Page Update="UI\Main\Components\ActivePortComponentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Update\UpdateComponent.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

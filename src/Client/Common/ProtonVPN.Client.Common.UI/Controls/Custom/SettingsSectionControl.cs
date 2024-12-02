@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2023 Proton AG
+﻿/*
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,15 +17,27 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.UI.Main.Settings.Pages.About;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 
-public sealed partial class UpdateBannerComponent
+namespace ProtonVPN.Client.Common.UI.Controls.Custom;
+
+public class SettingsSectionControl : ContentControl
 {
-    //public SidebarUpdateViewModel ViewModel { get; }
+    public static readonly DependencyProperty TitleProperty = DependencyProperty.Register(
+        nameof(Title),
+        typeof(string),
+        typeof(SettingsSectionControl),
+        new PropertyMetadata(default));
 
-    public UpdateBannerComponent()
+    public string Title
     {
-        //ViewModel = App.GetService<SidebarUpdateViewModel>();
-        InitializeComponent();
+        get => (string)GetValue(TitleProperty);
+        set => SetValue(TitleProperty, value);
+    }
+
+    public SettingsSectionControl()
+    {
+        DefaultStyleKey = nameof(SettingsSectionControl);
     }
 }

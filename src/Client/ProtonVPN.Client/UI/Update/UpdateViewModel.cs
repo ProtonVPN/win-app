@@ -49,14 +49,11 @@ public partial class UpdateViewModel : ViewModelBase,
     private AppUpdateStateContract? _lastUpdateState;
 
     [ObservableProperty]
-    private bool _isUpdateAvailable;
-
-    [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(UpdateCommand))]
     [NotifyPropertyChangedFor(nameof(CanUpdate))]
     private bool _isUpdating;
 
-    public bool CanUpdate => !IsUpdating && LastUpdateState != null && LastUpdateState.IsReady;
+    public bool CanUpdate => _updatesManager.IsUpdateAvailable && !IsUpdating;
 
     public UpdateViewModel(
         ISettings settings,

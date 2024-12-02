@@ -17,32 +17,36 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Client.Common.Dispatching;
+using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Handlers.Bases;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 
 namespace ProtonVPN.Client.Handlers;
 
-public class OutdatedClientHandler : IHandler, IOutdatedClientNotifier, IEventMessageReceiver<LoggedOutMessage>
+public class OutdatedClientHandler : IHandler, IOutdatedClientNotifier,
+    IEventMessageReceiver<LoggedOutMessage>,
+    IEventMessageReceiver<HomePageDisplayedAfterLoginMessage>,
+    IEventMessageReceiver<ApplicationStartedMessage>
 {
-    private readonly ILocalizationProvider _localizer;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IUIThreadDispatcher _uiThreadDispatcher;
 
+    private object _lock = new();
+
+    private bool _isClientOutdated;
+    private bool _isClientNotified;
+
     public OutdatedClientHandler(
-        ILocalizationProvider localizer,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         IEventMessageSender eventMessageSender,
         IUIThreadDispatcher uiThreadDispatcher)
     {
-        _localizer = localizer;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
         _eventMessageSender = eventMessageSender;
         _uiThreadDispatcher = uiThreadDispatcher;
@@ -50,17 +54,52 @@ public class OutdatedClientHandler : IHandler, IOutdatedClientNotifier, IEventMe
 
     public void Receive(LoggedOutMessage message)
     {
-        _uiThreadDispatcher.TryEnqueue(() =>
+        if (message.Reason != LogoutReason.ClientOutdated)
         {
-            if (message.Reason == LogoutReason.ClientOutdated)
-            {
-                _mainWindowOverlayActivator.ShowOutdatedClientOverlayAsync();
-            }
-        });
+            return;
+        }
+
+        NotifyOutdatedClient();
     }
 
-    public async Task OnClientOutdatedAsync()
+    public void OnClientOutdated()
     {
-        _eventMessageSender.Send(new ClientOutdatedMessage());
+        _isClientOutdated = true;
+    }
+
+    public void Receive(HomePageDisplayedAfterLoginMessage message)
+    {
+        if (_isClientOutdated)
+        {
+            _eventMessageSender.Send<ClientOutdatedMessage>();
+        }
+    }
+
+    public void Receive(ApplicationStartedMessage message)
+    {
+        NotifyOutdatedClient();
+    }
+
+    private void NotifyOutdatedClient()
+    {
+        if (!_isClientOutdated)
+        {
+            return;
+        }
+
+        lock (_lock)
+        {
+            if (_isClientNotified)
+            {
+                return;
+            }
+
+            _isClientNotified = true;
+
+            _uiThreadDispatcher.TryEnqueue(() =>
+            {
+                _mainWindowOverlayActivator.ShowOutdatedClientOverlayAsync();
+            });
+        }
     }
 }

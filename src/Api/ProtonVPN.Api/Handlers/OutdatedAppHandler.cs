@@ -52,7 +52,7 @@ namespace ProtonVPN.Api.Handlers
 
             if (ForceLogoutRequired(baseResponse.Code))
             {
-                await _outdatedClientNotifier.OnClientOutdatedAsync();
+                _outdatedClientNotifier.OnClientOutdated();
             }
 
             return response;

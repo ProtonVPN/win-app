@@ -52,7 +52,7 @@ namespace ProtonVPN.Api.Tests.Handlers
             await httpClient.SendAsync(new HttpRequestMessage());
 
             // Assert
-            await outdatedClientNotifier.Received(1).OnClientOutdatedAsync();
+            outdatedClientNotifier.Received(1).OnClientOutdated();
         }
     }
 }

@@ -17,11 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading.Tasks;
-
 namespace ProtonVPN.Api.Contracts;
 
 public interface IOutdatedClientNotifier
 {
-    Task OnClientOutdatedAsync();
+    void OnClientOutdated();
 }
