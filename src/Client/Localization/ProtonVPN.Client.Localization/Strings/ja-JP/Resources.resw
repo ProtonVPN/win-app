@@ -2587,55 +2587,55 @@ VPN接続</value>
     <value>スマートルーティング</value>
   </data>
   <data name="Overlay_Tor_Description">
-    <value>Connect to a Tor server to access hidden services and onion sites using any browser.</value>
+    <value>Torサーバーに接続して、任意のブラウザを使用して隠しサービスやonionサイトにアクセスします。</value>
   </data>
   <data name="Overlay_Tor_LearnMore">
-    <value>How to access the Tor network</value>
+    <value>Torネットワークへのアクセス方法</value>
   </data>
   <data name="Overlay_Tor_Title">
     <value>Tor</value>
   </data>
   <data name="Profiles_Page_Description">
-    <value>Configure your own VPN settings and connect in one click.</value>
+    <value>VPN設定を構成し、ワンクリックで接続</value>
   </data>
   <data name="Profiles_Page_Title">
-    <value>Profiles</value>
+    <value>プロファイル</value>
   </data>
   <data name="Search_InputBox_Placeholder">
-    <value>Browse from...</value>
+    <value>からブラウズ</value>
   </data>
   <data name="Search_NoInput_CityOrState">
-    <value>City or US state</value>
+    <value>市もしくはアメリカ州</value>
     <comment>The word used for one single city and one single United States state</comment>
   </data>
   <data name="Search_NoInput_Country">
-    <value>Country</value>
+    <value>国</value>
     <comment>The word used for one single country</comment>
   </data>
   <data name="Search_NoInput_Server">
-    <value>Server</value>
+    <value>サーバー</value>
     <comment>The word used for one single server</comment>
   </data>
   <data name="Search_NoInput_TrySearchingFor">
-    <value>Try searching for...</value>
+    <value>…で検索しようとしています</value>
   </data>
   <data name="Search_NoResults_Description">
-    <value>Try a different keyword.</value>
+    <value>違うキーワードをお試しください。</value>
   </data>
   <data name="Search_NoResults_Title">
-    <value>No results found</value>
+    <value>結果が見つかりません</value>
   </data>
   <data name="Server">
-    <value>Server</value>
+    <value>サーバー</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>最速の無料サーバー</value>
   </data>
   <data name="Server_Feature_B2B">
-    <value>Gateways</value>
+    <value>ゲートウェイ</value>
   </data>
   <data name="Server_Feature_None">
-    <value>All countries</value>
+    <value>全ての国</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
@@ -2650,7 +2650,7 @@ VPN接続</value>
     <value>Freeサーバー</value>
   </data>
   <data name="Servers">
-    <value>Servers</value>
+    <value>サーバー</value>
   </data>
   <data name="Settings_About">
     <value>詳細</value>
@@ -2689,13 +2689,13 @@ VPN接続</value>
     <value>アプリの最新バージョンに更新することで、VPNを最大限に活用できます。</value>
   </data>
   <data name="Settings_Account_Exit">
-    <value>Exit the app</value>
+    <value>アプリを終了する</value>
   </data>
   <data name="Settings_Account_MyAccount">
-    <value>My account</value>
+    <value>私のアカウント</value>
   </data>
   <data name="Settings_Account_SignOut">
-    <value>Sign out</value>
+    <value>サインアウト</value>
   </data>
   <data name="Settings_AppVersion">
     <value>アプリバージョン</value>
@@ -2761,10 +2761,10 @@ VPN接続</value>
     <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>Disable IPv6 traffic</value>
+    <value>IPv6トラフィックを無効化</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
-    <value>Prevents IPv6 leaks by blocking connections to IPv6 addresses.</value>
+    <value>IPv6アドレスへの接続をブロックすることで、IPv6リークを防ぎます。</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
     <value>LAN 接続</value>
@@ -2797,10 +2797,10 @@ VPN接続</value>
     <value>ネットワークに入るデータを制限します。 このオプションはより安全ですが、ピアツーピア ゲーム接続がより困難になる可能性があります。</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
-    <value>Routes traffic between different networks.</value>
+    <value>異なるネットワーク間のルートトラフィック</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
-    <value>Uses bridging to connect networks. TUN provides higher speeds than TAP, but may be less stable.</value>
+    <value>ブリッジングを使用してネットワークを接続します。TUNはTAPよりも高速ですが、安定性が低い場合があります。</value>
   </data>
   <data name="Settings_Connection_Default">
     <value>デフォルト接続</value>
@@ -2818,91 +2818,91 @@ VPN接続</value>
     <value>最近使用した接続</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
-    <value>Kill switch</value>
+    <value>キルスイッチ</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced">
-    <value>Advanced</value>
+    <value>高度な</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
-    <value>Only allow internet access when connected to Proton VPN. Advanced kill switch will remain active even when you restart your device.</value>
+    <value>インターネットへのアクセスは、Proton VPNに接続しているときのみ許可されます。高度なキルスイッチは、デバイスを再起動してもアクティブなままです。</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>This will disable split tunneling.</value>
+    <value>これは無効なスプリットトンネルです。</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>Enable kill switch?</value>
+    <value>キルスイッチを有効にしますか？</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Description">
-    <value>Protects your IP address by disconnecting you from the internet if you lose your VPN connection.</value>
+    <value>VPN接続を中断した場合に、インターネットの接続を解除することでIPアドレスを保護します。</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Footer">
-    <value>When kill switch is on, you won't be able to connect to websites and apps excluded from your VPN connection through split tunneling.</value>
+    <value>キルスイッチがオンのとき、スプリットトンネルを通じてVPN接続から除外されたウェブサイトやアプリに接続することはできません。</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Standard">
-    <value>Standard</value>
+    <value>スタンダード</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Standard_Description">
-    <value>Automatically disconnect from the internet if VPN connection is lost.</value>
+    <value>VPN接続が中断したらインターネットから自動的に接続を解除</value>
   </data>
   <data name="Settings_Connection_NetShield">
     <value>NetShield</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
-    <value>Block ads, malware and trackers</value>
+    <value>広告やマルウェア、追跡をブロック</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockMalwareOnly">
-    <value>Block malware only</value>
+    <value>マルウェアだけをブロック</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Description">
-    <value>You won't be able to connect with a custom DNS server when NetShield is enabled.</value>
+    <value>NetShieldが有効な場合、カスタムDNSサーバーへの接続はできません。</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Title">
-    <value>Enable NetShield?</value>
+    <value>NetShieldを有効にしますか？</value>
   </data>
   <data name="Settings_Connection_NetShield_Description">
-    <value>Protect yourself from ads, malware, and trackers on websites and apps.</value>
+    <value>ウェブサイトやアプリの使用中に、広告やマルウェア、追跡から保護</value>
   </data>
   <data name="Settings_Connection_NetShield_Footer">
-    <value>Some websites may not load properly when ads and trackers are blocked.</value>
+    <value>広告や追跡がブロックされると、いくつかのウェブサイトは正しく読み込まれない可能性があります。</value>
   </data>
   <data name="Settings_Connection_NetShield_PrivacyPanel">
-    <value>NetShield Privacy Panel</value>
+    <value>NetShieldプライバシーパネル</value>
   </data>
   <data name="Settings_Connection_PortForwarding">
-    <value>Port forwarding</value>
+    <value>ポート転送</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Active port:</value>
+    <value>アクティブポート：</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
-    <value>Copy port number</value>
+    <value>ポート番号をコピー</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Conflict_Description">
-    <value>You won't be able to use Moderate NAT when port forwarding is enabled.</value>
+    <value>ポート転送が有効になっている場合、モデレートNATを使用することはできません。</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Conflict_Title">
-    <value>Enable port forwarding?</value>
+    <value>ポート転送を有効にしますか？</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Description">
-    <value>Bypass firewalls to connect to P2P servers and devices in your local network.</value>
+    <value>ファイアウォールを回避して、P2Pサーバーやローカルネットワーク内のデバイスに接続します。</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Footer">
-    <value>To use port forwarding, please connect to a server that supports P2P.</value>
+    <value>ポート転送を使用するには、P2Pをサポートしているサーバーに接続してください。</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Loading">
-    <value>Loading...</value>
+    <value>読み込み中…</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications">
-    <value>Notifications</value>
+    <value>通知</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
-    <value>Get notified when the port forwarding number changes</value>
+    <value>ポート転送番号が変わった時に通知を受け取る</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>プロトコル</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Action">
-    <value>Go to profiles</value>
+    <value>プロファイルへ移動</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Message">
     <value>現在、VPN プロファイルに接続しています。 
@@ -3466,7 +3466,7 @@ VPN接続</value>
     <value>OpenVPN (TCP)</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp_Description">
-    <value>Established, well-tested, and secure</value>
+    <value>確立され、十分にテストされ、安全です</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Udp">
     <value>OpenVPN (UDP)</value>

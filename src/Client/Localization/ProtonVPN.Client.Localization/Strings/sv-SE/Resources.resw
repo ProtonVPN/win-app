@@ -2574,13 +2574,13 @@ Hastighet är baserat på din enhets nuvarande aktivitet – den representerar i
     <value>Uppdatera Proton VPN för att fortsätta</value>
   </data>
   <data name="Overlay_P2P_Bullet1_Description">
-    <value>Our P2P (peer-to-peer) servers let you access P2P networks while still protecting your IP address and online activity.</value>
+    <value>Våra P2P-servrar (peer-to-peer) låter dig få åtkomst till P2P-nätverk samtidigt som de skyddar din IP-adress och aktivitet online.</value>
   </data>
   <data name="Overlay_P2P_Bullet1_Header">
     <value>Vad är P2P VPN?</value>
   </data>
   <data name="Overlay_P2P_Bullet2_Description">
-    <value>P2P networks allow two devices to connect and transfer data without passing through a central server. </value>
+    <value>P2P-nätverk tillåter två enheter att ansluta och överföra data utan att passera genom en central server. </value>
   </data>
   <data name="Overlay_P2P_Bullet2_Header">
     <value>Vad är ett P2P-nätverk?</value>
