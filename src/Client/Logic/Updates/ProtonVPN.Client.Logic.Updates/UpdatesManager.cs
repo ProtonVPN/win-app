@@ -71,6 +71,8 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
 
     protected override TimeSpan PollingInterval => _config.UpdateCheckInterval;
 
+    public bool IsUpdateAvailable => _lastUpdateState is not null && _lastUpdateState.IsReady;
+
     public UpdatesManager(
         ILogger logger,
         IIssueReporter issueReporter,
@@ -161,7 +163,7 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
 
     private void OnUpdateStateChanged(AppUpdateStateContract state)
     {
-        if (state.Status != _lastUpdateState?.Status)
+        if (state.Status != _lastUpdateState?.Status || state.IsReady != _lastUpdateState?.IsReady || _requestedManualCheck)
         {
             if (state.Status == AppUpdateStatus.Checking)
             {

@@ -25,19 +25,36 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+             xmlns:update="using:ProtonVPN.Client.UI.Update"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
+    <Grid RowSpacing="24"
+          Margin="64,64,64,24">
 
-    <custom:StepContentControl Margin="64,64,64,24"
-                               CurrentStep="{x:Bind ViewModel.CurrentStep}"
-                               Header="{x:Bind ViewModel.StepsHeader}"
-                               IsHeaderVisible="{x:Bind ViewModel.IsHeaderVisible}"
-                               MoveBackwardCommand="{x:Bind ViewModel.NavigateBackwardCommand, Mode=OneTime}"
-                               MoveForwardCommand="{x:Bind ViewModel.NavigateForwardCommand, Mode=OneTime}"
-                               TotalSteps="{x:Bind ViewModel.TotalSteps}">
-        <Frame x:Name="ReportIssueNavigationFrame"
-               HorizontalAlignment="Stretch"
-               VerticalAlignment="Stretch" />
-    </custom:StepContentControl>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <update:UpdateComponent Grid.Row="0"
+                                Title="{x:Bind ViewModel.Localizer.Get('Components_Update_UpdateProtonVpn')}"
+                                Description="{x:Bind ViewModel.Localizer.Get('Components_Update_MoreLikelyIssues')}"
+                                IsImageVisible="True"
+                                Visibility="{x:Bind ViewModel.IsUpdateAvailable, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+        <custom:StepContentControl Grid.Row="1"
+                                   CurrentStep="{x:Bind ViewModel.CurrentStep}"
+                                   Header="{x:Bind ViewModel.StepsHeader}"
+                                   IsHeaderVisible="{x:Bind ViewModel.IsHeaderVisible}"
+                                   MoveBackwardCommand="{x:Bind ViewModel.NavigateBackwardCommand, Mode=OneTime}"
+                                   MoveForwardCommand="{x:Bind ViewModel.NavigateForwardCommand, Mode=OneTime}"
+                                   TotalSteps="{x:Bind ViewModel.TotalSteps}">
+
+            <Frame x:Name="ReportIssueNavigationFrame"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch" />
+
+        </custom:StepContentControl>
+    </Grid>
 
 </UserControl>

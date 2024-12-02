@@ -25,6 +25,7 @@ using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Updates.Contracts;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue.Pages;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -32,8 +33,11 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.UI.Dialogs.ReportIssue;
 
 public partial class ReportIssueShellViewModel : ShellViewModelBase<IReportIssueWindowActivator, IReportIssueViewNavigator>,
-    IEventMessageReceiver<ReportIssueCategoryChangedMessage>
+    IEventMessageReceiver<ReportIssueCategoryChangedMessage>,
+    IEventMessageReceiver<ClientUpdateStateChangedMessage>
 {
+    private readonly IUpdatesManager _updatesManager;
+
     public string BaseTitle => Localizer.Get("Dialogs_ReportIssue_Title");
 
     public override string Title => string.IsNullOrEmpty(CurrentPageTitle)
@@ -56,14 +60,19 @@ public partial class ReportIssueShellViewModel : ShellViewModelBase<IReportIssue
 
     public bool IsHeaderVisible => CurrentStep > 0 && CurrentStep <= TotalSteps;
 
+    public bool IsUpdateAvailable => _updatesManager.IsUpdateAvailable;
+
     public ReportIssueShellViewModel(
+        IUpdatesManager updatesManager,
         IReportIssueWindowActivator windowActivator,
         IReportIssueViewNavigator childViewNavigator,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter)
         : base(windowActivator, childViewNavigator, localizer, logger, issueReporter)
-    { }
+    {
+        _updatesManager = updatesManager;
+    }
 
     [RelayCommand(CanExecute = nameof(CanNavigateBackward))]
     public Task NavigateBackwardAsync()
@@ -85,6 +94,11 @@ public partial class ReportIssueShellViewModel : ShellViewModelBase<IReportIssue
     public bool CanNavigateForward()
     {
         return false;
+    }
+
+    public void Receive(ClientUpdateStateChangedMessage message)
+    {
+        ExecuteOnUIThread(() => OnPropertyChanged(nameof(IsUpdateAvailable)));
     }
 
     protected override void OnChildNavigation(NavigationEventArgs e)

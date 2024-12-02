@@ -26,4 +26,6 @@ public interface IUpdatesManager
     void CheckForUpdate(bool isManualCheck);
 
     Task UpdateAsync();
+
+    bool IsUpdateAvailable { get; }
 }

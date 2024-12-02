@@ -19,20 +19,20 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Core.Services.Activation;
+using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Updates.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
+using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Client.UI.Settings.Pages.About.Models;
 using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Update.Contracts;
-using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Core.Services.Activation;
-using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
-using ProtonVPN.Client.UI.Main.Settings.Bases;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.About;
 
@@ -46,18 +46,17 @@ public partial class AboutPageViewModel : SettingsPageViewModelBase,
     private string _clientVersion;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsToShowLoadingComponent))]
     private IReadOnlyList<Release> _releases = [];
-
-    [ObservableProperty]
-    private bool _isUpdateAvailable;
-
-    [ObservableProperty]
-    private bool _isToShowLoadingComponent;
 
     [ObservableProperty]
     private bool _isToShowErrorComponent;
 
     public override string Title => Localizer.Get("Settings_About_Title");
+
+    public bool IsUpdateAvailable => _updatesManager.IsUpdateAvailable;
+
+    public bool IsToShowLoadingComponent => Releases.Count == 0;
 
     public AboutPageViewModel(
         IRequiredReconnectionSettings requiredReconnectionSettings,
@@ -96,18 +95,17 @@ public partial class AboutPageViewModel : SettingsPageViewModelBase,
 
     private void HandleUpdateStateChangedMessage(ClientUpdateStateChangedMessage message)
     {
-        IsUpdateAvailable = message.IsUpdateAvailable;
-        if (message.State?.Status is AppUpdateStatus.None or AppUpdateStatus.Ready or AppUpdateStatus.AutoUpdated && message.State?.ReleaseHistory.Count > 0)
+        ExecuteOnUIThread(() =>
         {
-            Releases = _releaseViewModelFactory.GetReleases(message.State.ReleaseHistory);
-        }
+            if (message.State?.ReleaseHistory.Count > 0)
+            {
+                Releases = _releaseViewModelFactory.GetReleases(message.State.ReleaseHistory);
+            }
 
-        IsToShowErrorComponent = IsToShowLoadingComponent && message.State?.Status is AppUpdateStatus.CheckFailed;
+            IsToShowErrorComponent = IsToShowLoadingComponent && message.State?.Status is AppUpdateStatus.CheckFailed;
 
-        if (message.State?.Status is not AppUpdateStatus.Checking && IsToShowLoadingComponent)
-        {
-            IsToShowLoadingComponent = false;
-        }
+            OnPropertyChanged(nameof(IsUpdateAvailable));
+        });
     }
 
     public override void OnNavigatedTo(object parameter, bool isBackNavigation)
@@ -119,11 +117,6 @@ public partial class AboutPageViewModel : SettingsPageViewModelBase,
 
     private void StartCheckingForUpdate()
     {
-        if (Releases.Count == 0)
-        {
-            IsToShowLoadingComponent = true;
-        }
-
         _updatesManager.CheckForUpdate(true);
     }
 

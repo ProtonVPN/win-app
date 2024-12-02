@@ -25,17 +25,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:models="using:ProtonVPN.Client.UI.Settings.Pages.About.Models"
-      xmlns:sys="using:System"
+      xmlns:sys="using:System" xmlns:update="using:ProtonVPN.Client.UI.Update"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
       mc:Ignorable="d">
 
     <custom:SettingsPageContentControl x:Name="PageContentHost"
-                               BackCommand="{x:Bind ViewModel.NavigateBackCommand, Mode=OneTime}"
-                               CanContentScroll="False"
-                               IsBackButtonVisible="{x:Bind ViewModel.CanGoBack}"
-                               ApplyCommand="{x:Bind ViewModel.ApplyCommand}"
-                               CloseCommand="{x:Bind ViewModel.CloseCommand, Mode=OneTime}">
+                                       BackCommand="{x:Bind ViewModel.NavigateBackCommand, Mode=OneTime}"
+                                       CanContentScroll="False"
+                                       IsBackButtonVisible="{x:Bind ViewModel.CanGoBack}"
+                                       ApplyCommand="{x:Bind ViewModel.ApplyCommand}"
+                                       CloseCommand="{x:Bind ViewModel.CloseCommand, Mode=OneTime}">
 
         <custom:SettingsPageContentControl.PageHeader>
             <custom:SettingsPageHeaderContentControl Header="{x:Bind ViewModel.Title}" />
@@ -109,7 +109,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </Grid>
                 </Grid>
 
-                <!-- <about:UpdateBannerComponent /> -->
+                <Border Background="{ThemeResource InteractionDefaultColorBrush}"
+                        CornerRadius="8"
+                        Padding="16,8"
+                        Visibility="{x:Bind ViewModel.IsUpdateAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <update:UpdateComponent IsImageVisible="False"
+                                            Title="{x:Bind ViewModel.Localizer.Get('Components_Update_UpdateAvailable')}"
+                                            Description="{x:Bind ViewModel.Localizer.Get('Components_Update_GetMostFromYourVpn')}" />
+                </Border>
 
                 <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}"
                            Text="{x:Bind ViewModel.Localizer.Get('Settings_About_Changelog')}" />

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -22,16 +22,31 @@ using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Navigation;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Updates.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Home;
 
-public class HomePageViewModel : PageViewModelBase<IMainViewNavigator>
+public class HomePageViewModel : PageViewModelBase<IMainViewNavigator>,
+    IEventMessageReceiver<ClientUpdateStateChangedMessage>
 {
+    private readonly IUpdatesManager _updatesManager;
+
+    public bool IsUpdateAvailable => _updatesManager.IsUpdateAvailable;
+
     public HomePageViewModel(
+        IUpdatesManager updatesManager,
         IMainViewNavigator viewNavigator,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter)
         : base(viewNavigator, localizer, logger, issueReporter)
-    { }
+    {
+        _updatesManager = updatesManager;
+    }
+
+    public void Receive(ClientUpdateStateChangedMessage message)
+    {
+        ExecuteOnUIThread(() => OnPropertyChanged(nameof(IsUpdateAvailable)));
+    }
 }
