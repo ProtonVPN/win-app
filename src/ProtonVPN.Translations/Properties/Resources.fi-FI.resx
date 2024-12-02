@@ -1753,7 +1753,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <value>Selvä</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
-    <value>Tappokytkin on poistettava käytöstä jaetun tunneloinnin kunnollista toimintaa varten.</value>
+    <value>Tappokytkin on poistettava käytöstä, jotta jaettu tunnelointi toimii oikein.</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_ListOption1_One">
     <value>Satoja palvelimia {0} maassa</value>
@@ -1810,7 +1810,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Firewall">
-    <value>&lt;Bold&gt;Välityspalvelimen/palomuurin aiheuttama häiriö&lt;/Bold&gt; - Poista välityspalvelimet ja/tai palomuurit käytöstä tai ole yhteydessä verkkosi ylläpitoon.</value>
+    <value>&lt;Bold&gt;Välityspalvelimen/palomuurin häiriö&lt;/Bold&gt; - Poista välityspalvelimet ja/tai palomuurit käytöstä, tai ole yhteydessä verkkosi ylläpitoon.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_GovBlock">
@@ -2648,7 +2648,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The label for application list in Settings window Advanced tab Split Tunneling section</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Exclude">
-    <value>Rajoita sovelluksia/IP-osoitteita VPN-tunnelin ulkopuolelle</value>
+    <value>Sulje sovelluksia/IP-osoitteita VPN-tunnelin ulkopuolelle</value>
     <comment>The label of Split Tunnel mode in Split Tunneling section of Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_SplitTunnel_lbl_Include">
@@ -2746,7 +2746,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info">
-    <value>Rajoita sovelluksia tai IP-osoitteita VPN-tietoliikenteen ulkopuolelle tai sisällytä vain tiettyjä sovelluksia. Ei voi olla käytössä samanaikaisesti tappokytkimen kanssa.</value>
+    <value>Sulje sovelluksia tai IP-osoitteita VPN-tietoliikenteen ulkopuolelle tai sisällytä vain tietyt sovellukset. Ei voi olla käytössä samanaikaisesti tappokytkimen kanssa.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_btn_LearnMore">

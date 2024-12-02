@@ -1682,7 +1682,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <value>Aktivere permanent nødstopp?</value>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok">
-    <value>Forstått</value>
+    <value>Skjønner</value>
     <comment>The ok button text in the Maximum Device Limit window when the user already has the highest subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Subtitle">
@@ -1750,7 +1750,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <value>Oppdaterte Proton, enhetlig beskyttelse</value>
   </data>
   <data name="Dialogs_Rebranding_btn_GotIt_new_plans">
-    <value>Forstått</value>
+    <value>Skjønner</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
     <value>For at delt tunnelering skal fungere skikkelig, må du deaktivere nødstopp.</value>
@@ -2100,7 +2100,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <value>Hva er nytt</value>
   </data>
   <data name="Modals_Rescope_btn_GotIt">
-    <value>Forstått</value>
+    <value>Skjønner</value>
   </data>
   <data name="NetShield">
     <value>NetShield</value>

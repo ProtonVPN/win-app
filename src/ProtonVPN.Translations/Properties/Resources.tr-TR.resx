@@ -3050,7 +3050,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Tor</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Tor_Desc">
-    <value>İnternet trafiğinizi Tor ağı üzerinden yöneltin. Yavaş ama daha güvenli.</value>
+    <value>İnternet trafiğinizi Tor ağı üzerinden yöneltir. Daha yavaştır ama daha güvenlidir.</value>
   </data>
   <data name="Sidebar_Profiles_btn_Create">
     <value>Profil oluştur</value>
