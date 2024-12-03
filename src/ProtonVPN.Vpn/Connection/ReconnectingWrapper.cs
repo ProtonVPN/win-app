@@ -134,7 +134,7 @@ namespace ProtonVPN.Vpn.Connection
         private void Origin_StateChanged(object sender, EventArgs<VpnState> e)
         {
             _state = e.Data;
-            
+
             if (_state.Status == VpnStatus.Disconnected && _isToConnect)
             {
                 _isToConnect = false;
@@ -152,7 +152,7 @@ namespace ProtonVPN.Vpn.Connection
             {
                 _logger.Info<ServerSwitchTriggerLog>("Trying the next server. " +
                     $"Status: '{_state.Status}', Error: '{_state.Error}'.");
-                ConnectToNextEndpoint();
+                ConnectToNextEndpoint(skipCurrentIp: _state.Error == VpnError.PingTimeoutError);
                 return;
             }
 
@@ -220,7 +220,7 @@ namespace ProtonVPN.Vpn.Connection
             if (isResponding)
             {
                 _logger.Info<ServerSwitchTriggerLog>("At least one server has responded to a ping. Attempting connections.");
-                ConnectToNextEndpoint();
+                ConnectToNextEndpoint(skipCurrentIp: false);
             }
             else
             {
@@ -230,9 +230,9 @@ namespace ProtonVPN.Vpn.Connection
             }
         }
 
-        private void ConnectToNextEndpoint()
+        private void ConnectToNextEndpoint(bool skipCurrentIp)
         {
-            _endpoint = _candidates.NextHost(_config);
+            _endpoint = skipCurrentIp ? _candidates.NextIp(_config) : _candidates.NextHost(_config);
             bool isEndpointAvailableToConnect = _endpoint?.Server != null && !_endpoint.Server.IsEmpty();
             if (isEndpointAvailableToConnect)
             {
