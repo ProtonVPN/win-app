@@ -22,8 +22,10 @@ using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -33,13 +35,15 @@ namespace ProtonVPN.Client.UI.Main.FeatureIcons;
 public abstract class FeatureIconViewModelBase : ViewModelBase,
     IEventMessageReceiver<ThemeChangedMessage>,
     IEventMessageReceiver<SettingChangedMessage>,
-    IEventMessageReceiver<ConnectionStatusChangedMessage>
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
+    IEventMessageReceiver<LoggedInMessage>,
+    IEventMessageReceiver<VpnPlanChangedMessage>
 {
     private readonly IConnectionManager _connectionManager;
 
     public ImageSource Icon => GetImageSource();
 
-    public bool IsDimmed => IsFeatureEnabled && !_connectionManager.IsConnected;
+    public virtual bool IsDimmed => IsFeatureEnabled && !_connectionManager.IsConnected;
 
     protected abstract bool IsFeatureEnabled { get; }
 
@@ -56,6 +60,16 @@ public abstract class FeatureIconViewModelBase : ViewModelBase,
     public void Receive(ThemeChangedMessage message)
     {
         ExecuteOnUIThread(InvalidateIcon);
+    }
+
+    public void Receive(LoggedInMessage message)
+    {
+        ExecuteOnUIThread(InvalidateAllProperties);
+    }
+
+    public void Receive(VpnPlanChangedMessage message)
+    {
+        ExecuteOnUIThread(InvalidateAllProperties);
     }
 
     public void Receive(SettingChangedMessage message)

@@ -108,7 +108,8 @@ public abstract partial class ConnectionItemBase : ModelBase, IConnectionItem
 
     public virtual void InvalidateIsActiveConnection(ConnectionDetails? currentConnectionDetails)
     {
-        IsActiveConnection = MatchesActiveConnection(currentConnectionDetails);
+        IsActiveConnection = ConnectionManager.IsConnected
+                          && MatchesActiveConnection(currentConnectionDetails);
     }
 
     public virtual void InvalidateIsRestricted(bool isPaidUser)

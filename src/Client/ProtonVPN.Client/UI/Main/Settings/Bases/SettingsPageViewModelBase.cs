@@ -46,8 +46,7 @@ namespace ProtonVPN.Client.UI.Main;
 public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISettingsViewNavigator>,
     IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
-    private readonly IRequiredReconnectionSettings _requiredReconnectionSettings;
-
+    protected readonly IRequiredReconnectionSettings RequiredReconnectionSettings;
     protected readonly IMainViewNavigator MainViewNavigator;
     protected readonly IMainWindowOverlayActivator MainWindowOverlayActivator;
     protected readonly ISettings Settings;
@@ -75,7 +74,7 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
         IConnectionManager connectionManager)
         : base(settingsViewNavigator, localizer, logger, issueReporter)
     {
-        _requiredReconnectionSettings = requiredReconnectionSettings;
+        RequiredReconnectionSettings = requiredReconnectionSettings;
         MainViewNavigator = mainViewNavigator;
         MainWindowOverlayActivator = mainWindowOverlayActivator;
         Settings = settings;
@@ -264,10 +263,17 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
             return false;
         }
 
+        IEnumerable<ChangedSettingArgs> changedSettings = GetChangedSettings();
+
+        return IsReconnectionRequiredDueToChanges(changedSettings)
+            || IsReconnectionRequiredDueToConflicts(changedSettings);
+    }
+
+    protected virtual bool IsReconnectionRequiredDueToChanges(IEnumerable<ChangedSettingArgs> changedSettings)
+    {
         IConnectionIntent? currentConnectionIntent = ConnectionManager.CurrentConnectionIntent;
         bool isConnectionProfile = currentConnectionIntent is IConnectionProfile;
 
-        IEnumerable<ChangedSettingArgs> changedSettings = GetChangedSettings();
         foreach (ChangedSettingArgs changedSetting in changedSettings)
         {
             if (isConnectionProfile && IgnorableProfileReconnectionSettings.Contains(changedSetting.Name))
@@ -275,17 +281,26 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
                 continue;
             }
 
-            if (_requiredReconnectionSettings.IsReconnectionRequired(changedSetting.Name))
+            if (RequiredReconnectionSettings.IsReconnectionRequired(changedSetting.Name))
             {
                 return true;
             }
+        }
 
+        return false;
+    }
+
+    private bool IsReconnectionRequiredDueToConflicts(IEnumerable<ChangedSettingArgs> changedSettings)
+    {
+        foreach (ChangedSettingArgs changedSetting in changedSettings)
+        {
             ISettingsConflict? conflict = SettingsConflictResolver.GetConflict(changedSetting.Name, changedSetting.NewValue);
             if (conflict is not null && conflict.IsReconnectionRequired)
             {
                 return true;
             }
         }
+
         return false;
     }
 

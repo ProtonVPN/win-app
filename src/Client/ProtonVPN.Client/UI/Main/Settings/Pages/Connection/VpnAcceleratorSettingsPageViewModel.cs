@@ -28,22 +28,23 @@ using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
+using ProtonVPN.Client.Contracts.Services.Browsing;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.Connection;
 
 public partial class VpnAcceleratorSettingsPageViewModel : SettingsPageViewModelBase
 {
-    private readonly IUrls _urls;
+    private readonly IUrlsBrowser _urlsBrowser;
 
     [ObservableProperty]
     private bool _isVpnAcceleratorEnabled;
 
     public override string Title => Localizer.Get("Settings_Connection_VpnAccelerator");
 
-    public string LearnMoreUrl => _urls.VpnAcceleratorLearnMore;
+    public string LearnMoreUrl => _urlsBrowser.VpnAcceleratorLearnMore;
 
     public VpnAcceleratorSettingsPageViewModel(
-        IUrls urls,
+        IUrlsBrowser urlsBrowser,
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
@@ -65,7 +66,7 @@ public partial class VpnAcceleratorSettingsPageViewModel : SettingsPageViewModel
                settingsConflictResolver,
                connectionManager)
     {
-        _urls = urls;
+        _urlsBrowser = urlsBrowser;
     }
 
     protected override void OnSaveSettings()

@@ -37,6 +37,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                       x:DataType="fields:SingleLineTextInputField">
             <TextBox HorizontalAlignment="Stretch"
                      attached:FieldValidation.HasErrors="{x:Bind HasErrors, Mode=OneWay}"
+                     Style="{StaticResource ValidationTextBoxStyle}"
                      AutomationProperties.AutomationId="SingleLineTextInputField"
                      Header="{x:Bind Name, Mode=OneTime}"
                      PlaceholderText="{x:Bind Placeholder, Mode=OneTime}"
@@ -49,6 +50,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                      HorizontalAlignment="Stretch"
                      attached:FieldValidation.HasErrors="{x:Bind HasErrors, Mode=OneWay}"
                      AcceptsReturn="True"
+                     Style="{StaticResource ValidationTextBoxStyle}"
                      AutomationProperties.AutomationId="MultiLineTextInputField"
                      Header="{x:Bind Name, Mode=OneTime}"
                      PlaceholderText="{x:Bind Placeholder, Mode=OneTime}"
@@ -60,6 +62,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                       x:DataType="fields:EmailInputField">
             <TextBox HorizontalAlignment="Stretch"
                      attached:FieldValidation.HasErrors="{x:Bind HasErrors, Mode=OneWay}"
+                     Style="{StaticResource ValidationTextBoxStyle}"
                      AutomationProperties.AutomationId="EmailInputField"
                      Header="{x:Bind Name, Mode=OneTime}"
                      IsSpellCheckEnabled="False"

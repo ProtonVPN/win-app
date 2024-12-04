@@ -59,6 +59,8 @@ public abstract partial class HostLocationItemBase<TLocation> : LocationItemBase
 
     public SmartObservableCollection<ConnectionItemBase> SubItems { get; } = [];
 
+    protected virtual bool IsSubGroupHeaderHidden => false;
+
     protected HostLocationItemBase(
         ILocalizationProvider localizer,
         IServersLoader serversLoader,
@@ -142,11 +144,9 @@ public abstract partial class HostLocationItemBase<TLocation> : LocationItemBase
 
     private void GroupSubItems()
     {
-        bool isHeaderHidden = this is CountryLocationItem or P2PCountryLocationItem;
-
         SubGroups.Reset(
             SubItems.GroupBy(item => item.GroupType)
-                    .Select(group => ConnectionGroupFactory.GetGroup(group.Key, group, showHeader: !isHeaderHidden)));
+                    .Select(group => ConnectionGroupFactory.GetGroup(group.Key, group, showHeader: !IsSubGroupHeaderHidden)));
     }
 
     [RelayCommand(CanExecute = nameof(CanShowSmartRoutingOverlay))]

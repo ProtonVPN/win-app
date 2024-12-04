@@ -141,9 +141,4 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="FontWeight" Value="{StaticResource CaptionFontWeight}" />
     </Style>
 
-    <!--  Errors  -->
-    <Style x:Key="ErrorTextBlock" BasedOn="{StaticResource CaptionTextBlockStyle}" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="{ThemeResource SignalDangerColor}" />
-    </Style>
-
 </ResourceDictionary>

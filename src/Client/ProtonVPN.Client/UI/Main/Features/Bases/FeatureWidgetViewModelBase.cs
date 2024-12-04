@@ -33,7 +33,6 @@ using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.UI.Main.Settings;
-using ProtonVPN.Client.UI.Main.Settings.Connection;
 using ProtonVPN.Client.UI.Main.Widgets.Bases;
 using ProtonVPN.Client.UI.Main.Widgets.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
@@ -114,7 +113,7 @@ public abstract partial class FeatureWidgetViewModelBase : SideWidgetViewModelBa
 
     public void Receive(VpnPlanChangedMessage message)
     {
-        ExecuteOnUIThread(() => OnPropertyChanged(nameof(IsRestricted)));
+        ExecuteOnUIThread(InvalidateAllProperties);
     }
 
     public void Receive(LoggedInMessage message)

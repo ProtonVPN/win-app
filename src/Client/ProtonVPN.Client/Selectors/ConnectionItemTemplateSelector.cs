@@ -64,8 +64,8 @@ public class ConnectionItemTemplateSelector : DataTemplateSelector
 
             GenericCountryLocationItem => GenericCountryLocationItemTemplate,
             CountryLocationItem or
-            P2PCountryLocationItem => CountryLocationWithExpanderItemTemplate,
-            SecureCoreCountryLocationItem or
+            P2PCountryLocationItem or
+            SecureCoreCountryLocationItem => CountryLocationWithExpanderItemTemplate,
             TorCountryLocationItem => CountryLocationWithFlyoutItemTemplate,
             SecureCoreCountryPairLocationItem => CountryPairLocationItemTemplate,
             StateLocationItemBase => StateLocationItemTemplate,

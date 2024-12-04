@@ -49,19 +49,29 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <ContentControl Grid.Column="0"
                             Width="452"
-                            Padding="32"
+                            Padding="32,24"
                             Style="{StaticResource PaneContentControlStyle}">
-                <Grid>
+                <Grid RowSpacing="12">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Image Height="45"
+                           Grid.Row="0"
+                           HorizontalAlignment="Left"
+                           Source="{ThemeResource ProductLogoIllustrationSource}"
+                           Stretch="Uniform" />
+
                     <Frame x:Name="LoginNavigationFrame"
+                           Grid.Row="1"
                            IsNavigationStackEnabled="{x:Bind Navigator.IsNavigationStackEnabled}" />
 
-                    <StackPanel HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
-                                Spacing="12">
-                        <Image Width="200"
-                               HorizontalAlignment="Left"
-                               Source="{ThemeResource ProductLogoIllustrationSource}"
-                               Stretch="Uniform" />
+                    <StackPanel VerticalAlignment="Top"
+                                Grid.Row="1"
+                                Spacing="12"
+                                Margin="-12,0">
 
                         <components:DisableKillSwitchBannerComponent />
 
@@ -69,11 +79,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                  IsOpen="{x:Bind ViewModel.IsMessageVisible}"
                                  Message="{x:Bind ViewModel.Message}"
                                  Severity="{x:Bind ViewModel.MessageType}" />
+                        
                     </StackPanel>
 
-                    <custom:GhostButton Margin="0,16,0,0"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Bottom"
+                    <custom:GhostButton HorizontalAlignment="Center"
+                                        Grid.Row="2"
                                         AutomationProperties.AutomationId="HelpButton"
                                         Content="{x:Bind ViewModel.Localizer.Get('SignIn_Form_Help')}"
                                         Style="{ThemeResource PrimaryGhostButtonStyle}"
@@ -128,7 +138,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                TextAlignment="Center"
                                TextWrapping="Wrap" />
 
-                    <ItemsControl>
+                    <ItemsControl HorizontalAlignment="Center">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <controls:WrapPanel HorizontalAlignment="Left"

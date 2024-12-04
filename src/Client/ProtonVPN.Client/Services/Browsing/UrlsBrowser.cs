@@ -49,7 +49,9 @@ public class UrlsBrowser : IUrlsBrowser
 
     public string InternetSpeedLearnMore => "https://protonvpn.com/support/how-latency-bandwidth-throughput-impact-internet-speed";
 
-    public string NatTypeLearnMore => "https://protonvpn.com/support/moderate-nat";
+    public string NatTypeLearnMore => "https://protonvpn.com/support/moderate-nat"; 
+    
+    public string Ipv6LeakProtectionLearnMore => "https://protonvpn.com/support/prevent-ipv6-vpn-leaks";
 
     public string SupportCenter => "https://protonvpn.com/support";
 
@@ -82,6 +84,14 @@ public class UrlsBrowser : IUrlsBrowser
     public string ProtonStatusPage => "https://protonstatus.com";
 
     public string SupportForm => "https://protonvpn.com/support-form";
+
+    public string DownloadsPage => "https://protonvpn.com/download";
+
+    public string IpAddressLearnMore => "https://protonvpn.com/blog/what-is-an-ip-address";
+
+    public string IspLearnMore => "https://protonvpn.com/blog/isp";
+
+    public string IncreaseVpnSpeeds => "https://protonvpn.com/support/increase-vpn-speeds";
 
     public void BrowseTo(string url)
     {

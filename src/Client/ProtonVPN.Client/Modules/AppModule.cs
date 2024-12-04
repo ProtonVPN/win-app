@@ -37,18 +37,18 @@ using ProtonVPN.Client.Logic.Servers.Installers;
 using ProtonVPN.Client.Logic.Services.Installers;
 using ProtonVPN.Client.Logic.Updates.Installers;
 using ProtonVPN.Client.Logic.Users.Installers;
-using ProtonVPN.Client.Models.Clipboards;
-using ProtonVPN.Client.Models.SystemTimes;
 using ProtonVPN.Client.Notifications.Installers;
 using ProtonVPN.Client.Services.Activation;
 using ProtonVPN.Client.Services.Bootstrapping;
 using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Services.Dispatching;
+using ProtonVPN.Client.Services.Edition;
 using ProtonVPN.Client.Services.Mapping;
 using ProtonVPN.Client.Services.Navigation;
 using ProtonVPN.Client.Services.Notification;
 using ProtonVPN.Client.Services.Selection;
 using ProtonVPN.Client.Services.SignoutHandling;
+using ProtonVPN.Client.Services.Validation;
 using ProtonVPN.Client.Services.Verification;
 using ProtonVPN.Client.Settings.Installers;
 using ProtonVPN.Client.UI;
@@ -190,6 +190,7 @@ public class AppModule : Module
         builder.RegisterType<HumanVerifier>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<HumanVerificationConfig>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<UrlsBrowser>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ClipboardEditor>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<SignOutHandler>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<MainWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
@@ -201,8 +202,6 @@ public class AppModule : Module
         builder.RegisterType<SidebarViewNavigator>().AsSelf().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ConnectionsViewNavigator>().AsSelf().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<SettingsViewNavigator>().AsSelf().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<ClipboardEditor>().As<IClipboardEditor>().SingleInstance();
-        builder.RegisterType<Urls>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<ReportIssueWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ReportIssueWindowOverlayActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();

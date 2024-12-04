@@ -50,7 +50,7 @@ public class PortForwardingIconViewModel : FeatureIconViewModelBase
     protected override ImageSource GetImageSource()
     {
         return ResourceHelper.GetIllustration(
-            _settings.IsPortForwardingEnabled
+            IsFeatureEnabled
                 ? "PortForwardingOnIllustrationSource"
                 : "PortForwardingOffIllustrationSource",
             _themeSelector.GetTheme());

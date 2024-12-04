@@ -50,7 +50,7 @@ public class SplitTunnelingIconViewModel : FeatureIconViewModelBase
     protected override ImageSource GetImageSource()
     {
         return ResourceHelper.GetIllustration(
-            _settings.IsSplitTunnelingEnabled
+            IsFeatureEnabled
                 ? "SplitTunnelingOnIllustrationSource"
                 : "SplitTunnelingOffIllustrationSource",
             _themeSelector.GetTheme());

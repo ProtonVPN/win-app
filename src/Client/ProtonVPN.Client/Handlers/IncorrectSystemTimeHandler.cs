@@ -20,6 +20,7 @@
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Common.Models;
+using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Notification;
@@ -37,7 +38,7 @@ public class IncorrectSystemTimeHandler : IHandler, IEventMessageReceiver<Incorr
     private readonly IMainWindowActivator _mainWindowActivator;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
     private readonly IUIThreadDispatcher _uiThreadDispatcher;
-    private readonly IUrls _urls;
+    private readonly IUrlsBrowser _urlsBrowser;
 
     private readonly string _articleUrl;
 
@@ -45,14 +46,14 @@ public class IncorrectSystemTimeHandler : IHandler, IEventMessageReceiver<Incorr
         IMainWindowActivator mainWindowActivator,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         IUIThreadDispatcher uiThreadDispatcher,
-        IUrls urls,
+        IUrlsBrowser urlsBrowser,
         IConfiguration config)
     {
         _localizer = localizer;
         _mainWindowActivator = mainWindowActivator;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
         _uiThreadDispatcher = uiThreadDispatcher;
-        _urls = urls;
+        _urlsBrowser = urlsBrowser;
 
         _articleUrl = config.Urls.IncorrectSystemTimeArticleUrl;
     }
@@ -79,7 +80,7 @@ public class IncorrectSystemTimeHandler : IHandler, IEventMessageReceiver<Incorr
 
         if (result is ContentDialogResult.Primary)
         {
-            _urls.NavigateTo(_articleUrl);
+            _urlsBrowser.BrowseTo(_articleUrl);
         }
     }
 }

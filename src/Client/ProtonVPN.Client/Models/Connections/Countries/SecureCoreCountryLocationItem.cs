@@ -34,6 +34,8 @@ public class SecureCoreCountryLocationItem : CountryLocationItemBase
 
     public override IFeatureIntent? FeatureIntent { get; } = new SecureCoreFeatureIntent();
 
+    protected override bool IsSubGroupHeaderHidden => true;
+
     public SecureCoreCountryLocationItem(
         ILocalizationProvider localizer,
         IServersLoader serversLoader,
@@ -51,7 +53,9 @@ public class SecureCoreCountryLocationItem : CountryLocationItemBase
                connectionGroupFactory,
                locationItemFactory,
                country)
-    { }
+    {
+        FetchSubItems();
+    }
 
     protected override IEnumerable<ConnectionItemBase> GetSubItems()
     {

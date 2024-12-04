@@ -74,6 +74,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <SolidColorBrush x:Key="MapHighlightColorBrush" Color="{StaticResource MapHighlightColor}" />
             <!--  Signal  -->
             <SolidColorBrush x:Key="SignalDangerColorBrush" Color="{StaticResource SignalDangerColor}" />
+            <SolidColorBrush x:Key="SignalDangerWeakColorBrush" Color="{StaticResource SignalDangerColor}" Opacity="0.1" />
             <SolidColorBrush x:Key="SignalWarningColorBrush" Color="{StaticResource SignalWarningColor}" />
             <SolidColorBrush x:Key="SignalSuccessColorBrush" Color="{StaticResource SignalSuccessColor}" />
             <!--  Backdrop  -->
@@ -219,6 +220,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <SolidColorBrush x:Key="MapHighlightColorBrush" Color="{StaticResource MapHighlightColor}" />
             <!--  Signal  -->
             <SolidColorBrush x:Key="SignalDangerColorBrush" Color="{StaticResource SignalDangerColor}" />
+            <SolidColorBrush x:Key="SignalDangerWeakColorBrush" Color="{StaticResource SignalDangerColor}" Opacity="0.1" />
             <SolidColorBrush x:Key="SignalWarningColorBrush" Color="{StaticResource SignalWarningColor}" />
             <SolidColorBrush x:Key="SignalSuccessColorBrush" Color="{StaticResource SignalSuccessColor}" />
             <!--  Backdrop  -->

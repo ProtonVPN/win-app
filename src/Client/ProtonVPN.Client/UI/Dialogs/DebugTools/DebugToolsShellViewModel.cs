@@ -36,6 +36,7 @@ using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Dialogs.DebugTools.Models;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
 namespace ProtonVPN.Client.UI.Dialogs.DebugTools;
 
@@ -54,6 +55,9 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
 
     [ObservableProperty]
     private Overlay? _selectedOverlay;
+
+    [ObservableProperty]
+    private VpnErrorTypeIpcEntity _selectedError = VpnErrorTypeIpcEntity.None;
 
     public List<Overlay> OverlaysList { get; }
 
@@ -167,5 +171,14 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
         displayName = Regex.Replace(displayName, "(?<=[a-z])([A-Z])", " $1");
 
         return displayName.Trim();
+    }
+
+    [RelayCommand]
+    private void TriggerConnectionError()
+    {
+        _eventMessageSender.Send(new VpnStateIpcEntity()
+        {
+            Error = SelectedError
+        });
     }
 }

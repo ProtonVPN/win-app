@@ -18,6 +18,7 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
@@ -33,23 +34,23 @@ public partial class ServerLoadFlyoutViewModel : ActivatableViewModelBase,
     IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<NetworkTrafficChangedMessage>
 {
-    private readonly IUrls _urls;
+    private readonly IUrlsBrowser _urlsBrowser;
     private readonly IConnectionManager _connectionManager;
 
     [ObservableProperty]
     private double _serverLoad;
 
-    public string ServerLoadLearnMoreUri => _urls.ServerLoadLearnMore;
+    public string ServerLoadLearnMoreUri => _urlsBrowser.ServerLoadLearnMore;
 
     public ServerLoadFlyoutViewModel(
-        IUrls urls,
+        IUrlsBrowser urlsBrowser,
         IConnectionManager connectionManager,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter) :
         base(localizer, logger, issueReporter)
     {
-        _urls = urls;
+        _urlsBrowser = urlsBrowser;
         _connectionManager = connectionManager;
     }
 

@@ -19,6 +19,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Media;
+using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Helpers;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
@@ -36,7 +37,7 @@ namespace ProtonVPN.Client.UI.Main.Settings.Connection;
 
 public partial class PortForwardingPageViewModel : SettingsPageViewModelBase
 {
-    private readonly IUrls _urls;
+    private readonly IUrlsBrowser _urlsBrowser;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(PortForwardingFeatureIconSource))]
@@ -54,10 +55,10 @@ public partial class PortForwardingPageViewModel : SettingsPageViewModelBase
 
     public ImageSource PortForwardingFeatureIconSource => GetFeatureIconSource(IsPortForwardingEnabled);
 
-    public string LearnMoreUrl => _urls.PortForwardingLearnMore;
+    public string LearnMoreUrl => _urlsBrowser.PortForwardingLearnMore;
 
     public PortForwardingPageViewModel(
-        IUrls urls,
+        IUrlsBrowser urlsBrowser,
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
@@ -79,7 +80,7 @@ public partial class PortForwardingPageViewModel : SettingsPageViewModelBase
                settingsConflictResolver,
                connectionManager)
     {
-        _urls = urls;
+        _urlsBrowser = urlsBrowser;
     }
 
     public static ImageSource GetFeatureIconSource(bool isEnabled)

@@ -18,9 +18,10 @@
  */
 
 using System;
-using System.Drawing;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.UI;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Common.Interop;
 using ProtonVPN.Client.Common.Models;
@@ -81,19 +82,95 @@ public static class WindowExtensions
         }
     }
 
-    public static void SetDragArea(this Window window, double width, double height, int horizontalOffset)
+    public static void SetDragArea(this Window window, double width, double height)
     {
         double scaleAdjustment = window.GetDpiForWindow() / 96.0;
-        Point relativeFromWindow = new Point(horizontalOffset, 1);
 
-        RectInt32 dragRect;
-        dragRect.Height = (int)(height * scaleAdjustment);
-        dragRect.Width = (int)(width * scaleAdjustment);
-        dragRect.X = (int)(relativeFromWindow.X * scaleAdjustment);
-        dragRect.Y = (int)(relativeFromWindow.Y * scaleAdjustment);
+        // Scale the dimensions
+        int scaledWidth = (int)(width * scaleAdjustment);
+        int scaledHeight = (int)(height * scaleAdjustment);
 
-        RectInt32[] gripArray = [dragRect];
-        window.AppWindow.TitleBar.SetDragRectangles(gripArray);
+        RectInt32 dragRect = new()
+        {
+            X = 0,
+            Y = 0,
+            Width = scaledWidth,
+            Height = scaledHeight
+        };
+
+        window.AppWindow.TitleBar.SetDragRectangles([dragRect]);
+    }
+
+    public static void SetDragArea(this Window window, double width, double height, RectInt32 gap)
+    {
+        double scaleAdjustment = window.GetDpiForWindow() / 96.0;
+
+        // Scale the dimensions
+        int scaledWidth = (int)(width * scaleAdjustment);
+        int scaledHeight = (int)(height * scaleAdjustment);
+
+        // Scale the gap
+        RectInt32 scaledGap = new RectInt32
+        {
+            X = (int)(gap.X * scaleAdjustment),
+            Y = (int)(gap.Y * scaleAdjustment),
+            Width = (int)(gap.Width * scaleAdjustment),
+            Height = (int)(gap.Height * scaleAdjustment)
+        };
+
+        // Define rectangles around the gap
+        List<RectInt32> dragRects = new List<RectInt32>();
+
+        // Left area
+        if (scaledGap.X > 0)
+        {
+            dragRects.Add(new RectInt32
+            {
+                X = 0,
+                Y = 0,
+                Width = scaledGap.X,
+                Height = scaledHeight
+            });
+        }
+
+        // Right area
+        if (scaledGap.X + scaledGap.Width < scaledWidth)
+        {
+            dragRects.Add(new RectInt32
+            {
+                X = scaledGap.X + scaledGap.Width,
+                Y = 0,
+                Width = scaledWidth - (scaledGap.X + scaledGap.Width),
+                Height = scaledHeight
+            });
+        }
+
+        // Top area (if needed to leave a gap above the button)
+        if (scaledGap.Y > 0)
+        {
+            dragRects.Add(new RectInt32
+            {
+                X = scaledGap.X,
+                Y = 0,
+                Width = scaledGap.Width,
+                Height = scaledGap.Y
+            });
+        }
+
+        // Bottom area (if needed to leave a gap below the button)
+        if (scaledGap.Y + scaledGap.Height < scaledHeight)
+        {
+            dragRects.Add(new RectInt32
+            {
+                X = scaledGap.X,
+                Y = scaledGap.Y + scaledGap.Height,
+                Width = scaledGap.Width,
+                Height = scaledHeight - (scaledGap.Y + scaledGap.Height)
+            });
+        }
+
+        // Set the drag rectangles
+        window.AppWindow.TitleBar.SetDragRectangles(dragRects.ToArray());
     }
 
     public static void SetPosition(this Window window, WindowPositionParameters parameters)
@@ -157,5 +234,14 @@ public static class WindowExtensions
     {
         return window.Content?.XamlRoot
             ?? throw new InvalidOperationException("Cannot proceed, XamlRoot is undefined.");
+    }
+
+    public static void CenterOnMainWindowMonitor(this Window window, Window mainWindow)
+    {
+        // Get the monitor area where the main window is located
+        RectInt32 monitorArea = DisplayArea.GetFromWindowId(mainWindow.AppWindow.Id, DisplayAreaFallback.Nearest).WorkArea;
+
+        window.Move(monitorArea.X, monitorArea.Y);
+        window.CenterOnScreen();
     }
 }

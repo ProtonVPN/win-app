@@ -75,8 +75,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     </UserControl.Resources>
 
-    <ContentControl Style="{StaticResource PaneContentControlStyle}"
-                    IsHitTestVisible="{x:Bind IsHitTestVisible}">
+    <ContentControl Style="{StaticResource PaneContentControlStyle}">
         
         <Grid>
 

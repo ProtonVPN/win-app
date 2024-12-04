@@ -41,12 +41,21 @@ using ProtonVPN.Common.Legacy.Abstract;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using Windows.System;
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
+using ProtonVPN.Common.Legacy.Abstract;
+using ProtonVPN.Client.Settings.Contracts.Observers;
+using ProtonVPN.Client.Core.Messages;
+using ProtonVPN.Client.UI.Login.Overlays;
+using ProtonVPN.Client.Services.Browsing;
+using ProtonVPN.Client.Core.Enums;
+using ProtonVPN.Client.Contracts.Services.Browsing;
 
 namespace ProtonVPN.Client.UI.Login.Pages;
 
 public partial class SignInPageViewModel : LoginPageViewModelBase
 {
-    private readonly IUrls _urls;
+    private readonly IUrlsBrowser _urlsBrowser;
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IApiAvailabilityVerifier _apiAvailabilityVerifier;
@@ -107,7 +116,7 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
         _ => string.Empty
     };
 
-    public string CreateAccountUrl => _urls.CreateAccount;
+    public string CreateAccountUrl => _urlsBrowser.CreateAccount;
 
     private bool CanCreateAccount => !IsToShowCreateAccountSpinner;
 
@@ -116,7 +125,7 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter,
-        IUrls urls,
+        IUrlsBrowser urlsBrowser,
         IUserAuthenticator userAuthenticator,
         IEventMessageSender eventMessageSender,
         IApiAvailabilityVerifier apiAvailabilityVerifier,
@@ -125,7 +134,7 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
         SsoLoginOverlayViewModel ssoLoginOverlayViewModel)
         : base(parentViewNavigator, localizer, logger, issueReporter)
     {
-        _urls = urls;
+        _urlsBrowser = urlsBrowser;
         _userAuthenticator = userAuthenticator;
         _eventMessageSender = eventMessageSender;
         _apiAvailabilityVerifier = apiAvailabilityVerifier;
@@ -282,7 +291,7 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
 
     private async Task<Result> OpenCreateAccountPageAsync()
     {
-        await Launcher.LaunchUriAsync(new Uri(_urls.CreateAccount));
+        await Launcher.LaunchUriAsync(new Uri(_urlsBrowser.CreateAccount));
         return Result.Ok();
     }
 

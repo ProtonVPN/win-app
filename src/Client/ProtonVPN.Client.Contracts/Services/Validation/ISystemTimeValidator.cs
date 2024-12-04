@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Models.SystemTimes;
+namespace ProtonVPN.Client.Contracts.Services.Validation;
 
 public interface ISystemTimeValidator
 {

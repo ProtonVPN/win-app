@@ -30,6 +30,7 @@ public interface IUrlsBrowser
     string ServerLoadLearnMore { get; }
     string InternetSpeedLearnMore { get; }
     string NatTypeLearnMore { get; }
+    string Ipv6LeakProtectionLearnMore { get; }
     string SupportCenter { get; }
     string UsageStatisticsLearnMore { get; }
     string NetShieldLearnMore { get; }
@@ -46,6 +47,10 @@ public interface IUrlsBrowser
     string ProtonStatusPage { get; }
     string SupportForm { get; }
     string NoLogs { get; }
+    string DownloadsPage { get; }
+    string IpAddressLearnMore { get; }
+    string IspLearnMore { get; }
+    string IncreaseVpnSpeeds { get; }
 
     void BrowseTo(string url);
 }

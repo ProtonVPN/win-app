@@ -28,24 +28,6 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 namespace ProtonVPN.Client.Models.Connections;
 
-public abstract partial class LocationItemBase<TLocation> : LocationItemBase
-    where TLocation : ILocation
-{
-    protected LocationItemBase(
-        ILocalizationProvider localizer,
-        IServersLoader serversLoader,
-        IConnectionManager connectionManager,
-        IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
-        TLocation location)
-        : base(localizer,
-               serversLoader,
-               connectionManager,
-               upsellCarouselWindowActivator)
-    {
-        IsUnderMaintenance = location.IsLocationUnderMaintenance();
-    }
-}
-
 public abstract partial class LocationItemBase : ConnectionItemBase, ILocationItem
 {
     public override string SecondaryCommandAutomationId => $"Navigate_to_{AutomationName}";
@@ -69,5 +51,23 @@ public abstract partial class LocationItemBase : ConnectionItemBase, ILocationIt
     public override IConnectionIntent GetConnectionIntent()
     {
         return new ConnectionIntent(LocationIntent, FeatureIntent);
+    }
+}
+
+public abstract partial class LocationItemBase<TLocation> : LocationItemBase
+    where TLocation : ILocation
+{
+    protected LocationItemBase(
+        ILocalizationProvider localizer,
+        IServersLoader serversLoader,
+        IConnectionManager connectionManager,
+        IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
+        TLocation location)
+        : base(localizer,
+               serversLoader,
+               connectionManager,
+               upsellCarouselWindowActivator)
+    {
+        IsUnderMaintenance = location.IsLocationUnderMaintenance();
     }
 }

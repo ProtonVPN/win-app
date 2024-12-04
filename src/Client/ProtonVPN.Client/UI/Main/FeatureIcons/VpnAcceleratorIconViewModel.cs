@@ -45,12 +45,12 @@ public class VpnAcceleratorIconViewModel : FeatureIconViewModelBase
         _themeSelector = themeSelector;
     }
 
-    protected override bool IsFeatureEnabled => _settings.IsVpnAcceleratorEnabled;
+    protected override bool IsFeatureEnabled => _settings.VpnPlan.IsPaid && _settings.IsVpnAcceleratorEnabled;
 
     protected override ImageSource GetImageSource()
     {
         return ResourceHelper.GetIllustration(
-            _settings.IsVpnAcceleratorEnabled
+            IsFeatureEnabled
                 ? "VpnAcceleratorOnIllustrationSource"
                 : "VpnAcceleratorOffIllustrationSource",
             _themeSelector.GetTheme());

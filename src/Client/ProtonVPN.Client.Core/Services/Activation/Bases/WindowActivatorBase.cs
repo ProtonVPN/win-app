@@ -71,6 +71,7 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
 
         Host?.Show();
         Host?.SetForegroundWindow();
+
         if (Host?.WindowState == WindowState.Minimized)
         {
             Host.WindowState = Settings.IsWindowMaximized ? WindowState.Maximized : WindowState.Normal; 

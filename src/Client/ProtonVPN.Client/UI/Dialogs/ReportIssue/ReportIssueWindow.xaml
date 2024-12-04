@@ -29,8 +29,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
               IsResizable="False"
               IsMaximizable="False"
               IsMinimizable="False"
-              Width="556"
-              Height="700"
+              Width="456"
+              Height="659"
               x:DefaultBindMode="OneWay"
               mc:Ignorable="d">
 

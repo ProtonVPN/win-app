@@ -27,7 +27,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
               xmlns:wex="using:WinUIEx" 
               xmlns:local="using:ProtonVPN.Client.UI.Dialogs.DebugTools"
               Width="560"
-              Height="700"
+              Height="659"
               x:DefaultBindMode="OneWay"
               IsMaximizable="False"
               IsMinimizable="False"

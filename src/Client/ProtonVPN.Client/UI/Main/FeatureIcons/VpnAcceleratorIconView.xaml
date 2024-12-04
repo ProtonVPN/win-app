@@ -23,9 +23,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="using:ProtonVPN.Client.UI.Main.FeatureIcons"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
-    <Image Source="{x:Bind ViewModel.Icon}" />
+    <custom:DimmableImage IconSource="{x:Bind ViewModel.Icon}"
+                          IsDimmed="{x:Bind ViewModel.IsDimmed}" />
 </UserControl>

@@ -27,6 +27,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:featureicons="using:ProtonVPN.Client.UI.Main.FeatureIcons"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+             xmlns:ui="using:CommunityToolkit.WinUI"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
@@ -117,15 +118,23 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                          Text="{x:Bind ViewModel.Header}"
                          Visibility="{x:Bind ViewModel.IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
         <Grid>
-            <featureicons:NetShieldIconView />
+            <featureicons:NetShieldIconView x:Name="FeatureIcon" />
             <Canvas>
                 <InfoBadge Grid.Column="1"
-                           Canvas.Left="15"
+                           Canvas.Left="20"
                            Canvas.Top="-5"
                            Background="{ThemeResource VpnGreenColorBrush}"
+                           BorderBrush="Black"
+                           BorderThickness="2"
                            Foreground="{ThemeResource TextInvertColorBrush}"
-                           Value="{x:Bind ViewModel.TotalAdsAndTrackersBlocked}" 
-                           Visibility="{x:Bind ViewModel.IsNetShieldStatsPanelVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                           Visibility="{x:Bind ViewModel.IsNetShieldStatsPanelVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                           Value="{x:Bind ViewModel.TotalAdsAndTrackersBlocked}">
+                    <ui:Effects.Shadow>
+                        <ui:AttachedDropShadow CastTo="{x:Bind FeatureIcon}"
+                                               CornerRadius="16"
+                                               Offset="-4,2" />
+                    </ui:Effects.Shadow>
+                </InfoBadge>
             </Canvas>
         </Grid>
     </custom:WidgetButton>

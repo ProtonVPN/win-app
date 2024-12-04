@@ -19,6 +19,7 @@
 
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Common.Models;
+using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Localization.Contracts;
@@ -35,14 +36,14 @@ namespace ProtonVPN.Client.UI.Main.Settings.Pages;
 
 public partial class DebugLogsPageViewModel : SettingsPageViewModelBase
 {
-    private readonly IUrls _urls;
+    private readonly IUrlsBrowser _urlsBrowser;
     private readonly IStaticConfiguration _staticConfig;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
 
     public override string Title => Localizer.Get("Settings_Support_DebugLogs");
 
     public DebugLogsPageViewModel(
-        IUrls urls,
+        IUrlsBrowser urlsBrowser,
         IStaticConfiguration staticConfig,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         IRequiredReconnectionSettings requiredReconnectionSettings,
@@ -65,7 +66,7 @@ public partial class DebugLogsPageViewModel : SettingsPageViewModelBase
                settingsConflictResolver,
                connectionManager)
     {
-        _urls = urls;
+        _urlsBrowser = urlsBrowser;
         _staticConfig = staticConfig;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
     }
@@ -95,7 +96,7 @@ public partial class DebugLogsPageViewModel : SettingsPageViewModelBase
             return;
         }
 
-        _urls.NavigateTo(logFolder);
+        _urlsBrowser.BrowseTo(logFolder);
     }
 
     protected override IEnumerable<ChangedSettingArgs> GetSettings()

@@ -34,6 +34,7 @@ using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
+using ProtonVPN.Client.Contracts.Services.Browsing;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.Connection;
 
@@ -41,7 +42,7 @@ public partial class ProtocolSettingsPageViewModel : SettingsPageViewModelBase,
     IEventMessageReceiver<FeatureFlagsChangedMessage>
 {
     private readonly IFeatureFlagsObserver _featureFlagsObserver;
-    private readonly IUrls _urls;
+    private readonly IUrlsBrowser _urlsBrowser;
 
     [ObservableProperty]
     [property: SettingName(nameof(ISettings.VpnProtocol))]
@@ -95,10 +96,10 @@ public partial class ProtocolSettingsPageViewModel : SettingsPageViewModelBase,
 
     public bool IsStealthVisible => _featureFlagsObserver.IsStealthEnabled;
 
-    public string LearnMoreUrl => _urls.ProtocolsLearnMore;
+    public string LearnMoreUrl => _urlsBrowser.ProtocolsLearnMore;
 
     public ProtocolSettingsPageViewModel(
-        IUrls urls,
+        IUrlsBrowser urlsBrowser,
         IFeatureFlagsObserver featureFlagsObserver,
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
@@ -121,7 +122,7 @@ public partial class ProtocolSettingsPageViewModel : SettingsPageViewModelBase,
                settingsConflictResolver,
                connectionManager)
     {
-        _urls = urls;
+        _urlsBrowser = urlsBrowser;
         _featureFlagsObserver = featureFlagsObserver;
     }
 

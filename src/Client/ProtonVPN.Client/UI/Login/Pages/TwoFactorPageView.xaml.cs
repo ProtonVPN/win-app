@@ -24,12 +24,15 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using ProtonVPN.Client.Core.Bases;
+using ProtonVPN.Client.Contracts.Services.Edition;
 
 namespace ProtonVPN.Client.UI.Login.Pages;
 
 public sealed partial class TwoFactorPageView : IContextAware
 {
     private const int NUM_OF_DIGITS = 6;
+
+    private readonly IClipboardEditor _clipboardEditor;
 
     private VirtualKey _lastKey;
 
@@ -52,6 +55,9 @@ public sealed partial class TwoFactorPageView : IContextAware
         ViewModel = App.GetService<TwoFactorPageViewModel>();
         ViewModel.OnTwoFactorFailure += OnTwoFactorFailure;
         ViewModel.OnTwoFactorSuccess += OnTwoFactorSuccess;
+
+        _clipboardEditor = App.GetService<IClipboardEditor>();
+
         InitializeComponent();
 
         Loaded += OnLoaded;
@@ -197,7 +203,7 @@ public sealed partial class TwoFactorPageView : IContextAware
             : (keyInt - (int)VirtualKey.NumberPad0).ToString();
     }
 
-    private async void OnPaste(object sender, TextControlPasteEventArgs e)
+    private void OnPaste(object sender, TextControlPasteEventArgs e)
     {
         if (sender is not TextBox)
         {
@@ -206,39 +212,27 @@ public sealed partial class TwoFactorPageView : IContextAware
 
         e.Handled = true;
 
-        string text = await GetClipboardStringAsync();
-        text = FilterNonDigits(text);
-        text = text.Substring(0, Math.Min(text.Length, NUM_OF_DIGITS));
+        string clipboardText = _clipboardEditor.GetText();
+        clipboardText = FilterNonDigits(clipboardText);
+        clipboardText = clipboardText.Substring(0, Math.Min(clipboardText.Length, NUM_OF_DIGITS));
+
+        if (string.IsNullOrEmpty(clipboardText))
+        { 
+            return;
+        }
 
         int i = 0;
         foreach (UIElement? child in DigitsContainer.Children)
         {
             if (child is TextBox textBox)
             {
-                textBox.Text = text[i++].ToString();
-                if (i >= text.Length)
+                textBox.Text = clipboardText[i++].ToString();
+                if (i >= clipboardText.Length)
                 {
                     break;
                 }
             }
         }
-    }
-
-    private async Task<string> GetClipboardStringAsync()
-    {
-        DataPackageView? dataPackageView = Clipboard.GetContent();
-        if (dataPackageView.Contains(StandardDataFormats.Text))
-        {
-            try
-            {
-                return (await dataPackageView.GetTextAsync()).Trim();
-            }
-            catch
-            {
-            }
-        }
-
-        return string.Empty;
     }
 
     private void OnGotFocus(object sender, RoutedEventArgs e)

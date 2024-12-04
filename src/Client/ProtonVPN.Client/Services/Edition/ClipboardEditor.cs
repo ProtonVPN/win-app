@@ -18,10 +18,11 @@
  */
 
 using System.Windows;
+using ProtonVPN.Client.Contracts.Services.Edition;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.OperatingSystemLogs;
 
-namespace ProtonVPN.Client.Models.Clipboards;
+namespace ProtonVPN.Client.Services.Edition;
 
 public class ClipboardEditor : IClipboardEditor
 {
@@ -58,6 +59,20 @@ public class ClipboardEditor : IClipboardEditor
                 await Task.Delay(TimeSpan.FromMilliseconds(retryTimeInMilliseconds));
                 retryTimeInMilliseconds *= 2;
             }
+        }
+    }
+
+    public string GetText()
+    {
+        try
+        {
+            return Clipboard.GetText();
+        }
+        catch (Exception exception) 
+        {
+            string logMessage = $"Error when retrieving text from clipboard.";
+            _logger.Error<OperatingSystemLog>(logMessage, exception);
+            return string.Empty;
         }
     }
 }

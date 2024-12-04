@@ -47,6 +47,8 @@ public class ProtocolIconViewModel : FeatureIconViewModelBase
 
     protected override bool IsFeatureEnabled => false;
 
+    public override bool IsDimmed => false;
+
     protected override ImageSource GetImageSource()
     {
         return ResourceHelper.GetIllustration("VpnFeatureProtocolIllustrationSource", _themeSelector.GetTheme());

@@ -23,18 +23,18 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Input;
 using ProtonVPN.Client.Common.Attributes;
+using ProtonVPN.Client.Core.Services.Activation;
+using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Models;
+using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
+using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Core.Services.Activation;
-using ProtonVPN.Client.Core.Services.Navigation;
 using Windows.System;
-using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
-using ProtonVPN.Client.UI.Main.Settings.Bases;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.Advanced;
 
@@ -52,9 +52,11 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
     [property: SettingName(nameof(ISettings.CustomDnsServersList))]
     public ObservableCollection<DnsServerViewModel> CustomDnsServers { get; }
 
-    public bool HasCustomDnsServers => CustomDnsServers.Any();
-
     public int ActiveCustomDnsServersCount => CustomDnsServers.Count(s => s.IsActive);
+
+    public bool HasCustomDnsServers => CustomDnsServers.Count > 0;
+
+    public bool HasActiveCustomDnsServers => ActiveCustomDnsServersCount > 0;
 
     public CustomDnsServersViewModel(
         IRequiredReconnectionSettings requiredReconnectionSettings,
@@ -161,5 +163,26 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
         {
             AddDnsServerCommand.Execute(null);
         }
+    }
+
+    protected override bool IsReconnectionRequiredDueToChanges(IEnumerable<ChangedSettingArgs> changedSettings)
+    {
+        bool isReconnectionRequired = base.IsReconnectionRequiredDueToChanges(changedSettings);
+        if (isReconnectionRequired)
+        {
+            // Check if there was any active DNS servers from the settings
+            // then check if there is any active DNS servers now.
+            // If there is none in both case, no need to reconnect.
+            bool hadAnyActiveDnsServers = Settings.IsCustomDnsServersEnabled
+                                       && Settings.CustomDnsServersList.Any(s => s.IsActive);
+            bool hasAnyActiveDnsServers = IsCustomDnsServersEnabled
+                                       && HasActiveCustomDnsServers;
+            if (!hadAnyActiveDnsServers && !hasAnyActiveDnsServers)
+            {
+                return false;
+            }
+        }
+
+        return isReconnectionRequired;
     }
 }

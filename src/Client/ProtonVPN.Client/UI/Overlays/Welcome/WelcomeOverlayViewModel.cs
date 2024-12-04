@@ -18,6 +18,7 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Localization.Contracts;
@@ -29,21 +30,21 @@ namespace ProtonVPN.Client.UI.Overlays.Welcome;
 
 public partial class WelcomeOverlayViewModel : OverlayViewModelBase<IMainWindowOverlayActivator>
 {
-    private readonly IUrls _urls;
+    private readonly IUrlsBrowser _urlsBrowser;
 
     public WelcomeOverlayViewModel(
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         ILocalizationProvider localizationProvider,
         ILogger logger,
         IIssueReporter issueReporter,
-        IUrls urls) : base(mainWindowOverlayActivator, localizationProvider, logger, issueReporter)
+        IUrlsBrowser urlsBrowser) : base(mainWindowOverlayActivator, localizationProvider, logger, issueReporter)
     {
-        _urls = urls;
+        _urlsBrowser = urlsBrowser;
     }
 
     [RelayCommand]
     public void OpenNoLogsUrl()
     {
-        _urls.NavigateTo(_urls.NoLogs);
+        _urlsBrowser.BrowseTo(_urlsBrowser.NoLogs);
     }
 }

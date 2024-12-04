@@ -51,7 +51,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <VisualStateGroup>
                                 <VisualState x:Name="FadeOutMode">
                                     <VisualState.StateTriggers>
-                                        <StateTrigger IsActive="{Binding IsHitTestVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotBooleanToBooleanConverter}}" />
+                                        <StateTrigger IsActive="{Binding IsEnabled, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotBooleanToBooleanConverter}}" />
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
                                         <Setter Target="PaneContainer.Background" Value="{ThemeResource PaneOverlayDisabledBackgroundColorBrush}" />

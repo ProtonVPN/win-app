@@ -29,7 +29,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Border Padding="12"
             CornerRadius="8"
             Visibility="{x:Bind ViewModel.IsKillSwitchNotificationVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
-            Background="{ThemeResource BackgroundWeakColorBrush}">
+            Background="{ThemeResource BackgroundNormColorBrush}"
+            BorderBrush="{ThemeResource SignalDangerColorBrush}"
+            BorderThickness="1">
 
         <Grid ColumnSpacing="12">
             <Grid.ColumnDefinitions>

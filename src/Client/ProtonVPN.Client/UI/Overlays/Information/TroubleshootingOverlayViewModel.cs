@@ -24,33 +24,34 @@ using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Services.Browsing;
+using ProtonVPN.Client.Contracts.Services.Browsing;
 
 namespace ProtonVPN.Client.UI.Overlays.Information;
 
 public partial class TroubleshootingOverlayViewModel : OverlayViewModelBase<IMainWindowOverlayActivator>
 {
-    private readonly IUrls _urls;
+    private readonly IUrlsBrowser _urlsBrowser;
 
     public TroubleshootingOverlayViewModel(
         IMainWindowOverlayActivator overlayActivator,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter,
-        IUrls urls)
+        IUrlsBrowser urlsBrowser)
         : base(overlayActivator, localizer, logger, issueReporter)
     {
-        _urls = urls;
+        _urlsBrowser = urlsBrowser;
     }
 
     [RelayCommand]
     public void OpenStatusPage()
     {
-        _urls.NavigateTo(_urls.ProtonStatusPage);
+        _urlsBrowser.BrowseTo(_urlsBrowser.ProtonStatusPage);
     }
 
     [RelayCommand]
     public void ContactUs()
     {
-        _urls.NavigateTo(_urls.SupportForm);
+        _urlsBrowser.BrowseTo(_urlsBrowser.SupportForm);
     }
 }

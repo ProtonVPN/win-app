@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,12 +19,11 @@
 
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Common.Dispatching;
-using ProtonVPN.Client.Common.Messages;
 using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Core.Messages;
+using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Activation.Bases;
 using ProtonVPN.Client.Core.Services.Selection;
-using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue;
@@ -32,9 +31,7 @@ using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Services.Activation;
 
-public class ReportIssueWindowActivator : WindowActivatorBase<ReportIssueWindow>, IReportIssueWindowActivator,
-    IEventMessageReceiver<MainWindowVisibilityChangedMessage>,
-    IEventMessageReceiver<ApplicationStoppedMessage>
+public class ReportIssueWindowActivator : DialogActivatorBase<ReportIssueWindow>, IReportIssueWindowActivator
 {
     public override string WindowTitle => Localizer.Get("Dialogs_ReportIssue_Title");
 
@@ -44,25 +41,16 @@ public class ReportIssueWindowActivator : WindowActivatorBase<ReportIssueWindow>
         IApplicationThemeSelector themeSelector,
         ISettings settings,
         ILocalizationProvider localizer,
-        IApplicationIconSelector iconSelector)
-        : base(logger, uiThreadDispatcher, themeSelector, settings, localizer, iconSelector)
-    {
-    }
-
-    public void Receive(MainWindowVisibilityChangedMessage message)
-    {
-        if (Host != null && Host.Visible)
-        {
-            if (message.IsMainWindowVisible)
-            {
-                Activate();
-            }
-            else
-            {
-                Hide();
-            }
-        }
-    }
+        IApplicationIconSelector iconSelector,
+        IMainWindowActivator mainWindowActivator)
+        : base(logger,
+               uiThreadDispatcher,
+               themeSelector,
+               settings,
+               localizer,
+               iconSelector,
+               mainWindowActivator)
+    { }
 
     protected override void OnWindowClosing(WindowEventArgs e)
     {
@@ -70,10 +58,5 @@ public class ReportIssueWindowActivator : WindowActivatorBase<ReportIssueWindow>
 
         e.Handled = true;
         Hide();
-    }
-
-    public void Receive(ApplicationStoppedMessage message)
-    {
-        Exit();
     }
 }

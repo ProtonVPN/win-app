@@ -34,6 +34,8 @@ public class KillSwitchIconViewModel : FeatureIconViewModelBase
     private readonly ISettings _settings;
     private readonly IApplicationThemeSelector _themeSelector;
 
+    public override bool IsDimmed => false;
+
     public KillSwitchIconViewModel(
         IConnectionManager connectionManager,
         ISettings settings,
@@ -50,11 +52,12 @@ public class KillSwitchIconViewModel : FeatureIconViewModelBase
 
     protected override ImageSource GetImageSource()
     {
-        return ResourceHelper.GetIllustration(_settings.IsKillSwitchEnabled
-            ? (_settings.KillSwitchMode == KillSwitchMode.Standard
-                ? "KillSwitchStandardIllustrationSource"
-                : "KillSwitchAdvancedIllustrationSource")
-            : "KillSwitchOffIllustrationSource", _themeSelector.GetTheme());
+        return ResourceHelper.GetIllustration(
+            IsFeatureEnabled
+                ? (_settings.KillSwitchMode == KillSwitchMode.Standard
+                    ? "KillSwitchStandardIllustrationSource"
+                    : "KillSwitchAdvancedIllustrationSource")
+                : "KillSwitchOffIllustrationSource", _themeSelector.GetTheme());
     }
 
     protected override IEnumerable<string> GetSettingsChangedForIconUpdate()

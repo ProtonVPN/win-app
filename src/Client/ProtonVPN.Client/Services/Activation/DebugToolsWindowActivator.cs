@@ -18,12 +18,9 @@
  */
 
 using ProtonVPN.Client.Common.Dispatching;
-using ProtonVPN.Client.Common.Messages;
-using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Activation.Bases;
 using ProtonVPN.Client.Core.Services.Selection;
-using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Dialogs.DebugTools;
@@ -31,9 +28,7 @@ using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Services.Activation;
 
-public class DebugToolsWindowActivator : WindowActivatorBase<DebugToolsWindow>, IDebugToolsWindowActivator,
-    IEventMessageReceiver<MainWindowVisibilityChangedMessage>,
-    IEventMessageReceiver<ApplicationStoppedMessage>
+public class DebugToolsWindowActivator : DialogActivatorBase<DebugToolsWindow>, IDebugToolsWindowActivator
 {
     public override string WindowTitle { get; } = "Debug Tools";
 
@@ -43,27 +38,14 @@ public class DebugToolsWindowActivator : WindowActivatorBase<DebugToolsWindow>, 
         IApplicationThemeSelector themeSelector,
         ISettings settings,
         ILocalizationProvider localizer,
-        IApplicationIconSelector iconSelector)
-        : base(logger, uiThreadDispatcher, themeSelector, settings, localizer, iconSelector)
+        IApplicationIconSelector iconSelector,
+        IMainWindowActivator mainWindowActivator)
+        : base(logger,
+               uiThreadDispatcher,
+               themeSelector,
+               settings,
+               localizer,
+               iconSelector,
+               mainWindowActivator)
     { }
-
-    public void Receive(MainWindowVisibilityChangedMessage message)
-    {
-        if (Host != null)
-        {
-            if (message.IsMainWindowVisible)
-            {
-                Activate();
-            }
-            else
-            {
-                Hide();
-            }
-        }
-    }
-
-    public void Receive(ApplicationStoppedMessage message)
-    {
-        Exit();
-    }
 }

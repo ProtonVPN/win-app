@@ -18,6 +18,7 @@
  */
 
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Core.Bases;
@@ -90,5 +91,39 @@ public sealed partial class MainPageView : IContextAware
         {
             await ViewModel.CloseCurrentSettingsPageAsync();
         }
+    }
+
+    private void OnSideWidgetsHostComponentSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        InvalidateWidgetsColumnnWidth();
+    }
+
+    private void OnSidebarComponentSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        InvalidateSidebarColumnWidth();
+    }
+
+    private void OnSidebarPaneClosing(SplitView sender, object args)
+    {
+        InvalidateSidebarColumnWidth();
+    }
+
+    private void OnSidebarPaneOpening(SplitView sender, object args)
+    {
+        InvalidateSidebarColumnWidth();
+    }
+
+    private void InvalidateSidebarColumnWidth()
+    {
+        double sidebarColumnWidth = MainSplitView.IsPaneOpen
+            ? MainSplitView.OpenPaneLength
+            : MainSplitView.CompactPaneLength;
+
+        SidebarColumn.Width = new GridLength(sidebarColumnWidth, GridUnitType.Pixel);
+    }
+
+    private void InvalidateWidgetsColumnnWidth()
+    {
+        WidgetsColumn.Width = new GridLength(SideWidgetsHostComponent.ActualWidth, GridUnitType.Pixel);
     }
 }
