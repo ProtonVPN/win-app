@@ -38,9 +38,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="ListBoxItemBackgroundSelectedUnfocused" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="ListBoxItemBackgroundSelectedPointerOver" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="ListBoxItemBackgroundSelectedPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-            <StaticResource x:Key="ListBoxItemBorderPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
-            <StaticResource x:Key="ListBoxItemBorderPressed" ResourceKey="BorderWeakColorBrush" />
-            <StaticResource x:Key="ListBoxItemBorderSelected" ResourceKey="BorderWeakColorBrush" />
+            <StaticResource x:Key="ListBoxItemBorderPointerOver" ResourceKey="TextHintColorBrush" />
+            <StaticResource x:Key="ListBoxItemBorderPressed" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="ListBoxItemBorderSelected" ResourceKey="TextNormColorBrush" />
 
         </ResourceDictionary>
 
@@ -58,9 +58,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="ListBoxItemBackgroundSelectedUnfocused" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="ListBoxItemBackgroundSelectedPointerOver" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="ListBoxItemBackgroundSelectedPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-            <StaticResource x:Key="ListBoxItemBorderPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
-            <StaticResource x:Key="ListBoxItemBorderPressed" ResourceKey="BorderWeakColorBrush" />
-            <StaticResource x:Key="ListBoxItemBorderSelected" ResourceKey="BorderWeakColorBrush" />
+            <StaticResource x:Key="ListBoxItemBorderPointerOver" ResourceKey="TextHintColorBrush" />
+            <StaticResource x:Key="ListBoxItemBorderPressed" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="ListBoxItemBorderSelected" ResourceKey="TextNormColorBrush" />
 
         </ResourceDictionary>
 
@@ -188,7 +188,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Setter.Value>
         </Setter>
     </Style>
-
 
     <x:Double x:Key="ListBoxSelectionIndicatorWidth">16</x:Double>
     <x:Double x:Key="ListBoxSelectionIndicatorHeight">3</x:Double>

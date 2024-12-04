@@ -33,5 +33,11 @@ public interface IConnectionsViewNavigator : IViewNavigator
 
     Task<bool> NavigateToCountriesViewAsync();
 
-    Task<bool> NavigateToCountriesViewAsync(CountriesConnectionType connectionType);
+    bool CanNavigateToRecentsView();
+
+    bool CanNavigateToGatewaysView();
+
+    bool CanNavigateToProfilesView();
+
+    bool CanNavigateToCountriesView();
 }

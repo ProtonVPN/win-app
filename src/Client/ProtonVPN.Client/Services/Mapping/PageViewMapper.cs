@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -22,6 +22,7 @@ using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Mapping;
 using ProtonVPN.Client.Services.Mapping.Bases;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue.Pages;
+using ProtonVPN.Client.UI.Dialogs.Upsell.Features;
 using ProtonVPN.Client.UI.Login;
 using ProtonVPN.Client.UI.Login.Pages;
 using ProtonVPN.Client.UI.Main;
@@ -84,5 +85,17 @@ public class PageViewMapper : ViewMapperBase<PageViewModelBase, Page>, IPageView
         ConfigureMapping<ReportIssueCategoryPageViewModel, ReportIssueCategoryPageView>();
         ConfigureMapping<ReportIssueContactPageViewModel, ReportIssueContactPageView>();
         ConfigureMapping<ReportIssueResultPageViewModel, ReportIssueResultPageView>();
+
+        ConfigureMapping<AdvancedSettingsUpsellFeaturePageViewModel, AdvancedSettingsUpsellFeaturePageView>();
+        ConfigureMapping<MultipleDevicesUpsellFeaturePageViewModel, MultipleDevicesUpsellFeaturePageView>();
+        ConfigureMapping<NetShieldUpsellFeaturePageViewModel, NetShieldUpsellFeaturePageView>();
+        ConfigureMapping<P2PUpsellFeaturePageViewModel, P2PUpsellFeaturePageView>();
+        ConfigureMapping<SecureCoreUpsellFeaturePageViewModel, SecureCoreUpsellFeaturePageView>();
+        ConfigureMapping<SpeedUpsellFeaturePageViewModel, SpeedUpsellFeaturePageView>();
+        ConfigureMapping<SplitTunnelingUpsellFeaturePageViewModel, SplitTunnelingUpsellFeaturePageView>();
+        ConfigureMapping<StreamingUpsellFeaturePageViewModel, StreamingUpsellFeaturePageView>();
+        ConfigureMapping<TorUpsellFeaturePageViewModel, TorUpsellFeaturePageView>();
+        ConfigureMapping<WorldwideCoverageUpsellFeaturePageViewModel, WorldwideCoverageUpsellFeaturePageView>();
+        ConfigureMapping<ProfilesUpsellFeaturePageViewModel, ProfilesUpsellFeaturePageView>();
     }
 }

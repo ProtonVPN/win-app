@@ -72,6 +72,8 @@ public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
                                              && Settings.IsNetShieldEnabled
                                              && Settings.NetShieldMode == NetShieldMode.BlockAdsMalwareTrackers;
 
+    protected override UpsellFeatureType? UpsellFeature { get; } = UpsellFeatureType.NetShield;
+
     public NetShieldWidgetViewModel(
         ILocalizationProvider localizer,
         ILogger logger,

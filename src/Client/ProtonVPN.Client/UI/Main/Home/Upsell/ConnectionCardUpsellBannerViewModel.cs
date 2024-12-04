@@ -20,8 +20,10 @@
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Core.Bases.ViewModels;
+using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Helpers;
 using ProtonVPN.Client.Core.Services.Activation;
+using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
@@ -89,14 +91,9 @@ public partial class ConnectionCardUpsellBannerViewModel : ActivatableViewModelB
     }
 
     [RelayCommand]
-    public void Upgrade()
+    public Task UpgradeAsync()
     {
-        _upsellCarouselWindowActivator.Activate();
-        /* TODO: Carousel page and the modal sources depends on which banner was displayed
-        (IsWrongCountryBannerVisible
-            ? ModalSources.Countries
-            : ModalSources.NetShield);
-        */
+        return _upsellCarouselWindowActivator.ActivateAsync(UpsellFeatureType.WorldwideCoverage);
     }
 
     private void InvalidateBanner()

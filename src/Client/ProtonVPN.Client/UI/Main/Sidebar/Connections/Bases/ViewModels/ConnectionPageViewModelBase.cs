@@ -142,7 +142,14 @@ public abstract class ConnectionPageViewModelBase : ConnectionListViewModelBase<
         InvalidateMaintenanceStates();
         InvalidateRestrictions();
 
+        OnItemsChanged();
+
         WasInvalidatedWhileInactive = false;
+    }
+
+    protected virtual void OnItemsChanged()
+    {
+        OnPropertyChanged(nameof(HasItems));
     }
 
     protected abstract IEnumerable<ConnectionItemBase> GetItems();

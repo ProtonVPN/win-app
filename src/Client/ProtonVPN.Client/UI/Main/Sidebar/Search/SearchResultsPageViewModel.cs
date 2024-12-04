@@ -141,6 +141,8 @@ public partial class SearchResultsPageViewModel : ConnectionListViewModelBase<IS
         InvalidateActiveConnection();
         InvalidateMaintenanceStates();
         InvalidateRestrictions();
+
+        OnPropertyChanged(nameof(HasItems));
     }
 
     private Func<ILocation, ConnectionItemBase?> GetConnectionItemCreationFunction()

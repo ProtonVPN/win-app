@@ -24,8 +24,6 @@ using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
-using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Main.Features.Bases;
 using ProtonVPN.Client.UI.Main.Settings.Connection;
@@ -53,6 +51,8 @@ public partial class PortForwardingWidgetViewModel : FeatureWidgetViewModelBase
 
     public bool IsActivePortComponentVisible => ConnectionManager.IsConnected
                                              && Settings.IsPortForwardingEnabled;
+
+    protected override UpsellFeatureType? UpsellFeature { get; } = UpsellFeatureType.P2P;
 
     public PortForwardingWidgetViewModel(
         ILocalizationProvider localizer,

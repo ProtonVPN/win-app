@@ -86,6 +86,11 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
         _recentsFileReaderWriter = recentsFileReaderWriter;
     }
 
+    public bool HasAnyRecentConnections()
+    {
+        return _recentConnections.Any();
+    }
+
     public IOrderedEnumerable<IRecentConnection> GetRecentConnections()
     {
         return _recentConnections.OrderByDescending(c => c.IsPinned)

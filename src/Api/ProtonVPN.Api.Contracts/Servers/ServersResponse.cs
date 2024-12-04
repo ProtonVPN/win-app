@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,11 +21,10 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using ProtonVPN.Api.Contracts.Common;
 
-namespace ProtonVPN.Api.Contracts.Servers
+namespace ProtonVPN.Api.Contracts.Servers;
+
+public class ServersResponse : BaseResponse
 {
-    public class ServersResponse : BaseResponse
-    {
-        [JsonProperty("LogicalServers")]
-        public List<LogicalServerResponse> Servers { get; set; }
-    }
+    [JsonProperty("LogicalServers")]
+    public List<LogicalServerResponse> Servers { get; set; }
 }

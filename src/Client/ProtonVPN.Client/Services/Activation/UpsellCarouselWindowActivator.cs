@@ -25,12 +25,19 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Dialogs.Upsell;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Client.Core.Services.Navigation;
+using ProtonVPN.Client.Core.Enums;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 
 namespace ProtonVPN.Client.Services.Activation;
 
 public class UpsellCarouselWindowActivator : DialogActivatorBase<UpsellCarouselWindow>, IUpsellCarouselWindowActivator
 {
+    private readonly IUpsellCarouselViewNavigator _upsellCarouselViewNavigator;
+
     public override string WindowTitle => Localizer.Get("Upsell_Carousel_Title");
+
+    public ModalSources ModalSources { get; private set; } = ModalSources.Undefined;
 
     public UpsellCarouselWindowActivator(
         ILogger logger,
@@ -39,7 +46,8 @@ public class UpsellCarouselWindowActivator : DialogActivatorBase<UpsellCarouselW
         ISettings settings,
         ILocalizationProvider localizer,
         IApplicationIconSelector iconSelector,
-        IMainWindowActivator mainWindowActivator)
+        IMainWindowActivator mainWindowActivator,
+        IUpsellCarouselViewNavigator upsellCarouselViewNavigator)
         : base(logger,
                uiThreadDispatcher,
                themeSelector,
@@ -47,5 +55,34 @@ public class UpsellCarouselWindowActivator : DialogActivatorBase<UpsellCarouselW
                localizer,
                iconSelector,
                mainWindowActivator)
-    { }
+    {
+        _upsellCarouselViewNavigator = upsellCarouselViewNavigator;
+    }
+
+    public Task<bool> ActivateAsync(UpsellFeatureType? upsellFeatureType)
+    {
+        Activate();
+
+        SetCorrespondingModalSources(upsellFeatureType);
+
+        return _upsellCarouselViewNavigator.NavigateToFeatureViewAsync(upsellFeatureType);
+    }
+
+    private void SetCorrespondingModalSources(UpsellFeatureType? upsellFeatureType)
+    {
+        ModalSources = upsellFeatureType switch
+        {
+            UpsellFeatureType.WorldwideCoverage => ModalSources.Countries,
+            UpsellFeatureType.Speed => ModalSources.VpnAccelerator,
+            UpsellFeatureType.Streaming => ModalSources.Streaming,
+            UpsellFeatureType.NetShield => ModalSources.NetShield,
+            UpsellFeatureType.SecureCore => ModalSources.SecureCore,
+            UpsellFeatureType.P2P => ModalSources.P2P,
+            UpsellFeatureType.MultipleDevices => ModalSources.MaxConnections,
+            UpsellFeatureType.Tor => ModalSources.Countries,
+            UpsellFeatureType.SplitTunneling => ModalSources.SplitTunneling,
+            UpsellFeatureType.Profiles => ModalSources.Profiles,
+            _ => ModalSources.Undefined
+        };
+    }
 }

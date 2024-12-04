@@ -49,6 +49,8 @@ public partial class CountriesPageViewModel : ConnectionPageViewModelBase
 
     public List<ICountriesComponent> CountriesComponents { get; }
 
+    public override bool IsAvailable => ParentViewNavigator.CanNavigateToCountriesView();
+
     public CountriesPageViewModel(
         IConnectionsViewNavigator parentViewNavigator,
         ILocalizationProvider localizer,
@@ -71,16 +73,6 @@ public partial class CountriesPageViewModel : ConnectionPageViewModelBase
         CountriesComponents = new(countriesComponents.OrderBy(p => p.SortIndex));
 
         _selectedCountriesComponent = CountriesComponents.First();
-    }
-
-    public override void OnNavigatedTo(object parameter, bool isBackNavigation)
-    {
-        base.OnNavigatedTo(parameter, isBackNavigation);
-
-        if (parameter is CountriesConnectionType connectionType)
-        {
-            GoToCountryFeature(connectionType);
-        }
     }
 
     protected override void OnLoggedIn()

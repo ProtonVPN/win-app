@@ -2987,7 +2987,19 @@ This higher level of protection may cause higher latency and slower speeds.</val
   </data>
   <data name="Upsell_Carousel_P2P_Speed" xml:space="preserve">
     <value>Increased upload and download speeds</value>
+  </data>  
+  <data name="Upsell_Carousel_Profiles" xml:space="preserve">
+    <value>Get quick access to frequent connections</value>
   </data>
+  <data name="Upsell_Carousel_Profiles_Creation" xml:space="preserve">
+    <value>Create and save your own VPN configurations with Profiles</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Customization" xml:space="preserve">
+    <value>Customize your location, protocol, and settings</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Convenience" xml:space="preserve">
+    <value>Set a profile as your default connection and connect in 1 click</value>
+  </data>  
   <data name="Upsell_Carousel_SecureCore" xml:space="preserve">
     <value>Add another layer of protection to your connection</value>
   </data>

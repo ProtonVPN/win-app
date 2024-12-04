@@ -131,4 +131,83 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="SidebarUpsellBannerStyle" TargetType="custom:UpsellBanner">
+        <Setter Property="Background" Value="{ThemeResource UpsellBannerBackgroundColorBrush}" />
+        <Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="BorderBrush" Value="{ThemeResource UpsellBannerBorderColorBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Padding" Value="6" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="custom:UpsellBanner">
+                    <Grid x:Name="ContentContainer"
+                      AutomationProperties.AccessibilityView="Raw"
+                      BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                      BorderBrush="{TemplateBinding BorderBrush}"
+                      BorderThickness="{TemplateBinding BorderThickness}"
+                      CornerRadius="{TemplateBinding CornerRadius}">
+
+                        <custom:GhostButton Padding="{TemplateBinding Padding}"
+                                        Background="{ThemeResource InteractionDefaultColorBrush}"
+                                        Command="{Binding Command, RelativeSource={RelativeSource Mode=TemplatedParent}}">
+
+                            <custom:GhostButton.RightIcon>
+                                <pathicons:ChevronRight />
+                            </custom:GhostButton.RightIcon>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Image Grid.Column="0"
+                                   Width="{StaticResource UpsellBannerIllustrationSize}"
+                                   Height="{StaticResource UpsellBannerIllustrationSize}"
+                                   Margin="0,0,16,0"
+                                   VerticalAlignment="Center"
+                                   Source="{TemplateBinding IllustrationSource}"
+                                   Stretch="Uniform"
+                                   Visibility="{Binding IllustrationSource, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}" />
+
+                                <StackPanel Grid.Column="1"
+                                        VerticalAlignment="Center"
+                                        Orientation="Vertical"
+                                        Spacing="4">
+
+                                    <TextBlock x:Name="Title"
+                                           FontSize="{StaticResource BodyFontSize}"
+                                           FontWeight="{StaticResource BodyFontWeight}"
+                                           Foreground="{ThemeResource TextNormColorBrush}"
+                                           LineHeight="{StaticResource BodyLineHeight}"
+                                           Text="{TemplateBinding Title}"
+                                           TextWrapping="WrapWholeWords"
+                                           Visibility="{Binding Text, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
+
+                                    <TextBlock x:Name="Description"
+                                           FontSize="{StaticResource CaptionFontSize}"
+                                           FontWeight="{StaticResource CaptionFontWeight}"
+                                           Foreground="{ThemeResource TextWeakColorBrush}"
+                                           LineHeight="{StaticResource CaptionLineHeight}"
+                                           Text="{TemplateBinding Description}"
+                                           TextWrapping="WrapWholeWords"
+                                           Visibility="{Binding Text, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
+
+                                </StackPanel>
+
+                            </Grid>
+
+                        </custom:GhostButton>
+
+                        <Border Background="{TemplateBinding Background}"
+                            IsHitTestVisible="False" />
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

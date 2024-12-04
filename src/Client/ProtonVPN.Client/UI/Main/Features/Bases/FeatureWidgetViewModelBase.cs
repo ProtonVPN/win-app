@@ -65,6 +65,8 @@ public abstract partial class FeatureWidgetViewModelBase : SideWidgetViewModelBa
 
     public virtual bool IsRestricted => !Settings.VpnPlan.IsPaid;
 
+    protected abstract UpsellFeatureType? UpsellFeature { get; }
+
     protected FeatureWidgetViewModelBase(
         ILocalizationProvider localizer,
         ILogger logger,
@@ -90,8 +92,7 @@ public abstract partial class FeatureWidgetViewModelBase : SideWidgetViewModelBa
     {
         if (IsRestricted)
         {
-            UpsellCarouselWindowActivator.Activate();
-            return false;
+            return await UpsellCarouselWindowActivator.ActivateAsync(UpsellFeature);
         }
 
         return await MainViewNavigator.NavigateToSettingsViewAsync() &&
@@ -139,6 +140,7 @@ public abstract partial class FeatureWidgetViewModelBase : SideWidgetViewModelBa
 
         IsSelected = IsFeaturePageDisplayed || IsFeatureFlyoutOpened;
     }
+
 
     private bool IsOnSettingsPage()
     {

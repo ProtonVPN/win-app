@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Windows.Controls;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Input;
 using ProtonVPN.Client.Common.UI.Keyboards;
@@ -35,13 +36,20 @@ public sealed partial class ConnectionsPageView : IContextAware
     {
         ViewModel = App.GetService<ConnectionsPageViewModel>();
         Navigator = App.GetService<ConnectionsViewNavigator>();
-         
+
         InitializeComponent();
 
         Navigator.Initialize(ConnectionsNavigationFrame);
 
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
+
+        KeyboardAccelerators.AddHandler(OnCtrl1Invoked, VirtualKey.Number1, VirtualKeyModifiers.Control);
+        KeyboardAccelerators.AddHandler(OnCtrl2Invoked, VirtualKey.Number2, VirtualKeyModifiers.Control);
+        KeyboardAccelerators.AddHandler(OnCtrl3Invoked, VirtualKey.Number3, VirtualKeyModifiers.Control);
+        KeyboardAccelerators.AddHandler(OnCtrl4Invoked, VirtualKey.Number4, VirtualKeyModifiers.Control);
+
+        KeyboardAcceleratorPlacementMode = KeyboardAcceleratorPlacementMode.Hidden;
     }
 
     public object GetContext()
@@ -53,35 +61,42 @@ public sealed partial class ConnectionsPageView : IContextAware
     {
         Navigator.Load();
         ViewModel.Activate();
-
-        KeyboardAccelerators.AddHandler(OnCtrl1Invoked, VirtualKey.Number1, VirtualKeyModifiers.Control);
-        KeyboardAccelerators.AddHandler(OnCtrl2Invoked, VirtualKey.Number2, VirtualKeyModifiers.Control);
-        KeyboardAccelerators.AddHandler(OnCtrl3Invoked, VirtualKey.Number3, VirtualKeyModifiers.Control);
-        KeyboardAccelerators.AddHandler(OnCtrl4Invoked, VirtualKey.Number4, VirtualKeyModifiers.Control);
     }
 
-    private void OnCtrl1Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    private async void OnCtrl1Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
     {
-        args.Handled = true;
-        Navigator.NavigateToRecentsViewAsync();
+        if (IsLoaded)
+        {
+            args.Handled = true;
+            await Navigator.NavigateToRecentsViewAsync();
+        }
     }
 
-    private void OnCtrl2Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    private async void OnCtrl2Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
     {
-        args.Handled = true;
-        Navigator.NavigateToCountriesViewAsync();
+        if (IsLoaded)
+        {
+            args.Handled = true;
+            await Navigator.NavigateToCountriesViewAsync();
+        }
     }
 
-    private void OnCtrl3Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    private async void OnCtrl3Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
     {
-        args.Handled = true;
-        Navigator.NavigateToProfilesViewAsync();
+        if (IsLoaded)
+        {
+            args.Handled = true;
+            await Navigator.NavigateToProfilesViewAsync();
+        }
     }
 
-    private void OnCtrl4Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    private async void OnCtrl4Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
     {
-        args.Handled = true;
-        Navigator.NavigateToGatewaysViewAsync();
+        if (IsLoaded)
+        {
+            args.Handled = true;
+            await Navigator.NavigateToGatewaysViewAsync();
+        }
     }
 
     private void OnUnloaded(object sender, RoutedEventArgs e)

@@ -47,6 +47,7 @@ public interface IApiClient : IClientBase
     Task<ApiResponseResult<BaseResponse>> GetLogoutResponse();
     Task<ApiResponseResult<EventResponse>> GetEventResponse(string lastId = default);
     Task<ApiResponseResult<ServersResponse>> GetServersAsync(string ip);
+    Task<ApiResponseResult<ServerCountResponse>> GetServersCountAsync();
     Task<ApiResponseResult<ReportAnIssueFormResponse>> GetReportAnIssueFormData();
     Task<ApiResponseResult<ServersResponse>> GetServerLoadsAsync(string ip);
     Task<ApiResponseResult<DeviceLocationResponse>> GetLocationDataAsync();

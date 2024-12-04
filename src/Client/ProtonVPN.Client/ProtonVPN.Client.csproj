@@ -40,6 +40,8 @@
     <None Remove="UI\Dialogs\ReportIssue\ReportIssueComponentView.xaml" />
     <None Remove="UI\Dialogs\ReportIssue\ReportIssueShellView.xaml" />
     <None Remove="UI\Dialogs\ReportIssue\ReportIssueWindow.xaml" />
+    <None Remove="UI\Dialogs\Upsell\Features\ProfilesUpsellFeaturePageView.xaml" />
+    <None Remove="UI\Dialogs\Upsell\UpsellCarouselShellView.xaml" />
     <None Remove="UI\Login\Components\DisableKillSwitchBannerComponent.xaml" />
     <None Remove="UI\Login\Overlays\SsoLoginOverlayView.xaml" />
     <None Remove="UI\Dialogs\Upsell\UpsellCarouselWindow.xaml" />
@@ -718,6 +720,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Update="UI\Dialogs\Upsell\Features\ProfilesUpsellFeaturePageView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
     <Page Update="UI\Dialogs\DebugTools\DebugToolsShellView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -749,6 +757,12 @@
 
   <ItemGroup>
     <Page Update="UI\Main\Components\TitleBarMenuComponent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Dialogs\Upsell\UpsellCarouselShellView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

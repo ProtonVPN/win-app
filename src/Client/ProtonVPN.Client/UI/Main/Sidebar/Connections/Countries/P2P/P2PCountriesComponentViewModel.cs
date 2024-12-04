@@ -17,9 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Factories;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Models.Connections;
@@ -38,9 +41,12 @@ public class P2PCountriesComponentViewModel : CountriesComponentViewModelBase
 
     public override string Description => Localizer.Get("Countries_P2P_Description");
 
-    public override bool IsInfoBannerVisible => !Settings.IsP2PInfoBannerDismissed;
+    public override bool IsInfoBannerVisible => !IsUpsellBannerVisible
+                                             && !Settings.IsP2PInfoBannerDismissed;
 
     public override int SortIndex { get; } = 2;
+
+    protected override ModalSources UpsellModalSources => ModalSources.P2P;
 
     public P2PCountriesComponentViewModel(
         ILocalizationProvider localizer,
@@ -48,13 +54,17 @@ public class P2PCountriesComponentViewModel : CountriesComponentViewModelBase
         IIssueReporter issueReporter,
         ISettings settings,
         IServersLoader serversLoader,
-        ILocationItemFactory locationItemFactory)
+        ILocationItemFactory locationItemFactory,
+        IUrlsBrowser urlsBrowser,
+        IWebAuthenticator webAuthenticator)
         : base(localizer,
                logger,
                issueReporter,
                settings,
                serversLoader,
-               locationItemFactory)
+               locationItemFactory,
+               urlsBrowser,
+               webAuthenticator)
     { }
 
     public override IEnumerable<ConnectionItemBase> GetItems()

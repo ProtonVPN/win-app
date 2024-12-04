@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Client.Contracts.Enums;
+using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 
@@ -35,7 +36,6 @@ public interface IConnectionItem
     bool IsDescriptionVisible { get; }
     string? ToolTip { get; }
     bool IsCounted { get; }
-    ModalSources UpsellModalSources { get; }
     object FirstSortProperty { get; }
     object SecondSortProperty { get; }
     string PrimaryActionLabel { get; }
