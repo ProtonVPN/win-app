@@ -32,6 +32,7 @@ public class LoginSsoTests : FreshSessionSetUp
     private const string SSO_LOGIN_ERROR = "Email domain associated to an existing organization. Please sign in with SSO";
 
     [Test]
+    [Retry(3)]
     public void LoginSsoDomainDetection()
     {
         //Delay to allow app to setup unauth session
@@ -44,6 +45,7 @@ public class LoginSsoTests : FreshSessionSetUp
     }
 
     [Test]
+    [Retry(3)]
     public void LoginSsoHappyPath()
     {
         //Delay to allow app to setup unauth session

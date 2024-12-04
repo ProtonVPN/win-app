@@ -46,7 +46,7 @@ public class LoginRobot
     {
         UsernameTextBox.SetText(user.Username);
         PasswordTextBox.SetText(user.Password);
-        SignInButton.Click();
+        SignInButton.Invoke();
 
         return this;
     }
@@ -59,7 +59,7 @@ public class LoginRobot
 
     public LoginRobot ClickSignInButton()
     {
-        SignInButton.Click();
+        SignInButton.Invoke();
         return this;
     }
 
