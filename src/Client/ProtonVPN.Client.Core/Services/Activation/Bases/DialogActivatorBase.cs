@@ -17,25 +17,27 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Common.Dispatching;
-using ProtonVPN.Client.Contracts.Services.Activation;
+using ProtonVPN.Client.Common.Messages;
+using ProtonVPN.Client.Core.Extensions;
 using ProtonVPN.Client.Core.Messages;
-using ProtonVPN.Client.Core.Services.Activation;
-using ProtonVPN.Client.Core.Services.Activation.Bases;
 using ProtonVPN.Client.Core.Services.Selection;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.UI.Dialogs.ReportIssue;
 using ProtonVPN.Logging.Contracts;
+using WinUIEx;
 
-namespace ProtonVPN.Client.Services.Activation;
+namespace ProtonVPN.Client.Core.Services.Activation.Bases;
 
-public class ReportIssueWindowActivator : DialogActivatorBase<ReportIssueWindow>, IReportIssueWindowActivator
+public abstract class DialogActivatorBase<TWindow> : WindowActivatorBase<TWindow>,
+    IEventMessageReceiver<MainWindowVisibilityChangedMessage>,
+    IEventMessageReceiver<ApplicationStoppedMessage>
+    where TWindow : WindowEx
 {
-    public override string WindowTitle => Localizer.Get("Dialogs_ReportIssue_Title");
+    protected readonly IMainWindowActivator MainWindowActivator;
 
-    public ReportIssueWindowActivator(
+    protected DialogActivatorBase(
         ILogger logger,
         IUIThreadDispatcher uiThreadDispatcher,
         IApplicationThemeSelector themeSelector,
@@ -48,15 +50,39 @@ public class ReportIssueWindowActivator : DialogActivatorBase<ReportIssueWindow>
                themeSelector,
                settings,
                localizer,
-               iconSelector,
-               mainWindowActivator)
-    { }
-
-    protected override void OnWindowClosing(WindowEventArgs e)
+               iconSelector)
     {
-        base.OnWindowClosing(e);
+        MainWindowActivator = mainWindowActivator;
+    }
 
-        e.Handled = true;
-        Hide();
+    public void Receive(MainWindowVisibilityChangedMessage message)
+    {
+        if (Host != null)
+        {
+            if (message.IsMainWindowVisible)
+            {
+                Activate();
+            }
+            else
+            {
+                Hide();
+            }
+        }
+    }
+
+    public void Receive(ApplicationStoppedMessage message)
+    {
+        Exit();
+    }
+
+    protected override void InvalidateWindowPosition()
+    {
+        if (MainWindowActivator.Window != null)
+        {
+            Host?.CenterOnMainWindowMonitor(MainWindowActivator.Window);
+            return;
+        }
+
+        base.InvalidateWindowPosition();
     }
 }

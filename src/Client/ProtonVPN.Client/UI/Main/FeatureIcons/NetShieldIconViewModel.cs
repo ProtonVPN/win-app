@@ -51,7 +51,7 @@ public class NetShieldIconViewModel : FeatureIconViewModelBase
     protected override ImageSource GetImageSource()
     {
         return ResourceHelper.GetIllustration(
-            _settings.IsNetShieldEnabled
+            IsFeatureEnabled
                 ? (_settings.NetShieldMode == NetShieldMode.BlockMalwareOnly
                     ? "NetShieldOnLevel1IllustrationSource"
                     : "NetShieldOnLevel2IllustrationSource")

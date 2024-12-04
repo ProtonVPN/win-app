@@ -32,7 +32,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <ContentControl x:Name="SidebarContainer"
                     HorizontalAlignment="Left"
-                    IsHitTestVisible="{x:Bind IsHitTestVisible}"
                     Style="{StaticResource PaneContentControlStyle}">
         <Grid>
             <!--  Collapsed  -->

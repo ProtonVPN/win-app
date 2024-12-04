@@ -27,22 +27,24 @@ public class RequiredReconnectionSettings : IRequiredReconnectionSettings
 {
     private readonly Dictionary<string, Func<bool>> _settings;
 
-    public RequiredReconnectionSettings(IConnectionManager connectionManager)
+    public RequiredReconnectionSettings(
+        IConnectionManager connectionManager,
+        ISettings settings)
     {
         _settings = new()
         {
             {nameof(ISettings.IsSplitTunnelingEnabled), () => true},
-            {nameof(ISettings.SplitTunnelingMode), () => true},
-            {nameof(ISettings.SplitTunnelingStandardAppsList), () => true},
-            {nameof(ISettings.SplitTunnelingInverseAppsList), () => true},
-            {nameof(ISettings.SplitTunnelingStandardIpAddressesList), () => true},
-            {nameof(ISettings.SplitTunnelingInverseIpAddressesList), () => true},
+            {nameof(ISettings.SplitTunnelingMode), () => settings.IsSplitTunnelingEnabled},
+            {nameof(ISettings.SplitTunnelingStandardAppsList), () => settings.IsSplitTunnelingEnabled},
+            {nameof(ISettings.SplitTunnelingInverseAppsList), () => settings.IsSplitTunnelingEnabled},
+            {nameof(ISettings.SplitTunnelingStandardIpAddressesList), () => settings.IsSplitTunnelingEnabled},
+            {nameof(ISettings.SplitTunnelingInverseIpAddressesList), () => settings.IsSplitTunnelingEnabled},
 
             {nameof(ISettings.VpnProtocol), () => true},
             {nameof(ISettings.OpenVpnAdapter), () => true},
 
             {nameof(ISettings.IsCustomDnsServersEnabled), () => true},
-            {nameof(ISettings.CustomDnsServersList), () => true},
+            {nameof(ISettings.CustomDnsServersList), () => settings.IsCustomDnsServersEnabled},
 
             {nameof(ISettings.IsPortForwardingEnabled), () =>
                 connectionManager.IsConnected &&

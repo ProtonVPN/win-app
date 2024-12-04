@@ -35,6 +35,8 @@ public class P2PCountryLocationItem : CountryLocationItemBase
 
     public override IFeatureIntent? FeatureIntent { get; } = new P2PFeatureIntent();
 
+    protected override bool IsSubGroupHeaderHidden => true;
+
     public P2PCountryLocationItem(
         ILocalizationProvider localizer,
         IServersLoader serversLoader,

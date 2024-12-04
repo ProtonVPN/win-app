@@ -18,6 +18,7 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
@@ -37,7 +38,7 @@ public partial class SpeedFlyoutViewModel : ActivatableViewModelBase,
     IEventMessageReceiver<SettingChangedMessage>,
     IEventMessageReceiver<NetworkTrafficChangedMessage>
 {
-    private readonly IUrls _urls;
+    private readonly IUrlsBrowser _urlsBrowser;
     private readonly ISettings _settings;
     private readonly INetworkTrafficManager _networkTrafficManager;
 
@@ -55,10 +56,10 @@ public partial class SpeedFlyoutViewModel : ActivatableViewModelBase,
 
     public bool IsVpnAcceleratorTaglineVisible => _settings.IsVpnAcceleratorEnabled && _settings.VpnPlan.IsPaid;
 
-    public string IncreaseVpnSpeedsUri => _urls.IncreaseVpnSpeeds;
+    public string IncreaseVpnSpeedsUri => _urlsBrowser.IncreaseVpnSpeeds;
 
     public SpeedFlyoutViewModel(
-        IUrls urls,
+        IUrlsBrowser urlsBrowser,
         ISettings settings,
         INetworkTrafficManager networkTrafficManager,
         ILocalizationProvider localizer,
@@ -66,7 +67,7 @@ public partial class SpeedFlyoutViewModel : ActivatableViewModelBase,
         IIssueReporter issueReporter) :
         base(localizer, logger, issueReporter)
     {
-        _urls = urls;
+        _urlsBrowser = urlsBrowser;
         _settings = settings;
         _networkTrafficManager = networkTrafficManager;
     }

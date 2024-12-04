@@ -258,14 +258,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         AutomationProperties.Name="{x:Bind Header}"
                                         Command="{x:Bind ToggleConnectionCommand, Mode=OneTime}"
                                         Description="{x:Bind Description}"
-                                        Header="{x:Bind Header}"
+                                        Header="{x:Bind Header}" 
                                         IsActiveConnection="{x:Bind IsActiveConnection}"
                                         IsDescriptionVisible="{x:Bind IsDescriptionVisible}"
-                                        IsRestricted="{x:Bind IsRestricted}"
+                                        IsRestricted="{x:Bind IsRestricted}" 
                                         IsUnderMaintenance="{x:Bind IsUnderMaintenance}"
                                         ToolTipService.ToolTip="{x:Bind ToolTip}">
                 <custom:ConnectionRowButton.Icon>
-                    <custom:ComplexCountryFlag Width="30"
+                    <custom:ComplexCountryFlag Width="30" 
                                                EntryCountryCode="{x:Bind CountryPair.EntryCountry}"
                                                ExitCountryCode="{x:Bind CountryPair.ExitCountry}"
                                                IsSecureCore="True"
@@ -699,12 +699,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <ItemsControl x:Name="connectionItemsControl"
                       ItemTemplateSelector="{StaticResource LocationItemTemplateSelector}"
                       ItemsSource="{x:Bind ItemsSource, Mode=OneTime}">
-
-            <!--<ItemsControl.ItemContainerTransitions>
-                <TransitionCollection>
-                    <AddDeleteThemeTransition />
-                </TransitionCollection>
-            </ItemsControl.ItemContainerTransitions>-->
 
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>

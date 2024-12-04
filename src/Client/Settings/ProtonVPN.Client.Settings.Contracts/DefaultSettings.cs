@@ -29,7 +29,7 @@ public static class DefaultSettings
 {
     public static string Theme = "Dark";
     public static int WindowWidth = 1016;
-    public static int WindowHeight = 759;
+    public static int WindowHeight = 659;
     public static string Language = "en-US";
     public static VpnProtocol VpnProtocol = VpnProtocol.Smart;
     public static NatType NatType = NatType.Strict;

@@ -19,6 +19,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
@@ -39,7 +40,7 @@ public partial class IpAddressFlyoutViewModel : ActivatableViewModelBase,
 {
     private const string HIDDEN_IP_ADDRESS = "***.***.***.***";
 
-    private readonly IUrls _urls;
+    private readonly IUrlsBrowser _urlsBrowser;
     private readonly ISettings _settings;
     private readonly IConnectionManager _connectionManager;
 
@@ -54,7 +55,7 @@ public partial class IpAddressFlyoutViewModel : ActivatableViewModelBase,
     [NotifyPropertyChangedFor(nameof(DeviceIpAddressOrHidden))]
     private bool _isIpAddressVisible;
 
-    public string IpAddressLearnMoreUri => _urls.IpAddressLearnMore;
+    public string IpAddressLearnMoreUri => _urlsBrowser.IpAddressLearnMore;
 
     public string Header => Localizer.Get(IsConnected
         ? "Flyouts_IpAddress_VpnIp"
@@ -74,7 +75,7 @@ public partial class IpAddressFlyoutViewModel : ActivatableViewModelBase,
             : HIDDEN_IP_ADDRESS;
 
     public IpAddressFlyoutViewModel(
-        IUrls urls,
+        IUrlsBrowser urlsBrowser,
         ISettings settings,
         IConnectionManager connectionManager,
         ILocalizationProvider localizer,
@@ -82,7 +83,7 @@ public partial class IpAddressFlyoutViewModel : ActivatableViewModelBase,
         IIssueReporter issueReporter) :
         base(localizer, logger, issueReporter)
     {
-        _urls = urls;
+        _urlsBrowser = urlsBrowser;
         _settings = settings;
         _connectionManager = connectionManager;
     }

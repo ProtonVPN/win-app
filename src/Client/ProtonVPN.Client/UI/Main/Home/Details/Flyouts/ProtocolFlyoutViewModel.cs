@@ -19,6 +19,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
@@ -36,7 +37,7 @@ namespace ProtonVPN.Client.UI.Main.Home.Details.Flyouts;
 public partial class ProtocolFlyoutViewModel : ActivatableViewModelBase,
     IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
-    private readonly IUrls _urls;
+    private readonly IUrlsBrowser _urlsBrowser;
     private readonly IConnectionManager _connectionManager;
     private readonly IMainViewNavigator _mainViewNavigator;
     private readonly ISettingsViewNavigator _settingsViewNavigator;
@@ -50,19 +51,19 @@ public partial class ProtocolFlyoutViewModel : ActivatableViewModelBase,
 
     public string ProtocolDescription => Localizer.GetVpnProtocolDescription(Protocol);
 
-    public string VpnProtocolLearnMoreUri => _urls.ProtocolsLearnMore;
+    public string VpnProtocolLearnMoreUri => _urlsBrowser.ProtocolsLearnMore;
 
     public ProtocolFlyoutViewModel(
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
-        IUrls urls,
+        IUrlsBrowser urlsBrowser,
         IConnectionManager connectionManager,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter) :
         base(localizer, logger, issueReporter)
     {
-        _urls = urls;
+        _urlsBrowser = urlsBrowser;
         _connectionManager = connectionManager;
         _mainViewNavigator = mainViewNavigator;
         _settingsViewNavigator = settingsViewNavigator;

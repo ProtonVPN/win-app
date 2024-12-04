@@ -34,6 +34,8 @@ public class CountryLocationItem : CountryLocationItemBase
 
     public override IFeatureIntent? FeatureIntent { get; } = null;
 
+    protected override bool IsSubGroupHeaderHidden => true;
+
     public CountryLocationItem(
         ILocalizationProvider localizer,
         IServersLoader serversLoader,

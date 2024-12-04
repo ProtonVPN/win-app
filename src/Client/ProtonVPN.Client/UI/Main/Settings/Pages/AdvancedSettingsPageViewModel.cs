@@ -20,6 +20,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Common.Attributes;
+using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
@@ -43,7 +44,7 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
     IEventMessageReceiver<LoggedInMessage>,
     IEventMessageReceiver<VpnPlanChangedMessage>
 {
-    private readonly IUrls _urls;
+    private readonly IUrlsBrowser _urlsBrowser;
 
     private readonly IUpsellCarouselWindowActivator _upsellCarouselWindowActivator;
     [ObservableProperty]
@@ -70,9 +71,9 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
 
     public string CustomDnsServersSettingsState => Localizer.GetToggleValue(Settings.IsCustomDnsServersEnabled);
 
-    public string NatTypeLearnMoreUrl => _urls.NatTypeLearnMore;
+    public string NatTypeLearnMoreUrl => _urlsBrowser.NatTypeLearnMore;
 
-    public string Ipv6LeakProtectionLearnMoreUrl => _urls.Ipv6LeakProtectionLearnMore;
+    public string Ipv6LeakProtectionLearnMoreUrl => _urlsBrowser.Ipv6LeakProtectionLearnMore;
 
     public bool IsStrictNatType
     {
@@ -99,7 +100,7 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
     }
 
     public AdvancedSettingsPageViewModel(
-        IUrls urls,
+        IUrlsBrowser urlsBrowser,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
@@ -122,7 +123,7 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
                settingsConflictResolver,
                connectionManager)
     {
-        _urls = urls;
+        _urlsBrowser = urlsBrowser;
         _upsellCarouselWindowActivator = upsellCarouselWindowActivator;
     }
 

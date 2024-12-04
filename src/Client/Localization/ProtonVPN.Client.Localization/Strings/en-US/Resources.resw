@@ -201,6 +201,15 @@
   <data name="Profiles_Page_Description" xml:space="preserve">
     <value>Configure your own VPN settings and connect in one click.</value>
   </data>
+  <data name="Profiles_Default_Streaming" xml:space="preserve">
+    <value>Streaming US</value>
+  </data>
+  <data name="Profiles_Default_AntiCensorship" xml:space="preserve">
+    <value>Anti-censorship</value>
+  </data>
+  <data name="Profiles_Default_WorkSchool" xml:space="preserve">
+    <value>Work/School</value>
+  </data>
   <data name="Country_val_AD" xml:space="preserve">
     <value>Andorra</value>
     <comment>The name of AD country</comment>

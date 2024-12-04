@@ -54,7 +54,7 @@ public interface IUrlsConfiguration
     string InvoicesUrl { get; }
     string AboutSmartProtocolUrl { get; }
     string IncorrectSystemTimeArticleUrl { get; }
-    string AssignVpnConnectionsUrl { get; }
+    string EnableVpnConnectionsUrl { get; }
     string LoginProblemsUrl { get; }
     string RebrandingUrl { get; }
     string RpcServerProblemUrl { get; }

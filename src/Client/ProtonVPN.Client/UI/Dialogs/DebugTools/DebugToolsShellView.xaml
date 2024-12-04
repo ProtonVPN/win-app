@@ -23,8 +23,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:enums="using:ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn"
              xmlns:local="using:ProtonVPN.Client.UI.Dialogs.DebugTools"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:tkui="using:CommunityToolkit.WinUI"
              xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
              mc:Ignorable="d">
 
@@ -32,84 +34,100 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Thickness x:Key="OffsetScrollViewerMargin">0,0,-24,0</Thickness>
         <Thickness x:Key="OffsetScrollViewerPadding">0,0,24,0</Thickness>
     </UserControl.Resources>
-    
+
     <Grid Margin="40,60,40,40"
           RowSpacing="20">
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0"
+                   Margin="4,0"
                    Style="{StaticResource TitleTextBlockStyle}"
-                   Text="{x:Bind ViewModel.Title}" 
-                   Margin="4,0"/>
+                   Text="{x:Bind ViewModel.Title}" />
 
         <ScrollViewer Grid.Row="1">
             <StackPanel>
 
                 <toolkit:SettingsCard Header="Intentional app crash"
-                                  IsTabStop="False"
-                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                                      IsTabStop="False"
+                                      Style="{StaticResource DefaultSettingsCardStyle}">
                     <Button Command="{x:Bind ViewModel.TriggerAppCrashCommand, Mode=OneTime}"
-                        Content="Trigger Crash"
-                        Style="{StaticResource PrimaryButtonStyle}" />
+                            Content="Trigger Crash"
+                            Style="{StaticResource PrimaryButtonStyle}" />
+                </toolkit:SettingsCard>
+
+                <toolkit:SettingsCard Header="Trigger Connection Error"
+                                      IsTabStop="False"
+                                      Style="{StaticResource DefaultSettingsCardStyle}">
+
+                    <StackPanel Orientation="Horizontal"
+                                Spacing="8">
+                        <ComboBox ItemsSource="{tkui:EnumValues Type=enums:VpnErrorTypeIpcEntity}"
+                                  SelectedItem="{x:Bind ViewModel.SelectedError, Mode=TwoWay}" />
+
+                        <Button Command="{x:Bind ViewModel.TriggerConnectionErrorCommand, Mode=OneTime}"
+                                Content="Trigger"
+                                Style="{StaticResource PrimaryButtonStyle}" />
+                    </StackPanel>
+
                 </toolkit:SettingsCard>
 
                 <toolkit:SettingsCard Header="Refresh logicals"
-                                  IsTabStop="False"
-                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                                      IsTabStop="False"
+                                      Style="{StaticResource DefaultSettingsCardStyle}">
                     <Button Command="{x:Bind ViewModel.TriggerLogicalsRefreshCommand, Mode=OneTime}"
-                        Content="Trigger refresh"
-                        Style="{StaticResource PrimaryButtonStyle}" />
+                            Content="Trigger refresh"
+                            Style="{StaticResource PrimaryButtonStyle}" />
                 </toolkit:SettingsCard>
 
                 <toolkit:SettingsCard Header="Logout user with client outdated reason"
-                                  IsTabStop="False"
-                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                                      IsTabStop="False"
+                                      Style="{StaticResource DefaultSettingsCardStyle}">
                     <Button Command="{x:Bind ViewModel.LogoutUserWithClientOutdatedReasonCommand, Mode=OneTime}"
-                        Content="Trigger"
-                        Style="{StaticResource PrimaryButtonStyle}" />
+                            Content="Trigger"
+                            Style="{StaticResource PrimaryButtonStyle}" />
                 </toolkit:SettingsCard>
 
                 <toolkit:SettingsCard Header="Show overlay"
-                                  IsTabStop="False"
-                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                                      IsTabStop="False"
+                                      Style="{StaticResource DefaultSettingsCardStyle}">
 
                     <StackPanel Orientation="Horizontal"
-                            Spacing="8">
+                                Spacing="8">
                         <ComboBox DisplayMemberPath="Name"
-                              ItemsSource="{x:Bind ViewModel.OverlaysList, Mode=OneTime}"
-                              SelectedItem="{x:Bind ViewModel.SelectedOverlay, Mode=TwoWay}" />
+                                  ItemsSource="{x:Bind ViewModel.OverlaysList, Mode=OneTime}"
+                                  SelectedItem="{x:Bind ViewModel.SelectedOverlay, Mode=TwoWay}" />
 
                         <Button Command="{x:Bind ViewModel.ShowOverlayCommand, Mode=OneTime}"
-                            Content="Trigger"
-                            Style="{StaticResource PrimaryButtonStyle}" />
+                                Content="Trigger"
+                                Style="{StaticResource PrimaryButtonStyle}" />
                     </StackPanel>
 
                 </toolkit:SettingsCard>
 
                 <toolkit:SettingsCard Header="Info banners"
-                                  IsTabStop="False"
-                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                                      IsTabStop="False"
+                                      Style="{StaticResource DefaultSettingsCardStyle}">
                     <Button Command="{x:Bind ViewModel.ResetInfoBannersCommand, Mode=OneTime}"
-                        Content="Reset"
-                        Style="{StaticResource PrimaryButtonStyle}" />
+                            Content="Reset"
+                            Style="{StaticResource PrimaryButtonStyle}" />
                 </toolkit:SettingsCard>
 
                 <toolkit:SettingsCard Header="Simulate plan changed"
-                                  IsTabStop="False"
-                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                                      IsTabStop="False"
+                                      Style="{StaticResource DefaultSettingsCardStyle}">
 
                     <StackPanel Orientation="Horizontal"
-                            Spacing="8">
+                                Spacing="8">
                         <Button Command="{x:Bind ViewModel.SimulatePlanChangedToFreeCommand, Mode=OneTime}"
-                            Content="To Free"
-                            Style="{StaticResource PrimaryButtonStyle}" />
+                                Content="To Free"
+                                Style="{StaticResource PrimaryButtonStyle}" />
                         <Button Command="{x:Bind ViewModel.SimulatePlanChangedToPlusCommand, Mode=OneTime}"
-                            Content="To Plus"
-                            Style="{StaticResource PrimaryButtonStyle}" />
+                                Content="To Plus"
+                                Style="{StaticResource PrimaryButtonStyle}" />
                     </StackPanel>
 
                 </toolkit:SettingsCard>

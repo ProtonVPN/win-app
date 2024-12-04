@@ -22,6 +22,7 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Contracts.Services.Activation;
+using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.Core.Models;
 using ProtonVPN.Client.Core.Services.Activation;
@@ -57,7 +58,7 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase,
     private readonly IOverlayActivator _mainWindowOverlayActivator;
     private readonly ISettings _settings;
     private readonly ISettingsRestorer _settingsRestorer;
-    private readonly IUrls _urls;
+    private readonly IUrlsBrowser _urlsBrowser;
 
     private readonly IReportIssueWindowActivator _reportIssueWindowActivator;
     private readonly IDebugToolsWindowActivator _debugToolsWindowActivator;
@@ -124,7 +125,7 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         ISettings settings,
         ISettingsRestorer settingsRestorer,
-        IUrls urls,
+        IUrlsBrowser urlsBrowser,
         IReportIssueWindowActivator reportIssueWindowActivator,
         IDebugToolsWindowActivator debugToolsWindowActivator,
         ISettingsConflictResolver settingsConflictResolver,
@@ -151,7 +152,7 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase,
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
         _settings = settings;
         _settingsRestorer = settingsRestorer;
-        _urls = urls;
+        _urlsBrowser = urlsBrowser;
         _reportIssueWindowActivator = reportIssueWindowActivator;
         _debugToolsWindowActivator = debugToolsWindowActivator;
         _connectionManager = connectionManager;
@@ -194,7 +195,7 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase,
     [RelayCommand]
     public void OpenSupport()
     {
-        _urls.NavigateTo(_urls.SupportCenter);
+        _urlsBrowser.BrowseTo(_urlsBrowser.SupportCenter);
     }
 
     [RelayCommand]

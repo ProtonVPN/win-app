@@ -24,6 +24,7 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Common.Attributes;
+using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Extensions;
 using ProtonVPN.Client.Core.Helpers;
 using ProtonVPN.Client.Core.Services.Activation;
@@ -49,7 +50,7 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
 
     private const string EXE_FILE_EXTENSION = ".exe";
 
-    private readonly IUrls _urls;
+    private readonly IUrlsBrowser _urlsBrowser;
     private readonly IVpnServiceSettingsUpdater _vpnServiceSettingsUpdater;
     private readonly IMainWindowActivator _mainWindowActivator;
 
@@ -75,7 +76,7 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
 
     public ImageSource SplitTunnelingFeatureIconSource => GetFeatureIconSource(IsSplitTunnelingEnabled);
 
-    public string LearnMoreUrl => _urls.SplitTunnelingLearnMore;
+    public string LearnMoreUrl => _urlsBrowser.SplitTunnelingLearnMore;
 
     public bool IsStandardSplitTunneling
     {
@@ -116,7 +117,7 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
                                              : InverseIpAddresses.Count(ip => ip.IsActive);
 
     public SplitTunnelingPageViewModel(
-        IUrls urls,
+        IUrlsBrowser urlsBrowser,
         IVpnServiceSettingsUpdater vpnServiceSettingsUpdater,
         IMainWindowActivator mainWindowActivator,
         IRequiredReconnectionSettings requiredReconnectionSettings,
@@ -140,7 +141,7 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
                settingsConflictResolver,
                connectionManager)
     {
-        _urls = urls;
+        _urlsBrowser = urlsBrowser;
         _vpnServiceSettingsUpdater = vpnServiceSettingsUpdater;
         _mainWindowActivator = mainWindowActivator;
 
@@ -373,5 +374,38 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
         {
             AddIpAddressCommand.Execute(null);
         }
+    }
+
+    protected override bool IsReconnectionRequiredDueToChanges(IEnumerable<ChangedSettingArgs> changedSettings)
+    {
+        bool isReconnectionRequired = base.IsReconnectionRequiredDueToChanges(changedSettings);
+        if (isReconnectionRequired)
+        {
+            // Check if there was any active apps or IP adresses from the settings
+            // then check if there is any active apps or IP adresses now.
+            // If there is none in both case, no need to reconnect.
+            bool hadAnyActiveAppsOrIps =
+                Settings.IsSplitTunnelingEnabled &&
+                Settings.SplitTunnelingMode switch
+                {
+                    SplitTunnelingMode.Standard => Settings.SplitTunnelingStandardAppsList.Any(s => s.IsActive) || Settings.SplitTunnelingStandardIpAddressesList.Any(s => s.IsActive),
+                    SplitTunnelingMode.Inverse => Settings.SplitTunnelingInverseAppsList.Any(s => s.IsActive) || Settings.SplitTunnelingInverseIpAddressesList.Any(s => s.IsActive),
+                    _ => false
+                };
+            bool hasAnyActiveAppsOrIps =
+                IsSplitTunnelingEnabled &&
+                CurrentSplitTunnelingMode switch
+                {
+                    SplitTunnelingMode.Standard => StandardApps.Any(s => s.IsActive) || StandardIpAddresses.Any(s => s.IsActive),
+                    SplitTunnelingMode.Inverse => InverseApps.Any(s => s.IsActive) || InverseIpAddresses.Any(s => s.IsActive),
+                    _ => false
+                };
+            if (!hadAnyActiveAppsOrIps && !hasAnyActiveAppsOrIps)
+            {
+                return false;
+            }
+        }
+
+        return isReconnectionRequired;
     }
 }

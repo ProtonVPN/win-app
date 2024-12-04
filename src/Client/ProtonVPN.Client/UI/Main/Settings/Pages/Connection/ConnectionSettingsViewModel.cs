@@ -24,6 +24,7 @@ using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Services.Activation;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
@@ -33,7 +34,8 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.Connection;
 
 public partial class ConnectionSettingsViewModel : PageViewModelBase,
-    IEventMessageReceiver<SettingChangedMessage>
+    IEventMessageReceiver<SettingChangedMessage>,
+    IEventMessageReceiver<VpnPlanChangedMessage>
 {
     private readonly ISettings _settings;
     private readonly IUpsellCarouselWindowActivator _upsellCarouselWindowActivator;
@@ -43,7 +45,7 @@ public partial class ConnectionSettingsViewModel : PageViewModelBase,
 
     public string ConnectionProtocolState => Localizer.Get($"Settings_SelectedProtocol_{_settings.VpnProtocol}");
 
-    public string VpnAcceleratorSettingsState => Localizer.GetToggleValue(_settings.IsVpnAcceleratorEnabled);
+    public string VpnAcceleratorSettingsState => Localizer.GetToggleValue(IsPaidUser && _settings.IsVpnAcceleratorEnabled);
     public string NetShieldSettingsState => Localizer.GetToggleValue(_settings.IsNetShieldEnabled);
     public string KillSwitchSettingsState => Localizer.GetToggleValue(_settings.IsKillSwitchEnabled);
     public string PortForwardingSettingsState => Localizer.GetToggleValue(_settings.IsPortForwardingEnabled);
@@ -83,12 +85,21 @@ public partial class ConnectionSettingsViewModel : PageViewModelBase,
         });
     }
 
+    public void Receive(VpnPlanChangedMessage message)
+    {
+        ExecuteOnUIThread(InvalidateAllProperties);
+    }
+
     protected override void OnLanguageChanged()
     {
         base.OnLanguageChanged();
 
         OnPropertyChanged(nameof(ConnectionProtocolState));
         OnPropertyChanged(nameof(VpnAcceleratorSettingsState));
+        OnPropertyChanged(nameof(NetShieldSettingsState));
+        OnPropertyChanged(nameof(KillSwitchSettingsState));
+        OnPropertyChanged(nameof(PortForwardingSettingsState));
+        OnPropertyChanged(nameof(SplitTunnelingSettingsState));
     }
 
     [RelayCommand]

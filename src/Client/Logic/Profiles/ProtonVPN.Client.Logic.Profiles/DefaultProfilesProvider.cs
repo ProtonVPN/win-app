@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Client.Common.Enums;
+using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Common.Core.Networking;
@@ -26,10 +27,15 @@ namespace ProtonVPN.Client.Logic.Profiles;
 
 public class DefaultProfilesProvider : IDefaultProfilesProvider
 {
+    private readonly ILocalizationProvider _localizer;
+
     private readonly List<IConnectionProfile> _defaultProfiles;
 
-    public DefaultProfilesProvider()
+    public DefaultProfilesProvider(
+        ILocalizationProvider localizer)
     {
+        _localizer = localizer;
+
         _defaultProfiles =
         [
             GetDefaultStreamingProfile(),
@@ -43,14 +49,13 @@ public class DefaultProfilesProvider : IDefaultProfilesProvider
         return _defaultProfiles.ToList();
     }
 
-    private static IConnectionProfile GetDefaultStreamingProfile()
+    private IConnectionProfile GetDefaultStreamingProfile()
     {
         ILocationIntent locationIntent = new CountryLocationIntent("US");
 
         IConnectionProfile profile = new ConnectionProfile(locationIntent)
         {
-            // TODO: Should profile name be localized?
-            Name = "Streaming US",
+            Name = _localizer.Get("Profiles_Default_Streaming"),
             Category = ProfileCategory.Streaming,
             Color = ProfileColor.Purple
         };
@@ -60,36 +65,33 @@ public class DefaultProfilesProvider : IDefaultProfilesProvider
         return profile;
     }
 
-    private static IConnectionProfile GetDefaultWorkProfile()
+    private IConnectionProfile GetDefaultWorkProfile()
     {
-        ILocationIntent locationIntent = new CountryLocationIntent();
+        ILocationIntent locationIntent = CountryLocationIntent.Fastest;
 
         IConnectionProfile profile = new ConnectionProfile(locationIntent)
         {
-            Name = "Work/School",
+            Name = _localizer.Get("Profiles_Default_WorkSchool"),
             Category = ProfileCategory.Business,
             Color = ProfileColor.Purple
         };
 
-        // TODO: Stealth protocol is under feature flag. Check that it is available. Replace with Smart otherwise.
         profile.Settings.Protocol = VpnProtocol.WireGuardTls;
 
         return profile;
     }
 
-    private static IConnectionProfile GetDefaultAntiCensorshipProfile()
+    private IConnectionProfile GetDefaultAntiCensorshipProfile()
     {
-        // TODO: Replace with fastest excluding my country
-        ILocationIntent locationIntent = new CountryLocationIntent();
+        ILocationIntent locationIntent = CountryLocationIntent.FastestExcludingMyCountry;
 
         IConnectionProfile profile = new ConnectionProfile(locationIntent)
         {
-            Name = "Anti-censorship",
+            Name = _localizer.Get("Profiles_Default_AntiCensorship"),
             Category = ProfileCategory.Anonymous,
             Color = ProfileColor.Purple
         };
 
-        // TODO: Stealth protocol is under feature flag. Check that it is available. Replace with Smart otherwise.
         profile.Settings.Protocol = VpnProtocol.WireGuardTls;
 
         return profile;

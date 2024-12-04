@@ -32,6 +32,7 @@ using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Client.Contracts.Services.Browsing;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Connection;
 
@@ -39,7 +40,7 @@ public partial class KillSwitchPageViewModel : SettingsPageViewModelBase
 {
     public override string Title => Localizer.Get("Settings_Connection_KillSwitch");
 
-    private readonly IUrls _urls;
+    private readonly IUrlsBrowser _urlsBrowser;
     private readonly IVpnServiceSettingsUpdater _vpnServiceSettingsUpdater;
 
     [ObservableProperty] [NotifyPropertyChangedFor(nameof(KillSwitchFeatureIconSource))]
@@ -54,7 +55,7 @@ public partial class KillSwitchPageViewModel : SettingsPageViewModelBase
 
     public ImageSource KillSwitchFeatureIconSource => GetFeatureIconSource(IsKillSwitchEnabled, CurrentKillSwitchMode);
 
-    public string LearnMoreUrl => _urls.KillSwitchLearnMore;
+    public string LearnMoreUrl => _urlsBrowser.KillSwitchLearnMore;
 
     public bool IsStandardKillSwitch
     {
@@ -69,7 +70,7 @@ public partial class KillSwitchPageViewModel : SettingsPageViewModelBase
     }
 
     public KillSwitchPageViewModel(
-        IUrls urls,
+        IUrlsBrowser urlsBrowser,
         IVpnServiceSettingsUpdater vpnServiceSettingsUpdater,
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
@@ -92,7 +93,7 @@ public partial class KillSwitchPageViewModel : SettingsPageViewModelBase
                settingsConflictResolver,
                connectionManager)
     {
-        _urls = urls;
+        _urlsBrowser = urlsBrowser;
         _vpnServiceSettingsUpdater = vpnServiceSettingsUpdater;
     }
 

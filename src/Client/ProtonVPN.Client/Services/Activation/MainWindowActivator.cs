@@ -44,7 +44,7 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
     IEventMessageReceiver<AuthenticationStatusChanged>
 {
     private const int LOGIN_WINDOW_WIDTH = 1016;
-    private const int LOGIN_WINDOW_HEIGHT = 759;
+    private const int LOGIN_WINDOW_HEIGHT = 659;
 
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IEventMessageSender _eventMessageSender;

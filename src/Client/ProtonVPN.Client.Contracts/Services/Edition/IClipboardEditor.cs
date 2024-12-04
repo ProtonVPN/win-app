@@ -17,9 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Models.Clipboards;
+namespace ProtonVPN.Client.Contracts.Services.Edition;
 
 public interface IClipboardEditor
 {
     Task SetTextAsync(string text);
+
+    string GetText();
 }

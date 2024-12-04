@@ -19,6 +19,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;
@@ -35,7 +36,7 @@ namespace ProtonVPN.Client.UI.Overlays.Information.Notification;
 public partial class OutdatedClientOverlayViewModel : OverlayViewModelBase<IMainWindowOverlayActivator>,
     IEventMessageReceiver<ClientUpdateStateChangedMessage>
 {
-    private readonly IUrls _urls;
+    private readonly IUrlsBrowser _urlsBrowser;
     private readonly UpdateViewModel _updateViewModel;
     private readonly IUpdatesManager _updatesManager;
     private readonly IMainWindowActivator _mainWindowActivator;
@@ -52,7 +53,7 @@ public partial class OutdatedClientOverlayViewModel : OverlayViewModelBase<IMain
     public bool CanUpdate => !IsCheckingForUpdate;
 
     public OutdatedClientOverlayViewModel(
-        IUrls urls,
+        IUrlsBrowser urlsBrowser,
         UpdateViewModel updateViewModel,
         IUpdatesManager updatesManager,
         IMainWindowActivator mainWindowActivator,
@@ -61,7 +62,7 @@ public partial class OutdatedClientOverlayViewModel : OverlayViewModelBase<IMain
         ILogger logger,
         IIssueReporter issueReporter) : base(overlayActivator, localizer, logger, issueReporter)
     {
-        _urls = urls;
+        _urlsBrowser = urlsBrowser;
         _updateViewModel = updateViewModel;
         _updatesManager = updatesManager;
         _mainWindowActivator = mainWindowActivator;
@@ -83,7 +84,7 @@ public partial class OutdatedClientOverlayViewModel : OverlayViewModelBase<IMain
         }
         else
         {
-            _urls.NavigateTo(_urls.DownloadsPage);
+            _urlsBrowser.BrowseTo(_urlsBrowser.DownloadsPage);
         }
 
         Exit();

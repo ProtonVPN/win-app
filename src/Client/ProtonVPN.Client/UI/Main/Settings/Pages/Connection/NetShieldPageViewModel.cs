@@ -20,6 +20,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Common.Attributes;
+using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Helpers;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
@@ -38,7 +39,7 @@ namespace ProtonVPN.Client.UI.Main.Settings.Connection;
 
 public partial class NetShieldPageViewModel : SettingsPageViewModelBase
 {
-    private readonly IUrls _urls;
+    private readonly IUrlsBrowser _urlsBrowser;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(NetShieldFeatureIconSource))]
@@ -75,10 +76,10 @@ public partial class NetShieldPageViewModel : SettingsPageViewModelBase
 
     public ImageSource NetShieldFeatureIconSource => GetFeatureIconSource(IsNetShieldEnabled);
 
-    public string LearnMoreUrl => _urls.NetShieldLearnMore;
+    public string LearnMoreUrl => _urlsBrowser.NetShieldLearnMore;
 
     public NetShieldPageViewModel(
-        IUrls urls,
+        IUrlsBrowser urlsBrowser,
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
@@ -100,7 +101,7 @@ public partial class NetShieldPageViewModel : SettingsPageViewModelBase
                settingsConflictResolver,
                connectionManager)
     {
-        _urls = urls;
+        _urlsBrowser = urlsBrowser;
     }
 
     public static ImageSource GetFeatureIconSource(bool isEnabled)

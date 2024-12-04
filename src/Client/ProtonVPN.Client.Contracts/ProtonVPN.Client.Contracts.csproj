@@ -8,10 +8,12 @@
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 	</PropertyGroup>
 	<ItemGroup>
-		<Compile Include="..\..\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
+	  <Compile Remove="Services\Navigation\**" />
+	  <EmbeddedResource Remove="Services\Navigation\**" />
+	  <None Remove="Services\Navigation\**" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Services\Navigation\" />
+		<Compile Include="..\..\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\Logic\Profiles\ProtonVPN.Client.Logic.Profiles.Contracts\ProtonVPN.Client.Logic.Profiles.Contracts.csproj" />

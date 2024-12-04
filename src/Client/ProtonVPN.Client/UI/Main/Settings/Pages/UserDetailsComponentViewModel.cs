@@ -18,6 +18,9 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Client.Common.Models;
+using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;
@@ -39,8 +42,10 @@ namespace ProtonVPN.Client.UI.Main.Settings.Pages;
 public partial class UserDetailsComponentViewModel : PageViewModelBase,
     IEventMessageReceiver<SettingChangedMessage>
 {
+    private readonly IUrlsBrowser _urlsBrowser;
+    private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
+    private readonly IConnectionManager _connectionManager;
     private readonly ISignOutHandler _signoutHandler;
-    private readonly IUrls _urls;
     private readonly ISettings _settings;
     private readonly IWebAuthenticator _webAuthenticator;
     private readonly IBootstrapper _bootstrapper;
@@ -54,8 +59,8 @@ public partial class UserDetailsComponentViewModel : PageViewModelBase,
     public bool IsProtonPlan => _settings.VpnPlan.IsProtonPlan;
 
     public UserDetailsComponentViewModel(
+        IUrlsBrowser urlsBrowser,
         ISignOutHandler signoutHandler,
-        IUrls urls,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         IConnectionManager connectionManager,
         ISettings settings,
@@ -65,8 +70,10 @@ public partial class UserDetailsComponentViewModel : PageViewModelBase,
         ILogger logger,
         IIssueReporter issueReporter) : base(localizer, logger, issueReporter)
     {
+        _urlsBrowser = urlsBrowser;
+        _mainWindowOverlayActivator = mainWindowOverlayActivator;
+        _connectionManager = connectionManager;
         _signoutHandler = signoutHandler;
-        _urls = urls;
         _settings = settings;
         _webAuthenticator = webAuthenticator;
         _bootstrapper = bootstrapper;
@@ -75,7 +82,7 @@ public partial class UserDetailsComponentViewModel : PageViewModelBase,
     [RelayCommand]
     public async Task OpenMyAccountUrlAsync()
     {
-        _urls.NavigateTo(await _webAuthenticator.GetMyAccountUrlAsync());
+        _urlsBrowser.BrowseTo(await _webAuthenticator.GetMyAccountUrlAsync());
     }
 
     [RelayCommand]

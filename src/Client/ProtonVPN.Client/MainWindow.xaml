@@ -30,8 +30,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
               xmlns:ui="using:ProtonVPN.Client.UI"
               xmlns:wex="using:WinUIEx"
               MinWidth="566"
-              MinHeight="759"
-              x:DefaultBindMode="OneWay"
+              MinHeight="609"
               mc:Ignorable="d">
 
     <!--  There's a consistent difference between the size defined here and the actual size  -->
@@ -47,7 +46,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <ui:MainWindowShellView x:Name="Shell" />
 
-            <components:TitleBarMenuComponent Margin="12,4,0,0"
+            <components:TitleBarMenuComponent Margin="10,6,0,0"
                                               HorizontalAlignment="Left"
                                               VerticalAlignment="Top" />
         </Grid>

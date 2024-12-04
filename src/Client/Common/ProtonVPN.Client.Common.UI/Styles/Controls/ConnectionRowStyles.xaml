@@ -512,7 +512,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                         <ContentPresenter x:Name="PrimaryButtonContainer"
                                           Grid.Row="0"
-                                          Grid.Column="0"
+                                          Grid.Column="0" 
+                                          Margin="1,0"
                                           Content="{TemplateBinding Content}" />
 
                         <VisualStateManager.VisualStateGroups>

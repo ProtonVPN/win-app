@@ -17,13 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Contracts.Services.Validation;
 using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.OperatingSystemLogs;
 using ProtonVPN.NetworkTimeProtocols.Contracts;
 
-namespace ProtonVPN.Client.Models.SystemTimes;
+namespace ProtonVPN.Client.Services.Validation;
 
 public class SystemTimeValidator : ISystemTimeValidator
 {

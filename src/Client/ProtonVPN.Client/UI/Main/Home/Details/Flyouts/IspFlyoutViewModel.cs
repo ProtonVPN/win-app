@@ -18,11 +18,11 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
-using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -32,23 +32,23 @@ namespace ProtonVPN.Client.UI.Main.Home.Details.Flyouts;
 public partial class IspFlyoutViewModel : ActivatableViewModelBase,
     IEventMessageReceiver<DeviceLocationChangedMessage>
 {
-    private readonly IUrls _urls;
+    private readonly IUrlsBrowser _urlsBrowser;
     private readonly ISettings _settings;
 
     [ObservableProperty]
     private string _isp = string.Empty;
 
-    public string IspLearnMoreUri => _urls.IspLearnMore;
+    public string IspLearnMoreUri => _urlsBrowser.IspLearnMore;
 
     public IspFlyoutViewModel(
-        IUrls urls,
+        IUrlsBrowser urlsBrowser,
         ISettings settings,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter) :
         base(localizer, logger, issueReporter)
     {
-        _urls = urls;
+        _urlsBrowser = urlsBrowser;
         _settings = settings;
     }
 

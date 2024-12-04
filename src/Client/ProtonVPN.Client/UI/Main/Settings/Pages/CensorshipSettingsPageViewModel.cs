@@ -28,12 +28,13 @@ using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
+using ProtonVPN.Client.Contracts.Services.Browsing;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages;
 
 public partial class CensorshipSettingsPageViewModel : SettingsPageViewModelBase
 {
-    private readonly IUrls _urls;
+    private readonly IUrlsBrowser _urlsBrowser;
 
     [ObservableProperty]
     private bool _isShareStatisticsEnabled;
@@ -43,10 +44,10 @@ public partial class CensorshipSettingsPageViewModel : SettingsPageViewModelBase
 
     public override string Title => Localizer.Get("Settings_Improve_Censorship");
 
-    public string LearnMoreUrl => _urls.UsageStatisticsLearnMore;
+    public string LearnMoreUrl => _urlsBrowser.UsageStatisticsLearnMore;
 
     public CensorshipSettingsPageViewModel(
-        IUrls urls,
+        IUrlsBrowser urlsBrowser,
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
@@ -68,7 +69,7 @@ public partial class CensorshipSettingsPageViewModel : SettingsPageViewModelBase
                settingsConflictResolver,
                connectionManager)
     {
-        _urls = urls;
+        _urlsBrowser = urlsBrowser;
     }
 
     protected override void OnSaveSettings()

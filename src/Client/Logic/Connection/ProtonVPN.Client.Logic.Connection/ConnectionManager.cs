@@ -107,7 +107,9 @@ public class ConnectionManager : IInternalConnectionManager,
 
         _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Connection attempt to: {connectionIntent}.");
 
-        SetConnectionStatus(ConnectionStatus.Connecting, forceSendStatusUpdate: true);
+        // Skip forcing status to Connecting and rely on the service response instead.
+        // - This is to avoid weird status changed behavior (Connecting -> Disconnected -> Connecting)
+        //SetConnectionStatus(ConnectionStatus.Connecting, forceSendStatusUpdate: true);
 
         ConnectionRequestIpcEntity request = await _connectionRequestCreator.CreateAsync(connectionIntent);
 

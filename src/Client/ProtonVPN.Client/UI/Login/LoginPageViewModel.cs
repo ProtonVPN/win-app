@@ -22,6 +22,7 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Contracts.Services.Activation;
+using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Messages;
@@ -47,7 +48,7 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
     IEventMessageReceiver<LoggedOutMessage>,
     IEventMessageReceiver<SettingChangedMessage>
 {
-    private readonly IUrls _urls;
+    private readonly IUrlsBrowser _urlsBrowser;
     private readonly IMainWindowActivator _mainWindowActivator;
     private readonly IReportIssueWindowActivator _reportIssueWindowActivator;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
@@ -70,13 +71,13 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter,
-        IUrls urls,
+        IUrlsBrowser urlsBrowser,
         IMainWindowActivator mainWindowActivator,
         IReportIssueWindowActivator reportIssueWindowActivator,
         IMainWindowOverlayActivator mainWindowOverlayActivator)
         : base(parentViewNavigator, childViewNavigator, localizer, logger, issueReporter)
     {
-        _urls = urls;
+        _urlsBrowser = urlsBrowser;
         _mainWindowActivator = mainWindowActivator;
         _reportIssueWindowActivator = reportIssueWindowActivator;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
@@ -176,19 +177,19 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
     [RelayCommand]
     public void ResetPassword()
     {
-        _urls.NavigateTo(_urls.ResetPassword);
+        _urlsBrowser.BrowseTo(_urlsBrowser.ResetPassword);
     }
 
     [RelayCommand]
     public void ForgotUsername()
     {
-        _urls.NavigateTo(_urls.ForgotUsername);
+        _urlsBrowser.BrowseTo(_urlsBrowser.ForgotUsername);
     }
 
     [RelayCommand]
     public void TroubleSigningIn()
     {
-        _urls.NavigateTo(_urls.TroubleSigningIn);
+        _urlsBrowser.BrowseTo(_urlsBrowser.TroubleSigningIn);
     }
 
     [RelayCommand]

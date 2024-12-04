@@ -58,6 +58,12 @@ public class FieldValidation
     public static readonly DependencyProperty HasErrorsProperty =
         DependencyProperty.RegisterAttached("HasErrors", typeof(bool), typeof(FieldValidation), new PropertyMetadata(default));
 
+    /// <summary>
+    /// Gets or sets the global error message
+    /// </summary>
+    public static readonly DependencyProperty ErrorMessageProperty =
+        DependencyProperty.RegisterAttached("ErrorMessage", typeof(string), typeof(FieldValidation), new PropertyMetadata(default));
+
     public static bool GetHasErrors(DependencyObject obj)
     {
         return (bool)obj.GetValue(HasErrorsProperty);
@@ -66,6 +72,16 @@ public class FieldValidation
     public static void SetHasErrors(DependencyObject obj, bool value)
     {
         obj.SetValue(HasErrorsProperty, value);
+    }
+
+    public static string GetErrorMessage(DependencyObject obj)
+    {
+        return (string)obj.GetValue(ErrorMessageProperty);
+    }
+
+    public static void SetErrorMessage(DependencyObject obj, string value)
+    {
+        obj.SetValue(ErrorMessageProperty, value);
     }
 
     public static string GetValidationPropertyName(DependencyObject obj)

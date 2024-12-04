@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,14 +19,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
 using System.Linq;
 using CommunityToolkit.WinUI;
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
-using Windows.Foundation;
 using Path = Microsoft.UI.Xaml.Shapes.Path;
 
 namespace ProtonVPN.Client.Common.UI.Controls.Map;
@@ -34,15 +31,7 @@ namespace ProtonVPN.Client.Common.UI.Controls.Map;
 public sealed partial class MapControl
 {
     private const int MAX_SCALE_FACTOR = 15;
-    private const double PIN_WIDTH = 96;
-    private const double PIN_HEIGHT = 96;
     private const string COUNTRY_CODE_PREFIX = "country_";
-
-    private bool _capturingMouse;
-    private double _currentScale = 1;
-
-    private Point _startingMousePosition;
-    private Path? _currentCountryPath;
 
     public static readonly DependencyProperty ActiveCountryCodeProperty = DependencyProperty.Register(
         nameof(ActiveCountryCode),
@@ -86,6 +75,8 @@ public sealed partial class MapControl
         typeof(CountryPin),
         new PropertyMetadata(false));
 
+    private Path? _currentCountryPath;
+
     public bool IsCountryPinVisible
     {
         get => (bool)GetValue(IsCountryPinVisibleProperty);
@@ -128,218 +119,26 @@ public sealed partial class MapControl
         set => SetValue(IsMainWindowVisibleProperty, value);
     }
 
-    public bool IsToShowPinAdjustmentUi => false;
-
-    private double ViewportScaleX => Viewbox.ActualWidth / MapCanvas.Width;
-    private double ViewportScaleY => Viewbox.ActualHeight / MapCanvas.Height;
-    private double ViewportOffsetX => Viewbox.ActualWidth / 2 / ViewportScaleX;
-    private double ViewportOffsetY => Viewbox.ActualHeight / 2 / ViewportScaleY;
-
     public MapControl()
     {
         InitializeComponent();
 
-        Pin.Width = PIN_WIDTH;
-        Pin.Height = PIN_HEIGHT;
-        PinTranslateTransform.X = -PIN_WIDTH;
-        PinTranslateTransform.Y = -PIN_HEIGHT;
-
         Viewbox.SizeChanged += OnViewboxSizeChanged;
-
-        //Uncomment for pin adjustment
-        // PointerPressed += OnMousePressed;
-        // PointerReleased += OnMouseReleased;
-        // PointerMoved += OnMousePointerMoved;
-    }
-
-    private void OnViewboxSizeChanged(object sender, SizeChangedEventArgs e)
-    {
-        if (_currentCountryPath is null)
-        {
-            return;
-        }
-
-        ZoomAndPanToCountryCenter(_currentCountryPath);
-    }
-
-    private void ZoomAndPanToCountryCenter(Path country)
-    {
-        double scale = GetScaleFactor(country);
-
-        _currentScale = scale;
-
-        ScaleMap(scale);
-
-        string countryCode = GetCountryCode(country);
-        if (_coordinates.ContainsKey(countryCode))
-        {
-            TranslateToPin(countryCode, scale);
-        }
-        else
-        {
-            TranslateToCountryCenter(country, scale);
-        }
-
-        LogPinOffset();
-    }
-
-    private double GetScaleFactor(Path country)
-    {
-        double divisor = GetCountryViewBoxDivisor(country);
-        double maxCountryWidth = Viewbox.ActualWidth / divisor;
-        double maxCountryHeight = Viewbox.ActualHeight / divisor;
-
-        double width = (Viewbox.ActualWidth / MapCanvas.Width) * country.Data.Bounds.Width;
-        double height = (Viewbox.ActualHeight / MapCanvas.Height) * country.Data.Bounds.Height;
-
-        double scaleFactor = height > width ? maxCountryHeight / height : maxCountryWidth / width;
-
-        return Math.Min(scaleFactor, MAX_SCALE_FACTOR);
-    }
-
-    private double GetCountryViewBoxDivisor(Path country)
-    {
-        double area = country.Data.Bounds.Width * country.Data.Bounds.Height;
-        return area switch
-        {
-            >= 10000 => 1.5,
-            >= 5000 => 2,
-            >= 1000 => 2.5,
-            >= 500 => 3,
-            _ => 4
-        };
-    }
-
-    private void ScaleMap(double scale)
-    {
-        MapCanvasScaleTransform.ScaleX = scale;
-        MapCanvasScaleTransform.ScaleY = scale;
-
-        PinScaleTransform.ScaleX = (1 / scale) / ViewportScaleX;
-        PinScaleTransform.ScaleY = (1 / scale) / ViewportScaleY;
-    }
-
-    private string GetCountryCode(Path country)
-    {
-        return country.Name.Replace(COUNTRY_CODE_PREFIX, "");
-    }
-
-    private void TranslateToPin(string countryCode, double scale)
-    {
-        double x = _coordinates[countryCode].X;
-        double y = _coordinates[countryCode].Y;
-
-        MapCanvasTranslateTransform.X = ViewportOffsetX - (x * scale - Pin.ActualWidth / 2);
-        MapCanvasTranslateTransform.Y = ViewportOffsetY - (y * scale - Pin.ActualHeight / 2);
-
-        PinTranslateTransform.X = x - (Pin.ActualWidth / 2 / scale) / ViewportScaleX;
-        PinTranslateTransform.Y = y - (Pin.ActualHeight / 2 / scale) / ViewportScaleY;
-    }
-
-    private void TranslateToCountryCenter(Path country, double scale)
-    {
-        double countryOffsetX = (country.Data.Bounds.Left + country.Data.Bounds.Width / 2) * scale;
-        double countryOffsetY = (country.Data.Bounds.Top + country.Data.Bounds.Height / 2) * scale;
-
-        MapCanvasTranslateTransform.X = ViewportOffsetX - countryOffsetX;
-        MapCanvasTranslateTransform.Y = ViewportOffsetY - countryOffsetY;
-
-        PinTranslateTransform.X = country.Data.Bounds.Left + (country.Data.Bounds.Width / 2) - (Pin.ActualWidth / 2 / scale) / ViewportScaleX;
-        PinTranslateTransform.Y = country.Data.Bounds.Top + (country.Data.Bounds.Height / 2) - (Pin.ActualHeight / 2 / scale) / ViewportScaleY;
-    }
-
-    [Conditional("DEBUG")]
-    private void LogPinOffset()
-    {
-        PinOffsetX.Text = (PinTranslateTransform.X + Pin.ActualWidth / 2 / _currentScale).ToString(CultureInfo.InvariantCulture);
-        PinOffsetY.Text = (PinTranslateTransform.Y + Pin.ActualHeight / 2 / _currentScale).ToString(CultureInfo.InvariantCulture);
     }
 
     private static void OnActiveCountryCodeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (e.NewValue is not string countryCode || d is not MapControl control)
+        if (e.NewValue is not string newCountryCode || d is not MapControl control)
         {
             return;
         }
 
-        string? previousCountryCode = (string)e.OldValue;
-        if (previousCountryCode is not null)
+        if (e.OldValue is string oldCountryCode)
         {
-            control.MakeCountryInactive(previousCountryCode);
+            control.MakeCountryInactive(oldCountryCode);
         }
 
-        if (!string.IsNullOrEmpty(countryCode))
-        {
-            Path? countryPath = control.GetCountryPath(countryCode);
-            if (countryPath is not null)
-            {
-                control.SetCurrentCountryPath(countryPath);
-                control.ZoomAndPanToCountryCenter(countryPath);
-                control.Pin.BeginAnimation();
-                countryPath.Fill = control.ActiveFillColorBrush;
-            }
-        }
-    }
-
-    private void MakeCountryInactive(string countryCode)
-    {
-        Path? countryPath = GetCountryPath(countryCode);
-        if (countryPath is not null)
-        {
-            countryPath.Fill = InactiveFillColorBrush;
-        }
-    }
-
-    private Path? GetCountryPath(string countryCode)
-    {
-        string elementName = GetCountryPathName(countryCode);
-        return FindName(elementName) as Path;
-    }
-
-    private string GetCountryPathName(string countryCode)
-    {
-        return $"country_{countryCode.ToUpper()}";
-    }
-
-    private void SetCurrentCountryPath(Path countryPath)
-    {
-        _currentCountryPath = countryPath;
-    }
-
-    private void ZoomToCountry(object sender, RoutedEventArgs e)
-    {
-        ActiveCountryCode = CountryTextBox.Text;
-        IsConnected = true;
-    }
-
-    private void OnMousePressed(object sender, PointerRoutedEventArgs e)
-    {
-        _capturingMouse = true;
-    }
-
-    private void OnMousePointerMoved(object sender, PointerRoutedEventArgs e)
-    {
-        if (!_capturingMouse)
-        {
-            return;
-        }
-
-        Point pointerPosition = e.GetCurrentPoint(null).Position;
-        double mouseOffsetX = pointerPosition.X.CompareTo(_startingMousePosition.X) / _currentScale;
-        double mouseOffsetY = pointerPosition.Y.CompareTo(_startingMousePosition.Y) / _currentScale;
-
-        PinTranslateTransform.X += mouseOffsetX;
-        PinTranslateTransform.Y += mouseOffsetY;
-
-        LogPinOffset();
-
-        _startingMousePosition = pointerPosition;
-    }
-
-    private void OnMouseReleased(object sender, PointerRoutedEventArgs e)
-    {
-        _capturingMouse = false;
-        _startingMousePosition = new();
+        control.MakeCountryActive(newCountryCode);
     }
 
     private static void OnInactiveFillColorBrushChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -360,6 +159,128 @@ public sealed partial class MapControl
         }
 
         control.InvalidateCountryFill();
+    }
+
+    private void OnViewboxSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        if (_currentCountryPath is null)
+        {
+            return;
+        }
+
+        ZoomAndPanToCountryCenter(_currentCountryPath);
+    }
+
+    private void ZoomAndPanToCountryCenter(Path countryPath)
+    {
+        double scale = GetScaleFactor(countryPath);
+
+        ScaleMap(scale);
+
+        string countryCode = ActiveCountryCode;
+        if (_coordinates.ContainsKey(countryCode))
+        {
+            TranslateToPin(countryCode, scale);
+        }
+        else
+        {
+            TranslateToCountryCenter(countryPath, scale);
+        }
+    }
+
+    private double GetScaleFactor(Path countryPath)
+    {
+        double divisor = GetCountryViewBoxDivisor(countryPath);
+        double maxCountryWidth = Viewbox.ActualWidth / divisor;
+        double maxCountryHeight = Viewbox.ActualHeight / divisor;
+
+        double width = Viewbox.ActualWidth / MapCanvas.Width * countryPath.Data.Bounds.Width;
+        double height = Viewbox.ActualHeight / MapCanvas.Height * countryPath.Data.Bounds.Height;
+
+        double scaleFactor = height > width ? maxCountryHeight / height : maxCountryWidth / width;
+
+        return Math.Min(scaleFactor, MAX_SCALE_FACTOR);
+    }
+
+    private double GetCountryViewBoxDivisor(Path countryPath)
+    {
+        double area = countryPath.Data.Bounds.Width * countryPath.Data.Bounds.Height;
+        return area switch
+        {
+            >= 10000 => 1.5,
+            >= 5000 => 2,
+            >= 1000 => 2.5,
+            >= 500 => 3,
+            _ => 4
+        };
+    }
+
+    private void ScaleMap(double scale)
+    {
+        MapCanvasScaleTransform.ScaleX = scale;
+        MapCanvasScaleTransform.ScaleY = scale;
+    }
+
+    private void TranslateMapToCoordinate(double x, double y, double scale)
+    {
+        double canvasCenterX = MapCanvas.Width / 2;
+        double canvasCenterY = MapCanvas.Height / 2;
+
+        MapCanvasTranslateTransform.X = canvasCenterX - (x * scale);
+        MapCanvasTranslateTransform.Y = canvasCenterY - (y * scale);
+    }
+
+    private void TranslateToPin(string countryCode, double scale)
+    {
+        double x = _coordinates[countryCode].X;
+        double y = _coordinates[countryCode].Y;
+
+        TranslateMapToCoordinate(x, y, scale);
+    }
+
+    private void TranslateToCountryCenter(Path country, double scale)
+    {
+        double x = country.Data.Bounds.Left + (country.Data.Bounds.Width / 2);
+        double y = country.Data.Bounds.Top + (country.Data.Bounds.Height / 2);
+
+        TranslateMapToCoordinate(x, y, scale);
+    }
+
+    private void MakeCountryInactive(string countryCode)
+    {
+        Path? countryPath = GetCountryPath(countryCode);
+        if (countryPath is not null)
+        {
+            countryPath.Fill = InactiveFillColorBrush;
+        }
+    }
+
+    private void MakeCountryActive(string countryCode)
+    {
+        Path? countryPath = GetCountryPath(countryCode);
+        if (countryPath is not null)
+        {
+            SetCurrentCountryPath(countryPath);
+            ZoomAndPanToCountryCenter(countryPath);
+            Pin.BeginAnimation();
+            countryPath.Fill = ActiveFillColorBrush;
+        }
+    }
+
+    private Path? GetCountryPath(string countryCode)
+    {
+        string elementName = GetCountryPathName(countryCode);
+        return FindName(elementName) as Path;
+    }
+
+    private string GetCountryPathName(string countryCode)
+    {
+        return $"{COUNTRY_CODE_PREFIX}{countryCode.ToUpper()}";
+    }
+
+    private void SetCurrentCountryPath(Path countryPath)
+    {
+        _currentCountryPath = countryPath;
     }
 
     private void InvalidateCountryFill()

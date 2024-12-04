@@ -48,7 +48,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     PointerPressed="OnHeaderPointerPressed"
                     Spacing="16">
 
-            <Grid HorizontalAlignment="Center">
+            <Grid HorizontalAlignment="Center" 
+                  Margin="0,1,0,0">
 
                 <custom:ComplexCountryFlag Width="{StaticResource ConnectionCardFlagWidth}"
                                            Height="{StaticResource ConnectionCardFlagHeight}"

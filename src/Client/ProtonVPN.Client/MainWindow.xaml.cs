@@ -21,14 +21,14 @@ using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Extensions;
 using ProtonVPN.Client.Services.Activation;
+using Windows.Graphics;
 
 namespace ProtonVPN.Client;
 
 public sealed partial class MainWindow : IActivationStateAware
 {
-    private const double TITLE_BAR_HEIGHT = 36.0;
-    private const int TITLE_BAR_DRAG_AREA_OFFSET_BUTTON = 40;
-    private const int TITLE_BAR_DRAG_AREA_OFFSET_EMPTY = 1;
+    private const double TITLE_BAR_HEIGHT = 38.0;
+    private static RectInt32 TITLE_BAR_INTERACTIVE_AREA = new(10, 6, 26, 26);
 
     public MainWindowActivator WindowActivator { get; }
     public MainWindowOverlayActivator OverlayActivator { get; }
@@ -57,8 +57,20 @@ public sealed partial class MainWindow : IActivationStateAware
         IsMaximizable = isTitleBarVisible;
         IsResizable = isTitleBarVisible;
 
-        this.SetDragArea(Width, TITLE_BAR_HEIGHT, isTitleBarVisible
-            ? TITLE_BAR_DRAG_AREA_OFFSET_BUTTON
-            : TITLE_BAR_DRAG_AREA_OFFSET_EMPTY);
+        if (isTitleBarVisible)
+        {
+            this.SetDragArea(Width, TITLE_BAR_HEIGHT, TITLE_BAR_INTERACTIVE_AREA);
+        }
+        else
+        {
+            this.SetDragArea(Width, TITLE_BAR_HEIGHT);
+        };
+    }
+
+    protected override bool OnSizeChanged(Windows.Foundation.Size newSize)
+    {
+        InvalidateTitleBarVisibility(WindowContainer.IsTitleBarVisible);
+
+        return base.OnSizeChanged(newSize);
     }
 }
