@@ -18,13 +18,18 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Factories;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Models.Connections;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
@@ -35,11 +40,15 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;
 
 public abstract partial class CountriesComponentViewModelBase : ActivatableViewModelBase, ICountriesComponent,
-    IEventMessageReceiver<SettingChangedMessage>
+    IEventMessageReceiver<SettingChangedMessage>,
+    IEventMessageReceiver<VpnPlanChangedMessage>,
+    IEventMessageReceiver<LoggedInMessage>
 {
     protected readonly ISettings Settings;
     protected readonly IServersLoader ServersLoader;
     protected readonly ILocationItemFactory LocationItemFactory;
+    protected readonly IUrlsBrowser UrlsBrowser;
+    protected readonly IWebAuthenticator WebAuthenticator;
 
     public abstract CountriesConnectionType ConnectionType { get; }
 
@@ -51,18 +60,29 @@ public abstract partial class CountriesComponentViewModelBase : ActivatableViewM
 
     public abstract bool IsInfoBannerVisible { get; }
 
+    protected abstract ModalSources UpsellModalSources { get; }
+
+    public bool IsUpsellBannerVisible => IsRestricted;
+
+    public bool IsRestricted => !Settings.VpnPlan.IsPaid;
+
     protected CountriesComponentViewModelBase(
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter,
         ISettings settings,
         IServersLoader serversLoader,
-        ILocationItemFactory locationItemFactory)
+        ILocationItemFactory locationItemFactory,
+        IUrlsBrowser urlsBrowser,
+        IWebAuthenticator webAuthenticator)
         : base(localizer, logger, issueReporter)
     {
         Settings = settings;
         ServersLoader = serversLoader;
         LocationItemFactory = locationItemFactory;
+
+        UrlsBrowser = urlsBrowser;
+        WebAuthenticator = webAuthenticator;
     }
 
     public virtual IEnumerable<ConnectionItemBase> GetItems()
@@ -84,8 +104,24 @@ public abstract partial class CountriesComponentViewModelBase : ActivatableViewM
         ExecuteOnUIThread(() => OnSettingsChanged(message.PropertyName));
     }
 
+    public void Receive(VpnPlanChangedMessage message)
+    {
+        ExecuteOnUIThread(InvalidateAllProperties);
+    }
+
+    public void Receive(LoggedInMessage message)
+    {
+        ExecuteOnUIThread(InvalidateAllProperties);
+    }
+
     [RelayCommand]
     protected abstract void DismissInfoBanner();
+
+    [RelayCommand]
+    private async Task UpgradeAsync()
+    {
+        UrlsBrowser.BrowseTo(await WebAuthenticator.GetUpgradeAccountUrlAsync(UpsellModalSources));
+    }
 
     protected virtual void OnSettingsChanged(string propertyName)
     { }

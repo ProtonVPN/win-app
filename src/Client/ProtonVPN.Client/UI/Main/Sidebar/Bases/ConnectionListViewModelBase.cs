@@ -33,12 +33,12 @@ using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Bases;
 
-public abstract class ConnectionListViewModelBase<TParentViewNavigator>
-    : PageViewModelBase<TParentViewNavigator>
+public abstract class ConnectionListViewModelBase<TParentViewNavigator> : PageViewModelBase<TParentViewNavigator>
     where TParentViewNavigator : IViewNavigator
 {
     private readonly IConnectionManager _connectionManager;
     private readonly IConnectionGroupFactory _connectionGroupFactory;
+
     protected IServersLoader ServersLoader { get; }
     protected ISettings Settings { get; }
 
@@ -74,19 +74,18 @@ public abstract class ConnectionListViewModelBase<TParentViewNavigator>
 
     protected void ResetItems(IEnumerable<ConnectionItemBase> newItems)
     {
-        Items.Reset(newItems.OrderBy(item => item.GroupType)
+        Items.Reset(
+            newItems.OrderBy(item => item.GroupType)
                     .ThenBy(item => item.FirstSortProperty)
                     .ThenBy(item => item.SecondSortProperty));
-        OnPropertyChanged(nameof(HasItems));
     }
 
     protected void ResetGroups()
     {
-        Groups.Reset(Items
-            .GroupBy(item => item.GroupType)
-            .OrderBy(group => group.Key)
-            .Select(group => _connectionGroupFactory.GetGroup(group.Key, group)));
-        OnPropertyChanged(nameof(HasItems));
+        Groups.Reset(
+            Items.GroupBy(item => item.GroupType)
+                 .OrderBy(group => group.Key)
+                 .Select(group => _connectionGroupFactory.GetGroup(group.Key, group)));
     }
 
     protected void InvalidateActiveConnection()

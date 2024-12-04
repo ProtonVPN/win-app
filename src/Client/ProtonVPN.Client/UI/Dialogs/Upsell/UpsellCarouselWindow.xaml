@@ -23,18 +23,32 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
               xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-              xmlns:local="using:ProtonVPN.Client.UI.Dialogs.ReportIssue"
+              xmlns:local="using:ProtonVPN.Client.UI.Dialogs.Upsell"
               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
               xmlns:wex="using:WinUIEx"
-              Width="400"
-              Height="500"
+              Width="796"
+              Height="549"
               x:DefaultBindMode="OneWay"
               IsMaximizable="False"
               IsMinimizable="False"
               IsResizable="False"
               mc:Ignorable="d">
 
+    <!--  There's a consistent difference between the size defined here and the actual size  -->
+    <!--  Adds 16px to the width and 9px to the height to compensate  -->
+
     <custom:WindowContentControl x:Name="WindowContainer"
-                                 Title="Upsell carousel" />
+                                 TitleBarButtonsLength="46"
+                                 IconSource="{ThemeResource VpnPlusIllustrationSource}"
+                                 Title="{x:Bind Shell.ViewModel.Title}"
+                                 InnerBackground="{ThemeResource GradientUpsellBackgroundColorBrush}">
+
+        <local:UpsellCarouselShellView x:Name="Shell" 
+                                       Margin="20,80,20,48" />
+
+    </custom:WindowContentControl>
 
 </wex:WindowEx>
+    
+    
+    

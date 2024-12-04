@@ -22,13 +22,14 @@ using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Core.Bases.Models;
 using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
-using ProtonVPN.Client.Extensions;
 using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Core.Enums;
+using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 
 namespace ProtonVPN.Client.Models.Connections;
 
@@ -70,8 +71,6 @@ public abstract partial class ConnectionItemBase : ModelBase, IConnectionItem
 
     public virtual bool IsCounted => true;
 
-    public ModalSources UpsellModalSources => GroupType.GetUpsellModalSources();
-
     public virtual object FirstSortProperty => Header;
 
     public virtual object SecondSortProperty => Description;
@@ -98,7 +97,7 @@ public abstract partial class ConnectionItemBase : ModelBase, IConnectionItem
         IConnectionManager connectionManager,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator)
         : base(localizer)
-    {
+    {        
         ServersLoader = serversLoader;
         ConnectionManager = connectionManager;
         UpsellCarouselWindowActivator = upsellCarouselWindowActivator;
@@ -120,23 +119,30 @@ public abstract partial class ConnectionItemBase : ModelBase, IConnectionItem
     protected abstract bool MatchesActiveConnection(ConnectionDetails? currentConnectionDetails);
 
     [RelayCommand(CanExecute = nameof(CanToggleConnection))]
-    private async Task ToggleConnectionAsync()
+    private Task ToggleConnectionAsync()
     {
+        IConnectionIntent connectionIntent = GetConnectionIntent();
+
         if (IsRestricted)
         {
-            UpsellCarouselWindowActivator.Activate();
-            // TODO Navigate to a specific page using the UpsellModalSource;
-            return;
+            return UpsellCarouselWindowActivator.ActivateAsync(
+                connectionIntent switch
+                {
+                    IConnectionProfile => UpsellFeatureType.Profiles,
+                    _ => connectionIntent?.Feature switch
+                    {
+                        SecureCoreFeatureIntent => UpsellFeatureType.SecureCore,
+                        P2PFeatureIntent => UpsellFeatureType.P2P,
+                        TorFeatureIntent => UpsellFeatureType.Tor,
+                        _ => null
+                    }
+                }
+            );
         }
 
-        if (IsActiveConnection)
-        {
-            await ConnectionManager.DisconnectAsync();
-        }
-        else
-        {
-            await ConnectionManager.ConnectAsync(GetConnectionIntent());
-        }
+        return IsActiveConnection
+            ? ConnectionManager.DisconnectAsync()
+            : ConnectionManager.ConnectAsync(connectionIntent);
     }
 
     private bool CanToggleConnection()

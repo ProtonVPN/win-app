@@ -70,6 +70,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Grid.RowDefinitions>
 
         <Pivot Grid.Row="0"
+               x:Name="CountriesPivot"
                AutomationProperties.AutomationControlType="Tab"
                AutomationProperties.AutomationId="CountriesFeaturesList"
                ItemTemplateSelector="{StaticResource CountriesComponentItemTemplateSelector}"

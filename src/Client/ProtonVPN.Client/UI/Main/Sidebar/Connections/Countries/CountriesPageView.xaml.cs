@@ -47,6 +47,9 @@ public sealed partial class CountriesPageView : IContextAware
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
         ViewModel.Activate();
+
+        // Pivot control selected item does not refresh correctly after login
+        CountriesPivot.SelectedIndex = ViewModel.SelectedCountriesComponent.SortIndex;
     }
 
     private void OnUnloaded(object sender, RoutedEventArgs e)

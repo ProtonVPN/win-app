@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,28 +17,36 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
-using ProtonVPN.Client.Logic.Recents.Contracts;
-using ProtonVPN.Client.Logic.Servers.Contracts;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Mapping;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Core.Services.Navigation.Bases;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
+using ProtonVPN.Client.Logic.Recents.Contracts;
+using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
+using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Contracts;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Countries;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Gateways;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Recents;
-using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Services.Navigation;
 
 public class ConnectionsViewNavigator : ViewNavigatorBase, IConnectionsViewNavigator,
-    IEventMessageReceiver<LoggedInMessage>
+    IEventMessageReceiver<LoggedInMessage>,
+    IEventMessageReceiver<VpnPlanChangedMessage>,
+    IEventMessageReceiver<ServerListChangedMessage>,
+    IEventMessageReceiver<RecentConnectionsChanged>
 {
     private readonly IRecentConnectionsManager _recentConnectionsManager;
     private readonly IServersLoader _serversLoader;
+    private readonly ISettings _settings;
 
     public override FrameLoadedBehavior LoadBehavior { get; protected set; } = FrameLoadedBehavior.DoNothing;
 
@@ -46,53 +54,94 @@ public class ConnectionsViewNavigator : ViewNavigatorBase, IConnectionsViewNavig
         ILogger logger,
         IPageViewMapper pageViewMapper,
         IRecentConnectionsManager recentConnectionsManager,
-        IServersLoader serversLoader)
+        IServersLoader serversLoader,
+        ISettings settings)
         : base(logger, pageViewMapper)
     {
         _recentConnectionsManager = recentConnectionsManager;
         _serversLoader = serversLoader;
+        _settings = settings;
     }
 
-    public Task<bool> NavigateToCountriesViewAsync()
+    public bool CanNavigateToCountriesView()
     {
-        return NavigateToAsync<CountriesPageViewModel>();
+        return true;
     }
 
-    public Task<bool> NavigateToCountriesViewAsync(CountriesConnectionType connectionType)
+    public async Task<bool> NavigateToCountriesViewAsync()
     {
-        return NavigateToAsync<CountriesPageViewModel>(connectionType);
+        return CanNavigateToCountriesView()
+            && await NavigateToAsync<CountriesPageViewModel>();
     }
 
-    public Task<bool> NavigateToGatewaysViewAsync()
+    public bool CanNavigateToGatewaysView()
     {
-        if (_serversLoader.HasAnyGateways())
-        {
-            return NavigateToAsync<GatewaysPageViewModel>();
-        }
-        return Task.FromResult(false);
+        return _serversLoader.HasAnyGateways();
     }
 
-    public Task<bool> NavigateToProfilesViewAsync()
+    public async Task<bool> NavigateToGatewaysViewAsync()
     {
-        return NavigateToAsync<ProfilesPageViewModel>();
+        return CanNavigateToGatewaysView()
+            && await NavigateToAsync<GatewaysPageViewModel>();
     }
 
-    public Task<bool> NavigateToRecentsViewAsync()
+    public bool CanNavigateToProfilesView()
     {
-        return NavigateToAsync<RecentsPageViewModel>();
+        return true;
+    }
+
+    public async Task<bool> NavigateToProfilesViewAsync()
+    {
+        return CanNavigateToProfilesView()
+            && await NavigateToAsync<ProfilesPageViewModel>();
+    }
+
+    public bool CanNavigateToRecentsView()
+    {
+        return _settings.VpnPlan.IsPaid
+            || _recentConnectionsManager.HasAnyRecentConnections();
+    }
+
+    public async Task<bool> NavigateToRecentsViewAsync()
+    {
+        return CanNavigateToRecentsView()
+            && await NavigateToAsync<RecentsPageViewModel>();
     }
 
     public override Task<bool> NavigateToDefaultAsync()
     {
-        return _recentConnectionsManager.GetRecentConnections().Any()
+        return _recentConnectionsManager.HasAnyRecentConnections()
                 ? NavigateToRecentsViewAsync()
-                : _serversLoader.GetGateways().Any()
+                : _serversLoader.HasAnyGateways()
                     ? NavigateToGatewaysViewAsync()
-                    : NavigateToCountriesViewAsync(CountriesConnectionType.All);
+                    : NavigateToCountriesViewAsync();
     }
 
     public void Receive(LoggedInMessage message)
     {
         NavigateToDefaultAsync();
+    }
+
+    public void Receive(VpnPlanChangedMessage message)
+    {
+        InvalidateCurrentPage();
+    }
+
+    public void Receive(ServerListChangedMessage message)
+    {
+        InvalidateCurrentPage();
+    }
+
+    public void Receive(RecentConnectionsChanged message)
+    {
+        InvalidateCurrentPage();
+    }
+
+    private void InvalidateCurrentPage()
+    {
+        if (GetCurrentPageContext() is not IConnectionPage connectionPage || !connectionPage.IsAvailable)
+        {
+            NavigateToDefaultAsync();
+        }
     }
 }

@@ -210,6 +210,18 @@ public class GlobalSettings : IGlobalSettings
         set => _globalCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
+    public int TotalCountryCount
+    {
+        get => _globalCache.GetValueType<int>(SettingEncryption.Unencrypted) ?? DefaultSettings.TotalCountryCount;
+        set => _globalCache.SetValueType<int>(value, SettingEncryption.Unencrypted);
+    }
+
+    public int TotalServerCount
+    {
+        get => _globalCache.GetValueType<int>(SettingEncryption.Unencrypted) ?? DefaultSettings.TotalServerCount;
+        set => _globalCache.SetValueType<int>(value, SettingEncryption.Unencrypted);
+    }
+
     public GlobalSettings(IGlobalSettingsCache globalSettingsCache)
     {
         _globalCache = globalSettingsCache;

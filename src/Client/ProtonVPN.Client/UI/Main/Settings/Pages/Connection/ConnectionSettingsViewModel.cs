@@ -19,6 +19,7 @@
 
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Core.Bases.ViewModels;
+using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
@@ -109,15 +110,11 @@ public partial class ConnectionSettingsViewModel : PageViewModelBase,
     }
 
     [RelayCommand]
-    private async Task NavigateToNetShieldPageAsync()
+    private Task NavigateToNetShieldPageAsync()
     {
-        if (!IsPaidUser)
-        {
-            _upsellCarouselWindowActivator.Activate();
-            return;
-        }
-
-        await _settingsViewNavigator.NavigateToNetShieldSettingsViewAsync();
+        return IsPaidUser
+            ? _settingsViewNavigator.NavigateToNetShieldSettingsViewAsync()
+            : _upsellCarouselWindowActivator.ActivateAsync(UpsellFeatureType.NetShield);
     }
 
     [RelayCommand]
@@ -127,39 +124,27 @@ public partial class ConnectionSettingsViewModel : PageViewModelBase,
     }
 
     [RelayCommand]
-    private async Task NavigateToPortForwardingPageAsync()
+    private Task NavigateToPortForwardingPageAsync()
     {
-        if (!IsPaidUser)
-        {
-            _upsellCarouselWindowActivator.Activate();
-            return;
-        }
-
-        await _settingsViewNavigator.NavigateToPortForwardingSettingsViewAsync();
+        return IsPaidUser
+            ? _settingsViewNavigator.NavigateToPortForwardingSettingsViewAsync()
+            : _upsellCarouselWindowActivator.ActivateAsync(UpsellFeatureType.P2P);
     }
 
     [RelayCommand]
-    private async Task NavigateToSplitTunnelingPageAsync()
+    private Task NavigateToSplitTunnelingPageAsync()
     {
-        if (!IsPaidUser)
-        {
-            _upsellCarouselWindowActivator.Activate();
-            return;
-        }
-
-        await _settingsViewNavigator.NavigateToSplitTunnelingSettingsViewAsync();
+        return IsPaidUser
+            ? _settingsViewNavigator.NavigateToSplitTunnelingSettingsViewAsync()
+            : _upsellCarouselWindowActivator.ActivateAsync(UpsellFeatureType.SplitTunneling);
     }
 
     [RelayCommand]
-    private async Task NavigateToVpnAcceleratorPageAsync()
+    private Task NavigateToVpnAcceleratorPageAsync()
     {
-        if (!IsPaidUser)
-        {
-            _upsellCarouselWindowActivator.Activate();
-            return;
-        }
-
-        await _settingsViewNavigator.NavigateToVpnAcceleratorSettingsViewAsync();
+        return IsPaidUser
+            ? _settingsViewNavigator.NavigateToVpnAcceleratorSettingsViewAsync()
+            : _upsellCarouselWindowActivator.ActivateAsync(UpsellFeatureType.Speed);
     }
 
     [RelayCommand]

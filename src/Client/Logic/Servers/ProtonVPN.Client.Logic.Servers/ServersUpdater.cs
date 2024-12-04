@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -28,18 +29,22 @@ public class ServersUpdater : IServersUpdater
 {
     private readonly ILogger _logger;
     private readonly IServersCache _serversCache;
+    private readonly IServerCountCache _serverCountCache;
     private readonly IConfiguration _config;
     private readonly SemaphoreSlim _semaphore = new(1, 1);
 
     private DateTime _lastFullUpdateUtc = DateTime.MinValue;
     private DateTime _lastLoadsUpdateUtc = DateTime.MinValue;
 
-    public ServersUpdater(ILogger logger,
+    public ServersUpdater(
+        ILogger logger,
         IServersCache serversCache,
+        IServerCountCache serverCountCache,
         IConfiguration config)
     {
         _logger = logger;
         _serversCache = serversCache;
+        _serverCountCache = serverCountCache;
         _config = config;
     }
 
@@ -64,6 +69,7 @@ public class ServersUpdater : IServersUpdater
                 _lastFullUpdateUtc = utcNow;
                 _lastLoadsUpdateUtc = utcNow;
                 await _serversCache.UpdateAsync();
+                await _serverCountCache.UpdateAsync();
             }
             else if (parameter == ServersRequestParameter.ForceLoadsUpdate ||
                 utcNow - _lastLoadsUpdateUtc >= _config.MinimumServerLoadUpdateInterval)

@@ -27,6 +27,9 @@ using ProtonVPN.Client.Factories;
 
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;
 using ProtonVPN.Client.Models.Connections;
+using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Countries.All;
 
@@ -42,19 +45,25 @@ public class AllCountriesComponentViewModel : CountriesComponentViewModelBase
 
     public override bool IsInfoBannerVisible => false;
 
+    protected override ModalSources UpsellModalSources => ModalSources.Countries;
+
     public AllCountriesComponentViewModel(
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter,
         ISettings settings,
         IServersLoader serversLoader,
-        ILocationItemFactory locationItemFactory)
+        ILocationItemFactory locationItemFactory,
+        IUrlsBrowser urlsBrowser,
+        IWebAuthenticator webAuthenticator)
         : base(localizer,
                logger,
                issueReporter,
                settings,
                serversLoader,
-               locationItemFactory)
+               locationItemFactory,
+               urlsBrowser,
+               webAuthenticator)
     { }
 
     public override IEnumerable<ConnectionItemBase> GetItems()

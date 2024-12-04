@@ -55,6 +55,8 @@ using ProtonVPN.Client.UI;
 using ProtonVPN.Client.UI.Dialogs.DebugTools;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue.Pages;
+using ProtonVPN.Client.UI.Dialogs.Upsell;
+using ProtonVPN.Client.UI.Dialogs.Upsell.Features;
 using ProtonVPN.Client.UI.Login;
 using ProtonVPN.Client.UI.Login.Components;
 using ProtonVPN.Client.UI.Login.Overlays;
@@ -208,6 +210,7 @@ public class AppModule : Module
         builder.RegisterType<ReportIssueViewNavigator>().AsSelf().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<UpsellCarouselWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<UpsellCarouselViewNavigator>().AsSelf().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<DebugToolsWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
 
@@ -245,8 +248,6 @@ public class AppModule : Module
         RegisterViewModel<MainWindowShellViewModel>(builder);
 
         RegisterViewModel<TrayIconComponentViewModel>(builder);
-
-        RegisterViewModel<ReportIssueComponentViewModel>(builder);
 
         RegisterViewModel<LoginPageViewModel>(builder);
         RegisterViewModel<SignInPageViewModel>(builder);
@@ -309,11 +310,25 @@ public class AppModule : Module
         RegisterViewModel<ConnectionErrorViewModel>(builder);
         RegisterViewModel<UpdateViewModel>(builder).AutoActivate();
 
+        RegisterViewModel<ReportIssueComponentViewModel>(builder);
         RegisterViewModel<ReportIssueShellViewModel>(builder);
         RegisterViewModel<ReportIssueCategoriesPageViewModel>(builder);
         RegisterViewModel<ReportIssueCategoryPageViewModel>(builder);
         RegisterViewModel<ReportIssueContactPageViewModel>(builder);
         RegisterViewModel<ReportIssueResultPageViewModel>(builder);
+
+        RegisterViewModel<UpsellCarouselShellViewModel>(builder);
+        RegisterViewModel<AdvancedSettingsUpsellFeaturePageViewModel>(builder);
+        RegisterViewModel<MultipleDevicesUpsellFeaturePageViewModel>(builder);
+        RegisterViewModel<NetShieldUpsellFeaturePageViewModel>(builder);
+        RegisterViewModel<P2PUpsellFeaturePageViewModel>(builder);
+        RegisterViewModel<SecureCoreUpsellFeaturePageViewModel>(builder);
+        RegisterViewModel<SpeedUpsellFeaturePageViewModel>(builder);
+        RegisterViewModel<SplitTunnelingUpsellFeaturePageViewModel>(builder);
+        RegisterViewModel<StreamingUpsellFeaturePageViewModel>(builder);
+        RegisterViewModel<TorUpsellFeaturePageViewModel>(builder);
+        RegisterViewModel<WorldwideCoverageUpsellFeaturePageViewModel>(builder);
+        RegisterViewModel<ProfilesUpsellFeaturePageViewModel>(builder);
 
         RegisterViewModel<HumanVerificationOverlayViewModel>(builder).AutoActivate();
         RegisterViewModel<P2POverlayViewModel>(builder);

@@ -21,6 +21,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Common.Attributes;
 using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
@@ -182,21 +183,17 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
     }
 
     [RelayCommand]
-    private async Task NavigateToCustomDnsServersPageAsync()
+    private Task NavigateToCustomDnsServersPageAsync()
     {
-        if (!IsPaidUser)
-        {
-            _upsellCarouselWindowActivator.Activate();
-            return;
-        }
-
-        await ParentViewNavigator.NavigateToCustomDnsSettingsViewAsync();
+        return IsPaidUser
+            ? ParentViewNavigator.NavigateToCustomDnsSettingsViewAsync()
+            : _upsellCarouselWindowActivator.ActivateAsync(UpsellFeatureType.AdvancedSettings);
     }
 
     [RelayCommand]
-    private void TriggerNatTypeUpsellProcess()
+    private Task TriggerNatTypeUpsellProcessAsync()
     {
-        _upsellCarouselWindowActivator.Activate();
+        return _upsellCarouselWindowActivator.ActivateAsync(UpsellFeatureType.AdvancedSettings);
     }
 
     private bool IsNatType(NatType natType)

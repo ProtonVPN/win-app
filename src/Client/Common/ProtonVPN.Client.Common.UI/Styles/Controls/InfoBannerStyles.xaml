@@ -59,8 +59,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           BackgroundSizing="OuterBorderEdge"
                           BorderBrush="{TemplateBinding BorderBrush}"
                           BorderThickness="{TemplateBinding BorderThickness}"
-                          CornerRadius="{TemplateBinding CornerRadius}"
-                          Visibility="{Binding IsOpen, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                          CornerRadius="{TemplateBinding CornerRadius}">
                         
                         <UIElement.RenderTransform>
                             <TranslateTransform x:Name="BannerContainerTranslateTransform" />
@@ -99,36 +98,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <pathicons:CrossSmall />
                             </custom:GhostButton.RightIcon>
                         </custom:GhostButton>
-
-                        <!--<VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="VisibilityStates">
-                                <VisualState x:Name="Closed">
-                                    <VisualState.StateTriggers>
-                                        <StateTrigger IsActive="{Binding IsOpen, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotBooleanToBooleanConverter}}" />
-                                    </VisualState.StateTriggers>
-                                    <Storyboard>
-                        -->
-                        <!--  Fade out animation  -->
-                        <!--
-                                        <DoubleAnimation BeginTime="0:0:0"
-                                                         Storyboard.TargetName="BannerContainer"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="0"
-                                                         Duration="{StaticResource InfoBannerFadeInOutAnimationDuration}" />
-                                        <DoubleAnimation BeginTime="0:0:0.2"
-                                                         Storyboard.TargetName="BannerContainerTranslateTransform"
-                                                         Storyboard.TargetProperty="Y"
-                                                         To="-16"
-                                                         Duration="{StaticResource InfoBannerFadeInOutAnimationDuration}">
-                                            <DoubleAnimation.EasingFunction>
-                                                <ExponentialEase EasingMode="EaseInOut" />
-                                            </DoubleAnimation.EasingFunction>
-                                        </DoubleAnimation>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Opened" />
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>-->
+                        
                     </Grid>
 
                 </ControlTemplate>

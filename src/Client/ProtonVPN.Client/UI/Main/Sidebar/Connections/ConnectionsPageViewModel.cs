@@ -65,7 +65,7 @@ public partial class ConnectionsPageViewModel : PageViewModelBase<ISidebarViewNa
 
     partial void OnSelectedConnectionPageChanged(IConnectionPage? value)
     {
-        if (value != null && !value.IsActive)
+        if (value != null && !value.IsActive && value.IsAvailable)
         {
             value.InvokeAsync();
         }

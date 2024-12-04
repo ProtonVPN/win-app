@@ -55,6 +55,8 @@ public interface IGlobalSettings
     ChangeServerSettings ChangeServerSettings { get; set; }
     bool IsShareCrashReportsEnabled { get; set; }
     string? ActiveAlternativeApiBaseUrl { get; set; }
+    int TotalCountryCount { get; set; }
+    int TotalServerCount { get; set; }
 
     Dictionary<string, Dictionary<string, string?>>? LegacySettingsByUsername { get; set; }
 }

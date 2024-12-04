@@ -29,6 +29,7 @@ using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Models.Connections;
 using ProtonVPN.Client.Models.Connections.Recents;
 using ProtonVPN.Client.Settings.Contracts;
@@ -50,6 +51,8 @@ public class RecentsPageViewModel : ConnectionPageViewModelBase,
     public override IconElement Icon => new ClockRotateLeft() { Size = PathIconSize.Pixels16 };
 
     public override int SortIndex { get; } = 1;
+
+    public override bool IsAvailable => ParentViewNavigator.CanNavigateToRecentsView();
 
     public RecentsPageViewModel(
         IConnectionsViewNavigator parentViewNavigator,
@@ -98,5 +101,31 @@ public class RecentsPageViewModel : ConnectionPageViewModelBase,
                 item.InvalidateIsUnderMaintenance(servers, deviceLocation);
             }
         }
+    }
+
+    protected override void OnVpnPlanChanged(VpnPlan oldPlan, VpnPlan newPlan)
+    {
+        base.OnVpnPlanChanged(oldPlan, newPlan);
+
+        InvalidateIsAvailable();
+    }
+
+    protected override void OnLoggedIn()
+    {
+        base.OnLoggedIn();
+
+        InvalidateIsAvailable();
+    }
+
+    protected override void OnItemsChanged()
+    {
+        base.OnItemsChanged();
+
+        InvalidateIsAvailable();
+    }
+
+    private void InvalidateIsAvailable()
+    {
+        OnPropertyChanged(nameof(IsAvailable));
     }
 }

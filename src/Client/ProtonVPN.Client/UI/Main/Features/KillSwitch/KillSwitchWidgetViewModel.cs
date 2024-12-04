@@ -57,6 +57,8 @@ public class KillSwitchWidgetViewModel : FeatureWidgetViewModelBase
 
     public override bool IsRestricted => false;
 
+    protected override UpsellFeatureType? UpsellFeature { get; } = null;
+
     public KillSwitchWidgetViewModel(
         ILocalizationProvider localizer,
         ILogger logger,

@@ -37,11 +37,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0"
+        <custom:UpsellBanner Grid.Row="0"
+                             Title="{x:Bind ViewModel.Localizer.Get('Profiles_Page_Description')}"
+                             Command="{x:Bind ViewModel.UpgradeCommand, Mode=OneTime}"
+                             IllustrationSource="{StaticResource ProfilesUpsellSmallIllustrationSource}"
+                             Style="{StaticResource SidebarUpsellBannerStyle}"
+                             Visibility="{x:Bind ViewModel.IsUpsellBannerVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+        <StackPanel Grid.Row="1"
                     MaxWidth="240"
                     Margin="8,24"
                     HorizontalAlignment="Center"
@@ -65,9 +73,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        TextAlignment="Center"
                        TextWrapping="Wrap" />
 
-            <Button Grid.Row="1"
-                    Grid.Column="1"
-                    Margin="0,24,0,0"
+            <Button Margin="0,24,0,0"
                     HorizontalAlignment="Center"
                     Command="{x:Bind ViewModel.CreateProfileCommand, Mode=OneTime}"
                     Content="{x:Bind ViewModel.Localizer.Get('Connections_Profiles_Create')}"
@@ -76,10 +82,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </StackPanel>
 
         <controls:ConnectionItemsControl x:Name="ConnectionItemsControl"
-                                         Grid.Row="1"
+                                         Grid.Row="2"
                                          ItemsSource="{x:Bind ViewModel.GroupsCvs.View, Mode=OneTime}" />
 
-        <custom:GhostButton Grid.Row="2"
+        <custom:GhostButton Grid.Row="3"
                             Margin="12,8"
                             HorizontalAlignment="Left"
                             AutomationProperties.AutomationId="CreateProfileButton"

@@ -66,6 +66,8 @@ public class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
 
     public bool HasItems => GroupsCvs.View.Any();
 
+    protected override UpsellFeatureType? UpsellFeature { get; } = UpsellFeatureType.SplitTunneling;
+
     public SplitTunnelingWidgetViewModel(
         IApplicationThemeSelector applicationThemeSelector,
         ILocalizationProvider localizer,

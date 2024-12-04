@@ -41,9 +41,6 @@ public class InfoBanner : Control
     public static readonly DependencyProperty IsDismissButtonVisibleProperty =
         DependencyProperty.Register(nameof(IsDismissButtonVisible), typeof(bool), typeof(InfoBanner), new PropertyMetadata(true));
 
-    public static readonly DependencyProperty IsOpenProperty =
-        DependencyProperty.Register(nameof(IsOpen), typeof(bool), typeof(InfoBanner), new PropertyMetadata(default));
-
     public ImageSource IllustrationSource
     {
         get => (ImageSource)GetValue(IllustrationSourceProperty);
@@ -72,11 +69,5 @@ public class InfoBanner : Control
     {
         get => (bool)GetValue(IsDismissButtonVisibleProperty);
         set => SetValue(IsDismissButtonVisibleProperty, value);
-    }
-
-    public bool IsOpen
-    {
-        get => (bool)GetValue(IsOpenProperty);
-        set => SetValue(IsOpenProperty, value);
     }
 }

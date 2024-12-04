@@ -47,7 +47,7 @@ public partial class GatewaysPageViewModel : ConnectionPageViewModelBase,
 
     public override int SortIndex { get; } = 4;
 
-    public override bool IsAvailable => ServersLoader.HasAnyGateways();
+    public override bool IsAvailable => ParentViewNavigator.CanNavigateToGatewaysView();
 
     public string BannerDescription => Localizer.Get("Gateways_Page_Description");
 

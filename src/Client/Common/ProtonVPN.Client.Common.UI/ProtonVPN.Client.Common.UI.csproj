@@ -773,6 +773,8 @@
         <None Remove="Assets\Illustrations\upsell-p2p-large.png" />
         <None Remove="Assets\Illustrations\upsell-p2p-small.png" />
         <None Remove="Assets\Illustrations\upsell-port-forwarding-large.png" />
+        <None Remove="Assets\Illustrations\upsell-profiles-large.png" />
+        <None Remove="Assets\Illustrations\upsell-profiles-small.png" />
         <None Remove="Assets\Illustrations\upsell-secure-core-large.png" />
         <None Remove="Assets\Illustrations\upsell-secure-core-small.png" />
         <None Remove="Assets\Illustrations\upsell-speed-large.png" />
@@ -2164,6 +2166,12 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\upsell-port-forwarding-large.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\upsell-profiles-large.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\upsell-profiles-small.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\upsell-secure-core-large.png">

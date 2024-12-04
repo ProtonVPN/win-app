@@ -52,6 +52,10 @@ public sealed partial class SidebarComponentView : IContextAware
 
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
+
+        KeyboardAccelerators.AddHandler(OnCtrlFInvoked, VirtualKey.F, VirtualKeyModifiers.Control);
+
+        KeyboardAcceleratorPlacementMode = KeyboardAcceleratorPlacementMode.Hidden;
     }
 
     public object GetContext()
@@ -63,14 +67,15 @@ public sealed partial class SidebarComponentView : IContextAware
     {
         Navigator.Load();
         ViewModel.Activate();
-
-        KeyboardAccelerators.AddHandler(OnCtrlFInvoked, VirtualKey.F, VirtualKeyModifiers.Control);
     }
 
     private void OnCtrlFInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
     {
-        args.Handled = true;
-        SearchTextBox.Focus(FocusState.Programmatic);
+        if (IsLoaded)
+        {
+            args.Handled = true;
+            SearchTextBox.Focus(FocusState.Programmatic);
+        }
     }
 
     private void OnUnloaded(object sender, RoutedEventArgs e)

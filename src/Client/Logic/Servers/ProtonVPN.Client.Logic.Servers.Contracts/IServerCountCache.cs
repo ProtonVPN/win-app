@@ -21,6 +21,8 @@ namespace ProtonVPN.Client.Logic.Servers.Contracts;
 
 public interface IServerCountCache
 {
+    Task UpdateAsync();
+
     int GetServerCount();
     int GetCountryCount();
 }

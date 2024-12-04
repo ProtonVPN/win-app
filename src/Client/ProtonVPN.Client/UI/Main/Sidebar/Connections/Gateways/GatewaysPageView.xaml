@@ -42,7 +42,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            DismissButtonText="{x:Bind ViewModel.Localizer.Get('Common_Actions_Close')}"
                            DismissCommand="{x:Bind ViewModel.DismissInfoBannerCommand, Mode=OneTime}"
                            IllustrationSource="{StaticResource GatewaysIllustrationSource}"
-                           IsOpen="{x:Bind ViewModel.IsInfoBannerVisible}" />
+                           Visibility="{x:Bind ViewModel.IsInfoBannerVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
         <controls:ConnectionItemsControl x:Name="ConnectionItemsControl"
                                          Grid.Row="1"

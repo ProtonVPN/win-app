@@ -17,8 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Tasks;
 using ProtonVPN.Client.Contracts.Services.Activation.Bases;
+using ProtonVPN.Client.Core.Enums;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 
 namespace ProtonVPN.Client.Core.Services.Activation;
 
-public interface IUpsellCarouselWindowActivator : IWindowActivator;
+public interface IUpsellCarouselWindowActivator : IWindowActivator
+{
+    ModalSources ModalSources { get; }
+
+    Task<bool> ActivateAsync(UpsellFeatureType? upsellFeatureType);
+}

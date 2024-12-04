@@ -33,6 +33,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
               Height="659"
               x:DefaultBindMode="OneWay"
               mc:Ignorable="d">
+    
+    <!--  There's a consistent difference between the size defined here and the actual size  -->
+    <!--  Adds 16px to the width and 9px to the height to compensate  -->
 
     <custom:WindowContentControl x:Name="WindowContainer"
                                  TitleBarButtonsLength="46"

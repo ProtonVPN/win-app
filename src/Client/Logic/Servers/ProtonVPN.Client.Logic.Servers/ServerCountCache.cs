@@ -17,35 +17,75 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 
 namespace ProtonVPN.Client.Logic.Servers;
 
 public class ServerCountCache : IServerCountCache
 {
     private const int SERVER_ROUND_DOWN_THRESHOLD = 100;
-    private const int SERVER_FALLBACK_COUNT = 4000;
-    private const int COUNTRY_FALLBACK_COUNT = 85;
 
-    private readonly IServersCache _serversCache;
+    private readonly IApiClient _apiClient;
+    private readonly ILogger _logger;
+    private readonly ISettings _settings;
 
-    public ServerCountCache(IServersCache serversCache)
+    private int _serverCount;
+    private int _countryCount;
+
+    public ServerCountCache(
+        IApiClient apiClient,
+        ILogger logger,
+        ISettings settings)
     {
-        _serversCache = serversCache;
+        _apiClient = apiClient;
+        _logger = logger;
+        _settings = settings;
+
+        _serverCount = _settings.TotalServerCount;
+        _countryCount = _settings.TotalCountryCount;
+    }
+
+    public async Task UpdateAsync()
+    {
+        try
+        {
+            ApiResponseResult<ServerCountResponse> response = await _apiClient.GetServersCountAsync();
+            if (response.Success && response.Value != null)
+            {
+                if (response.Value.Servers > 0)
+                {
+                    _serverCount = response.Value.Servers;
+                    _settings.TotalServerCount = _serverCount;
+                }
+
+                if (response.Value.Countries > 0)
+                {
+                    _countryCount = response.Value.Countries;
+                    _settings.TotalCountryCount = _countryCount;
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            _logger.Error<ApiErrorLog>("API: Get servers count failed", e);
+        }
     }
 
     public int GetServerCount()
     {
-        int serverCount = _serversCache.Servers.Count;
+        int serverCount = Math.Max(DefaultSettings.TotalServerCount, _serverCount);
         int roundedServerCount = serverCount - (serverCount % SERVER_ROUND_DOWN_THRESHOLD);
 
-        return Math.Max(SERVER_FALLBACK_COUNT, roundedServerCount);
+        return roundedServerCount;
     }
 
     public int GetCountryCount()
     {
-        int countryCount = _serversCache.Countries.Count;
-
-        return Math.Max(COUNTRY_FALLBACK_COUNT, countryCount);
+        return Math.Max(DefaultSettings.TotalCountryCount, _countryCount);
     }
 }
