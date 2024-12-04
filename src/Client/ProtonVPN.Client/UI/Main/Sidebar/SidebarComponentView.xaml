@@ -38,7 +38,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StackPanel Padding="4"
                         HorizontalAlignment="Left"
                         Orientation="Vertical"
-                        Spacing="26"
+                        Spacing="23"
                         Visibility="{x:Bind IsSidebarExpanded, Converter={StaticResource NotBooleanToVisibilityConverter}}">
 
                 <!--  Search icon  -->
@@ -56,15 +56,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               ItemsSource="{x:Bind ViewModel.ConnectionPages, Mode=OneTime}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <StackPanel Orientation="Vertical"
-                                        Spacing="24" />
+                            <StackPanel Orientation="Vertical" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate x:DataType="bases:IConnectionPage">
                             <ContentControl Content="{x:Bind Icon, Mode=OneTime}"
                                             Foreground="{ThemeResource TextWeakColorBrush}"
-                                            Visibility="{x:Bind IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                            Visibility="{x:Bind IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}" 
+                                            Margin="0,0,0,18"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
