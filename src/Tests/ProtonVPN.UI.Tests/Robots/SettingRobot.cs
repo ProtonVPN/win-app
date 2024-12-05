@@ -41,6 +41,7 @@ public class SettingRobot
     protected Element NetshieldToggle = Element.ByAutomationId("NetshieldToggle");
     protected Element NetShieldLevelOneRadioButton = Element.ByAutomationId("NetShieldLevelOne");
     protected Element NetShieldLevelTwoRadioButton = Element.ByAutomationId("NetShieldLevelTwo");
+    protected Element CloseSettingsButton = Element.ByAutomationId("CloseSettingsButton");
 
     protected Element OpenVpnTcpProtocolRadioButton = Element.ByAutomationId("OpenVpnTcpProtocolRadioButton");
     protected Element OpenVpnUdpProtocolRadioButton = Element.ByAutomationId("OpenVpnUdpProtocolRadioButton");
@@ -56,7 +57,7 @@ public class SettingRobot
 
     public SettingRobot CloseSettings()
     {
-        Keyboard.Press(VirtualKeyShort.ESCAPE);
+        CloseSettingsButton.Click();
         return this;
     }
 

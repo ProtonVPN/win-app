@@ -53,6 +53,8 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
     protected readonly ISettingsConflictResolver SettingsConflictResolver;
     protected readonly IConnectionManager ConnectionManager;
 
+    private bool _isNavigationFromWidget = false;
+
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(ApplyCommand))]
     private bool _isPageReady;
@@ -100,16 +102,10 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
     [RelayCommand(CanExecute = nameof(CanApply))]
     public async Task<bool> ApplyAsync()
     {
-        bool isReconnectionRequired = IsReconnectionRequired();
-
-        await SaveSettingsAsync();
-
-        if (isReconnectionRequired)
-        {
-            return await ConnectionManager.ReconnectAsync();
-        }
-
-        return true;
+        return await ApplyChangesAsync()
+            && _isNavigationFromWidget
+                ? await CloseAsync()
+                : await ParentViewNavigator.NavigateToDefaultAsync();
     }
 
     public bool CanApply()
@@ -138,6 +134,8 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
     {
         base.OnNavigatedTo(parameter, isBackNavigation);
 
+        _isNavigationFromWidget = Convert.ToBoolean(parameter ?? false);
+
         await RetrieveSettingsAsync();
     }
 
@@ -155,8 +153,7 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
                 return true;
 
             case ContentDialogResult.Secondary: // Apply settings and trigger reconnection if needed
-                await ApplyAsync();
-                return true;
+                return await ApplyChangesAsync();
 
             default: // Cancel navigation, stays on current page without deleting changes user have made
                 return false;
@@ -169,6 +166,7 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
 
         // Reset flag when navigating to another page
         IsPageReady = false;
+        _isNavigationFromWidget = false;
     }
 
     protected abstract IEnumerable<ChangedSettingArgs> GetSettings();
@@ -249,6 +247,20 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
         base.OnLanguageChanged();
 
         OnPropertyChanged(nameof(ApplyCommandText));
+    }
+
+    private async Task<bool> ApplyChangesAsync()
+    {
+        bool isReconnectionRequired = IsReconnectionRequired();
+
+        await SaveSettingsAsync();
+
+        if (isReconnectionRequired)
+        {
+            return await ConnectionManager.ReconnectAsync();
+        }
+
+        return true;
     }
 
     private bool HasChangedSettings()

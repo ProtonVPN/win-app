@@ -58,14 +58,14 @@ public class SettingsViewNavigator : ViewNavigatorBase, ISettingsViewNavigator,
 
     public override FrameLoadedBehavior LoadBehavior { get; protected set; } = FrameLoadedBehavior.NavigateToDefaultViewIfEmpty;
 
-    public Task<bool> NavigateToFeatureViewAsync(ConnectionFeature feature)
+    public Task<bool> NavigateToFeatureViewAsync(ConnectionFeature feature, bool isWidgetNavigation = false)
     {
         return feature switch
         {
-            ConnectionFeature.NetShield => NavigateToNetShieldSettingsViewAsync(),
-            ConnectionFeature.KillSwitch => NavigateToKillSwitchSettingsViewAsync(),
-            ConnectionFeature.PortForwarding => NavigateToPortForwardingSettingsViewAsync(),
-            ConnectionFeature.SplitTunneling => NavigateToSplitTunnelingSettingsViewAsync(),
+            ConnectionFeature.NetShield => NavigateToNetShieldSettingsViewAsync(isWidgetNavigation),
+            ConnectionFeature.KillSwitch => NavigateToKillSwitchSettingsViewAsync(isWidgetNavigation),
+            ConnectionFeature.PortForwarding => NavigateToPortForwardingSettingsViewAsync(isWidgetNavigation),
+            ConnectionFeature.SplitTunneling => NavigateToSplitTunnelingSettingsViewAsync(isWidgetNavigation),
             _ => Task.FromResult(false),
         };
     }
@@ -90,24 +90,24 @@ public class SettingsViewNavigator : ViewNavigatorBase, ISettingsViewNavigator,
         return NavigateToAsync<ProtocolSettingsPageViewModel>();
     }
 
-    public Task<bool> NavigateToNetShieldSettingsViewAsync()
+    public Task<bool> NavigateToNetShieldSettingsViewAsync(bool isWidgetNavigation = false)
     {
-        return NavigateToAsync<NetShieldPageViewModel>();
+        return NavigateToAsync<NetShieldPageViewModel>(parameter: isWidgetNavigation);
     }
 
-    public Task<bool> NavigateToKillSwitchSettingsViewAsync()
+    public Task<bool> NavigateToKillSwitchSettingsViewAsync(bool isWidgetNavigation = false)
     {
-        return NavigateToAsync<KillSwitchPageViewModel>();
+        return NavigateToAsync<KillSwitchPageViewModel>(parameter: isWidgetNavigation);
     }
 
-    public Task<bool> NavigateToPortForwardingSettingsViewAsync()
+    public Task<bool> NavigateToPortForwardingSettingsViewAsync(bool isWidgetNavigation = false)
     {
-        return NavigateToAsync<PortForwardingPageViewModel>();
+        return NavigateToAsync<PortForwardingPageViewModel>(parameter: isWidgetNavigation);
     }
 
-    public Task<bool> NavigateToSplitTunnelingSettingsViewAsync()
+    public Task<bool> NavigateToSplitTunnelingSettingsViewAsync(bool isWidgetNavigation = false)
     {
-        return NavigateToAsync<SplitTunnelingPageViewModel>();
+        return NavigateToAsync<SplitTunnelingPageViewModel>(parameter: isWidgetNavigation);
     }
 
     public Task<bool> NavigateToVpnAcceleratorSettingsViewAsync()
