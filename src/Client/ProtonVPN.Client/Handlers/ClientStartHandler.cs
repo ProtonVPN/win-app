@@ -22,6 +22,7 @@ using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Handlers.Bases;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Servers;
 
 namespace ProtonVPN.Client.Handlers;
 
@@ -29,19 +30,27 @@ public class ClientStartHandler : IHandler,
     IEventMessageReceiver<ApplicationStartingMessage>,
     IEventMessageReceiver<ApplicationStartedMessage>
 {
+    private readonly IServersCache _serversCache;
     private readonly IVpnStatePollingObserver _vpnStatePollingObserver;
     private readonly ISystemTimeValidator _systemTimeValidator;
 
     public ClientStartHandler(
+        IServersCache serversCache,
         IVpnStatePollingObserver vpnStatePollingObserver,
         ISystemTimeValidator systemTimeValidator)
     {
+        _serversCache = serversCache;
         _vpnStatePollingObserver = vpnStatePollingObserver;
         _systemTimeValidator = systemTimeValidator;
     }
 
     public void Receive(ApplicationStartingMessage message)
     {
+        // If the client starts after crash while connected to VPN, we need to have 
+        // servers cache loaded so ConnectionManager can map currently connected server
+        // to the one in the servers cache.
+        _serversCache.LoadFromFileIfEmpty();
+
         _vpnStatePollingObserver.Initialize();
     }
 
