@@ -240,7 +240,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                     Command="{Binding CloseCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                                     Margin="12,0,16,0"
                                                     VerticalAlignment="Center"
-                                                    HorizontalAlignment="Right">
+                                                    HorizontalAlignment="Right"
+                                                    AutomationProperties.AutomationId="CloseSettingsButton">
                                     <custom:GhostButton.RightIcon>
                                         <pathicons:CrossCircleFilled />
                                     </custom:GhostButton.RightIcon>
