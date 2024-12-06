@@ -36,9 +36,11 @@ public partial class CountryFlyoutViewModel : ActivatableViewModelBase,
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(CountryName))]
+    [NotifyPropertyChangedFor(nameof(IsDeviceExposed))]
     private string _countryCode = string.Empty;
 
-    public string CountryName => Localizer.GetCountryName(CountryCode);
+    public string CountryName => EmptyValueExtensions.TransformValueOrDefault(CountryCode, cc => Localizer.GetCountryName(cc));
+    public bool IsDeviceExposed => !string.IsNullOrWhiteSpace(CountryCode);
 
     public CountryFlyoutViewModel(
         ISettings settings,

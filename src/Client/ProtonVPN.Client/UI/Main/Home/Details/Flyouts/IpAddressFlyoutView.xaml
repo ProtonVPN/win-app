@@ -53,7 +53,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Grid>
 
         <StackPanel Spacing="16"
-                    Visibility="{x:Bind ViewModel.IsDisconnected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Visibility="{x:Bind ViewModel.IsIpAddressExposed, Converter={StaticResource BooleanToVisibilityConverter}}">
             <TextBlock Style="{ThemeResource TitleTextBlockStyle}"
                        Text="{x:Bind ViewModel.DeviceIpAddress}" />
 
@@ -90,6 +90,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0"
+                               VerticalAlignment="Center"
                                Style="{ThemeResource SubtitleTextBlockStyle}"
                                Text="{x:Bind ViewModel.DeviceIpAddressOrHidden}" />
 
@@ -115,7 +116,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            Text="{x:Bind ViewModel.Localizer.Get('Flyouts_IpAddress_VpnIp')}" />
 
                 <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}"
-                           Text="{x:Bind ViewModel.ServerIpAddress}" />
+                           Text="{x:Bind ViewModel.ServerIpAddress}"
+                           VerticalAlignment="Center" />
             </StackPanel>
         </Grid>
 

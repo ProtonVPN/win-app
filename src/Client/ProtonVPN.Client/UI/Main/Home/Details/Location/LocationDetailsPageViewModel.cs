@@ -46,9 +46,9 @@ public partial class LocationDetailsPageViewModel : PageViewModelBase<IDetailsVi
     [NotifyPropertyChangedFor(nameof(Isp))]
     private DeviceLocation _deviceLocation = DeviceLocation.Unknown;
 
-    public string Country => Localizer.GetCountryName(DeviceLocation.CountryCode);
-    public string IpAddress => DeviceLocation.IpAddress;
-    public string Isp => DeviceLocation.Isp;
+    public string Country => EmptyValueExtensions.TransformValueOrDefault(DeviceLocation.CountryCode, cc => Localizer.GetCountryName(cc));
+    public string IpAddress => EmptyValueExtensions.GetValueOrDefault(DeviceLocation.IpAddress);
+    public string Isp => EmptyValueExtensions.GetValueOrDefault(DeviceLocation.Isp);
 
     public bool IsDisconnected => _connectionManager.IsDisconnected;
     public bool IsConnecting => _connectionManager.IsConnecting;
