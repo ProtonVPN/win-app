@@ -83,58 +83,75 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
         _message = string.Empty;
     }
 
-    public async void Receive(LoginStateChangedMessage message)
+    public void Receive(LoginStateChangedMessage message)
     {
-        switch (message.Value)
+        ExecuteOnUIThread(async () =>
         {
-            case LoginState.Authenticating:
-                ClearMessage();
-                break;
+            switch (message.Value)
+            {
+                case LoginState.Authenticating:
+                    ClearMessage();
+                    break;
 
-            case LoginState.Success:
-                ClearMessage();
-                break;
+                case LoginState.Success:
+                    ClearMessage();
+                    break;
 
-            case LoginState.TwoFactorRequired:
-                ClearMessage();
-                await ChildViewNavigator.NavigateToTwoFactorViewAsync();
-                break;
+                case LoginState.TwoFactorRequired:
+                    ClearMessage();
+                    await ChildViewNavigator.NavigateToTwoFactorViewAsync();
+                    break;
 
-            case LoginState.TwoFactorFailed:
-                switch (message.AuthError)
-                {
-                    case AuthError.IncorrectTwoFactorCode:
-                        SetErrorMessage(Localizer.Get("Login_Error_IncorrectTwoFactorCode"));
-                        break;
+                case LoginState.TwoFactorFailed:
+                    switch (message.AuthError)
+                    {
+                        case AuthError.IncorrectTwoFactorCode:
+                            SetErrorMessage(Localizer.Get("Login_Error_IncorrectTwoFactorCode"));
+                            break;
 
-                    case AuthError.TwoFactorAuthFailed:
-                        SetErrorMessage(Localizer.Get("Login_Error_TwoFactorFailed"));
-                        await ChildViewNavigator.NavigateToSignInViewAsync();
-                        break;
+                        case AuthError.TwoFactorAuthFailed:
+                            SetErrorMessage(Localizer.Get("Login_Error_TwoFactorFailed"));
+                            await ChildViewNavigator.NavigateToSignInViewAsync();
+                            break;
 
-                    case AuthError.Unknown:
-                        SetErrorMessage(message.ErrorMessage);
-                        break;
-                }
-                break;
+                        case AuthError.Unknown:
+                            SetErrorMessage(message.ErrorMessage);
+                            break;
+                    }
+                    break;
 
-            case LoginState.Error:
-                HandleAuthError(message);
-                break;
-        }
+                case LoginState.Error:
+                    HandleAuthError(message);
+                    break;
+            }
+        });
     }
 
     public void Receive(LoggedOutMessage message)
     {
-        switch (message.Reason)
+        ExecuteOnUIThread(() =>
         {
-            case LogoutReason.UserAction:
-            case LogoutReason.NoVpnConnectionsAssigned:
-                break;
-            case LogoutReason.SessionExpired:
-                ExecuteOnUIThread(() => SetErrorMessage(Localizer.Get("Login_Error_SessionExpired")));
-                break;
-        }
+            switch (message.Reason)
+            {
+                case LogoutReason.UserAction:
+                case LogoutReason.NoVpnConnectionsAssigned:
+                    break;
+                case LogoutReason.SessionExpired:
+                    SetErrorMessage(Localizer.Get("Login_Error_SessionExpired"));
+                    break;
+            }
+        });
+    }
+
+    public void Receive(SettingChangedMessage message)
+    {
+        ExecuteOnUIThread(() =>
+        {
+            if (message.PropertyName == nameof(ISettings.IsKillSwitchEnabled) && ChildViewNavigator.GetCurrentPageContext() is SignInPageViewModel)
+            {
+                SetMessage(Localizer.Get("SignIn_KillSwitch_Disabled"), InfoBarSeverity.Success);
+            }
+        });
     }
 
     private void HandleAuthError(LoginStateChangedMessage message)
@@ -220,13 +237,5 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
     private void ClearMessage()
     {
         IsMessageVisible = false;
-    }
-
-    public void Receive(SettingChangedMessage message)
-    {
-        if (message.PropertyName == nameof(ISettings.IsKillSwitchEnabled) && ChildViewNavigator.GetCurrentPageContext() is SignInPageViewModel)
-        {
-            SetMessage(Localizer.Get("SignIn_KillSwitch_Disabled"), InfoBarSeverity.Success);
-        }
     }
 }

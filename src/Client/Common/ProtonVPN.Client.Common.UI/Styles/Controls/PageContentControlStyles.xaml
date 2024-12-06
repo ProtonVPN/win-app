@@ -254,9 +254,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <ScrollViewer x:Name="PART_ScrollViewer"
                                           Grid.Row="2"
                                           MaxWidth="{TemplateBinding MaxContentWidth}"
+                                          Padding="4,0,-4,0"
+                                          Margin="0,0,8,0"
                                           HorizontalScrollBarVisibility="Disabled"
                                           VerticalScrollBarVisibility="{Binding CanContentScroll, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToScrollBarVisibilityConverter}}">
-                                <ContentPresenter Padding="24,0" />
+                                <ContentPresenter Padding="24,0,24,24"/>
                             </ScrollViewer>
 
                             <Border Grid.Row="2"

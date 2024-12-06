@@ -62,14 +62,20 @@ public partial class HumanVerificationOverlayViewModel : OverlayViewModelBase<IM
 
     public void Receive(RequestTokenMessage message)
     {
-        _token = message.Token;
-        OnPropertyChanged(nameof(Url));
+        ExecuteOnUIThread(() =>
+        {
+            _token = message.Token;
+            OnPropertyChanged(nameof(Url));
+        });
     }
 
     public void Receive(ThemeChangedMessage message)
     {
-        OnPropertyChanged(nameof(IsDarkTheme));
-        OnPropertyChanged(nameof(Url));
+        ExecuteOnUIThread(() =>
+        {
+            OnPropertyChanged(nameof(IsDarkTheme));
+            OnPropertyChanged(nameof(Url));
+        });
     }
 
     public void TriggerVerificationTokenMessage(string token)

@@ -30,70 +30,62 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
-    <toolkit:WrapPanel HorizontalSpacing="32"
-                       VerticalSpacing="16">
-        <Grid ColumnSpacing="12">
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
+    <custom:GhostButton Padding="4,2,4,4"
+                        CornerRadius="8">
+        
+        <StackPanel Spacing="4"
+                    MinWidth="120">
 
-            <Image Grid.Column="0"
-                   Width="40"
-                   Height="40"
-                   Source="{StaticResource ProfileIcon}" />
-
-            <StackPanel Grid.Column="1"
-                        Spacing="4"
-                        MinWidth="100">
-
-                <TextBlock Style="{ThemeResource BodyMediumStrongTextBlockStyle}"
+            <TextBlock Style="{ThemeResource BodyMediumStrongTextBlockStyle}"
                            Text="{x:Bind ViewModel.Username}" />
 
-                <Border x:Name="VpnPlanBorder"
-                        Padding="6,2"
-                        HorizontalAlignment="Left"
-                        BorderBrush="{ThemeResource BorderWeakColorBrush}"
-                        BorderThickness="1"
-                        CornerRadius="6">
-                    <TextBlock Style="{ThemeResource CaptionTextBlockStyle}"
+            <Border x:Name="VpnPlanBorder"
+                    Padding="5,2"
+                    HorizontalAlignment="Left"
+                    BorderBrush="{ThemeResource BorderWeakColorBrush}"
+                    BorderThickness="1"
+                    CornerRadius="6">
+                <TextBlock Style="{ThemeResource CaptionTextBlockStyle}"
                                Text="{x:Bind ViewModel.VpnPlan}" />
-                </Border>
+            </Border>
 
-            </StackPanel>
+        </StackPanel>
 
-            <custom:GhostButton Grid.Column="2">
-                <custom:GhostButton.RightIcon>
-                    <pathicons:ThreeDotsVertical />
-                </custom:GhostButton.RightIcon>
-                <custom:GhostButton.Flyout>
-                    <MenuFlyout AutomationProperties.AutomationId="AccountFlyoutMenu"
+        <custom:GhostButton.LeftIcon>
+            <ImageIcon Source="{StaticResource ProfileIcon}"                       
+                   Width="40"
+                   Height="40"/>
+        </custom:GhostButton.LeftIcon>
+
+        <custom:GhostButton.RightIcon>
+            <pathicons:ThreeDotsVertical />
+        </custom:GhostButton.RightIcon>
+
+        <custom:GhostButton.Flyout>
+            <MenuFlyout AutomationProperties.AutomationId="AccountFlyoutMenu"
                                 Placement="BottomEdgeAlignedRight">
-                        <MenuFlyoutItem Command="{x:Bind ViewModel.OpenMyAccountUrlCommand, Mode=OneTime}"
+                <MenuFlyoutItem Command="{x:Bind ViewModel.OpenMyAccountUrlCommand, Mode=OneTime}"
                                         Style="{StaticResource HyperlinkMenuFlyoutItemStyle}"
                                         Text="{x:Bind ViewModel.Localizer.Get('Settings_Account_MyAccount')}">
-                            <MenuFlyoutItem.Icon>
-                                <pathicons:User />
-                            </MenuFlyoutItem.Icon>
-                        </MenuFlyoutItem>
-                        <MenuFlyoutItem Command="{x:Bind ViewModel.SignOutCommand, Mode=OneTime}"
+                    <MenuFlyoutItem.Icon>
+                        <pathicons:User />
+                    </MenuFlyoutItem.Icon>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem Command="{x:Bind ViewModel.SignOutCommand, Mode=OneTime}"
                                         Text="{x:Bind ViewModel.Localizer.Get('Settings_Account_SignOut')}">
-                            <MenuFlyoutItem.Icon>
-                                <pathicons:ArrowOutFromRectangle />
-                            </MenuFlyoutItem.Icon>
-                        </MenuFlyoutItem>
-                        <MenuFlyoutItem Command="{x:Bind ViewModel.ExitApplicationCommand, Mode=OneTime}"
+                    <MenuFlyoutItem.Icon>
+                        <pathicons:ArrowOutFromRectangle />
+                    </MenuFlyoutItem.Icon>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem Command="{x:Bind ViewModel.ExitApplicationCommand, Mode=OneTime}"
                                         Text="{x:Bind ViewModel.Localizer.Get('Settings_Account_Exit')}">
-                            <MenuFlyoutItem.Icon>
-                                <pathicons:CrossBig />
-                            </MenuFlyoutItem.Icon>
-                        </MenuFlyoutItem>
-                    </MenuFlyout>
-                </custom:GhostButton.Flyout>
-            </custom:GhostButton>
-        </Grid>
+                    <MenuFlyoutItem.Icon>
+                        <pathicons:CrossBig />
+                    </MenuFlyoutItem.Icon>
+                </MenuFlyoutItem>
+            </MenuFlyout>
+        </custom:GhostButton.Flyout>
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="VpnPlanBorders">
@@ -119,5 +111,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <VisualState x:Name="Free" />
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-    </toolkit:WrapPanel>
+
+    </custom:GhostButton>
 </UserControl>

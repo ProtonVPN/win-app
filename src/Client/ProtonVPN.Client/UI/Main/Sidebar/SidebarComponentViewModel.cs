@@ -97,6 +97,6 @@ public partial class SidebarComponentViewModel : HostViewModelBase<ISidebarViewN
 
     public void Receive(LoggedInMessage message)
     {
-        ClearSearch();
+        ExecuteOnUIThread(ClearSearch);
     }
 }

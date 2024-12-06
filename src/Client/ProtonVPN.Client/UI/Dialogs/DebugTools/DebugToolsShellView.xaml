@@ -122,11 +122,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                     <StackPanel Orientation="Horizontal"
                                 Spacing="8">
-                        <Button Command="{x:Bind ViewModel.SimulatePlanChangedToFreeCommand, Mode=OneTime}"
-                                Content="To Free"
-                                Style="{StaticResource PrimaryButtonStyle}" />
-                        <Button Command="{x:Bind ViewModel.SimulatePlanChangedToPlusCommand, Mode=OneTime}"
-                                Content="To Plus"
+                        <ComboBox DisplayMemberPath="Title"
+                                  ItemsSource="{x:Bind ViewModel.VpnPlans, Mode=OneTime}"
+                                  SelectedItem="{x:Bind ViewModel.SelectedVpnPlan, Mode=TwoWay}" />
+                        <Button Command="{x:Bind ViewModel.SimulatePlanChangedCommand, Mode=OneTime}"
+                                Content="Change"
                                 Style="{StaticResource PrimaryButtonStyle}" />
                     </StackPanel>
 

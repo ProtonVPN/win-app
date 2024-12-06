@@ -35,6 +35,7 @@ public sealed partial class UserDetailsComponent : IContextAware
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
     }
+
     public object GetContext()
     {
         return ViewModel;

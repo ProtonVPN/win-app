@@ -18,33 +18,26 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.UI.Xaml.Controls;
-using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Bases.ViewModels;
-using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts;
-using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Services.Bootstrapping;
-using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Services.SignoutHandling;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Extensions;
-using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages;
 
 public partial class UserDetailsComponentViewModel : PageViewModelBase,
-    IEventMessageReceiver<SettingChangedMessage>
+    IEventMessageReceiver<VpnPlanChangedMessage>
 {
     private readonly IUrlsBrowser _urlsBrowser;
-    private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
-    private readonly IConnectionManager _connectionManager;
     private readonly ISignOutHandler _signoutHandler;
     private readonly ISettings _settings;
     private readonly IWebAuthenticator _webAuthenticator;
@@ -52,7 +45,7 @@ public partial class UserDetailsComponentViewModel : PageViewModelBase,
 
     public string Username => _settings.GetUsername();
 
-    public string VpnPlan => Localizer.GetVpnPlanName(_settings.VpnPlan.Title);
+    public string VpnPlan => Localizer.GetVpnPlanName(_settings.VpnPlan);
 
     public bool IsVpnPlan => _settings.VpnPlan.IsVpnPlan;
 
@@ -61,8 +54,6 @@ public partial class UserDetailsComponentViewModel : PageViewModelBase,
     public UserDetailsComponentViewModel(
         IUrlsBrowser urlsBrowser,
         ISignOutHandler signoutHandler,
-        IMainWindowOverlayActivator mainWindowOverlayActivator,
-        IConnectionManager connectionManager,
         ISettings settings,
         IWebAuthenticator webAuthenticator,
         IBootstrapper bootstrapper,
@@ -71,30 +62,20 @@ public partial class UserDetailsComponentViewModel : PageViewModelBase,
         IIssueReporter issueReporter) : base(localizer, logger, issueReporter)
     {
         _urlsBrowser = urlsBrowser;
-        _mainWindowOverlayActivator = mainWindowOverlayActivator;
-        _connectionManager = connectionManager;
         _signoutHandler = signoutHandler;
         _settings = settings;
         _webAuthenticator = webAuthenticator;
         _bootstrapper = bootstrapper;
     }
 
-    [RelayCommand]
-    public async Task OpenMyAccountUrlAsync()
+    public void Receive(VpnPlanChangedMessage message)
     {
-        _urlsBrowser.BrowseTo(await _webAuthenticator.GetMyAccountUrlAsync());
-    }
-
-    [RelayCommand]
-    private Task SignOutAsync()
-    {
-        return _signoutHandler.SignOutAsync();
-    }
-
-    [RelayCommand]
-    public async Task ExitApplicationAsync()
-    {
-        await _bootstrapper.ExitAsync();
+        ExecuteOnUIThread(() =>
+        {
+            OnPropertyChanged(nameof(IsVpnPlan));
+            OnPropertyChanged(nameof(IsProtonPlan));
+            OnPropertyChanged(nameof(VpnPlan));
+        });
     }
 
     protected override void OnLanguageChanged()
@@ -104,13 +85,21 @@ public partial class UserDetailsComponentViewModel : PageViewModelBase,
         OnPropertyChanged(nameof(VpnPlan));
     }
 
-    public void Receive(SettingChangedMessage message)
+    [RelayCommand]
+    private async Task OpenMyAccountUrlAsync()
     {
-        if (message.PropertyName == nameof(ISettings.VpnPlan))
-        {
-            OnPropertyChanged(nameof(IsVpnPlan));
-            OnPropertyChanged(nameof(IsProtonPlan));
-            OnPropertyChanged(nameof(VpnPlan));
-        }
+        _urlsBrowser.BrowseTo(await _webAuthenticator.GetMyAccountUrlAsync());
+    }
+
+    [RelayCommand]
+    private Task ExitApplicationAsync()
+    {
+        return _bootstrapper.ExitAsync();
+    }
+
+    [RelayCommand]
+    private Task SignOutAsync()
+    {
+        return _signoutHandler.SignOutAsync();
     }
 }

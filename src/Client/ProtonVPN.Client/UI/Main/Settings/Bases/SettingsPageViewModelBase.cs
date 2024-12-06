@@ -44,7 +44,8 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.UI.Main;
 
 public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISettingsViewNavigator>,
-    IEventMessageReceiver<ConnectionStatusChangedMessage>
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
+    IEventMessageReceiver<SettingChangedMessage>
 {
     protected readonly IRequiredReconnectionSettings RequiredReconnectionSettings;
     protected readonly IMainViewNavigator MainViewNavigator;

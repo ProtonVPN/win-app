@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Core.Services.Mapping;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Core.Services.Navigation.Bases;
@@ -36,8 +37,9 @@ public class MainViewNavigator : ViewNavigatorBase, IMainViewNavigator,
 
     public MainViewNavigator(
         ILogger logger,
-        IPageViewMapper pageViewMapper) 
-        : base(logger, pageViewMapper)
+        IPageViewMapper pageViewMapper,
+        IUIThreadDispatcher uiThreadDispatcher) 
+        : base(logger, pageViewMapper, uiThreadDispatcher)
     { }
 
     public Task<bool> NavigateToHomeViewAsync()
@@ -55,13 +57,7 @@ public class MainViewNavigator : ViewNavigatorBase, IMainViewNavigator,
         return NavigateToHomeViewAsync();
     }
 
-    // TODO: prevent NavigateToDefaultAsync from being called multiple times due out of order messages
-    // Disconnected
-    // Connecting
-    // Disconnected
-    // Connecting
-    // Connected
-    public async void Receive(ConnectionStatusChangedMessage message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         if (_connectionStatus == message.ConnectionStatus)
         {
@@ -72,7 +68,7 @@ public class MainViewNavigator : ViewNavigatorBase, IMainViewNavigator,
 
         if (message.ConnectionStatus == ConnectionStatus.Connecting)
         {
-            await NavigateToDefaultAsync();
+            UIThreadDispatcher.TryEnqueue(async () => await NavigateToDefaultAsync());
         }
     }
 }

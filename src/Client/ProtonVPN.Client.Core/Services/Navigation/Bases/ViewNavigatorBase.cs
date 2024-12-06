@@ -28,11 +28,14 @@ using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation.Bases;
 using ProtonVPN.Client.Core.Services.Mapping;
+using ProtonVPN.Client.Common.Dispatching;
 
 namespace ProtonVPN.Client.Core.Services.Navigation.Bases;
 
 public abstract class ViewNavigatorBase : FrameActivatorBase, IViewNavigator
 {
+    protected readonly IUIThreadDispatcher UIThreadDispatcher;
+
     private readonly IPageViewMapper _pageViewMapper;
 
     private object? _lastParameterUsed;
@@ -51,10 +54,13 @@ public abstract class ViewNavigatorBase : FrameActivatorBase, IViewNavigator
 
     protected ViewNavigatorBase(
         ILogger logger,
-        IPageViewMapper pageViewMapper)
+        IPageViewMapper pageViewMapper,
+        IUIThreadDispatcher uiThreadDispatcher)
         : base(logger)
     {
         _pageViewMapper = pageViewMapper;
+
+        UIThreadDispatcher = uiThreadDispatcher;
     }
 
     public event NavigatedEventHandler? Navigated;

@@ -27,6 +27,7 @@ using ProtonVPN.Client.Core.Services.Mapping;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Core.Services.Navigation.Bases;
 using ProtonVPN.Client.UI.Login.Pages;
+using ProtonVPN.Client.Common.Dispatching;
 
 namespace ProtonVPN.Client.Services.Navigation;
 
@@ -40,8 +41,9 @@ public class LoginViewNavigator : ViewNavigatorBase, ILoginViewNavigator,
     public LoginViewNavigator(
         ILogger logger,
         IPageViewMapper pageViewMapper,
+        IUIThreadDispatcher uiThreadDispatcher,
         IUserAuthenticator userAuthenticator)
-        : base(logger, pageViewMapper)
+        : base(logger, pageViewMapper, uiThreadDispatcher)
     {
         _userAuthenticator = userAuthenticator;
     }
@@ -66,11 +68,6 @@ public class LoginViewNavigator : ViewNavigatorBase, ILoginViewNavigator,
         return NavigateToAsync<TwoFactorPageViewModel>();
     }
 
-    public void Receive(AuthenticationStatusChanged message)
-    {
-        NavigateToDefaultAsync();
-    }
-
     public override Task<bool> NavigateToDefaultAsync()
     {
         return _userAuthenticator.AuthenticationStatus switch
@@ -79,5 +76,10 @@ public class LoginViewNavigator : ViewNavigatorBase, ILoginViewNavigator,
             AuthenticationStatus.LoggingOut => NavigateToLoadingViewAsync(),
             _ => NavigateToSignInViewAsync()
         };
+    }
+
+    public void Receive(AuthenticationStatusChanged message)
+    {
+        UIThreadDispatcher.TryEnqueue(async () => await NavigateToDefaultAsync());
     }
 }

@@ -115,10 +115,13 @@ public partial class TwoFactorPageViewModel : LoginPageViewModelBase
 
     public void Receive(LoginStateChangedMessage message)
     {
-        if (message.Value == LoginState.TwoFactorFailed)
+        ExecuteOnUIThread(() =>
         {
-            OnTwoFactorFailure?.Invoke(this, EventArgs.Empty);
-        }
+            if (message.Value == LoginState.TwoFactorFailed)
+            {
+                OnTwoFactorFailure?.Invoke(this, EventArgs.Empty);
+            }
+        });
     }
 
     protected override void OnDeactivated()

@@ -23,6 +23,7 @@ using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Core.Services.Navigation.Bases;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections;
 using ProtonVPN.Client.UI.Main.Sidebar.Search;
+using ProtonVPN.Client.Common.Dispatching;
 
 namespace ProtonVPN.Client.Services.Navigation;
 
@@ -30,8 +31,9 @@ public class SidebarViewNavigator : ViewNavigatorBase, ISidebarViewNavigator
 {
     public SidebarViewNavigator(
         ILogger logger,
-        IPageViewMapper pageViewMapper)
-        : base(logger, pageViewMapper)
+        IPageViewMapper pageViewMapper,
+        IUIThreadDispatcher uiThreadDispatcher)
+        : base(logger, pageViewMapper, uiThreadDispatcher)
     { }
 
     public Task<bool> NavigateToConnectionsViewAsync()

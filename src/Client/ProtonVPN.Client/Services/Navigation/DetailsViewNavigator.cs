@@ -26,6 +26,7 @@ using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Core.Services.Navigation.Bases;
 using ProtonVPN.Client.UI.Main.Home.Details.Connection;
 using ProtonVPN.Client.UI.Main.Home.Details.Location;
+using ProtonVPN.Client.Common.Dispatching;
 
 namespace ProtonVPN.Client.Services.Navigation;
 
@@ -37,8 +38,9 @@ public class DetailsViewNavigator : ViewNavigatorBase, IDetailsViewNavigator,
     public DetailsViewNavigator(
         ILogger logger,
         IPageViewMapper pageViewMapper,
+        IUIThreadDispatcher uiThreadDispatcher,
         IConnectionManager connectionManager)
-        : base(logger, pageViewMapper)
+        : base(logger, pageViewMapper, uiThreadDispatcher)
     {
         _connectionManager = connectionManager;
     }
@@ -53,15 +55,15 @@ public class DetailsViewNavigator : ViewNavigatorBase, IDetailsViewNavigator,
         return NavigateToAsync<ConnectionDetailsPageViewModel>();
     }
 
-    public void Receive(ConnectionStatusChangedMessage message)
-    {
-        NavigateToDefaultAsync();
-    }
-
     public override Task<bool> NavigateToDefaultAsync()
     {
         return _connectionManager.IsConnected
             ? NavigateToConnectionDetailsViewAsync()
             : NavigateToLocationDetailsViewAsync();
+    }
+
+    public void Receive(ConnectionStatusChangedMessage message)
+    {
+        UIThreadDispatcher.TryEnqueue(async () => await NavigateToDefaultAsync());
     }
 }
