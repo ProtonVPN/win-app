@@ -30,7 +30,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Models.Connections.Countries;
-using ProtonVPN.Client.Settings.Contracts.Models;
+using ProtonVPN.Common.Core.Geographical;
 
 namespace ProtonVPN.Client.Models.Connections;
 

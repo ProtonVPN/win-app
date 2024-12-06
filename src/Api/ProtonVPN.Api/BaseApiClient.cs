@@ -28,6 +28,8 @@ using Newtonsoft.Json;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.Common.Core.Geographical;
 using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -144,7 +146,8 @@ public class BaseApiClient : IClientBase
         return GetAuthorizedRequest(method, requestUri, Settings.AccessToken, Settings.UniqueSessionId);
     }
 
-    protected HttpRequestMessage GetAuthorizedRequest(HttpMethod method, string requestUri, string accessToken, string uniqueSessionId)
+    protected HttpRequestMessage GetAuthorizedRequest(HttpMethod method, string requestUri, string accessToken,
+        string uniqueSessionId)
     {
         HttpRequestMessage request = GetUnauthorizedRequest(method, requestUri);
         request.Headers.Add("x-pm-uid", uniqueSessionId);
@@ -160,16 +163,21 @@ public class BaseApiClient : IClientBase
         request.Headers.Add("x-pm-appversion", _appVersion.AppVersion);
         request.Headers.Add("x-pm-locale", Settings.Language);
         request.Headers.Add("User-Agent", _appVersion.UserAgent);
-
         return request;
     }
 
-    protected HttpRequestMessage GetAuthorizedRequest(HttpMethod method, string requestUri, string ip)
+    protected HttpRequestMessage GetAuthorizedRequestWithLocation(HttpMethod method, string requestUri,
+        DeviceLocation? deviceLocation)
     {
         HttpRequestMessage request = GetAuthorizedRequest(method, requestUri);
-        if (!string.IsNullOrEmpty(ip))
+
+        if (!string.IsNullOrEmpty(deviceLocation?.CountryCode))
         {
-            request.Headers.Add("x-pm-netzone", ip);
+            request.Headers.Add("x-pm-country", deviceLocation.Value.CountryCode);
+        }
+        if (!string.IsNullOrEmpty(deviceLocation?.IpAddress))
+        {
+            request.Headers.Add("x-pm-netzone", deviceLocation.Value.IpAddress);
         }
 
         return request;

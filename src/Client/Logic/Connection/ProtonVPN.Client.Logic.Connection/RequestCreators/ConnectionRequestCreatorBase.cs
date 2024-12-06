@@ -25,6 +25,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Observers;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
@@ -34,14 +35,6 @@ namespace ProtonVPN.Client.Logic.Connection.RequestCreators;
 
 public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
 {
-    private readonly IReadOnlyList<VpnProtocolIpcEntity> _smartPreferredProtocols = [
-        VpnProtocolIpcEntity.WireGuardUdp,
-        VpnProtocolIpcEntity.WireGuardTcp,
-        VpnProtocolIpcEntity.WireGuardTls,
-        VpnProtocolIpcEntity.OpenVpnUdp,
-        VpnProtocolIpcEntity.OpenVpnTcp,
-    ];
-
     protected ConnectionRequestCreatorBase(
         ILogger logger, 
         ISettings settings,
@@ -76,14 +69,35 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
 
     protected IList<VpnProtocolIpcEntity> GetPreferredSmartProtocols()
     {
-        List<VpnProtocolIpcEntity> preferredProtocols = _smartPreferredProtocols.ToList();
-        if (!FeatureFlagsObserver.IsStealthEnabled)
+        List<VpnProtocol> preferredProtocols = new();
+        List<VpnProtocol> fallbackProtocols = new();
+
+        SetProtocolBucket(VpnProtocol.WireGuardUdp, preferredProtocols, fallbackProtocols);
+
+        if (FeatureFlagsObserver.IsStealthEnabled)
         {
-            preferredProtocols.Remove(VpnProtocolIpcEntity.WireGuardTcp);
-            preferredProtocols.Remove(VpnProtocolIpcEntity.WireGuardTls);
+            SetProtocolBucket(VpnProtocol.WireGuardTcp, preferredProtocols, fallbackProtocols);
+            SetProtocolBucket(VpnProtocol.WireGuardTls, preferredProtocols, fallbackProtocols);
         }
 
-        return preferredProtocols;
+        SetProtocolBucket(VpnProtocol.OpenVpnUdp, preferredProtocols, fallbackProtocols);
+        SetProtocolBucket(VpnProtocol.OpenVpnTcp, preferredProtocols, fallbackProtocols);
+
+        List<VpnProtocol> result = preferredProtocols.Count > 0 ? preferredProtocols : fallbackProtocols;
+        return EntityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(result);
+    }
+
+    private void SetProtocolBucket(VpnProtocol protocol,
+        List<VpnProtocol> preferredProtocols, List<VpnProtocol> fallbackProtocols)
+    {
+        if (Settings.DisabledSmartProtocols.Contains(protocol))
+        {
+            fallbackProtocols.Add(protocol);
+        }
+        else
+        {
+            preferredProtocols.Add(protocol);
+        }
     }
 
     private Dictionary<VpnProtocolIpcEntity, int[]> GetPorts()

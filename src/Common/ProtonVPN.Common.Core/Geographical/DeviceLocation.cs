@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Settings.Contracts.Models;
+namespace ProtonVPN.Common.Core.Geographical;
 
 public struct DeviceLocation
 {
-    public static DeviceLocation Unknown => new DeviceLocation();
+    public static DeviceLocation Unknown => new();
 
     public string IpAddress { get; init; }
     public string CountryCode { get; init; }

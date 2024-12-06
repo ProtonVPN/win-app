@@ -22,6 +22,8 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.Settings.Repositories.Contracts;
+using ProtonVPN.Common.Core.Geographical;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Dns.Contracts;
 
 namespace ProtonVPN.Client.Settings;
@@ -186,16 +188,16 @@ public class GlobalSettings : IGlobalSettings
         set => _globalCache.SetValueType<TimeSpan>(value, SettingEncryption.Encrypted);
     }
 
-    public Dictionary<string, Dictionary<string, string?>>? LegacySettingsByUsername
-    {
-        get => _globalCache.GetReferenceType<Dictionary<string, Dictionary<string, string?>>>(SettingEncryption.Unencrypted);
-        set => _globalCache.SetReferenceType(value, SettingEncryption.Unencrypted);
-    }
-
     public ChangeServerSettings ChangeServerSettings
     {
         get => _globalCache.GetValueType<ChangeServerSettings>(SettingEncryption.Encrypted) ?? DefaultSettings.ChangeServerSettings;
         set => _globalCache.SetValueType<ChangeServerSettings>(value, SettingEncryption.Encrypted);
+    }
+
+    public bool IsShareCrashReportsEnabled
+    {
+        get => _globalCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsShareCrashReportsEnabled;
+        set => _globalCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
     public string? ActiveAlternativeApiBaseUrl
@@ -204,10 +206,16 @@ public class GlobalSettings : IGlobalSettings
         set => _globalCache.SetReferenceType(value, SettingEncryption.Unencrypted);
     }
 
-    public bool IsShareCrashReportsEnabled
+    public VpnProtocol[] DisabledSmartProtocols
     {
-        get => _globalCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsShareCrashReportsEnabled;
-        set => _globalCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+        get => _globalCache.GetReferenceType<VpnProtocol[]>(SettingEncryption.Encrypted) ?? [];
+        set => _globalCache.SetReferenceType(value, SettingEncryption.Encrypted);
+    }
+
+    public Dictionary<string, Dictionary<string, string?>>? LegacySettingsByUsername
+    {
+        get => _globalCache.GetReferenceType<Dictionary<string, Dictionary<string, string?>>>(SettingEncryption.Unencrypted);
+        set => _globalCache.SetReferenceType(value, SettingEncryption.Unencrypted);
     }
 
     public int TotalCountryCount

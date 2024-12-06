@@ -18,7 +18,7 @@
  */
 
 using CommunityToolkit.Mvvm.Messaging.Messages;
-using ProtonVPN.Client.Settings.Contracts.Models;
+using ProtonVPN.Common.Core.Geographical;
 
 namespace ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 

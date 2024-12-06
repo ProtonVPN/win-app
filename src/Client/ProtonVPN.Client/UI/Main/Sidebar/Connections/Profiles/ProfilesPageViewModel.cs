@@ -38,8 +38,8 @@ using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Models.Connections;
 using ProtonVPN.Client.Models.Connections.Profiles;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;
+using ProtonVPN.Common.Core.Geographical;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 

@@ -28,7 +28,7 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts.Observers;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
-using ProtonVPN.Client.Settings.Contracts.Models;
+using ProtonVPN.Common.Core.Geographical;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
@@ -119,7 +119,6 @@ public class DeviceLocationObserver :
             if (response.Success)
             {
                 DeviceLocationResponse currentLocation = response.Value;
-
                 UpdateDeviceLocation(currentLocation.Ip, currentLocation.Country, currentLocation.Isp);
             }
         }

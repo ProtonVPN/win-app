@@ -33,6 +33,7 @@ using ProtonVPN.Api.Contracts.Streaming;
 using ProtonVPN.Api.Contracts.Users;
 using ProtonVPN.Api.Contracts.VpnConfig;
 using ProtonVPN.Api.Contracts.VpnSessions;
+using ProtonVPN.Common.Core.Geographical;
 
 namespace ProtonVPN.Api.Contracts;
 
@@ -46,14 +47,14 @@ public interface IApiClient : IClientBase
     Task<ApiResponseResult<VpnInfoWrapperResponse>> GetVpnInfoResponse();
     Task<ApiResponseResult<BaseResponse>> GetLogoutResponse();
     Task<ApiResponseResult<EventResponse>> GetEventResponse(string lastId = default);
-    Task<ApiResponseResult<ServersResponse>> GetServersAsync(string ip);
+    Task<ApiResponseResult<ServersResponse>> GetServersAsync(DeviceLocation? deviceLocation);
     Task<ApiResponseResult<ServerCountResponse>> GetServersCountAsync();
     Task<ApiResponseResult<ReportAnIssueFormResponse>> GetReportAnIssueFormData();
-    Task<ApiResponseResult<ServersResponse>> GetServerLoadsAsync(string ip);
+    Task<ApiResponseResult<ServersResponse>> GetServerLoadsAsync(DeviceLocation? deviceLocation);
     Task<ApiResponseResult<DeviceLocationResponse>> GetLocationDataAsync();
     Task<ApiResponseResult<BaseResponse>> ReportBugAsync(IEnumerable<KeyValuePair<string, string>> fields, IEnumerable<File> files);
     Task<ApiResponseResult<SessionsResponse>> GetSessions();
-    Task<ApiResponseResult<VpnConfigResponse>> GetVpnConfig();
+    Task<ApiResponseResult<VpnConfigResponse>> GetVpnConfigAsync(DeviceLocation? deviceLocation);
     Task<ApiResponseResult<AnnouncementsResponse>> GetAnnouncementsAsync(AnnouncementsRequest request);
     Task<ApiResponseResult<StreamingServicesResponse>> GetStreamingServicesAsync();
     Task<ApiResponseResult<PartnersResponse>> GetPartnersAsync();

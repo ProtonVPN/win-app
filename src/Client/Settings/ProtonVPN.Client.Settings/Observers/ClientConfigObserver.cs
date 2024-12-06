@@ -24,6 +24,7 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Observers;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -73,8 +74,7 @@ public class ClientConfigObserver :
         try
         {
             Logger.Info<SettingsLog>("Retrieving Client Config");
-
-            ApiResponseResult<VpnConfigResponse> response = await _apiClient.GetVpnConfig();
+            ApiResponseResult<VpnConfigResponse> response = await _apiClient.GetVpnConfigAsync(_settings.DeviceLocation);
             if (response.Success)
             {
                 HandleVpnConfigResponse(response.Value);
@@ -110,6 +110,32 @@ public class ClientConfigObserver :
             ShortDelay = TimeSpan.FromSeconds(value.ChangeServerShortDelayInSeconds),
             LongDelay = TimeSpan.FromSeconds(value.ChangeServerLongDelayInSeconds)
         };
+
+        if (value.SmartProtocol is not null)
+        {
+            List<VpnProtocol> disabledVpnProtocols = [];
+            if (!value.SmartProtocol.WireGuardUdp)
+            {
+                disabledVpnProtocols.Add(VpnProtocol.WireGuardUdp);
+            }
+            if (!value.SmartProtocol.WireGuardTcp)
+            {
+                disabledVpnProtocols.Add(VpnProtocol.WireGuardTcp);
+            }
+            if (!value.SmartProtocol.WireGuardTls)
+            {
+                disabledVpnProtocols.Add(VpnProtocol.WireGuardTls);
+            }
+            if (!value.SmartProtocol.OpenVpnUdp)
+            {
+                disabledVpnProtocols.Add(VpnProtocol.OpenVpnUdp);
+            }
+            if (!value.SmartProtocol.OpenVpnTcp)
+            {
+                disabledVpnProtocols.Add(VpnProtocol.OpenVpnTcp);
+            }
+            _settings.DisabledSmartProtocols = disabledVpnProtocols.ToArray();
+        }
     }
 
     private bool IsWireGuardUdpPortSupported(int port)
