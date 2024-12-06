@@ -32,7 +32,6 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
-using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.UI.Login.Pages;
@@ -205,6 +204,14 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
 
     private void SetMessage(string message, InfoBarSeverity messageType)
     {
+        if (string.IsNullOrWhiteSpace(message))
+        {
+            Logger.Warn<AppLog>($"Tried to set an empty error message on login page. Stack trace: {Environment.StackTrace}");
+
+            ClearMessage();
+            return;
+        }
+
         MessageType = messageType;
         Message = message;
         IsMessageVisible = true;
