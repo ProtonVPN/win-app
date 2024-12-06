@@ -28,6 +28,7 @@ using ProtonVPN.Client.Core.Services.Navigation.Bases;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.UI.Login;
 using ProtonVPN.Client.UI.Main;
+using ProtonVPN.Client.Common.Dispatching;
 
 namespace ProtonVPN.Client.Services.Navigation;
 
@@ -41,8 +42,9 @@ public class MainWindowViewNavigator : ViewNavigatorBase, IMainWindowViewNavigat
         ILogger logger,
         IEventMessageSender eventMessageSender,
         IPageViewMapper pageViewMapper,
+        IUIThreadDispatcher uiThreadDispatcher,
         IUserAuthenticator userAuthenticator)
-        : base(logger, pageViewMapper)
+        : base(logger, pageViewMapper, uiThreadDispatcher)
     {
         _eventMessageSender = eventMessageSender;
         _userAuthenticator = userAuthenticator;
@@ -58,20 +60,20 @@ public class MainWindowViewNavigator : ViewNavigatorBase, IMainWindowViewNavigat
         return NavigateToAsync<MainPageViewModel>();
     }
 
-    public void Receive(AuthenticationStatusChanged message)
-    {
-        NavigateToDefaultAsync();
-
-        if (message.AuthenticationStatus == AuthenticationStatus.LoggedIn)
-        {
-            _eventMessageSender.Send(new HomePageDisplayedAfterLoginMessage());
-        }
-    }
-
     public override Task<bool> NavigateToDefaultAsync()
     {
         return _userAuthenticator.IsLoggedIn
             ? NavigateToMainViewAsync()
             : NavigateToLoginViewAsync();
+    }
+
+    public void Receive(AuthenticationStatusChanged message)
+    {
+        UIThreadDispatcher.TryEnqueue(async () => await NavigateToDefaultAsync());
+
+        if (message.AuthenticationStatus == AuthenticationStatus.LoggedIn)
+        {
+            _eventMessageSender.Send(new HomePageDisplayedAfterLoginMessage());
+        }
     }
 }

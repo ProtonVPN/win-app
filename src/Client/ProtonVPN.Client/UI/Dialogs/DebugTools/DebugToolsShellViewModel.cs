@@ -58,12 +58,25 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     private readonly IEventMessageSender _eventMessageSender;
 
     [ObservableProperty]
-    private Overlay? _selectedOverlay;
+    private Overlay _selectedOverlay;
 
     [ObservableProperty]
     private VpnErrorTypeIpcEntity _selectedError = VpnErrorTypeIpcEntity.None;
 
+    [ObservableProperty]
+    private VpnPlan _selectedVpnPlan;
+
     public List<Overlay> OverlaysList { get; }
+
+    public List<VpnPlan> VpnPlans { get; } =
+    [
+        new("VPN Free", "vpnfree", 0),
+        new("VPN Plus", "vpnplus", 1),
+        new("Proton Unlimited", "bundle2022", 1),
+        new("Proton Visionary", "visionary2022", 1),
+        new("Proton Business", "vpnpro2023", 1),
+        new("Proton Duo", "duo2024", 1),
+    ];
 
     public DebugToolsShellViewModel(
         IDebugToolsWindowActivator windowActivator,
@@ -109,6 +122,9 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
                     })
             .ToList()
         ];
+        SelectedOverlay = OverlaysList.First();
+
+        SelectedVpnPlan = VpnPlans.First();
     }
 
     [RelayCommand]
@@ -163,6 +179,16 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     {
         VpnPlan oldPlan = _settings.VpnPlan;
         VpnPlan newPlan = new("VPN Free (simulation)", "vpnfree", 0);
+
+        _settings.VpnPlan = newPlan;
+        _eventMessageSender.Send(new VpnPlanChangedMessage(oldPlan, newPlan));
+    }
+
+    [RelayCommand]
+    public void SimulatePlanChanged()
+    {
+        VpnPlan oldPlan = _settings.VpnPlan;
+        VpnPlan newPlan = SelectedVpnPlan;
 
         _settings.VpnPlan = newPlan;
         _eventMessageSender.Send(new VpnPlanChangedMessage(oldPlan, newPlan));

@@ -204,6 +204,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
         <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+        <Setter Property="MinWidth" Value="120" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="MenuFlyoutItem">
@@ -294,6 +295,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
         <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+        <Setter Property="MinWidth" Value="200" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="MenuFlyoutItem">
@@ -391,6 +393,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="Margin" Value="{StaticResource TitleBarMenuItemMargin}" />
         <Setter Property="CornerRadius" Value="{StaticResource TitleBarMenuItemCornerRadius}" />
         <Setter Property="Height" Value="{StaticResource TitleBarMenuItemHeight}" />
+        <Setter Property="MinWidth" Value="120" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="MenuFlyoutItem">
@@ -410,6 +413,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                  Grid.Column="0"
                                  HorizontalAlignment="Left"
                                  VerticalAlignment="Center"
+                                 Width="16"
+                                 Height="16"
                                  Visibility="{Binding Icon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}">
                             <ContentPresenter x:Name="IconContent"
                                               Content="{TemplateBinding Icon}" />
@@ -468,6 +473,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Style>
 
     <Style x:Key="TitleBarMenuHyperlinkMenuFlyoutItemStyle" BasedOn="{StaticResource TitleBarMenuFlyoutItemStyle}" TargetType="MenuFlyoutItem">
+        <Setter Property="MinWidth" Value="200" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="MenuFlyoutItem">

@@ -18,6 +18,7 @@
  */
 
 using Microsoft.UI.Xaml.Navigation;
+using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Mapping;
 using ProtonVPN.Client.Core.Services.Navigation;
@@ -42,8 +43,9 @@ public class SettingsViewNavigator : ViewNavigatorBase, ISettingsViewNavigator,
 
     public SettingsViewNavigator(
         ILogger logger,
-        IPageViewMapper pageViewMapper)
-        : base(logger, pageViewMapper)
+        IPageViewMapper pageViewMapper,
+        IUIThreadDispatcher uiThreadDispatcher)
+        : base(logger, pageViewMapper, uiThreadDispatcher)
     { }
 
     protected override void OnFrameNavigated(NavigationEventArgs e)
@@ -157,7 +159,7 @@ public class SettingsViewNavigator : ViewNavigatorBase, ISettingsViewNavigator,
             case AuthenticationStatus.LoggingOut:
             case AuthenticationStatus.LoggingIn:
                 // Force navigation to automatically discard any unsaved changes
-                NavigateToCommonSettingsViewAsync(forceNavigation: true);
+                UIThreadDispatcher.TryEnqueue(async () => await NavigateToCommonSettingsViewAsync(forceNavigation: true));
                 break;
             default:
                 break;

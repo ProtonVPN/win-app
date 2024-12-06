@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Mapping;
 using ProtonVPN.Client.Core.Services.Navigation;
@@ -32,8 +33,9 @@ public class UpsellCarouselViewNavigator : ViewNavigatorBase, IUpsellCarouselVie
 
     public UpsellCarouselViewNavigator(
         ILogger logger,
-        IPageViewMapper pageViewMapper)
-        : base(logger, pageViewMapper)
+        IPageViewMapper pageViewMapper,
+        IUIThreadDispatcher uiThreadDispatcher)
+        : base(logger, pageViewMapper, uiThreadDispatcher)
     { }
 
     public Task<bool> NavigateToFeatureViewAsync(UpsellFeatureType? upsellFeatureType)

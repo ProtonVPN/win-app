@@ -30,6 +30,7 @@ using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Client.Contracts.Enums;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 
 namespace ProtonVPN.Client.Localization.Extensions;
 
@@ -269,11 +270,11 @@ public static class LocalizationExtensions
         };
     }
 
-    public static string GetVpnPlanName(this ILocalizationProvider localizer, string? vpnPlan)
+    public static string GetVpnPlanName(this ILocalizationProvider localizer, VpnPlan vpnPlan)
     {
-        return string.IsNullOrEmpty(vpnPlan)
+        return string.IsNullOrEmpty(vpnPlan.Title)
             ? localizer.Get("Account_VpnPlan_Free")
-            : vpnPlan;
+            : vpnPlan.Title;
     }
 
     public static string GetFeatureName(this ILocalizationProvider localizer, Feature feature)

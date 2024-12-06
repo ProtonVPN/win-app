@@ -132,7 +132,10 @@ public partial class ReportIssueShellViewModel : ShellViewModelBase<IReportIssue
 
     public void Receive(ReportIssueCategoryChangedMessage message)
     {
-        OnPropertyChanged(nameof(CurrentPageTitle));
-        OnPropertyChanged(nameof(Title));
+        ExecuteOnUIThread(() =>
+        {
+            OnPropertyChanged(nameof(CurrentPageTitle));
+            OnPropertyChanged(nameof(Title));
+        });
     }
 }

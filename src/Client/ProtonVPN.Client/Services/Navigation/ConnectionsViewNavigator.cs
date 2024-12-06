@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Mapping;
 using ProtonVPN.Client.Core.Services.Navigation;
@@ -53,10 +54,11 @@ public class ConnectionsViewNavigator : ViewNavigatorBase, IConnectionsViewNavig
     public ConnectionsViewNavigator(
         ILogger logger,
         IPageViewMapper pageViewMapper,
+        IUIThreadDispatcher uiThreadDispatcher,
         IRecentConnectionsManager recentConnectionsManager,
         IServersLoader serversLoader,
         ISettings settings)
-        : base(logger, pageViewMapper)
+        : base(logger, pageViewMapper, uiThreadDispatcher)
     {
         _recentConnectionsManager = recentConnectionsManager;
         _serversLoader = serversLoader;
@@ -119,29 +121,29 @@ public class ConnectionsViewNavigator : ViewNavigatorBase, IConnectionsViewNavig
 
     public void Receive(LoggedInMessage message)
     {
-        NavigateToDefaultAsync();
+        UIThreadDispatcher.TryEnqueue(async () => await NavigateToDefaultAsync());
     }
 
     public void Receive(VpnPlanChangedMessage message)
     {
-        InvalidateCurrentPage();
+        UIThreadDispatcher.TryEnqueue(async () => await InvalidateCurrentPageAsync());
     }
 
     public void Receive(ServerListChangedMessage message)
     {
-        InvalidateCurrentPage();
+        UIThreadDispatcher.TryEnqueue(async () => await InvalidateCurrentPageAsync());
     }
 
     public void Receive(RecentConnectionsChanged message)
     {
-        InvalidateCurrentPage();
+        UIThreadDispatcher.TryEnqueue(async () => await InvalidateCurrentPageAsync());
     }
 
-    private void InvalidateCurrentPage()
+    private async Task InvalidateCurrentPageAsync()
     {
         if (GetCurrentPageContext() is not IConnectionPage connectionPage || !connectionPage.IsAvailable)
         {
-            NavigateToDefaultAsync();
+            await NavigateToDefaultAsync();
         }
     }
 }

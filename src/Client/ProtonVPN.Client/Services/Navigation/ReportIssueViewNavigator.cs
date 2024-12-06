@@ -24,6 +24,7 @@ using ProtonVPN.Client.Core.Services.Navigation.Bases;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue.Pages;
 using ProtonVPN.Client.Core.Models.ReportIssue;
 using ProtonVPN.Client.Core.Enums;
+using ProtonVPN.Client.Common.Dispatching;
 
 namespace ProtonVPN.Client.Services.Navigation;
 
@@ -35,8 +36,9 @@ public class ReportIssueViewNavigator : ViewNavigatorBase, IReportIssueViewNavig
 
     public ReportIssueViewNavigator(
         ILogger logger,
-        IPageViewMapper pageViewMapper)
-        : base(logger, pageViewMapper)
+        IPageViewMapper pageViewMapper,
+        IUIThreadDispatcher uiThreadDispatcher)
+        : base(logger, pageViewMapper, uiThreadDispatcher)
     { }
 
     public Task<bool> NavigateToCategoriesViewAsync()

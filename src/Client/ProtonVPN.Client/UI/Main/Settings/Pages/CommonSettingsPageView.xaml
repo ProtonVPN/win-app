@@ -60,7 +60,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         IsImageVisible="False" />
             </Border>
 
-            <pages:UserDetailsComponent />
+            <pages:UserDetailsComponent HorizontalAlignment="Left"
+                                        Margin="-8,0"/>
 
             <connection:ConnectionSettingsView />
 

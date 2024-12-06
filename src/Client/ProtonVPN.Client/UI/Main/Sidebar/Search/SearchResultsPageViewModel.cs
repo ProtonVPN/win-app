@@ -237,13 +237,16 @@ public partial class SearchResultsPageViewModel : ConnectionListViewModelBase<IS
 
     public void Receive(ConnectionStatusChangedMessage message)
     {
-        InvalidateActiveConnection();
+        ExecuteOnUIThread(InvalidateActiveConnection);
     }
 
     public void Receive(ServerListChangedMessage message)
     {
-        InvalidateActiveConnection();
-        InvalidateMaintenanceStates();
-        InvalidateRestrictions();
+        ExecuteOnUIThread(() =>
+        {
+            InvalidateActiveConnection();
+            InvalidateMaintenanceStates();
+            InvalidateRestrictions();
+        });
     }
 }

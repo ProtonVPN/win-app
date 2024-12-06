@@ -240,32 +240,6 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase,
         await ParentViewNavigator.NavigateToCensorshipViewAsync();
     }
 
-    public void Receive(SettingChangedMessage message)
-    {
-        ExecuteOnUIThread(() =>
-        {
-            switch (message.PropertyName)
-            {
-                case nameof(ISettings.DefaultConnection):
-                    OnPropertyChanged(nameof(DefaultConnectionState));
-                    break;
-
-                case nameof(ISettings.IsNotificationEnabled):
-                    OnPropertyChanged(nameof(IsNotificationEnabled));
-                    break;
-
-                case nameof(ISettings.IsBetaAccessEnabled):
-                    OnPropertyChanged(nameof(IsBetaAccessEnabled));
-                    break;
-
-                case nameof(ISettings.VpnPlan):
-                    OnPropertyChanged(nameof(VpnPlan));
-                    OnPropertyChanged(nameof(IsPaidUser));
-                    break;
-            }
-        });
-    }
-
     public void Receive(ThemeChangedMessage message)
     {
         ExecuteOnUIThread(() => OnPropertyChanged(nameof(SelectedTheme)));
@@ -295,6 +269,31 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase,
         OnPropertyChanged(nameof(ClientVersionDescription));
         OnPropertyChanged(nameof(Themes));
         OnPropertyChanged(nameof(SelectedTheme));
+    }
+
+    protected override void OnSettingsChanged(string propertyName)
+    {
+        base.OnSettingsChanged(propertyName);
+
+        switch (propertyName)
+        {
+            case nameof(ISettings.DefaultConnection):
+                OnPropertyChanged(nameof(DefaultConnectionState));
+                break;
+
+            case nameof(ISettings.IsNotificationEnabled):
+                OnPropertyChanged(nameof(IsNotificationEnabled));
+                break;
+
+            case nameof(ISettings.IsBetaAccessEnabled):
+                OnPropertyChanged(nameof(IsBetaAccessEnabled));
+                break;
+
+            case nameof(ISettings.VpnPlan):
+                OnPropertyChanged(nameof(VpnPlan));
+                OnPropertyChanged(nameof(IsPaidUser));
+                break;
+        }
     }
 
     protected override IEnumerable<ChangedSettingArgs> GetSettings()
