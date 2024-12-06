@@ -18,6 +18,8 @@
  */
 
 using Microsoft.Toolkit.Uwp.Notifications;
+using ProtonVPN.Client.Contracts.Messages;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Notifications.Contracts;
@@ -25,13 +27,13 @@ using ProtonVPN.Client.Notifications.Contracts.Arguments;
 
 namespace ProtonVPN.Client.Notifications;
 
-public class SubscriptionExpiredNotificationSender : ISubscriptionExpiredNotificationSender
-    //IEventMessageReceiver<MainWindowStateChangedMessage>
+public class SubscriptionExpiredNotificationSender : ISubscriptionExpiredNotificationSender,
+    IEventMessageReceiver<MainWindowVisibilityChangedMessage>
 {
     private readonly ILocalizationProvider _localizer;
     private readonly IConnectionManager _connectionManager;
 
-    private bool _isMainWindowActive;
+    private bool _isMainWindowVisible;
 
     public SubscriptionExpiredNotificationSender(
         ILocalizationProvider localizer, 
@@ -43,7 +45,7 @@ public class SubscriptionExpiredNotificationSender : ISubscriptionExpiredNotific
 
     public void Send()
     {
-        if (_isMainWindowActive)
+        if (_isMainWindowVisible)
         {
             return;
         }
@@ -62,9 +64,8 @@ public class SubscriptionExpiredNotificationSender : ISubscriptionExpiredNotific
         tcb.Show();
     }
 
-    // TODO: fix
-    // public void Receive(MainWindowStateChangedMessage message)
-    // {
-    //     _isMainWindowActive = !message.IsMinimized;
-    // }
+    public void Receive(MainWindowVisibilityChangedMessage message)
+    {
+        _isMainWindowVisible = message.IsMainWindowVisible;
+    }
 }

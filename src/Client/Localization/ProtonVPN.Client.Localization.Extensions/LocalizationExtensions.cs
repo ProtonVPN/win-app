@@ -109,7 +109,7 @@ public static class LocalizationExtensions
             : $"{title} {subtitle}".Trim();
     }
 
-    public static string GetConnectionDetailsTitle(this ILocalizationProvider localizer, ConnectionDetails connectionDetails)
+    public static string GetConnectionDetailsTitle(this ILocalizationProvider localizer, ConnectionDetails? connectionDetails)
     {
         return connectionDetails?.OriginalConnectionIntent.Location switch
         {

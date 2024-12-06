@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,41 +17,63 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Handlers.Bases;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Notifications.Contracts;
 using ProtonVPN.Client.Notifications.Contracts.Arguments;
+using ProtonVPN.Client.Services.PortForwarding;
 
 namespace ProtonVPN.Client.Handlers;
 
-public class NotificationActivationHandler : IHandler, IEventMessageReceiver<NotificationActivationMessage>
+public class NotificationActivationHandler : IHandler,
+    IEventMessageReceiver<NotificationActivationMessage>
 {
-    private readonly IMainWindowActivator _mainWindowActivator;
     private readonly IUrlsBrowser _urlsBrowser;
     private readonly IWebAuthenticator _webAuthenticator;
+    private readonly IUIThreadDispatcher _uiThreadDispatcher;
+    private readonly IMainWindowActivator _mainWindowActivator;
+    private readonly IPortForwardingClipboardService _portForwardingClipboardService;
 
     public NotificationActivationHandler(
-        IMainWindowActivator mainWindowActivator,
         IUrlsBrowser urlsBrowser,
-        IWebAuthenticator webAuthenticator)
+        IWebAuthenticator webAuthenticator,
+        IUIThreadDispatcher uIThreadDispatcher,
+        IMainWindowActivator mainWindowActivator,
+        IPortForwardingManager portForwardingManager,
+        IPortForwardingClipboardService portForwardingClipboardService)
     {
-        _mainWindowActivator = mainWindowActivator;
         _urlsBrowser = urlsBrowser;
         _webAuthenticator = webAuthenticator;
+        _uiThreadDispatcher = uIThreadDispatcher;
+        _mainWindowActivator = mainWindowActivator;
+        _portForwardingClipboardService = portForwardingClipboardService;
     }
 
-    public async void Receive(NotificationActivationMessage message)
+    public void Receive(NotificationActivationMessage message)
     {
         _mainWindowActivator.Activate();
 
-        switch (message.Argument)
+        HandleCustomActivationActionAsync(message.Argument);
+    }
+
+    private async void HandleCustomActivationActionAsync(string argument)
+    {
+        switch (argument)
         {
             case NotificationArguments.UPGRADE:
                 _urlsBrowser.BrowseTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSources.Downgrade));
+                break;
+            case NotificationArguments.COPY_PORT_FORWARDING_PORT_TO_CLIPBOARD:
+                _uiThreadDispatcher.TryEnqueue(async () =>
+                {
+                    await _portForwardingClipboardService.CopyActivePortToClipboardAsync();
+                });
                 break;
         }
     }

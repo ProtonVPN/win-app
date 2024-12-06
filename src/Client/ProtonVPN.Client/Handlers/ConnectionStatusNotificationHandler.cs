@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -22,9 +22,10 @@ using ProtonVPN.Client.Handlers.Bases;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Notifications;
 
-namespace ProtonVPN.Client.Legacy.Handlers;
+namespace ProtonVPN.Client.Handlers;
 
-public class ConnectionStatusNotificationHandler : IHandler, IEventMessageReceiver<ConnectionStatusChangedMessage>
+public class ConnectionStatusNotificationHandler : IHandler,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
     private readonly IConnectionStatusNotificationSender _connectionStatusNotificationSender;
 

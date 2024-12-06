@@ -28,7 +28,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
-using ProtonVPN.Client.Core.Messages;
+using ProtonVPN.Client.Contracts.Messages;
 
 namespace ProtonVPN.Client.UI.Main.Map;
 

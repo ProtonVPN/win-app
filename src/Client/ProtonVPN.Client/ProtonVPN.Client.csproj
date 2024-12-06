@@ -214,6 +214,7 @@
     <ProjectReference Include="..\Logic\Users\ProtonVPN.Client.Logic.Users.Installers\ProtonVPN.Client.Logic.Users.Installers.csproj" />
     <ProjectReference Include="..\Notifications\ProtonVPN.Client.Notifications.Installers\ProtonVPN.Client.Notifications.Installers.csproj" />
     <ProjectReference Include="..\Settings\ProtonVPN.Client.Settings.Installers\ProtonVPN.Client.Settings.Installers.csproj" />
+    <ProjectReference Include="..\UnsecureWifiDetection\ProtonVPN.Client.UnsecureWifiDetection.Installers\ProtonVPN.Client.UnsecureWifiDetection.Installers.csproj" />
   </ItemGroup>
 
   <ItemGroup>

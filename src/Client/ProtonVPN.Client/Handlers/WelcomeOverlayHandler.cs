@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Dispatching;
+using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;
@@ -33,24 +33,27 @@ public class WelcomeOverlayHandler : IHandler,
     IEventMessageReceiver<HomePageDisplayedAfterLoginMessage>,
     IEventMessageReceiver<VpnPlanChangedMessage>
 {
-    private readonly DispatcherQueue _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
     private readonly ISettings _settings;
+    private readonly IUIThreadDispatcher _uiThreadDispatcher;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
     private readonly IUserAuthenticator _userAuthenticator;
 
     public WelcomeOverlayHandler(
         ISettings settings,
+        IUIThreadDispatcher uIThreadDispatcher,
+        IUserSettingsMigrator userSettingsMigrator,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         IUserAuthenticator userAuthenticator)
     {
         _settings = settings;
+        _uiThreadDispatcher = uIThreadDispatcher;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
         _userAuthenticator = userAuthenticator;
     }
 
     public void Receive(HomePageDisplayedAfterLoginMessage message)
     {
-        _dispatcherQueue.TryEnqueue(() =>
+        _uiThreadDispatcher.TryEnqueue(() =>
         {
             if (!_settings.VpnPlan.IsB2B && !_settings.WasWelcomeOverlayDisplayed)
             {
@@ -72,7 +75,7 @@ public class WelcomeOverlayHandler : IHandler,
             return;
         }
 
-        _dispatcherQueue.TryEnqueue(() =>
+        _uiThreadDispatcher.TryEnqueue(() =>
         {
             if (_settings.VpnPlan.IsPlus && !_settings.WasWelcomePlusOverlayDisplayed)
             {

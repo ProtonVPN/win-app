@@ -32,6 +32,10 @@ public static class VpnErrorExtensions
         VpnError.RpcServerUnavailable,
         VpnError.MissingConnectionCertificate,
         VpnError.WireGuardAdapterInUseError,
+    ];
+
+    private static readonly List<VpnError> _sessionLimitErrors =
+    [
         VpnError.SessionLimitReachedBasic,
         VpnError.SessionLimitReachedFree,
         VpnError.SessionLimitReachedPlus,
@@ -82,7 +86,7 @@ public static class VpnErrorExtensions
 
     public static bool RequiresInformingUser(this VpnError error)
     {
-        return _errorsForUser.Contains(error);
+        return _errorsForUser.Contains(error) || error.IsSessionLimitError();
     }
 
     public static bool RequiresReconnect(this VpnError error)
@@ -103,5 +107,10 @@ public static class VpnErrorExtensions
     public static bool RequiresCertificateDeletion(this VpnError error)
     {
         return _errorsForCertificateDeletion.Contains(error);
+    }
+
+    public static bool IsSessionLimitError(this VpnError error)
+    {
+        return _sessionLimitErrors.Contains(error);
     }
 }

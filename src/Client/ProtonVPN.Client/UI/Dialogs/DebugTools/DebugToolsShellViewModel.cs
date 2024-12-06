@@ -18,6 +18,7 @@
  */
 
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -30,6 +31,8 @@ using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
+using ProtonVPN.Client.Logic.Services;
+using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
@@ -43,6 +46,7 @@ namespace ProtonVPN.Client.UI.Dialogs.DebugTools;
 public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWindowActivator>
 {
     private readonly IServersUpdater _serversUpdater;
+    private readonly IVpnServiceCaller _vpnServiceCaller;
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IRequiredReconnectionSettings _requiredReconnectionSettings;
     private readonly IMainViewNavigator _mainViewNavigator;
@@ -63,6 +67,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
 
     public DebugToolsShellViewModel(
         IDebugToolsWindowActivator windowActivator,
+        IVpnServiceCaller vpnServiceCaller,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter,
@@ -82,6 +87,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
                issueReporter)
     {
         _serversUpdater = serversUpdater;
+        _vpnServiceCaller = vpnServiceCaller;
         _userAuthenticator = userAuthenticator;
         _requiredReconnectionSettings = requiredReconnectionSettings;
         _mainViewNavigator = mainViewNavigator;
@@ -160,6 +166,12 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
 
         _settings.VpnPlan = newPlan;
         _eventMessageSender.Send(new VpnPlanChangedMessage(oldPlan, newPlan));
+    }
+
+    [RelayCommand]
+    public void DisconnectWithSessionLimitReachedError()
+    {
+        _vpnServiceCaller.DisconnectAsync(new() { ErrorType = VpnErrorTypeIpcEntity.SessionLimitReachedPlus });
     }
 
     private string GenerateOverlayDisplayName(string methodName)
