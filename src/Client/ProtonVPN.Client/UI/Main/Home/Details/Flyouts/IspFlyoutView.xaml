@@ -54,10 +54,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Grid>
 
         <TextBlock Style="{ThemeResource TitleTextBlockStyle}"
-                   Text="{x:Bind ViewModel.Isp}" />
+                   Text="{x:Bind ViewModel.Isp}"
+                   Visibility="{x:Bind ViewModel.IsDeviceExposed, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
         <StackPanel Orientation="Horizontal"
-                    Spacing="4">
+                    Spacing="4"
+                    Visibility="{x:Bind ViewModel.IsDeviceExposed, Converter={StaticResource BooleanToVisibilityConverter}}">
             <pathIcons:Eye Foreground="{ThemeResource SignalDangerColor}"
                            Size="Pixels16" />
 

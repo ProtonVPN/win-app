@@ -26,7 +26,6 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
-using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -46,10 +45,11 @@ public partial class IpAddressFlyoutViewModel : ActivatableViewModelBase,
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(DeviceIpAddressOrHidden))]
-    private string _deviceIpAddress = string.Empty;
+    [NotifyPropertyChangedFor(nameof(IsIpAddressExposed))]
+    private string _deviceIpAddress = EmptyValueExtensions.DEFAULT;
 
     [ObservableProperty]
-    private string _serverIpAddress = string.Empty;
+    private string _serverIpAddress = EmptyValueExtensions.DEFAULT;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(DeviceIpAddressOrHidden))]
@@ -66,8 +66,8 @@ public partial class IpAddressFlyoutViewModel : ActivatableViewModelBase,
         : "Flyouts_IpAddress_Description_Disconnected");
 
     public bool IsConnected => _connectionManager.IsConnected;
-
     public bool IsDisconnected => _connectionManager.IsDisconnected;
+    public bool IsIpAddressExposed => IsDisconnected && !string.IsNullOrWhiteSpace(_settings.DeviceLocation?.IpAddress);
 
     public string DeviceIpAddressOrHidden
         => IsIpAddressVisible
@@ -100,7 +100,7 @@ public partial class IpAddressFlyoutViewModel : ActivatableViewModelBase,
     {
         ExecuteOnUIThread(() =>
         {
-            ServerIpAddress = message.ServerIpAddress;
+            ServerIpAddress = EmptyValueExtensions.GetValueOrDefault(message.ServerIpAddress);
         });
     }
 
@@ -137,13 +137,14 @@ public partial class IpAddressFlyoutViewModel : ActivatableViewModelBase,
 
     private void InvalidateDeviceIpAddress()
     {
-        DeviceIpAddress = _settings.DeviceLocation?.IpAddress ?? string.Empty;
+        DeviceIpAddress = EmptyValueExtensions.GetValueOrDefault(_settings.DeviceLocation?.IpAddress);
     }
 
     private void InvalidateConnectionStatus()
     {
         OnPropertyChanged(nameof(IsConnected));
         OnPropertyChanged(nameof(IsDisconnected));
+        OnPropertyChanged(nameof(IsIpAddressExposed));
         OnPropertyChanged(nameof(Header));
         OnPropertyChanged(nameof(Description));
     }

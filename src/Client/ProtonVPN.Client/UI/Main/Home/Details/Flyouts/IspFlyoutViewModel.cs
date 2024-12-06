@@ -36,9 +36,11 @@ public partial class IspFlyoutViewModel : ActivatableViewModelBase,
     private readonly ISettings _settings;
 
     [ObservableProperty]
-    private string _isp = string.Empty;
+    [NotifyPropertyChangedFor(nameof(IsDeviceExposed))]
+    private string _isp = EmptyValueExtensions.DEFAULT;
 
     public string IspLearnMoreUri => _urlsBrowser.IspLearnMore;
+    public bool IsDeviceExposed => !string.IsNullOrWhiteSpace(_settings.DeviceLocation?.Isp);
 
     public IspFlyoutViewModel(
         IUrlsBrowser urlsBrowser,
@@ -69,6 +71,6 @@ public partial class IspFlyoutViewModel : ActivatableViewModelBase,
 
     private void InvalidateIsp()
     {
-        Isp = _settings.DeviceLocation?.Isp ?? string.Empty;
+        Isp = EmptyValueExtensions.GetValueOrDefault(_settings.DeviceLocation?.Isp);
     }
 }
