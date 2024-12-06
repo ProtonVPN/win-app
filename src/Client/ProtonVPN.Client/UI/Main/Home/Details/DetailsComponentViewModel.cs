@@ -19,8 +19,8 @@
 
 using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
+using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.Core.Bases.ViewModels;
-using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;

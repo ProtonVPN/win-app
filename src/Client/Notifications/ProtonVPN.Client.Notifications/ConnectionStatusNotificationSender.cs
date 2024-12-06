@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,6 +18,9 @@
  */
 
 using Microsoft.Toolkit.Uwp.Notifications;
+using ProtonVPN.Client.Common.Helpers;
+using ProtonVPN.Client.Contracts.Messages;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
@@ -26,10 +29,12 @@ using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Extensions;
 
 namespace ProtonVPN.Client.Notifications;
 
-public class ConnectionStatusNotificationSender : IConnectionStatusNotificationSender
+public class ConnectionStatusNotificationSender : IConnectionStatusNotificationSender,
+    IEventMessageReceiver<MainWindowVisibilityChangedMessage>
 {
     private readonly ISettings _settings;
     private readonly ILocalizationProvider _localizer;
@@ -37,8 +42,11 @@ public class ConnectionStatusNotificationSender : IConnectionStatusNotificationS
     private readonly IConnectionManager _connectionManager;
 
     private ConnectionStatus _lastStatus;
+    private bool _isMainWindowVisible;
 
-    public ConnectionStatusNotificationSender(ISettings settings, ILocalizationProvider localizer,
+    public ConnectionStatusNotificationSender(
+        ISettings settings,
+        ILocalizationProvider localizer,
         IGuestHoleManager guestHoleManager,
         IConnectionManager connectionManager)
     {
@@ -50,8 +58,9 @@ public class ConnectionStatusNotificationSender : IConnectionStatusNotificationS
 
     public void Send(ConnectionStatus currentStatus)
     {
-        if (_guestHoleManager.IsActive || !IsToNotify(currentStatus))
+        if (_isMainWindowVisible || _guestHoleManager.IsActive || !IsToNotify(currentStatus))
         {
+            _lastStatus = currentStatus;
             return;
         }
 
@@ -66,12 +75,14 @@ public class ConnectionStatusNotificationSender : IConnectionStatusNotificationS
         ToastContentBuilder notification = new();
         notification.AddText(_localizer.Get(title), AdaptiveTextStyle.Header);
 
-        if (currentStatus == ConnectionStatus.Connected)
-        {
-            AddLocationDetailsToNotification(notification);
-        }
+        AddDescription(notification, currentStatus);
 
         notification.Show();
+    }
+
+    public void Receive(MainWindowVisibilityChangedMessage message)
+    {
+        _isMainWindowVisible = message.IsMainWindowVisible;
     }
 
     private bool IsToNotify(ConnectionStatus currentStatus)
@@ -90,12 +101,27 @@ public class ConnectionStatusNotificationSender : IConnectionStatusNotificationS
         };
     }
 
-    private void AddLocationDetailsToNotification(ToastContentBuilder notification)
+    private void AddDescription(ToastContentBuilder notification, ConnectionStatus connectionStatus)
     {
-        string? locationDetails = GetLocationDetails();
-        if (locationDetails != null)
+        string? description = null;
+
+        if (connectionStatus == ConnectionStatus.Connected)
         {
-            notification.AddText(_localizer.GetFormat("SystemNotification_ConnectedTo", locationDetails));
+            string? locationDetails = GetLocationDetails();
+            if (locationDetails != null)
+            {
+                description = _localizer.GetFormat("SystemNotification_ConnectedTo", locationDetails);
+            }
+        }
+        else if (connectionStatus == ConnectionStatus.Disconnected && _settings.IsAdvancedKillSwitchActive())
+        {
+            notification.AddAppLogoOverride(new Uri(AssetPathHelper.GetAbsoluteAssetPath("Illustrations", "kill-switch-protected.png")));
+            description = _localizer.Get("Notifications_KillSwitch_Description");
+        }
+
+        if (description is not null)
+        {
+            notification.AddText(description);
         }
     }
 

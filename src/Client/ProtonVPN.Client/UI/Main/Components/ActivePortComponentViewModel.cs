@@ -19,13 +19,12 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using ProtonVPN.Client.Contracts.Services.Edition;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
-using ProtonVPN.Client.Logic.Services.Contracts;
+using ProtonVPN.Client.Services.PortForwarding;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
@@ -38,7 +37,7 @@ public partial class ActivePortComponentViewModel : ActivatableViewModelBase,
     private const string PORT_NUMBER_PLACEHOLDER = "-";
 
     private readonly IPortForwardingManager _portForwardingManager;
-    private readonly IClipboardEditor _clipboardEditor;
+    private readonly IPortForwardingClipboardService _portForwardingClipboardService;
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(CopyPortNumberCommand))]
@@ -59,11 +58,11 @@ public partial class ActivePortComponentViewModel : ActivatableViewModelBase,
         ILogger logger,
         IIssueReporter issueReporter,
         IPortForwardingManager portForwardingManager,
-        IClipboardEditor clipboardEditor)
+        IPortForwardingClipboardService portForwardingClipboardService)
         : base(localizationProvider, logger, issueReporter)
     {
         _portForwardingManager = portForwardingManager;
-        _clipboardEditor = clipboardEditor;
+        _portForwardingClipboardService = portForwardingClipboardService;
     }
 
     [RelayCommand(CanExecute = nameof(CanCopyPortNumber))]
@@ -72,7 +71,7 @@ public partial class ActivePortComponentViewModel : ActivatableViewModelBase,
         int? activePortNumber = ActivePortNumber;
         if (activePortNumber is not null)
         {
-            await _clipboardEditor.SetTextAsync($"{activePortNumber}");
+            await _portForwardingClipboardService.CopyActivePortToClipboardAsync();
         }
     }
 

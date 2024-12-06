@@ -18,16 +18,16 @@
  */
 
 using ProtonVPN.Client.Common.Dispatching;
+using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Activation.Bases;
+using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Dialogs.Upsell;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Core.Services.Navigation;
-using ProtonVPN.Client.Core.Enums;
-using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 
 namespace ProtonVPN.Client.Services.Activation;
 

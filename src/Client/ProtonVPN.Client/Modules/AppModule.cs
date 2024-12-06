@@ -46,6 +46,7 @@ using ProtonVPN.Client.Services.Edition;
 using ProtonVPN.Client.Services.Mapping;
 using ProtonVPN.Client.Services.Navigation;
 using ProtonVPN.Client.Services.Notification;
+using ProtonVPN.Client.Services.PortForwarding;
 using ProtonVPN.Client.Services.Selection;
 using ProtonVPN.Client.Services.SignoutHandling;
 using ProtonVPN.Client.Services.Validation;
@@ -180,6 +181,7 @@ public class AppModule : Module
                .RegisterModule<UsersLogicModule>()
                .RegisterModule<AnnouncementsModule>()
                .RegisterModule<SearchesModule>()
+               .RegisterModule<UnsecureWifiDetectionModule>()
                .RegisterModule<NetworkTimeProtocolsModule>();
     }
 
@@ -194,6 +196,7 @@ public class AppModule : Module
         builder.RegisterType<UrlsBrowser>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ClipboardEditor>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<SignOutHandler>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<PortForwardingClipboardService>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<MainWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<MainWindowOverlayActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();

@@ -17,10 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Settings.Contracts.Enums;
+
 namespace ProtonVPN.Client.Settings.Contracts.Extensions;
 
 public static class SettingsExtensions
 {
+    public static bool IsAdvancedKillSwitchActive(this ISettings settings)
+    {
+        return settings.IsKillSwitchEnabled && settings.KillSwitchMode == KillSwitchMode.Advanced;
+    }
+
     public static string GetUsername(this ISettings settings)
     {
         return settings.Username ?? settings.UserDisplayName ?? string.Empty;

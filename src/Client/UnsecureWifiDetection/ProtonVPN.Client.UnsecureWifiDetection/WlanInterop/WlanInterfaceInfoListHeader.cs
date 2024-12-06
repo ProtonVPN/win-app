@@ -17,9 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Core.Messages;
+using System.Runtime.InteropServices;
 
-public class MainWindowVisibilityChangedMessage
+namespace ProtonVPN.Client.UnsecureWifiDetection.WlanInterop;
+
+[StructLayout(LayoutKind.Sequential)]
+public struct WlanInterfaceInfoListHeader
 {
-    public required bool IsMainWindowVisible { get; init; }
+    public readonly uint numberOfItems;
+    private readonly uint index;
 }

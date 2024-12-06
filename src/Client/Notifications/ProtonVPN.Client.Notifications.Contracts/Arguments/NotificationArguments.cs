@@ -22,4 +22,5 @@ namespace ProtonVPN.Client.Notifications.Contracts.Arguments;
 public static class NotificationArguments
 {
     public const string UPGRADE = "Upgrade";
+    public const string COPY_PORT_FORWARDING_PORT_TO_CLIPBOARD = "CopyPortForwardingPortToClipboard";
 }

@@ -20,7 +20,6 @@
 using CommunityToolkit.WinUI;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml.Controls;
-using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Services.Activation;
@@ -55,7 +54,6 @@ public class VpnPlanChangedHandler : IHandler,
     private readonly IWebAuthenticator _webAuthenticator;
     private readonly IUrlsBrowser _urlsBrowser;
     private readonly ISubscriptionExpiredNotificationSender _subscriptionExpiredNotificationSender;
-    private readonly IUIThreadDispatcher _uiThreadDispatcher;
 
     private bool _notifyOnNextConnection;
 
@@ -68,8 +66,7 @@ public class VpnPlanChangedHandler : IHandler,
         IMainWindowOverlayActivator overlayActivator,
         IWebAuthenticator webAuthenticator,
         IUrlsBrowser urlsBrowser,
-        ISubscriptionExpiredNotificationSender subscriptionExpiredNotificationSender,
-        IUIThreadDispatcher uiThreadDispatcher)
+        ISubscriptionExpiredNotificationSender subscriptionExpiredNotificationSender)
     {
         _logger = logger;
         _localizer = localizer;
@@ -81,7 +78,6 @@ public class VpnPlanChangedHandler : IHandler,
         _webAuthenticator = webAuthenticator;
         _urlsBrowser = urlsBrowser;
         _subscriptionExpiredNotificationSender = subscriptionExpiredNotificationSender;
-        _uiThreadDispatcher = uiThreadDispatcher;
     }
 
     public async void Receive(VpnPlanChangedMessage message)
