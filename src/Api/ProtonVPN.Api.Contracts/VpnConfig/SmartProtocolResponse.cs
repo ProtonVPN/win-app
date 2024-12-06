@@ -17,10 +17,25 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Api.Contracts.VpnConfig
+using Newtonsoft.Json;
+
+namespace ProtonVPN.Api.Contracts.VpnConfig;
+
+public class SmartProtocolResponse
 {
-    public class SmartProtocolResponse
-    {
-        public bool WireGuard { get; set; }
-    }
+    [JsonProperty(PropertyName = "WireGuard")]
+    public bool WireGuardUdp { get; set; }
+
+    [JsonProperty(PropertyName = "WireGuardTCP")]
+    public bool WireGuardTcp { get; set; }
+
+    [JsonProperty(PropertyName = "WireGuardTLS")]
+    public bool WireGuardTls { get; set; }
+
+    [JsonProperty(PropertyName = "OpenVPN")]
+    public bool OpenVpnUdp { get; set; }
+
+    [JsonProperty(PropertyName = "OpenVPNTCP")]
+    public bool OpenVpnTcp { get; set; }
+
 }

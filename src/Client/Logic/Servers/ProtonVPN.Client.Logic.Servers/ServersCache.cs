@@ -26,7 +26,6 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Files;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
@@ -112,9 +111,7 @@ public class ServersCache : IServersCache
         LoadFromFileIfEmpty();
         try
         {
-            DeviceLocation? currentLocation = _settings.DeviceLocation;
-
-            ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync(currentLocation?.IpAddress ?? string.Empty);
+            ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync(_settings.DeviceLocation);
             if (response.LastModified.HasValue)
             {
                 _settings.LogicalsLastModifiedDate = response.LastModified.Value;
@@ -141,9 +138,7 @@ public class ServersCache : IServersCache
 
         try
         {
-            DeviceLocation? currentLocation = _settings.DeviceLocation;
-
-            ApiResponseResult<ServersResponse> response = await _apiClient.GetServerLoadsAsync(currentLocation?.IpAddress ?? string.Empty);
+            ApiResponseResult<ServersResponse> response = await _apiClient.GetServerLoadsAsync(_settings.DeviceLocation);
             if (response.Success)
             {
                 List<Server> servers = Servers.ToList();

@@ -37,6 +37,7 @@ using ProtonVPN.Api.Contracts.Users;
 using ProtonVPN.Api.Contracts.VpnConfig;
 using ProtonVPN.Api.Contracts.VpnSessions;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Common.Core.Geographical;
 using ProtonVPN.Common.Legacy.OS.Net.Http;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -113,10 +114,10 @@ public class ApiClient : BaseApiClient, IApiClient
         return await SendRequest<EventResponse>(request, "Get events");
     }
 
-    public async Task<ApiResponseResult<ServersResponse>> GetServersAsync(string ip)
+    public async Task<ApiResponseResult<ServersResponse>> GetServersAsync(DeviceLocation? deviceLocation)
     {
-        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get,
-            "vpn/logicals?SignServer=Server.EntryIP,Server.Label&SecureCoreFilter=all&WithState=true", ip);
+        HttpRequestMessage request = GetAuthorizedRequestWithLocation(HttpMethod.Get,
+            "vpn/logicals?SignServer=Server.EntryIP,Server.Label&SecureCoreFilter=all&WithState=true", deviceLocation);
 
         request.SetRetryCount(SERVERS_RETRY_COUNT);
         request.SetCustomTimeout(TimeSpan.FromSeconds(SERVERS_TIMEOUT_IN_SECONDS));
@@ -131,9 +132,9 @@ public class ApiClient : BaseApiClient, IApiClient
         return await SendRequest<ServerCountResponse>(request, "Get servers and countries count");
     }
 
-    public async Task<ApiResponseResult<ServersResponse>> GetServerLoadsAsync(string ip)
+    public async Task<ApiResponseResult<ServersResponse>> GetServerLoadsAsync(DeviceLocation? deviceLocation)
     {
-        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/loads", ip);
+        HttpRequestMessage request = GetAuthorizedRequestWithLocation(HttpMethod.Get, "vpn/loads", deviceLocation);
         return await SendRequest<ServersResponse>(request, "Get server loads");
     }
 
@@ -179,9 +180,9 @@ public class ApiClient : BaseApiClient, IApiClient
         return await SendRequest<SessionsResponse>(request, "Get sessions");
     }
 
-    public async Task<ApiResponseResult<VpnConfigResponse>> GetVpnConfig()
+    public async Task<ApiResponseResult<VpnConfigResponse>> GetVpnConfigAsync(DeviceLocation? deviceLocation)
     {
-        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/v2/clientconfig");
+        HttpRequestMessage request = GetAuthorizedRequestWithLocation(HttpMethod.Get, "vpn/v2/clientconfig", deviceLocation);
         return await SendRequest<VpnConfigResponse>(request, "Get VPN config");
     }
 

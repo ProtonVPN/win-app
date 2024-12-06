@@ -18,7 +18,7 @@
  */
 
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
-using ProtonVPN.Client.Settings.Contracts.Models;
+using ProtonVPN.Common.Core.Geographical;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 

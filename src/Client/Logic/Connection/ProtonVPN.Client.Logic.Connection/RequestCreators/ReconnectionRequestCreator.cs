@@ -60,11 +60,10 @@ public class ReconnectionRequestCreator : ConnectionRequestCreator, IReconnectio
         if (settings.VpnProtocol != VpnProtocolIpcEntity.Smart)
         {
             IList<VpnProtocolIpcEntity> preferredProtocols = GetPreferredSmartProtocols();
-            if (preferredProtocols.Remove(settings.VpnProtocol))
-            {
-                preferredProtocols.Insert(0, settings.VpnProtocol);
-                config.PreferredProtocols = preferredProtocols;
-            }
+            preferredProtocols.Remove(settings.VpnProtocol);
+            // Insert even if the protocol doesn't exist in the smart protocol list (ex.: Countries with only Stealth)
+            preferredProtocols.Insert(0, settings.VpnProtocol);
+            config.PreferredProtocols = preferredProtocols;
         }
 
         ConnectionRequestIpcEntity request = new()

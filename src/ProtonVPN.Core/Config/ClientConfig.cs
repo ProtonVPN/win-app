@@ -77,7 +77,7 @@ public class ClientConfig : IClientConfig, ILoggedInAware, ILogoutAware
     {
         try
         {
-            ApiResponseResult<VpnConfigResponse> response = await _apiClient.GetVpnConfig();
+            ApiResponseResult<VpnConfigResponse> response = await _apiClient.GetVpnConfigAsync(null);
             if (response.Success)
             {
                 _appSettings.OpenVpnTcpPorts = response.Value.DefaultPorts.OpenVpn.Tcp;
@@ -106,7 +106,7 @@ public class ClientConfig : IClientConfig, ILoggedInAware, ILogoutAware
                     _appSettings.FeaturePortForwardingEnabled = response.Value.FeatureFlags.PortForwarding.Value;
                 }
 
-                _appSettings.FeatureSmartProtocolWireGuardEnabled = response.Value.SmartProtocol.WireGuard;
+                _appSettings.FeatureSmartProtocolWireGuardEnabled = response.Value.SmartProtocol.WireGuardUdp;
 
                 bool vpnAcceleratorFeatureFlag = response.Value.FeatureFlags.VpnAccelerator ?? true;
                 _appSettings.FeatureVpnAcceleratorEnabled = vpnAcceleratorFeatureFlag;

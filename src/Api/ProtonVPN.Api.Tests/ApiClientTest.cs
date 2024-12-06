@@ -26,6 +26,7 @@ using NSubstitute;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Common.Core.Geographical;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using RichardSzalay.MockHttp;
@@ -76,7 +77,8 @@ public class ApiClientTest
             Content = new StringContent("{'Code' : '1000', 'Servers': []}")
         });
 
-        ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync("127.0.0.0");
+        DeviceLocation deviceLocation = new() { IpAddress = "127.0.0.0" };
+        ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync(deviceLocation);
 
         response.Success.Should().BeTrue();
     }

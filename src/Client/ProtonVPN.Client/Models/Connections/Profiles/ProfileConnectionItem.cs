@@ -34,9 +34,9 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Profiles.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Contracts.Profiles;
+using ProtonVPN.Common.Core.Geographical;
 
 namespace ProtonVPN.Client.Models.Connections.Profiles;
 

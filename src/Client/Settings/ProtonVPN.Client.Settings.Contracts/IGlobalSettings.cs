@@ -20,6 +20,8 @@
 using System.Collections.Concurrent;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
+using ProtonVPN.Common.Core.Geographical;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Dns.Contracts;
 
 namespace ProtonVPN.Client.Settings.Contracts;
@@ -55,6 +57,7 @@ public interface IGlobalSettings
     ChangeServerSettings ChangeServerSettings { get; set; }
     bool IsShareCrashReportsEnabled { get; set; }
     string? ActiveAlternativeApiBaseUrl { get; set; }
+    VpnProtocol[] DisabledSmartProtocols { get; set; }
     int TotalCountryCount { get; set; }
     int TotalServerCount { get; set; }
 

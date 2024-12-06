@@ -25,7 +25,7 @@ using ProtonVPN.Client.Logic.Feedback.Attachments;
 using ProtonVPN.Client.Logic.Feedback.Contracts;
 using ProtonVPN.Client.Logic.Feedback.Diagnostics;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Models;
+using ProtonVPN.Common.Core.Geographical;
 using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.Common.Legacy.Abstract;
 using ProtonVPN.Common.Legacy.Extensions;
