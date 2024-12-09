@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Common.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -25,12 +26,14 @@ using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
 namespace ProtonVPN.Client.Logic.Connection;
 
-public class VpnStateIpcEntityHandler : IEventMessageReceiver<VpnStateIpcEntity>
+public class VpnStateIpcEntityHandler : IEventMessageReceiver<VpnStateIpcEntity>,
+    IEventMessageReceiver<ApplicationStoppedMessage>
 {
     private readonly ILogger _logger;
     private readonly IConnectionErrorHandler _connectionErrorHandler;
     private readonly IInternalConnectionManager _connectionManager;
     private readonly SemaphoreSlim _semaphore = new(1, 1);
+    private readonly CancellationTokenSource _cancellationTokenSource = new();
 
     private bool _isNetworkBlocked;
 
@@ -41,6 +44,11 @@ public class VpnStateIpcEntityHandler : IEventMessageReceiver<VpnStateIpcEntity>
         _logger = logger;
         _connectionErrorHandler = connectionErrorHandler;
         _connectionManager = connectionManager;
+    }
+
+    public void Receive(ApplicationStoppedMessage message)
+    {
+        _cancellationTokenSource.Cancel();
     }
 
     public async void Receive(VpnStateIpcEntity message)
@@ -58,6 +66,11 @@ public class VpnStateIpcEntityHandler : IEventMessageReceiver<VpnStateIpcEntity>
 
     private async Task HandleAsync(VpnStateIpcEntity message)
     {
+        if (_cancellationTokenSource.IsCancellationRequested)
+        {
+            return;
+        }
+
         ConnectionErrorHandlerResult connectionErrorHandlerResponse = await _connectionErrorHandler.HandleAsync(message);
 
         if (((message.Error != VpnErrorTypeIpcEntity.None && connectionErrorHandlerResponse == ConnectionErrorHandlerResult.SameAsLast) ||
