@@ -2079,7 +2079,7 @@ A VPN hides your IP address, protecting you from ISP interference.</value>
     <value>თქვენი პროვაიდერი ხედავს, რომელ ვებგვერდებზე შედიხართ</value>
   </data>
   <data name="Flyouts_Protocol_Description">
-    <value>A VPN protocol determines how traffic is encrypted and transmitted over the VPN.</value>
+    <value>VPN პროტოკოლი განაზღვრავს, როგორ დაიშიფრება და გადაიცემა ტრაფიკი VPN-ით.</value>
   </data>
   <data name="Flyouts_Protocol_KnowledgeBaseLinkTitle">
     <value>რომელი VPN პროტოკოლია საუკეთესო?</value>

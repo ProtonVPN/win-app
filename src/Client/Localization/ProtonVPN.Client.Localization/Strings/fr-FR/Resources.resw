@@ -606,7 +606,7 @@
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
   <data name="Countries_P2P_Description">
-    <value>Téléchargez des fichiers sur les réseaux P2P (peer-to-peer) est amélioré votre expérience de jeux en ligne ou en appels vidéo.</value>
+    <value>Téléchargez des fichiers sur les réseaux P2P (peer-to-peer) et améliorez votre expérience des jeux en ligne et des appels vidéo.</value>
   </data>
   <data name="Countries_Page_FreeUser_Description">
     <value>Débloquez la sélection de pays avec VPN Plus</value>
@@ -2044,7 +2044,7 @@ Un VPN donne l'impression que vous naviguez depuis un autre endroit, vous proté
     <value>Connectez-vous à un VPN pour changer votre emplacement virtuel</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Connected">
-    <value>Votre IP VPN masque votre véritable adresse IP. Cela donne l'impression que vous naviguez à partir de votre emplacement VPN, de sorte que votre activité en ligne ne puissent pas être liées à votre appareil.</value>
+    <value>Votre IP VPN masque votre véritable adresse IP. Cela donne l'impression que vous naviguez à partir de votre emplacement VPN, de sorte que votre activité en ligne ne puisse pas être liée à votre appareil.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected">
     <value>Ce code unique peut être utilisé par les sites web et les FAI (fournisseurs d'accès à Internet) pour lier votre emplacement et votre historique de navigation à votre appareil.
@@ -2137,7 +2137,7 @@ La vitesse dépend de l’activité actuelle de votre appareil et ne représente
     <value>Vitesse</value>
   </data>
   <data name="Flyouts_Speed_Upload">
-    <value>Envoie</value>
+    <value>Envoi</value>
     <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
   </data>
   <data name="Flyouts_Volume_Description">
@@ -2151,7 +2151,7 @@ La vitesse dépend de l’activité actuelle de votre appareil et ne représente
     <value>Volume</value>
   </data>
   <data name="Flyouts_Volume_Upload">
-    <value>Envoi</value>
+    <value>Envoyé</value>
     <comment>Refers to the uploaded volume (e.g., Upload [new line] 250 MB).</comment>
   </data>
   <data name="Format_Milliseconds">
