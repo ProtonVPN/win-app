@@ -135,13 +135,6 @@ public abstract class ViewNavigatorBase : FrameActivatorBase, IViewNavigator
         Host?.BackStack.Clear();
     }
 
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        TriggerLoadBehavior();
-    }
-
     protected override void OnLoaded()
     {
         base.OnLoaded();

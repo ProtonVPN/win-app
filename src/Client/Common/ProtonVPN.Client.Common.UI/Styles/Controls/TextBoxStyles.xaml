@@ -166,6 +166,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="SelectionFlyout" Value="{StaticResource TextControlCommandBarSelectionFlyout}" />
         <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
         <Setter Property="BackgroundSizing" Value="InnerBorderEdge" />
+        <Setter Property="PlaceholderForeground" Value="{ThemeResource TextControlPlaceholderForeground}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
@@ -241,7 +242,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    Margin="{TemplateBinding BorderThickness}"
                                    Padding="{TemplateBinding Padding}"
                                    VerticalAlignment="Center"
-                                   Foreground="{Binding PlaceholderForeground, RelativeSource={RelativeSource TemplatedParent}, TargetNullValue={ThemeResource TextControlPlaceholderForeground}}"
+                                   Foreground="{TemplateBinding PlaceholderForeground}"
                                    IsHitTestVisible="False"
                                    Text="{TemplateBinding PlaceholderText}"
                                    TextAlignment="{TemplateBinding TextAlignment}"
@@ -253,7 +254,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    Margin="0,0,7,2"
                                    Padding="{TemplateBinding Padding}"
                                    VerticalAlignment="Center"
-                                   Foreground="{Binding PlaceholderForeground, RelativeSource={RelativeSource TemplatedParent}, TargetNullValue={ThemeResource TextControlPlaceholderForeground}}"
+                                   Foreground="{TemplateBinding PlaceholderForeground}"
                                    IsHitTestVisible="False"
                                    Style="{StaticResource CaptionTextBlockStyle}"
                                    Text="ctrl + F"
@@ -292,7 +293,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="BorderElement.Background" Value="{ThemeResource InteractionDefaultColorBrush}" />
                                         <Setter Target="BorderElement.BorderBrush" Value="{ThemeResource TransparentColorBrush}" />
                                         <Setter Target="ContentElement.Foreground" Value="{ThemeResource TextWeakColorBrush}" />
-                                        <Setter Target="PlaceholderTextContentPresenter.Foreground" Value="{ThemeResource TextHintColorBrush}" />
+                                        <Setter Target="PlaceholderTextContentPresenter.Foreground" Value="{ThemeResource TextControlPlaceholderForegroundDisabled}" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="PointerOver">
@@ -300,7 +301,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="BorderElement.Background" Value="{ThemeResource InteractionDefaultHoverColorBrush}" />
                                         <Setter Target="BorderElement.BorderBrush" Value="{ThemeResource TransparentColorBrush}" />
                                         <Setter Target="ContentElement.Foreground" Value="{ThemeResource TextNormColorBrush}" />
-                                        <Setter Target="PlaceholderTextContentPresenter.Foreground" Value="{ThemeResource TextHintColorBrush}" />
+                                        <Setter Target="PlaceholderTextContentPresenter.Foreground" Value="{ThemeResource TextControlPlaceholderForegroundPointerOver}" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="Focused">
@@ -309,7 +310,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="BorderElement.BorderBrush" Value="{ThemeResource TextNormColorBrush}" />
                                         <Setter Target="ContentElement.Foreground" Value="{ThemeResource TextNormColorBrush}" />
                                         <Setter Target="MagnifierIcon.Foreground" Value="{ThemeResource TextNormColorBrush}" />
-                                        <Setter Target="PlaceholderTextContentPresenter.Foreground" Value="{ThemeResource TextHintColorBrush}" />
+                                        <Setter Target="PlaceholderTextContentPresenter.Foreground" Value="{ThemeResource TextControlPlaceholderForegroundFocused}" />
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>
@@ -354,6 +355,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="SelectionFlyout" Value="{StaticResource TextControlCommandBarSelectionFlyout}" />
         <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
         <Setter Property="BackgroundSizing" Value="InnerBorderEdge" />
+        <Setter Property="PlaceholderForeground" Value="{ThemeResource TextControlPlaceholderForeground}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
@@ -435,7 +437,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    Margin="{TemplateBinding BorderThickness}"
                                    Padding="{TemplateBinding Padding}"
                                    VerticalAlignment="Center"
-                                   Foreground="{Binding PlaceholderForeground, RelativeSource={RelativeSource TemplatedParent}, TargetNullValue={ThemeResource TextControlPlaceholderForeground}}"
+                                   Foreground="{TemplateBinding PlaceholderForeground}"
                                    IsHitTestVisible="False"
                                    Text="{TemplateBinding PlaceholderText}"
                                    TextAlignment="{TemplateBinding TextAlignment}"
@@ -473,7 +475,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="BorderElement.Background" Value="{ThemeResource InteractionDefaultColorBrush}" />
                                         <Setter Target="BorderElement.BorderBrush" Value="{ThemeResource TransparentColorBrush}" />
                                         <Setter Target="ContentElement.Foreground" Value="{ThemeResource TextWeakColorBrush}" />
-                                        <Setter Target="PlaceholderTextContentPresenter.Foreground" Value="{ThemeResource TextHintColorBrush}" />
+                                        <Setter Target="PlaceholderTextContentPresenter.Foreground" Value="{ThemeResource TextControlPlaceholderForegroundDisabled}" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="PointerOver">
@@ -481,7 +483,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="BorderElement.Background" Value="{ThemeResource InteractionDefaultHoverColorBrush}" />
                                         <Setter Target="BorderElement.BorderBrush" Value="{ThemeResource TransparentColorBrush}" />
                                         <Setter Target="ContentElement.Foreground" Value="{ThemeResource TextNormColorBrush}" />
-                                        <Setter Target="PlaceholderTextContentPresenter.Foreground" Value="{ThemeResource TextHintColorBrush}" />
+                                        <Setter Target="PlaceholderTextContentPresenter.Foreground" Value="{ThemeResource TextControlPlaceholderForegroundPointerOver}" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="Focused">
@@ -489,7 +491,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="BorderElement.Background" Value="{ThemeResource InteractionDefaultActiveColorBrush}" />
                                         <Setter Target="BorderElement.BorderBrush" Value="{ThemeResource TextNormColorBrush}" />
                                         <Setter Target="ContentElement.Foreground" Value="{ThemeResource TextNormColorBrush}" />
-                                        <Setter Target="PlaceholderTextContentPresenter.Foreground" Value="{ThemeResource TextHintColorBrush}" />
+                                        <Setter Target="PlaceholderTextContentPresenter.Foreground" Value="{ThemeResource TextControlPlaceholderForegroundFocused}" />
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>
@@ -647,7 +649,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    Margin="{TemplateBinding BorderThickness}"
                                    Padding="{TemplateBinding Padding}"
                                    VerticalAlignment="Center"
-                                   Foreground="{Binding PlaceholderForeground, RelativeSource={RelativeSource TemplatedParent}, TargetNullValue={ThemeResource TextControlPlaceholderForeground}}"
+                                   Foreground="{ThemeResource TextControlPlaceholderForeground}"
                                    IsHitTestVisible="False"
                                    Text="{TemplateBinding PlaceholderText}"/>
 
@@ -683,7 +685,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="BorderElement.Background" Value="{ThemeResource InteractionDefaultColorBrush}" />
                                         <Setter Target="BorderElement.BorderBrush" Value="{ThemeResource TransparentColorBrush}" />
                                         <Setter Target="ContentElement.Foreground" Value="{ThemeResource TextWeakColorBrush}" />
-                                        <Setter Target="PlaceholderTextContentPresenter.Foreground" Value="{ThemeResource TextHintColorBrush}" />
+                                        <Setter Target="PlaceholderTextContentPresenter.Foreground" Value="{ThemeResource TextControlPlaceholderForegroundDisabled}" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="PointerOver">
@@ -691,7 +693,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="BorderElement.Background" Value="{ThemeResource InteractionDefaultHoverColorBrush}" />
                                         <Setter Target="BorderElement.BorderBrush" Value="{ThemeResource TransparentColorBrush}" />
                                         <Setter Target="ContentElement.Foreground" Value="{ThemeResource TextNormColorBrush}" />
-                                        <Setter Target="PlaceholderTextContentPresenter.Foreground" Value="{ThemeResource TextHintColorBrush}" />
+                                        <Setter Target="PlaceholderTextContentPresenter.Foreground" Value="{ThemeResource TextControlPlaceholderForegroundPointerOver}" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="Focused">
@@ -699,7 +701,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="BorderElement.Background" Value="{ThemeResource InteractionDefaultActiveColorBrush}" />
                                         <Setter Target="BorderElement.BorderBrush" Value="{ThemeResource TextNormColorBrush}" />
                                         <Setter Target="ContentElement.Foreground" Value="{ThemeResource TextNormColorBrush}" />
-                                        <Setter Target="PlaceholderTextContentPresenter.Foreground" Value="{ThemeResource TextHintColorBrush}" />
+                                        <Setter Target="PlaceholderTextContentPresenter.Foreground" Value="{ThemeResource TextControlPlaceholderForegroundFocused}" />
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>

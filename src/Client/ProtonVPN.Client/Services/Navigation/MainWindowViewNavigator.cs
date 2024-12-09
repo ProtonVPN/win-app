@@ -69,11 +69,14 @@ public class MainWindowViewNavigator : ViewNavigatorBase, IMainWindowViewNavigat
 
     public void Receive(AuthenticationStatusChanged message)
     {
-        UIThreadDispatcher.TryEnqueue(async () => await NavigateToDefaultAsync());
-
-        if (message.AuthenticationStatus == AuthenticationStatus.LoggedIn)
+        UIThreadDispatcher.TryEnqueue(async () =>
         {
-            _eventMessageSender.Send(new HomePageDisplayedAfterLoginMessage());
-        }
+            await NavigateToDefaultAsync();
+
+            if (message.AuthenticationStatus == AuthenticationStatus.LoggedIn)
+            {
+                _eventMessageSender.Send(new HomePageDisplayedAfterLoginMessage());
+            }
+        });
     }
 }
