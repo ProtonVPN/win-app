@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Common.Messages;
 using ProtonVPN.Client.Contracts.Messages;
@@ -36,6 +37,8 @@ public abstract class DialogActivatorBase<TWindow> : WindowActivatorBase<TWindow
     where TWindow : WindowEx
 {
     protected readonly IMainWindowActivator MainWindowActivator;
+
+    private bool _isHiddenAfterMainWindowClosed;
 
     protected DialogActivatorBase(
         ILogger logger,
@@ -57,16 +60,22 @@ public abstract class DialogActivatorBase<TWindow> : WindowActivatorBase<TWindow
 
     public void Receive(MainWindowVisibilityChangedMessage message)
     {
-        if (Host != null)
+        if (Host == null)
         {
-            if (message.IsMainWindowVisible)
+            return;
+        }
+
+        if (message.IsMainWindowVisible)
+        {
+            if (_isHiddenAfterMainWindowClosed)
             {
                 Activate();
             }
-            else
-            {
-                Hide();
-            }
+        }
+        else if (Host.Visible)
+        {
+            _isHiddenAfterMainWindowClosed = true;
+            Hide();
         }
     }
 
@@ -84,5 +93,14 @@ public abstract class DialogActivatorBase<TWindow> : WindowActivatorBase<TWindow
         }
 
         base.InvalidateWindowPosition();
+    }
+
+    protected override void OnWindowClosing(WindowEventArgs e)
+    {
+        base.OnWindowClosing(e);
+
+        e.Handled = true;
+        _isHiddenAfterMainWindowClosed = false;
+        Hide();
     }
 }

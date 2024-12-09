@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Core.Services.Activation;
@@ -49,13 +48,6 @@ public class ReportIssueWindowActivator : DialogActivatorBase<ReportIssueWindow>
                localizer,
                iconSelector,
                mainWindowActivator)
-    { }
-
-    protected override void OnWindowClosing(WindowEventArgs e)
     {
-        base.OnWindowClosing(e);
-
-        e.Handled = true;
-        Hide();
     }
 }
