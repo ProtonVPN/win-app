@@ -23,7 +23,6 @@ using ProtonVPN.Client.Core.Services.Mapping;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Core.Services.Navigation.Bases;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts;
@@ -40,7 +39,6 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.Services.Navigation;
 
 public class ConnectionsViewNavigator : ViewNavigatorBase, IConnectionsViewNavigator,
-    IEventMessageReceiver<LoggedInMessage>,
     IEventMessageReceiver<VpnPlanChangedMessage>,
     IEventMessageReceiver<ServerListChangedMessage>,
     IEventMessageReceiver<RecentConnectionsChanged>
@@ -49,7 +47,7 @@ public class ConnectionsViewNavigator : ViewNavigatorBase, IConnectionsViewNavig
     private readonly IServersLoader _serversLoader;
     private readonly ISettings _settings;
 
-    public override FrameLoadedBehavior LoadBehavior { get; protected set; } = FrameLoadedBehavior.DoNothing;
+    public override FrameLoadedBehavior LoadBehavior { get; protected set; } = FrameLoadedBehavior.NavigateToDefaultView;
 
     public ConnectionsViewNavigator(
         ILogger logger,
@@ -117,11 +115,6 @@ public class ConnectionsViewNavigator : ViewNavigatorBase, IConnectionsViewNavig
                 : _serversLoader.HasAnyGateways()
                     ? NavigateToGatewaysViewAsync()
                     : NavigateToCountriesViewAsync();
-    }
-
-    public void Receive(LoggedInMessage message)
-    {
-        UIThreadDispatcher.TryEnqueue(async () => await NavigateToDefaultAsync());
     }
 
     public void Receive(VpnPlanChangedMessage message)
