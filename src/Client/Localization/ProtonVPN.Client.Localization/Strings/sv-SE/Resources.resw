@@ -241,10 +241,10 @@
     <value>Uppgradera</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>**Avancerad kill switch är aktiverad.** För att använda Internet utan VPN, inaktivera avancerad kill switch.</value>
+    <value>**Avancerad kill switch är aktiverad.** För att använda internet utan VPN, inaktivera avancerad kill switch.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>**Avancerad kill switch är aktiverad.** Om du fortsätter kommer du bli frånkopplad från Internet.</value>
+    <value>**Avancerad kill switch är aktiverad.** Om du fortsätter kommer du bli frånkopplad från internet.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
     <value>Du kommer bli frånkopplad från VPN.</value>
@@ -253,7 +253,7 @@
     <value>Lär dig mer</value>
   </data>
   <data name="Common_Message_Loading">
-    <value>Laddar in...</value>
+    <value>Läser in...</value>
   </data>
   <data name="Common_States_Off">
     <value>Av</value>
@@ -262,7 +262,7 @@
     <value>På</value>
   </data>
   <data name="Common_States_Updating">
-    <value>Uppdaterar …</value>
+    <value>Uppdaterar...</value>
   </data>
   <data name="Connection_Error_EditProfile">
     <value>Redigera profil</value>
@@ -314,7 +314,7 @@
     <value>Proton VPN kunde inte ansluta eftersom en WireGuard-nätverksadapter redan används. Koppla från alla aktiva VPN:er och försök igen. Alternativt kan du byta protokoll i de avancerade inställningarna.</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
-    <value>Automatiskt valt från</value>
+    <value>Autovalt från</value>
     <comment>Appears in the connection card for free users. A set of flags is displayed after the text (eg. Auto-selected from [us-flag] [jp-flag]...)</comment>
   </data>
   <data name="Connection_Intent_City_Server">
@@ -342,7 +342,7 @@
     <value>Servrar i dessa orter är tillgängliga med VPN Plus</value>
   </data>
   <data name="Connections_City_UnderMaintenance">
-    <value>Alla servrar i denna ort är under underhåll</value>
+    <value>Alla servrar i denna ort underhålls</value>
   </data>
   <data name="Connections_Countries_One">
     <value>Land ({0})</value>
@@ -360,7 +360,7 @@
     <value>Servrar i detta land är tillgängliga med VPN Plus</value>
   </data>
   <data name="Connections_Country_UnderMaintenance">
-    <value>Alla servrar i detta land är under underhåll</value>
+    <value>Alla servrar i detta land underhålls</value>
   </data>
   <data name="Connections_Fastest">
     <value>Snabbast</value>
@@ -378,7 +378,7 @@
     <value>Servrar i denna gateway är tillgängliga med VPN Plus</value>
   </data>
   <data name="Connections_Gateway_UnderMaintenance">
-    <value>Alla servrar i denna gateway är under underhåll</value>
+    <value>Alla servrar i denna gateway underhålls</value>
   </data>
   <data name="Connections_Gateways_One">
     <value>Gateway ({0})</value>
@@ -475,10 +475,10 @@
     <value>Inga senaste ännu</value>
   </data>
   <data name="Connections_Recents_Pinned_One">
-    <value>Pinned ({0})</value>
+    <value>Fäst ({0})</value>
   </data>
   <data name="Connections_Recents_Pinned_Other">
-    <value>Pinned ({0})</value>
+    <value>Fäst ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_One">
     <value>Secure Core-land ({0})</value>
@@ -517,7 +517,7 @@
     <value>Server tillgänglig med VPN Plus</value>
   </data>
   <data name="Connections_Server_UnderMaintenance">
-    <value>Denna server är under underhåll</value>
+    <value>Denna server underhålls</value>
   </data>
   <data name="Connections_Servers_One">
     <value>Server ({0})</value>
@@ -533,7 +533,7 @@
     <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_State_UnderMaintenance">
-    <value>Alla servrar i denna delstat är under underhåll.</value>
+    <value>Alla servrar i denna delstat underhålls.</value>
     <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_States_One">
@@ -1700,10 +1700,10 @@
     <value>Uppgradera för att få åtkomst till Plus-servrar och funktioner igen.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
-    <value>Proton Free automatically connects you to the fastest available free server from our {0} free country. This will normally be the closest server to your location.</value>
+    <value>Proton Free ansluter dig automatiskt till den snabbaste tillgängliga gratisservern från vårt {0} gratis land. Detta kommer vanligtvis vara servern närmast dig.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
-    <value>Proton Free automatically connects you to the fastest available free server from our {0} free countries. This will normally be the closest server to your location.</value>
+    <value>Proton Free ansluter dig automatiskt till den snabbaste tillgängliga gratisservern från våra {0} gratis länder. Detta kommer vanligtvis vara servern närmast dig.</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_One">
     <value>Gratis serverland ({0})</value>
@@ -1741,7 +1741,7 @@ Hög latens kan sakta ner din anslutning.</value>
     <value>Vad är latens?</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
-    <value>Hur man laddar ner torrent med P2P</value>
+    <value>Hur man laddar ner torrents med P2P</value>
     <comment>obsolete</comment>
   </data>
   <data name="Dialogs_P2P_Title">
@@ -1753,7 +1753,7 @@ Hög latens kan sakta ner din anslutning.</value>
     <comment>obsolete</comment>
   </data>
   <data name="Dialogs_P2P_WhatIsP2PServer_Description">
-    <value>P2P (peer-to-peer) VPN-servrar avblockerar torrent-webbplatser.</value>
+    <value>VPN-servrar för P2P (peer-to-peer) avblockerar torrentwebbplatser.</value>
     <comment>obsolete</comment>
   </data>
   <data name="Dialogs_P2P_WhatIsTorrenting">
@@ -1933,7 +1933,7 @@ Smart Routing används vanligtvis för att komma runt antiintegritetslagar och a
     <value>Dessa program kan störa VPN-anslutningar.</value>
   </data>
   <data name="Dialogs_Troubleshooting_CheckInternet">
-    <value>Kontrollera din Internetanslutning</value>
+    <value>Kontrollera din internetanslutning</value>
   </data>
   <data name="Dialogs_Troubleshooting_CheckInternet_Description">
     <value>Se till att du är online och att din anslutning är stabil.</value>
@@ -2047,9 +2047,9 @@ En VPN får det att se ut som att du surfar någon annanstans ifrån, vilket sky
     <value>Din VPN IP maskerar din riktiga IP-adress. Detta gör att det ser ut som att du surfar från din VPN-plats, så din aktivitet online kan inte länkas till din enhet.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected">
-    <value>This unique code can be used by websites and ISPs (Internet Service Providers) to link your location and browsing history to your device. 
+    <value>Denna unika kod kan användas av webbplatser och internetleverantörer (ISP) för att länka din plats och surfhistorik till din enhet. 
 
-A VPN masks your IP address, making it harder for your activity to be traced back to you.</value>
+En VPN maskerar din IP-adress så att det blir svårare för din aktivitet att spåras tillbaka till dig.</value>
   </data>
   <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
     <value>Vad är en IP-adress?</value>
@@ -2067,14 +2067,14 @@ A VPN masks your IP address, making it harder for your activity to be traced bac
     <value>Din IP-adress är synlig</value>
   </data>
   <data name="Flyouts_Isp_Description">
-    <value>Your ISP (Internet Service Provider) is the company that connects you to the internet. 
+    <value>Din ISP (internettjänstleverantör) är företaget som ansluter dig till internet.
 
-They can log your online activity. In some countries, they can sell your data to advertisers. In others, they can be required to hand it over to the government. 
+De kan logga din onlineaktivitet. I vissa länder så säljer de denna data till annonsörer. I andra så kan myndigheter kräva att de lämnar över den.
 
-A VPN hides your IP address, protecting you from ISP interference.</value>
+En VPN döljer din IP-adress och skyddar dig från ISP-inblandning.</value>
   </data>
   <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
-    <value>Vad är en Internetleverantör (ISP)?</value>
+    <value>Vad är en internetleverantör (ISP)?</value>
   </data>
   <data name="Flyouts_Isp_Title">
     <value>Leverantör</value>
@@ -2119,7 +2119,7 @@ A VPN hides your IP address, protecting you from ISP interference.</value>
     <value>Serverbelastning</value>
   </data>
   <data name="Flyouts_Speed_BoostedByVpnAccelerator">
-    <value>Ökad av VPN Accelerator</value>
+    <value>Boostas av VPN Accelerator</value>
   </data>
   <data name="Flyouts_Speed_Description">
     <value>Detta visar hur mycket data som överförs via Proton VPN varje sekund.
@@ -2325,7 +2325,7 @@ Hastighet är baserat på din enhets nuvarande aktivitet – den representerar i
     <value>Ansluter</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectingSubLabel">
-    <value>Skyddar din digitala identitet …</value>
+    <value>Skyddar din digitala identitet...</value>
   </data>
   <data name="Home_ConnectionDetails_Country">
     <value>Land</value>
@@ -2463,13 +2463,13 @@ Hastighet är baserat på din enhets nuvarande aktivitet – den representerar i
     <value>Åtgärder</value>
   </data>
   <data name="Home_Recents_ServerUnderMaintenance">
-    <value>Server är under underhåll</value>
+    <value>Servern är underhålls</value>
   </data>
   <data name="Home_Recents_Title">
     <value>Senaste</value>
   </data>
   <data name="Home_Recents_Unpin">
-    <value>Lossa</value>
+    <value>Avfäst</value>
   </data>
   <data name="Home_Update_Confirmation_Message">
     <value>För att slutföra uppdateringsprocessen kommer Proton VPN temporärt att koppla från och inaktivera avancerad Kill Switch om någon av dessa är aktiva. Vill du fortsätta?</value>
@@ -2489,7 +2489,7 @@ Hastighet är baserat på din enhets nuvarande aktivitet – den representerar i
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_VpnStatus_Subtitle_Connecting">
-    <value>Skyddar din digitala identitet …</value>
+    <value>Skyddar din digitala identitet...</value>
   </data>
   <data name="Home_VpnStatus_Subtitle_Disconnected">
     <value>Du är oskyddad</value>
@@ -2551,11 +2551,11 @@ Hastighet är baserat på din enhets nuvarande aktivitet – den representerar i
     <value>Ange din kod</value>
   </data>
   <data name="Main_Loading_SigningIn">
-    <value>Loggar in, vänta …</value>
+    <value>Loggar in, vänta...</value>
     <comment>Message in the loading screen when signing in or starting the app</comment>
   </data>
   <data name="Main_Loading_SigningOut">
-    <value>Loggar ut, vänta …</value>
+    <value>Loggar ut, vänta...</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
   <data name="Notifications_PortForwarding_Description">
@@ -2577,7 +2577,7 @@ Hastighet är baserat på din enhets nuvarande aktivitet – den representerar i
     <value>Våra P2P-servrar (peer-to-peer) låter dig få åtkomst till P2P-nätverk samtidigt som de skyddar din IP-adress och aktivitet online.</value>
   </data>
   <data name="Overlay_P2P_Bullet1_Header">
-    <value>Vad är P2P VPN?</value>
+    <value>Vad är P2P-VPN?</value>
   </data>
   <data name="Overlay_P2P_Bullet2_Description">
     <value>P2P-nätverk tillåter två enheter att ansluta och överföra data utan att passera genom en central server. </value>
@@ -2586,9 +2586,9 @@ Hastighet är baserat på din enhets nuvarande aktivitet – den representerar i
     <value>Vad är ett P2P-nätverk?</value>
   </data>
   <data name="Overlay_P2P_Bullet3_Description">
-    <value>  •  Downloading torrent files
-  •  Improving online gaming and video call performance
-  •  Connecting to local area network (LAN) devices</value>
+    <value>  •  Nedladdning av torrentfiler
+  •  Förbättrar prestanda för onlinegaming och videosamtal
+  •  Anslutning till enheter på lokalt nätverk (LAN)</value>
   </data>
   <data name="Overlay_P2P_Bullet3_Header">
     <value>Vad används P2P-nätverk till?</value>
@@ -2602,7 +2602,7 @@ Hastighet är baserat på din enhets nuvarande aktivitet – den representerar i
   <data name="Overlay_SecureCore_Description">
     <value>Secure Core ansluter dig till din målserver via en andra VPN-server med maximal säkerhet.
 
-Denna högre nivå av skydd kan orsaka högre latens och lägre hastigheter.</value>
+Den högre nivån av skydd kan orsaka högre latens och lägre hastigheter.</value>
   </data>
   <data name="Overlay_SecureCore_LearnMore">
     <value>Vad är Secure Core?</value>
@@ -2660,11 +2660,11 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Serverbelastning</value>
   </data>
   <data name="Overlay_SmartRouting_Description">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
+    <value>Smart Routing använder virtuella servrar för att leverera VPN-täckning i länder som är svåra att nå.
     
-When you connect to a Smart Routing server, you’ll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+När du ansluter till en Smart Routing-server så kommer det att se ut som att de surfar destinationslandet även fast den fysiska servern är placerad någon annanstans.
 
-Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+Smart Routing används normalt för att kringgå lagar mot integritet och andra former av censur.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
     <value>Servrar är fysiskt placerade i {0}, men du ser ut att surfa från {1}</value>
@@ -2694,7 +2694,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Profiler</value>
   </data>
   <data name="Search_InputBox_Placeholder">
-    <value>Surfa från …</value>
+    <value>Surfa från...</value>
   </data>
   <data name="Search_NoInput_CityOrState">
     <value>Ort eller US-delstat</value>
@@ -2739,7 +2739,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Tor</value>
   </data>
   <data name="Server_Free">
-    <value>Gratis server</value>
+    <value>Gratisserver</value>
   </data>
   <data name="Servers">
     <value>Servrar</value>
@@ -2766,7 +2766,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Licensiering</value>
   </data>
   <data name="Settings_About_Loading">
-    <value>Laddar in</value>
+    <value>Läser in</value>
   </data>
   <data name="Settings_About_NewVersion">
     <value>NYTT</value>
@@ -2778,7 +2778,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Försök igen</value>
   </data>
   <data name="Settings_About_Update_Description">
-    <value>Få ut det mesta av ditt VPN genom att uppdatera till den senaste versionen av appen.</value>
+    <value>Få ut det mesta av din VPN genom att uppdatera till den senaste versionen av appen.</value>
   </data>
   <data name="Settings_Account_Exit">
     <value>Avsluta appen</value>
@@ -2790,7 +2790,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Logga ut</value>
   </data>
   <data name="Settings_AppVersion">
-    <value>App-version</value>
+    <value>Appversion</value>
   </data>
   <data name="Settings_Censorship_Footer">
     <value>Denna statistik innehåller inte din IP-adress och den kan inte användas för att identifiera dig. Vi kommer aldrig att dela den med tredje part.</value>
@@ -2808,11 +2808,11 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Användningsdata hjälper oss att övervinna VPN-blockeringar och förbättra appens prestanda.</value>
   </data>
   <data name="Settings_Common_Apply">
-    <value>Tillämpa</value>
+    <value>Verkställ</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
   <data name="Settings_Common_ApplyAndReconnect">
-    <value>Tillämpa och anslut igen</value>
+    <value>Verkställ och anslut igen</value>
   </data>
   <data name="Settings_Common_Discard">
     <value>Kasta</value>
@@ -2868,7 +2868,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>NAT-typ</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Description">
-    <value>You won't be able to use port forwarding with Moderate NAT.</value>
+    <value>Du kommer inte att kunna använda vidarebefordran av portar med måttlig NAT.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Title">
     <value>Aktivera måttlig NAT?</value>
@@ -2877,7 +2877,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Välj en nätverksadressöversättningstyp för din anslutning.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate">
-    <value>Moderate (type 2)</value>
+    <value>Måttlig (typ 2)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
     <value>Vissa begränsningar för data som kommer in i ditt nätverk. Detta alternativ är bäst för videospel online.</value>
@@ -2925,7 +2925,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Aktivera kill switch?</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Description">
-    <value>Skyddar din IP-adress genom att koppla från dig från Internet om du tappar din VPN-anslutning.</value>
+    <value>Skyddar din IP-adress genom att koppla från dig från internet om du tappar din VPN-anslutning.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Footer">
     <value>När kill switch är på kommer du inte att kunna ansluta till webbplatser och appar som är exkluderade från din VPN-anslutning genom split tunneling.</value>
@@ -2934,7 +2934,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Standard</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Standard_Description">
-    <value>Koppla automatiskt från Internet om VPN-anslutningen bryts.</value>
+    <value>Koppla automatiskt från internet om VPN-anslutningen bryts.</value>
   </data>
   <data name="Settings_Connection_NetShield">
     <value>NetShield</value>
@@ -2958,7 +2958,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Vissa webbplatser kanske inte laddas korrekt när annonser och spårare är blockerade.</value>
   </data>
   <data name="Settings_Connection_NetShield_PrivacyPanel">
-    <value>NetShield Privacy Panel</value>
+    <value>NetShield integritetspanel</value>
   </data>
   <data name="Settings_Connection_PortForwarding">
     <value>Vidarebefordring av port</value>
@@ -2970,7 +2970,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Kopiera portnummer</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Conflict_Description">
-    <value>You won't be able to use Moderate NAT when port forwarding is enabled.</value>
+    <value>Du kommer inte att kunna använda måttlig NAT när vidarebefordran av portar är aktiverat.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Conflict_Title">
     <value>Aktivera vidarebefordran av port?</value>
@@ -2982,7 +2982,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>För att använda vidarebefordran av port, anslut till en server som stöder P2P.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Loading">
-    <value>Laddar in …</value>
+    <value>Läser in...</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications">
     <value>Aviseringar</value>
@@ -3013,7 +3013,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Lägg till app</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
-    <value>App-filer</value>
+    <value>Appfiler</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Header">
@@ -3097,7 +3097,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Minimera till aktivitetsfältet</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Ställ in appen att starta eller ansluta automatiskt</value>
+    <value>Konfigurera appen att starta eller ansluta automatiskt</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>Automatiska uppdateringar</value>
@@ -3106,7 +3106,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Kontrollera och installera Proton VPN-uppdateringar automatiskt</value>
   </data>
   <data name="Settings_General_BetaAccess">
-    <value>Beta-åtkomst</value>
+    <value>Betaåtkomst</value>
   </data>
   <data name="Settings_General_BetaAccess_Description">
     <value>Få förhandstillgång och hjälp oss att testa nya versioner av Proton VPN</value>
@@ -3130,13 +3130,13 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Tema</value>
   </data>
   <data name="Settings_General_Theme_Dark">
-    <value>Mörk</value>
+    <value>Mörkt</value>
   </data>
   <data name="Settings_General_Theme_Default">
     <value>Standard</value>
   </data>
   <data name="Settings_General_Theme_Light">
-    <value>Ljus</value>
+    <value>Ljust</value>
   </data>
   <data name="Settings_Improve">
     <value>Förbättra Proton</value>
@@ -3253,13 +3253,13 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Supportcenter</value>
   </data>
   <data name="Settings_Theme_Dark">
-    <value>Mörk</value>
+    <value>Mörkt</value>
   </data>
   <data name="Settings_Theme_Default">
     <value>Standard</value>
   </data>
   <data name="Settings_Theme_Light">
-    <value>Ljus</value>
+    <value>Ljust</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>Öka din anslutningshastighet med upp till 400 % med prestandaförbättrade teknologier.</value>
@@ -3295,7 +3295,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_NoLogsPolicy">
-    <value>Ingen loggpolicy</value>
+    <value>Inga loggar-policy</value>
   </data>
   <data name="SignIn_Form_OpenSource">
     <value>Öppen källkod</value>
@@ -3323,7 +3323,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Logga in med SSO</value>
   </data>
   <data name="SignIn_Form_SwissBased">
-    <value>Baserat i Schweiz</value>
+    <value>Schweizbaserat</value>
   </data>
   <data name="SignIn_Form_Title">
     <value>Logga in</value>
@@ -3409,7 +3409,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Kom åt enheter på ditt lokala nätverk (LAN) medan du är ansluten</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
-    <value>Level up your gaming experience by switching to NAT type 2 (moderate)</value>
+    <value>Levla upp din gamingupplevelse genom att byta till NAT typ 2 (måttlig)</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices">
     <value>Anslut upp till 10 enheter samtidigt</value>
@@ -3491,7 +3491,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Surfa från två platser samtidigt med split tunneling</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling_Configuration">
-    <value>Tillåt betrodda appar och IP-adresser att ansluta direkt till Internet, samtidigt som du skyddar allt annat med ditt VPN</value>
+    <value>Tillåt betrodda appar och IP-adresser att ansluta direkt till internet, samtidigt som du skyddar allt annat med ditt VPN</value>
   </data>
   <data name="Upsell_Carousel_Streaming">
     <value>Streama dina favoritfilmer och TV-program</value>
@@ -3564,13 +3564,13 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>OpenVPN (TCP)</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp_Description">
-    <value>Etablerad, väl beprövad och säker</value>
+    <value>Etablerad, vältestat och säker</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Udp">
     <value>OpenVPN (UDP)</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Udp_Description">
-    <value>Etablerad, väl beprövad och säker</value>
+    <value>Etablerad, vältestat och säker</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>

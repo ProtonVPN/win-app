@@ -2354,7 +2354,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Meine IP</value>
   </data>
   <data name="Home_ConnectionDetails_Protected">
-    <value>Protected</value>
+    <value>Geschützt</value>
   </data>
   <data name="Home_ConnectionDetails_Protocol">
     <value>Protokoll</value>
@@ -3013,7 +3013,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Add app</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
-    <value>App files</value>
+    <value>App-Dateien</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Header">
@@ -3046,7 +3046,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
-    <value>Remove IP</value>
+    <value>IP entfernen</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Watermark">
     <value>Add IPv4 address</value>

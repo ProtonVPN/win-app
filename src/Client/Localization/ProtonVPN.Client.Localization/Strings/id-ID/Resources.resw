@@ -121,19 +121,19 @@
     <value>Proton VPN Free</value>
   </data>
   <data name="Automation_Properties_ConnectionDetails_Page">
-    <value>Halaman rincian koneksi</value>
+    <value>Halaman detail koneksi</value>
   </data>
   <data name="Automation_Properties_Features_Bar">
     <value>Bilah fitur</value>
   </data>
   <data name="Automation_Properties_Home_Page">
-    <value>Laman beranda</value>
+    <value>Beranda</value>
   </data>
   <data name="Automation_Properties_KillSwitch_Page">
-    <value>Halaman kill switch</value>
+    <value>Halaman Kill switch</value>
   </data>
   <data name="Automation_Properties_LocationDetails_Page">
-    <value>Halaman rincian lokasi</value>
+    <value>Halaman detail lokasi</value>
   </data>
   <data name="Automation_Properties_Login_Page">
     <value>Halaman masuk</value>
@@ -145,7 +145,7 @@
     <value>Halaman NetShield</value>
   </data>
   <data name="Automation_Properties_PortForwarding_Page">
-    <value>Halaman penerusan port</value>
+    <value>Halaman penerusan porta</value>
   </data>
   <data name="Automation_Properties_Settings_Advanced_Page">
     <value>Halaman pengaturan lanjutan</value>
@@ -163,7 +163,7 @@
     <value>Halaman negara</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Gateways_Page">
-    <value>Halaman gateway</value>
+    <value>Halaman pintu gerbang</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Page">
     <value>Halaman koneksi</value>
@@ -241,7 +241,7 @@
     <value>Tingkatkan</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>**Kill switch bertingkat lanjut diaktifkan.** Untuk menggunakan internet tanpa VPN, nonaktifkan kill switch bertingkat lanjut.</value>
+    <value>**Kill switch tingkat lanjut diaktifkan.** Untuk menggunakan internet tanpa VPN, nonaktifkan kill switch tingkat lanjut.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
     <value>**Kill switch lanjutkan diaktifkan.** Apabila Anda melanjutkan, Anda akan terputus dari internet.</value>
@@ -268,10 +268,10 @@
     <value>Sunting profil</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
-    <value>Proton VPN tidak dapat mengambil sertifikat autentikasi karena masalah jaringan.</value>
+    <value>Proton VPN gagal mengambil sertifikat autentikasi karena masalah jaringan.</value>
   </data>
   <data name="Connection_Error_NoServers">
-    <value>Tidak ada server yang tersedia untuk pilihan Anda saat ini. Silakan pilih opsi yang lain.</value>
+    <value>Saat ini tidak ada server yang tersedia untuk pilihan Anda. Silakan pilih opsi lain.</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
     <value>Pilihan server Anda untuk '{0}' tidak tersedia. Pilih server lain atau coba lagi nanti.</value>
@@ -287,10 +287,10 @@
     <value>Proton VPN tidak dapat terhubung karena server RPC tidak tersedia pada sistem Anda.</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
-    <value>Anda telah mencapai batas jumlah perangkat Anda. Silakan putuskan perangkat lain untuk menghubungkan perangkat ini atau tingkatkan akun Anda ke PLUS untuk menyambungkan hingga 10 perangkat secara bersamaan.</value>
+    <value>Anda telah mencapai batas maksimum perangkat Anda. Putuskan perangkat lain untuk menghubungkan perangkat ini atau tingkatkan ke PLUS untuk menyambungkan hingga 10 perangkat sekaligus.</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedPaidUser">
-    <value>Anda telah mencapai batas jumlah perangkat Anda. Silakan putuskan perangkat lain untuk menghubungkan perangkat ini.</value>
+    <value>Anda telah mencapai batas jumlah perangkat Anda. Silakan putuskan perangkat lain untuk menyambungkan perangkat ini.</value>
   </data>
   <data name="Connection_Error_TapAdapterInUse">
     <value>Adaptor jaringan Anda sedang digunakan.</value>
@@ -302,7 +302,7 @@
     <value>Koneksi gagal</value>
   </data>
   <data name="Connection_Error_TlsCertificate">
-    <value>Terdapat masalah dalam memvalidasi sertifikat server VPN, yang dapat menandakan bahwa koneksi jaringan Anda sedang disusupi atau server yang ingin Anda tuju tidak diatur dengan benar. Dapatkan bantuan dari tim layanan dukungan kami dengan mengirimkan Laporan Masalah.</value>
+    <value>Terdapat masalah dalam memvalidasi sertifikat server VPN, yang mungkin mengindikasikan bahwa koneksi jaringan sedang dirusak atau server yang Anda coba sambungkan memiliki masalah konfigurasi. Dapatkan bantuan dari tim layanan dukungan kami dengan mengirimkan Laporan Masalah.</value>
   </data>
   <data name="Connection_Error_Unknown">
     <value>Kami tidak yakin akan apa yang terjadi. Silakan coba lagi atau hubungi tim layanan dukungan kami.</value>
@@ -311,7 +311,7 @@
     <value>Tampilkan solusi yang memungkinkan</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
-    <value>Proton VPN tidak dapat terhubung karena adapter jaringan WireGuard telah digunakan. Silakan putuskan seluruh koneksi VPN yang sedang aktif dan coba lagi. Sebagai alternatif, cobalah untuk mengubah protokol jaringan melalui menu Pengaturan Lanjutan.</value>
+    <value>Proton VPN tidak dapat terhubung karena adaptor jaringan WireGuard sudah digunakan. Putuskan sambungan VPN yang aktif dan coba lagi. Atau, Anda dapat mengganti protokol di Pengaturan Lanjutan.</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Terpilih secara otomatis dari</value>
@@ -348,7 +348,7 @@
     <value>Negara</value>
   </data>
   <data name="Connections_Country_Middle">
-    <value>Negara tengah</value>
+    <value>Negara menengah</value>
   </data>
   <data name="Connections_Country_Restricted">
     <value>Server di negara ini tersedia dengan VPN Plus</value>
@@ -366,13 +366,13 @@
     <value>Gateway</value>
   </data>
   <data name="Connections_Gateway_Restricted">
-    <value>Server di gateway ini tersedia dengan VPN Plus</value>
+    <value>Server di gerbang ini tersedia dengan VPN Plus</value>
   </data>
   <data name="Connections_Gateway_UnderMaintenance">
-    <value>Seluruh server di gateway ini sedang dalam pemeliharaan</value>
+    <value>Seluruh server di gerbang ini sedang dalam pemeliharaan</value>
   </data>
   <data name="Connections_Gateways_Other">
-    <value>Gateway ({0})</value>
+    <value>Gerbang ({0})</value>
   </data>
   <data name="Connections_Gateways_Server">
     <value>Server khusus</value>
@@ -390,7 +390,7 @@
     <value>Server P2P ({0})</value>
   </data>
   <data name="Connections_P2P_States_Other">
-    <value>Negara bagian P2P ({0})</value>
+    <value>Negara P2P ({0})</value>
   </data>
   <data name="Connections_Profiles_Other">
     <value>Profil ({0})</value>
@@ -403,14 +403,14 @@
     <value>Hapus profil</value>
   </data>
   <data name="Connections_Profiles_Delete_Message">
-    <value>'{0}' akan dihapus secara permanen.</value>
+    <value>'{0}' akan dihapus permanen.</value>
     <comment>{0} is a placeholder for the name of the profile.</comment>
   </data>
   <data name="Connections_Profiles_Delete_Title">
     <value>Hapus profil?</value>
   </data>
   <data name="Connections_Profiles_Empty_Description">
-    <value>Profil adalah koneksi yang disimpan dengan pilihan lokasi, server, dan protokol.</value>
+    <value>Profil adalah koneksi yang tersimpan dengan pilihan lokasi, server, dan protokol Anda.</value>
   </data>
   <data name="Connections_Profiles_Empty_Title">
     <value>Buat profil pertama Anda</value>
@@ -540,13 +540,13 @@
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
   <data name="Countries_P2P_Description">
-    <value>Unduh berkas pada jaringan P2P (peer-to-peer) serta perkaya pengalaman gaming dan panggilan video online Anda.</value>
+    <value>Unduh berkas melalui jaringan P2P (peer-to-peer) serta tingkatkan pengalaman bermain game online dan panggilan video Anda.</value>
   </data>
   <data name="Countries_Page_FreeUser_Description">
     <value>Akses fitur pemilihan negara dengan VPN Plus</value>
   </data>
   <data name="Countries_SearchPlaceholder">
-    <value>Saya ingin menjelajah internet dari…</value>
+    <value>Saya ingin menelusuri dari…</value>
   </data>
   <data name="Countries_Section_Header">
     <value>Koneksi VPN</value>
@@ -563,7 +563,7 @@
     <comment>{0} represents the number of severs</comment>
   </data>
   <data name="Countries_SecureCore_Description">
-    <value>Terapkan lapisan enkripsi tambahan pada koneksi VPN Anda.</value>
+    <value>Tambahkan lapisan enkripsi lain ke koneksi VPN Anda.</value>
   </data>
   <data name="Countries_Server_Other">
     <value>{0} server</value>
@@ -572,10 +572,10 @@
     <value>Muatan server</value>
   </data>
   <data name="Countries_SmartRouting">
-    <value>Smart Routing</value>
+    <value>Perutean cerdas</value>
   </data>
   <data name="Countries_SmartRouting_Description">
-    <value>Server yang melayani Anda secara fisik terletak di {0}, namun Anda akan terlihat seolah-olah Anda meramban dari {1}.</value>
+    <value>Server secara fisik berada di {0}, tetapi Anda akan terlihat menelusuri dari {1}.</value>
     <comment>{0} and {1} represent country names.</comment>
   </data>
   <data name="Countries_Tor">
@@ -590,10 +590,10 @@
     <comment>{0} represents a number of tor servers in the country</comment>
   </data>
   <data name="Countries_Tor_Description">
-    <value>Sandingkan jaringan Tor dengan koneksi VPN Anda untuk privasi yang lebih.</value>
+    <value>Gunakan jaringan Tor melalui koneksi VPN Anda untuk privasi ekstra.</value>
   </data>
   <data name="Countries_TryDifferentKeyword">
-    <value>Silakan coba kata kunci pencarian lainnya</value>
+    <value>Silakan coba kata kunci lain</value>
   </data>
   <data name="Countries_ViaCountry">
     <value>melalui {0}</value>
@@ -603,13 +603,13 @@
     <value>Negara tercepat</value>
   </data>
   <data name="Country_Fastest_ExcludingMyCountry">
-    <value>Tercepat (tidak termasuk negara saya)</value>
+    <value>Tercepat (kecuali negaraku)</value>
   </data>
   <data name="Country_Random">
     <value>Negara acak</value>
   </data>
   <data name="Country_Random_ExcludingMyCountry">
-    <value>Acak (tidak termasuk negara saya)</value>
+    <value>Acak (kecuali negaraku)</value>
   </data>
   <data name="Country_val_AD">
     <value>Andorra</value>
@@ -1619,7 +1619,7 @@
     <value>Dapatkan pengubahan server tanpa batas dengan VPN Plus.</value>
   </data>
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
-    <value>Anda telah mencapai batas pengubahan server Free untuk saat ini</value>
+    <value>Anda telah mencapai jumlah maksimum penggantian server gratis untuk saat ini</value>
   </data>
   <data name="Dialogs_Common_GetStarted">
     <value>Mulai</value>
