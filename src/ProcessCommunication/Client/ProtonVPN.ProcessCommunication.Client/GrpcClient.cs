@@ -76,7 +76,9 @@ public class GrpcClient : IGrpcClient
     {
         SocketsHttpHandler socketsHttpHandler = new()
         {
-            ConnectCallback = _namedPipesConnectionFactory.ConnectAsync
+            ConnectCallback = _namedPipesConnectionFactory.ConnectAsync,
+            UseProxy = false,
+            Proxy = null
         };
 
         return GrpcChannel.ForAddress("http://localhost", new GrpcChannelOptions
