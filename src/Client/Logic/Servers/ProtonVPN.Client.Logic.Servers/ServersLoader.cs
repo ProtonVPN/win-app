@@ -50,7 +50,7 @@ public class ServersLoader : IServersLoader
 
     public IEnumerable<Country> GetFreeCountries()
     {
-        return _serversCache.Countries.Where(c => c.IsFree);
+        return _serversCache.FreeCountries;
     }
 
     public IEnumerable<State> GetStates()

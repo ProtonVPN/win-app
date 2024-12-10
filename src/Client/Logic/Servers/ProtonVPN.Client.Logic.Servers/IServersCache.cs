@@ -24,6 +24,7 @@ namespace ProtonVPN.Client.Logic.Servers;
 public interface IServersCache
 {
     IReadOnlyList<Server> Servers { get; }
+    IReadOnlyList<Country> FreeCountries { get; }
     IReadOnlyList<Country> Countries { get; }
     IReadOnlyList<State> States { get; }
     IReadOnlyList<City> Cities { get; }
