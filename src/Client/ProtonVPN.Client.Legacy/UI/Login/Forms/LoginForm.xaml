@@ -106,7 +106,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 AutomationProperties.AutomationId="HelpButton"
                                 Content="{x:Bind ViewModel.Localizer.Get('Login_Form_Help'), Mode=OneWay}">
                 <custom:GhostButton.Flyout>
-                    <MenuFlyout AutomationProperties.AutomationId="HelpFlyoutMenu">
+                    <MenuFlyout AutomationProperties.AutomationId="HelpFlyoutMenu"
+                                ShouldConstrainToRootBounds="True">
                         <MenuFlyoutItem Command="{x:Bind ViewModel.ResetPasswordCommand, Mode=OneTime}"
                                         Text="{x:Bind ViewModel.Localizer.Get('Login_Form_ResetPassword')}">
                             <MenuFlyoutItem.Icon>

@@ -27,12 +27,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <GridLength x:Key="TitleBarButtonsTotalLength">140.0</GridLength>
 
     <x:Double x:Key="DefaultTitleBarHeight">32.0</x:Double>
-    <Thickness x:Key="DefaultTitleBarPadding">14,8</Thickness>
+    <Thickness x:Key="DefaultTitleBarPadding">4,0</Thickness>
     <x:Double x:Key="DefaultTitleBarSpacing">8.0</x:Double>
 
     <x:Double x:Key="MainTitleBarHeight">38.0</x:Double>
-    <Thickness x:Key="MainTitleBarPadding">44,0,18,0</Thickness>
-    <x:Double x:Key="MainTitleBarSpacing">12.0</x:Double>
+    <Thickness x:Key="MainTitleBarPadding">8,0</Thickness>
+    <x:Double x:Key="MainTitleBarSpacing">8.0</x:Double>
 
     <Style BasedOn="{StaticResource DefaultWindowContentControlStyle}" TargetType="custom:WindowContentControl" />
 
@@ -50,7 +50,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="TabNavigation" Value="Cycle" />
         <Setter Property="TabFocusNavigation" Value="Cycle" />
-        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="IsTabStop" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:WindowContentControl">
@@ -70,8 +70,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               Grid.RowSpan="2"
                                               Margin="{TemplateBinding Padding}"
                                               HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                              TabFocusNavigation="Cycle" />
+                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
 
                             <Grid x:Name="WindowTitleBar"
                                   Grid.Row="0"
@@ -91,21 +90,30 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
 
+                                    <ContentPresenter Grid.Column="0"
+                                                      Content="{TemplateBinding TitleBarLeftContent}"
+                                                      IsTabStop="True"
+                                                      VerticalAlignment="Center"
+                                                      Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToBooleanConverter}}" />
+
                                     <Image x:Name="WindowIcon"
-                                           Grid.Column="0"
+                                           Grid.Column="1"
                                            Height="16"
                                            VerticalAlignment="Center"
                                            AutomationProperties.AutomationId="ApplicationIcon"
+                                           IsTabStop="False"
                                            Source="{TemplateBinding IconSource}"
                                            Stretch="Uniform" />
 
                                     <TextBlock x:Name="WindowTitle"
-                                               Grid.Column="1"
+                                               Grid.Column="2"
                                                VerticalAlignment="Center"
                                                AutomationProperties.AutomationId="WindowTitleLabel"
+                                               IsTabStop="False"
                                                Style="{StaticResource CaptionTextBlockStyle}"
                                                Text="{TemplateBinding Title}"
                                                TextTrimming="CharacterEllipsis"

@@ -21,6 +21,8 @@ using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Extensions;
 using ProtonVPN.Client.Services.Activation;
+using ProtonVPN.Client.UI.Main.Components;
+using Windows.Foundation;
 using Windows.Graphics;
 
 namespace ProtonVPN.Client;
@@ -28,7 +30,6 @@ namespace ProtonVPN.Client;
 public sealed partial class MainWindow : IActivationStateAware
 {
     private const double TITLE_BAR_HEIGHT = 38.0;
-    private static RectInt32 TITLE_BAR_INTERACTIVE_AREA = new(10, 6, 26, 26);
 
     public MainWindowActivator WindowActivator { get; }
     public MainWindowOverlayActivator OverlayActivator { get; }
@@ -46,20 +47,42 @@ public sealed partial class MainWindow : IActivationStateAware
 
     public void InvalidateTitleBarOpacity(WindowActivationState activationState)
     {
-        WindowContainer.TitleBarOpacity = activationState.GetTitleBarOpacity();
+        if (WindowContainer != null)
+        {
+            WindowContainer.TitleBarOpacity = activationState.GetTitleBarOpacity();
+        }
     }
 
     public void InvalidateTitleBarVisibility(bool isTitleBarVisible)
     {
-        WindowContainer.IsTitleBarVisible = isTitleBarVisible;
+        if (WindowContainer != null)
+        {
+            WindowContainer.IsTitleBarVisible = isTitleBarVisible;
+        }
 
         IsMinimizable = isTitleBarVisible;
         IsMaximizable = isTitleBarVisible;
         IsResizable = isTitleBarVisible;
 
-        if (isTitleBarVisible)
+        InvalidateTitleDragArea();
+    }
+
+    public void InvalidateTitleDragArea()
+    {
+        bool isTitleBarVisible = WindowContainer?.IsTitleBarVisible ?? false;        
+
+        if (isTitleBarVisible && TitleBarMenuComponent != null)
         {
-            this.SetDragArea(Width, TITLE_BAR_HEIGHT, TITLE_BAR_INTERACTIVE_AREA);
+            Point position = this.GetRelativePosition(TitleBarMenuComponent);
+            Size size = TitleBarMenuComponent.RenderSize;
+
+            RectInt32 interactiveArea = new(
+                _X: (int)position.X,
+                _Y: (int)position.Y,
+                _Width: (int)size.Width,
+                _Height: (int)size.Height);
+
+            this.SetDragArea(Width, TITLE_BAR_HEIGHT, interactiveArea);
         }
         else
         {
@@ -67,10 +90,15 @@ public sealed partial class MainWindow : IActivationStateAware
         };
     }
 
-    protected override bool OnSizeChanged(Windows.Foundation.Size newSize)
+    protected override bool OnSizeChanged(Size newSize)
     {
-        InvalidateTitleBarVisibility(WindowContainer.IsTitleBarVisible);
+        InvalidateTitleDragArea();
 
         return base.OnSizeChanged(newSize);
+    }
+
+    private void OnTitleBarMenuComponentSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        InvalidateTitleDragArea();
     }
 }

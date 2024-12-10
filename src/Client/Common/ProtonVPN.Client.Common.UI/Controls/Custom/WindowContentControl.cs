@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -51,6 +51,9 @@ public class WindowContentControl : ContentControl
 
     public static readonly DependencyProperty TitleBarSpacingProperty =
         DependencyProperty.Register(nameof(TitleBarSpacing), typeof(double), typeof(WindowContentControl), new PropertyMetadata(8.0));
+
+    public static readonly DependencyProperty TitleBarLeftContentProperty =
+        DependencyProperty.Register(nameof(TitleBarLeftContent), typeof(object), typeof(WindowContentControl), new PropertyMetadata(default));
 
     private Image? PART_WindowIcon;
 
@@ -106,6 +109,12 @@ public class WindowContentControl : ContentControl
     {
         get => (double)GetValue(TitleBarOpacityProperty);
         set => SetValue(TitleBarOpacityProperty, value);
+    }
+
+    public object TitleBarLeftContent
+    {
+        get => GetValue(TitleBarLeftContentProperty);
+        set => SetValue(TitleBarLeftContentProperty, value);
     }
 
     public WindowContentControl()

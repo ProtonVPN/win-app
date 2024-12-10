@@ -51,7 +51,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <custom:DualCommandsRow.SecondaryCommandFlyout>
                     <MenuFlyout Closing="OnActionsMenuFlyoutClosing"
-                                Placement="BottomEdgeAlignedRight">
+                                Placement="BottomEdgeAlignedRight"
+                                ShouldConstrainToRootBounds="True">
                         <MenuFlyoutItem Command="{x:Bind PinCommand}"
                                         Text="{x:Bind Localizer.Get('Home_Recents_Pin')}"
                                         Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}">
