@@ -217,7 +217,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                             <custom:DualCommandsRow.SecondaryCommandFlyout>
                                 <MenuFlyout Closing="OnActionsMenuFlyoutClosing"
-                                            Placement="BottomEdgeAlignedRight">
+                                            Placement="BottomEdgeAlignedRight"
+                                            ShouldConstrainToRootBounds="True">
                                     <MenuFlyoutItem Command="{x:Bind EditProfileCommand}"
                                                     Text="{x:Bind Localizer.Get('Common_Actions_Edit')}">
                                         <MenuFlyoutItem.Icon>

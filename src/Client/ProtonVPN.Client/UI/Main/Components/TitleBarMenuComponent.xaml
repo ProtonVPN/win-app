@@ -33,7 +33,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <pathicons:ThreeDotsVertical Size="Pixels16" />
         </custom:GhostButton.LeftIcon>
         <custom:GhostButton.Flyout>
-            <MenuFlyout Placement="BottomEdgeAlignedLeft">
+            <MenuFlyout Placement="BottomEdgeAlignedLeft"
+                        ShouldConstrainToRootBounds="True">
 
                 <MenuFlyoutItem Command="{x:Bind ViewModel.UpdateCommand, Mode=OneTime}"
                                 Style="{StaticResource TitleBarMenuFlyoutItemStyle}"

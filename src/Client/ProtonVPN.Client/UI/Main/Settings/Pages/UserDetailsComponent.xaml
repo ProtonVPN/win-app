@@ -64,7 +64,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <custom:GhostButton.Flyout>
             <MenuFlyout AutomationProperties.AutomationId="AccountFlyoutMenu"
-                                Placement="BottomEdgeAlignedRight">
+                        Placement="BottomEdgeAlignedRight"
+                        ShouldConstrainToRootBounds="True">
                 <MenuFlyoutItem Command="{x:Bind ViewModel.OpenMyAccountUrlCommand, Mode=OneTime}"
                                         Style="{StaticResource HyperlinkMenuFlyoutItemStyle}"
                                         Text="{x:Bind ViewModel.Localizer.Get('Settings_Account_MyAccount')}">

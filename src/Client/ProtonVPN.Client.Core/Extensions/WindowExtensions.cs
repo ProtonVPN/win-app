@@ -23,11 +23,13 @@ using System.Threading.Tasks;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Common.Interop;
 using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Common.UI.Windowing;
 using ProtonVPN.Client.Common.UI.Windowing.System;
 using ProtonVPN.Client.Core.Helpers;
+using Windows.Foundation;
 using Windows.Graphics;
 using Windows.Storage;
 using Windows.Storage.Pickers;
@@ -101,6 +103,20 @@ public static class WindowExtensions
         window.AppWindow.TitleBar.SetDragRectangles([dragRect]);
     }
 
+    public static Point GetRelativePosition(this Window window, UIElement element)
+    {
+        var root = window.Content as FrameworkElement;
+
+        if (root == null || element == null)
+        {
+            return new Point(0, 0);
+        }
+
+        GeneralTransform transform = element.TransformToVisual(root);
+
+        return transform.TransformPoint(new Point(0, 0));
+    }
+
     public static void SetDragArea(this Window window, double width, double height, RectInt32 gap)
     {
         double scaleAdjustment = window.GetDpiForWindow() / 96.0;
@@ -118,7 +134,6 @@ public static class WindowExtensions
             Height = (int)(gap.Height * scaleAdjustment)
         };
 
-        // Define rectangles around the gap
         List<RectInt32> dragRects = new List<RectInt32>();
 
         // Left area
@@ -169,7 +184,6 @@ public static class WindowExtensions
             });
         }
 
-        // Set the drag rectangles
         window.AppWindow.TitleBar.SetDragRectangles(dragRects.ToArray());
     }
 

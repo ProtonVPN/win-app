@@ -186,7 +186,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <pathicons:ThreeDotsVertical />
                     </custom:GhostButton.RightIcon>
                     <Button.Flyout>
-                        <MenuFlyout Placement="TopEdgeAlignedLeft">
+                        <MenuFlyout Placement="TopEdgeAlignedLeft"
+                                    ShouldConstrainToRootBounds="True">
                             <MenuFlyoutItem AutomationProperties.AutomationControlType="MenuItem"
                                             AutomationProperties.AutomationId="Sidebar_Account_Link"
                                             Command="{x:Bind GoToMyAccountCommand, Mode=OneTime}"

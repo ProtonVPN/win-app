@@ -41,14 +41,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                  IconSource="{StaticResource ProtonVpnOnApplicationIconSource}"
                                  Style="{StaticResource MainWindowContentControlStyle}">
 
+        <custom:WindowContentControl.TitleBarLeftContent>
+            <components:TitleBarMenuComponent x:Name="TitleBarMenuComponent"
+                                              SizeChanged="OnTitleBarMenuComponentSizeChanged"/>
+        </custom:WindowContentControl.TitleBarLeftContent>
+
         <Grid>
             <tray:TrayIconComponentView />
 
             <ui:MainWindowShellView x:Name="Shell" />
-
-            <components:TitleBarMenuComponent Margin="10,6,0,0"
-                                              HorizontalAlignment="Left"
-                                              VerticalAlignment="Top" />
         </Grid>
     </custom:WindowContentControl>
 

@@ -79,7 +79,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="AutomationProperties.AutomationId" Value="OverlayMessage" />
         <Setter Property="AutomationProperties.LandmarkType" Value="Custom" />
-        <Setter Property="AutomationProperties.LocalizedLandmarkType" Value="{Binding Title, RelativeSource={RelativeSource Mode=Self}}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ContentDialog">
