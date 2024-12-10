@@ -30,10 +30,6 @@ public class RecentConnection : IRecentConnection
 
     public DateTime? PinTime { get; set; }
 
-    public bool IsActiveConnection { get; set; }
-
-    public bool IsServerUnderMaintenance { get; set; }
-
     public RecentConnection(IConnectionIntent connectionIntent)
     {
         ConnectionIntent = connectionIntent;

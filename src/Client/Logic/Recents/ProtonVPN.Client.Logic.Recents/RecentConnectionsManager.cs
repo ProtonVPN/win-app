@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Api.Contracts;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
@@ -38,6 +37,7 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
+using ProtonVPN.Common.Core.Geographical;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
@@ -99,13 +99,13 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
 
     public IRecentConnection? GetMostRecentConnection()
     {
-        IRecentConnection? mostRecentConnection =
-            _recentConnections.FirstOrDefault(c => c.IsActiveConnection) ??
-            _recentConnections.FirstOrDefault();
+        List<Server> servers = _serversLoader.GetServers().ToList();
+        DeviceLocation? deviceLocation = _settings.DeviceLocation;
 
-        return mostRecentConnection == null || mostRecentConnection.IsServerUnderMaintenance
-            ? null
-            : mostRecentConnection;
+        IRecentConnection? mostRecentConnection = _recentConnections
+            .FirstOrDefault(c => !c.ConnectionIntent.AreAllServersUnderMaintenance(servers, deviceLocation));
+
+        return mostRecentConnection;
     }
 
     public IConnectionIntent GetDefaultConnection()
@@ -181,38 +181,6 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
         }
     }
 
-    public void Receive(ConnectionStatusChangedMessage message)
-    {
-        if (_guestHoleManager.IsActive)
-        {
-            return;
-        }
-
-        lock (_lock)
-        {
-            IConnectionIntent? connectionIntent = _connectionManager.CurrentConnectionIntent;
-
-            try
-            {
-                if (message?.ConnectionStatus != ConnectionStatus.Connecting)
-                {
-                    return;
-                }
-
-                if (TryInsertRecentConnection(connectionIntent))
-                {
-                    TrimRecentConnections();
-                }
-            }
-            finally
-            {
-                //InvalidateActiveConnection();
-
-                SaveAndBroadcastRecentConnectionsChanges();
-            }
-        }
-    }
-
     public void Receive(LoggedInMessage message)
     {
         lock (_lock)
@@ -220,12 +188,61 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
             LoadRecentConnections();
 
             UpdateCurrentConnectionIntent();
-            //InvalidateActiveConnection();
         }
 
         _areRecentsLoaded = true;
 
         BroadcastRecentConnectionsChanges();
+    }
+
+    public void Receive(LoggedOutMessage message)
+    {
+        _areRecentsLoaded = false;
+    }
+
+    public void Receive(ConnectionStatusChangedMessage message)
+    {
+        if (_areRecentsLoaded && !_guestHoleManager.IsActive && (message?.ConnectionStatus) == ConnectionStatus.Connecting)
+        {
+            lock (_lock)
+            {
+                IConnectionIntent? connectionIntent = _connectionManager.CurrentConnectionIntent;
+
+                if (TryInsertRecentConnection(connectionIntent))
+                {
+                    TrimRecentConnections();
+                    SaveAndBroadcastRecentConnectionsChanges();
+                }
+            }
+        }
+    }
+
+    public void Receive(ServerListChangedMessage message)
+    {
+        if (_areRecentsLoaded)
+        {
+            lock (_lock)
+            {
+                if (TryInvalidateRetiredServers())
+                {
+                    SaveAndBroadcastRecentConnectionsChanges();
+                }
+            }
+        }
+    }
+
+    public void Receive(ProfilesChangedMessage message)
+    {
+        if (_areRecentsLoaded)
+        {
+            lock (_lock)
+            {
+                if (TryInvalidateRecentProfiles() || TryInvalidateRetiredServers())
+                {
+                    SaveAndBroadcastRecentConnectionsChanges();
+                }
+            }
+        }
     }
 
     private void UpdateCurrentConnectionIntent()
@@ -236,38 +253,6 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
         // and can therefore display the correct connection info in the connection details panel.
         IRecentConnection? recentConnection = GetMostRecentConnection();
         _connectionManager.InitializeAsync(recentConnection?.ConnectionIntent);
-    }
-
-    public void Receive(LoggedOutMessage message)
-    {
-        _areRecentsLoaded = false;
-    }
-
-    public void Receive(ServerListChangedMessage message)
-    {
-        if (_areRecentsLoaded)
-        {
-            lock (_lock)
-            {
-                InvalidateRetiredAndUnderMaintenanceServers();
-            }
-
-            SaveAndBroadcastRecentConnectionsChanges();
-        }
-    }
-
-    public void Receive(ProfilesChangedMessage message)
-    {
-        if (_areRecentsLoaded)
-        {
-            lock (_lock)
-            {
-                InvalidateRecentProfiles();
-                InvalidateRetiredAndUnderMaintenanceServers();
-            }
-
-            SaveAndBroadcastRecentConnectionsChanges();
-        }
     }
 
     private bool TryInsertRecentConnection(IConnectionIntent? recentIntent)
@@ -295,12 +280,6 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
         if (recentConnection == null)
         {
             return false;
-        }
-
-        // The current connection cannot be removed, simply unpin it.
-        if (recentConnection.IsActiveConnection)
-        {
-            return TryUnpinRecentConnection(recentConnection);
         }
 
         _recentConnections.Remove(recentConnection);
@@ -334,24 +313,10 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
         return true;
     }
 
-    [Obsolete("Active connection is handled on the client")]
-    private void InvalidateActiveConnection()
+    private bool TryInvalidateRecentProfiles()
     {
-        ConnectionStatus currentConnectionStatus = _connectionManager.ConnectionStatus;
-        IConnectionIntent? currentConnectionIntent = _connectionManager.CurrentConnectionIntent;
+        bool hasRecentListBeenModified = false;
 
-        foreach (IRecentConnection connection in _recentConnections)
-        {
-            connection.IsActiveConnection = currentConnectionStatus == ConnectionStatus.Connected
-                                         && currentConnectionIntent != null
-                                         && currentConnectionIntent.IsSameAs(connection.ConnectionIntent);
-        }
-
-        SaveRecentConnections();
-    }
-
-    private void InvalidateRecentProfiles()
-    {
         List<IConnectionProfile> profiles = _profilesManager.GetAll().ToList();
         List<IRecentConnection> recentConnections = _recentConnections.ToList();
 
@@ -368,28 +333,33 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
                 // Profile no longer exists, remove it from recents
                 _logger.Info<AppLog>($"Recent connection {connection.ConnectionIntent} has been removed because the profile has been deleted");
                 _recentConnections.Remove(connection);
-                continue;
             }
+            hasRecentListBeenModified = true;
         }
+
+        return hasRecentListBeenModified;
     }
 
-    private void InvalidateRetiredAndUnderMaintenanceServers()
+    private bool TryInvalidateRetiredServers()
     {
+        bool hasRecentListBeenModified = false;
+
         List<Server> servers = _serversLoader.GetServers().ToList();
         List<IRecentConnection> recentConnections = _recentConnections.ToList();
 
         foreach (IRecentConnection connection in recentConnections)
         {
-            if (connection.ConnectionIntent is not IConnectionProfile profile && 
+            if (connection.ConnectionIntent is not IConnectionProfile profile &&
                 connection.ConnectionIntent.HasNoServers(servers, _settings.DeviceLocation))
             {
                 _logger.Info<AppLog>($"Recent connection {connection.ConnectionIntent} has been removed. All servers for this intent have been retired.");
                 _recentConnections.Remove(connection);
-                continue;
-            }
 
-            connection.IsServerUnderMaintenance = connection.ConnectionIntent.AreAllServersUnderMaintenance(servers, _settings.DeviceLocation);
+                hasRecentListBeenModified = true;
+            }
         }
+
+        return hasRecentListBeenModified;
     }
 
     private void SaveAndBroadcastRecentConnectionsChanges()
