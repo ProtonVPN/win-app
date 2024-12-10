@@ -26,8 +26,6 @@ public class Country : ILocation
     public required string Code { get; init; }
     public required bool IsUnderMaintenance { get; init; }
     public required ServerFeatures Features { get; init; }
-    public required bool IsFree { get; init; } // ServerTier.Free
-    public required bool IsPaid { get; init; } // ServerTier.Basic || ServerTier.Plus
 
     public bool IsLocationUnderMaintenance() => IsUnderMaintenance;
 }

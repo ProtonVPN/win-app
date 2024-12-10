@@ -155,8 +155,6 @@ public partial class GlobalSearchTest
             CountryCode = countryCode,
             IsUnderMaintenance = false,
             Features = features,
-            IsFree = false,
-            IsPaid = true,
         };
     }
 
@@ -168,8 +166,6 @@ public partial class GlobalSearchTest
             CountryCode = countryCode,
             IsUnderMaintenance = false,
             Features = features,
-            IsFree = false,
-            IsPaid = true,
         };
     }
 
@@ -180,8 +176,6 @@ public partial class GlobalSearchTest
             Code = countryCode,
             IsUnderMaintenance = false,
             Features = features,
-            IsFree = false,
-            IsPaid = true,
         };
     }
 

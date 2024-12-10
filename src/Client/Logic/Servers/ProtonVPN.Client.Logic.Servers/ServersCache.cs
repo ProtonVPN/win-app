@@ -49,6 +49,9 @@ public class ServersCache : IServersCache
     private IReadOnlyList<Server> _filteredServers = [];
     public IReadOnlyList<Server> Servers => GetWithReadLock(() => _filteredServers);
 
+    private IReadOnlyList<Country> _freeCountries = [];
+    public IReadOnlyList<Country> FreeCountries => GetWithReadLock(() => _freeCountries);
+
     private IReadOnlyList<Country> _countries = [];
     public IReadOnlyList<Country> Countries => GetWithReadLock(() => _countries);
 
@@ -182,6 +185,7 @@ public class ServersCache : IServersCache
     {
         if (servers is not null && servers.Any())
         {
+            IReadOnlyList<Country> freeCountries = GetFreeCountries(servers);
             IReadOnlyList<Country> countries = GetCountries(servers);
             IReadOnlyList<State> states = GetStates(servers);
             IReadOnlyList<City> cities = GetCities(servers);
@@ -194,6 +198,7 @@ public class ServersCache : IServersCache
             {
                 _originalServers = servers;
                 _filteredServers = filteredServers;
+                _freeCountries = freeCountries;
                 _countries = countries;
                 _states = states;
                 _cities = cities;
@@ -209,30 +214,59 @@ public class ServersCache : IServersCache
         }
     }
 
+    private IReadOnlyList<Country> GetFreeCountries(IEnumerable<Server> servers)
+    {
+        return servers
+            .Where(s => !string.IsNullOrWhiteSpace(s.ExitCountry)
+                     && IsFreeNonB2B(s))
+            .GroupBy(s => s.ExitCountry)
+            .Select(s => new Country()
+            {
+                Code = s.Key,
+                IsUnderMaintenance = IsUnderMaintenance(s),
+                Features = AggregateFeatures(s),
+            })
+            .ToList();
+    }
+
     private IReadOnlyList<Country> GetCountries(IEnumerable<Server> servers)
     {
         return servers
             .Where(s => !string.IsNullOrWhiteSpace(s.ExitCountry)
                      && IsPaidNonB2B(s))
             .GroupBy(s => s.ExitCountry)
-            .Select(s => new Country() {
+            .Select(s => new Country()
+            {
                 Code = s.Key,
                 IsUnderMaintenance = IsUnderMaintenance(s),
                 Features = AggregateFeatures(s),
-                IsFree = HasAnyFreeServer(s),
-                IsPaid = HasAnyPaidServer(s),
             })
             .ToList();
     }
 
     private bool IsPaidNonB2B(Server server)
     {
-        return IsPaid(server) && !server.Features.IsSupported(ServerFeatures.B2B);
+        return IsPaid(server) && IsNonB2B(server);
+    }
+
+    private bool IsFreeNonB2B(Server server)
+    {
+        return IsFree(server) && IsNonB2B(server);
+    }
+
+    private bool IsNonB2B(Server server)
+    {
+        return !server.Features.IsSupported(ServerFeatures.B2B);
     }
 
     private bool IsPaid(Server server)
     {
         return server.Tier is ServerTiers.Basic or ServerTiers.Plus;
+    }
+
+    private bool IsFree(Server server)
+    {
+        return server.Tier is ServerTiers.Free;
     }
 
     private ServerFeatures AggregateFeatures<T>(IGrouping<T, Server> servers)
@@ -268,8 +302,6 @@ public class ServersCache : IServersCache
                 Name = s.Key.State,
                 IsUnderMaintenance = IsUnderMaintenance(s),
                 Features = AggregateFeatures(s),
-                IsFree = HasAnyFreeServer(s),
-                IsPaid = HasAnyPaidServer(s),
             })
             .ToList();
     }
@@ -287,8 +319,6 @@ public class ServersCache : IServersCache
                 Name = c.Key.City,
                 IsUnderMaintenance = IsUnderMaintenance(c),
                 Features = AggregateFeatures(c),
-                IsFree = HasAnyFreeServer(c),
-                IsPaid = HasAnyPaidServer(c),
             })
             .ToList();
     }
