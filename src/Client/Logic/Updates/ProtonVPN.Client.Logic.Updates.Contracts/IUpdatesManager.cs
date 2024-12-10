@@ -27,5 +27,9 @@ public interface IUpdatesManager
 
     Task UpdateAsync();
 
+    bool IsAutoUpdated { get; }
+
+    bool IsAutoUpdateInProgress { get; }
+
     bool IsUpdateAvailable { get; }
 }

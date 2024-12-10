@@ -35,6 +35,7 @@ public interface IUrlsBrowser
     string UsageStatisticsLearnMore { get; }
     string NetShieldLearnMore { get; }
     string KillSwitchLearnMore { get; }
+    string AdvancedKillSwitchLearnMore { get; }
     string PortForwardingLearnMore { get; }
     string SplitTunnelingLearnMore { get; }
     string VpnAcceleratorLearnMore { get; }
@@ -51,6 +52,8 @@ public interface IUrlsBrowser
     string IpAddressLearnMore { get; }
     string IspLearnMore { get; }
     string IncreaseVpnSpeeds { get; }
+    string ActiveProxyLearnMore { get; }
+    string EnableBaseFilteringEngine { get; }
 
     void BrowseTo(string url);
 }

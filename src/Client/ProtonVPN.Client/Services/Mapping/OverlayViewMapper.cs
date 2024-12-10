@@ -42,7 +42,6 @@ public class OverlayViewMapper : ViewMapperBase<OverlayViewModelBase, ContentDia
         ConfigureMapping<TorOverlayViewModel, TorOverlayView>();
         ConfigureMapping<SmartRoutingOverlayViewModel, SmartRoutingOverlayView>();
         ConfigureMapping<ServerLoadOverlayViewModel, ServerLoadOverlayView>();
-        ConfigureMapping<TroubleshootingOverlayViewModel, TroubleshootingOverlayView>();
         ConfigureMapping<SsoLoginOverlayViewModel, SsoLoginOverlayView>();
         ConfigureMapping<OutdatedClientOverlayViewModel, OutdatedClientOverlayView>();
 

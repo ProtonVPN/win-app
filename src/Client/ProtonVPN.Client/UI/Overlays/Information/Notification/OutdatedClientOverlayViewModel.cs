@@ -19,14 +19,14 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Commands;
 using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Contracts.Services.Lifecycle;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Updates.Contracts;
-using ProtonVPN.Client.Services.Browsing;
-using ProtonVPN.Client.UI.Update;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Update.Contracts;
@@ -37,35 +37,37 @@ public partial class OutdatedClientOverlayViewModel : OverlayViewModelBase<IMain
     IEventMessageReceiver<ClientUpdateStateChangedMessage>
 {
     private readonly IUrlsBrowser _urlsBrowser;
-    private readonly UpdateViewModel _updateViewModel;
+    private readonly IUpdateClientCommand _updateClientCommand;
     private readonly IUpdatesManager _updatesManager;
-    private readonly IMainWindowActivator _mainWindowActivator;
+    private readonly IExitService _exitService;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsCheckingForUpdate))]
     [NotifyPropertyChangedFor(nameof(CanUpdate))]
     private AppUpdateStateContract? _lastUpdateState;
 
-    public bool IsCheckingForUpdate => LastUpdateState != null &&
-                                       !LastUpdateState.IsReady &&
-                                       LastUpdateState?.Status is AppUpdateStatus.Checking or AppUpdateStatus.Downloading;
+    public bool IsCheckingForUpdate =>
+        (LastUpdateState != null &&
+         !LastUpdateState.IsReady &&
+         LastUpdateState?.Status is AppUpdateStatus.Checking or AppUpdateStatus.Downloading)
+        || _updatesManager.IsAutoUpdateInProgress;
 
-    public bool CanUpdate => !IsCheckingForUpdate;
+    public bool CanUpdate => _updatesManager.IsUpdateAvailable;
 
     public OutdatedClientOverlayViewModel(
         IUrlsBrowser urlsBrowser,
-        UpdateViewModel updateViewModel,
+        IUpdateClientCommand updateClientCommand,
         IUpdatesManager updatesManager,
-        IMainWindowActivator mainWindowActivator,
+        IExitService exitService,
         IMainWindowOverlayActivator overlayActivator,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter) : base(overlayActivator, localizer, logger, issueReporter)
     {
         _urlsBrowser = urlsBrowser;
-        _updateViewModel = updateViewModel;
+        _updateClientCommand = updateClientCommand;
         _updatesManager = updatesManager;
-        _mainWindowActivator = mainWindowActivator;
+        _exitService = exitService;
     }
 
     protected override void OnActivated()
@@ -80,7 +82,7 @@ public partial class OutdatedClientOverlayViewModel : OverlayViewModelBase<IMain
     {
         if (LastUpdateState != null && LastUpdateState.IsReady)
         {
-            await _updateViewModel.UpdateCommand.ExecuteAsync(null);
+            await _updateClientCommand.Command.ExecuteAsync(null);
         }
         else
         {
@@ -93,7 +95,7 @@ public partial class OutdatedClientOverlayViewModel : OverlayViewModelBase<IMain
     [RelayCommand]
     private void Exit()
     {
-        _mainWindowActivator.Exit();
+        _exitService.Exit();
     }
 
     public void Receive(ClientUpdateStateChangedMessage message)

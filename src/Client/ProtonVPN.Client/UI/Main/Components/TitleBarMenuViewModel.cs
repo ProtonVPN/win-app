@@ -17,8 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Commands;
 using ProtonVPN.Client.Common.Collections;
 using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Contracts.Services.Browsing;
@@ -54,13 +54,15 @@ public partial class TitleBarMenuViewModel : ActivatableViewModelBase,
     private readonly IReportIssueWindowActivator _reportIssueWindowActivator;
     private readonly IReportIssueViewNavigator _reportIssueViewNavigator;
     private readonly IReportIssueDataProvider _reportIssueDataProvider;
+    private readonly IUpdatesManager _updatesManager;
 
-    [ObservableProperty]
-    private bool _isUpdateAvailable;
+    public bool IsUpdateAvailable => _updatesManager.IsUpdateAvailable;
 
     public bool IsVisible => _userAuthenticator.IsLoggedIn;
 
     public SmartObservableCollection<IssueCategory> ReportIssueCategories { get; } = [];
+
+    public IAsyncRelayCommand UpdateCommand { get; }
 
     public TitleBarMenuViewModel(
         IBootstrapper bootstrapper,
@@ -72,6 +74,8 @@ public partial class TitleBarMenuViewModel : ActivatableViewModelBase,
         IReportIssueWindowActivator reportIssueWindowActivator,
         IReportIssueViewNavigator reportIssueViewNavigator,
         IReportIssueDataProvider reportIssueDataProvider,
+        IUpdatesManager updatesManager,
+        IUpdateClientCommand updateClientCommand,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter) : base(localizer, logger, issueReporter)
@@ -85,6 +89,9 @@ public partial class TitleBarMenuViewModel : ActivatableViewModelBase,
         _reportIssueWindowActivator = reportIssueWindowActivator;
         _reportIssueViewNavigator = reportIssueViewNavigator;
         _reportIssueDataProvider = reportIssueDataProvider;
+        _updatesManager = updatesManager;
+
+        UpdateCommand = updateClientCommand.Command;
     }
 
     public void Receive(AuthenticationStatusChanged message)
@@ -94,10 +101,7 @@ public partial class TitleBarMenuViewModel : ActivatableViewModelBase,
 
     public void Receive(ClientUpdateStateChangedMessage message)
     {
-        ExecuteOnUIThread(() =>
-        {
-            // TODO: show Update now menu item if the update is available
-        });
+        ExecuteOnUIThread(() => OnPropertyChanged(nameof(IsUpdateAvailable)));
     }
 
     protected override async void OnActivated()

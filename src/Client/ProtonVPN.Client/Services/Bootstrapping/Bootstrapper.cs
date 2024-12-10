@@ -20,6 +20,8 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Models;
+using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts;
@@ -28,12 +30,12 @@ using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Logic.Updates.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.Settings.Contracts.Extensions;
 using ProtonVPN.Client.Settings.Contracts.Migrations;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
-using ProtonVPN.Client.Core.Services.Activation;
 
 namespace ProtonVPN.Client.Services.Bootstrapping;
 
@@ -42,6 +44,7 @@ public class Bootstrapper : IBootstrapper
     private const int EXIT_DISCONNECTION_TIMEOUT_IN_MS = 5000;
     private const int EXIT_DISCONNECTION_DELAY_IN_MS = 200;
 
+    private readonly IUrlsBrowser _urlsBrowser;
     private readonly IProcessCommunicationStarter _processCommunicationStarter;
     private readonly ISettingsRestorer _settingsRestorer;
     private readonly IServiceManager _serviceManager;
@@ -56,6 +59,7 @@ public class Bootstrapper : IBootstrapper
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
 
     public Bootstrapper(
+        IUrlsBrowser urlsBrowser,
         IProcessCommunicationStarter processCommunicationStarter,
         ISettingsRestorer settingsRestorer,
         IServiceManager serviceManager,
@@ -69,6 +73,7 @@ public class Bootstrapper : IBootstrapper
         IMainWindowActivator mainWindowActivator,
         IMainWindowOverlayActivator mainWindowOverlayActivator)
     {
+        _urlsBrowser = urlsBrowser;
         _processCommunicationStarter = processCommunicationStarter;
         _settingsRestorer = settingsRestorer;
         _serviceManager = serviceManager;
@@ -116,6 +121,12 @@ public class Bootstrapper : IBootstrapper
         {
             _mainWindowActivator.Activate();
 
+            InlineTextButton advancedKillSwitchLearnMoreButton = new()
+            {
+                Text = _localizer.Get("Common_Links_LearnMore"),
+                Url = _urlsBrowser.AdvancedKillSwitchLearnMore,
+            };
+
             ContentDialogResult result = await _mainWindowOverlayActivator.ShowMessageAsync(
                 new MessageDialogParameters
                 {
@@ -124,6 +135,9 @@ public class Bootstrapper : IBootstrapper
                     MessageType = DialogMessageType.RichText,
                     PrimaryButtonText = _localizer.Get("Tray_Actions_ExitApplication"),
                     CloseButtonText = _localizer.Get("Common_Actions_Cancel"),
+                    TrailingInlineButton = _settings.IsAdvancedKillSwitchActive()
+                        ? advancedKillSwitchLearnMoreButton
+                        : null
                 });
 
             if (result is not ContentDialogResult.Primary) // Cancel exit
@@ -147,7 +161,7 @@ public class Bootstrapper : IBootstrapper
         }
 
         _mainWindowActivator.Exit();
-        await _serviceManager.StopAsync();
+        _serviceManager.Stop();
     }
 
     private void HandleCommandLineArguments()

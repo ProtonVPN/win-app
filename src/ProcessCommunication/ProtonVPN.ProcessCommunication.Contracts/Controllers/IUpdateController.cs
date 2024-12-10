@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,13 +20,12 @@
 using System.ServiceModel;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Update;
 
-namespace ProtonVPN.ProcessCommunication.Contracts.Controllers
-{
-    [ServiceContract]
-    public interface IUpdateController : IServiceController
-    {
-        Task CheckForUpdate(UpdateSettingsIpcEntity updateSettingsIpcEntity);
+namespace ProtonVPN.ProcessCommunication.Contracts.Controllers;
 
-        Task StartAutoUpdate();
-    }
+[ServiceContract]
+public interface IUpdateController : IServiceController
+{
+    Task CheckForUpdate(UpdateSettingsIpcEntity updateSettingsIpcEntity);
+
+    Task StartAutoUpdate(StartAutoUpdateIpcEntity startAutoUpdateIpcEntity);
 }

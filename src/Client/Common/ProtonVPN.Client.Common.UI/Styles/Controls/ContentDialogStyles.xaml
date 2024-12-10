@@ -58,7 +58,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Thickness x:Key="ContentDialogMargin">4,16</Thickness>
 
     <Thickness x:Key="ContentDialogTitleMargin">0,2,0,0</Thickness>
-    <Thickness x:Key="ContentDialogContentMargin">0,8,0,0</Thickness>
+    <Thickness x:Key="ContentDialogContentMargin">0,0,0,0</Thickness>
     <Visibility x:Key="ContentDialogCloseButtonVisibility">Visible</Visibility>
     <Visibility x:Key="ContentDialogCloseOutsideAreaVisibility">Visible</Visibility>
 

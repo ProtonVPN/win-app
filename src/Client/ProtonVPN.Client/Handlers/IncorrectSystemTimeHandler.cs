@@ -23,11 +23,9 @@ using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.Core.Services.Activation;
-using ProtonVPN.Client.Core.Services.Notification;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Handlers.Bases;
 using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Configurations.Contracts;
 
 namespace ProtonVPN.Client.Handlers;

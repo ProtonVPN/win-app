@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Client.Common.Observers;
+using ProtonVPN.Client.Contracts.Services.Lifecycle;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
@@ -27,7 +28,7 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Logic.Updates.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.Settings.Contracts.Extensions;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Common.Legacy.OS.Processes;
 using ProtonVPN.Configurations.Contracts;
@@ -56,22 +57,23 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IVpnServiceSettingsUpdater _vpnServiceSettingsUpdater;
     private readonly IOsProcesses _osProcesses;
+    private readonly IExitService _exitService;
 
-    private bool _manualCheck;
     private bool _requestedManualCheck;
-    private bool _isAutoUpdated;
     private DateTime _lastCheckTime;
     private FeedType _feedType;
 
     private AppUpdateStateContract? _lastUpdateState;
-    private DateTime _lastNotifiedAt = DateTime.MinValue;
 
     private bool IsToCheckForUpdate => DateTime.UtcNow - _lastCheckTime >= _config.UpdateCheckInterval;
-    private bool IsToRemindAboutUpdate => _manualCheck || DateTime.UtcNow - _lastNotifiedAt >= _config.UpdateRemindInterval;
 
     protected override TimeSpan PollingInterval => _config.UpdateCheckInterval;
 
-    public bool IsUpdateAvailable => _lastUpdateState is not null && _lastUpdateState.IsReady;
+    public bool IsAutoUpdated { get; private set; }
+
+    public bool IsAutoUpdateInProgress { get; private set; }
+
+    public bool IsUpdateAvailable => _lastUpdateState?.IsReady == true && (!_settings.AreAutomaticUpdatesEnabled || IsAutoUpdated);
 
     public UpdatesManager(
         ILogger logger,
@@ -83,7 +85,8 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
         IUpdateServiceCaller updateServiceCaller,
         IEventMessageSender eventMessageSender,
         IVpnServiceSettingsUpdater vpnServiceSettingsUpdater,
-        IOsProcesses osProcesses) : base(logger, issueReporter)
+        IOsProcesses osProcesses,
+        IExitService exitService) : base(logger, issueReporter)
     {
         _connectionManager = connectionManager;
         _config = config;
@@ -93,11 +96,13 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
         _eventMessageSender = eventMessageSender;
         _vpnServiceSettingsUpdater = vpnServiceSettingsUpdater;
         _osProcesses = osProcesses;
+        _exitService = exitService;
     }
 
-    protected async override Task OnTriggerAsync()
+    protected override Task OnTriggerAsync()
     {
         CheckForUpdate(false);
+        return Task.CompletedTask;
     }
 
     public void CheckForUpdate(bool isManualCheck)
@@ -120,10 +125,7 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
     {
         if (message.PropertyName == nameof(ISettings.IsBetaAccessEnabled))
         {
-            SendClientUpdateStateChangeMessage(new ClientUpdateStateChangedMessage
-            {
-                IsUpdateAvailable = false,
-            });
+            SendClientUpdateStateChangeMessage(new ClientUpdateStateChangedMessage());
             CheckForUpdate(true);
         }
     }
@@ -143,16 +145,20 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
         AppUpdateStateContract state = _entityMapper.Map<UpdateStateIpcEntity, AppUpdateStateContract>(message);
         if (state.IsReady && _settings.AreAutomaticUpdatesEnabled && state.Status == AppUpdateStatus.Ready)
         {
+            IsAutoUpdateInProgress = true;
+            SendClientUpdateStateChangeMessage(new ClientUpdateStateChangedMessage());
+
             _updateServiceCaller.StartAutoUpdateAsync();
         }
         else
         {
             if (state.Status == AppUpdateStatus.AutoUpdated)
             {
-                _isAutoUpdated = true;
+                IsAutoUpdated = true;
+                IsAutoUpdateInProgress = false;
             }
 
-            if (_isAutoUpdated && state.IsReady)
+            if (IsAutoUpdated && state.IsReady)
             {
                 state.Status = AppUpdateStatus.AutoUpdated;
             }
@@ -167,26 +173,16 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
         {
             if (state.Status == AppUpdateStatus.Checking)
             {
-                _manualCheck = _requestedManualCheck;
                 _requestedManualCheck = false;
             }
 
-            bool isUpdateAvailable = state.IsReady || (IsAppReadyForUpdateOrUpdated(state.Status) && IsToRemindAboutUpdate);
-            _lastNotifiedAt = DateTime.UtcNow;
-
             SendClientUpdateStateChangeMessage(new ClientUpdateStateChangedMessage
             {
-                State = state,
-                IsUpdateAvailable = isUpdateAvailable,
+                State = state
             });
 
             _lastUpdateState = state;
         }
-    }
-
-    private bool IsAppReadyForUpdateOrUpdated(AppUpdateStatus status)
-    {
-        return status is AppUpdateStatus.Ready or AppUpdateStatus.AutoUpdated or AppUpdateStatus.AutoUpdateFailed;
     }
 
     public void Receive(ConnectionStatusChangedMessage message)
@@ -226,7 +222,7 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
         string cmd = $"/c Timeout /t {APP_EXIT_TIMEOUT_IN_SECONDS} >nul & \"{_config.ClientLauncherExePath}\"";
         using IOsProcess process = _osProcesses.CommandLineProcess(cmd);
         process.Start();
-        SendUpdatingStatus();
+        _exitService.Exit();
     }
 
     private async Task UpdateManuallyAsync()
@@ -238,7 +234,7 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
 
         LogUpdateStartingMessage();
 
-        if (_settings.IsKillSwitchEnabled && _settings.KillSwitchMode == KillSwitchMode.Advanced)
+        if (_settings.IsAdvancedKillSwitchActive())
         {
             await _vpnServiceSettingsUpdater.SendAsync(KillSwitchModeIpcEntity.Off);
         }
@@ -246,32 +242,16 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
         try
         {
             _osProcesses.ElevatedProcess(_lastUpdateState.FilePath, _lastUpdateState.FileArguments).Start();
-            SendUpdatingStatus();
+            _exitService.Exit();
         }
         catch (System.ComponentModel.Win32Exception)
         {
             // Privileges were not granted
-            if (_settings.IsKillSwitchEnabled && _settings.KillSwitchMode == KillSwitchMode.Advanced)
+            if (_settings.IsAdvancedKillSwitchActive())
             {
                 await _vpnServiceSettingsUpdater.SendAsync(KillSwitchModeIpcEntity.Hard);
             }
         }
-    }
-
-    private void SendUpdatingStatus()
-    {
-        if (_lastUpdateState == null)
-        {
-            return;
-        }
-
-        _lastUpdateState.Status = AppUpdateStatus.Updating;
-
-        SendClientUpdateStateChangeMessage(new ClientUpdateStateChangedMessage
-        {
-            State = _lastUpdateState,
-            IsUpdateAvailable = false,
-        });
     }
 
     private void LogUpdateStartingMessage()

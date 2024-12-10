@@ -74,7 +74,7 @@ public class Service : IService
 
     public bool IsEnabled()
     {
-        return GetService()?.StartType == ServiceStartMode.Manual;
+        return GetService()?.StartType is not ServiceStartMode.Disabled;
     }
 
     public void Enable()

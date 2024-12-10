@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -36,4 +36,6 @@ public struct MessageDialogParameters
     public bool UseVerticalLayoutForButtons { get; set; }
 
     public bool ShowLoadingAnimation { get; set; }
+
+    public InlineTextButton? TrailingInlineButton { get; set; }
 }

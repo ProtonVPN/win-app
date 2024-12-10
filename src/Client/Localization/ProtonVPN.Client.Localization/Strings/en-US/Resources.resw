@@ -1274,6 +1274,15 @@
   <data name="Dialogs_ServerLoad_Title" xml:space="preserve">
     <value>What is server load?</value>
   </data>
+  <data name="Dialogs_SystemProxy_Title" xml:space="preserve">
+    <value>Proxy server detected</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Description" xml:space="preserve">
+    <value>It looks like your device is using a proxy server. This may interfere with your VPN protection.</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Disable" xml:space="preserve">
+    <value>Disable proxy</value>
+  </data>
   <data name="Format_Milliseconds" xml:space="preserve">
     <value>{0}ms</value>
     <comment>Format a number as a time in milliseconds. {0} is a place holder for the number of milliseconds (eg. 46ms)</comment>
@@ -1716,11 +1725,11 @@
     <value>Change protocol in profiles</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Message" xml:space="preserve">
-    <value>You’re currently connected to a VPN profile. 
+    <value>You're currently connected to a VPN profile.
 
 • To change the protocol for this connection, disconnect then edit your profile.
 
-• To change your protocol for other VPN connections, you’ll need to disconnect from your profile first.</value>
+• To change your protocol for other VPN connections, you'll need to disconnect from your profile first.</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Action" xml:space="preserve">
     <value>Go to profiles</value>
@@ -2004,6 +2013,9 @@
   <data name="Common_Actions_ContactUs" xml:space="preserve">
     <value>Contact us</value>
   </data>
+  <data name="Common_Actions_GotIt" xml:space="preserve">
+    <value>Got it</value>
+  </data>
   <data name="Dialogs_ReportIssue_QuickFixes" xml:space="preserve">
     <value>Quick fixes</value>
   </data>
@@ -2034,7 +2046,7 @@
     <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_NoLogsWarning" xml:space="preserve">
-    <value>Error logs help us to get to the bottom of your issue. If you don’t include them, we may not be able to investigate fully.</value>
+    <value>Error logs help us to get to the bottom of your issue. If you don't include them, we may not be able to investigate fully.</value>
   </data>
   <data name="Dialogs_ReportIssue_SendReport" xml:space="preserve">
     <value>Send report</value>
@@ -2047,9 +2059,6 @@
   </data>
   <data name="Dialogs_ReportIssue_Result_Fail_Description" xml:space="preserve">
     <value>We couldn't send your report. Please check your connection and try again.</value>
-  </data>
-  <data name="Dialogs_ReportIssue_Result_RetryAction" xml:space="preserve">
-    <value>Try again</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Success" xml:space="preserve">
     <value>Report sent</value>
@@ -2361,7 +2370,7 @@ This higher level of protection may cause higher latency and slower speeds.</val
   <data name="Dialogs_SmartRouting_Description" xml:space="preserve">
     <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
 
-When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.
 
 Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
   </data>
@@ -2441,7 +2450,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Overlay_SmartRouting_Description" xml:space="preserve">
     <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
     
-When you connect to a Smart Routing server, you’ll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
 
 Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
   </data>
@@ -2530,6 +2539,12 @@ This higher level of protection may cause higher latency and slower speeds.</val
   </data>
   <data name="Dialogs_SmartRouting_Title" xml:space="preserve">
     <value>Smart Routing</value>
+  </data>
+  <data name="Dialogs_DisabledService_Title" xml:space="preserve">
+    <value>Enable Windows Service to continue</value>
+  </data>
+  <data name="Dialogs_DisabledService_Description" xml:space="preserve">
+    <value>Looks like the Proton VPN Service is disabled. You'll need to re-enable the service to connect.</value>
   </data>
   <data name="Connections_Fastest" xml:space="preserve">
     <value>Fastest</value>
@@ -2653,7 +2668,7 @@ This higher level of protection may cause higher latency and slower speeds.</val
     <value>Connection failed</value>
   </data>
   <data name="Connection_Error_NoServers" xml:space="preserve">
-    <value>There are no servers available right now for your selection. Please select a different option.</value>
+    <value>All servers in your selection are unavailable. Please expand your selection or try again later.</value>
   </data>
   <data name="Connection_Error_NoServers_Profile" xml:space="preserve">
     <value>Your server selection for '{0}' is unavailable. Select a different server or try again later.</value>
@@ -2669,7 +2684,7 @@ This higher level of protection may cause higher latency and slower speeds.</val
     <value>There's a problem validating the VPN server certificate, which might indicate that the network connection is being tampered with or the server you are trying to connect to has a configuration problem. Get help from our customer support by sending an Issue Report.</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse" xml:space="preserve">
-    <value>Proton VPN could not connect because a WireGuard network adapter is already in use. Please disconnect any active VPNs and retry. Alternatively, you can switch protocols in the Advanced Settings.</value>
+    <value>Your device's WireGuard adapter is in use. Disconnect from any other VPN running on your device, then try again.</value>
   </data>
   <data name="Connection_Error_NoTapAdapters" xml:space="preserve">
     <value>The network adapter is missing.</value>
@@ -2684,7 +2699,7 @@ This higher level of protection may cause higher latency and slower speeds.</val
     <value>Proton VPN can't connect because the RPC server is unavailable on your system.</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions" xml:space="preserve">
-    <value>View possible solutions</value>
+    <value>View fixes</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser" xml:space="preserve">
     <value>You have reached your maximum device limit. Please disconnect another device to connect this one or upgrade to PLUS to get up to 10 devices connected at the same time.</value>
@@ -2732,10 +2747,10 @@ This higher level of protection may cause higher latency and slower speeds.</val
     <value>You'll be disconnected from VPN.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message" xml:space="preserve">
-    <value>**Advanced kill switch is enabled.** If you continue, you will be disconnected from the internet.</value>
+    <value>Advanced kill switch is enabled. If you continue, you will be disconnected from the internet.</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message" xml:space="preserve">
-    <value>**Advanced kill switch is enabled.** To use the internet without VPN, disable advanced kill switch.</value>
+    <value>Advanced kill switch is enabled. To use the internet without VPN, disable advanced kill switch.</value>
   </data>
   <data name="Home_Account_SignOut_Confirmation_Title" xml:space="preserve">
     <value>Sign out from {0}?</value>
@@ -2781,12 +2796,23 @@ This higher level of protection may cause higher latency and slower speeds.</val
   <data name="Common_Actions_Update" xml:space="preserve">
     <value>Update</value>
   </data>
-  <data name="Home_Update_Confirmation_Message" xml:space="preserve">
-    <value>To complete the update process, Proton VPN will temporarily disconnect and deactivate Advanced Kill Switch if any of these are active. Do you want to continue?</value>
-    <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
+  <data name="Common_Actions_Install" xml:space="preserve">
+    <value>Install</value>
   </data>
-  <data name="Home_Update_Confirmation_Title" xml:space="preserve">
-    <value>Update Proton VPN?</value>
+  <data name="Common_Actions_Restart" xml:space="preserve">
+    <value>Restart</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Restart" xml:space="preserve">
+    <value>Restart Proton VPN to complete update</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Install" xml:space="preserve">
+    <value>Install update?</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOff" xml:space="preserve">
+    <value>This will disconnect you from VPN. Any active internet connections will be temporarily unprotected.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn" xml:space="preserve">
+    <value>This will disconnect you from VPN and temporarily disable kill switch. Any active internet connections will be temporarily unprotected.</value>
   </data>
   <data name="Home_Update_UpdateAvailable" xml:space="preserve">
     <value>Update available</value>
@@ -2869,7 +2895,7 @@ This higher level of protection may cause higher latency and slower speeds.</val
     <value>Update Proton VPN</value>
   </data>
   <data name="Components_Update_MoreLikelyIssues" xml:space="preserve">
-    <value>You’re more likely to have issues on older versions of ProtonVPN.</value>
+    <value>You're more likely to have issues on older versions of ProtonVPN.</value>
   </data>
   <data name="Components_Update_GetMostFromYourVpn" xml:space="preserve">
     <value>Get the most from your VPN by updating to the latest version of the app.</value>
@@ -2885,9 +2911,6 @@ This higher level of protection may cause higher latency and slower speeds.</val
   </data>
   <data name="Settings_About_FailedToFetch" xml:space="preserve">
     <value>Failed to load changelog information.</value>
-  </data>
-  <data name="Settings_About_TryAgain" xml:space="preserve">
-    <value>Try again</value>
   </data>
   <data name="FreeConnections_SecureCoreUpsell" xml:space="preserve">
     <value>Add another layer of encryption to your VPN connection</value>
@@ -2909,6 +2932,9 @@ This higher level of protection may cause higher latency and slower speeds.</val
   <data name="Common_Actions_DisconnectFrom" xml:space="preserve">
     <value>Disconnect from {0}</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
+  <data name="Common_Actions_TryAgain" xml:space="preserve">
+    <value>Try again</value>
   </data>
   <data name="SystemNotification_Connected" xml:space="preserve">
     <value>You are now protected</value>
@@ -3137,7 +3163,7 @@ This higher level of protection may cause higher latency and slower speeds.</val
     <value>Use a different network</value>
   </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork_Description" xml:space="preserve">
-    <value>Try switching Wi-Fi networks, or use mobile data.</value>
+    <value>Try switching Wi-Fi networks, or use mobile data instead.</value>
   </data>
   <data name="Dialogs_Troubleshooting_Antivirus" xml:space="preserve">
     <value>Turn off antivirus or firewall software</value>
@@ -3150,9 +3176,6 @@ This higher level of protection may cause higher latency and slower speeds.</val
   </data>
   <data name="Dialogs_Troubleshooting_StatusPage_Description" xml:space="preserve">
     <value>Just to be sure that Proton services are running as normal.</value>
-  </data>
-  <data name="Dialogs_Troubleshooting_DidNotWork" xml:space="preserve">
-    <value>Didn't work?</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Title" xml:space="preserve">
     <value>Welcome to VPN Plus</value>
@@ -3205,6 +3228,15 @@ This higher level of protection may cause higher latency and slower speeds.</val
     <value>Congratulations! You unlocked premium security and performance features on all Proton services.
 
 Enjoy the best of Proton privacy.</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Title" xml:space="preserve">
+    <value>Action required to connect</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Description" xml:space="preserve">
+    <value>We couldn't connect you because the Base Filtering Engine (BFE) service on your Windows device is disabled. Enable Base Filtering Engine and try again.</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_HowToEnable" xml:space="preserve">
+    <value>How to enable Base Filtering Engine</value>
   </data>
   <data name="Connections_Profiles_Name" xml:space="preserve">
     <value>Profile name</value>
@@ -3558,7 +3590,7 @@ Enjoy the best of Proton privacy.</value>
     <value>Your IP address is visible</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Connected" xml:space="preserve">
-    <value>Your VPN IP masks your real IP address. This makes it look like you’re browsing from your VPN location, so your online activity can’t be linked to your device.</value>
+    <value>Your VPN IP masks your real IP address. This makes it look like you're browsing from your VPN location, so your online activity can't be linked to your device.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected" xml:space="preserve">
     <value>This unique code can be used by websites and ISPs (Internet Service Providers) to link your location and browsing history to your device. 
@@ -3579,7 +3611,7 @@ A VPN masks your IP address, making it harder for your activity to be traced bac
 
 Websites can use geoblocks to restrict content to certain locations. Governments can also instruct ISPs (Internet Service Providers) to block certain websites in their country.
 
-A VPN makes it looks like you’re browsing from somewhere else, protecting you from surveillance and censorship.</value>
+A VPN makes it looks like you're browsing from somewhere else, protecting you from surveillance and censorship.</value>
   </data>
   <data name="Flyouts_Isp_Title" xml:space="preserve">
     <value>Provider</value>
@@ -3664,7 +3696,7 @@ A VPN hides your IP address, protecting you from ISP interference.</value>
   <data name="Flyouts_Speed_Description" xml:space="preserve">
     <value>This shows how much data gets transmitted through Proton VPN each second.
 
-Speed is based on your device’s current activity — it doesn’t represent the VPN’s maximum speed.</value>
+Speed is based on your device's current activity — it doesn't represent the VPN's maximum speed.</value>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle" xml:space="preserve">
     <value>Understanding and increasing VPN connection speeds</value>
@@ -3706,10 +3738,10 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Your IP address could be exposed if your VPN connection drops</value>
   </data>
   <data name="Flyouts_KillSwitch_Advanced_Success" xml:space="preserve">
-    <value>Blocks all internet access when you’re not connected to Proton VPN</value>
+    <value>Blocks all internet access when you're not connected to Proton VPN</value>
   </data>
   <data name="Flyouts_KillSwitch_Standard_Success" xml:space="preserve">
-    <value>If your VPN connection drops, you’ll be disconnected from the internet until VPN is restored</value>
+    <value>If your VPN connection drops, you'll be disconnected from the internet until VPN is restored</value>
   </data>
   <data name="Flyouts_KillSwitch_Warning_Disconnected" xml:space="preserve">
     <value>To get back online, connect to VPN or disable advanced kill switch</value>
@@ -3721,10 +3753,10 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Protect yourself from ads, trackers, and malware on websites and apps</value>
   </data>
   <data name="Flyouts_NetShield_MalwareOnly_Success" xml:space="preserve">
-    <value>You’re protected from malware only</value>
+    <value>You're protected from malware only</value>
   </data>
   <data name="Flyouts_NetShield_AdsMalwareTrackers_Success" xml:space="preserve">
-    <value>You’re protected from ads, trackers, and malware</value>
+    <value>You're protected from ads, trackers, and malware</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Title" xml:space="preserve">
     <value>Enjoy ad-free browsing</value>

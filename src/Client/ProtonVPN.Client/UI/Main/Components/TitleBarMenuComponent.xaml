@@ -35,7 +35,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <custom:GhostButton.Flyout>
             <MenuFlyout Placement="BottomEdgeAlignedLeft">
 
-                <MenuFlyoutItem Style="{StaticResource TitleBarMenuFlyoutItemStyle}"
+                <MenuFlyoutItem Command="{x:Bind ViewModel.UpdateCommand, Mode=OneTime}"
+                                Style="{StaticResource TitleBarMenuFlyoutItemStyle}"
                                 Text="{x:Bind ViewModel.Localizer.Get('Home_TitleBar_Menu_UpdateNow')}"
                                 Visibility="{x:Bind ViewModel.IsUpdateAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <MenuFlyoutItem.Icon>

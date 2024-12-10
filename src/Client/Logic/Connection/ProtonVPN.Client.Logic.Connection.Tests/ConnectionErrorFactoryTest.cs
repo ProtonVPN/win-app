@@ -126,7 +126,7 @@ public class ConnectionErrorFactoryTest
             new RpcServerUnavailableConnectionError(_localizer!, _urlsBrowser!),
             new NoServersForProfileConnectionError(_localizer!, _profileEditor!, _connectionManager!),
             new NoServersConnectionError(_localizer!, _reportIssueWindowActivator!),
-            new WireGuardAdapterInUseConnectionError(_localizer!, _reportIssueWindowActivator!),
+            new WireGuardAdapterInUseConnectionError(_localizer!, _connectionManager!),
             new MissingConnectionCertificateError(_localizer!, _reportIssueWindowActivator!),
             new TlsCertificateConnectionError(_localizer!, _reportIssueWindowActivator!),
             new SessionLimitReachedConnectionError(_localizer!, _settings!, _reportIssueWindowActivator!),

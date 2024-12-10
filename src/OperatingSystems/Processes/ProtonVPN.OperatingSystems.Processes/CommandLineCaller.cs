@@ -26,6 +26,8 @@ namespace ProtonVPN.OperatingSystems.Processes;
 
 public class CommandLineCaller : ICommandLineCaller
 {
+    private const int PROCESS_TIMEOUT_IN_MILLISECONDS = 1000;
+
     private readonly ILogger _logger;
 
     public CommandLineCaller(ILogger logger)
@@ -49,6 +51,7 @@ public class CommandLineCaller : ICommandLineCaller
                 }
             };
             process.Start();
+            process.WaitForExit(PROCESS_TIMEOUT_IN_MILLISECONDS);
         } 
         catch
         {

@@ -17,17 +17,27 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts;
 
 namespace ProtonVPN.Client.Logic.Connection.ConnectionErrors;
 
-public class WireGuardAdapterInUseConnectionError : ReportableConnectionError
+public class WireGuardAdapterInUseConnectionError : ConnectionErrorBase
 {
+    private readonly IConnectionManager _connectionManager;
+
     public override string Message => Localizer.Get("Connection_Error_WireGuardAdapterInUse");
 
-    public WireGuardAdapterInUseConnectionError(ILocalizationProvider localizer, IReportIssueWindowActivator reportIssueWindowActivator)
-        : base(localizer, reportIssueWindowActivator)
+    public override string ActionLabel => Localizer.Get("Common_Actions_TryAgain");
+
+    public WireGuardAdapterInUseConnectionError(ILocalizationProvider localizer, IConnectionManager connectionManager)
+        : base(localizer)
     {
+        _connectionManager = connectionManager;
+    }
+
+    public override Task ExecuteActionAsync()
+    {
+        return _connectionManager.ReconnectAsync();
     }
 }

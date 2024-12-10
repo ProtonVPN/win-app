@@ -39,6 +39,11 @@ public class UpdateServiceCaller : ServiceCallerBase<IUpdateController>, IUpdate
 
     public Task StartAutoUpdateAsync()
     {
-        return InvokeAsync(c => c.StartAutoUpdate().Wrap());
+        StartAutoUpdateIpcEntity startAutoUpdateIpcEntity = new()
+        {
+            RetryId = Guid.NewGuid()
+        };
+
+        return InvokeAsync(c => c.StartAutoUpdate(startAutoUpdateIpcEntity).Wrap());
     }
 }

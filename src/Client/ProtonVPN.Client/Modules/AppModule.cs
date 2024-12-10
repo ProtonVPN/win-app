@@ -20,10 +20,12 @@
 using Autofac;
 using Autofac.Builder;
 using ProtonVPN.Api.Installers;
+using ProtonVPN.Client.Commands;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.EventMessaging.Installers;
 using ProtonVPN.Client.Factories;
 using ProtonVPN.Client.Files.Installers;
+using ProtonVPN.Client.Handlers;
 using ProtonVPN.Client.Handlers.Bases;
 using ProtonVPN.Client.Localization.Installers;
 using ProtonVPN.Client.Logic.Announcements.Installers;
@@ -43,6 +45,8 @@ using ProtonVPN.Client.Services.Bootstrapping;
 using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Services.Dispatching;
 using ProtonVPN.Client.Services.Edition;
+using ProtonVPN.Client.Services.Enabling;
+using ProtonVPN.Client.Services.Lifecycle;
 using ProtonVPN.Client.Services.Mapping;
 using ProtonVPN.Client.Services.Navigation;
 using ProtonVPN.Client.Services.Notification;
@@ -56,6 +60,7 @@ using ProtonVPN.Client.UI;
 using ProtonVPN.Client.UI.Dialogs.DebugTools;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue.Pages;
+using ProtonVPN.Client.UI.Dialogs.Troubleshooting;
 using ProtonVPN.Client.UI.Dialogs.Upsell;
 using ProtonVPN.Client.UI.Dialogs.Upsell.Features;
 using ProtonVPN.Client.UI.Login;
@@ -118,6 +123,7 @@ using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Installers;
 using ProtonVPN.NetworkTimeProtocols.Installers;
+using ProtonVPN.OperatingSystems.Network.Installers;
 using ProtonVPN.OperatingSystems.Processes.Installers;
 using ProtonVPN.OperatingSystems.Registries.Installers;
 using ProtonVPN.OperatingSystems.Services.Installers;
@@ -138,6 +144,7 @@ public class AppModule : Module
         RegisterLocalHandlers(builder);
         RegisterViewModels(builder);
         RegisterExternalServices(builder);
+        RegisterCommands(builder);
     }
 
     private void RegisterExternalServices(ContainerBuilder builder)
@@ -145,6 +152,8 @@ public class AppModule : Module
         builder.RegisterType<SystemProcesses>().As<IOsProcesses>().SingleInstance();
         builder.RegisterType<SystemState>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<DeviceIdCache>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ServiceEnabler>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<BaseFilteringEngineDialogHandler>().AsImplementedInterfaces().SingleInstance();
     }
 
     private void RegisterExternalModules(ContainerBuilder builder)
@@ -181,6 +190,7 @@ public class AppModule : Module
                .RegisterModule<UsersLogicModule>()
                .RegisterModule<AnnouncementsModule>()
                .RegisterModule<SearchesModule>()
+               .RegisterModule<NetworkModule>()
                .RegisterModule<UnsecureWifiDetectionModule>()
                .RegisterModule<NetworkTimeProtocolsModule>();
     }
@@ -216,6 +226,7 @@ public class AppModule : Module
         builder.RegisterType<UpsellCarouselViewNavigator>().AsSelf().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<DebugToolsWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<TroubleshootingWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<AppNotificationSender>().AsSelf().AsImplementedInterfaces().SingleInstance();
 
@@ -233,6 +244,8 @@ public class AppModule : Module
         builder.Register(c =>
             new SafeSystemNetworkInterfaces(c.Resolve<ILogger>(), new SystemNetworkInterfaces()))
             .As<INetworkInterfaces>().SingleInstance();
+
+        builder.RegisterType<ExitService>().AsImplementedInterfaces().SingleInstance();
     }
 
     private void RegisterLocalHandlers(ContainerBuilder builder)
@@ -244,6 +257,16 @@ public class AppModule : Module
                .AsImplementedInterfaces()
                .SingleInstance()
                .AutoActivate();
+    }
+
+    private void RegisterCommands(ContainerBuilder builder)
+    {
+        Type providerType = typeof(ICommandProvider);
+
+        builder.RegisterAssemblyTypes(providerType.Assembly)
+               .Where(providerType.IsAssignableFrom)
+               .AsImplementedInterfaces()
+               .SingleInstance();
     }
 
     private void RegisterViewModels(ContainerBuilder builder)
@@ -339,7 +362,6 @@ public class AppModule : Module
         RegisterViewModel<TorOverlayViewModel>(builder);
         RegisterViewModel<SmartRoutingOverlayViewModel>(builder);
         RegisterViewModel<ServerLoadOverlayViewModel>(builder);
-        RegisterViewModel<TroubleshootingOverlayViewModel>(builder);
         RegisterViewModel<SsoLoginOverlayViewModel>(builder);
         RegisterViewModel<OutdatedClientOverlayViewModel>(builder).AutoActivate();
         RegisterViewModel<WelcomeOverlayViewModel>(builder);
@@ -365,6 +387,7 @@ public class AppModule : Module
         RegisterViewModel<SpeedFlyoutViewModel>(builder).AutoActivate();
 
         RegisterViewModel<DebugToolsShellViewModel>(builder);
+        RegisterViewModel<TroubleshootingShellViewModel>(builder);
 
         builder.RegisterType<ReleaseViewModelFactory>().SingleInstance();
     }

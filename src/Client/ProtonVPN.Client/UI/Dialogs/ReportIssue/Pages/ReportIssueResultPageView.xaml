@@ -61,7 +61,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <Button AutomationProperties.AutomationId="ReportIssueRetryButton"
                     Command="{x:Bind ViewModel.RetryCommand, Mode=OneTime}"
-                    Content="{x:Bind ViewModel.Localizer.Get('Dialogs_ReportIssue_Result_RetryAction')}"
+                    Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_TryAgain')}"
                     Style="{StaticResource PrimaryButtonStyle}"
                     Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource BooleanToVisibilityConverter}}" />
         </Grid>

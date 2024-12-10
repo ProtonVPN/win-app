@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,15 +20,15 @@
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Core.Bases;
 
-namespace ProtonVPN.Client.UI.Overlays.Information;
+namespace ProtonVPN.Client.UI.Dialogs.Troubleshooting;
 
-public sealed partial class TroubleshootingOverlayView : IContextAware
+public sealed partial class TroubleshootingShellView : IContextAware
 {
-    public TroubleshootingOverlayViewModel ViewModel { get; }
+    public TroubleshootingShellViewModel ViewModel { get; }
 
-    public TroubleshootingOverlayView()
+    public TroubleshootingShellView()
     {
-        ViewModel = App.GetService<TroubleshootingOverlayViewModel>();
+        ViewModel = App.GetService<TroubleshootingShellViewModel>();
 
         InitializeComponent();
 
