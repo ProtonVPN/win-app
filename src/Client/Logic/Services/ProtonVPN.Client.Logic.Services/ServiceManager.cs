@@ -28,35 +28,43 @@ namespace ProtonVPN.Client.Logic.Services;
 public class ServiceManager : IServiceManager, IEventMessageReceiver<ApplicationStoppedMessage>
 {
     private readonly IService _service;
+    private readonly IServiceEnabler _serviceEnabler;
+    private readonly IBaseFilteringEngineDialogHandler _baseFilteringEngineDialogHandler;
     private readonly CancellationTokenSource _cancellationTokenSource = new();
 
-    public ServiceManager(IServiceFactory serviceFactory,
-        IStaticConfiguration configuration)
+    public ServiceManager(
+        IServiceFactory serviceFactory,
+        IStaticConfiguration configuration,
+        IServiceEnabler serviceEnabler,
+        IBaseFilteringEngineDialogHandler baseFilteringEngineDialogHandler)
     {
         _service = serviceFactory.Get(configuration.ServiceName);
+        _serviceEnabler = serviceEnabler;
+        _baseFilteringEngineDialogHandler = baseFilteringEngineDialogHandler;
     }
 
     public void Receive(ApplicationStoppedMessage message)
     {
         _cancellationTokenSource.Cancel();
+        Stop();
     }
 
-    public Task StartAsync()
+    public async Task StartAsync()
     {
-        return Task.Run(Start);
-    }
-
-    public Task StopAsync()
-    {
-        return Task.Run(Stop);
-    }
-
-    public void Start()
-    {
-        if (!_cancellationTokenSource.IsCancellationRequested)
+        if (_cancellationTokenSource.IsCancellationRequested)
         {
-            _service.Start();
+            return;
         }
+
+        bool result = await _baseFilteringEngineDialogHandler.HandleAsync();
+        if (!result)
+        {
+            return;
+        }
+
+        await _serviceEnabler.EnableAsync(_service);
+
+        _service.Start();
     }
 
     public void Stop()

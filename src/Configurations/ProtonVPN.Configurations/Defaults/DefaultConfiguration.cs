@@ -71,6 +71,7 @@ public static class DefaultConfiguration
     public static string ClientName => "ProtonVPN.Client";
     public static string ServiceName => "ProtonVPN Service";
     public static string CalloutServiceName => "ProtonVPNCallout";
+    public static string BaseFilteringEngineServiceName => "BFE";
 
     /// <returns>C:\Users\{user}\AppData\Local\Proton\Proton VPN</returns>
     public static string LocalAppDataProtonVpnPath => _localAppDataProtonVpnPath.Value;
@@ -167,7 +168,6 @@ public static class DefaultConfiguration
     public static TimeSpan AnnouncementsUpdateInterval => TimeSpan.FromMinutes(150);
     public static TimeSpan AlternativeRoutingCheckInterval => TimeSpan.FromMinutes(30);
     public static TimeSpan UpdateCheckInterval => TimeSpan.FromHours(3);
-    public static TimeSpan UpdateRemindInterval => TimeSpan.FromHours(24);
     public static TimeSpan ApiUploadTimeout => TimeSpan.FromSeconds(30);
     public static TimeSpan ApiTimeout => TimeSpan.FromSeconds(10);
     public static TimeSpan FailedDnsRequestTimeout => TimeSpan.FromSeconds(5);

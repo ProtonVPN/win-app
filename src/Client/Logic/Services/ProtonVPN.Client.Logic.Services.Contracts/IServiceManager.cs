@@ -22,8 +22,5 @@ namespace ProtonVPN.Client.Logic.Services.Contracts;
 public interface IServiceManager
 {
     Task StartAsync();
-    Task StopAsync();
-
-    void Start();
     void Stop();
 }

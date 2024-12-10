@@ -18,6 +18,7 @@
  */
 
 using System.Diagnostics;
+using System.Security.Policy;
 using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
@@ -61,6 +62,8 @@ public class UrlsBrowser : IUrlsBrowser
 
     public string KillSwitchLearnMore => "https://protonvpn.com/support/what-is-kill-switch";
 
+    public string AdvancedKillSwitchLearnMore => "https://protonvpn.com/support/advanced-kill-switch";
+
     public string PortForwardingLearnMore => "https://protonvpn.com/support/port-forwarding";
 
     public string SplitTunnelingLearnMore => "https://protonvpn.com/support/protonvpn-split-tunneling";
@@ -92,6 +95,10 @@ public class UrlsBrowser : IUrlsBrowser
     public string IspLearnMore => "https://protonvpn.com/blog/isp";
 
     public string IncreaseVpnSpeeds => "https://protonvpn.com/support/increase-vpn-speeds";
+
+    public string ActiveProxyLearnMore => "https://protonvpn.com/support/remove-proxy";
+
+    public string EnableBaseFilteringEngine => "https://protonvpn.com/support/how-to-enable-the-base-filtering-engine";
 
     public void BrowseTo(string url)
     {

@@ -20,6 +20,7 @@
 using System;
 using Microsoft.UI.Text;
 using Microsoft.UI.Xaml.Documents;
+using ProtonVPN.Client.Common.Models;
 
 namespace ProtonVPN.Client.Common.UI.Helpers;
 
@@ -27,7 +28,7 @@ public class RichTextHelper
 {
     private const string BOLD_TAG = "**";
 
-    public static Paragraph ParseRichText(string text)
+    public static Paragraph ParseRichText(string text, InlineTextButton? button = null)
     {
         Paragraph paragraph = new();
         int start = 0;
@@ -66,6 +67,19 @@ public class RichTextHelper
             });
 
             start = closeTag + BOLD_TAG.Length;
+        }
+
+        if (button is not null)
+        {
+            paragraph.Inlines.Add(new Run { Text = " " });
+
+            Hyperlink hyperlink = new()
+            {
+                NavigateUri = new Uri(button.Url),
+                Inlines = { new Run { Text = button.Text } }
+            };
+
+            paragraph.Inlines.Add(hyperlink);
         }
 
         return paragraph;

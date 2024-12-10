@@ -19,18 +19,18 @@
 
 using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Common.Helpers;
+using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
-using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
-using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Extensions;
+using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Localization.Extensions;
 
@@ -63,7 +63,7 @@ public static class LocalizationExtensions
                 ConnectionIntentKind.Fastest when excludeMyCountry => localizer.Get("Country_Fastest_ExcludingMyCountry"),
                 ConnectionIntentKind.Random when excludeMyCountry => localizer.Get("Country_Random_ExcludingMyCountry"),
                 ConnectionIntentKind.Fastest => localizer.Get("Country_Fastest"),
-                ConnectionIntentKind.Random => localizer.Get("Country_Random"),                
+                ConnectionIntentKind.Random => localizer.Get("Country_Random"),
                 _ => throw new NotImplementedException($"Intent kind '{intentKind}' is not supported."),
             }
             : localizer.Get($"Country_val_{countryCode}");
@@ -160,7 +160,7 @@ public static class LocalizationExtensions
 
         return connectionDetails.IsSecureCore && connectionDetails.OriginalConnectionIntent.Location is CountryLocationIntent countryIntent && countryIntent.IsSpecificCountry
             ? $"{title} {subtitle}".Trim()
-            : ConcatenateLocations(title, subtitle); 
+            : ConcatenateLocations(title, subtitle);
     }
 
     private static string ConcatenateLocations(params string[] locations)
@@ -323,23 +323,19 @@ public static class LocalizationExtensions
 
     public static string? GetExitOrSignOutConfirmationMessage(this ILocalizationProvider localizer, bool isDisconnected, ISettings settings)
     {
-        bool isAdvancedKillSwitchActive = settings.IsKillSwitchEnabled &&
-                                          settings.KillSwitchMode == KillSwitchMode.Advanced;
-        if (!isDisconnected)
+        if (settings.IsAdvancedKillSwitchActive())
         {
-            if (isAdvancedKillSwitchActive)
-            {
-                return CreateBulletPoints(true,
+            return isDisconnected
+                ? localizer.Get("Common_Confirmation_KillSwitch_Message")
+                : CreateBulletPoints(
+                    false,
                     localizer.Get("Common_Confirmation_YouWillBeDisconnected_Message"),
                     localizer.Get("Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message"));
-            }
-
-            return localizer.Get("Common_Confirmation_YouWillBeDisconnected_Message");
         }
 
-        return isAdvancedKillSwitchActive
-            ? localizer.Get("Common_Confirmation_KillSwitch_Message")
-            : null;
+        return isDisconnected
+            ? null
+            : localizer.Get("Common_Confirmation_YouWillBeDisconnected_Message");
     }
 
     public static string CreateBulletPoints(bool isToAddEmptyLine, params string[] lines)

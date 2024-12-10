@@ -67,7 +67,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <ContentControl x:Name="Title"
                                                     Grid.Row="0"
                                                     Margin="{ThemeResource ContentDialogTitleMargin}"
-                                                    Padding="24"
+                                                    Padding="24,24,24,12"
                                                     HorizontalAlignment="Left"
                                                     VerticalAlignment="Top"
                                                     Content="{TemplateBinding Title}"

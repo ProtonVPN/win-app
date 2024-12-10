@@ -25,7 +25,6 @@ using ProtonVPN.Client.Handlers.Bases;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Migrations;
 
 namespace ProtonVPN.Client.Handlers;
 
@@ -41,7 +40,6 @@ public class WelcomeOverlayHandler : IHandler,
     public WelcomeOverlayHandler(
         ISettings settings,
         IUIThreadDispatcher uIThreadDispatcher,
-        IUserSettingsMigrator userSettingsMigrator,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         IUserAuthenticator userAuthenticator)
     {

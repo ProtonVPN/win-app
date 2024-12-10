@@ -37,8 +37,6 @@ public interface IMainWindowOverlayActivator : IOverlayActivator
 
     Task<ContentDialogResult> ShowServerLoadInfoOverlayAsync();
 
-    Task<ContentDialogResult> ShowTroubleshootingOverlayAsync();
-
     Task<ContentDialogResult> ShowSettingsDiscardOverlayAsync(bool isReconnectionRequired);
 
     Task<ContentDialogResult> ShowOutdatedClientOverlayAsync();

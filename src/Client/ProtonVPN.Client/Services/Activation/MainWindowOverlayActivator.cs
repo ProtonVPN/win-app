@@ -20,18 +20,18 @@
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Common.Models;
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Activation.Bases;
 using ProtonVPN.Client.Core.Services.Mapping;
 using ProtonVPN.Client.Core.Services.Selection;
+using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Overlays.HumanVerification;
 using ProtonVPN.Client.UI.Overlays.Information;
 using ProtonVPN.Client.UI.Overlays.Information.Notification;
-using ProtonVPN.Client.UI.Overlays.Welcome;
 using ProtonVPN.Client.UI.Overlays.Upsell;
+using ProtonVPN.Client.UI.Overlays.Welcome;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Services.Activation;
 
@@ -59,11 +59,6 @@ public class MainWindowOverlayActivator : OverlayActivatorBase<MainWindow>, IMai
     public Task<ContentDialogResult> ShowSecureCoreInfoOverlayAsync()
     {
         return ShowOverlayAsync<SecureCoreOverlayViewModel>();
-    }
-
-    public Task<ContentDialogResult> ShowTroubleshootingOverlayAsync()
-    {
-        return ShowOverlayAsync<TroubleshootingOverlayViewModel>();
     }
 
     public Task<ContentDialogResult> ShowSettingsDiscardOverlayAsync(bool isReconnectionRequired)

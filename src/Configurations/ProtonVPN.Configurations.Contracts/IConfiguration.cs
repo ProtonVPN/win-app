@@ -60,7 +60,6 @@ public interface IConfiguration : IStaticConfiguration
     TimeSpan AnnouncementsUpdateInterval { get; }
     TimeSpan AlternativeRoutingCheckInterval { get; }
     TimeSpan UpdateCheckInterval { get; }
-    TimeSpan UpdateRemindInterval { get; }
     TimeSpan ApiUploadTimeout { get; }
     TimeSpan ApiTimeout { get; }
     TimeSpan FailedDnsRequestTimeout { get; }

@@ -50,7 +50,7 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
     private readonly IUrlsBrowser _urlsBrowser;
     private readonly IMainWindowActivator _mainWindowActivator;
     private readonly IReportIssueWindowActivator _reportIssueWindowActivator;
-    private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
+    private readonly ITroubleshootingWindowActivator _troubleshootingWindowActivator;
 
     [ObservableProperty]
     private string _message;
@@ -73,13 +73,13 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
         IUrlsBrowser urlsBrowser,
         IMainWindowActivator mainWindowActivator,
         IReportIssueWindowActivator reportIssueWindowActivator,
-        IMainWindowOverlayActivator mainWindowOverlayActivator)
+        ITroubleshootingWindowActivator troubleshootingWindowActivator)
         : base(parentViewNavigator, childViewNavigator, localizer, logger, issueReporter)
     {
         _urlsBrowser = urlsBrowser;
         _mainWindowActivator = mainWindowActivator;
         _reportIssueWindowActivator = reportIssueWindowActivator;
-        _mainWindowOverlayActivator = mainWindowOverlayActivator;
+        _troubleshootingWindowActivator = troubleshootingWindowActivator;
         _message = string.Empty;
     }
 
@@ -166,7 +166,7 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
 
             case AuthError.GuestHoleFailed:
                 Logger.Error<GuestHoleLog>("Failed to authenticate using guest hole.");
-                _mainWindowOverlayActivator.ShowTroubleshootingOverlayAsync();
+                _troubleshootingWindowActivator.Activate();
                 break;
 
             case AuthError.SsoAuthFailed:

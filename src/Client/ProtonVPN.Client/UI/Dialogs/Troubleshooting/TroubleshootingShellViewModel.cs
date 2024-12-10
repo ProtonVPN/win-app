@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,40 +18,36 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Core.Bases.ViewModels;
+using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Core.Bases.ViewModels;
-using ProtonVPN.Client.Core.Services.Activation;
-using ProtonVPN.Client.Services.Browsing;
-using ProtonVPN.Client.Contracts.Services.Browsing;
 
-namespace ProtonVPN.Client.UI.Overlays.Information;
+namespace ProtonVPN.Client.UI.Dialogs.Troubleshooting;
 
-public partial class TroubleshootingOverlayViewModel : OverlayViewModelBase<IMainWindowOverlayActivator>
+public partial class TroubleshootingShellViewModel : ShellViewModelBase<ITroubleshootingWindowActivator>
 {
     private readonly IUrlsBrowser _urlsBrowser;
 
-    public TroubleshootingOverlayViewModel(
-        IMainWindowOverlayActivator overlayActivator,
+    public TroubleshootingShellViewModel(
+        IUrlsBrowser urlsBrowser,
+        ITroubleshootingWindowActivator windowActivator,
         ILocalizationProvider localizer,
         ILogger logger,
-        IIssueReporter issueReporter,
-        IUrlsBrowser urlsBrowser)
-        : base(overlayActivator, localizer, logger, issueReporter)
+        IIssueReporter issueReporter)
+        : base(windowActivator,
+               localizer,
+               logger,
+               issueReporter)
     {
         _urlsBrowser = urlsBrowser;
     }
 
     [RelayCommand]
-    public void OpenStatusPage()
+    private void OpenStatusPage()
     {
         _urlsBrowser.BrowseTo(_urlsBrowser.ProtonStatusPage);
-    }
-
-    [RelayCommand]
-    public void ContactUs()
-    {
-        _urlsBrowser.BrowseTo(_urlsBrowser.SupportForm);
     }
 }

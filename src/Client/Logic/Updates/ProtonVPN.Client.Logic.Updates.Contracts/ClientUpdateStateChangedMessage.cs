@@ -24,6 +24,4 @@ namespace ProtonVPN.Client.Logic.Updates.Contracts;
 public class ClientUpdateStateChangedMessage
 {
     public AppUpdateStateContract? State { get; init; }
-
-    public required bool IsUpdateAvailable { get; init; }
 }

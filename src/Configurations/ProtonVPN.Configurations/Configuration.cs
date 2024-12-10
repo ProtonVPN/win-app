@@ -61,7 +61,6 @@ public partial class Configuration : StaticConfiguration, IConfiguration
     public TimeSpan AnnouncementsUpdateInterval => GetWithRandomizedDeviation();
     public TimeSpan AlternativeRoutingCheckInterval => Get();
     public TimeSpan UpdateCheckInterval => GetWithRandomizedDeviation();
-    public TimeSpan UpdateRemindInterval => Get();
     public TimeSpan ApiUploadTimeout => Get();
     public TimeSpan ApiTimeout => Get();
     public TimeSpan FailedDnsRequestTimeout => Get();

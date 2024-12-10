@@ -27,6 +27,7 @@ public interface IStaticConfiguration
     string ClientName { get; }
     string ServiceName { get; }
     string CalloutServiceName { get; }
+    string BaseFilteringEngineServiceName { get; }
 
     string ClientLauncherExePath { get; }
     string InstallActionsPath { get; }

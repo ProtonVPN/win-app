@@ -34,6 +34,7 @@ using ProtonVPN.Client.Core.Extensions;
 using ProtonVPN.Client.Core.Services.Mapping;
 using ProtonVPN.Client.Core.Services.Selection;
 using WinUIEx;
+using Microsoft.UI.Xaml.Documents;
 
 namespace ProtonVPN.Client.Core.Services.Activation.Bases;
 
@@ -245,7 +246,13 @@ public abstract class OverlayActivatorBase<TWindow> : WindowHostActivatorBase<TW
             ? string.Empty
             : parameters.MessageType switch
             {
-                DialogMessageType.RichText => new RichTextBlock { Blocks = { RichTextHelper.ParseRichText(parameters.Message) } },
+                DialogMessageType.RichText => new RichTextBlock
+                {
+                    Blocks =
+                    {
+                        RichTextHelper.ParseRichText(parameters.Message, parameters.TrailingInlineButton)
+                    }
+                },
                 _ => parameters.Message,
             };
     }

@@ -39,11 +39,13 @@ public class ServiceFactory : IServiceFactory
 
     public IService Get(string name)
     {
-        IService? service;
-        if (_services.TryGetValue(name, out service))
+        // IService? shouldn't be defined as nullable, but if it's not, then it generates
+        // CS8600 warning, which is a known issue: https://github.com/dotnet/roslyn/issues/38329
+        if (_services.TryGetValue(name, out IService? service))
         {
             return service;
         }
+
         lock (_lock)
         {
             if (_services.TryGetValue(name, out service))

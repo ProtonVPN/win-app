@@ -155,7 +155,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Button Grid.Column="1"
                             VerticalAlignment="Center"
                             Command="{x:Bind ViewModel.TryAgainCommand, Mode=OneTime}"
-                            Content="{x:Bind ViewModel.Localizer.Get('Settings_About_TryAgain')}"
+                            Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_TryAgain')}"
                             Style="{ThemeResource PrimaryButtonStyle}" />
                 </Grid>
             </StackPanel>

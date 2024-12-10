@@ -19,6 +19,7 @@
 
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Models;
+using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
@@ -32,6 +33,7 @@ namespace ProtonVPN.Client.Services.SignoutHandling;
 
 public class SignOutHandler : ISignOutHandler
 {
+    private readonly IUrlsBrowser _urlsBrowser;
     private readonly ILocalizationProvider _localizer;
     private readonly ISettings _settings;
     private readonly IUserAuthenticator _userAuthenticator;
@@ -39,12 +41,14 @@ public class SignOutHandler : ISignOutHandler
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
 
     public SignOutHandler(
+        IUrlsBrowser urlsBrowser,
         ILocalizationProvider localizer,
         ISettings settings,
         IUserAuthenticator userAuthenticator,
         IConnectionManager connectionManager,
         IMainWindowOverlayActivator mainWindowOverlayActivator)
     {
+        _urlsBrowser = urlsBrowser;
         _localizer = localizer;
         _settings = settings;
         _userAuthenticator = userAuthenticator;
@@ -54,6 +58,12 @@ public class SignOutHandler : ISignOutHandler
 
     public async Task SignOutAsync()
     {
+        InlineTextButton advancedKillSwitchLearnMoreButton = new()
+        {
+            Text = _localizer.Get("Common_Links_LearnMore"),
+            Url = _urlsBrowser.AdvancedKillSwitchLearnMore,
+        };
+
         ContentDialogResult result = await _mainWindowOverlayActivator.ShowMessageAsync(
             new MessageDialogParameters
             {
@@ -62,6 +72,9 @@ public class SignOutHandler : ISignOutHandler
                 MessageType = DialogMessageType.RichText,
                 PrimaryButtonText = _localizer.Get("Home_Account_SignOut"),
                 CloseButtonText = _localizer.Get("Common_Actions_Cancel"),
+                TrailingInlineButton = _settings.IsAdvancedKillSwitchActive()
+                    ? advancedKillSwitchLearnMoreButton
+                    : null
             });
 
         if (result is not ContentDialogResult.Primary)

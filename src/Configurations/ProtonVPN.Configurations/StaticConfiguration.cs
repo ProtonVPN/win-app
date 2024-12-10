@@ -29,6 +29,7 @@ public class StaticConfiguration : IStaticConfiguration
     public string ClientName { get; } = DefaultConfiguration.ClientName;
     public string ServiceName { get; } = DefaultConfiguration.ServiceName;
     public string CalloutServiceName { get; } = DefaultConfiguration.CalloutServiceName;
+    public string BaseFilteringEngineServiceName { get; } = DefaultConfiguration.BaseFilteringEngineServiceName;
 
     public string ClientLauncherExePath { get; } = DefaultConfiguration.ClientLauncherExePath;
     public string InstallActionsPath { get; } = DefaultConfiguration.InstallActionsPath;
