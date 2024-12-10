@@ -22,6 +22,7 @@ using ProtonVPN.Client.Core.Services.Mapping;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Core.Services.Navigation.Bases;
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.UI.Main.Home;
@@ -31,7 +32,8 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.Services.Navigation;
 
 public class MainViewNavigator : ViewNavigatorBase, IMainViewNavigator,
-    IEventMessageReceiver<ConnectionStatusChangedMessage>
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
+    IEventMessageReceiver<LoggedOutMessage>
 {
     private ConnectionStatus _connectionStatus = ConnectionStatus.Disconnected;
 
@@ -70,5 +72,10 @@ public class MainViewNavigator : ViewNavigatorBase, IMainViewNavigator,
         {
             UIThreadDispatcher.TryEnqueue(async () => await NavigateToDefaultAsync());
         }
+    }
+
+    public void Receive(LoggedOutMessage message)
+    {
+        UIThreadDispatcher.TryEnqueue(async () => await NavigateToDefaultAsync());
     }
 }
