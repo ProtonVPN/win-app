@@ -51,15 +51,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <StackPanel x:Name="ContentArea"
                     Spacing="24">
 
-            <Border Padding="16,8"
-                    Background="{ThemeResource InteractionDefaultColorBrush}"
-                    CornerRadius="8"
-                    Visibility="{x:Bind ViewModel.IsUpdateAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <update:UpdateComponent Title="{x:Bind ViewModel.Localizer.Get('Components_Update_UpdateAvailable')}"
-                                        Description="{x:Bind ViewModel.Localizer.Get('Components_Update_GetMostFromYourVpn')}"
-                                        IsImageVisible="False" />
-            </Border>
-
             <pages:UserDetailsComponent HorizontalAlignment="Left"
                                         Margin="-8,0"/>
 
