@@ -19,7 +19,6 @@
 
 using CommunityToolkit.WinUI;
 using Microsoft.UI.Dispatching;
-using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Services.Activation;
@@ -91,17 +90,18 @@ public class BaseFilteringEngineDialogHandler : IBaseFilteringEngineDialogHandle
         MessageDialogParameters parameters = new()
         {
             Title = _localizer.GetFormat("Dialogs_BaseFilteringEngine_Title"),
-            Message = _localizer.Get("Dialogs_BaseFilteringEngine_Description"),
-            PrimaryButtonText = _localizer.Get("Dialogs_BaseFilteringEngine_HowToEnable"),
-            CloseButtonText = _localizer.Get("Common_Actions_Close"),
+            Message = $"{_localizer.Get("Dialogs_BaseFilteringEngine_Description")}{Environment.NewLine}{Environment.NewLine}",
+            MessageType = DialogMessageType.RichText,
+            PrimaryButtonText = _localizer.Get("Common_Actions_Exit_ProtonVPN"),
+            TrailingInlineButton = new InlineTextButton()
+            {
+                Text = _localizer.Get("Dialogs_BaseFilteringEngine_HowToEnable"),
+                Url = _urlsBrowser.EnableBaseFilteringEngine,
+            },
             UseVerticalLayoutForButtons = true,
         };
 
-        ContentDialogResult result = await _mainWindowOverlayActivator.ShowMessageAsync(parameters);
-        if (result is ContentDialogResult.Primary)
-        {
-            _urlsBrowser.BrowseTo(_urlsBrowser.EnableBaseFilteringEngine);
-        }
+        await _mainWindowOverlayActivator.ShowMessageAsync(parameters);
 
         _logger.Warn<AppServiceLog>("Base Filtering Engine (BFE) service is disabled. Shutting down the application.");
 
