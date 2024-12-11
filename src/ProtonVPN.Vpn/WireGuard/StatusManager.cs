@@ -35,6 +35,7 @@ namespace ProtonVPN.Vpn.WireGuard;
 public class StatusManager
 {
     private const int SKIP_LOG_CHARACTERS = 27;
+    private const int MAX_SOCKET_ERRORS = 5;
     private const string NT_HANDSHAKE_SUCCESS_MESSAGE = "Receiving handshake response from peer";
     private const string WINTUN_HANDSHAKE_SUCCESS_MESSAGE = "Received handshake response";
 
@@ -43,6 +44,7 @@ public class StatusManager
     private readonly SingleAction _receiveLogsAction;
     private VpnError _lastError = VpnError.None;
     private bool _isHandshakeResponseHandled;
+    private int _socketErrorCount;
 
     public StatusManager(ILogger logger, string logPath)
     {
@@ -55,6 +57,7 @@ public class StatusManager
 
     public void Start()
     {
+        _socketErrorCount = 0;
         _ringLogger.Start();
         _isHandshakeResponseHandled = false;
         _receiveLogsAction.Run();
@@ -63,6 +66,7 @@ public class StatusManager
     public void Stop()
     {
         _receiveLogsAction.Cancel();
+        _socketErrorCount = 0;
         _isHandshakeResponseHandled = false;
         _ringLogger.Stop();
     }
@@ -102,6 +106,19 @@ public class StatusManager
                 else if (line.Contains("Unable to configure adapter network settings: unable to set ips: The object already exists"))
                 {
                     _lastError = VpnError.WireGuardAdapterInUseError;
+                }
+                else if (line.Contains("SOCKET ERROR:"))
+                {
+                    if (_socketErrorCount >= MAX_SOCKET_ERRORS)
+                    {
+                        _logger.Info<ConnectConnectedLog>($"Invoking disconnected state after {MAX_SOCKET_ERRORS} socket errors.");
+                        _socketErrorCount = 0;
+                        InvokeStateChange(VpnStatus.Disconnected, VpnError.Unknown);
+                    }
+                    else
+                    {
+                        _socketErrorCount++;
+                    }
                 }
             }
 

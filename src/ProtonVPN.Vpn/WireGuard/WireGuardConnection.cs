@@ -267,6 +267,12 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
 
     private void OnVpnDisconnected(EventArgs<VpnState> state)
     {
+        if (state.Data.Error == VpnError.Unknown)
+        {
+            Disconnect(state.Data.Error);
+            return;
+        }
+
         _isConnected = false;
         _serviceHealthCheckTimer.Stop();
         StopServiceDependencies();
