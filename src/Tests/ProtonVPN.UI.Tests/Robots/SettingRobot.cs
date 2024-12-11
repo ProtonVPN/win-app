@@ -32,6 +32,7 @@ public class SettingRobot
     private const string NETSHIELD_MALWARE_ENDPOINT = "netshield-1.protonvpn.net";
     private const string NETSHIELD_ADS_ENDPOINT = "netshield-2.protonvpn.net";
 
+    protected Element SettingsPage = Element.ByAutomationId("SettingsPage");
     protected Element ApplyButton = Element.ByAutomationId("ApplyButton");
     protected Element CloseSettingsButton = Element.ByAutomationId("CloseSettingsButton");
     protected Element ReconnectButton = Element.ByName("Reconnect");
@@ -40,6 +41,10 @@ public class SettingRobot
     protected Element ProtocolSettingsCard = Element.ByAutomationId("ProtocolSettingsCard");
     protected Element AdvancedSettingsCard = Element.ByAutomationId("AdvancedSettingsCard");
     protected Element GoBackButton = Element.ByAutomationId("GoBackButton");
+    protected Element AccountButton = Element.ByAutomationId("AccountButton");
+    protected Element SignOutButton = Element.ByName("Sign out");
+    protected Element PrimaryActionButton = Element.ByAutomationId("PrimaryButton");
+    protected Element CancelButton = Element.ByAutomationId("CloseButton");
 
     protected Element NetshieldToggle = Element.ByAutomationId("NetshieldToggle");
     protected Element NetShieldLevelOneRadioButton = Element.ByAutomationId("NetShieldLevelOne");
@@ -82,6 +87,28 @@ public class SettingRobot
         ProtocolSettingsCard.Click();
         // Remove when VPNWIN-2261 is implemented.
         Thread.Sleep(TestConstants.AnimationDelay);
+        return this;
+    }
+
+    public SettingRobot Logout()
+    {
+        AccountButton.Click();
+        // Remove when VPNWIN-2261 is implemented.
+        Thread.Sleep(TestConstants.AnimationDelay);
+        // For some reason due to focus flyouts require 2 clicks.
+        SignOutButton.DoubleClick();
+        return this;
+    }
+
+    public SettingRobot ConfirmSignOut()
+    {
+        PrimaryActionButton.Click();
+        return this;
+    }
+
+    public SettingRobot CancelSignOut()
+    {
+        CancelButton.Click();
         return this;
     }
 
@@ -144,12 +171,6 @@ public class SettingRobot
         return this;
     }
 
-    public SettingRobot GoBack()
-    {
-        GoBackButton.Click();
-        return this;
-    }
-
     public class Verifications : SettingRobot
     {
         public Verifications NetshieldIsBlocking(NetShieldMode netShieldMode)
@@ -188,6 +209,12 @@ public class SettingRobot
             CommonAssertions.AssertDnsIsResolved(NETSHIELD_NO_BLOCK);
             CommonAssertions.AssertDnsIsResolved(NETSHIELD_MALWARE_ENDPOINT);
             CommonAssertions.AssertDnsIsResolved(NETSHIELD_ADS_ENDPOINT);
+            return this;
+        }
+
+        public Verifications SettingsPageIsDisplayed()
+        {
+            SettingsPage.WaitUntilDisplayed();
             return this;
         }
     }

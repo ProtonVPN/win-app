@@ -25,6 +25,8 @@ using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using FlaUI.Core.Tools;
+using NUnit.Framework;
+using ProtonVPN.UI.Tests.Robots;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
 
@@ -58,14 +60,10 @@ public class NetworkUtils
         DnsFlushResolverCache();
     }
 
-    public static IPAddress GetDefaultGatewayAddress()
+    public static void VerifyIfLocalNetworkingWorks()
     {
-        return NetworkInterface
-            .GetAllNetworkInterfaces()
-            .Where(n => n.Name.EndsWith("Wi-Fi") || n.Name.EndsWith("Ethernet"))
-            .SelectMany(n => n.GetIPProperties()?.GatewayAddresses)
-            .Select(g => g?.Address)
-            .FirstOrDefault(a => a != null);
+        PingReply reply = new Ping().Send(GetDefaultGatewayAddress().ToString());
+        Assert.That(reply.Status == IPStatus.Success, Is.True);
     }
 
     public static string GetIpAddress(string endpoint = "https://api.ipify.org/")
@@ -81,6 +79,16 @@ public class NetworkUtils
     {
         string ipMeBtiUrl = Environment.GetEnvironmentVariable("IP_ENDPOINT_BTI");
         return GetIpAddress(ipMeBtiUrl);
+    }
+
+    private static IPAddress GetDefaultGatewayAddress()
+    {
+        return NetworkInterface
+            .GetAllNetworkInterfaces()
+            .Where(n => n.Name.EndsWith("Wi-Fi") || n.Name.EndsWith("Ethernet"))
+            .SelectMany(n => n.GetIPProperties()?.GatewayAddresses)
+            .Select(g => g?.Address)
+            .FirstOrDefault(a => a != null);
     }
 
     private static async Task<string> GetExternalIpAddressAsync(string endpoint)

@@ -32,8 +32,10 @@ public class SidebarRobot
     private const string FASTEST_PROFILE = "Fastest";
 
     protected Element SidebarComponent = Element.ByAutomationId("SidebarComponent");
+    protected Element NoRecentsLabel = Element.ByName("No recents yet");
+    protected Element RemoveRecentLabel = Element.ByName("Remove").FindChild(Element.ByAutomationId("TextBlock"));
 
-    protected Element RecentsListItem = Element.ByName("Recents");
+    protected Element RecentsLabel = Element.ByAutomationId("ConnectionsPageItem").FindChild(Element.ByName("Recents"));
     protected Element CountriesListItem = Element.ByName("Countries");
     protected Element GatewaysListItem = Element.ByName("Gateways");
     protected Element ProfilesListItem = Element.ByName("Profiles");
@@ -47,15 +49,15 @@ public class SidebarRobot
     protected Element CitySecondaryButton = Element.ByAutomationId("SecondaryButton");
     protected Element SpecificServerConnectionButton = Element.ByAutomationId("ConnectionRowHeader");
 
-    public SidebarRobot NavigateToRecents()
-    {
-        RecentsListItem.Click();
-        return this;
-    }
-
     public SidebarRobot NavigateToCountries()
     {
         CountriesListItem.Click();
+        return this;
+    }
+
+    public SidebarRobot NavigateToRecents()
+    {
+        RecentsLabel.Click();
         return this;
     }
 
@@ -166,6 +168,23 @@ public class SidebarRobot
         return this;
     }
 
+    public SidebarRobot ExpandSecondaryActions(string connectionValue)
+    {
+        Element countryButton = Element.ByAutomationId($"Actions_for_{connectionValue}");
+        Element secondaryActionsButton = countryButton.FindChild(Element.ByAutomationId("SecondaryButton"));
+        countryButton.MoveMouse();
+        secondaryActionsButton.Click();
+        return this;
+    }
+
+    public SidebarRobot RemoveRecent()
+    {
+        // First click does not work due to focus on first click.
+        // One click is needed for focus, other for clicking.
+        RemoveRecentLabel.DoubleClick();
+        return this;
+    }
+
     private SidebarRobot NavigateToCountriesTab(int index)
     {
         NavigateToCountries();
@@ -182,6 +201,35 @@ public class SidebarRobot
 
     public class Verifications : SidebarRobot
     {
+        public Verifications NoRecentsLabelIsDisplayed()
+        {
+            NoRecentsLabel.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications NoRecentsLabelDoesNotExist()
+        {
+            NoRecentsLabel.DoesNotExist();
+            return this;
+        }
+
+        public Verifications ConnectionOptionIsDisplayed(string connectionValue)
+        {
+            Element countryButton = Element.ByAutomationId($"Actions_for_{connectionValue}");
+            countryButton.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications RecentsCountIsDisplayed(int count)
+        {
+            string selector = $"Recent{(count == 1 ? "" : "s")} ({count})";
+
+            Element recentsLabel = Element.ByName(selector);
+            recentsLabel.WaitUntilDisplayed();
+
+            return this;
+        }
+
         public Verifications IsSidebarAvailable()
         {
             SidebarComponent.WaitUntilDisplayed();

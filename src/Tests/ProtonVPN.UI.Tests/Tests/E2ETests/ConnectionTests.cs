@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
@@ -39,6 +40,8 @@ public class ConnectionTests : FreshSessionSetUp
     [Test]
     public void QuickConnect()
     {
+        string ipAddressNotConnected = NetworkUtils.GetIpAddress();
+
         NavigationRobot
             .Verify.IsOnHomePage()
                    .IsOnLocationDetailsPage();
@@ -48,6 +51,12 @@ public class ConnectionTests : FreshSessionSetUp
             .ConnectToDefaultConnection()
             .Verify.IsConnecting()
                    .IsConnected();
+
+        string ipAddressConnected = NetworkUtils.GetIpAddress();
+
+        Assert.That(ipAddressNotConnected.Equals(ipAddressConnected), Is.False,
+            $"User was not connected to VPN server. IP Address not connected: {ipAddressNotConnected}." +
+            $" IP Address connected: {ipAddressConnected}");
 
         NavigationRobot
             .Verify.IsOnConnectionDetailsPage();
@@ -87,5 +96,29 @@ public class ConnectionTests : FreshSessionSetUp
 
         NavigationRobot
             .Verify.IsOnLocationDetailsPage();
+    }
+
+    [Test]
+    [Retry(3)]
+    public void ConnectAndCancel()
+    {
+        HomeRobot.ConnectToDefaultConnection()
+            .Verify.IsConnecting();
+        // Imitate user's delay
+        Thread.Sleep(500);
+        HomeRobot.CancelConnection()
+            .Verify.IsDisconnected();
+    }
+
+    [Test]
+    public void LocalNetworkingIsReachableWhileConnected()
+    {
+        HomeRobot
+            .Verify.IsDisconnected()
+            .ConnectToDefaultConnection()
+            .Verify.IsConnecting()
+                   .IsConnected();
+
+        NetworkUtils.VerifyIfLocalNetworkingWorks();
     }
 }
