@@ -28,10 +28,10 @@ public class HomeRobot
     protected Element UnprotectedLabel = Element.ByName("Unprotected");
     protected Element ConnectingLabel = Element.ByName("Connecting");
     protected Element ProtectedLabel = Element.ByName("Protected");
+    protected Element CancelConnectionButton = Element.ByName("Cancel");
     protected Element GetStartedButton = Element.ByName("Get started");
     protected Element ConnectionDetailsProtocol = Element.ByAutomationId("ShowProtocolFlyoutButton");
     protected Element ChangeProtocolButton = Element.ByAutomationId("ChangeProtocolFlyoutButton");
-
 
     protected Element ConnectionCardTitle = Element.ByAutomationId("ConnectionCardTitle");
     protected Element ConnectionCardDescription = Element.ByAutomationId("ConnectionCardDescription");

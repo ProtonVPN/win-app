@@ -21,6 +21,7 @@ using System;
 using System.Runtime.InteropServices;
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Conditions;
+using FlaUI.Core.Input;
 using FlaUI.Core.Tools;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestBase;
@@ -35,6 +36,22 @@ public static class UiActions
         AutomationElement elementToClick = WaitUntilExists(desiredElement);
         elementToClick.WaitUntilClickable();
         elementToClick.Click();
+        return desiredElement;
+    }
+
+    public static T DoubleClick<T>(this T desiredElement) where T : Element
+    {
+        AutomationElement elementToClick = WaitUntilExists(desiredElement);
+        elementToClick.WaitUntilClickable();
+        elementToClick.DoubleClick();
+        return desiredElement;
+    }
+
+    public static T MoveMouse<T>(this T desiredElement, int offsetX = 0, int offsetY = 0) where T : Element
+    {
+        AutomationElement element = WaitUntilExists(desiredElement);
+        Mouse.MovePixelsPerMillisecond = 100;
+        Mouse.MoveTo(element.GetClickablePoint().X + offsetX, element.GetClickablePoint().Y + offsetY);
         return desiredElement;
     }
 
@@ -82,6 +99,12 @@ public static class UiActions
     public static AutomationElement WaitUntilDisplayed<T>(this T desiredElement, TimeSpan? time = null) where T : Element
     {
         return WaitForElement(desiredElement, time, element => element != null && !element.IsOffscreen);
+    }
+
+    public static void DoesNotExist<T>(this T desiredElement) where T : Element
+    {
+        AutomationElement element = FindFirstDescendantUsingChildren(desiredElement.Condition);
+        Assert.That(element, Is.Null, $"Element {desiredElement.SelectorName} was found. But it should not exist.");
     }
 
     private static AutomationElement WaitForElement<T>(

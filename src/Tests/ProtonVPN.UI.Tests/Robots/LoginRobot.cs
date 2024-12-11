@@ -112,6 +112,13 @@ public class LoginRobot
             Element.ByName(errorMessage).WaitUntilDisplayed();
             return this;
         }
+
+        public Verifications LoginWindowIsDisplayed()
+        {
+            UsernameTextBox.WaitUntilDisplayed();
+            PasswordTextBox.WaitUntilDisplayed();
+            return this;
+        }
     }
 
     public Verifications Verify => new();

@@ -32,7 +32,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
 
     <custom:GhostButton Padding="4,2,4,4"
-                        CornerRadius="8">
+                        CornerRadius="8"
+                        AutomationProperties.AutomationId="AccountButton">
         
         <StackPanel Spacing="4"
                     MinWidth="120">
