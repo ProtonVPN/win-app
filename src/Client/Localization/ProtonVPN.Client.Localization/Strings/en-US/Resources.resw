@@ -2802,6 +2802,9 @@ This higher level of protection may cause higher latency and slower speeds.</val
   <data name="Common_Actions_Restart" xml:space="preserve">
     <value>Restart</value>
   </data>
+  <data name="Common_Actions_Exit_ProtonVPN" xml:space="preserve">
+    <value>Exit Proton VPN</value>
+  </data>
   <data name="Dialogs_UpdateConfirmation_Title_Restart" xml:space="preserve">
     <value>Restart Proton VPN to complete update</value>
   </data>
@@ -3230,10 +3233,10 @@ This higher level of protection may cause higher latency and slower speeds.</val
 Enjoy the best of Proton privacy.</value>
   </data>
   <data name="Dialogs_BaseFilteringEngine_Title" xml:space="preserve">
-    <value>Action required to connect</value>
+    <value>Enable Base Filtering Engine to continue</value>
   </data>
   <data name="Dialogs_BaseFilteringEngine_Description" xml:space="preserve">
-    <value>We couldn't connect you because the Base Filtering Engine (BFE) service on your Windows device is disabled. Enable Base Filtering Engine and try again.</value>
+    <value>The Base Filtering Engine (BFE) service on your Windows device is disabled. This service needs to be enabled for Proton VPN to work properly.</value>
   </data>
   <data name="Dialogs_BaseFilteringEngine_HowToEnable" xml:space="preserve">
     <value>How to enable Base Filtering Engine</value>
