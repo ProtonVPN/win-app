@@ -128,7 +128,7 @@ public sealed partial class MapControl
 
     private static void OnActiveCountryCodeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (e.NewValue is not string newCountryCode || d is not MapControl control)
+        if (d is not MapControl control)
         {
             return;
         }
@@ -138,7 +138,12 @@ public sealed partial class MapControl
             control.MakeCountryInactive(oldCountryCode);
         }
 
-        control.MakeCountryActive(newCountryCode);
+        if (e.NewValue is string newCountryCode)
+        {
+            control.MakeCountryActive(newCountryCode);
+        }
+
+        control.Pin.Opacity = string.IsNullOrEmpty(control.ActiveCountryCode) ? 0 : 1;
     }
 
     private static void OnInactiveFillColorBrushChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
