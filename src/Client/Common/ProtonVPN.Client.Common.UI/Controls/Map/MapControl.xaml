@@ -783,6 +783,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <map:CountryPin x:Name="Pin"
                         Width="96"
                         Height="96"
+                        Opacity="0"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
                         IsConnected="{x:Bind IsConnected}"
