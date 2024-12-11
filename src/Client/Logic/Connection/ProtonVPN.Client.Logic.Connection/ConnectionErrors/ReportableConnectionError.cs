@@ -37,7 +37,6 @@ public abstract class ReportableConnectionError : ConnectionErrorBase
 
     public override Task ExecuteActionAsync()
     {
-        _reportIssueWindowActivator.Activate();
-        return Task.CompletedTask;
+        return _reportIssueWindowActivator.ActivateAsync();
     }
 }

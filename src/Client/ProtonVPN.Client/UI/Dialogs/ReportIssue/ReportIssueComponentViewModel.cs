@@ -62,15 +62,15 @@ public partial class ReportIssueComponentViewModel : ViewModelBase,
     }
 
     [RelayCommand]
-    private void ReportIssue()
+    private Task ReportIssueAsync()
     {
-        _reportIssueWindowActivator.Activate();
+        return _reportIssueWindowActivator.ActivateAsync();
     }
 
     [RelayCommand]
     public Task SelectCategoryAsync(IssueCategory category)
     {
-        ReportIssue();
+        _reportIssueWindowActivator.Activate();
 
         return _reportIssueViewNavigator.NavigateToCategoryViewAsync(category);
     }

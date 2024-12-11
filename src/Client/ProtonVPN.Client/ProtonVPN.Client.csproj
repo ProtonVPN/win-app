@@ -37,7 +37,6 @@
     <None Remove="UI\Dialogs\ReportIssue\Pages\ReportIssueCategoryPageView.xaml" />
     <None Remove="UI\Dialogs\ReportIssue\Pages\ReportIssueContactPageView.xaml" />
     <None Remove="UI\Dialogs\ReportIssue\Pages\ReportIssueResultPageView.xaml" />
-    <None Remove="UI\Dialogs\ReportIssue\ReportIssueComponentView.xaml" />
     <None Remove="UI\Dialogs\ReportIssue\ReportIssueShellView.xaml" />
     <None Remove="UI\Dialogs\ReportIssue\ReportIssueWindow.xaml" />
     <None Remove="UI\Dialogs\Upsell\Features\ProfilesUpsellFeaturePageView.xaml" />
@@ -492,12 +491,6 @@
 
   <ItemGroup>
     <Page Update="UI\Overlays\HumanVerification\HumanVerificationOverlayView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="UI\Dialogs\ReportIssue\ReportIssueComponentView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

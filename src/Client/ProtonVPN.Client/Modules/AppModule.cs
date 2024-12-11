@@ -336,7 +336,6 @@ public class AppModule : Module
         RegisterViewModel<ConnectionErrorViewModel>(builder);
         RegisterViewModel<UpdateViewModel>(builder).AutoActivate();
 
-        RegisterViewModel<ReportIssueComponentViewModel>(builder);
         RegisterViewModel<ReportIssueShellViewModel>(builder);
         RegisterViewModel<ReportIssueCategoriesPageViewModel>(builder);
         RegisterViewModel<ReportIssueCategoryPageViewModel>(builder);

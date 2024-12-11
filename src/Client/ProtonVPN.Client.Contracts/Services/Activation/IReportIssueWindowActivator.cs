@@ -21,4 +21,7 @@ using ProtonVPN.Client.Contracts.Services.Activation.Bases;
 
 namespace ProtonVPN.Client.Contracts.Services.Activation;
 
-public interface IReportIssueWindowActivator : IWindowActivator;
+public interface IReportIssueWindowActivator : IWindowActivator
+{
+    Task ActivateAsync();
+}
