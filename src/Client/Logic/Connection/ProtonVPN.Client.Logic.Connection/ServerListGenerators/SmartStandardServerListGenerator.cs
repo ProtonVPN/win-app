@@ -81,7 +81,7 @@ public class SmartStandardServerListGenerator : ServerListGeneratorBase, ISmartS
         }
 
         // (2.) Select all the standard servers (non B2B/Tor/SecureCore servers). Exclude all the servers that have already been picked.
-        IEnumerable<Server> standardServers = availableServers.Where(s => s.IsStandard()).Except(pickedServers);
+        IEnumerable<Server> standardServers = availableServers.Where(s => s.IsStandard).Except(pickedServers);
 
         // (2.a.) Pick servers from the standard server list that also match the exact location intent.
         // (2.b.) Then pick servers from the standard server list that recursively match the base location intent (eg. server from the same city, server from the same country but different city...)

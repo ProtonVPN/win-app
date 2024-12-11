@@ -218,7 +218,7 @@ public class ServersCache : IServersCache
     {
         return servers
             .Where(s => !string.IsNullOrWhiteSpace(s.ExitCountry)
-                     && IsFreeNonB2B(s))
+                     && s.IsFreeNonB2B)
             .GroupBy(s => s.ExitCountry)
             .Select(s => new Country()
             {
@@ -233,7 +233,7 @@ public class ServersCache : IServersCache
     {
         return servers
             .Where(s => !string.IsNullOrWhiteSpace(s.ExitCountry)
-                     && IsPaidNonB2B(s))
+                     && s.IsPaidNonB2B)
             .GroupBy(s => s.ExitCountry)
             .Select(s => new Country()
             {
@@ -242,31 +242,6 @@ public class ServersCache : IServersCache
                 Features = AggregateFeatures(s),
             })
             .ToList();
-    }
-
-    private bool IsPaidNonB2B(Server server)
-    {
-        return IsPaid(server) && IsNonB2B(server);
-    }
-
-    private bool IsFreeNonB2B(Server server)
-    {
-        return IsFree(server) && IsNonB2B(server);
-    }
-
-    private bool IsNonB2B(Server server)
-    {
-        return !server.Features.IsSupported(ServerFeatures.B2B);
-    }
-
-    private bool IsPaid(Server server)
-    {
-        return server.Tier is ServerTiers.Basic or ServerTiers.Plus;
-    }
-
-    private bool IsFree(Server server)
-    {
-        return server.Tier is ServerTiers.Free;
     }
 
     private ServerFeatures AggregateFeatures<T>(IGrouping<T, Server> servers)
@@ -287,7 +262,7 @@ public class ServersCache : IServersCache
 
     private bool HasAnyPaidServer<T>(IGrouping<T, Server> servers)
     {
-        return servers.Any(IsPaid);
+        return servers.Any(s => s.IsPaid);
     }
 
     private IReadOnlyList<State> GetStates(IReadOnlyList<Server> servers)
@@ -295,7 +270,7 @@ public class ServersCache : IServersCache
         return servers
             .Where(s => !string.IsNullOrWhiteSpace(s.ExitCountry)
                      && !string.IsNullOrWhiteSpace(s.State)
-                     && IsPaidNonB2B(s))
+                     && s.IsPaidNonB2B)
             .GroupBy(s => new { Country = s.ExitCountry, State = s.State })
             .Select(s => new State() {
                 CountryCode = s.Key.Country,
@@ -311,7 +286,7 @@ public class ServersCache : IServersCache
         return servers
             .Where(s => !string.IsNullOrWhiteSpace(s.ExitCountry)
                      && !string.IsNullOrWhiteSpace(s.City)
-                     && IsPaidNonB2B(s))
+                     && s.IsPaidNonB2B)
             .GroupBy(s => new { Country = s.ExitCountry, State = s.State, City = s.City })
             .Select(c => new City() {
                 CountryCode = c.Key.Country,

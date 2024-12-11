@@ -49,10 +49,17 @@ public class Server : ILocation
         return !IsLocationUnderMaintenance() && Servers is not null && Servers.Any(s => !s.IsUnderMaintenance());
     }
 
-    public bool IsStandard()
-    {
-        return !Features.IsSupported(ServerFeatures.SecureCore | ServerFeatures.B2B | ServerFeatures.Tor);
-    }
+    public bool IsStandard => !Features.IsSupported(ServerFeatures.SecureCore | ServerFeatures.B2B | ServerFeatures.Tor);
+
+    public bool IsPaidNonB2B => IsPaid && IsNonB2B;
+
+    public bool IsFreeNonB2B => IsFree && IsNonB2B;
+
+    public bool IsNonB2B => !Features.IsSupported(ServerFeatures.B2B);
+
+    public bool IsPaid => Tier is ServerTiers.Basic or ServerTiers.Plus;
+
+    public bool IsFree => Tier is ServerTiers.Free;
 
     public Server CopyWithoutPhysicalServers()
     {
