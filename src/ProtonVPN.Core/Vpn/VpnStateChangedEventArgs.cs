@@ -20,7 +20,6 @@
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.Helpers;
 using ProtonVPN.Common.Legacy.Vpn;
-using ProtonVPN.Core.Servers.Models;
 
 namespace ProtonVPN.Core.Vpn;
 
@@ -37,8 +36,8 @@ public class VpnStateChangedEventArgs
     {
     }
 
-    public VpnStateChangedEventArgs(VpnStatus status, VpnError error, Server server, bool networkBlocked)
-        : this(new VpnState(status, server), error, networkBlocked)
+    public VpnStateChangedEventArgs(VpnStatus status, VpnError error, bool networkBlocked)
+        : this(new VpnState(status), error, networkBlocked)
     {
     }
 

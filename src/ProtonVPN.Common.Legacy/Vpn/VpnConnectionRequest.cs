@@ -17,12 +17,27 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Core.Models
+using System.Collections.Generic;
+using ProtonVPN.Common.Core.Networking;
+
+namespace ProtonVPN.Common.Legacy.Vpn;
+
+public class VpnConnectionRequest
 {
-    public enum StartMinimizedMode
+    public VpnConnectionRequest(
+        IReadOnlyList<VpnHost> servers,
+        VpnProtocol vpnProtocol,
+        VpnConfig config,
+        VpnCredentials credentials)
     {
-        Disabled = 0,
-        ToTaskbar = 1,
-        ToSystray = 2
+        Servers = servers;
+        VpnProtocol = vpnProtocol;
+        Config = config;
+        Credentials = credentials;
     }
+
+    public IReadOnlyList<VpnHost> Servers { get; }
+    public VpnProtocol VpnProtocol { get; }
+    public VpnCredentials Credentials { get; }
+    public VpnConfig Config { get; }
 }

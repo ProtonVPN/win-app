@@ -3,7 +3,6 @@
         <TargetFramework>net8.0-windows</TargetFramework>
         <OutputType>Library</OutputType>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-        <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
         <OutputPath>..\..\bin\</OutputPath>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     </PropertyGroup>

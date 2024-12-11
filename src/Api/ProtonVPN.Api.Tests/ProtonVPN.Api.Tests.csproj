@@ -45,6 +45,5 @@
         <PackageReference Include="RichardSzalay.MockHttp" />
         <PackageReference Include="System.Runtime.CompilerServices.Unsafe" />
         <PackageReference Include="System.Threading.Tasks.Extensions" />
-        <PackageReference Include="System.Configuration.ConfigurationManager" />
     </ItemGroup>
 </Project>

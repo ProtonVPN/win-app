@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+        <TargetFramework>net8.0-windows10.0.22621.0</TargetFramework>
         <OutputType>Library</OutputType>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <OutputPath>..\..\bin</OutputPath>
@@ -14,7 +14,6 @@
         <PackageReference Include="MSTest.TestAdapter" />
         <PackageReference Include="MSTest.TestFramework" />
         <PackageReference Include="NSubstitute" />
-        <PackageReference Include="System.Configuration.ConfigurationManager" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\ProtonVPN.Configurations.Contracts\ProtonVPN.Configurations.Contracts.csproj" />

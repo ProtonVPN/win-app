@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+        <TargetFramework>net8.0-windows10.0.22621.0</TargetFramework>
         <OutputType>Library</OutputType>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <OutputPath>..\..\bin\</OutputPath>
@@ -51,6 +51,5 @@
         <PackageReference Include="System.Runtime.CompilerServices.Unsafe" />
         <PackageReference Include="System.Threading.Tasks.Extensions" />
         <PackageReference Include="System.ValueTuple" />
-        <PackageReference Include="System.Configuration.ConfigurationManager" />
     </ItemGroup>
 </Project>

@@ -19,7 +19,6 @@
 
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.Vpn;
-using ProtonVPN.Core.Vpn;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
@@ -41,8 +40,8 @@ public class VpnStateChangedEventArgsMapper : IMapper<VpnStateChangedEventArgs, 
             Status = _entityMapper.Map<VpnStatus, VpnStatusIpcEntity>(leftEntity.State.Status),
             Error = _entityMapper.Map<VpnError, VpnErrorTypeIpcEntity>(leftEntity.Error),
             NetworkBlocked = leftEntity.NetworkBlocked,
-            EndpointIp = leftEntity.State.EntryIp,
-            OpenVpnAdapterType = _entityMapper.MapNullableStruct<OpenVpnAdapter, OpenVpnAdapterIpcEntity>(leftEntity.State.NetworkAdapterType),
+            EndpointIp = leftEntity.State.RemoteIp,
+            OpenVpnAdapterType = _entityMapper.MapNullableStruct<OpenVpnAdapter, OpenVpnAdapterIpcEntity>(leftEntity.State.OpenVpnAdapter),
             VpnProtocol = _entityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(leftEntity.State.VpnProtocol),
             Label = leftEntity.State.Label
         };

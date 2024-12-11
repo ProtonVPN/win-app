@@ -17,8 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
@@ -147,7 +147,7 @@ public partial class DetailsComponentViewModel : HostViewModelBase<ISidebarViewN
         }
     }
 
-    private void OnRefreshTimerTick(object? sender, EventArgs e)
+    private void OnRefreshTimerTick(object? sender, object e)
     {
         InvalidateSessionLength();
     }

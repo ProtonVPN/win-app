@@ -14,7 +14,6 @@
         <PackageReference Include="MSTest.TestAdapter" />
         <PackageReference Include="MSTest.TestFramework" />
         <PackageReference Include="NSubstitute" />
-        <PackageReference Include="System.Configuration.ConfigurationManager" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\ProtonVPN.Common.Core\ProtonVPN.Common.Core.csproj" />
