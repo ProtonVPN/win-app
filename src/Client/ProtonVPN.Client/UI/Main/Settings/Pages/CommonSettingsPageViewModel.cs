@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -29,7 +29,6 @@ using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Activation.Bases;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Core.Services.Selection;
-using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
@@ -37,10 +36,8 @@ using ProtonVPN.Client.Logic.Profiles.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Messages;
 using ProtonVPN.Client.Logic.Updates.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
-using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
-using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Common.Core.Helpers;
@@ -49,8 +46,7 @@ using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages;
 
-public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase,
-    IEventMessageReceiver<ClientUpdateStateChangedMessage>
+public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
 {
     private readonly IUpdatesManager _updatesManager;
     private readonly IApplicationThemeSelector _themeSelector;
@@ -75,8 +71,6 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase,
     public override string Title => Localizer.Get("Settings_Page_Title");
 
     public string OperatingSystemVersionDescription => OSVersion.GetString();
-
-    public bool IsUpdateAvailable => _updatesManager.IsUpdateAvailable;
 
     public ApplicationElementTheme SelectedTheme
     {
@@ -299,10 +293,5 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase,
     protected override IEnumerable<ChangedSettingArgs> GetSettings()
     {
         return [];
-    }
-
-    public void Receive(ClientUpdateStateChangedMessage message)
-    {
-        ExecuteOnUIThread(() => OnPropertyChanged(nameof(IsUpdateAvailable)));
     }
 }
