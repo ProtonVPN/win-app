@@ -60,7 +60,7 @@ public class IntentServerListGenerator : ServerListGeneratorBase, IIntentServerL
         }
 
         servers = featureIntent is null
-            ? servers.Where(s => s.IsStandard())
+            ? servers.Where(s => s.IsStandard)
             : featureIntent.FilterServers(servers);
 
         return SortServers(servers, locationIntent)
