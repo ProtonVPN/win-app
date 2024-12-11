@@ -19,9 +19,9 @@
 
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.Helpers;
-using ProtonVPN.Common.Legacy.Vpn;
+using ProtonVPN.Vpn.Common;
 
-namespace ProtonVPN.Core.Vpn;
+namespace ProtonVPN.Common.Legacy.Vpn;
 
 public class VpnStateChangedEventArgs
 {
@@ -36,11 +36,6 @@ public class VpnStateChangedEventArgs
     {
     }
 
-    public VpnStateChangedEventArgs(VpnStatus status, VpnError error, bool networkBlocked)
-        : this(new VpnState(status), error, networkBlocked)
-    {
-    }
-
     public VpnStateChangedEventArgs(VpnState state, VpnError error, bool networkBlocked)
     {
         Ensure.NotNull(state, nameof(state));
@@ -49,8 +44,4 @@ public class VpnStateChangedEventArgs
         Error = error;
         NetworkBlocked = networkBlocked;
     }
-
-    public bool UnexpectedDisconnect =>
-        (State.Status == VpnStatus.Disconnected || State.Status == VpnStatus.Disconnecting) &&
-        Error != VpnError.None;
 }

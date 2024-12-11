@@ -22,27 +22,7 @@
         </Compile>
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Albireo.Base32" />
-        <PackageReference Include="ARSoft.Tools.Net.Dns" />
-        <PackageReference Include="DnsClient" />
-        <PackageReference Include="Newtonsoft.Json" />
-        <PackageReference Include="Polly" />
-        <PackageReference Include="Polly.Contrib.WaitAndRetry" />
-        <PackageReference Include="Caliburn.Micro.Core" />
-    </ItemGroup>
-    <ItemGroup>
-        <ProjectReference Include="..\Client\Logic\Auth\ProtonVPN.Client.Logic.Auth.Contracts\ProtonVPN.Client.Logic.Auth.Contracts.csproj" />
-        <ProjectReference Include="..\Dns\ProtonVPN.Dns.Contracts\ProtonVPN.Dns.Contracts.csproj" />
-        <ProjectReference Include="..\Api\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj" />
-        <ProjectReference Include="..\EntityMapping\ProtonVPN.EntityMapping.Contracts\ProtonVPN.EntityMapping.Contracts.csproj" />
-        <ProjectReference Include="..\ProcessCommunication\ProtonVPN.ProcessCommunication.Contracts\ProtonVPN.ProcessCommunication.Contracts.csproj" />
         <ProjectReference Include="..\ProtonVPN.Common.Legacy\ProtonVPN.Common.Legacy.csproj" />
-        <ProjectReference Include="..\ProtonVPN.Resources\ProtonVPN.Resource.csproj" />
-        <ProjectReference Include="..\Update\ProtonVPN.Update\ProtonVPN.Update.csproj" />
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Remove="Abstract\File.cs" />
-        <Compile Remove="Auth\AuthResult.cs" />
     </ItemGroup>
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />

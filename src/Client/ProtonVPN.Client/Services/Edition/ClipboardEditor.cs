@@ -17,10 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Windows;
 using ProtonVPN.Client.Contracts.Services.Edition;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.OperatingSystemLogs;
+using Windows.ApplicationModel.DataTransfer;
 
 namespace ProtonVPN.Client.Services.Edition;
 
@@ -44,7 +44,9 @@ public class ClipboardEditor : IClipboardEditor
         {
             try
             {
-                Clipboard.SetDataObject(text, LEAVE_CLIPBOARD_VALUE_AFTER_APP_EXIT);
+                DataPackage dataPackage = new();
+                dataPackage.SetText(text);
+                Clipboard.SetContent(dataPackage);
                 break;
             }
             catch (Exception exception)
@@ -66,7 +68,7 @@ public class ClipboardEditor : IClipboardEditor
     {
         try
         {
-            return Clipboard.GetText();
+            return Clipboard.GetContent().ToString() ?? string.Empty;
         }
         catch (Exception exception) 
         {

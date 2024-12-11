@@ -31,6 +31,5 @@
         <PackageReference Include="MSTest.TestFramework" />
         <PackageReference Include="NSubstitute" />
         <PackageReference Include="RichardSzalay.MockHttp" />
-        <PackageReference Include="System.Configuration.ConfigurationManager" />
     </ItemGroup>
 </Project>

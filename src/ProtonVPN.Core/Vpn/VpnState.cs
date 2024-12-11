@@ -19,7 +19,6 @@
 
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.Vpn;
-using ProtonVPN.Core.Servers.Models;
 
 namespace ProtonVPN.Core.Vpn;
 
@@ -27,7 +26,6 @@ public class VpnState
 {
     public VpnStatus Status { get; }
     public string EntryIp { get; }
-    public Server Server { get; }
     public OpenVpnAdapter? NetworkAdapterType { get; }
     public VpnProtocol VpnProtocol { get; }
     public string Label { get; }
@@ -41,16 +39,10 @@ public class VpnState
         Label = label;
     }
 
-    public VpnState(VpnStatus status, Server server = null, VpnProtocol vpnProtocol = VpnProtocol.Smart, OpenVpnAdapter? networkAdapterType = null)
+    public VpnState(VpnStatus status, VpnProtocol vpnProtocol = VpnProtocol.Smart, OpenVpnAdapter? networkAdapterType = null)
     {
         Status = status;
-        Server = server ?? Server.Empty();
         VpnProtocol = vpnProtocol;
         NetworkAdapterType = networkAdapterType;
-    }
-
-    public override string ToString()
-    {
-        return $"Status: {Status}. Server: {Server?.ToString() ?? "None"}";
     }
 }
