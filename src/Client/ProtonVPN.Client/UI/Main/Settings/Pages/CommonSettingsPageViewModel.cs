@@ -199,9 +199,9 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase,
     }
 
     [RelayCommand]
-    public void ReportIssue()
+    public Task ReportIssueAsync()
     {
-        _reportIssueWindowActivator.Activate();
+        return _reportIssueWindowActivator.ActivateAsync();
     }
 
     [RelayCommand]

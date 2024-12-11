@@ -21,6 +21,7 @@ using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Activation.Bases;
+using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
@@ -31,6 +32,8 @@ namespace ProtonVPN.Client.Services.Activation;
 
 public class ReportIssueWindowActivator : DialogActivatorBase<ReportIssueWindow>, IReportIssueWindowActivator
 {
+    private readonly IReportIssueViewNavigator _reportIssueViewNavigator;
+
     public override string WindowTitle => Localizer.Get("Dialogs_ReportIssue_Title");
 
     public ReportIssueWindowActivator(
@@ -40,7 +43,8 @@ public class ReportIssueWindowActivator : DialogActivatorBase<ReportIssueWindow>
         ISettings settings,
         ILocalizationProvider localizer,
         IApplicationIconSelector iconSelector,
-        IMainWindowActivator mainWindowActivator)
+        IMainWindowActivator mainWindowActivator,
+        IReportIssueViewNavigator reportIssueViewNavigator)
         : base(logger,
                uiThreadDispatcher,
                themeSelector,
@@ -49,5 +53,13 @@ public class ReportIssueWindowActivator : DialogActivatorBase<ReportIssueWindow>
                iconSelector,
                mainWindowActivator)
     {
+        _reportIssueViewNavigator = reportIssueViewNavigator;
+    }
+
+    public Task ActivateAsync()
+    {
+        Activate();
+
+        return _reportIssueViewNavigator.NavigateToCategoriesViewAsync();
     }
 }
