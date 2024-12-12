@@ -107,7 +107,7 @@ build-bti:
     DEPENDENCIES: publish-BTI
     BUILD_PATH: BTI/publish
 
-ui-tests-1:
+ui-tests-group-1:
   extends: .ui_test_execution_script
   needs:
     - build-installer
@@ -118,6 +118,18 @@ ui-tests-1:
     - schedules
   variables:
     CATEGORY: "1"
+    
+ui-tests-group-2:
+  extends: .ui_test_execution_script
+  needs:
+    - build-installer
+  except:
+    - /^debug.*$/
+    - release/9.9.9
+    - master
+    - schedules
+  variables:
+    CATEGORY: "2"
     
 bti-test:
   extends: .ui_test_execution_script

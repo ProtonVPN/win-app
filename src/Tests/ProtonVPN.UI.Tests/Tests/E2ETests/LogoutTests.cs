@@ -25,7 +25,7 @@ using ProtonVPN.UI.Tests.TestsHelper;
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
-[Category("1")]
+[Category("2")]
 public class LogoutTests : FreshSessionSetUp
 {
     [SetUp]
