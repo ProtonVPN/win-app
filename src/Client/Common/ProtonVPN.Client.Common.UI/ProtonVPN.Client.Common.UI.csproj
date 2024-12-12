@@ -867,6 +867,7 @@
         <None Remove="Styles\Icons.xaml" />
         <None Remove="Styles\Illustrations.xaml" />
         <None Remove="Styles\Typography.xaml" />
+        <None Remove="Styles\Typography_W10.xaml" />
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="CommunityToolkit.WinUI.Controls.HeaderedControls" />
@@ -2471,6 +2472,12 @@
       <Content Update="Assets\Illustrations\Light\netshield-on-level-2.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Styles\Typography_W10.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Page>
     </ItemGroup>
     <ItemGroup>
       <Page Update="Assets\Icons\ActivePortNumber.xaml">
