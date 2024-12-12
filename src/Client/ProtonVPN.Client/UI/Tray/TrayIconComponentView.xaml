@@ -33,7 +33,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                       DoubleClickCommand="{x:Bind ViewModel.ShowApplicationCommand, Mode=OneTime}"
                       IconSource="{x:Bind ViewModel.IconSource}"
                       Id="{x:Bind ViewModel.TrayIconGuid, Mode=OneTime}"
-                      LeftClickCommand="{x:Bind ViewModel.ShowApplicationCommand, Mode=OneTime}">
+                      LeftClickCommand="{x:Bind ViewModel.ShowApplicationCommand, Mode=OneTime}"
+                      ToolTipText="{x:Bind ViewModel.ApplicationName, Mode=OneTime}">
         <tray:TaskbarIcon.ContextFlyout>
             <MenuFlyout>
 

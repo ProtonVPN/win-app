@@ -23,6 +23,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Modules;
 using ProtonVPN.Client.Services.Bootstrapping;
+using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.IssueReporting.Installers;
 
 namespace ProtonVPN.Client;
@@ -76,11 +77,7 @@ public partial class App : Application
 
     private void LoadTypographyResourceDictionary()
     {
-        // Detect if Windows 11 (build 22000 or higher)
-        Version osVersion = Environment.OSVersion.Version;
-        bool isWindows11OrAbove = osVersion.Major >= 10 && osVersion.Build >= 22000;
-
-        string resourcePath = isWindows11OrAbove
+        string resourcePath = OSVersion.IsWindows11OrHigher()
             ? WINDOWS_11_TYPOGRAPHY_RD_PATH
             : WINDOWS_10_TYPOGRAPHY_RD_PATH;
 
