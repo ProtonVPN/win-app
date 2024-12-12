@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -31,6 +31,8 @@ public partial class App : Application
 {
     public const string APPLICATION_NAME = "Proton VPN";
 
+    private const string WINDOWS_11_TYPOGRAPHY_RD_PATH = "ms-appx:///ProtonVPN.Client.Common.UI/Styles/Typography.xaml";
+    private const string WINDOWS_10_TYPOGRAPHY_RD_PATH = "ms-appx:///ProtonVPN.Client.Common.UI/Styles/Typography_W10.xaml";
     public MainWindow? MainWindow { get; private set; }
 
     public IHost Host { get; }
@@ -65,8 +67,29 @@ public partial class App : Application
     {
         base.OnLaunched(args);
 
+        LoadTypographyResourceDictionary();
+
         MainWindow = new();
 
         await GetService<IBootstrapper>().StartAsync(args);
+    }
+
+    private void LoadTypographyResourceDictionary()
+    {
+        // Detect if Windows 11 (build 22000 or higher)
+        Version osVersion = Environment.OSVersion.Version;
+        bool isWindows11OrAbove = osVersion.Major >= 10 && osVersion.Build >= 22000;
+
+        string resourcePath = isWindows11OrAbove
+            ? WINDOWS_11_TYPOGRAPHY_RD_PATH
+            : WINDOWS_10_TYPOGRAPHY_RD_PATH;
+
+        Uri resourceUri = new(resourcePath);
+        ResourceDictionary resourceDictionary = new()
+        {
+            Source = resourceUri
+        };
+
+        Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
     }
 }
