@@ -99,11 +99,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <custom:WidgetButton x:Name="WidgetButton"
                          Command="{x:Bind ViewModel.InvokeCommand, Mode=OneTime}"
                          IsActive="{x:Bind ViewModel.IsSelected}"
-                         PointerEntered="OnWidgetButtonPointerEntered"
-                         PointerExited="OnWidgetButtonPointerExited"
                          Style="{StaticResource SideWidgetButtonStyle}"
                          Text="{x:Bind ViewModel.Header}"
-                         Visibility="{x:Bind ViewModel.IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
+                         Visibility="{x:Bind ViewModel.IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
+                         Flyout="{StaticResource WidgetFlyout}">
         <featureicons:SplitTunnelingIconView />
     </custom:WidgetButton>
 
