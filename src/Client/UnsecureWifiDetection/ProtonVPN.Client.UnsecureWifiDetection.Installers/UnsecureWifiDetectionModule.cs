@@ -18,9 +18,8 @@
  */
 
 using Autofac;
-using ProtonVPN.Client.UnsecureWifiDetection;
 
-namespace ProtonVPN.Client.Notifications.Installers;
+namespace ProtonVPN.Client.UnsecureWifiDetection.Installers;
 
 public class UnsecureWifiDetectionModule : Module
 {

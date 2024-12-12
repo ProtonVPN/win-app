@@ -17,13 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.WinUI;
+using System.Runtime.CompilerServices;
 using Microsoft.UI.Dispatching;
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
-using System.Runtime.CompilerServices;
 
 namespace ProtonVPN.Client.Services.Dispatching;
 
@@ -48,17 +47,6 @@ public class UIThreadDispatcher : IUIThreadDispatcher
         [CallerLineNumber] int sourceLineNumber = 0)
     {
         return _dispatcherQueue.TryEnqueue(() => ExecuteSafely(callback, sourceFilePath, sourceMemberName, sourceLineNumber));
-    }
-
-    // TODO: I haven't test if this works as expected
-    public async Task<bool> TryEnqueueAsync(Task task, 
-        [CallerFilePath] string sourceFilePath = "", 
-        [CallerMemberName] string sourceMemberName = "", 
-        [CallerLineNumber] int sourceLineNumber = 0)
-    {
-        await _dispatcherQueue.EnqueueAsync(() => ExecuteSafelyAsync(task, sourceFilePath, sourceMemberName, sourceLineNumber));
-
-        return task.IsCompleted;
     }
 
     private void ExecuteSafely(Action callback, string sourceFilePath, string sourceMemberName, int sourceLineNumber)

@@ -60,8 +60,6 @@ public class AutoStartupHandler : IHandler, IEventMessageReceiver<SettingChanged
 
     private void Initialize()
     {
-        DeleteOldRegistryKey();
-
         InvalidateAutoLaunch();
 
         bool isAutoStartupEnabledOnRegistry = IsAutoStartupEnabledOnRegistry();
@@ -69,17 +67,6 @@ public class AutoStartupHandler : IHandler, IEventMessageReceiver<SettingChanged
         {
             _settings.IsAutoLaunchEnabled = isAutoStartupEnabledOnRegistry;
         }
-    }
-
-    /// <summary>
-    /// TODO: Remove this method before releasing to Beta
-    /// When moving to v4, auto start registry key was added using the Client name (ProtonVPN.Client) rather than the Application name (Proton VPN)
-    /// We changed the key name but internal users that already updated to v4 might still have the old one, so we need to remove it.
-    /// Future beta users won't have this issue so we can remove this method before releasing to beta.
-    /// </summary>
-    private void DeleteOldRegistryKey()
-    {
-        _registryEditor.Delete(_oldRegistryUri.Value);
     }
 
     private bool IsAutoStartupEnabledOnRegistry()
