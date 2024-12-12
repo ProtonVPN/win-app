@@ -149,12 +149,6 @@ public class ProfilesMigrator : IProfilesMigrator
     private ConnectionIntentKind GetLegacyProfileConnectionIntentKind(LegacyProfile legacyProfile)
     {
         return ConnectionIntentKind.Fastest;
-
-        // TODO: Currently the Profile edit page doesn't support Random
-
-        //return legacyProfile.ProfileType == RANDOM_PROFILE_TYPE
-        //    ? ConnectionIntentKind.Random
-        //    : ConnectionIntentKind.Fastest;
     }
 
     private ProfileColor MigrateProfileColor(LegacyProfile legacyProfile)

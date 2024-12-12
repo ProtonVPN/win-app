@@ -371,7 +371,6 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
     {
         _currentFeatureIntent = SelectedFeature?.Feature switch
         {
-            // TODO: feature intent is not updated when country pair changes.
             Feature.SecureCore when SelectedSecondLevelLocationItem is SecureCoreCountryPairLocationItem countryPair => new SecureCoreFeatureIntent(countryPair.CountryPair.EntryCountry),
             Feature.SecureCore => new SecureCoreFeatureIntent(),
             Feature.Tor => new TorFeatureIntent(),

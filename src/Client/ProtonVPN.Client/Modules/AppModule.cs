@@ -110,6 +110,7 @@ using ProtonVPN.Client.UI.Overlays.Upsell;
 using ProtonVPN.Client.UI.Overlays.Welcome;
 using ProtonVPN.Client.UI.Tray;
 using ProtonVPN.Client.UI.Update;
+using ProtonVPN.Client.UnsecureWifiDetection.Installers;
 using ProtonVPN.Common.Legacy.OS.DeviceIds;
 using ProtonVPN.Common.Legacy.OS.Net.NetworkInterface;
 using ProtonVPN.Common.Legacy.OS.Processes;

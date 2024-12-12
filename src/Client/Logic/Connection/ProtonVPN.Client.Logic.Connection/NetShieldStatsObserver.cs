@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Client.Common.Observers;
+using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
@@ -37,7 +38,8 @@ public class NetShieldStatsObserver : PollingObserverBase,
     INetShieldStatsObserver,
     IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<SettingChangedMessage>,
-    IEventMessageReceiver<NetShieldStatisticIpcEntity>
+    IEventMessageReceiver<NetShieldStatisticIpcEntity>,
+    IEventMessageReceiver<MainWindowVisibilityChangedMessage>
 {
     private const int TIMER_INTERVAL_IN_SECONDS = 20;
     private const int MINIMUM_REQUEST_TIMEOUT_IN_SECONDS = 20;
@@ -52,6 +54,7 @@ public class NetShieldStatsObserver : PollingObserverBase,
     private readonly object _lock = new();
 
     private DateTime _nextRequestDateUtc = DateTime.MinValue;
+    private bool _isMainWindowVisible;
 
     protected override TimeSpan PollingInterval => TimeSpan.FromSeconds(TIMER_INTERVAL_IN_SECONDS);
 
@@ -99,6 +102,11 @@ public class NetShieldStatsObserver : PollingObserverBase,
         });
     }
 
+    public void Receive(MainWindowVisibilityChangedMessage message)
+    {
+        _isMainWindowVisible = message.IsMainWindowVisible;
+    }
+
     protected override async Task OnTriggerAsync()
     {
         DateTime utcNow = DateTime.UtcNow;
@@ -114,7 +122,7 @@ public class NetShieldStatsObserver : PollingObserverBase,
 
     private bool CanRequestNetShieldStats()
     {
-        return _settings.IsNetShieldEnabled && _connectionManager.IsConnected; // TODO: Check how to enable this again: && !_mainWindowActivator.IsWindowMinimized;
+        return _settings.IsNetShieldEnabled && _connectionManager.IsConnected && _isMainWindowVisible;
     }
 
     private void InvalidateTimer()

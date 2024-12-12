@@ -314,44 +314,13 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userCache.SetValueType<ChangeServerAttempts>(value, SettingEncryption.Encrypted);
     }
 
-    // TODO: Revert code after 4.0.10
-    //public DefaultConnection DefaultConnection
-    //{
-    //    get
-    //    {
-    //        if (VpnPlan.IsPaid)
-    //        {
-    //            return _userCache.GetValueType<DefaultConnection>(SettingEncryption.Unencrypted) ?? DefaultSettings.DefaultConnection;
-    //        }
-
-    //        return DefaultSettings.DefaultConnection;
-    //    }
-    //    set => _userCache.SetValueType<DefaultConnection>(value, SettingEncryption.Unencrypted);
-    //}
-
-    // TODO: Temporary for 4.0.10 release
     public DefaultConnection DefaultConnection
     {
         get
         {
             if (VpnPlan.IsPaid)
             {
-                DefaultConnection? defaultConnection = _userCache.GetValueType<DefaultConnection>(SettingEncryption.Unencrypted);
-                if (defaultConnection == null)
-                {
-                    // Default connection was stored as DefaultConnectionType before 4.0.10.
-                    DefaultConnectionType? defaultConnectionType = _userCache.GetValueType<DefaultConnectionType>(SettingEncryption.Unencrypted);
-                    defaultConnection = defaultConnectionType switch
-                    {
-                        DefaultConnectionType.Fastest => DefaultConnection.Fastest,
-                        DefaultConnectionType.Last => DefaultConnection.Last,
-                        _ => DefaultSettings.DefaultConnection
-                    };
-
-                    // Overwrite default connection type with the default connection value in user settings
-                    DefaultConnection = defaultConnection.Value;
-                }
-                return defaultConnection ?? DefaultSettings.DefaultConnection;
+                return _userCache.GetValueType<DefaultConnection>(SettingEncryption.Unencrypted) ?? DefaultSettings.DefaultConnection;
             }
 
             return DefaultSettings.DefaultConnection;

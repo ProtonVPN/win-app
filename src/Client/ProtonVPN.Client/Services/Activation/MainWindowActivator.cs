@@ -117,7 +117,6 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
                 }
                 : new()
                 {
-                    // TODO: Check if setting width and height on the window xaml is enough. Only overrides if logged in.
                     Width = LOGIN_WINDOW_WIDTH,
                     Height = LOGIN_WINDOW_HEIGHT,
                     IsMaximized = false,
