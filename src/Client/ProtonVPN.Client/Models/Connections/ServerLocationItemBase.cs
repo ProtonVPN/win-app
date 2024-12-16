@@ -48,6 +48,11 @@ public abstract class ServerLocationItemBase : LocationItemBase<Server>
 
     public override object SecondSortProperty => Load;
 
+    // Show city as base location when the server belongs to a state
+    public string BaseLocation => string.IsNullOrEmpty(Server.State)
+        ? string.Empty
+        : Server.City;
+
     public bool IsVirtual => Server.IsVirtual;
 
     public bool IsFree => Server.Tier == ServerTiers.Free;

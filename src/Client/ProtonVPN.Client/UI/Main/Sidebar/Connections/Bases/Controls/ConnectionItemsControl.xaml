@@ -263,7 +263,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         IsDescriptionVisible="{x:Bind IsDescriptionVisible}"
                                         IsRestricted="{x:Bind IsRestricted}" 
                                         IsUnderMaintenance="{x:Bind IsUnderMaintenance}"
-                                        ToolTipService.ToolTip="{x:Bind ToolTip}">
+                                        ToolTipService.ToolTip="{x:Bind ToolTip}"
+                                        Padding="24,10,12,10">
                 <custom:ConnectionRowButton.Icon>
                     <custom:ComplexCountryFlag Width="30" 
                                                EntryCountryCode="{x:Bind CountryPair.EntryCountry}"
@@ -453,7 +454,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               SupportsSmartRouting="{x:Bind IsVirtual}"
                                               SupportsTor="{x:Bind SupportsTor}"
                                               ToolTipService.ToolTip="{x:Bind ToolTip}"
-                                              TorLabel="{x:Bind Localizer.Get('Countries_Tor')}" />
+                                              TorLabel="{x:Bind Localizer.Get('Countries_Tor')}" 
+                                              BaseLocation="{x:Bind BaseLocation}"/>
 
         </DataTemplate>
 
@@ -536,7 +538,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               SupportsSmartRouting="{x:Bind IsVirtual}"
                                               SupportsTor="{x:Bind SupportsTor}"
                                               ToolTipService.ToolTip="{x:Bind ToolTip}"
-                                              TorLabel="{x:Bind Localizer.Get('Countries_Tor')}">
+                                              TorLabel="{x:Bind Localizer.Get('Countries_Tor')}"
+                                              BaseLocation="{x:Bind BaseLocation}">
                 <custom:ServerConnectionRowButton.Icon>
                     <custom:SimpleCountryFlag Width="30"
                                               CountryCode="{x:Bind Server.ExitCountry}"

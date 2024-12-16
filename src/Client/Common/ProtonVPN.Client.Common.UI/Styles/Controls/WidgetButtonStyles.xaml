@@ -71,11 +71,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </ResourceDictionary.ThemeDictionaries>
 
     <CornerRadius x:Key="SideWidgetButtonCornerRadius">4,4,4,4</CornerRadius>
-    <x:Double x:Key="SideWidgetTextVisibilitySizeThreshold">75.0</x:Double>
+    <x:Double x:Key="SideWidgetTextVisibilitySizeThreshold">70.0</x:Double>
 
     <Style x:Key="SideWidgetButtonStyle" BasedOn="{StaticResource SecondaryButtonStyle}" TargetType="custom:WidgetButton">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="Padding" Value="8" />
+        <Setter Property="Padding" Value="4,8" />
         <Setter Property="CornerRadius" Value="{StaticResource SideWidgetButtonCornerRadius}" />
         <Setter Property="Template">
             <Setter.Value>
@@ -96,7 +96,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               CornerRadius="{TemplateBinding CornerRadius}">
 
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="32" />
+                                <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 

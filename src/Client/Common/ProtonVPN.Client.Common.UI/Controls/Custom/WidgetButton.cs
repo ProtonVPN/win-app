@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -28,13 +28,19 @@ namespace ProtonVPN.Client.Common.UI.Controls.Custom;
 
 public class WidgetButton : Button
 {
-    private const int OPEN_FLYOUT_DELAY_IN_MS = 400;
-
     public static readonly DependencyProperty IsActiveProperty =
         DependencyProperty.Register(nameof(IsActive), typeof(bool), typeof(WidgetButton), new PropertyMetadata(default));
 
     public static readonly DependencyProperty TextProperty =
         DependencyProperty.Register(nameof(Text), typeof(string), typeof(WidgetButton), new PropertyMetadata(default));
+
+    public static readonly DependencyProperty OnHoverFlyoutProperty =
+        DependencyProperty.Register(nameof(OnHoverFlyout), typeof(FlyoutBase), typeof(WidgetButton), new PropertyMetadata(default));
+
+    private const int OPEN_FLYOUT_DELAY_IN_MS = 300;
+
+    private DispatcherTimer _timer;
+    private bool _isPressed;
 
     public bool IsActive
     {
@@ -48,34 +54,67 @@ public class WidgetButton : Button
         set => SetValue(TextProperty, value);
     }
 
-    private DispatcherTimer _timer ;
+    public FlyoutBase OnHoverFlyout
+    {
+        get => (FlyoutBase)GetValue(OnHoverFlyoutProperty);
+        set => SetValue(OnHoverFlyoutProperty, value);
+    }
 
     public WidgetButton()
     {
-        _timer = new DispatcherTimer() 
-        { 
-            Interval = TimeSpan.FromMilliseconds(OPEN_FLYOUT_DELAY_IN_MS) 
+        _timer = new DispatcherTimer()
+        {
+            Interval = TimeSpan.FromMilliseconds(OPEN_FLYOUT_DELAY_IN_MS)
         };
         _timer.Tick += OnOpenFlyoutTimerTick;
+    }
+
+    protected override void OnPointerPressed(PointerRoutedEventArgs e)
+    {
+        base.OnPointerPressed(e);
+
+        _isPressed = true;
+    }
+
+    protected override void OnPointerReleased(PointerRoutedEventArgs e)
+    {
+        base.OnPointerReleased(e);
+
+        if (_isPressed)
+        {
+            _isPressed = false;
+
+            if (OnHoverFlyout == null)
+            {
+                return;
+            }
+
+            StopTimer();
+
+            if (OnHoverFlyout.IsOpen)
+            {
+                OnHoverFlyout.Hide();
+            }
+        }
     }
 
     protected override void OnPointerEntered(PointerRoutedEventArgs e)
     {
         base.OnPointerEntered(e);
 
-        if (Flyout == null)
+        if (OnHoverFlyout == null)
         {
             return;
         }
 
-        if (!Flyout.IsOpen)
+        if (!OnHoverFlyout.IsOpen)
         {
             StartTimer();
         }
         else
         {
             // When pointer is over the button, switch to transient mode so the flyout cannot be dismissed
-            Flyout.ShowMode = FlyoutShowMode.Transient;
+            OnHoverFlyout.ShowMode = FlyoutShowMode.Transient;
         }
     }
 
@@ -83,23 +122,22 @@ public class WidgetButton : Button
     {
         base.OnPointerExited(e);
 
-        if (Flyout == null)
+        if (OnHoverFlyout == null)
         {
             return;
         }
 
         StopTimer();
 
-        if (Flyout.IsOpen)
+        if (OnHoverFlyout.IsOpen)
         {
             // When pointer is not over the button, flyout can be dismissed when the pointer moves away
-            Flyout.ShowMode = FlyoutShowMode.TransientWithDismissOnPointerMoveAway;
+            OnHoverFlyout.ShowMode = FlyoutShowMode.TransientWithDismissOnPointerMoveAway;
         }
     }
 
     private void OnOpenFlyoutTimerTick(object? sender, object e)
     {
-
         StopTimer();
 
         FlyoutShowOptions options = new()
@@ -108,7 +146,7 @@ public class WidgetButton : Button
             Placement = FlyoutPlacementMode.LeftEdgeAlignedTop,
             Position = new Point(-16, -1)
         };
-        Flyout.ShowAt(this, options);
+        OnHoverFlyout.ShowAt(this, options);
     }
 
     private void StartTimer()

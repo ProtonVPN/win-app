@@ -37,7 +37,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                          ToolTipService.ToolTip="Ctrl + ,"
                          Visibility="{x:Bind ViewModel.IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
         <Image Source="{ThemeResource SettingsIllustrationSource}"
-               Width="24" />
+               Width="{StaticResource FeatureBarDimmableImageSize}"
+               Height="{StaticResource FeatureBarDimmableImageSize}" />
     </custom:WidgetButton>
 
 </UserControl>

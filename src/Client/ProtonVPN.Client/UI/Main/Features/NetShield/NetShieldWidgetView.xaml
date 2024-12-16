@@ -115,26 +115,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                          Style="{StaticResource SideWidgetButtonStyle}"
                          Text="{x:Bind ViewModel.Header}"
                          Visibility="{x:Bind ViewModel.IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
-                         Flyout="{StaticResource WidgetFlyout}">
+                         OnHoverFlyout="{StaticResource WidgetFlyout}">
         <Grid>
-            <featureicons:NetShieldIconView x:Name="FeatureIcon" />
-            <Canvas>
-                <InfoBadge Grid.Column="1"
-                           Canvas.Left="20"
-                           Canvas.Top="-5"
-                           Background="{ThemeResource VpnGreenColorBrush}"
-                           BorderBrush="Black"
-                           BorderThickness="2"
-                           Foreground="{ThemeResource TextInvertColorBrush}"
-                           Visibility="{x:Bind ViewModel.IsNetShieldStatsPanelVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
-                           Value="{x:Bind ViewModel.TotalAdsAndTrackersBlocked}">
-                    <ui:Effects.Shadow>
-                        <ui:AttachedDropShadow CastTo="{x:Bind FeatureIcon}"
-                                               CornerRadius="16"
-                                               Offset="-4,2" />
-                    </ui:Effects.Shadow>
-                </InfoBadge>
-            </Canvas>
+            <featureicons:NetShieldIconView x:Name="FeatureIcon" 
+                                            Width="{StaticResource FeatureBarDimmableImageSize}" 
+                                            Height="{StaticResource FeatureBarDimmableImageSize}" />
+
+            <TextBlock Style="{StaticResource CaptionStrongTextBlockStyle}"
+                       Foreground="{ThemeResource VpnGreenColorBrush}"
+                       Visibility="{x:Bind ViewModel.IsNetShieldStatsPanelVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                       Text="{x:Bind ViewModel.FormattedTotalAdsAndTrackersBlocked}"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Top"
+                       Margin="0,-9,-13,0"
+                       MinWidth="14"/>
         </Grid>
     </custom:WidgetButton>
 

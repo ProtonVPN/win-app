@@ -51,15 +51,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             Width="452"
                             Padding="32,24"
                             Style="{StaticResource PaneContentControlStyle}">
+                
                 <Grid RowSpacing="12">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <Image Height="45"
-                           Grid.Row="0"
+                    <Image Grid.Row="0"
+                           Height="45"
                            HorizontalAlignment="Left"
                            Source="{ThemeResource ProductLogoIllustrationSource}"
                            Stretch="Uniform" />
@@ -68,10 +69,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            Grid.Row="1"
                            IsNavigationStackEnabled="{x:Bind Navigator.IsNavigationStackEnabled}" />
 
-                    <StackPanel VerticalAlignment="Top"
-                                Grid.Row="1"
-                                Spacing="12"
-                                Margin="-12,0">
+                    <StackPanel Grid.Row="1"
+                                Margin="-12,0"
+                                VerticalAlignment="Top"
+                                Spacing="12">
 
                         <components:DisableKillSwitchBannerComponent />
 
@@ -79,11 +80,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                  IsOpen="{x:Bind ViewModel.IsMessageVisible}"
                                  Message="{x:Bind ViewModel.Message}"
                                  Severity="{x:Bind ViewModel.MessageType}" />
-                        
+
                     </StackPanel>
 
-                    <custom:GhostButton HorizontalAlignment="Center"
-                                        Grid.Row="2"
+                    <custom:GhostButton Grid.Row="2"
+                                        HorizontalAlignment="Center"
                                         AutomationProperties.AutomationId="HelpButton"
                                         Content="{x:Bind ViewModel.Localizer.Get('SignIn_Form_Help')}"
                                         Style="{ThemeResource PrimaryGhostButtonStyle}"
@@ -128,64 +129,72 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </ContentControl>
 
             <Grid Grid.Column="1"
-                  VerticalAlignment="Center">
+                  VerticalAlignment="Center"
+                  RowSpacing="24">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-                <StackPanel Spacing="24">
-                    <Image Source="{StaticResource GlobeIllustrationSource}" />
+                <Image Grid.Row="0"
+                       Source="{StaticResource GlobeIllustrationSource}"
+                       Stretch="Uniform" />
 
-                    <TextBlock FontSize="40"
-                               Text="{x:Bind ViewModel.Localizer.Get('SignIn_Form_BestSecureVpnForSpeed')}"
-                               TextAlignment="Center"
-                               TextWrapping="Wrap" />
+                <TextBlock Grid.Row="1"
+                           Margin="10,0"
+                           Style="{StaticResource TitleLargeTextBlockStyle}"
+                           Text="{x:Bind ViewModel.Localizer.Get('SignIn_Form_BestSecureVpnForSpeed')}"
+                           TextAlignment="Center"
+                           TextWrapping="Wrap" />
 
-                    <ItemsControl HorizontalAlignment="Center">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <controls:WrapPanel HorizontalAlignment="Left"
-                                                    HorizontalSpacing="24"
-                                                    VerticalSpacing="12" />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
+                <ItemsControl Grid.Row="2"
+                              HorizontalAlignment="Center">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <controls:WrapPanel HorizontalSpacing="24"
+                                                VerticalSpacing="12" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
 
-                        <ItemsControl.Items>
+                    <ItemsControl.Items>
 
-                            <StackPanel HorizontalAlignment="Center"
-                                        Orientation="Horizontal"
-                                        Spacing="8">
-                                <Image Width="24"
-                                       Height="24"
-                                       Source="{StaticResource OpenSourceIllustrationSource}" />
-                                <TextBlock Foreground="{ThemeResource TextWeakColor}"
-                                           Style="{ThemeResource BodyMediumTextBlockStyle}"
-                                           Text="{x:Bind ViewModel.Localizer.Get('SignIn_Form_OpenSource')}" />
-                            </StackPanel>
+                        <StackPanel HorizontalAlignment="Center"
+                                    Orientation="Horizontal"
+                                    Spacing="8">
+                            <Image Width="24"
+                                   Height="24"
+                                   Source="{StaticResource OpenSourceIllustrationSource}" />
+                            <TextBlock Foreground="{ThemeResource TextWeakColor}"
+                                       Style="{ThemeResource BodyMediumTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('SignIn_Form_OpenSource')}" />
+                        </StackPanel>
 
-                            <StackPanel HorizontalAlignment="Center"
-                                        Orientation="Horizontal"
-                                        Spacing="8">
-                                <Image Width="24"
-                                       Height="24"
-                                       Source="{StaticResource SwissFlagIllustrationSource}" />
-                                <TextBlock Foreground="{ThemeResource TextWeakColor}"
-                                           Style="{ThemeResource BodyMediumTextBlockStyle}"
-                                           Text="{x:Bind ViewModel.Localizer.Get('SignIn_Form_SwissBased')}" />
-                            </StackPanel>
+                        <StackPanel HorizontalAlignment="Center"
+                                    Orientation="Horizontal"
+                                    Spacing="8">
+                            <Image Width="24"
+                                   Height="24"
+                                   Source="{StaticResource SwissFlagIllustrationSource}" />
+                            <TextBlock Foreground="{ThemeResource TextWeakColor}"
+                                       Style="{ThemeResource BodyMediumTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('SignIn_Form_SwissBased')}" />
+                        </StackPanel>
 
-                            <StackPanel HorizontalAlignment="Center"
-                                        Orientation="Horizontal"
-                                        Spacing="8">
-                                <Image Width="24"
-                                       Height="24"
-                                       Source="{StaticResource CertifiedNoLogsIllustrationSource}" />
-                                <TextBlock Foreground="{ThemeResource TextWeakColor}"
-                                           Style="{ThemeResource BodyMediumTextBlockStyle}"
-                                           Text="{x:Bind ViewModel.Localizer.Get('SignIn_Form_NoLogsPolicy')}" />
-                            </StackPanel>
+                        <StackPanel HorizontalAlignment="Center"
+                                    Orientation="Horizontal"
+                                    Spacing="8">
+                            <Image Width="24"
+                                   Height="24"
+                                   Source="{StaticResource CertifiedNoLogsIllustrationSource}" />
+                            <TextBlock Foreground="{ThemeResource TextWeakColor}"
+                                       Style="{ThemeResource BodyMediumTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('SignIn_Form_NoLogsPolicy')}" />
+                        </StackPanel>
 
-                        </ItemsControl.Items>
-                    </ItemsControl>
+                    </ItemsControl.Items>
+                </ItemsControl>
 
-                </StackPanel>
             </Grid>
         </Grid>
     </Grid>

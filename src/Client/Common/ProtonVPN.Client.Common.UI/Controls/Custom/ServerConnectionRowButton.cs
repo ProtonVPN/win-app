@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -33,6 +33,9 @@ public class ServerConnectionRowButton : ConnectionRowButtonBase
     public static readonly DependencyProperty ServerLoadProperty =
         DependencyProperty.Register(nameof(ServerLoad), typeof(double), typeof(ServerConnectionRowButton), new PropertyMetadata(default));
 
+    public static readonly DependencyProperty BaseLocationProperty =
+        DependencyProperty.Register(nameof(BaseLocation), typeof(string), typeof(ServerConnectionRowButton), new PropertyMetadata(default));
+
     public bool SupportsSmartRouting
     {
         get => (bool)GetValue(SupportsSmartRoutingProperty);
@@ -49,5 +52,11 @@ public class ServerConnectionRowButton : ConnectionRowButtonBase
     {
         get => (double)GetValue(ServerLoadProperty);
         set => SetValue(ServerLoadProperty, value);
+    }
+
+    public string BaseLocation
+    {
+        get => (string)GetValue(BaseLocationProperty);
+        set => SetValue(BaseLocationProperty, value);
     }
 }

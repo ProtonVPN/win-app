@@ -49,10 +49,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Style x:Key="ConnectionRowFeatureCardStyle" TargetType="StackPanel">
         <Setter Property="Orientation" Value="Horizontal" />
         <Setter Property="CornerRadius" Value="4" />
-        <Setter Property="Padding" Value="6,2" />
+        <Setter Property="Padding" Value="4,3" />
         <Setter Property="Spacing" Value="2" />
         <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Background" Value="{ThemeResource InteractionDefaultActiveColorBrush}" />
+        <Setter Property="Background" Value="{ThemeResource InteractionDefaultColorBrush}" />
     </Style>
 
     <Style x:Key="ServerConnectionRowFeatureCardStyle" TargetType="Border">
@@ -270,8 +270,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           CornerRadius="8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="2*" />
-                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
                         <ContentPresenter x:Name="ConnectionRowIcon"
@@ -290,6 +290,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               VerticalAlignment="Center"
                               ColumnSpacing="8">
 
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
@@ -297,11 +302,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                             <TextBlock x:Name="ConnectionRowHeader"
                                        Grid.Column="0"
+                                       Grid.Row="0"
                                        Margin="0,0,0,2"
                                        Style="{StaticResource ConnectionRowHeaderTextBlockStyle}"
                                        Text="{TemplateBinding Header}" />
 
+                            <TextBlock x:Name="ConnectionRowBaseLocation"
+                                       Grid.Column="0"
+                                       Grid.Row="1"
+                                       Margin="0,2"
+                                       TextTrimming="WordEllipsis"
+                                       TextWrapping="NoWrap"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Foreground="{ThemeResource TextWeakColorBrush}"
+                                       Text="{TemplateBinding BaseLocation}" 
+                                       Visibility="{Binding Text, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}"/>
+
                             <StackPanel Grid.Column="1"
+                                        Grid.Row="0"
                                         Orientation="Horizontal"
                                         Spacing="8">
                                 <pathicons:Wrench Foreground="{ThemeResource TextWeakColorBrush}"
@@ -330,12 +348,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         HorizontalAlignment="Left"
                                         Orientation="Horizontal"
                                         Spacing="0">
-                                <Border Style="{StaticResource ServerConnectionRowFeatureCardStyle}"
+                                <!--<Border Style="{StaticResource ServerConnectionRowFeatureCardStyle}"
                                         ToolTipService.ToolTip="{Binding P2PLabel, RelativeSource={RelativeSource Mode=TemplatedParent}, TargetNullValue='P2P'}"
                                         Visibility="{Binding SupportsP2P, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <pathicons:ArrowRightArrowLeft Foreground="{ThemeResource TextWeakColorBrush}"
                                                                    Size="Pixels20" />
-                                </Border>
+                                </Border>-->
                                 <Border Style="{StaticResource ServerConnectionRowFeatureCardStyle}"
                                         ToolTipService.ToolTip="{Binding SmartRoutingLabel, RelativeSource={RelativeSource Mode=TemplatedParent}, TargetNullValue='Smart routing'}"
                                         Visibility="{Binding SupportsSmartRouting, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">

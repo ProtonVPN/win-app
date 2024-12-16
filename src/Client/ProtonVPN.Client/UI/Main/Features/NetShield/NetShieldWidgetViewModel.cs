@@ -39,15 +39,24 @@ namespace ProtonVPN.Client.UI.Main.Features.NetShield;
 public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
     IEventMessageReceiver<NetShieldStatsChangedMessage>
 {
+    private const int BADGE_MAXIMUM_NUMBER = 99;
+
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(TotalAdsAndTrackersBlocked))]
+    [NotifyPropertyChangedFor(nameof(FormattedTotalAdsAndTrackersBlocked))]
     private long _numberOfTrackersStopped;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(TotalAdsAndTrackersBlocked))]
+    [NotifyPropertyChangedFor(nameof(FormattedTotalAdsAndTrackersBlocked))]
     private long _numberOfAdsBlocked;
 
     public int TotalAdsAndTrackersBlocked => Convert.ToInt32(NumberOfTrackersStopped + NumberOfAdsBlocked);
+
+    public string FormattedTotalAdsAndTrackersBlocked =>
+        TotalAdsAndTrackersBlocked > BADGE_MAXIMUM_NUMBER
+            ? $"{BADGE_MAXIMUM_NUMBER}+"
+            : $"{TotalAdsAndTrackersBlocked}";
 
     public override string Header => Localizer.Get("Settings_Connection_NetShield");
 
