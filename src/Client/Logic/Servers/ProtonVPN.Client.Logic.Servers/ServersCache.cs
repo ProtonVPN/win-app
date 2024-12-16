@@ -218,7 +218,7 @@ public class ServersCache : IServersCache
     {
         return servers
             .Where(s => !string.IsNullOrWhiteSpace(s.ExitCountry)
-                     && s.IsFreeNonB2B)
+                     && s.IsFreeNonB2B())
             .GroupBy(s => s.ExitCountry)
             .Select(s => new Country()
             {
@@ -233,7 +233,7 @@ public class ServersCache : IServersCache
     {
         return servers
             .Where(s => !string.IsNullOrWhiteSpace(s.ExitCountry)
-                     && s.IsPaidNonB2B)
+                     && s.IsPaidNonB2B())
             .GroupBy(s => s.ExitCountry)
             .Select(s => new Country()
             {
@@ -255,22 +255,12 @@ public class ServersCache : IServersCache
         return !servers.Any(s => !s.IsLocationUnderMaintenance());
     }
 
-    private bool HasAnyFreeServer<T>(IGrouping<T, Server> servers)
-    {
-        return servers.Any(s => s.Tier is ServerTiers.Free);
-    }
-
-    private bool HasAnyPaidServer<T>(IGrouping<T, Server> servers)
-    {
-        return servers.Any(s => s.IsPaid);
-    }
-
     private IReadOnlyList<State> GetStates(IReadOnlyList<Server> servers)
     {
         return servers
             .Where(s => !string.IsNullOrWhiteSpace(s.ExitCountry)
                      && !string.IsNullOrWhiteSpace(s.State)
-                     && s.IsPaidNonB2B)
+                     && s.IsPaidNonB2B())
             .GroupBy(s => new { Country = s.ExitCountry, State = s.State })
             .Select(s => new State() {
                 CountryCode = s.Key.Country,
@@ -286,7 +276,7 @@ public class ServersCache : IServersCache
         return servers
             .Where(s => !string.IsNullOrWhiteSpace(s.ExitCountry)
                      && !string.IsNullOrWhiteSpace(s.City)
-                     && s.IsPaidNonB2B)
+                     && s.IsPaidNonB2B())
             .GroupBy(s => new { Country = s.ExitCountry, State = s.State, City = s.City })
             .Select(c => new City() {
                 CountryCode = c.Key.Country,

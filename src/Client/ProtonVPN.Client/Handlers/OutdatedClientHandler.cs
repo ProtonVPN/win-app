@@ -19,6 +19,7 @@
 
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Client.Common.Dispatching;
+using ProtonVPN.Client.Common.Messages;
 using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;

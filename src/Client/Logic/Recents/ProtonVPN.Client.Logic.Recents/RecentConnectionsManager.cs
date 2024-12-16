@@ -62,9 +62,10 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
     private readonly IRecentsFileReaderWriter _recentsFileReaderWriter;
 
     private readonly object _lock = new();
-    private bool _areRecentsLoaded;
 
-    private List<IRecentConnection> _recentConnections = new();
+    private List<IRecentConnection> _recentConnections = [];
+
+    private bool _areRecentsLoaded;
 
     public RecentConnectionsManager(
         ILogger logger,
@@ -380,7 +381,7 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
 
     private void BroadcastRecentConnectionsChanges()
     {
-        _eventMessageSender.Send(new RecentConnectionsChanged());
+        _eventMessageSender.Send(new RecentConnectionsChangedMessage());
     }
 
     private void TrimRecentConnections()

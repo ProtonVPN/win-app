@@ -73,10 +73,10 @@ public partial class ConnectionDetailsPageViewModel : PageViewModelBase<IDetails
 
     public void Receive(ConnectionDetailsChangedMessage message)
     {
-        ExecuteOnUIThread(() =>
+        if (IsActive)
         {
-            ServerIpAddress = message.ServerIpAddress;
-        });
+            ExecuteOnUIThread(InvalidateServerIpAddress);
+        }
     }
 
     protected override void OnLanguageChanged()
@@ -91,6 +91,7 @@ public partial class ConnectionDetailsPageViewModel : PageViewModelBase<IDetails
     {
         base.OnActivated();
 
+        InvalidateServerIpAddress();
         SetDetails();
     }
 
@@ -100,6 +101,11 @@ public partial class ConnectionDetailsPageViewModel : PageViewModelBase<IDetails
         {
             ExecuteOnUIThread(SetDetails);
         }
+    }
+
+    private void InvalidateServerIpAddress()
+    {
+        ServerIpAddress = EmptyValueExtensions.GetValueOrDefault(_connectionManager.CurrentConnectionDetails?.ServerIpAddress);
     }
 
     private void SetDetails()

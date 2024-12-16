@@ -17,6 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Core.Messages;
+namespace ProtonVPN.Client.Common.Messages;
 
 public class ApplicationStartedMessage;

@@ -41,7 +41,7 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Recents;
 
 public class RecentsPageViewModel : ConnectionPageViewModelBase,
-    IEventMessageReceiver<RecentConnectionsChanged>
+    IEventMessageReceiver<RecentConnectionsChangedMessage>
 {
     private readonly IConnectionItemFactory _connectionItemFactory;
     private readonly IRecentConnectionsManager _recentConnectionsManager;
@@ -78,7 +78,7 @@ public class RecentsPageViewModel : ConnectionPageViewModelBase,
         _recentConnectionsManager = recentConnectionsManager;
     }
 
-    public void Receive(RecentConnectionsChanged message)
+    public void Receive(RecentConnectionsChangedMessage message)
     {
         ExecuteOnUIThread(FetchItems);
     }

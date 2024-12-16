@@ -24,18 +24,11 @@ namespace ProtonVPN.Client.Logic.Recents.Contracts;
 public interface IRecentConnectionsManager
 {
     bool HasAnyRecentConnections();
-
     IOrderedEnumerable<IRecentConnection> GetRecentConnections();
-
     IRecentConnection? GetMostRecentConnection();
-
     IConnectionIntent GetDefaultConnection();
-
     void OverrideRecentConnections(List<IConnectionIntent> connectionIntents, IConnectionIntent? mostRecentConnectionIntent = null);
-
     void Pin(IRecentConnection recentConnection);
-
     void Unpin(IRecentConnection recentConnection);
-
     void Remove(IRecentConnection recentConnection);
 }

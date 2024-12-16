@@ -36,7 +36,7 @@ public class AutoConnectTriggerHandler : IHandler,
     IEventMessageReceiver<LoggedOutMessage>,
     IEventMessageReceiver<LoggedInMessage>,
     IEventMessageReceiver<ServerListChangedMessage>,
-    IEventMessageReceiver<RecentConnectionsChanged>,
+    IEventMessageReceiver<RecentConnectionsChangedMessage>,
     IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
     private readonly IConnectionManager _connectionManager;
@@ -84,7 +84,7 @@ public class AutoConnectTriggerHandler : IHandler,
         TryAutoConnectAsync();
     }
 
-    public void Receive(RecentConnectionsChanged message)
+    public void Receive(RecentConnectionsChangedMessage message)
     {
         _isRecentsListReady = true;
 
