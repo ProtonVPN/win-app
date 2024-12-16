@@ -3475,7 +3475,7 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
     <value>Ohjaa tietoliikenteesi huipputurvallisten Sveitsissä, Ruotsissa ja Islannissa sijaitsevien palvelinten kautta</value>
   </data>
   <data name="Upsell_Carousel_Speed">
-    <value>Selaa vielä korkeammilla nopeuksilla (jopa 10 Gbps)</value>
+    <value>Selaa vielä korkeammilla nopeuksilla (jopa 10 Gbit/s)</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
     <value>Paranna yhteysnopeuksiasi jopa 400 % VPN Acceleratorilla</value>

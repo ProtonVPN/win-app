@@ -606,7 +606,7 @@
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
   <data name="Countries_P2P_Description">
-    <value>Download files over P2P (peer-to-peer) networks and enhance your online gaming and video calling experience.</value>
+    <value>გადმოწერეთ ფაილები P2P (გამჭოლი) ქსელებით და გაიუმჯობესეთ თქვენი ინტერნეტში თამაშის და ვიდეოზარების ხარისხი.</value>
   </data>
   <data name="Countries_Page_FreeUser_Description">
     <value>განბლოკეთ ქვეყნის არჩევანი VPN Plus-თან ერთად</value>
@@ -1958,7 +1958,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>მიერთების დახმარება</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Description">
-    <value>Looks like your system clock is out of sync. This may cause issues when connecting to VPN.</value>
+    <value>როგორც ჩანს, თქვენი სისტემის საათი არასწორია. ამან, შეიძლება, VPN-ის მიერთებას ხელი შეუშალოს.</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_PrimaryButton">
     <value>როგორ განვაახლო სისტემური საათი</value>
@@ -2564,7 +2564,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>ახლა განახლება</value>
   </data>
   <data name="Overlay_OutdatedClient_Message">
-    <value>This app version is outdated. You must update the app to continue using Proton VPN.</value>
+    <value>ეს აპის ვერსია მოძველებულია. Proton VPN-ის გამოყენების გასაგრძელებლად აპის განახლება აუცილებელია.</value>
   </data>
   <data name="Overlay_OutdatedClient_Title">
     <value>გასაგრძელებლად განაახლეთ Proton VPN</value>
@@ -2576,7 +2576,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>რა არის P2P VPN?</value>
   </data>
   <data name="Overlay_P2P_Bullet2_Description">
-    <value>P2P networks allow two devices to connect and transfer data without passing through a central server. </value>
+    <value>P2P ქსელები საშუალებას აძლევს ორ მოწყობილობას, რომ დაუკავშირდნენ ერთმანეთს და გაცვალონ მონაცემები მათი ცენტრალურ სერვერზე მიწოდების გარეშე. </value>
   </data>
   <data name="Overlay_P2P_Bullet2_Header">
     <value>რა არის P2P ქსელი?</value>
@@ -2886,7 +2886,7 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>ტრაფიკის რაუტინგი სხვადასხვა ქსელებს შორის.</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
-    <value>Uses bridging to connect networks. TUN provides higher speeds than TAP, but may be less stable.</value>
+    <value>იყენებს ხიდის ინტერფეისს ქსელებთან მისაერთებლად. TUN-ს უფრო მაღალი სიჩქარე აქვს, ვიდრე TAP-ს, მაგრამ, შეიძლება, ნაკლებად სტაბილური იყოს.</value>
   </data>
   <data name="Settings_Connection_Default">
     <value>ნაგულისხმევი მიერთება</value>
