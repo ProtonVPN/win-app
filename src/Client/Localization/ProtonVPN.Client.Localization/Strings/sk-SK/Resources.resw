@@ -121,19 +121,19 @@
     <value>Proton VPN Free</value>
   </data>
   <data name="Automation_Properties_ConnectionDetails_Page">
-    <value>Connection details page</value>
+    <value>Stránka s podrobnosťami o pripojení</value>
   </data>
   <data name="Automation_Properties_Features_Bar">
-    <value>Features bar</value>
+    <value>Panel funkcií</value>
   </data>
   <data name="Automation_Properties_Home_Page">
-    <value>Home page</value>
+    <value>Domovská stránka</value>
   </data>
   <data name="Automation_Properties_KillSwitch_Page">
-    <value>Kill switch page</value>
+    <value>Stránka Kill Switch</value>
   </data>
   <data name="Automation_Properties_LocationDetails_Page">
-    <value>Location details page</value>
+    <value>Stránka s podrobnosťami o polohe</value>
   </data>
   <data name="Automation_Properties_Login_Page">
     <value>Prihlasovacia stránka</value>
@@ -169,16 +169,16 @@
     <value>Stránka pripojení</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Profiles_Page">
-    <value>Profiles page</value>
+    <value>Stránka profilov</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Recents_Page">
-    <value>Recents page</value>
+    <value>Stránka nedávnych</value>
   </data>
   <data name="Automation_Properties_Sidebar_Search_Results_Page">
-    <value>Search results</value>
+    <value>Výsledky vyhľadávania</value>
   </data>
   <data name="Automation_Properties_SplitTunneling_Page">
-    <value>Split tunneling page</value>
+    <value>Stránka split tunneling</value>
   </data>
   <data name="Cities">
     <value>Mestá</value>
@@ -541,16 +541,16 @@
     <value>Zatiaľ žiadne posledné údaje</value>
   </data>
   <data name="Connections_Recents_Pinned_One">
-    <value>Pinned ({0})</value>
+    <value>Pripnuté ({0})</value>
   </data>
   <data name="Connections_Recents_Pinned_Few">
-    <value>Pinned ({0})</value>
+    <value>Pripnuté ({0})</value>
   </data>
   <data name="Connections_Recents_Pinned_Many">
-    <value>Pinned ({0})</value>
+    <value>Pripnuté ({0})</value>
   </data>
   <data name="Connections_Recents_Pinned_Other">
-    <value>Pinned ({0})</value>
+    <value>Pripnuté ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_One">
     <value>Krajina so Secure Core ({0})</value>
@@ -738,7 +738,7 @@
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
   <data name="Countries_P2P_Description">
-    <value>Download files over P2P (peer-to-peer) networks and enhance your online gaming and video calling experience.</value>
+    <value>Sťahujte súbory cez siete P2P (peer-to-peer) a vylepšite si zážitok z online hier a videohovorov.</value>
   </data>
   <data name="Countries_Page_FreeUser_Description">
     <value>Odomknite výber krajiny s VPN Plus</value>
@@ -1953,7 +1953,7 @@ Vysoká latencia môže spomaliť vaše pripojenie.</value>
     <value>V čom je problém?</value>
   </data>
   <data name="Dialogs_ReportIssue_NoLogsWarning">
-    <value>Error logs help us to get to the bottom of your issue. If you don’t include them, we may not be able to investigate fully.</value>
+    <value>Logy chýb nám pomôžu prísť vášmu problému na kĺb. Ak ich neuvediete, je možné, že to nebudeme môcť plne prešetriť.</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes">
     <value>Rýchle opravy</value>
@@ -2110,7 +2110,7 @@ Smart Routing sa zvyčajne používa na obchádzanie zákonov proti ochrane súk
     <value>Pomoc s pripojením</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Description">
-    <value>Looks like your system clock is out of sync. This may cause issues when connecting to VPN.</value>
+    <value>Zdá sa, že vaše systémové hodiny nie sú synchronizované. To môže spôsobovať problémy pri pripojení k VPN.</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_PrimaryButton">
     <value>Ako aktualizovať systémové hodiny</value>
@@ -2197,18 +2197,18 @@ VPN vytvára dojem, že surfujete z iného miesta, a chráni vás tak pred sledo
     <value>Krajina</value>
   </data>
   <data name="Flyouts_Country_Warning">
-    <value>Connect to VPN to change your virtual location</value>
+    <value>Pripojte sa k VPN pre zmenu vašej virtuálnej polohy</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Connected">
-    <value>Your VPN IP masks your real IP address. This makes it look like you’re browsing from your VPN location, so your online activity can’t be linked to your device.</value>
+    <value>IP adresa VPN maskuje vašu skutočnú IP adresu. Vďaka tomu to vyzerá, že prechádzate internet z miesta, kde sa nachádza server VPN, takže vaša online aktivita sa nedá spojiť s vaším zariadením.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected">
-    <value>This unique code can be used by websites and ISPs (Internet Service Providers) to link your location and browsing history to your device. 
+    <value>Tento jedinečný kód môžu webové stránky a poskytovatelia internetových služieb (ISP) použiť na prepojenie vašej polohy a histórie prezerania s vaším zariadením.
 
-A VPN masks your IP address, making it harder for your activity to be traced back to you.</value>
+VPN maskuje vašu IP adresu, takže je ťažšie vystopovať vašu aktivitu.</value>
   </data>
   <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
-    <value>What is an IP address?</value>
+    <value>Čo je IP adresa?</value>
   </data>
   <data name="Flyouts_IpAddress_Title">
     <value>IP adresa</value>
@@ -2239,10 +2239,10 @@ VPN skryje vašu IP adresu a ochráni vás pred zásahmi poskytovateľa internet
     <value>Váš poskytovateľ môže vidieť, ktoré webové stránky navštevujete.</value>
   </data>
   <data name="Flyouts_Protocol_Description">
-    <value>A VPN protocol determines how traffic is encrypted and transmitted over the VPN.</value>
+    <value>VPN protokol určuje spôsob šifrovania a prenosu dát cez VPN.</value>
   </data>
   <data name="Flyouts_Protocol_KnowledgeBaseLinkTitle">
-    <value>Which VPN protocol is the best?</value>
+    <value>Ktorý VPN protokol je najlepší?</value>
   </data>
   <data name="Flyouts_Protocol_Title">
     <value>Protokol</value>
@@ -2553,7 +2553,7 @@ Rýchlosť je založená na aktuálnej aktivite vášho zariadenia - nepredstavu
     <value>Nechránené</value>
   </data>
   <data name="Home_ConnectionDetails_UnprotectedSubLabel">
-    <value>Encrypt your online activity by connecting to VPN.</value>
+    <value>Šifrujte svoje online aktivity pripojením k VPN.</value>
   </data>
   <data name="Home_ConnectionDetails_Volume">
     <value>Množstvo dát</value>
@@ -2652,7 +2652,7 @@ Rýchlosť je založená na aktuálnej aktivite vášho zariadenia - nepredstavu
     <value>Odopnúť</value>
   </data>
   <data name="Home_Update_Confirmation_Message">
-    <value>Na dokončenie procesu aktualizácie Proton VPN dočasne odpojí a zakáže pokročilé spínače, ak sú aktívne. Chcete pokračovať?</value>
+    <value>Pre dokončenie procesu aktualizácie sa Proton VPN dočasne odpojí a vypne sa Pokročilý Kill Switch, ak sú aktívne.</value>
     <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
   </data>
   <data name="Home_Update_Confirmation_Title">
@@ -2780,89 +2780,89 @@ Rýchlosť je založená na aktuálnej aktivite vášho zariadenia - nepredstavu
     <value>P2P</value>
   </data>
   <data name="Overlay_SecureCore_Description">
-    <value>Secure Core connects you to your destination server via a second, maximum security VPN server.
+    <value>Secure Core vás pripojí k cieľovému serveru prostredníctvom druhého servera VPN s maximálnym zabezpečením.
 
-This higher level of protection may cause higher latency and slower speeds.</value>
+Táto vyššia úroveň ochrany môže spôsobiť vyššiu latenciu a nižšie rýchlosti.</value>
   </data>
   <data name="Overlay_SecureCore_LearnMore">
-    <value>What is Secure Core?</value>
+    <value>Čo je Secure Core?</value>
   </data>
   <data name="Overlay_SecureCore_SecureCoreConnection">
     <value>Secure Core
-VPN connection</value>
+VPN pripojenie</value>
   </data>
   <data name="Overlay_SecureCore_SecureCoreConnection_Latency">
-    <value>Higher latency</value>
+    <value>Vyššia latencia</value>
   </data>
   <data name="Overlay_SecureCore_SecureCoreConnection_Privacy">
-    <value>Advanced privacy</value>
+    <value>Pokročilé súkromie</value>
   </data>
   <data name="Overlay_SecureCore_StandardConnection">
-    <value>Standard
-VPN connection</value>
+    <value>Štandardné
+VPN pripojenie</value>
   </data>
   <data name="Overlay_SecureCore_StandardConnection_Latency">
-    <value>Lower latency</value>
+    <value>Nižšia latencia</value>
   </data>
   <data name="Overlay_SecureCore_StandardConnection_Privacy">
-    <value>High privacy</value>
+    <value>Vysoký stupeň súkromia</value>
   </data>
   <data name="Overlay_SecureCore_Title">
     <value>Secure Core</value>
   </data>
   <data name="Overlay_ServerLoad_Description">
-    <value>Server load shows how close a server is to its maximum capacity.
+    <value>Vyťaženie servera zobrazuje, koľko kapacity servera je využitých.
 
-A high server load can slow down your connection.</value>
+Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
   </data>
   <data name="Overlay_ServerLoad_HighRange_Description">
-    <value>VPN may run slower than normal</value>
+    <value>VPN môže fungovať pomalšie, než je zvykom</value>
   </data>
   <data name="Overlay_ServerLoad_HighRange_Title">
-    <value>High (91-100%)</value>
+    <value>Vysoké (91-100%)</value>
   </data>
   <data name="Overlay_ServerLoad_LearnMore">
-    <value>What is server load?</value>
+    <value>Čo je vyťaženie servera?</value>
   </data>
   <data name="Overlay_ServerLoad_LowRange_Description">
-    <value>Lightning fast speeds</value>
+    <value>Blesková rýchlosť</value>
   </data>
   <data name="Overlay_ServerLoad_LowRange_Title">
-    <value>Low (1-75%)</value>
+    <value>Nízke (1-75%)</value>
   </data>
   <data name="Overlay_ServerLoad_MediumRange_Description">
-    <value>Unlikely to affect VPN speed</value>
+    <value>Pravdepodobne neovplyvňuje rýchlosť VPN</value>
   </data>
   <data name="Overlay_ServerLoad_MediumRange_Title">
-    <value>Medium (76-90%)</value>
+    <value>Stredná (76-90%)</value>
   </data>
   <data name="Overlay_ServerLoad_Title">
-    <value>Server Load</value>
+    <value>Vyťaženie servera</value>
   </data>
   <data name="Overlay_SmartRouting_Description">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
-    
-When you connect to a Smart Routing server, you’ll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+    <value>Smart Routing využíva virtuálne servery na poskytovanie VPN v ťažko dostupných krajinách.
 
-Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+Keď sa pripojíte k serveru Smart Routing, bude sa zdať, že prechádzate internet v cieľovej krajine, aj keď je fyzický server umiestnený inde.
+
+Smart Routing sa obvykle používa na obchádzanie zákonov potláčajúcich súkromie a iných foriem cenzúry.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
-    <value>Servers are physically located in {0}, but you'll appear to be browsing from {1}</value>
+    <value>Fyzické umiestnenie serverov je {0}, ale bude to vyzerať, že prehliadanie internetu prebieha zo zeme {1}</value>
     <comment>{0} is a placeholder for the physical server location country. {1} is a placeholder for the destination country
     Warning: country names are inserted in the nominative case. For INFLECTED languages, use alternative wording as follows:
     Connects you to your destination country ({1}) through servers that are physically located somewhere else ({0})</comment>
   </data>
   <data name="Overlay_SmartRouting_LearnMore">
-    <value>What is Smart Routing?</value>
+    <value>Čo je Smart Routing?</value>
   </data>
   <data name="Overlay_SmartRouting_Title">
     <value>Smart Routing</value>
   </data>
   <data name="Overlay_Tor_Description">
-    <value>Connect to a Tor server to access hidden services and onion sites using any browser.</value>
+    <value>Pripojte sa k serveru Tor a získajte prístup k skrytým službám a onion webom pomocou ľubovoľného prehliadača.</value>
   </data>
   <data name="Overlay_Tor_LearnMore">
-    <value>How to access the Tor network</value>
+    <value>Ako získať prístup k sieti Tor</value>
   </data>
   <data name="Overlay_Tor_Title">
     <value>Tor</value>
@@ -2874,14 +2874,14 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Profily</value>
   </data>
   <data name="Search_InputBox_Placeholder">
-    <value>Browse from...</value>
+    <value>Prechádzať z...</value>
   </data>
   <data name="Search_NoInput_CityOrState">
-    <value>City or US state</value>
+    <value>Mesto alebo štát USA</value>
     <comment>The word used for one single city and one single United States state</comment>
   </data>
   <data name="Search_NoInput_Country">
-    <value>Country</value>
+    <value>Krajina</value>
     <comment>The word used for one single country</comment>
   </data>
   <data name="Search_NoInput_Server">
@@ -2889,13 +2889,13 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>The word used for one single server</comment>
   </data>
   <data name="Search_NoInput_TrySearchingFor">
-    <value>Try searching for...</value>
+    <value>Skúste hľadať...</value>
   </data>
   <data name="Search_NoResults_Description">
-    <value>Try a different keyword.</value>
+    <value>Skúste iné kľúčové slovo.</value>
   </data>
   <data name="Search_NoResults_Title">
-    <value>No results found</value>
+    <value>Neboli nájdené žiadne výsledky</value>
   </data>
   <data name="Server">
     <value>Server</value>
@@ -2922,7 +2922,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Bezplatný server</value>
   </data>
   <data name="Servers">
-    <value>Servers</value>
+    <value>Servery</value>
   </data>
   <data name="Settings_About">
     <value>O aplikácii</value>
@@ -2961,13 +2961,13 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Ak chcete VPN využívať naplno, aktualizujte si najnovšiu verziu aplikácie.</value>
   </data>
   <data name="Settings_Account_Exit">
-    <value>Exit the app</value>
+    <value>Ukončiť aplikáciu</value>
   </data>
   <data name="Settings_Account_MyAccount">
-    <value>My account</value>
+    <value>Môj účet</value>
   </data>
   <data name="Settings_Account_SignOut">
-    <value>Sign out</value>
+    <value>Odhlásiť sa</value>
   </data>
   <data name="Settings_AppVersion">
     <value>Verzia aplikácie</value>
@@ -3033,10 +3033,10 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>Disable IPv6 traffic</value>
+    <value>Deaktivovať prevádzku IPv6</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
-    <value>Prevents IPv6 leaks by blocking connections to IPv6 addresses.</value>
+    <value>Zabraňuje únikom IPv6 blokovaním pripojenia k adresám IPv6.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
     <value>LAN pripojenia</value>
@@ -3069,10 +3069,10 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Obmedzí údaje vstupujúce do siete. Táto možnosť je bezpečnejšia, ale môže sťažovať peer-to-peer hranie.</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
-    <value>Routes traffic between different networks.</value>
+    <value>Smeruje prevádzku medzi rôznymi sieťami.</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
-    <value>Uses bridging to connect networks. TUN provides higher speeds than TAP, but may be less stable.</value>
+    <value>Používa premostenie na pripojenie sietí. TUN poskytuje vyššie rýchlosti ako TAP, ale môže byť menej stabilný.</value>
   </data>
   <data name="Settings_Connection_Default">
     <value>Predvolené pripojenie</value>
@@ -3093,82 +3093,82 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Kill switch</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced">
-    <value>Advanced</value>
+    <value>Pokročilé</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
-    <value>Only allow internet access when connected to Proton VPN. Advanced kill switch will remain active even when you restart your device.</value>
+    <value>Povoľte prístup k internetu iba pri pripojení k Proton VPN. Pokročilý Kill Switch zostane aktívny, aj keď reštartujete zariadenie.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>This will disable split tunneling.</value>
+    <value>Týmto zakážete split tunneling.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>Enable kill switch?</value>
+    <value>Zapnúť Kill Switch?</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Description">
-    <value>Protects your IP address by disconnecting you from the internet if you lose your VPN connection.</value>
+    <value>Chráni vašu IP adresu tým, že vás odpojí od internetu, pokiaľ je prerušené pripojenie k VPN.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Footer">
-    <value>When kill switch is on, you won't be able to connect to websites and apps excluded from your VPN connection through split tunneling.</value>
+    <value>Keď je Kill Switch zapnutý, nebudete sa môcť pripojiť k webom a aplikáciám vylúčeným z vášho pripojenia VPN prostredníctvom split tunnelingu.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Standard">
-    <value>Standard</value>
+    <value>Štandardný</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Standard_Description">
-    <value>Automatically disconnect from the internet if VPN connection is lost.</value>
+    <value>Automatické odpojenie od internetu v prípade straty spojenia s VPN.</value>
   </data>
   <data name="Settings_Connection_NetShield">
     <value>NetShield</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
-    <value>Block ads, malware and trackers</value>
+    <value>Blokovanie reklám, malware a sledovacích prvkov</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockMalwareOnly">
-    <value>Block malware only</value>
+    <value>Blokovať iba malvér</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Description">
-    <value>You won't be able to connect with a custom DNS server when NetShield is enabled.</value>
+    <value>Ak je povolený NetShield, nebudete sa môcť pripojiť pomocou vlastného DNS servera.</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Title">
-    <value>Enable NetShield?</value>
+    <value>Povoliť NetShield?</value>
   </data>
   <data name="Settings_Connection_NetShield_Description">
-    <value>Protect yourself from ads, malware, and trackers on websites and apps.</value>
+    <value>Chráňte sa pred reklamou, malware a sledovacími prvkami na weboch a v aplikáciách.</value>
   </data>
   <data name="Settings_Connection_NetShield_Footer">
-    <value>Some websites may not load properly when ads and trackers are blocked.</value>
+    <value>Niektoré webové stránky sa nemusia správne načítať, ak je blokovaná reklama a sledovacie prvky.</value>
   </data>
   <data name="Settings_Connection_NetShield_PrivacyPanel">
-    <value>NetShield Privacy Panel</value>
+    <value>Panel súkromia NetShield</value>
   </data>
   <data name="Settings_Connection_PortForwarding">
-    <value>Port forwarding</value>
+    <value>Presmerovanie portu</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Active port:</value>
+    <value>Aktívny port:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
-    <value>Copy port number</value>
+    <value>Kopírovať číslo portu</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Conflict_Description">
-    <value>You won't be able to use Moderate NAT when port forwarding is enabled.</value>
+    <value>Ak je povolené presmerovanie portov, nebudete môcť používať Moderate NAT.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Conflict_Title">
-    <value>Enable port forwarding?</value>
+    <value>Povoliť presmerovanie portov?</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Description">
-    <value>Bypass firewalls to connect to P2P servers and devices in your local network.</value>
+    <value>Obíďte firewally a pripojte sa k P2P serverom a zariadeniam vo vašej miestnej sieti.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Footer">
-    <value>To use port forwarding, please connect to a server that supports P2P.</value>
+    <value>Ak chcete použiť presmerovanie portov, pripojte sa k serveru, ktorý podporuje P2P.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Loading">
-    <value>Loading...</value>
+    <value>Načítavanie...</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications">
-    <value>Notifications</value>
+    <value>Notifikácie</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
-    <value>Get notified when the port forwarding number changes</value>
+    <value>Nechajte sa upozorniť, keď sa zmení číslo presmerovaného portu</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokol</value>
@@ -3190,52 +3190,52 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Split tunneling</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Add">
-    <value>Add app</value>
+    <value>Pridať aplikáciu</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
-    <value>App files</value>
+    <value>Súbory aplikácie</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Header">
-    <value>Selected apps ({0})</value>
+    <value>Vybrané aplikácie ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
-    <value>Remove app</value>
+    <value>Odstrániť aplikáciu</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>This will disable kill switch.</value>
+    <value>Toto vypne kill switch.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>Enable split tunneling?</value>
+    <value>Povoliť split tunneling?</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
-    <value>Customize your connection by deciding which apps and IP addresses are protected by VPN.</value>
+    <value>Prispôsobte si pripojenie tým, že sa rozhodnete, ktoré aplikácie a IP adresy budú chránené pomocou VPN.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
-    <value>Inverse</value>
+    <value>Inverzný</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
-    <value>Only selected apps and IP addresses connect via VPN, all other traffic is unprotected</value>
+    <value>Cez VPN sa pripájajú iba vybrané aplikácie a IP adresy, všetka ďalšia prevádzka je nechránená</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
-    <value>Add IP</value>
+    <value>Pridať IP</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
-    <value>Selected IP addresses ({0})</value>
+    <value>Vybrané IP adresy ({0})</value>
     <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
-    <value>Remove IP</value>
+    <value>Odstrániť IP</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Watermark">
-    <value>Add IPv4 address</value>
+    <value>Pridať adresu IPv4</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
-    <value>Standard</value>
+    <value>Štandardný</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
-    <value>Selected apps and IP addresses are excluded from VPN connection</value>
+    <value>Vybrané aplikácie a IP adresy sú vylúčené z pripojenia VPN</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
@@ -3367,7 +3367,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>WireGuard</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Description">
-    <value>Overcomes VPN blocks by hiding your VPN connection from censors. Stealth is DPI (deep packet inspection) resistant, but may not be as fast as other protocols.</value>
+    <value>Prekonáva blokovanie VPN tým, že skrýva pripojenie VPN pred cenzormi. Stealth je odolný proti DPI (hĺbkovej kontrole paketov), ​​ale nemusí byť tak rýchly ako iné protokoly.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Title">
     <value>Stealth</value>
@@ -3445,82 +3445,82 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Zvýšte rýchlosť vášho pripojenia až o 400% pomocou technológií zvyšujúcich výkon.</value>
   </data>
   <data name="SignIn_Form">
-    <value>Sign in form</value>
+    <value>Prihlasovací formulár</value>
   </data>
   <data name="SignIn_Form_AdvancedKillSwitchDescription">
-    <value>Advanced kill switch is blocking your internet connection.</value>
+    <value>Pokročilý Kill Switch blokuje vaše pripojenie k internetu.</value>
   </data>
   <data name="SignIn_Form_BestSecureVpnForSpeed">
-    <value>The best secure VPN for speed</value>
+    <value>Najlepšia bezpečná VPN pre rýchlosť</value>
   </data>
   <data name="SignIn_Form_CreateAccount">
-    <value>Create account</value>
+    <value>Vytvoriť účet</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="SignIn_Form_Description">
-    <value>Enter your Proton Account details.</value>
+    <value>Zadajte detaily vášho účtu Proton.</value>
   </data>
   <data name="SignIn_Form_DisableKillSwitch">
-    <value>Disable kill switch</value>
+    <value>Vypnúť Kill Switch</value>
   </data>
   <data name="SignIn_Form_Email">
     <value>Email</value>
   </data>
   <data name="SignIn_Form_ForgotUsername">
-    <value>Forgot username</value>
+    <value>Zabudnuté užívateľské meno</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_Help">
-    <value>Help</value>
+    <value>Pomoc</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_NoLogsPolicy">
-    <value>No-logs policy</value>
+    <value>Politika žiadnych logov</value>
   </data>
   <data name="SignIn_Form_OpenSource">
     <value>Open-source</value>
   </data>
   <data name="SignIn_Form_Password">
-    <value>Password</value>
+    <value>Heslo</value>
   </data>
   <data name="SignIn_Form_PasswordError">
-    <value>Enter your password</value>
+    <value>Zadajte svoje heslo</value>
     <comment>An error message is displayed when the user attempts to sign in without entering a password</comment>
   </data>
   <data name="SignIn_Form_ReportAnIssue">
-    <value>Report an issue</value>
+    <value>Nahlásiť problém</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_ResetPassword">
-    <value>Reset password</value>
+    <value>Resetovať heslo</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_SignIn">
-    <value>Sign in</value>
+    <value>Prihlásiť sa</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="SignIn_Form_SignInWithSso">
-    <value>Sign in with SSO</value>
+    <value>Prihláste sa pomocou SSO</value>
   </data>
   <data name="SignIn_Form_SwissBased">
-    <value>Swiss-based</value>
+    <value>So sídlom vo Švajčiarsku</value>
   </data>
   <data name="SignIn_Form_Title">
-    <value>Sign in</value>
+    <value>Prihlásiť sa</value>
   </data>
   <data name="SignIn_Form_TroubleSigningIn">
-    <value>Trouble signing in</value>
+    <value>Problémy s prihlásením</value>
     <comment>A button at the bottom of the login window inside Get help popup</comment>
   </data>
   <data name="SignIn_Form_Username">
-    <value>Email or username</value>
+    <value>Email alebo užívateľské meno</value>
   </data>
   <data name="SignIn_Form_UsernameError">
-    <value>Enter your email or username</value>
+    <value>Zadajte email alebo užívateľské meno</value>
     <comment>An error message is displayed when the user attempts to sign in without entering a username</comment>
   </data>
   <data name="SignIn_KillSwitch_Disabled">
-    <value>Kill switch is disabled</value>
+    <value>Kill Switch je deaktivovaný</value>
   </data>
   <data name="SystemNotification_Connected">
     <value>Teraz ste chránený</value>
@@ -3756,13 +3756,13 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>OpenVPN (TCP)</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp_Description">
-    <value>Established, well-tested, and secure</value>
+    <value>Zavedený, dobre otestovaný a bezpečný</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Udp">
     <value>OpenVPN (UDP)</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Udp_Description">
-    <value>Established, well-tested, and secure</value>
+    <value>Zavedený, dobre otestovaný a bezpečný</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>
@@ -3771,18 +3771,18 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>WireGuard (TCP)</value>
   </data>
   <data name="VpnProtocol_WireGuard_Tcp_Description">
-    <value>State-of-the-art protocol for security and performance</value>
+    <value>Najmodernejší protokol pre zabezpečenie a výkon</value>
   </data>
   <data name="VpnProtocol_WireGuard_Tls">
     <value>Stealth</value>
   </data>
   <data name="VpnProtocol_WireGuard_Tls_Description">
-    <value>Overcomes VPN blocks by hiding your connection from censors</value>
+    <value>Prekonanie blokovania VPN ukrytím pripojenia pred cenzormi</value>
   </data>
   <data name="VpnProtocol_WireGuard_Udp">
     <value>WireGuard (UDP)</value>
   </data>
   <data name="VpnProtocol_WireGuard_Udp_Description">
-    <value>State-of-the-art protocol for security and performance</value>
+    <value>Najmodernejší protokol pre zabezpečenie a výkon</value>
   </data>
 </root>

@@ -366,7 +366,7 @@
     <value>Snabbast</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Gratis server ({0})</value>
+    <value>Gratisserver ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Other">
     <value>Gratis servrar ({0})</value>
@@ -1996,7 +1996,7 @@ Smart Routing används vanligtvis för att komma runt antiintegritetslagar och a
     <value>Skydda 10 enheter samtidigt</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
-    <value>Utöka VPN-skydd till din stationära dator, mobil, webbläsare, TV och mer. </value>
+    <value>Utöka VPN-skydd till din dator mobil, webbläsare, TV och mer. </value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Stream">
     <value>Streama i hög upplösning</value>
@@ -3088,7 +3088,7 @@ Smart Routing används normalt för att kringgå lagar mot integritet och andra 
     <value>Proton VPN kommer öppnas automatiskt när du loggar in på din enhet</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Desktop">
-    <value>Öppna på stationär dator</value>
+    <value>Öppna på skrivbord</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray">
     <value>Minimera till systemfältet</value>

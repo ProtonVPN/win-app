@@ -178,7 +178,7 @@
     <value>Hasil pencarian</value>
   </data>
   <data name="Automation_Properties_SplitTunneling_Page">
-    <value>Halaman split tunneling</value>
+    <value>Halaman pembagian koneksi</value>
   </data>
   <data name="Cities">
     <value>Kota</value>
@@ -302,7 +302,7 @@
     <value>Koneksi gagal</value>
   </data>
   <data name="Connection_Error_TlsCertificate">
-    <value>Terdapat masalah dalam memvalidasi sertifikat server VPN, yang mungkin mengindikasikan bahwa koneksi jaringan sedang dirusak atau server yang Anda coba sambungkan memiliki masalah konfigurasi. Dapatkan bantuan dari tim layanan dukungan kami dengan mengirimkan Laporan Masalah.</value>
+    <value>Terdapat masalah dalam memvalidasi sertifikat server VPN, yang dapat menandakan bahwa koneksi jaringan yang ada sedang disusupi atau server yang Anda coba sambungkan memiliki masalah konfigurasi. Dapatkan bantuan dari tim layanan dukungan kami dengan mengirimkan Laporan Masalah.</value>
   </data>
   <data name="Connection_Error_Unknown">
     <value>Kami tidak yakin akan apa yang terjadi. Silakan coba lagi atau hubungi tim layanan dukungan kami.</value>
@@ -311,7 +311,7 @@
     <value>Tampilkan solusi yang memungkinkan</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
-    <value>Proton VPN tidak dapat terhubung karena adaptor jaringan WireGuard sudah digunakan. Putuskan sambungan VPN yang aktif dan coba lagi. Atau, Anda dapat mengganti protokol di Pengaturan Lanjutan.</value>
+    <value>Proton VPN tidak dapat terhubung karena adaptor jaringan WireGuard telah digunakan. Silakan putuskan seluruh VPN yang sedang aktif dan coba lagi. Di samping itu, Anda dapat mengubah protokol pada Pengaturan Lanjutan.</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Terpilih secara otomatis dari</value>
@@ -348,7 +348,7 @@
     <value>Negara</value>
   </data>
   <data name="Connections_Country_Middle">
-    <value>Negara menengah</value>
+    <value>Negara perantara</value>
   </data>
   <data name="Connections_Country_Restricted">
     <value>Server di negara ini tersedia dengan VPN Plus</value>
@@ -360,10 +360,10 @@
     <value>Tercepat</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Server Free ({0})</value>
+    <value>Server gratis ({0})</value>
   </data>
   <data name="Connections_Gateway">
-    <value>Gateway</value>
+    <value>Gerbang</value>
   </data>
   <data name="Connections_Gateway_Restricted">
     <value>Server di gerbang ini tersedia dengan VPN Plus</value>
@@ -390,7 +390,7 @@
     <value>Server P2P ({0})</value>
   </data>
   <data name="Connections_P2P_States_Other">
-    <value>Negara P2P ({0})</value>
+    <value>Negara bagian P2P ({0})</value>
   </data>
   <data name="Connections_Profiles_Other">
     <value>Profil ({0})</value>
@@ -1616,7 +1616,7 @@
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
-    <value>Dapatkan pengubahan server tanpa batas dengan VPN Plus.</value>
+    <value>Dapatkan penggantian server tanpa batas dengan VPN Plus.</value>
   </data>
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
     <value>Anda telah mencapai jumlah maksimum penggantian server gratis untuk saat ini</value>
@@ -3034,7 +3034,7 @@ Smart Routing pada umumnya digunakan untuk menghindari undang-undang anti-privas
     <value>Driver jaringan OpenVPN</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver_Description">
-    <value>Driver jaringan dapat memengaruhi kecepatan koneksi Anda. Adapter TUN yang baru menyediakan kecepatan yang lebih tinggi dan akan secara otomatis kembali ke adapter TAP apabila koneksi Anda bermasalah.</value>
+    <value>Driver jaringan dapat memengaruhi kecepatan koneksi Anda. Adaptor TUN yang baru menyediakan kecepatan yang lebih tinggi dan akan secara otomatis berbalik ke adapter TAP apabila adapter ini menemui masalah konektivitas.</value>
   </data>
   <data name="Settings_General_Theme">
     <value>Tema</value>

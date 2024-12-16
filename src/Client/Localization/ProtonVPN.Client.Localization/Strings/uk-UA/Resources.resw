@@ -191,13 +191,13 @@
     <value>Додати</value>
   </data>
   <data name="Common_Actions_Back">
-    <value>Back</value>
+    <value>Назад</value>
   </data>
   <data name="Common_Actions_Cancel">
     <value>Скасувати</value>
   </data>
   <data name="Common_Actions_Change">
-    <value>Change</value>
+    <value>Змінити</value>
   </data>
   <data name="Common_Actions_Close">
     <value>Закрити</value>
@@ -2885,7 +2885,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>The word used for one single country</comment>
   </data>
   <data name="Search_NoInput_Server">
-    <value>Server</value>
+    <value>Сервер</value>
     <comment>The word used for one single server</comment>
   </data>
   <data name="Search_NoInput_TrySearchingFor">
@@ -2898,7 +2898,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>No results found</value>
   </data>
   <data name="Server">
-    <value>Server</value>
+    <value>Сервер</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Найшвидший безплатний сервер</value>
@@ -3471,7 +3471,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_Help">
-    <value>Help</value>
+    <value>Допомога</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_NoLogsPolicy">
@@ -3544,7 +3544,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Unit for Bytes per second</comment>
   </data>
   <data name="Unit_ExabytesPerSecond">
-    <value>EB/s</value>
+    <value>ЕБ/с</value>
     <comment>Unit for Exabytes per second</comment>
   </data>
   <data name="Unit_GigabytesPerSecond">

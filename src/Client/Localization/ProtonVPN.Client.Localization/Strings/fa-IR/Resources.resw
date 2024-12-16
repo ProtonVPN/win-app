@@ -121,83 +121,83 @@
     <value>Proton VPN Free</value>
   </data>
   <data name="Automation_Properties_ConnectionDetails_Page">
-    <value>Connection details page</value>
+    <value>صفحه‌ی جزئیات اتصال</value>
   </data>
   <data name="Automation_Properties_Features_Bar">
-    <value>Features bar</value>
+    <value>نوار ویژگی‌ها</value>
   </data>
   <data name="Automation_Properties_Home_Page">
-    <value>Home page</value>
+    <value>صفحه‌ی اصلی</value>
   </data>
   <data name="Automation_Properties_KillSwitch_Page">
-    <value>Kill switch page</value>
+    <value>صفحه‌ی سوئیچ کشتار</value>
   </data>
   <data name="Automation_Properties_LocationDetails_Page">
-    <value>Location details page</value>
+    <value>صفحه‌ی جزئیات مکان</value>
   </data>
   <data name="Automation_Properties_Login_Page">
-    <value>Login page</value>
+    <value>صفحه ورود</value>
   </data>
   <data name="Automation_Properties_Main_Page">
-    <value>Main page</value>
+    <value>صفحه اصلی</value>
   </data>
   <data name="Automation_Properties_NetShield_Page">
-    <value>NetShield page</value>
+    <value>صفحه‌ی NetShield</value>
   </data>
   <data name="Automation_Properties_PortForwarding_Page">
-    <value>Port forwarding page</value>
+    <value>صفحه Port forwarding</value>
   </data>
   <data name="Automation_Properties_Settings_Advanced_Page">
-    <value>Advanced settings page</value>
+    <value>صفحه تنظیمات پیشرفته</value>
   </data>
   <data name="Automation_Properties_Settings_Common_Page">
-    <value>Common settings page</value>
+    <value>صفحه تنظیمات متداول</value>
   </data>
   <data name="Automation_Properties_Settings_Page">
-    <value>Settings page</value>
+    <value>صفحه تنظیمات</value>
   </data>
   <data name="Automation_Properties_Sidebar">
-    <value>Sidebar</value>
+    <value>نوار کناری</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Countries_Page">
-    <value>Countries page</value>
+    <value>صفحه کشورها</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Gateways_Page">
-    <value>Gateways page</value>
+    <value>صفحه درگاه‌ها</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Page">
-    <value>Connections page</value>
+    <value>صفحه اتصالات</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Profiles_Page">
-    <value>Profiles page</value>
+    <value>صفحه پروفایل‌ها</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Recents_Page">
-    <value>Recents page</value>
+    <value>صفحه آخرین موارد</value>
   </data>
   <data name="Automation_Properties_Sidebar_Search_Results_Page">
-    <value>Search results</value>
+    <value>نتايج جستجو</value>
   </data>
   <data name="Automation_Properties_SplitTunneling_Page">
-    <value>Split tunneling page</value>
+    <value>صفحه split tunneling</value>
   </data>
   <data name="Cities">
     <value>شهرها</value>
   </data>
   <data name="Common_Actions_ActionsFor">
-    <value>Actions for {0}</value>
+    <value>فعالیت‌ها برای {0}</value>
     <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Add">
     <value>افزودن</value>
   </data>
   <data name="Common_Actions_Back">
-    <value>Back</value>
+    <value>بازگشت</value>
   </data>
   <data name="Common_Actions_Cancel">
     <value>انصراف</value>
   </data>
   <data name="Common_Actions_Change">
-    <value>Change</value>
+    <value>تغییر</value>
   </data>
   <data name="Common_Actions_Close">
     <value>بستن</value>
@@ -206,24 +206,24 @@
     <value>اتصال</value>
   </data>
   <data name="Common_Actions_ConnectTo">
-    <value>Connect to {0}</value>
+    <value>اتصال به {0}</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to Connect to something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_ContactUs">
     <value>تماس با ما</value>
   </data>
   <data name="Common_Actions_Delete">
-    <value>Delete</value>
+    <value>حذف</value>
   </data>
   <data name="Common_Actions_Disconnect">
     <value>قطع اتصال</value>
   </data>
   <data name="Common_Actions_DisconnectFrom">
-    <value>Disconnect from {0}</value>
+    <value>قصع اتصال از {0}</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Edit">
-    <value>Edit</value>
+    <value>ویرایش</value>
   </data>
   <data name="Common_Actions_Enable">
     <value>فعال‌سازی</value>
@@ -241,13 +241,13 @@
     <value>ارتقاء</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>**Advanced kill switch is enabled.** To use the internet without VPN, disable advanced kill switch.</value>
+    <value>**سوئیچ کشتار پیشرفته فعال است.** برای استفاده از اینترنت بدون VPN، سوئیچ کشتار پیشرفته را غیرفعال کنید.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>**Advanced kill switch is enabled.** If you continue, you will be disconnected from the internet.</value>
+    <value>**سوئیچ کشتار پیشرفته فعال است.** اگر ادامه دهید، از اینترنت قطع اتصال می‌شوید.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
-    <value>You'll be disconnected from VPN.</value>
+    <value>شما از اتصال VPN قطع می‌شوید.</value>
   </data>
   <data name="Common_Links_LearnMore">
     <value>بیشتر بدانید</value>
@@ -262,10 +262,10 @@
     <value>روشن</value>
   </data>
   <data name="Common_States_Updating">
-    <value>Updating...</value>
+    <value>در حال به‌روزرسانی...</value>
   </data>
   <data name="Connection_Error_EditProfile">
-    <value>Edit profile</value>
+    <value>ویرایش پروفایل</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>بدلیل مشکلات شبکه Proton VPN قادر به دریافت گواهینامه تایید تعیین اعتبار نیست.</value>
@@ -274,7 +274,7 @@
     <value>در حال حاضر سروری برای انتخاب شما وجود ندارد. لطفاً گزینۀ دیگری را انتخاب نمائید.</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
-    <value>Your server selection for '{0}' is unavailable. Select a different server or try again later.</value>
+    <value>سرور منتخب شما برای {0} در دسترس نیست. سروری دیگر را انتخاب کنید یا بعدا مجدد امتحان کنید.</value>
     <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Connection_Error_NoTapAdapters">
@@ -299,7 +299,7 @@
     <value>نسخه آداپتور شبکه قدیمی است.</value>
   </data>
   <data name="Connection_Error_Title">
-    <value>Connection failed</value>
+    <value>ﺍﺗﺼﺎﻝ ﻧﺎﻣﻮﻓﻖ ﺑﻮﺩ</value>
   </data>
   <data name="Connection_Error_TlsCertificate">
     <value>مشکلی در تأیید اعبار گواهی سرور وجود دارد، که می‌تواند نشان دهنده این باشد که اتصال شبکه دستکاری شده است یا سرور مدنظرتان مشکل پیکربندی دارد. با فرستادن گزارش مشکل از پشتیبانی مشتری کمک بگیرید.</value>
@@ -330,232 +330,232 @@
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
   </data>
   <data name="Connections_Cities_One">
-    <value>City ({0})</value>
+    <value>شهر ({0})</value>
   </data>
   <data name="Connections_Cities_Other">
     <value>شهرها ({0})</value>
   </data>
   <data name="Connections_City">
-    <value>City</value>
+    <value>شهر</value>
   </data>
   <data name="Connections_City_Restricted">
-    <value>Servers in this city are available with VPN Plus</value>
+    <value>سرورها در این شهر با VPN Plus قابل دسترسی‌اند</value>
   </data>
   <data name="Connections_City_UnderMaintenance">
-    <value>All servers in this city are under maintenance</value>
+    <value>تمام سرورها در این شهر تحت تعمیر هستند</value>
   </data>
   <data name="Connections_Countries_One">
-    <value>Country ({0})</value>
+    <value>کشور ({0})</value>
   </data>
   <data name="Connections_Countries_Other">
     <value>کشورها ({0})</value>
   </data>
   <data name="Connections_Country">
-    <value>Country</value>
+    <value>کشور</value>
   </data>
   <data name="Connections_Country_Middle">
-    <value>Middle country</value>
+    <value>کشور میانی</value>
   </data>
   <data name="Connections_Country_Restricted">
-    <value>Servers in this country are available with VPN Plus</value>
+    <value>سرورها در این کشور با VPN Plus قابل دسترسی‌اند</value>
   </data>
   <data name="Connections_Country_UnderMaintenance">
-    <value>All servers in this country are under maintenance</value>
+    <value>تمام سرورها در این کشور تحت تعمیر هستند</value>
   </data>
   <data name="Connections_Fastest">
-    <value>Fastest</value>
+    <value>سریع‌ترین</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Free server ({0})</value>
+    <value>سرور رایگان ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Other">
     <value>سرورهای رایگان ({0})</value>
   </data>
   <data name="Connections_Gateway">
-    <value>Gateway</value>
+    <value>دروازه</value>
   </data>
   <data name="Connections_Gateway_Restricted">
-    <value>Servers in this gateway are available with VPN Plus</value>
+    <value>سرورها در این دروازه با VPN Plus قابل دسترسی‌اند</value>
   </data>
   <data name="Connections_Gateway_UnderMaintenance">
-    <value>All servers in this gateway are under maintenance</value>
+    <value>تمام سرورها در این دروازه تحت تعمیر هستند</value>
   </data>
   <data name="Connections_Gateways_One">
-    <value>Gateway ({0})</value>
+    <value>دروازه ({0})</value>
   </data>
   <data name="Connections_Gateways_Other">
-    <value>Gateways ({0})</value>
+    <value>دروازه‌ها ({0})</value>
   </data>
   <data name="Connections_Gateways_Server">
-    <value>Dedicated server</value>
+    <value>سرور اختصاصی</value>
   </data>
   <data name="Connections_Gateways_Servers_One">
-    <value>Dedicated server ({0})</value>
+    <value>سرور اختصاصی ({0})</value>
   </data>
   <data name="Connections_Gateways_Servers_Other">
-    <value>Dedicated servers ({0})</value>
+    <value>سرورهای اختصاصی ({0})</value>
   </data>
   <data name="Connections_P2P_Cities_One">
-    <value>P2P city ({0})</value>
+    <value>شهر P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Cities_Other">
     <value>شهرهای P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Countries_One">
-    <value>P2P country ({0})</value>
+    <value>کشور P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Countries_Other">
     <value>کشورهای P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_One">
-    <value>P2P server ({0})</value>
+    <value>سرور P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>P2P servers ({0})</value>
+    <value>سرورهای P2P ({0})</value>
   </data>
   <data name="Connections_P2P_States_One">
-    <value>P2P state ({0})</value>
+    <value>ایالت P2P ({0})</value>
   </data>
   <data name="Connections_P2P_States_Other">
-    <value>P2P states ({0})</value>
+    <value>ایالت‌های P2P ({0})</value>
   </data>
   <data name="Connections_Profiles_One">
-    <value>Profile ({0})</value>
+    <value>پروفایل ({0})</value>
   </data>
   <data name="Connections_Profiles_Other">
-    <value>Profiles ({0})</value>
+    <value>پروفایل‌ها ({0})</value>
   </data>
   <data name="Connections_Profiles_Create">
-    <value>Create profile</value>
+    <value>ساختن پروفایل</value>
     <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
   </data>
   <data name="Connections_Profiles_Delete">
-    <value>Delete profile</value>
+    <value>حذف پروفایل</value>
   </data>
   <data name="Connections_Profiles_Delete_Message">
-    <value>'{0}' will be permanently removed.</value>
+    <value>'{0}' برای همیشه حذف می‌شود.</value>
     <comment>{0} is a placeholder for the name of the profile.</comment>
   </data>
   <data name="Connections_Profiles_Delete_Title">
-    <value>Delete profile?</value>
+    <value>پروفایل حذف شود؟</value>
   </data>
   <data name="Connections_Profiles_Empty_Description">
-    <value>Profiles are saved connections with your choice of location, server, and protocol.</value>
+    <value>پروفایل‌ها، اتصالات ذخیره شده هستند با مکان، سرور، و پروتکل منتخب شما.</value>
   </data>
   <data name="Connections_Profiles_Empty_Title">
-    <value>Create your first profile</value>
+    <value>اولین پروفایلتان را بسازید</value>
   </data>
   <data name="Connections_Profiles_Name">
-    <value>Profile name</value>
+    <value>نام پروفایل</value>
   </data>
   <data name="Connections_Profiles_New">
-    <value>New profile</value>
+    <value>پروفایل جدید</value>
     <comment>"New profile" is more appropriate when you already have a profile</comment>
   </data>
   <data name="Connections_Profiles_NotAvailable_Tooltip">
-    <value>Profiles are available with VPN Plus</value>
+    <value>پروفایل‌ها با VPN Plus در دسترسند</value>
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
   </data>
   <data name="Connections_Profiles_Save">
-    <value>Save profile</value>
+    <value>ذخیره پروفایل</value>
   </data>
   <data name="Connections_Random">
-    <value>Random</value>
+    <value>تصادفی</value>
   </data>
   <data name="Connections_Recents_One">
-    <value>Recent ({0})</value>
+    <value>اخیر ({0})</value>
   </data>
   <data name="Connections_Recents_Other">
-    <value>Recents ({0})</value>
+    <value>اخیر ({0})</value>
   </data>
   <data name="Connections_Recents_Empty_Description">
-    <value>View your connection history here.</value>
+    <value>اینجا سابقه‌ی اتصالاتتان را ببینید.</value>
   </data>
   <data name="Connections_Recents_Empty_Title">
-    <value>No recents yet</value>
+    <value>موارد اخیر موجود نیست</value>
   </data>
   <data name="Connections_Recents_Pinned_One">
-    <value>Pinned ({0})</value>
+    <value>سنجاق خورده ({0})</value>
   </data>
   <data name="Connections_Recents_Pinned_Other">
-    <value>Pinned ({0})</value>
+    <value>سنجاق خورده ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_One">
-    <value>Secure Core country ({0})</value>
+    <value>کشور Secure Core ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_Other">
     <value>کشورهای Secure Core ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_One">
-    <value>Secure Core server ({0})</value>
+    <value>سرور Secure Core ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
     <value>سرورهای Secure Core ({0})</value>
   </data>
   <data name="Connections_SeeCities_One">
-    <value>See city ({0})</value>
+    <value>دیدن شهر ({0})</value>
   </data>
   <data name="Connections_SeeCities_Other">
-    <value>See cities ({0})</value>
+    <value>دیدن شهرها ({0})</value>
   </data>
   <data name="Connections_SeeServers_One">
-    <value>See server ({0})</value>
+    <value>دیدن سرور ({0})</value>
   </data>
   <data name="Connections_SeeServers_Other">
-    <value>See servers ({0})</value>
+    <value>دیدن سرورها ({0})</value>
   </data>
   <data name="Connections_SeeStates_One">
-    <value>See state ({0})</value>
+    <value>دیدن ایالت ({0})</value>
   </data>
   <data name="Connections_SeeStates_Other">
-    <value>See states ({0})</value>
+    <value>دیدن ایالت‌ها ({0})</value>
   </data>
   <data name="Connections_Server">
-    <value>Server</value>
+    <value>سرور</value>
   </data>
   <data name="Connections_Server_Restricted">
-    <value>Server available with VPN Plus</value>
+    <value>سرور با VPN Plus در دسترس است</value>
   </data>
   <data name="Connections_Server_UnderMaintenance">
-    <value>This server is under maintenance</value>
+    <value>این سرور تحت تعمیر است</value>
   </data>
   <data name="Connections_Servers_One">
-    <value>Server ({0})</value>
+    <value>سرور ({0})</value>
   </data>
   <data name="Connections_Servers_Other">
     <value>سرورها ({0})</value>
   </data>
   <data name="Connections_State">
-    <value>State</value>
+    <value>ایالت</value>
   </data>
   <data name="Connections_State_Restricted">
-    <value>Servers in this state are available with VPN Plus.</value>
+    <value>سرورها در این ایالت با VPN Plus در دسترسند.</value>
     <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_State_UnderMaintenance">
-    <value>All servers in this state are under maintenance.</value>
+    <value>تمامی سرورها در این ایالت تحت تعمیر هستند.</value>
     <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_States_One">
-    <value>State ({0})</value>
+    <value>ایالت ({0})</value>
   </data>
   <data name="Connections_States_Other">
-    <value>States ({0})</value>
+    <value>ایالت‌ها ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_One">
-    <value>Tor country ({0})</value>
+    <value>کشور Tor ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_Other">
     <value>کشورهای Tor ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_One">
-    <value>Tor server ({0})</value>
+    <value>سرور Tor ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
     <value>سرورهای Tor ({0})</value>
   </data>
   <data name="Countries">
-    <value>Countries</value>
+    <value>کشورها</value>
   </data>
   <data name="Countries_All">
     <value>همه</value>
@@ -606,10 +606,10 @@
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
   <data name="Countries_P2P_Description">
-    <value>Download files over P2P (peer-to-peer) networks and enhance your online gaming and video calling experience.</value>
+    <value>بر روی شبکه‌های P2P (همتابه‌همتا) فایل بارگیری کنید و تجربه بازی و تماس تصویری آنلاینتان را بهبود ببخشید.</value>
   </data>
   <data name="Countries_Page_FreeUser_Description">
-    <value>Unlock country selection with VPN Plus</value>
+    <value>قفل گشایی انتخاب کشور با VPN Plus</value>
   </data>
   <data name="Countries_SearchPlaceholder">
     <value>می‌خواهم مرور کنم از...</value>
@@ -672,13 +672,13 @@
     <value>سریع‌ترین کشور</value>
   </data>
   <data name="Country_Fastest_ExcludingMyCountry">
-    <value>Fastest (excluding my country)</value>
+    <value>سریع‌ترین (به جز کشور من)</value>
   </data>
   <data name="Country_Random">
-    <value>Random country</value>
+    <value>کشور تصادفی</value>
   </data>
   <data name="Country_Random_ExcludingMyCountry">
-    <value>Random (excluding my country)</value>
+    <value>تصادفی (به جز کشور من)</value>
   </data>
   <data name="Country_val_AD">
     <value>آندورا</value>
@@ -1577,7 +1577,7 @@
     <comment>The name of TO country</comment>
   </data>
   <data name="Country_val_TR">
-    <value>Türkiye</value>
+    <value>ترکیه</value>
     <comment>The name of TR country</comment>
   </data>
   <data name="Country_val_TT">
@@ -1694,7 +1694,7 @@
     <value>شروع کنید</value>
   </data>
   <data name="Dialogs_Common_SubscriptionExpired">
-    <value>Subscription expired</value>
+    <value>اشتراک منقضی شده است</value>
   </data>
   <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
     <value>Upgrade to get access to Plus servers and features again.</value>
@@ -2116,10 +2116,10 @@ A VPN hides your IP address, protecting you from ISP interference.</value>
     <value>Unlikely to affect connection speed</value>
   </data>
   <data name="Flyouts_ServerLoad_Title">
-    <value>Server load</value>
+    <value>بار سرور</value>
   </data>
   <data name="Flyouts_Speed_BoostedByVpnAccelerator">
-    <value>Boosted by VPN Accelerator</value>
+    <value>شتاب داده با VPN Accelerator</value>
   </data>
   <data name="Flyouts_Speed_Description">
     <value>This shows how much data gets transmitted through Proton VPN each second.
@@ -2127,31 +2127,31 @@ A VPN hides your IP address, protecting you from ISP interference.</value>
 Speed is based on your device’s current activity — it doesn’t represent the VPN’s maximum speed.</value>
   </data>
   <data name="Flyouts_Speed_Download">
-    <value>Download</value>
+    <value>بارگیری</value>
     <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
     <value>Understanding and increasing VPN connection speeds</value>
   </data>
   <data name="Flyouts_Speed_Title">
-    <value>Speed</value>
+    <value>سرعت</value>
   </data>
   <data name="Flyouts_Speed_Upload">
-    <value>Upload</value>
+    <value>بارگذاری</value>
     <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
   </data>
   <data name="Flyouts_Volume_Description">
     <value>This shows how much traffic has routed through your VPN.</value>
   </data>
   <data name="Flyouts_Volume_Download">
-    <value>Download</value>
+    <value>بارگیری</value>
     <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
   </data>
   <data name="Flyouts_Volume_Title">
-    <value>Volume</value>
+    <value>حجم</value>
   </data>
   <data name="Flyouts_Volume_Upload">
-    <value>Upload</value>
+    <value>بارگذاری</value>
     <comment>Refers to the uploaded volume (e.g., Upload [new line] 250 MB).</comment>
   </data>
   <data name="Format_Milliseconds">
@@ -2910,10 +2910,10 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Your most recently used connection</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
-    <value>Kill switch</value>
+    <value>سوئیچ کشتار</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced">
-    <value>Advanced</value>
+    <value>پیشرفته</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
     <value>Only allow internet access when connected to Proton VPN. Advanced kill switch will remain active even when you restart your device.</value>
