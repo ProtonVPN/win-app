@@ -21,6 +21,7 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Models;
+using ProtonVPN.Client.Common.UI.Extensions;
 using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Messages;
@@ -261,8 +262,11 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
         OnPropertyChanged(nameof(DefaultConnectionState));
         OnPropertyChanged(nameof(SelectedLanguage));
         OnPropertyChanged(nameof(ClientVersionDescription));
-        OnPropertyChanged(nameof(Themes));
-        OnPropertyChanged(nameof(SelectedTheme));
+
+        foreach (ApplicationElementTheme theme in Themes)
+        {
+            theme.OnLanguageChanged();
+        }
     }
 
     protected override void OnSettingsChanged(string propertyName)

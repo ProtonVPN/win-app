@@ -88,8 +88,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                          Style="{StaticResource SideWidgetButtonStyle}"
                          Text="{x:Bind ViewModel.Header}"
                          Visibility="{x:Bind ViewModel.IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
-                         Flyout="{StaticResource WidgetFlyout}">
-        <featureicons:KillSwitchIconView />
+                         OnHoverFlyout="{StaticResource WidgetFlyout}">
+        <featureicons:KillSwitchIconView Width="{StaticResource FeatureBarDimmableImageSize}" 
+                                         Height="{StaticResource FeatureBarDimmableImageSize}" />
     </custom:WidgetButton>
 
 </UserControl>

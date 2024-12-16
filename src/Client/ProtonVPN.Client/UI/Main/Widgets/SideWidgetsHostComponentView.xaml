@@ -75,7 +75,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     </UserControl.Resources>
 
-    <ContentControl Style="{StaticResource PaneContentControlStyle}">
+    <ContentControl Style="{StaticResource PaneContentControlStyle}"
+                    Padding="6">
         
         <Grid>
 
@@ -90,14 +91,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           ItemsSource="{x:Bind ViewModel.HeaderWidgets}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Spacing="8" />
+                        <StackPanel Spacing="6" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
 
             <Border Grid.Row="1"
                     Height="1"
-                    Margin="0,8"
+                    Margin="0,6"
                     Background="{ThemeResource BorderWeakColorBrush}"
                     Visibility="{x:Bind ViewModel.HasHeaderAndFooterWidgets}" />
 
@@ -106,7 +107,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           ItemsSource="{x:Bind ViewModel.FooterWidgets}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Spacing="8" />
+                        <StackPanel Spacing="6" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>

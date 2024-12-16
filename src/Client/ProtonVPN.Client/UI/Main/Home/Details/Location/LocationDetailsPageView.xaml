@@ -45,8 +45,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Header="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_YourIpAddress')}"
                                 IsEnabled="{x:Bind ViewModel.IsDisconnected}">
             <custom:DetailRowButton.Flyout>
-                <Flyout x:Name="IpAddressFlyout">
-                    <flyouts:IpAddressFlyout Flyout="{x:Bind IpAddressFlyout}" />
+                <Flyout>
+                    <flyouts:IpAddressFlyout />
                 </Flyout>
             </custom:DetailRowButton.Flyout>
 
@@ -58,8 +58,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Header="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Country')}"
                                 IsEnabled="{x:Bind ViewModel.IsDisconnected}">
             <custom:DetailRowButton.Flyout>
-                <Flyout x:Name="CountryFlyout">
-                    <flyouts:CountryFlyoutView Flyout="{x:Bind CountryFlyout}" />
+                <Flyout>
+                    <flyouts:CountryFlyoutView />
                 </Flyout>
             </custom:DetailRowButton.Flyout>
 
@@ -71,8 +71,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Header="{x:Bind ViewModel.Localizer.Get('Home_ConnectionDetails_Isp')}"
                                 IsEnabled="{x:Bind ViewModel.IsDisconnected}">
             <custom:DetailRowButton.Flyout>
-                <Flyout x:Name="IspFlyout">
-                    <flyouts:IspFlyoutView Flyout="{x:Bind IspFlyout}" />
+                <Flyout>
+                    <flyouts:IspFlyoutView />
                 </Flyout>
             </custom:DetailRowButton.Flyout>
 

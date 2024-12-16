@@ -29,5 +29,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              mc:Ignorable="d">
 
     <custom:DimmableImage IconSource="{x:Bind ViewModel.Icon}"
-                          IsDimmed="{x:Bind ViewModel.IsDimmed}" />
+                          IsDimmed="{x:Bind ViewModel.IsDimmed}"
+                          Width="{x:Bind Width}"
+                          Height="{x:Bind Height}"/>
 </UserControl>

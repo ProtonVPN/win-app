@@ -50,7 +50,7 @@ public class LocalizationProvider : ILocalizationProvider
     private Dictionary<string, string> CreateFallbackLanguageDictionary()
     {
         return _settings.IsDebugModeEnabled
-            ? new()
+            ? []
             : _localizer.GetLanguageDictionaries()
                 .FirstOrDefault(ld => ld.Language.EqualsIgnoringCase(LocalizerFactory.DEFAULT_LANGUAGE))?
                 .GetItems()
@@ -60,9 +60,11 @@ public class LocalizationProvider : ILocalizationProvider
     public string Get(string resourceKey)
     {
         string result = _localizer.GetLocalizedString(resourceKey);
-        if (result == resourceKey && _fallbackLanguageDictionary.Value.TryGetValue(resourceKey, out string value))
+        if (result == resourceKey || string.IsNullOrEmpty(result))
         {
-            result = value;
+            result = _fallbackLanguageDictionary.Value.TryGetValue(resourceKey, out string value)
+                ? value
+                : resourceKey;
         }
         return result.Replace("\\n", Environment.NewLine);
     }

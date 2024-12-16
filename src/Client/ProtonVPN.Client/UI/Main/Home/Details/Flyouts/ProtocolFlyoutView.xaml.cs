@@ -36,11 +36,6 @@ public sealed partial class ProtocolFlyoutView : IContextAware
         Unloaded += OnUnloaded;
     }
 
-    private void OnCloseButtonClicked(object sender, RoutedEventArgs e)
-    {
-        Flyout?.Hide();
-    }
-
     public object GetContext()
     {
         return ViewModel;

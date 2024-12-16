@@ -37,8 +37,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <x:Double x:Key="ConnectionStatusGradientHeight">332.0</x:Double>
         <x:Double x:Key="BottomMapFadeoutGradientHeight">250.0</x:Double>
 
-        <x:Double x:Key="WidgetComponentMinWidth">62.0</x:Double>
-        <x:Double x:Key="WidgetComponentMaxWidth">120.0</x:Double>
+        <x:Double x:Key="WidgetComponentMinWidth">72.0</x:Double>
+        <x:Double x:Key="WidgetComponentMaxWidth">90.0</x:Double>
 
         <x:Double x:Key="SidebarComponentCompactWidth">62.0</x:Double>
         <x:Double x:Key="SidebarComponentMinWidth">200.0</x:Double>

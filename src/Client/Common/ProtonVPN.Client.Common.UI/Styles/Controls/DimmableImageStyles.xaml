@@ -26,15 +26,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:triggers="using:CommunityToolkit.WinUI">
 
     <x:Double x:Key="DefaultDimmableImageOpacity">0.4</x:Double>
+    <x:Double x:Key="DefaultDimmableImageSize">32</x:Double>
+    <x:Double x:Key="FeatureBarDimmableImageSize">28</x:Double>
     
     <Style BasedOn="{StaticResource DefaultDimmableImageStyle}" TargetType="custom:DimmableImage" />
-    
+
     <Style x:Key="DefaultDimmableImageStyle" TargetType="custom:DimmableImage">
+        <Setter Property="Width" Value="{StaticResource DefaultDimmableImageSize}"/>
+        <Setter Property="Height" Value="{StaticResource DefaultDimmableImageSize}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:DimmableImage">
-                    <Image x:Name="Image"
-                           Opacity="1"
+                    <Image x:Name="Image" Stretch="Uniform"
+                           Width="{TemplateBinding Width}"
+                           Height="{TemplateBinding Height}"
+                           Opacity="1" 
                            Source="{Binding IconSource, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=OneWay}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="OpacityLevels">
@@ -54,5 +60,4 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Setter.Value>
         </Setter>
     </Style>
-
 </ResourceDictionary>

@@ -40,6 +40,7 @@ public partial class CountryFlyoutViewModel : ActivatableViewModelBase,
     private string _countryCode = string.Empty;
 
     public string CountryName => EmptyValueExtensions.TransformValueOrDefault(CountryCode, cc => Localizer.GetCountryName(cc));
+
     public bool IsDeviceExposed => !string.IsNullOrWhiteSpace(CountryCode);
 
     public CountryFlyoutViewModel(
