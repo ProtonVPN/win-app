@@ -51,6 +51,7 @@ public static class UiActions
     {
         AutomationElement element = WaitUntilExists(desiredElement);
         Mouse.MovePixelsPerMillisecond = 100;
+        element.WaitUntilClickable();
         Mouse.MoveTo(element.GetClickablePoint().X + offsetX, element.GetClickablePoint().Y + offsetY);
         return desiredElement;
     }
