@@ -454,7 +454,7 @@
     <comment>The message displayed in Issue Report window when sending Issue report fails</comment>
   </data>
   <data name="BugReport_msg_SendingInfo">
-    <value>Vänta tills sändningsprocessen är klar</value>
+    <value>Vänta tills sändningsprocessen slutförts</value>
     <comment>The message displayed in Issue Report window while sending the report</comment>
   </data>
   <data name="BugReport_msg_SendingSucceeded">
@@ -518,7 +518,7 @@
     <comment>The beginning of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_1_SecureCore">
-    <value>Den</value>
+    <value></value>
     <comment>The beginning of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_2">
@@ -1552,7 +1552,7 @@
     <value>Detta steg tar bara några minuter. Efter det kommer du att kunna logga in och skydda alla dina enheter.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
-    <value>Tack för att du uppgraderar</value>
+    <value>Tack för att du uppgraderat</value>
     <comment>The title to thank the user for upgrading to Professional/Visionary plan.</comment>
   </data>
   <data name="Dialogs_Bfe_msg_info">
@@ -1592,7 +1592,7 @@ Följ &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="thes
     <value>Vissa komponenter i Proton VPN kan vara blockerade eller inaktiverade, vilket hindrar dig från att ansluta. Klicka på Aktivera för att åtgärda det.&lt;LineBreak/&gt;Observera att denna åtgärd kräver administratörsbehörigheter.</value>
   </data>
   <data name="Dialogs_DisconnectError_btn_DisableKillSwitch">
-    <value>Inaktivera Kill switch</value>
+    <value>Inaktivera kill switch</value>
     <comment>The text on Disable button in Disconnect modal window</comment>
   </data>
   <data name="Dialogs_DisconnectError_btn_Upgrade">
@@ -1620,11 +1620,11 @@ Följ &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="thes
     <comment>The error description displayed in Disconnect modal window if TAP adapter is not installed</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_OldVersion">
-    <value>Nätverksadapterns version är föråldrad.</value>
+    <value>Nätverksadapterns version är utdaterad.</value>
     <comment>The error description displayed in Disconnect modal window if TAP adapter version is too low</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TapErrorHelp">
-    <value>Se denna support &lt;Hyperlink Command="{Binding OpenHelpArticleCommand}"&gt;artikel&lt;/Hyperlink&gt; hur man åtgärdar det.</value>
+    <value>Se denna &lt;Hyperlink Command="{Binding OpenHelpArticleCommand}"&gt;supportartikel&lt;/Hyperlink&gt; om hur man åtgärdar det.</value>
     <comment>The text displayed in Disconnect modal window if TAP error is detected</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TlsCertificateError">
@@ -1661,7 +1661,7 @@ Följ &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="thes
     <comment>The text displayed in the login window modal when the user tries to close the app while kill switch is active or VPN is on.</comment>
   </data>
   <data name="Dialogs_Exit_msg_Connected">
-    <value>Om du avslutar applikationen kommer koppla från dig från VPN.</value>
+    <value>VPN-anslutningen kommer kopplas från när applikationen avslutas.</value>
   </data>
   <data name="Dialogs_Exit_msg_KillSwitchOn">
     <value>Kill switch blockerar alla anslutningar för att undvika att din data läcker. Om du avslutar applikationen kommer kill switch att inaktiveras.</value>
@@ -1679,7 +1679,7 @@ Följ &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="thes
     <value>Med permanent kill switch, om VPN av någon anledning inte är ansluten, kommer du inte att kunna komma åt Internet.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_ttl">
-    <value>Aktivera permanent Kill switch?</value>
+    <value>Aktivera permanent kill switch?</value>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok">
     <value>Jag förstår</value>
@@ -1945,11 +1945,11 @@ Följ &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="thes
     <comment>The label for Password text box in Login window</comment>
   </data>
   <data name="Login_lbl_SecureInternetAnywhere">
-    <value>Säker Internet var som helst</value>
+    <value>Säkert internet var som helst</value>
     <comment>The text displayed on the bottom of Login window while logging in</comment>
   </data>
   <data name="Login_lbl_StartAndConnectOnBoot">
-    <value>Starta och anslut vid start</value>
+    <value>Starta och anslut vid uppstart</value>
   </data>
   <data name="Login_lbl_StartWithWindows">
     <value>Börja med Windows</value>
@@ -2013,7 +2013,7 @@ Följ &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="thes
     <comment>The label for download speed in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_DownVolume">
-    <value>Nedladdad volym:</value>
+    <value>Nervolym:</value>
     <comment>The label for downloaded data amount in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_Session">
@@ -2037,7 +2037,7 @@ Följ &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="thes
     <comment>The label for upload speed in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_UpVolume">
-    <value>Uppladdad volym:</value>
+    <value>Uppvolym:</value>
     <comment>The label for uploaded data amount in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_UpgradeTooltip">
@@ -2085,10 +2085,10 @@ Följ &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="thes
     <value>En notis om hastighet...</value>
   </data>
   <data name="Modals_Rescope_NewFreeCountries">
-    <value>Nya gratisländer</value>
+    <value>Nya Free-länder</value>
   </data>
   <data name="Modals_Rescope_NewFreeCountriesDescription">
-    <value>Det finns nu gratisservrar i Polen och Rumänien.</value>
+    <value>Det finns nu Free-servrar i Polen och Rumänien.</value>
   </data>
   <data name="Modals_Rescope_ServerSelection">
     <value>Ändringar av serverval</value>
@@ -2166,7 +2166,7 @@ Följ &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="thes
     <comment>The text of What's new hyperlink in Update flash notification (opens About window)</comment>
   </data>
   <data name="Notifications_Update_msg_NewAppVersion">
-    <value>En ny app-version är nu tillgänglig!</value>
+    <value>En ny appversion är nu tillgänglig!</value>
     <comment>The message displayed in the Update notification when new app version is ready to install</comment>
   </data>
   <data name="Notifications_VpnState_msg_Connected">
@@ -2190,15 +2190,15 @@ Följ &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="thes
     <comment>The description of onboarding step 1 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_2">
-    <value>Spara dina önskade inställningar och servrar för framtida användning.</value>
+    <value>Spara dina favoritinställningar och -servrar för framtida användning.</value>
     <comment>The description of onboarding step 2 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_3">
-    <value>Välj vilket land och server du vill använda för din slutliga IP-adress.</value>
+    <value>Välj vilket land och vilken server du vill använda för din slutliga IP-adress.</value>
     <comment>The description of onboarding step 3 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_4">
-    <value>Anpassa din VPN-anslutning till din aktivitet online med Proton VPN specialfunktioner för optimal hastighet och integritetsskydd.</value>
+    <value>Anpassa din VPN-anslutning till din onlineaktivitet med Proton VPNs specialfunktioner för optimal hastighet och integritetsskydd.</value>
     <comment>The description of onboarding step 4 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_ttl_Step_1">
@@ -2454,7 +2454,7 @@ Följ &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="thes
     <value>Blockera skadlig kod, annonser &amp; spårare</value>
   </data>
   <data name="QuickSettings_btn_PermanentKillSwitch">
-    <value>Permanent Kill switch</value>
+    <value>Permanent kill switch</value>
     <comment>The text for the clickable option to enable the kill switch feature permanently (even when the VPN app is not running).</comment>
   </data>
   <data name="QuickSettings_btn_PortForwardingOff">
@@ -2567,7 +2567,7 @@ Följ &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="thes
     <comment>The name of Tor server feature</comment>
   </data>
   <data name="Servers_FreeConnections">
-    <value>Gratis anslutningar (1)</value>
+    <value>Gratisanslutningar (1)</value>
   </data>
   <data name="Servers_Load_lbl_IP">
     <value>Server-IP:</value>
@@ -2582,7 +2582,7 @@ Följ &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="thes
     <comment>The label for server load in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_LoadInfo">
-    <value>{0}% belastning</value>
+    <value>{0} % belastning</value>
     <comment>The tooltip text of server load image in Countries tab of Sidebar section of main app window, the server load in Connection section of Sidebar of main app window. The {0} is a placeholder for load percentage value.</comment>
   </data>
   <data name="Servers_Load_lbl_LoadInfo_NoData">
@@ -2672,7 +2672,7 @@ Följ &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="thes
     <comment>The label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DnsLeakProtection_Info">
-    <value>Förhindrar att detaljer om DNS-förfrågningar läcker till tredje part. Alltid på.</value>
+    <value>Förhindra att detaljer om DNS-förfrågningar läcker till tredje part. Alltid på.</value>
     <comment>The description of DNS Leak Protection setting displayed in the tooltip of the ( i ) image next to the label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DoH">
@@ -2684,7 +2684,7 @@ Följ &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="thes
     <comment>The description of Allow Alternative Routing setting displayed in the tooltip of ( i ) image next to the label for Allow Alternative Routing toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_HardwareAcceleration">
-    <value>Maskinvaruacceleration</value>
+    <value>Hårdvaruacceleration</value>
     <comment>The label for Hardware Acceleration toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_HardwareAcceleration_Info">
@@ -2746,7 +2746,7 @@ Följ &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="thes
     <comment>The label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_SplitTunnel_Info">
-    <value>Exkludera en applikation eller en IP-adress från VPN-trafik eller inkludera endast specifika appar. Kan inte slås på tillsammans med kill switch.</value>
+    <value>Exkludera en applikation eller en IP-adress från VPN-trafik eller inkludera endast specifika appar. Kan inte aktiveras tillsammans med kill switch.</value>
     <comment>The description of Split Tunneling setting displayed in the tooltip of ( i ) image next to the label for Split Tunneling toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_btn_LearnMore">
@@ -2757,7 +2757,7 @@ Följ &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="thes
     <comment>The header of Advanced tab in Settings window</comment>
   </data>
   <data name="Settings_Connection_DefaultProtocol_val_Smart">
-    <value>Smart (föreslagen)</value>
+    <value>Smart (föreslaget)</value>
     <comment>The suggested Smart protocol selection displayed in Protocol combo box in Connection tab of Settings window.</comment>
   </data>
   <data name="Settings_Connection_DefaultProtocol_val_Tcp">
@@ -2904,7 +2904,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The text of "My Profiles" category text in the Profile sidebar, that has the custom created profiles below</comment>
   </data>
   <data name="SidebarProfiles_lbl_Recommended">
-    <value>Rekommenderad</value>
+    <value>Rekommenderade</value>
     <comment>The text of "Recommended" category text in the Profile sidebar, that has the predefined profiles below</comment>
   </data>
   <data name="Sidebar_B2BPopup_Desc">
@@ -2951,7 +2951,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">
-    <value>Plus-platser ({0})</value>
+    <value>Plusplatser ({0})</value>
   </data>
   <data name="Sidebar_Countries_BasicAndPlusLocationCount">
     <value>BASIC &amp; PLUS-platser ({0})</value>
@@ -2960,13 +2960,13 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>BASIC-platser ({0})</value>
   </data>
   <data name="Sidebar_Countries_FreeLocationCount">
-    <value>GRATIS platser ({0})</value>
+    <value>GRATIS-platser ({0})</value>
   </data>
   <data name="Sidebar_Countries_FreeServers">
-    <value>Gratis servrar</value>
+    <value>Gratisservrar</value>
   </data>
   <data name="Sidebar_Countries_FreeServersInfo">
-    <value>Gratis servrar har ingen datagräns eller nätverksbegränsning. Hastigheten kan begränsas endast på grund av det höga antalet anslutna användare.</value>
+    <value>Gratisservrar har ingen datagräns eller nätverksbegränsning. Hastigheten kan begränsas endast på grund av det höga antalet anslutna användare.</value>
   </data>
   <data name="Sidebar_Countries_Information">
     <value>Information</value>
@@ -3089,7 +3089,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>och mer</value>
   </data>
   <data name="StartMinimizedMode_val_Disabled">
-    <value>Inaktiverad</value>
+    <value>Inaktiverat</value>
     <comment>The name of start minimized mode displayed in Start Minimized combo box in General tab of Settings window</comment>
   </data>
   <data name="StartMinimizedMode_val_ToSystray">
@@ -3203,17 +3203,17 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Lås upp avancerad VPN-anpassning</value>
   </data>
   <data name="Upsell_FreeConnections_Locations">
-    <value>Gratis serverplatser ({0})</value>
+    <value>Gratisserverplatser ({0})</value>
     <comment>{0} represents a number of free server locations.</comment>
   </data>
   <data name="Upsell_FreeConnections_Subtitle">
     <value>Proton Free ansluter dig automatiskt till den snabbaste tillgängliga servern. Detta kommer normalt att vara den server som ligger närmast din plats.</value>
   </data>
   <data name="Upsell_FreeConnections_Title">
-    <value>Gratis anslutningar</value>
+    <value>Gratisanslutningar</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet1">
-    <value>Förbättra prestanda för onlinespel och videosamtal</value>
+    <value>Förbättra onlinegamings- och videosamtalsprestanda</value>
   </data>
   <data name="Upsell_ModerateNat_Bullet2">
     <value>NAT typ 2 (måttlig) optimerar hastighet och stabilitet genom att möjliggöra direktanslutningar mellan enheter</value>
@@ -3222,7 +3222,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Lås upp &lt;Bold&gt;NAT typ 2&lt;/Bold&gt; med VPN Plus</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
-    <value>Höj nivån på din spelupplevelse</value>
+    <value>Levla upp din spelupplevelse</value>
   </data>
   <data name="Upsell_Netshield_BlockAds">
     <value>Blockera annonser och spårare</value>
@@ -3260,16 +3260,16 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The tooltip text of the business plan badge</comment>
   </data>
   <data name="Upsell_PortForwarding_Bullet1">
-    <value>Förbättra din nedladdningshastighet för P2P</value>
+    <value>Förbättra din P2P-nedladdningshastighet</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet2">
-    <value>Anslut till aktiva spel-servrar och var värd för flerspelarspel</value>
+    <value>Anslut till onlinegamingservrar och hosta multiplayerspel</value>
   </data>
   <data name="Upsell_PortForwarding_Bullet3">
-    <value>Ställ in fjärråtkomst till enheter på ditt lokala nätverk</value>
+    <value>Konfigurera fjärråtkomst till enheter på ditt lokala nätverk</value>
   </data>
   <data name="Upsell_PortForwarding_Subtitle">
-    <value>Lås upp &lt;Bold&gt;vidarebefordran av port&lt;/Bold&gt; med VPN Plus</value>
+    <value>Lås upp &lt;Bold&gt;portvidarebefordran&lt;/Bold&gt; med VPN Plus</value>
   </data>
   <data name="Upsell_PortForwarding_Title">
     <value>Optimera dina P2P-anslutningar</value>
@@ -3287,7 +3287,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Lås upp &lt;Bold&gt;profiler&lt;/Bold&gt; med VPN Plus</value>
   </data>
   <data name="Upsell_Profiles_Title">
-    <value>Få snabb åtkomst till dina frekventa anslutningar</value>
+    <value>Få snabb åtkomst till dina vanligaste anslutningar</value>
   </data>
   <data name="Upsell_SecureCore_ExtraEncryption">
     <value>Lägg till ytterligare ett lager av kryptering till din VPN-anslutning</value>
@@ -3311,7 +3311,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Låt betrodda appar och IP-adresser kringgå VPN för högre hastigheter</value>
   </data>
   <data name="Upsell_SplitTunneling_Bullet3">
-    <value>Kom åt både hem- och lokalt innehåll när du surfar från utlandet</value>
+    <value>Kom åt innehåll både hemma och lokalt när du surfar från utlandet</value>
   </data>
   <data name="Upsell_SplitTunneling_Subtitle">
     <value>Lås upp &lt;Bold&gt;split tunneling&lt;/Bold&gt; med VPN Plus</value>
@@ -3391,7 +3391,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The label for list of errors on Error Panel of data entry Window</comment>
   </data>
   <data name="Window_lbl_Loading">
-    <value>Laddar in</value>
+    <value>Läser in</value>
     <comment>The text displayed while content is loading</comment>
   </data>
   <data name="WireGuard_lbl">

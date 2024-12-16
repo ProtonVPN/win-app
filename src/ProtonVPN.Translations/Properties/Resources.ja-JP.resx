@@ -1763,7 +1763,7 @@
     <comment>The subtitle of the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Title">
-    <value>VPN サブスクリプションのプランの有効期限が切れました</value>
+    <value>VPNサブスクリプションプランの有効期限が切れました。</value>
     <comment>The title of the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Upgrade">
@@ -2022,7 +2022,7 @@
     <comment>The label for uploaded data amount in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_UpgradeTooltip">
-    <value>プラスへのアップグレード</value>
+    <value>Plus にアップグレード</value>
   </data>
   <data name="Map_VpnStatus_val_Connected">
     <value>接続完了</value>
@@ -2585,7 +2585,7 @@
     <comment>The text on Upgrade button in Server list in Countries tab of Sidebar in main app window (opens Upgrade Required Upsell window)</comment>
   </data>
   <data name="Servers_lbl_UpgradeToPlus">
-    <value>プラスへのアップグレード</value>
+    <value>Plus にアップグレード</value>
   </data>
   <data name="Servers_lbl_ViaCountry">
     <value>経由国</value>
@@ -2853,7 +2853,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of General tab in Settings window</comment>
   </data>
   <data name="Settings_btn_UpgradeToPlus">
-    <value>プラスへのアップグレード</value>
+    <value>Plus にアップグレード</value>
     <comment>A message insde a tooltip which is displayed on mouse hover in the settings next to a paid feature.</comment>
   </data>
   <data name="Settings_lnk_Reconnect">
@@ -2869,7 +2869,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title of Settings window</comment>
   </data>
   <data name="SidebarProfiles_lbl_MyProfiles">
-    <value>プロフィール</value>
+    <value>マイプロファイル</value>
     <comment>The text of "My Profiles" category text in the Profile sidebar, that has the custom created profiles below</comment>
   </data>
   <data name="SidebarProfiles_lbl_Recommended">
@@ -2920,7 +2920,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>Tooltip message shown in sidebar connection status box when hovered on exclamation mark icon</comment>
   </data>
   <data name="Sidebar_Countries_AllLocationCount">
-    <value>プラスロケーション ({0})</value>
+    <value>Plus ロケーション ({0})</value>
   </data>
   <data name="Sidebar_Countries_BasicAndPlusLocationCount">
     <value>BASIC と PLUS の場所 ({0})</value>
@@ -2932,10 +2932,10 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>FREE の場所 ({0})</value>
   </data>
   <data name="Sidebar_Countries_FreeServers">
-    <value>Free サーバー</value>
+    <value>無料サーバー</value>
   </data>
   <data name="Sidebar_Countries_FreeServersInfo">
-    <value>フリーサーバーにデータやネットワーク帯域の制限はありません。接続しているユーザー数が多い場合にのみスピードが制限されることがあります。</value>
+    <value>無料サーバーにはデータ制限もネットワーク制限もありません。接続されたユーザーの数が多いため、速度が制限される可能性があります。</value>
   </data>
   <data name="Sidebar_Countries_Information">
     <value>情報</value>
@@ -3191,7 +3191,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>マルウェアからデバイスを保護</value>
   </data>
   <data name="Upsell_Netshield_Subtitle">
-    <value>プラスへのアップグレード時</value>
+    <value>Plusにアップグレードする時</value>
   </data>
   <data name="Upsell_Netshield_Title">
     <value>NetShield で広告なしのブラウジングを体験</value>
@@ -3226,7 +3226,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>ローカルネットワーク上のデバイスへのリモートアクセスを設定する</value>
   </data>
   <data name="Upsell_PortForwarding_Subtitle">
-    <value>&lt;Bold&gt;ポート転送&lt;/Bold&gt;のロックを解除します。 VPN プラスを使用すると</value>
+    <value>VPN Plusで&lt;Bold&gt;ポート転送&lt;/Bold&gt;を解除</value>
   </data>
   <data name="Upsell_PortForwarding_Title">
     <value>P2P接続を強化する</value>
@@ -3241,7 +3241,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>自動接続を設定すれば、さらに高速にアクセスできます。</value>
   </data>
   <data name="Upsell_Profiles_Subtitle">
-    <value>VPN プラスを使用すると&lt;Bold&gt;プロフィール&lt;/Bold&gt;のロックを解除します。</value>
+    <value>VPN Plusで &lt;Bold&gt;プロファイル&lt;/Bold&gt; のロックを解除</value>
   </data>
   <data name="Upsell_Profiles_Title">
     <value>頻繁に利用するコネクションに素早くアクセス</value>
@@ -3256,7 +3256,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>スイス、スウェーデン、アイスランドにある超安全なサーバーを経由する</value>
   </data>
   <data name="Upsell_SecureCore_Subtitle">
-    <value>プラスへのアップグレード時</value>
+    <value>Plusにアップグレードする時</value>
   </data>
   <data name="Upsell_SecureCore_Title">
     <value>Secure Core で2重の暗号化</value>
@@ -3271,7 +3271,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>海外から自国と現地のコンテンツにアクセスできる</value>
   </data>
   <data name="Upsell_SplitTunneling_Subtitle">
-    <value>VPN プラスを使用すると&lt;Bold&gt;スプリット トンネリング&lt;/Bold&gt;のロックを解除します。</value>
+    <value>VPN Plusで&lt;Bold&gt;スプリットトンネル&lt;/Bold&gt;を解除する</value>
   </data>
   <data name="Upsell_SplitTunneling_Title">
     <value>両方の長所を生かす</value>
