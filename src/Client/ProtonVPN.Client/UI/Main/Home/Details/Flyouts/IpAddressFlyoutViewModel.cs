@@ -98,10 +98,10 @@ public partial class IpAddressFlyoutViewModel : ActivatableViewModelBase,
 
     public void Receive(ConnectionDetailsChangedMessage message)
     {
-        ExecuteOnUIThread(() =>
+        if (IsActive)
         {
-            ServerIpAddress = EmptyValueExtensions.GetValueOrDefault(message.ServerIpAddress);
-        });
+            ExecuteOnUIThread(InvalidateServerIpAddress);
+        }
     }
 
     public void Receive(ConnectionStatusChangedMessage message)
@@ -117,6 +117,7 @@ public partial class IpAddressFlyoutViewModel : ActivatableViewModelBase,
         base.OnActivated();
 
         InvalidateDeviceIpAddress();
+        InvalidateServerIpAddress();
         InvalidateConnectionStatus();
     }
 
@@ -138,6 +139,11 @@ public partial class IpAddressFlyoutViewModel : ActivatableViewModelBase,
     private void InvalidateDeviceIpAddress()
     {
         DeviceIpAddress = EmptyValueExtensions.GetValueOrDefault(_settings.DeviceLocation?.IpAddress);
+    }
+
+    private void InvalidateServerIpAddress()
+    {
+        ServerIpAddress = EmptyValueExtensions.GetValueOrDefault(_connectionManager.CurrentConnectionDetails?.ServerIpAddress);
     }
 
     private void InvalidateConnectionStatus()

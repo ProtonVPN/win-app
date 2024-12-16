@@ -32,13 +32,13 @@ public class ConnectionDetails
 
     public DateTime EstablishedConnectionTimeUtc { get; }
 
-
     public Server Server { get; private set; }
 
     public PhysicalServer PhysicalServer { get; private set; }
 
     public VpnProtocol Protocol { get; private set; }
 
+    public string? ServerIpAddress { get; private set; }
 
     public string ExitCountryCode => Server.ExitCountry;
     public bool IsSecureCore => Server.Features.IsSupported(ServerFeatures.SecureCore);
@@ -64,12 +64,18 @@ public class ConnectionDetails
         Server = server;
         PhysicalServer = physicalServer;
         Protocol = protocol;
+        ServerIpAddress = physicalServer.ExitIp;
     }
 
-    public void Update(Server server, PhysicalServer physicalServer, VpnProtocol protocol)
+    public void UpdateServer(Server server, PhysicalServer physicalServer, VpnProtocol protocol)
     {
         Server = server;
         PhysicalServer = physicalServer;
         Protocol = protocol;
+    }
+
+    public void UpdateIpAddress(string serverIpAddress)
+    {
+        ServerIpAddress = serverIpAddress;
     }
 }

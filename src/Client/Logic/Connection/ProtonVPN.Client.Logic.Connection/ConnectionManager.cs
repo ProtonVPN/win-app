@@ -61,6 +61,7 @@ public class ConnectionManager : IInternalConnectionManager,
     private DateTime _minReconnectionDateUtc = DateTime.MinValue;
     private bool _isNetworkBlocked;
     private bool _isConnectionStatusHandled;
+    private VpnStateIpcEntity? _cachedMessage;
 
     public ConnectionStatus ConnectionStatus { get; private set; }
     public VpnErrorTypeIpcEntity CurrentError { get; private set; }
@@ -204,6 +205,8 @@ public class ConnectionManager : IInternalConnectionManager,
 
     public async Task HandleAsync(VpnStateIpcEntity message)
     {
+        _cachedMessage = message;
+
         IConnectionIntent connectionIntent = CurrentConnectionIntent ?? ConnectionIntent.Default;
         ConnectionStatus connectionStatus = _entityMapper.Map<VpnStatusIpcEntity, ConnectionStatus>(message.Status);
         bool isToForceStatusUpdate = _isNetworkBlocked != message.NetworkBlocked || !_isConnectionStatusHandled;
@@ -228,7 +231,7 @@ public class ConnectionManager : IInternalConnectionManager,
                     }
                     else
                     {
-                        CurrentConnectionDetails.Update(server, physicalServer, vpnProtocol);
+                        CurrentConnectionDetails.UpdateServer(server, physicalServer, vpnProtocol);
                     }
                 }
                 else if (server is null)
@@ -281,6 +284,8 @@ public class ConnectionManager : IInternalConnectionManager,
 
     public void Receive(ConnectionDetailsIpcEntity message)
     {
+        CurrentConnectionDetails?.UpdateIpAddress(message.ServerIpAddress);
+
         _eventMessageSender.Send(new ConnectionDetailsChangedMessage
         {
             ClientCountryCode = message.ClientCountryIsoCode,
@@ -304,6 +309,12 @@ public class ConnectionManager : IInternalConnectionManager,
     public async Task InitializeAsync(IConnectionIntent? connectionIntent)
     {
         CurrentConnectionIntent = connectionIntent;
+
+        if (_cachedMessage is not null)
+        {
+            await HandleAsync(_cachedMessage);
+        }
+
         await _vpnServiceCaller.RequestConnectionDetailsAsync();
     }
 

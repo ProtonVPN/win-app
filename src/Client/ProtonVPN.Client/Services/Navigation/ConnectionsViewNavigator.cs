@@ -41,7 +41,7 @@ namespace ProtonVPN.Client.Services.Navigation;
 public class ConnectionsViewNavigator : ViewNavigatorBase, IConnectionsViewNavigator,
     IEventMessageReceiver<VpnPlanChangedMessage>,
     IEventMessageReceiver<ServerListChangedMessage>,
-    IEventMessageReceiver<RecentConnectionsChanged>
+    IEventMessageReceiver<RecentConnectionsChangedMessage>
 {
     private readonly IRecentConnectionsManager _recentConnectionsManager;
     private readonly IServersLoader _serversLoader;
@@ -127,7 +127,7 @@ public class ConnectionsViewNavigator : ViewNavigatorBase, IConnectionsViewNavig
         UIThreadDispatcher.TryEnqueue(async () => await InvalidateCurrentPageAsync());
     }
 
-    public void Receive(RecentConnectionsChanged message)
+    public void Receive(RecentConnectionsChangedMessage message)
     {
         UIThreadDispatcher.TryEnqueue(async () => await InvalidateCurrentPageAsync());
     }

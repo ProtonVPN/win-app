@@ -19,6 +19,6 @@
 
 namespace ProtonVPN.Client.Logic.Recents.Contracts.Messages;
 
-public class RecentConnectionsChanged
+public class RecentConnectionsChangedMessage
 {
 }

@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Common.Messages;
 using ProtonVPN.Client.Contracts.Services.Validation;
 using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;

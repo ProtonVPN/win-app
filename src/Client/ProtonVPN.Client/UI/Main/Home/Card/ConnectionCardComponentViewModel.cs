@@ -52,7 +52,7 @@ namespace ProtonVPN.Client.UI.Main.Home.Card;
 public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase,
     IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<VpnPlanChangedMessage>,
-    IEventMessageReceiver<RecentConnectionsChanged>,
+    IEventMessageReceiver<RecentConnectionsChangedMessage>,
     IEventMessageReceiver<ProfilesChangedMessage>,
     IEventMessageReceiver<SettingChangedMessage>
 {
@@ -214,15 +214,22 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
 
     public void Receive(ConnectionStatusChangedMessage message)
     {
-        if (IsActive)
+        ExecuteOnUIThread(() =>
         {
-            ExecuteOnUIThread(InvalidateConnectionStatus);
-
-            if (message.ConnectionStatus == ConnectionStatus.Connected)
+            if (IsActive)
             {
-                ExecuteOnUIThread(InvalidateConnectionDetails);
+                InvalidateConnectionStatus();
+
+                if (message.ConnectionStatus == ConnectionStatus.Connected)
+                {
+                    InvalidateConnectionDetails();
+                }
+                else
+                {
+                    InvalidateConnectionIntent();
+                }
             }
-        }
+        });
     }
 
     public void Receive(ServerListChangedMessage message)
@@ -241,7 +248,7 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
         }
     }
 
-    public void Receive(RecentConnectionsChanged message)
+    public void Receive(RecentConnectionsChangedMessage message)
     {
         if (IsActive)
         {
