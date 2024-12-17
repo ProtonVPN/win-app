@@ -18,7 +18,9 @@
  */
 
 using System;
+using System.Collections.Generic;
 using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.Helpers;
 using ProtonVPN.Crypto.Contracts;
 
@@ -26,29 +28,43 @@ namespace ProtonVPN.Common.Legacy.Vpn;
 
 public struct VpnHost
 {
-    public VpnHost(string name, string ip, string label, PublicKey x25519PublicKey, string signature)
+    public string Name { get; }
+    public string Ip { get; }
+    public string Label { get; }
+    public PublicKey X25519PublicKey { get; }
+    public string Signature { get; }
+    public Dictionary<VpnProtocol, string> RelayIpByProtocol { get; }
+
+    public VpnHost(string name, string ip, string label, PublicKey x25519PublicKey, string signature,
+        Dictionary<VpnProtocol, string> relayIpByProtocol)
     {
         AssertHostNameIsValid(name);
         AssertIpAddressIsValid(ip);
+
+        if (relayIpByProtocol is not null)
+        {
+            foreach (KeyValuePair<VpnProtocol, string> protocolIpPair in relayIpByProtocol)
+            {
+                AssertIpAddressIsValid(protocolIpPair.Value);
+            }
+        }
 
         Name = name;
         Ip = ip;
         Label = label;
         X25519PublicKey = x25519PublicKey;
         Signature = signature;
+        RelayIpByProtocol = relayIpByProtocol;
     }
 
-    public string Name { get; }
-
-    public string Ip { get; }
-
-    public string Label { get; }
-
-    public PublicKey X25519PublicKey { get; }
-
-    public string Signature { get; }
-
     public bool IsEmpty() => string.IsNullOrEmpty(Name) && string.IsNullOrEmpty(Ip);
+
+    public string GetIp(VpnProtocol protocol)
+    {
+        return RelayIpByProtocol is not null && RelayIpByProtocol.TryGetValue(protocol, out string relayIp)
+            ? relayIp
+            : Ip;
+    }
 
     private static void AssertHostNameIsValid(string hostName)
     {
@@ -63,9 +79,7 @@ public struct VpnHost
 
     private static void AssertIpAddressIsValid(string ip)
     {
-        Ensure.NotEmpty(ip, nameof(ip));
-
-        if (!ip.IsValidIpAddress())
+        if (!string.IsNullOrEmpty(ip) && !ip.IsValidIpAddress())
         {
             throw new ArgumentException($"Invalid argument {nameof(ip)} value: {ip}");
         }

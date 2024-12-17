@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,21 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Core.Networking;
+using Newtonsoft.Json;
 
-namespace ProtonVPN.Client.Logic.Servers.Contracts.Models;
+namespace ProtonVPN.Api.Contracts.Servers;
 
-public class PhysicalServer
+public class EntryPerProtocolResponse
 {
-    public required string Id { get; init; }
-    public required string EntryIp { get; init; }
-    public required string ExitIp { get; init; }
-    public required string Domain { get; init; }
-    public required string Label { get; init; }
-    public required sbyte Status { get; set; }
-    public required string X25519PublicKey { get; init; }
-    public required string Signature { get; init; }
-    public Dictionary<VpnProtocol, string> RelayIpByProtocol { get; init; } = new();
+    [JsonProperty("WireGuardUDP")]
+    public EntryPerProtocolEntryResponse WireGuardUdp { get; set; }
 
-    public bool IsUnderMaintenance() => Status == 0;
+    [JsonProperty("WireGuardTCP")]
+    public EntryPerProtocolEntryResponse WireGuardTcp { get; set; }
+
+    [JsonProperty("WireGuardTLS")]
+    public EntryPerProtocolEntryResponse WireGuardTls { get; set; }
+
+    [JsonProperty("OpenVPNUDP")]
+    public EntryPerProtocolEntryResponse OpenVpnUdp { get; set; }
+
+    [JsonProperty("OpenVPNTCP")]
+    public EntryPerProtocolEntryResponse OpenVpnTcp { get; set; }
 }

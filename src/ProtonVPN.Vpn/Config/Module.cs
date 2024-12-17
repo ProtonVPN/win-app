@@ -36,6 +36,7 @@ using ProtonVPN.Vpn.Management;
 using ProtonVPN.Vpn.NetShield;
 using ProtonVPN.Vpn.NetworkAdapters;
 using ProtonVPN.Vpn.OpenVpn;
+using ProtonVPN.Vpn.PortScanning;
 using ProtonVPN.Vpn.PortMapping;
 using ProtonVPN.Vpn.PortMapping.Serializers.Common;
 using ProtonVPN.Vpn.PortMapping.UdpClients;
