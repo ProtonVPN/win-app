@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,12 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Common.Core.Geographical;
 
-namespace ProtonVPN.Client.Logic.Servers.Files;
+namespace ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
-public interface IServersFileReaderWriter
+public class ServersFile
 {
-    ServersFile Read();
-    void Save(ServersFile file);
+    public DeviceLocation? DeviceLocation { get; init; }
+    public List<Server> Servers { get; init; } = [];
 }

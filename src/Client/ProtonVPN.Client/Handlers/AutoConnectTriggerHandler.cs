@@ -37,7 +37,8 @@ public class AutoConnectTriggerHandler : IHandler,
     IEventMessageReceiver<LoggedInMessage>,
     IEventMessageReceiver<ServerListChangedMessage>,
     IEventMessageReceiver<RecentConnectionsChangedMessage>,
-    IEventMessageReceiver<ConnectionStatusChangedMessage>
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
+    IEventMessageReceiver<DeviceLocationChangedMessage>
 {
     private readonly IConnectionManager _connectionManager;
     private readonly IRecentConnectionsManager _recentConnectionsManager;
@@ -50,6 +51,7 @@ public class AutoConnectTriggerHandler : IHandler,
     private bool _isServersListReady;
     private bool _isRecentsListReady;
     private bool _isConnectionStatusReady;
+    private bool _isDeviceLocationChanged;
 
     public AutoConnectTriggerHandler(
         IConnectionManager connectionManager,
@@ -80,6 +82,7 @@ public class AutoConnectTriggerHandler : IHandler,
     public void Receive(ServerListChangedMessage message)
     {
         _isServersListReady = _serversLoader.GetServers().Any();
+        _isDeviceLocationChanged = false;
 
         TryAutoConnectAsync();
     }
@@ -98,9 +101,15 @@ public class AutoConnectTriggerHandler : IHandler,
         TryAutoConnectAsync();
     }
 
+    public void Receive(DeviceLocationChangedMessage message)
+    {
+        _isDeviceLocationChanged = true;
+    }
+
     private async void TryAutoConnectAsync()
     {
         if (_isHandled ||
+            _isDeviceLocationChanged ||
             !_isServersListReady ||
             !_isRecentsListReady ||
             !_userAuthenticator.IsLoggedIn ||
