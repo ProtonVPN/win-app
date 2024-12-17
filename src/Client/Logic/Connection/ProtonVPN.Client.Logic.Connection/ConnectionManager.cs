@@ -218,13 +218,12 @@ public class ConnectionManager : IInternalConnectionManager,
         {
             if (message.Status == VpnStatusIpcEntity.Connected)
             {
-                Server? server = GetCurrentServer(message);
-                PhysicalServer? physicalServer = server?.Servers.FirstOrDefault(FilterPhysicalServerByVpnState(message));
+                VpnProtocol vpnProtocol = _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(message.VpnProtocol);
+                Server? server = GetCurrentServer(message, vpnProtocol);
+                PhysicalServer? physicalServer = server?.Servers.FirstOrDefault(FilterPhysicalServerByVpnState(message, vpnProtocol));
 
                 if (server is not null && physicalServer is not null)
                 {
-                    VpnProtocol vpnProtocol = _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(message.VpnProtocol);
-
                     if (CurrentConnectionDetails is null || !CurrentConnectionDetails.OriginalConnectionIntent.IsSameAs(connectionIntent))
                     {
                         CurrentConnectionDetails = new ConnectionDetails(connectionIntent, server, physicalServer, vpnProtocol);
@@ -257,15 +256,19 @@ public class ConnectionManager : IInternalConnectionManager,
         }
     }
 
-    private Server? GetCurrentServer(VpnStateIpcEntity state)
+    private Server? GetCurrentServer(VpnStateIpcEntity state, VpnProtocol vpnProtocol)
     {
         // VPNWIN-2113 - instead of EndpointIp and Label we should have VpnHost (including Id property) so we can easily find server by ID.
-        return _serversLoader.GetServers().FirstOrDefault(s => s.Servers.Any(FilterPhysicalServerByVpnState(state)));
+        return _serversLoader.GetServers().FirstOrDefault(s => s.Servers.Any(FilterPhysicalServerByVpnState(state, vpnProtocol)));
     }
 
-    private Func<PhysicalServer, bool> FilterPhysicalServerByVpnState(VpnStateIpcEntity state)
+    private Func<PhysicalServer, bool> FilterPhysicalServerByVpnState(VpnStateIpcEntity state, VpnProtocol vpnProtocol)
     {
-        return physicalServer => physicalServer.EntryIp == state.EndpointIp && physicalServer.Label == state.Label;
+        return physicalServer => physicalServer.Label == state.Label
+            && (physicalServer.EntryIp == state.EndpointIp ||
+                (physicalServer.RelayIpByProtocol is not null &&
+                 physicalServer.RelayIpByProtocol.ContainsKey(vpnProtocol) &&
+                 physicalServer.RelayIpByProtocol[vpnProtocol] == state.EndpointIp));
     }
 
     private void SetConnectionStatus(ConnectionStatus connectionStatus, VpnErrorTypeIpcEntity error = VpnErrorTypeIpcEntity.None, bool forceSendStatusUpdate = false)

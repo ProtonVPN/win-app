@@ -21,30 +21,30 @@ using System;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Legacy.Go;
 using ProtonVPN.Common.Legacy.Extensions;
+using ProtonVPN.Vpn.LocalAgent;
 
-namespace ProtonVPN.Vpn.LocalAgent
+namespace ProtonVPN.Vpn.PortScanning;
+
+public class UdpPingClient
 {
-    public class UdpPingClient
+    private static readonly int TimeoutInMilliseconds = 3000;
+
+    public async Task<bool> Ping(string ip, int port, string serverKeyBase64, Task timeoutTask)
     {
-        private static readonly int TimeoutInMilliseconds = 3000;
-
-        public async Task<bool> Ping(string ip, int port, string serverKeyBase64, Task timeoutTask)
+        try
         {
-            try
+            bool result = await Task.Run(() =>
             {
-                bool result = await Task.Run(() =>
-                {
-                    using GoString ipGoString = ip.ToGoString();
-                    using GoString serverKeyBase64GoString = serverKeyBase64.ToGoString();
-                    return PInvoke.Ping(ipGoString, port, serverKeyBase64GoString, TimeoutInMilliseconds);
-                }).WithTimeout(timeoutTask);
+                using GoString ipGoString = ip.ToGoString();
+                using GoString serverKeyBase64GoString = serverKeyBase64.ToGoString();
+                return PInvoke.Ping(ipGoString, port, serverKeyBase64GoString, TimeoutInMilliseconds);
+            }).WithTimeout(timeoutTask);
 
-                return result;
-            }
-            catch (Exception e) when (e is TimeoutException or TaskCanceledException)
-            {
-                return false;
-            }
+            return result;
+        }
+        catch (Exception e) when (e is TimeoutException or TaskCanceledException)
+        {
+            return false;
         }
     }
 }

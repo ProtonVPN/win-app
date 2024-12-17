@@ -156,7 +156,7 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
     protected VpnServerIpcEntity[] PhysicalServersToVpnServerIpcEntities(IEnumerable<PhysicalServer> physicalServers)
     {
         IEnumerable<VpnHost> hosts = physicalServers
-            .Select(s => new VpnHost(s.Domain, s.EntryIp, s.Label, GetServerPublicKey(s), s.Signature));
+            .Select(s => new VpnHost(s.Domain, s.EntryIp, s.Label, GetServerPublicKey(s), s.Signature, s.RelayIpByProtocol));
         return EntityMapper.Map<VpnHost, VpnServerIpcEntity>(hosts).ToArray();
     }
 

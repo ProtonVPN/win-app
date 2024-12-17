@@ -38,5 +38,8 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
 
         [DataMember(Order = 5)]
         public string Signature { get; set; }
+
+        [DataMember(Order = 6)]
+        public Dictionary<VpnProtocolIpcEntity, string> RelayIpByProtocol { get; set; }
     }
 }

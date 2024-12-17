@@ -19,6 +19,7 @@
 
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.EntityMapping.Contracts;
 
 namespace ProtonVPN.Client.Logic.Servers.Mappers;
@@ -39,7 +40,36 @@ public class PhysicalServerMapper : IMapper<PhysicalServerResponse, PhysicalServ
                 Status = leftEntity.Status,
                 X25519PublicKey = leftEntity.X25519PublicKey,
                 Signature = leftEntity.Signature,
+                RelayIpByProtocol = CreateRelayIpByProtocol(leftEntity.EntryPerProtocol)
             };
+    }
+
+    private Dictionary<VpnProtocol, string> CreateRelayIpByProtocol(EntryPerProtocolResponse entryPerProtocol)
+    {
+        Dictionary<VpnProtocol, string> relayIpByProtocol = [];
+
+        if (!string.IsNullOrWhiteSpace(entryPerProtocol?.WireGuardUdp?.Ipv4))
+        {
+            relayIpByProtocol.Add(VpnProtocol.WireGuardUdp, entryPerProtocol.WireGuardUdp.Ipv4);
+        }
+        if (!string.IsNullOrWhiteSpace(entryPerProtocol?.WireGuardTcp?.Ipv4))
+        {
+            relayIpByProtocol.Add(VpnProtocol.WireGuardTcp, entryPerProtocol.WireGuardTcp.Ipv4);
+        }
+        if (!string.IsNullOrWhiteSpace(entryPerProtocol?.WireGuardTls?.Ipv4))
+        {
+            relayIpByProtocol.Add(VpnProtocol.WireGuardTls, entryPerProtocol.WireGuardTls.Ipv4);
+        }
+        if (!string.IsNullOrWhiteSpace(entryPerProtocol?.OpenVpnUdp?.Ipv4))
+        {
+            relayIpByProtocol.Add(VpnProtocol.OpenVpnUdp, entryPerProtocol.OpenVpnUdp.Ipv4);
+        }
+        if (!string.IsNullOrWhiteSpace(entryPerProtocol?.OpenVpnTcp?.Ipv4))
+        {
+            relayIpByProtocol.Add(VpnProtocol.OpenVpnTcp, entryPerProtocol.OpenVpnTcp.Ipv4);
+        }
+
+        return relayIpByProtocol;
     }
 
     public PhysicalServerResponse Map(PhysicalServer rightEntity)

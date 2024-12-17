@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
@@ -43,6 +44,9 @@ public class VpnServerMapper : IMapper<VpnHost, VpnServerIpcEntity>
             Label = leftEntity.Label,
             X25519PublicKey = _entityMapper.Map<PublicKey, ServerPublicKeyIpcEntity>(leftEntity.X25519PublicKey),
             Signature = leftEntity.Signature,
+            RelayIpByProtocol = leftEntity.RelayIpByProtocol?.ToDictionary(
+                kvp => _entityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(kvp.Key),
+                kvp => kvp.Value)
         };
     }
 
@@ -53,7 +57,13 @@ public class VpnServerMapper : IMapper<VpnHost, VpnServerIpcEntity>
             throw new ArgumentNullException(nameof(VpnServerIpcEntity), 
                 $"The {nameof(VpnServerIpcEntity)} parameter cannot be mapped from null to {nameof(VpnHost)}.");
         }
+
+        Dictionary<VpnProtocol, string> relayIpByProtocol = rightEntity.RelayIpByProtocol?.ToDictionary(
+            kvp => _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(kvp.Key),
+            kvp => kvp.Value);
+
         return new(rightEntity.Name, rightEntity.Ip, rightEntity.Label,
-            _entityMapper.Map<ServerPublicKeyIpcEntity, PublicKey>(rightEntity.X25519PublicKey), rightEntity.Signature);
+            _entityMapper.Map<ServerPublicKeyIpcEntity, PublicKey>(rightEntity.X25519PublicKey),
+            rightEntity.Signature, relayIpByProtocol);
     }
 }

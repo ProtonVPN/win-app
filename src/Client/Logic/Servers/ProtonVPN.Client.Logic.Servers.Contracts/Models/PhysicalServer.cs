@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Common.Core.Networking;
+
 namespace ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 public class PhysicalServer
@@ -29,6 +31,7 @@ public class PhysicalServer
     public required sbyte Status { get; set; }
     public required string X25519PublicKey { get; init; }
     public required string Signature { get; init; }
+    public Dictionary<VpnProtocol, string> RelayIpByProtocol { get; init; } = new();
 
     public bool IsUnderMaintenance() => Status == 0;
 }

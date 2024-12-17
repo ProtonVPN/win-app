@@ -39,7 +39,7 @@ public class EndpointArgumentsTest
     {
         // Arrange
         VpnEndpoint endpoint =
-            new(new VpnHost("abc.com", "4.5.6.7", string.Empty, null, string.Empty), VpnProtocol.OpenVpnUdp, 48965);
+            new(new VpnHost("abc.com", "4.5.6.7", string.Empty, null, string.Empty, null), VpnProtocol.OpenVpnUdp, 48965);
         OpenVpnEndpointArguments subject = new(endpoint);
 
         // Act
@@ -54,7 +54,7 @@ public class EndpointArgumentsTest
     {
         // Arrange
         VpnEndpoint endpoint =
-            new(new VpnHost("abc.com", "11.22.33.44", string.Empty, null, string.Empty), VpnProtocol.OpenVpnUdp, 61874);
+            new(new VpnHost("abc.com", "11.22.33.44", string.Empty, null, string.Empty, null), VpnProtocol.OpenVpnUdp, 61874);
         OpenVpnEndpointArguments subject = new(endpoint);
 
         // Act
@@ -71,7 +71,7 @@ public class EndpointArgumentsTest
     {
         // Arrange
         VpnEndpoint endpoint =
-            new(new VpnHost("abc.com", "7.7.7.7", string.Empty, null, string.Empty), protocol, 44444);
+            new(new VpnHost("abc.com", "7.7.7.7", string.Empty, null, string.Empty, null), protocol, 44444);
         OpenVpnEndpointArguments subject = new(endpoint);
 
         // Act
@@ -87,7 +87,7 @@ public class EndpointArgumentsTest
     {
         // Arrange
         VpnEndpoint endpoint =
-            new(new VpnHost("abc.com", "1.2.3.4", string.Empty, null, string.Empty), protocol, 54321);
+            new(new VpnHost("abc.com", "1.2.3.4", string.Empty, null, string.Empty, null), protocol, 54321);
         OpenVpnEndpointArguments subject = new(endpoint);
 
         // Act

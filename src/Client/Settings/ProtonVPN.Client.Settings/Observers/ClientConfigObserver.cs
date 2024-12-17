@@ -23,6 +23,7 @@ using ProtonVPN.Client.Common.Observers;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Configurations.Contracts;
@@ -32,9 +33,9 @@ using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
 
 namespace ProtonVPN.Client.Settings.Observers;
 
-public class ClientConfigObserver : 
-    PollingObserverBase, 
-    IClientConfigObserver, 
+public class ClientConfigObserver :
+    PollingObserverBase,
+    IClientConfigObserver,
     IEventMessageReceiver<LoggedInMessage>,
     IEventMessageReceiver<LoggedOutMessage>
 {

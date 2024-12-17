@@ -77,7 +77,7 @@ public class ApiClientTest
             Content = new StringContent("{'Code' : '1000', 'Servers': []}")
         });
 
-        DeviceLocation deviceLocation = new() { IpAddress = "127.0.0.0" };
+        DeviceLocation deviceLocation = new() { CountryCode = "CH", IpAddress = "127.0.0.0" };
         ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync(deviceLocation);
 
         response.Success.Should().BeTrue();

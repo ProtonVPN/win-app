@@ -116,9 +116,9 @@ public class ApiClient : BaseApiClient, IApiClient
 
     public async Task<ApiResponseResult<ServersResponse>> GetServersAsync(DeviceLocation? deviceLocation)
     {
-        HttpRequestMessage request = GetAuthorizedRequestWithLocation(HttpMethod.Get,
-            "vpn/logicals?SignServer=Server.EntryIP,Server.Label&SecureCoreFilter=all&WithState=true", deviceLocation);
-
+        HttpRequestMessage request = GetAuthorizedRequestWithLocation(HttpMethod.Get, "vpn/logicals?" +
+            "SignServer=Server.EntryIP,Server.Label&SecureCoreFilter=all&WithState=true&" +
+            "WithEntriesForProtocols=WireGuardUDP,WireGuardTCP,WireGuardTLS,OpenVPNUDP,OpenVPNTCP", deviceLocation);
         request.SetRetryCount(SERVERS_RETRY_COUNT);
         request.SetCustomTimeout(TimeSpan.FromSeconds(SERVERS_TIMEOUT_IN_SECONDS));
         request.Headers.IfModifiedSince = Settings.LogicalsLastModifiedDate;

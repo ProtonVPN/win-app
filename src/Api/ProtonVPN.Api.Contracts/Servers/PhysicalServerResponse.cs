@@ -19,27 +19,28 @@
 
 using Newtonsoft.Json;
 
-namespace ProtonVPN.Api.Contracts.Servers
+namespace ProtonVPN.Api.Contracts.Servers;
+
+public class PhysicalServerResponse
 {
-    public class PhysicalServerResponse
-    {
-        [JsonProperty("ID")]
-        public string Id;
+    [JsonProperty("ID")]
+    public string Id;
 
-        [JsonProperty("EntryIP")]
-        public string EntryIp;
+    [JsonProperty("EntryIP")]
+    public string EntryIp;
 
-        [JsonProperty("ExitIP")]
-        public string ExitIp;
+    [JsonProperty("ExitIP")]
+    public string ExitIp;
 
-        public string Domain;
+    public string Domain;
 
-        public sbyte Status;
+    public sbyte Status;
 
-        public string Label;
+    public string Label;
 
-        public string X25519PublicKey;
+    public string X25519PublicKey;
 
-        public string Signature;
-    }
+    public string Signature;
+
+    public EntryPerProtocolResponse EntryPerProtocol { get; set; }
 }
