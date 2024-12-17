@@ -24,9 +24,9 @@ namespace ProtonVPN.Vpn.ConnectionCertificates;
 public class ConnectionCertificate
 {
     public string Pem { get; }
-    public DateTime ExpirationDateUtc { get; }
+    public DateTime? ExpirationDateUtc { get; }
 
-    public ConnectionCertificate(string pem, DateTime expirationDateUtc)
+    public ConnectionCertificate(string pem, DateTime? expirationDateUtc)
     {
         Pem = pem;
         ExpirationDateUtc = expirationDateUtc;

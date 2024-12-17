@@ -66,6 +66,11 @@ public class ConnectionKeyManager : IConnectionKeyManager
         return secretKey == null || publicKey == null ? null : new(secretKey, publicKey);
     }
 
+    public AsymmetricKeyPair GenerateTemporaryKeyPair()
+    {
+        return _ed25519Asn1KeyGenerator.Generate();
+    }
+
     public SecretKey? GetSecretKey()
     {
         string? key = _settings.ConnectionKeyPair?.SecretKey;

@@ -18,7 +18,9 @@
  */
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
+using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Crypto;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
@@ -30,11 +32,13 @@ namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.GuestHole;
 public class GuestHoleServerMapperTest
 {
     private IMapper<GuestHoleServerContract, VpnServerIpcEntity> _mapper;
+    private IEntityMapper _entityMapper;
 
     [TestInitialize]
     public void Initialize()
     {
-        _mapper = new GuestHoleServerMapper();
+        _entityMapper = Substitute.For<IEntityMapper>();
+        _mapper = new GuestHoleServerMapper(_entityMapper);
     }
 
     [TestCleanup]
@@ -46,13 +50,23 @@ public class GuestHoleServerMapperTest
     [TestMethod]
     public void TestMapLeftToRight()
     {
+        string publicKey = "rc7QnuukueJDqqKMx7Z3n0zmZ+alsj9BwhOwxZiUoCU=";
+
         GuestHoleServerContract entity = new()
         {
             Host = "protonvpn.com",
             Ip = "192.168.0.0",
             Label = "1",
-            Signature = "sdh2uS26AfSADioe5w6p6S5D2H5fkdY8p9Jfh1F1sdo2a5JfGHroGeunf6K9G4H1c1K/2u3G3oGKdso=="
+            Signature = "sdh2uS26AfSADioe5w6p6S5D2H5fkdY8p9Jfh1F1sdo2a5JfGHroGeunf6K9G4H1c1K/2u3G3oGKdso==",
+            X25519PublicKey = publicKey,
         };
+
+        _entityMapper.Map<PublicKey, ServerPublicKeyIpcEntity>(Arg.Any<PublicKey>()).Returns(
+            new ServerPublicKeyIpcEntity()
+            {
+                Pem = publicKey,
+                Algorithm = KeyAlgorithmIpcEntity.X25519
+            });
 
         VpnServerIpcEntity result = _mapper.Map(entity);
 
@@ -61,7 +75,7 @@ public class GuestHoleServerMapperTest
         Assert.AreEqual(entity.Ip, result.Ip);
         Assert.AreEqual(entity.Label, result.Label);
         Assert.AreEqual(entity.Signature, result.Signature);
-        Assert.IsNull(result.X25519PublicKey);
+        Assert.AreEqual(result.X25519PublicKey.Pem, publicKey);
     }
 
     [TestMethod]
@@ -93,6 +107,7 @@ public class GuestHoleServerMapperTest
         Assert.AreEqual(entity.Ip, result.Ip);
         Assert.AreEqual(entity.Label, result.Label);
         Assert.AreEqual(entity.Signature, result.Signature);
+        Assert.IsNull(result.X25519PublicKey);
     }
 
     [TestMethod]

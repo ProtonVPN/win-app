@@ -21,6 +21,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.Vpn;
+using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
@@ -114,7 +115,10 @@ public class ConnectionRequestMapperTest
             new List<VpnHost>(),
             VpnProtocol.OpenVpnUdp,
             new VpnConfig(new VpnConfigParameters()),
-            new VpnCredentials(DateTime.UtcNow.Ticks.ToString(), DateTime.UtcNow.Millisecond.ToString()));
+            new VpnCredentials(string.Empty, DateTime.UtcNow.AddDays(1), new AsymmetricKeyPair(
+                new SecretKey("PVPN", KeyAlgorithm.Unknown),
+                new PublicKey("PVPN", KeyAlgorithm.Unknown))));
+
 
         ConnectionRequestIpcEntity result = _mapper.Map(entityToTest);
 

@@ -65,59 +65,20 @@ public class VpnCredentialsMapperTest
     }
 
     [TestMethod]
-    public void TestMapLeftToRight_WithUsernameAndPassword()
-    {
-        VpnCredentials entityToTest = new(DateTime.UtcNow.Ticks.ToString(), DateTime.UtcNow.Millisecond.ToString());
-
-        VpnCredentialsIpcEntity result = _mapper.Map(entityToTest);
-
-        Assert.IsNotNull(result);
-        Assert.AreEqual(entityToTest.Username, result.Username);
-        Assert.AreEqual(entityToTest.Password, result.Password);
-        Assert.IsNull(result.Certificate);
-    }
-
-    [TestMethod]
     public void TestMapLeftToRight_WithCertificate()
     {
-        VpnCredentials entityToTest = new("CERT", DateTime.UtcNow.AddDays(1), new AsymmetricKeyPair(
-            new SecretKey("PVPN", KeyAlgorithm.Ed25519), new PublicKey("PVPN", KeyAlgorithm.Ed25519)));
+        VpnCredentials entityToTest = new("CERT",
+            DateTime.UtcNow.AddDays(1),
+            new AsymmetricKeyPair(
+                new SecretKey("PVPN", KeyAlgorithm.Ed25519),
+                new PublicKey("PVPN", KeyAlgorithm.Ed25519)));
 
         VpnCredentialsIpcEntity result = _mapper.Map(entityToTest);
 
         Assert.IsNotNull(result);
-        Assert.IsNull(result.Username);
-        Assert.IsNull(result.Password);
-        Assert.AreEqual(entityToTest.ClientCertificatePem, result.Certificate.Pem);
+        Assert.AreEqual(entityToTest.ClientCertPem, result.Certificate.Pem);
         Assert.AreEqual(entityToTest.ClientCertificateExpirationDateUtc, result.Certificate.ExpirationDateUtc);
         Assert.AreEqual(_expectedAsymmetricKeyPairIpcEntity, result.ClientKeyPair);
-    }
-
-    [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
-    public void TestMapRightToLeft_ThrowsWhenNull()
-    {
-        VpnCredentialsIpcEntity entityToTest = null;
-
-        _mapper.Map(entityToTest);
-    }
-
-    [TestMethod]
-    public void TestMapRightToLeft_WithUsernameAndPassword()
-    {
-        VpnCredentialsIpcEntity entityToTest = new()
-        {
-            Username = DateTime.UtcNow.Ticks.ToString(),
-            Password = DateTime.UtcNow.Millisecond.ToString()
-        };
-
-        VpnCredentials result = _mapper.Map(entityToTest);
-
-        Assert.IsNotNull(result);
-        Assert.AreEqual(entityToTest.Username, result.Username);
-        Assert.AreEqual(entityToTest.Password, result.Password);
-        Assert.IsNull(result.ClientCertificatePem);
-        Assert.IsFalse(result.IsCertificateCredentials);
     }
 
     [TestMethod]
@@ -132,12 +93,9 @@ public class VpnCredentialsMapperTest
         VpnCredentials result = _mapper.Map(entityToTest);
 
         Assert.IsNotNull(result);
-        Assert.IsNull(result.Username);
-        Assert.IsNull(result.Password);
-        Assert.AreEqual(entityToTest.Certificate.Pem, result.ClientCertificatePem);
+        Assert.AreEqual(entityToTest.Certificate.Pem, result.ClientCertPem);
         Assert.AreEqual(entityToTest.Certificate.ExpirationDateUtc, result.ClientCertificateExpirationDateUtc);
         Assert.AreEqual(_expectedAsymmetricKeyPair, result.ClientKeyPair);
-        Assert.IsTrue(result.IsCertificateCredentials);
     }
 
     private ConnectionCertificateIpcEntity CreateCertificate()
