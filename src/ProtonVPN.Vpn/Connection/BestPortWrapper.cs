@@ -117,7 +117,7 @@ public class BestPortWrapper : ISingleVpnConnection
             _vpnEndpoint = endpoint;
             _logger.Info<ConnectScanResultLog>($"Connecting to {endpoint.Server.Ip}:{endpoint.Port} " +
                 $"with protocol {endpoint.VpnProtocol} as it responded fastest.");
-            _origin.Connect(endpoint, GetCredentials(endpoint), GetConfig(endpoint.VpnProtocol));
+            _origin.Connect(endpoint, _vpnCredentials, GetConfig(endpoint.VpnProtocol));
         }
         else
         {
@@ -141,22 +141,6 @@ public class BestPortWrapper : ISingleVpnConnection
             VpnProtocol = vpnProtocol,
             PortForwarding = _config.PortForwarding,
         });
-    }
-
-    private VpnCredentials GetCredentials(VpnEndpoint endpoint)
-    {
-        if (string.IsNullOrEmpty(endpoint.Server.Label))
-        {
-            return _vpnCredentials;
-        }
-
-        string username = $"{_vpnCredentials.Username}+b:{endpoint.Server.Label}";
-
-        return _vpnCredentials.IsCertificateCredentials
-            ? new VpnCredentials(_vpnCredentials.ClientCertificatePem,
-                _vpnCredentials.ClientCertificateExpirationDateUtc,
-                _vpnCredentials.ClientKeyPair)
-            : new VpnCredentials(username, _vpnCredentials.Password);
     }
 
     private async void DelayedDisconnect(CancellationToken cancellationToken)

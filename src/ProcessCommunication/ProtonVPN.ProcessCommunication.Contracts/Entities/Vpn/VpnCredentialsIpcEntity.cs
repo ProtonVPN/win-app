@@ -27,14 +27,8 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 public class VpnCredentialsIpcEntity
 {
     [DataMember(Order = 1)]
-    public string Username { get; set; }
-
-    [DataMember(Order = 2)]
-    public string Password { get; set; }
-
-    [DataMember(Order = 3)]
     public ConnectionCertificateIpcEntity Certificate { get; set; }
 
-    [DataMember(Order = 4)]
+    [DataMember(Order = 2)]
     public AsymmetricKeyPairIpcEntity ClientKeyPair { get; set; }
 }

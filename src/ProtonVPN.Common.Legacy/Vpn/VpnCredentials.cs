@@ -25,43 +25,24 @@ namespace ProtonVPN.Common.Legacy.Vpn;
 
 public readonly struct VpnCredentials
 {
-    public bool IsCertificateCredentials { get; }
-
-    public string Username { get; }
-    public string Password { get; }
-
-    public string ClientCertificatePem { get; }
-    public DateTime ClientCertificateExpirationDateUtc { get; }
-    public AsymmetricKeyPair ClientKeyPair { get; }
-
-    public VpnCredentials(string clientCertificatePem,
-        DateTime clientCertificateExpirationDateUtc,
+    public VpnCredentials(
+        string clientCertPem,
+        DateTime? clientCertificateExpirationDateUtc,
         AsymmetricKeyPair clientKeyPair)
     {
         Ensure.NotNull(clientKeyPair, nameof(clientKeyPair));
 
-        ClientCertificatePem = clientCertificatePem;
+        ClientCertPem = clientCertPem;
         ClientCertificateExpirationDateUtc = clientCertificateExpirationDateUtc;
         ClientKeyPair = clientKeyPair;
-
-        Username = null;
-        Password = null;
-
-        IsCertificateCredentials = true;
     }
 
-    public VpnCredentials(string username, string password)
+    public VpnCredentials(AsymmetricKeyPair clientKeyPair) : this(string.Empty, null, clientKeyPair)
     {
-        Ensure.NotEmpty(username, nameof(username));
-        Ensure.NotEmpty(password, nameof(password));
-
-        Username = username;
-        Password = password;
-
-        ClientCertificatePem = null;
-        ClientCertificateExpirationDateUtc = DateTime.MinValue;
-        ClientKeyPair = null;
-
-        IsCertificateCredentials = false;
     }
+
+    public string ClientCertPem { get; }
+    public DateTime? ClientCertificateExpirationDateUtc { get; }
+
+    public AsymmetricKeyPair ClientKeyPair { get; }
 }

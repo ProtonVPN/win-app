@@ -24,14 +24,17 @@ namespace ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 public class GuestHoleServerContract
 {
     [JsonProperty("host")]
-    public string Host { get; set; }
+    public string Host { get; set; } = string.Empty;
 
     [JsonProperty("ip")]
-    public string Ip { get; set; }
+    public string Ip { get; set; } = string.Empty;
 
     [JsonProperty("label")]
-    public string Label { get; set; }
+    public string Label { get; set; } = string.Empty;
 
     [JsonProperty("signature")]
-    public string Signature { get; set; }
+    public string Signature { get; set; } = string.Empty;
+
+    [JsonProperty("publicKey")]
+    public string X25519PublicKey { get; set; } = string.Empty;
 }

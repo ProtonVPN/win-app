@@ -29,8 +29,6 @@ public interface IConfiguration : IStaticConfiguration
     string ApiVersion { get; }
     string ServerValidationPublicKey { get; }
 
-    string GuestHoleVpnUsername { get; }
-    string GuestHoleVpnPassword { get; }
     string VpnUsernameSuffix { get; }
     string DoHVerifyApiHost { get; }
 

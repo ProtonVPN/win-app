@@ -181,6 +181,11 @@ internal class LocalAgentWrapper : ISingleVpnConnection
 
     private void OnCertificateChange(object sender, EventArgs<ConnectionCertificate> connectionCertificateArgs)
     {
+        if (!_tlsConnected)
+        {
+            return;
+        }
+
         _logger.Info<LocalAgentLog>("Connection certificate updated. Closing existing TLS channel and reconnecting.");
         _eventReceiver.Stop();
         ReconnectToTlsChannel(connectionCertificateArgs.Data);
@@ -369,7 +374,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
 
     private void HandleVpnConnectedState()
     {
-        if (_credentials.IsCertificateCredentials)
+        if (!string.IsNullOrEmpty(_credentials.ClientCertPem))
         {
             InvokeStateChange(VpnStatus.AssigningIp);
             ConnectToTlsChannel(_connectionCertificateCache.Get());
@@ -383,7 +388,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
 
     private void HandleVpnDisconnectedState()
     {
-        if (string.IsNullOrEmpty(_credentials.ClientCertificatePem))
+        if (string.IsNullOrEmpty(_credentials.ClientCertPem))
         {
             return;
         }

@@ -26,6 +26,7 @@ public interface IConnectionKeyManager
     void RegenerateKeyPair();
     void DeleteKeyPair();
     AsymmetricKeyPair? GetKeyPairOrNull();
+    AsymmetricKeyPair GenerateTemporaryKeyPair();
     SecretKey? GetSecretKey();
     PublicKey? GetPublicKey();
 }

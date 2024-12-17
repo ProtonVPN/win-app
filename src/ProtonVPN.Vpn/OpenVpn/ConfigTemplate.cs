@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -49,23 +49,15 @@ public class ConfigTemplate
             .AppendLine("script-security 2")
             .AppendLine("key-direction 1")
             .AppendLine("disable-dco")
-            .AppendLine(GetTlsCrypt())
-            .AppendLine(GetCertificate());
-
-        if (!string.IsNullOrEmpty(vpnCredentials.Username) && !string.IsNullOrEmpty(vpnCredentials.Password))
-        {
-            sb.AppendLine("auth-user-pass");
-        }
-        else
-        {
-            sb.AppendLine("<cert>").AppendLine(vpnCredentials.ClientCertificatePem.Trim()).AppendLine("</cert>");
-            sb.AppendLine("<key>").AppendLine(vpnCredentials.ClientKeyPair.SecretKey.Pem).AppendLine("</key>");
-        }
+            .AppendLine(GetTlsAuth())
+            .AppendLine(GetCertificate())
+            .AppendLine("<cert>").AppendLine(vpnCredentials.ClientCertPem.Trim()).AppendLine("</cert>")
+            .AppendLine("<key>").AppendLine(vpnCredentials.ClientKeyPair.SecretKey.Pem).AppendLine("</key>");
 
         return sb.ToString();
     }
 
-    private string GetTlsCrypt()
+    private string GetTlsAuth()
     {
         return @"<tls-crypt>
 -----BEGIN OpenVPN Static key V1-----

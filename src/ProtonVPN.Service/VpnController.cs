@@ -82,7 +82,7 @@ public class VpnController : IVpnController
         config.OpenVpnAdapter = _serviceSettings.OpenVpnAdapter;
         IReadOnlyList<VpnHost> endpoints = _entityMapper.Map<VpnServerIpcEntity, VpnHost>(connectionRequest.Servers);
         VpnCredentials credentials = _entityMapper.Map<VpnCredentialsIpcEntity, VpnCredentials>(connectionRequest.Credentials);
-        _connectionCertificateCache.Set(new ConnectionCertificate(credentials.ClientCertificatePem, credentials.ClientCertificateExpirationDateUtc));
+        _connectionCertificateCache.Set(new ConnectionCertificate(credentials.ClientCertPem, credentials.ClientCertificateExpirationDateUtc));
         _vpnConnection.Connect(endpoints, config, credentials);
     }
 

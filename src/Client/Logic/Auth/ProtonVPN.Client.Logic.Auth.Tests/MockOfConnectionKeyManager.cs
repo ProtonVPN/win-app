@@ -83,6 +83,11 @@ public class MockOfConnectionKeyManager : IConnectionKeyManager
         return _secretKey == null || _publicKey == null ? null : new AsymmetricKeyPair(_secretKey, _publicKey);
     }
 
+    public AsymmetricKeyPair GenerateTemporaryKeyPair()
+    {
+        return new AsymmetricKeyPair(_secretKey, _publicKey);
+    }
+
     public SecretKey GetSecretKey()
     {
         IncrementMethodCalls();

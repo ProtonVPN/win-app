@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,7 +20,6 @@
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Crypto;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
@@ -39,49 +38,19 @@ public class VpnCredentialsMapper : IMapper<VpnCredentials, VpnCredentialsIpcEnt
     {
         return new()
         {
-            Username = leftEntity.Username,
-            Password = leftEntity.Password,
-            Certificate = CreateConnectionCertificateIpcEntity(leftEntity),
+            Certificate = new()
+            {
+                Pem = leftEntity.ClientCertPem ?? string.Empty,
+                ExpirationDateUtc = leftEntity.ClientCertificateExpirationDateUtc ?? DateTime.MinValue,
+            },
             ClientKeyPair = _entityMapper.Map<AsymmetricKeyPair, AsymmetricKeyPairIpcEntity>(leftEntity.ClientKeyPair)
-        };
-    }
-
-    private ConnectionCertificateIpcEntity CreateConnectionCertificateIpcEntity(VpnCredentials leftEntity)
-    {
-        return string.IsNullOrWhiteSpace(leftEntity.ClientCertificatePem)
-            ? null
-            : new()
-        {
-            Pem = leftEntity.ClientCertificatePem ?? string.Empty,
-            ExpirationDateUtc = leftEntity.ClientCertificateExpirationDateUtc,
         };
     }
 
     public VpnCredentials Map(VpnCredentialsIpcEntity rightEntity)
     {
-        return rightEntity is null
-            ? throw new ArgumentNullException($"The {nameof(VpnCredentialsIpcEntity)} to be mapped is null.")
-            : IsCertificateCredential(rightEntity)
-                ? CreateCertificateVpnCredentials(rightEntity)
-                : CreateUsernamePasswordVpnCredentials(rightEntity);
-    }
-
-    private bool IsCertificateCredential(VpnCredentialsIpcEntity rightEntity)
-    {
-        return rightEntity.ClientKeyPair is not null &&
-               rightEntity.Certificate is not null &&
-               !string.IsNullOrWhiteSpace(rightEntity.Certificate.Pem);
-    }
-
-    private VpnCredentials CreateCertificateVpnCredentials(VpnCredentialsIpcEntity rightEntity)
-    {
         return new(rightEntity.Certificate.Pem,
-                   rightEntity.Certificate.ExpirationDateUtc,
-                   _entityMapper.Map<AsymmetricKeyPairIpcEntity, AsymmetricKeyPair>(rightEntity.ClientKeyPair));
-    }
-
-    private VpnCredentials CreateUsernamePasswordVpnCredentials(VpnCredentialsIpcEntity rightEntity)
-    {
-        return new(rightEntity.Username, rightEntity.Password);
+            rightEntity.Certificate.ExpirationDateUtc,
+            _entityMapper.Map<AsymmetricKeyPairIpcEntity, AsymmetricKeyPair>(rightEntity.ClientKeyPair));
     }
 }

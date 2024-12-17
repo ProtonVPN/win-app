@@ -18,13 +18,22 @@
  */
 
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
+using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Crypto;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
 namespace ProtonVPN.ProcessCommunication.EntityMapping.GuestHole;
 
 public class GuestHoleServerMapper : IMapper<GuestHoleServerContract, VpnServerIpcEntity>
 {
+    private readonly IEntityMapper _entityMapper;
+
+    public GuestHoleServerMapper(IEntityMapper entityMapper)
+    {
+        _entityMapper = entityMapper;
+    }
+
     public VpnServerIpcEntity Map(GuestHoleServerContract leftEntity)
     {
         return leftEntity is null
@@ -35,7 +44,8 @@ public class GuestHoleServerMapper : IMapper<GuestHoleServerContract, VpnServerI
                 Ip = leftEntity.Ip,
                 Label = leftEntity.Label,
                 Signature = leftEntity.Signature,
-                X25519PublicKey = null
+                X25519PublicKey = _entityMapper.Map<PublicKey, ServerPublicKeyIpcEntity>(
+                    new PublicKey(leftEntity.X25519PublicKey, KeyAlgorithm.X25519)),
             };
     }
 
@@ -48,7 +58,8 @@ public class GuestHoleServerMapper : IMapper<GuestHoleServerContract, VpnServerI
                 Host = rightEntity.Name,
                 Ip = rightEntity.Ip,
                 Label = rightEntity.Label,
-                Signature = rightEntity.Signature
+                Signature = rightEntity.Signature,
+                X25519PublicKey = null,
             };
     }
 }

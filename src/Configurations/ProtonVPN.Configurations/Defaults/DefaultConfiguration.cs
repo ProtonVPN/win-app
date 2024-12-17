@@ -136,9 +136,6 @@ public static class DefaultConfiguration
     public static string WintunAdapterName => "ProtonVPN TUN";
 
     public static string ServerValidationPublicKey => "MCowBQYDK2VwAyEANpYpt/FlSRwEuGLMoNAGOjy1BTyEJPJvKe00oln7LZk=";
-
-    public static string GuestHoleVpnUsername => "guest";
-    public static string GuestHoleVpnPassword => "guest";
     public static string VpnUsernameSuffix => "+pw"; // p - proton, w - windows
     public static string DoHVerifyApiHost => "verify-api.protonvpn.com";
 

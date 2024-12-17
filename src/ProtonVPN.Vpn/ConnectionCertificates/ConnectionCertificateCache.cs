@@ -56,9 +56,9 @@ public class ConnectionCertificateCache : IConnectionCertificateCache
 
     private void SetCertificateIfMoreRecent(ConnectionCertificate certificate)
     {
-        if (certificate is null)
+        if (certificate is null || string.IsNullOrEmpty(certificate.Pem) || certificate.ExpirationDateUtc is null)
         {
-            _logger.Warn<UserCertificateLog>($"Ignoring new certificate because the new certificate is null.");
+            _logger.Warn<UserCertificateLog>($"Ignoring new certificate because the new certificate is null or has no data.");
             return;
         }
 
