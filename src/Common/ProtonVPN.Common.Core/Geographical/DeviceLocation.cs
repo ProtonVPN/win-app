@@ -26,4 +26,34 @@ public struct DeviceLocation
     public string IpAddress { get; init; }
     public string CountryCode { get; init; }
     public string Isp { get; init; }
+
+    public static bool operator ==(DeviceLocation? dl1, DeviceLocation? dl2)
+    {
+        return (dl1 is null && dl2 is null) || 
+               (dl1 is not null && dl2 is not null && dl1.Equals(dl2));
+    }
+
+    public override bool Equals(object o)
+    {
+        if (o == null)
+        {
+            return false;
+        }
+
+        DeviceLocation deviceLocation = (DeviceLocation)o;
+        return IpAddress == deviceLocation.IpAddress &&
+               (CountryCode == deviceLocation.CountryCode);
+    }
+
+    public override int GetHashCode()
+    {
+        return Tuple.Create(IpAddress, CountryCode).GetHashCode();
+    }
+
+    public static bool operator !=(DeviceLocation? dl1, DeviceLocation? dl2)
+    {
+        return (dl1 is null && dl2 is not null) || 
+               (dl1 is not null && dl2 is null) || 
+               (dl1 is not null && dl2 is not null && !dl1.Equals(dl2));
+    }
 }

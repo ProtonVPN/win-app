@@ -26,6 +26,7 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Files;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Common.Core.Geographical;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
@@ -43,7 +44,7 @@ public class ServersCache : IServersCache
     private readonly ILogger _logger;
 
     private readonly ReaderWriterLockSlim _lock = new();
-
+    private DeviceLocation? _deviceLocation;
     private IReadOnlyList<Server> _originalServers = [];
 
     private IReadOnlyList<Server> _filteredServers = [];
@@ -97,15 +98,22 @@ public class ServersCache : IServersCache
 
     public void LoadFromFileIfEmpty()
     {
-        if (!HasAnyServers())
+        if (HasAnyServers())
         {
-            _logger.Info<AppLog>("Loading servers from file as the user has none.");
-            IReadOnlyList<Server> servers = _serversFileReaderWriter.Read();
-            if (servers.Count == 0)
+            if (_deviceLocation != _settings.DeviceLocation)
             {
                 _settings.LogicalsLastModifiedDate = DefaultSettings.LogicalsLastModifiedDate;
             }
-            ProcessServers(servers);
+        }
+        else
+        {
+            _logger.Info<AppLog>("Loading servers from file as the user has none.");
+            ServersFile file = _serversFileReaderWriter.Read();
+            if (file.Servers.Count == 0 || file.DeviceLocation != _settings.DeviceLocation)
+            {
+                _settings.LogicalsLastModifiedDate = DefaultSettings.LogicalsLastModifiedDate;
+            }
+            ProcessServers(file.DeviceLocation, file.Servers);
         }
     }
 
@@ -114,7 +122,8 @@ public class ServersCache : IServersCache
         LoadFromFileIfEmpty();
         try
         {
-            ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync(_settings.DeviceLocation);
+            DeviceLocation? deviceLocation = _settings.DeviceLocation;
+            ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync(deviceLocation);
             if (response.LastModified.HasValue)
             {
                 _settings.LogicalsLastModifiedDate = response.LastModified.Value;
@@ -122,8 +131,8 @@ public class ServersCache : IServersCache
             if (response.Success && !response.IsNotModified)
             {
                 List<Server> servers = _entityMapper.Map<LogicalServerResponse, Server>(response.Value.Servers);
-                SaveToFile(servers);
-                ProcessServers(servers);
+                SaveToFile(deviceLocation, servers);
+                ProcessServers(deviceLocation, servers);
             }
         }
         catch (Exception e)
@@ -141,7 +150,8 @@ public class ServersCache : IServersCache
 
         try
         {
-            ApiResponseResult<ServersResponse> response = await _apiClient.GetServerLoadsAsync(_settings.DeviceLocation);
+            DeviceLocation? deviceLocation = _settings.DeviceLocation;
+            ApiResponseResult<ServersResponse> response = await _apiClient.GetServerLoadsAsync(deviceLocation);
             if (response.Success)
             {
                 List<Server> servers = Servers.ToList();
@@ -171,8 +181,8 @@ public class ServersCache : IServersCache
                     }
                 }
 
-                SaveToFile(servers);
-                ProcessServers(servers);
+                SaveToFile(deviceLocation, servers);
+                ProcessServers(deviceLocation, servers);
             }
         }
         catch (Exception e)
@@ -181,7 +191,7 @@ public class ServersCache : IServersCache
         }
     }
 
-    private void ProcessServers(IReadOnlyList<Server> servers)
+    private void ProcessServers(DeviceLocation? deviceLocation, IReadOnlyList<Server> servers)
     {
         if (servers is not null && servers.Any())
         {
@@ -196,6 +206,7 @@ public class ServersCache : IServersCache
             _lock.EnterWriteLock();
             try
             {
+                _deviceLocation = deviceLocation;
                 _originalServers = servers;
                 _filteredServers = filteredServers;
                 _freeCountries = freeCountries;
@@ -262,7 +273,8 @@ public class ServersCache : IServersCache
                      && !string.IsNullOrWhiteSpace(s.State)
                      && s.IsPaidNonB2B())
             .GroupBy(s => new { Country = s.ExitCountry, State = s.State })
-            .Select(s => new State() {
+            .Select(s => new State()
+            {
                 CountryCode = s.Key.Country,
                 Name = s.Key.State,
                 IsUnderMaintenance = IsUnderMaintenance(s),
@@ -278,7 +290,8 @@ public class ServersCache : IServersCache
                      && !string.IsNullOrWhiteSpace(s.City)
                      && s.IsPaidNonB2B())
             .GroupBy(s => new { Country = s.ExitCountry, State = s.State, City = s.City })
-            .Select(c => new City() {
+            .Select(c => new City()
+            {
                 CountryCode = c.Key.Country,
                 StateName = c.Key.State,
                 Name = c.Key.City,
@@ -291,10 +304,11 @@ public class ServersCache : IServersCache
     private IReadOnlyList<Gateway> GetGateways(IReadOnlyList<Server> servers)
     {
         return servers
-            .Where(s => s.Features.IsSupported(ServerFeatures.B2B) 
+            .Where(s => s.Features.IsSupported(ServerFeatures.B2B)
                      && !string.IsNullOrWhiteSpace(s.GatewayName))
             .GroupBy(s => s.GatewayName)
-            .Select(g => new Gateway() {
+            .Select(g => new Gateway()
+            {
                 Name = g.Key,
                 IsUnderMaintenance = IsUnderMaintenance(g)
             })
@@ -334,9 +348,14 @@ public class ServersCache : IServersCache
         return filteredServers;
     }
 
-    private void SaveToFile(IList<Server> servers)
+    private void SaveToFile(DeviceLocation? deviceLocation, List<Server> servers)
     {
-        _serversFileReaderWriter.Save(servers);
+        ServersFile serversFile = new()
+        {
+            DeviceLocation = deviceLocation,
+            Servers = servers,
+        };
+        _serversFileReaderWriter.Save(serversFile);
     }
 
     public bool HasAnyServers()
@@ -366,6 +385,6 @@ public class ServersCache : IServersCache
     public void ReprocessServers()
     {
         _logger.Info<AppLog>("Reprocessing servers.");
-        ProcessServers(_originalServers);
+        ProcessServers(_deviceLocation, _originalServers);
     }
 }

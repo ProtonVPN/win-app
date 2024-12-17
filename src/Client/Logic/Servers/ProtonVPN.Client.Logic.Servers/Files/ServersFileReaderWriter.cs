@@ -49,18 +49,18 @@ public class ServersFileReaderWriter : IServersFileReaderWriter
         _fileReaderWriterParameters = new(Serializers.Protobuf, _staticConfiguration.StorageFolder, FILE_NAME_PREFIX, FILE_EXTENSION);
     }
 
-    public IReadOnlyList<Server> Read()
+    public ServersFile Read()
     {
         _logger.Info<AppLog>("Reading servers file.");
-        List<Server> servers = _userFileReaderWriter.ReadOrNew<List<Server>>(_fileReaderWriterParameters);
-        _logger.Info<AppLog>($"Read {servers.Count} servers from file.");
-        return servers;
+        ServersFile file = _userFileReaderWriter.ReadOrNew<ServersFile>(_fileReaderWriterParameters);
+        _logger.Info<AppLog>($"Read {file.Servers.Count} servers from file.");
+        return file;
     }
 
-    public void Save(IList<Server> servers)
+    public void Save(ServersFile file)
     {
         _logger.Info<AppLog>("Writing servers file.");
-        FileOperationResult result = _userFileReaderWriter.Write(servers, _fileReaderWriterParameters);
+        FileOperationResult result = _userFileReaderWriter.Write(file, _fileReaderWriterParameters);
         _logger.Info<AppLog>($"Writing servers file finished with state '{result}'.");
     }
 }

@@ -23,6 +23,6 @@ namespace ProtonVPN.Client.Logic.Servers.Files;
 
 public interface IServersFileReaderWriter
 {
-    IReadOnlyList<Server> Read();
-    void Save(IList<Server> servers);
+    ServersFile Read();
+    void Save(ServersFile file);
 }

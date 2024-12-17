@@ -24,6 +24,7 @@ using ProtonVPN.Client.Logic.Profiles.Contracts.SerializableEntities;
 using ProtonVPN.Client.Logic.Recents.Contracts.SerializableEntities;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Common.Core.Geographical;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Serialization.Contracts;
 
@@ -35,11 +36,13 @@ public class ProtobufSerializableEntities : IProtobufSerializableEntities
 
     private static IEnumerable<Type> CreateTypeList()
     {
+        yield return typeof(ServersFile);
         yield return typeof(PhysicalServer);
         yield return typeof(Server);
         yield return typeof(ServerFeatures);
         yield return typeof(ServerTiers);
         yield return typeof(VpnProtocol);
+        yield return typeof(DeviceLocation);
 
         yield return typeof(SerializableConnectionIntent);
         yield return typeof(SerializableFeatureIntent);
