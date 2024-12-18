@@ -124,7 +124,8 @@ namespace ProtonVPN.Vpn.Connectors
                         server.Ip,
                         server.Label,
                         new PublicKey(server.X25519PublicKey, KeyAlgorithm.X25519),
-                        server.Signature))
+                        server.Signature,
+                        null))
                     .OrderBy(_ => _random.Next())
                     .ToList()
                 : new List<VpnHost>();

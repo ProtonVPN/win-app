@@ -41,5 +41,7 @@ namespace ProtonVPN.Api.Contracts.Servers
         public string X25519PublicKey;
 
         public string Signature;
+
+        public EntryPerProtocolResponse EntryPerProtocol { get; set; }
     }
 }

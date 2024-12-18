@@ -47,8 +47,6 @@ using ProtonVPN.Service.Update;
 using ProtonVPN.Service.Vpn;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Connection;
-using ProtonVPN.Vpn.Networks;
-using ProtonVPN.Vpn.Networks.Adapters;
 using Module = Autofac.Module;
 
 namespace ProtonVPN.Service.Start
@@ -128,8 +126,6 @@ namespace ProtonVPN.Service.Start
                 .AsSelf()
                 .SingleInstance();
 
-            builder.RegisterType<NetworkAdaptersLoader>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<NetworkAdapterManager>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<HttpClients>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ApiAppVersion>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<FeedUrlProvider>().AsImplementedInterfaces().SingleInstance();

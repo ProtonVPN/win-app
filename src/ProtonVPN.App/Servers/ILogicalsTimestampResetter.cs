@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,24 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
-using System.Management;
-
-namespace ProtonVPN.Vpn.Networks.Adapters
+namespace ProtonVPN.Servers
 {
-    public class NetworkAdaptersLoader : INetworkAdaptersLoader
+    public interface ILogicalsTimestampResetter
     {
-        public IList<INetworkAdapter> GetAll()
-        {
-            SelectQuery query = new("Win32_NetworkAdapter");
-            ManagementObjectSearcher search = new(query);
-            IList<INetworkAdapter> networkAdapters = new List<INetworkAdapter>();
-            foreach (ManagementObject result in search.Get())
-            {
-                networkAdapters.Add(new NetworkAdapter(result));
-            }
-
-            return networkAdapters;
-        }
+        void Reset();
     }
 }

@@ -38,25 +38,29 @@ namespace ProtonVPN.Core.Servers
         private readonly IApiClient _apiClient;
         private readonly IUserLocationService _userLocationService;
         private readonly IAppSettings _appSettings;
+        private readonly IUserStorage _userStorage;
 
         public ApiServers(
             ILogger logger,
             IApiClient apiClient,
             IUserLocationService userLocationService,
-            IAppSettings appSettings)
+            IAppSettings appSettings,
+            IUserStorage userStorage)
         {
             _logger = logger;
             _apiClient = apiClient;
             _userLocationService = userLocationService;
             _appSettings = appSettings;
+            _userStorage = userStorage;
         }
 
         public async Task<IReadOnlyCollection<LogicalServerResponse>> GetServersAsync()
         {
             try
             {
+                string countryCode = _userStorage.GetLocation().Country;
                 string ip = await _userLocationService.GetTruncatedIpAddressAsync();
-                ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync(ip);
+                ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync(countryCode, ip);
 
                 if (response.LastModified.HasValue)
                 {
@@ -90,8 +94,9 @@ namespace ProtonVPN.Core.Servers
         {
             try
             {
+                string countryCode = _userStorage.GetLocation().Country;
                 string ip = await _userLocationService.GetTruncatedIpAddressAsync();
-                ApiResponseResult<ServersResponse> response = await _apiClient.GetServerLoadsAsync(ip);
+                ApiResponseResult<ServersResponse> response = await _apiClient.GetServerLoadsAsync(countryCode, ip);
                 if (response.Success)
                 {
                     return response.Value.Servers;

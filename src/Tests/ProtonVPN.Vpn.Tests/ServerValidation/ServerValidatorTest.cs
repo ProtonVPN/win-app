@@ -94,7 +94,8 @@ namespace ProtonVPN.Vpn.Tests.ServerValidation
                 ip: SERVER_IP,
                 label: SERVER_LABEL,
                 x25519PublicKey: CreatePublicKey(),
-                signature: SERVER_SIGNATURE);
+                signature: SERVER_SIGNATURE,
+                relayIpByProtocol: null);
         }
 
         private PublicKey CreatePublicKey()
@@ -112,7 +113,8 @@ namespace ProtonVPN.Vpn.Tests.ServerValidation
                 ip: SERVER_IP,
                 label: null,
                 x25519PublicKey: CreatePublicKey(),
-                signature: SERVER_SIGNATURE);
+                signature: SERVER_SIGNATURE,
+                relayIpByProtocol: null);
 
             VpnError error = _serverValidator.Validate(server);
 
@@ -129,7 +131,8 @@ namespace ProtonVPN.Vpn.Tests.ServerValidation
                 ip: SERVER_IP,
                 label: SERVER_LABEL,
                 x25519PublicKey: null,
-                signature: SERVER_SIGNATURE);
+                signature: SERVER_SIGNATURE,
+                relayIpByProtocol: null);
 
             VpnError error = _serverValidator.Validate(server);
 
@@ -144,7 +147,8 @@ namespace ProtonVPN.Vpn.Tests.ServerValidation
                 ip: SERVER_IP,
                 label: SERVER_LABEL,
                 x25519PublicKey: new PublicKey(new byte[1] { 1 }, KeyAlgorithm.X25519),
-                signature: SERVER_SIGNATURE);
+                signature: SERVER_SIGNATURE,
+                relayIpByProtocol: null);
 
             VpnError error = _serverValidator.Validate(server);
 
@@ -166,7 +170,8 @@ namespace ProtonVPN.Vpn.Tests.ServerValidation
                 ip: SERVER_IP,
                 label: SERVER_LABEL,
                 x25519PublicKey: CreatePublicKey(),
-                signature: signature);
+                signature: signature,
+                relayIpByProtocol: null);
         }
 
         [TestMethod]

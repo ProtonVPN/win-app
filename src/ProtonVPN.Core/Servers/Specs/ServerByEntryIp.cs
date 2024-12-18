@@ -34,7 +34,12 @@ namespace ProtonVPN.Core.Servers.Specs
 
         public override bool IsSatisfiedBy(LogicalServerResponse item)
         {
-            return item.Servers.Any(s => s.EntryIp == _ip);
+            return item.Servers.Any(s => s.EntryIp == _ip
+                                      || s.EntryPerProtocol?.WireGuardUdp?.Ipv4 == _ip
+                                      || s.EntryPerProtocol?.WireGuardTcp?.Ipv4 == _ip
+                                      || s.EntryPerProtocol?.WireGuardTls?.Ipv4 == _ip
+                                      || s.EntryPerProtocol?.OpenVpnUdp?.Ipv4 == _ip
+                                      || s.EntryPerProtocol?.OpenVpnTcp?.Ipv4 == _ip);
         }
     }
 }

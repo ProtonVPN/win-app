@@ -89,6 +89,7 @@ using ProtonVPN.ProcessCommunication.Client.Installers;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.ProcessCommunication.Installers;
 using ProtonVPN.QuickLaunch;
+using ProtonVPN.Servers;
 using ProtonVPN.Settings;
 using ProtonVPN.Settings.Migrations;
 using ProtonVPN.Sidebar;
@@ -269,6 +270,10 @@ namespace ProtonVPN.Core
             if (servers != null && servers.Any())
             {
                 Resolve<ServerManager>().Load(servers);
+            }
+            else
+            {
+                Resolve<ILogicalsTimestampResetter>().Reset();
             }
         }
 

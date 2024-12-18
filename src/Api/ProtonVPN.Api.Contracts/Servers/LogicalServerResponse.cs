@@ -41,7 +41,7 @@ namespace ProtonVPN.Api.Contracts.Servers
         public string HostCountry { get; set; }
         public string GatewayName { get; set; }
         public List<PhysicalServerResponse> Servers { get; set; }
-
+    
         public static LogicalServerResponse Empty => new()
         {
             Id = string.Empty,

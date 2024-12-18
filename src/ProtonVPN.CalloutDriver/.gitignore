@@ -2,3 +2,6 @@ x64
 Debug
 Release
 Resources/RC*
+disk1
+setup.inf
+setup.rpt

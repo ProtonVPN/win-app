@@ -154,9 +154,13 @@ namespace ProtonVPN.Api
             return request;
         }
 
-        protected HttpRequestMessage GetAuthorizedRequest(HttpMethod method, string requestUri, string ip)
+        protected HttpRequestMessage GetAuthorizedRequestWithLocation(HttpMethod method, string requestUri, string countryCode, string ip)
         {
             HttpRequestMessage request = GetAuthorizedRequest(method, requestUri);
+            if (!countryCode.IsNullOrEmpty())
+            {
+                request.Headers.Add("x-pm-country", countryCode);
+            }
             if (!ip.IsNullOrEmpty())
             {
                 request.Headers.Add("x-pm-netzone", ip);

@@ -45,13 +45,13 @@ namespace ProtonVPN.Api.Contracts
         Task<ApiResponseResult<PhysicalServerWrapperResponse>> GetServerAsync(string serverId);
         Task<ApiResponseResult<VpnInfoWrapperResponse>> GetVpnInfoResponse();
         Task<ApiResponseResult<BaseResponse>> GetLogoutResponse();
-        Task<ApiResponseResult<ServersResponse>> GetServersAsync(string ip);
+        Task<ApiResponseResult<ServersResponse>> GetServersAsync(string countryCode, string ip);
         Task<ApiResponseResult<ReportAnIssueFormResponse>> GetReportAnIssueFormData();
-        Task<ApiResponseResult<ServersResponse>> GetServerLoadsAsync(string ip);
+        Task<ApiResponseResult<ServersResponse>> GetServerLoadsAsync(string countryCode, string ip);
         Task<ApiResponseResult<UserLocationResponse>> GetLocationDataAsync();
         Task<ApiResponseResult<BaseResponse>> ReportBugAsync(IEnumerable<KeyValuePair<string, string>> fields, IEnumerable<File> files);
         Task<ApiResponseResult<SessionsResponse>> GetSessions();
-        Task<ApiResponseResult<VpnConfigResponse>> GetVpnConfig(string country, string ip);
+        Task<ApiResponseResult<VpnConfigResponse>> GetVpnConfig(string countryCode, string ip);
         Task<ApiResponseResult<AnnouncementsResponse>> GetAnnouncementsAsync(AnnouncementsRequest request);
         Task<ApiResponseResult<StreamingServicesResponse>> GetStreamingServicesAsync();
         Task<ApiResponseResult<BaseResponse>> CheckAuthenticationServerStatusAsync();

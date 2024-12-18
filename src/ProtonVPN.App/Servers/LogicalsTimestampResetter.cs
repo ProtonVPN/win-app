@@ -25,7 +25,7 @@ using ProtonVPN.Core.Users;
 
 namespace ProtonVPN.Servers
 {
-    public class LogicalsTimestampResetter : ILoggedInAware, ILogoutAware, IVpnPlanAware
+    public class LogicalsTimestampResetter : ILogicalsTimestampResetter, ILoggedInAware, ILogoutAware, IVpnPlanAware
     {
         private readonly IAppSettings _appSettings;
 
@@ -34,14 +34,14 @@ namespace ProtonVPN.Servers
             _appSettings = appSettings;
         }
 
+        public void Reset()
+        {
+            _appSettings.LogicalsLastModifiedDate = DateTimeOffset.UnixEpoch;
+        }
+
         public void OnUserLoggedIn()
         {
             Reset();
-        }
-
-        private void Reset()
-        {
-            _appSettings.LogicalsLastModifiedDate = DateTimeOffset.UnixEpoch;
         }
 
         public void OnUserLoggedOut()

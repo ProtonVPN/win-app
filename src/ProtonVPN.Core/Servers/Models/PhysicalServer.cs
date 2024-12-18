@@ -17,6 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
+using ProtonVPN.Common.Networking;
+
 namespace ProtonVPN.Core.Servers.Models
 {
     public class PhysicalServer
@@ -29,9 +32,10 @@ namespace ProtonVPN.Core.Servers.Models
         public sbyte Status { get; }
         public string X25519PublicKey { get; }
         public string Signature { get; }
+        public Dictionary<VpnProtocol, string> RelayIpByProtocol { get; }
 
         public PhysicalServer(string id, string entryIp, string exitIp, string domain, string label, sbyte status,
-            string x25519PublicKey, string signature)
+            string x25519PublicKey, string signature, Dictionary<VpnProtocol, string> relayIpByProtocol)
         {
             Id = id;
             EntryIp = entryIp;
@@ -41,6 +45,7 @@ namespace ProtonVPN.Core.Servers.Models
             Status = status;
             X25519PublicKey = x25519PublicKey;
             Signature = signature;
+            RelayIpByProtocol = relayIpByProtocol;
         }
     }
 }

@@ -225,7 +225,7 @@ void FreeMemory(PVOID ptr)
 
 PVOID AllocateMemory(size_t size)
 {
-    return ExAllocatePoolWithTag(NonPagedPoolNx, size, ProtonTAG);
+    return ExAllocatePool2(POOL_FLAG_NON_PAGED, size, ProtonTAG);
 }
 
 void NTAPI CompleteBasicPacketInjection(VOID *data,

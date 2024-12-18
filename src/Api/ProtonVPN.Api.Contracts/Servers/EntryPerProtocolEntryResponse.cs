@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,18 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Vpn.Networks.Adapters
-{
-    public interface INetworkAdapter
-    {
-        string NetConnectionId { get; }
-        string Name { get; }
-        string Description { get; }
-        string ProductName { get; }
-        NetConnectionStatus? NetConnectionStatus { get; }
+using Newtonsoft.Json;
 
-        void Enable();
-        void Disable();
-        string GenerateLoggingDescription();
+namespace ProtonVPN.Api.Contracts.Servers
+{
+    public class EntryPerProtocolEntryResponse
+    {
+        [JsonProperty("IPv4")]
+        public string Ipv4 { get; set; }
     }
 }

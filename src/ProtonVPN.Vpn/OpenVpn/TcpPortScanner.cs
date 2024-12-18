@@ -22,15 +22,14 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Vpn.OpenVpn
 {
     public class TcpPortScanner
     {
-        public async Task<bool> IsAliveAsync(VpnEndpoint vpnEndpoint, Task timeoutTask)
+        public async Task<bool> IsAliveAsync(string ip, int port, Task timeoutTask)
         {
-            IPEndPoint endpoint = new(IPAddress.Parse(vpnEndpoint.Server.Ip), vpnEndpoint.Port);
+            IPEndPoint endpoint = new(IPAddress.Parse(ip), port);
             using Socket socket = new(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
             try

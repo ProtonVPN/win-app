@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,22 +17,25 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Vpn.Networks.Adapters
+using Newtonsoft.Json;
+
+namespace ProtonVPN.Api.Contracts.Servers
 {
-    public enum NetConnectionStatus
+    public class EntryPerProtocolResponse
     {
-        Disconnected = 0,
-        Connecting = 1,
-        Connected = 2,
-        Disconnecting = 3,
-        HardwareNotPresent = 4,
-        HardwareDisabled = 5,
-        HardwareMalfunction = 6,
-        MediaDisconnected = 7,
-        Authenticating = 8,
-        AuthenticationSucceeded = 9,
-        AuthenticationFailed = 10,
-        InvalidAddress = 11,
-        CredentialsRequired = 12
+        [JsonProperty("WireGuardUDP")]
+        public EntryPerProtocolEntryResponse WireGuardUdp { get; set; }
+
+        [JsonProperty("WireGuardTCP")]
+        public EntryPerProtocolEntryResponse WireGuardTcp { get; set; }
+
+        [JsonProperty("WireGuardTLS")]
+        public EntryPerProtocolEntryResponse WireGuardTls { get; set; }
+
+        [JsonProperty("OpenVPNUDP")]
+        public EntryPerProtocolEntryResponse OpenVpnUdp { get; set; }
+
+        [JsonProperty("OpenVPNTCP")]
+        public EntryPerProtocolEntryResponse OpenVpnTcp { get; set; }
     }
 }

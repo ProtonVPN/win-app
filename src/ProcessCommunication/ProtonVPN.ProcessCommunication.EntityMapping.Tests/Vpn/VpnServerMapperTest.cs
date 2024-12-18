@@ -19,6 +19,7 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.Crypto;
 using ProtonVPN.EntityMapping.Contracts;
@@ -50,6 +51,11 @@ public class VpnServerMapperTest
         _expectedPublicKey = new PublicKey("PVPN", KeyAlgorithm.Unknown);
         _entityMapper.Map<ServerPublicKeyIpcEntity, PublicKey>(Arg.Any<ServerPublicKeyIpcEntity>())
             .Returns(_expectedPublicKey);
+
+        _entityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(Arg.Any<VpnProtocol>())
+            .Returns(x => (VpnProtocolIpcEntity)(int)x.Arg<VpnProtocol>());
+        _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(Arg.Any<VpnProtocolIpcEntity>())
+            .Returns(x => (VpnProtocol)(int)x.Arg<VpnProtocolIpcEntity>());
     }
 
     [TestCleanup]
@@ -63,14 +69,15 @@ public class VpnServerMapperTest
     }
 
     [TestMethod]
-    public void TestMapLeftToRight()
+    public void TestMapLeftToRight_WithNullRelayIpByProtocol()
     {
         VpnHost entityToTest = new(
             name: "protonvpn.com",
             ip: "192.168.0.0",
             label: DateTime.UtcNow.Millisecond.ToString(),
             x25519PublicKey: new PublicKey("PVPN", KeyAlgorithm.Unknown),
-            signature: DateTime.UtcNow.Ticks.ToString());
+            signature: DateTime.UtcNow.Ticks.ToString(),
+            relayIpByProtocol: null);
 
         VpnServerIpcEntity result = _mapper.Map(entityToTest);
 
@@ -80,6 +87,45 @@ public class VpnServerMapperTest
         Assert.AreEqual(entityToTest.Label, result.Label);
         Assert.AreEqual(_expectedServerPublicKeyIpcEntity, result.X25519PublicKey);
         Assert.AreEqual(entityToTest.Signature, result.Signature);
+        Assert.IsNull(result.RelayIpByProtocol);
+    }
+
+    [TestMethod]
+    public void TestMapLeftToRight_WithRelayIpByProtocol()
+    {
+        Dictionary<VpnProtocol, string> relayIpByProtocol = new()
+        {
+            { VpnProtocol.WireGuardUdp, "1.1.1.1" },
+            { VpnProtocol.WireGuardTcp, "2.2.2.2" },
+            { VpnProtocol.WireGuardTls, "3.3.3.3" },
+            { VpnProtocol.OpenVpnUdp, "4.4.4.4" },
+            { VpnProtocol.OpenVpnTcp, "5.5.5.5" }
+        };
+
+        VpnHost entityToTest = new(
+            name: "protonvpn.com",
+            ip: "192.168.0.0",
+            label: DateTime.UtcNow.Millisecond.ToString(),
+            x25519PublicKey: new PublicKey("PVPN", KeyAlgorithm.Unknown),
+            signature: DateTime.UtcNow.Ticks.ToString(),
+            relayIpByProtocol: relayIpByProtocol);
+
+        VpnServerIpcEntity result = _mapper.Map(entityToTest);
+
+        Assert.IsNotNull(result);
+        Assert.AreEqual(entityToTest.Name, result.Name);
+        Assert.AreEqual(entityToTest.Ip, result.Ip);
+        Assert.AreEqual(entityToTest.Label, result.Label);
+        Assert.AreEqual(_expectedServerPublicKeyIpcEntity, result.X25519PublicKey);
+        Assert.AreEqual(entityToTest.Signature, result.Signature);
+
+        Assert.IsNotNull(result.RelayIpByProtocol);
+        Assert.AreEqual(relayIpByProtocol.Count, result.RelayIpByProtocol.Count);
+        Assert.AreEqual(relayIpByProtocol[VpnProtocol.WireGuardUdp], result.RelayIpByProtocol[VpnProtocolIpcEntity.WireGuardUdp]);
+        Assert.AreEqual(relayIpByProtocol[VpnProtocol.WireGuardTcp], result.RelayIpByProtocol[VpnProtocolIpcEntity.WireGuardTcp]);
+        Assert.AreEqual(relayIpByProtocol[VpnProtocol.WireGuardTls], result.RelayIpByProtocol[VpnProtocolIpcEntity.WireGuardTls]);
+        Assert.AreEqual(relayIpByProtocol[VpnProtocol.OpenVpnUdp], result.RelayIpByProtocol[VpnProtocolIpcEntity.OpenVpnUdp]);
+        Assert.AreEqual(relayIpByProtocol[VpnProtocol.OpenVpnTcp], result.RelayIpByProtocol[VpnProtocolIpcEntity.OpenVpnTcp]);
     }
 
     [TestMethod]

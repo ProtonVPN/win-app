@@ -2045,15 +2045,15 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="te
     <comment>The title of Login window. Should not be converted.</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_DownSpeed">
-    <value>Hitrost odjemanja</value>
+    <value>Hitrost prejemanja:</value>
     <comment>The label for download speed in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_DownVolume">
-    <value>Volumen prejemanja</value>
+    <value>Volumen prejemanja:</value>
     <comment>The label for downloaded data amount in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_Session">
-    <value>Seja</value>
+    <value>Seja:</value>
     <comment>The label for VPN connection duration in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_Speed">
@@ -2069,11 +2069,11 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="te
     <comment>The label for traffic data in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_UpSpeed">
-    <value>Hitrost pošiljanja</value>
+    <value>Hitrost oddajanja:</value>
     <comment>The label for upload speed in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_SpeedGraph_lbl_UpVolume">
-    <value>Volumen oddajanja</value>
+    <value>Volumen oddajanja:</value>
     <comment>The label for uploaded data amount in Speed Graph on Map in main app window</comment>
   </data>
   <data name="Map_UpgradeTooltip">
@@ -2154,11 +2154,11 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="te
     <comment>The title of the Delinquency notification</comment>
   </data>
   <data name="Notifications_EnableSmartProtocol_msg">
-    <value>Proton VPN je zaznal, da vaše trenutno omrežje preprečuje povezavo z VPN. Če omogočite pametni protokol, lahko zaobidete te omejitve.</value>
+    <value>Proton VPN je zaznal, da vaše trenutno omrežje preprečuje povezavo z VPN. Če omogočite "Smart protocol", lahko zaobidete te omejitve.</value>
     <comment>The message displayed in the Enable Smart Protocol notification.</comment>
   </data>
   <data name="Notifications_EnableSmartProtocol_ttl">
-    <value>Pametni protokol je trenutno onemogočen</value>
+    <value>Smart protocol je trenutno onemogočen</value>
     <comment>The title of the Enable Smart Protocol notification</comment>
   </data>
   <data name="Notifications_InsecureWiFi_LearnMore">

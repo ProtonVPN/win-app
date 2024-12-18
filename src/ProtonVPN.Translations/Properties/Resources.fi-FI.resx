@@ -1628,7 +1628,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The text displayed in Disconnect modal window if TAP error is detected</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TlsCertificateError">
-    <value>VPN-palvelimen varmenteen vahvistuksessa on ongelma, joka saattaa viitata siihen, että verkkoyhteyttä on peukaloitu tai palvelimella on asetusongelma. Pyydä asiakaspalvelultamme apua lähettämällä &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="ongelmaraportti"/&gt;&lt;/Hyperlink&gt;.</value>
+    <value>VPN-palvelimen varmenteen vahvistuksessa on ongelma, joka saattaa viitata siihen, että verkkoyhteyttä on peukaloitu tai palvelimella on asetusongelma. Pyydä asiakastueltamme apua lähettämällä &lt;Hyperlink Command="{Binding ReportBugCommand}"&gt;&lt;Run Text="ongelmaraportti"/&gt;&lt;/Hyperlink&gt;.</value>
     <comment>The error description displayed in Disconnect modal window if VPN server certificate validation error has occurred</comment>
   </data>
   <data name="Dialogs_DoNotShowThisMessageAgain">
@@ -2064,7 +2064,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The part of text displayed in a balloon above Secure Core Pin in Map. The full text is "(Secure Core) country name".</comment>
   </data>
   <data name="Modal_ChangeServer_Subtitle">
-    <value>Hanki rajattomasti vaihtoja VPN Plus -tilauksella</value>
+    <value>Hanki rajattomasti vaihtoja VPN Plussalla</value>
   </data>
   <data name="Modal_ChangeServer_Title">
     <value>Olet saavuttanut tällä erää käytettävissä olevan palvelinvaihdosten enimmäismäärän.</value>
@@ -2488,7 +2488,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <value>Mainossivustot käyttävät evästeitä ja seurantoja kohdistettuun markkinointiin.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSaved">
-    <value>Tiedonsiirtoa säästetty</value>
+    <value>Säästetty</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsDataSavedTooltip">
     <value>NetShieldin estämien mainosten, seurantojen ja haittaohjelmien arvioitu yhteiskoko.</value>
@@ -2598,7 +2598,7 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_UpsellBanner">
-    <value>Hanki maailmanlaajuiden kattavuus VPN Plus -tilauksella</value>
+    <value>Hanki maailmanlaajuiden kattavuus VPN Plussalla</value>
   </data>
   <data name="Servers_UpsellBanner_NotTheCountryYouWanted">
     <value>Ei maa, jonka halusit? Päivitä tilaus valitaksesi minkä tahansa palvelimen.</value>
@@ -2773,8 +2773,8 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The WireGuard protocol name displayed in the Protocol combo box in Connection tab of Settings window. Do not translate.</comment>
   </data>
   <data name="Settings_Connection_Warning_CustomDnsServer">
-    <value>Omien DNS-palvelimien käyttö poistaa NetShieldin käytöstä. DNS-palvelimet vastaavat siitä, että ohjaudut oikealle verkkosivustolle.
-&lt;LineBreak/&gt;&lt;LineBreak/&gt;Käytä vain luotettavia palvelimia. Haluatko käyttää omia DNS-palvelimia?</value>
+    <value>Vaihtoehtoisten DNS-palvelimien käyttö poistaa NetShieldin käytöstä. DNS-palvelimet vastaavat siitä, että ohjaudut oikealle verkkosivustolle.
+&lt;LineBreak/&gt;&lt;LineBreak/&gt;Käytä vain luotettavia palvelimia. Haluatko käyttää vaihtoehtoisia DNS-palvelimia?</value>
     <comment>The text displayed in Custom DNS Servers warning modal window when use is trying to turn the feature ON when NetShield feature is turned on as well</comment>
   </data>
   <data name="Settings_Connection_btn_Upgrade">
@@ -2782,11 +2782,11 @@ Ota se käyttöön seuraamalla &lt;Hyperlink Command="{Binding OpenArticleComman
     <comment>The text on Upgrade button in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_CustomDnsServer">
-    <value>Omat DNS-palvelimet</value>
+    <value>Vaihtoehtoiset DNS-palvelimet</value>
     <comment>The label for Custom DNS Servers combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_CustomDnsServer_Info">
-    <value>Syötä yksityinen DNS-palvelin (esim. AdGuard DNS) käsittelemään DNS-pyyntösi. Oman DNS-palvelimen käyttö poistaa NetShieldin käytöstä. DNS-palvelimet vastaavat siitä, että ohjaudut oikealle verkkosivustolle, joten käytä vain luotettavia palvelimia.</value>
+    <value>Syötä yksityinen DNS-palvelin (esim. AdGuard DNS) käsittelemään DNS-pyyntösi. Vaihtoehtoisen DNS-palvelimen käyttö poistaa NetShieldin käytöstä. DNS-palvelimet vastaavat siitä, että ohjaudut oikealle verkkosivustolle, joten käytä vain luotettavia palvelimia.</value>
     <comment>The description of Custom DNS Servers setting displayed in the tooltip of the ( i ) image next to the label for Custom DNS Server toggle switch in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_DefaultProtocol">
@@ -3186,7 +3186,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>30 päivän rahat takaisin -takuu</value>
   </data>
   <data name="Upsell_Country_Subtitle">
-    <value>Avaa &lt;Bold&gt;maavalinta&lt;/Bold&gt; VPN Plus -tilauksella</value>
+    <value>Avaa &lt;Bold&gt;maavalinta&lt;/Bold&gt; VPN Plussalla</value>
   </data>
   <data name="Upsell_Country_Title">
     <value>Haluatko valita tietyn maan?</value>
@@ -3220,7 +3220,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Tyypin 2 NAT (keskitasoinen) tarjoaa optimoidun nopeuden ja vakauden mahdollistamalla suorat yhteydet laitteiden välillä.</value>
   </data>
   <data name="Upsell_ModerateNat_Subtitle">
-    <value>Avaa &lt;Bold&gt;tyypin 2 NAT&lt;/Bold&gt; VPN Plus -tilauksella</value>
+    <value>Avaa &lt;Bold&gt;tyypin 2 NAT&lt;/Bold&gt; VPN Plussalla</value>
   </data>
   <data name="Upsell_ModerateNat_Title">
     <value>Paranna pelikokemustasi</value>
@@ -3249,7 +3249,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The button label in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_msg">
-    <value>Onko sinulla vaativia tai ammatillisia tietoteknisiä tarpeita, jotka tarvitsevat epätyypillisiä portteja? Päivitä VPN Plus -tilaukseen käyttääksesi tätä ja muita premium-ominaisuuksia.</value>
+    <value>Onko sinulla vaativia tai ammatillisia tietoteknisiä tarpeita, jotka tarvitsevat epätyypillisiä portteja? Päivitä VPN Plussaan käyttääksesi tätä ja muita premium-ominaisuuksia.</value>
     <comment>The text in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_NonStandardPorts_ttl">
@@ -3257,7 +3257,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <comment>The title in "allow non-standard ports" modal</comment>
   </data>
   <data name="Upsell_Plan_Business_Info">
-    <value>Sisältyy VPN Business -tilaukseen.</value>
+    <value>Sisältyy VPN Businessiin.</value>
     <comment>The tooltip text of the business plan badge</comment>
   </data>
   <data name="Upsell_PortForwarding_Bullet1">
@@ -3270,7 +3270,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Määritä etäyhteys lähiverkkosi laitteille</value>
   </data>
   <data name="Upsell_PortForwarding_Subtitle">
-    <value>Avaa &lt;Bold&gt;porttiohjaus&lt;/Bold&gt; VPN Plus -tilauksella</value>
+    <value>Avaa &lt;Bold&gt;porttiohjaus&lt;/Bold&gt; VPN Plussalla.</value>
   </data>
   <data name="Upsell_PortForwarding_Title">
     <value>Tehosta P2P-yhteyksiäsi</value>
@@ -3285,7 +3285,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Määritä automaattinen yhdistäminen nopeampaa pääsyä varten.</value>
   </data>
   <data name="Upsell_Profiles_Subtitle">
-    <value>Avaa &lt;Bold&gt;profiilit&lt;/Bold&gt; VPN Plus -tilauksella</value>
+    <value>Avaa &lt;Bold&gt;profiilit&lt;/Bold&gt; VPN Plussalla.</value>
   </data>
   <data name="Upsell_Profiles_Title">
     <value>Pääset nopeasti käsiksi usein käyttämiisi yhteyksiin</value>
@@ -3315,7 +3315,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Käytä ulkomailla kotimaasi sisältöä ja paikallista sisältöä</value>
   </data>
   <data name="Upsell_SplitTunneling_Subtitle">
-    <value>Avaa &lt;Bold&gt;jaettu tunnelointi&lt;/Bold&gt; VPN Plus -tilauksella</value>
+    <value>Avaa &lt;Bold&gt;jaettu tunnelointi&lt;/Bold&gt; VPN Plussalla.</value>
   </data>
   <data name="Upsell_SplitTunneling_Title">
     <value>Hanki molempien parhaat puolet</value>
