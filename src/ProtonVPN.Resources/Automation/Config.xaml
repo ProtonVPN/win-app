@@ -96,6 +96,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <system:String x:Key="PortForwardingOnButton">PortForwardingOnButton</system:String>
     <system:String x:Key="PortForwardingOffButton">PortForwardingOffButton</system:String>
     <system:String x:Key="ConnectOnBootCheckbox">ConnectOnBootCheckbox</system:String>
+    <system:String x:Key="ConnectOnInsecureWifiCheckbox">ConnectOnInsecureWifi</system:String>
+    <system:String x:Key="SecureDisconnectCheckbox">SecureDisconnect</system:String>
     <system:String x:Key="CancelActionButton">CancelActionButton</system:String>
     <system:String x:Key="QuickLaunchFlag">QuickLaunchFlag</system:String>
     <system:String x:Key="UpsellModalTitle">UpsellModalTitle</system:String>
