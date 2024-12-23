@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
@@ -56,6 +57,8 @@ public class RecentsTests : BaseTest
     [Test, Order(1)]
     public void RecentDeletion()
     {
+        Thread.Sleep(TestConstants.AnimationDelay);
+
         SidebarRobot
             .ExpandSecondaryActions(CONNECTION_NAME)
             .RemoveRecent();
