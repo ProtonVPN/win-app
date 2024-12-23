@@ -1649,7 +1649,7 @@
     <value>어플리케이션을 종료하면 현재 VPN 연결이 끊어집니다.</value>
   </data>
   <data name="Dialogs_Exit_msg_KillSwitchOn">
-    <value>킬 스위치는 당신의 데이터가 유출되는 것을 방지하기 위해 모든 연결을 차단합니다. 어플리케이션을 종료하면 킬 스위치가 비활성화됩니다.</value>
+    <value>킬 스위치는 데이터가 유출되는 것을 방지하기 위해 모든 연결을 차단합니다. 어플리케이션을 종료하면 킬 스위치가 비활성화됩니다.</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch">
     <value>영구 킬 스위치가 활성화되었습니다. 어플리케이션을 종료하면 다시 Proton VPN에 연결될 때까지 모든 연결이 차단됩니다.</value>
@@ -1725,7 +1725,7 @@
     <value>포트포워딩을 활성화할까요?</value>
   </data>
   <data name="Dialogs_Proxy_msg_ProxyDetected">
-    <value>Proton VPN이 로컬 네트워크에 설정된 프록시 서버를 감지했습니다. Proton VPN은 이 프록시를 지나가는 트래픽을 보호할 수 없습니다. 이것은 당신의 연결이 기대한 만큼 완전히 보호받지 못한다는 것을 의미합니다.</value>
+    <value>Proton VPN이 로컬 네트워크에 설정된 프록시 서버를 감지했습니다. Proton VPN은 이 프록시를 지나가는 트래픽을 보호할 수 없습니다. 이는 연결이 기대한 만큼 완전히 보호받지 못한다는 것을 의미합니다.</value>
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
@@ -1796,11 +1796,11 @@
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_GovBlock">
-    <value>&lt;Bold&gt;정부 차단&lt;/Bold&gt; - 당신의 국가에서 Proton에 대한 접근을 차단하고 있을 수 있습니다. Proton에 접근하기 위해 &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt;를 사용해 보세요.</value>
+    <value>&lt;Bold&gt;정부 차단&lt;/Bold&gt; - 현재 거주 국가에서 Proton에 대한 접근을 차단하고 있을 수 있습니다. Proton에 접근하기 위해 &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt;를 사용해 보세요.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_GovBlockDoH">
-    <value>&lt;Bold&gt;정부 차단&lt;/Bold&gt; - 당신의 국가에서 Proton에 대한 접근을 차단하고 있을 수 있습니다. Proton에 접근하기 위해 &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt;를 사용해 보세요.</value>
+    <value>&lt;Bold&gt;정부 차단&lt;/Bold&gt; - 현재 거주 국가에서 Proton에 대한 접근을 차단하고 있을 수 있습니다. Proton에 접근하기 위해 &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt;를 사용해 보세요.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_IspProblem">
@@ -2473,7 +2473,7 @@
     <value>트래커가 멈춤</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
-    <value>트래커는 당신의 웹 활동에 대한 정보를 수집, 저장 및 판매하는 제3자 웹사이트입니다.</value>
+    <value>트래커는 사용자의 웹 활동에 대한 정보를 수집, 저장 및 판매하는 제3자 웹사이트입니다.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>웹사이트가 로드되지 않는다면, NetShield를 비활성화해 보세요</value>
