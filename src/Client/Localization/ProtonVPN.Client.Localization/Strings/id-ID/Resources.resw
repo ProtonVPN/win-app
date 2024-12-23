@@ -1731,13 +1731,13 @@ Latensi yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Log error membantu kami dalam menumpas masalah Anda hingga ke akar-akarnya. Apabila Anda tidak menyertakan log ini, kami mungkin tidak akan dapat menganalisa masalah Anda secara menyeluruh.</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes">
-    <value>Solusi instan</value>
+    <value>Solusi kilat</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes_Footer">
     <value>Tidak membantu?</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes_Header">
-    <value>Tips berikut dapat membantu untuk menyelesaikan masalah Anda dengan cepat.</value>
+    <value>Tips-tips berikut dapat membantu untuk menyelesaikan masalah Anda dengan lebih cepat.</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_DoneAction">
     <value>Selesai</value>
@@ -1864,7 +1864,7 @@ Smart Routing pada umumnya digunakan untuk menghindari undang-undang anti-privas
     <value>Pastikan Anda sedang online dan koneksi Anda stabil.</value>
   </data>
   <data name="Dialogs_Troubleshooting_Description">
-    <value>Perbaikan cepat ini dapat membantu Anda terhubung ke Proton.</value>
+    <value>Solusi kilat berikut ini dapat membantu Anda terhubung ke Proton.</value>
   </data>
   <data name="Dialogs_Troubleshooting_DidNotWork">
     <value>Tidak membantu?</value>
@@ -2301,7 +2301,7 @@ Kecepatan yang tertera didasarkan pada aktivitas perangkat Anda saat ini — kec
     <value>Tidak terlindung</value>
   </data>
   <data name="Home_ConnectionDetails_UnprotectedSubLabel">
-    <value>Enkripsi aktivitas online Anda dengan menghubungkan diri ke VPN</value>
+    <value>Enkripsi aktivitas online Anda dengan menghubungkan ke VPN.</value>
   </data>
   <data name="Home_ConnectionDetails_Volume">
     <value>Volume</value>

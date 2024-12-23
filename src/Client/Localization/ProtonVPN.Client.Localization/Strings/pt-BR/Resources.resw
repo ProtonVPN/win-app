@@ -3154,7 +3154,7 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Um protocolo VPN determina como os dados se movem entre um servidor VPN e o seu dispositivo.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnTcp_Description">
-    <value>Estabelecido, bem testado e seguro. O OpenVPN é confiável em condições de rede ruins, mas pode não ser tão rápido quanto outros protocolos.</value>
+    <value>Estabelecido, bem testado e seguro. OpenVPN é confiável em condições de rede ruins, mas pode não ser tão rápido quanto outros protocolos.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnTcp_Title">
     <value>OpenVPN</value>
@@ -3439,7 +3439,7 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Segurança e privacidade em todos os seus dispositivos</value>
   </data>
   <data name="Upsell_Carousel_NetShield">
-    <value>Aproveite a navegação sem anúncios</value>
+    <value>Desfrute a navegação sem anúncios</value>
   </data>
   <data name="Upsell_Carousel_NetShield_Block">
     <value>Bloqueie anúncios e rastreadores com o NetShield</value>
