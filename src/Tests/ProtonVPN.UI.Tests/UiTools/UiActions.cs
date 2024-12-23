@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Conditions;
@@ -51,8 +52,8 @@ public static class UiActions
     {
         AutomationElement element = WaitUntilExists(desiredElement);
         Mouse.MovePixelsPerMillisecond = 100;
-        element.WaitUntilClickable();
-        Mouse.MoveTo(element.GetClickablePoint().X + offsetX, element.GetClickablePoint().Y + offsetY);
+        Point clickablePoint = element.WaitUntilClickable().GetClickablePoint();
+        Mouse.MoveTo(clickablePoint.X + offsetX, clickablePoint.Y + offsetY);
         return desiredElement;
     }
 
