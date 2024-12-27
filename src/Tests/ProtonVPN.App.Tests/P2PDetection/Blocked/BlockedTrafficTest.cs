@@ -26,6 +26,7 @@ using NSubstitute;
 using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Config.Url;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.P2PDetection;
 using ProtonVPN.P2PDetection.Blocked;
 
@@ -35,6 +36,7 @@ namespace ProtonVPN.App.Tests.P2PDetection.Blocked
     [SuppressMessage("ReSharper", "ObjectCreationAsStatement")]
     public class BlockedTrafficTest
     {
+        private ILogger _logger;
         private IHttpClients _httpClients;
         private IHttpClient _httpClient;
         private IActiveUrls _activeUrls;
@@ -44,6 +46,7 @@ namespace ProtonVPN.App.Tests.P2PDetection.Blocked
         [TestInitialize]
         public void TestInitialize()
         {
+            _logger = Substitute.For<ILogger>();
             _httpClients = Substitute.For<IHttpClients>();
             _httpClient = Substitute.For<IHttpClient>();
             _activeUrls = Substitute.For<IActiveUrls>();
@@ -69,7 +72,7 @@ namespace ProtonVPN.App.Tests.P2PDetection.Blocked
             _activeUrls.P2PStatusUrl.ReturnsForAnyArgs(new ActiveUrl(_osProcesses, "http://blablabla"));
             _p2PDetectionTimeout.GetTimeoutValue().ReturnsForAnyArgs(TimeSpan.FromSeconds(10));
 
-            Action action = () => new BlockedTraffic(null, _activeUrls, _p2PDetectionTimeout);
+            Action action = () => new BlockedTraffic(_logger, null, _activeUrls, _p2PDetectionTimeout);
 
             action.Should().Throw<ArgumentNullException>();
         }
@@ -79,7 +82,7 @@ namespace ProtonVPN.App.Tests.P2PDetection.Blocked
         {
             _p2PDetectionTimeout.GetTimeoutValue().ReturnsForAnyArgs(TimeSpan.FromSeconds(10));
 
-            Action action = () => new BlockedTraffic(_httpClients, null, _p2PDetectionTimeout);
+            Action action = () => new BlockedTraffic(_logger, _httpClients, null, _p2PDetectionTimeout);
 
             action.Should().Throw<ArgumentNullException>();
         }
@@ -91,7 +94,7 @@ namespace ProtonVPN.App.Tests.P2PDetection.Blocked
             _activeUrls.P2PStatusUrl.ReturnsForAnyArgs(new ActiveUrl(_osProcesses, "http://blablabla"));
             _p2PDetectionTimeout.GetTimeoutValue().ReturnsForAnyArgs(timeout);
 
-            new BlockedTraffic(_httpClients, _activeUrls, _p2PDetectionTimeout);
+            new BlockedTraffic(_logger, _httpClients, _activeUrls, _p2PDetectionTimeout);
 
             _httpClient.Received(1).Timeout = timeout;
         }
@@ -105,7 +108,7 @@ namespace ProtonVPN.App.Tests.P2PDetection.Blocked
             _activeUrls.P2PStatusUrl.ReturnsForAnyArgs(new ActiveUrl(_osProcesses, p2PStatusUri.ToString()));
             _p2PDetectionTimeout.GetTimeoutValue().ReturnsForAnyArgs(TimeSpan.FromSeconds(10));
 
-            BlockedTraffic subject = new(_httpClients, _activeUrls, _p2PDetectionTimeout);
+            BlockedTraffic subject = new(_logger, _httpClients, _activeUrls, _p2PDetectionTimeout);
             bool result = await subject.Detected();
 
             result.Should().BeTrue();
@@ -129,7 +132,7 @@ namespace ProtonVPN.App.Tests.P2PDetection.Blocked
             _activeUrls.P2PStatusUrl.ReturnsForAnyArgs(new ActiveUrl(_osProcesses, p2PStatusUri.ToString()));
             _p2PDetectionTimeout.GetTimeoutValue().ReturnsForAnyArgs(TimeSpan.FromSeconds(11));
 
-            BlockedTraffic subject = new BlockedTraffic(_httpClients, _activeUrls, _p2PDetectionTimeout);
+            BlockedTraffic subject = new BlockedTraffic(_logger, _httpClients, _activeUrls, _p2PDetectionTimeout);
             bool result = await subject.Detected();
 
             result.Should().BeFalse();
@@ -144,7 +147,7 @@ namespace ProtonVPN.App.Tests.P2PDetection.Blocked
             _activeUrls.P2PStatusUrl.ReturnsForAnyArgs(new ActiveUrl(_osProcesses, p2PStatusUri.ToString()));
             _p2PDetectionTimeout.GetTimeoutValue().ReturnsForAnyArgs(TimeSpan.FromSeconds(19));
             
-            BlockedTraffic subject = new BlockedTraffic(_httpClients, _activeUrls, _p2PDetectionTimeout);
+            BlockedTraffic subject = new BlockedTraffic(_logger, _httpClients, _activeUrls, _p2PDetectionTimeout);
             bool result = await subject.Detected();
 
             result.Should().BeFalse();

@@ -17,12 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Helpers;
-using ProtonVPN.Common.OS.Net.Http;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Helpers;
+using ProtonVPN.Common.OS.Net.Http;
 using ProtonVPN.Config.Url;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.P2PDetection.Blocked
 {
@@ -35,16 +37,21 @@ namespace ProtonVPN.P2PDetection.Blocked
     /// </remarks>
     public class BlockedTraffic : IBlockedTraffic
     {
+        private readonly ILogger _logger;
         private readonly Uri _p2PStatusUri;
 
         private readonly IHttpClient _httpClient;
 
-        public BlockedTraffic(IHttpClients httpClients, IActiveUrls activeUrls, 
+        public BlockedTraffic(
+            ILogger logger,
+            IHttpClients httpClients,
+            IActiveUrls activeUrls,
             IP2PDetectionTimeout p2PDetectionTimeout)
         {
             Ensure.NotNull(httpClients, nameof(httpClients));
             Ensure.NotNull(activeUrls?.P2PStatusUrl?.Uri, nameof(activeUrls));
 
+            _logger = logger;
             _p2PStatusUri = activeUrls.P2PStatusUrl.Uri;
             _httpClient = httpClients.Client(new HttpClientHandler
             {
@@ -60,8 +67,9 @@ namespace ProtonVPN.P2PDetection.Blocked
                 string response = await GetResponse();
                 return response.Contains("<!--P2P_WARNING-->");
             }
-            catch
+            catch (Exception e)
             {
+                _logger.Error<AppLog>("Failed to check for blocked traffic.", e);
             }
 
             return false;
