@@ -28,6 +28,7 @@ using ProtonVPN.Dns.Contracts;
 using ProtonVPN.Dns.Contracts.Exceptions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
+using ProtonVPN.Logging.Contracts.Events.DnsLogs;
 
 namespace ProtonVPN.Api.Handlers;
 
@@ -67,8 +68,10 @@ public class DnsHandler : DelegatingHandler
                         ipAddresses[i], request, cancellationToken);
                     return httpResponseMessage;
                 }
-                catch
+                catch (Exception ex)
                 {
+                    _logger.Info<DnsLog>($"Attempt {i + 1} failed for IP {ipAddresses[i]}", ex);
+
                     if (i + 1 == ipAddresses.Count)
                     {
                         throw;
@@ -76,6 +79,7 @@ public class DnsHandler : DelegatingHandler
                 }
             }
         }
+
         throw new DnsException($"No IP addresses to make the API request to '{request.RequestUri}'.");
     }
 
