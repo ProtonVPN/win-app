@@ -2678,7 +2678,7 @@ VPN приховує вашу IP-адресу, захищаючи вас від 
     <value>Захищено</value>
   </data>
   <data name="LoadingPage_Tip">
-    <value>A better world starts with privacy and digital freedom.</value>
+    <value>Кращий світ починається з приватності та цифрової свободи.</value>
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
     <value>Виникла помилка при отриманні даних про сесію. Будь ласка, спробуйте ще раз.</value>
@@ -2742,36 +2742,36 @@ VPN приховує вашу IP-адресу, захищаючи вас від 
     <value>Встановіть це значення у вашій програмі BitTorrent для вищої швидкості.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
-    <value>Your plan has been downgraded to Proton Free, and we're reconnecting you to the fastest free server.</value>
+    <value>Ваш тарифний план було знижено до Proton Free, і ми повторно підключаємо вас до найшвидшого безплатного сервера.</value>
   </data>
   <data name="Overlay_OutdatedClient_Action">
-    <value>Update now</value>
+    <value>Оновити зараз</value>
   </data>
   <data name="Overlay_OutdatedClient_Message">
     <value>Ця версія програми застаріла. Для продовження використання Proton VPN.</value>
   </data>
   <data name="Overlay_OutdatedClient_Title">
-    <value>Update Proton VPN to continue</value>
+    <value>Оновити Proton VPN для продовження</value>
   </data>
   <data name="Overlay_P2P_Bullet1_Description">
-    <value>Our P2P (peer-to-peer) servers let you access P2P networks while still protecting your IP address and online activity.</value>
+    <value>Наші P2P (пірингові) сервери дозволяють вам отримувати доступ до P2P-мереж, захищаючи при цьому вашу IP-адресу та активність в Інтернеті.</value>
   </data>
   <data name="Overlay_P2P_Bullet1_Header">
     <value>Що таке P2P VPN?</value>
   </data>
   <data name="Overlay_P2P_Bullet2_Description">
-    <value>P2P networks allow two devices to connect and transfer data without passing through a central server. </value>
+    <value>Мережі P2P дозволяють двом пристроям з'єднуватися і передавати дані без проходження через центральний сервер. </value>
   </data>
   <data name="Overlay_P2P_Bullet2_Header">
-    <value>What is a P2P network?</value>
+    <value>Що таке P2P-мережа?</value>
   </data>
   <data name="Overlay_P2P_Bullet3_Description">
-    <value>  •  Downloading torrent files
-  •  Improving online gaming and video call performance
-  •  Connecting to local area network (LAN) devices</value>
+    <value>  •  Завантаження торент файлів
+  •  Покращення продуктивності онлайн-ігор і відеодзвінків
+  •  Підключення до пристроїв локальної мережі (LAN)</value>
   </data>
   <data name="Overlay_P2P_Bullet3_Header">
-    <value>What are P2P networks used for?</value>
+    <value>Для чого використовуються P2P-мережі?</value>
   </data>
   <data name="Overlay_P2P_LearnMore">
     <value>Що таке P2P?</value>
@@ -2785,7 +2785,7 @@ VPN приховує вашу IP-адресу, захищаючи вас від 
 Цей вищий рівень захисту може спричинити більшу затримку та повільнішу швидкість роботи.</value>
   </data>
   <data name="Overlay_SecureCore_LearnMore">
-    <value>What is Secure Core?</value>
+    <value>Що таке Secure Core?</value>
   </data>
   <data name="Overlay_SecureCore_SecureCoreConnection">
     <value>Secure Core
@@ -2867,16 +2867,16 @@ Smart Routing зазвичай використовується для обхо�
     <value>Tor</value>
   </data>
   <data name="Profiles_Page_Description">
-    <value>Configure your own VPN settings and connect in one click.</value>
+    <value>Налаштуйте власні параметри VPN і підключайтеся в один клац.</value>
   </data>
   <data name="Profiles_Page_Title">
     <value>Профілі</value>
   </data>
   <data name="Search_InputBox_Placeholder">
-    <value>Browse from...</value>
+    <value>Перегляд з...</value>
   </data>
   <data name="Search_NoInput_CityOrState">
-    <value>City or US state</value>
+    <value>Місто або штат США</value>
     <comment>The word used for one single city and one single United States state</comment>
   </data>
   <data name="Search_NoInput_Country">
@@ -2891,7 +2891,7 @@ Smart Routing зазвичай використовується для обхо�
     <value>Спробуйте пошукати…</value>
   </data>
   <data name="Search_NoResults_Description">
-    <value>Try a different keyword.</value>
+    <value>Спробуйте інше ключове слово.</value>
   </data>
   <data name="Search_NoResults_Title">
     <value>Нічого не знайдено</value>
@@ -2903,7 +2903,7 @@ Smart Routing зазвичай використовується для обхо�
     <value>Найшвидший безплатний сервер</value>
   </data>
   <data name="Server_Feature_B2B">
-    <value>Gateways</value>
+    <value>Шлюзи</value>
   </data>
   <data name="Server_Feature_None">
     <value>Всі країни</value>
@@ -2960,7 +2960,7 @@ Smart Routing зазвичай використовується для обхо�
     <value>Отримайте максимум від вашої VPN, оновивши додаток до останньої версії.</value>
   </data>
   <data name="Settings_Account_Exit">
-    <value>Exit the app</value>
+    <value>Вийти з додатка</value>
   </data>
   <data name="Settings_Account_MyAccount">
     <value>Мій обліковий запис</value>
@@ -3068,10 +3068,10 @@ Smart Routing зазвичай використовується для обхо�
     <value>Обмежує доступ до даних у вашій мережі. Цей варіант безпечніший, але може ускладнити з'єднання в пірингових іграх.</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
-    <value>Routes traffic between different networks.</value>
+    <value>Робить маршрутизацію трафік між різними мережами.</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
-    <value>Uses bridging to connect networks. TUN provides higher speeds than TAP, but may be less stable.</value>
+    <value>Використовує мостіння для з'єднання мереж. TUN забезпечує вищу швидкість, ніж TAP, але може бути менш стабільним.</value>
   </data>
   <data name="Settings_Connection_Default">
     <value>З'єднання за замовчуванням</value>
@@ -3128,7 +3128,7 @@ Smart Routing зазвичай використовується для обхо�
     <value>Якщо увімкнено NetShield, ви не зможете з'єднатися з користувацьким DNS-сервером.</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Title">
-    <value>Enable NetShield?</value>
+    <value>Увімкнути NetShield?</value>
   </data>
   <data name="Settings_Connection_NetShield_Description">
     <value>Захистіть себе від реклами, шкідливих програм і трекерів на вебсайтах і в додатках.</value>
@@ -3137,13 +3137,13 @@ Smart Routing зазвичай використовується для обхо�
     <value>Деякі вебсайти можуть не завантажуватися належним чином, коли реклама та трекери заблоковані.</value>
   </data>
   <data name="Settings_Connection_NetShield_PrivacyPanel">
-    <value>NetShield Privacy Panel</value>
+    <value>Панель приватності NetShield</value>
   </data>
   <data name="Settings_Connection_PortForwarding">
     <value>Переспрямування портів</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Active port:</value>
+    <value>Активний порт:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Копіювати номер порту</value>
@@ -3161,13 +3161,13 @@ Smart Routing зазвичай використовується для обхо�
     <value>Для використання переадресації портів, будь ласка, під'єднайтеся до сервера, який підтримує P2P.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Loading">
-    <value>Loading...</value>
+    <value>Завантаження...</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications">
     <value>Сповіщення</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
-    <value>Get notified when the port forwarding number changes</value>
+    <value>Отримуйте сповіщення про зміну номера переадресації порту</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Протокол</value>
@@ -3176,11 +3176,11 @@ Smart Routing зазвичай використовується для обхо�
     <value>Перейти до профілів</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Message">
-    <value>You’re currently connected to a VPN profile. 
+    <value>Наразі ви підключені до профілю VPN. 
 
-• To change the protocol for this connection, disconnect then edit your profile.
+• Щоб змінити протокол для цього з'єднання, від'єднайтеся, а потім відредагуйте свій профіль.
 
-• To change your protocol for other VPN connections, you’ll need to disconnect from your profile first.</value>
+• Щоб змінити протокол для інших VPN-з'єднань, вам потрібно спочатку від'єднатися від свого профілю.</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Title">
     <value>Змінити протокол в профілях</value>
@@ -3212,13 +3212,13 @@ Smart Routing зазвичай використовується для обхо�
     <value>Налаштуйте своє з'єднання, вирішивши, які програми та IP-адреси будуть захищені VPN.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
-    <value>Inverse</value>
+    <value>Інвертувати</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
     <value>Тільки вибрані програми та IP-адреси під'єднаються через VPN, весь інший трафік є незахищеним</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
-    <value>Add IP</value>
+    <value>Додати IP</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
     <value>Обрані IP-адреси ({0})</value>
@@ -3360,19 +3360,19 @@ Smart Routing зазвичай використовується для обхо�
     <value>Швидкість (UDP)</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Description">
-    <value>State-of-the-art protocol for security and performance.</value>
+    <value>Найсучасніший протокол для безпеки та продуктивності.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Title">
     <value>WireGuard</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Description">
-    <value>Overcomes VPN blocks by hiding your VPN connection from censors. Stealth is DPI (deep packet inspection) resistant, but may not be as fast as other protocols.</value>
+    <value>Долає VPN-блокування, приховуючи ваше VPN-з'єднання від цензорів. Stealth стійкий до DPI (глибокої перевірки пакетів), але може бути не таким швидким, як інші протоколи.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Title">
     <value>Stealth</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
-    <value>State-of-the-art protocol for security and performance.</value>
+    <value>Найсучасніший протокол для безпеки та продуктивності.</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>
@@ -3444,13 +3444,13 @@ Smart Routing зазвичай використовується для обхо�
     <value>Збільште швидкість з'єднання до 400% за допомогою технологій, що підвищують продуктивність.</value>
   </data>
   <data name="SignIn_Form">
-    <value>Sign in form</value>
+    <value>Форма входу</value>
   </data>
   <data name="SignIn_Form_AdvancedKillSwitchDescription">
-    <value>Advanced kill switch is blocking your internet connection.</value>
+    <value>Розширений вимикач блокує підключення до Інтернету.</value>
   </data>
   <data name="SignIn_Form_BestSecureVpnForSpeed">
-    <value>The best secure VPN for speed</value>
+    <value>Найкраща безпечна VPN для швидкості</value>
   </data>
   <data name="SignIn_Form_CreateAccount">
     <value>Створити обліковий запис</value>
@@ -3477,7 +3477,7 @@ Smart Routing зазвичай використовується для обхо�
     <value>Політика без журналювання</value>
   </data>
   <data name="SignIn_Form_OpenSource">
-    <value>Open-source</value>
+    <value>Відкритий вихідний код</value>
   </data>
   <data name="SignIn_Form_Password">
     <value>Пароль</value>
@@ -3512,14 +3512,14 @@ Smart Routing зазвичай використовується для обхо�
     <comment>A button at the bottom of the login window inside Get help popup</comment>
   </data>
   <data name="SignIn_Form_Username">
-    <value>Email or username</value>
+    <value>Електронна пошта або ім'я користувача</value>
   </data>
   <data name="SignIn_Form_UsernameError">
     <value>Потрібно ввести облікові дані</value>
     <comment>An error message is displayed when the user attempts to sign in without entering a username</comment>
   </data>
   <data name="SignIn_KillSwitch_Disabled">
-    <value>Kill switch is disabled</value>
+    <value>Перемикач вимкнено</value>
   </data>
   <data name="SystemNotification_Connected">
     <value>Тепер ви захищені</value>
@@ -3755,13 +3755,13 @@ Smart Routing зазвичай використовується для обхо�
     <value>OpenVPN (TCP)</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp_Description">
-    <value>Established, well-tested, and secure</value>
+    <value>Надійний, перевірений і безпечний</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Udp">
     <value>OpenVPN (UDP)</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Udp_Description">
-    <value>Established, well-tested, and secure</value>
+    <value>Надійний, перевірений і безпечний</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>
@@ -3770,18 +3770,18 @@ Smart Routing зазвичай використовується для обхо�
     <value>WireGuard (TCP)</value>
   </data>
   <data name="VpnProtocol_WireGuard_Tcp_Description">
-    <value>State-of-the-art protocol for security and performance</value>
+    <value>Найсучасніший протокол для безпеки та продуктивності</value>
   </data>
   <data name="VpnProtocol_WireGuard_Tls">
     <value>Stealth</value>
   </data>
   <data name="VpnProtocol_WireGuard_Tls_Description">
-    <value>Overcomes VPN blocks by hiding your connection from censors</value>
+    <value>Долає VPN-блокування, приховуючи ваше з'єднання від цензорів</value>
   </data>
   <data name="VpnProtocol_WireGuard_Udp">
     <value>WireGuard (UDP)</value>
   </data>
   <data name="VpnProtocol_WireGuard_Udp_Description">
-    <value>State-of-the-art protocol for security and performance</value>
+    <value>Найсучасніший протокол для безпеки та продуктивності</value>
   </data>
 </root>

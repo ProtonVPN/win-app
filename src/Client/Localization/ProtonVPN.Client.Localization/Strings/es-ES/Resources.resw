@@ -3039,7 +3039,7 @@ El enrutamiento inteligente se usa normalmente para evitar las leyes contra la p
     <value>Solo las aplicaciones y direcciones IP seleccionadas se conectan mediante VPN, el resto del tráfico está desprotegido.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
-    <value>Añadir una IP</value>
+    <value>Añadir una dirección IP</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
     <value>Direcciones IP seleccionadas ({0})</value>
