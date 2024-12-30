@@ -400,7 +400,7 @@
     <value>このバージョンの Proton VPN では問題が解決されている可能性があります!</value>
   </data>
   <data name="BugReport_lbl_QuickSolutions">
-    <value>迅速な修正</value>
+    <value>クイック修正</value>
   </data>
   <data name="BugReport_lbl_QuickSolutionsInfo">
     <value>これらのヒントは、問題をより早く解決するのに役立ちます。</value>
@@ -502,7 +502,7 @@
     <comment>The end of text for Secure Core VPN server being connected to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "Creating {0} connection". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_1">
-    <value></value>
+    <value>接続先：</value>
     <comment>The beginning of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_1_SecureCore">
@@ -2352,7 +2352,7 @@
     <comment>The title of VPN connection description column in Profiles window</comment>
   </data>
   <data name="Profiles_col_Profile">
-    <value>プロフィール</value>
+    <value>プロファイル</value>
     <comment>The title of profile name column in Profiles window</comment>
   </data>
   <data name="Profiles_col_Protocol">
@@ -3107,7 +3107,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>さらに高速なブラウジング(最大10Gbps)</value>
   </data>
   <data name="Upsell_Countries_AccessGeoblockedContent">
-    <value>ジオブロックされたコンテンツにアクセスする</value>
+    <value>ジオブロックされたコンテンツへのアクセス</value>
   </data>
   <data name="Upsell_Countries_ChooseAnyLocation">
     <value>任意の場所を選択</value>
