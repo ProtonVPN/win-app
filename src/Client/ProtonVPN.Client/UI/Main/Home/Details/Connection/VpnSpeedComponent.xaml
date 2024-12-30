@@ -81,6 +81,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             Grid.Column="0"
                             Grid.ColumnSpan="2"
                             Height="95"
+                            FlowDirection="LeftToRight"
                             Margin="-12,-10,-2,-15"
                             VerticalAlignment="Stretch"
                             VerticalContentAlignment="Stretch"
