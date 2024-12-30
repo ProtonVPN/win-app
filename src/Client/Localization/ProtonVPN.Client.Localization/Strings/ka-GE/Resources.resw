@@ -2570,7 +2570,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>გასაგრძელებლად განაახლეთ Proton VPN</value>
   </data>
   <data name="Overlay_P2P_Bullet1_Description">
-    <value>Our P2P (peer-to-peer) servers let you access P2P networks while still protecting your IP address and online activity.</value>
+    <value>ჩვენი P2P სერვერები საშუალებას გაძლევთ, P2P ქსელებთან დაუკავშირდეთთქვენი IP მისამართისა და ინტერნეტ-უსაფრთხოების დაცვის დაკარგვის გარეშე.</value>
   </data>
   <data name="Overlay_P2P_Bullet1_Header">
     <value>რა არის P2P VPN?</value>

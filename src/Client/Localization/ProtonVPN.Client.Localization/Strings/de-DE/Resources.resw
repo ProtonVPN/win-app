@@ -127,7 +127,7 @@
     <value>Features bar</value>
   </data>
   <data name="Automation_Properties_Home_Page">
-    <value>Home page</value>
+    <value>Startseite</value>
   </data>
   <data name="Automation_Properties_KillSwitch_Page">
     <value>Kill switch page</value>
@@ -139,7 +139,7 @@
     <value>Login page</value>
   </data>
   <data name="Automation_Properties_Main_Page">
-    <value>Main page</value>
+    <value>Hauptseite</value>
   </data>
   <data name="Automation_Properties_NetShield_Page">
     <value>NetShield page</value>
@@ -154,7 +154,7 @@
     <value>Common settings page</value>
   </data>
   <data name="Automation_Properties_Settings_Page">
-    <value>Settings page</value>
+    <value>Einstellungsseite</value>
   </data>
   <data name="Automation_Properties_Sidebar">
     <value>Sidebar</value>
@@ -2548,7 +2548,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Sechste Ziffer</value>
   </data>
   <data name="Login_TwoFactor_EnterCode">
-    <value>Enter your code</value>
+    <value>Code eingeben</value>
   </data>
   <data name="Main_Loading_SigningIn">
     <value>Anmelden, bitte warten...</value>
@@ -2660,11 +2660,11 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
     <value>Serverauslastung</value>
   </data>
   <data name="Overlay_SmartRouting_Description">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
-    
-When you connect to a Smart Routing server, you’ll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
+    <value>Smart Routing verwendet virtuelle Server, um VPN-Abdeckung in schwer zugänglichen Ländern zu bieten.
+     
+Wenn du eine Verbindung zu einem Smart Routing-Server herstellst, scheint es, als würdest du in deinem Zielland surfen, obwohl sich der physische Server anderswo befindet.  
 
-Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+Smart Routing wird in der Regel verwendet, um Anti-Datenschutzgesetze und andere Formen der Zensur zu umgehen.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
     <value>Die Server befinden sich physisch in {0}, aber es wird so aussehen, als würdest du von {1} browsen</value>
@@ -2922,10 +2922,10 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Dadurch wird Split-Tunneling deaktiviert.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>Enable kill switch?</value>
+    <value>Kill Switch aktivieren?</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Description">
-    <value>Protects your IP address by disconnecting you from the internet if you lose your VPN connection.</value>
+    <value>Schütze deine IP-Adresse, indem du dich vom Internet trennst, wenn du deine VPN-Verbindung verlierst.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Footer">
     <value>When kill switch is on, you won't be able to connect to websites and apps excluded from your VPN connection through split tunneling.</value>
@@ -3187,7 +3187,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>WireGuard</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Description">
-    <value>Overcomes VPN blocks by hiding your VPN connection from censors. Stealth is DPI (deep packet inspection) resistant, but may not be as fast as other protocols.</value>
+    <value>Umgeht VPN-Sperren, indem es deine VPN-Verbindung vor Zensoren versteckt. Stealth ist resistent gegen DPI (Deep Packet Inspection), ist aber möglicherweise nicht so schnell wie andere Protokolle.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Title">
     <value>Stealth</value>

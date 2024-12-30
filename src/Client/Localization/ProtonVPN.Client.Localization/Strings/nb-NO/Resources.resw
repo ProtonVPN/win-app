@@ -271,7 +271,7 @@
     <value>Proton VPN klarte ikke å hente autentiseringssertifikat på grunn av nettverksproblem.</value>
   </data>
   <data name="Connection_Error_NoServers">
-    <value>Det er ingen tjenere tilgjengelig akkurat nå for ditt valg. Vennligst velg et annet alternativ.</value>
+    <value>Det er ingen tjenere tilgjengelig akkurat nå for ditt valg. Velg et annet alternativ.</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
     <value>Tjenervalget ditt for '{0}' er ikke tilgjengelig. Velg en annen tjener eller prøv igjen senere.</value>
@@ -290,7 +290,7 @@
     <value>Du har nådd din maksimale enhetsgrense. Koble fra en annen enhet for å koble til denne, eller oppgrader til PLUS for å koble til opptil 10 enheter samtidig.</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedPaidUser">
-    <value>Du har nådd din maksimale enhetsgrense. Vennligst koble fra en annen enhet for å koble til denne.</value>
+    <value>Du har nådd din maksimale enhetsgrense. Koble fra en annen enhet for å koble til denne.</value>
   </data>
   <data name="Connection_Error_TapAdapterInUse">
     <value>Nettverkskortet er i bruk.</value>
@@ -305,7 +305,7 @@
     <value>Det har oppstått et problem med å validere VPN-tjenersertifikatet, som kan tyde på at nettverkstilkoblingen tukles med eller at tjeneren du prøver å koble til, har et konfigurasjonsproblem. Få hjelp fra vår kundestøtte ved å sende en feilmelding.</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>Vi er ikke sikre på hva som skjedde her. Vennligst prøv på nytt eller kontakt kundestøtteteamet vårt.</value>
+    <value>Vi er ikke sikre på hva som skjedde her. Prøv på nytt eller kontakt kundestøtteteamet vårt.</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
     <value>Se mulige løsninger</value>
@@ -662,7 +662,7 @@
     <value>Bruk Tor-nettverket over VPN-tilkoblingen for ekstra personvern.</value>
   </data>
   <data name="Countries_TryDifferentKeyword">
-    <value>Vennligst forsøk et annet nøkkelord</value>
+    <value>Forsøk et annet nøkkelord</value>
   </data>
   <data name="Countries_ViaCountry">
     <value>via {0}</value>
@@ -1613,7 +1613,7 @@
     <comment>The name of UM country</comment>
   </data>
   <data name="Country_val_US">
-    <value>Amerikas forente stater</value>
+    <value>USA</value>
     <comment>The name of US country</comment>
   </data>
   <data name="Country_val_UY">
@@ -1821,7 +1821,7 @@ Høy latens kan redusere tilkoblingen.</value>
     <value>Noe gikk galt</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Fail_Description">
-    <value>Vi kunne ikke sende rapporten. Vennligst kontroller tilkoblingen, og prøv på nytt.</value>
+    <value>Vi kunne ikke sende rapporten. Kontroller tilkoblingen og prøv på nytt.</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_RetryAction">
     <value>Prøv igjen</value>
@@ -2501,23 +2501,23 @@ Hastigheten er basert på enhetens nåværende aktivitet – den representerer i
     <value>En bedre verden starter med personvern og digital frihet.</value>
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
-    <value>Det oppstod en feil under henting av øktdetaljene. Vennligst prøv på nytt.</value>
+    <value>Det oppstod en feil under henting av øktdetaljene. Prøv på nytt.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
-    <value>Feil kode. Vennligst prøv på nytt.</value>
+    <value>Feil kode. Prøv på nytt.</value>
   </data>
   <data name="Login_Error_SessionExpired">
-    <value>Økten er utløpt. Vennligst logg på nytt.</value>
+    <value>Økten er utløpt. Logg på nytt.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_SsoAuthFailed">
-    <value>SSO-autentisering mislyktes. Vennligst prøv på nytt.</value>
+    <value>SSO-autentisering mislyktes. Prøv på nytt.</value>
   </data>
   <data name="Login_Error_TwoFactorAuthFailed">
     <value>Feil brukernavn eller passord. Prøv igjen.</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
-    <value>Tofaktorautentisering mislyktes. Vennligst logg på igjen.</value>
+    <value>Tofaktorautentisering mislyktes. Logg på igjen.</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate">
     <value>Autentiser</value>
@@ -2551,11 +2551,11 @@ Hastigheten er basert på enhetens nåværende aktivitet – den representerer i
     <value>Skriv inn koden din</value>
   </data>
   <data name="Main_Loading_SigningIn">
-    <value>Logger på, vennligst vent...</value>
+    <value>Logger på, vent litt...</value>
     <comment>Message in the loading screen when signing in or starting the app</comment>
   </data>
   <data name="Main_Loading_SigningOut">
-    <value>Logger av, vennligst vent...</value>
+    <value>Logger av, vent litt...</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
   <data name="Notifications_PortForwarding_Description">
