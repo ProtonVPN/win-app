@@ -189,6 +189,7 @@ public class GlobalSettingsMigrator : IGlobalSettingsMigrator
             { nameof(IUserSettings.IsVpnAcceleratorEnabled), GetSettingValue("VpnAcceleratorEnabled") },
             { nameof(IUserSettings.IsIpv6LeakProtectionEnabled), GetSettingValue("Ipv6LeakProtection") },
             { nameof(IUserSettings.IsNetShieldEnabled), GetUserSetting(username, "UserNetShieldEnabled") },
+            { nameof(IUserSettings.NetShieldMode), MigrateNetShieldMode(username) },
 
             { nameof(IUserSettings.ConnectionKeyPair), GetConnectionKeyPair(username) },
             { nameof(IUserSettings.ConnectionCertificate), GetConnectionCertificate(username) },
@@ -377,7 +378,19 @@ public class GlobalSettingsMigrator : IGlobalSettingsMigrator
             "udp" => nameof(VpnProtocol.OpenVpnUdp),
             "tcp" => nameof(VpnProtocol.OpenVpnTcp),
             "wireguard" => nameof(VpnProtocol.WireGuardUdp),
+            "wireguard_tcp" => nameof(VpnProtocol.WireGuardTcp),
+            "stealth" => nameof(VpnProtocol.WireGuardTls),
             _ => (string?)null,
+        };
+    }
+
+    private string? MigrateNetShieldMode(string username)
+    {
+        return GetUserSetting(username, "UserNetShieldMode") switch
+        {
+            "1" => nameof(NetShieldMode.BlockMalwareOnly),
+            "2" => nameof(NetShieldMode.BlockAdsMalwareTrackers),
+            _ => nameof(NetShieldMode.BlockMalwareOnly),
         };
     }
 
