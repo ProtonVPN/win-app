@@ -142,6 +142,7 @@ public class UserSettingsMigrator : IUserSettingsMigrator
         MigrateBoolUserSetting(userSettings, nameof(IUserSettings.IsVpnAcceleratorEnabled), val => { _settings.IsVpnAcceleratorEnabled = val; });
         MigrateBoolUserSetting(userSettings, nameof(IUserSettings.IsIpv6LeakProtectionEnabled), val => { _settings.IsIpv6LeakProtectionEnabled = val; });
         MigrateBoolUserSetting(userSettings, nameof(IUserSettings.IsNetShieldEnabled), val => { _settings.IsNetShieldEnabled = val; });
+        MigrateNetShieldMode(userSettings);
 
         MigrateConnectionKeyPair(userSettings);
         MigrateConnectionCertificate(userSettings);
@@ -272,6 +273,15 @@ public class UserSettingsMigrator : IUserSettingsMigrator
             rawSettingValue is not null && Enum.TryParse(rawSettingValue, out VpnProtocol result))
         {
             _settings.VpnProtocol = result;
+        }
+    }
+
+    private void MigrateNetShieldMode(Dictionary<string, string?> userSettings)
+    {
+        if (userSettings.TryGetValue(nameof(IUserSettings.NetShieldMode), out string? rawSettingValue) &&
+            rawSettingValue is not null && Enum.TryParse(rawSettingValue, out NetShieldMode result))
+        {
+            _settings.NetShieldMode = result;
         }
     }
 
