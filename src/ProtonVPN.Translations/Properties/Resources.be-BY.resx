@@ -207,7 +207,7 @@
     <value>&lt;Bold&gt;{0}&lt;/Bold&gt; падключэнняў па VPN</value>
   </data>
   <data name="Account_lbl_Connection_Other">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; падключэнні па VPN</value>
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; падключэнняў па VPN</value>
   </data>
   <data name="Account_lbl_Countries_One">
     <value>у &lt;Bold&gt;{0}&lt;/Bold&gt; краіне</value>
@@ -286,7 +286,7 @@
     <value>&lt;Bold&gt;{0}&lt;/Bold&gt; сервераў</value>
   </data>
   <data name="Account_lbl_Servers_Other">
-    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; серверы</value>
+    <value>&lt;Bold&gt;{0}&lt;/Bold&gt; сервераў</value>
   </data>
   <data name="Account_lbl_Streaming">
     <value>Падтрымка сэрвісу трансляцыі</value>
@@ -563,7 +563,7 @@
     <value>{0} краін</value>
   </data>
   <data name="Countries_lbl_Other">
-    <value>{0} краіны</value>
+    <value>{0} краін</value>
   </data>
   <data name="Country_val_AD">
     <value>Андора</value>
@@ -1866,7 +1866,7 @@
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_ProtonDown">
-    <value>&lt;Bold&gt;Proton не працуе&lt;/Bold&gt; - Праверце &lt;Hyperlink Command="{Binding ProtonStatusCommand}"&gt;статус Proton, &lt;/Hyperlink&gt; каб даведацца пра статус нашай сістэмы.</value>
+    <value>&lt;Bold&gt;Proton не працуе&lt;/Bold&gt; - Праверце &lt;Hyperlink Command="{Binding ProtonStatusCommand}"&gt;статус Proton, &lt;/Hyperlink&gt; каб даведацца аб статусе нашай сістэмы.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Title">
@@ -2581,7 +2581,7 @@
     <value>{0} бяспечных сервераў</value>
   </data>
   <data name="Secure_Servers_lbl_Other">
-    <value>{0} бяспечнага сервера</value>
+    <value>{0} бяспечных сервераў</value>
   </data>
   <data name="ServerType_val_B2B">
     <value>Шлюзы</value>

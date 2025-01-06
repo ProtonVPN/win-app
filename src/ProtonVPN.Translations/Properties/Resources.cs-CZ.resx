@@ -1846,7 +1846,7 @@ Podle pokynů &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Firewall">
-    <value>&lt;Bold&gt;Rušení proxy/firewallem&lt;/Bold&gt; - Zakažte všechny servery proxy nebo brány firewall nebo se obraťte na správce sítě.</value>
+    <value>&lt;Bold&gt;Rušení proxy/firewallem&lt;/Bold&gt; - Deaktivujte všechny servery proxy nebo brány firewall nebo se obraťte na správce sítě.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_GovBlock">
