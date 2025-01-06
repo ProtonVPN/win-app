@@ -51,8 +51,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Text="{x:Bind ViewModel.Localizer.Get('Flyouts_Isp_Warning')}" />
         </StackPanel>
 
-        <TextBlock Style="{ThemeResource BodyTextBlockStyle}"
-                   Text="{x:Bind ViewModel.Localizer.Get('Flyouts_Isp_Description')}" />
+        <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
+            <Run Text="{x:Bind ViewModel.Localizer.Get('Flyouts_Isp_Description1')}" />
+            <LineBreak />
+            <LineBreak />
+            <Run Text="{x:Bind ViewModel.Localizer.Get('Flyouts_Isp_Description2')}" />
+            <LineBreak />
+            <LineBreak />
+            <Run Text="{x:Bind ViewModel.Localizer.Get('Flyouts_Isp_Description3')}" />
+        </TextBlock>
 
         <custom:IllustratedHyperlinkButton AutomationProperties.AutomationId="LearnMoreHyperlinkButton"
                                            Content="{x:Bind ViewModel.Localizer.Get('Flyouts_Isp_KnowledgeBaseLinkTitle')}"

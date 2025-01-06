@@ -113,9 +113,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </StackPanel>
         </Grid>
 
-        <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Overlay_SecureCore_Description')}"
-                   Margin="2,0"
-                   TextWrapping="Wrap" />
+        <TextBlock Margin="2,0"
+                   TextWrapping="Wrap">
+            <Run Text="{x:Bind ViewModel.Localizer.Get('Overlay_SecureCore_Description1')}" />
+            <LineBreak />
+            <LineBreak />
+            <Run Text="{x:Bind ViewModel.Localizer.Get('Overlay_SecureCore_Description2')}" />
+        </TextBlock>
 
         <custom:IllustratedHyperlinkButton AutomationProperties.AutomationId="LearnMoreHyperlinkButton"
                                            Content="{x:Bind ViewModel.Localizer.Get('Overlay_SecureCore_LearnMore')}"

@@ -61,9 +61,12 @@ public partial class IpAddressFlyoutViewModel : ActivatableViewModelBase,
         ? "Flyouts_IpAddress_VpnIp"
         : "Flyouts_IpAddress_Title");
 
-    public string Description => Localizer.Get(IsConnected
-        ? "Flyouts_IpAddress_Description_Connected"
-        : "Flyouts_IpAddress_Description_Disconnected");
+    public string Description => IsConnected
+        ? Localizer.Get("Flyouts_IpAddress_Description_Connected")
+        : Localizer.Get("Flyouts_IpAddress_Description_Disconnected1") +
+          Environment.NewLine +
+          Environment.NewLine +
+          Localizer.Get("Flyouts_IpAddress_Description_Disconnected2");
 
     public bool IsConnected => _connectionManager.IsConnected;
     public bool IsDisconnected => _connectionManager.IsDisconnected;

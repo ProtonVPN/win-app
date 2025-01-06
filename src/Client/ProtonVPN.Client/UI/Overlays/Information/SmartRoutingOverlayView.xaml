@@ -39,8 +39,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                Source="{StaticResource SmartRoutingIllustrationSource}" />
 
         <TextBlock Margin="2,0"
-                   Text="{x:Bind ViewModel.Localizer.Get('Overlay_SmartRouting_Description')}"
-                   TextWrapping="Wrap" />
+                   TextWrapping="Wrap">
+            <Run Text="{x:Bind ViewModel.Localizer.Get('Overlay_SmartRouting_Description1')}" />
+            <LineBreak  />
+            <LineBreak />
+            <Run Text="{x:Bind ViewModel.Localizer.Get('Overlay_SmartRouting_Description2')}" />
+            <LineBreak />
+            <LineBreak />
+            <Run Text="{x:Bind ViewModel.Localizer.Get('Overlay_SmartRouting_Description3')}" />
+        </TextBlock>
 
         <custom:IllustratedHyperlinkButton AutomationProperties.AutomationId="LearnMoreHyperlinkButton"
                                            Content="{x:Bind ViewModel.Localizer.Get('Overlay_SmartRouting_LearnMore')}"
