@@ -2735,6 +2735,12 @@
   <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn" xml:space="preserve">
     <value>This will disconnect you from VPN and temporarily disable kill switch. Any active internet connections will be temporarily unprotected.</value>
   </data>
+  <data name="Dialogs_P2PDetection_Title" xml:space="preserve">
+    <value>P2P traffic detected</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Description" xml:space="preserve">
+    <value>Your connection has been disabled because you are using a server that does not support peer-to-peer (P2P) traffic. P2P is not supported on free servers. Please use a different server for P2P.</value>
+  </data>
   <data name="Home_Update_UpdateAvailable" xml:space="preserve">
     <value>Update available</value>
   </data>

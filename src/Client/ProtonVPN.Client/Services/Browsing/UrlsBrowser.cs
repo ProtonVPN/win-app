@@ -86,6 +86,8 @@ public class UrlsBrowser : IUrlsBrowser
 
     public string ProtonStatusPage => "https://protonstatus.com";
 
+    public string P2PStatusPage => "http://protonstatus.com/vpn_status";
+
     public string SupportForm => "https://protonvpn.com/support-form";
 
     public string DownloadsPage => "https://protonvpn.com/download";
