@@ -115,15 +115,18 @@ public sealed partial class MainPageView : IContextAware
 
     private void InvalidateSidebarColumnWidth()
     {
-        double sidebarColumnWidth = MainSplitView.IsPaneOpen
-            ? MainSplitView.OpenPaneLength
-            : MainSplitView.CompactPaneLength;
+        double sidebarColumnWidth = MainSplitView.DisplayMode switch
+        {
+            SplitViewDisplayMode.CompactInline when !MainSplitView.IsPaneOpen => MainSplitView.CompactPaneLength,
+            SplitViewDisplayMode.CompactOverlay => MainSplitView.CompactPaneLength,
+            _ => MainSplitView.OpenPaneLength
+        };
 
-        SidebarColumn.Width = new GridLength(sidebarColumnWidth, GridUnitType.Pixel);
+        HomeComponentView.SidebarWidth = sidebarColumnWidth;
     }
 
     private void InvalidateWidgetsColumnnWidth()
     {
-        WidgetsColumn.Width = new GridLength(SideWidgetsHostComponent.ActualWidth, GridUnitType.Pixel);
+        HomeComponentView.WidgetsBarWidth = SideWidgetsHostComponent.ActualWidth;
     }
 }

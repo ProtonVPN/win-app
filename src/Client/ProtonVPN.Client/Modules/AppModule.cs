@@ -297,7 +297,7 @@ public class AppModule : Module
         RegisterViewModel<P2PCountriesComponentViewModel>(builder);
         RegisterViewModel<TorCountriesComponentViewModel>(builder);
         RegisterViewModel<SearchResultsPageViewModel>(builder);
-        RegisterViewModel<HomePageViewModel>(builder);
+        RegisterViewModel<HomeComponentViewModel>(builder);
         RegisterViewModel<MapComponentViewModel>(builder);
         RegisterViewModel<ConnectionCardComponentViewModel>(builder);
         RegisterViewModel<ChangeServerComponentViewModel>(builder);

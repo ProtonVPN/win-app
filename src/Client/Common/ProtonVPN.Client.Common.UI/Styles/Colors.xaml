@@ -80,6 +80,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Color x:Key="VpnGreenColor">#1C9C7C</Color>
             <!--  Gradient  -->
             <Color x:Key="GradientFadingStartColor">#FFFFFFFF</Color>
+            <Color x:Key="GradientFadingMiddleColor">#F0FFFFFF</Color>
             <Color x:Key="GradientFadingEndColor">#00FFFFFF</Color>
             <Color x:Key="GradientUnprotectedStartColor">#80F7607B</Color>
             <Color x:Key="GradientUnprotectedEndColor">#00F7607B</Color>
@@ -174,6 +175,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Color x:Key="VpnGreenColor">#2CFFCC</Color>
             <!--  Gradient  -->
             <Color x:Key="GradientFadingStartColor">#FF16141C</Color>
+            <Color x:Key="GradientFadingMiddleColor">#F016141C</Color>
             <Color x:Key="GradientFadingEndColor">#0016141C</Color>
             <Color x:Key="GradientUnprotectedStartColor">#80F7607B</Color>
             <Color x:Key="GradientUnprotectedEndColor">#00F7607B</Color>

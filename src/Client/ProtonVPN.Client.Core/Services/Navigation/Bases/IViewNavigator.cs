@@ -40,6 +40,8 @@ public interface IViewNavigator
 
     PageViewModelBase? GetCurrentPageContext();
 
+    Task<bool> ClearFrameAsync(bool forceNavigation = false);
+
     Task<bool> GoBackAsync(bool forceNavigation = false);
 
     Task<bool> NavigateToAsync(PageViewModelBase pageViewModel, object? parameter = null, bool clearNavigation = false, bool forceNavigation = false);

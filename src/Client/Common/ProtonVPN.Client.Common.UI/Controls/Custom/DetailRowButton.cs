@@ -29,8 +29,29 @@ public class DetailRowButton : Button
 
     public object Header
     {
-        get => (object)GetValue(HeaderProperty);
+        get => GetValue(HeaderProperty);
         set => SetValue(HeaderProperty, value);
+    }
+
+    public DetailRowButton()
+    {
+        IsEnabledChanged += OnIsEnabledChanged;
+    }
+
+    private void OnIsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+    {
+        if (!IsEnabled)
+        {
+            CloseFlyout();
+        }
+    }
+
+    private void CloseFlyout()
+    {
+        if (Flyout?.IsOpen == true)
+        {
+            Flyout.Hide();
+        }
     }
 }
 

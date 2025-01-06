@@ -27,6 +27,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
              xmlns:upsell="using:ProtonVPN.Client.UI.Main.Home.Upsell"
+             AutomationProperties.AutomationId="ConnectionCardComponent"
+             AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Automation_Properties_Connection_Card_Component')}"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 

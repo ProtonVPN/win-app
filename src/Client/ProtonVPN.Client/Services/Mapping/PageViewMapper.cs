@@ -73,7 +73,6 @@ public class PageViewMapper : ViewMapperBase<PageViewModelBase, Page>, IPageView
         ConfigureMapping<GatewaysPageViewModel, GatewaysPageView>();
         ConfigureMapping<CountriesPageViewModel, CountriesPageView>();
         ConfigureMapping<SearchResultsPageViewModel, SearchResultsPageView>();
-        ConfigureMapping<HomePageViewModel, HomePageView>();
         ConfigureMapping<ConnectionDetailsPageViewModel, ConnectionDetailsPageView>();
         ConfigureMapping<LocationDetailsPageViewModel, LocationDetailsPageView>();
         ConfigureMapping<KillSwitchPageViewModel, KillSwitchPageView>();

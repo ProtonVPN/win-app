@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,37 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml;
-using ProtonVPN.Client.Core.Bases;
+namespace ProtonVPN.Client.Core.Services.Navigation.Common;
 
-namespace ProtonVPN.Client.UI.Main.Home;
-
-public sealed partial class HomePageView : IContextAware
+public sealed partial class EmptyPageView
 {
-    public HomePageViewModel ViewModel { get; }
-
-    public HomePageView()
+    public EmptyPageView()
     {
-        ViewModel = App.GetService<HomePageViewModel>();
-
         InitializeComponent();
-
-        Loaded += OnLoaded;
-        Unloaded += OnUnloaded;
-    }
-
-    public object GetContext()
-    {
-        return ViewModel;
-    }
-
-    private void OnLoaded(object sender, RoutedEventArgs e)
-    {
-        ViewModel.Activate();
-    }
-
-    private void OnUnloaded(object sender, RoutedEventArgs e)
-    {
-        ViewModel.Deactivate();
     }
 }

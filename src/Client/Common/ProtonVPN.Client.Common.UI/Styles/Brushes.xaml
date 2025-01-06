@@ -85,11 +85,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <!--  Gradient  -->
             <LinearGradientBrush x:Key="GradientFadingColorBrush" StartPoint="0,0" EndPoint="0,1">
                 <GradientStop Offset="0" Color="{StaticResource GradientFadingStartColor}" />
+                <GradientStop Offset="0.1" Color="{StaticResource GradientFadingMiddleColor}" />
                 <GradientStop Offset="1" Color="{StaticResource GradientFadingEndColor}" />
             </LinearGradientBrush>
             <LinearGradientBrush x:Key="ReverseGradientFadingColorBrush" StartPoint="0,1" EndPoint="0,0">
-                <GradientStop Offset="0" Color="{StaticResource GradientFadingStartColor}" />
+                <GradientStop Offset="0" Color="{StaticResource GradientFadingMiddleColor}" />
                 <GradientStop Offset="1" Color="{StaticResource GradientFadingEndColor}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="ReverseStrongGradientFadingColorBrush" StartPoint="0,1" EndPoint="0,0">
+                <GradientStop Offset="0" Color="{StaticResource GradientFadingStartColor}" />
+                <GradientStop Offset="1" Color="{StaticResource GradientFadingMiddleColor}" />
             </LinearGradientBrush>
             <LinearGradientBrush x:Key="GradientUnprotectedColorBrush" StartPoint="0,0" EndPoint="0,1">
                 <GradientStop Offset="0" Color="{StaticResource GradientUnprotectedStartColor}" />
@@ -231,11 +236,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <!--  Gradient  -->
             <LinearGradientBrush x:Key="GradientFadingColorBrush" StartPoint="0,0" EndPoint="0,1">
                 <GradientStop Offset="0" Color="{StaticResource GradientFadingStartColor}" />
+                <GradientStop Offset="0.1" Color="{StaticResource GradientFadingMiddleColor}" />
                 <GradientStop Offset="1" Color="{StaticResource GradientFadingEndColor}" />
             </LinearGradientBrush>
             <LinearGradientBrush x:Key="ReverseGradientFadingColorBrush" StartPoint="0,1" EndPoint="0,0">
-                <GradientStop Offset="0" Color="{StaticResource GradientFadingStartColor}" />
+                <GradientStop Offset="0" Color="{StaticResource GradientFadingMiddleColor}" />
                 <GradientStop Offset="1" Color="{StaticResource GradientFadingEndColor}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="ReverseStrongGradientFadingColorBrush" StartPoint="0,1" EndPoint="0,0">
+                <GradientStop Offset="0" Color="{StaticResource GradientFadingStartColor}" />
+                <GradientStop Offset="1" Color="{StaticResource GradientFadingMiddleColor}" />
             </LinearGradientBrush>
             <LinearGradientBrush x:Key="GradientUnprotectedColorBrush" StartPoint="0,0" EndPoint="0,1">
                 <GradientStop Offset="0" Color="{StaticResource GradientUnprotectedStartColor}" />
