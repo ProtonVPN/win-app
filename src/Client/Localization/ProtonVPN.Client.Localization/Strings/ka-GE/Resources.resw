@@ -2582,9 +2582,9 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>რა არის P2P ქსელი?</value>
   </data>
   <data name="Overlay_P2P_Bullet3_Description">
-    <value>  •  Downloading torrent files
-  •  Improving online gaming and video call performance
-  •  Connecting to local area network (LAN) devices</value>
+    <value>  •  ტორენტის ფაილების გადმოწერა
+  •  ვიდეოთამაშების და ვიდეოზარების წარმადობის გაზრდა
+  •  ლოკალურ ქსელში (LAN) მოწყობილობებზე მიერთების საშუალება</value>
   </data>
   <data name="Overlay_P2P_Bullet3_Header">
     <value>რაში გამოიყენება P2P ქსელები?</value>
