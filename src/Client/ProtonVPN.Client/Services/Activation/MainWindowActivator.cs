@@ -42,7 +42,8 @@ using WinUIEx;
 namespace ProtonVPN.Client.Services.Activation;
 
 public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowActivator,
-    IEventMessageReceiver<AuthenticationStatusChanged>
+    IEventMessageReceiver<AuthenticationStatusChanged>,
+    IEventMessageReceiver<WindowsSessionEndingMessage>
 {
     private const int LOGIN_WINDOW_WIDTH = 1016;
     private const int LOGIN_WINDOW_HEIGHT = 659;
@@ -231,5 +232,10 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
     private void InvalidateWindowTitleBarVisibility()
     {
         Host?.InvalidateTitleBarVisibility(isTitleBarVisible: _userAuthenticator.IsLoggedIn);
+    }
+
+    public void Receive(WindowsSessionEndingMessage message)
+    {
+        SaveWindowPosition();
     }
 }
