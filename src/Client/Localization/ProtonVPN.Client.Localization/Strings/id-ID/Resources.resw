@@ -241,7 +241,7 @@
     <value>Tingkatkan</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>**Kill switch tingkat lanjut diaktifkan.** Untuk menggunakan internet tanpa VPN, nonaktifkan kill switch tingkat lanjut.</value>
+    <value>**Kill switch lanjutan diaktifkan.** Untuk menggunakan internet tanpa VPN, nonaktifkan kill switch lanjutan ini.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
     <value>**Kill switch lanjutkan diaktifkan.** Apabila Anda melanjutkan, Anda akan terputus dari internet.</value>
@@ -363,7 +363,7 @@
     <value>Server gratis ({0})</value>
   </data>
   <data name="Connections_Gateway">
-    <value>Gerbang</value>
+    <value>Gateway</value>
   </data>
   <data name="Connections_Gateway_Restricted">
     <value>Server di gerbang ini tersedia dengan VPN Plus</value>
@@ -403,14 +403,14 @@
     <value>Hapus profil</value>
   </data>
   <data name="Connections_Profiles_Delete_Message">
-    <value>'{0}' akan dihapus permanen.</value>
+    <value>'{0}' akan dihapus secara permanen.</value>
     <comment>{0} is a placeholder for the name of the profile.</comment>
   </data>
   <data name="Connections_Profiles_Delete_Title">
     <value>Hapus profil?</value>
   </data>
   <data name="Connections_Profiles_Empty_Description">
-    <value>Profil adalah koneksi yang tersimpan dengan pilihan lokasi, server, dan protokol Anda.</value>
+    <value>Profil merupakan koneksi yang tersimpan dengan lokasi, server, dan protokol pilihan Anda.</value>
   </data>
   <data name="Connections_Profiles_Empty_Title">
     <value>Buat profil pertama Anda</value>

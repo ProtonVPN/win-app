@@ -2498,7 +2498,7 @@ A velocidade é baseada na atividade atual do seu dispositivo — não represent
     <value>Protegido</value>
   </data>
   <data name="LoadingPage_Tip">
-    <value>Um mundo melhor começa com  privacidade  e  liberdade digital.</value>
+    <value>Um mundo melhor começa com  privacidade e liberdade digital.</value>
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
     <value>Ocorreu um erro ao recuperar os detalhes da sessão. Tente novamente.</value>
