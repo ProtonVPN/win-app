@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,14 +21,15 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation.Bases;
 using ProtonVPN.Client.Core.Services.Mapping;
-using ProtonVPN.Client.Common.Dispatching;
+using ProtonVPN.Client.Core.Services.Navigation.Common;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Core.Services.Navigation.Bases;
 
@@ -105,14 +106,15 @@ public abstract class ViewNavigatorBase : FrameActivatorBase, IViewNavigator
 
     public abstract Task<bool> NavigateToDefaultAsync();
 
-    public void ClearFrameContent()
+    public async Task<bool> ClearFrameAsync(bool forceNavigation = false)
     {
-        ClearBackStack();
-
-        if (Host?.Content != null)
+        bool navigated = await NavigateToAsync(typeof(EmptyPageView), forceNavigation: forceNavigation);
+        if (navigated)
         {
-            Host.Content = null;
+            ClearFrameContent();
         }
+
+        return navigated;
     }
 
     public Task<bool> NavigateToAsync(PageViewModelBase pageViewModel, object? parameter = null, bool clearNavigation = false, bool forceNavigation = false)
@@ -209,6 +211,14 @@ public abstract class ViewNavigatorBase : FrameActivatorBase, IViewNavigator
         return true;
     }
 
+    private void ClearFrameContent()
+    {
+        if (Host?.Content != null)
+        {
+            Host.Content = null;
+        }
+    }
+
     private void TriggerLoadBehavior()
     {
         switch (LoadBehavior)
@@ -224,8 +234,8 @@ public abstract class ViewNavigatorBase : FrameActivatorBase, IViewNavigator
     {
         switch (UnloadBehavior)
         {
-            case FrameUnloadedBehavior.ClearFrameContent when Host != null:
-                ClearFrameContent();
+            case FrameUnloadedBehavior.ClearFrameContent when Host?.Content != null:
+                ClearFrameAsync();
                 break;
         }
     }

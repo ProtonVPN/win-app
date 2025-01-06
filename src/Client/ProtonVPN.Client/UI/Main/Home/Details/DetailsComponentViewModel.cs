@@ -35,7 +35,7 @@ using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Home.Details;
 
-public partial class DetailsComponentViewModel : HostViewModelBase<ISidebarViewNavigator>,
+public partial class DetailsComponentViewModel : HostViewModelBase<IDetailsViewNavigator>,
     IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<MainWindowVisibilityChangedMessage>
 {
@@ -75,7 +75,7 @@ public partial class DetailsComponentViewModel : HostViewModelBase<ISidebarViewN
         };
 
     public DetailsComponentViewModel(
-        ISidebarViewNavigator childViewNavigator,
+        IDetailsViewNavigator childViewNavigator,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter,

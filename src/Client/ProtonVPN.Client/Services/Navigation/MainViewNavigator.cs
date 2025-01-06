@@ -46,7 +46,7 @@ public class MainViewNavigator : ViewNavigatorBase, IMainViewNavigator,
 
     public Task<bool> NavigateToHomeViewAsync()
     {
-        return NavigateToAsync<HomePageViewModel>();
+        return ClearFrameAsync();
     }
 
     public Task<bool> NavigateToSettingsViewAsync()

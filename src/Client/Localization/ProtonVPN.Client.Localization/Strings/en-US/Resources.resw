@@ -3523,6 +3523,9 @@ Enjoy the best of Proton privacy.</value>
   <data name="Automation_Properties_Main_Page" xml:space="preserve">
     <value>Main page</value>
   </data>
+  <data name="Automation_Properties_Connection_Card_Component" xml:space="preserve">
+    <value>Connection card</value>
+  </data>
   <data name="Automation_Properties_Sidebar" xml:space="preserve">
     <value>Sidebar</value>
   </data>

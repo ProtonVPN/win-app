@@ -51,6 +51,7 @@
     <None Remove="UI\MainWindowShellView.xaml" />
     <None Remove="UI\Main\Components\ActivePortComponentView.xaml" />
     <None Remove="UI\Main\Components\ConnectionErrorComponent.xaml" />
+    <None Remove="UI\Main\Components\EmptyPageView.xaml" />
     <None Remove="UI\Main\Components\TitleBarMenuComponent.xaml" />
     <None Remove="UI\Main\FeatureIcons\KillSwitchIconView.xaml" />
     <None Remove="UI\Main\FeatureIcons\NetShieldIconView.xaml" />
@@ -79,7 +80,7 @@
     <None Remove="UI\Main\Home\Details\Flyouts\SpeedFlyoutView.xaml" />
     <None Remove="UI\Main\Home\Details\Flyouts\VolumeFlyoutView.xaml" />
     <None Remove="UI\Main\Home\Details\Location\LocationDetailsPageView.xaml" />
-    <None Remove="UI\Main\Home\HomePageView.xaml" />
+    <None Remove="UI\Main\Home\HomeComponentView.xaml" />
     <None Remove="UI\Main\Home\Map\MapComponentView.xaml" />
     <None Remove="UI\Main\Home\Upsell\ChangeServerComponentView.xaml" />
     <None Remove="UI\Main\Home\Upsell\ConnectionCardUpsellBannerView.xaml" />
@@ -611,12 +612,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="UI\Main\Home\HomePageView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
     <Page Update="UI\Main\Settings\SettingsPageView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -708,6 +703,18 @@
 
   <ItemGroup>
     <PRIResource Remove="UI\Main\Home\Details\Contracts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Main\Components\EmptyPageView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Main\Home\HomeComponentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>

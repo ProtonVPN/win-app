@@ -67,6 +67,8 @@ public class WidgetButton : Button
             Interval = TimeSpan.FromMilliseconds(OPEN_FLYOUT_DELAY_IN_MS)
         };
         _timer.Tick += OnOpenFlyoutTimerTick;
+
+        IsEnabledChanged += OnIsEnabledChanged;
     }
 
     protected override void OnPointerPressed(PointerRoutedEventArgs e)
@@ -147,6 +149,24 @@ public class WidgetButton : Button
             Position = new Point(-16, -1)
         };
         OnHoverFlyout.ShowAt(this, options);
+    }
+
+    private void OnIsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+    {
+        if (!IsEnabled)
+        {
+            if (OnHoverFlyout == null)
+            {
+                return;
+            }
+
+            StopTimer();
+
+            if (OnHoverFlyout.IsOpen)
+            {
+                OnHoverFlyout.Hide();
+            }
+        }
     }
 
     private void StartTimer()

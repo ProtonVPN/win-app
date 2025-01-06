@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Threading;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
 
@@ -32,7 +33,6 @@ public class NavigationRobot
     protected Element LoadingPage => Element.ByAutomationId("LoadingPage");
     protected Element TwoFactorPage => Element.ByAutomationId("TwoFactorPage");
     protected Element MainPage => Element.ByAutomationId("MainPage");
-    protected Element HomePage => Element.ByAutomationId("HomePage");
     protected Element SettingsPage => Element.ByAutomationId("SettingsPage");
     protected Element SearchResultsPage => Element.ByAutomationId("SearchResultsPage");
     protected Element KillSwitchPage => Element.ByAutomationId("KillSwitchPage");
@@ -67,7 +67,13 @@ public class NavigationRobot
 
         public Verifications IsOnMainPage() => IsOnPage(MainPage, TestConstants.TwoMinutesTimeout);
 
-        public Verifications IsOnHomePage() => IsOnPage(HomePage);
+        public Verifications IsOnHomePage()
+        {
+            SettingsPage.DoesNotExist();
+            return this;
+        }
+
+        public Verifications IsOnSettingsPage() => IsOnPage(SettingsPage);
 
         public Verifications IsOnConnectionsPage() => IsOnPage(ConnectionsPage);
 

@@ -36,10 +36,9 @@ using ProtonVPN.Logging.Contracts;
 namespace ProtonVPN.Client.UI.Main;
 
 public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNavigator, IMainViewNavigator>,
-    IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<ApplicationStoppedMessage>
 {
-    private const double EXPAND_SIDEBAR_WINDOW_WIDTH_THRESHOLD = 800;
+    private const double EXPAND_SIDEBAR_WINDOW_WIDTH_THRESHOLD = 885;
     private const double EXPAND_WIDGETBAR_WINDOW_WIDTH_THRESHOLD = 1000;
 
     private readonly IMainWindowActivator _mainWindowActivator;
@@ -60,13 +59,7 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
 
     public double WidgetsWindowWidthThreshold { get; } = EXPAND_WIDGETBAR_WINDOW_WIDTH_THRESHOLD;
 
-    public bool IsConnected => _connectionManager.IsConnected;
-
-    public bool IsConnecting => _connectionManager.IsConnecting;
-
-    public bool IsDisconnected => _connectionManager.IsDisconnected;
-
-    public bool IsHomePageDisplayed => ChildViewNavigator.GetCurrentPageContext() is HomePageViewModel;
+    public bool IsHomePageDisplayed => ChildViewNavigator.GetCurrentPageContext() is null;
 
     public MainPageViewModel(
         IMainWindowViewNavigator parentViewNavigator,
@@ -104,14 +97,6 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
         }
     }
 
-    public void Receive(ConnectionStatusChangedMessage message)
-    {
-        if (IsActive)
-        {
-            ExecuteOnUIThread(InvalidateCurrentConnectionStatus);
-        }
-    }
-
     public void Receive(ApplicationStoppedMessage message)
     {
         SaveSidebarWidth();
@@ -124,7 +109,6 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
         IsSidebarExpanded = _mainWindowActivator.CurrentWindowSize.Width >= EXPAND_SIDEBAR_WINDOW_WIDTH_THRESHOLD;
         SidebarDisplayMode = SplitViewDisplayMode.CompactInline;
 
-        InvalidateCurrentConnectionStatus();
         InvalidateSidebarWidth();
     }
 
@@ -143,13 +127,6 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
         base.OnChildNavigation(e);
 
         OnPropertyChanged(nameof(IsHomePageDisplayed));
-    }
-
-    private void InvalidateCurrentConnectionStatus()
-    {
-        OnPropertyChanged(nameof(IsConnected));
-        OnPropertyChanged(nameof(IsConnecting));
-        OnPropertyChanged(nameof(IsDisconnected));
     }
 
     private void InvalidateSidebarWidth()

@@ -23,6 +23,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:controls="using:CommunityToolkit.WinUI.Controls"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:home="using:ProtonVPN.Client.UI.Main.Home"
       xmlns:map="using:ProtonVPN.Client.UI.Main.Map"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:sidebar="using:ProtonVPN.Client.UI.Main.Sidebar"
@@ -34,8 +35,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       mc:Ignorable="d">
 
     <Page.Resources>
-        <x:Double x:Key="ConnectionStatusGradientHeight">332.0</x:Double>
-        <x:Double x:Key="BottomMapFadeoutGradientHeight">250.0</x:Double>
 
         <x:Double x:Key="WidgetComponentMinWidth">72.0</x:Double>
         <x:Double x:Key="WidgetComponentMaxWidth">90.0</x:Double>
@@ -44,59 +43,30 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <x:Double x:Key="SidebarComponentMinWidth">200.0</x:Double>
         <x:Double x:Key="SidebarComponentMaxWidth">400.0</x:Double>
         <x:Double x:Key="SidebarComponentDefaultWidth">280.0</x:Double>
-
-        <Duration x:Key="ConnectionStatusBackgroundAnimationDuration">0:0:1</Duration>
-        
     </Page.Resources>
 
     <Grid x:Name="LayoutRoot"
           Background="{ThemeResource TransparentColorBrush}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="SidebarColumn"/>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition x:Name="WidgetsColumn" />
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="{Binding Source={StaticResource MainTitleBarHeight}, Converter={StaticResource DoubleToPixelGridLengthConverter}}" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <map:MapComponentView x:Name="MapView"
-                              Grid.Row="1"
-                              Grid.Column="1" />
-
-        <Grid Grid.Row="0"
-              Grid.RowSpan="2"
-              Grid.Column="0"
-              Grid.ColumnSpan="3">
-
-            <Border Height="{StaticResource BottomMapFadeoutGradientHeight}"
-                    VerticalAlignment="Bottom"
-                    Background="{ThemeResource ReverseGradientFadingColorBrush}" />
-
-            <Grid Height="{StaticResource ConnectionStatusGradientHeight}"
-                  VerticalAlignment="Top">
-
-                <Border Background="{ThemeResource GradientFadingColorBrush}" />
-                <Border x:Name="StatusGradient"
-                        Background="{ThemeResource GradientUnprotectedColorBrush}" />
-
-            </Grid>
-        </Grid>
+        <home:HomeComponentView x:Name="HomeComponentView"
+                                Grid.Row="0"
+                                Grid.RowSpan="2"
+                                IsHomeDisplayed="{x:Bind ViewModel.IsHomePageDisplayed}" />
 
         <Grid Grid.Row="1"
-              Grid.Column="0"
-              Grid.ColumnSpan="3"
               Margin="8,0,8,8"
               ColumnSpacing="8">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <SplitView x:Name="MainSplitView"
-                       Grid.Row="0"
                        CompactPaneLength="{StaticResource SidebarComponentCompactWidth}"
                        DisplayMode="{x:Bind ViewModel.SidebarDisplayMode}"
                        IsPaneOpen="{x:Bind ViewModel.IsSidebarExpanded, Mode=TwoWay}"
@@ -112,7 +82,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   IsSidebarExpanded="{x:Bind ViewModel.IsSidebarExpanded}"
                                                   PointerEntered="OnSidebarPointerEntered"
                                                   PointerExited="OnSidebarPointerExited"
-                                                  SizeChanged="OnSidebarComponentSizeChanged"/>
+                                                  SizeChanged="OnSidebarComponentSizeChanged" />
                 </SplitView.Pane>
 
                 <Grid>
@@ -123,11 +93,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                     <Border Grid.Column="0"
                             Width="8">
-                        <controls:PropertySizer Binding="{x:Bind ViewModel.SidebarWidth, Mode=TwoWay}"
+                        <controls:PropertySizer Margin="-8,0,0,0"
+                                                Binding="{x:Bind ViewModel.SidebarWidth, Mode=TwoWay}"
                                                 Maximum="{StaticResource SidebarComponentMaxWidth}"
                                                 Minimum="{StaticResource SidebarComponentMinWidth}"
-                                                Visibility="{x:Bind ViewModel.IsSidebarExpanded}" 
-                                                Margin="-8,0,0,0"/>
+                                                Visibility="{x:Bind ViewModel.IsSidebarExpanded}" />
                     </Border>
 
                     <Frame x:Name="MainNavigationFrame"
@@ -137,85 +107,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             </SplitView>
 
-            <widgets:SideWidgetsHostComponentView x:Name="SideWidgetsHostComponent" 
-                                                  SizeChanged="OnSideWidgetsHostComponentSizeChanged"
+            <widgets:SideWidgetsHostComponentView x:Name="SideWidgetsHostComponent"
                                                   Grid.Column="1"
-                                                  Canvas.ZIndex="2" />
+                                                  Canvas.ZIndex="2"
+                                                  SizeChanged="OnSideWidgetsHostComponentSizeChanged" />
 
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
 
-            <VisualStateGroup x:Name="ConnectionStates">
-
-                <VisualState x:Name="Connecting">
-                    <VisualState.StateTriggers>
-                        <StateTrigger IsActive="{x:Bind ViewModel.IsConnecting}" />
-                    </VisualState.StateTriggers>
-                    <Storyboard>
-                        <ColorAnimation EnableDependentAnimation="True"
-                                        Storyboard.TargetName="StatusGradient"
-                                        Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)"
-                                        To="{ThemeResource GradientConnectingStartColor}"
-                                        Duration="{StaticResource ConnectionStatusBackgroundAnimationDuration}" />
-                        <ColorAnimation EnableDependentAnimation="True"
-                                        Storyboard.TargetName="StatusGradient"
-                                        Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)"
-                                        To="{ThemeResource GradientConnectingEndColor}"
-                                        Duration="{StaticResource ConnectionStatusBackgroundAnimationDuration}" />
-                    </Storyboard>
-                </VisualState>
-
-                <VisualState x:Name="Connected">
-                    <VisualState.StateTriggers>
-                        <StateTrigger IsActive="{x:Bind ViewModel.IsConnected}" />
-                    </VisualState.StateTriggers>
-                    <Storyboard>
-                        <ColorAnimation EnableDependentAnimation="True"
-                                        Storyboard.TargetName="StatusGradient"
-                                        Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)"
-                                        To="{ThemeResource GradientProtectedStartColor}"
-                                        Duration="{StaticResource ConnectionStatusBackgroundAnimationDuration}" />
-                        <ColorAnimation EnableDependentAnimation="True"
-                                        Storyboard.TargetName="StatusGradient"
-                                        Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)"
-                                        To="{ThemeResource GradientProtectedEndColor}"
-                                        Duration="{StaticResource ConnectionStatusBackgroundAnimationDuration}" />
-                    </Storyboard>
-                </VisualState>
-
-                <VisualState x:Name="Disconnected">
-                    <VisualState.StateTriggers>
-                        <!--  This is the default visual state. when no other visual state is active, this one kicks in  -->
-                        <StateTrigger IsActive="True" />
-                    </VisualState.StateTriggers>
-                    <Storyboard>
-                        <ColorAnimation EnableDependentAnimation="True"
-                                        Storyboard.TargetName="StatusGradient"
-                                        Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)"
-                                        To="{ThemeResource GradientUnprotectedStartColor}"
-                                        Duration="{StaticResource ConnectionStatusBackgroundAnimationDuration}" />
-                        <ColorAnimation EnableDependentAnimation="True"
-                                        Storyboard.TargetName="StatusGradient"
-                                        Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)"
-                                        To="{ThemeResource GradientUnprotectedEndColor}"
-                                        Duration="{StaticResource ConnectionStatusBackgroundAnimationDuration}" />
-                    </Storyboard>
-                </VisualState>
-
-            </VisualStateGroup>
-
             <VisualStateGroup x:Name="NavigationStates">
-                <VisualState x:Name="NotOnHomePage">
-                    <VisualState.StateTriggers>
-                        <StateTrigger IsActive="{x:Bind ViewModel.IsHomePageDisplayed, Converter={StaticResource NotBooleanToBooleanConverter}}" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="SidebarComponent.IsEnabled" Value="False" />
-                        <Setter Target="SideWidgetsHostComponent.IsEnabled" Value="False" />
-                        <Setter Target="MapView.Opacity" Value="0.4" />
-                    </VisualState.Setters>
-                </VisualState>
                 <VisualState x:Name="OnHomePage">
                     <VisualState.StateTriggers>
                         <StateTrigger IsActive="{x:Bind ViewModel.IsHomePageDisplayed}" />
@@ -223,7 +124,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <VisualState.Setters>
                         <Setter Target="SidebarComponent.IsEnabled" Value="True" />
                         <Setter Target="SideWidgetsHostComponent.IsEnabled" Value="True" />
-                        <Setter Target="MapView.Opacity" Value="1" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NotOnHomePage">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="True" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="SidebarComponent.IsEnabled" Value="False" />
+                        <Setter Target="SideWidgetsHostComponent.IsEnabled" Value="False" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
