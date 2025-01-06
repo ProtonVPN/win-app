@@ -46,6 +46,7 @@ public interface IUrlsBrowser
     string RpcServerProblem { get; }
     string Troubleshooting { get; }
     string ProtonStatusPage { get; }
+    string P2PStatusPage { get; }
     string SupportForm { get; }
     string NoLogs { get; }
     string DownloadsPage { get; }

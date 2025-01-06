@@ -52,6 +52,7 @@ public class ConnectionLogicModule : Module
         builder.RegisterType<NetworkTrafficScheduler>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<NetworkTrafficManager>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ConnectionErrorFactory>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<P2PTrafficObserver>().AsImplementedInterfaces().SingleInstance().AutoActivate();
 
         RegisterRequestCreators(builder);
         RegisterServerListGenerators(builder);
