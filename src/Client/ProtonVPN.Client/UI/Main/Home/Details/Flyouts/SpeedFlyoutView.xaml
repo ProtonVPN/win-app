@@ -75,8 +75,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Text="{x:Bind ViewModel.Localizer.Get('Flyouts_Speed_BoostedByVpnAccelerator')}" />
         </StackPanel>
 
-        <TextBlock Style="{ThemeResource BodyTextBlockStyle}"
-                   Text="{x:Bind ViewModel.Localizer.Get('Flyouts_Speed_Description')}" />
+        <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
+            <Run Text="{x:Bind ViewModel.Localizer.Get('Flyouts_Speed_Description1')}" />
+            <LineBreak />
+            <LineBreak />
+            <Run Text="{x:Bind ViewModel.Localizer.Get('Flyouts_Speed_Description2')}" />
+        </TextBlock>
 
         <custom:IllustratedHyperlinkButton AutomationProperties.AutomationId="LearnMoreHyperlinkButton"
                                            Content="{x:Bind ViewModel.Localizer.Get('Flyouts_Speed_KnowledgeBaseLinkTitle')}"

@@ -2297,91 +2297,6 @@
   <data name="Countries_Tor_Description" xml:space="preserve">
     <value>Use the Tor network over your VPN connection for extra privacy.</value>
   </data>
-  <data name="Countries_Cities" xml:space="preserve">
-    <value>Cities</value>
-  </data>
-  <data name="Countries_Server_One" xml:space="preserve">
-    <value>{0} server</value>
-  </data>
-  <data name="Countries_Server_Other" xml:space="preserve">
-    <value>{0} servers</value>
-  </data>
-  <data name="Countries_NumberOfCities" xml:space="preserve">
-    <value>Cities ({0})</value>
-    <comment>{0} represents the number of cities</comment>
-  </data>
-  <data name="Countries_NumberOfCountries" xml:space="preserve">
-    <value>Countries ({0})</value>
-    <comment>{0} represents the number of countries</comment>
-  </data>
-  <data name="Countries_SecureCoreCountries" xml:space="preserve">
-    <value>Secure Core countries ({0})</value>
-    <comment>{0} represents the number of countries</comment>
-  </data>
-  <data name="Countries_Info" xml:space="preserve">
-    <value>Info</value>
-  </data>
-  <data name="Dialogs_SecureCore_AdvancedPrivacy" xml:space="preserve">
-    <value>Advanced privacy</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_Description" xml:space="preserve">
-    <value>Secure Core connects you to your destination server via a second, maximum security VPN server.
-
-This higher level of protection may cause higher latency and slower speeds.</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_HigherLatency" xml:space="preserve">
-    <value>Higher latency</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_HighPrivacy" xml:space="preserve">
-    <value>High privacy</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_LowerLatency" xml:space="preserve">
-    <value>Lower latency</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_SecureCoreConnection" xml:space="preserve">
-    <value>Secure Core\nVPN connection</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_StandardConnection" xml:space="preserve">
-    <value>Standard\nVPN connection</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_Title" xml:space="preserve">
-    <value>Secure Core</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Countries_SecureCoreServers" xml:space="preserve">
-    <value>Secure Core servers ({0})</value>
-    <comment>{0} represents the number of severs</comment>
-  </data>
-  <data name="Countries_ViaCountry" xml:space="preserve">
-    <value>via {0}</value>
-    <comment>{0} represents country name. For example: via Australia.</comment>
-  </data>
-  <data name="Countries_SmartRouting_Description" xml:space="preserve">
-    <value>Servers are physically located in {0}, but you'll appear to be browsing from {1}.</value>
-    <comment>{0} and {1} represent country names.</comment>
-  </data>
-  <data name="Dialogs_SmartRouting_Description" xml:space="preserve">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
-
-When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.
-
-Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
-  </data>
-  <data name="Countries_P2PCountries" xml:space="preserve">
-    <value>P2P countries ({0})</value>
-    <comment>{0} represents the number of countries</comment>
-  </data>
-  <data name="Countries_TorCountries" xml:space="preserve">
-    <value>Tor countries ({0})</value>
-    <comment>{0} represents the number of countries</comment>
-  </data>
   <data name="Overlay_P2P_Title" xml:space="preserve">
     <value>P2P</value>
   </data>
@@ -2447,12 +2362,14 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Overlay_SmartRouting_Title" xml:space="preserve">
     <value>Smart Routing</value>
   </data>
-  <data name="Overlay_SmartRouting_Description" xml:space="preserve">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
-    
-When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
-
-Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+  <data name="Overlay_SmartRouting_Description1" xml:space="preserve">
+    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description2" xml:space="preserve">
+    <value>When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description3" xml:space="preserve">
+    <value>Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
   </data>
   <data name="Overlay_SmartRouting_LearnMore" xml:space="preserve">
     <value>What is Smart Routing?</value>
@@ -2468,10 +2385,11 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Overlay_SecureCore_Title" xml:space="preserve">
     <value>Secure Core</value>
   </data>
-  <data name="Overlay_SecureCore_Description" xml:space="preserve">
-    <value>Secure Core connects you to your destination server via a second, maximum security VPN server.
-
-This higher level of protection may cause higher latency and slower speeds.</value>
+  <data name="Overlay_SecureCore_Description1" xml:space="preserve">
+    <value>Secure Core connects you to your destination server via a second, maximum security VPN server.</value>
+  </data>
+  <data name="Overlay_SecureCore_Description2" xml:space="preserve">
+    <value>This higher level of protection may cause higher latency and slower speeds.</value>
   </data>
   <data name="Overlay_SecureCore_LearnMore" xml:space="preserve">
     <value>What is Secure Core?</value>
@@ -3227,10 +3145,11 @@ This higher level of protection may cause higher latency and slower speeds.</val
   <data name="Dialogs_WelcomeUnlimited_Title" xml:space="preserve">
     <value>Welcome to Proton Unlimited</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description" xml:space="preserve">
-    <value>Congratulations! You unlocked premium security and performance features on all Proton services.
-
-Enjoy the best of Proton privacy.</value>
+  <data name="Dialogs_WelcomeUnlimited_Description1" xml:space="preserve">
+    <value>Congratulations! You unlocked premium security and performance features on all Proton services.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description2" xml:space="preserve">
+    <value>Enjoy the best of Proton privacy.</value>
   </data>
   <data name="Dialogs_BaseFilteringEngine_Title" xml:space="preserve">
     <value>Enable Base Filtering Engine to continue</value>
@@ -3598,10 +3517,11 @@ Enjoy the best of Proton privacy.</value>
   <data name="Flyouts_IpAddress_Description_Connected" xml:space="preserve">
     <value>Your VPN IP masks your real IP address. This makes it look like you're browsing from your VPN location, so your online activity can't be linked to your device.</value>
   </data>
-  <data name="Flyouts_IpAddress_Description_Disconnected" xml:space="preserve">
-    <value>This unique code can be used by websites and ISPs (Internet Service Providers) to link your location and browsing history to your device. 
-
-A VPN masks your IP address, making it harder for your activity to be traced back to you.</value>
+  <data name="Flyouts_IpAddress_Description_Disconnected1" xml:space="preserve">
+    <value>This unique code can be used by websites and ISPs (Internet Service Providers) to link your location and browsing history to your device.</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected2" xml:space="preserve">
+    <value>A VPN masks your IP address, making it harder for your activity to be traced back to you.</value>
   </data>
   <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle" xml:space="preserve">
     <value>What is an IP address?</value>
@@ -3612,12 +3532,14 @@ A VPN masks your IP address, making it harder for your activity to be traced bac
   <data name="Flyouts_Country_Warning" xml:space="preserve">
     <value>Connect to VPN to change your virtual location</value>
   </data>
-  <data name="Flyouts_Country_Description" xml:space="preserve">
-    <value>Browsing without a VPN leaves you vulnerable to location-based internet restrictions.
-
-Websites can use geoblocks to restrict content to certain locations. Governments can also instruct ISPs (Internet Service Providers) to block certain websites in their country.
-
-A VPN makes it looks like you're browsing from somewhere else, protecting you from surveillance and censorship.</value>
+  <data name="Flyouts_Country_Description1" xml:space="preserve">
+    <value>Browsing without a VPN leaves you vulnerable to location-based internet restrictions.</value>
+  </data>
+  <data name="Flyouts_Country_Description2" xml:space="preserve">
+    <value>Websites can use geoblocks to restrict content to certain locations. Governments can also instruct ISPs (Internet Service Providers) to block certain websites in their country.</value>
+  </data>
+  <data name="Flyouts_Country_Description3" xml:space="preserve">
+    <value>A VPN makes it looks like you're browsing from somewhere else, protecting you from surveillance and censorship.</value>
   </data>
   <data name="Flyouts_Isp_Title" xml:space="preserve">
     <value>Provider</value>
@@ -3625,12 +3547,14 @@ A VPN makes it looks like you're browsing from somewhere else, protecting you fr
   <data name="Flyouts_Isp_Warning" xml:space="preserve">
     <value>Your provider can see which websites you visit</value>
   </data>
-  <data name="Flyouts_Isp_Description" xml:space="preserve">
-    <value>Your ISP (Internet Service Provider) is the company that connects you to the internet. 
-
-They can log your online activity. In some countries, they can sell your data to advertisers. In others, they can be required to hand it over to the government. 
-
-A VPN hides your IP address, protecting you from ISP interference.</value>
+  <data name="Flyouts_Isp_Description1" xml:space="preserve">
+    <value>Your ISP (Internet Service Provider) is the company that connects you to the internet.</value>
+  </data>
+  <data name="Flyouts_Isp_Description2" xml:space="preserve">
+    <value>They can log your online activity. In some countries, they can sell your data to advertisers. In others, they can be required to hand it over to the government.</value>
+  </data>
+  <data name="Flyouts_Isp_Description3" xml:space="preserve">
+    <value>A VPN hides your IP address, protecting you from ISP interference.</value>
   </data>
   <data name="Flyouts_Isp_KnowledgeBaseLinkTitle" xml:space="preserve">
     <value>What is an Internet Service Provider (ISP)?</value>
@@ -3699,10 +3623,11 @@ A VPN hides your IP address, protecting you from ISP interference.</value>
   <data name="Flyouts_Speed_BoostedByVpnAccelerator" xml:space="preserve">
     <value>Boosted by VPN Accelerator</value>
   </data>
-  <data name="Flyouts_Speed_Description" xml:space="preserve">
-    <value>This shows how much data gets transmitted through Proton VPN each second.
-
-Speed is based on your device's current activity — it doesn't represent the VPN's maximum speed.</value>
+  <data name="Flyouts_Speed_Description1" xml:space="preserve">
+    <value>This shows how much data gets transmitted through Proton VPN each second.</value>
+  </data>
+  <data name="Flyouts_Speed_Description2" xml:space="preserve">
+    <value>Speed is based on your device's current activity — it doesn't represent the VPN's maximum speed.</value>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle" xml:space="preserve">
     <value>Understanding and increasing VPN connection speeds</value>

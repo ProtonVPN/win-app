@@ -65,8 +65,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <TextBlock Style="{StaticResource BodyTextBlockStyle}"
                            HorizontalAlignment="Center"
                            TextAlignment="Center"
-                           Text="{x:Bind ViewModel.Localizer.Get('Dialogs_WelcomeUnlimited_Description')}"
-                           TextWrapping="Wrap" />
+                           TextWrapping="Wrap">
+                    <Run Text="{x:Bind ViewModel.Localizer.Get('Dialogs_WelcomeUnlimited_Description1')}" />
+                    <LineBreak />
+                    <LineBreak />
+                    <Run Text="{x:Bind ViewModel.Localizer.Get('Dialogs_WelcomeUnlimited_Description2')}" />
+                </TextBlock>
 
             </StackPanel>
 
