@@ -29,8 +29,6 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
-using ProtonVPN.Client.Models.Connections.Countries;
-using ProtonVPN.Common.Core.Geographical;
 
 namespace ProtonVPN.Client.Models.Connections;
 
@@ -42,7 +40,6 @@ public abstract partial class HostLocationItemBase<TLocation> : LocationItemBase
     protected readonly ILocationItemFactory LocationItemFactory;
 
     private IEnumerable<Server> _lastKnownServers = [];
-    private DeviceLocation? _lastKnownDeviceLocation = null;
     private bool _lastKnownIsPaidUser = false;
     private ConnectionDetails? _lastKnownConnectionDetails = null;
 

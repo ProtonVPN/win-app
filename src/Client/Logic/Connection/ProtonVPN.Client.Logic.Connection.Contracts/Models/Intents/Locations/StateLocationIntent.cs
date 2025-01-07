@@ -24,7 +24,7 @@ namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
 public class StateLocationIntent : CountryLocationIntent
 {
-    public string State { get; }
+    public string? State { get; }
 
     public StateLocationIntent(string countryCode, string state)
         : base(countryCode)

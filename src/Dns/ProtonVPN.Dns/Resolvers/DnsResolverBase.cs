@@ -24,6 +24,7 @@ using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Configurations.Contracts;
@@ -171,7 +172,7 @@ public abstract class DnsResolverBase
     protected TimeSpan GetTimeToLiveOrDefault(int? timeToLiveInSeconds)
     {
         return timeToLiveInSeconds is null or 0
-            ? _defaultDnsTimeToLive.RandomizedWithDeviation(0.25)
+            ? _defaultDnsTimeToLive.AddJitter(0.25)
             : TimeSpan.FromSeconds(timeToLiveInSeconds.Value);
     }
 

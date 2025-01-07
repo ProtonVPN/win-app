@@ -26,7 +26,7 @@ public interface IProfilesManager
     IOrderedEnumerable<IConnectionProfile> GetAll();
     IConnectionProfile? GetById(Guid profileId);
 
-    void OverrideProfiles(IEnumerable<IConnectionProfile> profiles, IConnectionProfile quickConnectionProfile = null);
+    void OverrideProfiles(IEnumerable<IConnectionProfile> profiles, IConnectionProfile? quickConnectionProfile = null);
 
     void AddOrEditProfile(IConnectionProfile profile);
     void DeleteProfile(Guid profileId);

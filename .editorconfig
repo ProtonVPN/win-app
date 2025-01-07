@@ -292,6 +292,10 @@ dotnet_diagnostic.ide1006.severity=warning
 # CA1416: Validate platform compatibility
 dotnet_diagnostic.CA1416.severity = none
 
+# Lowers severity from Warning to Suggestion
+# CS4014: Because this call is not awaited, execution of the current method continues before the call is completed. Consider applying the await operator to the result of the call.
+dotnet_diagnostic.CS4014.severity = suggestion
+
 # Disable IDE0058 - Remove unnecessary expression value
 csharp_style_unused_value_expression_statement_preference = discard_variable:none
 

@@ -29,11 +29,11 @@ public class SerializableProfile : SerializableConnectionIntent
 
     public DateTime UpdateDateTimeUtc { get; set; }
 
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     public int ProfileCategory { get; set; }
 
     public int ProfileColor { get; set; }
 
-    public SerializableProfileSettings Settings { get; set; }
+    public required SerializableProfileSettings Settings { get; set; }
 }

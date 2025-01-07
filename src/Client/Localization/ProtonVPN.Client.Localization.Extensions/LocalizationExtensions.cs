@@ -69,7 +69,7 @@ public static class LocalizationExtensions
             : localizer.Get($"Country_val_{countryCode}");
     }
 
-    public static string GetConnectionIntentTitle(this ILocalizationProvider localizer, IConnectionIntent connectionIntent)
+    public static string GetConnectionIntentTitle(this ILocalizationProvider localizer, IConnectionIntent? connectionIntent)
     {
         return connectionIntent?.Location switch
         {
@@ -91,7 +91,7 @@ public static class LocalizationExtensions
         {
             ServerLocationIntent serverIntent => ConcatenateLocations(GetStateOrCityName(serverIntent.State, serverIntent.City), serverIntent.Name),
             CityLocationIntent cityIntent => cityIntent.City,
-            StateLocationIntent stateIntent => stateIntent.State,
+            StateLocationIntent stateIntent => stateIntent.State ?? string.Empty,
             GatewayServerLocationIntent gatewayServerIntent => ConcatenateLocations(localizer.GetCountryName(gatewayServerIntent.CountryCode), gatewayServerIntent.Name),
             CountryLocationIntent countryIntent => useDetailedSubtitle && countryIntent.IsFastestCountry
                 ? localizer.Get("Settings_Connection_Default_Fastest_Description")
@@ -100,12 +100,12 @@ public static class LocalizationExtensions
         };
     }
 
-    public static string GetConnectionProfileSubtitle(this ILocalizationProvider localizer, IConnectionProfile profile)
+    public static string GetConnectionProfileSubtitle(this ILocalizationProvider localizer, IConnectionProfile? profile)
     {
         string title = localizer.GetConnectionIntentTitle(profile);
         string subtitle = localizer.GetConnectionIntentSubtitle(profile);
 
-        return profile.Feature is SecureCoreFeatureIntent secureCoreIntent && secureCoreIntent.IsFastest
+        return profile != null && profile.Feature is SecureCoreFeatureIntent secureCoreIntent && secureCoreIntent.IsFastest
             ? ConcatenateLocations(title, subtitle)
             : $"{title} {subtitle}".Trim();
     }
@@ -153,12 +153,15 @@ public static class LocalizationExtensions
         };
     }
 
-    public static string GetConnectionProfileDetailsSubtitle(this ILocalizationProvider localizer, ConnectionDetails connectionDetails)
+    public static string GetConnectionProfileDetailsSubtitle(this ILocalizationProvider localizer, ConnectionDetails? connectionDetails)
     {
         string title = localizer.GetConnectionDetailsTitle(connectionDetails);
         string subtitle = localizer.GetConnectionDetailsSubtitle(connectionDetails);
 
-        return connectionDetails.IsSecureCore && connectionDetails.OriginalConnectionIntent.Location is CountryLocationIntent countryIntent && countryIntent.IsSpecificCountry
+        return connectionDetails != null &&
+               connectionDetails.IsSecureCore &&
+               connectionDetails.OriginalConnectionIntent.Location is CountryLocationIntent countryIntent &&
+               countryIntent.IsSpecificCountry
             ? $"{title} {subtitle}".Trim()
             : ConcatenateLocations(title, subtitle);
     }
@@ -344,7 +347,7 @@ public static class LocalizationExtensions
         return "• " + string.Join(separator, lines);
     }
 
-    private static string GetStateOrCityName(string state, string city)
+    private static string GetStateOrCityName(string? state, string city)
     {
         return string.IsNullOrWhiteSpace(state)
             ? city

@@ -22,26 +22,21 @@ using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using ProtonVPN.Api.Extensions;
 
-namespace ProtonVPN.Api.Handlers.TlsPinning
+namespace ProtonVPN.Api.Handlers.TlsPinning;
+
+public class PublicKeyInfoHash
 {
-    public class PublicKeyInfoHash
+    private readonly X509Certificate _certificate;
+
+    public PublicKeyInfoHash(X509Certificate certificate)
     {
-        private readonly X509Certificate _certificate;
+        _certificate = certificate;
+    }
 
-        public PublicKeyInfoHash(X509Certificate certificate)
-        {
-            _certificate = certificate;
-        }
+    public string Value()
+    {
+        byte[] digest = SHA256.HashData(_certificate.GetSubjectPublicKeyInfo());
 
-        public string Value()
-        {
-            byte[] digest;
-            using (var sha256 = new SHA256CryptoServiceProvider())
-            {
-                digest = sha256.ComputeHash(_certificate.GetSubjectPublicKeyInfo());
-            }
-
-            return Convert.ToBase64String(digest);
-        }
+        return Convert.ToBase64String(digest);
     }
 }

@@ -46,7 +46,7 @@ public class ConnectionProfile : ConnectionIntentBase, IConnectionProfile
         DateTime creationDateTimeUtc,
         IProfileSettings settings,
         ILocationIntent location,
-        IFeatureIntent feature = null,
+        IFeatureIntent? feature = null,
         string name = "",
         ProfileCategory category = DEFAULT_CATEGORY,
         ProfileColor color = DEFAULT_COLOR)
@@ -61,17 +61,17 @@ public class ConnectionProfile : ConnectionIntentBase, IConnectionProfile
         Color = color;
     }
 
-    public ConnectionProfile(ILocationIntent location, IFeatureIntent feature = null)
+    public ConnectionProfile(ILocationIntent location, IFeatureIntent? feature = null)
         : this(Guid.NewGuid(), DateTime.UtcNow, ProfileSettings.Default, location, feature)
     { }
 
-    public override bool IsSameAs(IConnectionIntent intent)
+    public override bool IsSameAs(IConnectionIntent? intent)
     {
         return intent is ConnectionProfile profile
             && profile.Id == Id;
     }
 
-    public void UpdateIntent(ILocationIntent locationIntent, IFeatureIntent featureIntent = null)
+    public void UpdateIntent(ILocationIntent locationIntent, IFeatureIntent? featureIntent = null)
     {
         Location = locationIntent;
         Feature = featureIntent;

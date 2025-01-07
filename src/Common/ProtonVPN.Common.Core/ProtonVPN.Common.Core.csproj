@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
+        <OutputType>Library</OutputType>
         <ImplicitUsings>enable</ImplicitUsings>
         <OutputPath>..\..\bin</OutputPath>
         <Nullable>enable</Nullable>
@@ -12,5 +13,8 @@
     </ItemGroup>
     <ItemGroup>
         <Folder Include="Properties\" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="System.ServiceProcess.ServiceController" />
     </ItemGroup>
 </Project>

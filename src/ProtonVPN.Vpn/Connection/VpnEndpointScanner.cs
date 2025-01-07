@@ -204,7 +204,7 @@ public class VpnEndpointScanner : IEndpointScanner
         CancellationToken cancellationToken)
     {
         return await IsEndpointAliveAsync(async timeoutTask =>
-            await _udpPingClient.Ping(ip, port, serverKeyBase64, timeoutTask), cancellationToken);
+            await _udpPingClient.PingAsync(ip, port, serverKeyBase64, timeoutTask), cancellationToken);
     }
 
     private async Task<bool> IsEndpointAliveAsync(Func<Task, Task<bool>> func, CancellationToken cancellationToken)

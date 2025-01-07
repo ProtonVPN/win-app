@@ -181,7 +181,7 @@ public class ConnectionManager : IInternalConnectionManager,
 
         CurrentConnectionIntent = connectionIntent;
 
-        _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Reconnection attempt to: {connectionIntent?.ToString() ?? "<no intent>"}.");
+        _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Reconnection attempt to: {connectionIntent}.");
 
 
         SetConnectionStatus(ConnectionStatus.Connecting);
