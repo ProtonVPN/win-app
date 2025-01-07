@@ -31,7 +31,7 @@ using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Api.Handlers;
 using ProtonVPN.Api.Tests.Mocks;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Common.Legacy.Extensions;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.UserLogs;
 using ProtonVPN.Tests.Common.Breakpoints;

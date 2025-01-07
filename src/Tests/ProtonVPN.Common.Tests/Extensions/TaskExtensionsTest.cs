@@ -22,9 +22,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Common.Legacy.Extensions;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Tests.Common.Breakpoints;
-using TaskExtensions = ProtonVPN.Common.Legacy.Extensions.TaskExtensions;
+using TaskExtensions = ProtonVPN.Common.Core.Extensions.TaskExtensions;
 
 namespace ProtonVPN.Common.Tests.Extensions
 {

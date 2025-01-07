@@ -31,7 +31,6 @@ using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
@@ -168,6 +167,11 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
     [RelayCommand]
     public async Task AddAppAsync()
     {
+        if (_mainWindowActivator.Window == null)
+        {
+            return;
+        }
+
         ObservableCollection<SplitTunnelingAppViewModel> apps = GetApps();
         string filePath = await _mainWindowActivator.Window.PickSingleFileAsync(Localizer.Get("Settings_Connection_SplitTunneling_Apps_FilesFilterName"), [EXE_FILE_EXTENSION]);
         if (!IsValidAppPath(filePath))

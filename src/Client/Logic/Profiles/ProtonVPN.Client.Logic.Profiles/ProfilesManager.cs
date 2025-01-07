@@ -26,14 +26,12 @@ using ProtonVPN.Client.Logic.Profiles.Files;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Logic.Profiles;
 
 public class ProfilesManager : IProfilesManager,
     IEventMessageReceiver<LoggedInMessage>
 {
-    private readonly ILogger _logger;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IProfilesFileReaderWriter _profilesFileReaderWriter;
     private readonly IDefaultProfilesProvider _defaultProfilesProvider;
@@ -44,13 +42,11 @@ public class ProfilesManager : IProfilesManager,
     private List<IConnectionProfile> _profiles = new();
 
     public ProfilesManager(
-        ILogger logger,
         IEventMessageSender eventMessageSender,
         IProfilesFileReaderWriter profilesFileReaderWriter,
         IDefaultProfilesProvider defaultProfilesProvider,
         ISettings settings)
     {
-        _logger = logger;
         _eventMessageSender = eventMessageSender;
         _profilesFileReaderWriter = profilesFileReaderWriter;
         _defaultProfilesProvider = defaultProfilesProvider;

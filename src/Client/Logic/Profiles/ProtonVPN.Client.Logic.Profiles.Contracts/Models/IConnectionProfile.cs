@@ -40,5 +40,5 @@ public interface IConnectionProfile : IConnectionIntent
 
     ProfileColor Color { get; set; }
 
-    void UpdateIntent(ILocationIntent locationIntent, IFeatureIntent featureIntent = null);
+    void UpdateIntent(ILocationIntent locationIntent, IFeatureIntent? featureIntent = null);
 }

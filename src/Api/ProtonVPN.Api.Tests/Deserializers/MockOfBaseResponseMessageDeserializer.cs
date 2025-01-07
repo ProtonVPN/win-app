@@ -28,9 +28,9 @@ namespace ProtonVPN.Api.Tests.Deserializers
     {
         public BaseResponse ExpectedBaseResponse { get; set; }
 
-        public async Task<BaseResponse> DeserializeAsync(HttpResponseMessage response)
+        public Task<BaseResponse> DeserializeAsync(HttpResponseMessage response)
         {
-            return ExpectedBaseResponse;
+            return Task.FromResult(ExpectedBaseResponse);
         }
     }
 }

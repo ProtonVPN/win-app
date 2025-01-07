@@ -66,29 +66,20 @@ namespace ProtonVPN.Api.Handlers.Retries
         {
             return Policy
                 .HandleResult<HttpResponseMessage>(response => response.IsToRetryOnce())
-                .WaitAndRetryAsync(1, _ => TimeSpan.Zero, OnRetryAsync(request));
+                .WaitAndRetryAsync(1, _ => TimeSpan.Zero);
         }
 
         private Func<DelegateResult<HttpResponseMessage>, TimeSpan, int, Context, Task> OnRetryAsync(HttpRequestMessage request)
         {
-            async Task RetryAsyncFunction(DelegateResult<HttpResponseMessage> response, TimeSpan timeSpan, int retryCount,
-                Context _)
+            Task RetryAsyncFunction(DelegateResult<HttpResponseMessage> response, TimeSpan timeSpan, int retryCount, Context _)
             {
                 _logger.Info<ApiLog>(GetRetryLogMessage(request, timeSpan, retryCount,
                     GetReasonByHttpStatusCode(response.Result.StatusCode)));
 
-                DisposeHttpClientConnection(response.Result);
+                return Task.CompletedTask;
             }
 
             return RetryAsyncFunction;
-        }
-
-        /// <summary>To free an HttpClient connection on .NET Framework 4.7.2 you need to either read the response content
-        /// or dispose the response, otherwise the 3rd try attempt will fail (with the default of 2 max connections).
-        /// https://github.com/App-vNext/Polly/issues/642 </summary>
-        private void DisposeHttpClientConnection(HttpResponseMessage responseMessage)
-        {
-            responseMessage.Dispose();
         }
 
         private AsyncPolicy<HttpResponseMessage> GetResponseMessageRetryPolicy(HttpRequestMessage request)

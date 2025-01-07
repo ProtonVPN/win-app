@@ -19,17 +19,17 @@
 
 using System;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Legacy.Go;
-using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Vpn.LocalAgent;
 
 namespace ProtonVPN.Vpn.PortScanning;
 
 public class UdpPingClient
 {
-    private static readonly int TimeoutInMilliseconds = 3000;
+    private const int TIMEOUT_IN_MILLISECONDS = 3000;
 
-    public async Task<bool> Ping(string ip, int port, string serverKeyBase64, Task timeoutTask)
+    public async Task<bool> PingAsync(string ip, int port, string serverKeyBase64, Task timeoutTask)
     {
         try
         {
@@ -37,7 +37,7 @@ public class UdpPingClient
             {
                 using GoString ipGoString = ip.ToGoString();
                 using GoString serverKeyBase64GoString = serverKeyBase64.ToGoString();
-                return PInvoke.Ping(ipGoString, port, serverKeyBase64GoString, TimeoutInMilliseconds);
+                return PInvoke.Ping(ipGoString, port, serverKeyBase64GoString, TIMEOUT_IN_MILLISECONDS);
             }).WithTimeout(timeoutTask);
 
             return result;

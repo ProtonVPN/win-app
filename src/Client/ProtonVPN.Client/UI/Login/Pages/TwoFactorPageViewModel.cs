@@ -40,8 +40,8 @@ public partial class TwoFactorPageViewModel : LoginPageViewModelBase
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IGuestHoleManager _guestHoleManager;
 
-    public event EventHandler OnTwoFactorFailure;
-    public event EventHandler OnTwoFactorSuccess;
+    public event EventHandler? OnTwoFactorFailure;
+    public event EventHandler? OnTwoFactorSuccess;
 
     [ObservableProperty]
     private bool _isToShowError;
