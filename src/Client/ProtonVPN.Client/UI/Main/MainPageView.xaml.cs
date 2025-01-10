@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -66,16 +66,6 @@ public sealed partial class MainPageView : IContextAware
         Navigator.Unload();
     }
 
-    private void OnSidebarPointerEntered(object sender, PointerRoutedEventArgs e)
-    {
-        ViewModel.OnSidebarInteractionStarted();
-    }
-
-    private void OnSidebarPointerExited(object sender, PointerRoutedEventArgs e)
-    {
-        ViewModel.OnSidebarInteractionEnded();
-    }
-
     private async void OnPointerPressed(object sender, PointerRoutedEventArgs e)
     {
         Point point = e.GetCurrentPoint(LayoutRoot).Position;
@@ -91,42 +81,5 @@ public sealed partial class MainPageView : IContextAware
         {
             await ViewModel.CloseCurrentSettingsPageAsync();
         }
-    }
-
-    private void OnSideWidgetsHostComponentSizeChanged(object sender, SizeChangedEventArgs e)
-    {
-        InvalidateWidgetsColumnnWidth();
-    }
-
-    private void OnSidebarComponentSizeChanged(object sender, SizeChangedEventArgs e)
-    {
-        InvalidateSidebarColumnWidth();
-    }
-
-    private void OnSidebarPaneClosing(SplitView sender, object args)
-    {
-        InvalidateSidebarColumnWidth();
-    }
-
-    private void OnSidebarPaneOpening(SplitView sender, object args)
-    {
-        InvalidateSidebarColumnWidth();
-    }
-
-    private void InvalidateSidebarColumnWidth()
-    {
-        double sidebarColumnWidth = MainSplitView.DisplayMode switch
-        {
-            SplitViewDisplayMode.CompactInline when !MainSplitView.IsPaneOpen => MainSplitView.CompactPaneLength,
-            SplitViewDisplayMode.CompactOverlay => MainSplitView.CompactPaneLength,
-            _ => MainSplitView.OpenPaneLength
-        };
-
-        HomeComponentView.SidebarWidth = sidebarColumnWidth;
-    }
-
-    private void InvalidateWidgetsColumnnWidth()
-    {
-        HomeComponentView.WidgetsBarWidth = SideWidgetsHostComponent.ActualWidth;
     }
 }
