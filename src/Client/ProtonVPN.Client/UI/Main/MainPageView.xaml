@@ -35,10 +35,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       mc:Ignorable="d">
 
     <Page.Resources>
-
-        <x:Double x:Key="WidgetComponentMinWidth">72.0</x:Double>
-        <x:Double x:Key="WidgetComponentMaxWidth">90.0</x:Double>
-
         <x:Double x:Key="SidebarComponentCompactWidth">62.0</x:Double>
         <x:Double x:Key="SidebarComponentMinWidth">200.0</x:Double>
         <x:Double x:Key="SidebarComponentMaxWidth">400.0</x:Double>
@@ -47,15 +43,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Grid x:Name="LayoutRoot"
           Background="{ThemeResource TransparentColorBrush}">
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="{Binding Source={StaticResource MainTitleBarHeight}, Converter={StaticResource DoubleToPixelGridLengthConverter}}" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <home:HomeComponentView x:Name="HomeComponentView"
-                                Grid.Row="0"
                                 Grid.RowSpan="2"
-                                IsHomeDisplayed="{x:Bind ViewModel.IsHomePageDisplayed}" />
+                                IsHomeDisplayed="{x:Bind ViewModel.IsHomePageDisplayed}"
+                                SidebarWidth="{x:Bind ViewModel.EffectiveSidebarWidth}"
+                                WidgetsBarWidth="{x:Bind ViewModel.WidgetBarWidth}" />
 
         <Grid Grid.Row="1"
               Margin="8,0,8,8"
@@ -68,21 +66,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <SplitView x:Name="MainSplitView"
                        CompactPaneLength="{StaticResource SidebarComponentCompactWidth}"
-                       DisplayMode="{x:Bind ViewModel.SidebarDisplayMode}"
+                       DisplayMode="{x:Bind ViewModel.SidebarDisplayMode, Mode=TwoWay}"
                        IsPaneOpen="{x:Bind ViewModel.IsSidebarExpanded, Mode=TwoWay}"
                        OpenPaneLength="{x:Bind ViewModel.SidebarWidth}"
-                       PaneBackground="{ThemeResource TransparentColorBrush}"
-                       PaneClosing="OnSidebarPaneClosing"
-                       PaneOpening="OnSidebarPaneOpening">
+                       PaneBackground="{ThemeResource TransparentColorBrush}">
 
                 <SplitView.Pane>
                     <sidebar:SidebarComponentView x:Name="SidebarComponent"
                                                   Grid.Column="0"
                                                   Canvas.ZIndex="2"
-                                                  IsSidebarExpanded="{x:Bind ViewModel.IsSidebarExpanded}"
-                                                  PointerEntered="OnSidebarPointerEntered"
-                                                  PointerExited="OnSidebarPointerExited"
-                                                  SizeChanged="OnSidebarComponentSizeChanged" />
+                                                  IsEnabled="{x:Bind ViewModel.IsHomePageDisplayed}"
+                                                  IsSidebarExpanded="{x:Bind MainSplitView.IsPaneOpen}"
+                                                  PointerEntered="{x:Bind ViewModel.OnSidebarInteractionStarted}"
+                                                  PointerExited="{x:Bind ViewModel.OnSidebarInteractionEnded}" />
                 </SplitView.Pane>
 
                 <Grid>
@@ -97,7 +93,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                 Binding="{x:Bind ViewModel.SidebarWidth, Mode=TwoWay}"
                                                 Maximum="{StaticResource SidebarComponentMaxWidth}"
                                                 Minimum="{StaticResource SidebarComponentMinWidth}"
-                                                Visibility="{x:Bind ViewModel.IsSidebarExpanded}" />
+                                                Visibility="{x:Bind ViewModel.IsSidebarExpanded, Converter={StaticResource BooleanToVisibilityConverter}}" />
                     </Border>
 
                     <Frame x:Name="MainNavigationFrame"
@@ -109,72 +105,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <widgets:SideWidgetsHostComponentView x:Name="SideWidgetsHostComponent"
                                                   Grid.Column="1"
+                                                  Width="{x:Bind ViewModel.WidgetBarWidth}"
                                                   Canvas.ZIndex="2"
-                                                  SizeChanged="OnSideWidgetsHostComponentSizeChanged" />
+                                                  IsEnabled="{x:Bind ViewModel.IsHomePageDisplayed}" />
 
         </Grid>
-
-        <VisualStateManager.VisualStateGroups>
-
-            <VisualStateGroup x:Name="NavigationStates">
-                <VisualState x:Name="OnHomePage">
-                    <VisualState.StateTriggers>
-                        <StateTrigger IsActive="{x:Bind ViewModel.IsHomePageDisplayed}" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="SidebarComponent.IsEnabled" Value="True" />
-                        <Setter Target="SideWidgetsHostComponent.IsEnabled" Value="True" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="NotOnHomePage">
-                    <VisualState.StateTriggers>
-                        <StateTrigger IsActive="True" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="SidebarComponent.IsEnabled" Value="False" />
-                        <Setter Target="SideWidgetsHostComponent.IsEnabled" Value="False" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-
-            <VisualStateGroup x:Name="SidebarStates">
-                <VisualState x:Name="Expanded">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{x:Bind ViewModel.SidebarWindowWidthThreshold, Mode=OneTime}" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="MainSplitView.IsPaneOpen" Value="True" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="Collapsed">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="MainSplitView.IsPaneOpen" Value="False" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-
-            <VisualStateGroup x:Name="WidgetComponentStates">
-                <VisualState x:Name="IconsAndLabels">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{x:Bind ViewModel.WidgetsWindowWidthThreshold, Mode=OneTime}" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="SideWidgetsHostComponent.Width" Value="{StaticResource WidgetComponentMaxWidth}" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="IconsOnly">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="SideWidgetsHostComponent.Width" Value="{StaticResource WidgetComponentMinWidth}" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
+        
     </Grid>
 
 </Page>
