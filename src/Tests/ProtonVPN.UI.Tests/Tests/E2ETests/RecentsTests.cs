@@ -45,7 +45,7 @@ public class RecentsTests : BaseTest
         SidebarRobot.NavigateToRecents()
             .Verify.NoRecentsLabelIsDisplayed();
 
-        HomeRobot.ConnectToDefaultConnection()
+        HomeRobot.ConnectViaConnectionCard()
             .Verify.IsConnected()
             .Disconnect()
             .Verify.IsDisconnected();

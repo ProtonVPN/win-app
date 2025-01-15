@@ -52,14 +52,14 @@ public class StealthSLIs : SliSetUp
             .CloseSettings();
 
         // Two time connection is needed to test real conditions, when everything was setup.
-        HomeRobot.ConnectToDefaultConnection()
+        HomeRobot.ConnectViaConnectionCard()
             .Verify.IsConnected();
         HomeRobot.Disconnect();
 
         // Imitate users delay
         Thread.Sleep(TestConstants.TenSecondsTimeout);
 
-        HomeRobot.ConnectToDefaultConnection();
+        HomeRobot.ConnectViaConnectionCard();
         SliHelper.MeasureTime(() =>
         {
             HomeRobot.Verify.IsConnected();

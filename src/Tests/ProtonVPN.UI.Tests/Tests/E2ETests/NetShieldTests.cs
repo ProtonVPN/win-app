@@ -76,10 +76,41 @@ public class NetShieldTests : FreshSessionSetUp
             .Verify.NetshieldIsNotBlocking();
     }
 
+    [Test]
+    public void PaidSettingsAreNotTransferedOnPaidToFreeUserSwitch()
+    {
+        SettingRobot
+            .OpenSettings()
+            .OpenNetShieldSettings()
+            .SelectNetShieldMode(NetShieldMode.BlockAdsMalwareTrackers)
+            .ApplySettings()
+            .CloseSettings();
+
+        HomeRobot
+            .ConnectViaConnectionCard()
+            .Verify.IsConnected();
+        SettingRobot
+            .Verify.NetshieldIsBlocking(NetShieldMode.BlockAdsMalwareTrackers);
+
+        SettingRobot.OpenSettings()
+            .ExpandAccountDropdown()
+            .SignOut()
+            .ConfirmSignOut();
+
+        CommonUiFlows.FullLogin(TestUserData.FreeUser);
+
+        HomeRobot.ConnectViaConnectionCard()
+            .Verify.IsConnected();
+
+        SettingRobot.Verify.NetshieldIsNotBlocking()
+            .OpenSettings()
+            .Verify.NetshieldShowsDisableState();
+    }
+
     private void ConnectAndVerifyIsConnected()
     {
         HomeRobot
-            .ConnectToDefaultConnection()
+            .ConnectViaConnectionCard()
             .Verify.IsConnected();
     }
 }

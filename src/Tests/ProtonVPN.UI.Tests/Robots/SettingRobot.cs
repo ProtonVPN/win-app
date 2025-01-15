@@ -37,10 +37,14 @@ public class SettingRobot
     protected Element CloseSettingsButton = Element.ByAutomationId("CloseSettingsButton");
     protected Element ReconnectButton = Element.ByName("Reconnect");
     protected Element SettingsButton = Element.ByAutomationId("SettingsButton");
+
     protected Element NetShieldSettingsCard = Element.ByAutomationId("NetShieldSettingsCard");
     protected Element ProtocolSettingsCard = Element.ByAutomationId("ProtocolSettingsCard");
     protected Element AdvancedSettingsCard = Element.ByAutomationId("AdvancedSettingsCard");
+    protected Element PortForwardingSettingsCard = Element.ByAutomationId("PortForwardingSettingsCard");
     protected Element SplitTunnelingSettingsCard = Element.ByAutomationId("SplitTunnelingSettingsCard");
+    protected Element VpnAcceleratorSettingsCard = Element.ByAutomationId("VpnAcceleratorSettingsCard");
+
     protected Element GoBackButton = Element.ByAutomationId("GoBackButton");
     protected Element AccountButton = Element.ByAutomationId("AccountButton");
     protected Element SignOutButton = Element.ByName("Sign out");
@@ -73,8 +77,12 @@ public class SettingRobot
     public SettingRobot OpenNetShieldSettings()
     {
         NetShieldSettingsCard.Click();
-        // Remove when VPNWIN-2599 is implemented.
-        Thread.Sleep(TestConstants.AnimationDelay);
+        return this;
+    }
+
+    public SettingRobot OpenProtocolSettings()
+    {
+        ProtocolSettingsCard.Click();
         return this;
     }
 
@@ -84,11 +92,21 @@ public class SettingRobot
         return this;
     }
 
-    public SettingRobot OpenProtocolSettings()
+    public SettingRobot OpenPortForwardingSettings()
     {
-        ProtocolSettingsCard.Click();
-        // Remove when VPNWIN-2599 is implemented.
-        Thread.Sleep(TestConstants.AnimationDelay);
+        PortForwardingSettingsCard.Click();
+        return this;
+    }
+
+    public SettingRobot OpenSplitTunnelingSettingsCard()
+    {
+        SplitTunnelingSettingsCard.Click();
+        return this;
+    }
+
+    public SettingRobot OpenVpnAcceleratorSettingsCard()
+    {
+        VpnAcceleratorSettingsCard.Click();
         return this;
     }
 

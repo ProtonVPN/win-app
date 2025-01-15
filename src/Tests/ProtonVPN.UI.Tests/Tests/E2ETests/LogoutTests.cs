@@ -38,7 +38,7 @@ public class LogoutTests : FreshSessionSetUp
     [Test]
     public void LogoutWhileConnectedToVpn()
     {
-        HomeRobot.ConnectToDefaultConnection()
+        HomeRobot.ConnectViaConnectionCard()
             .Verify.IsConnected();
 
         string ipAddressConnected = NetworkUtils.GetIpAddress();
@@ -58,7 +58,7 @@ public class LogoutTests : FreshSessionSetUp
     [Test]
     public void CancelLogoutWhileConnectedToVpn()
     {
-        HomeRobot.ConnectToDefaultConnection()
+        HomeRobot.ConnectViaConnectionCard()
             .Verify.IsConnected();
 
         SettingRobot.OpenSettings()
