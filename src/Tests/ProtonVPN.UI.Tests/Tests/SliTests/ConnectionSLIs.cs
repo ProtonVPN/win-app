@@ -78,7 +78,7 @@ public class ConnectionSLIs : SliSetUp
     {
         // First connection is made to make sure that everything is setup
         HomeRobot
-            .ConnectToDefaultConnection()
+            .ConnectViaConnectionCard()
             .Verify.IsConnected();
 
         HomeRobot.Disconnect();
@@ -86,7 +86,7 @@ public class ConnectionSLIs : SliSetUp
         // Simulate users delay
         Thread.Sleep(TestConstants.TenSecondsTimeout);
 
-        HomeRobot.ConnectToDefaultConnection();
+        HomeRobot.ConnectViaConnectionCard();
 
         SliHelper.MeasureTime(() =>
         {

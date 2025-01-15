@@ -49,6 +49,16 @@ public class SidebarRobot
     protected Element CitySecondaryButton = Element.ByAutomationId("SecondaryButton");
     protected Element SpecificServerConnectionButton = Element.ByAutomationId("ConnectionRowHeader");
 
+    protected Element NetshieldButton = Element.ByName("NetShield");
+    protected Element PortForwardingButton = Element.ByName("Port forwarding");
+    protected Element SplitTunnelingButton = Element.ByName("Split tunneling");
+
+    protected Element WorldWideCoverageLabel = Element.ByName("Get worldwide coverage with VPN Plus");
+    protected Element ProfileSidebarUpsellLabel = Element.ByName("Configure your own VPN settings and connect in one click.");
+    protected Element SecureCoreSidebarUpsellLabel = Element.ByName("Add another layer of encryption to your VPN connection");
+    protected Element P2pSidebarUpsellLabel = Element.ByName("Download files through BitTorrent and other file sharing protocols");
+    protected Element TorSidebarUpsellLabel = Element.ByName("Use the Tor network over your VPN connection for extra privacy");
+
     public SidebarRobot NavigateToCountries()
     {
         CountriesListItem.Click();
@@ -58,6 +68,24 @@ public class SidebarRobot
     public SidebarRobot NavigateToRecents()
     {
         RecentsLabel.Click();
+        return this;
+    }
+
+    public SidebarRobot ClickOnNetshieldSetting()
+    {
+        NetshieldButton.Click();
+        return this;
+    }
+
+    public SidebarRobot ClickOnPortForwardingButton()
+    {
+        PortForwardingButton.Click();
+        return this;
+    }
+
+    public SidebarRobot ClickOnSplitTunnelingButton()
+    {
+        SplitTunnelingButton.Click();
         return this;
     }
 
@@ -238,6 +266,36 @@ public class SidebarRobot
         public Verifications ConnectionItemExists(string connectionItemName)
         {
             Element.ByName(connectionItemName).WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications AllCountriesUpsellIsDisplayed()
+        {
+            WorldWideCoverageLabel.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications SecureCoreUpsellIsDisplayed()
+        {
+            SecureCoreSidebarUpsellLabel.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications P2pUpsellIsDisplayed()
+        {
+            P2pSidebarUpsellLabel.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications TorUpsellIsDisplayed()
+        {
+            TorSidebarUpsellLabel.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications ProfileUpsellLabelIsDisplayed()
+        {
+            ProfileSidebarUpsellLabel.WaitUntilDisplayed();
             return this;
         }
     }

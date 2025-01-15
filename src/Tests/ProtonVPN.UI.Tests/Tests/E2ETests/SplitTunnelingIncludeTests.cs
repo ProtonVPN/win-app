@@ -57,7 +57,7 @@ public class SplitTunnelingIncludeTests : BaseTest
             .CloseSettings();
 
         HomeRobot
-            .ConnectToDefaultConnection()
+            .ConnectViaConnectionCard()
             .Verify.IsConnected();
 
         NetworkUtils.VerifyIpAddressDoesNotMatchWithRetry(_ipAddressNotConnected);

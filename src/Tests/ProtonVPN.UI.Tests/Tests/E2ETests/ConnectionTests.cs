@@ -49,7 +49,7 @@ public class ConnectionTests : FreshSessionSetUp
 
         HomeRobot
             .Verify.IsDisconnected()
-            .ConnectToDefaultConnection()
+            .ConnectViaConnectionCard()
             .Verify.IsConnecting()
                    .IsConnected();
 
@@ -105,7 +105,7 @@ public class ConnectionTests : FreshSessionSetUp
     [Category("ARM")]
     public void ConnectAndCancel()
     {
-        HomeRobot.ConnectToDefaultConnection()
+        HomeRobot.ConnectViaConnectionCard()
             .Verify.IsConnecting();
         // Imitate user's delay
         Thread.Sleep(500);
@@ -118,7 +118,7 @@ public class ConnectionTests : FreshSessionSetUp
     {
         HomeRobot
             .Verify.IsDisconnected()
-            .ConnectToDefaultConnection()
+            .ConnectViaConnectionCard()
             .Verify.IsConnecting()
                    .IsConnected();
 

@@ -48,6 +48,10 @@ public class HomeRobot
     protected Element ConnectionCardChangeServerButton = Element.ByAutomationId("ConnectionCardChangeServerButton");
     protected Element ConnectionCardChangeServerTimeoutButton = Element.ByAutomationId("ConnectionCardChangeServerTimeoutButton");
     protected Element ConnectionCardUpsellBanner = Element.ByAutomationId("ConnectionCardUpsellBanner");
+    protected Element NotTheCountryWantedLabel = Element.ByName("Not the country you wanted?");
+    protected Element UpgradeYourServerLabel = Element.ByName("Upgrade to choose any server.");
+    protected Element ServerChangesUpsellLabel = Element.ByName("Get unlimited server changes with VPN Plus.");
+    protected Element UpgradeButton = Element.ByName("Upgrade");
 
     public HomeRobot DismissWelcomeModal()
     {
@@ -55,7 +59,7 @@ public class HomeRobot
         return this;
     }
 
-    public HomeRobot ConnectToDefaultConnection()
+    public HomeRobot ConnectViaConnectionCard()
     {
         ConnectionCardConnectButton.Click();
         return this;
@@ -72,6 +76,7 @@ public class HomeRobot
         ConnectionCardDisconnectButton.Click();
         return this;
     }
+
     public HomeRobot ClickOnProtocolConnectionDetails()
     {
         ConnectionDetailsProtocol.Click();
@@ -112,6 +117,18 @@ public class HomeRobot
         return this;
     }
 
+    public HomeRobot ChangeServer()
+    {
+        ConnectionCardChangeServerButton.Click();
+        return this;
+    }
+
+    public HomeRobot ClickLockedChangedServer()
+    {
+        ConnectionCardChangeServerTimeoutButton.Click();
+        return this;
+    }
+
     public class Verifications : HomeRobot
     {
         public Verifications WelcomeModalIsDisplayed()
@@ -137,6 +154,40 @@ public class HomeRobot
         {
             ProtectedLabel.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
             ConnectionCardDisconnectButton.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
+            return this;
+        }
+
+        public Verifications IsChangeServerNotLocked()
+        {
+            ConnectionCardConnectButton.DoesNotExist();
+            ConnectionCardChangeServerTimeoutButton.DoesNotExist();
+            ConnectionCardChangeServerButton.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications IsChangeServerLocked()
+        {
+            ConnectionCardChangeServerTimeoutButton.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications NotTheCountryWantedBannerIsDisplayed()
+        {
+            NotTheCountryWantedLabel.WaitUntilDisplayed();
+            UpgradeYourServerLabel.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications UnlimitedServersChangesUpsellIsDisplayed()
+        {
+            ServerChangesUpsellLabel.WaitUntilDisplayed();
+            UpgradeButton.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications ConnectionCardFreeConnectionsTaglineIsDisplayed()
+        {
+            ConnectionCardFreeConnectionsTagline.WaitUntilDisplayed();
             return this;
         }
 

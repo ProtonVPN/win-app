@@ -73,7 +73,7 @@ public class CustomDnsTests : BaseTest
             .ApplySettings()
             .CloseSettings();
         
-        HomeRobot.ConnectToDefaultConnection()
+        HomeRobot.ConnectViaConnectionCard()
             .Verify.IsConnected();
 
         AdvancedSettingsRobot.Verify.CustomDnsIsSet(CUSTOM_DNS_SERVER);
