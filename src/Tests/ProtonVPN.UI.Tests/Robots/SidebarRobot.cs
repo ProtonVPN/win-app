@@ -172,8 +172,7 @@ public class SidebarRobot
     {
         Element countryButton = Element.ByAutomationId($"Actions_for_{connectionValue}");
         Element secondaryActionsButton = countryButton.FindChild(Element.ByAutomationId("SecondaryButton"));
-        countryButton.MoveMouse();
-        secondaryActionsButton.Click();
+        secondaryActionsButton.Invoke();
         return this;
     }
 

@@ -35,7 +35,7 @@ public static class UiActions
     public static T Click<T>(this T desiredElement) where T : Element
     {
         AutomationElement elementToClick = WaitUntilExists(desiredElement);
-        elementToClick.WaitUntilClickable();
+        elementToClick.WaitUntilClickable(TestConstants.TenSecondsTimeout);
         elementToClick.Click();
         return desiredElement;
     }
@@ -43,7 +43,7 @@ public static class UiActions
     public static T DoubleClick<T>(this T desiredElement) where T : Element
     {
         AutomationElement elementToClick = WaitUntilExists(desiredElement);
-        elementToClick.WaitUntilClickable();
+        elementToClick.WaitUntilClickable(TestConstants.TenSecondsTimeout);
         elementToClick.DoubleClick();
         return desiredElement;
     }
@@ -52,7 +52,7 @@ public static class UiActions
     {
         AutomationElement element = WaitUntilExists(desiredElement);
         Mouse.MovePixelsPerMillisecond = 100;
-        Point clickablePoint = element.WaitUntilClickable().GetClickablePoint();
+        Point clickablePoint = element.WaitUntilClickable(TestConstants.TenSecondsTimeout).GetClickablePoint();
         Mouse.MoveTo(clickablePoint.X + offsetX, clickablePoint.Y + offsetY);
         return desiredElement;
     }
@@ -60,7 +60,7 @@ public static class UiActions
     public static T Invoke<T>(this T desiredElement) where T : Element
     {
         AutomationElement elementToClick = WaitUntilExists(desiredElement);
-        elementToClick.WaitUntilClickable();
+        elementToClick.WaitUntilClickable(TestConstants.TenSecondsTimeout);
         elementToClick.AsButton().Invoke();
         return desiredElement;
     }
