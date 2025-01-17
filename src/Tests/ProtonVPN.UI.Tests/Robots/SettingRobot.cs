@@ -45,6 +45,7 @@ public class SettingRobot
     protected Element SplitTunnelingSettingsCard = Element.ByAutomationId("SplitTunnelingSettingsCard");
     protected Element VpnAcceleratorSettingsCard = Element.ByAutomationId("VpnAcceleratorSettingsCard");
 
+    protected Element AutoStartupSettingsCard = Element.ByAutomationId("AutoStartupSettingsCard");
     protected Element GoBackButton = Element.ByAutomationId("GoBackButton");
     protected Element AccountButton = Element.ByAutomationId("AccountButton");
     protected Element SignOutButton = Element.ByName("Sign out");
@@ -55,6 +56,9 @@ public class SettingRobot
     protected Element NetshieldToggle = Element.ByAutomationId("NetshieldToggle");
     protected Element NetShieldLevelOneRadioButton = Element.ByAutomationId("NetShieldLevelOne");
     protected Element NetShieldLevelTwoRadioButton = Element.ByAutomationId("NetShieldLevelTwo");
+
+    protected Element AutoLaunchToggle = Element.ByAutomationId("AutoLaunchToggle");
+    protected Element AutoConnectToggle = Element.ByAutomationId("AutoConnectToggle");
 
     protected Element OpenVpnTcpProtocolRadioButton = Element.ByAutomationId("OpenVpnTcpProtocolRadioButton");
     protected Element OpenVpnUdpProtocolRadioButton = Element.ByAutomationId("OpenVpnUdpProtocolRadioButton");
@@ -114,6 +118,12 @@ public class SettingRobot
     {
         // Due to focus issues double click is required to trigger click event.
         SignOutButton.DoubleClick();
+        return this;
+    }
+
+    public SettingRobot OpenAutoStartupSettings()
+    {
+        AutoStartupSettingsCard.Click();
         return this;
     }
 
@@ -182,6 +192,18 @@ public class SettingRobot
     public SettingRobot ToggleNetShieldSetting()
     {
         NetshieldToggle.Click();
+        return this;
+    }
+
+    public SettingRobot ToggleAutoLaunchSetting()
+    {
+        AutoLaunchToggle.Click();
+        return this;
+    }
+
+    public SettingRobot ToggleAutoConnectionSetting()
+    {
+        AutoConnectToggle.Click();
         return this;
     }
 
@@ -255,6 +277,12 @@ public class SettingRobot
         public Verifications SettingsPageIsDisplayed()
         {
             SettingsPage.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications AutoConnectIsEnabled()
+        {
+            AutoConnectToggle.IsToggled();
             return this;
         }
     }
