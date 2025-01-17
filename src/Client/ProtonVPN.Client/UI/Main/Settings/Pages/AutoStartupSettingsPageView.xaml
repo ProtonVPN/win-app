@@ -52,7 +52,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                       Header="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoLaunch')}"
                                       IsExpanded="{x:Bind ViewModel.IsAutoLaunchEnabled}">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsAutoLaunchEnabled, Mode=TwoWay}"
-                              Style="{StaticResource ToggleSwitchStyle}" />
+                              Style="{StaticResource ToggleSwitchStyle}"
+                              AutomationProperties.AutomationId="AutoLaunchToggle"/>
                 <toolkit:SettingsExpander.Items>
                     <StackPanel Spacing="16">
                         <RadioButton Content="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoLaunch_SystemTray')}"
@@ -72,7 +73,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                   Header="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoConnect')}"
                                   Style="{StaticResource DefaultSettingsCardStyle}">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsAutoConnectEnabled, Mode=TwoWay}"
-                              Style="{StaticResource ToggleSwitchStyle}" />
+                              Style="{StaticResource ToggleSwitchStyle}"
+                              AutomationProperties.AutomationId="AutoConnectToggle"/>
             </toolkit:SettingsCard>
 
         </StackPanel>

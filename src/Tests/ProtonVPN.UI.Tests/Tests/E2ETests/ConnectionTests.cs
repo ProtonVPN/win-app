@@ -124,4 +124,73 @@ public class ConnectionTests : FreshSessionSetUp
 
         NetworkUtils.VerifyIfLocalNetworkingWorks();
     }
+
+    [Test]
+    public void AutoConnectionOn()
+    {
+        SettingRobot
+            .OpenSettings()
+            .OpenAutoStartupSettings()
+            .Verify.AutoConnectIsEnabled()
+            .ToggleAutoLaunchSetting()
+            .ApplySettings();
+
+        App.Close();
+        App.Dispose();
+
+        LaunchApp(isFreshStart: false);
+        HomeRobot.Verify.IsConnected();
+    }
+
+    [Test]
+    public void AutoConnectionOff()
+    {
+        SettingRobot
+            .OpenSettings()
+            .OpenAutoStartupSettings()
+            .Verify.AutoConnectIsEnabled()
+            .ToggleAutoLaunchSetting()
+            .ToggleAutoConnectionSetting()
+            .ApplySettings();
+
+        App.Close();
+        App.Dispose();
+
+        LaunchApp(isFreshStart: false);
+        HomeRobot.Verify.IsDisconnected();
+    }
+
+    [Test]
+    public void ClientKillDoesNotStopVpnConnection()
+    {
+        SettingRobot
+           .OpenSettings()
+           .OpenAutoStartupSettings()
+           .ToggleAutoLaunchSetting()
+           .ToggleAutoConnectionSetting()
+           .ApplySettings()
+           .CloseSettings();
+
+        HomeRobot.ConnectViaConnectionCard()
+            .Verify.IsConnected();
+
+        string ipAddressBeforeClientKill = NetworkUtils.GetIpAddress();
+
+        App.Kill();
+        // Delay to make sure that connection is not lost even after brief delay.
+        Thread.Sleep(5000);
+
+        string ipAddressAfterClientKill = NetworkUtils.GetIpAddress();
+        Assert.That(ipAddressBeforeClientKill.Equals(ipAddressAfterClientKill), Is.True,
+            $"VPN Connection was lost after app was killed. IP Address before client was killed: {ipAddressBeforeClientKill}." +
+            $" IP Address after client was killed: {ipAddressAfterClientKill}");
+
+        LaunchApp(isFreshStart: false);
+        HomeRobot.Verify.IsConnected();
+
+        string ipAddressAfterClientIsRestored = NetworkUtils.GetIpAddress();
+        Assert.That(ipAddressBeforeClientKill.Equals(ipAddressAfterClientIsRestored), Is.True,
+            $"VPN Connection was lost/reconnected after client was resumed. IP Address before client was killed: {ipAddressAfterClientIsRestored}." +
+            $" IP Address after client was restored: {ipAddressAfterClientIsRestored}");
+    }
 }

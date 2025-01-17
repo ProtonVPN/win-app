@@ -140,6 +140,13 @@ public static class UiActions
         Assert.That(element, Is.Null, $"Element {desiredElement.SelectorName} was found. But it should not exist.");
     }
 
+    public static void IsToggled<T>(this T desiredElement) where T : Element
+    {
+        WaitUntilExists(desiredElement);
+        AutomationElement element = FindFirstDescendantUsingChildren(desiredElement.Condition);
+        Assert.That(element.AsToggleButton().IsToggled, Is.True, $"Element {desiredElement.SelectorName} was not toggled.");
+    }
+
     private static AutomationElement WaitForElement<T>(
         T desiredElement,
         TimeSpan? time,
