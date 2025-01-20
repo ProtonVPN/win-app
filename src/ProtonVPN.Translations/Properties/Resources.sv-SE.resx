@@ -1702,7 +1702,7 @@ Följ &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="thes
     <comment>The subtitle of the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_OutdatedApp_btn_Quit">
-    <value>Sluta</value>
+    <value>Avsluta</value>
     <comment>The text on quit button in outdated app modal window</comment>
   </data>
   <data name="Dialogs_OutdatedApp_lbl_Downloading">

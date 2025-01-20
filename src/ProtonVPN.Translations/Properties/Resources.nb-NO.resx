@@ -239,7 +239,7 @@
     <comment>The text displayed in Account window for NetShield</comment>
   </data>
   <data name="Account_lbl_NoLogs">
-    <value>Streng ingen-loggførings-praksis</value>
+    <value>Streng politikk om ingen logger</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_P2P">
@@ -354,7 +354,7 @@
     <value>Oppdater</value>
   </data>
   <data name="BugReport_btn_GotIt">
-    <value>Ferdig</value>
+    <value>Utført</value>
   </data>
   <data name="BugReport_btn_LearnMore">
     <value>Lær mer</value>
@@ -482,7 +482,7 @@
     <comment>The VPN status displayed in Pinging overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_RetrievingConfiguration">
-    <value>Etablering av VPN-tunnel</value>
+    <value>Etablerer VPN-tunnel</value>
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_Waiting">
@@ -522,7 +522,7 @@
     <comment>The beginning of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_2">
-    <value>har mislyktes</value>
+    <value>mislyktes</value>
     <comment>The end of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_2_SecureCore">
@@ -948,7 +948,7 @@
     <comment>The name of IL country</comment>
   </data>
   <data name="Country_val_IM">
-    <value>Man</value>
+    <value>Isle of Man</value>
     <comment>The name of IM country</comment>
   </data>
   <data name="Country_val_IN">
@@ -1881,11 +1881,11 @@ Følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="diss
     <comment>The label for the new server in dialog windows</comment>
   </data>
   <data name="Dialogs_ttl_Question">
-    <value>Vær oppmerksom</value>
+    <value>Oppmerksomhet</value>
     <comment>The title of question message window</comment>
   </data>
   <data name="Dialogs_ttl_Warning">
-    <value>Vær oppmerksom</value>
+    <value>Oppmerksomhet</value>
     <comment>The title of warning message window</comment>
   </data>
   <data name="ErrorWindow_lbl_Close">
@@ -2064,7 +2064,7 @@ Følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="diss
     <comment>The part of text displayed in a balloon above Secure Core Pin in Map. The full text is "(Secure Core) country name".</comment>
   </data>
   <data name="Modal_ChangeServer_Subtitle">
-    <value>Skaff deg ubegrensede bytter med VPN Plus</value>
+    <value>Skaff deg ubegrenset antall bytter med VPN Plus</value>
   </data>
   <data name="Modal_ChangeServer_Title">
     <value>Du har nådd maksimalt antall gratis tjenerbytter for nå.</value>
@@ -2570,7 +2570,7 @@ Følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="diss
     <value>Gratis forbindelser (1)</value>
   </data>
   <data name="Servers_Load_lbl_IP">
-    <value>Tjener IP:</value>
+    <value>Tjener-IP:</value>
     <comment>The label for server IP address in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_IPAutoAssigned">

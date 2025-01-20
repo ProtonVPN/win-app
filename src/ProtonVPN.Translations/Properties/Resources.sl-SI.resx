@@ -2276,11 +2276,11 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="te
     <comment>The description of Fastest default profile displayed in Profiles window</comment>
   </data>
   <data name="Profiles_Profile_Description_val_Random">
-    <value>Vsakih drug strežnik</value>
+    <value>Vsakič drug strežnik</value>
     <comment>The description of Random default profile displayed in Profiles window</comment>
   </data>
   <data name="Profiles_Profile_Error_lbl_NotValid">
-    <value>Profila ni bilo mogoče shraniti.</value>
+    <value>Profila ni bilo mogoče shraniti:</value>
     <comment>The heading for list of validation errors in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_ColorEmpty">
@@ -2506,10 +2506,10 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="te
     <value>Posredovanje vrat vklopljeno</value>
   </data>
   <data name="QuickSettings_btn_SecureCoreOff">
-    <value>Varno jedro izklopljeno</value>
+    <value>Secure Core izklopljeno</value>
   </data>
   <data name="QuickSettings_btn_SecureCoreOn">
-    <value>Secure Core izklopljeno</value>
+    <value>Secure Core vklopljen</value>
   </data>
   <data name="QuickSettings_btn_Upgrade">
     <value>NADGRADI</value>
@@ -2868,7 +2868,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="te
     <comment>The label for Quick Connect combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_QuickConnect_Info">
-    <value>Gumb za hitro povezavo vas poveže z izbranim profilom.</value>
+    <value>Gumb za hitro povezovanje vas poveže z izbranim profilom.</value>
     <comment>The description of Quick Connect settings displayed in the tooltip of ( i ) image next to the label for Quick Connect combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_SmartReconnect">
@@ -2912,7 +2912,7 @@ Sledite &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="te
     <comment>The label for Connect on boot combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_ConnectOnAppStart_Info">
-    <value>Samodejno se povežite s profilom hitre povezave, ko se Proton VPN zažene.</value>
+    <value>Samodejno se povežite s profilom hitrega povezovanja, ko se Proton VPN zažene.</value>
     <comment>The description of Connect on boot setting displayed in the tooltip of ( i ) image next to the label for Connect on boot combo box in General tab of Settings window</comment>
   </data>
   <data name="Settings_General_lbl_EarlyAccess">
@@ -2980,7 +2980,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Spremeni strežnik</value>
   </data>
   <data name="Sidebar_Connection_btn_Connect">
-    <value>Hitra povezava</value>
+    <value>Hitro povezovanje</value>
     <comment>The text on Quick Connect button in Connection section of Sidebar section of main app window (connects to VPN using Quick Connect profile)</comment>
   </data>
   <data name="Sidebar_Connection_btn_Disconnect">
@@ -3282,7 +3282,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Shranite pogosto uporabljene povezave s &lt;Bold&gt;profili&lt;/Bold&gt;</value>
   </data>
   <data name="Upsell_CustomDns_Bullet3">
-    <value>Pridobite hitrejši dostop do svojih profilov s &lt;Bold&gt;hitro povezavo&lt;/Bold&gt;</value>
+    <value>Pridobite hitrejši dostop do svojih profilov s &lt;Bold&gt;hitrim povezovanjem&lt;/Bold&gt;</value>
   </data>
   <data name="Upsell_CustomDns_Title">
     <value>Odklenite napredno prilagoditev VPN</value>

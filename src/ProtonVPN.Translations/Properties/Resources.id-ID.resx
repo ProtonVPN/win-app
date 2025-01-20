@@ -2763,7 +2763,7 @@ Silakan ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Te
     <comment>The label for Protocol combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_DefaultProtocol_Info">
-    <value>Aktifkan Smart Protocol agar Anda dapat terhubung ke internet melalui protokol dan port yang memiliki kualitas sambungan terbaik secara otomatis.</value>
+    <value>Aktifkan Smart Protocol untuk menggunakan protokol dan port yang menjunjung kualitas sambungan terbaik secara otomatis.</value>
     <comment>The description of Default Protocol settings displayed in the tooltip of ( i ) image next to the label for Default Protocol combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat">
