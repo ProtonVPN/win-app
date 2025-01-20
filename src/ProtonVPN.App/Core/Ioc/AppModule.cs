@@ -256,6 +256,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<InsecureNetworkNotification>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.Register(c => new Language(
                     c.Resolve<IAppSettings>(),
+                    c.Resolve<ILogger>(),
                     c.Resolve<ILanguageProvider>(),
                     c.Resolve<IConfiguration>().DefaultLocale)) // REMOVE THIS CUSTOM REGISTRATION
                 .AsSelf()

@@ -281,7 +281,7 @@
     <comment>The title of Account window</comment>
   </data>
   <data name="Api_error_Timeout">
-    <value>Forespørselen din mislyktes. Vennligst prøv igjen.</value>
+    <value>Forespørselen din mislyktes. Prøv igjen.</value>
   </data>
   <data name="App_mnu_About">
     <value>Om</value>
@@ -454,7 +454,7 @@
     <comment>The message displayed in Issue Report window when sending Issue report fails</comment>
   </data>
   <data name="BugReport_msg_SendingInfo">
-    <value>Vennligst vent til sendeprosessen er ferdig</value>
+    <value>Vent til sendeprosessen er ferdig</value>
     <comment>The message displayed in Issue Report window while sending the report</comment>
   </data>
   <data name="BugReport_msg_SendingSucceeded">
@@ -1546,7 +1546,7 @@
     <value>Logg på igjen</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info1">
-    <value>For å starte reisen din i Proton VPN, vennligst tildel VPN-tilkoblinger til kontoen din eller en hvilken som helst annen underkonto.</value>
+    <value>For å starte reisen din i Proton VPN, tildel VPN-tilkoblinger til kontoen din eller en hvilken som helst annen underkonto.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Info2">
     <value>Dette trinnet tar bare noen få minutter. Etter det vil du kunne logge på og beskytte alle enhetene dine.</value>
@@ -1557,7 +1557,7 @@
   </data>
   <data name="Dialogs_Bfe_msg_info">
     <value>En av tjenestene som kreves av Proton VPN (Base Filtering Engine) kjører ikke.&lt;LineBreak/&gt;
-Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="disse"/&gt;&lt;/Hyperlink&gt; instruksjonene for å aktivere den igjen og prøv på nytt.</value>
+Følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="disse"/&gt;&lt;/Hyperlink&gt; instruksjonene for å aktivere den igjen og prøv på nytt.</value>
     <comment>The text on Base Filtering Engine dialog window</comment>
   </data>
   <data name="Dialogs_Delinquency_GoToBilling">
@@ -1612,7 +1612,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <comment>The text displayed in Disconnect modal window if the disconnect occurred with kill switch turned on.</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoServers">
-    <value>Det er ingen tjenere tilgjengelig akkurat nå for ditt valg. Vennligst velg et annet alternativ.</value>
+    <value>Det er ingen tjenere tilgjengelig akkurat nå for ditt valg. Velg et annet alternativ.</value>
     <comment>The error description displayed in Disconnect modal window if disconnected because there are no servers available to connect to</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_NoTap">
@@ -1624,7 +1624,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <comment>The error description displayed in Disconnect modal window if TAP adapter version is too low</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TapErrorHelp">
-    <value>Vennligst se denne støtte&lt;Hyperlink Command="{Binding OpenHelpArticleCommand}"&gt;artikkelen&lt;/Hyperlink&gt; for hvordan du fikser det.</value>
+    <value>Se denne støtte&lt;Hyperlink Command="{Binding OpenHelpArticleCommand}"&gt;artikkelen&lt;/Hyperlink&gt; for hvordan du fikser det.</value>
     <comment>The text displayed in Disconnect modal window if TAP error is detected</comment>
   </data>
   <data name="Dialogs_DisconnectError_msg_TlsCertificateError">
@@ -1673,7 +1673,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <value>Menneskelig verifisering</value>
   </data>
   <data name="Dialogs_IncorrectSystemTime_msg">
-    <value>Systemklokken din ser ut til å være ute av synkronisering, noe som kan forhindre at VPN-et kobles til. Vennligst se &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;her&lt;/Hyperlink&gt; for mer informasjon.</value>
+    <value>Systemklokken din ser ut til å være ute av synkronisering, noe som kan forhindre at VPN-et kobles til. Se &lt;Hyperlink Command="{Binding OpenKbArticleCommand}"&gt;her&lt;/Hyperlink&gt; for mer informasjon.</value>
   </data>
   <data name="Dialogs_KillSwitchConfirmation_msg">
     <value>Med permanent nødstopp, hvis VPN ikke er tilkoblet av en eller annen grunn, vil du ikke kunne få tilgang til internett.</value>
@@ -1682,11 +1682,11 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <value>Aktivere permanent nødstopp?</value>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Ok">
-    <value>Forstått</value>
+    <value>Skjønner</value>
     <comment>The ok button text in the Maximum Device Limit window when the user already has the highest subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Disconnect_Subtitle">
-    <value>Vennligst koble fra en annen enhet for å koble til denne.</value>
+    <value>Koble fra en annen enhet for å koble til denne.</value>
     <comment>The subtitle of the Maximum Device Limit window when the user already has the highest subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Title">
@@ -1698,7 +1698,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <comment>The upgrade button text in the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_MaximumDeviceLimit_Upgrade_Subtitle">
-    <value>Vennligst koble fra en annen enhet for å koble til denne, eller oppgrader til PLUS for å få opptil 10 enheter tilkoblet samtidig.</value>
+    <value>Koble fra en annen enhet for å koble til denne, eller oppgrader til PLUS for å få opptil 10 enheter tilkoblet samtidig.</value>
     <comment>The subtitle of the Maximum Device Limit window when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Dialogs_OutdatedApp_btn_Quit">
@@ -1722,7 +1722,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <comment>The text on update button in outdated app modal window</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg">
-    <value>Programversjonen du bruker, støttes ikke lenger. Vennligst oppdater til den nyeste versjonen så snart oppdateringen er tilgjengelig.</value>
+    <value>Programversjonen du bruker, støttes ikke lenger. Oppdater til den nyeste versjonen så snart oppdateringen er tilgjengelig.</value>
     <comment>The error message displayed on the outdated app window when the app version is outdated</comment>
   </data>
   <data name="Dialogs_OutdatedApp_msg_KillSwitchActive">
@@ -1730,7 +1730,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <comment>The error message displayed on the outdated app window when the app version is outdated and kill switch is enabled</comment>
   </data>
   <data name="Dialogs_P2PBlocked_msg_Blocked">
-    <value>Tilkoblingen din er deaktivert fordi du bruker en tjener som ikke støtter node-til-node-trafikk (P2P). P2P støttes ikke på gratis tjenere. Vennligst bruk en annen tjener for P2P.</value>
+    <value>Tilkoblingen din er deaktivert fordi du bruker en tjener som ikke støtter node-til-node-trafikk (P2P). P2P støttes ikke på gratis tjenere. Bruk en annen tjener for P2P.</value>
     <comment>The warning message displayed when P2P traffic is detected on servers not allowing it.</comment>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_msg">
@@ -1750,7 +1750,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <value>Oppdaterte Proton, enhetlig beskyttelse</value>
   </data>
   <data name="Dialogs_Rebranding_btn_GotIt_new_plans">
-    <value>Forstått</value>
+    <value>Skjønner</value>
   </data>
   <data name="Dialogs_SplitTunnelWarning_msg">
     <value>For at delt tunnelering skal fungere skikkelig, må du deaktivere nødstopp.</value>
@@ -1907,7 +1907,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <value>Reparer</value>
   </data>
   <data name="ErrorWindow_lbl_RepairInfo">
-    <value>Vennligst reparer installasjonen.</value>
+    <value>Reparer installasjonen din.</value>
   </data>
   <data name="KillSwitch">
     <value>Nødstopp</value>
@@ -1918,7 +1918,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <comment>The title of License window</comment>
   </data>
   <data name="Login_Error_msg_SessionExpired">
-    <value>Økten er utløpt. Vennligst logg på nytt.</value>
+    <value>Økten er utløpt. Logg på nytt.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
@@ -2100,7 +2100,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <value>Hva er nytt</value>
   </data>
   <data name="Modals_Rescope_btn_GotIt">
-    <value>Forstått</value>
+    <value>Skjønner</value>
   </data>
   <data name="NetShield">
     <value>NetShield</value>
@@ -2134,7 +2134,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <comment>The message displayed in the Insecure Wi-Fi notification when connected to insecure Wi-Fi network. The {0} is a placeholder for Wi-Fi network name.</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Disconnect_Description">
-    <value>Vennligst koble fra en annen enhet for å koble til denne.</value>
+    <value>Koble fra en annen enhet for å koble til denne.</value>
     <comment>The description of the Maximum Device Limit notification when the user already has the highest subscription plan</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Title">
@@ -2142,7 +2142,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <comment>The title of the Maximum Device Limit notification</comment>
   </data>
   <data name="Notifications_MaximumDeviceLimit_Upgrade_Description">
-    <value>Vennligst koble fra en annen enhet for å koble til denne, eller oppgrader til PLUS for å få opptil 10 enheter tilkoblet samtidig.</value>
+    <value>Koble fra en annen enhet for å koble til denne, eller oppgrader til PLUS for å få opptil 10 enheter tilkoblet samtidig.</value>
     <comment>The description of the Maximum Device Limit notification when the user can upgrade the subscription plan</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Description">
@@ -2230,7 +2230,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <value>Sett dette nummeret i BitTorrent-appen din for større hastighet.</value>
   </data>
   <data name="PortForwarding_lbl_ServerWarning">
-    <value>For å bruke Port-Viderekobling, vennligst &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;koble&lt;/Hyperlink&gt; til en tjener som støtter P2P.</value>
+    <value>For å bruke Port-Viderekobling, &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;koble&lt;/Hyperlink&gt; til en tjener som støtter P2P.</value>
   </data>
   <data name="ProfileConnector_msg_MissingAuthCert">
     <value>Proton VPN klarte ikke å hente autentiseringssertifikat på grunn av nettverksproblem.</value>
@@ -2248,11 +2248,11 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <comment>The heading for list of validation errors in Profile window</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_ColorEmpty">
-    <value>Vennligst velg en farge</value>
+    <value>Velg en farge</value>
     <comment>The error message displayed in the Profile window when a color is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_CountryEmpty">
-    <value>Vennligst velg et land</value>
+    <value>Velg et land</value>
     <comment>The error message displayed in the Profile window when a country is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_GatewayEmpty">
@@ -2260,7 +2260,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <comment>The error message displayed in the Profile window when a gateway is not selected</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameEmpty">
-    <value>Vennligst velg et profilnavn</value>
+    <value>Velg et profilnavn</value>
     <comment>The error message displayed in the Profile window when a profile name is empty</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameExists">
@@ -2268,13 +2268,13 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <comment>The error message displayed in the Profile window when a profile name is already used by another profile</comment>
   </data>
   <data name="Profiles_Profile_Error_msg_NameTooLong_One">
-    <value>Maksimal profilnavnlengde er {0} symbol. Vennligst velg et kortere profilnavn.</value>
+    <value>Maksimal profilnavnlengde er {0} symbol. Velg et kortere profilnavn.</value>
   </data>
   <data name="Profiles_Profile_Error_msg_NameTooLong_Other">
-    <value>Maksimal profilnavnlengde er {0} symboler. Vennligst velg et kortere profilnavn.</value>
+    <value>Maksimal profilnavnlengde er {0} symboler. Velg et kortere profilnavn.</value>
   </data>
   <data name="Profiles_Profile_Error_msg_ServerEmpty">
-    <value>Vennligst velg en tjener</value>
+    <value>Velg en tjener</value>
     <comment>The error message displayed in the Profile window when a server is not selected</comment>
   </data>
   <data name="Profiles_Profile_ExitCountry_Watermark">
@@ -2630,7 +2630,7 @@ Vennligst følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run 
     <comment>The message displayed when connecting to server which is on maintenance</comment>
   </data>
   <data name="Servers_msg_CantConnect_Missing">
-    <value>Tjeneren du prøver å koble til, er fjernet. Vennligst velg en annen tjener eller profil.</value>
+    <value>Tjeneren du prøver å koble til, er fjernet. Velg en annen tjener eller profil.</value>
     <comment>The message displayed when connecting to server which was removed and doesn't exist anymore</comment>
   </data>
   <data name="Servers_msg_CantConnect_RpcServerUnavailable">

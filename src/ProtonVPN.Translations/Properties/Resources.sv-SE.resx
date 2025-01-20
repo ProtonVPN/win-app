@@ -1734,7 +1734,7 @@ Följ &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="thes
     <comment>The warning message displayed when P2P traffic is detected on servers not allowing it.</comment>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_msg">
-    <value>Aktivera vidarebefordring av port endast när du behöver det för att säkerställa det starkaste integritets- och säkerhetsskyddet.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadPortForwardingRisksCommand}"&gt;Behöver jag vidarebefordring av port?&lt;/Hyperlink&gt;</value>
+    <value>Aktivera vidarebefordran av port endast när du behöver det för att säkerställa det starkaste integritets- och säkerhetsskyddet.&lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadPortForwardingRisksCommand}"&gt;Behöver jag vidarebefordran av port?&lt;/Hyperlink&gt;</value>
   </data>
   <data name="Dialogs_PortForwardingConfirmation_ttl">
     <value>Aktivera vidarebefordran av port?</value>
@@ -2218,7 +2218,7 @@ Följ &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="thes
     <comment>The title of onboarding step 4 in Onboarding overlay of main app window</comment>
   </data>
   <data name="PortForwarding">
-    <value>Vidarebefordring av port</value>
+    <value>Vidarebefordran av port</value>
   </data>
   <data name="PortForwarding_lbl_ActivePort">
     <value>Aktiv port:</value>
@@ -2230,7 +2230,7 @@ Följ &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="thes
     <value>Ställ in detta nummer i din BitTorrent-app för högre hastighet.</value>
   </data>
   <data name="PortForwarding_lbl_ServerWarning">
-    <value>För att använda vidarebefordring av port, &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;anslut&lt;/Hyperlink&gt; till en server som stöder P2P.</value>
+    <value>För att använda vidarebefordran av port, &lt;Hyperlink Command="{Binding ConnectToBestP2PServerCommand}"&gt;anslut&lt;/Hyperlink&gt; till en server som stöder P2P.</value>
   </data>
   <data name="ProfileConnector_msg_MissingAuthCert">
     <value>Proton VPN kunde inte hämta autentiseringscertifikat på grund av nätverksproblem.</value>
@@ -2753,7 +2753,7 @@ Följ &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="thes
     <value>Lär dig mer</value>
   </data>
   <data name="Settings_Advanced_ttl">
-    <value>Avancerad</value>
+    <value>Avancerat</value>
     <comment>The header of Advanced tab in Settings window</comment>
   </data>
   <data name="Settings_Connection_DefaultProtocol_val_Smart">

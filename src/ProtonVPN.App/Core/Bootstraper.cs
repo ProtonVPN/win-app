@@ -497,7 +497,7 @@ namespace ProtonVPN.Core
             {
                 if (e.PropertyName == nameof(IAppSettings.Language))
                 {
-                    TranslationSource.Instance.CurrentCulture = new CultureInfo(appSettings.Language);
+                    Resolve<Language>().Set(appSettings.Language);
                 }
 
                 IEnumerable<ISettingsAware> instances = Resolve<IEnumerable<ISettingsAware>>();

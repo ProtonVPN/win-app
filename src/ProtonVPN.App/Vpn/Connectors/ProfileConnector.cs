@@ -382,9 +382,7 @@ namespace ProtonVPN.Vpn.Connectors
             SetProtocolBucket(VpnProtocol.OpenVpnUdp, preferredProtocols, fallbackProtocols);
             SetProtocolBucket(VpnProtocol.OpenVpnTcp, preferredProtocols, fallbackProtocols);
 
-            preferredProtocols.AddRange(fallbackProtocols);
-
-            return preferredProtocols;
+            return preferredProtocols.Count > 0 ? preferredProtocols : fallbackProtocols;
         }
 
         private void SetProtocolBucket(VpnProtocol protocol, List<VpnProtocol> preferredProtocols,

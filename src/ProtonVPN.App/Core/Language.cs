@@ -23,6 +23,8 @@ using System.Threading;
 using ProtonVPN.Common.Cli;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Settings;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Translations;
 
 namespace ProtonVPN.Core
@@ -30,30 +32,45 @@ namespace ProtonVPN.Core
     public class Language : ILoggedInAware
     {
         private readonly IAppSettings _appSettings;
+        private readonly ILogger _logger;
         private readonly ILanguageProvider _languageProvider;
         private readonly string _defaultLocale;
         private string _startupLanguage;
 
-        public Language(IAppSettings appSettings, ILanguageProvider languageProvider, string defaultLocale)
+        public Language(IAppSettings appSettings, ILogger logger, ILanguageProvider languageProvider, string defaultLocale)
         {
-            _defaultLocale = defaultLocale;
-            _languageProvider = languageProvider;
             _appSettings = appSettings;
+            _logger = logger;
+            _languageProvider = languageProvider;
+            _defaultLocale = defaultLocale;
         }
 
         public void Initialize(string[] args)
         {
-            string lang = GetCommandLineLanguage(args);
-            if (_languageProvider.GetAll().Contains(lang))
+            string language = GetCommandLineLanguage(args);
+
+            if (_languageProvider.GetAll().Contains(language))
             {
-                _startupLanguage = lang;
+                _startupLanguage = language;
             }
             else
             {
-                lang = GetStartupLanguage();
+                language = GetStartupLanguage();
             }
 
-            TranslationSource.Instance.CurrentCulture = new CultureInfo(lang);
+            Set(language);
+        }
+
+        public void Set(string language)
+        {
+            if (_languageProvider.GetAll().Contains(language))
+            {
+                TranslationSource.Instance.CurrentCulture = new CultureInfo(language);
+            }
+            else
+            {
+                _logger.Warn<AppLog>($"Cannot set language '{language}'.");
+            }
         }
 
         public void OnUserLoggedIn()
