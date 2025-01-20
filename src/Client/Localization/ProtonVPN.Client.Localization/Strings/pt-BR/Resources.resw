@@ -2511,7 +2511,7 @@ A velocidade é baseada na atividade atual do seu dispositivo — não represent
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_SsoAuthFailed">
-    <value>Falha na autenticação SSO.Tente novamente.</value>
+    <value>Falha na autenticação SSO. Tente novamente.</value>
   </data>
   <data name="Login_Error_TwoFactorAuthFailed">
     <value>Nome de usuário ou senha incorretos. Tente novamente.</value>

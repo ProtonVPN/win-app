@@ -2027,11 +2027,11 @@ Smart Routing, ჩვეულებრივ, ანტი-კონფიდ�
     <value>გავიდე Proton VPN-დან</value>
   </data>
   <data name="Flyouts_Country_Description">
-    <value>Browsing without a VPN leaves you vulnerable to location-based internet restrictions.
+    <value>ინტერნეტში მუშაობა VPN-ის გარეშე მდებარეობაზე დამოკიდებული აკრძალვების მსხვერპლი შეიძლება, გახდეთ.
 
-Websites can use geoblocks to restrict content to certain locations. Governments can also instruct ISPs (Internet Service Providers) to block certain websites in their country.
+ვებსაიტებს შეუძლიათ, გამოიყენონ გეოდაბლოკვა, რომ შეზღუდონ თავიანთი შემცველობის გაზიარება ზოგიერთი მდებარეობისთვის. ასევე, ხანდახან, მთავრობები უბრძანებენ პროვაიდერებს, რომ დაბლოკონ ისა თუ ეს ვებგვერდი თავიანთ ქვეყანაში.
 
-A VPN makes it looks like you’re browsing from somewhere else, protecting you from surveillance and censorship.</value>
+VPN ისე მუშაობს, რომ თქვენ სადღაც სხვა ადგილიდან გამჩნდებით, რითიც, ცენზურას და დაზვერვას აარიდებთ თავს.</value>
   </data>
   <data name="Flyouts_Country_Title">
     <value>ქვეყანა</value>
