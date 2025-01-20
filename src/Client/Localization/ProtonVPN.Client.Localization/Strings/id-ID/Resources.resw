@@ -3459,7 +3459,7 @@ Smart Routing pada umumnya digunakan untuk menghindari undang-undang anti-privas
     <value>{0} negara</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
-    <value>VPN sumber terbuka</value>
+    <value>VPN open source</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
     <value>{0} server aman</value>

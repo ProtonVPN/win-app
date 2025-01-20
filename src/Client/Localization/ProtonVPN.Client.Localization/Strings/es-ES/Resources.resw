@@ -2044,7 +2044,7 @@ Una VPN hace parecer que navegas desde algún otro lugar, protegiéndote de la v
     <value>Conéctate a una VPN para cambiar tu ubicación virtual</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Connected">
-    <value>Tu IP de VPN enmascara tu dirección IP real. Esto hace que parezcas estar navegando desde la localización de tu VPN, de forma que tu actividad online no pueda ser asociada a tu dispositivo.</value>
+    <value>Tu IP de VPN enmascara tu dirección IP real. Esto hace que parezcas estar navegando desde la ubicación de tu VPN, de forma que tu actividad online no pueda ser asociada a tu dispositivo.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected">
     <value>Se puede usar este código único por sitios web y proveedores de servicios de internet (ISP) para vincular tu ubicación e historial de navegación a tu dispositivo. 

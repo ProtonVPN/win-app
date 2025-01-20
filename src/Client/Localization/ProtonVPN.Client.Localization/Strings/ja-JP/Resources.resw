@@ -278,7 +278,7 @@
     <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Connection_Error_NoTapAdapters">
-    <value>ネットワークアダプタが利用できません。</value>
+    <value>ネットワークアダプターが見つかりません。</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>問題を報告</value>
@@ -311,7 +311,7 @@
     <value>考えられる解決策を表示する</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
-    <value>WireGuard ネットワークアダプターがすでに使用されているため接続できませんでした。アクティブな VPN を切断してから再度お試しください。または高度な設定からプロトコルを切り替えることもできます。</value>
+    <value>WireGuard ネットワークアダプターがすでに使用されているためProton VPNは接続できませんでした。アクティブな VPN を切断してから再度お試しください。または高度な設定からプロトコルを切り替えることもできます。</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>から自動選択</value>
@@ -360,7 +360,7 @@
     <value>高速</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Free サーバー ({0})</value>
+    <value>無料サーバー ({0})</value>
   </data>
   <data name="Connections_Gateway">
     <value>ゲートウェイ</value>
@@ -390,7 +390,7 @@
     <value>P2P サーバー ({0})</value>
   </data>
   <data name="Connections_P2P_States_Other">
-    <value>P2P ({0})</value>
+    <value>P2P 対応州 ({0})</value>
   </data>
   <data name="Connections_Profiles_Other">
     <value>プロファイル({0})</value>
@@ -454,7 +454,7 @@
     <value>都市を表示 ({0})</value>
   </data>
   <data name="Connections_SeeServers_Other">
-    <value>サーバー ({0}) を参照</value>
+    <value>サーバーを表示 ({0})</value>
   </data>
   <data name="Connections_SeeStates_Other">
     <value>状態を見る({0})</value>
@@ -479,7 +479,7 @@
     <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_State_UnderMaintenance">
-    <value>この状態のサーバーはすべてメンテナンス中です.</value>
+    <value>この州のサーバーはすべてメンテナンス中です.</value>
     <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_States_Other">
@@ -1734,7 +1734,7 @@
     <value>クイック修正</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes_Footer">
-    <value>うまくいきませんでしたか？</value>
+    <value>動作しませんか？</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes_Header">
     <value>これらのヒントは、問題をより早く解決するのに役立ちます。</value>
@@ -1819,7 +1819,7 @@ VPN 接続</value>
     <value>低 (1-75%)</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Description">
-    <value>VPN 速度に影響を与える可能性は低い</value>
+    <value>VPN 速度に影響を与える可能性は低いです</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Title">
     <value>中 (76-90%)</value>
@@ -1862,10 +1862,10 @@ Smart Routingは通常、反プライバシー法やその他の形式の検閲�
     <value>オンラインになっていて、接続が安定していることを確認してください。</value>
   </data>
   <data name="Dialogs_Troubleshooting_Description">
-    <value>これらのクイックフィックスは、Proton への接続に役立つ場合があります。</value>
+    <value>これらのクイック修正は、Proton への接続に役立つ場合があります。</value>
   </data>
   <data name="Dialogs_Troubleshooting_DidNotWork">
-    <value>うまくいきませんでしたか？</value>
+    <value>動作しませんか？</value>
   </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork">
     <value>別のネットワークを使用する</value>
@@ -2210,7 +2210,7 @@ VPNはあなたのIPアドレスを隠し、ISPの干渉からあなたを保護
     <value>安全なブラウジング</value>
   </data>
   <data name="Home_ConnectionCard_Header_ConnectingTo">
-    <value>接続中：...</value>
+    <value>接続中...</value>
   </data>
   <data name="Home_ConnectionCard_Header_DefaultConnection">
     <value>デフォルト接続</value>
@@ -2229,7 +2229,7 @@ VPNはあなたのIPアドレスを隠し、ISPの干渉からあなたを保護
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_ConnectionDetails_City">
-    <value>市</value>
+    <value>都市</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectedFor">
     <value>へ接続</value>
@@ -2251,7 +2251,7 @@ VPNはあなたのIPアドレスを隠し、ISPの干渉からあなたを保護
     <value>接続の詳細を非表示にする</value>
   </data>
   <data name="Home_ConnectionDetails_HideIP">
-    <value>隠す</value>
+    <value>非表示</value>
     <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
   </data>
   <data name="Home_ConnectionDetails_HideIP_Description">
@@ -2265,7 +2265,7 @@ VPNはあなたのIPアドレスを隠し、ISPの干渉からあなたを保護
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_ConnectionDetails_MyIp">
-    <value>マイIP</value>
+    <value>自分のIP</value>
   </data>
   <data name="Home_ConnectionDetails_Protected">
     <value>保護されています</value>
@@ -2290,7 +2290,7 @@ VPNはあなたのIPアドレスを隠し、ISPの干渉からあなたを保護
     <value>ユーザーのIPアドレスを表示</value>
   </data>
   <data name="Home_ConnectionDetails_State">
-    <value>都道府県</value>
+    <value>州</value>
   </data>
   <data name="Home_ConnectionDetails_Title">
     <value>接続の詳細</value>
@@ -2362,7 +2362,7 @@ VPNはあなたのIPアドレスを隠し、ISPの干渉からあなたを保護
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_Recents_Pin">
-    <value>Pin</value>
+    <value>ピン留め</value>
   </data>
   <data name="Home_Recents_Restricted">
     <value>サーバーはVPN Plusで利用可能</value>
@@ -2779,7 +2779,7 @@ VPN接続</value>
     <value>Moderate NAT ではポート転送を使用できません。</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Title">
-    <value>モデレート NAT を有効にする?</value>
+    <value>モデレートNATを有効にしますか？</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Description">
     <value>接続のネットワーク アドレス変換タイプを選択します。</value>
@@ -2794,7 +2794,7 @@ VPN接続</value>
     <value>厳密(タイプ 3)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
-    <value>ネットワークに入るデータを制限します。 このオプションはより安全ですが、ピアツーピア ゲーム接続がより困難になる可能性があります。</value>
+    <value>ネットワークに入るデータを制限します。 このオプションはより安全ですが、ピアツーピアのゲーム接続がより困難になる可能性があります。</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
     <value>異なるネットワーク間のルートトラフィック</value>
@@ -3368,7 +3368,7 @@ VPN接続</value>
     <value>アップロードとダウンロードの速度が向上しました</value>
   </data>
   <data name="Upsell_Carousel_Platforms_More">
-    <value>+もっとみる</value>
+    <value>+ もっと</value>
     <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
   </data>
   <data name="Upsell_Carousel_SecureCore">
@@ -3393,7 +3393,7 @@ VPN接続</value>
     <value>より高速で混雑していないサーバーにアクセス</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling">
-    <value>両方の長所を生かす</value>
+    <value>両方の利点を最大限に活用</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling_Browsing">
     <value>スプリット トンネリングを使用して 2 つの場所から同時に参照</value>
