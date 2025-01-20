@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Client.Core.Bases;
+using ProtonVPN.Client.Core.Services.Activation;
 
 namespace ProtonVPN.Client.UI.Main.Map;
 
@@ -30,10 +31,17 @@ public sealed partial class MapComponentView : IContextAware
         ViewModel = App.GetService<MapComponentViewModel>();
 
         InitializeComponent();
+
+        App.GetService<IMainWindowActivator>().HostDpiChanged += OnWindowDpiChanged;
     }
 
     public object GetContext()
     {
         return ViewModel;
+    }
+
+    private void OnWindowDpiChanged(object? sender, EventArgs e)
+    {
+        MapControl.InvalidateDpi();
     }
 }
