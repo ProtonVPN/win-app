@@ -40,6 +40,7 @@ public class SettingRobot
     protected Element NetShieldSettingsCard = Element.ByAutomationId("NetShieldSettingsCard");
     protected Element ProtocolSettingsCard = Element.ByAutomationId("ProtocolSettingsCard");
     protected Element AdvancedSettingsCard = Element.ByAutomationId("AdvancedSettingsCard");
+    protected Element SplitTunnelingSettingsCard = Element.ByAutomationId("SplitTunnelingSettingsCard");
     protected Element GoBackButton = Element.ByAutomationId("GoBackButton");
     protected Element AccountButton = Element.ByAutomationId("AccountButton");
     protected Element SignOutButton = Element.ByName("Sign out");
@@ -87,6 +88,14 @@ public class SettingRobot
         ProtocolSettingsCard.Click();
         // Remove when VPNWIN-2261 is implemented.
         Thread.Sleep(TestConstants.AnimationDelay);
+        return this;
+    }
+
+    public SettingRobot OpenSplitTunnelingSettings()
+    {
+        SplitTunnelingSettingsCard.Click();
+        // It takes some time to load split tunneling list. There are no hooks to wait for.
+        Thread.Sleep(1000);
         return this;
     }
 

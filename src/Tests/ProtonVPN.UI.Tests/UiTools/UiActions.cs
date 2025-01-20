@@ -18,8 +18,10 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Threading;
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Conditions;
 using FlaUI.Core.Input;
@@ -79,9 +81,30 @@ public static class UiActions
         return desiredElement;
     }
 
-    public static Element FindChild<T>(this T desiredElement, Element childSelector) where T : Element
+    public static T FindChild<T>(this T desiredElement, Element childSelector) where T : Element
     {
         desiredElement.ChildElement = childSelector;
+        return desiredElement;
+    }
+
+    public static T ClearInput<T>(this T desiredElement) where T : Element
+    {
+        AutomationElement element = WaitUntilExists(desiredElement);
+        element.AsTextBox().Text = "";
+        return desiredElement;
+    }
+
+    public static AutomationElement[] FindAllElements<T>(this T desiredElement) where T : Element
+    {
+        WaitUntilExists(desiredElement);
+        AutomationElement[] elements = BaseTest.Window.FindAllDescendants(desiredElement.Condition);
+        return elements;
+    }
+
+    public static Element ScrollIntoView<T>(this T desiredElement) where T : Element
+    { 
+        AutomationElement element = WaitUntilExists(desiredElement);
+        element.Patterns.ScrollItem.Pattern.ScrollIntoView();
         return desiredElement;
     }
 
@@ -90,6 +113,14 @@ public static class UiActions
         AutomationElement element = WaitUntilExists(desiredElement);
         string elementText = element.AsLabel().Text;
         Assert.That(elementText.Equals(text), Is.True, $"Expected string: {text} But was: {elementText}");
+        return desiredElement;
+    }
+
+    public static Element ValueEquals<T>(this T desiredElement, string value) where T : Element
+    {
+        AutomationElement element = WaitUntilExists(desiredElement);
+        string elementValue = element.Patterns.Value.Pattern.Value;
+        Assert.That(elementValue.Equals(value), Is.True, $"Expected value: {value} But was: {elementValue}");
         return desiredElement;
     }
 

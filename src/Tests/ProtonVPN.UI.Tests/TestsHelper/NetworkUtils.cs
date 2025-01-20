@@ -32,8 +32,6 @@ namespace ProtonVPN.UI.Tests.TestsHelper;
 
 public class NetworkUtils
 {
-    private static HttpClient _httpClient = new();
-
     [DllImport("dnsapi.dll", EntryPoint = "DnsFlushResolverCache")]
     public static extern uint DnsFlushResolverCache();
 
@@ -75,6 +73,44 @@ public class NetworkUtils
         return retry.Result ?? throw new HttpRequestException("Failed to get IP Address.");
     }
 
+    public static void VerifyIpAddressDoesNotMatchWithRetry(string ipAddressToCompare)
+    {
+        string ipAddressFomAPI = null;
+        RetryResult<bool> retry = Retry.WhileTrue(
+           () =>
+           {
+               ipAddressFomAPI = GetIpAddress();
+               return ipAddressFomAPI.Equals(ipAddressToCompare);
+           },
+           TestConstants.TenSecondsTimeout, TestConstants.ApiRetryInterval);
+
+        if (!retry.Success)
+        {
+            Assert.Fail($"API IP Address should not match provided IP address.\n" +
+                $"API returned IP address: {ipAddressFomAPI}.\n" +
+                $"IP to compare: {ipAddressToCompare}");
+        }
+    }
+
+    public static void VerifyIpAddressMatchesWithRetry(string ipAddressToCompare)
+    {
+        string ipAddressFomAPI = null; 
+        RetryResult<bool> retry = Retry.WhileFalse(
+           () =>
+           {
+               ipAddressFomAPI = GetIpAddress();
+               return ipAddressFomAPI.Equals(ipAddressToCompare);
+           },
+           TestConstants.TenSecondsTimeout, TestConstants.ApiRetryInterval);
+
+        if (!retry.Success)
+        {
+            Assert.Fail($"API IP Address should match provided IP address.\n" +
+                $"API returned IP address: {ipAddressFomAPI}.\n" +
+                $"IP to compare: {ipAddressToCompare}");
+        }
+    }
+
     public static string GetIpAddressBti()
     {
         string ipMeBtiUrl = Environment.GetEnvironmentVariable("IP_ENDPOINT_BTI");
@@ -93,9 +129,11 @@ public class NetworkUtils
 
     private static async Task<string> GetExternalIpAddressAsync(string endpoint)
     {
+        // Make sure that fresh socket is created when verifying IP address
+        HttpClient httpClient = new();
         try
         {
-            string externalIpString = await _httpClient.GetStringAsync(endpoint);
+            string externalIpString = await httpClient.GetStringAsync(endpoint);
             string ipAddress = externalIpString
                 .Replace("\\r\\n", "")
                 .Replace("\\n", "")
