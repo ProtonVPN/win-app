@@ -76,7 +76,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </controls:SettingsExpander.Description>
 
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsSplitTunnelingEnabled, Mode=TwoWay}"
-                              Style="{StaticResource ToggleSwitchStyle}" />
+                              Style="{StaticResource ToggleSwitchStyle}"
+                              AutomationProperties.AutomationId="SplitTunnelingSwitch"/>
                 <controls:SettingsExpander.Items>
                     <StackPanel Spacing="16">
                         <RadioButton IsChecked="{x:Bind ViewModel.IsStandardSplitTunneling, Mode=TwoWay}"
@@ -308,7 +309,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                  Grid.Column="0"
                                  KeyDown="{x:Bind ViewModel.OnIpAddressKeyDownHandler, Mode=OneTime}"
                                  PlaceholderText="{x:Bind ViewModel.Localizer.Get('Settings_Connection_SplitTunneling_IpAddresses_Watermark')}"
-                                 Text="{x:Bind ViewModel.CurrentIpAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                 Text="{x:Bind ViewModel.CurrentIpAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 AutomationProperties.AutomationId="IpAddressTextBox"/>
 
                         <Button Grid.Row="1"
                                 Grid.Column="1"
