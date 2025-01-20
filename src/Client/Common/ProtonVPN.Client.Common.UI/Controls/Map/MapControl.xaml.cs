@@ -126,6 +126,13 @@ public sealed partial class MapControl
         Viewbox.SizeChanged += OnViewboxSizeChanged;
     }
 
+    public void InvalidateDpi()
+    {
+        // When DPI changes, remove and reset canvas to avoid map being cropped
+        Viewbox.Child = null;
+        Viewbox.Child = MapCanvas;
+    }
+
     private static void OnActiveCountryCodeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is not MapControl control)

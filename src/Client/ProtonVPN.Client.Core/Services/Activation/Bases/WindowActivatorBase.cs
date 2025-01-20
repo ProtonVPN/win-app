@@ -38,6 +38,8 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
     protected readonly ILocalizationProvider Localizer;
     protected readonly IApplicationIconSelector IconSelector;
 
+    private uint _currentHostDpi;
+
     public abstract string WindowTitle { get; }
 
     protected bool HandleClosedEvent { get; private set; }
@@ -45,6 +47,10 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
     protected WindowState CurrentWindowState { get; private set; }
 
     protected WindowActivationState CurrentActivationState { get; private set; }
+
+    public event EventHandler? HostDpiChanged;
+
+    public event EventHandler? HostSizeChanged;
 
     protected WindowActivatorBase(
         ILogger logger,
@@ -131,9 +137,12 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
 
         if (Host != null)
         {
+            _currentHostDpi = Host.GetDpiForWindow();
+
             Host.Closed += OnWindowClosed;
             Host.WindowStateChanged += OnWindowStateChanged;
             Host.Activated += OnWindowActivationStateChanged;
+            Host.SizeChanged += OnWindowSizeChanged;
         }
     }
 
@@ -146,6 +155,7 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
             Host.Closed -= OnWindowClosed;
             Host.WindowStateChanged -= OnWindowStateChanged;
             Host.Activated -= OnWindowActivationStateChanged;
+            Host.SizeChanged -= OnWindowSizeChanged;
         }
     }
 
@@ -227,6 +237,16 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
         Host?.CenterOnScreen();
     }
 
+    protected virtual void OnDpiChanged()
+    {
+        HostDpiChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    protected virtual void OnSizeChanged()
+    {
+        HostSizeChanged?.Invoke(this, EventArgs.Empty);
+    }
+
     private void InvalidateWindowTitle()
     {
         if (Host != null)
@@ -265,5 +285,17 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
         CurrentActivationState = e.WindowActivationState;
 
         OnWindowActivationStateChanged();
+    }
+
+    private void OnWindowSizeChanged(object sender, WindowSizeChangedEventArgs e)
+    {
+        uint hostDpi = Host?.GetDpiForWindow() ?? default;
+        if (_currentHostDpi != default && _currentHostDpi != hostDpi)
+        {
+            OnDpiChanged();
+        }
+        _currentHostDpi = hostDpi;
+
+        OnSizeChanged();
     }
 }
