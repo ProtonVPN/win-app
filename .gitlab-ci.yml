@@ -13,6 +13,21 @@ include:
 
   - local: '/.gitlab-ci-templates.yml'
 
+  - component: $CI_SERVER_HOST/proton/devops/cicd-components/tools/artifactlift/release-candidate@0.1.20
+    inputs:
+      product: vpn
+      platform: windows
+      artifact_list: "*"
+      artifact_local_directory: Setup/Installers
+
+  - component: $CI_SERVER_HOST/proton/devops/cicd-components/tools/artifactlift/release@0.1.20
+    inputs:
+      product: vpn
+      platform: windows
+      artifact_list: ""
+      artifact_metadata_path: ""
+      artifact_metadata_list: ""
+
   - component: $CI_SERVER_HOST/proton/devops/cicd-components/devsecops/grype/scan-code@0.0.15
     inputs:
       stage: test
@@ -45,6 +60,8 @@ stages:
   - build-installer
   - publish
   - ui-test
+  - generate
+  - deploy
   - publish-to-slack
   - mirror
   
@@ -70,7 +87,7 @@ grype-scan-code-dependencies:
       when: never
     - when: always
 
-build-release:
+build-release-x64:
   extends: .build-script
   only:
     - master
@@ -78,39 +95,72 @@ build-release:
   variables:
     TYPE: Release
     DEPENDENCIES: publish
-    BUILD_PATH: publish
-  
-build-debug:
+    PLATFORM: x64
+    BUILD_PATH: src/bin/win-x64/publish
+
+build-release-arm64:
   extends: .build-script
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH =~ /^release.*$/ || $CI_PIPELINE_SOURCE == "merge_request_event" || $BTI_SCHEDULED == "true"'
-      when: never
-    - when: always
+  only:
+    - master
+    - /^release.*$/
+  tags:
+    - windows-arm64
   variables:
-    TYPE: Debug
+    TYPE: Release
     DEPENDENCIES: publish
-    BUILD_PATH: publish
-    
-build-bti:
+    PLATFORM: arm64
+    BUILD_PATH: src/bin/win-arm64/publish
+
+build-bti-x64:
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      when: never
+    - if: '$CI_COMMIT_BRANCH =~ /^release.*$/'
+      when: never
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: never
+    - if: $BTI_SCHEDULED == "true"
+      when: always
+    - when: manual
   extends:
     - .build-bti-vars  
     - .build-script
-  allow_failure: true
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH =~ /^release.*$/ || $CI_PIPELINE_SOURCE == "merge_request_event"'
-      when: never
-    - if: '$CI_COMMIT_BRANCH =~ /^debug\/\d+\.\d+\.\d+/ || $BTI_SCHEDULED == "true"'
-      when: always
-    - when: manual
+  when: manual
   variables:
     TYPE: Debug
+    PLATFORM: x64
     DEPENDENCIES: publish-BTI
-    BUILD_PATH: BTI/publish
+    BUILD_PATH: src/bin/win-x64/BTI/publish
+
+build-debug-x64:
+  extends: .build-script
+  except:
+    - master
+    - /^release.*$/
+    - schedules
+  variables:
+    TYPE: Debug
+    PLATFORM: x64
+    DEPENDENCIES: publish
+    BUILD_PATH: src/bin/win-x64/publish
+
+build-debug-arm64:
+  extends: .build-script
+  when: manual
+  except:
+    - master
+    - /^release.*$/
+    - schedules
+  tags:
+    - windows-arm64
+  variables:
+    TYPE: Debug
+    PLATFORM: arm64
+    DEPENDENCIES: publish
+    BUILD_PATH: src/bin/win-arm64/publish
 
 ui-tests-group-1:
   extends: .ui_test_execution_script
-  needs:
-    - build-installer
   except:
     - /^debug.*$/
     - release/9.9.9
@@ -121,8 +171,6 @@ ui-tests-group-1:
     
 ui-tests-group-2:
   extends: .ui_test_execution_script
-  needs:
-    - build-installer
   except:
     - /^debug.*$/
     - release/9.9.9
@@ -130,21 +178,23 @@ ui-tests-group-2:
     - schedules
   variables:
     CATEGORY: "2"
-    
-bti-test:
+
+ui-tests-full-arm:
   extends: .ui_test_execution_script
   tags:
-    - BTI
+    - windows-arm64-ui
   needs:
-    - build-BTI-installer
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH =~ /^release.*$/ || $CI_PIPELINE_SOURCE == "merge_request_event"'
-      when: never
-    - if: '$BTI_SCHEDULED == "true"'
-      when: always
-    - when: manual
+    - job: build-installer-debug-arm64
+      optional: true
+    - job: build-installer-release-arm64
+      optional: true
+  except:
+    - /^debug.*$/
+    - release/9.9.9
+    - master
+    - schedules
   variables:
-    CATEGORY: "BTI"
+    CATEGORY: "ARM"
 
 unit-tests:
   extends: 
@@ -172,32 +222,67 @@ unit-tests-with-coverage:
         path: cobertura.xml
   coverage: '/Total.*?([0-9]{1,3}.[0-9]{1,3})%/'
 
-build-installer:
-  tags:
-    - windows-vpn-signer
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $BTI_SCHEDULED == "true"
-      when: never
-    - when: always
-  dependencies:
-    - build-debug
-    - build-release
+build-installer-release-x64:
+  needs:
+    - build-release-x64
   extends: 
     - .build-installer
+  only:
+    - master
+    - /^release.*$/
   variables:
-    BUILD_PATH: publish
+    BUILD_PATH: src/bin/win-x64/publish
+    PLATFORM: x64
 
-      
-build-BTI-installer:
+build-installer-debug-x64:
   needs:
-    - build-bti
+    - build-debug-x64
+  extends: 
+    - .build-installer
+  except:
+    - master
+    - /^release.*$/
+    - schedules
+  variables:
+    BUILD_PATH: src/bin/win-x64/publish
+    PLATFORM: x64
+
+build-installer-debug-arm64:
+  needs:
+    - build-debug-arm64
+  extends: 
+    - .build-installer
+  except:
+    - master
+    - /^release.*$/
+    - schedules
+  variables:
+    BUILD_PATH: src/bin/win-arm64/publish
+    PLATFORM: arm64
+
+build-installer-release-arm64:
+  needs:
+    - build-release-arm64
+  extends: 
+    - .build-installer
+  only:
+    - master
+    - /^release.*$/
+  variables:
+    BUILD_PATH: src/bin/win-arm64/publish
+    PLATFORM: arm64
+
+build-BTI-installer-x64:
+  needs:
+    - build-bti-x64
   except:
     - master
     - /^release.*$/
   extends: 
     - .build-installer
   variables:
-    BUILD_PATH: BTI/publish
+    BUILD_PATH: src/bin/win-x64/BTI/publish
+    PLATFORM: x64
 
 prepare-internal-beta-release:
   stage: publish
@@ -221,9 +306,9 @@ publish prod release nexus:
   image: $CI_REGISTRY/tpe/test-scripts
   allow_failure: true
   dependencies:
-    - build-installer
+    - build-installer-release-x64
   needs:
-    - build-installer
+    - build-installer-release-x64
   script:
     # Delete old assets
     - /usr/local/bin/nexus/delete_asset_on_nexus.py
@@ -235,30 +320,6 @@ publish prod release nexus:
       --repository $NEXUS_REPO
       --group $NEXUS_GROUP_STABLE
       --filename "vpn_windows_latest.exe"
-      
-publish BTI nexus:
-  stage: publish
-  allow_failure: true
-  only:
-    - /^debug\/\d+\.\d+\.\d+/
-  tags:
-    - shared-medium
-  image: $CI_REGISTRY/tpe/test-scripts
-  dependencies:
-    - build-BTI-installer
-  needs:
-    - build-BTI-installer
-  script:
-    # Delete old assets
-    - /usr/local/bin/nexus/delete_asset_on_nexus.py
-      --repository $NEXUS_REPO
-      --group $NEXUS_GROUP_BTI
-    # Upload release build
-    - /usr/local/bin/nexus/upload_to_nexus.py
-      --path "Setup/Installers/ProtonVPN_*_BTI.exe"
-      --repository $NEXUS_REPO
-      --group $NEXUS_GROUP_BTI
-      --filename "vpn_windows_latest_bti.exe"
 
 mirror:
   stage: mirror
@@ -319,7 +380,61 @@ send-slack-notification:
   script:
     - python -m pip install -r ci\python-libs.txt
     - python ci\build-scripts\main.py send-slack-notification
-    
+
+generate-release-artifacts:
+  stage: generate
+  image: harbor.protontech.ch/docker.io/library/alpine:3.20
+  needs:
+    - build-installer-release-x64
+    - build-installer-release-arm64
+  tags:
+    - shared-small
+  script:
+    - set -ex
+    - export RELEASE_VERSION="${CI_COMMIT_BRANCH##release/}" && echo "RELEASE_VERSION=${RELEASE_VERSION}" | tee release.env
+    - echo "ARTIFACT_LIST=ProtonVPN_v${RELEASE_VERSION}_x64.exe ProtonVPN_v${RELEASE_VERSION}_arm64.exe" | tee -a release.env
+  artifacts:
+    reports:
+      dotenv: release.env
+  only:
+    - /^release.*$/
+
+artifactlift-release-candidate-artifacts:
+  rules:
+    - when: never
+
+artifactlift-release-artifacts:
+  rules:
+    - when: never
+
+release-binary-to-nexus:
+  needs:
+    - generate-release-artifacts
+    - job: build-installer-release-x64
+      artifacts: true
+    - job: build-installer-release-arm64
+      artifacts: true
+  extends: artifactlift-release-candidate-artifacts
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "release/9.9.9"'
+      when: never
+    - if: '$CI_COMMIT_BRANCH =~ /^release\/\d+\.\d+\.\d+/'
+      when: manual
+    - when: never
+
+release-binary-to-prod:
+  extends: artifactlift-release-artifacts
+  needs:
+    - job: generate-release-artifacts
+      artifacts: true
+    - release-binary-to-nexus
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "release/9.9.9"'
+      when: never
+    - if: '$CI_COMMIT_BRANCH =~ /^release\/\d+\.\d+\.\d+/'
+      when: manual
+    - when: never
+
 report-test-failure:
   stage: publish-to-slack
   image: $CI_REGISTRY/tpe/test-scripts

@@ -27,6 +27,7 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
 [Category("1")]
+[Category("ARM")]
 public class LoginTests : FreshSessionSetUp
 {
     private const string INCORRECT_CREDENTIALS_ERROR = "The password is not correct. Please try again with a different password.";

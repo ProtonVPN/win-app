@@ -27,6 +27,7 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
 [Category("1")]
+[Category("ARM")]
 public class LoginSsoTests : FreshSessionSetUp
 {
     private const string SSO_LOGIN_ERROR = "Email domain associated to an existing organization. Please sign in with SSO";

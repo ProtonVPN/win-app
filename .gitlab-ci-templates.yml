@@ -1,5 +1,10 @@
 .ui_test_execution_script:
   stage: ui-test
+  needs:
+    - job: build-installer-debug-x64
+      optional: true
+    - job: build-installer-release-x64
+      optional: true
   tags:
     - redesign
   hooks:
@@ -33,37 +38,42 @@
   script:
     - echo "Building native dependencies..."
     - nuget restore ProtonVPN.InstallActions.sln
-    - cmd.exe /c BuildDependencies.bat $DEPENDENCIES
+    - cmd.exe /c BuildDependencies.bat publish
     - echo "Downloading translations from crowdin..."
     - python ci\build-scripts\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA
     - python ci\build-scripts\main.py defaultConfig
     - dotnet build src\Builds\ProtonVPN.Builds.ConsoleJob\ProtonVPN.Builds.ConsoleJob.csproj
     - echo "Injecting CI variables"
     - src\bin\ProtonVPN.Builds.ConsoleJob.exe
-    - echo "Publishing ${TYPE} Identifier ${RUNTIME_IDENTIFIER} Output ${BUILD_PATH} Paltform ${PLATFORM}"
-    - dotnet publish src\Client\ProtonVPN.Client\ProtonVPN.Client.csproj -c ${TYPE} -r ${RUNTIME_IDENTIFIER} --self-contained -o ${BUILD_PATH} /p:Platform=${PLATFORM}
-    - dotnet publish src\ProtonVPN.Service\ProtonVPN.Service.csproj -c ${TYPE} -r ${RUNTIME_IDENTIFIER} --self-contained -o ${BUILD_PATH} /p:Platform=${PLATFORM}
-    - dotnet publish src\ProtonVPN.TlsVerify\ProtonVPN.TlsVerify.csproj -c ${TYPE} -r ${RUNTIME_IDENTIFIER} --self-contained -o ${BUILD_PATH} /p:Platform=${PLATFORM}
-    - dotnet publish src\ProtonVPN.WireGuardService\ProtonVPN.WireGuardService.csproj -c ${TYPE} -r ${RUNTIME_IDENTIFIER} --self-contained -o ${BUILD_PATH} /p:Platform=${PLATFORM}
-    - dotnet publish src\ProtonVPN.RestoreInternet\ProtonVPN.RestoreInternet.csproj -c ${TYPE} -r ${RUNTIME_IDENTIFIER} --self-contained -o ${BUILD_PATH} /p:Platform=${PLATFORM}
-    - dotnet publish src\ProtonVPN.Launcher\ProtonVPN.Launcher.csproj -c ${TYPE} -r ${RUNTIME_IDENTIFIER} --self-contained -o ${BUILD_PATH} /p:Platform=${PLATFORM} -p:PublishSingleFile=true
+    - echo "Publishing ${TYPE} Identifier win-${PLATFORM} Output ${BUILD_PATH} Paltform ${PLATFORM}"
+    - dotnet publish src\Client\ProtonVPN.Client\ProtonVPN.Client.csproj -c ${TYPE} -r win-${PLATFORM} --self-contained -o ${BUILD_PATH} /p:Platform=${PLATFORM}
+    - dotnet publish src\ProtonVPN.Service\ProtonVPN.Service.csproj -c ${TYPE} -r win-${PLATFORM} --self-contained -o ${BUILD_PATH} /p:Platform=${PLATFORM}
+    - dotnet publish src\ProtonVPN.TlsVerify\ProtonVPN.TlsVerify.csproj -c ${TYPE} -r win-${PLATFORM} --self-contained -o ${BUILD_PATH} /p:Platform=${PLATFORM}
+    - dotnet publish src\ProtonVPN.WireGuardService\ProtonVPN.WireGuardService.csproj -c ${TYPE} -r win-${PLATFORM} --self-contained -o ${BUILD_PATH} /p:Platform=${PLATFORM}
+    - dotnet publish src\ProtonVPN.RestoreInternet\ProtonVPN.RestoreInternet.csproj -c ${TYPE} -r win-${PLATFORM} --self-contained -o ${BUILD_PATH} /p:Platform=${PLATFORM}
+    - dotnet publish src\ProtonVPN.Launcher\ProtonVPN.Launcher.csproj -c ${TYPE} -r win-${PLATFORM} --self-contained -o ${BUILD_PATH} /p:Platform=${PLATFORM} -p:PublishSingleFile=true
+    - dotnet publish src\ProtonInstaller\ProtonInstaller.csproj -c ${TYPE} -r win-${PLATFORM} --self-contained -o $BUILD_PATH /p:Platform=${PLATFORM}
   artifacts:
     expire_in: 1 day
     paths:
       - $BUILD_PATH
   variables:
     GIT_SUBMODULE_STRATEGY: normal
-    RUNTIME_IDENTIFIER: win-x64
-    PLATFORM: x64
-    
+
 .build-installer:
   stage: build-installer
   tags:
     - windows-vpn-signer
   script:
     - python ci\build-scripts\main.py update-gh-list
-    - python ci\build-scripts\main.py app-installer $env:CI_COMMIT_SHORT_SHA
+    - python ci\build-scripts\main.py app-installer $env:CI_COMMIT_SHORT_SHA ${PLATFORM}
   artifacts:
     paths:
       - Setup/Installers/
     expire_in: 4 weeks
+  variables:
+    FF_USE_FASTZIP: "true"
+    TRANSFER_METER_FREQUENCY: "2s"
+    ARTIFACT_COMPRESSION_LEVEL: "fastest"
+    CACHE_COMPRESSION_LEVEL: "fastest"
+    FASTZIP_ARCHIVER_BUFFER_SIZE: 128

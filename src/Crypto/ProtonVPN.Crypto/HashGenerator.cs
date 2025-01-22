@@ -20,17 +20,16 @@
 using System;
 using System.Security.Cryptography;
 using System.Text;
-using ProtonVPN.Crypto.Contracts;
 
 namespace ProtonVPN.Crypto;
 
-public class HashGenerator : IHashGenerator
+public static class HashGenerator
 {
-    private readonly RandomNumberGenerator _randomNumberGenerator = RandomNumberGenerator.Create();
+    private static readonly RandomNumberGenerator _randomNumberGenerator = RandomNumberGenerator.Create();
 
     /// <summary>Returns a uniformly distributed unsigned integer based on the provided string</summary>
     /// <returns>uint between 0 and uint.Max (4294967295)</returns>
-    public uint HashToUint(string text)
+    public static uint HashToUint(string text)
     {
         byte[] hash;
         using (SHA512 sha512 = SHA512.Create())
@@ -42,7 +41,7 @@ public class HashGenerator : IHashGenerator
 
     /// <summary>Returns a uniformly distributed percentage between 0 and 1 based on the provided string</summary>
     /// <returns>decimal between 0 and 1</returns>
-    public decimal HashToPercentage(string text)
+    public static decimal HashToPercentage(string text)
     {
         uint hash = HashToUint(text);
         return decimal.Divide(hash, uint.MaxValue);
@@ -50,7 +49,7 @@ public class HashGenerator : IHashGenerator
 
     /// <summary>Returns a cryptographically strong random string of any given length</summary>
     /// <returns>string with the defined argument length</returns>
-    public string GenerateRandomString(int length)
+    public static string GenerateRandomString(int length)
     {
         byte[] bytes = new byte[(length + 1) / 2];
         _randomNumberGenerator.GetBytes(bytes);

@@ -29,7 +29,7 @@ namespace ProtonVPN.Update.Tests.Responses
         [TestMethod]
         public void Equals_ShouldBeFalse_WhenOther_IsNull()
         {
-            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
+            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Args = "/qb" };
 
             bool result = file.Equals(null);
 
@@ -39,7 +39,7 @@ namespace ProtonVPN.Update.Tests.Responses
         [TestMethod]
         public void Equals_ShouldBeTrue_WhenOther_IsSelf()
         {
-            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb"};
+            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Args = "/qb"};
 
             bool result = file.Equals(file);
 
@@ -49,7 +49,7 @@ namespace ProtonVPN.Update.Tests.Responses
         [TestMethod]
         public void Equals_ShouldBeFalse_WhenOther_IsNotFileResponse()
         {
-            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
+            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Args = "/qb" };
 
             bool result = file.Equals(new { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" });
 
@@ -59,8 +59,8 @@ namespace ProtonVPN.Update.Tests.Responses
         [TestMethod]
         public void Equals_ShouldBeTrue_WhenOther_IsEqual()
         {
-            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
-            FileResponse other = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
+            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Args = "/qb" };
+            FileResponse other = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Args = "/qb" };
 
             bool result = file.Equals(other);
 
@@ -70,8 +70,8 @@ namespace ProtonVPN.Update.Tests.Responses
         [TestMethod]
         public void Equals_ShouldBeFalse_WhenOther_Url_IsDifferent()
         {
-            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
-            FileResponse other = new() { Url = "http://ubiquito.com/abc.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
+            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Args = "/qb" };
+            FileResponse other = new() { Url = "http://ubiquito.com/abc.exe", Sha512CheckSum = "123456789", Args = "/qb" };
 
             bool result = file.Equals(other);
 
@@ -81,8 +81,8 @@ namespace ProtonVPN.Update.Tests.Responses
         [TestMethod]
         public void Equals_ShouldBeFalse_WhenOther_Url_IsNull()
         {
-            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
-            FileResponse other = new() { Url = null, Sha512CheckSum = "123456789", Arguments = "/qb" };
+            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Args = "/qb" };
+            FileResponse other = new() { Url = null, Sha512CheckSum = "123456789", Args = "/qb" };
 
             bool result = file.Equals(other);
 
@@ -92,8 +92,8 @@ namespace ProtonVPN.Update.Tests.Responses
         [TestMethod]
         public void Equals_ShouldBeFalse_WhenThis_Url_IsNull()
         {
-            FileResponse file = new() { Url = null, Sha512CheckSum = "123456789", Arguments = "/qb" };
-            FileResponse other = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
+            FileResponse file = new() { Url = null, Sha512CheckSum = "123456789", Args = "/qb" };
+            FileResponse other = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Args = "/qb" };
 
             bool result = file.Equals(other);
 
@@ -103,8 +103,8 @@ namespace ProtonVPN.Update.Tests.Responses
         [TestMethod]
         public void Equals_ShouldBeTrue_WhenBoth_Urls_AreNull()
         {
-            FileResponse file = new() { Url = null, Sha512CheckSum = "123456789", Arguments = "/qb" };
-            FileResponse other = new() { Url = null, Sha512CheckSum = "123456789", Arguments = "/qb" };
+            FileResponse file = new() { Url = null, Sha512CheckSum = "123456789", Args = "/qb" };
+            FileResponse other = new() { Url = null, Sha512CheckSum = "123456789", Args = "/qb" };
 
             bool result = file.Equals(other);
 
@@ -114,8 +114,8 @@ namespace ProtonVPN.Update.Tests.Responses
         [TestMethod]
         public void Equals_ShouldBeFalse_WhenOther_Sha512CheckSum_IsDifferent()
         {
-            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
-            FileResponse other = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "abcdefghij", Arguments = "/qb" };
+            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Args = "/qb" };
+            FileResponse other = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "abcdefghij", Args = "/qb" };
 
             bool result = file.Equals(other);
 
@@ -125,8 +125,8 @@ namespace ProtonVPN.Update.Tests.Responses
         [TestMethod]
         public void Equals_ShouldBeFalse_WhenOther_Sha512CheckSum_IsNull()
         {
-            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
-            FileResponse other = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = null, Arguments = "/qb" };
+            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Args = "/qb" };
+            FileResponse other = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = null, Args = "/qb" };
 
             bool result = file.Equals(other);
 
@@ -136,8 +136,8 @@ namespace ProtonVPN.Update.Tests.Responses
         [TestMethod]
         public void Equals_ShouldBeFalse_WhenThis_Sha512CheckSum_IsNull()
         {
-            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = null, Arguments = "/qb" };
-            FileResponse other = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
+            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = null, Args = "/qb" };
+            FileResponse other = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Args = "/qb" };
 
             bool result = file.Equals(other);
 
@@ -147,8 +147,8 @@ namespace ProtonVPN.Update.Tests.Responses
         [TestMethod]
         public void Equals_ShouldBeTrue_WhenBoth_Sha512CheckSum_AreNull()
         {
-            FileResponse file = new() { Url = null, Sha512CheckSum = null, Arguments = "/qb" };
-            FileResponse other = new() { Url = null, Sha512CheckSum = null, Arguments = "/qb" };
+            FileResponse file = new() { Url = null, Sha512CheckSum = null, Args = "/qb" };
+            FileResponse other = new() { Url = null, Sha512CheckSum = null, Args = "/qb" };
 
             bool result = file.Equals(other);
 
@@ -158,8 +158,8 @@ namespace ProtonVPN.Update.Tests.Responses
         [TestMethod]
         public void Equals_ShouldBeFalse_WhenOther_Arguments_IsDifferent()
         {
-            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
-            FileResponse other = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "" };
+            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Args = "/qb" };
+            FileResponse other = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Args = "" };
 
             bool result = file.Equals(other);
 
@@ -169,8 +169,8 @@ namespace ProtonVPN.Update.Tests.Responses
         [TestMethod]
         public void Equals_ShouldBeFalse_WhenOther_Arguments_IsNull()
         {
-            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
-            FileResponse other = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = null };
+            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Args = "/qb" };
+            FileResponse other = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Args = null };
 
             bool result = file.Equals(other);
 
@@ -180,8 +180,8 @@ namespace ProtonVPN.Update.Tests.Responses
         [TestMethod]
         public void Equals_ShouldBeFalse_WhenThis_Arguments_IsNull()
         {
-            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = null };
-            FileResponse other = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = "/qb" };
+            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Args = null };
+            FileResponse other = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Args = "/qb" };
 
             bool result = file.Equals(other);
 
@@ -191,8 +191,8 @@ namespace ProtonVPN.Update.Tests.Responses
         [TestMethod]
         public void Equals_ShouldBeTrue_WhenBoth_Arguments_AreNull()
         {
-            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = null };
-            FileResponse other = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Arguments = null };
+            FileResponse file = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Args = null };
+            FileResponse other = new() { Url = "https://protonvpn.com/download.exe", Sha512CheckSum = "123456789", Args = null };
 
             bool result = file.Equals(other);
 

@@ -45,7 +45,7 @@ public partial class Configuration : StaticConfiguration, IConfiguration
     public int ApiRetries => Get();
     public int MaxGuestHoleRetries => Get();
 
-    public decimal? DeviceRolloutPercentage => Get();
+    public decimal? DeviceRolloutProportion => Get();
 
     public bool IsCertificateValidationEnabled => Get();
 

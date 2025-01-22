@@ -26,6 +26,7 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
 [Category("1")]
+[Category("ARM")]
 public class CustomDnsTests : BaseTest
 {
     private const string CUSTOM_DNS_SERVER = "8.8.8.8";

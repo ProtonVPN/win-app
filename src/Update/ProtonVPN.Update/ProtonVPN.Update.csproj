@@ -12,6 +12,7 @@
         </Compile>
     </ItemGroup>
     <ItemGroup>
+        <ProjectReference Include="..\..\Crypto\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj" />
         <ProjectReference Include="..\..\ProtonVPN.Common.Legacy\ProtonVPN.Common.Legacy.csproj" />
         <ProjectReference Include="..\ProtonVPN.Update.Contracts\ProtonVPN.Update.Contracts.csproj" />
     </ItemGroup>

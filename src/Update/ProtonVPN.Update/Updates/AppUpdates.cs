@@ -23,7 +23,6 @@ using System.Threading.Tasks;
 using ProtonVPN.Common.Legacy.Helpers;
 using ProtonVPN.Common.Legacy.OS.DeviceIds;
 using ProtonVPN.Configurations.Contracts;
-using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Update.Config;
 using ProtonVPN.Update.Files;
@@ -53,7 +52,6 @@ namespace ProtonVPN.Update.Updates
             IAppUpdateConfig config,
             ILaunchableFile launchableFile,
             ILogger logger,
-            IHashGenerator hashGenerator,
             IDeviceIdCache deviceIdCache,
             IConfiguration configuration)
         {
@@ -64,7 +62,7 @@ namespace ProtonVPN.Update.Updates
             _releaseStorage =
                 new OrderedReleaseStorage(
                     new SafeReleaseStorage(
-                        new WebReleaseStorage(config, logger, hashGenerator, deviceIdCache, configuration)));
+                        new WebReleaseStorage(config, logger, deviceIdCache, configuration)));
 
             _updatesDirectory = 
                 new SafeUpdatesDirectory(
@@ -92,7 +90,7 @@ namespace ProtonVPN.Update.Updates
 
         internal async Task<IReadOnlyList<Release>> ReleaseHistory(bool earlyAccess)
         {
-            IEnumerable<Release> releases = await _releaseStorage.Releases();
+            IEnumerable<Release> releases = await _releaseStorage.GetReleasesAsync();
             return releases.ToList();
         }
 
@@ -108,7 +106,7 @@ namespace ProtonVPN.Update.Updates
 
         internal Task StartUpdate(Release release)
         {
-            _launchable.Launch(FilePath(release), release.File.Arguments);
+            _launchable.Launch(FilePath(release), release.File.Args);
             return Task.CompletedTask;
         }
 

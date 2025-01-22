@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,53 +19,52 @@
 
 using System;
 
-namespace ProtonVPN.Update.Responses
+namespace ProtonVPN.Update.Responses;
+
+public class FileResponse : IEquatable<FileResponse>
 {
-    public class FileResponse : IEquatable<FileResponse>
+    public string Url { get; set; }
+
+    public string Sha512CheckSum { get; set; }
+
+    public string Args { get; set; }
+
+    #region IEquatable
+
+    public bool Equals(FileResponse other)
     {
-        public string Url;
-
-        public string Sha512CheckSum;
-
-        public string Arguments;
-
-        #region IEquatable
-
-        public bool Equals(FileResponse other)
+        if (other == null)
         {
-            if (other == null)
-            {
-                return false;
-            }
-
-            return string.Equals(Url, other.Url) &&
-                   string.Equals(Sha512CheckSum, other.Sha512CheckSum) &&
-                   string.Equals(Arguments, other.Arguments);
+            return false;
         }
 
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
-            if (ReferenceEquals(this, obj))
-            {
-                return true;
-            }
-            if (obj.GetType() != GetType())
-            {
-                return false;
-            }
-
-            return Equals(obj as FileResponse);
-        }
-
-        public override int GetHashCode()
-        {
-            throw new InvalidOperationException();
-        }
-
-        #endregion
+        return string.Equals(Url, other.Url) &&
+               string.Equals(Sha512CheckSum, other.Sha512CheckSum) &&
+               string.Equals(Args, other.Args);
     }
+
+    public override bool Equals(object obj)
+    {
+        if (ReferenceEquals(null, obj))
+        {
+            return false;
+        }
+        if (ReferenceEquals(this, obj))
+        {
+            return true;
+        }
+        if (obj.GetType() != GetType())
+        {
+            return false;
+        }
+
+        return Equals(obj as FileResponse);
+    }
+
+    public override int GetHashCode()
+    {
+        throw new InvalidOperationException();
+    }
+
+    #endregion
 }

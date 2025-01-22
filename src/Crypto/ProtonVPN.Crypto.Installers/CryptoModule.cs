@@ -32,6 +32,5 @@ public class CryptoModule : Module
         builder.RegisterType<X25519KeyGenerator>().As<IX25519KeyGenerator>().SingleInstance();
         builder.RegisterType<RandomStringGenerator>().As<IRandomStringGenerator>().SingleInstance();
         builder.RegisterType<Sha1Calculator>().As<ISha1Calculator>().SingleInstance();
-        builder.RegisterType<HashGenerator>().As<IHashGenerator>().SingleInstance();
     }
 }

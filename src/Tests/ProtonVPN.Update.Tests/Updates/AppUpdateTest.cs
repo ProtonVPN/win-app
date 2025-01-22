@@ -33,7 +33,6 @@ using ProtonVPN.Common.Legacy.OS.DeviceIds;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Common.Legacy.OS.Net.Http;
 using ProtonVPN.Configurations.Contracts;
-using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.Tests.Common;
 using ProtonVPN.Update.Config;
 using ProtonVPN.Update.Contracts.Config;
@@ -50,7 +49,6 @@ namespace ProtonVPN.Update.Tests.Updates
     {
         private IConfiguration _configuration;
         private IDeviceIdCache _deviceIdCache;
-        private IHashGenerator _hashGenerator;
         private ILogger _logger;
         private ILaunchableFile _launchableFile;
         private IHttpClient _httpClient;
@@ -63,7 +61,6 @@ namespace ProtonVPN.Update.Tests.Updates
         {
             _configuration = Substitute.For<IConfiguration>();
             _deviceIdCache = Substitute.For<IDeviceIdCache>();
-            _hashGenerator = Substitute.For<IHashGenerator>();
             _logger = Substitute.For<ILogger>();
             _launchableFile = Substitute.For<ILaunchableFile>();
             _httpClient = Substitute.For<IHttpClient>();
@@ -102,7 +99,7 @@ namespace ProtonVPN.Update.Tests.Updates
 
         private IAppUpdate AppUpdate()
         {
-            return new AppUpdate(new AppUpdates(_config, _launchableFile, _logger, _hashGenerator, _deviceIdCache, _configuration));
+            return new AppUpdate(new AppUpdates(_config, _launchableFile, _logger, _deviceIdCache, _configuration));
         }
 
         [TestMethod]
@@ -223,7 +220,7 @@ namespace ProtonVPN.Update.Tests.Updates
         [TestMethod]
         public async Task Available_ShouldBe_False_WhenLatestRelease_HasNoFile()
         {
-            const string json = "{\"Categories\": [{\"Name\": \"Stable\", \"Releases\": [{\"Version\": \"2.0.0\", \"ChangeLog\": [\"line 1\"] }] }] }";
+            const string json = "{\"Releases\": [{\"Version\": \"2.0.0\", \"ReleaseNotes\": [{\"Notes\": [\"line 1\"]}] }] }";
             IAppUpdate update = AppUpdate(new Version(1, 0, 0), HttpResponseFromString(json));
 
             update = await update.Latest(false);
@@ -234,7 +231,7 @@ namespace ProtonVPN.Update.Tests.Updates
         [TestMethod]
         public async Task Available_ShouldBe_False_WhenLatestRelease_FileHasNoUrl()
         {
-            const string json = "{\"Categories\": [{\"Name\": \"Stable\", \"Releases\": [{\"Version\": \"2.0.0\", \"ChangeLog\": [\"line 1\"], \"File\": {\"Sha512CheckSum\": \"a b c d e f g h\"}} ] }] }";
+            const string json = "{\"Releases\": [{\"Version\": \"2.0.0\", \"ReleaseNotes\": [{\"Notes\": [\"line 1\"]}], \"File\": {\"Sha512CheckSum\": \"a b c d e f g h\"}} ] }";
             IAppUpdate update = AppUpdate(new Version(1, 0, 0), HttpResponseFromString(json));
 
             update = await update.Latest(false);
@@ -245,7 +242,7 @@ namespace ProtonVPN.Update.Tests.Updates
         [TestMethod]
         public async Task Available_ShouldBe_False_WhenLatestRelease_FileHasNoChecksum()
         {
-            const string json = "{\"Categories\": [{\"Name\": \"Stable\", \"Releases\": [{\"Version\": \"2.0.0\", \"ChangeLog\": [\"line 1\"], \"File\": {\"Url\": \"https://protonvpn.com/download/ProtonVPN_win_v1.5.2.exe\"}} ] }] }";
+            const string json = "{\"Releases\": [{\"Version\": \"2.0.0\", \"ReleaseNotes\": [{\"Notes\": [\"line 1\"]}], \"File\": {\"Url\": \"https://protonvpn.com/download/ProtonVPN_win_v1.5.2.exe\"}} ]}";
             IAppUpdate update = AppUpdate(new Version(1, 0, 0), HttpResponseFromString(json));
 
             update = await update.Latest(false);

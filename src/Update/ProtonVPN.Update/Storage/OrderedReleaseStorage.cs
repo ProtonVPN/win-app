@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -22,24 +22,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Update.Releases;
 
-namespace ProtonVPN.Update.Storage
+namespace ProtonVPN.Update.Storage;
+
+/// <summary>
+/// Orders stream of app releases by version number in descending order.
+/// </summary>
+public class OrderedReleaseStorage : IReleaseStorage
 {
-    /// <summary>
-    /// Orders stream of app releases by version number in descending order.
-    /// </summary>
-    public class OrderedReleaseStorage : IReleaseStorage
+    private readonly IReleaseStorage _storage;
+
+    public OrderedReleaseStorage(IReleaseStorage storage)
     {
-        private readonly IReleaseStorage _storage;
+        _storage = storage;
+    }
 
-        public OrderedReleaseStorage(IReleaseStorage storage)
-        {
-            _storage = storage;
-        }
-
-        public async Task<IEnumerable<Release>> Releases()
-        {
-            return (await _storage.Releases())
-                .OrderByDescending(r => r);
-        }
+    public async Task<IEnumerable<Release>> GetReleasesAsync()
+    {
+        return (await _storage.GetReleasesAsync())
+            .OrderByDescending(r => r);
     }
 }

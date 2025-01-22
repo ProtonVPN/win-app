@@ -29,78 +29,77 @@ using NSubstitute;
 using ProtonVPN.Update.Releases;
 using ProtonVPN.Update.Storage;
 
-namespace ProtonVPN.Update.Tests.Storage
+namespace ProtonVPN.Update.Tests.Storage;
+
+[TestClass]
+public class SafeReleaseStorageTest
 {
-    [TestClass]
-    public class SafeReleaseStorageTest
+    private IReleaseStorage _origin;
+
+    [TestInitialize]
+    public void TestInitialize()
     {
-        private IReleaseStorage _origin;
+        _origin = Substitute.For<IReleaseStorage>();
+    }
 
-        [TestInitialize]
-        public void TestInitialize()
+    [TestMethod]
+    public async Task Releases_ShouldCall_Origin_Releases()
+    {
+        SafeReleaseStorage storage = new SafeReleaseStorage(_origin);
+
+        await storage.GetReleasesAsync();
+
+        await _origin.Received(1).GetReleasesAsync();
+    }
+
+    [TestMethod]
+    public void Releases_ShouldPassException_WhenOriginThrows()
+    {
+        _origin.When(x => x.GetReleasesAsync()).Throw<Exception>();
+        SafeReleaseStorage storage = new SafeReleaseStorage(_origin);
+
+        Func<Task> action = () => storage.GetReleasesAsync();
+
+        action.Should().ThrowAsync<Exception>();
+    }
+
+    [TestMethod]
+    public void Releases_ShouldThrow_AppUpdateException_WhenOriginThrows()
+    {
+        Exception[] exceptions =
         {
-            _origin = Substitute.For<IReleaseStorage>();
-        }
+            new HttpRequestException(),
+            new OperationCanceledException(),
+            new SocketException(),
+            new JsonException()
+        };
 
-        [TestMethod]
-        public async Task Releases_ShouldCall_Origin_Releases()
+        foreach (Exception exception in exceptions)
         {
-            SafeReleaseStorage storage = new SafeReleaseStorage(_origin);
-
-            await storage.Releases();
-
-            await _origin.Received(1).Releases();
+            Releases_ShouldThrow_AppUpdateException_WhenOriginThrows(exception);
+            Releases_ShouldThrow_AppUpdateException_WhenOriginThrowsAsync(exception);
         }
+    }
 
-        [TestMethod]
-        public void Releases_ShouldPassException_WhenOriginThrows()
-        {
-            _origin.When(x => x.Releases()).Throw<Exception>();
-            SafeReleaseStorage storage = new SafeReleaseStorage(_origin);
+    private void Releases_ShouldThrow_AppUpdateException_WhenOriginThrows(Exception ex)
+    {
+        TestInitialize();
+        _origin.When(x => x.GetReleasesAsync()).Throw(ex);
+        SafeReleaseStorage storage = new SafeReleaseStorage(_origin);
 
-            Func<Task> action = () => storage.Releases();
+        Func<Task> action = () => storage.GetReleasesAsync();
 
-            action.Should().ThrowAsync<Exception>();
-        }
+        action.Should().ThrowAsync<AppUpdateException>();
+    }
 
-        [TestMethod]
-        public void Releases_ShouldThrow_AppUpdateException_WhenOriginThrows()
-        {
-            Exception[] exceptions =
-            {
-                new HttpRequestException(),
-                new OperationCanceledException(),
-                new SocketException(),
-                new JsonException()
-            };
+    private void Releases_ShouldThrow_AppUpdateException_WhenOriginThrowsAsync(Exception ex)
+    {
+        TestInitialize();
+        _origin.GetReleasesAsync().Returns(Task.FromException<IEnumerable<Release>>(ex));
+        SafeReleaseStorage storage = new SafeReleaseStorage(_origin);
 
-            foreach (Exception exception in exceptions)
-            {
-                Releases_ShouldThrow_AppUpdateException_WhenOriginThrows(exception);
-                Releases_ShouldThrow_AppUpdateException_WhenOriginThrowsAsync(exception);
-            }
-        }
+        Func<Task> action = () => storage.GetReleasesAsync();
 
-        private void Releases_ShouldThrow_AppUpdateException_WhenOriginThrows(Exception ex)
-        {
-            TestInitialize();
-            _origin.When(x => x.Releases()).Throw(ex);
-            SafeReleaseStorage storage = new SafeReleaseStorage(_origin);
-
-            Func<Task> action = () => storage.Releases();
-
-            action.Should().ThrowAsync<AppUpdateException>();
-        }
-
-        private void Releases_ShouldThrow_AppUpdateException_WhenOriginThrowsAsync(Exception ex)
-        {
-            TestInitialize();
-            _origin.Releases().Returns(Task.FromException<IEnumerable<Release>>(ex));
-            SafeReleaseStorage storage = new SafeReleaseStorage(_origin);
-
-            Func<Task> action = () => storage.Releases();
-
-            action.Should().ThrowAsync<AppUpdateException>();
-        }
+        action.Should().ThrowAsync<AppUpdateException>();
     }
 }

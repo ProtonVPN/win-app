@@ -27,7 +27,6 @@ using NSubstitute;
 using ProtonVPN.Common.Legacy.OS.DeviceIds;
 using ProtonVPN.Common.Legacy.OS.Net.Http;
 using ProtonVPN.Configurations.Contracts;
-using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Tests.Common;
 using ProtonVPN.Update.Config;
@@ -44,7 +43,6 @@ namespace ProtonVPN.Update.Tests.Updates
     {
         private IConfiguration _configuration;
         private IDeviceIdCache _deviceIdCache;
-        private IHashGenerator _hashGenerator;
         private ILogger _logger;
         private ILaunchableFile _launchableFile;
         private IHttpClient _httpClient;
@@ -59,7 +57,6 @@ namespace ProtonVPN.Update.Tests.Updates
         {
             _configuration = Substitute.For<IConfiguration>();
             _deviceIdCache = Substitute.For<IDeviceIdCache>();
-            _hashGenerator = Substitute.For<IHashGenerator>();
             _logger = Substitute.For<ILogger>();
             _launchableFile = Substitute.For<ILaunchableFile>();
             _httpClient = Substitute.For<IHttpClient>();
@@ -85,7 +82,7 @@ namespace ProtonVPN.Update.Tests.Updates
 
         private IAppUpdates AppUpdates()
         {
-            return new AppUpdates(_config, _launchableFile, _logger, _hashGenerator, _deviceIdCache, _configuration);
+            return new AppUpdates(_config, _launchableFile, _logger, _deviceIdCache, _configuration);
         }
 
         #endregion
@@ -103,7 +100,7 @@ namespace ProtonVPN.Update.Tests.Updates
         [TestMethod]
         public void AppUpdates_ShouldTrow_WhenConfig_IsNull()
         {
-            Action f = () => new AppUpdates(null, _launchableFile, _logger, _hashGenerator, _deviceIdCache, _configuration);
+            Action f = () => new AppUpdates(null, _launchableFile, _logger, _deviceIdCache, _configuration);
 
             f.Should().Throw<ArgumentException>();
         }

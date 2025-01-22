@@ -71,7 +71,7 @@ namespace ProtonVPN.Update.Updates
             {
                 if (_state.NewRelease.New)
                 {
-                    return _state.NewRelease.File.Arguments;
+                    return _state.NewRelease.File.Args;
                 }
 
                 return string.Empty;

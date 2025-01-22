@@ -38,6 +38,7 @@ public class ConnectionTests : FreshSessionSetUp
     }
 
     [Test]
+    [Category("ARM")]
     public void QuickConnect()
     {
         string ipAddressNotConnected = NetworkUtils.GetIpAddress();
@@ -70,6 +71,7 @@ public class ConnectionTests : FreshSessionSetUp
     }
 
     [Test]
+    [Category("ARM")]
     public void ConnectToFastestCountry()
     {
         NavigationRobot
@@ -100,6 +102,7 @@ public class ConnectionTests : FreshSessionSetUp
 
     [Test]
     [Retry(3)]
+    [Category("ARM")]
     public void ConnectAndCancel()
     {
         HomeRobot.ConnectToDefaultConnection()

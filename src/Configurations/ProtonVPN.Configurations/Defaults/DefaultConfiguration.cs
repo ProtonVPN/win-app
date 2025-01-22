@@ -151,7 +151,7 @@ public static class DefaultConfiguration
     public static int ApiRetries => 2;
     public static int MaxGuestHoleRetries => 5;
 
-    public static decimal? DeviceRolloutPercentage => null;
+    public static decimal? DeviceRolloutProportion => null;
 
     public static bool IsCertificateValidationEnabled => true;
 

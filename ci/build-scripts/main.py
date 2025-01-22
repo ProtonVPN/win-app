@@ -9,7 +9,6 @@ import ssh
 import guest_hole_server_loader
 import slack
 import hashlib
-import localization
 from pathlib import Path
 
 def get_sha256(file_path):
@@ -26,12 +25,12 @@ def print_sha256(file_path):
 parser = argparse.ArgumentParser(description='ProtonVPN CI')
 subparsers = parser.add_subparsers(help='sub-command help', dest='command')
 
-subparsers.add_parser('lint-languages')
 subparsers.add_parser('defaultConfig')
 subparsers.add_parser('sign')
 
 custom_parser = subparsers.add_parser('app-installer')
 custom_parser.add_argument('hash', type=str, help='Commit hash string')
+custom_parser.add_argument('platform', type=str, help='Platform: x64 or arm64')
 
 custom_parser = subparsers.add_parser('add-commit-hash')
 custom_parser.add_argument('hash', type=str, help='Commit hash string')
@@ -59,20 +58,6 @@ if args.command == 'defaultConfig':
     f.write(data)
     f.close()
 
-elif args.command == 'lint-languages':
-    linter = Path('src', 'bin', 'ProtonVPN.MarkupValidator.exe')
-    sources_dir = Path('src', 'ProtonVPN.Translations', 'Properties')
-
-    (code, errors) = localization.lint(
-        linter=linter,
-        sources=sources_dir
-    )
-
-    if code > 0:
-        print('[ERROR][lint-languages] broken markup inside some files:')
-        print("\n".join([str(file) for file in errors]))
-    sys.exit(code)
-
 elif args.command == 'app-installer':
     build_path = os.environ.get('BUILD_PATH', '.\\publish\\')
     exe_path = os.path.join(build_path, 'ProtonVPN.Client.exe')
@@ -81,8 +66,8 @@ elif args.command == 'app-installer':
     v = win32api.GetFileVersionInfo(exe_path, '\\')
     semVersion = "%d.%d.%d" % (v['FileVersionMS'] / 65536, v['FileVersionMS'] % 65536, v['FileVersionLS'] / 65536)
     print('Building app installer')
-    err = installer.build(semVersion, args.hash, 'Setup/setup.iss')
-    installer_filename = 'ProtonVPN_v{semVersion}.exe'.format(semVersion=semVersion)
+    err = installer.build(semVersion, args.hash, 'Setup/Setup.{platform}.iss'.format(platform=args.platform))
+    installer_filename = 'ProtonVPN_v{semVersion}_{platform}.exe'.format(semVersion=semVersion, platform=args.platform)
     
     if 'BTI' in build_path:
         installer_filename = 'ProtonVPN_v{semVersion}_BTI.exe'.format(semVersion=semVersion)  

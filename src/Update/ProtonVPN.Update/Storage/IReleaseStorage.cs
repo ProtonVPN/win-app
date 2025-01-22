@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,10 +21,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using ProtonVPN.Update.Releases;
 
-namespace ProtonVPN.Update.Storage
+namespace ProtonVPN.Update.Storage;
+
+public interface IReleaseStorage
 {
-    public interface IReleaseStorage
-    {
-        Task<IEnumerable<Release>> Releases();
-    }
+    Task<IEnumerable<Release>> GetReleasesAsync();
 }

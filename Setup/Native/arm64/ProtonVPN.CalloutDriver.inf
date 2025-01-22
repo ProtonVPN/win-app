@@ -1,0 +1,56 @@
+;
+; ProtonVPN.CalloutDriver.inf
+;
+
+[Version]
+Signature   = "$WINDOWS NT$"
+Class       = WFPCALLOUTS
+ClassGuid   = {57465043-616C-6C6F-7574-5F636C617373}
+Provider    = %ManufacturerName%
+CatalogFile = ProtonVPN.CalloutDriver.cat
+DriverVer = 11/19/2024,7.43.45.10
+PnpLockdown = 1
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+ProtonVPN.CalloutDriver.sys = 1,,
+
+[DestinationDirs]
+DefaultDestDir                    = 12         ; %WinDir%\System32\Drivers
+ProtonVPN.CalloutDriver.Files = 12         ; %WinDir%\System32\Drivers
+
+[DefaultInstall.NTARM64]
+OptionDesc = %ServiceDescription%
+CopyFiles  = ProtonVPN.CalloutDriver.Files
+
+[DefaultUninstall.NTARM64]
+LegacyUninstall = 1
+;DelFiles = ProtonVPN.CalloutDriver.Files
+
+[DefaultInstall.NTARM64.Services]
+AddService = %ServiceName%,,ProtonVPN.CalloutDriver.Service
+
+[DefaultUninstall.NTARM64.Services]
+DelService = %ServiceName%,0x200               ; SPSVCINST_STOPSERVICE
+
+[ProtonVPN.CalloutDriver.Files]
+ProtonVPN.CalloutDriver.sys,,,0x00000040   ; COPYFLG_OVERWRITE_OLDER_ONLY
+
+[ProtonVPN.CalloutDriver.Service]
+DisplayName    = %ServiceDisplayName%
+Description    = %ServiceDescription%
+ServiceType    = 1                             ; SERVICE_KERNEL_DRIVER
+StartType      = 3                             ; SERVICE_DEMAND_START
+ErrorControl   = 1                             ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\ProtonVPN.CalloutDriver.sys
+LoadOrderGroup = NDIS
+Dependencies   = TCPIP                         ; Load after TCPIP.sys
+
+[Strings]
+ManufacturerName   = "Proton AG"
+DiskName           = "ProtonVPN Callout Driver Installation Disk"
+ServiceName        = "ProtonVPNCallout"
+ServiceDisplayName = "ProtonVPN Callout"
+ServiceDescription = "ProtonVPN Callout Driver"

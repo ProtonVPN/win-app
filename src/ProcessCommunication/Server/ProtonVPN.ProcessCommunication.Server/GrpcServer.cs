@@ -30,7 +30,7 @@ using Microsoft.Extensions.Logging;
 using ProtoBuf.Grpc.Server;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Configurations.Contracts;
-using ProtonVPN.Crypto.Contracts;
+using ProtonVPN.Crypto;
 using ProtonVPN.Logging.Contracts.Events.ProcessCommunicationLogs;
 using ProtonVPN.OperatingSystems.Processes.Contracts;
 using ProtonVPN.OperatingSystems.Registries.Contracts;
@@ -56,7 +56,6 @@ public class GrpcServer : IGrpcServer
     private readonly IVpnController _vpnController;
     private readonly IPipeStreamProcessIdentifier _pipeStreamProcessIdentifier;
     private readonly IConfiguration _config;
-    private readonly IHashGenerator _hashGenerator;
     private readonly IRegistryEditor _registryEditor;
 
     private WebApplication _app;
@@ -68,7 +67,6 @@ public class GrpcServer : IGrpcServer
         IVpnController vpnController,
         IPipeStreamProcessIdentifier pipeStreamProcessIdentifier,
         IConfiguration configuration,
-        IHashGenerator hashGenerator,
         IRegistryEditor registryEditor)
     {
         _logger = logger;
@@ -77,7 +75,6 @@ public class GrpcServer : IGrpcServer
         _vpnController = vpnController;
         _pipeStreamProcessIdentifier = pipeStreamProcessIdentifier;
         _config = configuration;
-        _hashGenerator = hashGenerator;
         _registryEditor = registryEditor;
     }
 
@@ -151,7 +148,7 @@ public class GrpcServer : IGrpcServer
 
     private string GeneratePipeName()
     {
-        return $"ProtonVPN-{_hashGenerator.GenerateRandomString(32)}";
+        return $"ProtonVPN-{HashGenerator.GenerateRandomString(32)}";
     }
 
     private async Task RequestDelegateAsync(ConnectionContext context, Func<Task> next)
