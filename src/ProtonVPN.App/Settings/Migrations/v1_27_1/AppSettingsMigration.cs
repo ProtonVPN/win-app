@@ -28,6 +28,8 @@ namespace ProtonVPN.Settings.Migrations.v1_27_1
     internal class AppSettingsMigration : BaseAppSettingsMigration
     {
         private const string UserAutoConnectKey = "UserAutoConnect";
+        private const string UserAutoConnectOnInsecureWifiKey = "ConnectOnInsecureWifi";
+        private const string UserSecureDisconnectKey = "SecureDisconnect";
         private const string StartOnStartupKey = "StartOnStartup";
 
         private readonly InitialAppSettingsMigration _initialAppSettingsMigration;
@@ -52,6 +54,18 @@ namespace ProtonVPN.Settings.Migrations.v1_27_1
             {
                 bool autoConnect = autoConnectSettings.Any(setting => !setting.Value.IsNullOrEmpty());
                 Settings.Set(nameof(IAppSettings.ConnectOnAppStart), _initialAppSettingsMigration.IsCleanInstall || autoConnect);
+            }
+            PerUser<string>[] autoConnectOnInsecureSettings = Settings.Get<PerUser<string>[]>(UserAutoConnectOnInsecureWifiKey);
+            if (autoConnectOnInsecureSettings != null)
+            {
+                bool autoConnect = autoConnectOnInsecureSettings.Any(setting => !setting.Value.IsNullOrEmpty());
+                Settings.Set(nameof(IAppSettings.ConnectOnInsecureWifi), _initialAppSettingsMigration.IsCleanInstall || autoConnect);
+            }
+            PerUser<string>[] secureDisconnectSettings = Settings.Get<PerUser<string>[]>(UserSecureDisconnectKey);
+            if (secureDisconnectSettings != null)
+            {
+                bool secureDisconnect = secureDisconnectSettings.Any(setting => !setting.Value.IsNullOrEmpty());
+                Settings.Set(nameof(IAppSettings.SecureDisconnect), _initialAppSettingsMigration.IsCleanInstall || secureDisconnect);
             }
         }
 

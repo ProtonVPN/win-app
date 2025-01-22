@@ -106,6 +106,8 @@ namespace ProtonVPN.Core.Settings
         bool FeaturePromoCodeEnabled { get; set; }
         bool FeatureFreeRescopeEnabled { get; set; }
         bool ConnectOnAppStart { get; set; }
+        bool ConnectOnInsecureWifi { get; set; }
+        bool SecureDisconnect { get; set; }
         bool FeatureSmartReconnectEnabled { get; set; }
         bool SmartReconnectEnabled { get; set; }
         bool SmartReconnectNotificationsEnabled { get; set; }

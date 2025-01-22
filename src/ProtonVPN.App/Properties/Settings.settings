@@ -353,6 +353,12 @@
     <Setting Name="ConnectOnAppStart" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="ConnectOnInsecureWifi" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SecureDisconnect" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
     <Setting Name="StartOnBoot" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
