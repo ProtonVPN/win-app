@@ -100,7 +100,7 @@ public class LoginRobot
     public void NavigateToBugReport()
     {
         HelpButton.Click();
-        // Remove when VPNWIN-2261 is implemented.
+        // Remove when VPNWIN-2599 is implemented.
         Thread.Sleep(TestConstants.AnimationDelay);
         ReportIssueMenuItem.Click();
     }

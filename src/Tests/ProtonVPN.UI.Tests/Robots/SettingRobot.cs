@@ -46,6 +46,7 @@ public class SettingRobot
     protected Element SignOutButton = Element.ByName("Sign out");
     protected Element PrimaryActionButton = Element.ByAutomationId("PrimaryButton");
     protected Element CancelButton = Element.ByAutomationId("CloseButton");
+    protected Element ExitTheAppButton = Element.ByName("Exit the app");
 
     protected Element NetshieldToggle = Element.ByAutomationId("NetshieldToggle");
     protected Element NetShieldLevelOneRadioButton = Element.ByAutomationId("NetShieldLevelOne");
@@ -72,7 +73,7 @@ public class SettingRobot
     public SettingRobot OpenNetShieldSettings()
     {
         NetShieldSettingsCard.Click();
-        // Remove when VPNWIN-2261 is implemented.
+        // Remove when VPNWIN-2599 is implemented.
         Thread.Sleep(TestConstants.AnimationDelay);
         return this;
     }
@@ -86,7 +87,22 @@ public class SettingRobot
     public SettingRobot OpenProtocolSettings()
     {
         ProtocolSettingsCard.Click();
-        // Remove when VPNWIN-2261 is implemented.
+        // Remove when VPNWIN-2599 is implemented.
+        Thread.Sleep(TestConstants.AnimationDelay);
+        return this;
+    }
+
+    public SettingRobot SignOut()
+    {
+        // Due to focus issues double click is required to trigger click event.
+        SignOutButton.DoubleClick();
+        return this;
+    }
+
+    public SettingRobot ExpandAccountDropdown()
+    {
+        AccountButton.Click();
+        // Remove when VPNWIN-2599 is implemented.
         Thread.Sleep(TestConstants.AnimationDelay);
         return this;
     }
@@ -99,15 +115,6 @@ public class SettingRobot
         return this;
     }
 
-    public SettingRobot Logout()
-    {
-        AccountButton.Click();
-        // Remove when VPNWIN-2261 is implemented.
-        Thread.Sleep(TestConstants.AnimationDelay);
-        // For some reason due to focus flyouts require 2 clicks.
-        SignOutButton.DoubleClick();
-        return this;
-    }
 
     public SettingRobot ConfirmSignOut()
     {
@@ -118,6 +125,12 @@ public class SettingRobot
     public SettingRobot CancelSignOut()
     {
         CancelButton.Click();
+        return this;
+    }
+
+    public SettingRobot ExitTheApp()
+    {
+        ExitTheAppButton.DoubleClick();
         return this;
     }
 

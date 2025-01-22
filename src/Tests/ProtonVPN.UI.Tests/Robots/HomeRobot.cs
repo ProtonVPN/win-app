@@ -32,6 +32,10 @@ public class HomeRobot
     protected Element GetStartedButton = Element.ByName("Get started");
     protected Element ConnectionDetailsProtocol = Element.ByAutomationId("ShowProtocolFlyoutButton");
     protected Element ChangeProtocolButton = Element.ByAutomationId("ChangeProtocolFlyoutButton");
+    protected Element KebabMenuButton = Element.ByAutomationId("TitleBarMenuButton");
+    protected Element HelpButton = Element.ByAutomationId("HelpMenu");
+    protected Element KebabMenuSettingsItem = Element.ByAutomationId("KebabMenuSettingsItem");
+    protected Element KebabMenuExitItem = Element.ByAutomationId("KebabMenuExitItem");
 
     protected Element ConnectionCardTitle = Element.ByAutomationId("ConnectionCardTitle");
     protected Element ConnectionCardDescription = Element.ByAutomationId("ConnectionCardDescription");
@@ -77,8 +81,34 @@ public class HomeRobot
     public HomeRobot ClickChangeProtocolButton()
     {
         ChangeProtocolButton.Click();
-        // Remove when VPNWIN-2261 is implemented.
+        // Remove when VPNWIN-2599 is implemented.
         Thread.Sleep(TestConstants.AnimationDelay);
+        return this;
+    }
+
+    public HomeRobot ExpandKebabMenuButton()
+    {
+        KebabMenuButton.Click();
+        // Remove when VPNWIN-2599 is implemented.
+        Thread.Sleep(TestConstants.AnimationDelay);
+        return this;
+    }
+
+    public HomeRobot ClickOnHelpButton()
+    {
+        HelpButton.Click();
+        return this;
+    }
+
+    public HomeRobot NavigateToSettingsViaKebabMenu()
+    {
+        KebabMenuSettingsItem.DoubleClick();
+        return this;
+    }
+
+    public HomeRobot ExitViaKebabMenu()
+    {
+        KebabMenuExitItem.DoubleClick();
         return this;
     }
 

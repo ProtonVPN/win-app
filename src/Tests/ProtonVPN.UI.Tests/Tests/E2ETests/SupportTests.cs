@@ -19,6 +19,7 @@
 
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestBase;
+using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -33,6 +34,16 @@ public class SupportTests : FreshSessionSetUp
         LoginRobot.NavigateToBugReport();
         SupportRobot
             .FillBugReportForm("Connecting to VPN")
+            .Verify.VerifySendingIsSuccessful();
+    }
+
+    [Test]
+    public void SendBugReportViaKebabMenuFreeUser()
+    {
+        CommonUiFlows.FullLogin(TestUserData.FreeUser);
+        HomeRobot.ExpandKebabMenuButton()
+            .ClickOnHelpButton();
+        SupportRobot.FillBugReportForm("Connecting to VPN")
             .Verify.VerifySendingIsSuccessful();
     }
 }

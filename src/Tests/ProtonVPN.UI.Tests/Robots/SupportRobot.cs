@@ -42,9 +42,9 @@ public class SupportRobot
         Element
             .ByName(bugType)
             .WaitUntilExists(TestConstants.FiveSecondsTimeout)
-            .Click();
+            .DoubleClick();
 
-        ContactUsButton.Click();
+        ContactUsButton.Invoke();
 
         AutomationElement[] bugReportInputFields = _windowFunc().FindAllDescendants(cf => cf.ByControlType(FlaUI.Core.Definitions.ControlType.Edit));
         bugReportInputFields[0].AsTextBox().Text = "testing@email.com";
