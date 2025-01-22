@@ -28,7 +28,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
-    <custom:GhostButton Visibility="{x:Bind ViewModel.IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+    <custom:GhostButton Visibility="{x:Bind ViewModel.IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        AutomationProperties.AutomationId="TitleBarMenuButton">
         <custom:GhostButton.LeftIcon>
             <pathicons:ThreeDotsVertical Size="Pixels16" />
         </custom:GhostButton.LeftIcon>
@@ -65,7 +66,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <MenuFlyoutItem Command="{x:Bind ViewModel.NavigateToSettingsCommand, Mode=OneTime}"
                                 Style="{StaticResource TitleBarMenuFlyoutItemStyle}"
-                                Text="{x:Bind ViewModel.Localizer.Get('Home_TitleBar_Menu_Settings')}">
+                                Text="{x:Bind ViewModel.Localizer.Get('Home_TitleBar_Menu_Settings')}"
+                                AutomationProperties.AutomationId="KebabMenuSettingsItem">
                     <MenuFlyoutItem.Icon>
                         <pathicons:CogWheel Size="Pixels16" />
                     </MenuFlyoutItem.Icon>
@@ -83,7 +85,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <MenuFlyoutItem Command="{x:Bind ViewModel.ExitApplicationCommand, Mode=OneTime}"
                                 Style="{StaticResource TitleBarMenuFlyoutItemStyle}"
-                                Text="{x:Bind ViewModel.Localizer.Get('Home_TitleBar_Menu_ExitTheApp')}">
+                                Text="{x:Bind ViewModel.Localizer.Get('Home_TitleBar_Menu_ExitTheApp')}"
+                                AutomationProperties.AutomationId="KebabMenuExitItem">
                     <MenuFlyoutItem.Icon>
                         <pathicons:Cross Size="Pixels16" />
                     </MenuFlyoutItem.Icon>

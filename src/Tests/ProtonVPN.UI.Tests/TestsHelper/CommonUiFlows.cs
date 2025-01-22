@@ -36,7 +36,7 @@ public class CommonUiFlows : BaseTest
         HomeRobot
             .DismissWelcomeModal();
 
-        // Remove when VPNWIN-2261 is implemented. 
+        // Remove when VPNWIN-2599 is implemented. 
         Thread.Sleep(TestConstants.AnimationDelay);
 
         return new HomeRobot();

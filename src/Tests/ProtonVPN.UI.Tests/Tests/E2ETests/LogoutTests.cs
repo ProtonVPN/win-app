@@ -44,7 +44,8 @@ public class LogoutTests : FreshSessionSetUp
         string ipAddressConnected = NetworkUtils.GetIpAddress();
 
         SettingRobot.OpenSettings()
-            .Logout()
+            .ExpandAccountDropdown()
+            .SignOut()
             .ConfirmSignOut();
 
         LoginRobot.Verify.LoginWindowIsDisplayed();
@@ -61,9 +62,19 @@ public class LogoutTests : FreshSessionSetUp
             .Verify.IsConnected();
 
         SettingRobot.OpenSettings()
-            .Logout()
+            .ExpandAccountDropdown()
+            .SignOut()
             .CancelSignOut();
 
         SettingRobot.Verify.SettingsPageIsDisplayed();
+    }
+
+    [Test]
+    public void LogoutViaKebabMenu()
+    {
+        HomeRobot.ExpandKebabMenuButton();
+        SettingRobot.SignOut()
+            .ConfirmSignOut();
+        LoginRobot.Verify.LoginWindowIsDisplayed();
     }
 }
