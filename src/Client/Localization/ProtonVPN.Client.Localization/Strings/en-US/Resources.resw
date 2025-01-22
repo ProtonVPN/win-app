@@ -1881,8 +1881,8 @@
   <data name="Settings_Support_ReportIssue" xml:space="preserve">
     <value>Report an issue</value>
   </data>
-  <data name="Settings_Account_MyAccount" xml:space="preserve">
-    <value>My account</value>
+  <data name="Settings_Account_Account" xml:space="preserve">
+    <value>Account</value>
   </data>
   <data name="Settings_Account_SignOut" xml:space="preserve">
     <value>Sign out</value>
@@ -2683,11 +2683,14 @@
   <data name="Home_TitleBar_Menu_Help_WhatsTheIssue" xml:space="preserve">
     <value>What's the issue?</value>
   </data>
-  <data name="Home_TitleBar_Menu_MyAccount" xml:space="preserve">
-    <value>My account</value>
+  <data name="Home_TitleBar_Menu_Account" xml:space="preserve">
+    <value>Account</value>
   </data>
   <data name="Home_TitleBar_Menu_Settings" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="Home_TitleBar_Menu_About" xml:space="preserve">
+    <value>About</value>
   </data>
   <data name="Home_TitleBar_Menu_Signout" xml:space="preserve">
     <value>Sign out</value>
@@ -3722,8 +3725,6 @@
   <data name="Flyouts_PortForwarding_Upsell_Description" xml:space="preserve">
     <value>Supercharge peer-to-peer (P2P) file sharing performance with VPN Plus.</value>
   </data>
-
-  
   <data name="Flyouts_SplitTunneling_Info" xml:space="preserve">
     <value>Allows trusted apps and IP addresses to connect without VPN protection</value>
   </data>

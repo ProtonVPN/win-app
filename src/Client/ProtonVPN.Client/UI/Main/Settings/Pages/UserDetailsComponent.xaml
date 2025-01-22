@@ -69,7 +69,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         ShouldConstrainToRootBounds="True">
                 <MenuFlyoutItem Command="{x:Bind ViewModel.OpenMyAccountUrlCommand, Mode=OneTime}"
                                         Style="{StaticResource HyperlinkMenuFlyoutItemStyle}"
-                                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Account_MyAccount')}">
+                                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Account_Account')}">
                     <MenuFlyoutItem.Icon>
                         <pathicons:User />
                     </MenuFlyoutItem.Icon>

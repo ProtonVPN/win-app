@@ -58,7 +58,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <MenuFlyoutItem Command="{x:Bind ViewModel.OpenMyAccountUrlCommand, Mode=OneTime}"
                                 Style="{StaticResource TitleBarMenuHyperlinkMenuFlyoutItemStyle}"
-                                Text="{x:Bind ViewModel.Localizer.Get('Home_TitleBar_Menu_MyAccount')}">
+                                Text="{x:Bind ViewModel.Localizer.Get('Home_TitleBar_Menu_Account')}">
                     <MenuFlyoutItem.Icon>
                         <pathicons:User Size="Pixels16" />
                     </MenuFlyoutItem.Icon>
@@ -70,6 +70,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 AutomationProperties.AutomationId="KebabMenuSettingsItem">
                     <MenuFlyoutItem.Icon>
                         <pathicons:CogWheel Size="Pixels16" />
+                    </MenuFlyoutItem.Icon>
+                </MenuFlyoutItem>
+
+                <MenuFlyoutItem Command="{x:Bind ViewModel.NavigateToAboutCommand, Mode=OneTime}"
+                                Style="{StaticResource TitleBarMenuFlyoutItemStyle}"
+                                Text="{x:Bind ViewModel.Localizer.Get('Home_TitleBar_Menu_About')}">
+                    <MenuFlyoutItem.Icon>
+                        <pathicons:BrandProtonVpnFilled Size="Pixels16" />
                     </MenuFlyoutItem.Icon>
                 </MenuFlyoutItem>
 

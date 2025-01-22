@@ -55,6 +55,7 @@ public partial class TitleBarMenuViewModel : ActivatableViewModelBase,
     private readonly IReportIssueViewNavigator _reportIssueViewNavigator;
     private readonly IReportIssueDataProvider _reportIssueDataProvider;
     private readonly IUpdatesManager _updatesManager;
+    private readonly ISettingsViewNavigator _settingsViewNavigator;
 
     public bool IsUpdateAvailable => _updatesManager.IsUpdateAvailable;
 
@@ -75,6 +76,7 @@ public partial class TitleBarMenuViewModel : ActivatableViewModelBase,
         IReportIssueViewNavigator reportIssueViewNavigator,
         IReportIssueDataProvider reportIssueDataProvider,
         IUpdatesManager updatesManager,
+        ISettingsViewNavigator settingsViewNavigator,
         IUpdateClientCommand updateClientCommand,
         ILocalizationProvider localizer,
         ILogger logger,
@@ -90,6 +92,7 @@ public partial class TitleBarMenuViewModel : ActivatableViewModelBase,
         _reportIssueViewNavigator = reportIssueViewNavigator;
         _reportIssueDataProvider = reportIssueDataProvider;
         _updatesManager = updatesManager;
+        _settingsViewNavigator = settingsViewNavigator;
 
         UpdateCommand = updateClientCommand.Command;
     }
@@ -142,6 +145,13 @@ public partial class TitleBarMenuViewModel : ActivatableViewModelBase,
     private Task NavigateToSettingsAsync()
     {
         return _mainViewNavigator.NavigateToSettingsViewAsync();
+    }
+
+    [RelayCommand]
+    private async Task NavigateToAboutAsync()
+    {
+        await _mainViewNavigator.NavigateToSettingsViewAsync();
+        await _settingsViewNavigator.NavigateToAboutViewAsync();
     }
 
     [RelayCommand]
