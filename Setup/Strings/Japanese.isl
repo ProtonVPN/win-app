@@ -1,0 +1,10 @@
+﻿[CustomMessages]
+InstallerTitle=Proton VPNをインストールする準備ができました
+InstallOtherApps=インストールする他のProtonアプリを選択してください。これらのサービスはプランに含まれています。
+FreeTrial=無料トライアル
+Free=無料
+ProtonMailDescription=デフォルトでプライバシーが保護される、暗号化メール。
+ProtonDriveDescription=自分のデータを自分でコントロールできる、安全なクラウドストレージ。
+ProtonPassDescription=認証情報を保護する、暗号化パスワードマネージャー。
+InstallingWebview2Runtime=Web View 2 ランタイムをインストール中...
+CreateDesktopShortcuts=デスクトップにショートカットを作成

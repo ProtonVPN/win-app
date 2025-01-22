@@ -67,8 +67,13 @@ extern "C" EXPORT DWORD UninstallProduct(const wchar_t* upgrade_code)
 {
     return ExecuteAction([upgrade_code]
     {
-        return Uninstall(upgrade_code);
+        return Installer::Uninstall(upgrade_code);
     });
+}
+
+extern "C" EXPORT DWORD IsProductInstalled(const wchar_t* upgrade_code)
+{
+    return Installer::IsProductInstalled(upgrade_code);
 }
 
 extern "C" EXPORT DWORD InstallService(const wchar_t* name, const wchar_t* display_name, const wchar_t* path)

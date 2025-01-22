@@ -44,7 +44,7 @@ public interface IConfiguration : IStaticConfiguration
     int ApiRetries { get; }
     int MaxGuestHoleRetries { get; }
 
-    decimal? DeviceRolloutPercentage { get; }
+    decimal? DeviceRolloutProportion { get; }
 
     bool IsCertificateValidationEnabled { get; }
 

@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Sockets;
 using System.Threading;
@@ -28,214 +29,212 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Common.Legacy.OS.DeviceIds;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Common.Legacy.OS.Net.Http;
 using ProtonVPN.Configurations.Contracts;
-using ProtonVPN.Crypto.Contracts;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Tests.Common;
 using ProtonVPN.Update.Config;
 using ProtonVPN.Update.Contracts.Config;
 using ProtonVPN.Update.Releases;
 using ProtonVPN.Update.Storage;
 
-namespace ProtonVPN.Update.Tests.Storage
+namespace ProtonVPN.Update.Tests.Storage;
+
+[TestClass]
+public class WebReleaseStorageTest
 {
-    [TestClass]
-    public class WebReleaseStorageTest
+    private IConfiguration _configuration;
+    private IDeviceIdCache _deviceIdCache;
+    private ILogger _logger;
+    private IHttpClient _httpClient;
+    private IFeedUrlProvider _feedUrlProvider;
+    private DefaultAppUpdateConfig _config;
+    private Uri _feedUrl = new("http://127.0.0.1/windows-releases.json");
+
+    #region Initialization
+
+    [TestInitialize]
+    public void TestInitialize()
     {
-        private IConfiguration _configuration;
-        private IDeviceIdCache _deviceIdCache;
-        private IHashGenerator _hashGenerator;
-        private ILogger _logger;
-        private IHttpClient _httpClient;
-        private IFeedUrlProvider _feedUrlProvider;
-        private DefaultAppUpdateConfig _config;
-        private Uri _feedUrl = new Uri("http://127.0.0.1/windows-releases.json");
-
-        #region Initialization
-
-        [TestInitialize]
-        public void TestInitialize()
+        _configuration = Substitute.For<IConfiguration>();
+        _deviceIdCache = Substitute.For<IDeviceIdCache>();
+        _logger = Substitute.For<ILogger>();
+        _httpClient = Substitute.For<IHttpClient>();
+        _feedUrlProvider = Substitute.For<IFeedUrlProvider>();
+        _feedUrlProvider.GetFeedUrl().Returns(_feedUrl);
+        _config = new DefaultAppUpdateConfig
         {
-            _configuration = Substitute.For<IConfiguration>();
-            _deviceIdCache = Substitute.For<IDeviceIdCache>();
-            _hashGenerator = Substitute.For<IHashGenerator>();
-            _logger = Substitute.For<ILogger>();
-            _httpClient = Substitute.For<IHttpClient>();
-            _feedUrlProvider = Substitute.For<IFeedUrlProvider>();
-            _feedUrlProvider.GetFeedUrl().Returns(_feedUrl);
-            _config = new DefaultAppUpdateConfig
-            {
-                FeedHttpClient = _httpClient,
-                FileHttpClient = _httpClient,
-                FeedUriProvider = _feedUrlProvider,
-                UpdatesPath = "Updates",
-                CurrentVersion = new Version(),
-                EarlyAccessCategoryName = "EarlyAccess"
-            };
-        }
-
-        private IReleaseStorage WebReleaseStorage(Task<IHttpResponseMessage> httpResponse)
-        {
-            _httpClient.GetAsync(_config.FeedUriProvider.GetFeedUrl()).Returns(httpResponse);
-            return WebReleaseStorage();
-        }
-
-        private IReleaseStorage WebReleaseStorage(IHttpResponseMessage httpResponse)
-        {
-            _httpClient.GetAsync(_config.FeedUriProvider.GetFeedUrl()).Returns(httpResponse);
-            return WebReleaseStorage();
-        }
-
-        private IReleaseStorage WebReleaseStorage()
-        {
-            return new WebReleaseStorage(_config, _logger, _hashGenerator, _deviceIdCache, _configuration);
-        }
-
-        #endregion
-
-        [TestMethod]
-        public async Task Releases_ShouldGet_FromFeedUri()
-        {
-            Uri feedUri = new Uri("http://127.0.0.1/windows-releases.json");
-            _feedUrlProvider.GetFeedUrl().Returns(_feedUrl);
-            IReleaseStorage storage = WebReleaseStorage(HttpResponseFromFile("windows-releases.json"));
-
-            await storage.Releases();
-
-            await _httpClient.Received().GetAsync(feedUri);
-        }
-
-        [TestMethod]
-        public async Task Releases_ShouldBe_AllFromSource()
-        {
-            IReleaseStorage storage = WebReleaseStorage(HttpResponseFromFile("windows-releases.json"));
-
-            IEnumerable<Release> result = await storage.Releases();
-
-            result.Should().HaveCount(5);
-        }
-
-        [TestMethod]
-        public void Releases_ShouldThrow_WhenHttpResponse_IsNotSuccess()
-        {
-            IHttpResponseMessage httpResponse = Substitute.For<IHttpResponseMessage>();
-            httpResponse.IsSuccessStatusCode.Returns(false);
-            IReleaseStorage storage = WebReleaseStorage(httpResponse);
-
-            Func<Task> action = () => storage.Releases();
-
-            action.Should().ThrowAsync<HttpRequestException>();
-        }
-
-        [TestMethod]
-        public void Releases_ShouldThrow_WhenHttpRequest_Throws()
-        {
-            Exception[] exceptions =
-            {
-                new HttpRequestException(),
-                new OperationCanceledException(),
-                new SocketException()
-            };
-
-            foreach (Exception exception in exceptions)
-            {
-                Releases_ShouldThrow_WhenHttpRequest_Throws(exception);
-                Releases_ShouldThrow_WhenHttpResponse_Throws(exception);
-            }
-        }
-
-        private void Releases_ShouldThrow_WhenHttpRequest_Throws<TE>(TE exception) where TE : Exception
-        {
-            IReleaseStorage storage = WebReleaseStorage(FailedHttpRequest(exception));
-
-            Func<Task> action = () => storage.Releases();
-
-            action.Should().ThrowAsync<TE>();
-        }
-
-        private void Releases_ShouldThrow_WhenHttpResponse_Throws<TE>(TE exception) where TE : Exception
-        {
-            IReleaseStorage storage = WebReleaseStorage(FailedHttpResponse(exception));
-
-            Func<Task> action = () => storage.Releases();
-
-            action.Should().ThrowAsync<TE>();
-        }
-
-        [TestMethod]
-        public void Releases_ShouldThrow_WhenHttpRequest_Cancelled()
-        {
-            IReleaseStorage storage = WebReleaseStorage(CancelledHttpRequest());
-
-            Func<Task> action = () => storage.Releases();
-
-            action.Should().ThrowAsync<TaskCanceledException>();
-        }
-
-        [TestMethod]
-        public void Releases_ShouldThrow_WhenHttpResponse_Cancelled()
-        {
-            IReleaseStorage storage = WebReleaseStorage(CancelledHttpResponse());
-
-            Func<Task> action = () => storage.Releases();
-
-            action.Should().ThrowAsync<TaskCanceledException>();
-        }
-
-        #region Helpers
-
-        private static Task<IHttpResponseMessage> CancelledHttpRequest()
-        {
-            return Task.FromCanceled<IHttpResponseMessage>(new CancellationToken(true));
-        }
-
-        private static Task<IHttpResponseMessage> CancelledHttpResponse()
-        {
-            IHttpResponseMessage httpResponse = Substitute.For<IHttpResponseMessage>();
-            httpResponse.IsSuccessStatusCode.Returns(true);
-            httpResponse.Content.ReadAsStreamAsync().Returns(Task.FromCanceled<Stream>(new CancellationToken(true)));
-
-            return Task.FromResult(httpResponse);
-        }
-
-        private static Task<IHttpResponseMessage> FailedHttpRequest(Exception e)
-        {
-            return Task.FromException<IHttpResponseMessage>(e);
-        }
-
-        private static Task<IHttpResponseMessage> FailedHttpResponse(Exception e)
-        {
-            IHttpResponseMessage httpResponse = Substitute.For<IHttpResponseMessage>();
-            httpResponse.IsSuccessStatusCode.Returns(true);
-            httpResponse.Content.ReadAsStreamAsync().Returns(Task.FromException<Stream>(e));
-
-            return Task.FromResult(httpResponse);
-        }
-
-        private static IHttpResponseMessage HttpResponseFromFile(string filePath)
-        {
-            MemoryStream stream = new();
-            using (FileStream inputStream = new(TestConfig.GetFolderPath(filePath), FileMode.Open))
-            {
-                inputStream.CopyTo(stream);
-                inputStream.Flush();
-            }
-
-            stream.Position = 0;
-            return HttpResponseFromStream(stream);
-        }
-
-        private static IHttpResponseMessage HttpResponseFromStream(Stream stream)
-        {
-            IHttpResponseMessage httpResponse = Substitute.For<IHttpResponseMessage>();
-            httpResponse.IsSuccessStatusCode.Returns(true);
-            httpResponse.Content.ReadAsStreamAsync().Returns(stream);
-            httpResponse.When(x => x.Dispose()).Do(x => stream.Close());
-
-            return httpResponse;
-        }
-
-        #endregion
+            FeedHttpClient = _httpClient,
+            FileHttpClient = _httpClient,
+            FeedUriProvider = _feedUrlProvider,
+            UpdatesPath = "Updates",
+            CurrentVersion = new Version(),
+            EarlyAccessCategoryName = "EarlyAccess"
+        };
     }
+
+    private IReleaseStorage WebReleaseStorage(Task<IHttpResponseMessage> httpResponse)
+    {
+        _httpClient.GetAsync(_config.FeedUriProvider.GetFeedUrl()).Returns(httpResponse);
+        return WebReleaseStorage();
+    }
+
+    private IReleaseStorage WebReleaseStorage(IHttpResponseMessage httpResponse)
+    {
+        _httpClient.GetAsync(_config.FeedUriProvider.GetFeedUrl()).Returns(httpResponse);
+        return WebReleaseStorage();
+    }
+
+    private IReleaseStorage WebReleaseStorage()
+    {
+        return new WebReleaseStorage(_config, _logger, _deviceIdCache, _configuration);
+    }
+
+    #endregion
+
+    [TestMethod]
+    public async Task Releases_ShouldGet_FromFeedUri()
+    {
+        Uri feedUri = new("http://127.0.0.1/windows-releases.json");
+        _feedUrlProvider.GetFeedUrl().Returns(_feedUrl);
+        IReleaseStorage storage = WebReleaseStorage(HttpResponseFromFile("windows-releases.json"));
+
+        await storage.GetReleasesAsync();
+
+        await _httpClient.Received().GetAsync(feedUri);
+    }
+
+    [TestMethod]
+    public async Task Releases_ShouldBe_AllFromSource()
+    {
+        IReleaseStorage storage = WebReleaseStorage(HttpResponseFromFile("windows-releases.json"));
+
+        IEnumerable<Release> result = await storage.GetReleasesAsync();
+
+        var a = result.ToList();
+
+        result.Should().HaveCount(5);
+    }
+
+    [TestMethod]
+    public void Releases_ShouldThrow_WhenHttpResponse_IsNotSuccess()
+    {
+        IHttpResponseMessage httpResponse = Substitute.For<IHttpResponseMessage>();
+        httpResponse.IsSuccessStatusCode.Returns(false);
+        IReleaseStorage storage = WebReleaseStorage(httpResponse);
+
+        Func<Task> action = () => storage.GetReleasesAsync();
+
+        action.Should().ThrowAsync<HttpRequestException>();
+    }
+
+    [TestMethod]
+    public void Releases_ShouldThrow_WhenHttpRequest_Throws()
+    {
+        Exception[] exceptions =
+        {
+            new HttpRequestException(),
+            new OperationCanceledException(),
+            new SocketException()
+        };
+
+        foreach (Exception exception in exceptions)
+        {
+            Releases_ShouldThrow_WhenHttpRequest_Throws(exception);
+            Releases_ShouldThrow_WhenHttpResponse_Throws(exception);
+        }
+    }
+
+    private void Releases_ShouldThrow_WhenHttpRequest_Throws<TE>(TE exception) where TE : Exception
+    {
+        IReleaseStorage storage = WebReleaseStorage(FailedHttpRequest(exception));
+
+        Func<Task> action = () => storage.GetReleasesAsync();
+
+        action.Should().ThrowAsync<TE>();
+    }
+
+    private void Releases_ShouldThrow_WhenHttpResponse_Throws<TE>(TE exception) where TE : Exception
+    {
+        IReleaseStorage storage = WebReleaseStorage(FailedHttpResponse(exception));
+
+        Func<Task> action = () => storage.GetReleasesAsync();
+
+        action.Should().ThrowAsync<TE>();
+    }
+
+    [TestMethod]
+    public void Releases_ShouldThrow_WhenHttpRequest_Cancelled()
+    {
+        IReleaseStorage storage = WebReleaseStorage(CancelledHttpRequest());
+
+        Func<Task> action = () => storage.GetReleasesAsync();
+
+        action.Should().ThrowAsync<TaskCanceledException>();
+    }
+
+    [TestMethod]
+    public void Releases_ShouldThrow_WhenHttpResponse_Cancelled()
+    {
+        IReleaseStorage storage = WebReleaseStorage(CancelledHttpResponse());
+
+        Func<Task> action = () => storage.GetReleasesAsync();
+
+        action.Should().ThrowAsync<TaskCanceledException>();
+    }
+
+    #region Helpers
+
+    private static Task<IHttpResponseMessage> CancelledHttpRequest()
+    {
+        return Task.FromCanceled<IHttpResponseMessage>(new CancellationToken(true));
+    }
+
+    private static Task<IHttpResponseMessage> CancelledHttpResponse()
+    {
+        IHttpResponseMessage httpResponse = Substitute.For<IHttpResponseMessage>();
+        httpResponse.IsSuccessStatusCode.Returns(true);
+        httpResponse.Content.ReadAsStreamAsync().Returns(Task.FromCanceled<Stream>(new CancellationToken(true)));
+
+        return Task.FromResult(httpResponse);
+    }
+
+    private static Task<IHttpResponseMessage> FailedHttpRequest(Exception e)
+    {
+        return Task.FromException<IHttpResponseMessage>(e);
+    }
+
+    private static Task<IHttpResponseMessage> FailedHttpResponse(Exception e)
+    {
+        IHttpResponseMessage httpResponse = Substitute.For<IHttpResponseMessage>();
+        httpResponse.IsSuccessStatusCode.Returns(true);
+        httpResponse.Content.ReadAsStreamAsync().Returns(Task.FromException<Stream>(e));
+
+        return Task.FromResult(httpResponse);
+    }
+
+    private static IHttpResponseMessage HttpResponseFromFile(string filePath)
+    {
+        MemoryStream stream = new();
+        using (FileStream inputStream = new(TestConfig.GetFolderPath(filePath), FileMode.Open))
+        {
+            inputStream.CopyTo(stream);
+            inputStream.Flush();
+        }
+
+        stream.Position = 0;
+        return HttpResponseFromStream(stream);
+    }
+
+    private static IHttpResponseMessage HttpResponseFromStream(Stream stream)
+    {
+        IHttpResponseMessage httpResponse = Substitute.For<IHttpResponseMessage>();
+        httpResponse.IsSuccessStatusCode.Returns(true);
+        httpResponse.Content.ReadAsStreamAsync().Returns(stream);
+        httpResponse.When(x => x.Dispose()).Do(x => stream.Close());
+
+        return httpResponse;
+    }
+
+    #endregion
 }

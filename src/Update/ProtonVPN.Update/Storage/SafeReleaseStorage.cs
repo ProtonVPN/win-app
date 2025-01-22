@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -23,34 +23,33 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using ProtonVPN.Update.Releases;
 
-namespace ProtonVPN.Update.Storage
+namespace ProtonVPN.Update.Storage;
+
+/// <summary>
+/// Wraps expected exceptions of <see cref="WebReleaseStorage"/> into <see cref="AppUpdateException"/>.
+/// </summary>
+public class SafeReleaseStorage : IReleaseStorage
 {
-    /// <summary>
-    /// Wraps expected exceptions of <see cref="WebReleaseStorage"/> into <see cref="AppUpdateException"/>.
-    /// </summary>
-    public class SafeReleaseStorage : IReleaseStorage
+    private readonly IReleaseStorage _storage;
+
+    public SafeReleaseStorage(IReleaseStorage storage)
     {
-        private readonly IReleaseStorage _storage;
+        _storage = storage;
+    }
 
-        public SafeReleaseStorage(IReleaseStorage storage)
+    public async Task<IEnumerable<Release>> GetReleasesAsync()
+    {
+        try
         {
-            _storage = storage;
+            return await _storage.GetReleasesAsync();
         }
-
-        public async Task<IEnumerable<Release>> Releases()
+        catch (JsonException e)
         {
-            try
-            {
-                return await _storage.Releases();
-            }
-            catch (JsonException e)
-            {
-                throw new AppUpdateException("Release history has unsupported format", e);
-            }
-            catch (Exception e)
-            {
-                throw new AppUpdateException("Failed to download release history", e);
-            }
+            throw new AppUpdateException("Release history has unsupported format", e);
+        }
+        catch (Exception e)
+        {
+            throw new AppUpdateException("Failed to download release history", e);
         }
     }
 }

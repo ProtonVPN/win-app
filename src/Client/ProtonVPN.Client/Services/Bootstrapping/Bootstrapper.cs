@@ -193,6 +193,44 @@ public class Bootstrapper : IBootstrapper
                 _mainWindowActivator.DisableHandleClosedEvent();
             }
         }
+
+        HandleProtonInstallerArguments(args);
+    }
+
+    private void HandleProtonInstallerArguments(string[] args)
+    {
+        bool isCleanInstall = false;
+        bool isMailInstalled = false;
+        bool isDriveInstalled = false;
+        bool isPassInstalled = false;
+
+        for (int i = 0; i < args.Length; i++)
+        {
+            string arg = args[i];
+            if (arg.EqualsIgnoringCase("-CleanInstall"))
+            {
+                isCleanInstall = true;
+            }
+            else if (arg.EqualsIgnoringCase("-MailInstalled"))
+            {
+                isMailInstalled = true;
+            }
+            else if (arg.EqualsIgnoringCase("-DriveInstalled"))
+            {
+                isDriveInstalled = true;
+            }
+            else if (arg.EqualsIgnoringCase("-PassInstalled"))
+            {
+                isPassInstalled = true;
+            }
+        }
+
+        if (isCleanInstall)
+        {
+            // TODO: uncomment this once statistical events are implemented
+            //IClientInstallsStatisticalEventSender statisticalEventSender = Resolve<IClientInstallsStatisticalEventSender>();
+            //statisticalEventSender.Send(isMailInstalled, isDriveInstalled, isPassInstalled);
+        }
     }
 
     private void HandleMainWindow()

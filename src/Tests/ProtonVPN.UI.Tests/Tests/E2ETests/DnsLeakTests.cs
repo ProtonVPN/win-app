@@ -28,6 +28,7 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
 [Category("1")]
+[Category("ARM")]
 public class DnsLeakTests : FreshSessionSetUp
 {
     private const string COUNTRY_NAME = "Australia";

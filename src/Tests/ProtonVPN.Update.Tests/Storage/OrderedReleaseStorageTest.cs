@@ -25,46 +25,45 @@ using NSubstitute;
 using ProtonVPN.Update.Releases;
 using ProtonVPN.Update.Storage;
 
-namespace ProtonVPN.Update.Tests.Storage
+namespace ProtonVPN.Update.Tests.Storage;
+
+[TestClass]
+public class OrderedReleaseStorageTest
 {
-    [TestClass]
-    public class OrderedReleaseStorageTest
+    private IReleaseStorage _origin;
+
+    [TestInitialize]
+    public void TestInitialize()
     {
-        private IReleaseStorage _origin;
+        _origin = Substitute.For<IReleaseStorage>();
+    }
 
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            _origin = Substitute.For<IReleaseStorage>();
-        }
+    [TestMethod]
+    public async Task Releases_ShouldCall_Origin_Releases()
+    {
+        OrderedReleaseStorage storage = new OrderedReleaseStorage(_origin);
 
-        [TestMethod]
-        public async Task Releases_ShouldCall_Origin_Releases()
-        {
-            OrderedReleaseStorage storage = new OrderedReleaseStorage(_origin);
+        await storage.GetReleasesAsync();
 
-            await storage.Releases();
+        await _origin.Received(1).GetReleasesAsync();
+    }
 
-            await _origin.Received(1).Releases();
-        }
+    [TestMethod]
+    public async Task Releases_ShouldBe_InDescendingOrder()
+    {
+        Release[] releases = {
+            new() {Version = new(0, 1, 2)},
+            new() {Version = new(5, 5, 5)},
+            new() {Version = new(4, 4, 4)},
+            new() {Version = new(3, 3, 3)},
+            new() {Version = new(2, 1, 0)}
+        };
 
-        [TestMethod]
-        public async Task Releases_ShouldBe_InDescendingOrder()
-        {
-            Release[] releases = {
-                new() {Version = new(0, 1, 2)},
-                new() {Version = new(5, 5, 5)},
-                new() {Version = new(4, 4, 4)},
-                new() {Version = new(3, 3, 3)},
-                new() {Version = new(2, 1, 0)}
-            };
+        _origin.GetReleasesAsync().Returns(releases);
+        OrderedReleaseStorage storage = new OrderedReleaseStorage(_origin);
 
-            _origin.Releases().Returns(releases);
-            OrderedReleaseStorage storage = new OrderedReleaseStorage(_origin);
+        IEnumerable<Release> result = await storage.GetReleasesAsync();
 
-            IEnumerable<Release> result = await storage.Releases();
-
-            result.Should().BeInDescendingOrder();
-        }
+        result.Should().BeInDescendingOrder();
     }
 }

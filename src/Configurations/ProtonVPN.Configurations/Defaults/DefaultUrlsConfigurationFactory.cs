@@ -32,7 +32,7 @@ public static class DefaultUrlsConfigurationFactory
             BfeArticleUrl = "https://protonvpn.com/support/how-to-enable-the-base-filtering-engine",
             PasswordResetUrl = "https://account.protonvpn.com/reset-password",
             ForgetUsernameUrl = "https://account.protonvpn.com/forgot-username",
-            UpdateUrl = "https://protonvpn.com/download/windows-releases.json",
+            UpdateUrl = "https://protonvpn.com/download/windows/{0}/v1/version.json",
             DownloadUrl = "https://protonvpn.com/download",
             TlsReportUrl = "https://reports.protonmail.ch/reports/tls",
             HelpUrl = "https://protonvpn.com/support/",
