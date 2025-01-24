@@ -1,7 +1,8 @@
 #define MyAppVersion "4.0.0"
 #define MyAppName "Proton VPN" 
 #define ClientName "ProtonVPN.Client"
-#define MyAppExeName "ProtonVPN.exe"
+#define MyAppExeName "ProtonVPN.Client.exe"
+#define LegacyMyAppExeName "ProtonVPN.exe"
 #define LauncherExeName "ProtonVPN.Launcher.exe"
 #define AppUserModelID "Proton.VPN"
 
@@ -721,7 +722,7 @@ begin
     logfilename := ExtractFileName(logfilepathname);
     newfilepathname := ExpandConstant('{#InstallLogPath}');
     FileCopy(logfilepathname, newfilepathname, false);
-    if IsProcessRunning('{#MyAppExeName}') then begin
+    if IsProcessRunning('{#MyAppExeName}') or IsProcessrunning('{#LegacyMyAppExeName}') then begin
       exit;
     end;
 
@@ -765,7 +766,11 @@ begin
     RemovePinnedIcons(ExpandConstant('{commondesktop}\Proton VPN.lnk'));
 
     Log('Killing {#MyAppExeName} process');
-    ShellExec('open', 'taskkill.exe', '/f /im {#MyAppExeName}', '', SW_HIDE, ewNoWait, errorCode);
+    ShellExec('open', 'taskkill.exe', '/f /im {#MyAppExeName}', '', SW_HIDE, ewWaitUntilTerminated, errorCode);
+    Log('taskkill returned ' + IntToStr(errorCode) + ' code');
+
+    Log('Killing {#LegacyMyAppExeName} process');
+    ShellExec('open', 'taskkill.exe', '/f /im {#LegacyMyAppExeName}', '', SW_HIDE, ewWaitUntilTerminated, errorCode);
     Log('taskkill returned ' + IntToStr(errorCode) + ' code');
 
     UninstallServiceInner('{#ServiceName}');
