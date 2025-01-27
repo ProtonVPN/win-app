@@ -31,6 +31,8 @@ public class SupportRobot
     protected Element ContactUsButton => Element.ByName("Contact us");
     protected Element SendReportButton => Element.ByAutomationId("SendReportButton");
     protected Element ReportSentLabel => Element.ByName("Report sent");
+    protected Element NoLogsAttachedWarning => Element.ByAutomationId("Message");
+    protected Element IncludeLogsCheckbox => Element.ByAutomationId("IncludeLogsCheckbox");
 
     public SupportRobot(Func<Window> windowFunc)
     {
@@ -53,9 +55,18 @@ public class SupportRobot
         {
             bugReportInputFields[i].AsTextBox().Text = "Ignore report. Testing";
         }
+        return this;
+    }
 
+    public SupportRobot SendBugReport()
+    {
         SendReportButton.Click();
+        return this;
+    }
 
+    public SupportRobot TickIncludeLogsCheckbox()
+    {
+        IncludeLogsCheckbox.Click();
         return this;
     }
 
@@ -65,9 +76,15 @@ public class SupportRobot
         {
         }
 
-        public Verifications VerifySendingIsSuccessful()
+        public Verifications IsSendingSuccessful()
         {
             ReportSentLabel.WaitUntilExists(TestConstants.ThirtySecondsTimeout);
+            return this;
+        }
+
+        public Verifications IsNoLogsAttachedWarningDisplayed()
+        {
+            NoLogsAttachedWarning.WaitUntilDisplayed();
             return this;
         }
     }

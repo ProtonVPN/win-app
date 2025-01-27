@@ -45,7 +45,7 @@ public class AntiCensorshipSLIs : SliSetUp
         LoginRobot.Login(TestUserData.PlusUser);
         SliHelper.MeasureTime(() =>
         {
-            HomeRobot.Verify.WelcomeModalIsDisplayed();
+            HomeRobot.Verify.IsWelcomeModalDisplayed();
         });
     }
 }

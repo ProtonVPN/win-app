@@ -58,86 +58,86 @@ public class UpsellCarrouselRobot
 
     public class Verifications : UpsellCarrouselRobot
     {
-        public Verifications ServersUpsellIsDisplayed()
+        public Verifications IsServersUpsellDisplayed()
         {
             ServersUpsellDescription.WaitUntilDisplayed();
             UpgradeButton.WaitUntilDisplayed();
             return this;
         }
 
-        public Verifications ServersSpeedUpsellIsDisplayed()
+        public Verifications IsServersSpeedUpsellDisplayed()
         {
             SpeedUpsellTitle.WaitUntilDisplayed();
             UpgradeButton.WaitUntilDisplayed();
             return this;
         }
 
-        public Verifications StreamingUpsellIsDisplayed()
+        public Verifications IsStreamingUpsellDisplayed()
         {
             StreamingUpsellTitles.WaitUntilDisplayed();
             UpgradeButton.WaitUntilDisplayed();
             return this;
         }
 
-        public Verifications NetshieldUpsellIsDisplayed()
+        public Verifications IsNetshieldUpsellDisplayed()
         {
             NetshieldUpsellTitle.WaitUntilDisplayed();
             UpgradeButton.WaitUntilDisplayed();
             return this;
         }
 
-        public Verifications SecureCoreUpsellIsDisplayed()
+        public Verifications IsSecureCoreUpsellDisplayed()
         {
             SecureCoreUpsellTitle.WaitUntilDisplayed();
             UpgradeButton.WaitUntilDisplayed();
             return this;
         }
 
-        public Verifications P2pUpsellIsDisplayed()
+        public Verifications IsP2pUpsellDisplayed()
         {
             P2pUpsellTitle.WaitUntilDisplayed();
             UpgradeButton.WaitUntilDisplayed();
             return this;
         }
 
-        public Verifications TenDevicesUpsellIsDisplayed()
+        public Verifications IsTenDevicesUpsellDisplayed()
         {
             TenDevicesUpsellTitle.WaitUntilDisplayed();
             UpgradeButton.WaitUntilDisplayed();
             return this;
         }
 
-        public Verifications TorUpsellIsDisplayed()
+        public Verifications IsTorUpsellDisplayed()
         {
             TorUpsellTitle.WaitUntilDisplayed();
             UpgradeButton.WaitUntilDisplayed();
             return this;
         }
 
-        public Verifications SplitTunnelingUpsellIsDisplayed()
+        public Verifications IsSplitTunnelingUpsellDisplayed()
         {
             SplitTunnelingUpsellTitle.WaitUntilDisplayed();
             UpgradeButton.WaitUntilDisplayed();
             return this;
         }
 
-        public Verifications ProfilesUpsellIsDisplayed()
+        public Verifications IsProfilesUpsellDisplayed()
         {
             ProfilesUpsellTitle.WaitUntilDisplayed();
             UpgradeButton.WaitUntilDisplayed();
             return this;
         }
 
-        public Verifications AdvancedSettingsUpsellIsDisplayed()
+        public Verifications IsAdvancedSettingsUpsellDisplayed()
         {
             AdvancedSettingsUpsellTitle.WaitUntilDisplayed();
             UpgradeButton.WaitUntilDisplayed();
             return this;
         }
 
-        public Verifications UpgradeButtonIsDisplayed()
+        public Verifications IsUpgradeButtonDisplayed()
         {
-            UpgradeButtonIsDisplayed();
+            IsUpgradeButtonDisplayed();
             UpgradeButton.WaitUntilDisplayed();
             return this;
         }

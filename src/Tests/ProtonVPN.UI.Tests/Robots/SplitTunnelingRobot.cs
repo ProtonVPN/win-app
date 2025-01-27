@@ -77,14 +77,14 @@ public class SplitTunnelingRobot
 
     public class Verifications : SplitTunnelingRobot
     {
-        public Verifications IpWasNotAdded(string ipAddress)
+        public Verifications WasIpNotAdded(string ipAddress)
         {
             Element.ByName(ipAddress).DoesNotExist();
             IpAddressTextBox.ValueEquals(ipAddress);
             return this;
         }
 
-        public Verifications IpWasAdded(string ipAddress)
+        public Verifications WasIpAdded(string ipAddress)
         {
             Element.ByName(ipAddress).WaitUntilDisplayed();
             IpAddressTextBox.ValueEquals("");

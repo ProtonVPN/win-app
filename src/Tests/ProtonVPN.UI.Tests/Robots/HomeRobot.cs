@@ -36,6 +36,7 @@ public class HomeRobot
     protected Element HelpButton = Element.ByAutomationId("HelpMenu");
     protected Element KebabMenuSettingsItem = Element.ByAutomationId("KebabMenuSettingsItem");
     protected Element KebabMenuExitItem = Element.ByAutomationId("KebabMenuExitItem");
+    protected Element CloseButton = Element.ByAutomationId("Close");
 
     protected Element ConnectionCardTitle = Element.ByAutomationId("ConnectionCardTitle");
     protected Element ConnectionCardDescription = Element.ByAutomationId("ConnectionCardDescription");
@@ -129,9 +130,15 @@ public class HomeRobot
         return this;
     }
 
+    public HomeRobot CloseClientViaCloseButton()
+    {
+        CloseButton.Click();
+        return this;
+    }
+
     public class Verifications : HomeRobot
     {
-        public Verifications WelcomeModalIsDisplayed()
+        public Verifications IsWelcomeModalDisplayed()
         {
             GetStartedButton.WaitUntilDisplayed(TestConstants.TwoMinutesTimeout);
             return this;
@@ -171,21 +178,21 @@ public class HomeRobot
             return this;
         }
 
-        public Verifications NotTheCountryWantedBannerIsDisplayed()
+        public Verifications IsNotTheCountryWantedBannerDisplayed()
         {
             NotTheCountryWantedLabel.WaitUntilDisplayed();
             UpgradeYourServerLabel.WaitUntilDisplayed();
             return this;
         }
 
-        public Verifications UnlimitedServersChangesUpsellIsDisplayed()
+        public Verifications IsUnlimitedServersChangesUpsellDisplayed()
         {
             ServerChangesUpsellLabel.WaitUntilDisplayed();
             UpgradeButton.WaitUntilDisplayed();
             return this;
         }
 
-        public Verifications ConnectionCardFreeConnectionsTaglineIsDisplayed()
+        public Verifications IsConnectionCardFreeConnectionsTaglineDisplayed()
         {
             ConnectionCardFreeConnectionsTagline.WaitUntilDisplayed();
             return this;
@@ -203,7 +210,13 @@ public class HomeRobot
             return this;
         }
 
-        public Verifications ProtocolIsDisplayed(TestConstants.Protocol protocol)
+        public Verifications DoesConnectionCardTitleEqual(string title)
+        {
+            ConnectionCardTitle.TextEquals(title);
+            return this;
+        }
+
+        public Verifications IsProtocolDisplayed(TestConstants.Protocol protocol)
         {
             switch (protocol)
             {

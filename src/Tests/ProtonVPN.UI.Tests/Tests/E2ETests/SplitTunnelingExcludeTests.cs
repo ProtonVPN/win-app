@@ -50,7 +50,7 @@ public class SplitTunnelingExcludeModeTests : BaseTest
         SplitTunnelingRobot
             .ToggleSplitTunnelingSwitch()
             .AddIpAddress(INVALID_IP)
-            .Verify.IpWasNotAdded(INVALID_IP);
+            .Verify.WasIpNotAdded(INVALID_IP);
 
         SplitTunnelingRobot.ClearIpInput();
     }
@@ -60,7 +60,7 @@ public class SplitTunnelingExcludeModeTests : BaseTest
     {
         SplitTunnelingRobot
             .AddIpAddress(IPV6_ADDRESS)
-            .Verify.IpWasAdded(IPV6_ADDRESS);
+            .Verify.WasIpAdded(IPV6_ADDRESS);
     }
 
     [Test, Order(2)]

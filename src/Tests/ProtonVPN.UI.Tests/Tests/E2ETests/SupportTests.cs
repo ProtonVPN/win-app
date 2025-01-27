@@ -34,7 +34,10 @@ public class SupportTests : FreshSessionSetUp
         LoginRobot.NavigateToBugReport();
         SupportRobot
             .FillBugReportForm("Connecting to VPN")
-            .Verify.VerifySendingIsSuccessful();
+            .TickIncludeLogsCheckbox()
+            .Verify.IsNoLogsAttachedWarningDisplayed()
+            .SendBugReport()
+            .Verify.IsSendingSuccessful();
     }
 
     [Test]
@@ -44,6 +47,18 @@ public class SupportTests : FreshSessionSetUp
         HomeRobot.ExpandKebabMenuButton()
             .ClickOnHelpButton();
         SupportRobot.FillBugReportForm("Connecting to VPN")
-            .Verify.VerifySendingIsSuccessful();
+            .SendBugReport()
+            .Verify.IsSendingSuccessful();
+    }
+
+    [Test]
+    public void SendBugReportViaSettings()
+    {
+        CommonUiFlows.FullLogin(TestUserData.PlusUser);
+        SettingRobot.OpenSettings()
+            .OpenBugReportSetting();
+        SupportRobot.FillBugReportForm("Connecting to VPN")
+            .SendBugReport()
+            .Verify.IsSendingSuccessful();
     }
 }

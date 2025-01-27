@@ -107,13 +107,13 @@ public class LoginRobot
 
     public class Verifications : LoginRobot
     {
-        public Verifications ErrorMessageIsDisplayed(string errorMessage)
+        public Verifications IsErrorMessageDisplayed(string errorMessage)
         {
             Element.ByName(errorMessage).WaitUntilDisplayed();
             return this;
         }
 
-        public Verifications LoginWindowIsDisplayed()
+        public Verifications IsLoginWindowDisplayed()
         {
             UsernameTextBox.WaitUntilDisplayed();
             PasswordTextBox.WaitUntilDisplayed();

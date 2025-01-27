@@ -44,7 +44,7 @@ public class CustomDnsTests : BaseTest
     {
         SettingRobot
            .OpenSettings()
-           .Verify.NetshieldShowsEnabledState()
+           .Verify.IsNetshieldEnabledStateDisplayed()
            .OpenAdvancedSettings();
 
         AdvancedSettingsRobot
@@ -54,7 +54,7 @@ public class CustomDnsTests : BaseTest
 
         SettingRobot
             .ApplySettings()
-            .Verify.NetshieldShowsDisableState();
+            .Verify.IsNetshieldDisableStateDisplayed();
     }
 
     //On Some screens notifications have to be disabled in order for it to pass. 
@@ -76,7 +76,7 @@ public class CustomDnsTests : BaseTest
         HomeRobot.ConnectViaConnectionCard()
             .Verify.IsConnected();
 
-        AdvancedSettingsRobot.Verify.CustomDnsIsSet(CUSTOM_DNS_SERVER);
+        AdvancedSettingsRobot.Verify.IsCustomDnsAddressSet(CUSTOM_DNS_SERVER);
     }
 
     [Test, Order(2)]
@@ -89,7 +89,7 @@ public class CustomDnsTests : BaseTest
 
         SettingRobot.Reconnect();
         HomeRobot.Verify.IsConnected();
-        AdvancedSettingsRobot.Verify.CustomDnsIsNotSet(CUSTOM_DNS_SERVER);
+        AdvancedSettingsRobot.Verify.IsCustomDnsAddressNotSet(CUSTOM_DNS_SERVER);
     }
 
     [Test, Order(3)]
@@ -103,8 +103,8 @@ public class CustomDnsTests : BaseTest
         SettingRobot.Reconnect();
         HomeRobot.Verify.IsConnected();
 
-        AdvancedSettingsRobot.Verify.CustomDnsIsNotSet(CUSTOM_DNS_SERVER);
-        AdvancedSettingsRobot.Verify.CustomDnsIsSet(SECONDARY_CUSTOM_DNS_SERVER);
+        AdvancedSettingsRobot.Verify.IsCustomDnsAddressNotSet(CUSTOM_DNS_SERVER);
+        AdvancedSettingsRobot.Verify.IsCustomDnsAddressSet(SECONDARY_CUSTOM_DNS_SERVER);
     }
 
     [Test, Order(4)]
@@ -116,7 +116,7 @@ public class CustomDnsTests : BaseTest
         SettingRobot.Reconnect();
         HomeRobot.Verify.IsConnected();
 
-        AdvancedSettingsRobot.Verify.CustomDnsIsNotSet(SECONDARY_CUSTOM_DNS_SERVER);
+        AdvancedSettingsRobot.Verify.IsCustomDnsAddressNotSet(SECONDARY_CUSTOM_DNS_SERVER);
     }
 
     [OneTimeTearDown] 

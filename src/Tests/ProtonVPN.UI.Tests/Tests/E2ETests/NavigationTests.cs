@@ -21,6 +21,7 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
+using FlaUI.Core.WindowsAPI;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -43,7 +44,7 @@ public class NavigationTests : FreshSessionSetUp
         HomeRobot.ExpandKebabMenuButton()
             .NavigateToSettingsViaKebabMenu();
 
-        SettingRobot.Verify.SettingsPageIsDisplayed();
+        SettingRobot.Verify.IsSettingsPageDisplayed();
     }
 
     [Test]
@@ -70,6 +71,50 @@ public class NavigationTests : FreshSessionSetUp
         Thread.Sleep(TestConstants.FiveSecondsTimeout);
 
         Assert.That(AreNoProtonVPNProcessesRunning, Is.True, "ProtonVPN process was still running after app was exited.");
+    }
+
+    [Test]
+    public void ClickingOnSidebarClosesSettings()
+    {
+        SettingRobot.OpenSettings()
+            .Verify.IsSettingsPageDisplayed();
+        SidebarRobot.ClickOnSidebar();
+        SettingRobot.Verify.IsSettingsPageNotDisplayed();
+    }
+
+    [Test]
+    public void KeyboardShortcutsNavigateToRelevantComponents()
+    {
+        SettingRobot.OpenSettingsViaShortcut()
+           .Verify.IsSettingsPageDisplayed()
+           .OpenAdvancedSettings()
+           .CloseSettingsUsingEscButton()
+           .Verify.IsSettingsPageNotDisplayed();
+
+        SidebarRobot
+            .ShortcutTo(VirtualKeyShort.KEY_1)
+            .Verify.IsSidebarRecentsDisplayed()
+            .ShortcutTo(VirtualKeyShort.KEY_2)
+            .Verify.IsSidebarCountriesDisplayed()
+            .ShortcutTo(VirtualKeyShort.KEY_3)
+            .Verify.IsSidebarProfilesDisplayed()
+            .ShortcutTo(VirtualKeyShort.KEY_F)
+            .Verify.IsSidebarSearchResultsDisplayed();
+    }
+
+    [Test]
+    public void AboutPageIsOpened()
+    {
+        SettingRobot
+            .OpenSettings()
+            .ScrollToAboutSection()
+            .Verify.IsCorrectAppVersionDisplayedInAboutSettingsCard(TestEnvironment.GetAppVersion())
+            .OpenAboutSection()
+            .Verify
+                .IsChangelogDispalyed()
+                .IsCorrectAppVersionDisplayedInAboutSection(TestEnvironment.GetAppVersion())
+            .PressLearnMore()
+            .Verify.IsLicensingDisplayed();
     }
 
     public static bool AreNoProtonVPNProcessesRunning() =>

@@ -46,7 +46,7 @@ public class LoginSLIs : SliSetUp
 
         SliHelper.MeasureTime(() =>
         {
-            HomeRobot.Verify.WelcomeModalIsDisplayed();
+            HomeRobot.Verify.IsWelcomeModalDisplayed();
         });
 
         HomeRobot.DismissWelcomeModal();

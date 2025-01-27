@@ -43,16 +43,16 @@ public class RecentsTests : BaseTest
     public void RecentIsAddedToList()
     {
         SidebarRobot.NavigateToRecents()
-            .Verify.NoRecentsLabelIsDisplayed();
+            .Verify.IsNoRecentsLabelDisplayed();
 
         HomeRobot.ConnectViaConnectionCard()
             .Verify.IsConnected()
             .Disconnect()
             .Verify.IsDisconnected();
 
-        SidebarRobot.Verify.NoRecentsLabelDoesNotExist()
-            .ConnectionOptionIsDisplayed(CONNECTION_NAME)
-            .RecentsCountIsDisplayed(1);
+        SidebarRobot.Verify.HasNoRecentsLabel()
+            .IsConnectionOptionDisplayed(CONNECTION_NAME)
+            .IsRecentsCountDisplayed(1);
     }
 
     [Test, Order(1)]
@@ -64,7 +64,7 @@ public class RecentsTests : BaseTest
             .ExpandSecondaryActions(CONNECTION_NAME)
             .RemoveRecent();
 
-        SidebarRobot.Verify.NoRecentsLabelIsDisplayed();
+        SidebarRobot.Verify.IsNoRecentsLabelDisplayed();
     }
 
     [OneTimeTearDown]
