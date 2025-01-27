@@ -121,7 +121,7 @@
     <value>Proton VPN Free</value>
   </data>
   <data name="Automation_Properties_ConnectionDetails_Page">
-    <value>Szczegóły połączenia</value>
+    <value>Strona szczegółów połączenia</value>
   </data>
   <data name="Automation_Properties_Features_Bar">
     <value>Pasek funkcji</value>
@@ -130,10 +130,10 @@
     <value>Strona główna</value>
   </data>
   <data name="Automation_Properties_KillSwitch_Page">
-    <value>Strona Kill Switch</value>
+    <value>Strona funkcji kill switch</value>
   </data>
   <data name="Automation_Properties_LocationDetails_Page">
-    <value>Strona szczegółów połączenia</value>
+    <value>Strona szczegółów lokalizacji</value>
   </data>
   <data name="Automation_Properties_Login_Page">
     <value>Strona logowania</value>
@@ -166,25 +166,25 @@
     <value>Strona bram</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Page">
-    <value>Strona połączenia</value>
+    <value>Strona połączeń</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Profiles_Page">
-    <value>Strona profilu</value>
+    <value>Strona profilów</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Recents_Page">
-    <value>Ostatnia strona</value>
+    <value>Strona ostatnich połączeń</value>
   </data>
   <data name="Automation_Properties_Sidebar_Search_Results_Page">
     <value>Wyniki wyszukiwania</value>
   </data>
   <data name="Automation_Properties_SplitTunneling_Page">
-    <value>Strona Split Tunneling</value>
+    <value>Strona funkcji split tunneling</value>
   </data>
   <data name="Cities">
     <value>Miasta</value>
   </data>
   <data name="Common_Actions_ActionsFor">
-    <value>Akcje dla {0}</value>
+    <value>Działania dla {0}</value>
     <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Add">
@@ -241,40 +241,40 @@
     <value>Ulepsz</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>**Zaawansowany Kill Switch jest włączony.** Aby korzystać z Internetu bez VPN, wyłącz zaawansowany Kill Switch.</value>
+    <value>**Zaawansowany kill switch jest włączony.** Aby korzystać z Internetu bez VPN, wyłącz zaawansowany kill switch.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>**Zaawansowany Kill Switch jest włączony.** Jeśli będziesz kontynuować, połączenie internetowe zostanie przerwane.</value>
+    <value>**Zaawansowany kill switch jest włączony.** Jeśli będziesz kontynuować, połączenie internetowe zostanie przerwane.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
-    <value>Zostaniesz rozłączony z VPN.</value>
+    <value>Sieć VPN zostanie rozłączona.</value>
   </data>
   <data name="Common_Links_LearnMore">
     <value>Dowiedz się więcej</value>
   </data>
   <data name="Common_Message_Loading">
-    <value>Ładowanie...</value>
+    <value>Ładowanie…</value>
   </data>
   <data name="Common_States_Off">
-    <value>Wyłączone</value>
+    <value>Wył.</value>
   </data>
   <data name="Common_States_On">
-    <value>Włączone</value>
+    <value>Wł.</value>
   </data>
   <data name="Common_States_Updating">
-    <value>Aktualizowanie...</value>
+    <value>Aktualizowanie…</value>
   </data>
   <data name="Connection_Error_EditProfile">
     <value>Edytuj profil</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
-    <value>Z powodu problemu z siecią, aplikacja Proton VPN nie może pobrać certyfikatu uwierzytelniania.</value>
+    <value>Aplikacja Proton VPN nie może pobrać certyfikatu uwierzytelniania z powodu problemu z siecią.</value>
   </data>
   <data name="Connection_Error_NoServers">
-    <value>Obecnie nie ma dostępnych serwerów dla wybranej opcji. Wybierz inną opcje.</value>
+    <value>Obecnie nie ma dostępnych serwerów dla wybranej opcji. Wybierz inną opcję.</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
-    <value>Serwer profilu '{0}' jest niedostępny. Wybierz inny serwer lub spróbuj ponownie później.</value>
+    <value>Serwer profilu „{0}” jest niedostępny. Wybierz inny serwer lub spróbuj ponownie później.</value>
     <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Connection_Error_NoTapAdapters">
@@ -287,7 +287,7 @@
     <value>Proton VPN nie może nawiązać połączenia, ponieważ serwer RPC jest niedostępny na Twoim systemie.</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
-    <value>Osiągnięto maksymalną liczbę podłączonych urządzeń. Aby połączyć się, rozłącz inne urządzenie lub ulepsz konto do planu PLUS w celu połączenia 10 urządzeń jednocześnie.</value>
+    <value>Osiągnięto maksymalną liczbę podłączonych urządzeń. Aby połączyć się, rozłącz inne urządzenie lub ulepsz konto do planu Plus i podłącz nawet 10 urządzeń jednocześnie.</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedPaidUser">
     <value>Osiągnięto maksymalną liczbę podłączonych urządzeń. Aby połączyć się, rozłącz inne urządzenie.</value>
@@ -302,7 +302,7 @@
     <value>Połączenie nie powiodło się</value>
   </data>
   <data name="Connection_Error_TlsCertificate">
-    <value>Wystąpił problem z weryfikacją certyfikatu serwera VPN. Połączenie sieciowe może być naruszone lub serwer, z którym próbujesz się połączyć, posiada problem z konfiguracją. Uzyskaj pomoc od naszego wsparcia klienta, wysyłając raport.</value>
+    <value>Wystąpił problem z weryfikacją certyfikatu serwera VPN. Połączenie sieciowe mogło zostać naruszone lub serwer, z którym próbujesz się połączyć, ma problem z konfiguracją. Uzyskaj pomoc od naszego działu wsparcia klienta, wysyłając raport.</value>
   </data>
   <data name="Connection_Error_Unknown">
     <value>Nie jesteśmy pewni, co się stało. Spróbuj ponownie lub skontaktuj się z naszym zespołem wsparcia klienta.</value>
@@ -311,7 +311,7 @@
     <value>Pokaż możliwe rozwiązania</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
-    <value>Aplikacja Proton VPN nie może się połączyć, ponieważ adapter WireGuard jest już w użyciu. Rozłącz się z siecią VPN i spróbuj ponownie. Opcjonalnie, zmień protokół. Możesz to zrobić w ustawieniach zaawansowanych.</value>
+    <value>Aplikacja Proton VPN nie może się połączyć, ponieważ adapter WireGuard jest już w użyciu. Rozłącz się z siecią VPN i spróbuj ponownie. Możesz również zmienić protokół w ustawieniach zaawansowanych.</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Automatycznie wybrany z</value>
@@ -375,19 +375,19 @@
     <value>Wszystkie serwery w tym kraju są w trakcie przerwy technicznej</value>
   </data>
   <data name="Connections_Fastest">
-    <value>Najszybszy</value>
+    <value>Najszybsze</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Serwer planu Free ({0})</value>
+    <value>Darmowy serwer ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Few">
-    <value>Serwery planu Free ({0})</value>
+    <value>Darmowe serwery ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Many">
-    <value>Serwery planu Free ({0})</value>
+    <value>Darmowe serwery ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Serwery planu Free ({0})</value>
+    <value>Darmowe serwery ({0})</value>
   </data>
   <data name="Connections_Gateway">
     <value>Brama</value>
@@ -493,7 +493,7 @@
     <value>Usuń profil</value>
   </data>
   <data name="Connections_Profiles_Delete_Message">
-    <value>Profil '{0}' zostanie trwale usunięty.</value>
+    <value>Profil „{0}” zostanie trwale usunięty.</value>
     <comment>{0} is a placeholder for the name of the profile.</comment>
   </data>
   <data name="Connections_Profiles_Delete_Title">
@@ -520,7 +520,7 @@
     <value>Zapisz profil</value>
   </data>
   <data name="Connections_Random">
-    <value>Losowy</value>
+    <value>Losowe</value>
   </data>
   <data name="Connections_Recents_One">
     <value>Ostatnie ({0})</value>
@@ -744,7 +744,7 @@
     <value>Odblokuj wybór krajów w planie VPN Plus</value>
   </data>
   <data name="Countries_SearchPlaceholder">
-    <value>Chcę przeglądać Internet z...</value>
+    <value>Chcę przeglądać Internet z…</value>
   </data>
   <data name="Countries_Section_Header">
     <value>Połączenia VPN</value>
@@ -782,7 +782,7 @@
     <value>Smart Routing</value>
   </data>
   <data name="Countries_SmartRouting_Description">
-    <value>Serwery fizycznie znajdują się w {0}, ale przeglądasz Internet z {1}.</value>
+    <value>Fizyczna lokalizacja serwerów to {0}, ale będzie wyglądać, że jest to {1}.</value>
     <comment>{0} and {1} represent country names.</comment>
   </data>
   <data name="Countries_Tor">
@@ -1850,16 +1850,16 @@
     <value>Plan Proton Free automatycznie łączy użytkownika z najszybszym dostępnym serwerem spośród {0} darmowych krajów. Zazwyczaj będzie to serwer znajdujący się najbliżej lokalizacji użytkownika.</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_One">
-    <value>Kraj planu Free ({0})</value>
+    <value>Kraj z darmowym serwerem ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Few">
-    <value>Kraje planu Free ({0})</value>
+    <value>Kraje z darmowym serwerem ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Many">
-    <value>Kraje planu Free ({0})</value>
+    <value>Krajów z darmowym serwerem ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Other">
-    <value>Kraje planu Free ({0})</value>
+    <value>Krajów z darmowym serwerem ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Title">
     <value>Bezpłatne połączenia</value>
@@ -1873,19 +1873,19 @@ Wysokie opóźnienie może spowolnić połączenie.</value>
     <value>VPN może działać wolniej</value>
   </data>
   <data name="Dialogs_Latency_HighRange_Title">
-    <value>Wysokie (150ms+)</value>
+    <value>Wysokie (ponad 150 ms)</value>
   </data>
   <data name="Dialogs_Latency_LowRange_Description">
     <value>Błyskawiczne prędkości</value>
   </data>
   <data name="Dialogs_Latency_LowRange_Title">
-    <value>Niskie (1ms - 50ms)</value>
+    <value>Niskie (1–50 ms)</value>
   </data>
   <data name="Dialogs_Latency_MediumRange_Description">
     <value>Mały wpływ na prędkość VPN</value>
   </data>
   <data name="Dialogs_Latency_MediumRange_Title">
-    <value>Średnie (50ms - 150ms)</value>
+    <value>Średnie (50–150 ms)</value>
   </data>
   <data name="Dialogs_Latency_Title">
     <value>Co to jest opóźnienie?</value>
@@ -1962,7 +1962,7 @@ Wysokie opóźnienie może spowolnić połączenie.</value>
     <value>Nie działa?</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes_Header">
-    <value>Te wskazówki mogą rozwiązać problem.</value>
+    <value>Te wskazówki mogą okazać się przydatne w rozwiązaniu problemu.</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_DoneAction">
     <value>Gotowe</value>
@@ -1993,7 +1993,7 @@ Wysokie opóźnienie może spowolnić połączenie.</value>
     <value>Zgłoś problem</value>
   </data>
   <data name="Dialogs_SecureCore_AdvancedPrivacy">
-    <value>Zaawansowana prywatność</value>
+    <value>Zaawansowany poziom prywatności</value>
     <comment>obsolete</comment>
   </data>
   <data name="Dialogs_SecureCore_Description">
@@ -2037,19 +2037,19 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>VPN może działać wolniej</value>
   </data>
   <data name="Dialogs_ServerLoad_HighRange_Title">
-    <value>Duże (91-100%)</value>
+    <value>Duże (91–100%)</value>
   </data>
   <data name="Dialogs_ServerLoad_LowRange_Description">
     <value>Błyskawiczne prędkości</value>
   </data>
   <data name="Dialogs_ServerLoad_LowRange_Title">
-    <value>Małe (1-75%)</value>
+    <value>Małe (1–75%)</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Description">
     <value>Mały wpływ na prędkość VPN</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Title">
-    <value>Średnie (76-90%)</value>
+    <value>Średnie (76–90%)</value>
   </data>
   <data name="Dialogs_ServerLoad_Title">
     <value>Co to jest obciążenie serwera?</value>
@@ -2101,7 +2101,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Spróbuj zmienić sieć Wi-Fi lub użyć danych komórkowych.</value>
   </data>
   <data name="Dialogs_Troubleshooting_StatusPage">
-    <value>Sprawdź stronę statusu usługi</value>
+    <value>Sprawdź naszą stronę stanu usługi</value>
   </data>
   <data name="Dialogs_Troubleshooting_StatusPage_Description">
     <value>Upewnij się, że usługi Proton działają normalnie.</value>
@@ -2110,7 +2110,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Pomoc z połączeniem</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Description">
-    <value>Wygląda na to, że czas systemu nie jest zsynchronizowany. Może to powodować problemy podczas łączenia się z VPN.</value>
+    <value>Wygląda na to, że czas systemowy nie jest zsynchronizowany. Może to powodować problemy podczas łączenia się z VPN.</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_PrimaryButton">
     <value>Jak zaktualizować czas systemowy</value>
@@ -2134,7 +2134,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Twoja aktywność jest chroniona przez szwajcarskie prawa ochrony danych osobowych. Nigdy nie będziemy śledzić użytkownika ani udostępniać danych stronom trzecim.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
-    <value>Przeglądaj Internet gdziekolwiek jesteś</value>
+    <value>Przeglądaj Internet, gdziekolwiek jesteś</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
     <value>Ukryj swoją wirtualną lokalizację i korzystaj z Internetu spośród {0} dostępnego kraju.</value>
@@ -2149,7 +2149,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Ukryj swoją wirtualną lokalizację i korzystaj z Internetu spośród {0} dostępnych krajów.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
-    <value>Ochrona 10 urządzeń jednocześnie</value>
+    <value>Chroń 10 urządzeń jednocześnie</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
     <value>Rozszerz ochronę VPN na komputery, urządzenia mobilne, przeglądarki, telewizory i nie tylko.</value>
@@ -2172,7 +2172,7 @@ Ciesz się tym, co najlepsze w prywatności Proton.</value>
     <value>Witaj w planie Proton Unlimited</value>
   </data>
   <data name="Dialogs_Welcome_Message">
-    <value>Przygotowujemy aplikację. To może potrwać chwilę.</value>
+    <value>Przygotowujemy dla Ciebie nowe środowisko VPN. To powinno zająć tylko chwilę.</value>
   </data>
   <data name="Dialogs_Welcome_Title">
     <value>Witaj w Proton VPN</value>
@@ -2181,7 +2181,7 @@ Ciesz się tym, co najlepsze w prywatności Proton.</value>
     <value>Wyjść z Proton VPN?</value>
   </data>
   <data name="Exit_Message">
-    <value>Rozłączanie z serwerem VPN...</value>
+    <value>Rozłączanie z serwerem VPN…</value>
   </data>
   <data name="Exit_Title">
     <value>Wyjdź z Proton VPN</value>
@@ -2191,7 +2191,7 @@ Ciesz się tym, co najlepsze w prywatności Proton.</value>
 
 Strony internetowe mogą wykorzystywać blokady geograficzne do ograniczania treści. Rządy mogą również nakazać dostawcom usług internetowych (ISP) blokowania określonych stron w ich kraju.
 
-VPN sprawia, że przeglądanie wygląda tak, jakby odbywało się to z innego miejsca, chroniąc użytkownika przed inwigilacją i cenzurą.</value>
+VPN sprawia, że przeglądanie wygląda tak, jakby odbywało się z innego miejsca, chroniąc użytkownika przed inwigilacją i cenzurą.</value>
   </data>
   <data name="Flyouts_Country_Title">
     <value>Kraj</value>
@@ -2200,10 +2200,10 @@ VPN sprawia, że przeglądanie wygląda tak, jakby odbywało się to z innego mi
     <value>Połącz się z VPN, aby zmienić swoją wirtualną lokalizację</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Connected">
-    <value>Adres IP VPN maskuje prawdziwy adres IP użytkownika. Sprawia to, że przeglądanie wygląda tak, jakby odbywało się to z lokalizacji VPN, więc aktywność online nie może być powiązana z urządzeniem.</value>
+    <value>Adres IP VPN maskuje prawdziwy adres IP użytkownika. Sprawia to, że przeglądanie wygląda tak, jakby odbywało się z lokalizacji VPN, więc aktywność online nie może być powiązana z urządzeniem.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected">
-    <value>Ten unikalny kod może być wykorzystywany przez strony internetowe i dostawców usług internetowych (ISP) do powiązania Twojej lokalizacji i historii przeglądania z Twoim urządzeniem. 
+    <value>Ten unikatowy kod może być wykorzystywany przez strony internetowe i dostawców usług internetowych (ISP) do powiązania Twojej lokalizacji i historii przeglądania z Twoim urządzeniem. 
 
 VPN maskuje adres IP użytkownika, utrudniając śledzenie jego aktywności.</value>
   </data>
@@ -2225,7 +2225,7 @@ VPN maskuje adres IP użytkownika, utrudniając śledzenie jego aktywności.</va
   <data name="Flyouts_Isp_Description">
     <value>Twój dostawca usług internetowych (ISP) to firma, która łączy Cię z Internetem. 
 
-Mogą oni rejestrować Twoją aktywność online. W niektórych krajach mogą sprzedawać Twoje dane reklamodawcom. W innych mogą być zobowiązani do przekazania ich rządowi. 
+Może on rejestrować Twoją aktywność online. W niektórych krajach może sprzedawać Twoje dane reklamodawcom. W innych może być zobowiązany do przekazania ich rządowi. 
 
 VPN ukrywa adres IP użytkownika, chroniąc go przed ingerencją dostawcy usług internetowych.</value>
   </data>
@@ -2251,7 +2251,7 @@ VPN ukrywa adres IP użytkownika, chroniąc go przed ingerencją dostawcy usług
     <value>Obciążenie serwera informuje o stopniu wykorzystanej maksymalnej wydajności serwera. Duże obciążenie serwera może spowolnić połączenie.</value>
   </data>
   <data name="Flyouts_ServerLoad_High">
-    <value>Duże (91-100%)</value>
+    <value>Duże (91—100%)</value>
   </data>
   <data name="Flyouts_ServerLoad_High_Description">
     <value>VPN może działać wolniej</value>
@@ -2260,13 +2260,13 @@ VPN ukrywa adres IP użytkownika, chroniąc go przed ingerencją dostawcy usług
     <value>Co to jest obciążenie serwera?</value>
   </data>
   <data name="Flyouts_ServerLoad_Low">
-    <value>Małe (1-75%)</value>
+    <value>Małe (1–75%)</value>
   </data>
   <data name="Flyouts_ServerLoad_Low_Description">
     <value>Błyskawiczne prędkości</value>
   </data>
   <data name="Flyouts_ServerLoad_Medium">
-    <value>Średnie (76-90%)</value>
+    <value>Średnie (76–90%)</value>
   </data>
   <data name="Flyouts_ServerLoad_Medium_Description">
     <value>Mały wpływ na prędkość połączenia</value>
@@ -2297,7 +2297,7 @@ Prędkość pokazuje bieżącą aktywność urządzenia — nie reprezentuje mak
     <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
   </data>
   <data name="Flyouts_Volume_Description">
-    <value>Pokazuje, ile ruchu zostało przesłane przez sieć VPN.</value>
+    <value>Pokazuje, ile danych przesłano przez sieć VPN.</value>
   </data>
   <data name="Flyouts_Volume_Download">
     <value>Pobrano</value>
@@ -2347,31 +2347,31 @@ Prędkość pokazuje bieżącą aktywność urządzenia — nie reprezentuje mak
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
-    <value>{0} b/s</value>
+    <value>{0} B/s</value>
     <comment>Format a speed in Bytes per second. {0} is a place holder for the number of Bytes per second (eg. 30 B/s)</comment>
   </data>
   <data name="Format_Speed_ExabytesPerSecond">
-    <value>{0} Eb/s</value>
+    <value>{0} EB/s</value>
     <comment>Format a speed in Exabytes per second. {0} is a place holder for the number of Exabytes per second (eg. 30 EB/s)</comment>
   </data>
   <data name="Format_Speed_GigabytesPerSecond">
-    <value>{0} Gb/s</value>
+    <value>{0} GB/s</value>
     <comment>Format a speed in Gigabytes per second. {0} is a place holder for the number of Gigabytes per second (eg. 30 GB/s)</comment>
   </data>
   <data name="Format_Speed_KilobytesPerSecond">
-    <value>{0} kb/s</value>
+    <value>{0} kB/s</value>
     <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
   </data>
   <data name="Format_Speed_MegabytesPerSecond">
-    <value>{0} Mb/s</value>
+    <value>{0} MB/s</value>
     <comment>Format a speed in Megabytes per second. {0} is a place holder for the number of Megabytes per second (eg. 30 MB/s)</comment>
   </data>
   <data name="Format_Speed_PetabytesPerSecond">
-    <value>{0} Pb/s</value>
+    <value>{0} PB/s</value>
     <comment>Format a speed in Petabytes per second. {0} is a place holder for the number of Petabytes per second (eg. 30 PB/s)</comment>
   </data>
   <data name="Format_Speed_TerabytesPerSecond">
-    <value>{0} Tb/s</value>
+    <value>{0} TB/s</value>
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
   <data name="Format_Time_Day_One">
@@ -2415,7 +2415,7 @@ Prędkość pokazuje bieżącą aktywność urządzenia — nie reprezentuje mak
     <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_MinutesSeconds">
-    <value>{0} min. {1} sek.</value>
+    <value>{0} min {1} s</value>
     <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_MinutesSeconds_Short">
@@ -2423,7 +2423,7 @@ Prędkość pokazuje bieżącą aktywność urządzenia — nie reprezentuje mak
     <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
   </data>
   <data name="Format_Time_Seconds">
-    <value>{0} sek.</value>
+    <value>{0} s</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
   </data>
   <data name="FreeConnections_P2PUpsell">
@@ -2464,7 +2464,7 @@ Prędkość pokazuje bieżącą aktywność urządzenia — nie reprezentuje mak
     <value>Przeglądasz Internet z</value>
   </data>
   <data name="Home_ConnectionCard_Header_ConnectingTo">
-    <value>Łączenie z...</value>
+    <value>Łączenie z…</value>
   </data>
   <data name="Home_ConnectionCard_Header_DefaultConnection">
     <value>Domyślne połączenie</value>
@@ -2493,7 +2493,7 @@ Prędkość pokazuje bieżącą aktywność urządzenia — nie reprezentuje mak
     <value>Łączenie</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectingSubLabel">
-    <value>Ochrona cyfrowej tożsamości...</value>
+    <value>Ochrona cyfrowej tożsamości…</value>
   </data>
   <data name="Home_ConnectionDetails_Country">
     <value>Kraj</value>
@@ -2522,7 +2522,7 @@ Prędkość pokazuje bieżącą aktywność urządzenia — nie reprezentuje mak
     <value>Mój adres IP</value>
   </data>
   <data name="Home_ConnectionDetails_Protected">
-    <value>Chroniony</value>
+    <value>Ochrona</value>
   </data>
   <data name="Home_ConnectionDetails_Protocol">
     <value>Protokół</value>
@@ -2550,7 +2550,7 @@ Prędkość pokazuje bieżącą aktywność urządzenia — nie reprezentuje mak
     <value>Szczegóły połączenia</value>
   </data>
   <data name="Home_ConnectionDetails_Unprotected">
-    <value>Niechroniony</value>
+    <value>Brak ochrony</value>
   </data>
   <data name="Home_ConnectionDetails_UnprotectedSubLabel">
     <value>Zaszyfruj aktywność online, łącząc się z siecią VPN.</value>
@@ -2640,7 +2640,7 @@ Prędkość pokazuje bieżącą aktywność urządzenia — nie reprezentuje mak
     <value>Serwer jest dostępny w planie VPN Plus</value>
   </data>
   <data name="Home_Recents_SecondaryActions_ToolTip">
-    <value>Akcje</value>
+    <value>Działania</value>
   </data>
   <data name="Home_Recents_ServerUnderMaintenance">
     <value>Serwer jest w trakcie przerwy technicznej</value>
@@ -2652,7 +2652,7 @@ Prędkość pokazuje bieżącą aktywność urządzenia — nie reprezentuje mak
     <value>Odepnij</value>
   </data>
   <data name="Home_Update_Confirmation_Message">
-    <value>Aby ukończyć proces aktualizacji, Proton VPN tymczasowo wyłączy funkcję Kill Switch. Czy chcesz kontynuować?</value>
+    <value>Aby ukończyć proces aktualizacji, Proton VPN tymczasowo wyłączy zaawansowaną funkcję kill switch. Czy chcesz kontynuować?</value>
     <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
   </data>
   <data name="Home_Update_Confirmation_Title">
@@ -2669,13 +2669,13 @@ Prędkość pokazuje bieżącą aktywność urządzenia — nie reprezentuje mak
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_VpnStatus_Subtitle_Connecting">
-    <value>Ochrona cyfrowej tożsamości...</value>
+    <value>Ochrona cyfrowej tożsamości…</value>
   </data>
   <data name="Home_VpnStatus_Subtitle_Disconnected">
-    <value>Nie jesteś chroniony</value>
+    <value>Nie masz ochrony</value>
   </data>
   <data name="Home_VpnStatus_Title_Connected">
-    <value>Chroniony</value>
+    <value>Ochrona</value>
   </data>
   <data name="LoadingPage_Tip">
     <value>Lepszy świat zaczyna się od prywatności i wolności cyfrowej.</value>
@@ -2684,7 +2684,7 @@ Prędkość pokazuje bieżącą aktywność urządzenia — nie reprezentuje mak
     <value>Wystąpił błąd podczas pobierania szczegółów sesji. Spróbuj ponownie.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
-    <value>Kod jest nieprawidłowy. Spróbuj ponownie.</value>
+    <value>Kod jest niepoprawny. Spróbuj ponownie.</value>
   </data>
   <data name="Login_Error_SessionExpired">
     <value>Sesja wygasła. Zaloguj się ponownie.</value>
@@ -2694,7 +2694,7 @@ Prędkość pokazuje bieżącą aktywność urządzenia — nie reprezentuje mak
     <value>Uwierzytelnianie SSO nie powiodło się. Spróbuj ponownie.</value>
   </data>
   <data name="Login_Error_TwoFactorAuthFailed">
-    <value>Nazwa użytkownika lub hasło jest nieprawidłowe. Spróbuj ponownie.</value>
+    <value>Niepoprawna nazwa użytkownika lub błędne hasło. Spróbuj ponownie.</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
     <value>Uwierzytelnianie dwustopniowe nie powiodło się. Zaloguj się ponownie.</value>
@@ -2731,18 +2731,18 @@ Prędkość pokazuje bieżącą aktywność urządzenia — nie reprezentuje mak
     <value>Wpisz kod</value>
   </data>
   <data name="Main_Loading_SigningIn">
-    <value>Trwa logowanie. Poczekaj chwilę...</value>
+    <value>Trwa logowanie. Poczekaj chwilę…</value>
     <comment>Message in the loading screen when signing in or starting the app</comment>
   </data>
   <data name="Main_Loading_SigningOut">
-    <value>Trwa wylogowywanie. Poczekaj chwilę...</value>
+    <value>Trwa wylogowywanie. Poczekaj chwilę…</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
   <data name="Notifications_PortForwarding_Description">
     <value>Ustaw ten numer portu w aplikacji BitTorrent dla lepszej prędkości.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
-    <value>Twój plan został obniżony do planu Proton Free. Zostaniesz ponownie połączony z najszybszym darmowym serwerem.</value>
+    <value>Twój plan został obniżony do planu Proton Free. Nastąpi ponowne połączenie z najszybszym darmowym serwerem.</value>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Zaktualizuj teraz</value>
@@ -2760,7 +2760,7 @@ Prędkość pokazuje bieżącą aktywność urządzenia — nie reprezentuje mak
     <value>Co to jest VPN P2P?</value>
   </data>
   <data name="Overlay_P2P_Bullet2_Description">
-    <value>Sieci P2P pozwalają 2 urządzeniom łączyć się i przesyłać dane bez przechodzenia przez centralny serwer. </value>
+    <value>Sieci P2P pozwalają dwóm urządzeniom łączyć się i przesyłać dane bez przechodzenia przez centralny serwer. </value>
   </data>
   <data name="Overlay_P2P_Bullet2_Header">
     <value>Co to jest sieć P2P?</value>
@@ -2795,7 +2795,7 @@ Secure Core</value>
     <value>Wyższe opóźnienie</value>
   </data>
   <data name="Overlay_SecureCore_SecureCoreConnection_Privacy">
-    <value>Zaawansowana prywatność</value>
+    <value>Zaawansowany poziom prywatności</value>
   </data>
   <data name="Overlay_SecureCore_StandardConnection">
     <value>Standardowe
@@ -2819,7 +2819,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>VPN może działać wolniej</value>
   </data>
   <data name="Overlay_ServerLoad_HighRange_Title">
-    <value>Duże (91-100%)</value>
+    <value>Duże (91–100%)</value>
   </data>
   <data name="Overlay_ServerLoad_LearnMore">
     <value>Co to jest obciążenie serwera?</value>
@@ -2828,13 +2828,13 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Błyskawiczne prędkości</value>
   </data>
   <data name="Overlay_ServerLoad_LowRange_Title">
-    <value>Małe (1-75%)</value>
+    <value>Małe (1–75%)</value>
   </data>
   <data name="Overlay_ServerLoad_MediumRange_Description">
     <value>Mały wpływ na prędkość VPN</value>
   </data>
   <data name="Overlay_ServerLoad_MediumRange_Title">
-    <value>Średnie (76-90%)</value>
+    <value>Średnie (76–90%)</value>
   </data>
   <data name="Overlay_ServerLoad_Title">
     <value>Obciążenie serwera</value>
@@ -2847,7 +2847,7 @@ Po nawiązaniu połączenia z serwerem Smart Routing przeglądanie odbywa się w
 Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących prywatności i innych form cenzury.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
-    <value>Serwery fizycznie znajdują się w {0}, ale przeglądasz Internet z {1}</value>
+    <value>Fizyczna lokalizacja serwerów to {0}, ale będzie wyglądać, że jest to {1}.</value>
     <comment>{0} is a placeholder for the physical server location country. {1} is a placeholder for the destination country
     Warning: country names are inserted in the nominative case. For INFLECTED languages, use alternative wording as follows:
     Connects you to your destination country ({1}) through servers that are physically located somewhere else ({0})</comment>
@@ -2874,7 +2874,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Profile</value>
   </data>
   <data name="Search_InputBox_Placeholder">
-    <value>Przeglądaj Internet z...</value>
+    <value>Przeglądaj Internet z…</value>
   </data>
   <data name="Search_NoInput_CityOrState">
     <value>Miasto lub stan USA</value>
@@ -2889,7 +2889,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <comment>The word used for one single server</comment>
   </data>
   <data name="Search_NoInput_TrySearchingFor">
-    <value>Spróbuj wyszukać...</value>
+    <value>Spróbuj wyszukać…</value>
   </data>
   <data name="Search_NoResults_Description">
     <value>Spróbuj użyć innego słowa kluczowego.</value>
@@ -2958,7 +2958,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Spróbuj ponownie</value>
   </data>
   <data name="Settings_About_Update_Description">
-    <value>Wykorzystaj w pełni możliwości usługi VPN, aktualizując aplikację do najnowszej wersji.</value>
+    <value>Wykorzystaj w pełni możliwości VPN, aktualizując aplikację do najnowszej wersji.</value>
   </data>
   <data name="Settings_Account_Exit">
     <value>Wyjście z aplikacji</value>
@@ -3016,7 +3016,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Niestandardowe serwery DNS</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
-    <value>Nie będziesz mógł użyć funkcji NetShield po połączeniu się z niestandardowym serwerem DNS.</value>
+    <value>Nie będzie można użyć funkcji NetShield po połączeniu się z niestandardowym serwerem DNS.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title">
     <value>Włączyć niestandardowe serwery DNS?</value>
@@ -3048,7 +3048,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Typ NAT</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Description">
-    <value>Nie będziesz mógł użyć przekierowania portów z opcją umiarkowany NAT</value>
+    <value>Nie będzie można użyć przekierowania portów z opcją umiarkowanego NAT.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Title">
     <value>Włączyć umiarkowany NAT?</value>
@@ -3060,13 +3060,13 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Umiarkowany (typ 2)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
-    <value>Ogranicza dane wychodzące. Ta opcja jest najlepsza dla gier online.</value>
+    <value>Częściowo ogranicza dane przychodzące. Ta opcja jest najlepsza dla gier online.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict">
     <value>Ścisły (typ 3)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
-    <value>Ogranicza dane przychodzące. Ta opcja jest bezpieczniejsza, ale może utrudniać połączenia P2P.</value>
+    <value>Ogranicza dane przychodzące. Ta opcja jest bezpieczniejsza, ale może utrudniać połączenia P2P w grach.</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
     <value>Przekierowuje ruch między różnymi sieciami.</value>
@@ -3090,25 +3090,25 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Ostatnio używane połączenia</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
-    <value>Kill Switch</value>
+    <value>Kill switch</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced">
     <value>Zaawansowany</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
-    <value>Zezwala na dostęp do Internetu tylko podczas połączenia z usługą Proton VPN. Funkcja Kill Switch pozostanie aktywna nawet po ponownym uruchomieniu urządzenia.</value>
+    <value>Zezwala na dostęp do Internetu tylko podczas połączenia z usługą Proton VPN. Funkcja kill switch pozostanie aktywna nawet po ponownym uruchomieniu urządzenia.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>Spowoduje to wyłączenie funkcji Split Tunneling.</value>
+    <value>Spowoduje to wyłączenie funkcji split tunneling.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>Włączyć Kill Switch?</value>
+    <value>Włączyć kill switch?</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Description">
-    <value>Chroni adres IP poprzez rozłączenie połączenia sieciowego, w przypadku utraty połączenia VPN.</value>
+    <value>Chroni adres IP poprzez rozłączenie połączenia sieciowego w przypadku utraty połączenia VPN.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Footer">
-    <value>Kiedy funkcja Kill Switch jest włączona, połączenie ze stronami internetowymi oraz aplikacjami wykluczonymi z połączenia VPN za pomocą funkcji Split Tunneling nie jest możliwe.</value>
+    <value>Kiedy funkcja kill switch jest włączona, połączenie ze stronami internetowymi oraz aplikacjami wykluczonymi z połączenia VPN za pomocą funkcji split tunneling nie jest możliwe.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Standard">
     <value>Standardowy</value>
@@ -3126,7 +3126,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Zablokuj złośliwe oprogramowanie</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Description">
-    <value>Nie będziesz mógł użyć funkcji NetShield po połączeniu się z niestandardowym serwerem DNS.</value>
+    <value>Nie będzie można użyć funkcji NetShield po połączeniu się z niestandardowym serwerem DNS.</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Title">
     <value>Włączyć NetShield?</value>
@@ -3150,7 +3150,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Kopiuj numer portu</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Conflict_Description">
-    <value>Nie będziesz mógł użyć przekierowania portów z opcją umiarkowany NAT.</value>
+    <value>Nie będzie można użyć opcji umiarkowanego NAT po włączeniu przekierowania portów.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Conflict_Title">
     <value>Włączyć przekierowanie portów?</value>
@@ -3162,7 +3162,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Aby użyć przekierowania portów, połącz się z serwerem, który wspiera ruch P2P.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Loading">
-    <value>Ładowanie...</value>
+    <value>Ładowanie…</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications">
     <value>Powiadomienia</value>
@@ -3177,7 +3177,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Przejdź do profilów</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Message">
-    <value>Jesteś połączony z profilem VPN. 
+    <value>Masz połączenie z profilem VPN.
 
 • Aby zmienić protokół połączenia, rozłącz się i edytuj profil.
 
@@ -3187,7 +3187,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Zmień protokół w profilach</value>
   </data>
   <data name="Settings_Connection_SplitTunneling">
-    <value>Split Tunneling</value>
+    <value>Split tunneling</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Add">
     <value>Dodaj aplikację</value>
@@ -3204,19 +3204,19 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Usuń aplikację</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>Spowoduje to wyłączenie funkcji Kill Switch.</value>
+    <value>Spowoduje to wyłączenie funkcji kill switch.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>Włączyć Split Tunneling?</value>
+    <value>Włączyć split tunneling?</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
-    <value>Dostosuj połączenie, decydując, które aplikacje i adresy IP są chronione przez VPN.</value>
+    <value>Dostosuj połączenie, decydując, które aplikacje i adresy IP będą chronione przez VPN.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
     <value>Odwrócony</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
-    <value>Tylko wybrane aplikacje i adresy IP zostaną uwzględnione w połączeniu VPN. Pozostały ruch sieciowy będzie niechroniony</value>
+    <value>Tylko wybrane aplikacje i adresy IP zostaną uwzględnione w połączeniu VPN. Pozostały ruch sieciowy nie będzie chroniony</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
     <value>Dodaj adres IP</value>
@@ -3277,7 +3277,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Minimalizuj do paska zadań</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Ustawienia automatycznego uruchamiania aplikacji i automatycznego połączenia</value>
+    <value>Ustaw automatyczne uruchamianie i łączenie się aplikacji</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>Automatyczne aktualizacje</value>
@@ -3304,7 +3304,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Sterownik sieciowy OpenVPN</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver_Description">
-    <value>Sterowniki sieciowe mogą wpływać na prędkość połączenia. Nowy adapter TUN zapewnia wyższą prędkość oraz przełącza się do adaptera TAP, jeśli napotka problemy z połączeniem.</value>
+    <value>Sterowniki sieciowe mogą wpływać na prędkość połączenia. Nowy adapter TUN zapewnia wyższą prędkość i przełącza się na adapter TAP, jeśli napotka problemy z połączeniem.</value>
   </data>
   <data name="Settings_General_Theme">
     <value>Motyw</value>
@@ -3334,7 +3334,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Protokół VPN określa sposób przesyłania danych między serwerem VPN a urządzeniem.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnTcp_Description">
-    <value>Sprawdzony, przetestowany i bezpieczny. Protokół OpenVPN jest niezawodny, ale może nie być tak szybki, jak inne protokoły.</value>
+    <value>Sprawdzony, przetestowany i bezpieczny. Protokół OpenVPN jest niezawodny przy słabych połączeniach, ale może nie być tak szybki, jak inne protokoły.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnTcp_Title">
     <value>OpenVPN</value>
@@ -3442,13 +3442,13 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Jasny</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
-    <value>Zwiększ prędkość połączenia nawet o 400% dzięki technologii zwiększających wydajność.</value>
+    <value>Zwiększ prędkość połączenia nawet o 400% dzięki technologii zwiększającej wydajność.</value>
   </data>
   <data name="SignIn_Form">
     <value>Logowanie</value>
   </data>
   <data name="SignIn_Form_AdvancedKillSwitchDescription">
-    <value>Zaawansowany Kill Switch blokuje połączenie internetowe.</value>
+    <value>Zaawansowany kill switch blokuje połączenie internetowe.</value>
   </data>
   <data name="SignIn_Form_BestSecureVpnForSpeed">
     <value>Najlepszy bezpieczny VPN pod względem prędkości</value>
@@ -3461,7 +3461,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Wpisz szczegóły konta Proton.</value>
   </data>
   <data name="SignIn_Form_DisableKillSwitch">
-    <value>Wyłącz Kill Switch</value>
+    <value>Wyłącz kill switch</value>
   </data>
   <data name="SignIn_Form_Email">
     <value>Adres e-mail</value>
@@ -3492,7 +3492,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_ResetPassword">
-    <value>Resetowanie hasła</value>
+    <value>Zresetuj hasło</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_SignIn">
@@ -3520,10 +3520,10 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <comment>An error message is displayed when the user attempts to sign in without entering a username</comment>
   </data>
   <data name="SignIn_KillSwitch_Disabled">
-    <value>Kill Switch jest wyłączony</value>
+    <value>Kill switch jest wyłączony</value>
   </data>
   <data name="SystemNotification_Connected">
-    <value>Jesteś chroniony</value>
+    <value>Masz ochronę</value>
   </data>
   <data name="SystemNotification_ConnectedTo">
     <value>Połączono z {0}.</value>
@@ -3574,7 +3574,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>NetShield</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
-    <value>Ulepsz konto, aby wybrać inny serwer.</value>
+    <value>Ulepsz konto, aby skorzystać z dowolnego serwera.</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Title">
     <value>Chcesz wybrać inny kraj?</value>
@@ -3589,13 +3589,13 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Uzyskaj dostęp do urządzeń w sieci lokalnej (LAN)</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
-    <value>Podnieś poziom swoich wrażeń z gry za pomocą połączenia NAT typ 2 (umiarkowany)</value>
+    <value>Podnieś poziom swoich wrażeń z gry za pomocą połączenia NAT typu 2 (umiarkowanego)</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices">
     <value>Połącz do 10 urządzeń jednocześnie</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Platforms">
-    <value>Użyj Proton VPN na różnych platformach</value>
+    <value>Używaj Proton VPN na różnych platformach</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
     <value>Android i Android TV</value>
@@ -3647,16 +3647,16 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Dodaj kolejną warstwę ochrony do połączenia</value>
   </data>
   <data name="Upsell_Carousel_SecureCore_Encryption">
-    <value>Podwójne szyfrowanie dzięki funkcji Secure Core</value>
+    <value>Zastosuj podwójne szyfrowanie dzięki funkcji Secure Core</value>
   </data>
   <data name="Upsell_Carousel_SecureCore_Protection">
     <value>Chroń się przed atakami sieciowymi</value>
   </data>
   <data name="Upsell_Carousel_SecureCore_Routing">
-    <value>Przekieruj ruch przez ultra bezpieczne serwery w Szwajcarii, Szwecji i Islandii</value>
+    <value>Przekieruj ruch przez ultrabezpieczne serwery w Szwajcarii, Szwecji i Islandii</value>
   </data>
   <data name="Upsell_Carousel_Speed">
-    <value>Przeglądaj Internet z najwyższą prędkością (10 Gb/s)</value>
+    <value>Przeglądaj Internet z jeszcze większą prędkością (do 10 Gb/s)</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
     <value>Zwiększ prędkość połączenia nawet o 400% dzięki funkcji VPN Accelerator</value>
@@ -3665,10 +3665,10 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Szybszy dostęp do mniej obciążonych serwerów</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling">
-    <value>Uzyskaj to, co najlepsze z obu krajów</value>
+    <value>Uzyskaj to, co najlepsze z obu światów</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling_Browsing">
-    <value>Przeglądaj Internet z 2 lokalizacji jednocześnie dzięki funkcji Split Tunneling</value>
+    <value>Przeglądaj Internet z dwóch lokalizacji jednocześnie dzięki funkcji split tunneling</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling_Configuration">
     <value>Zezwalaj zaufanym aplikacjom i adresom IP na bezpośrednie łączenie się z Internetem, jednocześnie chroniąc wszystko inne za pomocą sieci VPN.</value>
@@ -3707,7 +3707,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Dostęp do sieci Tor dla dodatkowej prywatności</value>
   </data>
   <data name="Upsell_Carousel_Tor_Access">
-    <value>Dostęp do stron onion i ukrytych</value>
+    <value>Dostęp do stron ukrytych i stron onion</value>
   </data>
   <data name="Upsell_Carousel_Tor_Browsing">
     <value>Przeglądaj sieć Tor za pomocą zwykłej przeglądarki</value>
@@ -3720,7 +3720,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Audit">
-    <value>Aplikacje zweryfikowane przez niezależnych ekspertów ds. bezpieczeństwa</value>
+    <value>Zweryfikowane przez niezależnych ekspertów ds. bezpieczeństwa</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
     <value>Omiń cenzurę za pomocą zaawansowanych funkcji bezpieczeństwa i prywatności</value>

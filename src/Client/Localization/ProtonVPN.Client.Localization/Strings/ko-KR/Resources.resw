@@ -1657,7 +1657,7 @@
     <value>낮음 (1ms - 50ms)</value>
   </data>
   <data name="Dialogs_Latency_MediumRange_Description">
-    <value>웬만해서는 VPN 속도에 문제 없음</value>
+    <value>웬만해서는 VPN 속도에 영향을 미치지 않음</value>
   </data>
   <data name="Dialogs_Latency_MediumRange_Title">
     <value>보통 (50ms - 150ms)</value>
@@ -1821,7 +1821,7 @@ VPN 연결</value>
     <value>낮음 (1-75%)</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Description">
-    <value>왠만해서는 VPN 속도에 문제 없음</value>
+    <value>웬만해서는 VPN 속도에 영향을 미치지 않음</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Title">
     <value>보통 (76-90%)</value>
@@ -2035,7 +2035,7 @@ VPN은 ISP의 간섭으로부터 보호하며 IP주소를 감춥니다.</value>
     <value>보통 (76-90%)</value>
   </data>
   <data name="Flyouts_ServerLoad_Medium_Description">
-    <value>웬만해서는 연결 속도에 문제 없음</value>
+    <value>웬만해서는 VPN 연결에 영향을 미치지 않음</value>
   </data>
   <data name="Flyouts_ServerLoad_Title">
     <value>서버 부하율</value>
@@ -2561,7 +2561,7 @@ VPN 연결</value>
     <value>낮음 (1-75%)</value>
   </data>
   <data name="Overlay_ServerLoad_MediumRange_Description">
-    <value>웬만해서는 VPN 속도에 문제 없음</value>
+    <value>웬만해서는 VPN 속도에 영향을 미치지 않음</value>
   </data>
   <data name="Overlay_ServerLoad_MediumRange_Title">
     <value>보통 (76-90%)</value>
@@ -3462,7 +3462,7 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
     <value>오픈 소스 VPN</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
-    <value>{0} 보안 서버</value>
+    <value>{0}개 보안 서버</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp">
     <value>OpenVPN (TCP)</value>

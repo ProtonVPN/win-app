@@ -2660,11 +2660,11 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Serverbelastning</value>
   </data>
   <data name="Overlay_SmartRouting_Description">
-    <value>Smart Routing använder virtuella servrar för att leverera VPN-täckning i länder som är svåra att nå.
+    <value>Smart Routing använder virtuella servrar för att tillhandahålla VPN-täckning i svåråtkomliga länder.
     
-När du ansluter till en Smart Routing-server så kommer det att se ut som att de surfar destinationslandet även fast den fysiska servern är placerad någon annanstans.
+När du ansluter till en Smart Routing-server kommer det att se ut som om du surfar från ditt destinationsland även om den fysiska servern finns någon annanstans.  
 
-Smart Routing används normalt för att kringgå lagar mot integritet och andra former av censur.</value>
+Smart Routing används vanligtvis för att kringgå lagar som motverkar integritet och andra former av censur.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
     <value>Servrar är fysiskt placerade i {0}, men du ser ut att surfa från {1}</value>
