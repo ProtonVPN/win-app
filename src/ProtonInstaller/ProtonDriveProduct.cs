@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Runtime.InteropServices;
 using System.Text.Json;
 using ProtonInstaller.Contracts.ProtonDrive;
 
@@ -25,10 +26,22 @@ namespace ProtonInstaller;
 public class ProtonDriveProduct : ProtonProductBase
 {
     private const string STABLE_CHANNEL = "Stable";
-    private const string FEED_URL = "https://proton.me/download/drive/windows/version.json";
+    private const string FEED_URL = "https://proton.me/download/drive/windows/{0}/v1/version.json";
 
-    public ProtonDriveProduct(HttpClient downloadHttpClient, HttpClient versionHttpClient) : base(downloadHttpClient, versionHttpClient, FEED_URL)
+    public ProtonDriveProduct(HttpClient downloadHttpClient, HttpClient versionHttpClient) : base(downloadHttpClient, versionHttpClient, GetFeedUrl())
     {
+    }
+
+    private static string GetFeedUrl()
+    {
+        string architecture = RuntimeInformation.ProcessArchitecture switch
+        {
+            Architecture.X64 => "x64",
+            Architecture.Arm64 => "arm64",
+            _ => throw new NotSupportedException($"Unsupported architecture {RuntimeInformation.ProcessArchitecture}.")
+        };
+
+        return string.Format(FEED_URL, architecture);
     }
 
     protected override async Task<ILatestRelease?> GetLatestReleaseAsync()

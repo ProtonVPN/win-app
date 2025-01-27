@@ -364,7 +364,7 @@ begin
     ProductDriveCheckBox.Left := ScaleX(Padding);
     ProductDriveCheckBox.Width := ScaleX(14);
     ProductDriveCheckBox.Height := ScaleY(14);
-    ProductDriveCheckBox.Checked := not IsProductDriveInstalled and not IsArm64; // Drive doesn't work on arm64
+    ProductDriveCheckBox.Checked := not IsProductDriveInstalled;
 
     ProductDriveImage := TBitmapImage.Create(ProductDrivePanel);
     ProductDriveImage.Parent := ProductDrivePanel;
@@ -396,8 +396,7 @@ begin
     ProductDrivePanelOverlay.Transparent := True;
     ProductDrivePanelOverlay.OnClick := @OnProductDriveClick;
 
-    // Drive doesn't work on arm64
-    if IsProductDriveInstalled or IsArm64 then begin
+    if IsProductDriveInstalled then begin
       ProductDrivePanel.Visible := False;
       ProductDrivePanel.Height := 0;
       ProductPadding := 0;
