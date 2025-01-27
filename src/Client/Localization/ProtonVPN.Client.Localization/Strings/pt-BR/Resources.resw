@@ -268,13 +268,13 @@
     <value>Editar perfil</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
-    <value>Não foi possível para Proton VPN buscar o certificado de autenticação devido a um problema de rede.</value>
+    <value>Não foi possível para o Proton VPN buscar o certificado de autenticação devido a um problema de rede.</value>
   </data>
   <data name="Connection_Error_NoServers">
-    <value>Não há servidores disponíveis neste momento para opção selecionada. Selecione uma opção diferente.</value>
+    <value>No momento, não há servidores disponíveis para a opção selecionada. Selecione uma opção diferente.</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
-    <value>Seu servidor selecionado para '{0}' está indisponível. Selecione um servidor diferente ou tente novamente.</value>
+    <value>Seu servidor selecionado para "{0}" está indisponível. Selecione um servidor diferente ou tente novamente.</value>
     <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Connection_Error_NoTapAdapters">
@@ -433,7 +433,7 @@
     <value>Excluir perfil</value>
   </data>
   <data name="Connections_Profiles_Delete_Message">
-    <value>'{0}' será excluído permanentemente.</value>
+    <value>"{0}" será excluído permanentemente.</value>
     <comment>{0} is a placeholder for the name of the profile.</comment>
   </data>
   <data name="Connections_Profiles_Delete_Title">
@@ -1830,7 +1830,7 @@ Latências altas podem reduzir a velocidade da conexão.</value>
     <value>Relatório enviado</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Success_Description">
-    <value>Obrigado pela sua opinião. Entraremos em contato com você assim que possível.</value>
+    <value>Agradecemos pela sua opinião. Entraremos em contato com você assim que possível.</value>
   </data>
   <data name="Dialogs_ReportIssue_SendReport">
     <value>Enviar relatório</value>
@@ -1921,7 +1921,7 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Conecte-se a um servidor Tor para acessar serviços ocultos e sites da rede onion usando qualquer navegador.</value>
   </data>
   <data name="Dialogs_Tor_LearnMore">
-    <value>Como acesas a rede Tor</value>
+    <value>Como acessar a rede Tor</value>
   </data>
   <data name="Dialogs_Tor_Title">
     <value>Tor</value>
@@ -1936,10 +1936,10 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Verifique sua conexão com a internet</value>
   </data>
   <data name="Dialogs_Troubleshooting_CheckInternet_Description">
-    <value>Certifique-se de que você está online e que sua conexão está estável.</value>
+    <value>Certifique-se de que você está on-line e que sua conexão está estável.</value>
   </data>
   <data name="Dialogs_Troubleshooting_Description">
-    <value>Essas correções rápidas podem ajudá-lo a se conectar a Proton.</value>
+    <value>Essas correções rápidas podem ajudar você a se conectar à Proton.</value>
   </data>
   <data name="Dialogs_Troubleshooting_DidNotWork">
     <value>Não funcionou?</value>
@@ -1960,7 +1960,7 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Ajuda de conexão</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Description">
-    <value>Parece que o relógio do seu sistema está fora de sincronia. Isso pode causar problemas ao conectar-se à VPN.</value>
+    <value>Parece que o relógio do seu sistema não está sincronizado. Isso pode causar problemas ao conectar-se à VPN.</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_PrimaryButton">
     <value>Como atualizar o relógio do sistema</value>
@@ -1981,10 +1981,10 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>VPN sem registros certificada</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
-    <value>Sua atividade é protegida pelas leis de privacidade suíças. Nunca rastrearemos você online nem compartilharemos suas informações com terceiros.</value>
+    <value>Sua atividade é protegida pelas leis de privacidade suíças. Nunca rastrearemos você on-line nem compartilharemos suas informações com terceiros.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
-    <value>Navegue com liberade de qualquer lugar</value>
+    <value>Navegue com liberdade de qualquer lugar</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
     <value>Oculte sua localização virtual e experimente a Internet de qualquer um de nossos {0} países disponíveis.</value>
@@ -2002,7 +2002,7 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Streaming em alta resolução</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
-    <value>Assista a filmes e programas de TV de todo o mundo, sem comprometer a velocidade ou a qualidade.</value>
+    <value>Assista a filmes e programas de TV do mundo todo, sem comprometer a velocidade ou a qualidade.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Boas-vindas ao VPN Plus</value>
@@ -2013,10 +2013,10 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
 Aproveite o melhor da privacidade da Proton.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
-    <value>Boas-vindas à Proton Unlimited</value>
+    <value>Boas-vindas ao Proton Unlimited</value>
   </data>
   <data name="Dialogs_Welcome_Message">
-    <value>Estamos preparando sua nova experiência de VPN. Isso deve levar apenas um momento.</value>
+    <value>Estamos preparando sua nova experiência de VPN. Isso levará apenas um instante.</value>
   </data>
   <data name="Dialogs_Welcome_Title">
     <value>Boas-vindas ao Proton VPN</value>
@@ -2044,10 +2044,10 @@ Uma VPN faz parecer que você está navegando de outro lugar, protegendo você d
     <value>Conecte-se à VPN para alterar sua localização virtual</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Connected">
-    <value>Seu IP VPN mascara seu endereço IP real. Isso faz parecer que você está navegando a partir de sua localização VPN, então sua atividade online não pode ser vinculada ao seu dispositivo.</value>
+    <value>Seu IP VPN mascara seu endereço IP real. Isso faz parecer que você está navegando da localização da sua VPN, então sua atividade on-line não pode ser vinculada ao seu dispositivo.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected">
-    <value>Este código exclusivo pode ser usado por sites e ISPs (Provedores de Serviço de Internet) para vincular sua localização e histórico de navegação ao seu dispositivo.
+    <value>Este código exclusivo pode ser usado por sites e ISPs (Provedores de Serviços de Internet) para vincular sua localização e histórico de navegação ao seu dispositivo.
 
 Uma VPN mascara seu endereço IP, dificultando que sua atividade seja rastreada até você.</value>
   </data>
@@ -2067,9 +2067,9 @@ Uma VPN mascara seu endereço IP, dificultando que sua atividade seja rastreada 
     <value>Seu endereço de IP está visível</value>
   </data>
   <data name="Flyouts_Isp_Description">
-    <value>Seu ISP (Provedor de Serviço de Internet) é a empresa que conecta você à internet.
+    <value>Seu ISP (Provedor de Serviços de Internet) é a empresa que conecta você à internet.
 
-Eles podem registrar sua atividade online. Em alguns países, eles podem vender seus dados para anunciantes. Em outros, eles podem ser obrigados a entregá-los ao governo.
+Eles podem registrar sua atividade on-line. Em alguns países, eles podem vender seus dados para anunciantes. Em outros, eles podem ser obrigados a entregá-los ao governo.
 
 Uma VPN oculta seu endereço IP, protegendo você da interferência do ISP.</value>
   </data>
@@ -2283,7 +2283,7 @@ A velocidade é baseada na atividade atual do seu dispositivo — não represent
     <value>Encerrar sessão</value>
   </data>
   <data name="Home_Account_SignOut_Confirmation_Title">
-    <value>Encerrar sessão de {0}</value>
+    <value>Encerrar sessão de {0}?</value>
     <comment>{0} is a placeholder for the username</comment>
   </data>
   <data name="Home_Account_Title">
@@ -2391,7 +2391,7 @@ A velocidade é baseada na atividade atual do seu dispositivo — não represent
     <value>Volume</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
-    <value>Volumen de download</value>
+    <value>Volume de download</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Total">
     <value>Volume total</value>
@@ -2428,7 +2428,7 @@ A velocidade é baseada na atividade atual do seu dispositivo — não represent
     <value>Dados economizados</value>
   </data>
   <data name="Home_NetShield_DataSaved_Description">
-    <value>Dados economizados estimados pelo bloqueio de anúncios indesejados, rastreadores e ‘malwares’.</value>
+    <value>Dados economizados estimados pelo bloqueio de anúncios indesejados, rastreadores e malwares.</value>
   </data>
   <data name="Home_NetShield_Landmark">
     <value>Estatísticas NetShield</value>
@@ -2568,7 +2568,7 @@ A velocidade é baseada na atividade atual do seu dispositivo — não represent
     <value>Atualizar agora</value>
   </data>
   <data name="Overlay_OutdatedClient_Message">
-    <value>Esta versão do aplicativo está desatualizada. Você precisa atualizar o aplicativo para continuar usando o Proton VPN.</value>
+    <value>Esta versão do aplicativo está desatualizada. Atualize-o para continuar usando o Proton VPN.</value>
   </data>
   <data name="Overlay_OutdatedClient_Title">
     <value>Atualize o Proton VPN para continuar</value>
@@ -2694,10 +2694,10 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Perfis</value>
   </data>
   <data name="Search_InputBox_Placeholder">
-    <value>Navegador de...</value>
+    <value>Navegar de...</value>
   </data>
   <data name="Search_NoInput_CityOrState">
-    <value>Cidade ou estado estadunidense</value>
+    <value>Cidade ou estado dos EUA</value>
     <comment>The word used for one single city and one single United States state</comment>
   </data>
   <data name="Search_NoInput_Country">
@@ -2712,7 +2712,7 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Tente procurar por…</value>
   </data>
   <data name="Search_NoResults_Description">
-    <value>Tente uma palavra chave diferente</value>
+    <value>Tente uma palavra-chave diferente</value>
   </data>
   <data name="Search_NoResults_Title">
     <value>Nenhum resultado encontrado</value>
@@ -2796,10 +2796,10 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Essas estatísticas não contêm seu endereço IP e não podem ser usadas para identificá-lo. Nunca as compartilharemos com terceiros.</value>
   </data>
   <data name="Settings_Censorship_ShareCrashReports">
-    <value>Compartilhar relatórios de erros anônimos</value>
+    <value>Compartilhar relatórios de falhas anônimos</value>
   </data>
   <data name="Settings_Censorship_ShareCrashReports_Description">
-    <value>Os relatórios de erros nos ajudam a corrigir erros, detectar firewalls e evitar bloqueios de VPN.</value>
+    <value>Os relatórios de falhas nos ajudam a corrigir erros, detectar firewalls e evitar bloqueios de VPN.</value>
   </data>
   <data name="Settings_Censorship_ShareStatistics">
     <value>Compartilhar estatísticas anônimas de uso</value>
@@ -2886,7 +2886,7 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Estrito (tipo 3)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
-    <value>Restringe a entrada de dados na sua rede. Esta opção é mais segura, mas pode dificultar as conexões de jogos ponta a ponta.</value>
+    <value>Restringe a entrada de dados na sua rede. Esta opção é mais segura, mas pode dificultar as conexões de jogos peer-to-peer.</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
     <value>Roteia o tráfego entre redes diferentes.</value>
@@ -2925,7 +2925,7 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Ativar kill switch?</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Description">
-    <value>Protege seu endereço IP, desconectando você da Internet caso você perca sua conexão VPN.</value>
+    <value>Protege seu endereço IP desconectando você da Internet caso você perca sua conexão VPN.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Footer">
     <value>Quando o kill switch estiver ativado, você não conseguirá se conectar a sites e aplicativos excluídos da sua conexão VPN por meio do tunelamento dividido.</value>
@@ -2940,7 +2940,7 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>NetShield</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
-    <value>Bloqueie anúncios, malware e rastreadores</value>
+    <value>Bloquear anúncios, malware e rastreadores</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockMalwareOnly">
     <value>Bloquear apenas malware</value>
@@ -2976,7 +2976,7 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Ativar encaminhamento de porta?</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Description">
-    <value>Ignore firewalls para conectar-se a servidores e dispositivos P2P em sua rede local.</value>
+    <value>Supere firewalls para conectar-se a servidores e dispositivos P2P em sua rede local.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>Para usar o encaminhamento de porta, conecte-se a um servidor que suporte P2P.</value>
@@ -2988,13 +2988,13 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Notificações</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
-    <value>Seja notificado quando o número do encaminhamento de porta for alterado</value>
+    <value>Receba notificações quando o número do encaminhamento de porta for alterado</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protocolo</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Action">
-    <value>Ir ao perfis</value>
+    <value>Ir para o perfil</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Message">
     <value>No momento, você está conectado a um perfil de VPN. 
@@ -3073,7 +3073,7 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Conexão automática</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>Conecta-se automaticamente a sua conexão padrão assim que o Proton VPN é aberto.</value>
+    <value>Conecta-se automaticamente à sua conexão padrão assim que o Proton VPN é aberto.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>Conexão mais rápida</value>
@@ -3118,13 +3118,13 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Notificações</value>
   </data>
   <data name="Settings_General_Notifications_Description">
-    <value>Seja notificado sobre atividades contínuas do Proton VPN</value>
+    <value>Receba notificações sobre atividades contínuas do Proton VPN</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver">
     <value>Driver de rede OpenVPN</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver_Description">
-    <value>Os drivers de rede podem afetar a velocidade da sua conexão. O novo adaptador TUN oferece uma velocidade mais alta e recorre ao adaptador TAP se encontrar algum problema de conectividade.</value>
+    <value>Os drivers de rede podem afetar a velocidade da sua conexão. O novo adaptador TUN oferece maior velocidade e recorre ao adaptador TAP se encontrar algum problema de conectividade.</value>
   </data>
   <data name="Settings_General_Theme">
     <value>Tema</value>
@@ -3160,7 +3160,7 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>OpenVPN</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Description">
-    <value>Estabelecido, bem testado e seguro. OpenVPN consome menos bateria do que alguns outros protocolos.</value>
+    <value>Estabelecido, bem testado e seguro. OpenVPN consome menos bateria do que outros protocolos.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
@@ -3241,7 +3241,7 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Registros do aplicativo</value>
   </data>
   <data name="Settings_Support_DebugLogs_ErrorMessage">
-    <value>A pasta de registros não pode ser encontrada.</value>
+    <value>Não foi possível encontrar a pasta de registros</value>
   </data>
   <data name="Settings_Support_DebugLogs_Service">
     <value>Registros do serviço</value>
@@ -3271,7 +3271,7 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>O kill switch avançado está bloqueando sua conexão com a internet.</value>
   </data>
   <data name="SignIn_Form_BestSecureVpnForSpeed">
-    <value>A melhor VPN segura para velocidade</value>
+    <value>A VPN mais segura para velocidade</value>
   </data>
   <data name="SignIn_Form_CreateAccount">
     <value>Criar conta</value>
@@ -3295,7 +3295,7 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_NoLogsPolicy">
-    <value>Política de nenhum registro</value>
+    <value>Política de inexistência de registros</value>
   </data>
   <data name="SignIn_Form_OpenSource">
     <value>Código aberto</value>
@@ -3336,7 +3336,7 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>E-mail ou nome de usuário</value>
   </data>
   <data name="SignIn_Form_UsernameError">
-    <value>As credenciais não deveriam estar vazias</value>
+    <value>Insira seu e-mail ou nome de usuário</value>
     <comment>An error message is displayed when the user attempts to sign in without entering a username</comment>
   </data>
   <data name="SignIn_KillSwitch_Disabled">
@@ -3409,7 +3409,7 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Acesse dispositivos na sua rede local (LAN) enquanto estiver conectado.</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
-    <value>Aprimore sua experiência de jogo ao mudar para o tipo de NAT 2 (moderado).</value>
+    <value>Aprimore sua experiência gamer ao mudar para o tipo de NAT 2 (moderado).</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices">
     <value>Conecte até 10 dispositivos ao mesmo tempo</value>
@@ -3439,7 +3439,7 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Segurança e privacidade em todos os seus dispositivos</value>
   </data>
   <data name="Upsell_Carousel_NetShield">
-    <value>Desfrute a navegação sem anúncios</value>
+    <value>Desfrute de uma navegação sem anúncios</value>
   </data>
   <data name="Upsell_Carousel_NetShield_Block">
     <value>Bloqueie anúncios e rastreadores com o NetShield</value>
@@ -3451,7 +3451,7 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Desbloqueie downloads peer-to-peer e compartilhamento de arquivos (P2P)</value>
   </data>
   <data name="Upsell_Carousel_P2P_Discretion">
-    <value>Oculte seu endereço IP do seu provedor de serviços e de seus pares</value>
+    <value>Oculte seu endereço IP do seu provedor de serviços e de seus colegas</value>
   </data>
   <data name="Upsell_Carousel_P2P_PortForwarding">
     <value>Aumente a velocidade do P2P com encaminhamento de porta.</value>
@@ -3473,7 +3473,7 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Proteja-se contra ataques de rede</value>
   </data>
   <data name="Upsell_Carousel_SecureCore_Routing">
-    <value>Roteie por servidores ultra seguros na Suíça, Suécia e Islândia.</value>
+    <value>Roteie por servidores ultrasseguros na Suíça, Suécia e Islândia.</value>
   </data>
   <data name="Upsell_Carousel_Speed">
     <value>Navegue em velocidades ainda mais rápidas (até 10 Gbps)</value>
@@ -3485,19 +3485,19 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Acesse servidores mais rápidos e menos sobrecarregados</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling">
-    <value>Obtenha o melhor dos dois mundos</value>
+    <value>Aproveite o melhor dos dois mundos</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling_Browsing">
-    <value>Navegue em dois locais ao mesmo tempo com túnel dividido</value>
+    <value>Navegue em dois locais ao mesmo tempo com tunelamento dividido</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling_Configuration">
-    <value>Permita que aplicativos e endereços IP confiáveis se conectem diretamente a Internet, protegendo todo o resto com sua VPN</value>
+    <value>Permita que aplicativos e endereços IP confiáveis se conectem diretamente à Internet, enquanto protege todo o resto com sua VPN</value>
   </data>
   <data name="Upsell_Carousel_Streaming">
     <value>Assista a seus filmes e programas de TV favoritos.</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Access">
-    <value>Acesse TV e filmes geo-bloqueados de qualquer lugar do mundo.</value>
+    <value>Acesse TV e filmes com bloqueio geográfico de qualquer lugar do mundo.</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Platforms_BBC">
     <value>BBC iPlayer</value>
@@ -3521,7 +3521,7 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Assista em 4K sem buffering, lentidão ou redução de velocidade</value>
   </data>
   <data name="Upsell_Carousel_Title">
-    <value>Descubra VPN Plus</value>
+    <value>Conheça o VPN Plus</value>
   </data>
   <data name="Upsell_Carousel_Tor">
     <value>Acesse a rede Tor para mais privacidade</value>
@@ -3540,10 +3540,10 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Audit">
-    <value>Auditoria por espertos de segurança independentes</value>
+    <value>Auditoria por especialistas de segurança independentes</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
-    <value>Ignore a censura com recursos avançados de segurança e privacidade</value>
+    <value>Evite a censura com recursos avançados de segurança e privacidade</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
     <value>{0} país</value>
@@ -3585,7 +3585,7 @@ O Smart Routing é normalmente utilizado para contornar leis anti-privacidade e 
     <value>Stealth</value>
   </data>
   <data name="VpnProtocol_WireGuard_Tls_Description">
-    <value>Supera bloqueios de VPN ocultando sua conexão de censores</value>
+    <value>Evita bloqueios de VPN ocultando sua conexão de censores</value>
   </data>
   <data name="VpnProtocol_WireGuard_Udp">
     <value>WireGuard (UDP)</value>

@@ -121,64 +121,64 @@
     <value>Proton VPN Free</value>
   </data>
   <data name="Automation_Properties_ConnectionDetails_Page">
-    <value>Connection details page</value>
+    <value>Страница «Информация о подключении»</value>
   </data>
   <data name="Automation_Properties_Features_Bar">
-    <value>Features bar</value>
+    <value>Панель «Функции»</value>
   </data>
   <data name="Automation_Properties_Home_Page">
     <value>Домашняя страница</value>
   </data>
   <data name="Automation_Properties_KillSwitch_Page">
-    <value>Kill switch page</value>
+    <value>Страница «kill switch»</value>
   </data>
   <data name="Automation_Properties_LocationDetails_Page">
-    <value>Location details page</value>
+    <value>Страница «Информация о расположении»</value>
   </data>
   <data name="Automation_Properties_Login_Page">
-    <value>Login page</value>
+    <value>Страница «Вход»</value>
   </data>
   <data name="Automation_Properties_Main_Page">
     <value>Главная страница</value>
   </data>
   <data name="Automation_Properties_NetShield_Page">
-    <value>NetShield page</value>
+    <value>Страница «NetShield»</value>
   </data>
   <data name="Automation_Properties_PortForwarding_Page">
-    <value>Port forwarding page</value>
+    <value>Страница «Переадресация портов»</value>
   </data>
   <data name="Automation_Properties_Settings_Advanced_Page">
-    <value>Advanced settings page</value>
+    <value>Страница «Расширенные настройки»</value>
   </data>
   <data name="Automation_Properties_Settings_Common_Page">
-    <value>Common settings page</value>
+    <value>Страница «Общие настройки»</value>
   </data>
   <data name="Automation_Properties_Settings_Page">
-    <value>Settings page</value>
+    <value>Страница «Настройки»</value>
   </data>
   <data name="Automation_Properties_Sidebar">
-    <value>Sidebar</value>
+    <value>Боковая панель</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Countries_Page">
-    <value>Countries page</value>
+    <value>Страница «Страны»</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Gateways_Page">
-    <value>Gateways page</value>
+    <value>Страница «Шлюзы»</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Page">
-    <value>Connections page</value>
+    <value>Страница «Подключения»</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Profiles_Page">
-    <value>Profiles page</value>
+    <value>Страница «Профили»</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Recents_Page">
-    <value>Recents page</value>
+    <value>Страница «Недавнее»</value>
   </data>
   <data name="Automation_Properties_Sidebar_Search_Results_Page">
     <value>Результаты поиска</value>
   </data>
   <data name="Automation_Properties_SplitTunneling_Page">
-    <value>Split tunneling page</value>
+    <value>Страница «Раздельное туннелирование»</value>
   </data>
   <data name="Cities">
     <value>Города</value>
@@ -238,16 +238,16 @@
     <value>Обновить</value>
   </data>
   <data name="Common_Actions_Upgrade">
-    <value>Улучшить</value>
+    <value>Перейти</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>**Advanced Kill Switch включен.** Чтобы пользоваться интернетом без VPN, выключите Advanced Kill Switch.</value>
+    <value>**Advanced Kill Switch включен.** Чтобы пользоваться Интернетом без VPN, выключите Advanced Kill Switch.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
     <value>**Advanced Kill Switch включен.** Если вы продолжите, вы потеряете интернет-соединение.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
-    <value>Вы потеряете интернет-соединение.</value>
+    <value>Вы будете отключены от VPN.</value>
   </data>
   <data name="Common_Links_LearnMore">
     <value>Подробнее</value>
@@ -268,10 +268,10 @@
     <value>Изменить профиль</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
-    <value>Proton VPN не смог получить сертификат аутентификации из-за проблемы с сетью.</value>
+    <value>Proton VPN не смог загрузить сертификат аутентификации из-за проблемы с сетью.</value>
   </data>
   <data name="Connection_Error_NoServers">
-    <value>Для вашего выбора нет доступных серверов. Пожалуйста, выберите другой вариант.</value>
+    <value>Нет доступных серверов. Выберите другой вариант.</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
     <value>Выбранный сервер для «{0}» недоступен. Выберите другой сервер или попробуйте позже.</value>
@@ -302,7 +302,7 @@
     <value>Сбой подключения</value>
   </data>
   <data name="Connection_Error_TlsCertificate">
-    <value>Возникла проблема с проверкой сертификата VPN-сервера, что может указывать на стороннее вмешательство в сетевое соединение или проблему в настройках сервера. Обратитесь за помощью к нашей службе поддержки клиентов, отправив сообщение об проблеме.</value>
+    <value>Возникла проблема с проверкой сертификата VPN-сервера, что может указывать на стороннее вмешательство в сетевое соединение или проблему в настройках сервера. Отправьте отчёт о проблеме в нашу службу поддержки клиентов.</value>
   </data>
   <data name="Connection_Error_Unknown">
     <value>Мы не можем определить, что произошло. Повторите попытку или обратитесь в нашу службу поддержки клиентов.</value>
@@ -311,7 +311,7 @@
     <value>Просмотреть возможные решения</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
-    <value>Proton VPN не смог подключиться, потому что в данный момент используется сетевой адаптер WireGuard. Пожалуйста, отключите все активные VPN и повторите попытку, или же поменяйте протокол в расширенных настройках.</value>
+    <value>Proton VPN не смог подключиться, потому что сетевой адаптер WireGuard уже используется. Отключите все активные VPN и повторите попытку или же смените протокол в расширенных настройках.</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Автоматически выбрано из</value>
@@ -336,10 +336,10 @@
     <value>Города ({0})</value>
   </data>
   <data name="Connections_Cities_Many">
-    <value>Городов ({0})</value>
+    <value>Города ({0})</value>
   </data>
   <data name="Connections_Cities_Other">
-    <value>Городов ({0})</value>
+    <value>Города ({0})</value>
   </data>
   <data name="Connections_City">
     <value>Город</value>
@@ -348,7 +348,7 @@
     <value>Серверы в этом городе доступны через VPN Plus</value>
   </data>
   <data name="Connections_City_UnderMaintenance">
-    <value>Все серверы в этом городе на техобслуживании</value>
+    <value>Все серверы в этом городе находятся на техническом обслуживании</value>
   </data>
   <data name="Connections_Countries_One">
     <value>Страна ({0})</value>
@@ -357,10 +357,10 @@
     <value>Страны ({0})</value>
   </data>
   <data name="Connections_Countries_Many">
-    <value>Стран ({0})</value>
+    <value>Страны ({0})</value>
   </data>
   <data name="Connections_Countries_Other">
-    <value>Стран ({0})</value>
+    <value>Страны ({0})</value>
   </data>
   <data name="Connections_Country">
     <value>Страна</value>
@@ -372,7 +372,7 @@
     <value>Серверы в этой стране доступны через VPN Plus</value>
   </data>
   <data name="Connections_Country_UnderMaintenance">
-    <value>Все серверы в этой стране на техобслуживании</value>
+    <value>Все серверы в этой стране находятся на техническом обслуживании</value>
   </data>
   <data name="Connections_Fastest">
     <value>Самый быстрый</value>
@@ -408,7 +408,7 @@
     <value>Шлюзов ({0})</value>
   </data>
   <data name="Connections_Gateways_Other">
-    <value>Шлюзов ({0})</value>
+    <value>Шлюзы ({0})</value>
   </data>
   <data name="Connections_Gateways_Server">
     <value>Выделенный сервер</value>
@@ -523,34 +523,34 @@
     <value>Случайный</value>
   </data>
   <data name="Connections_Recents_One">
-    <value>Recent ({0})</value>
+    <value>Недавнее ({0})</value>
   </data>
   <data name="Connections_Recents_Few">
-    <value>Recents ({0})</value>
+    <value>Недавнее ({0})</value>
   </data>
   <data name="Connections_Recents_Many">
-    <value>Recents ({0})</value>
+    <value>Недавнее ({0})</value>
   </data>
   <data name="Connections_Recents_Other">
-    <value>Recents ({0})</value>
+    <value>Недавнее ({0})</value>
   </data>
   <data name="Connections_Recents_Empty_Description">
-    <value>View your connection history here.</value>
+    <value>Тут показан журнал подключений.</value>
   </data>
   <data name="Connections_Recents_Empty_Title">
-    <value>No recents yet</value>
+    <value>Нет недавних элементов</value>
   </data>
   <data name="Connections_Recents_Pinned_One">
-    <value>Pinned ({0})</value>
+    <value>Закрепленное ({0})</value>
   </data>
   <data name="Connections_Recents_Pinned_Few">
-    <value>Pinned ({0})</value>
+    <value>Закрепленное ({0})</value>
   </data>
   <data name="Connections_Recents_Pinned_Many">
-    <value>Pinned ({0})</value>
+    <value>Закрепленное ({0})</value>
   </data>
   <data name="Connections_Recents_Pinned_Other">
-    <value>Pinned ({0})</value>
+    <value>Закрепленное ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_One">
     <value>Страна с серверами Secure Core ({0})</value>
@@ -619,7 +619,7 @@
     <value>Сервер доступен с VPN Plus</value>
   </data>
   <data name="Connections_Server_UnderMaintenance">
-    <value>Этот сервер на техобслуживании</value>
+    <value>Этот сервер находится на техническом обслуживании</value>
   </data>
   <data name="Connections_Servers_One">
     <value>Сервер ({0})</value>
@@ -634,7 +634,7 @@
     <value>Серверы ({0})</value>
   </data>
   <data name="Connections_State">
-    <value>Область (регион)</value>
+    <value>Штат</value>
   </data>
   <data name="Connections_State_Restricted">
     <value>Серверы в этой стране доступны через VPN Plus.</value>
@@ -648,7 +648,7 @@
     <value>Штат ({0})</value>
   </data>
   <data name="Connections_States_Few">
-    <value>Штата ({0})</value>
+    <value>Штаты ({0})</value>
   </data>
   <data name="Connections_States_Many">
     <value>Штаты ({0})</value>
@@ -738,10 +738,10 @@
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
   <data name="Countries_P2P_Description">
-    <value>Download files over P2P (peer-to-peer) networks and enhance your online gaming and video calling experience.</value>
+    <value>Скачивайте файлы по сетям P2P (peer-to-peer) и повышайте комфорт в онлайн-играх и видеозвонках</value>
   </data>
   <data name="Countries_Page_FreeUser_Description">
-    <value>Разблокируйте выбор страны с помощью VPN Plus</value>
+    <value>Разблокируйте выбор страны с VPN Plus</value>
   </data>
   <data name="Countries_SearchPlaceholder">
     <value>Я хочу выходить в Интернет из...</value>
@@ -761,7 +761,7 @@
     <comment>{0} represents the number of severs</comment>
   </data>
   <data name="Countries_SecureCore_Description">
-    <value>Добавьте еще один уровень шифрования к своему подключению к VPN.</value>
+    <value>Добавьте еще один уровень шифрования к подключению к VPN.</value>
   </data>
   <data name="Countries_Server_One">
     <value>{0} сервер</value>
@@ -779,7 +779,7 @@
     <value>Нагрузка сервера</value>
   </data>
   <data name="Countries_SmartRouting">
-    <value>Smart маршрутизация</value>
+    <value>Smart Routing</value>
   </data>
   <data name="Countries_SmartRouting_Description">
     <value>Серверы физически расположены в {0}, но будет казаться, что вы просматриваете сайт из {1}.</value>
@@ -1832,7 +1832,7 @@
     <value>Начать</value>
   </data>
   <data name="Dialogs_Common_SubscriptionExpired">
-    <value>Срок действия подписки истек</value>
+    <value>Срок действия подписки истёк</value>
   </data>
   <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
     <value>Улучшите тариф, чтобы снова получить доступ к серверам и функциям Plus.</value>
@@ -1867,25 +1867,25 @@
   <data name="Dialogs_Latency_Description">
     <value>Задержка показывает, сколько времени требуется серверу для ответа на запросы.
 
-Высокая задержка может замедлить ваше соединение.</value>
+Высокая задержка может замедлить подключение.</value>
   </data>
   <data name="Dialogs_Latency_HighRange_Description">
     <value>VPN может работать медленнее обычного.</value>
   </data>
   <data name="Dialogs_Latency_HighRange_Title">
-    <value>Высокая (150мс.+)</value>
+    <value>Высокая (больше 150 мс)</value>
   </data>
   <data name="Dialogs_Latency_LowRange_Description">
     <value>Молниеносная скорость</value>
   </data>
   <data name="Dialogs_Latency_LowRange_Title">
-    <value>Низкая (1мс.–50мс.)</value>
+    <value>Низкая (1–50 мс)</value>
   </data>
   <data name="Dialogs_Latency_MediumRange_Description">
     <value>Вряд ли повлияет на скорость VPN</value>
   </data>
   <data name="Dialogs_Latency_MediumRange_Title">
-    <value>Средняя (50мс.–150мс.)</value>
+    <value>Средняя (50–150 мс)</value>
   </data>
   <data name="Dialogs_Latency_Title">
     <value>Что такое задержка?</value>
@@ -1903,7 +1903,7 @@
     <comment>obsolete</comment>
   </data>
   <data name="Dialogs_P2P_WhatIsP2PServer_Description">
-    <value>P2P (peer-to-peer) VPN-серверы разблокируют сайты торрентов.</value>
+    <value>VPN-серверы P2P (peer-to-peer) разблокируют сайты торрентов.</value>
     <comment>obsolete</comment>
   </data>
   <data name="Dialogs_P2P_WhatIsTorrenting">
@@ -1921,11 +1921,11 @@
   <data name="Dialogs_P2P_WhyUse_Description">
     <value>• Увеличенная скорость загрузки и скачивания
 • Отсутствие журналов активности
-• Скройте ваш IP-адрес от провайдера и других участников сети</value>
+• Скрытие IP-адреса от провайдера и других участников сети</value>
     <comment>obsolete</comment>
   </data>
   <data name="Dialogs_Protocol_Description">
-    <value>Протокол — это набор инструкций, которым следует ваше устройство для подключения и взаимодействия с сервером.</value>
+    <value>Протокол — это набор инструкций, которым следует ваше устройство для подключения к серверу и взаимодействия с ним.</value>
   </data>
   <data name="Dialogs_Protocol_SwitchHeader">
     <value>Сменить VPN-протокол</value>
@@ -1953,7 +1953,7 @@
     <value>В чём проблема?</value>
   </data>
   <data name="Dialogs_ReportIssue_NoLogsWarning">
-    <value>Error logs help us to get to the bottom of your issue. If you don’t include them, we may not be able to investigate fully.</value>
+    <value>Журналы ошибок помогают нам разобраться в причинах проблемы. Если вы их не предоставите, мы не сможем провести полное расследование.</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes">
     <value>Быстрые исправления</value>
@@ -1971,7 +1971,7 @@
     <value>Что-то пошло не так</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_Fail_Description">
-    <value>Мы не смогли отправить ваш отчет. Пожалуйста, проверьте подключение и повторите попытку.</value>
+    <value>Не удалось отправить отчёт. Проверьте подключение и повторите попытку.</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_RetryAction">
     <value>Повторите попытку</value>
@@ -1993,11 +1993,11 @@
     <value>Сообщить о проблеме</value>
   </data>
   <data name="Dialogs_SecureCore_AdvancedPrivacy">
-    <value>Продвинутая конфиденциальность</value>
+    <value>Дополнительная конфиденциальность</value>
     <comment>obsolete</comment>
   </data>
   <data name="Dialogs_SecureCore_Description">
-    <value>Secure Core соединяет вас с конечным сервером через другой, максимально защищенный сервер VPN.
+    <value>Secure Core соединяет вас с конечным сервером через другой, максимально защищённый сервер VPN.
 
 Этот более высокий уровень защиты может привести к увеличению задержек и снижению скорости.</value>
     <comment>obsolete</comment>
@@ -2037,25 +2037,25 @@
     <value>VPN может работать медленнее обычного.</value>
   </data>
   <data name="Dialogs_ServerLoad_HighRange_Title">
-    <value>Высокая (91–100%)</value>
+    <value>Высокая (91–100 %)</value>
   </data>
   <data name="Dialogs_ServerLoad_LowRange_Description">
     <value>Молниеносная скорость</value>
   </data>
   <data name="Dialogs_ServerLoad_LowRange_Title">
-    <value>Низкая (1–75%)</value>
+    <value>Низкая (1–75 %)</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Description">
     <value>Вряд ли повлияет на скорость VPN</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Title">
-    <value>Средняя (76–90%)</value>
+    <value>Средняя (76–90 %)</value>
   </data>
   <data name="Dialogs_ServerLoad_Title">
     <value>Что такое нагрузка сервера?</value>
   </data>
   <data name="Dialogs_SmartRouting_Description">
-    <value>Smart Routing использует виртуальные серверы для обеспечения покрытия VPN в труднодоступных странах.
+    <value>Smart Routing использует виртуальные серверы для работы VPN в труднодоступных странах.
 
 Когда вы подключаетесь к серверу Smart Routing, создается впечатление, что вы находитесь в стране назначения, хотя физический сервер расположен в другом месте.  
 
@@ -2086,10 +2086,10 @@ Smart Routing обычно используется для обхода зако
     <value>Проверьте подключение к Интернету</value>
   </data>
   <data name="Dialogs_Troubleshooting_CheckInternet_Description">
-    <value>Убедитесь, что вы находитесь в сети и что ваше подключение стабильно.</value>
+    <value>Убедитесь, что вы в сети и что ваше подключение стабильно.</value>
   </data>
   <data name="Dialogs_Troubleshooting_Description">
-    <value>Эти быстрые исправления могут помочь вам подключиться к Proton.</value>
+    <value>Эти быстрые исправления могут помочь подключиться к Proton.</value>
   </data>
   <data name="Dialogs_Troubleshooting_DidNotWork">
     <value>Не работает?</value>
@@ -2110,22 +2110,22 @@ Smart Routing обычно используется для обхода зако
     <value>Помощь по подключению</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Description">
-    <value>Looks like your system clock is out of sync. This may cause issues when connecting to VPN.</value>
+    <value>Похоже, что ваши системные часы не синхронизированы. Это может вызвать проблемы при подключении к VPN.</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_PrimaryButton">
-    <value>How to update system clock</value>
+    <value>Как обновить системные часы</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Title">
-    <value>Update system clock</value>
+    <value>Обновить системные часы</value>
   </data>
   <data name="Dialogs_WelcomeB2B_Description">
-    <value>Простота. Безупречность. Защищенность. Защитите себя в Интернете и обеспечьте безопасный доступ к сайтам, программному обеспечению и файлам вашей организации.</value>
+    <value>Простота. Безупречность. Защищённость. Защитите себя в Интернете и обеспечьте безопасный доступ к сайтам, программному обеспечению и файлам вашей организации.</value>
   </data>
   <data name="Dialogs_WelcomeToProton_Title">
     <value>Добро пожаловать в Proton VPN</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_Description">
-    <value>Просматривайте сайты в приватном режиме, получайте доступ к заблокированному содержимому и с удовольствием пользуйтесь цифровой свободой без ограничений объема данных и скорости.</value>
+    <value>Просматривайте сайты в приватном режиме, получайте доступ к заблокированному содержимому и с удовольствием пользуйтесь цифровой свободой без ограничений объёма данных и скорости.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_NoLogs">
     <value>Сертифицированный VPN без журналов</value>
@@ -2137,7 +2137,7 @@ Smart Routing обычно используется для обхода зако
     <value>Свободно просматривайте веб-страницы отовсюду</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
-    <value>Скройте свое виртуальное местоположение и пользуйтесь Интернетом из любой из {0} доступных страны.</value>
+    <value>Скройте свое виртуальное местоположение и пользуйтесь Интернетом из любой из {0} доступной страны.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Few">
     <value>Скройте свое виртуальное местоположение и пользуйтесь Интернетом из любой из {0} доступных стран.</value>
@@ -2152,7 +2152,7 @@ Smart Routing обычно используется для обхода зако
     <value>Защита 10 устройств одновременно</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
-    <value>Распространите защиту VPN на настольный компьютер, мобильный телефон, браузер, телевизор и многое другое. </value>
+    <value>Обеспечьте защиту VPN для настольного компьютера, мобильного телефона, браузера, телевизора и многого другого. </value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Stream">
     <value>Смотрите в высоком разрешении</value>
@@ -2166,13 +2166,13 @@ Smart Routing обычно используется для обхода зако
   <data name="Dialogs_WelcomeUnlimited_Description">
     <value>Поздравляем! Вы разблокировали платные функции безопасности и производительности во всех службах Proton.
 
-Используйте с удовольствием все преимущества приватности Proton.</value>
+Используйте все преимущества приватности Proton.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Добро пожаловать в Proton Unlimited</value>
   </data>
   <data name="Dialogs_Welcome_Message">
-    <value>Мы подготавливаем к работе ваш новый опыт работы с VPN. Это займет совсем немного времени.</value>
+    <value>Мы подготавливаем всё для работы с VPN. Это займёт совсем немного времени.</value>
   </data>
   <data name="Dialogs_Welcome_Title">
     <value>Добро пожаловать в Proton VPN</value>
@@ -2187,28 +2187,28 @@ Smart Routing обычно используется для обхода зако
     <value>Выйти из Proton VPN</value>
   </data>
   <data name="Flyouts_Country_Description">
-    <value>Browsing without a VPN leaves you vulnerable to location-based internet restrictions.
+    <value>Работа в Интернете без VPN лишает вас уязвимыми для ограничений на основе расположения.
 
-Websites can use geoblocks to restrict content to certain locations. Governments can also instruct ISPs (Internet Service Providers) to block certain websites in their country.
+Веб-сайты могут использовать геоблокировки, чтобы ограничивать доступность контента в определённых расположениях. Правительственные организации могут инструктировать интернет-провайдеров, чтобы те блокировали доступ к определённым сайтам в стране.
 
-A VPN makes it looks like you’re browsing from somewhere else, protecting you from surveillance and censorship.</value>
+Через VPN вы будто находитесь в другом расположении. Это защищает вас от наблюдения и цензуры.</value>
   </data>
   <data name="Flyouts_Country_Title">
     <value>Страна</value>
   </data>
   <data name="Flyouts_Country_Warning">
-    <value>Connect to VPN to change your virtual location</value>
+    <value>Подключитесь к VPN, чтобы изменить свое виртуальное расположение</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Connected">
-    <value>Your VPN IP masks your real IP address. This makes it look like you’re browsing from your VPN location, so your online activity can’t be linked to your device.</value>
+    <value>VPN IP маскирует ваш реальный IP-адрес. Вы будто работаете с расположения, которое указывает VPN, поэтому ваша активность в Интернете не может быть связана с вашим устройством.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected">
-    <value>This unique code can be used by websites and ISPs (Internet Service Providers) to link your location and browsing history to your device. 
+    <value>Этот уникальный код могут использовать веб-сайты и интернет-провайдеры для привязки вашего расположения и журнала просмотров к вашему устройству. 
 
-A VPN masks your IP address, making it harder for your activity to be traced back to you.</value>
+VPN замаскирует ваш IP-адрес, чтобы усложнить отслеживание.</value>
   </data>
   <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
-    <value>What is an IP address?</value>
+    <value>Что такое IP-адрес?</value>
   </data>
   <data name="Flyouts_IpAddress_Title">
     <value>IP-адрес</value>
@@ -2223,23 +2223,23 @@ A VPN masks your IP address, making it harder for your activity to be traced bac
     <value>Ваш IP-адрес виден</value>
   </data>
   <data name="Flyouts_Isp_Description">
-    <value>Your ISP (Internet Service Provider) is the company that connects you to the internet. 
+    <value>Ваш провайдер (Internet Service Provider) – это компания, которая подключает вас к Интернету. 
 
-They can log your online activity. In some countries, they can sell your data to advertisers. In others, they can be required to hand it over to the government. 
+Он может регистрировать ваши действия в сети. В некоторых странах он может продавать ваши данные рекламодателям. В других случаях провайдер может быть обязаны передать их правительству. 
 
-A VPN hides your IP address, protecting you from ISP interference.</value>
+VPN скрывает ваш IP-адрес, защищая вас от вмешательства провайдера.</value>
   </data>
   <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
-    <value>What is an Internet Service Provider (ISP)?</value>
+    <value>Кто такой интернет-провайдер?</value>
   </data>
   <data name="Flyouts_Isp_Title">
-    <value>Provider</value>
+    <value>Провайдер</value>
   </data>
   <data name="Flyouts_Isp_Warning">
-    <value>Your provider can see which websites you visit</value>
+    <value>Провайдер может видеть сайты, которые вы посещаете</value>
   </data>
   <data name="Flyouts_Protocol_Description">
-    <value>A VPN protocol determines how traffic is encrypted and transmitted over the VPN.</value>
+    <value>Протокол VPN определяет шифрование трафика и его передачу через VPN.</value>
   </data>
   <data name="Flyouts_Protocol_KnowledgeBaseLinkTitle">
     <value>Какой протокол VPN лучше всего?</value>
@@ -2251,7 +2251,7 @@ A VPN hides your IP address, protecting you from ISP interference.</value>
     <value>Загруженность сервера показывает, насколько сервер близок к своей максимальной производительности. Высокая загруженность сервера может замедлить ваше подключение.</value>
   </data>
   <data name="Flyouts_ServerLoad_High">
-    <value>Высокая (91–100%)</value>
+    <value>Высокая (91–100 %)</value>
   </data>
   <data name="Flyouts_ServerLoad_High_Description">
     <value>VPN может работать медленнее обычного.</value>
@@ -2260,16 +2260,16 @@ A VPN hides your IP address, protecting you from ISP interference.</value>
     <value>Что такое нагрузка сервера?</value>
   </data>
   <data name="Flyouts_ServerLoad_Low">
-    <value>Низкая (1–75%)</value>
+    <value>Низкая (1–75 %)</value>
   </data>
   <data name="Flyouts_ServerLoad_Low_Description">
     <value>Молниеносная скорость</value>
   </data>
   <data name="Flyouts_ServerLoad_Medium">
-    <value>Средняя (76–90%)</value>
+    <value>Средняя (76–90 %)</value>
   </data>
   <data name="Flyouts_ServerLoad_Medium_Description">
-    <value>Unlikely to affect connection speed</value>
+    <value>Вряд ли повлияет на скорость подключения</value>
   </data>
   <data name="Flyouts_ServerLoad_Title">
     <value>Нагрузка сервера</value>
@@ -2278,40 +2278,40 @@ A VPN hides your IP address, protecting you from ISP interference.</value>
     <value>Ускорено VPN Accelerator</value>
   </data>
   <data name="Flyouts_Speed_Description">
-    <value>This shows how much data gets transmitted through Proton VPN each second.
+    <value>Показывает, сколько данных передается через Proton VPN каждую секунду.
 
-Speed is based on your device’s current activity — it doesn’t represent the VPN’s maximum speed.</value>
+Скорость основана на текущей активности вашего устройства — она не отражает максимальную скорость работы VPN.</value>
   </data>
   <data name="Flyouts_Speed_Download">
-    <value>Скачать</value>
+    <value>Скачивание</value>
     <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
-    <value>Understanding and increasing VPN connection speeds</value>
+    <value>Понимание и повышение скорости VPN-соединения</value>
   </data>
   <data name="Flyouts_Speed_Title">
     <value>Скорость</value>
   </data>
   <data name="Flyouts_Speed_Upload">
-    <value>Загрузить</value>
+    <value>Загрузка</value>
     <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
   </data>
   <data name="Flyouts_Volume_Description">
-    <value>This shows how much traffic has routed through your VPN.</value>
+    <value>Показывает, сколько трафика прошло через VPN.</value>
   </data>
   <data name="Flyouts_Volume_Download">
-    <value>Скачать</value>
+    <value>Скачивание</value>
     <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
   </data>
   <data name="Flyouts_Volume_Title">
-    <value>Скачано</value>
+    <value>Объём</value>
   </data>
   <data name="Flyouts_Volume_Upload">
-    <value>Загрузить</value>
+    <value>Загрузка</value>
     <comment>Refers to the uploaded volume (e.g., Upload [new line] 250 MB).</comment>
   </data>
   <data name="Format_Milliseconds">
-    <value>{0}мс.</value>
+    <value>{0} мс</value>
     <comment>Format a number as a time in milliseconds. {0} is a place holder for the number of milliseconds (eg. 46ms)</comment>
   </data>
   <data name="Format_Size_Bytes">
@@ -2347,38 +2347,38 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
-    <value>{0} Б/c.</value>
+    <value>{0} Б/c</value>
     <comment>Format a speed in Bytes per second. {0} is a place holder for the number of Bytes per second (eg. 30 B/s)</comment>
   </data>
   <data name="Format_Speed_ExabytesPerSecond">
-    <value>{0} ЭБ/с.</value>
+    <value>{0} ЭБ/с</value>
     <comment>Format a speed in Exabytes per second. {0} is a place holder for the number of Exabytes per second (eg. 30 EB/s)</comment>
   </data>
   <data name="Format_Speed_GigabytesPerSecond">
-    <value>{0} ГБ/c.</value>
+    <value>{0} ГБ/c</value>
     <comment>Format a speed in Gigabytes per second. {0} is a place holder for the number of Gigabytes per second (eg. 30 GB/s)</comment>
   </data>
   <data name="Format_Speed_KilobytesPerSecond">
-    <value>{0} КБ/c.</value>
+    <value>{0} КБ/c</value>
     <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
   </data>
   <data name="Format_Speed_MegabytesPerSecond">
-    <value>{0} МБ/c.</value>
+    <value>{0} МБ/c</value>
     <comment>Format a speed in Megabytes per second. {0} is a place holder for the number of Megabytes per second (eg. 30 MB/s)</comment>
   </data>
   <data name="Format_Speed_PetabytesPerSecond">
-    <value>{0} ПБ/с.</value>
+    <value>{0} ПБ/с</value>
     <comment>Format a speed in Petabytes per second. {0} is a place holder for the number of Petabytes per second (eg. 30 PB/s)</comment>
   </data>
   <data name="Format_Speed_TerabytesPerSecond">
-    <value>{0} ТБ/c.</value>
+    <value>{0} ТБ/c</value>
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
   <data name="Format_Time_Day_One">
     <value>{0} день</value>
   </data>
   <data name="Format_Time_Day_Few">
-    <value>{0} дней</value>
+    <value>{0} дня</value>
   </data>
   <data name="Format_Time_Day_Many">
     <value>{0} дней</value>
@@ -2396,14 +2396,14 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>{0} дней {1} ч.</value>
   </data>
   <data name="Format_Time_DayHour_Other">
-    <value>{0} дней {1} ч.</value>
+    <value>{0} дней {1} ч</value>
   </data>
   <data name="Format_Time_Hours">
-    <value>{0} ч.</value>
+    <value>{0} ч</value>
     <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_HoursMinutes">
-    <value>{0} ч. {1} мин.</value>
+    <value>{0} ч {1} мин</value>
     <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_HoursMinutesSeconds_Short">
@@ -2411,11 +2411,11 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
   <data name="Format_Time_Minutes">
-    <value>{0} мин.</value>
+    <value>{0} мин</value>
     <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_MinutesSeconds">
-    <value>{0} мин. {1} сек.</value>
+    <value>{0} мин {1} с</value>
     <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
   </data>
   <data name="Format_Time_MinutesSeconds_Short">
@@ -2423,7 +2423,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
   </data>
   <data name="Format_Time_Seconds">
-    <value>{0} сек.</value>
+    <value>{0} с</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
   </data>
   <data name="FreeConnections_P2PUpsell">
@@ -2470,7 +2470,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Подключение по умолчанию</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
-    <value>Free подключение</value>
+    <value>Подключение Free</value>
   </data>
   <data name="Home_ConnectionCard_Header_LastConnectedTo">
     <value>Последнее подключение к</value>
@@ -2486,7 +2486,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Город</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectedFor">
-    <value>Подключен к</value>
+    <value>Подключено к</value>
     <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
   </data>
   <data name="Home_ConnectionDetails_Connecting">
@@ -2512,7 +2512,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Скрыть IP-адрес пользователя</value>
   </data>
   <data name="Home_ConnectionDetails_Isp">
-    <value>Provider</value>
+    <value>Провайдер</value>
   </data>
   <data name="Home_ConnectionDetails_Landmark">
     <value>Информация о подключении</value>
@@ -2553,19 +2553,19 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Не защищено</value>
   </data>
   <data name="Home_ConnectionDetails_UnprotectedSubLabel">
-    <value>Encrypt your online activity by connecting to VPN.</value>
+    <value>Подключитесь к VPN, чтобы зашифровать свои действия в сети.</value>
   </data>
   <data name="Home_ConnectionDetails_Volume">
     <value>Скачано</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
-    <value>Объем скачивания</value>
+    <value>Объём скачивания</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Total">
-    <value>Общий объем</value>
+    <value>Общий объём</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Upload">
-    <value>Объем загрузки</value>
+    <value>Объём загрузки</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>VPN IP</value>
@@ -2593,16 +2593,16 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Рекламы заблокировано</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Other">
-    <value>Рекламы заблокировано</value>
+    <value>Реклам заблокировано</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Description">
-    <value>Реклама - это промо-баннеры или всплывающие окна, которые появляются на веб-сайтах и в приложениях.</value>
+    <value>Реклама — это промо-баннеры или всплывающие окна, которые появляются на веб-сайтах и в приложениях.</value>
   </data>
   <data name="Home_NetShield_DataSaved">
     <value>Экономия трафика</value>
   </data>
   <data name="Home_NetShield_DataSaved_Description">
-    <value>Расчет экономии данных за счет блокировки нежелательной рекламы, трекеров и вредоносных программ.</value>
+    <value>Ожидаемая экономия данных за счёт блокировки нежелательной рекламы, трекеров и вредоносных программ.</value>
   </data>
   <data name="Home_NetShield_Landmark">
     <value>Статистика NetShield</value>
@@ -2621,7 +2621,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Трекера заблокировано</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_Other">
-    <value>Трекера заблокировано</value>
+    <value>Трекеров заблокировано</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_Description">
     <value>Трекеры - это файлы cookie и сторонние веб-сайты, которые собирают, хранят и продают информацию о вашей активности в сети.</value>
@@ -2652,7 +2652,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Открепить</value>
   </data>
   <data name="Home_Update_Confirmation_Message">
-    <value>Чтобы завершить процесс обновления, Proton VPN временно отключит и деактивирует Advanced Kill Switch, если хоть что-то из этого активно. Вы хотите продолжить?</value>
+    <value>Чтобы завершить процесс обновления, Proton VPN временно отключит и деактивирует Advanced Kill Switch, если он включён. Вы хотите продолжить?</value>
     <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
   </data>
   <data name="Home_Update_Confirmation_Title">
@@ -2678,23 +2678,23 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Защищено</value>
   </data>
   <data name="LoadingPage_Tip">
-    <value>A better world starts with privacy and digital freedom.</value>
+    <value>Лучший мир начинается с конфиденциальности и цифровой свободы.</value>
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
-    <value>Произошла ошибка при получении информации о сеансе. Повторите попытку.</value>
+    <value>Не удалось получить информацию о сеансе. Повторите попытку.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
-    <value>Неверный код. Пожалуйста, попробуйте еще раз.</value>
+    <value>Неправильный код. Попробуйте еще раз.</value>
   </data>
   <data name="Login_Error_SessionExpired">
-    <value>Ваш сеанс истёк. Пожалуйста, войдите снова.</value>
+    <value>Сеанс завершён. Войдите снова.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_SsoAuthFailed">
     <value>Сбой аутентификации через SSO. Повторите попытку.</value>
   </data>
   <data name="Login_Error_TwoFactorAuthFailed">
-    <value>Incorrect username or password. Please try again.</value>
+    <value>Неправильное имя пользователя или пароль. Повторите попытку.</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
     <value>Не удалось выполнить двухфакторную аутентификацию. Повторите попытку входа.</value>
@@ -2728,50 +2728,50 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Шестая цифра</value>
   </data>
   <data name="Login_TwoFactor_EnterCode">
-    <value>Enter your code</value>
+    <value>Введите код</value>
   </data>
   <data name="Main_Loading_SigningIn">
     <value>Выполняется вход, подождите...</value>
     <comment>Message in the loading screen when signing in or starting the app</comment>
   </data>
   <data name="Main_Loading_SigningOut">
-    <value>Выполняется вход, подождите…...</value>
+    <value>Выполняется выход, подождите…</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
   <data name="Notifications_PortForwarding_Description">
     <value>Установите это число в приложении BitTorrent для увеличения скорости.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
-    <value>Ваш тариф был переведен на более дешевый тариф Proton Free, и мы снова подключаем вас к самому быстрому бесплатному серверу.</value>
+    <value>Вы переведены на более дешёвый тариф Proton Free, и мы снова подключаем вас к самому быстрому бесплатному серверу.</value>
   </data>
   <data name="Overlay_OutdatedClient_Action">
-    <value>Update now</value>
+    <value>Обновить</value>
   </data>
   <data name="Overlay_OutdatedClient_Message">
-    <value>This app version is outdated. You must update the app to continue using Proton VPN.</value>
+    <value>Эта версия приложения устарела. Обновите приложение, чтобы продолжить использовать Proton VPN.</value>
   </data>
   <data name="Overlay_OutdatedClient_Title">
-    <value>Update Proton VPN to continue</value>
+    <value>Обновите Proton VPN, чтобы продолжить</value>
   </data>
   <data name="Overlay_P2P_Bullet1_Description">
-    <value>Our P2P (peer-to-peer) servers let you access P2P networks while still protecting your IP address and online activity.</value>
+    <value>Серверы P2P (peer-to-peer) обеспечивают доступ к сетям P2P, защищая при этом ваш IP-адрес и действия в сети.</value>
   </data>
   <data name="Overlay_P2P_Bullet1_Header">
-    <value>What is P2P VPN?</value>
+    <value>Что такое P2P VPN?</value>
   </data>
   <data name="Overlay_P2P_Bullet2_Description">
-    <value>P2P networks allow two devices to connect and transfer data without passing through a central server. </value>
+    <value>Сети P2P позволяют двум устройствам подключаться друг к другу и передавать данные без использования центрального сервера. </value>
   </data>
   <data name="Overlay_P2P_Bullet2_Header">
-    <value>What is a P2P network?</value>
+    <value>Что такое сеть P2P?</value>
   </data>
   <data name="Overlay_P2P_Bullet3_Description">
-    <value>  •  Downloading torrent files
-  •  Improving online gaming and video call performance
-  •  Connecting to local area network (LAN) devices</value>
+    <value>  • Скачивание торрент-файлов
+  • Повышение комфорта в онлайн-играх и видеовызовах
+  • Подключение к локальной сети (LAN)</value>
   </data>
   <data name="Overlay_P2P_Bullet3_Header">
-    <value>What are P2P networks used for?</value>
+    <value>Для чего используются сети P2P?</value>
   </data>
   <data name="Overlay_P2P_LearnMore">
     <value>Что такое P2P?</value>
@@ -2780,7 +2780,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>P2P</value>
   </data>
   <data name="Overlay_SecureCore_Description">
-    <value>Secure Core соединяет вас с конечным сервером через другой, максимально защищенный сервер VPN.
+    <value>Secure Core соединяет вас с конечным сервером через другой, максимально защищённый сервер VPN.
 
 Этот более высокий уровень защиты может привести к увеличению задержек и снижению скорости.</value>
   </data>
@@ -2819,7 +2819,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>VPN может работать медленнее обычного.</value>
   </data>
   <data name="Overlay_ServerLoad_HighRange_Title">
-    <value>Высокая (91–100%)</value>
+    <value>Высокая (91–100 %)</value>
   </data>
   <data name="Overlay_ServerLoad_LearnMore">
     <value>Что такое нагрузка сервера?</value>
@@ -2828,26 +2828,26 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Молниеносная скорость</value>
   </data>
   <data name="Overlay_ServerLoad_LowRange_Title">
-    <value>Низкая (1–75%)</value>
+    <value>Низкая (1–75 %)</value>
   </data>
   <data name="Overlay_ServerLoad_MediumRange_Description">
     <value>Вряд ли повлияет на скорость VPN</value>
   </data>
   <data name="Overlay_ServerLoad_MediumRange_Title">
-    <value>Средняя (76–90%)</value>
+    <value>Средняя (76–90 %)</value>
   </data>
   <data name="Overlay_ServerLoad_Title">
     <value>Нагрузка сервера</value>
   </data>
   <data name="Overlay_SmartRouting_Description">
-    <value>Smart Routing использует виртуальные серверы для обеспечения покрытия VPN в труднодоступных странах.
+    <value>Smart Routing использует виртуальные серверы для работы VPN в труднодоступных странах.
     
 Когда вы подключаетесь к серверу Smart Routing, создается впечатление, что вы находитесь в стране назначения, хотя физический сервер расположен в другом месте.
 
 Smart Routing обычно используется для обхода законов, ограничивающих конфиденциальность, и других форм цензуры.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
-    <value>Серверы физически расположены в {0}, но будет казаться, что вы просматриваете сайт из {1}</value>
+    <value>Серверы физически расположены в стране {0}, но будет казаться, что вы просматриваете сайт из страны {1}</value>
     <comment>{0} is a placeholder for the physical server location country. {1} is a placeholder for the destination country
     Warning: country names are inserted in the nominative case. For INFLECTED languages, use alternative wording as follows:
     Connects you to your destination country ({1}) through servers that are physically located somewhere else ({0})</comment>
@@ -2874,10 +2874,10 @@ Smart Routing обычно используется для обхода зако
     <value>Профили</value>
   </data>
   <data name="Search_InputBox_Placeholder">
-    <value>Browse from...</value>
+    <value>Просмотр через...</value>
   </data>
   <data name="Search_NoInput_CityOrState">
-    <value>City or US state</value>
+    <value>Город или штат</value>
     <comment>The word used for one single city and one single United States state</comment>
   </data>
   <data name="Search_NoInput_Country">
@@ -2889,10 +2889,10 @@ Smart Routing обычно используется для обхода зако
     <comment>The word used for one single server</comment>
   </data>
   <data name="Search_NoInput_TrySearchingFor">
-    <value>Try searching for...</value>
+    <value>Попробуйте найти...</value>
   </data>
   <data name="Search_NoResults_Description">
-    <value>Try a different keyword.</value>
+    <value>Попробуйте другое ключевое слово.</value>
   </data>
   <data name="Search_NoResults_Title">
     <value>Ничего не найдено</value>
@@ -2901,7 +2901,7 @@ Smart Routing обычно используется для обхода зако
     <value>Сервер</value>
   </data>
   <data name="Server_Fastest_Free">
-    <value>Самый быстрый бесплатный сервер</value>
+    <value>Самый быстрый сервер Free</value>
   </data>
   <data name="Server_Feature_B2B">
     <value>Шлюзы</value>
@@ -2919,7 +2919,7 @@ Smart Routing обычно используется для обхода зако
     <value>Tor</value>
   </data>
   <data name="Server_Free">
-    <value>Free сервер</value>
+    <value>Сервер Free</value>
   </data>
   <data name="Servers">
     <value>Серверы</value>
@@ -2934,7 +2934,7 @@ Smart Routing обычно используется для обхода зако
     <value>Текущая версия</value>
   </data>
   <data name="Settings_About_FailedToFetch">
-    <value>Не удалось загрузить информацию журнала изменений.</value>
+    <value>Не удалось загрузить данные журнала изменений.</value>
   </data>
   <data name="Settings_About_GetLatestVersion">
     <value>Получить последнюю версию</value>
@@ -2961,7 +2961,7 @@ Smart Routing обычно используется для обхода зако
     <value>Получите максимум от VPN, обновив приложение до последней версии.</value>
   </data>
   <data name="Settings_Account_Exit">
-    <value>Exit the app</value>
+    <value>Выход из приложения</value>
   </data>
   <data name="Settings_Account_MyAccount">
     <value>Мой аккаунт</value>
@@ -3033,46 +3033,46 @@ Smart Routing обычно используется для обхода зако
     <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>Disable IPv6 traffic</value>
+    <value>Отключить IPv6-трафик</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
-    <value>Prevents IPv6 leaks by blocking connections to IPv6 addresses.</value>
+    <value>Предотвращает утечку IPv6-трафика, блокируя соединения с IPv6-адресами.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
     <value>Подключения по LAN</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
-    <value>Позволяет подключаться к принтерам, колонкам и другим устройствам в локальной сети вашего устройства.</value>
+    <value>Позволяет подключаться к принтерам, колонкам и другим устройствам в локальной сети устройства.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>Тип NAT</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Description">
-    <value>Вы не сможете использовать переадресацию портов вместе с Умеренным NAT.</value>
+    <value>Вы не сможете использовать переадресацию портов вместе с умеренным NAT.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Title">
-    <value>Включить Умеренный NAT?</value>
+    <value>Включить умеренный NAT?</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Description">
-    <value>Выберите тип преобразования сетевых адресов для вашего подключения.</value>
+    <value>Выберите тип преобразования сетевых адресов для подключения.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate">
-    <value>Умеренное (тип 2)</value>
+    <value>Умеренный (тип 2)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
-    <value>Некоторое ограничение на поступление данных в вашу сеть. Этот вариант лучше всего подходит для сетевых видеоигр.</value>
+    <value>Некоторое ограничение на поступление данных в вашу сеть. Этот вариант лучше всего подходит для онлайн-видеоигр.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict">
-    <value>Строгое (тип 3)</value>
+    <value>Строгий (тип 3)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
     <value>Ограничивает поступление данных в сеть. Этот вариант более безопасен, но может затруднить одноранговые игровые соединения.</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
-    <value>Routes traffic between different networks.</value>
+    <value>Маршрутизирует трафик между различными сетями.</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
-    <value>Uses bridging to connect networks. TUN provides higher speeds than TAP, but may be less stable.</value>
+    <value>Использует мосты для соединения сетей. TUN обеспечивает более высокую скорость, чем TAP, но может быть менее стабильным.</value>
   </data>
   <data name="Settings_Connection_Default">
     <value>Подключение по умолчанию</value>
@@ -3084,10 +3084,10 @@ Smart Routing обычно используется для обхода зако
     <value>Лучший сервер на основе вашего местоположения</value>
   </data>
   <data name="Settings_Connection_Default_Last">
-    <value>Последнее соединение</value>
+    <value>Последнее подключение</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
-    <value>Ваше последнее использованное подключение</value>
+    <value>Последнее использованное подключение</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Kill switch</value>
@@ -3096,31 +3096,31 @@ Smart Routing обычно используется для обхода зако
     <value>Продвинутый</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
-    <value>Разрешить доступ в Интернет только при подключении к Proton VPN. Продвинутый Kill Switch останется активным даже после перезагрузки устройства.</value>
+    <value>Разрешить доступ в Интернет только при подключении к Proton VPN. Продвинутый kill switch останется активным даже после перезагрузки устройства.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Conflict_Description">
     <value>Это отключит раздельное туннелирование.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>Включить Kill Switch?</value>
+    <value>Включить kill switch?</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>Защищает ваш IP-адрес, отключая вас от Интернета при обрыве подключения к VPN.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Footer">
-    <value>При включённом Kill Switch вы не сможете подключаться к веб-сайтам и приложениям, исключённым из вашего VPN-подключения через раздельное туннелирование.</value>
+    <value>При включённом kill switch вы не сможете подключаться к веб-сайтам и приложениям, исключённым из VPN-подключения через раздельное туннелирование.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Standard">
     <value>Стандартный</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Standard_Description">
-    <value>Автоматически отключает интернет при обрыве подключения к VPN.</value>
+    <value>Автоматически отключает Интернет при обрыве подключения к VPN.</value>
   </data>
   <data name="Settings_Connection_NetShield">
     <value>NetShield</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
-    <value>Block ads, malware and trackers</value>
+    <value>Блокируйте рекламу, вредоносные программы и трекеры</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockMalwareOnly">
     <value>Блокировать только вредоносные программы</value>
@@ -3138,7 +3138,7 @@ Smart Routing обычно используется для обхода зако
     <value>Некоторые веб-сайты могут загружаться некорректно при блокировке рекламы и трекеров.</value>
   </data>
   <data name="Settings_Connection_NetShield_PrivacyPanel">
-    <value>NetShield Privacy Panel</value>
+    <value>Панель конфиденциальности NetShield</value>
   </data>
   <data name="Settings_Connection_PortForwarding">
     <value>Переадресация портов</value>
@@ -3150,16 +3150,16 @@ Smart Routing обычно используется для обхода зако
     <value>Скопировать номер порта</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Conflict_Description">
-    <value>Вы не сможете использовать Умеренный NAT при включённой переадресации портов.</value>
+    <value>Вы не сможете использовать умеренный NAT при включённой переадресации портов.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Conflict_Title">
-    <value>Включить Переадресацию портов?</value>
+    <value>Включить переадресацию портов?</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Description">
     <value>Обходите брандмауэры для подключения к серверам P2P и устройствам в локальной сети.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Footer">
-    <value>Чтобы использовать Переадресацию портов, подключитесь к серверу с поддержкой P2P.</value>
+    <value>Чтобы использовать переадресацию портов, подключитесь к серверу с поддержкой P2P.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Loading">
     <value>Загружается...</value>
@@ -3181,7 +3181,7 @@ Smart Routing обычно используется для обхода зако
 
 • Чтобы изменить протокол для этого подключения, отключитесь и отредактируйте свой профиль.
 
-• Чтобы изменить протокол для других VPN-подключений, сначала нужно отключиться от текущего профиля.</value>
+• Чтобы изменить протокол для других VPN-подключений, сначала отключитесь от текущего профиля.</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Title">
     <value>Изменить протокол в профилях</value>
@@ -3204,7 +3204,7 @@ Smart Routing обычно используется для обхода зако
     <value>Удалить приложение</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>Это отключит Kill Switch.</value>
+    <value>Это отключит kill switch.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Conflict_Title">
     <value>Включить раздельное туннелирование?</value>
@@ -3213,7 +3213,7 @@ Smart Routing обычно используется для обхода зако
     <value>Настройте своё подключение, определив, какие приложения и IP-адреса будут защищены VPN.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
-    <value>Обратный</value>
+    <value>Обратное</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
     <value>Только выбранные приложения и IP-адреса подключаются через VPN, весь остальной трафик не защищён</value>
@@ -3253,7 +3253,7 @@ Smart Routing обычно используется для обхода зако
     <value>Автоподключение</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
-    <value>Автоматически устанавливает ваше подключение по умолчанию при открытии Proton VPN.</value>
+    <value>Автоматически устанавливает подключение по умолчанию при открытии Proton VPN.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
     <value>Самое быстрое подключение</value>
@@ -3265,7 +3265,7 @@ Smart Routing обычно используется для обхода зако
     <value>Автозапуск</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Description">
-    <value>Proton VPN будет автоматически открываться при входе в систему на вашем устройстве</value>
+    <value>Proton VPN будет автоматически открываться при входе в систему на устройстве</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Desktop">
     <value>Открыть на рабочем столе</value>
@@ -3277,7 +3277,7 @@ Smart Routing обычно используется для обхода зако
     <value>Свернуть в панель задач</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Настройте приложение так, чтобы оно запускалось или подключалось автоматически</value>
+    <value>Настроить автоматический запуск или подключение приложения</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>Автоматические обновления</value>
@@ -3346,10 +3346,10 @@ Smart Routing обычно используется для обхода зако
     <value>OpenVPN</value>
   </data>
   <data name="Settings_Protocols_Recommended">
-    <value>Рекомендованное</value>
+    <value>Рекомендованный</value>
   </data>
   <data name="Settings_Protocols_Smart_Description">
-    <value>Автоматически выбирает лучший протокол для вашего подключения.</value>
+    <value>Автоматически выбирает лучший протокол для подключения.</value>
   </data>
   <data name="Settings_Protocols_Smart_Title">
     <value>Smart</value>
@@ -3442,16 +3442,16 @@ Smart Routing обычно используется для обхода зако
     <value>Светлая</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
-    <value>Увеличьте скорость подключения до 400% благодаря технологиям повышения производительности.</value>
+    <value>Увеличьте скорость подключения до 400 % благодаря технологиям повышения производительности.</value>
   </data>
   <data name="SignIn_Form">
     <value>Форма для входа</value>
   </data>
   <data name="SignIn_Form_AdvancedKillSwitchDescription">
-    <value>Advanced kill switch is blocking your internet connection.</value>
+    <value>Расширенный переключатель kill switch блокирует интернет-соединение.</value>
   </data>
   <data name="SignIn_Form_BestSecureVpnForSpeed">
-    <value>The best secure VPN for speed</value>
+    <value>Лучший защищённый и быстрый VPN</value>
   </data>
   <data name="SignIn_Form_CreateAccount">
     <value>Создать аккаунт</value>
@@ -3516,11 +3516,11 @@ Smart Routing обычно используется для обхода зако
     <value>Электронная почта или имя пользователя</value>
   </data>
   <data name="SignIn_Form_UsernameError">
-    <value>Enter your email or username</value>
+    <value>Введите адрес электронной почты или имя пользователя</value>
     <comment>An error message is displayed when the user attempts to sign in without entering a username</comment>
   </data>
   <data name="SignIn_KillSwitch_Disabled">
-    <value>Kill switch is disabled</value>
+    <value>Kill switch отключён</value>
   </data>
   <data name="SystemNotification_Connected">
     <value>Теперь вы защищены</value>
@@ -3574,7 +3574,7 @@ Smart Routing обычно используется для обхода зако
     <value>NetShield</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
-    <value>Улучшите для выбора любого сервера.</value>
+    <value>Смените тарифный план для выбора любого сервера.</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Title">
     <value>Не та страна, которую вы хотели?</value>
@@ -3586,16 +3586,16 @@ Smart Routing обычно используется для обхода зако
     <value>Подключитесь к VPN с помощью вашего собственного сервера доменных имен (DNS)</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
-    <value>Доступ к устройствам в локальной сети (LAN) во время подключения</value>
+    <value>Получите доступ к устройствам в локальной сети (LAN) во время подключения</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
-    <value>Повысьте уровень игрового опыта, перейдя на NAT типа 2 (умеренное)</value>
+    <value>Повысьте комфорт в играх, перейдя на NAT типа 2 (умеренное)</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices">
-    <value>Подключение до 10 устройств одновременно</value>
+    <value>Подключите до 10 устройств одновременно</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Platforms">
-    <value>Использовать Proton VPN на разных платформах</value>
+    <value>Используйте Proton VPN на разных платформах</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
     <value>Android и Android TV</value>
@@ -3619,19 +3619,19 @@ Smart Routing обычно используется для обхода зако
     <value>Безопасность и конфиденциальность на всех ваших устройствах</value>
   </data>
   <data name="Upsell_Carousel_NetShield">
-    <value>Пользуйтесь просмотром веб-страниц без рекламы</value>
+    <value>Просматривайте веб-страницы без рекламы</value>
   </data>
   <data name="Upsell_Carousel_NetShield_Block">
     <value>Блокируйте рекламу и трекеры с помощью NetShield</value>
   </data>
   <data name="Upsell_Carousel_NetShield_Protection">
-    <value>Защитите свое устройство от вредоносных программ</value>
+    <value>Защитите своё устройство от вредоносных программ</value>
   </data>
   <data name="Upsell_Carousel_P2P">
-    <value>Разблокировать одноранговые загрузки (P2P) и обмен файлами</value>
+    <value>Разблокируйте одноранговые загрузки (P2P) и обмен файлами</value>
   </data>
   <data name="Upsell_Carousel_P2P_Discretion">
-    <value>Скрывайте свой адрес IP от поставщика услуг и других пользователей.</value>
+    <value>Скрывайте свой IP-адрес от поставщика услуг и других пользователей</value>
   </data>
   <data name="Upsell_Carousel_P2P_PortForwarding">
     <value>Повышение скорости P2P с помощью переадресации портов</value>
@@ -3640,11 +3640,11 @@ Smart Routing обычно используется для обхода зако
     <value>Повышенная скорость загрузки и скачивания</value>
   </data>
   <data name="Upsell_Carousel_Platforms_More">
-    <value>+ еще</value>
+    <value>+ ещё</value>
     <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
   </data>
   <data name="Upsell_Carousel_SecureCore">
-    <value>Добавьте еще один уровень защиты к вашему подключению</value>
+    <value>Добавьте ещё один уровень защиты к подключению</value>
   </data>
   <data name="Upsell_Carousel_SecureCore_Encryption">
     <value>Удвойте шифрование с помощью Secure Core</value>
@@ -3653,7 +3653,7 @@ Smart Routing обычно используется для обхода зако
     <value>Защитите себя от сетевых атак</value>
   </data>
   <data name="Upsell_Carousel_SecureCore_Routing">
-    <value>Направляйте свой трафик через сверхзащищенные серверы в Швейцарии, Швеции и Исландии</value>
+    <value>Направляйте трафик через сверхзащищённые серверы в Швейцарии, Швеции и Исландии</value>
   </data>
   <data name="Upsell_Carousel_Speed">
     <value>Просматривайте веб-страницы на еще более высоких скоростях (до 10 Гбит/с).</value>
@@ -3668,10 +3668,10 @@ Smart Routing обычно используется для обхода зако
     <value>Получите лучшее из обоих миров</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling_Browsing">
-    <value>Просматривайте веб-страницы из двух мест одновременно с помощью раздельного туннелирования</value>
+    <value>Просматривайте веб-страницы из двух расположений одновременно с помощью раздельного туннелирования</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling_Configuration">
-    <value>Разрешите доверенным приложениям и адресам IP подключаться к Интернету напрямую, защищая все остальное с вашей VPN</value>
+    <value>Разрешите доверенным приложениям и IP-адресам подключаться к Интернету напрямую, защищая все остальное с VPN</value>
   </data>
   <data name="Upsell_Carousel_Streaming">
     <value>Смотрите любимые фильмы и телепрограммы</value>
@@ -3704,13 +3704,13 @@ Smart Routing обычно используется для обхода зако
     <value>Откройте для себя VPN Plus</value>
   </data>
   <data name="Upsell_Carousel_Tor">
-    <value>Получите доступ к сети Tor для обеспечения дополнительной приватности</value>
+    <value>Получите доступ к сети Tor для дополнительной приватности</value>
   </data>
   <data name="Upsell_Carousel_Tor_Access">
-    <value>Получите доступ к скрытым веб-сайтам и веб-сайтам onion</value>
+    <value>Получите доступ к скрытым веб-сайтам и сайтам onion</value>
   </data>
   <data name="Upsell_Carousel_Tor_Browsing">
-    <value>Просматривайте сеть Tor используя ваш обычный браузер</value>
+    <value>Просматривайте сеть Tor, используя свой привычный браузер</value>
   </data>
   <data name="Upsell_Carousel_Tor_Protection">
     <value>Защищайте свои личные данные во время просмотра веб-страниц</value>
@@ -3735,7 +3735,7 @@ Smart Routing обычно используется для обхода зако
     <value>{0} стран</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
-    <value>стран: {0}</value>
+    <value>{0} стран</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
     <value>VPN с открытым исходным кодом</value>
@@ -3750,19 +3750,19 @@ Smart Routing обычно используется для обхода зако
     <value>{0} защищённых серверов</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
-    <value>{0} защищенных серверов</value>
+    <value>{0} защищённых серверов</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp">
     <value>OpenVPN (TCP)</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp_Description">
-    <value>Established, well-tested, and secure</value>
+    <value>Популярный, тщательно проверенный и защищённый</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Udp">
     <value>OpenVPN (UDP)</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Udp_Description">
-    <value>Established, well-tested, and secure</value>
+    <value>Популярный, тщательно проверенный и защищённый</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>
@@ -3777,7 +3777,7 @@ Smart Routing обычно используется для обхода зако
     <value>Stealth</value>
   </data>
   <data name="VpnProtocol_WireGuard_Tls_Description">
-    <value>Overcomes VPN blocks by hiding your connection from censors</value>
+    <value>Обходит блокировку VPN, защищая подключение от цензуры</value>
   </data>
   <data name="VpnProtocol_WireGuard_Udp">
     <value>WireGuard (UDP)</value>
