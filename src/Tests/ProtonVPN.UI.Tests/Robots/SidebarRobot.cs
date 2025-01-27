@@ -18,6 +18,8 @@
  */
 
 using System.Threading;
+using FlaUI.Core.Input;
+using FlaUI.Core.WindowsAPI;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
 
@@ -32,6 +34,11 @@ public class SidebarRobot
     private const string FASTEST_PROFILE = "Fastest";
 
     protected Element SidebarComponent = Element.ByAutomationId("SidebarComponent");
+    protected Element RecentsPage = Element.ByAutomationId("RecentsPage");
+    protected Element CountriesPage = Element.ByAutomationId("CountriesPage");
+    protected Element ProfilesPage = Element.ByAutomationId("ProfilesPage");
+    protected Element SearchResultsPage = Element.ByAutomationId("SearchResultsPage");
+
     protected Element NoRecentsLabel = Element.ByName("No recents yet");
     protected Element RemoveRecentLabel = Element.ByName("Remove").FindChild(Element.ByAutomationId("TextBlock"));
 
@@ -212,6 +219,18 @@ public class SidebarRobot
         return this;
     }
 
+    public SidebarRobot ClickOnSidebar()
+    {
+        SidebarComponent.Click();
+        return this;
+    }
+
+    public SidebarRobot ShortcutTo(VirtualKeyShort key)
+    {
+        Keyboard.TypeSimultaneously(VirtualKeyShort.CONTROL, key);
+        return this;
+    }
+
     private SidebarRobot NavigateToCountriesTab(int index)
     {
         NavigateToCountries();
@@ -228,26 +247,26 @@ public class SidebarRobot
 
     public class Verifications : SidebarRobot
     {
-        public Verifications NoRecentsLabelIsDisplayed()
+        public Verifications IsNoRecentsLabelDisplayed()
         {
             NoRecentsLabel.WaitUntilDisplayed();
             return this;
         }
 
-        public Verifications NoRecentsLabelDoesNotExist()
+        public Verifications HasNoRecentsLabel()
         {
             NoRecentsLabel.DoesNotExist();
             return this;
         }
 
-        public Verifications ConnectionOptionIsDisplayed(string connectionValue)
+        public Verifications IsConnectionOptionDisplayed(string connectionValue)
         {
             Element countryButton = Element.ByAutomationId($"Actions_for_{connectionValue}");
             countryButton.WaitUntilDisplayed();
             return this;
         }
 
-        public Verifications RecentsCountIsDisplayed(int count)
+        public Verifications IsRecentsCountDisplayed(int count)
         {
             string selector = $"Recent{(count == 1 ? "" : "s")} ({count})";
 
@@ -263,39 +282,63 @@ public class SidebarRobot
             return this;
         }
 
-        public Verifications ConnectionItemExists(string connectionItemName)
+        public Verifications DoesConnectionItemExist(string connectionItemName)
         {
             Element.ByName(connectionItemName).WaitUntilDisplayed();
             return this;
         }
 
-        public Verifications AllCountriesUpsellIsDisplayed()
+        public Verifications IsAllCountriesUpsellDisplayed()
         {
             WorldWideCoverageLabel.WaitUntilDisplayed();
             return this;
         }
 
-        public Verifications SecureCoreUpsellIsDisplayed()
+        public Verifications IsSecureCoreUpsellDisplayed()
         {
             SecureCoreSidebarUpsellLabel.WaitUntilDisplayed();
             return this;
         }
 
-        public Verifications P2pUpsellIsDisplayed()
+        public Verifications IsP2pUpsellDisplayed()
         {
             P2pSidebarUpsellLabel.WaitUntilDisplayed();
             return this;
         }
 
-        public Verifications TorUpsellIsDisplayed()
+        public Verifications IsTorUpsellDisplayed()
         {
             TorSidebarUpsellLabel.WaitUntilDisplayed();
             return this;
         }
 
-        public Verifications ProfileUpsellLabelIsDisplayed()
+        public Verifications IsProfileUpsellLabelDisplayed()
         {
             ProfileSidebarUpsellLabel.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications IsSidebarProfilesDisplayed() 
+        {
+            ProfilesPage.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications IsSidebarRecentsDisplayed()
+        {
+            RecentsPage.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications IsSidebarCountriesDisplayed()
+        {
+            CountriesPage.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications IsSidebarSearchResultsDisplayed()
+        {
+            SearchResultsPage.WaitUntilDisplayed();
             return this;
         }
     }

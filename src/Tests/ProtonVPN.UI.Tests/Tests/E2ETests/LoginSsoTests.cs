@@ -40,7 +40,7 @@ public class LoginSsoTests : FreshSessionSetUp
         Thread.Sleep(TestConstants.FiveSecondsTimeout);
 
         LoginRobot.Login(TestUserData.SsoUser)
-            .Verify.ErrorMessageIsDisplayed(SSO_LOGIN_ERROR);
+            .Verify.IsErrorMessageDisplayed(SSO_LOGIN_ERROR);
 
         CompleteSsoLogin();
     }

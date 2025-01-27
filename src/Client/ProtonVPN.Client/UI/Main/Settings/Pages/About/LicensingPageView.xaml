@@ -40,7 +40,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </custom:SettingsPageContentControl.PageHeader>
 
         <RichTextBlock Foreground="{ThemeResource TextNormColorBrush}"
-                       TextAlignment="Justify">
+                       TextAlignment="Justify"
+                       AutomationProperties.AutomationId="LicensingTextBlock">
             <RichTextBlock.Resources>
                 <Thickness x:Key="ParagraphMargin">0,0,0,12</Thickness>
             </RichTextBlock.Resources>

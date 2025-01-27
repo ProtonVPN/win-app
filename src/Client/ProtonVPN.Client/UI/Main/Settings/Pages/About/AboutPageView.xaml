@@ -85,14 +85,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    VerticalAlignment="Center"
                                    Foreground="{ThemeResource TextWeakColorBrush}"
                                    Style="{ThemeResource BodyTextBlockStyle}"
-                                   Text="{x:Bind ViewModel.Localizer.Get('Settings_About_CurrentVersion')}" />
+                                   Text="{x:Bind ViewModel.Localizer.Get('Settings_About_CurrentVersion')}"/>
                         <TextBlock Grid.Row="0"
                                    Grid.Column="1"
                                    HorizontalAlignment="Right"
                                    VerticalAlignment="Center"
                                    Style="{ThemeResource BodyStrongTextBlockStyle}"
                                    Text="{x:Bind ViewModel.ClientVersion}"
-                                   Margin="0,0,8,0" />
+                                   Margin="0,0,8,0"
+                                   AutomationProperties.AutomationId="CurrentVersionLabel" />
                         <TextBlock Grid.Row="2"
                                    Grid.Column="0"
                                    VerticalAlignment="Center"

@@ -47,11 +47,11 @@ public class FreeUserTests : FreshSessionSetUp
                 .IsConnecting()
                 .IsConnected()
                 .IsChangeServerLocked()
-                .NotTheCountryWantedBannerIsDisplayed();
+                .IsNotTheCountryWantedBannerDisplayed();
 
         HomeRobot.ClickLockedChangedServer()
             .Verify.IsConnected()
-            .UnlimitedServersChangesUpsellIsDisplayed();
+            .IsUnlimitedServersChangesUpsellDisplayed();
     }
 
     [Test]
@@ -82,33 +82,33 @@ public class FreeUserTests : FreshSessionSetUp
     {
         SidebarRobot.ConnectToFastest();
         UpsellCarrouselRobot
-            .Verify.ServersUpsellIsDisplayed()
+            .Verify.IsServersUpsellDisplayed()
             .NextUpsell()
-            .Verify.ServersSpeedUpsellIsDisplayed()
+            .Verify.IsServersSpeedUpsellDisplayed()
             .NextUpsell()
-            .Verify.StreamingUpsellIsDisplayed()
+            .Verify.IsStreamingUpsellDisplayed()
             .NextUpsell()
-            .Verify.NetshieldUpsellIsDisplayed()
+            .Verify.IsNetshieldUpsellDisplayed()
             .NextUpsell()
-            .Verify.SecureCoreUpsellIsDisplayed()
+            .Verify.IsSecureCoreUpsellDisplayed()
             .NextUpsell()
-            .Verify.P2pUpsellIsDisplayed()
+            .Verify.IsP2pUpsellDisplayed()
             .NextUpsell()
-            .Verify.TenDevicesUpsellIsDisplayed()
+            .Verify.IsTenDevicesUpsellDisplayed()
             .NextUpsell()
-            .Verify.TorUpsellIsDisplayed()
+            .Verify.IsTorUpsellDisplayed()
             .NextUpsell()
-            .Verify.SplitTunnelingUpsellIsDisplayed()
+            .Verify.IsSplitTunnelingUpsellDisplayed()
             .NextUpsell()
-            .Verify.ProfilesUpsellIsDisplayed()
+            .Verify.IsProfilesUpsellDisplayed()
             .NextUpsell()
-            .Verify.AdvancedSettingsUpsellIsDisplayed()
+            .Verify.IsAdvancedSettingsUpsellDisplayed()
             .NextUpsell()
-            .Verify.ServersUpsellIsDisplayed()
+            .Verify.IsServersUpsellDisplayed()
             .GoBackUpsell()
-            .Verify.AdvancedSettingsUpsellIsDisplayed()
+            .Verify.IsAdvancedSettingsUpsellDisplayed()
             .GoBackUpsell()
-            .Verify.ProfilesUpsellIsDisplayed();
+            .Verify.IsProfilesUpsellDisplayed();
     }
 
     [Test]
@@ -117,48 +117,48 @@ public class FreeUserTests : FreshSessionSetUp
         SettingRobot
             .OpenSettings()
             .OpenNetShieldSettings();
-        UpsellCarrouselRobot.Verify.NetshieldUpsellIsDisplayed()
+        UpsellCarrouselRobot.Verify.IsNetshieldUpsellDisplayed()
             .CloseModal();
 
         SettingRobot.OpenPortForwardingSettings();
-        UpsellCarrouselRobot.Verify.P2pUpsellIsDisplayed()
+        UpsellCarrouselRobot.Verify.IsP2pUpsellDisplayed()
             .CloseModal();
 
         SettingRobot.OpenSplitTunnelingSettingsCard();
-        UpsellCarrouselRobot.Verify.SplitTunnelingUpsellIsDisplayed()
+        UpsellCarrouselRobot.Verify.IsSplitTunnelingUpsellDisplayed()
             .CloseModal();
 
         SettingRobot.OpenVpnAcceleratorSettingsCard();
-        UpsellCarrouselRobot.Verify.ServersSpeedUpsellIsDisplayed()
+        UpsellCarrouselRobot.Verify.IsServersSpeedUpsellDisplayed()
             .CloseModal();
 
         SettingRobot.OpenAdvancedSettings();
         AdvancedSettingsRobot.NavigateToCustomDns();
-        UpsellCarrouselRobot.Verify.AdvancedSettingsUpsellIsDisplayed()
+        UpsellCarrouselRobot.Verify.IsAdvancedSettingsUpsellDisplayed()
             .CloseModal();
 
         AdvancedSettingsRobot.NavigateToNatSettings();
-        UpsellCarrouselRobot.Verify.AdvancedSettingsUpsellIsDisplayed();
+        UpsellCarrouselRobot.Verify.IsAdvancedSettingsUpsellDisplayed();
     }
 
     [Test]
     public void HomeScreenUpsell()
     {
-        HomeRobot.Verify.ConnectionCardFreeConnectionsTaglineIsDisplayed();
+        HomeRobot.Verify.IsConnectionCardFreeConnectionsTaglineDisplayed();
 
-        SidebarRobot.Verify.AllCountriesUpsellIsDisplayed();
+        SidebarRobot.Verify.IsAllCountriesUpsellDisplayed();
 
         SidebarRobot.NavigateToSecureCoreCountriesTab()
-            .Verify.SecureCoreUpsellIsDisplayed();
+            .Verify.IsSecureCoreUpsellDisplayed();
 
         SidebarRobot.NavigateToP2PCountriesTab()
-            .Verify.P2pUpsellIsDisplayed();
+            .Verify.IsP2pUpsellDisplayed();
 
         SidebarRobot.NavigateToTorCountriesTab()
-            .Verify.TorUpsellIsDisplayed();
+            .Verify.IsTorUpsellDisplayed();
 
         SidebarRobot.NavigateToProfiles()
-            .Verify.ProfileUpsellLabelIsDisplayed();
+            .Verify.IsProfileUpsellLabelDisplayed();
 
     }
 }

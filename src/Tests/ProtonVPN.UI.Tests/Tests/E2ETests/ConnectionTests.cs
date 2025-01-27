@@ -29,8 +29,6 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("1")]
 public class ConnectionTests : FreshSessionSetUp
 {
-    private const string COUNTRY_CODE = "AU";
-
     [SetUp]
     public void TestInitialize()
     {
@@ -131,7 +129,7 @@ public class ConnectionTests : FreshSessionSetUp
         SettingRobot
             .OpenSettings()
             .OpenAutoStartupSettings()
-            .Verify.AutoConnectIsEnabled()
+            .Verify.IsAutoConnectEnabled()
             .ToggleAutoLaunchSetting()
             .ApplySettings();
 
@@ -148,7 +146,7 @@ public class ConnectionTests : FreshSessionSetUp
         SettingRobot
             .OpenSettings()
             .OpenAutoStartupSettings()
-            .Verify.AutoConnectIsEnabled()
+            .Verify.IsAutoConnectEnabled()
             .ToggleAutoLaunchSetting()
             .ToggleAutoConnectionSetting()
             .ApplySettings();
@@ -192,5 +190,17 @@ public class ConnectionTests : FreshSessionSetUp
         Assert.That(ipAddressBeforeClientKill.Equals(ipAddressAfterClientIsRestored), Is.True,
             $"VPN Connection was lost/reconnected after client was resumed. IP Address before client was killed: {ipAddressAfterClientIsRestored}." +
             $" IP Address after client was restored: {ipAddressAfterClientIsRestored}");
+    }
+
+    [Test]
+    public void ClosingTheAppDoesNotStopVpnConnection()
+    {
+        string ipAddressConnected = NetworkUtils.GetIpAddress();
+
+        HomeRobot.ConnectViaConnectionCard()
+            .Verify.IsConnected()
+            .CloseClientViaCloseButton();
+
+        NetworkUtils.VerifyIpAddressMatchesWithRetry(ipAddressConnected);
     }
 }

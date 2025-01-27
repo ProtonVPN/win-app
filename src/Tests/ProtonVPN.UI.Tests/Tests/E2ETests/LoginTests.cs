@@ -60,7 +60,7 @@ public class LoginTests : FreshSessionSetUp
 
         LoginRobot
             .Login(TestUserData.IncorrectUser)
-            .Verify.ErrorMessageIsDisplayed(INCORRECT_CREDENTIALS_ERROR);
+            .Verify.IsErrorMessageDisplayed(INCORRECT_CREDENTIALS_ERROR);
     }
 
     [Test]
@@ -83,7 +83,7 @@ public class LoginTests : FreshSessionSetUp
         LoginRobot
             .Login(TestUserData.TwoFactorUser)
             .EnterTwoFactorCode(INCORRECT_2FA_CODE)
-            .Verify.ErrorMessageIsDisplayed(INCORRECT_2FA_CODE_ERROR);
+            .Verify.IsErrorMessageDisplayed(INCORRECT_2FA_CODE_ERROR);
     }
 
     private void LoginWithUser(TestUserData user)

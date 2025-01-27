@@ -82,7 +82,7 @@ public class AdvancedSettingsRobot
 
     public class Verifications : AdvancedSettingsRobot
     {
-        public Verifications CustomDnsIsSet(string dnsAddress)
+        public Verifications IsCustomDnsAddressSet(string dnsAddress)
         {
             RetryResult<bool> retry = Retry.WhileFalse(
                 () => {
@@ -97,7 +97,7 @@ public class AdvancedSettingsRobot
             return this;
         }
 
-        public Verifications CustomDnsIsNotSet(string dnsAddress)
+        public Verifications IsCustomDnsAddressNotSet(string dnsAddress)
         {
             RetryResult<bool> retry = Retry.WhileTrue(
                 () => {

@@ -54,6 +54,6 @@ public class ProfileTests : FreshSessionSetUp
             .SetProfileName(profileName)
             .SaveProfile();
         SidebarRobot
-            .Verify.ConnectionItemExists(profileName);
+            .Verify.DoesConnectionItemExist(profileName);
     }
 }

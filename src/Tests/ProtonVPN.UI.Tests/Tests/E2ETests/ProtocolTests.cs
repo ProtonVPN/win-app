@@ -79,7 +79,7 @@ public class ProtocolTests : FreshSessionSetUp
 
         HomeRobot
             .Verify.IsConnected()
-            .ProtocolIsDisplayed(Protocol.WireGuardTls);
+            .IsProtocolDisplayed(Protocol.WireGuardTls);
     }
 
     private void PerformProtocolTest(Protocol protocol) {
@@ -92,6 +92,6 @@ public class ProtocolTests : FreshSessionSetUp
 
         SidebarRobot.ConnectToFastest();
         HomeRobot.Verify.IsConnected()
-            .ProtocolIsDisplayed(protocol);
+            .IsProtocolDisplayed(protocol);
     }
 }

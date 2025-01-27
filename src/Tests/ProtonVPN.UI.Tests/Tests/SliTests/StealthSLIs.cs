@@ -66,7 +66,7 @@ public class StealthSLIs : SliSetUp
         });
         SliHelper.MeasureTestStatus(() =>
         {
-            HomeRobot.Verify.ProtocolIsDisplayed(Protocol.WireGuardTls);
+            HomeRobot.Verify.IsProtocolDisplayed(Protocol.WireGuardTls);
         });
 
         HomeRobot.Disconnect();
