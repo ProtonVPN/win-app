@@ -2190,7 +2190,7 @@ Följ &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="thes
     <comment>The description of onboarding step 1 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_2">
-    <value>Spara dina favoritinställningar och -servrar för framtida användning.</value>
+    <value>Spara dina önskade inställningar och servrar för framtida användning.</value>
     <comment>The description of onboarding step 2 in Onboarding overlay of main app window</comment>
   </data>
   <data name="Onboarding_msg_Step_3">

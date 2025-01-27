@@ -2491,7 +2491,7 @@
     <value>Secure Core</value>
   </data>
   <data name="Secure_Servers_lbl_Other">
-    <value>{0} 보안 서버</value>
+    <value>{0}개 보안 서버</value>
   </data>
   <data name="ServerType_val_B2B">
     <value>게이트웨이</value>
