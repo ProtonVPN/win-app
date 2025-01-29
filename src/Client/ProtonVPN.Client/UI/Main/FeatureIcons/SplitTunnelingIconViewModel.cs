@@ -23,6 +23,7 @@ using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
@@ -51,13 +52,15 @@ public class SplitTunnelingIconViewModel : FeatureIconViewModelBase
     {
         return ResourceHelper.GetIllustration(
             IsFeatureEnabled
-                ? "SplitTunnelingOnIllustrationSource"
-                : "SplitTunnelingOffIllustrationSource",
-            _themeSelector.GetTheme());
+                ? (_settings.SplitTunnelingMode == SplitTunnelingMode.Standard
+                    ? "SplitTunnelingStandardIllustrationSource"
+                    : "SplitTunnelingInverseIllustrationSource")
+                : "SplitTunnelingOffIllustrationSource", _themeSelector.GetTheme());
     }
 
     protected override IEnumerable<string> GetSettingsChangedForIconUpdate()
     {
         yield return nameof(ISettings.IsSplitTunnelingEnabled);
+        yield return nameof(ISettings.SplitTunnelingMode);
     }
 }

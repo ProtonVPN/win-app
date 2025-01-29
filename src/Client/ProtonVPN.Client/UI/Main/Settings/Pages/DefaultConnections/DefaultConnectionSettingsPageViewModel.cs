@@ -94,21 +94,16 @@ public partial class DefaultConnectionSettingsPageViewModel : SettingsPageViewMo
     {
         _profilesManager = profilesManager;
         InvalidateProfiles();
-    }
 
-    protected override void OnSaveSettings()
-    {
-        Settings.DefaultConnection = CurrentDefaultConnection;
+        PageSettings =
+        [
+            ChangedSettingArgs.Create(() => Settings.DefaultConnection, () => CurrentDefaultConnection)
+        ];
     }
 
     protected override void OnRetrieveSettings()
     {
         CurrentDefaultConnection = Settings.DefaultConnection;
-    }
-
-    protected override IEnumerable<ChangedSettingArgs> GetSettings()
-    {
-        yield return new(nameof(ISettings.DefaultConnection), CurrentDefaultConnection, Settings.DefaultConnection != CurrentDefaultConnection);
     }
 
     private bool IsDefaultConnectionType(DefaultConnectionType defaultConnectionType)

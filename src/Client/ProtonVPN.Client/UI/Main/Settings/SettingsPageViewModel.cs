@@ -34,6 +34,5 @@ public partial class SettingsPageViewModel : PageViewModelBase<IMainViewNavigato
         ILogger logger,
         IIssueReporter issueReporter)
         : base(parentViewNavigator, childViewNavigator, localizer, logger, issueReporter)
-    {
-    }
+    { }
 }

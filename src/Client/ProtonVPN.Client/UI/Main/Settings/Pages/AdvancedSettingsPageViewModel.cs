@@ -30,7 +30,6 @@ using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
-using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
@@ -126,6 +125,14 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
     {
         _urlsBrowser = urlsBrowser;
         _upsellCarouselWindowActivator = upsellCarouselWindowActivator;
+
+        PageSettings =
+        [
+            ChangedSettingArgs.Create(() => Settings.NatType, () => CurrentNatType),
+            ChangedSettingArgs.Create(() => Settings.IsAlternativeRoutingEnabled, () => IsAlternativeRoutingEnabled),
+            ChangedSettingArgs.Create(() => Settings.OpenVpnAdapter, () => CurrentOpenVpnAdapter),
+            ChangedSettingArgs.Create(() => Settings.IsIpv6LeakProtectionEnabled, () => IsIpv6LeakProtectionEnabled),
+        ];
     }
 
     public void Receive(LoggedInMessage message)
@@ -155,31 +162,12 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
         OnPropertyChanged(nameof(CustomDnsServersSettingsState));
     }
 
-    protected override void OnSaveSettings()
-    {
-        Settings.NatType = CurrentNatType;
-        Settings.IsAlternativeRoutingEnabled = IsAlternativeRoutingEnabled;
-        Settings.IsIpv6LeakProtectionEnabled = IsIpv6LeakProtectionEnabled;
-        Settings.OpenVpnAdapter = CurrentOpenVpnAdapter;
-    }
-
     protected override void OnRetrieveSettings()
     {
         CurrentNatType = Settings.NatType;
         IsAlternativeRoutingEnabled = Settings.IsAlternativeRoutingEnabled;
         IsIpv6LeakProtectionEnabled = Settings.IsIpv6LeakProtectionEnabled;
         CurrentOpenVpnAdapter = Settings.OpenVpnAdapter;
-    }
-
-    protected override IEnumerable<ChangedSettingArgs> GetSettings()
-    {
-        yield return new(nameof(ISettings.NatType), CurrentNatType, Settings.NatType != CurrentNatType);
-        yield return new(nameof(ISettings.IsAlternativeRoutingEnabled), IsAlternativeRoutingEnabled,
-            Settings.IsAlternativeRoutingEnabled != IsAlternativeRoutingEnabled);
-        yield return new(nameof(ISettings.OpenVpnAdapter), CurrentOpenVpnAdapter,
-            Settings.OpenVpnAdapter != CurrentOpenVpnAdapter);
-        yield return new(nameof(ISettings.IsIpv6LeakProtectionEnabled), IsIpv6LeakProtectionEnabled,
-            Settings.IsIpv6LeakProtectionEnabled != IsIpv6LeakProtectionEnabled);
     }
 
     [RelayCommand]

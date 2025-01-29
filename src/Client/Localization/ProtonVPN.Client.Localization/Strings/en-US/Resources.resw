@@ -2839,6 +2839,9 @@
   <data name="Settings_About_FailedToFetch" xml:space="preserve">
     <value>Failed to load changelog information.</value>
   </data>
+  <data name="Settings_Reconnection_Title" xml:space="preserve">
+    <value>Reconnect to apply changes</value>
+  </data>
   <data name="FreeConnections_SecureCoreUpsell" xml:space="preserve">
     <value>Add another layer of encryption to your VPN connection</value>
   </data>

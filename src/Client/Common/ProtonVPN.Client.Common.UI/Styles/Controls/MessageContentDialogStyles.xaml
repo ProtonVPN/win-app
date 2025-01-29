@@ -22,7 +22,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom">
 
-    <Thickness x:Key="MessageContentDialogProgressBarMargin">24,0,24,24</Thickness>
+    <Thickness x:Key="MessageContentDialogProgressBarMargin">0,24,0,0</Thickness>
 
     <Style BasedOn="{StaticResource MessageContentDialogStyle}" TargetType="custom:MessageContentDialog" />
 
@@ -58,16 +58,23 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <Grid x:Name="DialogSpace">
 
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
                                         <RowDefinition Height="*" />
-                                        <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
 
-                                    <ContentControl x:Name="Title"
+                                    <Grid Grid.Row="0"
+                                          Margin="24,8,24,24">
+                                        
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+
+                                        <ContentControl x:Name="Title"
                                                     Grid.Row="0"
                                                     Margin="{ThemeResource ContentDialogTitleMargin}"
-                                                    Padding="24,24,24,12"
+                                                    Padding="0,12,0,0"
                                                     HorizontalAlignment="Left"
                                                     VerticalAlignment="Top"
                                                     Content="{TemplateBinding Title}"
@@ -77,9 +84,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                     FontWeight="{StaticResource SubtitleFontWeight}"
                                                     Foreground="{TemplateBinding Foreground}"
                                                     IsTabStop="False">
-                                        <ContentControl.Template>
-                                            <ControlTemplate TargetType="ContentControl">
-                                                <ContentPresenter Margin="{TemplateBinding Padding}"
+                                            <ContentControl.Template>
+                                                <ControlTemplate TargetType="ContentControl">
+                                                    <ContentPresenter Margin="{TemplateBinding Padding}"
                                                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                                   Content="{TemplateBinding Content}"
@@ -88,21 +95,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                   LineHeight="{StaticResource SubtitleLineHeight}"
                                                                   MaxLines="2"
                                                                   TextWrapping="Wrap" />
-                                            </ControlTemplate>
-                                        </ContentControl.Template>
-                                    </ContentControl>
+                                                </ControlTemplate>
+                                            </ContentControl.Template>
+                                        </ContentControl>
 
-                                    <Border Grid.Row="1"
+                                        <Border Grid.Row="1"
                                             Margin="{ThemeResource ContentDialogContentMargin}"
                                             Visibility="{Binding Content, ElementName=Content, Converter={StaticResource NotNullToVisibilityConverter}}"
-                                            Padding="24,0,24,24">
-                                        <ScrollViewer x:Name="ContentScrollViewer"
+                                            Padding="0,12,0,0">
+                                            <ScrollViewer x:Name="ContentScrollViewer"
                                                       Margin="0,0,-12,0"
                                                       Padding="0,0,12,0"
                                                       HorizontalScrollBarVisibility="Disabled"
                                                       IsTabStop="False"
                                                       VerticalScrollBarVisibility="Auto">
-                                            <ContentPresenter x:Name="Content"
+                                                <ContentPresenter x:Name="Content"
                                                               Content="{TemplateBinding Content}"
                                                               ContentTemplate="{TemplateBinding ContentTemplate}"
                                                               FontFamily="{StaticResource ContentControlThemeFontFamily}"
@@ -111,18 +118,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                               Foreground="{TemplateBinding Foreground}"
                                                               LineHeight="{StaticResource BodyLineHeight}"
                                                               TextWrapping="Wrap" />
-                                        </ScrollViewer>
-                                    </Border>
+                                            </ScrollViewer>
+                                        </Border>
 
-                                    <ProgressBar Grid.Row="2"
+                                        <ProgressBar Grid.Row="2"
                                                  Margin="{StaticResource MessageContentDialogProgressBarMargin}"
                                                  HorizontalAlignment="Stretch"
                                                  IsIndeterminate="True"
                                                  Visibility="{Binding IsLoading, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
+                                    </Grid>
+
                                     <!--  This section is collapsed for Info dialog. It cannot be removed cause the PART Names are required  -->
                                     <Grid x:Name="CommandSpace"
-                                          Grid.Row="3"
+                                          Grid.Row="1"
                                           Padding="24"
                                           HorizontalAlignment="Stretch"
                                           VerticalAlignment="Bottom"

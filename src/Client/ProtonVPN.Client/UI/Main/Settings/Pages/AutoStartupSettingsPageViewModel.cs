@@ -88,13 +88,12 @@ public partial class AutoStartupSettingsPageViewModel : SettingsPageViewModelBas
                settingsConflictResolver,
                connectionManager)
     {
-    }
-
-    protected override void OnSaveSettings()
-    {
-        Settings.IsAutoLaunchEnabled = IsAutoLaunchEnabled;
-        Settings.AutoLaunchMode = CurrentAutoLaunchMode;
-        Settings.IsAutoConnectEnabled = IsAutoConnectEnabled;
+        PageSettings =
+        [
+            ChangedSettingArgs.Create(() => Settings.AutoLaunchMode, () => CurrentAutoLaunchMode),
+            ChangedSettingArgs.Create(() => Settings.IsAutoLaunchEnabled, () => IsAutoLaunchEnabled),
+            ChangedSettingArgs.Create(() => Settings.IsAutoConnectEnabled, () => IsAutoConnectEnabled)
+        ];
     }
 
     protected override void OnRetrieveSettings()
@@ -102,16 +101,6 @@ public partial class AutoStartupSettingsPageViewModel : SettingsPageViewModelBas
         IsAutoLaunchEnabled = Settings.IsAutoLaunchEnabled;
         CurrentAutoLaunchMode = Settings.AutoLaunchMode;
         IsAutoConnectEnabled = Settings.IsAutoConnectEnabled;
-    }
-
-    protected override IEnumerable<ChangedSettingArgs> GetSettings()
-    {
-        yield return new(nameof(ISettings.IsAutoLaunchEnabled), IsAutoLaunchEnabled,
-            Settings.IsAutoLaunchEnabled != IsAutoLaunchEnabled);
-        yield return new(nameof(ISettings.AutoLaunchMode), CurrentAutoLaunchMode,
-            Settings.AutoLaunchMode != CurrentAutoLaunchMode);
-        yield return new(nameof(ISettings.IsAutoConnectEnabled), IsAutoConnectEnabled,
-            Settings.IsAutoConnectEnabled != IsAutoConnectEnabled);
     }
 
     private bool IsAutoLaunchMode(AutoLaunchMode autoLaunchMode)

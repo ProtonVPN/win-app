@@ -25,7 +25,6 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
-using ProtonVPN.Client.UI.Main.Settings.Bases;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.About;
 
@@ -54,11 +53,5 @@ public class LicensingViewModel : SettingsPageViewModelBase
                settings,
                settingsConflictResolver,
                connectionManager)
-    {
-    }
-
-    protected override IEnumerable<ChangedSettingArgs> GetSettings()
-    {
-        return [];
-    }
+    { }
 }

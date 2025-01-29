@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,41 +18,41 @@
  */
 
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Handlers.Bases;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
-using ProtonVPN.Client.Handlers.Bases;
 
 namespace ProtonVPN.Client.Handlers;
 
 public class ServiceSettingChangeHandler : IHandler, IEventMessageReceiver<SettingChangedMessage>
 {
-    // Only individual settings used by MainSettingsRequestCreator. Groups of Settings should have a
-    // single call made at the end of all changes (Ex.: KillSwitchViewModel, SplitTunnelingViewModel).
-    private readonly List<string> _settingNames =
-    [
-        nameof(ISettings.VpnProtocol),
-        nameof(ISettings.NatType),
-        nameof(ISettings.IsNetShieldEnabled),
-        nameof(ISettings.NetShieldMode),
-        nameof(ISettings.IsKillSwitchEnabled),
-        nameof(ISettings.IsIpv6LeakProtectionEnabled),
-        nameof(ISettings.IsPortForwardingEnabled),
-        nameof(ISettings.IsVpnAcceleratorEnabled),
-        nameof(ISettings.OpenVpnAdapter),
-        nameof(ISettings.IsShareCrashReportsEnabled),
-    ];
+    private readonly Dictionary<string, Func<bool>> _settings;
 
     private readonly IVpnServiceSettingsUpdater _vpnServiceSettingsUpdater;
 
-    public ServiceSettingChangeHandler(IVpnServiceSettingsUpdater vpnServiceSettingsUpdater)
+    public ServiceSettingChangeHandler(
+        IVpnServiceSettingsUpdater vpnServiceSettingsUpdater,
+        ISettings settings)
     {
         _vpnServiceSettingsUpdater = vpnServiceSettingsUpdater;
+
+        _settings = new()
+        {
+            {nameof(ISettings.IsKillSwitchEnabled), () => true},
+            {nameof(ISettings.KillSwitchMode), () => settings.IsKillSwitchEnabled},
+            {nameof(ISettings.IsNetShieldEnabled), () => true},
+            {nameof(ISettings.NetShieldMode), () => settings.IsNetShieldEnabled},
+            {nameof(ISettings.IsPortForwardingEnabled), () => true},
+            {nameof(ISettings.IsVpnAcceleratorEnabled), () => true},
+            {nameof(ISettings.NatType), () => true},
+            {nameof(ISettings.IsShareCrashReportsEnabled), () => true}
+        };
     }
 
     public async void Receive(SettingChangedMessage message)
     {
-        if (_settingNames.Contains(message.PropertyName))
+        if (_settings.ContainsKey(message.PropertyName) && _settings[message.PropertyName]())
         {
             await _vpnServiceSettingsUpdater.SendAsync();
         }

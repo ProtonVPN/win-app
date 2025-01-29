@@ -27,7 +27,6 @@ using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
-using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
@@ -102,6 +101,12 @@ public partial class NetShieldPageViewModel : SettingsPageViewModelBase
                connectionManager)
     {
         _urlsBrowser = urlsBrowser;
+
+        PageSettings =
+        [
+            ChangedSettingArgs.Create(() => Settings.NetShieldMode, () => CurrentNetShieldMode),
+            ChangedSettingArgs.Create(() => Settings.IsNetShieldEnabled, () => IsNetShieldEnabled)
+        ];
     }
 
     public static ImageSource GetFeatureIconSource(bool isEnabled)
@@ -120,9 +125,6 @@ public partial class NetShieldPageViewModel : SettingsPageViewModelBase
 
     protected override void OnSaveSettings()
     {
-        Settings.IsNetShieldEnabled = IsNetShieldEnabled;
-        Settings.NetShieldMode = CurrentNetShieldMode;
-
         OnPropertyChanged(nameof(IsNetShieldStatsPanelVisible));
     }
 
@@ -130,12 +132,6 @@ public partial class NetShieldPageViewModel : SettingsPageViewModelBase
     {
         IsNetShieldEnabled = Settings.IsNetShieldEnabled;
         CurrentNetShieldMode = Settings.NetShieldMode;
-    }
-
-    protected override IEnumerable<ChangedSettingArgs> GetSettings()
-    {
-        yield return new(nameof(ISettings.IsNetShieldEnabled), IsNetShieldEnabled, Settings.IsNetShieldEnabled != IsNetShieldEnabled);
-        yield return new(nameof(ISettings.NetShieldMode), CurrentNetShieldMode, Settings.NetShieldMode != CurrentNetShieldMode);
     }
 
     private bool IsNetShieldMode(NetShieldMode netShieldMode)

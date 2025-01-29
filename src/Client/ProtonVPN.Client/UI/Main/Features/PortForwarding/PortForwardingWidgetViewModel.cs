@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
@@ -25,7 +26,9 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Features.Bases;
+using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Client.UI.Main.Settings.Connection;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -34,6 +37,9 @@ namespace ProtonVPN.Client.UI.Main.Features.PortForwarding;
 
 public partial class PortForwardingWidgetViewModel : FeatureWidgetViewModelBase
 {
+    private readonly Lazy<List<ChangedSettingArgs>> _disablePortForwardingSettings;
+    private readonly Lazy<List<ChangedSettingArgs>> _enablePortForwardingSettings;
+
     public override string Header => Localizer.Get("Settings_Connection_PortForwarding");
 
     public string InfoMessage => IsActivePortComponentVisible
@@ -52,6 +58,10 @@ public partial class PortForwardingWidgetViewModel : FeatureWidgetViewModelBase
     public bool IsActivePortComponentVisible => ConnectionManager.IsConnected
                                              && Settings.IsPortForwardingEnabled;
 
+    public bool IsPortForwardingDisabled => !Settings.IsPortForwardingEnabled;
+
+    public bool IsPortForwardingEnabled => Settings.IsPortForwardingEnabled;
+
     protected override UpsellFeatureType? UpsellFeature { get; } = UpsellFeatureType.P2P;
 
     public PortForwardingWidgetViewModel(
@@ -61,18 +71,34 @@ public partial class PortForwardingWidgetViewModel : FeatureWidgetViewModelBase
         ISettings settings,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
+        IMainWindowOverlayActivator mainWindowOverlayActivator,
         IConnectionManager connectionManager,
-        IUpsellCarouselWindowActivator upsellCarouselWindowActivator)
+        IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
+        IRequiredReconnectionSettings requiredReconnectionSettings,
+        ISettingsConflictResolver settingsConflictResolver)
         : base(localizer,
                logger,
                issueReporter,
                mainViewNavigator,
                settingsViewNavigator,
+               mainWindowOverlayActivator,
                settings,
                connectionManager,
                upsellCarouselWindowActivator,
+               requiredReconnectionSettings,
+               settingsConflictResolver,
                ConnectionFeature.PortForwarding)
-    { }
+    {
+        _disablePortForwardingSettings = new(() =>
+        [
+            ChangedSettingArgs.Create(() => Settings.IsPortForwardingEnabled, () => false)
+        ]);
+
+        _enablePortForwardingSettings = new(() =>
+        [
+            ChangedSettingArgs.Create(() => Settings.IsPortForwardingEnabled, () => true)
+        ]);
+    }
 
     protected override IEnumerable<string> GetSettingsChangedForUpdate()
     {
@@ -99,6 +125,8 @@ public partial class PortForwardingWidgetViewModel : FeatureWidgetViewModelBase
         OnPropertyChanged(nameof(IsInfoMessageVisible));
         OnPropertyChanged(nameof(IsWarningMessageVisible));
         OnPropertyChanged(nameof(IsActivePortComponentVisible));
+        OnPropertyChanged(nameof(IsPortForwardingDisabled));
+        OnPropertyChanged(nameof(IsPortForwardingEnabled));
     }
 
     protected override void OnConnectionStatusChanged()
@@ -119,5 +147,17 @@ public partial class PortForwardingWidgetViewModel : FeatureWidgetViewModelBase
         return ConnectionManager.IsConnected
             && ConnectionManager.CurrentConnectionDetails != null
             && ConnectionManager.CurrentConnectionDetails.IsP2P;
+    }
+
+    [RelayCommand]
+    private Task<bool> DisablePortForwardingAsync()
+    {
+        return TryChangeFeatureSettingsAsync(_disablePortForwardingSettings.Value);
+    }
+
+    [RelayCommand]
+    private Task<bool> EnablePortForwardingAsync()
+    {
+        return TryChangeFeatureSettingsAsync(_enablePortForwardingSettings.Value);
     }
 }

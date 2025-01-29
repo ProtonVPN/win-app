@@ -20,6 +20,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
+using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
@@ -29,10 +30,15 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
+using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Conflicts.Bases;
 using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings;
+using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Client.UI.Main.Widgets.Bases;
 using ProtonVPN.Client.UI.Main.Widgets.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
@@ -47,9 +53,12 @@ public abstract partial class FeatureWidgetViewModelBase : SideWidgetViewModelBa
     IEventMessageReceiver<LoggedInMessage>
 {
     protected readonly ISettingsViewNavigator SettingsViewNavigator;
+    protected readonly IMainWindowOverlayActivator MainWindowOverlayActivator;
     protected readonly ISettings Settings;
     protected readonly IConnectionManager ConnectionManager;
     protected readonly IUpsellCarouselWindowActivator UpsellCarouselWindowActivator;
+    protected readonly IRequiredReconnectionSettings RequiredReconnectionSettings;
+    protected readonly ISettingsConflictResolver SettingsConflictResolver;
 
     [ObservableProperty]
     private bool _isFeaturePageDisplayed;
@@ -73,19 +82,26 @@ public abstract partial class FeatureWidgetViewModelBase : SideWidgetViewModelBa
         IIssueReporter issueReporter,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
+        IMainWindowOverlayActivator mainWindowOverlayActivator,
         ISettings settings,
         IConnectionManager connectionManager,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
+        IRequiredReconnectionSettings requiredReconnectionSettings,
+        ISettingsConflictResolver settingsConflictResolver,
         ConnectionFeature connectionFeature)
         : base(localizer, logger, issueReporter, mainViewNavigator)
     {
         SettingsViewNavigator = settingsViewNavigator;
-        SettingsViewNavigator.Navigated += OnSettingsViewNavigation;
+        MainWindowOverlayActivator = mainWindowOverlayActivator;
         Settings = settings;
         ConnectionManager = connectionManager;
         UpsellCarouselWindowActivator = upsellCarouselWindowActivator;
+        RequiredReconnectionSettings = requiredReconnectionSettings;
+        SettingsConflictResolver = settingsConflictResolver;
 
         ConnectionFeature = connectionFeature;
+
+        SettingsViewNavigator.Navigated += OnSettingsViewNavigation;
     }
 
     public override async Task<bool> InvokeAsync()
@@ -141,17 +157,68 @@ public abstract partial class FeatureWidgetViewModelBase : SideWidgetViewModelBa
         IsSelected = IsFeaturePageDisplayed || IsFeatureFlyoutOpened;
     }
 
-
-    private bool IsOnSettingsPage()
-    {
-        return MainViewNavigator.GetCurrentPageContext() is SettingsPageViewModel;
-    }
-
     protected abstract bool IsOnFeaturePage(PageViewModelBase? currentPageContext);
 
     protected abstract void OnSettingsChanged();
 
     protected abstract void OnConnectionStatusChanged();
+
+    protected Task<bool> TryChangeFeatureSettingsAsync(Lazy<List<ChangedSettingArgs>> changedSettings)
+    {
+        return TryChangeFeatureSettingsAsync(changedSettings.Value);
+    }
+
+    protected async Task<bool> TryChangeFeatureSettingsAsync(List<ChangedSettingArgs> changedSettings)
+    {
+        List<ISettingsConflict> conflicts = new();
+
+        foreach (ChangedSettingArgs changedSetting in changedSettings)
+        {
+            ISettingsConflict? conflict = SettingsConflictResolver.GetConflict(changedSetting.Name, changedSetting.NewValue);
+            if (conflict != null)
+            {
+                ContentDialogResult result = await MainWindowOverlayActivator.ShowMessageAsync(conflict.MessageParameters);
+                if (result != ContentDialogResult.Primary)
+                {
+                    return false;
+                }
+
+                conflicts.Add(conflict);
+            }
+        }
+
+        bool isReconnectionRequired = IsReconnectionRequired(changedSettings, conflicts);
+        if (isReconnectionRequired)
+        {
+            ContentDialogResult result = await MainWindowOverlayActivator.ShowMessageAsync(new()
+            {
+                Title = Localizer.Get("Settings_Reconnection_Title"),
+                PrimaryButtonText = Localizer.Get("Common_Actions_Reconnect"),
+                CloseButtonText = Localizer.Get("Common_Actions_Cancel"),
+            });
+            if (result != ContentDialogResult.Primary)
+            {
+                return false;
+            }
+        }
+
+        foreach (ChangedSettingArgs settings in changedSettings)
+        {
+            settings.ApplyChanges();
+        }
+
+        if (isReconnectionRequired)
+        {
+            await ConnectionManager.ReconnectAsync();
+        }
+
+        return true;
+    }
+
+    private bool IsOnSettingsPage()
+    {
+        return MainViewNavigator.GetCurrentPageContext() is SettingsPageViewModel;
+    }
 
     private void OnSettingsViewNavigation(object sender, NavigationEventArgs e)
     {
@@ -161,5 +228,42 @@ public abstract partial class FeatureWidgetViewModelBase : SideWidgetViewModelBa
     partial void OnIsFeatureFlyoutOpenedChanged(bool value)
     {
         InvalidateIsSelected();
+    }
+
+    private bool IsReconnectionRequired(List<ChangedSettingArgs> changedSettings, List<ISettingsConflict> conflicts)
+    {
+        if (ConnectionManager.IsDisconnected)
+        {
+            return false;
+        }
+
+        return IsReconnectionRequiredDueToChanges(changedSettings)
+            || IsReconnectionRequiredDueToConflicts(conflicts);
+    }
+
+    private bool IsReconnectionRequiredDueToChanges(IEnumerable<ChangedSettingArgs> changedSettings)
+    {
+        IConnectionIntent? currentConnectionIntent = ConnectionManager.CurrentConnectionIntent;
+        bool isConnectionProfile = currentConnectionIntent is IConnectionProfile;
+
+        foreach (ChangedSettingArgs changedSetting in changedSettings)
+        {
+            if (isConnectionProfile && IgnorableProfileReconnectionSettings.Contains(changedSetting.Name))
+            {
+                continue;
+            }
+
+            if (RequiredReconnectionSettings.IsReconnectionRequired(changedSetting.Name))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private bool IsReconnectionRequiredDueToConflicts(List<ISettingsConflict> conflicts)
+    {
+        return conflicts.Any(c => c.IsReconnectionRequired);
     }
 }

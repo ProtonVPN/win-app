@@ -18,6 +18,7 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
@@ -29,7 +30,9 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Features.Bases;
+using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Client.UI.Main.Settings.Connection;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -40,6 +43,10 @@ public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
     IEventMessageReceiver<NetShieldStatsChangedMessage>
 {
     private const int BADGE_MAXIMUM_NUMBER = 99;
+
+    private readonly Lazy<List<ChangedSettingArgs>> _disableNetShieldSettings;
+    private readonly Lazy<List<ChangedSettingArgs>> _enableStandardNetShieldSettings;
+    private readonly Lazy<List<ChangedSettingArgs>> _enableAdvancedNetShieldSettings;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(TotalAdsAndTrackersBlocked))]
@@ -81,6 +88,12 @@ public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
                                              && Settings.IsNetShieldEnabled
                                              && Settings.NetShieldMode == NetShieldMode.BlockAdsMalwareTrackers;
 
+    public bool IsNetShieldDisabled => !Settings.IsNetShieldEnabled;
+
+    public bool IsStandardNetShieldEnabled => Settings.IsNetShieldEnabled && Settings.NetShieldMode == NetShieldMode.BlockMalwareOnly;
+
+    public bool IsAdvancedNetShieldEnabled => Settings.IsNetShieldEnabled && Settings.NetShieldMode == NetShieldMode.BlockAdsMalwareTrackers;
+
     protected override UpsellFeatureType? UpsellFeature { get; } = UpsellFeatureType.NetShield;
 
     public NetShieldWidgetViewModel(
@@ -90,18 +103,41 @@ public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
         ISettings settings,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
+        IMainWindowOverlayActivator mainWindowOverlayActivator,
         IConnectionManager connectionManager,
-        IUpsellCarouselWindowActivator upsellCarouselWindowActivator)
+        IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
+        IRequiredReconnectionSettings requiredReconnectionSettings,
+        ISettingsConflictResolver settingsConflictResolver)
         : base(localizer,
                logger,
                issueReporter,
                mainViewNavigator,
                settingsViewNavigator,
+               mainWindowOverlayActivator,
                settings,
                connectionManager,
                upsellCarouselWindowActivator,
+               requiredReconnectionSettings,
+               settingsConflictResolver,
                ConnectionFeature.NetShield)
-    { }
+    {
+        _disableNetShieldSettings = new(() =>
+        [
+            ChangedSettingArgs.Create(() => Settings.IsNetShieldEnabled, () => false)
+        ]);
+
+        _enableStandardNetShieldSettings = new(() =>
+        [
+            ChangedSettingArgs.Create(() => Settings.NetShieldMode, () => NetShieldMode.BlockMalwareOnly),
+            ChangedSettingArgs.Create(() => Settings.IsNetShieldEnabled, () => true)
+        ]);
+
+        _enableAdvancedNetShieldSettings = new(() =>
+        [
+            ChangedSettingArgs.Create(() => Settings.NetShieldMode, () => NetShieldMode.BlockAdsMalwareTrackers),
+            ChangedSettingArgs.Create(() => Settings.IsNetShieldEnabled, () => true)
+        ]);
+    }
 
     public void Receive(NetShieldStatsChangedMessage message)
     {
@@ -145,6 +181,9 @@ public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
         OnPropertyChanged(nameof(IsBlockMalwareOnlyMessageVisible));
         OnPropertyChanged(nameof(IsBlockAdsMalwareTrackersMessageVisible));
         OnPropertyChanged(nameof(IsNetShieldStatsPanelVisible));
+        OnPropertyChanged(nameof(IsNetShieldDisabled));
+        OnPropertyChanged(nameof(IsStandardNetShieldEnabled));
+        OnPropertyChanged(nameof(IsAdvancedNetShieldEnabled));
     }
 
     protected override void OnConnectionStatusChanged()
@@ -175,5 +214,23 @@ public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
     {
         NumberOfAdsBlocked = 0;
         NumberOfTrackersStopped = 0;
+    }
+
+    [RelayCommand]
+    private Task<bool> DisableNetShieldAsync()
+    {
+        return TryChangeFeatureSettingsAsync(_disableNetShieldSettings.Value);
+    }
+
+    [RelayCommand]
+    private Task<bool> EnableStandardNetShieldAsync()
+    {
+        return TryChangeFeatureSettingsAsync(_enableStandardNetShieldSettings.Value);
+    }
+
+    [RelayCommand]
+    private Task<bool> EnableAdvancedNetShieldAsync()
+    {
+        return TryChangeFeatureSettingsAsync(_enableAdvancedNetShieldSettings.Value);
     }
 }

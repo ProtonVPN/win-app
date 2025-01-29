@@ -42,6 +42,7 @@ public class RequiredReconnectionSettings : IRequiredReconnectionSettings
 
             {nameof(ISettings.VpnProtocol), () => true},
             {nameof(ISettings.OpenVpnAdapter), () => true},
+            {nameof(ISettings.IsIpv6LeakProtectionEnabled), () => true},
 
             {nameof(ISettings.IsCustomDnsServersEnabled), () => true},
             {nameof(ISettings.CustomDnsServersList), () => settings.IsCustomDnsServersEnabled},

@@ -706,8 +706,9 @@
         <None Remove="Assets\Illustrations\Dark\port-forwarding-on.png" />
         <None Remove="Assets\Illustrations\Dark\product-logo.svg" />
         <None Remove="Assets\Illustrations\Dark\settings.png" />
+        <None Remove="Assets\Illustrations\Dark\split-tunneling-inverse.png" />
         <None Remove="Assets\Illustrations\Dark\split-tunneling-off.png" />
-        <None Remove="Assets\Illustrations\Dark\split-tunneling-on.png" />
+        <None Remove="Assets\Illustrations\Dark\split-tunneling-standard.png" />
         <None Remove="Assets\Illustrations\Dark\vpn-accelerator-off.png" />
         <None Remove="Assets\Illustrations\Dark\vpn-accelerator-on.png" />
         <None Remove="Assets\Illustrations\Dark\vpn-feature-protocol.png" />
@@ -737,8 +738,9 @@
         <None Remove="Assets\Illustrations\Light\product-logo.svg" />
         <None Remove="Assets\Illustrations\Light\profile-new.svg" />
         <None Remove="Assets\Illustrations\Light\settings.png" />
+        <None Remove="Assets\Illustrations\Light\split-tunneling-inverse.png" />
         <None Remove="Assets\Illustrations\Light\split-tunneling-off.png" />
-        <None Remove="Assets\Illustrations\Light\split-tunneling-on.png" />
+        <None Remove="Assets\Illustrations\Light\split-tunneling-standard.png" />
         <None Remove="Assets\Illustrations\Light\vpn-accelerator-off.png" />
         <None Remove="Assets\Illustrations\Light\vpn-accelerator-on.png" />
         <None Remove="Assets\Illustrations\Light\vpn-feature-protocol.png" />
@@ -1927,6 +1929,15 @@
         <Content Update="Assets\Illustrations\Dark\settings.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Illustrations\Dark\split-tunneling-inverse.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Dark\split-tunneling-off.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Dark\split-tunneling-standard.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Illustrations\Dark\vpn-feature-protocol.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -1960,12 +1971,6 @@
         <Content Update="Assets\Illustrations\Dark\port-forwarding-on.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
-        <Content Update="Assets\Illustrations\Dark\split-tunneling-off.png">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-        <Content Update="Assets\Illustrations\Dark\split-tunneling-on.png">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
         <Content Update="Assets\Illustrations\Dark\vpn-accelerator-off.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -1979,6 +1984,15 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\Light\settings.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Light\split-tunneling-inverse.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Light\split-tunneling-off.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Light\split-tunneling-standard.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\Light\vpn-feature-protocol.png">
@@ -2006,12 +2020,6 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\Light\port-forwarding-on.png">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-        <Content Update="Assets\Illustrations\Light\split-tunneling-off.png">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-        <Content Update="Assets\Illustrations\Light\split-tunneling-on.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\Light\vpn-accelerator-off.png">

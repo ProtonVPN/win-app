@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Data;
 using ProtonVPN.Client.Common.Collections;
 using ProtonVPN.Client.Core.Bases.ViewModels;
@@ -31,15 +32,21 @@ using ProtonVPN.Client.Models.Features.SplitTunneling;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
+using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Features.Bases;
+using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Client.UI.Main.Settings.Connection;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Features.SplitTunneling;
 
-public class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
+public partial class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
 {
+    private readonly Lazy<List<ChangedSettingArgs>> _disableSplitTunnelingSettings;
+    private readonly Lazy<List<ChangedSettingArgs>> _enableStandardSplitTunnelingSettings;
+    private readonly Lazy<List<ChangedSettingArgs>> _enableInverseSplitTunnelingSettings;
+
     private readonly ISplitTunnelingItemFactory _splitTunnelingItemFactory;
 
     public override string Header => Localizer.Get("Settings_Connection_SplitTunneling");
@@ -66,6 +73,12 @@ public class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
 
     public bool HasItems => GroupsCvs.View.Any();
 
+    public bool IsSplitTunnelingDisabled => !Settings.IsSplitTunnelingEnabled;
+
+    public bool IsStandardSplitTunnelingEnabled => Settings.IsSplitTunnelingEnabled && Settings.SplitTunnelingMode == SplitTunnelingMode.Standard;
+
+    public bool IsInverseSplitTunnelingEnabled => Settings.IsSplitTunnelingEnabled && Settings.SplitTunnelingMode == SplitTunnelingMode.Inverse;
+
     protected override UpsellFeatureType? UpsellFeature { get; } = UpsellFeatureType.SplitTunneling;
 
     public SplitTunnelingWidgetViewModel(
@@ -78,15 +91,21 @@ public class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
         ISettingsViewNavigator settingsViewNavigator,
         IConnectionManager connectionManager,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
-        ISplitTunnelingItemFactory splitTunnelingItemFactory)
+        IMainWindowOverlayActivator mainWindowOverlayActivator,
+        ISplitTunnelingItemFactory splitTunnelingItemFactory,
+        IRequiredReconnectionSettings requiredReconnectionSettings,
+        ISettingsConflictResolver settingsConflictResolver)
         : base(localizer,
                logger,
                issueReporter,
                mainViewNavigator,
                settingsViewNavigator,
+               mainWindowOverlayActivator,
                settings,
                connectionManager,
                upsellCarouselWindowActivator,
+               requiredReconnectionSettings,
+               settingsConflictResolver,
                ConnectionFeature.SplitTunneling)
     {
         _splitTunnelingItemFactory = splitTunnelingItemFactory;
@@ -96,6 +115,23 @@ public class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
             Source = Groups,
             IsSourceGrouped = true
         };
+
+        _disableSplitTunnelingSettings = new(() =>
+        [
+            ChangedSettingArgs.Create(() => Settings.IsSplitTunnelingEnabled, () => false)
+        ]);
+
+        _enableStandardSplitTunnelingSettings = new(() =>
+        [
+            ChangedSettingArgs.Create(() => Settings.SplitTunnelingMode, () => SplitTunnelingMode.Standard),
+            ChangedSettingArgs.Create(() => Settings.IsSplitTunnelingEnabled, () => true)
+        ]);
+
+        _enableInverseSplitTunnelingSettings = new(() =>
+        [
+            ChangedSettingArgs.Create(() => Settings.SplitTunnelingMode, () => SplitTunnelingMode.Inverse),
+            ChangedSettingArgs.Create(() => Settings.IsSplitTunnelingEnabled, () => true)
+        ]);
     }
 
     protected override IEnumerable<string> GetSettingsChangedForUpdate()
@@ -135,6 +171,9 @@ public class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
         OnPropertyChanged(nameof(Status));
         OnPropertyChanged(nameof(InfoMessage));
         OnPropertyChanged(nameof(IsSplitTunnelingComponentVisible));
+        OnPropertyChanged(nameof(IsSplitTunnelingDisabled));
+        OnPropertyChanged(nameof(IsStandardSplitTunnelingEnabled));
+        OnPropertyChanged(nameof(IsInverseSplitTunnelingEnabled));
 
         await InvalidateAppsAndIpsAsync();
     }
@@ -197,5 +236,23 @@ public class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
               .Select(group => _splitTunnelingItemFactory.GetGroup(group.Key, group)));
 
         OnPropertyChanged(nameof(IsSplitTunnelingComponentVisible));
+    }
+
+    [RelayCommand]
+    private Task<bool> DisableSplitTunnelingAsync()
+    {
+        return TryChangeFeatureSettingsAsync(_disableSplitTunnelingSettings.Value);
+    }
+
+    [RelayCommand]
+    private Task<bool> EnableStandardSplitTunnelingAsync()
+    {
+        return TryChangeFeatureSettingsAsync(_enableStandardSplitTunnelingSettings.Value);
+    }
+
+    [RelayCommand]
+    private Task<bool> EnableInverseSplitTunnelingAsync()
+    {
+        return TryChangeFeatureSettingsAsync(_enableInverseSplitTunnelingSettings.Value);
     }
 }
