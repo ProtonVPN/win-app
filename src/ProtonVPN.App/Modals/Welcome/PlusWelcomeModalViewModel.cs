@@ -17,25 +17,25 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core.Servers;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Translations;
 
 namespace ProtonVPN.Modals.Welcome
 {
     public class PlusWelcomeModalViewModel : BaseModalViewModel
     {
-        private readonly ServerManager _serverManager;
+        private readonly IAppSettings _appSettings;
 
-        public PlusWelcomeModalViewModel(ServerManager serverManager)
+        public PlusWelcomeModalViewModel(IAppSettings appSettings)
         {
-            _serverManager = serverManager;
+            _appSettings = appSettings;
         }
 
         public string Bullet1
         {
             get
             {
-                int totalCountries = _serverManager.GetCountries().Count;
+                int totalCountries = _appSettings.CountryCount;
                 return string.Format(Translation.GetPlural("PlusWelcome_Bullet1", totalCountries), totalCountries);
             }
         }

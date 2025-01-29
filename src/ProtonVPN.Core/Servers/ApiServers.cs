@@ -109,5 +109,23 @@ namespace ProtonVPN.Core.Servers
 
             return Array.Empty<LogicalServerResponse>();
         }
+
+        public async Task<ServerCountResponse> GetServerCountAsync()
+        {
+            try
+            {
+                ApiResponseResult<ServerCountResponse> response = await _apiClient.GetServerCountAsync();
+                if (response.Success)
+                {
+                    return response.Value;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error<ApiErrorLog>("API: Get servers failed", ex);
+            }
+
+            return null;
+        }
     }
 }

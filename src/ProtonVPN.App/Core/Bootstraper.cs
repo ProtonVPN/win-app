@@ -364,9 +364,10 @@ namespace ProtonVPN.Core
 
             userAuthenticator.UserLoggedIn += async (_, e) =>
             {
-                await Resolve<IUserLocationService>().Update();
-                await Resolve<IServerUpdater>().Update();
                 await Resolve<IClientConfig>().Update();
+                await Resolve<IUserLocationService>().Update();
+                await Resolve<IServerCountUpdater>().UpdateAsync();
+                await Resolve<IServerUpdater>().Update();
                 await Resolve<StreamingServicesUpdater>().Update();
 
                 GuestHoleState guestHoleState = Resolve<GuestHoleState>();

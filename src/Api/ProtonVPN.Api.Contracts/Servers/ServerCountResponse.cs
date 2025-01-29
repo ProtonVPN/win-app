@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,15 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.Threading.Tasks;
+using ProtonVPN.Api.Contracts.Common;
 
-namespace ProtonVPN.Core.Servers
+namespace ProtonVPN.Api.Contracts.Servers;
+
+public class ServerCountResponse : BaseResponse
 {
-    public interface IServerUpdater
-    {
-        Task Update();
-
-        event EventHandler ServersUpdated;
-    }
+    public int Servers { get; set; }
+    public int Countries { get; set; }
 }

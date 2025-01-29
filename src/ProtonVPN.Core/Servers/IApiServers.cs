@@ -19,7 +19,6 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Servers;
 
 namespace ProtonVPN.Core.Servers
@@ -27,7 +26,7 @@ namespace ProtonVPN.Core.Servers
     public interface IApiServers
     {
         Task<IReadOnlyCollection<LogicalServerResponse>> GetServersAsync();
-
         Task<IReadOnlyCollection<LogicalServerResponse>> GetLoadsAsync();
+        Task<ServerCountResponse> GetServerCountAsync();
     }
 }

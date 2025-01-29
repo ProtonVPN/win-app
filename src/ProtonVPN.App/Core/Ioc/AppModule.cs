@@ -101,6 +101,7 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<GuestHoleServersFileStorage>().AsImplementedInterfaces().SingleInstance();
 
             builder.RegisterType<ApiServers>().As<IApiServers>().SingleInstance();
+            builder.RegisterType<ServerCountUpdater>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ServerUpdater>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<AuthCertificateUpdater>().AsImplementedInterfaces().SingleInstance();
             builder.Register(c => new ServerLoadUpdater(

@@ -19,8 +19,8 @@
 
 using System;
 using ProtonVPN.Account;
-using ProtonVPN.Core.Servers;
 using ProtonVPN.Core.Servers.Models;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Servers.Reconnections;
 using ProtonVPN.Sidebar;
 using ProtonVPN.StatisticalEvents.Contracts;
@@ -31,7 +31,7 @@ namespace ProtonVPN.Windows.Popups.SubscriptionExpiration
     public class SubscriptionExpiredPopupViewModel : BaseUpgradePlanPopupViewModel, ISubscriptionExpiredPopupViewModel
     {
         private readonly Lazy<ConnectionStatusViewModel> _connectionStatusViewModel;
-        private readonly ServerManager _serverManager;
+        private readonly IAppSettings _appSettings;
         private readonly IUpsellDisplayStatisticalEventSender _upsellDisplayStatisticalEventSender;
         
         public ReconnectionData ReconnectionData { get; private set; }
@@ -39,7 +39,7 @@ namespace ProtonVPN.Windows.Popups.SubscriptionExpiration
 
         public SubscriptionExpiredPopupViewModel(
             Lazy<ConnectionStatusViewModel> connectionStatusViewModel,
-            ServerManager serverManager,
+            IAppSettings appSettings,
             ISubscriptionManager subscriptionManager,
             AppWindow appWindow,
             IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender,
@@ -47,7 +47,7 @@ namespace ProtonVPN.Windows.Popups.SubscriptionExpiration
             : base(subscriptionManager, appWindow, upsellUpgradeAttemptStatisticalEventSender)
         {
             _connectionStatusViewModel = connectionStatusViewModel;
-            _serverManager = serverManager;
+            _appSettings = appSettings;
             _upsellDisplayStatisticalEventSender = upsellDisplayStatisticalEventSender;
         }
 
@@ -55,7 +55,7 @@ namespace ProtonVPN.Windows.Popups.SubscriptionExpiration
         {
             get
             {
-                int totalCountries = _serverManager.GetCountries().Count;
+                int totalCountries = _appSettings.CountryCount;
                 return string.Format(Translation.GetPlural("Dialogs_SubscriptionExpired_ListOption1", totalCountries), totalCountries);
             }
         }

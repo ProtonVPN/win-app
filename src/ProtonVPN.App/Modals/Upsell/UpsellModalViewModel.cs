@@ -18,8 +18,9 @@
  */
 
 using ProtonVPN.Account;
+using ProtonVPN.Common.Helpers;
 using ProtonVPN.Config.Url;
-using ProtonVPN.Core.Servers;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Modals.Dialogs;
 using ProtonVPN.StatisticalEvents.Contracts;
 using ProtonVPN.Translations;
@@ -28,25 +29,23 @@ namespace ProtonVPN.Modals.Upsell
 {
     public class UpsellModalViewModel : QuestionModalViewModel
     {
-        private const int SERVERS_COUNT_ROUNDED_DOWN = 3000;
-
         private readonly ISubscriptionManager _subscriptionManager;
         private readonly IUpsellUpgradeAttemptStatisticalEventSender _upsellUpgradeAttemptStatisticalEventSender;
         private readonly IUpsellDisplayStatisticalEventSender _upsellDisplayStatisticalEventSender;
 
-        protected readonly ServerManager ServerManager;
+        protected readonly IAppSettings AppSettings;
         protected readonly IActiveUrls Urls;
 
         protected virtual ModalSources ModalSource { get; } = ModalSources.Countries;
 
         public UpsellModalViewModel(ISubscriptionManager subscriptionManager,
-            ServerManager serverManager,
+            IAppSettings appSettings,
             IActiveUrls urls,
             IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender,
             IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender)
         {
             _subscriptionManager = subscriptionManager;
-            ServerManager = serverManager;
+            AppSettings = appSettings;
             Urls = urls;
             _upsellUpgradeAttemptStatisticalEventSender = upsellUpgradeAttemptStatisticalEventSender;
             _upsellDisplayStatisticalEventSender = upsellDisplayStatisticalEventSender;
@@ -63,8 +62,9 @@ namespace ProtonVPN.Modals.Upsell
 
         private string GetUpsellCountriesTitleTranslation()
         {
-            int totalCountries = ServerManager.GetCountries().Count; 
-            string nSecureServers = string.Format(Translation.GetPlural("Secure_Servers_lbl", SERVERS_COUNT_ROUNDED_DOWN), SERVERS_COUNT_ROUNDED_DOWN);
+            int totalCountries = AppSettings.CountryCount;
+            int totalServers = RoundDownCalculator.RoundDown(AppSettings.ServerCount);
+            string nSecureServers = string.Format(Translation.GetPlural("Secure_Servers_lbl", totalServers), totalServers);
             string nCountries = string.Format(Translation.GetPlural("Countries_lbl", totalCountries), totalCountries);
             return Translation.Format("Upsell_Countries_Title", nSecureServers, nCountries);
         }

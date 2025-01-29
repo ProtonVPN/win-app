@@ -24,7 +24,7 @@ using Caliburn.Micro;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Account;
 using ProtonVPN.Config.Url;
-using ProtonVPN.Core.Servers;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.Modals.Upsell;
 using ProtonVPN.Sidebar.ChangeServer;
 using ProtonVPN.StatisticalEvents.Contracts;
@@ -41,11 +41,11 @@ namespace ProtonVPN.Modals
             IEventAggregator eventAggregator,
             ServerChangeManager serverChangeManager,
             ISubscriptionManager subscriptionManager,
-            ServerManager serverManager,
+            IAppSettings appSettings,
             IActiveUrls urls,
             IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender,
             IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender)
-            : base(subscriptionManager, serverManager, urls, upsellUpgradeAttemptStatisticalEventSender, 
+            : base(subscriptionManager, appSettings, urls, upsellUpgradeAttemptStatisticalEventSender, 
                   upsellDisplayStatisticalEventSender)
         {
             eventAggregator.Subscribe(this);

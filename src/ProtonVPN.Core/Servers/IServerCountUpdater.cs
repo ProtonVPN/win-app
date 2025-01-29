@@ -22,10 +22,10 @@ using System.Threading.Tasks;
 
 namespace ProtonVPN.Core.Servers
 {
-    public interface IServerUpdater
+    public interface IServerCountUpdater
     {
-        Task Update();
+        Task UpdateAsync();
 
-        event EventHandler ServersUpdated;
+        event EventHandler ServerCountUpdated;
     }
 }

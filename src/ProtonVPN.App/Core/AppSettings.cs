@@ -651,6 +651,18 @@ namespace ProtonVPN.Core
             set => Set(value);
         }
 
+        public int ServerCount
+        {
+            get => Get<int>();
+            set => Set(value);
+        }
+
+        public int CountryCount
+        {
+            get => Get<int>();
+            set => Set(value);
+        }
+
         public TimeSpan MaintenanceCheckInterval
         {
             get

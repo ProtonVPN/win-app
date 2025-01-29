@@ -110,7 +110,7 @@ namespace ProtonVPN.Account
         {
             get
             {
-                int plusServersCount = _serverManager.GetServers(new MaxTierServer(ServerTiers.Plus)).Count;
+                int plusServersCount = _appSettings.ServerCount;
                 return string.Format(Translation.GetPlural(TotalServers, plusServersCount), plusServersCount);
             }
         }
@@ -119,7 +119,7 @@ namespace ProtonVPN.Account
         {
             get
             {
-                int totalCountries = _serverManager.GetCountries().Count;
+                int totalCountries = _appSettings.CountryCount;
                 return string.Format(Translation.GetPlural(TotalCountries, totalCountries), totalCountries);
             }
         }
