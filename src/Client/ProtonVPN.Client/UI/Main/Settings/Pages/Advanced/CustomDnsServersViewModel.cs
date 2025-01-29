@@ -84,6 +84,12 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
 
         CustomDnsServers = new();
         CustomDnsServers.CollectionChanged += OnCustomDnsServersCollectionChanged;
+
+        PageSettings =
+        [
+            ChangedSettingArgs.Create(() => Settings.IsCustomDnsServersEnabled, () => IsCustomDnsServersEnabled),
+            ChangedSettingArgs.Create(() => Settings.CustomDnsServersList, () => GetCustomDnsServersList())
+        ];
     }
 
     [RelayCommand(CanExecute = nameof(CanAddDnsServer))]
@@ -119,12 +125,6 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
         OnPropertyChanged(nameof(ActiveCustomDnsServersCount));
     }
 
-    protected override void OnSaveSettings()
-    {
-        Settings.IsCustomDnsServersEnabled = IsCustomDnsServersEnabled;
-        Settings.CustomDnsServersList = GetCustomDnsServersList();
-    }
-
     protected override void OnRetrieveSettings()
     {
         IsCustomDnsServersEnabled = Settings.IsCustomDnsServersEnabled;
@@ -134,15 +134,6 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
         {
             CustomDnsServers.Add(new(Localizer, Logger, IssueReporter, this, server.IpAddress, server.IsActive));
         }
-    }
-
-    protected override IEnumerable<ChangedSettingArgs> GetSettings()
-    {
-        yield return new(nameof(ISettings.IsCustomDnsServersEnabled), IsCustomDnsServersEnabled,
-            Settings.IsCustomDnsServersEnabled != IsCustomDnsServersEnabled);
-
-        yield return new(nameof(ISettings.CustomDnsServersList), GetCustomDnsServersList(),
-            !Settings.CustomDnsServersList.SequenceEqual(GetCustomDnsServersList()));
     }
 
     private void OnCustomDnsServersCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)

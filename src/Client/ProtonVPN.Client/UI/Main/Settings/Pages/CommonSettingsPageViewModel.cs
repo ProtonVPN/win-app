@@ -21,7 +21,6 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Models;
-using ProtonVPN.Client.Common.UI.Extensions;
 using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Messages;
@@ -40,7 +39,6 @@ using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
-using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -288,14 +286,8 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
                 break;
 
             case nameof(ISettings.VpnPlan):
-                OnPropertyChanged(nameof(VpnPlan));
                 OnPropertyChanged(nameof(IsPaidUser));
                 break;
         }
-    }
-
-    protected override IEnumerable<ChangedSettingArgs> GetSettings()
-    {
-        return [];
     }
 }

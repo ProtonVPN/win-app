@@ -36,22 +36,50 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 Closed="OnWidgetFlyoutClosed"
                 Opened="OnWidgetFlyoutOpened">
 
-            <StackPanel MaxWidth="226"
+            <StackPanel Width="{StaticResource FeatureFlyoutWidth}"
                         Orientation="Vertical"
                         Spacing="16">
 
                 <Grid ColumnSpacing="8">
+
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
+
                     <TextBlock Grid.Column="0"
                                Style="{StaticResource BodyStrongTextBlockStyle}"
                                Text="{x:Bind ViewModel.Header}" />
-                    <TextBlock Grid.Column="1"
-                               Foreground="{ThemeResource TextWeakColorBrush}"
-                               Text="{x:Bind ViewModel.Status}"
-                               Visibility="{x:Bind ViewModel.IsRestricted, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+
+                    <custom:GhostButton Grid.Column="1"
+                                        Margin="0,-8,0,-6"
+                                        Content="{x:Bind ViewModel.Status}"
+                                        FontSize="{StaticResource BodyTextBlockFontSize}"
+                                        Visibility="{x:Bind ViewModel.IsRestricted, Converter={StaticResource NotBooleanToVisibilityConverter}}">
+                        <custom:GhostButton.RightIcon>
+                            <pathicons:ChevronDownFilled Size="Pixels16" />
+                        </custom:GhostButton.RightIcon>
+                        <custom:GhostButton.Flyout>
+                            <MenuFlyout Placement="BottomEdgeAlignedRight">
+                                <custom:ActivatableMenuFlyoutItem Command="{x:Bind ViewModel.DisablePortForwardingCommand, Mode=OneTime}"
+                                                                  IsActive="{x:Bind ViewModel.IsPortForwardingDisabled}"
+                                                                  Text="{x:Bind ViewModel.Localizer.Get('Common_States_Off')}">
+                                    <custom:ActivatableMenuFlyoutItem.Icon>
+                                        <ImageIcon Source="{ThemeResource PortForwardingOffIllustrationSource}" />
+                                    </custom:ActivatableMenuFlyoutItem.Icon>
+                                </custom:ActivatableMenuFlyoutItem>
+                                <MenuFlyoutSeparator />
+                                <custom:ActivatableMenuFlyoutItem Command="{x:Bind ViewModel.EnablePortForwardingCommand, Mode=OneTime}"
+                                                                  IsActive="{x:Bind ViewModel.IsPortForwardingEnabled}"
+                                                                  Text="{x:Bind ViewModel.Localizer.Get('Common_States_On')}">
+                                    <custom:ActivatableMenuFlyoutItem.Icon>
+                                        <ImageIcon Source="{ThemeResource PortForwardingOnIllustrationSource}" />
+                                    </custom:ActivatableMenuFlyoutItem.Icon>
+                                </custom:ActivatableMenuFlyoutItem>
+                            </MenuFlyout>
+                        </custom:GhostButton.Flyout>
+                    </custom:GhostButton>
+
                     <Image Grid.Column="1"
                            Height="20"
                            Source="{ThemeResource VpnPlusIllustrationSource}"
@@ -103,12 +131,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <custom:WidgetButton x:Name="WidgetButton"
                          Command="{x:Bind ViewModel.InvokeCommand, Mode=OneTime}"
                          IsActive="{x:Bind ViewModel.IsSelected}"
+                         OnHoverFlyout="{StaticResource WidgetFlyout}"
                          Style="{StaticResource SideWidgetButtonStyle}"
                          Text="{x:Bind ViewModel.Header}"
-                         Visibility="{x:Bind ViewModel.IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
-                         OnHoverFlyout="{StaticResource WidgetFlyout}">
-        <featureicons:PortForwardingIconView Width="{StaticResource FeatureBarDimmableImageSize}" 
-                                             Height="{StaticResource FeatureBarDimmableImageSize}"/>
+                         Visibility="{x:Bind ViewModel.IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <featureicons:PortForwardingIconView Width="{StaticResource FeatureBarDimmableImageSize}"
+                                             Height="{StaticResource FeatureBarDimmableImageSize}" />
     </custom:WidgetButton>
 
 </UserControl>

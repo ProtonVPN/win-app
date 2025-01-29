@@ -25,7 +25,6 @@ using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
@@ -41,9 +40,9 @@ public partial class KillSwitchPageViewModel : SettingsPageViewModelBase
     public override string Title => Localizer.Get("Settings_Connection_KillSwitch");
 
     private readonly IUrlsBrowser _urlsBrowser;
-    private readonly IVpnServiceSettingsUpdater _vpnServiceSettingsUpdater;
 
-    [ObservableProperty] [NotifyPropertyChangedFor(nameof(KillSwitchFeatureIconSource))]
+    [ObservableProperty] 
+    [NotifyPropertyChangedFor(nameof(KillSwitchFeatureIconSource))]
     private bool _isKillSwitchEnabled;
 
     [ObservableProperty]
@@ -71,7 +70,6 @@ public partial class KillSwitchPageViewModel : SettingsPageViewModelBase
 
     public KillSwitchPageViewModel(
         IUrlsBrowser urlsBrowser,
-        IVpnServiceSettingsUpdater vpnServiceSettingsUpdater,
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
@@ -94,7 +92,12 @@ public partial class KillSwitchPageViewModel : SettingsPageViewModelBase
                connectionManager)
     {
         _urlsBrowser = urlsBrowser;
-        _vpnServiceSettingsUpdater = vpnServiceSettingsUpdater;
+
+        PageSettings =
+        [
+            ChangedSettingArgs.Create(() => Settings.KillSwitchMode, () => CurrentKillSwitchMode),
+            ChangedSettingArgs.Create(() => Settings.IsKillSwitchEnabled, () => IsKillSwitchEnabled)
+        ];
     }
 
     public static ImageSource GetFeatureIconSource(bool isEnabled, KillSwitchMode mode)
@@ -112,26 +115,10 @@ public partial class KillSwitchPageViewModel : SettingsPageViewModelBase
         };
     }
 
-    protected override async Task OnSaveSettingsAsync()
-    {
-        Settings.IsKillSwitchEnabled = IsKillSwitchEnabled;
-        Settings.KillSwitchMode = CurrentKillSwitchMode;
-
-        await _vpnServiceSettingsUpdater.SendAsync();
-    }
-
     protected override void OnRetrieveSettings()
     {
         IsKillSwitchEnabled = Settings.IsKillSwitchEnabled;
         CurrentKillSwitchMode = Settings.KillSwitchMode;
-    }
-
-    protected override IEnumerable<ChangedSettingArgs> GetSettings()
-    {
-        yield return new(nameof(ISettings.IsKillSwitchEnabled), IsKillSwitchEnabled,
-            Settings.IsKillSwitchEnabled != IsKillSwitchEnabled);
-        yield return new(nameof(ISettings.KillSwitchMode), CurrentKillSwitchMode,
-            Settings.KillSwitchMode != CurrentKillSwitchMode);
     }
 
     private bool IsKillSwitchMode(KillSwitchMode killSwitchMode)

@@ -64,6 +64,8 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
         ? "Common_Actions_Reconnect"
         : "Settings_Common_Apply");
 
+    protected IEnumerable<ChangedSettingArgs> PageSettings { get; set; } = [];
+
     protected SettingsPageViewModelBase(
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
@@ -170,8 +172,6 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
         _isNavigationFromWidget = false;
     }
 
-    protected abstract IEnumerable<ChangedSettingArgs> GetSettings();
-
     protected virtual void OnConnectionStatusChanged(ConnectionStatus connectionStatus)
     { }
 
@@ -180,6 +180,12 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
 
     private async Task SaveSettingsAsync()
     {
+        IEnumerable<ChangedSettingArgs> changedSettings = GetChangedSettings();
+        foreach (ChangedSettingArgs setting in changedSettings)
+        {
+            setting.ApplyChanges();
+        }
+
         OnSaveSettings();
         await OnSaveSettingsAsync();
     }
@@ -319,7 +325,7 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
 
     private IEnumerable<ChangedSettingArgs> GetChangedSettings()
     {
-        return GetSettings().Where(s => s.HasChanged);
+        return PageSettings.Where(s => s.HasChanged());
     }
 
     private string GetSettingName(string propertyName)

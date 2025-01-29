@@ -25,13 +25,10 @@ namespace ProtonVPN.Client.Settings;
 public class SettingsRestorer : ISettingsRestorer
 {
     private readonly ISettings _settings;
-    private readonly IVpnServiceSettingsUpdater _vpnServiceSettingsUpdater;
 
-    public SettingsRestorer(ISettings settings,
-        IVpnServiceSettingsUpdater vpnServiceSettingsUpdater)
+    public SettingsRestorer(ISettings settings)
     {
         _settings = settings;
-        _vpnServiceSettingsUpdater = vpnServiceSettingsUpdater;
     }
 
     public void Restore()
@@ -39,6 +36,7 @@ public class SettingsRestorer : ISettingsRestorer
         // Note: Some settings should not be restored, such as Language, Theme, Share statistics...
 
         _settings.IsNetShieldEnabled = DefaultSettings.IsNetShieldEnabled(_settings.VpnPlan.IsPaid);
+        _settings.NetShieldMode = DefaultSettings.NetShieldMode;
         _settings.IsKillSwitchEnabled = DefaultSettings.IsKillSwitchEnabled;
         _settings.KillSwitchMode = DefaultSettings.KillSwitchMode;
         _settings.IsPortForwardingEnabled = DefaultSettings.IsPortForwardingEnabled;
@@ -59,8 +57,5 @@ public class SettingsRestorer : ISettingsRestorer
         _settings.IsIpv6LeakProtectionEnabled = DefaultSettings.IsIpv6LeakProtectionEnabled;
         _settings.IsSmartReconnectEnabled = DefaultSettings.IsSmartReconnectEnabled;
         _settings.DefaultConnection = DefaultSettings.DefaultConnection;
-        _settings.NetShieldMode = DefaultSettings.NetShieldMode;
-
-        _vpnServiceSettingsUpdater.SendAsync();
     }
 }

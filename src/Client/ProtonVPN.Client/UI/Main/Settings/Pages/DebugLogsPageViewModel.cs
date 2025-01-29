@@ -24,10 +24,8 @@ using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
-using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -97,10 +95,5 @@ public partial class DebugLogsPageViewModel : SettingsPageViewModelBase
         }
 
         _urlsBrowser.BrowseTo(logFolder);
-    }
-
-    protected override IEnumerable<ChangedSettingArgs> GetSettings()
-    {
-        return [];
     }
 }

@@ -42,8 +42,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
                          UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/port-forwarding-on.png" />
             <BitmapImage x:Key="SplitTunnelingOffIllustrationSource"
                          UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/split-tunneling-off.png" />
-            <BitmapImage x:Key="SplitTunnelingOnIllustrationSource"
-                         UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/split-tunneling-on.png" />
+            <BitmapImage x:Key="SplitTunnelingStandardIllustrationSource"
+                         UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/split-tunneling-standard.png" />
+            <BitmapImage x:Key="SplitTunnelingInverseIllustrationSource"
+                         UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/split-tunneling-inverse.png" />
             <BitmapImage x:Key="VpnAcceleratorOffIllustrationSource"
                          UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/vpn-accelerator-off.png" />
             <BitmapImage x:Key="VpnAcceleratorOnIllustrationSource"
@@ -80,8 +82,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
                          UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Dark/port-forwarding-on.png" />
             <BitmapImage x:Key="SplitTunnelingOffIllustrationSource"
                          UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Dark/split-tunneling-off.png" />
-            <BitmapImage x:Key="SplitTunnelingOnIllustrationSource"
-                         UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Dark/split-tunneling-on.png" />
+            <BitmapImage x:Key="SplitTunnelingStandardIllustrationSource"
+                         UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Dark/split-tunneling-standard.png" />
+            <BitmapImage x:Key="SplitTunnelingInverseIllustrationSource"
+                         UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Dark/split-tunneling-inverse.png" />
             <BitmapImage x:Key="VpnAcceleratorOffIllustrationSource"
                          UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Dark/vpn-accelerator-off.png" />
             <BitmapImage x:Key="VpnAcceleratorOnIllustrationSource"

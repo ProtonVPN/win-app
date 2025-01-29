@@ -26,7 +26,6 @@ using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
-using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
@@ -81,6 +80,12 @@ public partial class PortForwardingPageViewModel : SettingsPageViewModelBase
                connectionManager)
     {
         _urlsBrowser = urlsBrowser;
+
+        PageSettings =
+        [
+            ChangedSettingArgs.Create(() => Settings.IsPortForwardingNotificationEnabled, () => IsPortForwardingNotificationEnabled),
+            ChangedSettingArgs.Create(() => Settings.IsPortForwardingEnabled, () => IsPortForwardingEnabled)
+        ];
     }
 
     public static ImageSource GetFeatureIconSource(bool isEnabled)
@@ -99,9 +104,6 @@ public partial class PortForwardingPageViewModel : SettingsPageViewModelBase
 
     protected override void OnSaveSettings()
     {
-        Settings.IsPortForwardingEnabled = IsPortForwardingEnabled;
-        Settings.IsPortForwardingNotificationEnabled = IsPortForwardingNotificationEnabled;
-
         OnPropertyChanged(nameof(IsExpanded));
     }
 
@@ -109,15 +111,6 @@ public partial class PortForwardingPageViewModel : SettingsPageViewModelBase
     {
         IsPortForwardingEnabled = Settings.IsPortForwardingEnabled;
         IsPortForwardingNotificationEnabled = Settings.IsPortForwardingNotificationEnabled;
-    }
-
-    protected override IEnumerable<ChangedSettingArgs> GetSettings()
-    {
-        yield return new(nameof(ISettings.IsPortForwardingEnabled), IsPortForwardingEnabled,
-            Settings.IsPortForwardingEnabled != IsPortForwardingEnabled);
-
-        yield return new(nameof(ISettings.IsPortForwardingNotificationEnabled), IsPortForwardingNotificationEnabled,
-            Settings.IsPortForwardingNotificationEnabled != IsPortForwardingNotificationEnabled);
     }
 
     protected override void OnConnectionStatusChanged(ConnectionStatus connectionStatus)

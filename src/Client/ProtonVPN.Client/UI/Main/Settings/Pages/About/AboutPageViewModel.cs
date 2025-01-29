@@ -27,7 +27,6 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Updates.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
-using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Client.UI.Settings.Pages.About.Models;
 using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.IssueReporting.Contracts;
@@ -138,10 +137,5 @@ public partial class AboutPageViewModel : SettingsPageViewModelBase,
 
         Releases = [];
         StartCheckingForUpdate();
-    }
-
-    protected override IEnumerable<ChangedSettingArgs> GetSettings()
-    {
-        return [];
     }
 }

@@ -18,7 +18,6 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
-using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Attributes;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
@@ -31,7 +30,6 @@ using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
-using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Client.Contracts.Services.Browsing;
@@ -124,17 +122,12 @@ public partial class ProtocolSettingsPageViewModel : SettingsPageViewModelBase,
     {
         _urlsBrowser = urlsBrowser;
         _featureFlagsObserver = featureFlagsObserver;
-    }
 
-    // public override void OnNavigatedTo(object parameter, bool isBackNavigation)
-    // {
-    //     if (!ConnectionManager.IsDisconnected && ConnectionManager.CurrentConnectionIntent is IConnectionProfile)
-    //     {
-    //         Task task = HandleNavigationFailedAsync();
-    //         return false;
-    //     };
-    //     return true;
-    // }
+        PageSettings =
+        [
+            ChangedSettingArgs.Create(() => Settings.VpnProtocol, () => CurrentVpnProtocol)
+        ];
+    }
 
     protected override void OnLanguageChanged()
     {
@@ -143,35 +136,9 @@ public partial class ProtocolSettingsPageViewModel : SettingsPageViewModelBase,
         OnPropertyChanged(nameof(Recommended));
     }
 
-    protected override void OnSaveSettings()
-    {
-        Settings.VpnProtocol = CurrentVpnProtocol;
-    }
-
     protected override void OnRetrieveSettings()
     {
         CurrentVpnProtocol = Settings.VpnProtocol;
-    }
-
-    protected override IEnumerable<ChangedSettingArgs> GetSettings()
-    {
-        yield return new(nameof(ISettings.VpnProtocol), CurrentVpnProtocol, Settings.VpnProtocol != CurrentVpnProtocol);
-    }
-
-    private async Task HandleNavigationFailedAsync()
-    {
-        ContentDialogResult result = await MainWindowOverlayActivator.ShowMessageAsync(new()
-        {
-            Title = Localizer.Get("Settings_Connection_Protocol_NavigationFailed_Title"),
-            Message = Localizer.Get("Settings_Connection_Protocol_NavigationFailed_Message"),
-            PrimaryButtonText = Localizer.Get("Settings_Connection_Protocol_NavigationFailed_Action"),
-            CloseButtonText = Localizer.Get("Common_Actions_Close")
-        });
-
-        if (result == ContentDialogResult.Primary)
-        {
-            //await ViewNavigator.NavigateToAsync<ProfilesPageViewModel>();
-        }
     }
 
     private bool IsProtocol(VpnProtocol protocol)

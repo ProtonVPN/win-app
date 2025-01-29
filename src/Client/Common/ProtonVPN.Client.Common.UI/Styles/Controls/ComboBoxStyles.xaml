@@ -22,7 +22,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.ThemeDictionaries>
-
         <ResourceDictionary x:Key="Light">
 
             <StaticResource x:Key="ComboBoxItemForeground" ResourceKey="TextNormColorBrush" />
@@ -107,7 +106,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <StaticResource x:Key="ComboBoxItemPillFillBrush" ResourceKey="PrimaryColorBrush" />
         </ResourceDictionary>
-
         <ResourceDictionary x:Key="Dark">
 
             <StaticResource x:Key="ComboBoxItemForeground" ResourceKey="TextNormColorBrush" />

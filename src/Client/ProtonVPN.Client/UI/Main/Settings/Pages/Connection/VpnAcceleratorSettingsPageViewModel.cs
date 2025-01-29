@@ -25,7 +25,6 @@ using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
-using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Client.Contracts.Services.Browsing;
@@ -67,21 +66,15 @@ public partial class VpnAcceleratorSettingsPageViewModel : SettingsPageViewModel
                connectionManager)
     {
         _urlsBrowser = urlsBrowser;
-    }
 
-    protected override void OnSaveSettings()
-    {
-        Settings.IsVpnAcceleratorEnabled = IsVpnAcceleratorEnabled;
+        PageSettings =
+        [
+            ChangedSettingArgs.Create(() => Settings.IsVpnAcceleratorEnabled, () => IsVpnAcceleratorEnabled)
+        ];
     }
 
     protected override void OnRetrieveSettings()
     {
         IsVpnAcceleratorEnabled = Settings.IsVpnAcceleratorEnabled;
-    }
-
-    protected override IEnumerable<ChangedSettingArgs> GetSettings()
-    {
-        yield return new(nameof(ISettings.IsVpnAcceleratorEnabled), IsVpnAcceleratorEnabled,
-            Settings.IsVpnAcceleratorEnabled != IsVpnAcceleratorEnabled);
     }
 }

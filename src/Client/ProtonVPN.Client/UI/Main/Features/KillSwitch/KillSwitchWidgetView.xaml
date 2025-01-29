@@ -34,21 +34,55 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 Closed="OnWidgetFlyoutClosed"
                 Opened="OnWidgetFlyoutOpened">
 
-            <StackPanel MaxWidth="226"
+            <StackPanel Width="{StaticResource FeatureFlyoutWidth}"
                         Orientation="Vertical"
                         Spacing="16">
 
                 <Grid ColumnSpacing="8">
+
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
+
                     <TextBlock Grid.Column="0"
                                Style="{StaticResource BodyStrongTextBlockStyle}"
                                Text="{x:Bind ViewModel.Header}" />
-                    <TextBlock Grid.Column="1"
-                               Foreground="{ThemeResource TextWeakColorBrush}"
-                               Text="{x:Bind ViewModel.Status}" />
+
+                    <custom:GhostButton Grid.Column="1"
+                                        Margin="0,-8,0,-6"
+                                        Content="{x:Bind ViewModel.Status}"
+                                        FontSize="{StaticResource BodyTextBlockFontSize}">
+                        <custom:GhostButton.RightIcon>
+                            <pathicons:ChevronDownFilled Size="Pixels16" />
+                        </custom:GhostButton.RightIcon>
+                        <custom:GhostButton.Flyout>
+                            <MenuFlyout Placement="BottomEdgeAlignedRight">
+                                <custom:ActivatableMenuFlyoutItem Command="{x:Bind ViewModel.DisableKillSwitchCommand, Mode=OneTime}"
+                                                                  IsActive="{x:Bind ViewModel.IsKillSwitchDisabled}"
+                                                                  Text="{x:Bind ViewModel.Localizer.Get('Common_States_Off')}">
+                                    <custom:ActivatableMenuFlyoutItem.Icon>
+                                        <ImageIcon Source="{ThemeResource KillSwitchOffIllustrationSource}" />
+                                    </custom:ActivatableMenuFlyoutItem.Icon>
+                                </custom:ActivatableMenuFlyoutItem>
+                                <MenuFlyoutSeparator />
+                                <custom:ActivatableMenuFlyoutItem Command="{x:Bind ViewModel.EnableStandardKillSwitchCommand, Mode=OneTime}"
+                                                                  IsActive="{x:Bind ViewModel.IsStandardKillSwitchEnabled}"
+                                                                  Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_KillSwitch_Standard')}">
+                                    <custom:ActivatableMenuFlyoutItem.Icon>
+                                        <ImageIcon Source="{ThemeResource KillSwitchStandardIllustrationSource}" />
+                                    </custom:ActivatableMenuFlyoutItem.Icon>
+                                </custom:ActivatableMenuFlyoutItem>
+                                <custom:ActivatableMenuFlyoutItem Command="{x:Bind ViewModel.EnableAdvancedKillSwitchCommand, Mode=OneTime}"
+                                                                  IsActive="{x:Bind ViewModel.IsAdvancedKillSwitchEnabled}"
+                                                                  Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_KillSwitch_Advanced')}">
+                                    <custom:ActivatableMenuFlyoutItem.Icon>
+                                        <ImageIcon Source="{ThemeResource KillSwitchAdvancedIllustrationSource}" />
+                                    </custom:ActivatableMenuFlyoutItem.Icon>
+                                </custom:ActivatableMenuFlyoutItem>
+                            </MenuFlyout>
+                        </custom:GhostButton.Flyout>
+                    </custom:GhostButton>
                 </Grid>
 
                 <Border Height="1"
@@ -85,11 +119,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <custom:WidgetButton x:Name="WidgetButton"
                          Command="{x:Bind ViewModel.InvokeCommand, Mode=OneTime}"
                          IsActive="{x:Bind ViewModel.IsSelected}"
+                         OnHoverFlyout="{StaticResource WidgetFlyout}"
                          Style="{StaticResource SideWidgetButtonStyle}"
                          Text="{x:Bind ViewModel.Header}"
-                         Visibility="{x:Bind ViewModel.IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
-                         OnHoverFlyout="{StaticResource WidgetFlyout}">
-        <featureicons:KillSwitchIconView Width="{StaticResource FeatureBarDimmableImageSize}" 
+                         Visibility="{x:Bind ViewModel.IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <featureicons:KillSwitchIconView Width="{StaticResource FeatureBarDimmableImageSize}"
                                          Height="{StaticResource FeatureBarDimmableImageSize}" />
     </custom:WidgetButton>
 
