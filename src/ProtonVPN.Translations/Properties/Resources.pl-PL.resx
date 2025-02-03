@@ -174,7 +174,7 @@
     <comment>The text of Update hyperlink in About window and Update flash notification (starts app update)</comment>
   </data>
   <data name="About_ttl">
-    <value>Informacje</value>
+    <value>O aplikacji</value>
     <comment>The title of About window</comment>
   </data>
   <data name="Account_btn_ManageSubscription">
@@ -308,7 +308,7 @@
     <value>Żądanie nie powiodło się. Spróbuj ponownie.</value>
   </data>
   <data name="App_mnu_About">
-    <value>Informacje</value>
+    <value>O aplikacji</value>
     <comment>The header of About menu item in the main app window (opens About window)</comment>
   </data>
   <data name="App_mnu_Account">
