@@ -566,7 +566,7 @@
     <value>VPN接続にもう1つの暗号化レイヤーを追加する.</value>
   </data>
   <data name="Countries_Server_Other">
-    <value>{0} サーバー</value>
+    <value>{0} 台のサーバー</value>
   </data>
   <data name="Countries_ServerLoad">
     <value>サーバー負荷</value>
@@ -1948,7 +1948,7 @@ Smart Routingは通常、反プライバシー法やその他の形式の検閲�
     <value>VPN から切断しています...</value>
   </data>
   <data name="Exit_Title">
-    <value>Proton VPN を終了しますか</value>
+    <value>Proton VPNを終了</value>
   </data>
   <data name="Flyouts_Country_Description">
     <value>VPNを使用せずにブラウジングすると、位置ベースのインターネット制限の影響を受けやすくなります。
@@ -3254,7 +3254,7 @@ VPN接続</value>
     <value>あなたは今保護されています</value>
   </data>
   <data name="SystemNotification_ConnectedTo">
-    <value>{0} に接続完了.</value>
+    <value>{0} に接続しました。</value>
     <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
   </data>
   <data name="SystemNotification_Disconnected">
@@ -3302,7 +3302,7 @@ VPN接続</value>
     <value>NetShield</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
-    <value>アップグレードで好きなサーバーを選べる.</value>
+    <value>アップグレードして任意のサーバーを選択。</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Title">
     <value>望んでいた国ではありませんか？</value>

@@ -603,13 +603,13 @@
     <value>Negara tercepat</value>
   </data>
   <data name="Country_Fastest_ExcludingMyCountry">
-    <value>Tercepat (kecuali negaraku)</value>
+    <value>Tercepat (selain dari negara saya)</value>
   </data>
   <data name="Country_Random">
     <value>Negara acak</value>
   </data>
   <data name="Country_Random_ExcludingMyCountry">
-    <value>Acak (kecuali negaraku)</value>
+    <value>Acak (selain dari negara saya)</value>
   </data>
   <data name="Country_val_AD">
     <value>Andorra</value>
@@ -1694,9 +1694,9 @@ Latensi yang tinggi dapat memperlambat koneksi Anda.</value>
     <comment>obsolete</comment>
   </data>
   <data name="Dialogs_P2P_WhyUse_Description">
-    <value>• Kecepatan unggah dan unduh yang ditingkatkan
-• Tanpa catatan aktivitas
-• Sembunyikan alamat IP Anda dari penyedia layanan dan komputer lain pada jaringan Anda</value>
+    <value>• Kecepatan unggahan dan unduhan yang ditingkatkan
+• Tanpa log aktivitas
+• Sembunyikan alamat IP Anda dari penyedia layanan internet dan komputer lain pada jaringan Anda</value>
     <comment>obsolete</comment>
   </data>
   <data name="Dialogs_Protocol_Description">
@@ -1843,7 +1843,7 @@ Smart Routing pada umumnya digunakan untuk menghindari undang-undang anti-privas
     <value>Mungkin nanti</value>
   </data>
   <data name="Dialogs_Tor_Description">
-    <value>Hubungkan ke server Tor untuk mengakses layanan tersembunyi dan situs onion menggunakan browser mana pun.</value>
+    <value>Hubungkan VPN ke server Tor untuk mengakses layanan tersembunyi dan situs onion menggunakan browser mana pun.</value>
   </data>
   <data name="Dialogs_Tor_LearnMore">
     <value>Cara mengakses jaringan Tor</value>
@@ -1991,9 +1991,9 @@ VPN akan menyamarkan alamat IP Anda, yang membuat aktivitas Anda menjadi lebih s
   <data name="Flyouts_Isp_Description">
     <value>ISP (Internet Service Provider) Anda merupakan perusahaan yang menghubungkan Anda ke internet. 
 
-Mereka dapat mencatat aktivitas online Anda. Pada sebagian negara tertentu, mereka dapat menjual data Anda kepada para pengiklan. Di negara lainnya, mereka dapat diminta untuk menyerahkan data ini kepada pemerintah.
+Mereka dapat mencatat aktivitas online Anda. Pada sebagian negara tertentu, mereka dapat menjual data Anda kepada para pengiklan. Di negara lainnya, mereka dapat diminta untuk menyerahkan data ini kepada pemerintah. 
 
-VPN melindungi alamat IP Anda, yang melindungi Anda dari campur tangan ISP.</value>
+Aplikasi VPN menyembunyikan alamat IP Anda, yang melindungi Anda dari campur tangan ISP.</value>
   </data>
   <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
     <value>Apa itu Internet Service Provider (ISP)?</value>
@@ -2589,7 +2589,7 @@ Smart Routing pada umumnya digunakan untuk menghindari undang-undang anti-privas
     <value>Smart Routing</value>
   </data>
   <data name="Overlay_Tor_Description">
-    <value>Hubungkan ke server Tor untuk mengakses layanan tersembunyi dan situs onion melalui browser mana pun.</value>
+    <value>Hubungkan VPN ke server Tor untuk mengakses layanan tersembunyi dan situs onion melalui browser mana pun.</value>
   </data>
   <data name="Overlay_Tor_LearnMore">
     <value>Cara mengakses jaringan Tor</value>
@@ -3361,13 +3361,13 @@ Smart Routing pada umumnya digunakan untuk menghindari undang-undang anti-privas
     <value>Akses unduhan dan pembagian berkas secara peer-to-peer (P2P)</value>
   </data>
   <data name="Upsell_Carousel_P2P_Discretion">
-    <value>Sembunyikan alamat IP Anda dari penyedia layanan internet dan rekan kerja Anda</value>
+    <value>Sembunyikan alamat IP Anda dari penyedia layanan internet dan komputer lain pada jaringan Anda</value>
   </data>
   <data name="Upsell_Carousel_P2P_PortForwarding">
     <value>Lesatkan kecepatan P2P dengan penerusan port</value>
   </data>
   <data name="Upsell_Carousel_P2P_Speed">
-    <value>Kecepatan unggah dan unduh yang ditingkatkan</value>
+    <value>Kecepatan unggahan dan unduhan yang ditingkatkan</value>
   </data>
   <data name="Upsell_Carousel_Platforms_More">
     <value>+ lainnya</value>
@@ -3450,10 +3450,10 @@ Smart Routing pada umumnya digunakan untuk menghindari undang-undang anti-privas
     <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Audit">
-    <value>Diaudit oleh pakar-pakar keamanan independen</value>
+    <value>Teraudit oleh pakar keamanan independen</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
-    <value>Lewati sensor dengan fitur-fitur keamanan dan privasi tingkat lanjut</value>
+    <value>Lewati sensor dengan berbagai fitur keamanan dan privasi lanjutan</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
     <value>{0} negara</value>

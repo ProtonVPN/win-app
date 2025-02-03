@@ -244,7 +244,7 @@
     <value>**Advanced kill switch is enabled.** To use the internet without VPN, disable advanced kill switch.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>**Advanced kill switch is enabled.** If you continue, you will be disconnected from the internet.</value>
+    <value>**高階緊急終止開關已啟用**如您繼續的話，您將會被中斷網絡連線</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
     <value>這將會中斷與 VPN 的連線。</value>
@@ -372,7 +372,7 @@
     <value>All servers in this gateway are under maintenance</value>
   </data>
   <data name="Connections_Gateways_Other">
-    <value>Gateways ({0})</value>
+    <value>閘道</value>
   </data>
   <data name="Connections_Gateways_Server">
     <value>Dedicated server</value>
@@ -433,16 +433,16 @@
     <value>隨機</value>
   </data>
   <data name="Connections_Recents_Other">
-    <value>Recents ({0})</value>
+    <value>最近( {0} )</value>
   </data>
   <data name="Connections_Recents_Empty_Description">
-    <value>View your connection history here.</value>
+    <value>在此查看你的連接歷史紀錄。</value>
   </data>
   <data name="Connections_Recents_Empty_Title">
-    <value>No recents yet</value>
+    <value>尚無最近記錄</value>
   </data>
   <data name="Connections_Recents_Pinned_Other">
-    <value>Pinned ({0})</value>
+    <value>已釘選 ( {0} )</value>
   </data>
   <data name="Connections_SecureCore_Countries_Other">
     <value>雙重路由國家/地區 ({0})</value>
@@ -1894,7 +1894,7 @@ VPN 連線</value>
     <value>Update system clock</value>
   </data>
   <data name="Dialogs_WelcomeB2B_Description">
-    <value>Simple. Seamless. Secure. Protect yourself online and securely access your organization's sites, software, and files.</value>
+    <value>簡單。無縫。安全。保護您的線上安全，並安全進入您組織的網站、軟體和檔案。</value>
   </data>
   <data name="Dialogs_WelcomeToProton_Title">
     <value>歡迎使用 Proton VPN</value>
@@ -1909,30 +1909,30 @@ VPN 連線</value>
     <value>Your activity is protected by Swiss privacy laws. We'll never track you online or share your information with third parties.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
-    <value>Browse freely from anywhere</value>
+    <value>隨時隨地自由瀏覽</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
-    <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
+    <value>隱藏你的虛擬位置，可選擇我們提供的{0} 個國家中體驗互聯網。</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
-    <value>Protect 10 devices at once</value>
+    <value>同時保護  個裝置</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
-    <value>Extend VPN protection to your desktop, mobile, browser, TV, and more. </value>
+    <value>把VPN保護伸展到你的桌面電腦、行動裝置、電視及更多</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Stream">
-    <value>Stream in high resolution</value>
+    <value>高分辨率影音串流</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
-    <value>Watch movies and TV shows from around the world, without compromising on speed or quality.</value>
+    <value>觀看來自世界各地的電影和電視節目，不影響速度和質素。</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>歡迎至 VPN Plus</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description">
-    <value>Congratulations! You unlocked premium security and performance features on all Proton services.
+    <value>恭喜!您已解鎖了Proton所有服務上的高階安全及表現功能。
 
-Enjoy the best of Proton privacy.</value>
+享受最佳的Proton隱私。</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>歡迎至Proton Unlimited</value>
@@ -1953,31 +1953,31 @@ Enjoy the best of Proton privacy.</value>
     <value>Exit Proton VPN</value>
   </data>
   <data name="Flyouts_Country_Description">
-    <value>Browsing without a VPN leaves you vulnerable to location-based internet restrictions.
+    <value>在沒有 VPN 的情況下瀏覽，你很容易受到基於位置的互聯網限制。
 
-Websites can use geoblocks to restrict content to certain locations. Governments can also instruct ISPs (Internet Service Providers) to block certain websites in their country.
+網站可以使用地理封鎖來限制某些地點的內容。有些國家政府也可以指示 ISP (互聯網服務供應商) 封鎖該國的某些網站。
 
-A VPN makes it looks like you’re browsing from somewhere else, protecting you from surveillance and censorship.</value>
+VPN 可以讓你看起來像是在其他地方瀏覽，保護你免受監視和審查。</value>
   </data>
   <data name="Flyouts_Country_Title">
-    <value>Country</value>
+    <value>國家</value>
   </data>
   <data name="Flyouts_Country_Warning">
-    <value>Connect to VPN to change your virtual location</value>
+    <value>連接 VPN已更改你的虛擬位置</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Connected">
     <value>Your VPN IP masks your real IP address. This makes it look like you’re browsing from your VPN location, so your online activity can’t be linked to your device.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected">
-    <value>This unique code can be used by websites and ISPs (Internet Service Providers) to link your location and browsing history to your device. 
+    <value>網站和ISP（互聯網服務供應商）可使用此唯一代碼將你的位置和瀏覽歷史記錄與你的設備聯繫起來。
 
-A VPN masks your IP address, making it harder for your activity to be traced back to you.</value>
+VPN屏蔽了你的IP地址，使你的活動更難被追蹤到。</value>
   </data>
   <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
-    <value>What is an IP address?</value>
+    <value>什麼是IP地址？</value>
   </data>
   <data name="Flyouts_IpAddress_Title">
-    <value>IP address</value>
+    <value>IP 地址</value>
   </data>
   <data name="Flyouts_IpAddress_VpnIp">
     <value>VPN IP</value>
@@ -1986,23 +1986,23 @@ A VPN masks your IP address, making it harder for your activity to be traced bac
     <value>Your IP</value>
   </data>
   <data name="Flyouts_IpAddress_YourIpIsVisible">
-    <value>Your IP address is visible</value>
+    <value>你的IP地址可見</value>
   </data>
   <data name="Flyouts_Isp_Description">
-    <value>Your ISP (Internet Service Provider) is the company that connects you to the internet. 
+    <value>你的ISP(互聯網供應商)是提供你連接互聯網的公司。
 
-They can log your online activity. In some countries, they can sell your data to advertisers. In others, they can be required to hand it over to the government. 
+他們可以記錄你在線的活動資料。在一些國家，他們可以售賣你的資料給廣告商。在其他國家，他們可以因應國家要求交出你的資料。
 
-A VPN hides your IP address, protecting you from ISP interference.</value>
+VPN隱藏你的IP地址，保護你不受互聯網供應商的干擾。</value>
   </data>
   <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
-    <value>What is an Internet Service Provider (ISP)?</value>
+    <value>什麼是互聯網供應商(ISP)？</value>
   </data>
   <data name="Flyouts_Isp_Title">
-    <value>Provider</value>
+    <value>供應商</value>
   </data>
   <data name="Flyouts_Isp_Warning">
-    <value>Your provider can see which websites you visit</value>
+    <value>你的供應商可以看到你正在瀏覽的網站</value>
   </data>
   <data name="Flyouts_Protocol_Description">
     <value>A VPN protocol determines how traffic is encrypted and transmitted over the VPN.</value>
@@ -2041,19 +2041,19 @@ A VPN hides your IP address, protecting you from ISP interference.</value>
     <value>Server load</value>
   </data>
   <data name="Flyouts_Speed_BoostedByVpnAccelerator">
-    <value>Boosted by VPN Accelerator</value>
+    <value>用VPN加速器增速</value>
   </data>
   <data name="Flyouts_Speed_Description">
-    <value>This shows how much data gets transmitted through Proton VPN each second.
+    <value>這顯示多少數據經Proton VPN每秒傳輸。
 
-Speed is based on your device’s current activity — it doesn’t represent the VPN’s maximum speed.</value>
+速度基於你現時設備的活動，並不代表 VPN的最高速度。</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>Download</value>
     <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
-    <value>Understanding and increasing VPN connection speeds</value>
+    <value>了解及提升 VPN 連接速度</value>
   </data>
   <data name="Flyouts_Speed_Title">
     <value>Speed</value>
@@ -2066,7 +2066,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>This shows how much traffic has routed through your VPN.</value>
   </data>
   <data name="Flyouts_Volume_Download">
-    <value>Download</value>
+    <value>下載</value>
     <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
   </data>
   <data name="Flyouts_Volume_Title">
@@ -2109,7 +2109,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_SpeedUnit">
-    <value>Speed ({0})</value>
+    <value>速度 {0})</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
@@ -2187,7 +2187,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>使用 VPN Plus 享受全球的服務覆蓋</value>
   </data>
   <data name="Gateways_Page_Description">
-    <value>Connect to a Gateway to access your organization's VPN.</value>
+    <value>連接到閘道以訪問您組織的 VPN</value>
   </data>
   <data name="Gateways_Page_Title">
     <value>連線通道</value>
@@ -2270,7 +2270,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>我的 IP</value>
   </data>
   <data name="Home_ConnectionDetails_Protected">
-    <value>Protected</value>
+    <value>已受保護</value>
   </data>
   <data name="Home_ConnectionDetails_Protocol">
     <value>通訊協定</value>
@@ -2298,28 +2298,28 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>連線詳細資訊</value>
   </data>
   <data name="Home_ConnectionDetails_Unprotected">
-    <value>Unprotected</value>
+    <value>未受保護</value>
   </data>
   <data name="Home_ConnectionDetails_UnprotectedSubLabel">
-    <value>Encrypt your online activity by connecting to VPN.</value>
+    <value>連接VPN加密您的網上活動</value>
   </data>
   <data name="Home_ConnectionDetails_Volume">
     <value>音量</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
-    <value>Download volume</value>
+    <value>下載流量</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Total">
     <value>總容量</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Upload">
-    <value>Upload volume</value>
+    <value>上傳流量</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>VPN IP</value>
   </data>
   <data name="Home_ConnectionDetails_YourIpAddress">
-    <value>Your IP address</value>
+    <value>你的IP地址</value>
   </data>
   <data name="Home_FreeConnections_About">
     <value>關於免費連線的更多資訊</value>
@@ -2348,7 +2348,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_NetShield_Title">
-    <value>NetShield stats</value>
+    <value>NetShield 統計資料</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_Other">
     <value>追蹤器已停止</value>
@@ -2367,7 +2367,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>釘選</value>
   </data>
   <data name="Home_Recents_Restricted">
-    <value>Server is available with VPN Plus</value>
+    <value>VPN Plus計畫可使用伺服器</value>
   </data>
   <data name="Home_Recents_SecondaryActions_ToolTip">
     <value>操作</value>
@@ -2424,7 +2424,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>SSO 認證失敗。請再試一次。</value>
   </data>
   <data name="Login_Error_TwoFactorAuthFailed">
-    <value>Incorrect username or password. Please try again.</value>
+    <value>帳號或密碼不正確，請再檢查一下</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
     <value>兩步驟驗證失敗，請重新登入。</value>
@@ -2434,7 +2434,7 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle">
-    <value>Enter the code from your authenticator app.</value>
+    <value>輸入驗證應用程式中的驗證代碼.</value>
   </data>
   <data name="Login_TwoFactorForm_Title">
     <value>兩步驟驗證</value>
@@ -2475,10 +2475,10 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>Your plan has been downgraded to Proton Free, and we're reconnecting you to the fastest free server.</value>
   </data>
   <data name="Overlay_OutdatedClient_Action">
-    <value>Update now</value>
+    <value>立即更新</value>
   </data>
   <data name="Overlay_OutdatedClient_Message">
-    <value>This app version is outdated. You must update the app to continue using Proton VPN.</value>
+    <value>此應用程式版本經已過時。你必須更新應用程式才能繼續使用Proton VPN。</value>
   </data>
   <data name="Overlay_OutdatedClient_Title">
     <value>更新 Proton VPN 以繼續</value>
@@ -2504,77 +2504,75 @@ Speed is based on your device’s current activity — it doesn’t represent th
     <value>P2P 網絡有什麼用途？</value>
   </data>
   <data name="Overlay_P2P_LearnMore">
-    <value>甚麼是P2P?</value>
+    <value>什麼是P2P？</value>
   </data>
   <data name="Overlay_P2P_Title">
     <value> P2P</value>
   </data>
   <data name="Overlay_SecureCore_Description">
-    <value>Secure Core connects you to your destination server via a second, maximum security VPN server.
+    <value>Secure Core 會通過第二個最安全的 VPN 伺服器連接至您的目標伺服器。
 
-This higher level of protection may cause higher latency and slower speeds.</value>
+ 較高保護可能會導致較多延遲和減慢速度。</value>
   </data>
   <data name="Overlay_SecureCore_LearnMore">
     <value>What is Secure Core?</value>
   </data>
   <data name="Overlay_SecureCore_SecureCoreConnection">
     <value>Secure Core
-VPN connection</value>
+VPN 連線</value>
   </data>
   <data name="Overlay_SecureCore_SecureCoreConnection_Latency">
-    <value>Higher latency</value>
+    <value>較高延遲</value>
   </data>
   <data name="Overlay_SecureCore_SecureCoreConnection_Privacy">
-    <value>Advanced privacy</value>
+    <value>進階隱私</value>
   </data>
   <data name="Overlay_SecureCore_StandardConnection">
-    <value>Standard
-VPN connection</value>
+    <value>標準
+VPN 連線</value>
   </data>
   <data name="Overlay_SecureCore_StandardConnection_Latency">
-    <value>Lower latency</value>
+    <value>較低延遲</value>
   </data>
   <data name="Overlay_SecureCore_StandardConnection_Privacy">
-    <value>High privacy</value>
+    <value>高隱私度</value>
   </data>
   <data name="Overlay_SecureCore_Title">
     <value>Secure Core</value>
   </data>
   <data name="Overlay_ServerLoad_Description">
-    <value>Server load shows how close a server is to its maximum capacity.
+    <value>伺服器負載顯示一台伺服器離其運能上限有多遠。
 
-A high server load can slow down your connection.</value>
+高伺服器負載會影響連線速度。</value>
   </data>
   <data name="Overlay_ServerLoad_HighRange_Description">
-    <value>VPN may run slower than normal</value>
+    <value>VPN 執行速度可能較正常為慢</value>
   </data>
   <data name="Overlay_ServerLoad_HighRange_Title">
-    <value>High (91-100%)</value>
+    <value>高 (91-100%)</value>
   </data>
   <data name="Overlay_ServerLoad_LearnMore">
     <value>What is server load?</value>
   </data>
   <data name="Overlay_ServerLoad_LowRange_Description">
-    <value>Lightning fast speeds</value>
+    <value>極速</value>
   </data>
   <data name="Overlay_ServerLoad_LowRange_Title">
-    <value>Low (1-75%)</value>
+    <value>低 (1-75%)</value>
   </data>
   <data name="Overlay_ServerLoad_MediumRange_Description">
-    <value>Unlikely to affect VPN speed</value>
+    <value>對 VPN 速度影響不大</value>
   </data>
   <data name="Overlay_ServerLoad_MediumRange_Title">
-    <value>Medium (76-90%)</value>
+    <value>中 (76-90%)</value>
   </data>
   <data name="Overlay_ServerLoad_Title">
     <value>Server Load</value>
   </data>
   <data name="Overlay_SmartRouting_Description">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.
-    
-When you connect to a Smart Routing server, you’ll appear to be browsing in your destination country, even though the physical server is located elsewhere.  
-
-Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+    <value>Smart Routing 透過虛擬伺服器，在難以到達的國家/地區提供 VPN 連線。
+當你連上Smart Routing 伺服器時，即便伺服器實際上位於其他地方，你瀏覽網站時看起來也會像是在你想連線的國家。
+Smart Routing 經常被用來繞過反隱私法和其他形式的網路審查。</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
     <value>伺服器實際位於 {0}，但你會顯示為從 {1}位置瀏覽。</value>
@@ -2589,7 +2587,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Smart Routing</value>
   </data>
   <data name="Overlay_Tor_Description">
-    <value>Connect to a Tor server to access hidden services and onion sites using any browser.</value>
+    <value>使用任何瀏覽器連線到 Tor 伺服器訪問隱藏服務和隱蔽(Onion)網站。</value>
   </data>
   <data name="Overlay_Tor_LearnMore">
     <value>How to access the Tor network</value>
@@ -2607,19 +2605,19 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>從此瀏覽...</value>
   </data>
   <data name="Search_NoInput_CityOrState">
-    <value>City or US state</value>
+    <value>城市或美國州郡</value>
     <comment>The word used for one single city and one single United States state</comment>
   </data>
   <data name="Search_NoInput_Country">
-    <value>Country</value>
+    <value>國家</value>
     <comment>The word used for one single country</comment>
   </data>
   <data name="Search_NoInput_Server">
-    <value>Server</value>
+    <value>伺服器</value>
     <comment>The word used for one single server</comment>
   </data>
   <data name="Search_NoInput_TrySearchingFor">
-    <value>Try searching for...</value>
+    <value>嘗試搜尋…...</value>
   </data>
   <data name="Search_NoResults_Description">
     <value>Try a different keyword.</value>
@@ -2820,7 +2818,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Your most recently used connection</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
-    <value>Kill switch</value>
+    <value>緊急終止開關</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced">
     <value>Advanced</value>
@@ -2871,7 +2869,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>NetShield Privacy Panel</value>
   </data>
   <data name="Settings_Connection_PortForwarding">
-    <value>Port forwarding</value>
+    <value>通訊埠轉送</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
     <value>Active port:</value>
@@ -3178,20 +3176,20 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Sign in form</value>
   </data>
   <data name="SignIn_Form_AdvancedKillSwitchDescription">
-    <value>Advanced kill switch is blocking your internet connection.</value>
+    <value>進階Kill Switch 現正阻止你的網絡連接。</value>
   </data>
   <data name="SignIn_Form_BestSecureVpnForSpeed">
-    <value>The best secure VPN for speed</value>
+    <value>速度最佳的安全 VPN</value>
   </data>
   <data name="SignIn_Form_CreateAccount">
     <value>Create account</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="SignIn_Form_Description">
-    <value>Enter your Proton Account details.</value>
+    <value>輸入您的 Proton 帳號的詳細資料。</value>
   </data>
   <data name="SignIn_Form_DisableKillSwitch">
-    <value>Disable kill switch</value>
+    <value>停用 Kill Switch</value>
   </data>
   <data name="SignIn_Form_Email">
     <value>Email</value>
@@ -3201,14 +3199,14 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_Help">
-    <value>Help</value>
+    <value>幫助</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_NoLogsPolicy">
-    <value>No-logs policy</value>
+    <value>無日誌政策</value>
   </data>
   <data name="SignIn_Form_OpenSource">
-    <value>Open-source</value>
+    <value>開放原始碼</value>
   </data>
   <data name="SignIn_Form_Password">
     <value>Password</value>
@@ -3233,7 +3231,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>Sign in with SSO</value>
   </data>
   <data name="SignIn_Form_SwissBased">
-    <value>Swiss-based</value>
+    <value>總部設於瑞士</value>
   </data>
   <data name="SignIn_Form_Title">
     <value>Sign in</value>
@@ -3250,7 +3248,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>An error message is displayed when the user attempts to sign in without entering a username</comment>
   </data>
   <data name="SignIn_KillSwitch_Disabled">
-    <value>Kill switch is disabled</value>
+    <value>緊急終止開關已被停用</value>
   </data>
   <data name="SystemNotification_Connected">
     <value>You are now protected</value>
@@ -3274,27 +3272,27 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Unit for Bytes per second</comment>
   </data>
   <data name="Unit_ExabytesPerSecond">
-    <value>EB/s</value>
+    <value>TB/秒</value>
     <comment>Unit for Exabytes per second</comment>
   </data>
   <data name="Unit_GigabytesPerSecond">
-    <value>GB/s</value>
+    <value>GB/秒</value>
     <comment>Unit for Gigabytes per second</comment>
   </data>
   <data name="Unit_KilobytesPerSecond">
-    <value>KB/s</value>
+    <value>KB/秒</value>
     <comment>Unit for Kilobytes per second</comment>
   </data>
   <data name="Unit_MegabytesPerSecond">
-    <value>MB/s</value>
+    <value>MB/秒</value>
     <comment>Unit for Megabytes per second</comment>
   </data>
   <data name="Unit_PetabytesPerSecond">
-    <value>PB/s</value>
+    <value>PB/秒</value>
     <comment>Unit for Petabytes per second</comment>
   </data>
   <data name="Unit_TerabytesPerSecond">
-    <value>TB/s</value>
+    <value>TB/秒</value>
     <comment>Unit for Terabytes per second</comment>
   </data>
   <data name="UpsellBanner_NetShield_Description">
@@ -3313,19 +3311,19 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>解鎖進階 VPN 客製化</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_DNS">
-    <value>Connect to VPN with your custom domain name server (DNS)</value>
+    <value>使用自訂網域名稱伺服器(DNS)連接至VPN</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
-    <value>Access devices on your local area network (LAN) while connected</value>
+    <value>連接後，存取您區域網路 (LAN) 上的裝置</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
-    <value>Level up your gaming experience by switching to NAT type 2 (moderate)</value>
+    <value>切換到NAT 2類型（中階），提升您的遊戲體驗</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices">
-    <value>Connect up to 10 devices at once</value>
+    <value>一次連結多達 10 台裝置</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Platforms">
-    <value>Use Proton VPN on different platforms</value>
+    <value>在不同平臺上使用Proton VPN</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
     <value>Android and Android TV</value>
@@ -3346,13 +3344,13 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>iOS</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Privacy">
-    <value>Security and privacy on all of your devices</value>
+    <value>安全與隱私覆蓋您所有的裝置</value>
   </data>
   <data name="Upsell_Carousel_NetShield">
     <value>享受吳廣告的瀏覽體驗</value>
   </data>
   <data name="Upsell_Carousel_NetShield_Block">
-    <value>Block ads and trackers with NetShield</value>
+    <value>NetShield 有效封鎖廣告與追蹤程式</value>
   </data>
   <data name="Upsell_Carousel_NetShield_Protection">
     <value>保護您的裝置免受惡意軟體威脅</value>
@@ -3389,7 +3387,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <value>以更高的速度瀏覽 (高達 10 Gbps)</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
-    <value>Increase your connection speeds by up to 400% with VPN Accelerator</value>
+    <value>使用 VPN Accelerator 將連線速度提昇多達 400%</value>
   </data>
   <data name="Upsell_Carousel_Speed_Access">
     <value>更快速存取，減少群聚伺服器</value>
@@ -3450,16 +3448,16 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
     <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Audit">
-    <value>Audited by independent security experts</value>
+    <value>由獨立安全專家進行審核</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
-    <value>Bypass censorship with advanced security and privacy features</value>
+    <value>以進階的安全與隱私功能繞過網路審查</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
     <value>{0} 個國家</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
-    <value>Open source VPN</value>
+    <value>開放式程式碼VPN</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
     <value>{0} 個安全伺服器</value>

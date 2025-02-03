@@ -232,7 +232,7 @@
     <value>Reconectar</value>
   </data>
   <data name="Common_Actions_Remove">
-    <value>Borrar</value>
+    <value>Eliminar</value>
   </data>
   <data name="Common_Actions_Update">
     <value>Actualizar</value>
@@ -3021,7 +3021,7 @@ Smart Routing se usa normalmente para eludir las leyes contra la privacidad y ot
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
-    <value>Eliminar aplicación</value>
+    <value>Eliminar la aplicación</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Conflict_Description">
     <value>Esta acción desactivará el Kill Switch.</value>
@@ -3046,7 +3046,7 @@ Smart Routing se usa normalmente para eludir las leyes contra la privacidad y ot
     <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
-    <value>Eliminar dirección IP</value>
+    <value>Eliminar la dirección IP</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Watermark">
     <value>Añadir dirección IPv4</value>
