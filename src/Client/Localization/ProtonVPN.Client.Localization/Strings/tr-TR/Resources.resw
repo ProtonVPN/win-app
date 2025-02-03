@@ -2444,7 +2444,7 @@ Hız, aygıtınızın o andaki etkinliğine bağlıdır ve en yüksek VPN hızı
     <value>İzleyici engellendi</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_Description">
-    <value>İzleyiciler, internet üzerinde yaptığınız işlemler hakkında bilgi toplayıp kaydeden ve satan üçüncü taraf siteler ve çerezlerdir.</value>
+    <value>İzleyiciler, internet üzerindeki etkinlikleriniz ile ilgili bilgi toplayıp kaydeden ve satan üçüncü taraf siteler ve çerezlerdir.</value>
   </data>
   <data name="Home_Page_Title">
     <value>Giriş</value>

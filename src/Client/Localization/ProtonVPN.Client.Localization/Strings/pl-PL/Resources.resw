@@ -2925,7 +2925,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
     <value>Serwery</value>
   </data>
   <data name="Settings_About">
-    <value>Informacje</value>
+    <value>O aplikacji</value>
   </data>
   <data name="Settings_About_Changelog">
     <value>Lista zmian</value>
