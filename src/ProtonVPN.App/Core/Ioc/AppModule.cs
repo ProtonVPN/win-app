@@ -45,11 +45,11 @@ using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Startup;
 using ProtonVPN.Core.Storage;
-using ProtonVPN.Core.Users;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Core.Windows;
 using ProtonVPN.Core.Windows.Popups;
 using ProtonVPN.Crypto;
+using ProtonVPN.Exiting;
 using ProtonVPN.GuestHoles.FileStoraging;
 using ProtonVPN.HumanVerification;
 using ProtonVPN.HumanVerification.Contracts;
@@ -124,9 +124,11 @@ namespace ProtonVPN.Core.Ioc
                 .SingleInstance();
 
             builder.RegisterType<ServerListFactory>().AsImplementedInterfaces().AsSelf().SingleInstance();
-            builder.RegisterType<VpnServiceCaller>().AsSelf().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<ServiceCommunicationErrorHandler>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<ServiceControllerCaller>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<VpnServiceCaller>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<UpdateService>().AsSelf().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<UpdateServiceCaller>().AsSelf().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<UpdateServiceCaller>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ModalWindows>().As<IModalWindows>().SingleInstance();
             builder.RegisterType<ProtonVPN.Modals.Modals>().As<IModals>().SingleInstance();
             builder.RegisterType<PopupWindows>().As<IPopupWindows>().SingleInstance();
@@ -142,8 +144,8 @@ namespace ProtonVPN.Core.Ioc
                         new CachedSettings(
                             new EnumAsStringSettings(
                                 new SelfRepairingSettings(
-                                    c.Resolve<AppSettingsStorage>(),
-                                    c.Resolve<IAppExitInvoker>())))))
+                                    c.Resolve<IAppExitInvoker>(),
+                                    c.Resolve<AppSettingsStorage>())))))
                 .As<ISettingsStorage>()
                 .SingleInstance();
 
@@ -308,6 +310,8 @@ namespace ProtonVPN.Core.Ioc
             builder.RegisterType<ClientControllerEventHandler>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ClientControllerListener>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ProcessCommunicationStarter>().AsImplementedInterfaces().SingleInstance();
+
+            builder.RegisterType<AppExitInvoker>().AsImplementedInterfaces().SingleInstance();
         }
     }
 }

@@ -20,13 +20,12 @@
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
+using ProtonVPN.Common.Vpn;
+using ProtonVPN.Core.Modals;
+using ProtonVPN.Core.Vpn;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Logging.Contracts.Events.UserInterfaceLogs;
-using ProtonVPN.Common.Vpn;
-using ProtonVPN.Core.Modals;
-using ProtonVPN.Core.Service.Vpn;
-using ProtonVPN.Core.Vpn;
 using ProtonVPN.Modals;
 
 namespace ProtonVPN.Core
@@ -35,16 +34,14 @@ namespace ProtonVPN.Core
     {
         private readonly ILogger _logger;
         private readonly IModals _modals;
-        private readonly VpnServiceCaller _vpnServiceCaller;
         private VpnStatus _lastVpnStatus = VpnStatus.Disconnected;
         private bool _isNetworkBlocked;
 
         public bool PendingExit { get; private set; }
 
-        public AppExitHandler(ILogger logger, IModals modals, VpnServiceCaller vpnServiceCaller)
+        public AppExitHandler(ILogger logger, IModals modals)
         {
             _logger = logger;
-            _vpnServiceCaller = vpnServiceCaller;
             _modals = modals;
         }
 

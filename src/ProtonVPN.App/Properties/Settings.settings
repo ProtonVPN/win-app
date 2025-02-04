@@ -434,6 +434,12 @@
     <Setting Name="DisabledSmartProtocols" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="LastProcessVersionMismatchRestartVersions" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LastProcessVersionMismatchRestartUtcDate" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
     <Setting Name="ServerCount" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">9000</Value>
     </Setting>

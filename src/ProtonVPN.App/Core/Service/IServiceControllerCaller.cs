@@ -17,24 +17,25 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.ServiceProcess;
+using System;
+using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
+using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 
 namespace ProtonVPN.Core.Service
 {
-    public interface IMonitoredVpnService
+    public interface IServiceControllerCaller
     {
-        string Name { get; }
+        Task<Result<Task>> InvokeAsync<TController>(Func<TController, CancellationToken, Task<Task>> serviceCall,
+            [CallerMemberName] string memberName = "")
+            where TController : IServiceController;
 
-        bool IsEnabled();
-        void Enable();
+        Task<Result<TResult>> InvokeAsync<TController, TResult>(Func<TController, CancellationToken, Task<TResult>> serviceCall,
+            [CallerMemberName] string memberName = "")
+            where TController : IServiceController;
 
-        ServiceControllerStatus? GetStatus();
-        bool IsRunning();
-        Task<Result> StartAsync();
-        Task<Result> StopAsync();
-
-        Task StartIfNotRunningAsync();
+        void Stop();
     }
 }

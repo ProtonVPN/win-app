@@ -17,6 +17,7 @@
         <PackageReference Include="protobuf-net.Grpc.AspNetCore" Version="1.1.1" />
     </ItemGroup>
     <ItemGroup>
+      <ProjectReference Include="..\..\..\IssueReporting\ProtonVPN.IssueReporting.Contracts\ProtonVPN.IssueReporting.Contracts.csproj" />
       <ProjectReference Include="..\..\..\Logging\ProtonVPN.Logging.Contracts\ProtonVPN.Logging.Contracts.csproj" />
       <ProjectReference Include="..\..\..\OperatingSystems\Processes\ProtonVPN.OperatingSystems.Processes.Contracts\ProtonVPN.OperatingSystems.Processes.Contracts.csproj" />
       <ProjectReference Include="..\..\..\OperatingSystems\Registries\ProtonVPN.OperatingSystems.Registries.Contracts\ProtonVPN.OperatingSystems.Registries.Contracts.csproj" />

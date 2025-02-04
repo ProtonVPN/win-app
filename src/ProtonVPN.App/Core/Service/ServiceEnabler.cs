@@ -18,10 +18,11 @@
 
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Core.Modals;
+using ProtonVPN.Exiting;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
 using ProtonVPN.Modals;
 
 namespace ProtonVPN.Core.Service
@@ -48,7 +49,7 @@ namespace ProtonVPN.Core.Service
                 if (!result.HasValue || !result.Value)
                 {
                     _logger.Info<AppServiceLog>($"The user refused to enable service {service.Name}. Shutting down the application.");
-                    _appExitInvoker.Exit();
+                    _appExitInvoker.Kill();
                     return Result.Fail();
                 }
 

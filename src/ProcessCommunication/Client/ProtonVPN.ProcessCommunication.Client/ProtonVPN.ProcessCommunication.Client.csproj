@@ -18,10 +18,12 @@
       <PackageReference Include="protobuf-net.Grpc" Version="1.1.1" />
     </ItemGroup>
     <ItemGroup>
+      <ProjectReference Include="..\..\..\IssueReporting\ProtonVPN.IssueReporting.Contracts\ProtonVPN.IssueReporting.Contracts.csproj" />
       <ProjectReference Include="..\..\..\OperatingSystems\Processes\ProtonVPN.OperatingSystems.Processes.Contracts\ProtonVPN.OperatingSystems.Processes.Contracts.csproj" />
       <ProjectReference Include="..\..\..\OperatingSystems\Registries\ProtonVPN.OperatingSystems.Registries.Contracts\ProtonVPN.OperatingSystems.Registries.Contracts.csproj" />
       <ProjectReference Include="..\..\..\OperatingSystems\Registries\ProtonVPN.OperatingSystems.Registries.Installers\ProtonVPN.OperatingSystems.Registries.Installers.csproj" />
       <ProjectReference Include="..\..\..\ProtonVPN.Common\ProtonVPN.Common.csproj" />
+      <ProjectReference Include="..\..\..\ProtonVPN.Core\ProtonVPN.Core.csproj" />
       <ProjectReference Include="..\..\Common\ProtonVPN.ProcessCommunication.Common\ProtonVPN.ProcessCommunication.Common.csproj" />
       <ProjectReference Include="..\..\ProtonVPN.ProcessCommunication.Contracts\ProtonVPN.ProcessCommunication.Contracts.csproj" />
     </ItemGroup>

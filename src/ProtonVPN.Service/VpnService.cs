@@ -22,14 +22,14 @@ using System.ComponentModel;
 using System.ServiceProcess;
 using System.Threading;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
-using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
-using ProtonVPN.Logging.Contracts.Events.OperatingSystemLogs;
 using ProtonVPN.Common.OS.Processes;
 using ProtonVPN.Common.OS.Services;
 using ProtonVPN.Common.Vpn;
 using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
+using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
+using ProtonVPN.Logging.Contracts.Events.OperatingSystemLogs;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.Service.Firewall;
 using ProtonVPN.Vpn.Common;
@@ -67,11 +67,17 @@ namespace ProtonVPN.Service
             _ipv6 = ipv6;
             _grpcServer = grpcServer;
             _vpnConnection.StateChanged += OnVpnStateChanged;
+            _grpcServer.InvokingServiceStop += OnInvokingServiceStop;
 
             _cancellationTokenSource = new CancellationTokenSource();
             CancellationToken = _cancellationTokenSource.Token;
 
             InitializeComponent();
+        }
+
+        private void OnInvokingServiceStop(object sender, EventArgs e)
+        {
+            Stop();
         }
 
         protected override void OnStart(string[] args)

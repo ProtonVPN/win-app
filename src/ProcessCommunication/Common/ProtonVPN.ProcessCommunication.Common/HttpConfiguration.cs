@@ -17,12 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.ProcessCommunication.Contracts;
-
-public interface IGrpcServer
+namespace ProtonVPN.ProcessCommunication.Common
 {
-    void CreateAndStart();
-    Task StopAsync();
+    public class HttpConfiguration
+    {
+        public const string CLIENT_PROCESS_PATH = "ClientProcessPath";
+        public const string SERVICE_PROCESS_PATH = "ServiceProcessPath";
+        public const string INSTALLED_SERVICE_PATH = "InstalledServicePath";
 
-    event EventHandler InvokingServiceStop;
+        public const string CLIENT_PROCESS_VERSION = "ClientProcessVersion";
+        public const string SERVICE_PROCESS_VERSION = "ServiceProcessVersion";
+        public const string INSTALLED_SERVICE_VERSION = "InstalledServiceVersion";
+    }
 }

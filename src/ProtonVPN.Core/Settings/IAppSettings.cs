@@ -133,6 +133,8 @@ namespace ProtonVPN.Core.Settings
         string UnauthStatisticalEvents { get; set; }
         DateTimeOffset LogicalsLastModifiedDate { get; set; }
         VpnProtocol[] DisabledSmartProtocols { get; set; }
+        string LastProcessVersionMismatchRestartVersions { get; set; }
+        DateTimeOffset? LastProcessVersionMismatchRestartUtcDate { get; set; }
         int ServerCount { get; set; }
         int CountryCount { get; set; }
 

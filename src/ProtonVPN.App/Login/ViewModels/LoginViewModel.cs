@@ -44,6 +44,7 @@ using ProtonVPN.Translations;
 using ProtonVPN.Vpn.Connectors;
 using ProtonVPN.Login.Enums;
 using ProtonVPN.Core.FeatureFlags;
+using ProtonVPN.Exiting;
 
 namespace ProtonVPN.Login.ViewModels
 {
@@ -60,6 +61,7 @@ namespace ProtonVPN.Login.ViewModels
         private readonly GuestHoleState _guestHoleState;
         private readonly IApiAvailabilityVerifier _apiAvailabilityVerifier;
         private readonly IFeatureFlagsProvider _featureFlagsProvider;
+        private readonly IAppExitInvoker _appExitInvoker;
 
         public LoginErrorViewModel LoginErrorViewModel { get; }
 
@@ -119,7 +121,8 @@ namespace ProtonVPN.Login.ViewModels
             GuestHoleConnector guestHoleConnector,
             GuestHoleState guestHoleState,
             IApiAvailabilityVerifier apiAvailabilityVerifier,
-            IFeatureFlagsProvider featureFlagsProvider)
+            IFeatureFlagsProvider featureFlagsProvider,
+            IAppExitInvoker appExitInvoker)
         {
             _logger = logger;
             _appConfig = appConfig;
@@ -132,6 +135,7 @@ namespace ProtonVPN.Login.ViewModels
             _guestHoleState = guestHoleState;
             _apiAvailabilityVerifier = apiAvailabilityVerifier;
             _featureFlagsProvider = featureFlagsProvider;
+            _appExitInvoker = appExitInvoker;
 
             LoginErrorViewModel = loginErrorViewModel;
             LoginErrorViewModel.ClearError();
@@ -519,7 +523,7 @@ namespace ProtonVPN.Login.ViewModels
                     break;
                 case AuthError.MissingGoSrpDll:
                     _logger.Fatal<AppCrashLog>("The app is missing GoSrp.dll");
-                    FatalErrorHandler fatalErrorHandler = new();
+                    FatalErrorHandler fatalErrorHandler = new(_appExitInvoker);
                     fatalErrorHandler.Exit("The file \"GoSrp.dll\" is missing.");
                     break;
                 case AuthError.SwitchToSSO:

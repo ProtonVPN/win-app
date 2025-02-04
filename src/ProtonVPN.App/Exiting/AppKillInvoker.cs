@@ -17,12 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.ProcessCommunication.Contracts;
+using System;
 
-public interface IGrpcServer
+namespace ProtonVPN.Exiting
 {
-    void CreateAndStart();
-    Task StopAsync();
-
-    event EventHandler InvokingServiceStop;
+    public static class AppKillInvoker
+    {
+        public static void Kill(int code = 0)
+        {
+            Environment.Exit(code);
+        }
+    }
 }

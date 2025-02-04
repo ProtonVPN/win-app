@@ -39,7 +39,7 @@ namespace ProtonVPN.Core.Service.Vpn
 {
     public class VpnServiceManager : IVpnServiceManager
     {
-        private readonly VpnServiceCaller _vpnServiceCaller;
+        private readonly IVpnServiceCaller _vpnServiceCaller;
         private readonly MainSettingsProvider _settingsContractProvider;
         private readonly ILogger _logger;
         private readonly IClientControllerEventHandler _clientControllerEventHandler;
@@ -50,7 +50,7 @@ namespace ProtonVPN.Core.Service.Vpn
         private Action<NetShieldStatistic> _netShieldStatisticCallback;
 
         public VpnServiceManager(
-            VpnServiceCaller vpnServiceCaller,
+            IVpnServiceCaller vpnServiceCaller,
             MainSettingsProvider settingsContractProvider,
             ILogger logger,
             IClientControllerEventHandler clientControllerEventHandler,

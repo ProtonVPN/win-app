@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Core;
+using ProtonVPN.Exiting;
 
 namespace ProtonVPN.ErrorHandling
 {
@@ -27,10 +27,10 @@ namespace ProtonVPN.ErrorHandling
         private readonly ErrorWindowViewModel _errorWindowViewModel;
         private readonly FatalErrorWindow _errorWindow;
 
-        public FatalErrorHandler()
+        public FatalErrorHandler(IAppExitInvoker appExitInvoker)
         {
-            _appExitInvoker = new AppExitInvoker();
-            _errorWindowViewModel = new ErrorWindowViewModel();
+            _appExitInvoker = appExitInvoker;
+            _errorWindowViewModel = new ErrorWindowViewModel(_appExitInvoker);
             _errorWindow = new FatalErrorWindow(_errorWindowViewModel);
         }
 
@@ -38,7 +38,7 @@ namespace ProtonVPN.ErrorHandling
         {
             _errorWindowViewModel.ErrorDescription = errorDescription;
             _errorWindow.ShowDialog();
-            _appExitInvoker.Exit();
+            _appExitInvoker.Kill();
         }
     }
 }

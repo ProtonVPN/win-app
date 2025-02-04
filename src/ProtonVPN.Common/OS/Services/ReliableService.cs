@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.ServiceProcess;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
@@ -44,6 +45,8 @@ namespace ProtonVPN.Common.OS.Services
         {
             _origin.UpdatePathAndArgs(cmd);
         }
+
+        public ServiceControllerStatus? GetStatus() => _origin.GetStatus();
 
         public bool Running() => _origin.Running();
 

@@ -33,4 +33,6 @@ public interface IGrpcClient
 
     Task<T> GetServiceControllerOrThrowAsync<T>(TimeSpan timeout)
         where T : IServiceController;
+
+    public event EventHandler InvokingAppRestart;
 }

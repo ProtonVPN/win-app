@@ -21,21 +21,23 @@ using System.Configuration;
 using System.Diagnostics;
 using ProtonVPN.Core;
 using ProtonVPN.Core.Storage;
+using ProtonVPN.Exiting;
 using File = System.IO.File;
 
 namespace ProtonVPN.Settings
 {
     internal class SelfRepairingSettings : ISettingsStorage
     {
-        private readonly AppSettingsStorage _settings;
         private readonly IAppExitInvoker _appExitInvoker;
+        private readonly AppSettingsStorage _settings;
 
         private bool _loaded;
 
-        public SelfRepairingSettings(AppSettingsStorage settings, IAppExitInvoker appExitInvoker)
+        public SelfRepairingSettings(IAppExitInvoker appExitInvoker,
+            AppSettingsStorage settings)
         {
-            _settings = settings;
             _appExitInvoker = appExitInvoker;
+            _settings = settings;
         }
 
         public T Get<T>(string key)
@@ -52,7 +54,10 @@ namespace ProtonVPN.Settings
 
         private void Load()
         {
-            if (_loaded) return;
+            if (_loaded)
+            {
+                return;
+            }
 
             _loaded = true;
 
@@ -71,7 +76,7 @@ namespace ProtonVPN.Settings
                 File.Delete(configError.Filename);
                 SingleInstanceApplication.ReleaseSingleInstanceLock();
                 Process.Start(System.Windows.Application.ResourceAssembly.Location);
-                _appExitInvoker.Exit();
+                _appExitInvoker.Kill();
             }
         }
     }

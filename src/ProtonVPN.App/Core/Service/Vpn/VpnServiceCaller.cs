@@ -17,12 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
@@ -30,46 +27,46 @@ using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
 namespace ProtonVPN.Core.Service.Vpn
 {
-    public class VpnServiceCaller : ServiceControllerCaller<IVpnController>
+    public class VpnServiceCaller : ServiceCallerBase<IVpnController>, IVpnServiceCaller
     {
-        public VpnServiceCaller(ILogger logger, IGrpcClient grpcClient, Lazy<IMonitoredVpnService> monitoredVpnService) 
-            : base(logger, grpcClient, monitoredVpnService)
+        public VpnServiceCaller(IServiceControllerCaller serviceControllerCaller)
+            : base(serviceControllerCaller)
         {
         }
 
         public Task ApplySettings(MainSettingsIpcEntity settings)
         {
-            return Invoke((c, ct) => c.ApplySettings(settings, ct).Wrap());
+            return InvokeAsync((c, ct) => c.ApplySettings(settings, ct).Wrap());
         }
 
         public Task Connect(ConnectionRequestIpcEntity connectionRequest)
         {
-            return Invoke((c, ct) => c.Connect(connectionRequest, ct).Wrap());
+            return InvokeAsync((c, ct) => c.Connect(connectionRequest, ct).Wrap());
         }
 
         public Task UpdateConnectionCertificate(ConnectionCertificateIpcEntity certificate)
         {
-            return Invoke((c, ct) => c.UpdateConnectionCertificate(certificate, ct).Wrap());
+            return InvokeAsync((c, ct) => c.UpdateConnectionCertificate(certificate, ct).Wrap());
         }
 
         public Task Disconnect(DisconnectionRequestIpcEntity disconnectionRequest)
         {
-            return Invoke((c, ct) => c.Disconnect(disconnectionRequest, ct).Wrap());
+            return InvokeAsync((c, ct) => c.Disconnect(disconnectionRequest, ct).Wrap());
         }
 
         public Task RepeatState()
         {
-            return Invoke((c, ct) => c.RepeatState(ct).Wrap());
+            return InvokeAsync((c, ct) => c.RepeatState(ct).Wrap());
         }
 
         public Task<Result<TrafficBytesIpcEntity>> GetTrafficBytes()
         {
-            return Invoke((c, ct) => c.GetTrafficBytes(ct));
+            return InvokeAsync((c, ct) => c.GetTrafficBytes(ct));
         }
 
         public Task RequestNetShieldStats()
         {
-            return Invoke((c, ct) => c.RequestNetShieldStats(ct).Wrap());
+            return InvokeAsync((c, ct) => c.RequestNetShieldStats(ct).Wrap());
         }
     }
 }

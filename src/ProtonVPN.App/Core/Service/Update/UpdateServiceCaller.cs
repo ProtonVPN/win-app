@@ -20,23 +20,21 @@
 using System;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Extensions;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Update;
 
 namespace ProtonVPN.Core.Service.Update
 {
-    public class UpdateServiceCaller : ServiceControllerCaller<IUpdateController>
+    public class UpdateServiceCaller : ServiceCallerBase<IUpdateController>, IUpdateServiceCaller
     {
-        public UpdateServiceCaller(ILogger logger, IGrpcClient grpcClient, Lazy<IMonitoredVpnService> monitoredVpnService) 
-            : base(logger, grpcClient, monitoredVpnService)
+        public UpdateServiceCaller(IServiceControllerCaller serviceControllerCaller)
+            : base(serviceControllerCaller)
         {
         }
 
         public Task CheckForUpdates(UpdateSettingsIpcEntity updateSettingsIpcEntity)
         {
-            return Invoke((c, ct) => c.CheckForUpdate(updateSettingsIpcEntity, ct).Wrap());
+            return InvokeAsync((c, ct) => c.CheckForUpdate(updateSettingsIpcEntity, ct).Wrap());
         }
 
         public Task StartAutoUpdate()
@@ -45,7 +43,7 @@ namespace ProtonVPN.Core.Service.Update
             {
                 RetryId = Guid.NewGuid()
             };
-            return Invoke((c, ct) => c.StartAutoUpdate(startAutoUpdateIpcEntity, ct).Wrap());
+            return InvokeAsync((c, ct) => c.StartAutoUpdate(startAutoUpdateIpcEntity, ct).Wrap());
         }
     }
 }

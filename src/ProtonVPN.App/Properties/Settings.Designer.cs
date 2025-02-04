@@ -1748,6 +1748,30 @@ namespace ProtonVPN.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastProcessVersionMismatchRestartVersions {
+            get {
+                return ((string)(this["LastProcessVersionMismatchRestartVersions"]));
+            }
+            set {
+                this["LastProcessVersionMismatchRestartVersions"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastProcessVersionMismatchRestartUtcDate {
+            get {
+                return ((string)(this["LastProcessVersionMismatchRestartUtcDate"]));
+            }
+            set {
+                this["LastProcessVersionMismatchRestartUtcDate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("9000")]
         public int ServerCount {
             get {

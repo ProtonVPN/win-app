@@ -24,6 +24,7 @@ using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
+using ServiceControllerStatus = System.ServiceProcess.ServiceControllerStatus;
 
 namespace ProtonVPN.Common.OS.Services
 {
@@ -52,6 +53,8 @@ namespace ProtonVPN.Common.OS.Services
                 return Task.FromResult(Result.Ok());
             }).Wait();
         }
+
+        public ServiceControllerStatus? GetStatus() => _origin.GetStatus();
 
         public bool Running() => _origin.Running();
 

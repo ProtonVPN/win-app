@@ -19,6 +19,7 @@
 
 using System;
 using System.IO;
+using System.ServiceProcess;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
@@ -42,6 +43,8 @@ namespace ProtonVPN.Common.OS.Services
         }
 
         public string Name => Service.Name;
+
+        public ServiceControllerStatus? GetStatus() => Service.GetStatus();
 
         public bool IsRunning() => Service.Running();
 

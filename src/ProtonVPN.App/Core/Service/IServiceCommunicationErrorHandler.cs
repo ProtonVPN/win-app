@@ -17,12 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.ProcessCommunication.Contracts;
+using System.Threading.Tasks;
 
-public interface IGrpcServer
+namespace ProtonVPN.Core.Service
 {
-    void CreateAndStart();
-    Task StopAsync();
-
-    event EventHandler InvokingServiceStop;
+    public interface IServiceCommunicationErrorHandler
+    {
+        Task HandleAsync();
+    }
 }

@@ -44,25 +44,25 @@ public class ClientControllerListener : IClientControllerListener
 {
     private readonly ILogger _logger;
     private readonly IGrpcClient _grpcClient;
-    private readonly IMonitoredVpnService _monitoredVpnService;
     private readonly IAnnouncementService _announcementService;
     private readonly IUpgradeModalManager _upgradeModalManager;
     private readonly IClientControllerEventHandler _clientControllerEventHandler;
+    private readonly IServiceCommunicationErrorHandler _serviceCommunicationErrorHandler;
     private readonly CancellationTokenSource _cancellationTokenSource = new();
 
     public ClientControllerListener(ILogger logger,
         IGrpcClient grpcClient,
-        IMonitoredVpnService monitoredVpnService,
         IAnnouncementService announcementService,
         IUpgradeModalManager upgradeModalManager,
-        IClientControllerEventHandler clientControllerEventHandler)
+        IClientControllerEventHandler clientControllerEventHandler,
+        IServiceCommunicationErrorHandler serviceCommunicationErrorHandler)
     {
         _logger = logger;
         _grpcClient = grpcClient;
-        _monitoredVpnService = monitoredVpnService;
         _announcementService = announcementService;
         _upgradeModalManager = upgradeModalManager;
         _clientControllerEventHandler = clientControllerEventHandler;
+        _serviceCommunicationErrorHandler = serviceCommunicationErrorHandler;
     }
 
     public void Start()
@@ -81,19 +81,19 @@ public class ClientControllerListener : IClientControllerListener
         {
             try
             {
+                _logger.Info<AppLog>($"Listener starting ({listener.Method.Name})");
                 await listener();
             }
             catch
             {
-                _logger.Warn<AppLog>($"Listener stopped ({listener.Method.Name}). Restarting.");
+                _logger.Warn<AppLog>($"Listener stopped ({listener.Method.Name})");
             }
-            await StartServiceIfStoppedAsync();
-        }
-    }
 
-    private async Task StartServiceIfStoppedAsync()
-    {
-        await _monitoredVpnService.StartIfNotRunningAsync();
+            if (!_cancellationTokenSource.IsCancellationRequested)
+            {
+                await _serviceCommunicationErrorHandler.HandleAsync();
+            }
+        }
     }
 
     private async Task StartVpnStateListenerAsync()

@@ -17,24 +17,22 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.ServiceProcess;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
-namespace ProtonVPN.Core.Service
+namespace ProtonVPN.Core.Service.Vpn
 {
-    public interface IMonitoredVpnService
+    public interface IVpnServiceCaller
     {
-        string Name { get; }
-
-        bool IsEnabled();
-        void Enable();
-
-        ServiceControllerStatus? GetStatus();
-        bool IsRunning();
-        Task<Result> StartAsync();
-        Task<Result> StopAsync();
-
-        Task StartIfNotRunningAsync();
+        Task ApplySettings(MainSettingsIpcEntity settings);
+        Task Connect(ConnectionRequestIpcEntity connectionRequest);
+        Task UpdateConnectionCertificate(ConnectionCertificateIpcEntity certificate);
+        Task Disconnect(DisconnectionRequestIpcEntity disconnectionRequest);
+        Task RepeatState();
+        Task<Result<TrafficBytesIpcEntity>> GetTrafficBytes();
+        Task RequestNetShieldStats();
     }
 }
