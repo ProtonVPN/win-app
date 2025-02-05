@@ -25,7 +25,7 @@ using ProtonVPN.UI.Tests.TestsHelper;
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
-[Category("1")]
+[Category("3")]
 [Category("ARM")]
 public class CustomDnsTests : BaseTest
 {

@@ -237,13 +237,13 @@ public class SettingRobot
 
     public SettingRobot ToggleAutoLaunchSetting()
     {
-        AutoLaunchToggle.Click();
+        AutoLaunchToggle.Toggle();
         return this;
     }
 
     public SettingRobot ToggleAutoConnectionSetting()
     {
-        AutoConnectToggle.Click();
+        AutoConnectToggle.Toggle();
         return this;
     }
 

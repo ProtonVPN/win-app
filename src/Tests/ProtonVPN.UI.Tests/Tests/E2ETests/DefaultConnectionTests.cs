@@ -23,6 +23,8 @@ using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
+[TestFixture]
+[Category("3")]
 public class DefaultConnectionTests : BaseTest
 {
     private const string COUNTRY_CODE = "AU";

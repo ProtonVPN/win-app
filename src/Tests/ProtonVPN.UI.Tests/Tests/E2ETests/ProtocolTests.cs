@@ -25,7 +25,7 @@ using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
-[Category("2")]
+[Category("3")]
 [Category("ARM")]
 public class ProtocolTests : FreshSessionSetUp
 {

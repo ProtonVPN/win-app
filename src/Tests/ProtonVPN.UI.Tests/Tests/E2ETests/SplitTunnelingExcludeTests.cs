@@ -25,7 +25,8 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 
 [TestFixture]
-[Category("1")]
+[Category("3")]
+[Category("ARM")]
 public class SplitTunnelingExcludeModeTests : BaseTest
 {
     private string _ipAddressNotConnected = null;

@@ -30,6 +30,7 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
 [Category("2")]
+[Category("ARM")]
 public class NavigationTests : FreshSessionSetUp
 {
     [SetUp]
@@ -87,7 +88,6 @@ public class NavigationTests : FreshSessionSetUp
     {
         SettingRobot.OpenSettingsViaShortcut()
            .Verify.IsSettingsPageDisplayed()
-           .OpenAdvancedSettings()
            .CloseSettingsUsingEscButton()
            .Verify.IsSettingsPageNotDisplayed();
 
