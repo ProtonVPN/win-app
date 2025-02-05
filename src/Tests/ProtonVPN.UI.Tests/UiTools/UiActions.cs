@@ -50,6 +50,14 @@ public static class UiActions
         return desiredElement;
     }
 
+    public static T Toggle<T>(this T desiredElement) where T : Element
+    {
+        AutomationElement elementToClick = WaitUntilExists(desiredElement);
+        elementToClick.WaitUntilClickable(TestConstants.TenSecondsTimeout);
+        elementToClick.AsToggleButton().Toggle();
+        return desiredElement;
+    }
+
     public static T MoveMouse<T>(this T desiredElement, int offsetX = 0, int offsetY = 0) where T : Element
     {
         AutomationElement element = WaitUntilExists(desiredElement);

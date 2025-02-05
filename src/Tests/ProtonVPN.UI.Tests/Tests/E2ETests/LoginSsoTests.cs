@@ -26,7 +26,7 @@ using ProtonVPN.UI.Tests.TestsHelper;
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
-[Category("1")]
+[Category("2")]
 [Category("ARM")]
 public class LoginSsoTests : FreshSessionSetUp
 {

@@ -25,7 +25,7 @@ using ProtonVPN.UI.Tests.TestsHelper;
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
-[Category("2")]
+[Category("3")]
 [Category("ARM")]
 public class NetShieldTests : FreshSessionSetUp
 {

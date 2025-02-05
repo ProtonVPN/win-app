@@ -178,6 +178,16 @@ ui-tests-group-2:
     - schedules
   variables:
     CATEGORY: "2"
+    
+ui-tests-group-3:
+  extends: .ui_test_execution_script
+  except:
+    - /^debug.*$/
+    - release/9.9.9
+    - master
+    - schedules
+  variables:
+    CATEGORY: "3"
 
 ui-tests-full-arm:
   extends: .ui_test_execution_script
