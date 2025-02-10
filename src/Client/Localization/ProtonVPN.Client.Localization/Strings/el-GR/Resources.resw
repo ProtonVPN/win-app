@@ -2562,7 +2562,7 @@
     <value>Για μεγαλύτερη ταχύτητα, ρυθμίστε αυτόν τον αριθμό στην εφαρμογή σας BitTorrent.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
-    <value>Το σχέδιό σας έχει υποβαθμιστεί σε Proton Free και σας επανασυνδέουμε στον ταχύτερο δωρεάν διακομιστή.</value>
+    <value>Το πλάνο σας έχει υποβαθμιστεί σε Proton Free και σας επανασυνδέουμε στον ταχύτερο δωρεάν διακομιστή.</value>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Ενημέρωση Τώρα</value>

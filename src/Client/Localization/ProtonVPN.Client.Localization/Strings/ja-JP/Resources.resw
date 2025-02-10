@@ -1622,7 +1622,7 @@
     <value>無料サーバーの変更回数が上限に達しました。</value>
   </data>
   <data name="Dialogs_Common_GetStarted">
-    <value>始めましょう！</value>
+    <value>始めましょう</value>
   </data>
   <data name="Dialogs_Common_SubscriptionExpired">
     <value>サブスクリプションの有効期限が切れました</value>
@@ -1654,7 +1654,7 @@
     <value>超高速スピード</value>
   </data>
   <data name="Dialogs_Latency_LowRange_Title">
-    <value>低 (1ms ～ 50ms)</value>
+    <value>低 (1ms - 50ms)</value>
   </data>
   <data name="Dialogs_Latency_MediumRange_Description">
     <value>VPN 速度に影響を与える可能性は低い</value>
@@ -1663,7 +1663,7 @@
     <value>中 (50ms - 150ms)</value>
   </data>
   <data name="Dialogs_Latency_Title">
-    <value>レイテンシーとは何ですか?</value>
+    <value>遅延とは何ですか？</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>P2Pでトレントする方法</value>
@@ -2380,14 +2380,14 @@ VPNはあなたのIPアドレスを隠し、ISPの干渉からあなたを保護
     <value>ピン留めを解除</value>
   </data>
   <data name="Home_Update_Confirmation_Message">
-    <value>更新プロセスを完了するために、Proton VPN は、Advanced Kill Switch のいずれかがアクティブである場合、一時的に切断し、非アクティブにします。 続けたいですか？</value>
+    <value>更新プロセスを完了するために、Proton VPN はAdvanced Kill Switch のいずれかがアクティブである場合、一時的に切断し、非アクティブにします。 続行しますか？</value>
     <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
   </data>
   <data name="Home_Update_Confirmation_Title">
-    <value>Proton VPN をアップデート?</value>
+    <value>Proton VPN をアップデートしますか？</value>
   </data>
   <data name="Home_Update_UpdateAvailable">
-    <value>更新あり</value>
+    <value>アップデートが利用可能です</value>
   </data>
   <data name="Home_Update_UpdateReady">
     <value>アップデートの準備完了</value>
@@ -2470,7 +2470,7 @@ VPNはあなたのIPアドレスを隠し、ISPの干渉からあなたを保護
     <value>速度を上げるために BitTorrent へこの番号を指定します。</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
-    <value>お客様のプランは Proton Free にダウングレードされ、最速のフリーサーバーに再接続されます。</value>
+    <value>お客様のプランは Proton Free にダウングレードされ、最速の無料サーバーに再接続されます。</value>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>今すぐアップデート</value>
@@ -2647,7 +2647,7 @@ VPN接続</value>
     <value>Tor</value>
   </data>
   <data name="Server_Free">
-    <value>Freeサーバー</value>
+    <value>無料サーバー</value>
   </data>
   <data name="Servers">
     <value>サーバー</value>

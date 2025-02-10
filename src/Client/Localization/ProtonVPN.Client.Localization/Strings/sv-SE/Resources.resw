@@ -2934,7 +2934,7 @@ Smart Routing används vanligtvis för att kringgå lagar som motverkar integrit
     <value>Standard</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Standard_Description">
-    <value>Koppla automatiskt från internet om VPN-anslutningen bryts.</value>
+    <value>Koppla automatiskt från internet om VPN-anslutning är tappad.</value>
   </data>
   <data name="Settings_Connection_NetShield">
     <value>NetShield</value>
