@@ -2406,7 +2406,7 @@ Hız, aygıtınızın o andaki etkinliğine bağlıdır ve en yüksek VPN hızı
     <value>IP adresiniz</value>
   </data>
   <data name="Home_FreeConnections_About">
-    <value>Free bağlantıları hakkında ayrıntılı bilgi</value>
+    <value>Free bağlantıları ile ilgili ayrıntılı bilgi</value>
   </data>
   <data name="Home_Help_Title">
     <value>Yardım</value>
@@ -3118,7 +3118,7 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
     <value>Bildirimler</value>
   </data>
   <data name="Settings_General_Notifications_Description">
-    <value>Proton VPN gelişmeleri hakkında bildirim alın</value>
+    <value>Proton VPN gelişmeleri ile ilgili bildirim alın</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver">
     <value>OpenVPN ağ sürücüsü</value>

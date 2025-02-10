@@ -121,7 +121,7 @@
     <value>Proton VPN Free</value>
   </data>
   <data name="Automation_Properties_ConnectionDetails_Page">
-    <value>Halaman detail koneksi</value>
+    <value>Halaman rincian koneksi</value>
   </data>
   <data name="Automation_Properties_Features_Bar">
     <value>Bilah fitur</value>
@@ -163,7 +163,7 @@
     <value>Halaman negara</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Gateways_Page">
-    <value>Halaman pintu gerbang</value>
+    <value>Halaman gateway</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Page">
     <value>Halaman koneksi</value>
