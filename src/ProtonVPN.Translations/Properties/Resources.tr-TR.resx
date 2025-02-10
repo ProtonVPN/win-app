@@ -239,7 +239,7 @@
     <comment>The text displayed in Account window for NetShield</comment>
   </data>
   <data name="Account_lbl_NoLogs">
-    <value>Sıkı kayıt tutmama ilkesi</value>
+    <value>Katı kayıt tutmama ilkesi</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_P2P">
@@ -1642,7 +1642,7 @@
     <comment>The text on "Keep disabled" button in the Enable Smart Protocol window</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_msg">
-    <value>Proton VPN, geçerli ağınızın VPN bağlantısını engellediğini algıladı. Smart Protocol özelliğini açmak bu sınırlamaları aşabilir. &lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;Smart Protocol hakkında ayrıntılı bilgi alın.&lt;/Hyperlink&gt;</value>
+    <value>Proton VPN, geçerli ağınızın VPN bağlantısını engellediğini algıladı. Smart Protocol özelliğini açmak bu sınırlamaları aşabilir. &lt;LineBreak/&gt;&lt;LineBreak/&gt;&lt;Hyperlink Command="{Binding ReadAboutSmartProtocolCommand}"&gt;Smart Protocol ile ilgili ayrıntılı bilgi alın.&lt;/Hyperlink&gt;</value>
     <comment>The message displayed in the Enable Smart Protocol window. The codes between &lt; and &gt; should be kept as is (Do not forget to translate the inner "Read more about Smart Protocol.").</comment>
   </data>
   <data name="Dialogs_EnableSmartProtocol_ttl">
@@ -2081,7 +2081,7 @@
     <value>Secure Core, en yüksek düzeyde güvenlik ve gizlilik sunar. Ancak internet hızınızı düşürebilir. Başarımı yükseltmeye gerek duyuyorsanız, Secure Core özelliğini kapatabilirsiniz.</value>
   </data>
   <data name="Modal_DiscourageSecureCore_Title">
-    <value>Hız hakkında bir not...</value>
+    <value>Hız ile ilgili bir not...</value>
   </data>
   <data name="Modals_Rescope_NewFreeCountries">
     <value>Yeni Free ülkeleri</value>

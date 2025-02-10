@@ -490,7 +490,7 @@
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_btn_Cancel">
-    <value>Keskeytä</value>
+    <value>Peruuta</value>
     <comment>The text on cancel button in Connecting overlay of main app window (cancels connection attempt)</comment>
   </data>
   <data name="Connecting_btn_TryAgain">

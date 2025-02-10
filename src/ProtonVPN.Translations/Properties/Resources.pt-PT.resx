@@ -383,7 +383,7 @@
     <comment>The watermark text displayed in empty user e-mail text box in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_HowToReproduce">
-    <value>Quais são exactamente os passos que deu?</value>
+    <value>Quais foram os passos exatos que realizou?</value>
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_IncludeLogs">
