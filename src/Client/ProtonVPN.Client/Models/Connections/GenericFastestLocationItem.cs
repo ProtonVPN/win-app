@@ -25,6 +25,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.Models.Connections;
 
@@ -40,6 +41,8 @@ public class GenericFastestLocationItem : LocationItemBase
 
     public override string? ToolTip => null;
 
+    public override VpnTriggerDimension VpnTriggerDimension { get; } = VpnTriggerDimension.Profile;
+
     public GenericFastestLocationItem(
         ILocalizationProvider localizer,
         IServersLoader serversLoader,
@@ -50,7 +53,8 @@ public class GenericFastestLocationItem : LocationItemBase
         : base(localizer,
                serversLoader,
                connectionManager,
-               upsellCarouselWindowActivator)
+               upsellCarouselWindowActivator,
+               false)
     {
         GroupType = groupType;
         LocationIntent = locationIntent;

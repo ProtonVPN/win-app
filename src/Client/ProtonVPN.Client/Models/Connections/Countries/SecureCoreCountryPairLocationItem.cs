@@ -27,6 +27,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.Models.Connections.Countries;
 
@@ -39,6 +40,10 @@ public class SecureCoreCountryPairLocationItem : LocationItemBase<SecureCoreCoun
     public override string Header => Localizer.GetCountryName(CountryPair.ExitCountry);
 
     public override string Description => Localizer.GetSecureCoreLabel(CountryPair.EntryCountry);
+
+    public override VpnTriggerDimension VpnTriggerDimension => IsSearchItem
+        ? VpnTriggerDimension.SearchCountry
+        : VpnTriggerDimension.CountriesCountry;
 
     public override ILocationIntent LocationIntent { get; }
 
@@ -56,12 +61,14 @@ public class SecureCoreCountryPairLocationItem : LocationItemBase<SecureCoreCoun
         IServersLoader serversLoader,
         IConnectionManager connectionManager,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
-        SecureCoreCountryPair countryPair)
+        SecureCoreCountryPair countryPair,
+        bool isSearchItem)
         : base(localizer,
                serversLoader,
                connectionManager,
                upsellCarouselWindowActivator,
-               countryPair)
+               countryPair,
+               isSearchItem)
     {
         CountryPair = countryPair;
 

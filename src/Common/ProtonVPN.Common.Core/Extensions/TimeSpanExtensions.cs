@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -48,5 +48,10 @@ public static class TimeSpanExtensions
     public static TimeSpan Max(TimeSpan value1, TimeSpan value2)
     {
         return TimeSpan.FromTicks(Math.Max(value1.Ticks, value2.Ticks));
+    }
+
+    public static float GetTotalMilliseconds(this TimeSpan value)
+    {
+        return (float)Math.Truncate(value.TotalMilliseconds);
     }
 }

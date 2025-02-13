@@ -26,7 +26,6 @@ using ProtonVPN.Client.Logic.Connection.NetworkingTraffic;
 using ProtonVPN.Client.Logic.Connection.RequestCreators;
 using ProtonVPN.Client.Logic.Connection.ServerListGenerators;
 using ProtonVPN.Client.Logic.Connection.Validators;
-using ProtonVPN.Common.Legacy.OS.Net;
 using ProtonVPN.EntityMapping.Common.Installers.Extensions;
 
 namespace ProtonVPN.Client.Logic.Connection.Installers;
@@ -38,12 +37,10 @@ public class ConnectionLogicModule : Module
         builder.RegisterType<ConnectionManager>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<PortForwardingManager>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<GuestHoleServersFileStorage>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<GuestHoleConnector>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<GuestHoleManager>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<NetworkAdapterValidator>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<VpnStateIpcEntityHandler>().AsImplementedInterfaces().AutoActivate().SingleInstance();
         builder.RegisterType<ConnectionErrorHandler>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<NetworkInterfaceLoader>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<VpnServiceSettingsUpdater>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ConnectedServerChecker>().AsImplementedInterfaces().AutoActivate().SingleInstance();
         builder.RegisterType<VpnStatePollingObserver>().AsImplementedInterfaces().AutoActivate().SingleInstance();

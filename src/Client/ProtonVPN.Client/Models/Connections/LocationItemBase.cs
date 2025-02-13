@@ -40,11 +40,13 @@ public abstract partial class LocationItemBase : ConnectionItemBase, ILocationIt
         ILocalizationProvider localizer,
         IServersLoader serversLoader,
         IConnectionManager connectionManager,
-        IUpsellCarouselWindowActivator upsellCarouselWindowActivator)
+        IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
+        bool isSearchItem)
         : base(localizer,
                serversLoader,
                connectionManager,
-               upsellCarouselWindowActivator)
+               upsellCarouselWindowActivator,
+               isSearchItem)
     {
     }
 
@@ -62,11 +64,13 @@ public abstract partial class LocationItemBase<TLocation> : LocationItemBase
         IServersLoader serversLoader,
         IConnectionManager connectionManager,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
-        TLocation location)
+        TLocation location,
+        bool isSearchItem)
         : base(localizer,
                serversLoader,
                connectionManager,
-               upsellCarouselWindowActivator)
+               upsellCarouselWindowActivator,
+               isSearchItem)
     {
         IsUnderMaintenance = location.IsLocationUnderMaintenance();
     }

@@ -29,6 +29,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.Models.Connections.Countries;
 
@@ -65,6 +66,10 @@ public class GenericCountryLocationItem : LocationItemBase
         _ => ConnectionGroupType.Countries,
     };
 
+    public override VpnTriggerDimension VpnTriggerDimension => IsSearchItem
+        ? VpnTriggerDimension.SearchCountry
+        : VpnTriggerDimension.CountriesCountry;
+
     public override string? ToolTip =>
         IsRestricted
             ? Localizer.Get("Connections_Country_Restricted")
@@ -90,11 +95,13 @@ public class GenericCountryLocationItem : LocationItemBase
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
         CountriesConnectionType connectionType,
         ConnectionIntentKind intentKind,
-        bool excludeMyCountry)
+        bool excludeMyCountry,
+        bool isSearchItem)
         : base(localizer,
                serversLoader,
                connectionManager,
-               upsellCarouselWindowActivator)
+               upsellCarouselWindowActivator,
+               isSearchItem)
     {
         ConnectionType = connectionType;
         IntentKind = intentKind;

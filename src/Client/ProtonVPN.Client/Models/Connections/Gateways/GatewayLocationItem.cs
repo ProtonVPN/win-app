@@ -27,6 +27,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.Models.Connections.Gateways;
 
@@ -49,6 +50,8 @@ public class GatewayLocationItem : HostLocationItemBase<Gateway>
 
     public override IFeatureIntent? FeatureIntent { get; } = new B2BFeatureIntent();
 
+    public override VpnTriggerDimension VpnTriggerDimension { get; } = VpnTriggerDimension.GatewaysGateway;
+
     public GatewayLocationItem(
         ILocalizationProvider localizer,
         IServersLoader serversLoader,
@@ -65,7 +68,8 @@ public class GatewayLocationItem : HostLocationItemBase<Gateway>
                upsellCarouselWindowActivator,
                connectionGroupFactory,
                locationItemFactory,
-               gateway)
+               gateway,
+               false)
     {
         Gateway = gateway;
 

@@ -38,8 +38,12 @@ public class ServerLocationIntent : CityLocationIntent
     }
 
     public ServerLocationIntent(string id, string name, string countryCode, string city)
-        : this(id, name, countryCode, null, city)
-    { }
+        : base(countryCode, city)
+    {
+        Id = id;
+        Name = name;
+        Number = this.GetServerNumber();
+    }
 
     public override bool IsSameAs(ILocationIntent? intent)
     {

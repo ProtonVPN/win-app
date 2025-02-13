@@ -21,8 +21,8 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Common.Legacy.KillSwitch;
-using ProtonVPN.Common.Legacy.OS.Net;
 using ProtonVPN.Common.Legacy.Vpn;
+using ProtonVPN.OperatingSystems.Network.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.Service.Firewall;
@@ -118,8 +118,7 @@ namespace ProtonVPN.Service.Tests.KillSwitch
             {
                 Mode = SplitTunnelModeIpcEntity.Block
             });
-            Service.KillSwitch.KillSwitch killSwitch =
-                new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceLoader);
+            Service.KillSwitch.KillSwitch killSwitch = new(_firewall, _serviceSettings, _networkInterfaceLoader);
 
             // Act
             bool result = killSwitch.ExpectedLeakProtectionStatus(state);
@@ -206,6 +205,7 @@ namespace ProtonVPN.Service.Tests.KillSwitch
                 manualDisconnect ? VpnError.None : VpnError.Unknown,
                 "1.1.1.1",
                 RemoteIp,
+                443,
                 default);
         }
 
@@ -216,6 +216,7 @@ namespace ProtonVPN.Service.Tests.KillSwitch
                 VpnError.None,
                 "1.1.1.1",
                 RemoteIp,
+                443,
                 default);
         }
 
@@ -226,6 +227,7 @@ namespace ProtonVPN.Service.Tests.KillSwitch
                 VpnError.None,
                 "1.1.1.1",
                 RemoteIp,
+                443,
                 default);
         }
     }

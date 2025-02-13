@@ -66,12 +66,14 @@ public abstract partial class HostLocationItemBase<TLocation> : LocationItemBase
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
         IConnectionGroupFactory connectionGroupFactory,
         ILocationItemFactory locationItemFactory,
-        TLocation location)
+        TLocation location,
+        bool isSearchItem)
         : base(localizer,
                serversLoader,
                connectionManager,
                upsellCarouselWindowActivator,
-               location)
+               location,
+               isSearchItem)
     {
         OverlayActivator = overlayActivator;
         ConnectionGroupFactory = connectionGroupFactory;

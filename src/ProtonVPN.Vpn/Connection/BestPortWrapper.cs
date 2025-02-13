@@ -167,6 +167,7 @@ public class BestPortWrapper : ISingleVpnConnection
                 VpnError.PingTimeoutError,
                 string.Empty,
                 _vpnEndpoint.Server.Ip,
+                _vpnEndpoint.Port,
                 _config.VpnProtocol,
                 portForwarding: false,
                 _config.OpenVpnAdapter,

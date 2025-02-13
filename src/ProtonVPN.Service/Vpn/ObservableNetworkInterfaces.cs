@@ -20,17 +20,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ProtonVPN.Common.Legacy.OS.Net.NetworkInterface;
+using ProtonVPN.OperatingSystems.Network.Contracts;
 
 namespace ProtonVPN.Service.Vpn
 {
     public class ObservableNetworkInterfaces
     {
-        private readonly INetworkInterfaces _networkInterfaces;
+        private readonly ISystemNetworkInterfaces _networkInterfaces;
 
         private List<string> _interfaces = new List<string>();
 
-        public ObservableNetworkInterfaces(INetworkInterfaces networkInterfaces)
+        public ObservableNetworkInterfaces(ISystemNetworkInterfaces networkInterfaces)
         {
             _networkInterfaces = networkInterfaces;
 

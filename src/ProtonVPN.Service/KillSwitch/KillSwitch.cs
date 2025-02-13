@@ -20,9 +20,8 @@
 using Autofac;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Legacy.KillSwitch;
-using ProtonVPN.Common.Legacy.OS.Net;
-using ProtonVPN.Common.Legacy.OS.Net.NetworkInterface;
 using ProtonVPN.Common.Legacy.Vpn;
+using ProtonVPN.OperatingSystems.Network.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.Service.Firewall;

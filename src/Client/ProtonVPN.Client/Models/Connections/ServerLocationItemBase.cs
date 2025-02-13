@@ -26,6 +26,7 @@ using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.Models.Connections;
 
@@ -63,6 +64,10 @@ public abstract class ServerLocationItemBase : LocationItemBase<Server>
 
     public override ILocationIntent LocationIntent { get; }
 
+    public override VpnTriggerDimension VpnTriggerDimension => IsSearchItem
+        ? VpnTriggerDimension.SearchServer
+        : VpnTriggerDimension.CountriesServer;
+
     protected override string AutomationName => "Spectific_Server";
 
     protected ServerLocationItemBase(
@@ -70,12 +75,14 @@ public abstract class ServerLocationItemBase : LocationItemBase<Server>
         IServersLoader serversLoader,
         IConnectionManager connectionManager,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
-        Server server)
+        Server server,
+        bool isSearchItem)
         : base(localizer,
                serversLoader,
                connectionManager,
                upsellCarouselWindowActivator,
-               server)
+               server,
+               isSearchItem)
     {
         Server = server;
 

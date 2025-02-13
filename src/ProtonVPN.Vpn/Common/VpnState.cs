@@ -31,6 +31,7 @@ public class VpnState
     public VpnError Error { get; }
     public string LocalIp { get; }
     public string RemoteIp { get; }
+    public int EndpointPort { get; }
     public OpenVpnAdapter? OpenVpnAdapter { get; }
     public VpnProtocol VpnProtocol { get; }
     public string Label { get; }
@@ -38,25 +39,26 @@ public class VpnState
     public ConnectionCertificate ConnectionCertificate { get; }
 
     public VpnState(VpnStatus status, VpnProtocol vpnProtocol)
-        : this(status, VpnError.None, string.Empty, string.Empty, vpnProtocol)
+        : this(status, VpnError.None, string.Empty, string.Empty, 0, vpnProtocol)
     {
     }
 
     public VpnState(VpnStatus status, VpnError error, VpnProtocol vpnProtocol)
-        : this(status, error, string.Empty, string.Empty, vpnProtocol)
+        : this(status, error, string.Empty, string.Empty, 0, vpnProtocol)
     {
     }
 
-    public VpnState(VpnStatus status, string remoteIp, VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter = null, string label = "")
+    public VpnState(VpnStatus status, string remoteIp, int endpointPort, VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter = null, string label = "")
     {
         Status = status;
         RemoteIp = remoteIp;
+        EndpointPort = endpointPort;
         VpnProtocol = vpnProtocol;
         OpenVpnAdapter = openVpnAdapter;
         Label = label;
     }
 
-    public VpnState(VpnStatus status, VpnError error, string localIp, string remoteIp, VpnProtocol vpnProtocol,
+    public VpnState(VpnStatus status, VpnError error, string localIp, string remoteIp, int endpointPort, VpnProtocol vpnProtocol,
         bool portForwarding = false, OpenVpnAdapter? openVpnAdapter = null, string label = "",
         ConnectionCertificate connectionCertificate = null)
     {
@@ -64,6 +66,7 @@ public class VpnState
         Error = error;
         LocalIp = localIp;
         RemoteIp = remoteIp;
+        EndpointPort = endpointPort;
         VpnProtocol = vpnProtocol;
         PortForwarding = portForwarding;
         OpenVpnAdapter = openVpnAdapter;

@@ -26,7 +26,9 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Common.Core.Geographical;
 using ProtonVPN.Common.Core.Networking;
+using ProtonVPN.Common.Core.StatisticalEvents;
 using ProtonVPN.Serialization.Contracts;
+using ProtonVPN.StatisticalEvents.Contracts.Models;
 
 namespace ProtonVPN.Serialization.Protobuf.Entities;
 
@@ -60,5 +62,8 @@ public class ProtobufSerializableEntities : IProtobufSerializableEntities
 
         yield return typeof(SerializableProfile);
         yield return typeof(SerializableProfileSettings);
+
+        yield return typeof(StatisticalEventsFile);
+        yield return typeof(StatisticalEvent);
     }
 }

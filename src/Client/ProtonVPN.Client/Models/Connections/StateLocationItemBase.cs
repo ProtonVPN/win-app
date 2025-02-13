@@ -26,6 +26,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.Models.Connections;
 
@@ -46,6 +47,10 @@ public abstract class StateLocationItemBase : HostLocationItemBase<State>
 
     public override ILocationIntent LocationIntent { get; }
 
+    public override VpnTriggerDimension VpnTriggerDimension => IsSearchItem
+        ? VpnTriggerDimension.SearchState
+        : VpnTriggerDimension.CountriesState;
+
     protected StateLocationItemBase(
         ILocalizationProvider localizer,
         IServersLoader serversLoader,
@@ -55,7 +60,8 @@ public abstract class StateLocationItemBase : HostLocationItemBase<State>
         IConnectionGroupFactory connectionGroupFactory,
         ILocationItemFactory locationItemFactory,
         State state,
-        bool showBaseLocation)
+        bool showBaseLocation,
+        bool isSearchItem)
         : base(localizer,
                serversLoader,
                connectionManager,
@@ -63,7 +69,8 @@ public abstract class StateLocationItemBase : HostLocationItemBase<State>
                upsellCarouselWindowActivator,
                connectionGroupFactory,
                locationItemFactory,
-               state)
+               state,
+               isSearchItem)
     {
         State = state;
         IsDescriptionVisible = showBaseLocation;

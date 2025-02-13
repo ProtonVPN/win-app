@@ -36,6 +36,7 @@ using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.Services.Bootstrapping;
 
@@ -154,7 +155,7 @@ public class Bootstrapper : IBootstrapper
                     Title = _localizer.Get("Exit_Title"),
                     Message = _localizer.Get("Exit_Message"),
                     ShowLoadingAnimation = true
-                }, Task.WhenAny(_connectionManager.DisconnectAsync(), Task.Delay(EXIT_DISCONNECTION_TIMEOUT_IN_MS)));
+                }, Task.WhenAny(_connectionManager.DisconnectAsync(VpnTriggerDimension.Exit), Task.Delay(EXIT_DISCONNECTION_TIMEOUT_IN_MS)));
 
             // Keep a slight delay before exit so the app can process the Disconnected event message
             await Task.Delay(EXIT_DISCONNECTION_DELAY_IN_MS);

@@ -30,4 +30,9 @@ public static class BoolExtensions
     {
         return value ? "On" : "Off";
     }
+
+    public static string ToBooleanString(this bool value)
+    {
+        return value.ToString().ToLower();
+    }
 }

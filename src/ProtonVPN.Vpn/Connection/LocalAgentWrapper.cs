@@ -464,6 +464,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
             error ?? _vpnState?.Data.Error ?? VpnError.None,
             _localIp,
             _vpnState?.Data.RemoteIp ?? string.Empty,
+            _vpnState?.Data.EndpointPort ?? 0,
             _vpnConfig?.VpnProtocol ?? VpnProtocol.Smart,
             _vpnConfig?.PortForwarding ?? false,
             _vpnConfig?.OpenVpnAdapter,

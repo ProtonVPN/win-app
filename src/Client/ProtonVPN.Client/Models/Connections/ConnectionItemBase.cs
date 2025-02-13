@@ -19,17 +19,18 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using ProtonVPN.Client.Core.Bases.Models;
 using ProtonVPN.Client.Contracts.Enums;
+using ProtonVPN.Client.Core.Bases.Models;
+using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
-using ProtonVPN.Client.Logic.Servers.Contracts;
-using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
+using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.Models.Connections;
 
@@ -87,7 +88,11 @@ public abstract partial class ConnectionItemBase : ModelBase, IConnectionItem
 
     public abstract string SecondaryCommandAutomationId { get; }
 
+    public abstract VpnTriggerDimension VpnTriggerDimension { get; }
+
     public string ActiveConnectionAutomationId => $"Active_connection_{AutomationName}";
+
+    protected bool IsSearchItem { get; }
 
     protected virtual string AutomationName => Header;
 
@@ -95,12 +100,14 @@ public abstract partial class ConnectionItemBase : ModelBase, IConnectionItem
         ILocalizationProvider localizer,
         IServersLoader serversLoader,
         IConnectionManager connectionManager,
-        IUpsellCarouselWindowActivator upsellCarouselWindowActivator)
+        IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
+        bool isSearchItem)
         : base(localizer)
     {        
         ServersLoader = serversLoader;
         ConnectionManager = connectionManager;
         UpsellCarouselWindowActivator = upsellCarouselWindowActivator;
+        IsSearchItem = isSearchItem;
     }
 
     public abstract IConnectionIntent GetConnectionIntent();
@@ -141,8 +148,8 @@ public abstract partial class ConnectionItemBase : ModelBase, IConnectionItem
         }
 
         return IsActiveConnection
-            ? ConnectionManager.DisconnectAsync()
-            : ConnectionManager.ConnectAsync(connectionIntent);
+            ? ConnectionManager.DisconnectAsync(VpnTriggerDimension)
+            : ConnectionManager.ConnectAsync(VpnTriggerDimension, connectionIntent);
     }
 
     private bool CanToggleConnection()

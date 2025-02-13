@@ -25,7 +25,6 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Factories;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts;
@@ -36,6 +35,7 @@ using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;
 
@@ -60,7 +60,7 @@ public abstract partial class CountriesComponentViewModelBase : ActivatableViewM
 
     public abstract bool IsInfoBannerVisible { get; }
 
-    protected abstract ModalSources UpsellModalSources { get; }
+    protected abstract ModalSource UpsellModalSource { get; }
 
     public bool IsUpsellBannerVisible => IsRestricted;
 
@@ -120,7 +120,7 @@ public abstract partial class CountriesComponentViewModelBase : ActivatableViewM
     [RelayCommand]
     private async Task UpgradeAsync()
     {
-        UrlsBrowser.BrowseTo(await WebAuthenticator.GetUpgradeAccountUrlAsync(UpsellModalSources));
+        UrlsBrowser.BrowseTo(await WebAuthenticator.GetUpgradeAccountUrlAsync(UpsellModalSource));
     }
 
     protected virtual void OnSettingsChanged(string propertyName)

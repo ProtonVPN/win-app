@@ -34,6 +34,7 @@ using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
 using ProtonVPN.Logging.Installers;
 using ProtonVPN.Native.PInvoke;
+using ProtonVPN.OperatingSystems.Network.Installers;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Service.Vpn;
 using ProtonVPN.Update.Installers;
@@ -67,6 +68,7 @@ internal class Bootstrapper
                .RegisterModule<CryptoModule>()
                .RegisterModule<ServiceModule>()
                .RegisterModule<ApiModule>()
+               .RegisterModule<NetworkModule>()
                .RegisterModule<ConfigurationsModule>()
                .RegisterAssemblyModule<LoggingModule>()
                .RegisterAssemblyModule<UpdateModule>();

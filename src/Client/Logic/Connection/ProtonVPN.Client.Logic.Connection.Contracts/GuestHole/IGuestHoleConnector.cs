@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,7 +21,6 @@ namespace ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 
 public interface IGuestHoleConnector
 {
-    Task ConnectAsync();
-    Task DisconnectAsync();
-    bool AreServersAvailable { get; }
+    Task ConnectToGuestHoleAsync();
+    Task DisconnectFromGuestHoleAsync();
 }

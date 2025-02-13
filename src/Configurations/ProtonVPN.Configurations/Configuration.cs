@@ -72,6 +72,8 @@ public partial class Configuration : StaticConfiguration, IConfiguration
     public TimeSpan VpnPlanMinimumRequestInterval => GetWithRandomizedDeviation();
     public TimeSpan NetShieldStatisticRequestInterval => GetWithRandomizedDeviation();
     public TimeSpan P2PTrafficDetectionInterval => GetWithRandomizedDeviation();
+    public TimeSpan StatisticalEventSendTriggerInterval => GetWithRandomizedDeviation();
+    public TimeSpan StatisticalEventMinimumWaitInterval => GetWithRandomizedDeviation();
 
     public IList<string> DohProviders => Get();
     public IUrlsConfiguration Urls => Get();

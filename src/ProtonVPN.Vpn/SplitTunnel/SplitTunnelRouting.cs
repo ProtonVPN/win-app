@@ -19,10 +19,10 @@
 
 using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Legacy.OS.Net;
-using ProtonVPN.Common.Legacy.OS.Net.NetworkInterface;
 using ProtonVPN.Common.Legacy.OS.Net.Routing;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Configurations.Contracts;
+using ProtonVPN.OperatingSystems.Network.Contracts;
 
 namespace ProtonVPN.Vpn.SplitTunnel;
 
@@ -31,10 +31,10 @@ internal class SplitTunnelRouting
     private const int ROUTE_METRIC = 32000;
 
     private readonly IStaticConfiguration _config;
-    private readonly INetworkInterfaces _networkInterfaces;
+    private readonly ISystemNetworkInterfaces _networkInterfaces;
     private readonly INetworkInterfaceLoader _networkInterfaceLoader;
 
-    public SplitTunnelRouting(IStaticConfiguration config, INetworkInterfaces networkInterfaces, INetworkInterfaceLoader networkInterfaceLoader)
+    public SplitTunnelRouting(IStaticConfiguration config, ISystemNetworkInterfaces networkInterfaces, INetworkInterfaceLoader networkInterfaceLoader)
     {
         _config = config;
         _networkInterfaces = networkInterfaces;

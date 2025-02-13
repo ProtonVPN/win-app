@@ -56,8 +56,6 @@ public class ClientControllerSender : IClientController, IClientControllerSender
 
     private VpnState _vpnState = VpnState.Default;
     private PortForwardingState _portForwardingState;
-    private ConnectionDetails _connectionDetails;
-    private NetShieldStatistic _netShieldStatistic;
 
     private CancellationTokenSource _vpnStateCancellationTokenSource;
     private CancellationTokenSource _portForwardingStateCancellationTokenSource;
@@ -175,7 +173,7 @@ public class ClientControllerSender : IClientController, IClientControllerSender
     private string GetVpnStatusLogMessage(VpnState state)
     {
         return $"Status '{state.Status}', Error: '{state.Error}', LocalIp: '{state.LocalIp}', " +
-            $"RemoteIp: '{state.RemoteIp}', Label: '{state.Label}', " +
+            $"RemoteIp: '{state.RemoteIp}', Port: {state.EndpointPort}, Label: '{state.Label}', " +
             $"VpnProtocol: '{state.VpnProtocol}', OpenVpnAdapter: '{state.OpenVpnAdapter}'";
     }
 
@@ -198,6 +196,7 @@ public class ClientControllerSender : IClientController, IClientControllerSender
             Status = _entityMapper.Map<VpnStatus, VpnStatusIpcEntity>(state.Status),
             Error = _entityMapper.Map<VpnError, VpnErrorTypeIpcEntity>(state.Error),
             EndpointIp = state.RemoteIp,
+            EndpointPort = state.EndpointPort,
             NetworkBlocked = killSwitchEnabled,
             OpenVpnAdapterType = _entityMapper.MapNullableStruct<OpenVpnAdapter, OpenVpnAdapterIpcEntity>(state.OpenVpnAdapter),
             VpnProtocol = _entityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(state.VpnProtocol),
@@ -208,7 +207,6 @@ public class ClientControllerSender : IClientController, IClientControllerSender
 
     private async void OnConnectionDetailsChanged(object sender, ConnectionDetails connectionDetails)
     {
-        _connectionDetails = connectionDetails;
         await SendConnectionDetailsChangeAsync(connectionDetails);
     }
 
@@ -262,7 +260,6 @@ public class ClientControllerSender : IClientController, IClientControllerSender
 
     private async void OnNetShieldStatisticChanged(object sender, NetShieldStatistic stats)
     {
-        _netShieldStatistic = stats;
         _logger.Info<ProcessCommunicationLog>($"Sending NetShield statistic triggered at '{stats.TimestampUtc}' " +
             $"[Ads: '{stats.NumOfAdvertisementUrlsBlocked}']" +
             $"[Malware: '{stats.NumOfMaliciousUrlsBlocked}']" +

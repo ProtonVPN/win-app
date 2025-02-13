@@ -78,7 +78,7 @@ public partial class GatewaysPageViewModel : ConnectionPageViewModelBase,
     protected override IEnumerable<ConnectionItemBase> GetItems()
     {
         return ServersLoader.GetGateways()
-                            .Select(_locationItemFactory.GetGateway);
+                            .Select(g => _locationItemFactory.GetGateway(g));
     }
 
     [RelayCommand]

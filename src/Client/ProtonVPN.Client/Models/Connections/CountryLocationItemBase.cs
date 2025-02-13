@@ -27,6 +27,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.Models.Connections;
 
@@ -48,6 +49,10 @@ public abstract class CountryLocationItemBase : HostLocationItemBase<Country>
 
     public bool IsSecureCore => FeatureIntent is SecureCoreFeatureIntent;
 
+    public override VpnTriggerDimension VpnTriggerDimension => IsSearchItem
+        ? VpnTriggerDimension.SearchCountry
+        : VpnTriggerDimension.CountriesCountry;
+
     protected override string AutomationName => ExitCountryCode;
 
     protected CountryLocationItemBase(
@@ -58,7 +63,8 @@ public abstract class CountryLocationItemBase : HostLocationItemBase<Country>
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
         IConnectionGroupFactory connectionGroupFactory,
         ILocationItemFactory locationItemFactory,
-        Country country)
+        Country country,
+        bool isSearchItem)
         : base(localizer,
                serversLoader,
                connectionManager,
@@ -66,7 +72,8 @@ public abstract class CountryLocationItemBase : HostLocationItemBase<Country>
                upsellCarouselWindowActivator,
                connectionGroupFactory,
                locationItemFactory,
-               country)
+               country,
+               isSearchItem)
     {
         Country = country;
         IsUnderMaintenance = country.IsLocationUnderMaintenance();

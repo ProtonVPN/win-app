@@ -17,46 +17,46 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
-using ProtonVPN.Client.Logic.Servers.Contracts.Models;
-using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Contracts.Enums;
+using ProtonVPN.Client.Core.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Client.Models.Connections;
 using ProtonVPN.Client.Models.Connections.Countries;
 using ProtonVPN.Client.Models.Connections.Gateways;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
-using ProtonVPN.Client.Models.Connections;
 
 namespace ProtonVPN.Client.Factories;
 
 public interface ILocationItemFactory
 {
-    GenericCountryLocationItem GetGenericCountry(CountriesConnectionType connectionType, ConnectionIntentKind intentKind, bool excludeMyCountry);
+    GenericCountryLocationItem GetGenericCountry(CountriesConnectionType connectionType, ConnectionIntentKind intentKind, bool excludeMyCountry, bool isSearchItem = false);
 
     GenericFastestLocationItem GetGenericFastestLocation(ConnectionGroupType groupType, ILocationIntent locationIntent);
 
-    CountryLocationItem GetCountry(Country country);
+    CountryLocationItem GetCountry(Country country, bool isSearchItem = false);
 
-    StateLocationItem GetState(State state, bool showBaseLocation = false);
+    StateLocationItem GetState(State state, bool showBaseLocation = false, bool isSearchItem = false);
 
-    CityLocationItem GetCity(City city, bool showBaseLocation = false);
+    CityLocationItem GetCity(City city, bool showBaseLocation = false, bool isSearchItem = false);
 
-    ServerLocationItem GetServer(Server server);
+    ServerLocationItem GetServer(Server server, bool isSearchItem = false);
 
-    SecureCoreCountryLocationItem GetSecureCoreCountry(Country country);
+    SecureCoreCountryLocationItem GetSecureCoreCountry(Country country, bool isSearchItem = false);
 
-    SecureCoreCountryPairLocationItem GetSecureCoreCountryPair(SecureCoreCountryPair countryPair);
+    SecureCoreCountryPairLocationItem GetSecureCoreCountryPair(SecureCoreCountryPair countryPair, bool isSearchItem = false);
 
-    P2PCountryLocationItem GetP2PCountry(Country country);
+    P2PCountryLocationItem GetP2PCountry(Country country, bool isSearchItem = false);
 
-    P2PStateLocationItem GetP2PState(State state, bool showBaseLocation = false);
+    P2PStateLocationItem GetP2PState(State state, bool showBaseLocation = false, bool isSearchItem = false);
 
-    P2PCityLocationItem GetP2PCity(City city, bool showBaseLocation = false);
+    P2PCityLocationItem GetP2PCity(City city, bool showBaseLocation = false, bool isSearchItem = false);
 
-    P2PServerLocationItem GetP2PServer(Server server);
+    P2PServerLocationItem GetP2PServer(Server server, bool isSearchItem = false);
 
-    TorCountryLocationItem GetTorCountry(Country country);
+    TorCountryLocationItem GetTorCountry(Country country, bool isSearchItem = false);
 
-    TorServerLocationItem GetTorServer(Server server);
+    TorServerLocationItem GetTorServer(Server server, bool isSearchItem = false);
 
     GatewayLocationItem GetGateway(Gateway gateway);
 

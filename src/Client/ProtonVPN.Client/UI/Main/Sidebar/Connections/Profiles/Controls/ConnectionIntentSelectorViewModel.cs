@@ -168,7 +168,7 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
     {
         return _serversLoader
             .GetGateways()
-            .Select(_locationItemFactory.GetGateway)
+            .Select(g => _locationItemFactory.GetGateway(g))
             .ToList();
     }
 
@@ -183,7 +183,7 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
 
         IEnumerable<LocationItemBase> countries =
             _serversLoader.GetCountries()
-                          .Select(_locationItemFactory.GetCountry);
+                          .Select(c => _locationItemFactory.GetCountry(c));
 
         return genericCountries
             .Concat(countries)
@@ -201,7 +201,7 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
 
         IEnumerable<LocationItemBase> countries =
             _serversLoader.GetCountriesByFeatures(ServerFeatures.P2P)
-                          .Select(_locationItemFactory.GetP2PCountry);
+                          .Select(c => _locationItemFactory.GetP2PCountry(c));
 
         return genericCountries
             .Concat(countries)
@@ -219,7 +219,7 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
 
         IEnumerable<LocationItemBase> countries =
             _serversLoader.GetCountriesByFeatures(ServerFeatures.SecureCore)
-                          .Select(_locationItemFactory.GetSecureCoreCountry);
+                          .Select(c => _locationItemFactory.GetSecureCoreCountry(c));
 
         return genericCountries
             .Concat(countries)

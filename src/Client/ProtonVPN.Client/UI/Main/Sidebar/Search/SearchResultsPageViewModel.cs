@@ -160,11 +160,11 @@ public partial class SearchResultsPageViewModel : ConnectionListViewModelBase<IS
     {
         if (location is Server server)
         {
-            return _locationItemFactory.GetServer(server);
+            return _locationItemFactory.GetServer(server, isSearchItem: true);
         }
         else if (location is Country country)
         {
-            return _locationItemFactory.GetSecureCoreCountry(country);
+            return _locationItemFactory.GetSecureCoreCountry(country, isSearchItem: true);
         }
 
         return null;
@@ -174,19 +174,19 @@ public partial class SearchResultsPageViewModel : ConnectionListViewModelBase<IS
     {
         if (location is Server server)
         {
-            return _locationItemFactory.GetP2PServer(server);
+            return _locationItemFactory.GetP2PServer(server, isSearchItem: true);
         }
         else if (location is City city)
         {
-            return _locationItemFactory.GetP2PCity(city);
+            return _locationItemFactory.GetP2PCity(city, isSearchItem: true);
         }
         else if (location is State state)
         {
-            return _locationItemFactory.GetP2PState(state);
+            return _locationItemFactory.GetP2PState(state, isSearchItem: true);
         }
         else if (location is Country country)
         {
-            return _locationItemFactory.GetP2PCountry(country);
+            return _locationItemFactory.GetP2PCountry(country, isSearchItem: true);
         }
 
         return null;
@@ -196,11 +196,11 @@ public partial class SearchResultsPageViewModel : ConnectionListViewModelBase<IS
     {
         if (location is Server server)
         {
-            return _locationItemFactory.GetTorServer(server);
+            return _locationItemFactory.GetTorServer(server, isSearchItem: true);
         }
         else if (location is Country country)
         {
-            return _locationItemFactory.GetTorCountry(country);
+            return _locationItemFactory.GetTorCountry(country, isSearchItem: true);
         }
 
         return null;
@@ -216,20 +216,20 @@ public partial class SearchResultsPageViewModel : ConnectionListViewModelBase<IS
             }
             else
             {
-                return _locationItemFactory.GetServer(server);
+                return _locationItemFactory.GetServer(server, isSearchItem: true);
             }
         }
         else if (location is City city)
         {
-            return _locationItemFactory.GetCity(city);
+            return _locationItemFactory.GetCity(city, isSearchItem: true);
         }
         else if (location is State state)
         {
-            return _locationItemFactory.GetState(state);
+            return _locationItemFactory.GetState(state, isSearchItem: true);
         }
         else if (location is Country country)
         {
-            return _locationItemFactory.GetCountry(country);
+            return _locationItemFactory.GetCountry(country, isSearchItem: true);
         }
 
         return null;

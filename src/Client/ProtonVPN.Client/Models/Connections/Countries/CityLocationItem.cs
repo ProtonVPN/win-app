@@ -22,10 +22,9 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
-using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Factories;
-
+using ProtonVPN.Client.Contracts.Enums;
 
 namespace ProtonVPN.Client.Models.Connections.Countries;
 
@@ -44,7 +43,8 @@ public class CityLocationItem : CityLocationItemBase
         IConnectionGroupFactory connectionGroupFactory,
         ILocationItemFactory locationItemFactory,
         City city,
-        bool showBaseLocation)
+        bool showBaseLocation,
+        bool isSearchItem)
         : base(localizer,
                serversLoader,
                connectionManager,
@@ -53,12 +53,13 @@ public class CityLocationItem : CityLocationItemBase
                connectionGroupFactory,
                locationItemFactory,
                city,
-               showBaseLocation)
+               showBaseLocation,
+               isSearchItem)
     { }
 
     protected override IEnumerable<ConnectionItemBase> GetSubItems()
     {
         return ServersLoader.GetServersByCity(City)
-                            .Select(LocationItemFactory.GetServer);
+                            .Select(s => LocationItemFactory.GetServer(s, isSearchItem: IsSearchItem));
     }
 }

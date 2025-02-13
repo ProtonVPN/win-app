@@ -21,9 +21,7 @@ using System;
 using Autofac;
 using ProtonVPN.Common.Installers.Extensions;
 using ProtonVPN.Common.Legacy.OS.DeviceIds;
-using ProtonVPN.Common.Legacy.OS.Net;
 using ProtonVPN.Common.Legacy.OS.Net.Http;
-using ProtonVPN.Common.Legacy.OS.Net.NetworkInterface;
 using ProtonVPN.Common.Legacy.OS.Processes;
 using ProtonVPN.Common.Legacy.OS.Services;
 using ProtonVPN.Common.Legacy.Threading;
@@ -32,6 +30,7 @@ using ProtonVPN.EntityMapping.Installers;
 using ProtonVPN.Files.Installers;
 using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.OperatingSystems.Network.Contracts;
 using ProtonVPN.OperatingSystems.Processes.Installers;
 using ProtonVPN.OperatingSystems.Registries.Installers;
 using ProtonVPN.ProcessCommunication.Installers;
@@ -100,18 +99,13 @@ internal class ServiceModule : Module
             .AsSelf()
             .SingleInstance();
         builder.RegisterType<SystemProcesses>().As<IOsProcesses>().SingleInstance();
-        builder.Register(c =>
-                new SafeSystemNetworkInterfaces(
-                    c.Resolve<ILogger>(),
-                    new SystemNetworkInterfaces()))
-            .As<INetworkInterfaces>().SingleInstance();
         builder.RegisterType<PermittedRemoteAddress>().AsSelf().SingleInstance();
         builder.RegisterType<AppFilter>().AsSelf().SingleInstance();
         builder.RegisterType<SplitTunnelNetworkFilters>().SingleInstance();
         builder.RegisterType<BestNetworkInterface>().SingleInstance();
         builder.RegisterType<SplitTunnelClient>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<WintunRegistryFixer>().SingleInstance();
-        builder.Register(c => new NetworkSettings(c.Resolve<ILogger>(), c.Resolve<INetworkInterfaceLoader>(), c.Resolve<WintunRegistryFixer>()))
+        builder.Register(c => new NetworkSettings(c.Resolve<ILogger>(), c.Resolve<INetworkInterfaceLoader>(), c.Resolve<INetworkUtilities>(), c.Resolve<WintunRegistryFixer>()))
             .AsImplementedInterfaces()
             .AsSelf()
             .SingleInstance();

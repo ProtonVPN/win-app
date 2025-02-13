@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -57,83 +57,216 @@ public class LocationItemFactory : ILocationItemFactory
         _connectionGroupFactory = connectionGroupFactory;
     }
 
-    public GenericCountryLocationItem GetGenericCountry(CountriesConnectionType connectionType, ConnectionIntentKind intentKind, bool excludeMyCountry)
+    public GenericCountryLocationItem GetGenericCountry(
+        CountriesConnectionType connectionType,
+        ConnectionIntentKind intentKind,
+        bool excludeMyCountry,
+        bool isSearchItem = false)
     {
-        return new GenericCountryLocationItem(_localizer, _serversLoader, _connectionManager, _upsellCarouselWindowActivator, connectionType, intentKind, excludeMyCountry);
+        return new GenericCountryLocationItem(
+            _localizer,
+            _serversLoader,
+            _connectionManager,
+            _upsellCarouselWindowActivator,
+            connectionType,
+            intentKind,
+            excludeMyCountry,
+            isSearchItem);
     }
 
-    public GenericFastestLocationItem GetGenericFastestLocation(ConnectionGroupType groupType, ILocationIntent locationIntent)
+    public GenericFastestLocationItem GetGenericFastestLocation(
+        ConnectionGroupType groupType,
+        ILocationIntent locationIntent)
     {
-        return new GenericFastestLocationItem(_localizer, _serversLoader, _connectionManager, _upsellCarouselWindowActivator, groupType, locationIntent);
+        return new GenericFastestLocationItem(
+            _localizer,
+            _serversLoader,
+            _connectionManager,
+            _upsellCarouselWindowActivator,
+            groupType,
+            locationIntent);
     }
 
-    public CountryLocationItem GetCountry(Country country)
+    public CountryLocationItem GetCountry(Country country, bool isSearchItem = false)
     {
-        return new CountryLocationItem(_localizer, _serversLoader, _connectionManager, _overlayActivator, _upsellCarouselWindowActivator, _connectionGroupFactory, this, country);
+        return new CountryLocationItem(
+            _localizer,
+            _serversLoader,
+            _connectionManager,
+            _overlayActivator,
+            _upsellCarouselWindowActivator,
+            _connectionGroupFactory,
+            this,
+            country,
+            isSearchItem);
     }
 
-    public StateLocationItem GetState(State state, bool showBaseLocation = false)
+    public StateLocationItem GetState(State state, bool showBaseLocation = false, bool isSearchItem = false)
     {
-        return new StateLocationItem(_localizer, _serversLoader, _connectionManager, _overlayActivator, _upsellCarouselWindowActivator, _connectionGroupFactory, this, state, showBaseLocation);
+        return new StateLocationItem(
+            _localizer,
+            _serversLoader,
+            _connectionManager,
+            _overlayActivator,
+            _upsellCarouselWindowActivator,
+            _connectionGroupFactory,
+            this,
+            state,
+            showBaseLocation,
+            isSearchItem);
     }
 
-    public CityLocationItem GetCity(City city, bool showBaseLocation = false)
+    public CityLocationItem GetCity(City city, bool showBaseLocation = false, bool isSearchItem = false)
     {
-        return new CityLocationItem(_localizer, _serversLoader, _connectionManager, _overlayActivator, _upsellCarouselWindowActivator, _connectionGroupFactory, this, city, showBaseLocation);
+        return new CityLocationItem(
+            _localizer,
+            _serversLoader,
+            _connectionManager,
+            _overlayActivator,
+            _upsellCarouselWindowActivator,
+            _connectionGroupFactory,
+            this,
+            city,
+            showBaseLocation,
+            isSearchItem);
     }
 
-    public ServerLocationItem GetServer(Server server)
+    public ServerLocationItem GetServer(Server server, bool isSearchItem = false)
     {
-        return new ServerLocationItem(_localizer, _serversLoader, _connectionManager, _upsellCarouselWindowActivator, server);
+        return new ServerLocationItem(
+            _localizer,
+            _serversLoader,
+            _connectionManager,
+            _upsellCarouselWindowActivator,
+            server,
+            isSearchItem);
     }
 
-    public SecureCoreCountryLocationItem GetSecureCoreCountry(Country country)
+    public SecureCoreCountryLocationItem GetSecureCoreCountry(Country country, bool isSearchItem = false)
     {
-        return new SecureCoreCountryLocationItem(_localizer, _serversLoader, _connectionManager, _overlayActivator, _upsellCarouselWindowActivator, _connectionGroupFactory, this, country);
+        return new SecureCoreCountryLocationItem(
+            _localizer,
+            _serversLoader,
+            _connectionManager,
+            _overlayActivator,
+            _upsellCarouselWindowActivator,
+            _connectionGroupFactory,
+            this,
+            country,
+            isSearchItem);
     }
 
-    public SecureCoreCountryPairLocationItem GetSecureCoreCountryPair(SecureCoreCountryPair countryPair)
+    public SecureCoreCountryPairLocationItem GetSecureCoreCountryPair(SecureCoreCountryPair countryPair, bool isSearchItem = false)
     {
-        return new SecureCoreCountryPairLocationItem(_localizer, _serversLoader, _connectionManager, _upsellCarouselWindowActivator, countryPair);
+        return new SecureCoreCountryPairLocationItem(
+            _localizer,
+            _serversLoader,
+            _connectionManager,
+            _upsellCarouselWindowActivator,
+            countryPair,
+            isSearchItem);
     }
 
-    public P2PCountryLocationItem GetP2PCountry(Country country)
+    public P2PCountryLocationItem GetP2PCountry(Country country, bool isSearchItem = false)
     {
-        return new P2PCountryLocationItem(_localizer, _serversLoader, _connectionManager, _overlayActivator, _upsellCarouselWindowActivator, _connectionGroupFactory, this, country);
+        return new P2PCountryLocationItem(
+            _localizer,
+            _serversLoader,
+            _connectionManager,
+            _overlayActivator,
+            _upsellCarouselWindowActivator,
+            _connectionGroupFactory,
+            this,
+            country,
+            isSearchItem);
     }
 
-    public P2PStateLocationItem GetP2PState(State state, bool showBaseLocation = false)
+    public P2PStateLocationItem GetP2PState(State state, bool showBaseLocation = false, bool isSearchItem = false)
     {
-        return new P2PStateLocationItem(_localizer, _serversLoader, _connectionManager, _overlayActivator, _upsellCarouselWindowActivator, _connectionGroupFactory, this, state, showBaseLocation);
+        return new P2PStateLocationItem(
+            _localizer,
+            _serversLoader,
+            _connectionManager,
+            _overlayActivator,
+            _upsellCarouselWindowActivator,
+            _connectionGroupFactory,
+            this,
+            state,
+            showBaseLocation,
+            isSearchItem);
     }
 
-    public P2PCityLocationItem GetP2PCity(City city, bool showBaseLocation = false)
+    public P2PCityLocationItem GetP2PCity(City city, bool showBaseLocation = false, bool isSearchItem = false)
     {
-        return new P2PCityLocationItem(_localizer, _serversLoader, _connectionManager, _overlayActivator, _upsellCarouselWindowActivator, _connectionGroupFactory, this, city, showBaseLocation);
+        return new P2PCityLocationItem(
+            _localizer,
+            _serversLoader,
+            _connectionManager,
+            _overlayActivator,
+            _upsellCarouselWindowActivator,
+            _connectionGroupFactory,
+            this,
+            city,
+            showBaseLocation,
+            isSearchItem);
     }
 
-    public P2PServerLocationItem GetP2PServer(Server server)
+    public P2PServerLocationItem GetP2PServer(Server server, bool isSearchItem = false)
     {
-        return new P2PServerLocationItem(_localizer, _serversLoader, _connectionManager, _upsellCarouselWindowActivator, server);
+        return new P2PServerLocationItem(
+            _localizer,
+            _serversLoader,
+            _connectionManager,
+            _upsellCarouselWindowActivator,
+            server,
+            isSearchItem);
     }
 
-    public TorCountryLocationItem GetTorCountry(Country country)
+    public TorCountryLocationItem GetTorCountry(Country country, bool isSearchItem = false)
     {
-        return new TorCountryLocationItem(_localizer, _serversLoader, _connectionManager, _overlayActivator, _upsellCarouselWindowActivator, _connectionGroupFactory, this, country);
+        return new TorCountryLocationItem(
+            _localizer,
+            _serversLoader,
+            _connectionManager,
+            _overlayActivator,
+            _upsellCarouselWindowActivator,
+            _connectionGroupFactory,
+            this,
+            country,
+            isSearchItem);
     }
 
-    public TorServerLocationItem GetTorServer(Server server)
+    public TorServerLocationItem GetTorServer(Server server, bool isSearchItem = false)
     {
-        return new TorServerLocationItem(_localizer, _serversLoader, _connectionManager, _upsellCarouselWindowActivator, server);
+        return new TorServerLocationItem(
+            _localizer,
+            _serversLoader,
+            _connectionManager,
+            _upsellCarouselWindowActivator,
+            server,
+            isSearchItem);
     }
 
     public GatewayLocationItem GetGateway(Gateway gateway)
     {
-        return new GatewayLocationItem(_localizer, _serversLoader, _connectionManager, _overlayActivator, _upsellCarouselWindowActivator, _connectionGroupFactory, this, gateway);
+        return new GatewayLocationItem(
+            _localizer,
+            _serversLoader,
+            _connectionManager,
+            _overlayActivator,
+            _upsellCarouselWindowActivator,
+            _connectionGroupFactory,
+            this,
+            gateway);
     }
 
     public GatewayServerLocationItem GetGatewayServer(Server server)
     {
-        return new GatewayServerLocationItem(_localizer, _serversLoader, _connectionManager, _upsellCarouselWindowActivator, server);
+        return new GatewayServerLocationItem(
+            _localizer,
+            _serversLoader,
+            _connectionManager,
+            _upsellCarouselWindowActivator,
+            server);
     }
 }

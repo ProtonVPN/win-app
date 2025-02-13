@@ -40,6 +40,8 @@ public class ConnectionDetails
 
     public string? ServerIpAddress { get; private set; }
 
+    public int Port { get; private set; }
+
     public string ExitCountryCode => Server.ExitCountry;
     public bool IsSecureCore => Server.Features.IsSupported(ServerFeatures.SecureCore);
     public bool IsP2P => Server.Features.IsSupported(ServerFeatures.P2P);
@@ -56,7 +58,7 @@ public class ConnectionDetails
     public bool IsGateway => Server.Features.IsSupported(ServerFeatures.B2B);
     public string GatewayName => Server.GatewayName;
 
-    public ConnectionDetails(IConnectionIntent connectionIntent, Server server, PhysicalServer physicalServer, VpnProtocol protocol)
+    public ConnectionDetails(IConnectionIntent connectionIntent, Server server, PhysicalServer physicalServer, VpnProtocol protocol, int port)
     {
         OriginalConnectionIntent = connectionIntent;
         EstablishedConnectionTimeUtc = DateTime.UtcNow;
@@ -65,6 +67,7 @@ public class ConnectionDetails
         PhysicalServer = physicalServer;
         Protocol = protocol;
         ServerIpAddress = physicalServer.ExitIp;
+        Port = port;
     }
 
     public void UpdateServer(Server server, PhysicalServer physicalServer, VpnProtocol protocol)

@@ -29,6 +29,7 @@ using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.Handlers;
 
@@ -132,6 +133,6 @@ public class AutoConnectTriggerHandler : IHandler,
     {
         IConnectionIntent defaultConnectionIntent = _recentConnectionsManager.GetDefaultConnection();
 
-        await _connectionManager.ConnectAsync(defaultConnectionIntent);
+        await _connectionManager.ConnectAsync(VpnTriggerDimension.Auto, defaultConnectionIntent);
     }
 }

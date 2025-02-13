@@ -32,6 +32,11 @@ public class StateLocationIntent : CountryLocationIntent
         State = state;
     }
 
+    public StateLocationIntent(string countryCode)
+        : base(countryCode)
+    {
+    }
+
     public override bool IsSameAs(ILocationIntent? intent)
     {
         return base.IsSameAs(intent)

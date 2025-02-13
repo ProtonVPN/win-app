@@ -22,12 +22,12 @@ using System.Web;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Client.Logic.Auth.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.Logic.Auth;
 
@@ -56,7 +56,7 @@ public class WebAuthenticator : IWebAuthenticator
         return Task.FromResult(_config.Urls.AccountUrl);
     }
 
-    public async Task<string> GetUpgradeAccountUrlAsync(ModalSources modalSource)
+    public async Task<string> GetUpgradeAccountUrlAsync(ModalSource modalSource)
     {
         string redirectUrl = GetRedirectUrl(modalSource);
 
@@ -81,7 +81,7 @@ public class WebAuthenticator : IWebAuthenticator
             : GetAutoLoginUrl(parameters, selector);
     }
 
-    public async Task<string> GetAuthUrlAsync(string url, ModalSources modalSource, string notificationReference)
+    public async Task<string> GetAuthUrlAsync(string url, ModalSource modalSource, string notificationReference)
     {
         Uri uri = new(url);
         NameValueCollection uriQuery = HttpUtility.ParseQueryString(uri.Query);
@@ -99,7 +99,7 @@ public class WebAuthenticator : IWebAuthenticator
             : url + $"#selector={selector}";
     }
 
-    private string GetRedirectUrl(ModalSources modalSource, string? notificationReference = null)
+    private string GetRedirectUrl(ModalSource modalSource, string? notificationReference = null)
     {
         string url = $"{GetRedirectUrl()}?modal-source={modalSource}";
         if (!string.IsNullOrWhiteSpace(notificationReference))

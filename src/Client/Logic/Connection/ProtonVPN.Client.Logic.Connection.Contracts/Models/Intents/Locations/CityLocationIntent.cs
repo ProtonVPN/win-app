@@ -33,8 +33,10 @@ public class CityLocationIntent : StateLocationIntent
     }
 
     public CityLocationIntent(string countryCode, string city)
-        : this(countryCode, null, city)
-    { }
+        : base(countryCode)
+    {
+        City = city;
+    }
 
     public override bool IsSameAs(ILocationIntent? intent)
     {

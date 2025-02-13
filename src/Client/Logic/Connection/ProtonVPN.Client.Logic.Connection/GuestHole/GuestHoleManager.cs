@@ -41,7 +41,9 @@ public class GuestHoleManager : IGuestHoleManager, IEventMessageReceiver<Connect
 
     public bool IsActive => _isActive;
 
-    public GuestHoleManager(ILogger logger, IEventMessageSender eventMessageSender,
+    public GuestHoleManager(
+        ILogger logger,
+        IEventMessageSender eventMessageSender,
         IGuestHoleConnector guestHoleConnector)
     {
         _logger = logger;
@@ -55,7 +57,7 @@ public class GuestHoleManager : IGuestHoleManager, IEventMessageReceiver<Connect
         _tcs = new TaskCompletionSource<Result?>();
 
         SetStatus(true);
-        await _guestHoleConnector.ConnectAsync();
+        await _guestHoleConnector.ConnectToGuestHoleAsync();
 
         Result? result = await _tcs.Task;
         if (result is null)
@@ -128,6 +130,6 @@ public class GuestHoleManager : IGuestHoleManager, IEventMessageReceiver<Connect
 
     public async Task DisconnectAsync()
     {
-        await _guestHoleConnector.DisconnectAsync();
+        await _guestHoleConnector.DisconnectFromGuestHoleAsync();
     }
 }

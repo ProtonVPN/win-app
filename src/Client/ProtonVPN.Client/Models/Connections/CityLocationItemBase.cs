@@ -26,6 +26,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.Models.Connections;
 
@@ -49,6 +50,10 @@ public abstract class CityLocationItemBase : HostLocationItemBase<City>
 
     public override ILocationIntent LocationIntent { get; }
 
+    public override VpnTriggerDimension VpnTriggerDimension => IsSearchItem
+        ? VpnTriggerDimension.SearchCity
+        : VpnTriggerDimension.CountriesCity;
+
     protected CityLocationItemBase(
         ILocalizationProvider localizer,
         IServersLoader serversLoader,
@@ -58,7 +63,8 @@ public abstract class CityLocationItemBase : HostLocationItemBase<City>
         IConnectionGroupFactory connectionGroupFactory,
         ILocationItemFactory locationItemFactory,
         City city,
-        bool showBaseLocation)
+        bool showBaseLocation,
+        bool isSearchItem)
         : base(localizer,
                serversLoader,
                connectionManager,
@@ -66,12 +72,15 @@ public abstract class CityLocationItemBase : HostLocationItemBase<City>
                upsellCarouselWindowActivator,
                connectionGroupFactory,
                locationItemFactory,
-               city)
+               city,
+               isSearchItem)
     {
         City = city;
         IsDescriptionVisible = showBaseLocation;
 
-        LocationIntent = new CityLocationIntent(City.CountryCode, City.StateName, City.Name);
+        LocationIntent = string.IsNullOrEmpty(City.StateName)
+            ? new CityLocationIntent(City.CountryCode, City.Name)
+            : new CityLocationIntent(City.CountryCode, City.StateName, City.Name);
     }
 
     public void OnExpandCity()

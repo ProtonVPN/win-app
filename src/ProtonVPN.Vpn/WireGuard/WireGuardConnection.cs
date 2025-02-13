@@ -334,12 +334,12 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         if (_vpnConfig is null)
         {
             return new VpnState(status, error, _config.WireGuard.DefaultClientAddress,
-                _endpoint?.Server.Ip ?? string.Empty, VpnProtocol.WireGuardUdp,
+                _endpoint?.Server.Ip ?? string.Empty, _endpoint?.Port ?? 0, VpnProtocol.WireGuardUdp,
                 openVpnAdapter: null, label: _endpoint?.Server.Label ?? string.Empty);
         }
 
         return new VpnState(status, error, _config.WireGuard.DefaultClientAddress,
-            _endpoint?.Server.Ip ?? string.Empty, _vpnConfig.VpnProtocol,
+            _endpoint?.Server.Ip ?? string.Empty, _endpoint?.Port ?? 0, _vpnConfig.VpnProtocol,
             _vpnConfig.PortForwarding, null, _endpoint?.Server.Label ?? string.Empty);
     }
 

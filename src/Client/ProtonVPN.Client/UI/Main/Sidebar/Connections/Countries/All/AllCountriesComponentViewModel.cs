@@ -17,19 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Logic.Servers.Contracts;
-using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Factories;
-
-using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;
-using ProtonVPN.Client.Models.Connections;
-using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
+using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Models.Connections;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;
+using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Countries.All;
 
@@ -45,7 +44,7 @@ public class AllCountriesComponentViewModel : CountriesComponentViewModelBase
 
     public override bool IsInfoBannerVisible => false;
 
-    protected override ModalSources UpsellModalSources => ModalSources.Countries;
+    protected override ModalSource UpsellModalSource => ModalSource.Countries;
 
     public AllCountriesComponentViewModel(
         ILocalizationProvider localizer,
@@ -72,7 +71,7 @@ public class AllCountriesComponentViewModel : CountriesComponentViewModelBase
 
         IEnumerable<ConnectionItemBase> countries =
             ServersLoader.GetCountries()
-                         .Select(LocationItemFactory.GetCountry);
+                         .Select(c => LocationItemFactory.GetCountry(c));
 
         return genericCountries
             .Concat(countries);

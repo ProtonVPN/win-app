@@ -18,14 +18,14 @@
  */
 
 using ProtonVPN.Common.Legacy.Extensions;
-using ProtonVPN.Common.Legacy.OS.Net.NetworkInterface;
 using ProtonVPN.Configurations.Contracts;
+using ProtonVPN.OperatingSystems.Network.Contracts;
 
 namespace ProtonVPN.Client.Logic.Feedback.Diagnostics.Logs;
 
 public class NetworkAdapterLog : LogBase
 {
-    private readonly INetworkInterfaces _networkInterfaces;
+    private readonly ISystemNetworkInterfaces _networkInterfaces;
 
     protected string Content
     {
@@ -42,7 +42,7 @@ public class NetworkAdapterLog : LogBase
         }
     }
 
-    public NetworkAdapterLog(INetworkInterfaces networkInterfaces, IStaticConfiguration config)
+    public NetworkAdapterLog(ISystemNetworkInterfaces networkInterfaces, IStaticConfiguration config)
         : base(config.DiagnosticLogsFolder, "NetworkAdapters.txt")
     {
         _networkInterfaces = networkInterfaces;

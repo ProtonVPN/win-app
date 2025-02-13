@@ -18,23 +18,23 @@
  */
 
 using FluentAssertions;
-using ProtonVPN.Common.Legacy.OS.Net.NetworkInterface;
-using ProtonVPN.Client.Logic.Feedback.Diagnostics.Logs;
 using NSubstitute;
+using ProtonVPN.Client.Logic.Feedback.Diagnostics.Logs;
+using ProtonVPN.OperatingSystems.Network.Contracts;
 
 namespace ProtonVPN.Client.Logic.Feedback.Tests.Diagnostics;
 
 [TestClass]
 public class NetworkAdapterLogTest : LogBaseTest
 {
-    private INetworkInterfaces? _networkInterfaces;
+    private ISystemNetworkInterfaces? _networkInterfaces;
 
     [TestInitialize]
     public override void Initialize()
     {
         base.Initialize();
 
-        _networkInterfaces = Substitute.For<INetworkInterfaces>();
+        _networkInterfaces = Substitute.For<ISystemNetworkInterfaces>();
     }
 
     [TestCleanup]
@@ -56,7 +56,7 @@ public class NetworkAdapterLogTest : LogBaseTest
         };
         _networkInterfaces!.GetInterfaces().Returns(interfaces);
 
-        NetworkAdapterLog log = new NetworkAdapterLog(_networkInterfaces, StaticConfig!);
+        NetworkAdapterLog log = new(_networkInterfaces, StaticConfig!);
 
         // Act
         log.Write();

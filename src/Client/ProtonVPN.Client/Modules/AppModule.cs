@@ -112,7 +112,6 @@ using ProtonVPN.Client.UI.Tray;
 using ProtonVPN.Client.UI.Update;
 using ProtonVPN.Client.UnsecureWifiDetection.Installers;
 using ProtonVPN.Common.Legacy.OS.DeviceIds;
-using ProtonVPN.Common.Legacy.OS.Net.NetworkInterface;
 using ProtonVPN.Common.Legacy.OS.Processes;
 using ProtonVPN.Common.Legacy.OS.Systems;
 using ProtonVPN.Configurations.Installers;
@@ -124,13 +123,16 @@ using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Installers;
 using ProtonVPN.NetworkTimeProtocols.Installers;
+using ProtonVPN.OperatingSystems.Network.Contracts;
 using ProtonVPN.OperatingSystems.Network.Installers;
+using ProtonVPN.OperatingSystems.Network.NetworkInterface;
 using ProtonVPN.OperatingSystems.Processes.Installers;
 using ProtonVPN.OperatingSystems.Registries.Installers;
 using ProtonVPN.OperatingSystems.Services.Installers;
 using ProtonVPN.ProcessCommunication.Client.Installers;
 using ProtonVPN.ProcessCommunication.Installers;
 using ProtonVPN.Serialization.Installers;
+using ProtonVPN.StatisticalEvents.Installers;
 
 namespace ProtonVPN.Client.Modules;
 
@@ -193,6 +195,7 @@ public class AppModule : Module
                .RegisterModule<SearchesModule>()
                .RegisterModule<NetworkModule>()
                .RegisterModule<UnsecureWifiDetectionModule>()
+               .RegisterModule<StatisticalEventsModule>()
                .RegisterModule<NetworkTimeProtocolsModule>();
     }
 
@@ -241,11 +244,6 @@ public class AppModule : Module
         builder.RegisterType<SplitTunnelingItemFactory>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<SystemTimeValidator>().AsImplementedInterfaces().SingleInstance();
-        
-        builder.Register(c =>
-            new SafeSystemNetworkInterfaces(c.Resolve<ILogger>(), new SystemNetworkInterfaces()))
-            .As<INetworkInterfaces>().SingleInstance();
-
         builder.RegisterType<ExitService>().AsImplementedInterfaces().SingleInstance();
     }
 
