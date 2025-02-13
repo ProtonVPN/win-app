@@ -12,8 +12,8 @@ def send(channel_id):
     if len(files) > 0:
         installer_path = files[0]
         try:
-            result = client.files_upload(
-                channels=channel_id,
+            result = client.files_upload_v2(
+                channel=channel_id,
                 initial_comment=os.environ.get("CI_COMMIT_MESSAGE"),
                 file=installer_path,
             )

@@ -3,13 +3,11 @@ import re
 import os
 import argparse
 import win32api
-import config
 import installer
 import ssh
 import guest_hole_server_loader
 import slack
 import hashlib
-from pathlib import Path
 
 def get_sha256(file_path):
     sha256_hash = hashlib.sha256()
@@ -48,7 +46,7 @@ if len(sys.argv) < 2:
 args = parser.parse_args()
 
 if args.command == 'defaultConfig':
-    configPath = "src\Configurations\ProtonVPN.Configurations\Defaults\DefaultTlsPinningConfigurationFactory.cs"
+    configPath = r"src\Configurations\ProtonVPN.Configurations\Defaults\DefaultTlsPinningConfigurationFactory.cs"
     f = open(configPath, "rt")
     data = f.read()
     data = data.replace('[InternalReleaseHost]', os.environ.get("INTERNAL_RELEASE_HOST"))
@@ -71,13 +69,13 @@ elif args.command == 'app-installer':
     
     if 'BTI' in build_path:
         installer_filename = 'ProtonVPN_v{semVersion}_BTI.exe'.format(semVersion=semVersion)  
-    installer_path = os.path.join('.\Setup\Installers', installer_filename)
+    installer_path = os.path.join(r'.\Setup\Installers', installer_filename)
     
     print_sha256(installer_path)
     sys.exit(err)
 
 elif args.command == 'add-commit-hash':
-    path = '.\src\GlobalAssemblyInfo.cs'
+    path = r'.\src\GlobalAssemblyInfo.cs'
     with open(path, 'r') as file:
         content = file.read()
         matches = re.search(r"AssemblyVersion\(\"([0-9]+.[0-9]+.[0-9]+)", content)

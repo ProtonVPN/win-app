@@ -30,7 +30,7 @@ def load():
     random.shuffle(non_secure_core_logical_servers)
 
     servers_str: str = ""
-    unique_entries: array = []
+    unique_entries: list = []
 
     for logical_server in non_secure_core_logical_servers:
         server = logical_server['Servers'][0]
@@ -51,7 +51,7 @@ def load():
 
     servers_str = servers_str.lstrip(',')
 
-    with open('.\Setup\GuestHoleServers.json', 'w') as file:
+    with open(r'.\Setup\GuestHoleServers.json', 'w') as file:
         file.write("".join(['[', servers_str, ']']))
 
     print('Finished updating guest hole servers json')
