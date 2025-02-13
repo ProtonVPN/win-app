@@ -17,15 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.Logic.Auth.Contracts;
 
 public interface IWebAuthenticator
 {
     Task<string> GetMyAccountUrlAsync();
-    Task<string> GetUpgradeAccountUrlAsync(ModalSources modalSource);
+    Task<string> GetUpgradeAccountUrlAsync(ModalSource modalSource);
     Task<string> GetAuthUrlAsync(AuthUrlParameters parameters);
-    Task<string> GetAuthUrlAsync(string url, ModalSources modalSource, string notificationReference);
+    Task<string> GetAuthUrlAsync(string url, ModalSource modalSource, string notificationReference);
 }

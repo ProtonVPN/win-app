@@ -105,6 +105,7 @@ public class VpnStateChangedEventArgsMapperTest
             status: VpnStatus.AssigningIp,
             error: VpnError.TlsError,
             endpointIp: "192.168.0.0",
+            endpointPort: 443,
             networkBlocked: true,
             vpnProtocol: VpnProtocol.OpenVpnTcp,
             networkAdapterType: OpenVpnAdapter.Tun,
@@ -129,6 +130,7 @@ public class VpnStateChangedEventArgsMapperTest
             state: new VpnState(
                 status: VpnStatus.RetrievingConfiguration,
                 remoteIp: "172.16.0.0",
+                endpointPort: 443,
                 vpnProtocol: VpnProtocol.WireGuardUdp,
                 openVpnAdapter: OpenVpnAdapter.Tun,
                 label: "Proton VPN"

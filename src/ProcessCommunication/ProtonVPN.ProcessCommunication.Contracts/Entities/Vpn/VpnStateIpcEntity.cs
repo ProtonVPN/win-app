@@ -37,14 +37,17 @@ public class VpnStateIpcEntity
     public string EndpointIp { get; set; }
 
     [DataMember(Order = 5)]
-    public OpenVpnAdapterIpcEntity? OpenVpnAdapterType { get; set; }
+    public int EndpointPort { get; set; }
 
     [DataMember(Order = 6)]
-    public VpnProtocolIpcEntity VpnProtocol { get; set; }
+    public OpenVpnAdapterIpcEntity? OpenVpnAdapterType { get; set; }
 
     [DataMember(Order = 7)]
-    public string Label { get;  set; }
+    public VpnProtocolIpcEntity VpnProtocol { get; set; }
 
     [DataMember(Order = 8)]
+    public string Label { get;  set; }
+
+    [DataMember(Order = 9)]
     public string ConnectionCertificatePem { get; set; }
 }

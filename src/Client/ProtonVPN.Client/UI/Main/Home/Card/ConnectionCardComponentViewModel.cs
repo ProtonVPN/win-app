@@ -45,6 +45,7 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.UI.Main.Home.Card;
 
@@ -285,7 +286,7 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
     [RelayCommand(CanExecute = nameof(CanConnect))]
     private Task ConnectAsync()
     {
-        return _connectionManager.ConnectAsync(CurrentConnectionIntent);
+        return _connectionManager.ConnectAsync(VpnTriggerDimension.ConnectionCard, CurrentConnectionIntent);
     }
 
     private bool CanConnect()
@@ -296,7 +297,7 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
     [RelayCommand(CanExecute = nameof(CanCancelConnection))]
     private Task CancelConnectionAsync()
     {
-        return _connectionManager.DisconnectAsync();
+        return _connectionManager.DisconnectAsync(VpnTriggerDimension.ConnectionCard);
     }
 
     private bool CanCancelConnection()
@@ -307,7 +308,7 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
     [RelayCommand(CanExecute = nameof(CanDisconnect))]
     private Task DisconnectAsync()
     {
-        return _connectionManager.DisconnectAsync();
+        return _connectionManager.DisconnectAsync(VpnTriggerDimension.ConnectionCard);
     }
 
     private bool CanDisconnect()

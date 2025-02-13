@@ -18,7 +18,6 @@
  */
 
 using Autofac;
-using ProtonVPN.Common.Legacy.OS.Net;
 using ProtonVPN.Common.Legacy.OS.Processes;
 using ProtonVPN.Common.Legacy.OS.Services;
 using ProtonVPN.Common.Legacy.Threading;
@@ -44,6 +43,7 @@ using ProtonVPN.Vpn.ServerValidation;
 using ProtonVPN.Vpn.SplitTunnel;
 using ProtonVPN.Vpn.SynchronizationEvent;
 using ProtonVPN.Vpn.WireGuard;
+using ProtonVPN.OperatingSystems.Network.Contracts;
 
 namespace ProtonVPN.Vpn.Config;
 
@@ -56,7 +56,6 @@ public class Module
         builder.RegisterType<GatewayCache>().As<IGatewayCache>().SingleInstance();
         builder.RegisterType<VpnEndpointScanner>().SingleInstance();
         builder.RegisterType<TcpPortScanner>().SingleInstance();
-        builder.RegisterType<NetworkInterfaceLoader>().As<INetworkInterfaceLoader>().SingleInstance();
         builder.RegisterType<SplitTunnelRouting>().SingleInstance();
         builder.RegisterType<UdpPingClient>().SingleInstance();
         builder.RegisterType<WintunAdapter>().SingleInstance();

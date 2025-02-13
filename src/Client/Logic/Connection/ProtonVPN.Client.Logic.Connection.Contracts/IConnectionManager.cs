@@ -20,6 +20,7 @@
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 using ConnectionDetails = ProtonVPN.Client.Logic.Connection.Contracts.Models.ConnectionDetails;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts;
@@ -37,10 +38,10 @@ public interface IConnectionManager
     bool HasError { get; }
     bool IsNetworkBlocked { get; }
 
-    Task ConnectAsync(IConnectionIntent? connectionIntent = null);
+    Task ConnectAsync(VpnTriggerDimension vpnConnectionTrigger, IConnectionIntent? connectionIntent = null);
     Task<bool> ReconnectIfNotRecentlyReconnectedAsync();
     Task<bool> ReconnectAsync();
-    Task DisconnectAsync();
+    Task DisconnectAsync(VpnTriggerDimension vpnTriggerDimension);
 
     Task InitializeAsync(IConnectionIntent? connectionIntent);
 }

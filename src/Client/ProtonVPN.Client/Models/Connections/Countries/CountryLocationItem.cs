@@ -21,10 +21,10 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Servers.Contracts;
-using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Factories;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Client.Contracts.Enums;
 
 namespace ProtonVPN.Client.Models.Connections.Countries;
 
@@ -44,7 +44,8 @@ public class CountryLocationItem : CountryLocationItemBase
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
         IConnectionGroupFactory connectionGroupFactory,
         ILocationItemFactory locationItemFactory,
-        Country country)
+        Country country,
+        bool isSearchItem)
         : base(localizer,
                serversLoader,
                connectionManager,
@@ -52,7 +53,8 @@ public class CountryLocationItem : CountryLocationItemBase
                upsellCarouselWindowActivator,
                connectionGroupFactory,
                locationItemFactory,
-               country)
+               country,
+               isSearchItem)
     {
         FetchSubItems();
     }
@@ -61,11 +63,11 @@ public class CountryLocationItem : CountryLocationItemBase
     {
         IEnumerable<ConnectionItemBase> states =
             ServersLoader.GetStatesByCountryCode(ExitCountryCode)
-                         .Select(state => LocationItemFactory.GetState(state, showBaseLocation: false));
+                         .Select(state => LocationItemFactory.GetState(state, showBaseLocation: false, isSearchItem: IsSearchItem));
 
         return states.Any()
             ? states
             : ServersLoader.GetCitiesByCountryCode(ExitCountryCode)
-                           .Select(city => LocationItemFactory.GetCity(city, showBaseLocation: false));
+                           .Select(city => LocationItemFactory.GetCity(city, showBaseLocation: false, isSearchItem: IsSearchItem));
     }
 }

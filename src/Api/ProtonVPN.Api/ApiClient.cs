@@ -38,6 +38,7 @@ using ProtonVPN.Api.Contracts.VpnConfig;
 using ProtonVPN.Api.Contracts.VpnSessions;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Geographical;
+using ProtonVPN.Common.Core.StatisticalEvents;
 using ProtonVPN.Common.Legacy.OS.Net.Http;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -243,6 +244,20 @@ public class ApiClient : BaseApiClient, IApiClient
         request.SetCustomTimeout(TimeSpan.FromSeconds(3));
         request.Content = GetJsonContent(authForkSessionRequest);
         return await SendRequest<ForkedAuthSessionResponse>(request, "Fork auth session");
+    }
+
+    public async Task<ApiResponseResult<BaseResponse>> PostUnauthStatisticalEventsAsync(StatisticalEventsBatch statisticalEvents)
+    {
+        HttpRequestMessage request = GetRequest(HttpMethod.Post, "data/v1/stats/multiple");
+        request.Content = GetJsonContent(statisticalEvents);
+        return await SendRequest<BaseResponse>(request, "Post unauth statistical events batch");
+    }
+
+    public async Task<ApiResponseResult<BaseResponse>> PostStatisticalEventsAsync(StatisticalEventsBatch statisticalEvents)
+    {
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "data/v1/stats/multiple");
+        request.Content = GetJsonContent(statisticalEvents);
+        return await SendRequest<BaseResponse>(request, "Post statistical events batch");
     }
 
     public async Task<ApiResponseResult<UsersResponse>> GetUserAsync()

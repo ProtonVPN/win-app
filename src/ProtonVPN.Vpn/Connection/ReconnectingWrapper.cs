@@ -201,7 +201,7 @@ namespace ProtonVPN.Vpn.Connection
 
         private async Task<bool> IsEndpointRespondingAsync(VpnEndpoint endpoint, CancellationToken cancellationToken)
         {
-            OnStateChanged(new VpnState(VpnStatus.Pinging, VpnError.None, string.Empty, endpoint.Server.Ip,
+            OnStateChanged(new VpnState(VpnStatus.Pinging, VpnError.None, string.Empty, endpoint.Server.Ip, endpoint.Port,
                 _config.VpnProtocol, openVpnAdapter: _config.OpenVpnAdapter, label: endpoint.Server.Label));
 
             VpnEndpoint bestEndpoint = await _endpointScanner.ScanForBestEndpointAsync(
@@ -305,6 +305,7 @@ namespace ProtonVPN.Vpn.Connection
                 state.Error,
                 state.LocalIp,
                 state.RemoteIp,
+                state.EndpointPort,
                 state.VpnProtocol,
                 openVpnAdapter: state.OpenVpnAdapter,
                 label: state.Label);

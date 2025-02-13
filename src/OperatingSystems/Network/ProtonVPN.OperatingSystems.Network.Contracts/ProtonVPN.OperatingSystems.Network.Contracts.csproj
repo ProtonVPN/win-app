@@ -11,5 +11,8 @@
 	<ItemGroup>
 		<Compile Include="..\..\..\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
 	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\Common\ProtonVPN.Common.Core\ProtonVPN.Common.Core.csproj" />
+	</ItemGroup>
 
 </Project>

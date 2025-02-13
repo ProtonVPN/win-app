@@ -245,7 +245,7 @@ namespace ProtonVPN.Service.Vpn
             VpnHost server = _servers.FirstOrDefault();
             if (!server.IsEmpty())
             {
-                InvokeStateChanged(new VpnState(VpnStatus.Pinging, VpnError.None, string.Empty, server.Ip,
+                InvokeStateChanged(new VpnState(VpnStatus.Pinging, VpnError.None, string.Empty, server.Ip, 0,
                     _config.VpnProtocol, openVpnAdapter: _config.OpenVpnAdapter, label: server.Label));
             }
         }

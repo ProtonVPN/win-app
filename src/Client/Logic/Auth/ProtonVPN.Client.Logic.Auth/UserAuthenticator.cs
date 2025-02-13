@@ -37,6 +37,7 @@ using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Logging.Contracts.Events.UserLogs;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.Logic.Auth;
 
@@ -298,7 +299,7 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
 
             if (!_connectionManager.IsDisconnected)
             {
-                await _connectionManager.DisconnectAsync();
+                await _connectionManager.DisconnectAsync(VpnTriggerDimension.Signout);
             }
 
             _connectionCertificateManager.DeleteKeyPairAndCertificate();
@@ -396,6 +397,7 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
 
                 _settings.Username = usersResponse.Value.User.GetUsername();
                 _settings.UserDisplayName = usersResponse.Value.User.GetDisplayName();
+                _settings.UserCreationDateUtc = DateTimeOffset.FromUnixTimeSeconds(usersResponse.Value.User.CreateTime).UtcDateTime;
             }
 
             if (string.IsNullOrWhiteSpace(_settings.UserId))

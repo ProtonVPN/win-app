@@ -29,6 +29,7 @@ public interface IUserSettings
 {
     string? Username { get; set; }
     string? UserDisplayName { get; set; }
+    DateTimeOffset? UserCreationDateUtc { get; set; }
     string Theme { get; set; }
     int WindowWidth { get; set; }
     int WindowHeight { get; set; }

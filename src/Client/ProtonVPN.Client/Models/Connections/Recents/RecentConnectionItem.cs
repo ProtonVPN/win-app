@@ -33,6 +33,7 @@ using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Common.Core.Geographical;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.Models.Connections.Recents;
 
@@ -66,6 +67,8 @@ public partial class RecentConnectionItem : ConnectionItemBase
 
     public override object SecondSortProperty => RecentConnection.PinTime ?? DateTime.MaxValue;
 
+    public override VpnTriggerDimension VpnTriggerDimension { get; } = VpnTriggerDimension.Recent;
+
     public override string? ToolTip =>
         IsRestricted
             ? Localizer.Get("Home_Recents_Restricted")
@@ -95,7 +98,8 @@ public partial class RecentConnectionItem : ConnectionItemBase
         : base(localizer,
                serversLoader,
                connectionManager,
-               upsellCarouselWindowActivator)
+               upsellCarouselWindowActivator,
+               false)
     {
         _recentConnectionsManager = recentConnectionsManager;
 

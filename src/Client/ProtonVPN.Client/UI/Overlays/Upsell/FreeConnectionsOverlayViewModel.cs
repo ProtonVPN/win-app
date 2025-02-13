@@ -26,12 +26,12 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Searches;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.UI.Overlays.Upsell;
 
@@ -114,6 +114,6 @@ public partial class FreeConnectionsOverlayViewModel : OverlayViewModelBase<IMai
     [RelayCommand]
     private async Task UpgradePlanAsync()
     {
-        _urlsBrowser.BrowseTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSources.Countries));
+        _urlsBrowser.BrowseTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSource.Countries));
     }
 }

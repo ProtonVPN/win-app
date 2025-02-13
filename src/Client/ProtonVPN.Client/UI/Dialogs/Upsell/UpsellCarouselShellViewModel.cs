@@ -31,6 +31,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.UI.Dialogs.Upsell.Bases;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.UI.Dialogs.Upsell;
 
@@ -41,6 +42,7 @@ public partial class UpsellCarouselShellViewModel : ShellViewModelBase<IUpsellCa
 
     private readonly IUrlsBrowser _urlsBrowser;
     private readonly IWebAuthenticator _webAuthenticator;
+    private readonly IUpsellUpgradeAttemptStatisticalEventSender _upsellUpgradeAttemptStatisticalEventSender;
 
     [ObservableProperty]
     private IUpsellFeaturePage? _selectedUpsellFeaturePage;
@@ -57,6 +59,7 @@ public partial class UpsellCarouselShellViewModel : ShellViewModelBase<IUpsellCa
         IIssueReporter issueReporter,
         IUrlsBrowser urlsBrowser,
         IWebAuthenticator webAuthenticator,
+        IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender,
         IEnumerable<IUpsellFeaturePage> upsellFeaturePages)
         : base(windowActivator,
                childViewNavigator,
@@ -66,6 +69,7 @@ public partial class UpsellCarouselShellViewModel : ShellViewModelBase<IUpsellCa
     {
         _urlsBrowser = urlsBrowser;
         _webAuthenticator = webAuthenticator;
+        _upsellUpgradeAttemptStatisticalEventSender = upsellUpgradeAttemptStatisticalEventSender;
 
         UpsellFeaturePages = new(upsellFeaturePages.OrderBy(p => p.SortIndex));
     }
@@ -108,7 +112,9 @@ public partial class UpsellCarouselShellViewModel : ShellViewModelBase<IUpsellCa
     [RelayCommand]
     private async Task UpgradeAsync()
     {
-        _urlsBrowser.BrowseTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(WindowActivator.ModalSources));
+        _upsellUpgradeAttemptStatisticalEventSender.Send(WindowActivator.ModalSource);
+
+        _urlsBrowser.BrowseTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(WindowActivator.ModalSource));
 
         WindowActivator.Exit();
     }

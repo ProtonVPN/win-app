@@ -19,10 +19,9 @@
 
 using System.Security;
 using Microsoft.Win32;
-using ProtonVPN.Common.Legacy.Extensions;
+using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.OperatingSystemLogs;
-using ProtonVPN.IssueReporting.Contracts;
 
 namespace ProtonVPN.Service.Vpn
 {

@@ -121,8 +121,12 @@ public class SmartStandardServerListGenerator : ServerListGeneratorBase, ISmartS
         ILocationIntent? baseLocationIntent = locationIntent switch
         {
             // Server -> City -> State -> Country -> Fastest country -> Fastest (excluding my country) -> Random country
-            ServerLocationIntent serverIntent => new CityLocationIntent(serverIntent.CountryCode!, serverIntent.State, serverIntent.City),
-            CityLocationIntent cityIntent => new StateLocationIntent(cityIntent.CountryCode!, cityIntent.State),
+            ServerLocationIntent serverIntent => string.IsNullOrEmpty(serverIntent.State)
+                ? new CityLocationIntent(serverIntent.CountryCode!, serverIntent.City)
+                : new CityLocationIntent(serverIntent.CountryCode!, serverIntent.State, serverIntent.City),
+            CityLocationIntent cityIntent => string.IsNullOrEmpty(cityIntent.State)
+                ? new StateLocationIntent(cityIntent.CountryCode!)
+                : new StateLocationIntent(cityIntent.CountryCode!, cityIntent.State),
             StateLocationIntent stateIntent => new CountryLocationIntent(stateIntent.CountryCode!),
             CountryLocationIntent countryIntent when countryIntent.IsSpecificCountry => CountryLocationIntent.Fastest,
             CountryLocationIntent countryIntent when countryIntent.IsFastestCountry => CountryLocationIntent.FastestExcludingMyCountry,

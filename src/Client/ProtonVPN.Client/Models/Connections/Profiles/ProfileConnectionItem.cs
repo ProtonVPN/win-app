@@ -21,7 +21,6 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Common.Models;
-using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Localization.Contracts;
@@ -37,6 +36,8 @@ using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Contracts.Profiles;
 using ProtonVPN.Common.Core.Geographical;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
+using ProtonVPN.Client.Contracts.Enums;
 
 namespace ProtonVPN.Client.Models.Connections.Profiles;
 
@@ -60,6 +61,8 @@ public partial class ProfileConnectionItem : ConnectionItemBase
 
     public override string SecondaryCommandAutomationId => $"Actions_for_{AutomationName}";
 
+    public override VpnTriggerDimension VpnTriggerDimension { get; } = VpnTriggerDimension.Profile;
+
     public string? ExitCountryCode => (Profile.Location as CountryLocationIntent)?.CountryCode;
 
     public bool IsTor => Profile.Feature is TorFeatureIntent;
@@ -82,7 +85,8 @@ public partial class ProfileConnectionItem : ConnectionItemBase
         : base(localizer,
                serversLoader,
                connectionManager,
-               upsellCarouselWindowActivator)
+               upsellCarouselWindowActivator,
+               false)
     {
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
         _profilesManager = profilesManager;

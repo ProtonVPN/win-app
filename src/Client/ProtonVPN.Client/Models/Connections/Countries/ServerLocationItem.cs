@@ -22,8 +22,8 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
-using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
+using ProtonVPN.Client.Contracts.Enums;
 
 namespace ProtonVPN.Client.Models.Connections.Countries;
 
@@ -40,11 +40,13 @@ public class ServerLocationItem : ServerLocationItemBase
         IServersLoader serversLoader,
         IConnectionManager connectionManager,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
-        Server server)
+        Server server,
+        bool isSearchItem)
         : base(localizer,
                serversLoader,
                connectionManager,
                upsellCarouselWindowActivator,
-               server)
+               server,
+               isSearchItem)
     { }
 }

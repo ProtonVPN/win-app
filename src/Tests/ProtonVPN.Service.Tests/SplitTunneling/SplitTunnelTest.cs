@@ -308,6 +308,7 @@ public class SplitTunnelTest
             VpnError.None,
             "1.1.1.1",
             "2.2.2.2",
+            443,
             VpnProtocol.Smart);
     }
 
@@ -318,6 +319,7 @@ public class SplitTunnelTest
             manualDisconnect ? VpnError.None : VpnError.Unknown,
             "1.1.1.1",
             "2.2.2.2",
+            443,
             VpnProtocol.Smart);
     }
 
@@ -328,6 +330,7 @@ public class SplitTunnelTest
             VpnError.None,
             "1.1.1.1",
             "2.2.2.2",
+            443,
             VpnProtocol.Smart);
     }
 }

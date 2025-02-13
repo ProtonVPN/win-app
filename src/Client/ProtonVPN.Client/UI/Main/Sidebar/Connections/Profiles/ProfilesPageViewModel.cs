@@ -28,7 +28,6 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Factories;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Messages;
@@ -42,6 +41,7 @@ using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;
 using ProtonVPN.Common.Core.Geographical;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles;
 
@@ -135,6 +135,6 @@ public partial class ProfilesPageViewModel : ConnectionPageViewModelBase,
     [RelayCommand]
     private async Task UpgradeAsync()
     {
-        _urlsBrowser.BrowseTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSources.Profiles));
+        _urlsBrowser.BrowseTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSource.Profiles));
     }
 }

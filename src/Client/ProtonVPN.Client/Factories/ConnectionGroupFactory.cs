@@ -22,7 +22,6 @@ using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Models.Connections;
 
-
 namespace ProtonVPN.Client.Factories;
 
 public class ConnectionGroupFactory : IConnectionGroupFactory

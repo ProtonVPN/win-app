@@ -173,7 +173,7 @@ public class HandlingRequestsWrapper : ISingleVpnConnection
             return;
         }
 
-        InvokeStateChanged(WithFallbackRemoteServer(state, _endpoint.Server));
+        InvokeStateChanged(WithFallbackRemoteServer(state, _endpoint));
     }
 
     private void Connect()
@@ -240,7 +240,7 @@ public class HandlingRequestsWrapper : ISingleVpnConnection
         StateChanged?.Invoke(this, new EventArgs<VpnState>(state));
     }
 
-    private VpnState WithFallbackRemoteServer(VpnState state, VpnHost remoteServer)
+    private VpnState WithFallbackRemoteServer(VpnState state, VpnEndpoint endpoint)
     {
         if (state.Status == VpnStatus.Disconnecting ||
             state.Status == VpnStatus.Disconnected ||
@@ -249,7 +249,7 @@ public class HandlingRequestsWrapper : ISingleVpnConnection
             return state;
         }
 
-        return state.WithRemoteIp(remoteServer.Ip, remoteServer.Label);
+        return state.WithRemoteIp(endpoint.Server.Ip, endpoint.Port, endpoint.Server.Label);
     }
 
     private void Queued(Action action)

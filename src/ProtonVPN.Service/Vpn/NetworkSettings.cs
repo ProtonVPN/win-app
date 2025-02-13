@@ -19,9 +19,9 @@
 
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Legacy.OS.Net;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.NetworkLogs;
+using ProtonVPN.OperatingSystems.Network.Contracts;
 using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Service.Vpn;
@@ -30,12 +30,18 @@ public class NetworkSettings : IVpnStateAware
 {
     private readonly ILogger _logger;
     private readonly INetworkInterfaceLoader _networkInterfaceLoader;
+    private readonly INetworkUtilities _networkUtilities;
     private readonly WintunRegistryFixer _wintunRegistryFixer;
 
-    public NetworkSettings(ILogger logger, INetworkInterfaceLoader networkInterfaceLoader, WintunRegistryFixer wintunRegistryFixer)
+    public NetworkSettings(
+        ILogger logger,
+        INetworkInterfaceLoader networkInterfaceLoader,
+        INetworkUtilities networkUtilities,
+        WintunRegistryFixer wintunRegistryFixer)
     {
         _logger = logger;
         _networkInterfaceLoader = networkInterfaceLoader;
+        _networkUtilities = networkUtilities;
         _wintunRegistryFixer = wintunRegistryFixer;
     }
 
@@ -67,7 +73,7 @@ public class NetworkSettings : IVpnStateAware
         try
         {
             _logger.Info<NetworkLog>("Setting interface metric...");
-            NetworkUtil.SetLowestTapMetric(interfaceIndex);
+            _networkUtilities.SetLowestTapMetric(interfaceIndex);
             _logger.Info<NetworkLog>("Interface metric set.");
         }
         catch (NetworkUtilException e)
@@ -87,7 +93,7 @@ public class NetworkSettings : IVpnStateAware
         try
         {
             _logger.Info<NetworkLog>("Restoring interface metric...");
-            NetworkUtil.RestoreDefaultTapMetric(interfaceIndex);
+            _networkUtilities.RestoreDefaultTapMetric(interfaceIndex);
             _logger.Info<NetworkLog>("Interface metric restored.");
         }
         catch (NetworkUtilException e)

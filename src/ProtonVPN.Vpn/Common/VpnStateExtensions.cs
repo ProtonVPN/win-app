@@ -23,13 +23,14 @@ namespace ProtonVPN.Vpn.Common
 {
     internal static class VpnStateExtensions
     {
-        public static VpnState WithRemoteIp(this VpnState state, string remoteIp, string label)
+        public static VpnState WithRemoteIp(this VpnState state, string remoteIp, int port, string label)
         {
             return new(
                 state.Status,
                 state.Error,
                 state.LocalIp,
                 remoteIp,
+                port,
                 state.VpnProtocol,
                 state.PortForwarding,
                 state.OpenVpnAdapter,
@@ -43,6 +44,7 @@ namespace ProtonVPN.Vpn.Common
                 error,
                 state.LocalIp,
                 state.RemoteIp,
+                state.EndpointPort,
                 state.VpnProtocol,
                 state.PortForwarding,
                 state.OpenVpnAdapter,

@@ -18,6 +18,7 @@
  */
 
 using Autofac;
+using ProtonVPN.OperatingSystems.Network.NetworkInterface;
 
 namespace ProtonVPN.OperatingSystems.Network.Installers;
 
@@ -26,5 +27,8 @@ public class NetworkModule : Module
     protected override void Load(ContainerBuilder builder)
     {
         builder.RegisterType<ProxyDetector>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<SystemNetworkInterfaces>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<NetworkInterfaceLoader>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<NetworkUtilities>().AsImplementedInterfaces().SingleInstance();
     }
 }

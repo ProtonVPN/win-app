@@ -29,10 +29,10 @@ public class VpnStateChangedEventArgs
     public VpnError Error { get; }
     public bool NetworkBlocked { get; }
 
-    public VpnStateChangedEventArgs(VpnStatus status, VpnError error, string endpointIp,
+    public VpnStateChangedEventArgs(VpnStatus status, VpnError error, string endpointIp, int endpointPort,
         bool networkBlocked, VpnProtocol vpnProtocol, OpenVpnAdapter? networkAdapterType = null,
         string label = "")
-        : this(new VpnState(status, endpointIp, vpnProtocol, networkAdapterType, label), error, networkBlocked)
+        : this(new VpnState(status, endpointIp, endpointPort, vpnProtocol, networkAdapterType, label), error, networkBlocked)
     {
     }
 

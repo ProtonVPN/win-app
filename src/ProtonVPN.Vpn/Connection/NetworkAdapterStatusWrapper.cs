@@ -21,14 +21,13 @@ using System;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy;
-using ProtonVPN.Common.Legacy.OS.Net;
-using ProtonVPN.Common.Legacy.OS.Net.NetworkInterface;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
 using ProtonVPN.Logging.Contracts.Events.NetworkLogs;
+using ProtonVPN.OperatingSystems.Network.Contracts;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.NetworkAdapters;
 
@@ -124,6 +123,7 @@ internal class NetworkAdapterStatusWrapper : ISingleVpnConnection
                 VpnError.None,
                 string.Empty,
                 _endpoint.Server.Ip,
+                _endpoint.Port,
                 _endpoint.VpnProtocol,
                 openVpnAdapter: _config.OpenVpnAdapter,
                 label: _endpoint.Server.Label)));
@@ -204,6 +204,7 @@ internal class NetworkAdapterStatusWrapper : ISingleVpnConnection
                 VpnError.NoTapAdaptersError,
                 string.Empty,
                 _endpoint.Server.Ip,
+                _endpoint.Port,
                 _endpoint.VpnProtocol,
                 openVpnAdapter: _config.OpenVpnAdapter,
                 label: _endpoint.Server.Label)));

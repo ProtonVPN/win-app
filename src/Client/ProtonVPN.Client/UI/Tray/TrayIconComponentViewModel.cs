@@ -37,6 +37,7 @@ using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.Services.Bootstrapping;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.UI.Tray;
 
@@ -109,13 +110,13 @@ public partial class TrayIconComponentViewModel : ViewModelBase,
     {
         IConnectionIntent defaultConnectionIntent = _recentConnectionsManager.GetDefaultConnection();
 
-        await _connectionManager.ConnectAsync(defaultConnectionIntent);
+        await _connectionManager.ConnectAsync(VpnTriggerDimension.Tray, defaultConnectionIntent);
     }
 
     [RelayCommand(CanExecute = nameof(CanDisconnect))]
     public async Task DisconnectAsync()
     {
-        await _connectionManager.DisconnectAsync();
+        await _connectionManager.DisconnectAsync(VpnTriggerDimension.Tray);
     }
 
     [RelayCommand(CanExecute = nameof(CanShowDebugTools))]

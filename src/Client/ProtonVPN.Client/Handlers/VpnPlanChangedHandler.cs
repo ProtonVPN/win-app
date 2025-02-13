@@ -28,7 +28,6 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Handlers.Bases;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
@@ -36,6 +35,7 @@ using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Notifications.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.Handlers;
 
@@ -142,7 +142,7 @@ public class VpnPlanChangedHandler : IHandler,
             return;
         }
 
-        _urlsBrowser.BrowseTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSources.Downgrade));
+        _urlsBrowser.BrowseTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSource.Downgrade));
     }
 
     private async Task ResetNavigationAsync()

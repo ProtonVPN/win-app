@@ -25,7 +25,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Legacy.OS.Net;
 using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Configurations.Contracts;
@@ -37,6 +36,7 @@ using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Management;
 using ProtonVPN.Vpn.OpenVpn;
+using ProtonVPN.OperatingSystems.Network.Contracts;
 
 namespace ProtonVPN.Vpn.Connection;
 
@@ -285,6 +285,7 @@ internal class OpenVpnConnection : IAdapterSingleVpnConnection
             e.Data.Error,
             e.Data.LocalIp,
             e.Data.RemoteIp,
+            _endpoint.Port,
             _endpoint.VpnProtocol,
             _vpnConfig.PortForwarding,
             _vpnConfig.OpenVpnAdapter,
@@ -298,6 +299,7 @@ internal class OpenVpnConnection : IAdapterSingleVpnConnection
                 VpnError.None,
                 string.Empty,
                 _endpoint.Server.Ip,
+                _endpoint.Port,
                 _endpoint.VpnProtocol,
                 _vpnConfig.PortForwarding,
                 state.OpenVpnAdapter,
@@ -324,7 +326,7 @@ internal class OpenVpnConnection : IAdapterSingleVpnConnection
         {
             case VpnStatus.Pinging:
             case VpnStatus.Connecting:
-                state = new VpnState(status, VpnError.None, string.Empty, _endpoint.Server.Ip,
+                state = new VpnState(status, VpnError.None, string.Empty, _endpoint.Server.Ip, _endpoint.Port,
                     _endpoint.VpnProtocol, _vpnConfig.PortForwarding, _vpnConfig.OpenVpnAdapter, _endpoint.Server.Label);
                 break;
             case VpnStatus.Disconnecting:

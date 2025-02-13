@@ -21,10 +21,10 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Servers.Contracts;
-using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Factories;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Client.Contracts.Enums;
 
 namespace ProtonVPN.Client.Models.Connections.Countries;
 
@@ -44,7 +44,8 @@ public class SecureCoreCountryLocationItem : CountryLocationItemBase
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
         IConnectionGroupFactory connectionGroupFactory,
         ILocationItemFactory locationItemFactory,
-        Country country)
+        Country country,
+        bool isSearchItem)
         : base(localizer,
                serversLoader,
                connectionManager,
@@ -52,7 +53,8 @@ public class SecureCoreCountryLocationItem : CountryLocationItemBase
                upsellCarouselWindowActivator,
                connectionGroupFactory,
                locationItemFactory,
-               country)
+               country,
+               isSearchItem)
     {
         FetchSubItems();
     }
@@ -60,6 +62,6 @@ public class SecureCoreCountryLocationItem : CountryLocationItemBase
     protected override IEnumerable<ConnectionItemBase> GetSubItems()
     {
         return ServersLoader.GetSecureCoreCountryPairsByExitCountryCode(ExitCountryCode)
-                            .Select(LocationItemFactory.GetSecureCoreCountryPair);
+                            .Select(s => LocationItemFactory.GetSecureCoreCountryPair(s, isSearchItem: IsSearchItem));
     }
 }

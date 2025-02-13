@@ -21,7 +21,7 @@ using System.Net;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Common.Legacy.OS.Net.NetworkInterface;
+using ProtonVPN.OperatingSystems.Network.Contracts;
 using ProtonVPN.Service.Vpn;
 
 namespace ProtonVPN.Service.Tests.Vpn
@@ -29,12 +29,12 @@ namespace ProtonVPN.Service.Tests.Vpn
     [TestClass]
     public class ObservableNetworkInterfacesTest
     {
-        private INetworkInterfaces _interfaces;
+        private ISystemNetworkInterfaces _interfaces;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            _interfaces = Substitute.For<INetworkInterfaces>();
+            _interfaces = Substitute.For<ISystemNetworkInterfaces>();
         }
 
         [TestMethod]

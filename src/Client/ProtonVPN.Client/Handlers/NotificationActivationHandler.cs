@@ -23,11 +23,11 @@ using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Handlers.Bases;
 using ProtonVPN.Client.Logic.Auth.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Notifications.Contracts;
 using ProtonVPN.Client.Notifications.Contracts.Arguments;
 using ProtonVPN.Client.Services.PortForwarding;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.Handlers;
 
@@ -67,7 +67,7 @@ public class NotificationActivationHandler : IHandler,
         switch (argument)
         {
             case NotificationArguments.UPGRADE:
-                _urlsBrowser.BrowseTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSources.Downgrade));
+                _urlsBrowser.BrowseTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSource.Downgrade));
                 break;
             case NotificationArguments.COPY_PORT_FORWARDING_PORT_TO_CLIPBOARD:
                 _uiThreadDispatcher.TryEnqueue(async () =>

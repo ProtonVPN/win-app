@@ -44,6 +44,12 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userCache.SetReferenceType(value, SettingEncryption.Encrypted);
     }
 
+    public DateTimeOffset? UserCreationDateUtc
+    {
+        get => _userCache.GetValueType<DateTimeOffset>(SettingEncryption.Encrypted);
+        set => _userCache.SetValueType<DateTimeOffset>(value, SettingEncryption.Encrypted);
+    }
+
     public string Theme
     {
         get => _userCache.GetReferenceType<string>(SettingEncryption.Unencrypted) ?? DefaultSettings.Theme;

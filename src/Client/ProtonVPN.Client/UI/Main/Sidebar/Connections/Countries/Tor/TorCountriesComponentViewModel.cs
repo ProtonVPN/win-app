@@ -22,7 +22,6 @@ using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Factories;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Models.Connections;
@@ -30,6 +29,7 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Countries.Tor;
 
@@ -46,7 +46,7 @@ public class TorCountriesComponentViewModel : CountriesComponentViewModelBase
 
     public override int SortIndex { get; } = 3;
 
-    protected override ModalSources UpsellModalSources => ModalSources.Countries;
+    protected override ModalSource UpsellModalSource => ModalSource.Countries;
 
     public TorCountriesComponentViewModel(
         ILocalizationProvider localizer,
@@ -73,7 +73,7 @@ public class TorCountriesComponentViewModel : CountriesComponentViewModelBase
 
         IEnumerable<ConnectionItemBase> countries =
             ServersLoader.GetCountriesByFeatures(ServerFeatures.Tor)
-                         .Select(LocationItemFactory.GetTorCountry);
+                         .Select(c => LocationItemFactory.GetTorCountry(c));
 
         return genericCountries
             .Concat(countries);

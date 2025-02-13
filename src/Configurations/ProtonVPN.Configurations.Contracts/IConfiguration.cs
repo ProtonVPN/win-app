@@ -71,6 +71,8 @@ public interface IConfiguration : IStaticConfiguration
     TimeSpan VpnPlanMinimumRequestInterval { get; }
     TimeSpan NetShieldStatisticRequestInterval { get; }
     TimeSpan P2PTrafficDetectionInterval { get; }
+    TimeSpan StatisticalEventMinimumWaitInterval { get; }
+    TimeSpan StatisticalEventSendTriggerInterval { get; }
 
     IList<string> DohProviders { get; }
     IUrlsConfiguration Urls { get; }

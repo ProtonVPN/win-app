@@ -18,10 +18,9 @@
  */
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Validators;
-using ProtonVPN.Common.Legacy.OS.Net;
-using ProtonVPN.Common.Legacy.OS.Net.NetworkInterface;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.NetworkLogs;
+using ProtonVPN.OperatingSystems.Network.Contracts;
 
 namespace ProtonVPN.Client.Logic.Connection.Validators;
 

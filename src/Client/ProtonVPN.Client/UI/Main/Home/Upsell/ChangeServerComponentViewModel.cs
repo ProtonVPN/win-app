@@ -25,13 +25,14 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.StatisticalEvents.Contracts;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.UI.Main.Home.Upsell;
 
@@ -105,7 +106,7 @@ public partial class ChangeServerComponentViewModel : ActivatableViewModelBase,
             ? ConnectionIntent.FreeDefault
             : new ConnectionIntent(new FreeServerLocationIntent(logicalServerId));
 
-        return _connectionManager.ConnectAsync(connectionIntent);
+        return _connectionManager.ConnectAsync(VpnTriggerDimension.ChangeServer, connectionIntent);
     }
 
     private bool CanChangeServer()
@@ -116,7 +117,7 @@ public partial class ChangeServerComponentViewModel : ActivatableViewModelBase,
     [RelayCommand]
     private async Task UpgradePlanAsync()
     {
-        _urlsBrowser.BrowseTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSources.ChangeServer));
+        _urlsBrowser.BrowseTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSource.ChangeServer));
     }
 
     private void InvalidateChangeServer()
