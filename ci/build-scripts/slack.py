@@ -12,8 +12,8 @@ def send():
     if len(files) > 0:
         installer_path = files[0]
         try:
-            result = client.files_upload(
-                channels=os.environ.get("SLACK_CHANNEL_ID"),
+            result = client.files_upload_v2(
+                channel=os.environ.get("SLACK_CHANNEL_ID"),
                 initial_comment=os.environ.get("CI_COMMIT_MESSAGE"),
                 file=installer_path,
             )
