@@ -79,6 +79,8 @@ public partial class ConnectionGroup : List<ConnectionItemBase>
             ConnectionGroupType.TorCountries or
             ConnectionGroupType.TorServers => _overlayActivator.ShowTorInfoOverlayAsync(),
 
+            ConnectionGroupType.Profiles => _overlayActivator.ShowProfileInfoOverlayAsync(),
+
             _ => Task.CompletedTask
         };
     }

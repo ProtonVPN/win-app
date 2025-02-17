@@ -2948,7 +2948,7 @@ Smart Routing se obvykle používá k obcházení zákonů potlačujících souk
   <data name="Settings_About_Loading">
     <value>Načítání</value>
   </data>
-  <data name="Settings_About_NewVersion">
+  <data name="Common_Tags_New">
     <value>NOVÉ</value>
   </data>
   <data name="Settings_About_Title">

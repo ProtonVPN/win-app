@@ -174,16 +174,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <TextBlock VerticalAlignment="Center"
                                                Style="{ThemeResource BodyStrongTextBlockStyle}"
                                                Text="{x:Bind Version, Mode=OneTime}" />
-                                    <Border Padding="6,2"
-                                            VerticalAlignment="Center"
-                                            BorderBrush="{ThemeResource SignalWarningColorBrush}"
-                                            BorderThickness="1"
-                                            CornerRadius="4"
-                                            Visibility="{x:Bind NewVersionLabel, Converter={StaticResource StringVisibilityConverter}, Mode=OneTime}">
-                                        <TextBlock Foreground="{ThemeResource SignalWarningColorBrush}"
-                                                   Style="{ThemeResource CaptionStrongTextBlockStyle}"
-                                                   Text="{x:Bind NewVersionLabel, Mode=OneTime}" />
-                                    </Border>
+                                    <custom:TagControl Text="{x:Bind NewVersionLabel, Mode=OneTime}"
+                                                       Visibility="{x:Bind NewVersionLabel, Converter={StaticResource StringVisibilityConverter}, Mode=OneTime}"
+                                                       VerticalAlignment="Center" 
+                                                       Style="{StaticResource NewTagControlStyle}"/>
                                     <TextBlock Margin="4,0,0,0"
                                                VerticalAlignment="Center"
                                                Foreground="{ThemeResource TextWeakColorBrush}"

@@ -17,8 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Specialized;
+
 namespace ProtonVPN.Client.Logic.Profiles.Contracts.Messages;
 
 public class ProfilesChangedMessage
 {
+    public NotifyCollectionChangedAction Action { get; init; }
+
+    public Guid? ChangedProfileId { get; init; }
 }

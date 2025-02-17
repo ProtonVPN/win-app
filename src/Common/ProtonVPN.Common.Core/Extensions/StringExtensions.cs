@@ -241,6 +241,20 @@ public static class StringExtensions
         return _base64KeyRegex.IsMatch(key);
     }
 
+    public static bool IsValidUrl(this string url)
+    {
+        return !string.IsNullOrWhiteSpace(url)
+            && Uri.IsWellFormedUriString(url.ToFormattedUrl(), UriKind.Absolute);
+    }
+
+    public static string ToFormattedUrl(this string url)
+    {
+        // Check if protocol is already defined, otherwise use https by default.
+        return string.IsNullOrWhiteSpace(url) || url.Contains(":/")
+            ? url
+            : $"https://{url}";
+    }
+
     public static uint ToIPAddressBytes(this string value)
     {
         if (IPAddress.TryParse(value, out IPAddress? address))

@@ -32,7 +32,7 @@ public class AdvancedSettingsRobot
     protected Element CustomDnsTextBox = Element.ByAutomationId("CustomDnsIpAddressBox");
     protected Element AddButton = Element.ByAutomationId("AddButton");
     protected Element TrashButton = Element.ByAutomationId("TrashIcon");
-    protected Element NatTypeCard = Element.ByAutomationId("FreeNatTypeSettingsCard");
+    protected Element NatTypeCard = Element.ByAutomationId("NatTypeSettingsCard");
 
     private string WireguardDnsAddress => NetworkUtils.GetDnsAddress("ProtonVPN");
     private string OpenVpnDnsAddress => NetworkUtils.GetDnsAddress("ProtonVPN TUN");

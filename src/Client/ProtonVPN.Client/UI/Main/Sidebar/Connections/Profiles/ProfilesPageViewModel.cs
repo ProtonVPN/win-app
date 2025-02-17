@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Specialized;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.UI.Assets.Icons.Base;
@@ -64,6 +65,9 @@ public partial class ProfilesPageViewModel : ConnectionPageViewModelBase,
 
     public override bool IsAvailable => ParentViewNavigator.CanNavigateToProfilesView();
 
+
+    public event EventHandler<ConnectionItemBase>? ScrollToItemRequested;
+
     public ProfilesPageViewModel(
         IConnectionsViewNavigator parentViewNavigator,
         ILocalizationProvider localizer,
@@ -89,7 +93,25 @@ public partial class ProfilesPageViewModel : ConnectionPageViewModelBase,
 
     public void Receive(ProfilesChangedMessage message)
     {
-        ExecuteOnUIThread(FetchItems);
+        ExecuteOnUIThread(() =>
+        {
+            FetchItems();
+
+            switch (message.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                case NotifyCollectionChangedAction.Replace:
+                    ProfileConnectionItem? profile = Items.OfType<ProfileConnectionItem>().FirstOrDefault(p => p.Profile.Id == message.ChangedProfileId);
+                    if (profile != null)
+                    {
+                        ScrollToItemRequested?.Invoke(this, profile);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        });
+
     }
 
     protected override IEnumerable<ConnectionItemBase> GetItems()

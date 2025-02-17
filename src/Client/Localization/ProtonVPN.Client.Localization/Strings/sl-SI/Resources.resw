@@ -2948,7 +2948,7 @@ Smart Routing is typically used to get around anti-privacy laws and other forms 
   <data name="Settings_About_Loading">
     <value>Nalaganje</value>
   </data>
-  <data name="Settings_About_NewVersion">
+  <data name="Common_Tags_New">
     <value>NOVO</value>
   </data>
   <data name="Settings_About_Title">

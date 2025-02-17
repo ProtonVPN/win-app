@@ -58,6 +58,8 @@ public interface ILocationItemFactory
 
     TorServerLocationItem GetTorServer(Server server, bool isSearchItem = false);
 
+    GenericGatewayLocationItem GetGenericGateway(ConnectionIntentKind intentKind);
+
     GatewayLocationItem GetGateway(Gateway gateway);
 
     GatewayServerLocationItem GetGatewayServer(Server server);

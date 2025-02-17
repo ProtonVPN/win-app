@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Common.Core.Geographical;
 
@@ -50,4 +51,9 @@ public abstract class LocationIntentBase : IntentBase, ILocationIntent
     public abstract bool IsSupported(Server server, DeviceLocation? deviceLocation);
 
     public abstract bool IsGenericRandomIntent();
+
+    public ILocationIntent Copy()
+    {
+        return (ILocationIntent)MemberwiseClone();
+    }
 }

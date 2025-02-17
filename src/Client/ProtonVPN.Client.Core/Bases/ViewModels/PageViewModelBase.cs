@@ -67,7 +67,7 @@ public abstract class PageViewModelBase : ActivatableViewModelBase, INavigationA
         InvalidateTitle();
     }
 
-    protected void RequestResetContentScroll()
+    public void RequestResetContentScroll()
     {
         ExecuteOnUIThread(() => ResetContentScrollRequested?.Invoke(this, EventArgs.Empty));
     }

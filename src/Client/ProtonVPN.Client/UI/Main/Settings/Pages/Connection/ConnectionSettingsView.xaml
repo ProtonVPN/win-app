@@ -21,168 +21,208 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 <UserControl x:Class="ProtonVPN.Client.UI.Main.Settings.Pages.Connection.ConnectionSettingsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:components="using:ProtonVPN.Client.UI.Main.Components"
              xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:featureicons="using:ProtonVPN.Client.UI.Main.FeatureIcons"
              xmlns:local="using:ProtonVPN.Client.UI.Main.Settings.Pages.Connection"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
              xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
-             xmlns:featureicons="using:ProtonVPN.Client.UI.Main.FeatureIcons"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
-    <custom:SettingsSectionControl Title="{x:Bind ViewModel.Localizer.Get('Settings_Connection')}">
-        <StackPanel>
-            <Grid ColumnSpacing="8" x:Name="SettingCardsGrid">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"
-                                      MinWidth="150" />
-                    <ColumnDefinition Width="*"
-                                      MinWidth="150" />
-                    <ColumnDefinition Width="*"
-                                      MinWidth="150" />
-                </Grid.ColumnDefinitions>
+    <StackPanel Orientation="Vertical"
+                Spacing="16">
+        <Border Padding="8,12,8,10"
+                Background="{ThemeResource InteractionDefaultColorBrush}"
+                CornerRadius="8"
+                Visibility="{x:Bind ViewModel.AreSettingsOverridden, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <components:CurrentProfileIconView IconHeight="24"
+                                               Spacing="4"
+                                               Text="{x:Bind ViewModel.SettingsOverriddenTagline}"
+                                               TextWrapping="Wrap" />
+        </Border>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+        <custom:SettingsSectionControl Title="{x:Bind ViewModel.Localizer.Get('Settings_Connection')}">
+            <StackPanel>
+                <Grid x:Name="SettingCardsGrid"
+                      ColumnSpacing="8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"
+                                          MinWidth="150" />
+                        <ColumnDefinition Width="*"
+                                          MinWidth="150" />
+                        <ColumnDefinition Width="*"
+                                          MinWidth="150" />
+                    </Grid.ColumnDefinitions>
 
-                <custom:GridSettingsCard x:Name="Item1"
-                                         Grid.Row="0"
-                                         Grid.Column="0"
-                                         AutomationProperties.AutomationId="ProtocolSettingsCard"
-                                         Command="{x:Bind ViewModel.NavigateToProtocolPageCommand, Mode=OneTime}"
-                                         Description="{x:Bind ViewModel.ConnectionProtocolState}"
-                                         Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Protocol')}"
-                                         IsClickEnabled="True"
-                                         Style="{StaticResource GridSettingsCardStyle}">
-                    <custom:GridSettingsCard.FeatureIcon>
-                        <featureicons:ProtocolIconView />
-                    </custom:GridSettingsCard.FeatureIcon>
-                    <custom:GridSettingsCard.ActionIcon>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <custom:GridSettingsCard x:Name="Item1"
+                                             Grid.Row="0"
+                                             Grid.Column="0"
+                                             AutomationProperties.AutomationId="ProtocolSettingsCard"
+                                             Command="{x:Bind ViewModel.NavigateToProtocolPageCommand, Mode=OneTime}"
+                                             Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Protocol')}"
+                                             IsClickEnabled="True"
+                                             Style="{StaticResource GridSettingsCardStyle}">
+                        <custom:GridSettingsCard.Description>
+                            <Grid>
+                                <components:CurrentProfileIconView Margin="-8,2,0,-8"
+                                                                   Text="{x:Bind ViewModel.ConnectionProtocolState}"
+                                                                   Visibility="{x:Bind ViewModel.AreSettingsOverridden, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                <TextBlock Text="{x:Bind ViewModel.ConnectionProtocolState}"
+                                           Visibility="{x:Bind ViewModel.AreSettingsOverridden, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+                            </Grid>
+                        </custom:GridSettingsCard.Description>
+                        <custom:GridSettingsCard.FeatureIcon>
+                            <featureicons:ProtocolIconView />
+                        </custom:GridSettingsCard.FeatureIcon>
+                        <custom:GridSettingsCard.ActionIcon>
+                            <pathicons:ChevronRight />
+                        </custom:GridSettingsCard.ActionIcon>
+                    </custom:GridSettingsCard>
+
+                    <custom:GridSettingsCard x:Name="Item2"
+                                             Grid.Row="0"
+                                             Grid.Column="1"
+                                             AutomationProperties.AutomationId="NetShieldSettingsCard"
+                                             Command="{x:Bind ViewModel.NavigateToNetShieldPageCommand, Mode=OneTime}"
+                                             Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_NetShield')}"
+                                             IsClickEnabled="True"
+                                             IsSubscriptionBadgeVisible="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource NotBooleanToBooleanConverter}}"
+                                             Style="{StaticResource GridSettingsCardStyle}">
+                        <custom:GridSettingsCard.Description>
+                            <Grid>
+                                <components:CurrentProfileIconView Margin="-8,2,0,-8"
+                                                                   Text="{x:Bind ViewModel.NetShieldSettingsState}"
+                                                                   Visibility="{x:Bind ViewModel.AreSettingsOverridden, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                <TextBlock Text="{x:Bind ViewModel.NetShieldSettingsState}"
+                                           Visibility="{x:Bind ViewModel.AreSettingsOverridden, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+                            </Grid>
+                        </custom:GridSettingsCard.Description>
+                        <custom:GridSettingsCard.FeatureIcon>
+                            <featureicons:NetShieldIconView />
+                        </custom:GridSettingsCard.FeatureIcon>
+                        <custom:GridSettingsCard.ActionIcon>
+                            <pathicons:ChevronRight />
+                        </custom:GridSettingsCard.ActionIcon>
+                    </custom:GridSettingsCard>
+
+                    <custom:GridSettingsCard x:Name="Item3"
+                                             Grid.Row="0"
+                                             Grid.Column="2"
+                                             AutomationProperties.AutomationId="KillSwitchSettingsCard"
+                                             Command="{x:Bind ViewModel.NavigateToKillSwitchPageCommand, Mode=OneTime}"
+                                             Description="{x:Bind ViewModel.KillSwitchSettingsState}"
+                                             Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_KillSwitch')}"
+                                             IsClickEnabled="True"
+                                             Style="{StaticResource GridSettingsCardStyle}">
+                        <custom:GridSettingsCard.FeatureIcon>
+                            <featureicons:KillSwitchIconView />
+                        </custom:GridSettingsCard.FeatureIcon>
+                        <custom:GridSettingsCard.ActionIcon>
+                            <pathicons:ChevronRight />
+                        </custom:GridSettingsCard.ActionIcon>
+                    </custom:GridSettingsCard>
+
+                    <custom:GridSettingsCard x:Name="Item4"
+                                             Grid.Row="1"
+                                             Grid.Column="0"
+                                             AutomationProperties.AutomationId="PortForwardingSettingsCard"
+                                             Command="{x:Bind ViewModel.NavigateToPortForwardingPageCommand, Mode=OneTime}"
+                                             Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_PortForwarding')}"
+                                             IsClickEnabled="True"
+                                             IsSubscriptionBadgeVisible="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource NotBooleanToBooleanConverter}}"
+                                             Style="{StaticResource GridSettingsCardStyle}">
+                        <custom:GridSettingsCard.Description>
+                            <Grid>
+                                <components:CurrentProfileIconView Margin="-8,2,0,-8"
+                                                                   Text="{x:Bind ViewModel.PortForwardingSettingsState}"
+                                                                   Visibility="{x:Bind ViewModel.AreSettingsOverridden, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                <TextBlock Text="{x:Bind ViewModel.PortForwardingSettingsState}"
+                                           Visibility="{x:Bind ViewModel.AreSettingsOverridden, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+                            </Grid>
+                        </custom:GridSettingsCard.Description>
+                        <custom:GridSettingsCard.FeatureIcon>
+                            <featureicons:PortForwardingIconView />
+                        </custom:GridSettingsCard.FeatureIcon>
+                        <custom:GridSettingsCard.ActionIcon>
+                            <pathicons:ChevronRight />
+                        </custom:GridSettingsCard.ActionIcon>
+                    </custom:GridSettingsCard>
+
+                    <custom:GridSettingsCard x:Name="Item5"
+                                             Grid.Row="1"
+                                             Grid.Column="1"
+                                             AutomationProperties.AutomationId="SplitTunnelingSettingsCard"
+                                             Command="{x:Bind ViewModel.NavigateToSplitTunnelingPageCommand, Mode=OneTime}"
+                                             Description="{x:Bind ViewModel.SplitTunnelingSettingsState}"
+                                             Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_SplitTunneling')}"
+                                             IsClickEnabled="True"
+                                             IsSubscriptionBadgeVisible="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource NotBooleanToBooleanConverter}}"
+                                             Style="{StaticResource GridSettingsCardStyle}">
+                        <custom:GridSettingsCard.FeatureIcon>
+                            <featureicons:SplitTunnelingIconView />
+                        </custom:GridSettingsCard.FeatureIcon>
+                        <custom:GridSettingsCard.ActionIcon>
+                            <pathicons:ChevronRight />
+                        </custom:GridSettingsCard.ActionIcon>
+                    </custom:GridSettingsCard>
+
+                    <custom:GridSettingsCard x:Name="Item6"
+                                             Grid.Row="1"
+                                             Grid.Column="2"
+                                             AutomationProperties.AutomationId="VpnAcceleratorSettingsCard"
+                                             Command="{x:Bind ViewModel.NavigateToVpnAcceleratorPageCommand, Mode=OneTime}"
+                                             Description="{x:Bind ViewModel.VpnAcceleratorSettingsState}"
+                                             Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_VpnAccelerator')}"
+                                             IsClickEnabled="True"
+                                             IsSubscriptionBadgeVisible="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource NotBooleanToBooleanConverter}}"
+                                             Style="{StaticResource GridSettingsCardStyle}">
+                        <custom:GridSettingsCard.FeatureIcon>
+                            <featureicons:VpnAcceleratorIconView />
+                        </custom:GridSettingsCard.FeatureIcon>
+                        <custom:GridSettingsCard.ActionIcon>
+                            <pathicons:ChevronRight />
+                        </custom:GridSettingsCard.ActionIcon>
+                    </custom:GridSettingsCard>
+
+                </Grid>
+
+                <toolkit:SettingsCard AutomationProperties.AutomationId="AdvancedSettingsCard"
+                                      Command="{x:Bind ViewModel.NavigateToAdvancedSettingsPageCommand, Mode=OneTime}"
+                                      Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_AdvancedSettings')}"
+                                      IsClickEnabled="True"
+                                      Style="{StaticResource DefaultSettingsCardStyle}">
+                    <toolkit:SettingsCard.HeaderIcon>
+                        <pathicons:Sliders />
+                    </toolkit:SettingsCard.HeaderIcon>
+                    <toolkit:SettingsCard.ActionIcon>
                         <pathicons:ChevronRight />
-                    </custom:GridSettingsCard.ActionIcon>
-                </custom:GridSettingsCard>
+                    </toolkit:SettingsCard.ActionIcon>
+                </toolkit:SettingsCard>
+            </StackPanel>
 
-                <custom:GridSettingsCard x:Name="Item2"
-                                         Grid.Row="0"
-                                         Grid.Column="1"
-                                         AutomationProperties.AutomationId="NetShieldSettingsCard"
-                                         Command="{x:Bind ViewModel.NavigateToNetShieldPageCommand, Mode=OneTime}"
-                                         Description="{x:Bind ViewModel.NetShieldSettingsState}"
-                                         Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_NetShield')}"
-                                         IsClickEnabled="True"
-                                         IsSubscriptionBadgeVisible="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource NotBooleanToBooleanConverter}}"
-                                         Style="{StaticResource GridSettingsCardStyle}">
-                    <custom:GridSettingsCard.FeatureIcon>
-                        <featureicons:NetShieldIconView />
-                    </custom:GridSettingsCard.FeatureIcon>
-                    <custom:GridSettingsCard.ActionIcon>
-                        <pathicons:ChevronRight />
-                    </custom:GridSettingsCard.ActionIcon>
-                </custom:GridSettingsCard>
-
-                <custom:GridSettingsCard x:Name="Item3"
-                                         Grid.Row="0"
-                                         Grid.Column="2"
-                                         AutomationProperties.AutomationId="KillSwitchSettingsCard"
-                                         Command="{x:Bind ViewModel.NavigateToKillSwitchPageCommand, Mode=OneTime}"
-                                         Description="{x:Bind ViewModel.KillSwitchSettingsState}"
-                                         Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_KillSwitch')}"
-                                         IsClickEnabled="True"
-                                         Style="{StaticResource GridSettingsCardStyle}">
-                    <custom:GridSettingsCard.FeatureIcon>
-                        <featureicons:KillSwitchIconView />
-                    </custom:GridSettingsCard.FeatureIcon>
-                    <custom:GridSettingsCard.ActionIcon>
-                        <pathicons:ChevronRight />
-                    </custom:GridSettingsCard.ActionIcon>
-                </custom:GridSettingsCard>
-
-                <custom:GridSettingsCard x:Name="Item4"
-                                         Grid.Row="1"
-                                         Grid.Column="0"
-                                         AutomationProperties.AutomationId="PortForwardingSettingsCard"
-                                         Command="{x:Bind ViewModel.NavigateToPortForwardingPageCommand, Mode=OneTime}"
-                                         Description="{x:Bind ViewModel.PortForwardingSettingsState}"
-                                         Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_PortForwarding')}"
-                                         IsClickEnabled="True"
-                                         IsSubscriptionBadgeVisible="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource NotBooleanToBooleanConverter}}"
-                                         Style="{StaticResource GridSettingsCardStyle}">
-                    <custom:GridSettingsCard.FeatureIcon>
-                        <featureicons:PortForwardingIconView />
-                    </custom:GridSettingsCard.FeatureIcon>
-                    <custom:GridSettingsCard.ActionIcon>
-                        <pathicons:ChevronRight />
-                    </custom:GridSettingsCard.ActionIcon>
-                </custom:GridSettingsCard>
-
-                <custom:GridSettingsCard x:Name="Item5"
-                                         Grid.Row="1"
-                                         Grid.Column="1"
-                                         AutomationProperties.AutomationId="SplitTunnelingSettingsCard"
-                                         Command="{x:Bind ViewModel.NavigateToSplitTunnelingPageCommand, Mode=OneTime}"
-                                         Description="{x:Bind ViewModel.SplitTunnelingSettingsState}"
-                                         Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_SplitTunneling')}"
-                                         IsClickEnabled="True"
-                                         IsSubscriptionBadgeVisible="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource NotBooleanToBooleanConverter}}"
-                                         Style="{StaticResource GridSettingsCardStyle}">
-                    <custom:GridSettingsCard.FeatureIcon>
-                        <featureicons:SplitTunnelingIconView />
-                    </custom:GridSettingsCard.FeatureIcon>
-                    <custom:GridSettingsCard.ActionIcon>
-                        <pathicons:ChevronRight />
-                    </custom:GridSettingsCard.ActionIcon>
-                </custom:GridSettingsCard>
-
-                <custom:GridSettingsCard x:Name="Item6"
-                                         Grid.Row="1"
-                                         Grid.Column="2"
-                                         AutomationProperties.AutomationId="VpnAcceleratorSettingsCard"
-                                         Command="{x:Bind ViewModel.NavigateToVpnAcceleratorPageCommand, Mode=OneTime}"
-                                         Description="{x:Bind ViewModel.VpnAcceleratorSettingsState}"
-                                         Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_VpnAccelerator')}"
-                                         IsClickEnabled="True"
-                                         IsSubscriptionBadgeVisible="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource NotBooleanToBooleanConverter}}"
-                                         Style="{StaticResource GridSettingsCardStyle}">
-                    <custom:GridSettingsCard.FeatureIcon>
-                        <featureicons:VpnAcceleratorIconView />
-                    </custom:GridSettingsCard.FeatureIcon>
-                    <custom:GridSettingsCard.ActionIcon>
-                        <pathicons:ChevronRight />
-                    </custom:GridSettingsCard.ActionIcon>
-                </custom:GridSettingsCard>
-
-            </Grid>
-
-            <toolkit:SettingsCard AutomationProperties.AutomationId="AdvancedSettingsCard"
-                                  Command="{x:Bind ViewModel.NavigateToAdvancedSettingsPageCommand, Mode=OneTime}"
-                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_AdvancedSettings')}"
-                                  IsClickEnabled="True"
-                                  Style="{StaticResource DefaultSettingsCardStyle}">
-                <toolkit:SettingsCard.HeaderIcon>
-                    <pathicons:Sliders />
-                </toolkit:SettingsCard.HeaderIcon>
-                <toolkit:SettingsCard.ActionIcon>
-                    <pathicons:ChevronRight />
-                </toolkit:SettingsCard.ActionIcon>
-            </toolkit:SettingsCard>
-        </StackPanel>
+        </custom:SettingsSectionControl>
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
-                <!-- Default Wide (3x2) State -->
+                <!--  Default Wide (3x2) State  -->
                 <VisualState x:Name="WideState">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="900" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <!-- Define 3x2 layout -->
+                        <!--  Define 3x2 layout  -->
                         <Setter Target="SettingCardsGrid.RowDefinitions" Value="Auto,Auto" />
                         <Setter Target="SettingCardsGrid.ColumnDefinitions" Value="*,*,*" />
 
-                        <!-- Position items for 3x2 layout -->
+                        <!--  Position items for 3x2 layout  -->
                         <Setter Target="Item1.(Grid.Row)" Value="0" />
                         <Setter Target="Item1.(Grid.Column)" Value="0" />
                         <Setter Target="Item2.(Grid.Row)" Value="0" />
@@ -198,17 +238,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </VisualState.Setters>
                 </VisualState>
 
-                <!-- Narrow (2x3) State -->
+                <!--  Narrow (2x3) State  -->
                 <VisualState x:Name="NarrowState">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <!-- Define 2x3 layout -->
+                        <!--  Define 2x3 layout  -->
                         <Setter Target="SettingCardsGrid.RowDefinitions" Value="Auto,Auto,Auto" />
                         <Setter Target="SettingCardsGrid.ColumnDefinitions" Value="*,*" />
 
-                        <!-- Position items for 2x3 layout -->
+                        <!--  Position items for 2x3 layout  -->
                         <Setter Target="Item1.(Grid.Row)" Value="0" />
                         <Setter Target="Item1.(Grid.Column)" Value="0" />
                         <Setter Target="Item2.(Grid.Row)" Value="0" />
@@ -225,7 +265,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-
-    </custom:SettingsSectionControl>
+    </StackPanel>
 
 </UserControl>

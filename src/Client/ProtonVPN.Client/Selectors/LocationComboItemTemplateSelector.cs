@@ -35,7 +35,11 @@ public class LocationComboItemTemplateSelector : DataTemplateSelector
 
     public DataTemplate? ServerLocationItemTemplate { get; set; }
 
+    public DataTemplate? GenericGatewayLocationItemTemplate { get; set; }
+
     public DataTemplate? GatewayLocationItemTemplate { get; set; }
+
+    public DataTemplate? GatewayServerLocationItemTemplate { get; set; }
 
     public DataTemplate? CountryPairLocationItemTemplate { get; set; }
 
@@ -45,13 +49,16 @@ public class LocationComboItemTemplateSelector : DataTemplateSelector
     {
         DataTemplate? template = item switch
         {
+            GenericGatewayLocationItem => GenericGatewayLocationItemTemplate,
+            GatewayLocationItem => GatewayLocationItemTemplate,
+            GatewayServerLocationItem => GatewayServerLocationItemTemplate,
+
             GenericCountryLocationItem => GenericCountryLocationItemTemplate,
             CountryLocationItemBase => CountryLocationItemTemplate,
+            SecureCoreCountryPairLocationItem => CountryPairLocationItemTemplate,
             StateLocationItemBase or
             CityLocationItemBase => StateOrCityLocationItemTemplate,
             ServerLocationItemBase => ServerLocationItemTemplate,
-            GatewayLocationItem => GatewayLocationItemTemplate,
-            SecureCoreCountryPairLocationItem => CountryPairLocationItemTemplate,
             GenericFastestLocationItem => GenericFastestLocationItemTemplate,
             _ => throw new NotSupportedException($"Location item {item} is not recognized"),
         };

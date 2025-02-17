@@ -32,11 +32,12 @@ public class SplitTunnelingExcludeModeTests : BaseTest
     private string _ipAddressNotConnected = null;
     private const string INVALID_IP = "192.A.B.1";
     private const string IPV6_ADDRESS = "2001:db8:3333:4444:5555:6666:7777:8888";
+    private const string IP_ADDRESS_TO_EXCLUDE = "208.95.112.1";
 
     [OneTimeSetUp]
     public void SetUp()
     {
-        _ipAddressNotConnected = NetworkUtils.GetIpAddress();
+        _ipAddressNotConnected = NetworkUtils.GetIpAddressWithRetry();
         LaunchApp();
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
     }
@@ -68,9 +69,7 @@ public class SplitTunnelingExcludeModeTests : BaseTest
     public void SplitTunnelingExcludeModeIP()
     {
         SplitTunnelingRobot
-            .AddIpAddress("104.26.12.205")
-            .AddIpAddress("104.26.13.205")
-            .AddIpAddress("172.67.74.152");
+            .AddIpAddress(IP_ADDRESS_TO_EXCLUDE);
 
         SettingRobot
             .ApplySettings()

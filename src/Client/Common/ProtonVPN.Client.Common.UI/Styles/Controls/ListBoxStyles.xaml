@@ -32,12 +32,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <StaticResource x:Key="ListBoxItemForeground" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="ListBoxItemForegroundDisabled" ResourceKey="TextHintColorBrush" />
+            <StaticResource x:Key="ListBoxItemBackground" ResourceKey="InteractionDefaultColorBrush" />
             <StaticResource x:Key="ListBoxItemBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
             <StaticResource x:Key="ListBoxItemBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="ListBoxItemBackgroundSelected" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="ListBoxItemBackgroundSelectedUnfocused" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="ListBoxItemBackgroundSelectedPointerOver" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="ListBoxItemBackgroundSelectedPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
+            <StaticResource x:Key="ListBoxItemBorder" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="ListBoxItemBorderPointerOver" ResourceKey="TextHintColorBrush" />
             <StaticResource x:Key="ListBoxItemBorderPressed" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="ListBoxItemBorderSelected" ResourceKey="TextNormColorBrush" />
@@ -52,12 +54,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <StaticResource x:Key="ListBoxItemForeground" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="ListBoxItemForegroundDisabled" ResourceKey="TextHintColorBrush" />
+            <StaticResource x:Key="ListBoxItemBackground" ResourceKey="InteractionDefaultColorBrush" />
             <StaticResource x:Key="ListBoxItemBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
             <StaticResource x:Key="ListBoxItemBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="ListBoxItemBackgroundSelected" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="ListBoxItemBackgroundSelectedUnfocused" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="ListBoxItemBackgroundSelectedPointerOver" ResourceKey="InteractionDefaultActiveColorBrush" />
             <StaticResource x:Key="ListBoxItemBackgroundSelectedPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
+            <StaticResource x:Key="ListBoxItemBorder" ResourceKey="InteractionDefaultEmptyColorBrush" />
             <StaticResource x:Key="ListBoxItemBorderPointerOver" ResourceKey="TextHintColorBrush" />
             <StaticResource x:Key="ListBoxItemBorderPressed" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="ListBoxItemBorderSelected" ResourceKey="TextNormColorBrush" />
@@ -69,8 +73,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Thickness x:Key="ListBoxItemPadding">8</Thickness>
     <Thickness x:Key="ListBoxItemBorderThickness">2</Thickness>
 
-    <x:Double x:Key="ListBoxItemOpacity">0.5</x:Double>
-    <x:Double x:Key="ListBoxItemOpacityPointerOver">0.8</x:Double>
+    <x:Double x:Key="ListBoxItemOpacity">1</x:Double>
+    <x:Double x:Key="ListBoxItemOpacityPointerOver">1</x:Double>
     <x:Double x:Key="ListBoxItemOpacitySelected">1</x:Double>
 
     <CornerRadius x:Key="ListBoxItemCornerRadius">8</CornerRadius>
@@ -193,18 +197,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <x:Double x:Key="ListBoxSelectionIndicatorHeight">3</x:Double>
     <x:Double x:Key="ListBoxSelectionIndicatorRadius">1.5</x:Double>
 
-    <Thickness x:Key="SelectorBarListBoxItemBorderThickness">1</Thickness>
+    <Thickness x:Key="SelectorBarListBoxItemPadding">12</Thickness>
+    <Thickness x:Key="SelectorBarListBoxItemBorderThickness">0</Thickness>
     <CornerRadius x:Key="SelectorBarListBoxItemCornerRadius">4</CornerRadius>
 
     <Style x:Key="SelectorBarListBoxItemStyle" BasedOn="{StaticResource DefaultListBoxItemStyle}" TargetType="ListBoxItem">
         <Setter Property="Foreground" Value="{ThemeResource ListBoxItemForeground}" />
-        <Setter Property="Background" Value="{ThemeResource TransparentColorBrush}" />
-        <Setter Property="BorderBrush" Value="{ThemeResource TransparentColorBrush}" />
+        <Setter Property="Background" Value="{ThemeResource ListBoxItemBackground}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource ListBoxItemBorder}" />
         <Setter Property="BorderThickness" Value="{ThemeResource SelectorBarListBoxItemBorderThickness}" />
         <Setter Property="TabNavigation" Value="Local" />
-        <Setter Property="Padding" Value="{ThemeResource ListBoxItemPadding}" />
-        <Setter Property="HorizontalContentAlignment" Value="Center" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="{ThemeResource SelectorBarListBoxItemPadding}" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Top" />
         <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
         <Setter Property="CornerRadius" Value="{StaticResource SelectorBarListBoxItemCornerRadius}" />
         <Setter Property="Template">
@@ -214,9 +219,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           Background="{TemplateBinding Background}"
                           BorderBrush="{TemplateBinding BorderBrush}"
                           BorderThickness="{TemplateBinding BorderThickness}"
-                          CornerRadius="{TemplateBinding CornerRadius}">
+                          CornerRadius="{TemplateBinding CornerRadius}"
+                          Padding="{TemplateBinding Padding}">
+                        
                         <ContentPresenter x:Name="ContentPresenter"
-                                          Margin="{TemplateBinding Padding}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           Content="{TemplateBinding Content}"
@@ -226,15 +232,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                           Opacity="{StaticResource ListBoxItemOpacity}"
                                           TextWrapping="NoWrap" />
 
-                        <Rectangle x:Name="SelectionIndicator"
-                                   Width="{ThemeResource ListBoxSelectionIndicatorWidth}"
-                                   Height="{ThemeResource ListBoxSelectionIndicatorHeight}"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Bottom"
-                                   Fill="{ThemeResource PrimaryColorBrush}"
-                                   Opacity="0.0"
-                                   RadiusX="{ThemeResource ListBoxSelectionIndicatorRadius}"
-                                   RadiusY="{ThemeResource ListBoxSelectionIndicatorRadius}" />
+                        <RadioButton HorizontalAlignment="Right"
+                                     VerticalAlignment="Top"
+                                     Margin="0,0,-8,0"
+                                     IsHitTestVisible="False"
+                                     IsTabStop="False"
+                                     IsChecked="{TemplateBinding IsSelected}"/>
 
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
@@ -267,7 +270,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="LayoutRoot.Background" Value="{ThemeResource ListBoxItemBackgroundSelected}" />
                                         <Setter Target="LayoutRoot.BorderBrush" Value="{ThemeResource ListBoxItemBorderSelected}" />
                                         <Setter Target="ContentPresenter.Opacity" Value="{ThemeResource ListBoxItemOpacitySelected}" />
-                                        <Setter Target="SelectionIndicator.Opacity" Value="1.0" />
                                     </VisualState.Setters>
                                 </VisualState>
 
@@ -276,7 +278,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="LayoutRoot.Background" Value="{ThemeResource ListBoxItemBackgroundSelectedUnfocused}" />
                                         <Setter Target="LayoutRoot.BorderBrush" Value="{ThemeResource ListBoxItemBorderSelected}" />
                                         <Setter Target="ContentPresenter.Opacity" Value="{ThemeResource ListBoxItemOpacitySelected}" />
-                                        <Setter Target="SelectionIndicator.Opacity" Value="1.0" />
                                     </VisualState.Setters>
                                 </VisualState>
 
@@ -285,7 +286,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="LayoutRoot.Background" Value="{ThemeResource ListBoxItemBackgroundSelectedPointerOver}" />
                                         <Setter Target="LayoutRoot.BorderBrush" Value="{ThemeResource ListBoxItemBorderSelected}" />
                                         <Setter Target="ContentPresenter.Opacity" Value="{ThemeResource ListBoxItemOpacitySelected}" />
-                                        <Setter Target="SelectionIndicator.Opacity" Value="1.0" />
                                     </VisualState.Setters>
                                 </VisualState>
 
@@ -294,7 +294,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="LayoutRoot.Background" Value="{ThemeResource ListBoxItemBackgroundSelectedPressed}" />
                                         <Setter Target="LayoutRoot.BorderBrush" Value="{ThemeResource ListBoxItemBorderSelected}" />
                                         <Setter Target="ContentPresenter.Opacity" Value="{ThemeResource ListBoxItemOpacitySelected}" />
-                                        <Setter Target="SelectionIndicator.Opacity" Value="1.0" />
                                     </VisualState.Setters>
                                 </VisualState>
 
@@ -314,15 +313,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="ItemContainerStyle" Value="{StaticResource SelectorBarListBoxItemStyle}" />
-        <Setter Property="ItemsPanel">
-            <Setter.Value>
-                <ItemsPanelTemplate>
-                    <controls:UniformGrid ColumnSpacing="8"
-                                          Orientation="Horizontal"
-                                          Rows="1" />
-                </ItemsPanelTemplate>
-            </Setter.Value>
-        </Setter>
     </Style>
 
     <Style x:Key="ProfileColorListBoxItemStyle" BasedOn="{StaticResource DefaultListBoxItemStyle}" TargetType="ListBoxItem">

@@ -310,14 +310,16 @@ public class SettingRobot
             NetworkUtils.FlushDns();
             CommonAssertions.AssertDnsIsResolved(NETSHIELD_NO_BLOCK);
 
-            if (netShieldMode is NetShieldMode.BlockMalwareOnly or NetShieldMode.BlockAdsMalwareTrackers)
+            switch (netShieldMode)
             {
-                CommonAssertions.AssertDnsIsNotResolved(NETSHIELD_MALWARE_ENDPOINT);
-            }
-
-            if (netShieldMode is NetShieldMode.BlockAdsMalwareTrackers)
-            {
-                CommonAssertions.AssertDnsIsNotResolved(NETSHIELD_ADS_ENDPOINT);
+                case NetShieldMode.BlockMalwareOnly:
+                    CommonAssertions.AssertDnsIsNotResolved(NETSHIELD_MALWARE_ENDPOINT);
+                    CommonAssertions.AssertDnsIsResolved(NETSHIELD_ADS_ENDPOINT);
+                    break;
+                case NetShieldMode.BlockAdsMalwareTrackers:
+                    CommonAssertions.AssertDnsIsNotResolved(NETSHIELD_MALWARE_ENDPOINT);
+                    CommonAssertions.AssertDnsIsNotResolved(NETSHIELD_ADS_ENDPOINT);
+                    break;
             }
 
             return this;

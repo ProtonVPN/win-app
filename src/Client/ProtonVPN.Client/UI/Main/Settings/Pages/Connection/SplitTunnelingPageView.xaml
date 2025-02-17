@@ -71,7 +71,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    ToolTipService.ToolTip="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}">
                             <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
                         </Hyperlink>
-                        <Run />
                     </TextBlock>
                 </controls:SettingsExpander.Description>
 
@@ -309,11 +308,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                  Grid.Column="0"
                                  KeyDown="{x:Bind ViewModel.OnIpAddressKeyDownHandler, Mode=OneTime}"
                                  PlaceholderText="{x:Bind ViewModel.Localizer.Get('Settings_Connection_SplitTunneling_IpAddresses_Watermark')}"
-                                 Text="{x:Bind ViewModel.CurrentIpAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 AutomationProperties.AutomationId="IpAddressTextBox"/>
+                                 Text="{x:Bind ViewModel.CurrentIpAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 Style="{StaticResource ValidationTextBoxStyle}"
+                                 AutomationProperties.AutomationId="IpAddressTextBox"
+                                 MinHeight="34"/>
 
                         <Button Grid.Row="1"
-                                Grid.Column="1"
+                                Grid.Column="1" 
+                                VerticalAlignment="Top"
                                 AutomationProperties.AutomationId="AddIpAddressButton"
                                 Command="{x:Bind ViewModel.AddIpAddressCommand, Mode=OneTime}"
                                 Content="{x:Bind ViewModel.Localizer.Get('Settings_Connection_SplitTunneling_IpAddresses_Add')}" />

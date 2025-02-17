@@ -78,7 +78,7 @@ public static class DefaultSettings
     public static bool IsSecureCoreInfoBannerDismissed = false;
     public static bool IsTorInfoBannerDismissed = false;
     public static bool IsGatewayInfoBannerDismissed = false;
-    public static NetShieldMode NetShieldMode = NetShieldMode.BlockMalwareOnly;
+    public static NetShieldMode NetShieldMode = NetShieldMode.BlockAdsMalwareTrackers;
     public static int TotalCountryCount = 110;
     public static int TotalServerCount = 9000;
 

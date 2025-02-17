@@ -26,7 +26,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <ResourceDictionary.ThemeDictionaries>
 
         <ResourceDictionary x:Key="Light">
-
             <StaticResource x:Key="FlyoutPresenterBackground" ResourceKey="FlyoutOverlayBackgroundColorBrush" />
             <StaticResource x:Key="FlyoutBorderThemeBrush" ResourceKey="FlyoutOverlayBorderColorBrush" />
 
@@ -562,11 +561,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           Padding="{TemplateBinding Padding}"
                           Background="{TemplateBinding Background}"
                           BorderBrush="{TemplateBinding BorderBrush}"
-                          BorderThickness="{TemplateBinding BorderThickness}"
-                          ColumnSpacing="8"
+                          BorderThickness="{TemplateBinding BorderThickness}"                          
                           CornerRadius="{TemplateBinding CornerRadius}">
+                        
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="3" />
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
@@ -587,15 +586,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                  Grid.Column="1"
                                  Width="16"
                                  Height="16"
+                                 Margin="8,0,0,0"
                                  HorizontalAlignment="Left"
                                  VerticalAlignment="Center"
-                                 Visibility="Visible">
+                                 Visibility="{Binding Icon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}">
                             <ContentPresenter x:Name="IconContent"
                                               Content="{TemplateBinding Icon}" />
                         </Viewbox>
                         
                         <TextBlock x:Name="TextBlock"
                                    Grid.Column="2"
+                                   Margin="8,0,0,0"
                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                    Foreground="{TemplateBinding Foreground}"

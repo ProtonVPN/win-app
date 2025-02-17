@@ -37,4 +37,12 @@ public static class StringExtensions
 
         return 0;
     }
+
+    public static string GetServerTag(this string serverName)
+    {
+        Match match = new Regex(@"^(.*?)(?=#)").Match(serverName);
+        return match.Success
+            ? match.Groups[1].Value
+            : string.Empty;
+    }
 }

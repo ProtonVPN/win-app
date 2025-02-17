@@ -32,7 +32,9 @@ public static class ConnectionGroupTypeExtensions
         {
             ConnectionGroupType.SecureCoreCountries or
             ConnectionGroupType.P2PCountries or
-            ConnectionGroupType.TorCountries => true,
+            ConnectionGroupType.TorCountries or 
+            ConnectionGroupType.Profiles => true,
+
             _ => false
         };
     }

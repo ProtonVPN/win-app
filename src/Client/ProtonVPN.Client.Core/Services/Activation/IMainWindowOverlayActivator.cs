@@ -35,9 +35,15 @@ public interface IMainWindowOverlayActivator : IOverlayActivator
 
     Task<ContentDialogResult> ShowSmartRoutingInfoOverlayAsync();
 
+    Task<ContentDialogResult> ShowProfileInfoOverlayAsync();
+
     Task<ContentDialogResult> ShowServerLoadInfoOverlayAsync();
 
     Task<ContentDialogResult> ShowSettingsDiscardOverlayAsync(bool isReconnectionRequired);
+
+    Task<ContentDialogResult> ShowProfileDiscardOverlayAsync(bool isReconnectionRequired);
+
+    Task<ContentDialogResult> ShowSettingsOverriddenByProfileOverlayAsync(string localizedSettingsName);
 
     Task<ContentDialogResult> ShowOutdatedClientOverlayAsync();
 

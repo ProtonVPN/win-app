@@ -55,9 +55,16 @@ public sealed partial class ConnectionItemsControl
 
     public void ResetContentScroll()
     {
-        if (ScrollViewer != null && ScrollViewer.ComputedVerticalScrollBarVisibility == Visibility.Visible)
+        if (ConnectionItemsList?.Items.Count > 0)
         {
-            ScrollViewer.ScrollToVerticalOffset(0);
+            ConnectionItemsList.ScrollIntoView(ConnectionItemsList.Items[0]);
         }
+    }
+
+    public async Task ScrollToItemAsync(object item)
+    {
+        await Task.Delay(300);
+
+        ConnectionItemsList.ScrollIntoView(item);
     }
 }

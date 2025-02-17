@@ -20,6 +20,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
     <ResourceDictionary.ThemeDictionaries>
 
         <ResourceDictionary x:Key="Light">
@@ -46,10 +47,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="RadioButtonOuterEllipseStrokePressed" ResourceKey="BorderNormColorBrush" />
             <StaticResource x:Key="RadioButtonOuterEllipseStrokeDisabled" ResourceKey="BorderWeakColorBrush" />
 
-            <StaticResource x:Key="RadioButtonOuterEllipseFill" ResourceKey="BackgroundWeakColorBrush" />
-            <StaticResource x:Key="RadioButtonOuterEllipseFillPointerOver" ResourceKey="BackgroundWeakHoverColorBrush" />
-            <StaticResource x:Key="RadioButtonOuterEllipseFillPressed" ResourceKey="BackgroundWeakActiveColorBrush" />
-            <StaticResource x:Key="RadioButtonOuterEllipseFillDisabled" ResourceKey="BackgroundWeakColorBrush" />
+            <StaticResource x:Key="RadioButtonOuterEllipseFill" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="RadioButtonOuterEllipseFillPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
+            <StaticResource x:Key="RadioButtonOuterEllipseFillPressed" ResourceKey="InteractionExceptionActiveColorBrush" />
+            <StaticResource x:Key="RadioButtonOuterEllipseFillDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
 
             <StaticResource x:Key="RadioButtonOuterEllipseCheckedStroke" ResourceKey="LinkNormColorBrush" />
             <StaticResource x:Key="RadioButtonOuterEllipseCheckedStrokePointerOver" ResourceKey="LinkHoverColorBrush" />
@@ -75,6 +76,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="RadioButtonCheckGlyphStrokeCheckedPointerOver" ResourceKey="RadioButtonCheckGlyphBorderBrush" />
             <StaticResource x:Key="RadioButtonCheckGlyphStrokeCheckedPressed" ResourceKey="RadioButtonCheckGlyphBorderBrush" />
             <StaticResource x:Key="RadioButtonCheckGlyphStrokeCheckedDisabled" ResourceKey="RadioButtonCheckGlyphBorderBrush" />
+            
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Dark">
@@ -101,10 +103,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="RadioButtonOuterEllipseStrokePressed" ResourceKey="BorderNormColorBrush" />
             <StaticResource x:Key="RadioButtonOuterEllipseStrokeDisabled" ResourceKey="BorderWeakColorBrush" />
 
-            <StaticResource x:Key="RadioButtonOuterEllipseFill" ResourceKey="BackgroundWeakColorBrush" />
-            <StaticResource x:Key="RadioButtonOuterEllipseFillPointerOver" ResourceKey="BackgroundWeakHoverColorBrush" />
-            <StaticResource x:Key="RadioButtonOuterEllipseFillPressed" ResourceKey="BackgroundWeakActiveColorBrush" />
-            <StaticResource x:Key="RadioButtonOuterEllipseFillDisabled" ResourceKey="BackgroundWeakColorBrush" />
+            <StaticResource x:Key="RadioButtonOuterEllipseFill" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="RadioButtonOuterEllipseFillPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
+            <StaticResource x:Key="RadioButtonOuterEllipseFillPressed" ResourceKey="InteractionExceptionActiveColorBrush" />
+            <StaticResource x:Key="RadioButtonOuterEllipseFillDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
 
             <StaticResource x:Key="RadioButtonOuterEllipseCheckedStroke" ResourceKey="LinkNormColorBrush" />
             <StaticResource x:Key="RadioButtonOuterEllipseCheckedStrokePointerOver" ResourceKey="LinkHoverColorBrush" />
@@ -130,7 +132,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="RadioButtonCheckGlyphStrokeCheckedPointerOver" ResourceKey="RadioButtonCheckGlyphBorderBrush" />
             <StaticResource x:Key="RadioButtonCheckGlyphStrokeCheckedPressed" ResourceKey="RadioButtonCheckGlyphBorderBrush" />
             <StaticResource x:Key="RadioButtonCheckGlyphStrokeCheckedDisabled" ResourceKey="RadioButtonCheckGlyphBorderBrush" />
+            
         </ResourceDictionary>
+        
     </ResourceDictionary.ThemeDictionaries>
 
     <x:Double x:Key="RadioButtonMinWidth">20</x:Double>

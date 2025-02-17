@@ -2676,7 +2676,7 @@ VPN接続</value>
   <data name="Settings_About_Loading">
     <value>読み込み中</value>
   </data>
-  <data name="Settings_About_NewVersion">
+  <data name="Common_Tags_New">
     <value>新規</value>
   </data>
   <data name="Settings_About_Title">

@@ -41,15 +41,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <TextBlock Style="{ThemeResource BodyMediumStrongTextBlockStyle}"
                            Text="{x:Bind ViewModel.Username}" />
 
-            <Border x:Name="VpnPlanBorder"
-                    Padding="5,2"
-                    HorizontalAlignment="Left"
-                    BorderBrush="{ThemeResource BorderWeakColorBrush}"
-                    BorderThickness="1"
-                    CornerRadius="6">
-                <TextBlock Style="{ThemeResource CaptionTextBlockStyle}"
-                               Text="{x:Bind ViewModel.VpnPlan}" />
-            </Border>
+            <custom:TagControl x:Name="VpnPlanContainer" 
+                               HorizontalAlignment="Left"
+                               Text="{x:Bind ViewModel.VpnPlan}" 
+                               Style="{StaticResource VpnPlanTagControlStyle}"/>
 
         </StackPanel>
 
@@ -97,7 +92,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <StateTrigger IsActive="{x:Bind ViewModel.IsVpnPlan}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="VpnPlanBorder.BorderBrush" Value="{ThemeResource GradientVpnPlanBorderBrushColor}" />
+                        <Setter Target="VpnPlanContainer.BorderBrush" Value="{ThemeResource GradientVpnPlanBorderBrushColor}" />
                     </VisualState.Setters>
                 </VisualState>
 
@@ -106,7 +101,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <StateTrigger IsActive="{x:Bind ViewModel.IsProtonPlan}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="VpnPlanBorder.BorderBrush" Value="{ThemeResource GradientProtonPlanBorderBrushColor}" />
+                        <Setter Target="VpnPlanContainer.BorderBrush" Value="{ThemeResource GradientProtonPlanBorderBrushColor}" />
                     </VisualState.Setters>
                 </VisualState>
 

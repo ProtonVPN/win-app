@@ -2768,7 +2768,7 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
   <data name="Settings_About_Loading">
     <value>Ladataan</value>
   </data>
-  <data name="Settings_About_NewVersion">
+  <data name="Common_Tags_New">
     <value>UUSI</value>
   </data>
   <data name="Settings_About_Title">

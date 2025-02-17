@@ -22,6 +22,8 @@ using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Client.Logic.Profiles.Contracts.Messages;
+using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
@@ -39,7 +41,8 @@ public class NetShieldStatsObserver : PollingObserverBase,
     IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<SettingChangedMessage>,
     IEventMessageReceiver<NetShieldStatisticIpcEntity>,
-    IEventMessageReceiver<MainWindowVisibilityChangedMessage>
+    IEventMessageReceiver<MainWindowVisibilityChangedMessage>,
+    IEventMessageReceiver<ProfilesChangedMessage>
 {
     private const int TIMER_INTERVAL_IN_SECONDS = 20;
     private const int MINIMUM_REQUEST_TIMEOUT_IN_SECONDS = 20;
@@ -105,6 +108,16 @@ public class NetShieldStatsObserver : PollingObserverBase,
     public void Receive(MainWindowVisibilityChangedMessage message)
     {
         _isMainWindowVisible = message.IsMainWindowVisible;
+
+        InvalidateTimer();
+    }
+
+    public void Receive(ProfilesChangedMessage message)
+    {
+        if (_connectionManager.IsConnected)
+        {
+            InvalidateTimer();
+        }
     }
 
     protected override async Task OnTriggerAsync()
@@ -122,7 +135,14 @@ public class NetShieldStatsObserver : PollingObserverBase,
 
     private bool CanRequestNetShieldStats()
     {
-        return _settings.IsNetShieldEnabled && _connectionManager.IsConnected && _isMainWindowVisible;
+        return _isMainWindowVisible && _connectionManager.IsConnected && IsNetShieldEnabled();
+    }
+
+    private bool IsNetShieldEnabled()
+    {
+        return _connectionManager.CurrentConnectionIntent is IConnectionProfile profile
+            ? profile.Settings.IsNetShieldEnabled
+            : _settings.IsNetShieldEnabled;
     }
 
     private void InvalidateTimer()

@@ -29,6 +29,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Extensions;
 using ProtonVPN.Common.Core.Networking;
 
@@ -69,12 +70,24 @@ public static class LocalizationExtensions
             : localizer.Get($"Country_val_{countryCode}");
     }
 
+    public static string GetGatewayName(this ILocalizationProvider localizer, string? gatewayName, ConnectionIntentKind intentKind = ConnectionIntentKind.Fastest)
+    {
+        return string.IsNullOrEmpty(gatewayName)
+            ? intentKind switch
+            {
+                ConnectionIntentKind.Fastest => localizer.Get("Gateway_Fastest"),
+                ConnectionIntentKind.Random => localizer.Get("Gateway_Random"),
+                _ => throw new NotImplementedException($"Intent kind '{intentKind}' is not supported."),
+            }
+            : gatewayName;
+    }
+
     public static string GetConnectionIntentTitle(this ILocalizationProvider localizer, IConnectionIntent? connectionIntent)
     {
         return connectionIntent?.Location switch
         {
             CountryLocationIntent countryIntent => localizer.GetCountryName(countryIntent.CountryCode, countryIntent.Kind, countryIntent.IsToExcludeMyCountry),
-            GatewayLocationIntent gatewayIntent => gatewayIntent.GatewayName,
+            GatewayLocationIntent gatewayIntent => localizer.GetGatewayName(gatewayIntent.GatewayName, gatewayIntent.Kind),
             FreeServerLocationIntent freeServerIntent => localizer.GetFreeServerName(freeServerIntent.Kind),
             _ => localizer.Get("Country_Fastest")
         };
@@ -292,6 +305,17 @@ public static class LocalizationExtensions
         };
     }
 
+    public static string GetFeatureDescription(this ILocalizationProvider localizer, Feature feature)
+    {
+        return feature switch
+        {
+            Feature.SecureCore => localizer.Get("Server_Feature_SecureCore_Description"),
+            Feature.P2P => localizer.Get("Server_Feature_P2P_Description"),
+            Feature.B2B => localizer.Get("Server_Feature_B2B_Description"),
+            _ => string.Empty
+        };
+    }
+
     public static string GetVpnProtocol(this ILocalizationProvider localizer, VpnProtocol? vpnProtocol)
     {
         if (vpnProtocol == null)
@@ -321,6 +345,27 @@ public static class LocalizationExtensions
             VpnProtocol.WireGuardTcp => localizer.Get("VpnProtocol_WireGuard_Tcp_Description"),
             VpnProtocol.WireGuardTls => localizer.Get("VpnProtocol_WireGuard_Tls_Description"),
             _ => string.Empty
+        };
+    }
+
+    public static string GetNetShieldMode(this ILocalizationProvider localizer, bool isEnabled, NetShieldMode netShieldMode)
+    {
+        return isEnabled
+            ? netShieldMode switch
+            {
+                NetShieldMode.BlockMalwareOnly => localizer.Get("Settings_Connection_NetShield_BlockMalwareOnly"),
+                NetShieldMode.BlockAdsMalwareTrackers => localizer.Get("Settings_Connection_NetShield_BlockAdsMalwareTrackers"),
+                _ => localizer.Get("Common_States_On")
+            }
+            : localizer.Get("Common_States_Off");
+    }
+
+    public static string GetNatType(this ILocalizationProvider localizer, NatType? natType)
+    {
+        return natType switch
+        {
+            NatType.Moderate => localizer.Get("Settings_Connection_Advanced_NatType_Moderate"),
+            _ => localizer.Get("Settings_Connection_Advanced_NatType_Strict")
         };
     }
 

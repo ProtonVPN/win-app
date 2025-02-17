@@ -43,6 +43,8 @@ public class ConnectionItemTemplateSelector : DataTemplateSelector
 
     public DataTemplate? ServerLocationItemTemplate { get; set; }
 
+    public DataTemplate? GenericGatewayLocationItemTemplate { get; set; }
+
     public DataTemplate? GatewayLocationItemTemplate { get; set; }
 
     public DataTemplate? GatewayServerLocationItemTemplate { get; set; }
@@ -59,6 +61,7 @@ public class ConnectionItemTemplateSelector : DataTemplateSelector
 
             RecentConnectionItem => RecentConnectionItemTemplate,
 
+            GenericGatewayLocationItem => GenericGatewayLocationItemTemplate,
             GatewayLocationItem => GatewayLocationItemTemplate,
             GatewayServerLocationItem => GatewayServerLocationItemTemplate,
 

@@ -19,6 +19,8 @@
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Models;
+using ProtonVPN.Client.Models.Settings;
+using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Factories;
@@ -26,6 +28,14 @@ namespace ProtonVPN.Client.Factories;
 public interface ICommonItemFactory
 {
     ProtocolItem GetProtocol(VpnProtocol protocol);
+
+    NetShieldModeItem GetNetShieldMode(NetShieldMode? netShieldMode);
+
+    NetShieldModeItem GetNetShieldMode(bool isEnabled, NetShieldMode netShieldMode);
+
+    NatTypeItem GetNatType(NatType natType);
+
+    PortForwardingItem GetPortForwardingMode(bool isEnabled);
 
     FeatureItem GetFeature(Feature feature);
 }

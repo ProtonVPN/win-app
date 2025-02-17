@@ -247,6 +247,16 @@ public class LocationItemFactory : ILocationItemFactory
             isSearchItem);
     }
 
+    public GenericGatewayLocationItem GetGenericGateway(ConnectionIntentKind intentKind)
+    {
+        return new GenericGatewayLocationItem(
+            _localizer, 
+            _serversLoader,
+            _connectionManager, 
+            _upsellCarouselWindowActivator, 
+            intentKind);
+    }
+
     public GatewayLocationItem GetGateway(Gateway gateway)
     {
         return new GatewayLocationItem(

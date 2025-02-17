@@ -29,6 +29,8 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.UI.Main.Profiles;
+using ProtonVPN.Client.UI.Main.Settings;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 
@@ -46,7 +48,6 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
 
     private readonly IMainWindowActivator _mainWindowActivator;
     private readonly ISettings _settings;
-    private readonly ISettingsViewNavigator _settingsViewNavigator;
     private readonly IUserAuthenticator _userAuthenticator;
 
     [ObservableProperty]
@@ -89,20 +90,24 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
     {
         _mainWindowActivator = mainWindowActivator;
         _settings = settings;
-        _settingsViewNavigator = settingsViewNavigator;
         _userAuthenticator = userAuthenticator;
     }
 
-    public async Task CloseCurrentSettingsPageAsync()
+    public async Task CloseCurrentPageAsync()
     {
         if (IsHomePageDisplayed)
         {
             return;
         }
 
-        if (_settingsViewNavigator.GetCurrentPageContext() is SettingsPageViewModelBase currentSettingsPage)
+        switch (ChildViewNavigator.GetCurrentPageContext())
         {
-            await currentSettingsPage.CloseAsync();
+            case SettingsPageViewModel settingsPage:
+                await settingsPage.CloseAsync();
+                break;
+            case ProfilePageViewModel profilePage:
+                await profilePage.CloseAsync();
+                break;
         }
     }
 

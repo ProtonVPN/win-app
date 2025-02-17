@@ -138,8 +138,14 @@
   <data name="Common_Actions_Remove" xml:space="preserve">
     <value>Remove</value>
   </data>
+  <data name="Common_Actions_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
   <data name="Common_Actions_Edit" xml:space="preserve">
     <value>Edit</value>
+  </data>
+  <data name="Common_Actions_Duplicate" xml:space="preserve">
+    <value>Duplicate</value>
   </data>
   <data name="Common_Actions_Delete" xml:space="preserve">
     <value>Delete</value>
@@ -164,6 +170,9 @@
   </data>
   <data name="Common_States_Updating" xml:space="preserve">
     <value>Updating...</value>
+  </data>
+  <data name="Common_Tags_New" xml:space="preserve">
+    <value>NEW</value>
   </data>
   <data name="Connection_Intent_City_Server" xml:space="preserve">
     <value>{0} #{1}</value>
@@ -194,6 +203,12 @@
   </data>
   <data name="Country_Random_ExcludingMyCountry" xml:space="preserve">
     <value>Random (excluding my country)</value>
+  </data>  
+  <data name="Gateway_Fastest" xml:space="preserve">
+    <value>Fastest gateway</value>
+  </data>
+  <data name="Gateway_Random" xml:space="preserve">
+    <value>Random gateway</value>
   </data>
   <data name="Profiles_Page_Title" xml:space="preserve">
     <value>Profiles</value>
@@ -201,14 +216,50 @@
   <data name="Profiles_Page_Description" xml:space="preserve">
     <value>Configure your own VPN settings and connect in one click.</value>
   </data>
+  <data name="Profiles_Default_Office" xml:space="preserve">
+    <value>Office</value>
+  </data>
   <data name="Profiles_Default_Streaming" xml:space="preserve">
     <value>Streaming US</value>
   </data>
-  <data name="Profiles_Default_AntiCensorship" xml:space="preserve">
-    <value>Anti-censorship</value>
+  <data name="Profiles_Default_Gaming" xml:space="preserve">
+    <value>Gaming</value>
+  </data>
+  <data name="Profiles_Default_P2P" xml:space="preserve">
+    <value>P2P</value>
+  </data>
+  <data name="Profiles_Default_RandomConnection" xml:space="preserve">
+    <value>Random connection</value>
+  </data>
+  <data name="Profiles_Default_MaxSecurity" xml:space="preserve">
+    <value>Max security</value>
   </data>
   <data name="Profiles_Default_WorkSchool" xml:space="preserve">
     <value>Work/School</value>
+  </data>
+  <data name="Profile_CustomSettings_Header" xml:space="preserve">
+    <value>Add custom settings</value>
+  </data>
+  <data name="Profile_CustomSettings_Description" xml:space="preserve">
+    <value>Profile settings will override your VPN settings when connected.</value>
+  </data>
+  <data name="Profile_CustomSettings_Show" xml:space="preserve">
+    <value>Show settings</value>
+  </data>
+  <data name="Profile_CustomSettings_Hide" xml:space="preserve">
+    <value>Hide settings</value>
+  </data>
+  <data name="Profile_Options_Header" xml:space="preserve">
+    <value>Connect and Go</value>
+  </data>
+  <data name="Profile_Options_Description" xml:space="preserve">
+    <value>Automatically open a website of your choice when you connect to this profile.</value>
+  </data>
+  <data name="Profile_Options_Url" xml:space="preserve">
+    <value>Website URL</value>
+  </data>
+  <data name="Profile_Options_Url_Error" xml:space="preserve">
+    <value>Enter a valid URL</value>
   </data>
   <data name="Country_val_AD" xml:space="preserve">
     <value>Andorra</value>
@@ -1612,7 +1663,7 @@
     <value>Protected</value>
   </data>
   <data name="Server_Feature_None" xml:space="preserve">
-    <value>All countries</value>
+    <value>Standard</value>
   </data>
   <data name="Server_Feature_P2P" xml:space="preserve">
     <value>P2P</value>
@@ -1624,7 +1675,16 @@
     <value>Secure Core</value>
   </data>
   <data name="Server_Feature_B2B" xml:space="preserve">
-    <value>Gateways</value>
+    <value>Gateway</value>
+  </data>
+  <data name="Server_Feature_P2P_Description" xml:space="preserve">
+    <value>Torrent-optimized</value>
+  </data>
+  <data name="Server_Feature_SecureCore_Description" xml:space="preserve">
+    <value>Double protection</value>
+  </data>
+  <data name="Server_Feature_B2B_Description" xml:space="preserve">
+    <value>Access your organization's servers</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode" xml:space="preserve">
     <value>Incorrect code. Please try again.</value>
@@ -1754,6 +1814,20 @@
   </data>
   <data name="Settings_Connection_VpnAccelerator" xml:space="preserve">
     <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Tagline" xml:space="preserve">
+    <value>These settings are connected to '{0}' profile and can only be managed in Profiles.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>  
+  <data name="Settings_OverriddenByProfile_Title" xml:space="preserve">
+    <value>Manage {0} in Profiles</value>
+    <comment>{0} is a placeholder for the name of the settings being overridden by the profile. (eg. Manage NetShield in Profiles)</comment>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description1" xml:space="preserve">
+    <value>This setting is connected to your active profile.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description2" xml:space="preserve">
+    <value>Edit your profile to make changes, or disconnect to edit your general VPN settings.</value>
   </data>
   <data name="Settings_General" xml:space="preserve">
     <value>General</value>
@@ -2213,6 +2287,12 @@
   <data name="Settings_Common_Discard_Title" xml:space="preserve">
     <value>Discard settings changes?</value>
   </data>
+  <data name="Profile_Discard_Title" xml:space="preserve">
+    <value>Leave page?</value>
+  </data>
+  <data name="Profile_Discard_Description" xml:space="preserve">
+    <value>You have unsaved changes.</value>
+  </data>
   <data name="Common_Actions_Enable" xml:space="preserve">
     <value>Enable</value>
   </data>
@@ -2228,11 +2308,23 @@
   <data name="Settings_Connection_KillSwitch_Conflict_Title" xml:space="preserve">
     <value>Enable kill switch?</value>
   </data>
+  <data name="Settings_Connection_NetShield_Conflict_Information" xml:space="preserve">
+    <value>NetShield is not compatible with Custom DNS.</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenEnabled" xml:space="preserve">
+    <value>Custom DNS is disabled because you're currently connected to a profile with NetShield enabled.</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled" xml:space="preserve">
+    <value>Custom DNS can't be turned on because you're connected to a profile with NetShield enabled.</value>
+  </data>
   <data name="Settings_Connection_NetShield_Conflict_Description" xml:space="preserve">
     <value>You won't be able to connect with a custom DNS server when NetShield is enabled.</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Title" xml:space="preserve">
     <value>Enable NetShield?</value>
+  </data>
+  <data name="Profile_NetShield_Conflict_Description" xml:space="preserve">
+    <value>This will disable custom DNS for this profile.</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockMalwareOnly" xml:space="preserve">
     <value>Block malware only</value>
@@ -2252,11 +2344,17 @@
   <data name="Settings_Connection_Advanced_NatType_Conflict_Title" xml:space="preserve">
     <value>Enable Moderate NAT?</value>
   </data>
+  <data name="Profile_NatType_Conflict_Description" xml:space="preserve">
+    <value>This will disable port forwarding for this profile.</value>
+  </data>
   <data name="Settings_Connection_PortForwarding_Conflict_Description" xml:space="preserve">
     <value>You won't be able to use Moderate NAT when port forwarding is enabled.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Conflict_Title" xml:space="preserve">
     <value>Enable port forwarding?</value>
+  </data>
+  <data name="Profile_PortForwarding_Conflict_Description" xml:space="preserve">
+    <value>This will change the NAT type for this profile to Strict (type 3).</value>
   </data>
   <data name="Countries" xml:space="preserve">
     <value>Countries</value>
@@ -2420,7 +2518,19 @@
   </data>
   <data name="Overlay_OutdatedClient_Action" xml:space="preserve">
     <value>Update now</value>
+  </data>  
+  <data name="Overlay_Profile_Title" xml:space="preserve">
+    <value>Profiles</value>
   </data>
+  <data name="Overlay_Profile_Description1" xml:space="preserve">
+    <value>Profiles are custom VPN connections that you can tailor to your needs and save for quick access.</value>
+  </data>
+  <data name="Overlay_Profile_Description2" xml:space="preserve">
+    <value>Set your preferred location and optimize your settings for security, performance, gaming, or any other scenario.</value>
+  </data>
+  <data name="Overlay_Profile_LearnMore" xml:space="preserve">
+    <value>What is a VPN profile?</value>
+  </data>  
   <data name="Dialogs_P2P_HowToTorrentLink" xml:space="preserve">
     <value>How to torrent with P2P</value>
     <comment>obsolete</comment>
@@ -2830,9 +2940,6 @@
   <data name="Components_Update_GetMostFromYourVpn" xml:space="preserve">
     <value>Get the most from your VPN by updating to the latest version of the app.</value>
   </data>
-  <data name="Settings_About_NewVersion" xml:space="preserve">
-    <value>NEW</value>
-  </data>
   <data name="Settings_About_Title" xml:space="preserve">
     <value>About</value>
   </data>
@@ -3173,7 +3280,15 @@
     <value>How to enable Base Filtering Engine</value>
   </data>
   <data name="Connections_Profiles_Name" xml:space="preserve">
-    <value>Profile name</value>
+    <value>Give your profile a name</value>
+  </data>
+  <data name="Connections_Profiles_Name_Default" xml:space="preserve">
+    <value>Untitled</value>
+    <comment>This will be used as the default profile name if the user creates a profile without entering a name</comment>
+  </data>
+  <data name="Connections_Profiles_Name_Duplicate" xml:space="preserve">
+    <value>Copy of {0}</value>
+    <comment>This will be used as the profile name when duplicating a profile. {0} is a placeholder for the original profile name.</comment>
   </data>
   <data name="Connections_Profiles_New" xml:space="preserve">
     <value>New profile</value>
@@ -3182,9 +3297,6 @@
   <data name="Connections_Profiles_Create" xml:space="preserve">
     <value>Create profile</value>
     <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
-  </data>
-  <data name="Connections_Profiles_Save" xml:space="preserve">
-    <value>Save profile</value>
   </data>
   <data name="Connections_Profiles_Delete" xml:space="preserve">
     <value>Delete profile</value>
@@ -3213,6 +3325,15 @@
   <data name="Connections_Profiles_NotAvailable_Tooltip" xml:space="preserve">
     <value>Profiles are available with VPN Plus</value>
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
+  </data>  
+  <data name="Connections_Profiles_Location_Header" xml:space="preserve">
+    <value>Select connection type and location</value>
+  </data>
+  <data name="Connections_Profiles_Settings_Header" xml:space="preserve">
+    <value>Add custom settings</value>
+  </data>
+  <data name="Connections_Profiles_Settings_Description" xml:space="preserve">
+    <value>Profile settings will override your VPN settings when connected.</value>
   </data>
   <data name="Connections_Recents_Empty_Title" xml:space="preserve">
     <value>No recents yet</value>
@@ -3495,6 +3616,9 @@
   </data>
   <data name="Automation_Properties_SplitTunneling_Page" xml:space="preserve">
     <value>Split tunneling page</value>
+  </data>
+  <data name="Automation_Properties_Profile_Page" xml:space="preserve">
+    <value>Profile page</value>
   </data>
   <data name="Automation_Properties_Settings_Page" xml:space="preserve">
     <value>Settings page</value>

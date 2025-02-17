@@ -2768,7 +2768,7 @@ Smart Routing wird in der Regel verwendet, um Anti-Datenschutzgesetze und andere
   <data name="Settings_About_Loading">
     <value>Laden</value>
   </data>
-  <data name="Settings_About_NewVersion">
+  <data name="Common_Tags_New">
     <value>NEU</value>
   </data>
   <data name="Settings_About_Title">

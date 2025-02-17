@@ -34,6 +34,7 @@ namespace ProtonVPN.Client.Models.Connections;
 public abstract class CountryLocationItemBase : HostLocationItemBase<Country>
 {
     public Country Country { get; }
+
     public string ExitCountryCode => Country.Code;
 
     public override string Header => Localizer.GetCountryName(ExitCountryCode);

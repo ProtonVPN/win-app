@@ -2948,7 +2948,7 @@ Smart Routing обычно используется для обхода зако
   <data name="Settings_About_Loading">
     <value>Загрузка</value>
   </data>
-  <data name="Settings_About_NewVersion">
+  <data name="Common_Tags_New">
     <value>НОВОЕ</value>
   </data>
   <data name="Settings_About_Title">

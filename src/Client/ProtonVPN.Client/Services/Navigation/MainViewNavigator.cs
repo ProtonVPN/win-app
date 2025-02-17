@@ -25,7 +25,6 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
-using ProtonVPN.Client.UI.Main.Home;
 using ProtonVPN.Client.UI.Main.Settings;
 using ProtonVPN.Logging.Contracts;
 
@@ -44,9 +43,9 @@ public class MainViewNavigator : ViewNavigatorBase, IMainViewNavigator,
         : base(logger, pageViewMapper, uiThreadDispatcher)
     { }
 
-    public Task<bool> NavigateToHomeViewAsync()
+    public Task<bool> NavigateToHomeViewAsync(bool forceNavigation = false)
     {
-        return ClearFrameAsync();
+        return ClearFrameAsync(forceNavigation);
     }
 
     public Task<bool> NavigateToSettingsViewAsync()
@@ -70,12 +69,14 @@ public class MainViewNavigator : ViewNavigatorBase, IMainViewNavigator,
 
         if (message.ConnectionStatus == ConnectionStatus.Connecting)
         {
-            UIThreadDispatcher.TryEnqueue(async () => await NavigateToDefaultAsync());
+            // Force navigation to automatically discard any unsaved changes
+            UIThreadDispatcher.TryEnqueue(async () => await NavigateToHomeViewAsync(forceNavigation: true));
         }
     }
 
     public void Receive(LoggedOutMessage message)
     {
-        UIThreadDispatcher.TryEnqueue(async () => await NavigateToDefaultAsync());
+        // Force navigation to automatically discard any unsaved changes
+        UIThreadDispatcher.TryEnqueue(async () => await NavigateToHomeViewAsync(forceNavigation: true));
     }
 }

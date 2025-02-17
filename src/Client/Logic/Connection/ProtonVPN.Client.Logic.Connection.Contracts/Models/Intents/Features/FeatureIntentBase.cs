@@ -39,4 +39,9 @@ public abstract class FeatureIntentBase : IntentBase, IFeatureIntent
     }
 
     public abstract bool IsSupported(Server server);
+
+    public IFeatureIntent Copy()
+    {
+        return (IFeatureIntent)MemberwiseClone();
+    }
 }

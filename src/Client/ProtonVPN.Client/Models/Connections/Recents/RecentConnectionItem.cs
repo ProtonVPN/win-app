@@ -74,7 +74,7 @@ public partial class RecentConnectionItem : ConnectionItemBase
             ? Localizer.Get("Home_Recents_Restricted")
             : IsUnderMaintenance
                 ? Localizer.Get("Home_Recents_ServerUnderMaintenance")
-                : Localizer.Get("Home_Recents_SecondaryActions_ToolTip");
+                : null;
 
     public bool IsSecureCore => RecentConnection.ConnectionIntent?.Feature is SecureCoreFeatureIntent;
 

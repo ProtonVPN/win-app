@@ -68,8 +68,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               FlagType="{x:Bind ViewModel.FlagType}"
                                               IsCompact="True"
                                               IsFlagVisible="True"
-                                              ProfileCategory="{x:Bind ViewModel.Profile.Category}"
-                                              ProfileColor="{x:Bind ViewModel.Profile.Color}"
+                                              ProfileCategory="{x:Bind ViewModel.Profile.Icon.Category}"
+                                              ProfileColor="{x:Bind ViewModel.Profile.Icon.Color}"
                                               Visibility="{x:Bind ViewModel.IsProfileIntent, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
             </Grid>

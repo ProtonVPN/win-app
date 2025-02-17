@@ -52,41 +52,48 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                Style="{StaticResource BodyStrongTextBlockStyle}"
                                Text="{x:Bind ViewModel.Header}" />
 
-                    <custom:GhostButton Grid.Column="1"
-                                        Margin="0,-8,0,-6"
-                                        Content="{x:Bind ViewModel.Status}"
-                                        FontSize="{StaticResource BodyTextBlockFontSize}"
-                                        Visibility="{x:Bind ViewModel.IsRestricted, Converter={StaticResource NotBooleanToVisibilityConverter}}">
-                        <custom:GhostButton.RightIcon>
-                            <pathicons:ChevronDownFilled Size="Pixels16" />
-                        </custom:GhostButton.RightIcon>
-                        <custom:GhostButton.Flyout>
-                            <MenuFlyout Placement="BottomEdgeAlignedRight">
-                                <custom:ActivatableMenuFlyoutItem Command="{x:Bind ViewModel.DisableNetShieldCommand, Mode=OneTime}"
-                                                                  IsActive="{x:Bind ViewModel.IsNetShieldDisabled}"
-                                                                  Text="{x:Bind ViewModel.Localizer.Get('Common_States_Off')}">
-                                    <custom:ActivatableMenuFlyoutItem.Icon>
-                                        <ImageIcon Source="{ThemeResource NetShieldOffIllustrationSource}" />
-                                    </custom:ActivatableMenuFlyoutItem.Icon>
-                                </custom:ActivatableMenuFlyoutItem>
-                                <MenuFlyoutSeparator />
-                                <custom:ActivatableMenuFlyoutItem Command="{x:Bind ViewModel.EnableStandardNetShieldCommand, Mode=OneTime}"
-                                                                  IsActive="{x:Bind ViewModel.IsStandardNetShieldEnabled}"
-                                                                  Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_NetShield_BlockMalwareOnly')}">
-                                    <custom:ActivatableMenuFlyoutItem.Icon>
-                                        <ImageIcon Source="{ThemeResource NetShieldOnLevel1IllustrationSource}" />
-                                    </custom:ActivatableMenuFlyoutItem.Icon>
-                                </custom:ActivatableMenuFlyoutItem>
-                                <custom:ActivatableMenuFlyoutItem Command="{x:Bind ViewModel.EnableAdvancedNetShieldCommand, Mode=OneTime}"
-                                                                  IsActive="{x:Bind ViewModel.IsAdvancedNetShieldEnabled}"
-                                                                  Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_NetShield_BlockAdsMalwareTrackers')}">
-                                    <custom:ActivatableMenuFlyoutItem.Icon>
-                                        <ImageIcon Source="{ThemeResource NetShieldOnLevel2IllustrationSource}" />
-                                    </custom:ActivatableMenuFlyoutItem.Icon>
-                                </custom:ActivatableMenuFlyoutItem>
-                            </MenuFlyout>
-                        </custom:GhostButton.Flyout>
-                    </custom:GhostButton>
+                    <Grid Grid.Column="1"
+                          Visibility="{x:Bind ViewModel.IsRestricted, Converter={StaticResource NotBooleanToVisibilityConverter}}">
+
+                        <components:CurrentProfileIconView Text="{x:Bind ViewModel.Status}"
+                                                           Visibility="{x:Bind ViewModel.IsFeatureOverridden, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                        <custom:GhostButton Margin="0,-8,0,-6"
+                                            Content="{x:Bind ViewModel.Status}"
+                                            FontSize="{StaticResource BodyTextBlockFontSize}"
+                                            Visibility="{x:Bind ViewModel.IsFeatureOverridden, Converter={StaticResource NotBooleanToVisibilityConverter}}">
+                            <custom:GhostButton.RightIcon>
+                                <pathicons:ChevronDownFilled Size="Pixels16" />
+                            </custom:GhostButton.RightIcon>
+                            <custom:GhostButton.Flyout>
+                                <MenuFlyout Placement="BottomEdgeAlignedRight">
+                                    <custom:ActivatableMenuFlyoutItem Command="{x:Bind ViewModel.DisableNetShieldCommand, Mode=OneTime}"
+                                                                      IsActive="{x:Bind ViewModel.IsNetShieldEnabled, Converter={StaticResource NotBooleanToBooleanConverter}}"
+                                                                      Text="{x:Bind ViewModel.Localizer.Get('Common_States_Off')}">
+                                        <custom:ActivatableMenuFlyoutItem.Icon>
+                                            <ImageIcon Source="{ThemeResource NetShieldOffIllustrationSource}" />
+                                        </custom:ActivatableMenuFlyoutItem.Icon>
+                                    </custom:ActivatableMenuFlyoutItem>
+                                    <MenuFlyoutSeparator />
+                                    <custom:ActivatableMenuFlyoutItem Command="{x:Bind ViewModel.EnableStandardNetShieldCommand, Mode=OneTime}"
+                                                                      IsActive="{x:Bind ViewModel.IsStandardNetShieldEnabled}"
+                                                                      Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_NetShield_BlockMalwareOnly')}">
+                                        <custom:ActivatableMenuFlyoutItem.Icon>
+                                            <ImageIcon Source="{ThemeResource NetShieldOnLevel1IllustrationSource}" />
+                                        </custom:ActivatableMenuFlyoutItem.Icon>
+                                    </custom:ActivatableMenuFlyoutItem>
+                                    <custom:ActivatableMenuFlyoutItem Command="{x:Bind ViewModel.EnableAdvancedNetShieldCommand, Mode=OneTime}"
+                                                                      IsActive="{x:Bind ViewModel.IsAdvancedNetShieldEnabled}"
+                                                                      Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_NetShield_BlockAdsMalwareTrackers')}">
+                                        <custom:ActivatableMenuFlyoutItem.Icon>
+                                            <ImageIcon Source="{ThemeResource NetShieldOnLevel2IllustrationSource}" />
+                                        </custom:ActivatableMenuFlyoutItem.Icon>
+                                    </custom:ActivatableMenuFlyoutItem>
+                                </MenuFlyout>
+                            </custom:GhostButton.Flyout>
+                        </custom:GhostButton>
+
+                    </Grid>
 
                     <Image Grid.Column="1"
                            Height="20"

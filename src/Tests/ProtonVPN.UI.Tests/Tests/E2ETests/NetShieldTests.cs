@@ -36,28 +36,28 @@ public class NetShieldTests : FreshSessionSetUp
     }
 
     [Test]
-    public void NetshieldOnLevelOne()
+    public void NetshieldOnLevelTwo()
     {
         ConnectAndVerifyIsConnected();
 
         SettingRobot
-            .Verify.IsNetshieldBlocking(NetShieldMode.BlockMalwareOnly);
+            .Verify.IsNetshieldBlocking(NetShieldMode.BlockAdsMalwareTrackers);
     }
 
     [Test]
-    public void NetshieldOnLevelTwo()
+    public void NetshieldOnLevelOne()
     {
         SettingRobot
             .OpenSettings()
             .OpenNetShieldSettings()
-            .SelectNetShieldMode(NetShieldMode.BlockAdsMalwareTrackers)
+            .SelectNetShieldMode(NetShieldMode.BlockMalwareOnly)
             .ApplySettings()
             .CloseSettings();
 
         ConnectAndVerifyIsConnected();
 
         SettingRobot
-            .Verify.IsNetshieldBlocking(NetShieldMode.BlockAdsMalwareTrackers);
+            .Verify.IsNetshieldBlocking(NetShieldMode.BlockMalwareOnly);
     }
 
     [Test]
@@ -82,7 +82,7 @@ public class NetShieldTests : FreshSessionSetUp
         SettingRobot
             .OpenSettings()
             .OpenNetShieldSettings()
-            .SelectNetShieldMode(NetShieldMode.BlockAdsMalwareTrackers)
+            .SelectNetShieldMode(NetShieldMode.BlockMalwareOnly)
             .ApplySettings()
             .CloseSettings();
 
@@ -90,7 +90,7 @@ public class NetShieldTests : FreshSessionSetUp
             .ConnectViaConnectionCard()
             .Verify.IsConnected();
         SettingRobot
-            .Verify.IsNetshieldBlocking(NetShieldMode.BlockAdsMalwareTrackers);
+            .Verify.IsNetshieldBlocking(NetShieldMode.BlockMalwareOnly);
 
         SettingRobot.OpenSettings()
             .ExpandAccountDropdown()

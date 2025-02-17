@@ -19,8 +19,12 @@
 
 using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
+using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Logic.Profiles;
@@ -28,25 +32,26 @@ namespace ProtonVPN.Client.Logic.Profiles;
 public class DefaultProfilesProvider : IDefaultProfilesProvider
 {
     private readonly ILocalizationProvider _localizer;
-
-    private readonly List<IConnectionProfile> _defaultProfiles;
+    private readonly ISettings _settings;
 
     public DefaultProfilesProvider(
-        ILocalizationProvider localizer)
+        ILocalizationProvider localizer,
+        ISettings settings)
     {
         _localizer = localizer;
-
-        _defaultProfiles =
-        [
-            GetDefaultStreamingProfile(),
-            GetDefaultWorkProfile(),
-            GetDefaultAntiCensorshipProfile()
-        ];
+        _settings = settings;
     }
 
     public List<IConnectionProfile> GetDefaultProfiles()
     {
-        return _defaultProfiles.ToList();
+        return _settings.VpnPlan.IsB2B
+            ? []
+            : [ GetDefaultStreamingProfile(),
+                GetDefaultGamingProfile(),
+                GetDefaultP2PProfile(),
+                GetDefaultMaxSecurityProfile(),
+                GetDefaultWorkSchoolProfile(),
+                GetDefaultRandomConnectionProfile() ];
     }
 
     private IConnectionProfile GetDefaultStreamingProfile()
@@ -56,43 +61,82 @@ public class DefaultProfilesProvider : IDefaultProfilesProvider
         IConnectionProfile profile = new ConnectionProfile(locationIntent)
         {
             Name = _localizer.Get("Profiles_Default_Streaming"),
-            Category = ProfileCategory.Streaming,
-            Color = ProfileColor.Purple
         };
-
-        profile.Settings.Protocol = VpnProtocol.WireGuardUdp;
+        profile.Icon.Category = ProfileCategory.Streaming;
 
         return profile;
     }
 
-    private IConnectionProfile GetDefaultWorkProfile()
+    private IConnectionProfile GetDefaultGamingProfile()
+    {
+        ILocationIntent locationIntent = CountryLocationIntent.Fastest;
+        IFeatureIntent featureIntent = new P2PFeatureIntent();
+
+        IConnectionProfile profile = new ConnectionProfile(locationIntent, featureIntent)
+        {
+            Name = _localizer.Get("Profiles_Default_Gaming"),
+        };
+        profile.Icon.Category = ProfileCategory.Gaming;
+        profile.Settings.NatType = NatType.Moderate;
+
+        return profile;
+    }
+
+    private IConnectionProfile GetDefaultP2PProfile()
+    {
+        ILocationIntent locationIntent = CountryLocationIntent.Fastest;
+        IFeatureIntent featureIntent = new P2PFeatureIntent();
+
+        IConnectionProfile profile = new ConnectionProfile(locationIntent, featureIntent)
+        {
+            Name = _localizer.Get("Profiles_Default_P2P"),
+        };
+        profile.Icon.Category = ProfileCategory.Download;
+        profile.Settings.IsPortForwardingEnabled = true;
+
+        return profile;
+    }
+
+    private IConnectionProfile GetDefaultMaxSecurityProfile()
+    {
+        ILocationIntent locationIntent = CountryLocationIntent.Fastest;
+        IFeatureIntent featureIntent = new SecureCoreFeatureIntent();
+
+        IConnectionProfile profile = new ConnectionProfile(locationIntent, featureIntent)
+        {
+            Name = _localizer.Get("Profiles_Default_MaxSecurity"),
+        };
+        profile.Icon.Category = ProfileCategory.Protection;
+
+        return profile;
+    }
+
+    private IConnectionProfile GetDefaultWorkSchoolProfile()
     {
         ILocationIntent locationIntent = CountryLocationIntent.Fastest;
 
         IConnectionProfile profile = new ConnectionProfile(locationIntent)
         {
             Name = _localizer.Get("Profiles_Default_WorkSchool"),
-            Category = ProfileCategory.Business,
-            Color = ProfileColor.Purple
         };
-
-        profile.Settings.Protocol = VpnProtocol.WireGuardTls;
+        profile.Icon.Category = ProfileCategory.Business;
+        profile.Settings.VpnProtocol = VpnProtocol.WireGuardTls;
+        profile.Settings.IsNetShieldEnabled = true;
+        profile.Settings.NetShieldMode = NetShieldMode.BlockMalwareOnly;
+        profile.Settings.NatType = NatType.Moderate;
 
         return profile;
     }
 
-    private IConnectionProfile GetDefaultAntiCensorshipProfile()
+    private IConnectionProfile GetDefaultRandomConnectionProfile()
     {
-        ILocationIntent locationIntent = CountryLocationIntent.FastestExcludingMyCountry;
+        ILocationIntent locationIntent = CountryLocationIntent.Random;
 
         IConnectionProfile profile = new ConnectionProfile(locationIntent)
         {
-            Name = _localizer.Get("Profiles_Default_AntiCensorship"),
-            Category = ProfileCategory.Anonymous,
-            Color = ProfileColor.Purple
+            Name = _localizer.Get("Profiles_Default_RandomConnection"),
         };
-
-        profile.Settings.Protocol = VpnProtocol.WireGuardTls;
+        profile.Icon.Category = ProfileCategory.Browsing;
 
         return profile;
     }

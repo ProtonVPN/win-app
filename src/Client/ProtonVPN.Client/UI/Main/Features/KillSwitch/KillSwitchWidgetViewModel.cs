@@ -18,6 +18,7 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Contracts.Profiles;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
@@ -49,26 +50,28 @@ public partial class KillSwitchWidgetViewModel : FeatureWidgetViewModelBase
         ? Localizer.Get("Flyouts_KillSwitch_Warning_Connected")
         : Localizer.Get("Flyouts_KillSwitch_Warning_Disconnected");
 
-    public string SuccessMessage => Settings.KillSwitchMode == KillSwitchMode.Advanced
+    public string SuccessMessage => KillSwitchMode == KillSwitchMode.Advanced
         ? Localizer.Get("Flyouts_KillSwitch_Advanced_Success")
         : Localizer.Get("Flyouts_KillSwitch_Standard_Success");
 
-    public bool IsInfoMessageVisible => !Settings.IsKillSwitchEnabled
-                                     || (!ConnectionManager.IsConnected && Settings.KillSwitchMode == KillSwitchMode.Standard);
+    public bool IsKillSwitchEnabled => Settings.IsKillSwitchEnabled;
 
-    public bool IsWarningMessageVisible => Settings.IsKillSwitchEnabled
-                                        && Settings.KillSwitchMode == KillSwitchMode.Advanced;
+    public KillSwitchMode KillSwitchMode => Settings.KillSwitchMode;
 
-    public bool IsSuccessMessageVisible => Settings.IsKillSwitchEnabled
-                                        && (Settings.KillSwitchMode == KillSwitchMode.Advanced || ConnectionManager.IsConnected);
+    public bool IsInfoMessageVisible => !IsKillSwitchEnabled
+                                     || (!ConnectionManager.IsConnected && KillSwitchMode == KillSwitchMode.Standard);
+
+    public bool IsWarningMessageVisible => IsKillSwitchEnabled
+                                        && KillSwitchMode == KillSwitchMode.Advanced;
+
+    public bool IsSuccessMessageVisible => IsKillSwitchEnabled
+                                        && (KillSwitchMode == KillSwitchMode.Advanced || ConnectionManager.IsConnected);
 
     public override bool IsRestricted => false;
 
-    public bool IsKillSwitchDisabled => !Settings.IsKillSwitchEnabled;
+    public bool IsStandardKillSwitchEnabled => IsKillSwitchEnabled && KillSwitchMode == KillSwitchMode.Standard;
 
-    public bool IsStandardKillSwitchEnabled => Settings.IsKillSwitchEnabled && Settings.KillSwitchMode == KillSwitchMode.Standard;
-
-    public bool IsAdvancedKillSwitchEnabled => Settings.IsKillSwitchEnabled && Settings.KillSwitchMode == KillSwitchMode.Advanced;
+    public bool IsAdvancedKillSwitchEnabled => IsKillSwitchEnabled && KillSwitchMode == KillSwitchMode.Advanced;
 
     protected override UpsellFeatureType? UpsellFeature { get; } = null;
 
@@ -83,7 +86,8 @@ public partial class KillSwitchWidgetViewModel : FeatureWidgetViewModelBase
         IConnectionManager connectionManager,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
         IRequiredReconnectionSettings requiredReconnectionSettings,
-        ISettingsConflictResolver settingsConflictResolver)
+        ISettingsConflictResolver settingsConflictResolver,
+        IProfileEditor profileEditor)
         : base(localizer,
                logger,
                issueReporter,
@@ -95,6 +99,7 @@ public partial class KillSwitchWidgetViewModel : FeatureWidgetViewModelBase
                upsellCarouselWindowActivator,
                requiredReconnectionSettings,
                settingsConflictResolver,
+               profileEditor,
                ConnectionFeature.KillSwitch)
     {
         _disableKillSwitchSettings = new(() =>
@@ -124,8 +129,8 @@ public partial class KillSwitchWidgetViewModel : FeatureWidgetViewModelBase
     protected override string GetFeatureStatus()
     {
         return Localizer.Get(
-            Settings.IsKillSwitchEnabled
-                ? Settings.KillSwitchMode switch
+            IsKillSwitchEnabled
+                ? KillSwitchMode switch
                 {
                     KillSwitchMode.Standard => "Settings_Connection_KillSwitch_Standard",
                     KillSwitchMode.Advanced => "Settings_Connection_KillSwitch_Advanced",
@@ -150,7 +155,8 @@ public partial class KillSwitchWidgetViewModel : FeatureWidgetViewModelBase
         OnPropertyChanged(nameof(IsInfoMessageVisible));
         OnPropertyChanged(nameof(IsWarningMessageVisible));
         OnPropertyChanged(nameof(IsSuccessMessageVisible));
-        OnPropertyChanged(nameof(IsKillSwitchDisabled));
+        OnPropertyChanged(nameof(IsKillSwitchEnabled));
+        OnPropertyChanged(nameof(KillSwitchMode));
         OnPropertyChanged(nameof(IsStandardKillSwitchEnabled));
         OnPropertyChanged(nameof(IsAdvancedKillSwitchEnabled));
     }

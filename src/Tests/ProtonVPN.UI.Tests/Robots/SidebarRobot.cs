@@ -66,6 +66,10 @@ public class SidebarRobot
     protected Element P2pSidebarUpsellLabel = Element.ByName("Download files through BitTorrent and other file sharing protocols");
     protected Element TorSidebarUpsellLabel = Element.ByName("Use the Tor network over your VPN connection for extra privacy");
 
+    protected Element EditProfileLabel = Element.ByName("Edit").FindChild(Element.ByAutomationId("TextBlock"));
+    protected Element DuplicateProfileLabel = Element.ByName("Duplicate").FindChild(Element.ByAutomationId("TextBlock"));
+    protected Element DeleteProfileLabel = Element.ByName("Delete").FindChild(Element.ByAutomationId("TextBlock"));
+
     public SidebarRobot NavigateToCountries()
     {
         CountriesListItem.Click();
@@ -135,6 +139,12 @@ public class SidebarRobot
         return this;
     }
 
+    public SidebarRobot ConnectToProfile(string profileName)
+    {
+        ConnectViaServerList(profileName);
+        return this;
+    }
+
     public SidebarRobot ConnectToCountry(string country)
     {
         ConnectViaServerList(country);
@@ -155,6 +165,12 @@ public class SidebarRobot
     public SidebarRobot ConnectToFirstSpecificServer()
     {
         ConnectViaServerList("Spectific_Server");
+        return this;
+    }
+
+    public SidebarRobot DisconnectViaProfile(string profileName)
+    {
+        DisconnectViaSidebarButton(profileName);
         return this;
     }
 
@@ -191,7 +207,7 @@ public class SidebarRobot
 
     public SidebarRobot ExpandCities()
     {
-        CountryExpanderButton.Click();
+        CountryExpanderButton.ExpandItem();
         // Remove when VPNWIN-2599 is implemented. 
         Thread.Sleep(TestConstants.AnimationDelay);
         return this;
@@ -199,7 +215,7 @@ public class SidebarRobot
 
     public SidebarRobot ExpandSpecificServerList()
     {
-        CitySecondaryButton.Click();
+        CitySecondaryButton.Invoke();
         return this;
     }
 
@@ -219,6 +235,30 @@ public class SidebarRobot
         return this;
     }
 
+    public SidebarRobot EditProfile()
+    {
+        // First click does not work due to focus on first click.
+        // One click is needed for focus, other for clicking.
+        EditProfileLabel.DoubleClick();
+        return this;
+    }
+
+    public SidebarRobot DuplicateProfile()
+    {
+        // First click does not work due to focus on first click.
+        // One click is needed for focus, other for clicking.
+        DuplicateProfileLabel.DoubleClick();
+        return this;
+    }
+
+    public SidebarRobot DeleteProfile()
+    {
+        // First click does not work due to focus on first click.
+        // One click is needed for focus, other for clicking.
+        DeleteProfileLabel.DoubleClick();
+        return this;
+    }
+
     public SidebarRobot ClickOnSidebar()
     {
         SidebarComponent.Click();
@@ -228,6 +268,13 @@ public class SidebarRobot
     public SidebarRobot ShortcutTo(VirtualKeyShort key)
     {
         Keyboard.TypeSimultaneously(VirtualKeyShort.CONTROL, key);
+        return this;
+    }
+
+    public SidebarRobot ScrollToProfile(string profileName)
+    {
+        Element profile = Element.ByAutomationId($"Actions_for_{profileName}");
+        profile.ScrollIntoView();
         return this;
     }
 
@@ -285,6 +332,12 @@ public class SidebarRobot
         public Verifications DoesConnectionItemExist(string connectionItemName)
         {
             Element.ByName(connectionItemName).WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications DoesConnectionItemNotExist(string connectionItemName)
+        {
+            Element.ByName(connectionItemName).DoesNotExist();
             return this;
         }
 

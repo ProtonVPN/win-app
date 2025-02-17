@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2024 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -115,6 +115,26 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         </DataTemplate>
 
+        <DataTemplate x:Key="GenericGatewayLocationItemTemplate"
+                      x:DataType="gateways:GenericGatewayLocationItem">
+
+            <Grid ColumnSpacing="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <custom:SimpleCountryFlag Grid.Column="0"
+                                          VerticalAlignment="Center"
+                                          FlagType="Gateway" />
+
+                <TextBlock Grid.Column="1"
+                           Style="{StaticResource ComboItemTextBlockStyle}"
+                           Text="{x:Bind Header}" />
+            </Grid>
+
+        </DataTemplate>
+
         <DataTemplate x:Key="GatewayLocationItemTemplate"
                       x:DataType="gateways:GatewayLocationItem">
 
@@ -175,6 +195,28 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         </DataTemplate>
 
+        <DataTemplate x:Key="GatewayServerLocationItemTemplate"
+                      x:DataType="gateways:GatewayServerLocationItem">
+
+            <Grid ColumnSpacing="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <custom:SimpleCountryFlag Grid.Column="0"
+                                          Width="24"
+                                          VerticalAlignment="Center"
+                                          CountryCode="{x:Bind Server.ExitCountry}"
+                                          FlagType="Country" />
+
+                <TextBlock Grid.Column="1"
+                           Style="{StaticResource ComboItemTextBlockStyle}"
+                           Text="{x:Bind Header}" />
+            </Grid>
+
+        </DataTemplate>
+
         <DataTemplate x:Key="GenericFastestLocationItemTemplate"
                       x:DataType="items:GenericFastestLocationItem">
 
@@ -185,7 +227,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Grid.ColumnDefinitions>
 
                 <pathicons:BoltFilled Grid.Column="0"
-                                      Size="Pixels20"
+                                      Size="Pixels16"
                                       Style="{StaticResource ComboItemPathIconStyle}" />
 
                 <TextBlock Grid.Column="1"
@@ -199,8 +241,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                      CountryLocationItemTemplate="{StaticResource CountryLocationItemTemplate}"
                                                      CountryPairLocationItemTemplate="{StaticResource CountryPairLocationItemTemplate}"
                                                      GatewayLocationItemTemplate="{StaticResource GatewayLocationItemTemplate}"
+                                                     GatewayServerLocationItemTemplate="{StaticResource GatewayServerLocationItemTemplate}"
                                                      GenericCountryLocationItemTemplate="{StaticResource GenericCountryLocationItemTemplate}"
                                                      GenericFastestLocationItemTemplate="{StaticResource GenericFastestLocationItemTemplate}"
+                                                     GenericGatewayLocationItemTemplate="{StaticResource GenericGatewayLocationItemTemplate}"
                                                      ServerLocationItemTemplate="{StaticResource ServerLocationItemTemplate}"
                                                      StateOrCityLocationItemTemplate="{StaticResource StateOrCityLocationItemTemplate}" />
     </UserControl.Resources>
@@ -209,6 +253,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
               Header="{x:Bind Header}"
               ItemTemplateSelector="{StaticResource LocationComboItemTemplateSelector}"
               ItemsSource="{x:Bind ItemsSource}"
-              SelectedItem="{x:Bind SelectedItem, Mode=TwoWay}" />
+              SelectedItem="{x:Bind SelectedItem, Mode=TwoWay}"
+              Style="{StaticResource ComboBoxStyle}" />
 
 </UserControl>

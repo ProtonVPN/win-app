@@ -18,6 +18,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Connection.Contracts.SerializableEntities.Intents;
 using ProtonVPN.EntityMapping.Contracts;
@@ -34,13 +35,22 @@ public class GatewayLocationIntentMapper : IMapper<GatewayLocationIntent, Serial
             {
                 TypeName = nameof(GatewayLocationIntent),
                 GatewayName = leftEntity.GatewayName,
+                Kind = leftEntity.Kind.ToString(),
             };
     }
 
     public GatewayLocationIntent Map(SerializableLocationIntent rightEntity)
     {
-        return rightEntity is null
-            ? null
-            : new GatewayLocationIntent(gatewayName: rightEntity.GatewayName);
+        if (rightEntity is null)
+        {
+            return null;
+        }
+
+        if (string.IsNullOrWhiteSpace(rightEntity.Kind) || !Enum.TryParse(rightEntity.Kind, out ConnectionIntentKind kind))
+        {
+            kind = ConnectionIntentKind.Fastest;
+        }
+
+        return new GatewayLocationIntent(rightEntity.GatewayName, kind);
     }
 }

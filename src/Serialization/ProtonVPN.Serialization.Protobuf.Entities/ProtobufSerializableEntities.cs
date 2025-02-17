@@ -61,7 +61,9 @@ public class ProtobufSerializableEntities : IProtobufSerializableEntities
         yield return typeof(PanelFeature);
 
         yield return typeof(SerializableProfile);
+        yield return typeof(SerializableProfileIcon);
         yield return typeof(SerializableProfileSettings);
+        yield return typeof(SerializableProfileOptions);
 
         yield return typeof(StatisticalEventsFile);
         yield return typeof(StatisticalEvent);

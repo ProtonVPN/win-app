@@ -34,4 +34,6 @@ public interface ILocationIntent : IIntent
     bool IsSupported(Server server, DeviceLocation? deviceLocation);
 
     bool IsGenericRandomIntent();
+
+    ILocationIntent Copy();
 }

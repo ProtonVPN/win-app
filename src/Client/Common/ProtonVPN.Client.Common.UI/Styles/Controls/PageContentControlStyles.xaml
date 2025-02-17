@@ -56,7 +56,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <VisualState.Setters>
                                         <Setter Target="PaneContainer.Background" Value="{ThemeResource PaneOverlayDisabledBackgroundColorBrush}" />
                                         <Setter Target="PaneContainer.BorderBrush" Value="{ThemeResource PaneOverlayDisabledBorderColorBrush}" />
-                                        <Setter Target="PART_ContentPresenter.Opacity" Value="0.4" />
+                                        <Setter Target="PART_ContentPresenter.Opacity" Value="0.6" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="StandardMode" />

@@ -30,20 +30,15 @@ namespace ProtonVPN.Client.UI.Main.FeatureIcons;
 
 public class ProtocolIconViewModel : FeatureIconViewModelBase
 {
-    private readonly ISettings _settings;
-    private readonly IApplicationThemeSelector _themeSelector;
-
     public ProtocolIconViewModel(
         IConnectionManager connectionManager,
         ISettings settings,
         IApplicationThemeSelector themeSelector,
         ILocalizationProvider localizer,
         ILogger logger,
-        IIssueReporter issueReporter) : base(connectionManager, localizer, logger, issueReporter)
-    {
-        _settings = settings;
-        _themeSelector = themeSelector;
-    }
+        IIssueReporter issueReporter)
+        : base(connectionManager, settings, themeSelector, localizer, logger, issueReporter)
+    { }
 
     protected override bool IsFeatureEnabled => false;
 
@@ -51,7 +46,7 @@ public class ProtocolIconViewModel : FeatureIconViewModelBase
 
     protected override ImageSource GetImageSource()
     {
-        return ResourceHelper.GetIllustration("VpnFeatureProtocolIllustrationSource", _themeSelector.GetTheme());
+        return ResourceHelper.GetIllustration("VpnFeatureProtocolIllustrationSource", ThemeSelector.GetTheme());
     }
 
     protected override IEnumerable<string> GetSettingsChangedForIconUpdate()

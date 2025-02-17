@@ -2678,7 +2678,7 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   <data name="Settings_About_Loading">
     <value>로딩 중</value>
   </data>
-  <data name="Settings_About_NewVersion">
+  <data name="Common_Tags_New">
     <value>신규</value>
   </data>
   <data name="Settings_About_Title">

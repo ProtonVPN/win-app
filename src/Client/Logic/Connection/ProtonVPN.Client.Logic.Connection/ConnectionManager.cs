@@ -137,7 +137,7 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
         _lastConnectionTrigger = connectionTrigger;
 
         connectionIntent ??= _settings.VpnPlan.IsPaid ? ConnectionIntent.Default : ConnectionIntent.FreeDefault;
-        connectionIntent = ChangeConnectionIntent(connectionIntent, CreateNewIntentIfPortForwardingEnabled);
+        connectionIntent = ChangeConnectionIntent(connectionIntent, CreateNewIntentIfPortForwardingEnabled); // TODO: this should be removed as it leads to weird situation. There is already a warning on the PF widget if the feature is enabled and the user connects to a non P2P server. If we remove this, then we can also remove PF from the required reconnection settings list.
         connectionIntent = ChangeConnectionIntent(connectionIntent, CreateNewIntentIfUserPlanIsFree);
 
         CurrentConnectionIntent = connectionIntent;

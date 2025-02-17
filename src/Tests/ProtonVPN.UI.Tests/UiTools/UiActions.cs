@@ -67,11 +67,26 @@ public static class UiActions
         return desiredElement;
     }
 
+    public static T ExpandItem<T>(this T desiredElement) where T : Element
+    {
+        AutomationElement element = WaitUntilExists(desiredElement);
+        element.Patterns.ExpandCollapse.Pattern.Expand();
+        return desiredElement;
+    }
+
     public static T Invoke<T>(this T desiredElement) where T : Element
     {
         AutomationElement elementToClick = WaitUntilExists(desiredElement);
         elementToClick.WaitUntilClickable(TestConstants.TenSecondsTimeout);
         elementToClick.AsButton().Invoke();
+        return desiredElement;
+    }
+
+    public static T TextBoxEquals<T>(this T desiredElement, string text) where T : Element
+    {
+        AutomationElement element = WaitUntilExists(desiredElement);
+        string elementText = element.AsTextBox().Text;
+        Assert.That(elementText.Equals(text), Is.True, $"Expected string: {text} But was: {elementText}");
         return desiredElement;
     }
 

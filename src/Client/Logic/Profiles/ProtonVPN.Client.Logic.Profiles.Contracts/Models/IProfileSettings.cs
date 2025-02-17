@@ -17,11 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 
 public interface IProfileSettings
 {
-    VpnProtocol Protocol { get; set; }
+    VpnProtocol VpnProtocol { get; set; }
+
+    bool IsNetShieldEnabled { get; set; }
+
+    NetShieldMode NetShieldMode { get; set; }
+
+    bool IsPortForwardingEnabled { get; set; }
+
+    NatType NatType { get; set; }
+
+    bool? IsCustomDnsServersEnabled { get; }
+
+    IProfileSettings Copy();
 }

@@ -136,14 +136,13 @@ public class ProfilesMigrator : IProfilesMigrator
 
         Guid profileId = Guid.TryParse(legacyProfile.Id, out Guid result) ? result : Guid.NewGuid();
         string profileName = legacyProfile.Name ?? string.Empty;
-        IProfileSettings profileSettings = new ProfileSettings()
-        {
-            Protocol = GetLegacyProfileProtocol(legacyProfile),
-        };
-        ProfileColor color = MigrateProfileColor(legacyProfile);
+        IProfileIcon profileIcon = ProfileIcon.Default;
+        profileIcon.Color = MigrateProfileColor(legacyProfile);
+        IProfileSettings profileSettings = ProfileSettings.Default;
+        profileSettings.VpnProtocol = GetLegacyProfileProtocol(legacyProfile);
+        IProfileOptions profileOptions = ProfileOptions.Default;
 
-        return new ConnectionProfile(profileId, DateTime.UtcNow, profileSettings, locationIntent,
-            featureIntent, profileName, DEFAULT_MIGRATED_PROFILE_CATEGORY, color);
+        return new ConnectionProfile(profileId, DateTime.UtcNow, profileIcon, profileSettings, profileOptions, locationIntent, featureIntent, profileName);
     }
 
     private ConnectionIntentKind GetLegacyProfileConnectionIntentKind(LegacyProfile legacyProfile)
@@ -169,7 +168,7 @@ public class ProfilesMigrator : IProfilesMigrator
             "#FF7044" => ProfileColor.Orange, // Orange
             "#FF9700" => ProfileColor.Yellow, // Gold
             "#607C8A" => ProfileColor.Purple, // Gray
-            _ => ConnectionProfile.DEFAULT_COLOR,
+            _ => ProfileIcon.DEFAULT_COLOR,
         };
     }
 

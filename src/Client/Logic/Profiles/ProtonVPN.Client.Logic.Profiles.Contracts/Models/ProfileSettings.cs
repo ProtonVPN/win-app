@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,13 +17,33 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 
 public class ProfileSettings : IProfileSettings
 {
-    public static IProfileSettings Default => new ProfileSettings() { Protocol = VpnProtocol.Smart };
+    public static IProfileSettings Default => new ProfileSettings()
+    {
+        VpnProtocol = DefaultSettings.VpnProtocol,
+        IsNetShieldEnabled = DefaultSettings.IsNetShieldEnabled(true),
+        NetShieldMode = DefaultSettings.NetShieldMode,
+        IsPortForwardingEnabled = DefaultSettings.IsPortForwardingEnabled,
+        NatType = DefaultSettings.NatType,
+    };
 
-    public VpnProtocol Protocol { get; set; }
+    public VpnProtocol VpnProtocol { get; set; }
+    public bool IsNetShieldEnabled { get; set; }
+    public NetShieldMode NetShieldMode { get; set; }
+    public bool IsPortForwardingEnabled { get; set; }
+    public NatType NatType { get; set; }
+
+    public bool? IsCustomDnsServersEnabled => IsNetShieldEnabled ? false : null;
+
+    public IProfileSettings Copy()
+    {
+        return (IProfileSettings)MemberwiseClone();
+    }
 }

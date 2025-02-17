@@ -22,19 +22,20 @@ namespace ProtonVPN.Client.Common.Enums;
 public enum ProfileCategory
 {
     Speed, // Bolt icon
-    Terminal, // Terminal icon
-    Gaming, // Gaming controller icon
     Streaming, // Streaming icon
     Protection, // Shield icon
     Privacy, // Eye icon
     Anonymous, // Anonymous icon
+    Terminal, // Terminal icon
+    Gaming, // Gaming controller icon
     Download, // Download folder icon
     Business, // Briefcase icon
     Shopping, // Shopping cart icon
     Security, // Lock icon
     Browsing, // Globe icon
-    Bot, // Robot icon
-    Gateway, // Server icon
-    Home, // Home icon
-    Fingerprinting, // Fingerprint icon
+
+    //Bot, // Robot icon
+    //Gateway, // Server icon
+    //Home, // Home icon
+    //Fingerprinting, // Fingerprint icon
 }
