@@ -56,7 +56,7 @@ public partial class ProfileSettingsSelectorViewModel : ViewModelBase, IProfileS
     {
         return new ProfileSettings()
         {
-            Protocol = SelectedProtocol?.Protocol ?? DefaultSettings.VpnProtocol
+            VpnProtocol = SelectedProtocol?.Protocol ?? DefaultSettings.VpnProtocol
         };
     }
 
@@ -66,7 +66,7 @@ public partial class ProfileSettingsSelectorViewModel : ViewModelBase, IProfileS
 
         InvalidateProtocols();
 
-        SelectedProtocol = Protocols.FirstOrDefault(p => p.Protocol == settings.Protocol);
+        SelectedProtocol = Protocols.FirstOrDefault(p => p.Protocol == settings.VpnProtocol);
     }
 
     private void InvalidateProtocols()

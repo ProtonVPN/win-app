@@ -52,7 +52,7 @@ public static class CommonAssertions
     {
         RetryResult<bool> retry = Retry.WhileTrue(() =>
         {
-            string currentIpAddress = NetworkUtils.GetIpAddress();
+            string currentIpAddress = NetworkUtils.GetIpAddressWithRetry();
             return currentIpAddress == previousIpAddress;
         },
         TestConstants.TenSecondsTimeout, TestConstants.RetryInterval);
@@ -64,7 +64,7 @@ public static class CommonAssertions
     {
         RetryResult<bool> retry = Retry.WhileFalse(() =>
         {
-            string currentIpAddress = NetworkUtils.GetIpAddress();
+            string currentIpAddress = NetworkUtils.GetIpAddressWithRetry();
             return currentIpAddress == previousIpAddress;
         },
         TestConstants.TenSecondsTimeout, TestConstants.RetryInterval);

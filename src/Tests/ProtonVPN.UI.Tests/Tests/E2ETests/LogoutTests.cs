@@ -41,7 +41,7 @@ public class LogoutTests : FreshSessionSetUp
         HomeRobot.ConnectViaConnectionCard()
             .Verify.IsConnected();
 
-        string ipAddressConnected = NetworkUtils.GetIpAddress();
+        string ipAddressConnected = NetworkUtils.GetIpAddressWithRetry();
 
         SettingRobot.OpenSettings()
             .ExpandAccountDropdown()
@@ -50,7 +50,7 @@ public class LogoutTests : FreshSessionSetUp
 
         LoginRobot.Verify.IsLoginWindowDisplayed();
 
-        string ipAddressAfterLogout = NetworkUtils.GetIpAddress();
+        string ipAddressAfterLogout = NetworkUtils.GetIpAddressWithRetry();
 
         Assert.That(ipAddressConnected.Equals(ipAddressAfterLogout), Is.False, "User was not disconnected on logout.");
     }

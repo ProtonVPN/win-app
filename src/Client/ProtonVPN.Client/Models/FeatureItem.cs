@@ -17,9 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml.Controls;
-using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Core.Bases.Models;
+using ProtonVPN.Client.Core.Helpers;
+using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
@@ -27,27 +29,31 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 namespace ProtonVPN.Client.Models;
 
 public class FeatureItem : ModelBase
-{
+{    
     public Feature Feature { get; }
 
     public string Header => Localizer.GetFeatureName(Feature);
 
-    public IconElement Icon { get; }
+    public string Description => Localizer.GetFeatureDescription(Feature);
+
+    public ImageSource IllustrationSource { get; }
 
     public FeatureItem(
         ILocalizationProvider localizer,
+        IApplicationThemeSelector themeSelector,
         Feature feature)
         : base(localizer)
     {
         Feature = feature;
 
-        Icon = feature switch
+        ElementTheme theme = themeSelector.GetTheme();
+
+        IllustrationSource = feature switch
         {
-            Feature.B2B => new Servers(),
-            Feature.P2P => new ArrowRightArrowLeft(),
-            Feature.SecureCore => new LockLayers(),
-            Feature.Tor => new BrandTor(),
-            _ => new Earth(),
+            Feature.B2B => ResourceHelper.GetIllustration("GatewaysIllustrationSource", theme),
+            Feature.P2P => ResourceHelper.GetIllustration("P2PUpsellSmallIllustrationSource", theme),
+            Feature.SecureCore => ResourceHelper.GetIllustration("SecureCoreUpsellSmallIllustrationSource", theme),
+            _ => ResourceHelper.GetIllustration("WrongCountryIllustrationSource", theme),
         };
     }
 }

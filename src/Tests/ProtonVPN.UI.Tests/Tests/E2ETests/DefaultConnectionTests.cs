@@ -84,7 +84,7 @@ public class DefaultConnectionTests : BaseTest
     }
 
     [Test, Order(2)]
-    public void DefaultCustomProfileConnextsToCorrectSerer()
+    public void DefaultCustomProfileConnectsToCorrectServer()
     {
         SettingRobot
             .OpenSettings()

@@ -29,14 +29,12 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 public class SplitTunnelingIncludeTests : BaseTest
 {
     private string _ipAddressNotConnected = null;
-    private const string IP_ADDRESS_1 = "104.26.12.205";
-    private const string IP_ADDRESS_2 = "104.26.13.205";
-    private const string IP_ADDRESS_3 = "172.67.74.152";
+    private const string IP_ADDRESS_TO_INCLUDE = "208.95.112.1";
 
     [OneTimeSetUp]
     public void SetUp()
     {
-        _ipAddressNotConnected = NetworkUtils.GetIpAddress();
+        _ipAddressNotConnected = NetworkUtils.GetIpAddressWithRetry();
         LaunchApp();
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
     }
@@ -50,9 +48,7 @@ public class SplitTunnelingIncludeTests : BaseTest
         SplitTunnelingRobot
             .ToggleSplitTunnelingSwitch()
             .SelectInverseMode()
-            .AddIpAddress(IP_ADDRESS_1)
-            .AddIpAddress(IP_ADDRESS_2)
-            .AddIpAddress(IP_ADDRESS_3);
+            .AddIpAddress(IP_ADDRESS_TO_INCLUDE);
 
         SettingRobot.ApplySettings()
             .CloseSettings();
@@ -72,9 +68,7 @@ public class SplitTunnelingIncludeTests : BaseTest
             .OpenSplitTunnelingSettings();
 
         SplitTunnelingRobot
-            .TickIpAddressCheckBox(IP_ADDRESS_1)
-            .TickIpAddressCheckBox(IP_ADDRESS_2)
-            .TickIpAddressCheckBox(IP_ADDRESS_3);
+            .TickIpAddressCheckBox(IP_ADDRESS_TO_INCLUDE);
 
         SettingRobot.Reconnect();
         HomeRobot.Verify.IsConnected();

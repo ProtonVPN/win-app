@@ -23,7 +23,11 @@ namespace ProtonVPN.Client.Contracts.Profiles;
 
 public interface IProfileEditor
 {
+    Task CreateProfileAsync();
+
     Task EditProfileAsync(IConnectionProfile profile);
 
-    Task CreateProfileAsync();
+    Task DuplicateProfileAsync(IConnectionProfile profile);
+
+    Task<bool> TryRedirectToProfileAsync(string overriddenSettingsName, IConnectionProfile profile);
 }

@@ -42,6 +42,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Page.Resources>
 
     <Grid x:Name="LayoutRoot"
+          PointerPressed="OnPointerPressed"
           Background="{ThemeResource TransparentColorBrush}">
         
         <Grid.RowDefinitions>
@@ -57,7 +58,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <Grid Grid.Row="1"
               Margin="8,0,8,8"
-              ColumnSpacing="8">
+              ColumnSpacing="8"
+              x:Name="MainContainer">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -89,7 +91,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                     <Border Grid.Column="0"
                             Width="8">
-                        <controls:PropertySizer Margin="-8,0,0,0"
+                        <controls:PropertySizer Margin="-8,0,0,0" 
+                                                x:Name="SidebarSizeGrip"
                                                 Binding="{x:Bind ViewModel.SidebarWidth, Mode=TwoWay}"
                                                 Maximum="{StaticResource SidebarComponentMaxWidth}"
                                                 Minimum="{StaticResource SidebarComponentMinWidth}"

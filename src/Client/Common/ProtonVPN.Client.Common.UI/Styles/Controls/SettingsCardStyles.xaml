@@ -21,16 +21,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
                     xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
-                    xmlns:triggers="using:CommunityToolkit.WinUI">
+                    xmlns:triggers="using:CommunityToolkit.WinUI" 
+                    xmlns:attached="using:ProtonVPN.Client.Common.UI.AttachedProperties">
 
     <ResourceDictionary.ThemeDictionaries>
 
         <ResourceDictionary x:Key="Light">
 
-            <StaticResource x:Key="SettingsCardBackground" ResourceKey="InteractionDefaultColor" />
-            <StaticResource x:Key="SettingsCardBackgroundPointerOver" ResourceKey="InteractionDefaultActiveColorBrush" />
-            <StaticResource x:Key="SettingsCardBackgroundPressed" ResourceKey="BackgroundWeakActiveColorBrush" />
-            <StaticResource x:Key="SettingsCardBackgroundDisabled" ResourceKey="BackgroundWeakColorBrush" />
+            <StaticResource x:Key="SettingsCardBackground" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="SettingsCardBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
+            <StaticResource x:Key="SettingsCardBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
+            <StaticResource x:Key="SettingsCardBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
 
             <StaticResource x:Key="SettingsCardForeground" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="SettingsCardForegroundPointerOver" ResourceKey="TextNormColorBrush" />
@@ -40,18 +41,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
             <StaticResource x:Key="SettingsCardContentForeground" ResourceKey="TextWeakColorBrush" />
             <StaticResource x:Key="SettingsCardDescriptionForeground" ResourceKey="TextWeakColorBrush" />
 
-            <StaticResource x:Key="SettingsCardBorderBrush" ResourceKey="BorderWeakColorBrush" />
-            <StaticResource x:Key="SettingsCardBorderBrushPointerOver" ResourceKey="BorderWeakColorBrush" />
-            <StaticResource x:Key="SettingsCardBorderBrushPressed" ResourceKey="BorderWeakColorBrush" />
-            <StaticResource x:Key="SettingsCardBorderBrushDisabled" ResourceKey="BorderWeakColorBrush" />
+            <StaticResource x:Key="SettingsCardBorderBrush" ResourceKey="InteractionDefaultEmptyColorBrush" />
+            <StaticResource x:Key="SettingsCardBorderBrushPointerOver" ResourceKey="InteractionDefaultEmptyColorBrush" />
+            <StaticResource x:Key="SettingsCardBorderBrushPressed" ResourceKey="InteractionDefaultEmptyColorBrush" />
+            <StaticResource x:Key="SettingsCardBorderBrushDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Dark">
 
-            <StaticResource x:Key="SettingsCardBackground" ResourceKey="InteractionDefaultColor" />
-            <StaticResource x:Key="SettingsCardBackgroundPointerOver" ResourceKey="InteractionDefaultActiveColorBrush" />
-            <StaticResource x:Key="SettingsCardBackgroundPressed" ResourceKey="BackgroundWeakActiveColorBrush" />
-            <StaticResource x:Key="SettingsCardBackgroundDisabled" ResourceKey="BackgroundWeakColorBrush" />
+            <StaticResource x:Key="SettingsCardBackground" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="SettingsCardBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
+            <StaticResource x:Key="SettingsCardBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
+            <StaticResource x:Key="SettingsCardBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
 
             <StaticResource x:Key="SettingsCardForeground" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="SettingsCardForegroundPointerOver" ResourceKey="TextNormColorBrush" />
@@ -61,10 +62,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
             <StaticResource x:Key="SettingsCardContentForeground" ResourceKey="TextWeakColorBrush" />
             <StaticResource x:Key="SettingsCardDescriptionForeground" ResourceKey="TextWeakColorBrush" />
 
-            <StaticResource x:Key="SettingsCardBorderBrush" ResourceKey="BorderWeakColorBrush" />
-            <StaticResource x:Key="SettingsCardBorderBrushPointerOver" ResourceKey="BorderWeakColorBrush" />
-            <StaticResource x:Key="SettingsCardBorderBrushPressed" ResourceKey="BorderWeakColorBrush" />
-            <StaticResource x:Key="SettingsCardBorderBrushDisabled" ResourceKey="BorderWeakColorBrush" />
+            <StaticResource x:Key="SettingsCardBorderBrush" ResourceKey="InteractionDefaultEmptyColorBrush" />
+            <StaticResource x:Key="SettingsCardBorderBrushPointerOver" ResourceKey="InteractionDefaultEmptyColorBrush" />
+            <StaticResource x:Key="SettingsCardBorderBrushPressed" ResourceKey="InteractionDefaultEmptyColorBrush" />
+            <StaticResource x:Key="SettingsCardBorderBrushDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
@@ -92,7 +93,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
     <Thickness x:Key="FeatureSettingsCardHeaderIconMargin">-4,0,12,0</Thickness>
 
     <Style x:Key="DefaultSettingsCardStyle" TargetType="toolkit:SettingsCard">
-        <Setter Property="Background" Value="{ThemeResource InteractionDefaultColor}" />
+        <Setter Property="Background" Value="{ThemeResource SettingsCardBackground}" />
         <Setter Property="Foreground" Value="{ThemeResource SettingsCardForeground}" />
         <Setter Property="BorderBrush" Value="{ThemeResource SettingsCardBorderBrush}" />
         <Setter Property="BorderThickness" Value="{ThemeResource SettingsCardBorderThickness}" />
@@ -111,6 +112,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
         <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
         <Setter Property="FocusVisualMargin" Value="-3" />
         <Setter Property="Margin" Value="0,4" />
+        <Setter Property="attached:CustomTags.IsTagged" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="toolkit:SettingsCard">
@@ -126,6 +128,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
                           BorderBrush="{TemplateBinding BorderBrush}"
                           BorderThickness="{TemplateBinding BorderThickness}"
                           CornerRadius="{TemplateBinding CornerRadius}">
+                        
                         <Grid.BackgroundTransition>
                             <BrushTransition Duration="0:0:0.083" />
                         </Grid.BackgroundTransition>
@@ -159,14 +162,29 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
                                     VerticalAlignment="{ThemeResource SettingsCardHeaderVerticalAlignment}"
                                     Orientation="Vertical">
 
-                            <ContentPresenter x:Name="PART_HeaderPresenter"
-                                              HorizontalAlignment="Left"
-                                              VerticalAlignment="Top"
-                                              Content="{TemplateBinding Header}"
-                                              FontSize="{StaticResource BodyFontSize}"
-                                              FontWeight="{ThemeResource SettingsCardHeaderFontWeight}"
-                                              HighContrastAdjustment="None"
-                                              TextWrapping="Wrap" />
+                            <Grid HorizontalAlignment="Left"
+                                  VerticalAlignment="Top">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <ContentPresenter x:Name="PART_HeaderPresenter"
+                                                  Grid.Column="0"
+                                                  Content="{TemplateBinding Header}"
+                                                  FontSize="{StaticResource BodyFontSize}"
+                                                  FontWeight="{ThemeResource SettingsCardHeaderFontWeight}"
+                                                  HighContrastAdjustment="None"
+                                                  TextWrapping="Wrap" />
+
+                                <custom:TagControl Text="{Binding (attached:CustomTags.Tag), RelativeSource={RelativeSource TemplatedParent}, TargetNullValue='NEW'}" 
+                                                   Style="{StaticResource NewTagControlStyle}"
+                                                   Grid.Column="1"
+                                                   Margin="8,0,4,2"
+                                                   VerticalAlignment="Top"
+                                                   Visibility="{Binding (attached:CustomTags.IsTagged), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                            </Grid>
 
                             <ContentPresenter x:Name="PART_DescriptionPresenter"
                                               Content="{TemplateBinding Description}"
@@ -202,6 +220,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
                                               HighContrastAdjustment="None"
                                               ToolTipService.ToolTip="{TemplateBinding ActionIconToolTip}" />
                         </Viewbox>
+                        
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal" />
@@ -216,7 +235,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
                                 </VisualState>
                                 <VisualState x:Name="Pressed">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_RootGrid.Background" Value="{ThemeResource BackgroundWeakActiveColorBrush}" />
+                                        <Setter Target="PART_RootGrid.Background" Value="{ThemeResource SettingsCardBackgroundPressed}" />
                                         <Setter Target="PART_RootGrid.BorderBrush" Value="{ThemeResource SettingsCardBorderBrushPressed}" />
                                         <Setter Target="PART_HeaderPresenter.Foreground" Value="{ThemeResource SettingsCardForegroundPressed}" />
                                         <Setter Target="PART_HeaderIconPresenter.Foreground" Value="{ThemeResource SettingsCardForegroundPressed}" />
@@ -425,7 +444,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
                                 </VisualState>
                                 <VisualState x:Name="Pressed">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_RootGrid.Background" Value="{ThemeResource BackgroundWeakActiveColorBrush}" />
+                                        <Setter Target="PART_RootGrid.Background" Value="{ThemeResource SettingsCardBackgroundPressed}" />
                                         <Setter Target="PART_RootGrid.BorderBrush" Value="{ThemeResource SettingsCardBorderBrushPressed}" />
                                         <Setter Target="PART_HeaderPresenter.Foreground" Value="{ThemeResource SettingsCardForegroundPressed}" />
                                         <Setter Target="PART_HeaderIconPresenter.Foreground" Value="{ThemeResource SettingsCardForegroundPressed}" />
@@ -573,7 +592,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
                                 </VisualState>
                                 <VisualState x:Name="Pressed">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_RootGrid.Background" Value="{ThemeResource BackgroundWeakActiveColorBrush}" />
+                                        <Setter Target="PART_RootGrid.Background" Value="{ThemeResource SettingsCardBackgroundPressed}" />
                                         <Setter Target="PART_RootGrid.BorderBrush" Value="{ThemeResource SettingsCardBorderBrushPressed}" />
                                         <Setter Target="PART_HeaderPresenter.Foreground" Value="{ThemeResource SettingsCardForegroundPressed}" />
                                         <Setter Target="PART_HeaderIconPresenter.Foreground" Value="{ThemeResource SettingsCardForegroundPressed}" />
@@ -735,13 +754,29 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
                                     VerticalAlignment="Center"
                                     Orientation="Vertical">
 
-                            <ContentPresenter x:Name="PART_HeaderPresenter"
-                                              HorizontalAlignment="Left"
-                                              Content="{TemplateBinding Header}"
-                                              FontSize="{StaticResource BodyFontSize}"
-                                              FontWeight="{StaticResource BodyFontWeight}"
-                                              HighContrastAdjustment="None"
-                                              TextWrapping="Wrap" />
+                            <Grid HorizontalAlignment="Left"
+                                  VerticalAlignment="Top">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <ContentPresenter x:Name="PART_HeaderPresenter"
+                                                  Grid.Column="0"
+                                                  Content="{TemplateBinding Header}"
+                                                  FontSize="{StaticResource BodyFontSize}"
+                                                  FontWeight="{ThemeResource SettingsCardHeaderFontWeight}"
+                                                  HighContrastAdjustment="None"
+                                                  TextWrapping="Wrap" />
+
+                                <custom:TagControl Text="{Binding (attached:CustomTags.Tag), RelativeSource={RelativeSource TemplatedParent}, TargetNullValue='NEW'}" 
+                                                   Style="{StaticResource NewTagControlStyle}"
+                                                   Grid.Column="1"
+                                                   Margin="8,0,4,2"
+                                                   VerticalAlignment="Top"
+                                                   Visibility="{Binding (attached:CustomTags.IsTagged), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                            </Grid>
 
                             <ContentPresenter x:Name="PART_DescriptionPresenter"
                                               Content="{TemplateBinding Description}"
@@ -889,7 +924,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
                                 </VisualState>
                                 <VisualState x:Name="Pressed">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_RootGrid.Background" Value="{ThemeResource BackgroundWeakActiveColorBrush}" />
+                                        <Setter Target="PART_RootGrid.Background" Value="{ThemeResource SettingsCardBackgroundPressed}" />
                                         <Setter Target="PART_RootGrid.BorderBrush" Value="{ThemeResource SettingsCardBorderBrushPressed}" />
                                         <Setter Target="PART_HeaderPresenter.Foreground" Value="{ThemeResource SettingsCardForegroundPressed}" />
                                         <Setter Target="PART_HeaderIconPresenter.Foreground" Value="{ThemeResource SettingsCardForegroundPressed}" />
@@ -1004,14 +1039,29 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
                                     VerticalAlignment="Bottom"
                                     Spacing="4">
 
-                            <ContentPresenter x:Name="PART_HeaderPresenter"
-                                              HorizontalAlignment="Left"
-                                              VerticalAlignment="Top"
-                                              Content="{TemplateBinding Header}"
-                                              FontSize="{StaticResource BodyFontSize}"
-                                              FontWeight="{ThemeResource BodyMediumStrongFontWeight}"
-                                              HighContrastAdjustment="None"
-                                              TextWrapping="Wrap" />
+                            <Grid HorizontalAlignment="Left"
+                                  VerticalAlignment="Top">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <ContentPresenter x:Name="PART_HeaderPresenter"
+                                                  Grid.Column="0"
+                                                  Content="{TemplateBinding Header}"
+                                                  FontSize="{StaticResource BodyFontSize}"
+                                                  FontWeight="{ThemeResource BodyMediumStrongFontWeight}"
+                                                  HighContrastAdjustment="None"
+                                                  TextWrapping="Wrap" />
+
+                                <custom:TagControl Text="{Binding (attached:CustomTags.Tag), RelativeSource={RelativeSource TemplatedParent}, TargetNullValue='NEW'}" 
+                                                   Style="{StaticResource NewTagControlStyle}"
+                                                   Grid.Column="1"
+                                                   Margin="8,0,4,2"
+                                                   VerticalAlignment="Top"
+                                                   Visibility="{Binding (attached:CustomTags.IsTagged), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                            </Grid>
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -1063,7 +1113,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
                                 </VisualState>
                                 <VisualState x:Name="Pressed">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_RootGrid.Background" Value="{ThemeResource BackgroundWeakActiveColorBrush}" />
+                                        <Setter Target="PART_RootGrid.Background" Value="{ThemeResource SettingsCardBackgroundPressed}" />
                                         <Setter Target="PART_RootGrid.BorderBrush" Value="{ThemeResource SettingsCardBorderBrushPressed}" />
                                         <Setter Target="PART_HeaderPresenter.Foreground" Value="{ThemeResource SettingsCardForegroundPressed}" />
                                         <Setter Target="PART_HeaderIconPresenter.Foreground" Value="{ThemeResource SettingsCardForegroundPressed}" />

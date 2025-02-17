@@ -2858,7 +2858,7 @@ Smart Routing este de obicei folosit pentru a evita legile anti-confidențialita
   <data name="Settings_About_Loading">
     <value>Se încarcă</value>
   </data>
-  <data name="Settings_About_NewVersion">
+  <data name="Common_Tags_New">
     <value>NOU</value>
   </data>
   <data name="Settings_About_Title">

@@ -28,6 +28,7 @@ using FlaUI.Core.Tools;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
+using OpenQA.Selenium.Remote;
 using ProtonVPN.UI.Tests.Robots;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
@@ -66,20 +67,20 @@ public class NetworkUtils
         Assert.That(reply.Status == IPStatus.Success, Is.True);
     }
 
-    public static string GetIpAddress(string endpoint = "https://api.ipify.org/")
+    public static string GetIpAddressWithRetry()
     {
         RetryResult<string> retry = Retry.WhileEmpty(
             () => {
-                return GetExternalIpAddressAsync(endpoint).Result; },
+                return GetIpAddressAsync().Result; },
             TestConstants.ThirtySecondsTimeout, TestConstants.RetryInterval, ignoreException: true);
         return retry.Result ?? throw new HttpRequestException("Failed to get IP Address.");
     }
 
-    public static string GetCountryName(string ip)
+    public static string GetCountryNameWithRetry()
     {
         RetryResult<string> retry = Retry.WhileEmpty(
         () => {
-                return GetCountryNameAsync(ip).Result;
+                return GetCountryNameAsync().Result;
             },
             TestConstants.ThirtySecondsTimeout, TestConstants.RetryInterval, ignoreException: true);
         return retry.Result ?? throw new HttpRequestException("Failed to get country name.");
@@ -87,8 +88,8 @@ public class NetworkUtils
 
     public static void VerifyUserIsConnectedToExpectedCountry(string countryNameToCompare)
     {
-        string ip = GetIpAddress();
-        string countryName = GetCountryName(ip);
+        string ip = GetIpAddressWithRetry();
+        string countryName = GetCountryNameWithRetry();
         Assert.That(countryName.Equals(countryNameToCompare), Is.True, $"User was connected to unexpected country." +
             $"\n API returned: {countryName}" +
             $"\n Expected result: {countryNameToCompare}");
@@ -100,7 +101,7 @@ public class NetworkUtils
         RetryResult<bool> retry = Retry.WhileTrue(
            () =>
            {
-               ipAddressFomAPI = GetIpAddress();
+               ipAddressFomAPI = GetIpAddressWithRetry();
                return ipAddressFomAPI.Equals(ipAddressToCompare);
            },
            TestConstants.TenSecondsTimeout, TestConstants.ApiRetryInterval);
@@ -119,7 +120,7 @@ public class NetworkUtils
         RetryResult<bool> retry = Retry.WhileFalse(
            () =>
            {
-               ipAddressFomAPI = GetIpAddress();
+               ipAddressFomAPI = GetIpAddressWithRetry();
                return ipAddressFomAPI.Equals(ipAddressToCompare);
            },
            TestConstants.TenSecondsTimeout, TestConstants.ApiRetryInterval);
@@ -132,12 +133,6 @@ public class NetworkUtils
         }
     }
 
-    public static string GetIpAddressBti()
-    {
-        string ipMeBtiUrl = Environment.GetEnvironmentVariable("IP_ENDPOINT_BTI");
-        return GetIpAddress(ipMeBtiUrl);
-    }
-
     private static IPAddress GetDefaultGatewayAddress()
     {
         return NetworkInterface
@@ -148,46 +143,36 @@ public class NetworkUtils
             .FirstOrDefault(a => a != null);
     }
 
-    private static async Task<string> GetCountryNameAsync(string ip)
+    private static async Task<string> GetCountryNameAsync()
     {
-        string url = $"http://www.geoplugin.net/json.gp?ip={ip}";
-        // Make sure that fresh socket is created when getting geolocation.
-        using (HttpClient client = new HttpClient())
-        {
-            try
-            {
-                string response = await client.GetStringAsync(url);
-                JObject json = JObject.Parse(response);
-                return json["geoplugin_countryName"]?.ToString();
-            }
-            catch (HttpRequestException)
-            {
-                return null;
-            }
-        }
+        JObject response = await GetConnectionDataAsync();
+        return response["country"].ToString();
     }
 
-    private static async Task<string> GetExternalIpAddressAsync(string endpoint)
+    private static async Task<string> GetIpAddressAsync()
     {
-        // Make sure that fresh socket is created when verifying IP address
+        JObject response = await GetConnectionDataAsync();
+        return response["query"].ToString();
+    }
+
+    private static async Task<JObject> GetConnectionDataAsync()
+    {
+        string endpoint = "http://ip-api.com/json/";
+        // Make sure that fresh socket is created when requesting connection data
         using (HttpClient client = new HttpClient())
         {
             try
             {
-                string externalIpString = await client.GetStringAsync(endpoint);
-                string ipAddress = externalIpString
-                    .Replace("\\r\\n", "")
-                    .Replace("\\n", "")
-                    .Trim();
-
-                return ipAddress;
+                string response = await client.GetStringAsync(endpoint);
+                JObject json = JObject.Parse(response);
+                return json;
             }
             catch (HttpRequestException)
             {
+                // Return null if API call fails due to networking issues
                 return null;
             }
         }
-        
     }
 
     private static string GetDnsAddressForAdapterByName(string adapterName)

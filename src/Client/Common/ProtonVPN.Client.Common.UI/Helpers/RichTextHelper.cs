@@ -19,6 +19,7 @@
 
 using System;
 using Microsoft.UI.Text;
+using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Documents;
 using ProtonVPN.Client.Common.Models;
 
@@ -78,6 +79,8 @@ public class RichTextHelper
                 NavigateUri = new Uri(button.Url),
                 Inlines = { new Run { Text = button.Text } }
             };
+
+            hyperlink.SetValue(ToolTipService.ToolTipProperty, button.Url);
 
             paragraph.Inlines.Add(hyperlink);
         }

@@ -40,29 +40,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="TextTrimming" Value="CharacterEllipsis" />
     </Style>
 
-    <Style x:Key="ConnectionRowFeatureCardTextBlockStyle" BasedOn="{StaticResource CaptionStrongTextBlockStyle}" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="{ThemeResource TextHintColorBrush}" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Margin" Value="0,-2,0,0" />
-    </Style>
-
-    <Style x:Key="ConnectionRowFeatureCardStyle" TargetType="StackPanel">
-        <Setter Property="Orientation" Value="Horizontal" />
-        <Setter Property="CornerRadius" Value="4" />
-        <Setter Property="Padding" Value="4,3" />
-        <Setter Property="Spacing" Value="2" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Background" Value="{ThemeResource InteractionDefaultColorBrush}" />
-    </Style>
-
-    <Style x:Key="ServerConnectionRowFeatureCardStyle" TargetType="Border">
-        <Setter Property="CornerRadius" Value="4" />
-        <Setter Property="Padding" Value="4" />
-        <Setter Property="Background" Value="{ThemeResource TransparentColorBrush}" />
-    </Style>
-
     <x:Double x:Key="ConnectionRowActiveDotSize">16</x:Double>
-    <Thickness x:Key="ConnectionRowDescriptionMargin">0,0,8,0</Thickness>
+    <Thickness x:Key="ConnectionRowInnerMargin">8,0,0,0</Thickness>
+    <Thickness x:Key="ConnectionRowTinyInnerMargin">4,0,0,0</Thickness>
+    <x:Double x:Key="ConnectionRowDisabledOpacity">1</x:Double>
     <x:Double x:Key="ConnectionRowDisabledIconOpacity">0.5</x:Double>
     <x:Double x:Key="ConnectionRowDisabledFeaturesOpacity">0.6</x:Double>
 
@@ -87,7 +68,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Grid x:Name="ConnectionRowContainer"
                           Padding="{TemplateBinding Padding}"
                           Background="{ThemeResource InteractionDefaultEmptyColorBrush}"
-                          ColumnSpacing="12"
                           CornerRadius="8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -105,11 +85,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                           Foreground="{ThemeResource TextWeakColorBrush}" />
 
                         <StackPanel Grid.Column="1"
-                                    Orientation="Vertical">
+                                    Orientation="Vertical"
+                                    Margin="12,0,0,0">
 
                             <Grid HorizontalAlignment="Left"
-                                  VerticalAlignment="Top"
-                                  ColumnSpacing="8">
+                                  VerticalAlignment="Top">
 
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
@@ -120,17 +100,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                            Grid.Column="0"
                                            Margin="0,0,0,2"
                                            Style="{StaticResource ConnectionRowHeaderTextBlockStyle}"
-                                           Text="{TemplateBinding Header}" />
+                                           Text="{TemplateBinding Header}"/>
 
                                 <StackPanel Grid.Column="1"
-                                            Orientation="Horizontal"
-                                            Spacing="8">
+                                            Orientation="Horizontal">
                                     <pathicons:Wrench Foreground="{ThemeResource TextWeakColorBrush}"
                                                       Size="Pixels20"
+                                                      Margin="8,0,0,0"
                                                       Visibility="{Binding IsUnderMaintenance, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" />
                                     <icons:ActiveDot Width="{StaticResource ConnectionRowActiveDotSize}"
-                                                     Height="{StaticResource ConnectionRowActiveDotSize}"
-                                                     Margin="0,2,0,0"
+                                                     Height="{StaticResource ConnectionRowActiveDotSize}"                                                     
+                                                     Margin="8,2,0,0"
                                                      Visibility="{Binding IsActiveConnection, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" />
                                 </StackPanel>
 
@@ -145,35 +125,33 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
 
-                                <TextBlock x:Name="ConnectionRowDescription"
+                                <TextBlock x:Name="ConnectionRowDescription" 
                                            Grid.Column="0"
-                                           Margin="{StaticResource ConnectionRowDescriptionMargin}"
                                            Style="{StaticResource ConnectionRowDescriptionTextBlockStyle}"
                                            Text="{TemplateBinding Description}"
                                            Visibility="{Binding Text, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
 
                                 <StackPanel x:Name="ConnectionRowFeatures"
                                             Grid.Column="1"
-                                            Orientation="Horizontal"
-                                            Spacing="4">
+                                            Orientation="Horizontal">
 
-                                    <StackPanel Margin="{StaticResource ConnectionRowDescriptionMargin}"
-                                                Style="{StaticResource ConnectionRowFeatureCardStyle}"
-                                                Visibility="{Binding SupportsP2P, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                        <pathicons:ArrowRightArrowLeft Foreground="{ThemeResource TextHintColorBrush}"
-                                                                       Size="Pixels16" />
-                                        <TextBlock Style="{StaticResource ConnectionRowFeatureCardTextBlockStyle}"
-                                                   Text="{Binding P2PLabel, RelativeSource={RelativeSource Mode=TemplatedParent}, TargetNullValue='P2P'}" />
-                                    </StackPanel>
+                                    <custom:TagControl Style="{StaticResource FeatureTagControlStyle}"
+                                                       Text="{Binding P2PLabel, RelativeSource={RelativeSource Mode=TemplatedParent}, TargetNullValue='P2P'}"
+                                                       Margin="{StaticResource ConnectionRowTinyInnerMargin}"
+                                                       Visibility="{Binding SupportsP2P, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        <custom:TagControl.Icon>
+                                            <pathicons:ArrowRightArrowLeft Size="Pixels16" />
+                                        </custom:TagControl.Icon>
+                                    </custom:TagControl>
 
-                                    <StackPanel Margin="{StaticResource ConnectionRowDescriptionMargin}"
-                                                Style="{StaticResource ConnectionRowFeatureCardStyle}"
-                                                Visibility="{Binding SupportsTor, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                        <pathicons:BrandTor Foreground="{ThemeResource TextHintColorBrush}"
-                                                            Size="Pixels16" />
-                                        <TextBlock Style="{StaticResource ConnectionRowFeatureCardTextBlockStyle}"
-                                                   Text="{Binding TorLabel, RelativeSource={RelativeSource Mode=TemplatedParent}, TargetNullValue='Tor'}" />
-                                    </StackPanel>
+                                    <custom:TagControl Style="{StaticResource FeatureTagControlStyle}"
+                                                       Text="{Binding TorLabel, RelativeSource={RelativeSource Mode=TemplatedParent}, TargetNullValue='Tor'}"
+                                                       Margin="{StaticResource ConnectionRowTinyInnerMargin}"
+                                                       Visibility="{Binding SupportsTor, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        <custom:TagControl.Icon>
+                                            <pathicons:BrandTor Size="Pixels16" />
+                                        </custom:TagControl.Icon>
+                                    </custom:TagControl>
 
                                 </StackPanel>
 
@@ -184,6 +162,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Grid x:Name="ConnectionRowActionContainer"
                               Grid.Column="2"
                               VerticalAlignment="Center"
+                              Margin="{StaticResource ConnectionRowInnerMargin}"
                               Visibility="Collapsed">
 
                             <TextBlock x:Name="ConnectionRowAction"
@@ -205,22 +184,33 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <VisualState x:Name="PointerOver">
                                     <VisualState.Setters>
                                         <Setter Target="ConnectionRowContainer.Background" Value="{ThemeResource InteractionDefaultHoverColorBrush}" />
-                                        <Setter Target="ConnectionRowActionContainer.Visibility" Value="Visible" />
                                     </VisualState.Setters>
+                                    <VisualState.Storyboard>
+                                        <Storyboard>
+                                            <!-- Offset action container appearance to avoid visual glitch -->
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ConnectionRowActionContainer" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.01" Value="Visible" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState.Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Pressed">
                                     <VisualState.Setters>
                                         <Setter Target="ConnectionRowContainer.Background" Value="{ThemeResource InteractionDefaultActiveColorBrush}" />
-                                        <Setter Target="ConnectionRowActionContainer.Visibility" Value="Visible" />
                                     </VisualState.Setters>
+                                    <VisualState.Storyboard>
+                                        <Storyboard>
+                                            <!-- Offset action container appearance to avoid visual glitch -->
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ConnectionRowActionContainer" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.01" Value="Visible" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState.Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Disabled">
                                     <VisualState.Setters>
                                         <Setter Target="ConnectionRowContainer.Background" Value="{ThemeResource InteractionDefaultEmptyColorBrush}" />
-                                        <Setter Target="ConnectionRowIcon.Opacity" Value="{StaticResource ConnectionRowDisabledIconOpacity}" />
-                                        <Setter Target="ConnectionRowFeatures.Opacity" Value="{StaticResource ConnectionRowDisabledFeaturesOpacity}" />
-                                        <Setter Target="ConnectionRowHeader.Foreground" Value="{ThemeResource TextHintColorBrush}" />
-                                        <Setter Target="ConnectionRowDescription.Foreground" Value="{ThemeResource TextDisabledColorBrush}" />
+                                        <Setter Target="ConnectionRowContainer.Opacity" Value="{StaticResource ConnectionRowDisabledOpacity}" />
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>
@@ -301,25 +291,25 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </Grid.ColumnDefinitions>
 
                             <TextBlock x:Name="ConnectionRowHeader"
-                                       Grid.Column="0"
                                        Grid.Row="0"
+                                       Grid.Column="0"
                                        Margin="0,0,0,2"
                                        Style="{StaticResource ConnectionRowHeaderTextBlockStyle}"
                                        Text="{TemplateBinding Header}" />
 
                             <TextBlock x:Name="ConnectionRowBaseLocation"
-                                       Grid.Column="0"
                                        Grid.Row="1"
+                                       Grid.Column="0"
                                        Margin="0,2"
+                                       Foreground="{ThemeResource TextWeakColorBrush}"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Text="{TemplateBinding BaseLocation}"
                                        TextTrimming="WordEllipsis"
                                        TextWrapping="NoWrap"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Foreground="{ThemeResource TextWeakColorBrush}"
-                                       Text="{TemplateBinding BaseLocation}" 
-                                       Visibility="{Binding Text, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}"/>
+                                       Visibility="{Binding Text, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
 
-                            <StackPanel Grid.Column="1"
-                                        Grid.Row="0"
+                            <StackPanel Grid.Row="0"
+                                        Grid.Column="1"
                                         Orientation="Horizontal"
                                         Spacing="8">
                                 <pathicons:Wrench Foreground="{ThemeResource TextWeakColorBrush}"
@@ -348,24 +338,31 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         HorizontalAlignment="Left"
                                         Orientation="Horizontal"
                                         Spacing="0">
-                                <!--<Border Style="{StaticResource ServerConnectionRowFeatureCardStyle}"
-                                        ToolTipService.ToolTip="{Binding P2PLabel, RelativeSource={RelativeSource Mode=TemplatedParent}, TargetNullValue='P2P'}"
-                                        Visibility="{Binding SupportsP2P, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                    <pathicons:ArrowRightArrowLeft Foreground="{ThemeResource TextWeakColorBrush}"
-                                                                   Size="Pixels20" />
-                                </Border>-->
-                                <Border Style="{StaticResource ServerConnectionRowFeatureCardStyle}"
-                                        ToolTipService.ToolTip="{Binding SmartRoutingLabel, RelativeSource={RelativeSource Mode=TemplatedParent}, TargetNullValue='Smart routing'}"
-                                        Visibility="{Binding SupportsSmartRouting, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                    <pathicons:Globe Foreground="{ThemeResource TextWeakColorBrush}"
-                                                     Size="Pixels20" />
-                                </Border>
-                                <Border Style="{StaticResource ServerConnectionRowFeatureCardStyle}"
-                                        ToolTipService.ToolTip="{Binding TorLabel, RelativeSource={RelativeSource Mode=TemplatedParent}, TargetNullValue='Tor'}"
-                                        Visibility="{Binding SupportsTor, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                    <pathicons:BrandTor Foreground="{ThemeResource TextWeakColorBrush}"
-                                                        Size="Pixels20" />
-                                </Border>
+
+                                <!--<custom:TagControl Style="{StaticResource GhostTagControlStyle}"
+                                                   ToolTipService.ToolTip="{Binding P2PLabel, RelativeSource={RelativeSource Mode=TemplatedParent}, TargetNullValue='P2P'}"
+                                                   Visibility="{Binding SupportsP2P, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <custom:TagControl.Icon>
+                                        <pathicons:ArrowRightArrowLeft Size="Pixels20" />
+                                    </custom:TagControl.Icon>
+                                </custom:TagControl>-->
+
+                                <custom:TagControl Style="{StaticResource GhostTagControlStyle}"
+                                                   ToolTipService.ToolTip="{Binding SmartRoutingLabel, RelativeSource={RelativeSource Mode=TemplatedParent}, TargetNullValue='Smart routing'}"
+                                                   Visibility="{Binding SupportsSmartRouting, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <custom:TagControl.Icon>
+                                        <pathicons:Globe Size="Pixels20" />
+                                    </custom:TagControl.Icon>
+                                </custom:TagControl>
+
+                                <custom:TagControl Style="{StaticResource GhostTagControlStyle}"
+                                                   ToolTipService.ToolTip="{Binding TorLabel, RelativeSource={RelativeSource Mode=TemplatedParent}, TargetNullValue='Tor'}"
+                                                   Visibility="{Binding SupportsTor, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <custom:TagControl.Icon>
+                                        <pathicons:BrandTor Size="Pixels20" />
+                                    </custom:TagControl.Icon>
+                                </custom:TagControl>
+                                
                             </StackPanel>
 
                             <custom:ServerLoad x:Name="ConnectionRowServerLoad"
@@ -452,15 +449,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Flyout="{TemplateBinding SecondaryCommandFlyout}"
                                 Style="{StaticResource RowButtonStyle}" />
 
-                        <ContentPresenter x:Name="SecondaryButtonContent"
+                        <pathicons:ThreeDotsVertical x:Name="SecondaryButtonContent"
+                                          AutomationProperties.AutomationId="SecondaryButtonContent"
+                                          AutomationProperties.Name="SecondaryButtonContent"
                                           Grid.Column="1"
                                           Margin="8,0"
-                                          Content="{TemplateBinding SecondaryCommandContent}"
                                           IsHitTestVisible="False"
                                           Opacity="0" />
 
                         <ContentPresenter x:Name="PrimaryButtonContainer"
                                           Grid.Column="0"
+                                          Grid.ColumnSpan="2"
                                           Content="{TemplateBinding Content}" />
 
                         <VisualStateManager.VisualStateGroups>
@@ -468,6 +467,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <VisualState x:Name="PointerOver">
                                     <VisualState.Setters>
                                         <Setter Target="SecondaryButtonContent.Opacity" Value="0.6" />
+                                        <Setter Target="PrimaryButtonContainer.(Grid.ColumnSpan)" Value="1" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="Normal" />
@@ -517,6 +517,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                   Style="{StaticResource ConnectionRowExpanderStyle}" />
 
                         <pathicons:ChevronRightFilled x:Name="ExpanderButtonContent"
+                                          AutomationProperties.AutomationId="ExpanderButtonContent"
+                                          AutomationProperties.Name="ExpanderButtonContent"
+                                                      AutomationProperties.LandmarkType="Custom"
                                                       Grid.Row="0"
                                                       Grid.Column="1"
                                                       Margin="8,0"
@@ -530,7 +533,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                         <ContentPresenter x:Name="PrimaryButtonContainer"
                                           Grid.Row="0"
-                                          Grid.Column="0" 
+                                          Grid.Column="0"
+                                          Grid.ColumnSpan="2"
                                           Margin="1,0"
                                           Content="{TemplateBinding Content}" />
 
@@ -570,6 +574,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <VisualState x:Name="PointerOver">
                                     <VisualState.Setters>
                                         <Setter Target="ExpanderButtonContent.Opacity" Value="0.6" />
+                                        <Setter Target="PrimaryButtonContainer.(Grid.ColumnSpan)" Value="1" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="Normal" />

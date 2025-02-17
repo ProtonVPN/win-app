@@ -71,13 +71,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         Spacing="8">
                                 <TextBlock Style="{StaticResource BodyTextBlockStyle}"
                                            Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_Smart_Title')}" />
-                                <Border Padding="4,1"
-                                        BorderBrush="{ThemeResource BorderNormColorBrush}"
-                                        BorderThickness="1"
-                                        CornerRadius="4">
-                                    <TextBlock Style="{StaticResource CaptionStrongTextBlockStyle}"
-                                               Text="{x:Bind ViewModel.Recommended}" />
-                                </Border>
+                                <custom:TagControl Text="{x:Bind ViewModel.Recommended}" />
                             </StackPanel>
 
                             <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
@@ -173,7 +167,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            ToolTipService.ToolTip="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}">
                     <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
                 </Hyperlink>
-                <Run />
             </TextBlock>
         </StackPanel>
     </custom:SettingsPageContentControl>

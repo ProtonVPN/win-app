@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
@@ -30,15 +29,17 @@ public interface IConnectionProfile : IConnectionIntent
 
     string Name { get; set; }
 
+    IProfileIcon Icon { get; set; }
+
     IProfileSettings Settings { get; set; }
+
+    IProfileOptions Options { get; set; }
 
     public DateTime CreationDateTimeUtc { get; }
 
     public DateTime UpdateDateTimeUtc { get; set; }
 
-    ProfileCategory Category { get; set; }
-
-    ProfileColor Color { get; set; }
-
     void UpdateIntent(ILocationIntent locationIntent, IFeatureIntent? featureIntent = null);
+
+    IConnectionProfile Duplicate(string name);
 }

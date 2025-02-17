@@ -29,22 +29,27 @@ public class VpnServiceSettingsUpdater : IVpnServiceSettingsUpdater
 {
     private readonly IVpnServiceCaller _vpnServiceCaller;
     private readonly IMainSettingsRequestCreator _mainSettingsRequestCreator;
+    private readonly IConnectionManager _connectionManager;
 
-    public VpnServiceSettingsUpdater(IVpnServiceCaller vpnServiceCaller, IMainSettingsRequestCreator mainSettingsRequestCreator)
+    public VpnServiceSettingsUpdater(
+        IVpnServiceCaller vpnServiceCaller, 
+        IMainSettingsRequestCreator mainSettingsRequestCreator,
+        IConnectionManager connectionManager)
     {
         _vpnServiceCaller = vpnServiceCaller;
         _mainSettingsRequestCreator = mainSettingsRequestCreator;
+        _connectionManager = connectionManager;
     }
 
     public async Task SendAsync()
     {
-        MainSettingsIpcEntity settings = _mainSettingsRequestCreator.Create();
+        MainSettingsIpcEntity settings = _mainSettingsRequestCreator.Create(_connectionManager.CurrentConnectionIntent);
         await _vpnServiceCaller.ApplySettingsAsync(settings);
     }
 
     public async Task SendAsync(KillSwitchModeIpcEntity killSwitchMode)
     {
-        MainSettingsIpcEntity settings = _mainSettingsRequestCreator.Create();
+        MainSettingsIpcEntity settings = _mainSettingsRequestCreator.Create(_connectionManager.CurrentConnectionIntent);
         settings.KillSwitchMode = killSwitchMode;
         await _vpnServiceCaller.ApplySettingsAsync(settings);
     }

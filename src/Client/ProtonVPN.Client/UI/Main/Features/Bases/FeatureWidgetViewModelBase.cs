@@ -20,7 +20,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
-using ProtonVPN.Client.Common.Models;
+using ProtonVPN.Client.Contracts.Profiles;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
@@ -30,7 +30,7 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
+using ProtonVPN.Client.Logic.Profiles.Contracts.Messages;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
@@ -50,7 +50,8 @@ public abstract partial class FeatureWidgetViewModelBase : SideWidgetViewModelBa
     IEventMessageReceiver<SettingChangedMessage>,
     IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<VpnPlanChangedMessage>,
-    IEventMessageReceiver<LoggedInMessage>
+    IEventMessageReceiver<LoggedInMessage>,
+    IEventMessageReceiver<ProfilesChangedMessage>
 {
     protected readonly ISettingsViewNavigator SettingsViewNavigator;
     protected readonly IMainWindowOverlayActivator MainWindowOverlayActivator;
@@ -59,6 +60,7 @@ public abstract partial class FeatureWidgetViewModelBase : SideWidgetViewModelBa
     protected readonly IUpsellCarouselWindowActivator UpsellCarouselWindowActivator;
     protected readonly IRequiredReconnectionSettings RequiredReconnectionSettings;
     protected readonly ISettingsConflictResolver SettingsConflictResolver;
+    protected readonly IProfileEditor ProfileEditor;
 
     [ObservableProperty]
     private bool _isFeaturePageDisplayed;
@@ -76,6 +78,10 @@ public abstract partial class FeatureWidgetViewModelBase : SideWidgetViewModelBa
 
     protected abstract UpsellFeatureType? UpsellFeature { get; }
 
+    public virtual bool IsFeatureOverridden => false;
+
+    public IConnectionProfile? CurrentProfile => ConnectionManager.CurrentConnectionIntent as IConnectionProfile;
+
     protected FeatureWidgetViewModelBase(
         ILocalizationProvider localizer,
         ILogger logger,
@@ -88,6 +94,7 @@ public abstract partial class FeatureWidgetViewModelBase : SideWidgetViewModelBa
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
         IRequiredReconnectionSettings requiredReconnectionSettings,
         ISettingsConflictResolver settingsConflictResolver,
+        IProfileEditor profileEditor,
         ConnectionFeature connectionFeature)
         : base(localizer, logger, issueReporter, mainViewNavigator)
     {
@@ -98,6 +105,7 @@ public abstract partial class FeatureWidgetViewModelBase : SideWidgetViewModelBa
         UpsellCarouselWindowActivator = upsellCarouselWindowActivator;
         RequiredReconnectionSettings = requiredReconnectionSettings;
         SettingsConflictResolver = settingsConflictResolver;
+        ProfileEditor = profileEditor;
 
         ConnectionFeature = connectionFeature;
 
@@ -109,6 +117,11 @@ public abstract partial class FeatureWidgetViewModelBase : SideWidgetViewModelBa
         if (IsRestricted)
         {
             return await UpsellCarouselWindowActivator.ActivateAsync(UpsellFeature);
+        }
+
+        if (IsFeatureOverridden && CurrentProfile != null)
+        {
+            return await ProfileEditor.TryRedirectToProfileAsync(Header, CurrentProfile);
         }
 
         return await MainViewNavigator.NavigateToSettingsViewAsync() &&
@@ -136,6 +149,14 @@ public abstract partial class FeatureWidgetViewModelBase : SideWidgetViewModelBa
     public void Receive(LoggedInMessage message)
     {
         ExecuteOnUIThread(InvalidateAllProperties);
+    }
+
+    public void Receive(ProfilesChangedMessage message)
+    {
+        if (ConnectionManager.IsConnected)
+        {
+            ExecuteOnUIThread(InvalidateAllProperties);
+        }
     }
 
     protected abstract IEnumerable<string> GetSettingsChangedForUpdate();
@@ -243,23 +264,7 @@ public abstract partial class FeatureWidgetViewModelBase : SideWidgetViewModelBa
 
     private bool IsReconnectionRequiredDueToChanges(IEnumerable<ChangedSettingArgs> changedSettings)
     {
-        IConnectionIntent? currentConnectionIntent = ConnectionManager.CurrentConnectionIntent;
-        bool isConnectionProfile = currentConnectionIntent is IConnectionProfile;
-
-        foreach (ChangedSettingArgs changedSetting in changedSettings)
-        {
-            if (isConnectionProfile && IgnorableProfileReconnectionSettings.Contains(changedSetting.Name))
-            {
-                continue;
-            }
-
-            if (RequiredReconnectionSettings.IsReconnectionRequired(changedSetting.Name))
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return changedSettings.Any(s => RequiredReconnectionSettings.IsReconnectionRequired(s.Name));
     }
 
     private bool IsReconnectionRequiredDueToConflicts(List<ISettingsConflict> conflicts)

@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Common.Core.Geographical;
 
@@ -24,30 +25,50 @@ namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
 public class GatewayLocationIntent : LocationIntentBase
 {
+    public static GatewayLocationIntent Fastest => new(ConnectionIntentKind.Fastest);
+    public static GatewayLocationIntent Random => new(ConnectionIntentKind.Random);
+
     public override bool IsForPaidUsersOnly => false;
 
-    public string GatewayName { get; }
+    public string? GatewayName { get; }
 
-    public GatewayLocationIntent(string gatewayName)
+    public bool IsSpecificGateway => !string.IsNullOrEmpty(GatewayName);
+
+    public bool IsFastestGateway => !IsSpecificGateway && Kind == ConnectionIntentKind.Fastest;
+
+    public bool IsRandomGateway => !IsSpecificGateway && Kind == ConnectionIntentKind.Random;
+
+    public GatewayLocationIntent(
+        string gatewayName,
+        ConnectionIntentKind kind = ConnectionIntentKind.Fastest)
+        : this(kind)
     {
         GatewayName = gatewayName;
     }
+
+    public GatewayLocationIntent(
+        ConnectionIntentKind kind = ConnectionIntentKind.Fastest)
+        : base(kind)
+    { }
 
     public override bool IsSameAs(ILocationIntent? intent)
     {
         return base.IsSameAs(intent)
             && intent is GatewayLocationIntent gatewayIntent
+            && Kind == gatewayIntent.Kind
             && GatewayName == gatewayIntent.GatewayName;
     }
 
     public override bool IsSupported(Server server, DeviceLocation? deviceLocation)
     {
-        return server.GatewayName == GatewayName;
+        return !IsSpecificGateway || server.GatewayName == GatewayName;
     }
 
     public override string ToString()
     {
-        return $"Gateway {GatewayName}";
+        return IsSpecificGateway
+            ? $"Gateway {GatewayName}"
+            : $"{Kind} Gateway";
     }
 
     public override bool IsGenericRandomIntent()

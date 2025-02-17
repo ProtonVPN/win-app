@@ -18,6 +18,7 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Contracts.Profiles;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
@@ -48,21 +49,24 @@ public partial class PortForwardingWidgetViewModel : FeatureWidgetViewModelBase
 
     public string WarningMessage => Localizer.Get("Flyouts_PortForwarding_Warning");
 
+    public bool IsPortForwardingEnabled => IsFeatureOverridden
+        ? CurrentProfile!.Settings.IsPortForwardingEnabled
+        : Settings.IsPortForwardingEnabled;
+
     public bool IsInfoMessageVisible => !ConnectionManager.IsConnected
-                                     || !Settings.IsPortForwardingEnabled
+                                     || !IsPortForwardingEnabled
                                      || DoesServerSupportP2P();
 
     public bool IsWarningMessageVisible => ConnectionManager.IsConnected
                                         && !DoesServerSupportP2P();
 
     public bool IsActivePortComponentVisible => ConnectionManager.IsConnected
-                                             && Settings.IsPortForwardingEnabled;
-
-    public bool IsPortForwardingDisabled => !Settings.IsPortForwardingEnabled;
-
-    public bool IsPortForwardingEnabled => Settings.IsPortForwardingEnabled;
+                                             && IsPortForwardingEnabled;
 
     protected override UpsellFeatureType? UpsellFeature { get; } = UpsellFeatureType.P2P;
+
+    public override bool IsFeatureOverridden => ConnectionManager.IsConnected
+                                             && CurrentProfile != null;
 
     public PortForwardingWidgetViewModel(
         ILocalizationProvider localizer,
@@ -75,7 +79,8 @@ public partial class PortForwardingWidgetViewModel : FeatureWidgetViewModelBase
         IConnectionManager connectionManager,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
         IRequiredReconnectionSettings requiredReconnectionSettings,
-        ISettingsConflictResolver settingsConflictResolver)
+        ISettingsConflictResolver settingsConflictResolver,
+        IProfileEditor profileEditor)
         : base(localizer,
                logger,
                issueReporter,
@@ -87,6 +92,7 @@ public partial class PortForwardingWidgetViewModel : FeatureWidgetViewModelBase
                upsellCarouselWindowActivator,
                requiredReconnectionSettings,
                settingsConflictResolver,
+               profileEditor,
                ConnectionFeature.PortForwarding)
     {
         _disablePortForwardingSettings = new(() =>
@@ -107,7 +113,7 @@ public partial class PortForwardingWidgetViewModel : FeatureWidgetViewModelBase
 
     protected override string GetFeatureStatus()
     {
-        return Localizer.GetToggleValue(Settings.IsPortForwardingEnabled);
+        return Localizer.GetToggleValue(IsPortForwardingEnabled);
     }
 
     protected override void OnLanguageChanged()
@@ -125,16 +131,19 @@ public partial class PortForwardingWidgetViewModel : FeatureWidgetViewModelBase
         OnPropertyChanged(nameof(IsInfoMessageVisible));
         OnPropertyChanged(nameof(IsWarningMessageVisible));
         OnPropertyChanged(nameof(IsActivePortComponentVisible));
-        OnPropertyChanged(nameof(IsPortForwardingDisabled));
         OnPropertyChanged(nameof(IsPortForwardingEnabled));
     }
 
     protected override void OnConnectionStatusChanged()
     {
+        OnPropertyChanged(nameof(Status));
         OnPropertyChanged(nameof(InfoMessage));
         OnPropertyChanged(nameof(IsInfoMessageVisible));
         OnPropertyChanged(nameof(IsWarningMessageVisible));
         OnPropertyChanged(nameof(IsActivePortComponentVisible));
+        OnPropertyChanged(nameof(IsFeatureOverridden));
+        OnPropertyChanged(nameof(CurrentProfile));
+        OnPropertyChanged(nameof(IsPortForwardingEnabled));
     }
 
     protected override bool IsOnFeaturePage(PageViewModelBase? currentPageContext)

@@ -169,8 +169,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                               CountryCode="{x:Bind ExitCountryCode}"
                                                                               FlagType="{x:Bind FlagType}"
                                                                               IsFlagVisible="True"
-                                                                              ProfileCategory="{x:Bind Profile.Category}"
-                                                                              ProfileColor="{x:Bind Profile.Color}" />
+                                                                              ProfileCategory="{x:Bind Profile.Icon.Category}"
+                                                                              ProfileColor="{x:Bind Profile.Icon.Color}" />
                                             </custom:BulletHeaderedContentControl.BulletContent>
                                         </custom:BulletHeaderedContentControl>
                                     </RadioButton>

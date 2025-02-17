@@ -22,6 +22,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Connection.Contracts.ServerListGenerators;
+using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
@@ -52,6 +53,10 @@ public class IntentServerListGenerator : ServerListGeneratorBase, IIntentServerL
         ILocationIntent locationIntent = connectionIntent.Location;
         IFeatureIntent? featureIntent = connectionIntent.Feature;
 
+        bool isPortForwardingEnabled = connectionIntent is IConnectionProfile profile
+            ? profile.Settings.IsPortForwardingEnabled
+            : _settings.IsPortForwardingEnabled;
+
         servers = locationIntent.FilterServers(servers, _settings.DeviceLocation);
 
         if (locationIntent is FreeServerLocationIntent fsli && fsli.Kind == ConnectionIntentKind.Random)
@@ -63,17 +68,17 @@ public class IntentServerListGenerator : ServerListGeneratorBase, IIntentServerL
             ? servers.Where(s => s.IsStandard())
             : featureIntent.FilterServers(servers);
 
-        return SortServers(servers, locationIntent)
+        return SortServers(servers, locationIntent, isPortForwardingEnabled)
             .SelectMany(SelectPhysicalServers)
             .DistinctBy(s => new { s.EntryIp, s.Label })
             .Take(MAX_GENERATED_PHYSICAL_SERVERS);
     }
 
-    private IEnumerable<Server> SortServers(IEnumerable<Server> source, ILocationIntent locationIntent)
+    private IEnumerable<Server> SortServers(IEnumerable<Server> source, ILocationIntent locationIntent, bool isPortForwardingEnabled)
     {
         return locationIntent.Kind == ConnectionIntentKind.Random
             ? source.OrderBy(_ => Random.Next())
-            : _settings.IsPortForwardingEnabled
+            : isPortForwardingEnabled
                 ? source.OrderByDescending(s => s.Features.IsSupported(ServerFeatures.P2P)).ThenBy(s => s.Score)
                 : source.OrderBy(s => s.Score);
     }

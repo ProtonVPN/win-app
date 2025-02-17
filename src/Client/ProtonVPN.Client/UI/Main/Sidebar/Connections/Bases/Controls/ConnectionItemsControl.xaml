@@ -189,10 +189,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </custom:ConnectionRowButton.Icon>
                 </custom:ConnectionRowButton>
 
-                <custom:DualConnectionRowButton.SecondaryCommandContent>
-                    <pathicons:ThreeDotsVertical Size="Pixels20" />
-                </custom:DualConnectionRowButton.SecondaryCommandContent>
-
                 <custom:DualConnectionRowButton.SecondaryCommandFlyout>
                     <Flyout Closed="{x:Bind OnCollapseCountry}"
                             Closing="OnMenuFlyoutClosing"
@@ -253,20 +249,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <DataTemplate x:Key="CountryPairLocationItemTemplate"
                       x:DataType="countries:SecureCoreCountryPairLocationItem">
 
-            <custom:ConnectionRowButton ActionLabel="{x:Bind PrimaryActionLabel}"
+            <custom:ConnectionRowButton Padding="24,10,12,10"
+                                        ActionLabel="{x:Bind PrimaryActionLabel}"
                                         AutomationProperties.AutomationId="{x:Bind PrimaryCommandAutomationId}"
                                         AutomationProperties.Name="{x:Bind Header}"
                                         Command="{x:Bind ToggleConnectionCommand, Mode=OneTime}"
                                         Description="{x:Bind Description}"
-                                        Header="{x:Bind Header}" 
+                                        Header="{x:Bind Header}"
                                         IsActiveConnection="{x:Bind IsActiveConnection}"
                                         IsDescriptionVisible="{x:Bind IsDescriptionVisible}"
-                                        IsRestricted="{x:Bind IsRestricted}" 
+                                        IsRestricted="{x:Bind IsRestricted}"
                                         IsUnderMaintenance="{x:Bind IsUnderMaintenance}"
-                                        ToolTipService.ToolTip="{x:Bind ToolTip}"
-                                        Padding="24,10,12,10">
+                                        ToolTipService.ToolTip="{x:Bind ToolTip}">
                 <custom:ConnectionRowButton.Icon>
-                    <custom:ComplexCountryFlag Width="30" 
+                    <custom:ComplexCountryFlag Width="30"
                                                EntryCountryCode="{x:Bind CountryPair.EntryCountry}"
                                                ExitCountryCode="{x:Bind CountryPair.ExitCountry}"
                                                IsSecureCore="True"
@@ -296,10 +292,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <pathicons:MapPin Size="Pixels20" />
                     </custom:ConnectionRowButton.Icon>
                 </custom:ConnectionRowButton>
-
-                <custom:DualConnectionRowButton.SecondaryCommandContent>
-                    <pathicons:ThreeDotsVertical Size="Pixels20" />
-                </custom:DualConnectionRowButton.SecondaryCommandContent>
 
                 <custom:DualConnectionRowButton.SecondaryCommandFlyout>
                     <Flyout Closed="{x:Bind OnCollapseState}"
@@ -377,10 +369,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </custom:ConnectionRowButton.Icon>
                 </custom:ConnectionRowButton>
 
-                <custom:DualConnectionRowButton.SecondaryCommandContent>
-                    <pathicons:ThreeDotsVertical Size="Pixels20" />
-                </custom:DualConnectionRowButton.SecondaryCommandContent>
-
                 <custom:DualConnectionRowButton.SecondaryCommandFlyout>
                     <Flyout Closed="{x:Bind OnCollapseCity}"
                             Closing="OnMenuFlyoutClosing"
@@ -442,6 +430,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <custom:ServerConnectionRowButton AutomationProperties.AutomationId="{x:Bind PrimaryCommandAutomationId}"
                                               AutomationProperties.Name="{x:Bind Header}"
+                                              BaseLocation="{x:Bind BaseLocation}"
                                               Command="{x:Bind ToggleConnectionCommand, Mode=OneTime}"
                                               Header="{x:Bind Header}"
                                               IsActiveConnection="{x:Bind IsActiveConnection}"
@@ -454,8 +443,28 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               SupportsSmartRouting="{x:Bind IsVirtual}"
                                               SupportsTor="{x:Bind SupportsTor}"
                                               ToolTipService.ToolTip="{x:Bind ToolTip}"
-                                              TorLabel="{x:Bind Localizer.Get('Countries_Tor')}" 
-                                              BaseLocation="{x:Bind BaseLocation}"/>
+                                              TorLabel="{x:Bind Localizer.Get('Countries_Tor')}" />
+
+        </DataTemplate>
+
+        <DataTemplate x:Key="GenericGatewayLocationItemTemplate"
+                      x:DataType="gateways:GenericGatewayLocationItem">
+
+            <custom:ConnectionRowButton ActionLabel="{x:Bind PrimaryActionLabel}"
+                                        AutomationProperties.AutomationId="{x:Bind PrimaryCommandAutomationId}"
+                                        Command="{x:Bind ToggleConnectionCommand, Mode=OneTime}"
+                                        Description="{x:Bind Description}"
+                                        Header="{x:Bind Header}"
+                                        IsActiveConnection="{x:Bind IsActiveConnection}"
+                                        IsDescriptionVisible="{x:Bind IsDescriptionVisible}"
+                                        IsRestricted="{x:Bind IsRestricted}"
+                                        IsUnderMaintenance="{x:Bind IsUnderMaintenance}"
+                                        ToolTipService.ToolTip="{x:Bind ToolTip}">
+                <custom:ConnectionRowButton.Icon>
+                    <custom:SimpleCountryFlag Width="30"
+                                              FlagType="Gateway" />
+                </custom:ConnectionRowButton.Icon>
+            </custom:ConnectionRowButton>
 
         </DataTemplate>
 
@@ -479,10 +488,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   FlagType="Gateway" />
                     </custom:ConnectionRowButton.Icon>
                 </custom:ConnectionRowButton>
-
-                <custom:DualConnectionRowButton.SecondaryCommandContent>
-                    <pathicons:ThreeDotsVertical Size="Pixels20" />
-                </custom:DualConnectionRowButton.SecondaryCommandContent>
 
                 <custom:DualConnectionRowButton.SecondaryCommandFlyout>
                     <Flyout Closed="{x:Bind OnCollapseGateway}"
@@ -526,6 +531,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <custom:ServerConnectionRowButton AutomationProperties.AutomationId="{x:Bind PrimaryCommandAutomationId}"
                                               AutomationProperties.Name="{x:Bind Header}"
+                                              BaseLocation="{x:Bind BaseLocation}"
                                               Command="{x:Bind ToggleConnectionCommand, Mode=OneTime}"
                                               Header="{x:Bind Header}"
                                               IsActiveConnection="{x:Bind IsActiveConnection}"
@@ -538,8 +544,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               SupportsSmartRouting="{x:Bind IsVirtual}"
                                               SupportsTor="{x:Bind SupportsTor}"
                                               ToolTipService.ToolTip="{x:Bind ToolTip}"
-                                              TorLabel="{x:Bind Localizer.Get('Countries_Tor')}"
-                                              BaseLocation="{x:Bind BaseLocation}">
+                                              TorLabel="{x:Bind Localizer.Get('Countries_Tor')}">
                 <custom:ServerConnectionRowButton.Icon>
                     <custom:SimpleCountryFlag Width="30"
                                               CountryCode="{x:Bind Server.ExitCountry}"
@@ -576,8 +581,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                           CountryCode="{x:Bind ExitCountry}"
                                                           FlagType="{x:Bind FlagType}"
                                                           IsFlagVisible="True"
-                                                          ProfileCategory="{x:Bind Profile.Category}"
-                                                          ProfileColor="{x:Bind Profile.Color}"
+                                                          ProfileCategory="{x:Bind Profile.Icon.Category}"
+                                                          ProfileColor="{x:Bind Profile.Icon.Color}"
                                                           Visibility="{x:Bind IsProfileIntent, Converter={StaticResource BooleanToVisibilityConverter}}" />
                             <custom:ComplexCountryFlag Width="30"
                                                        EntryCountryCode="{x:Bind EntryCountry}"
@@ -588,10 +593,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </Grid>
                     </custom:ConnectionRowButton.Icon>
                 </custom:ConnectionRowButton>
-
-                <custom:DualConnectionRowButton.SecondaryCommandContent>
-                    <pathicons:ThreeDotsVertical Size="Pixels20" />
-                </custom:DualConnectionRowButton.SecondaryCommandContent>
 
                 <custom:DualConnectionRowButton.SecondaryCommandFlyout>
                     <MenuFlyout Closing="OnMenuFlyoutClosing"
@@ -650,23 +651,25 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                       CountryCode="{x:Bind ExitCountryCode}"
                                                       FlagType="{x:Bind FlagType}"
                                                       IsFlagVisible="True"
-                                                      ProfileCategory="{x:Bind Profile.Category}"
-                                                      ProfileColor="{x:Bind Profile.Color}" />
+                                                      ProfileCategory="{x:Bind Profile.Icon.Category}"
+                                                      ProfileColor="{x:Bind Profile.Icon.Color}" />
                     </custom:ConnectionRowButton.Icon>
                 </custom:ConnectionRowButton>
 
-                <custom:DualConnectionRowButton.SecondaryCommandContent>
-                    <pathicons:ThreeDotsVertical Size="Pixels20" />
-                </custom:DualConnectionRowButton.SecondaryCommandContent>
-
                 <custom:DualConnectionRowButton.SecondaryCommandFlyout>
                     <MenuFlyout Closing="OnMenuFlyoutClosing"
-                                Placement="BottomEdgeAlignedRight"
+                                Placement="{StaticResource LocationSubItemsFlyoutPlacement}"
                                 ShouldConstrainToRootBounds="True">
                         <MenuFlyoutItem Command="{x:Bind EditProfileCommand}"
                                         Text="{x:Bind Localizer.Get('Common_Actions_Edit')}">
                             <MenuFlyoutItem.Icon>
                                 <pathicons:Pencil Size="Pixels20" />
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Command="{x:Bind DuplicateProfileCommand}"
+                                        Text="{x:Bind Localizer.Get('Common_Actions_Duplicate')}">
+                            <MenuFlyoutItem.Icon>
+                                <pathicons:Squares Size="Pixels20" />
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
                         <MenuFlyoutItem Command="{x:Bind DeleteProfileCommand}"
@@ -690,6 +693,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   GatewayLocationItemTemplate="{StaticResource GatewayLocationItemTemplate}"
                                                   GatewayServerLocationItemTemplate="{StaticResource GatewayServerLocationItemTemplate}"
                                                   GenericCountryLocationItemTemplate="{StaticResource GenericCountryLocationItemTemplate}"
+                                                  GenericGatewayLocationItemTemplate="{StaticResource GenericGatewayLocationItemTemplate}"
                                                   ProfileConnectionItemTemplate="{StaticResource ProfileConnectionItemTemplate}"
                                                   RecentConnectionItemTemplate="{StaticResource RecentConnectionItemTemplate}"
                                                   ServerLocationItemTemplate="{StaticResource ServerLocationItemTemplate}"
@@ -697,33 +701,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     </UserControl.Resources>
 
-    <ScrollViewer x:Name="ScrollViewer"
-                  Style="{StaticResource OffsetScrollViewer}"
-                  VerticalScrollBarVisibility="{x:Bind ScrollBarVisibility}">
+    <ListView x:Name="ConnectionItemsList"
+              ItemTemplateSelector="{StaticResource LocationItemTemplateSelector}"
+              ItemsSource="{x:Bind ItemsSource, Mode=OneTime}" 
+              SelectionMode="None" 
+              Style="{StaticResource GhostListViewStyle}">
 
-        <ItemsControl x:Name="connectionItemsControl"
-                      ItemTemplateSelector="{StaticResource LocationItemTemplateSelector}"
-                      ItemsSource="{x:Bind ItemsSource, Mode=OneTime}">
+        <ListView.GroupStyle>
+            <GroupStyle HeaderTemplate="{StaticResource GroupLocationItemTemplate}"                        
+                        HidesIfEmpty="True" 
+                        HeaderContainerStyle="{StaticResource GhostListViewHeaderItemStyle}"/>
+        </ListView.GroupStyle>
 
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsStackPanel AreStickyGroupHeadersEnabled="True" />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-
-            <ItemsControl.GroupStyle>
-                <GroupStyle HeaderTemplate="{StaticResource GroupLocationItemTemplate}"
-                            HidesIfEmpty="True">
-                    <GroupStyle.HeaderContainerStyle>
-                        <Style TargetType="ContentControl">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                        </Style>
-                    </GroupStyle.HeaderContainerStyle>
-                </GroupStyle>
-            </ItemsControl.GroupStyle>
-
-        </ItemsControl>
-
-    </ScrollViewer>
+    </ListView>
 
 </UserControl>

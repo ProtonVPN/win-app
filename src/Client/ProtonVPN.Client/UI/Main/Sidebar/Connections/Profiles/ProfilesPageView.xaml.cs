@@ -19,6 +19,7 @@
 
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Core.Bases;
+using ProtonVPN.Client.Models.Connections;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles;
 
@@ -36,6 +37,7 @@ public sealed partial class ProfilesPageView : IContextAware
         Unloaded += OnUnloaded;
 
         ViewModel.ResetContentScrollRequested += OnResetContentScrollRequested;
+        ViewModel.ScrollToItemRequested += OnScrollToItemRequested;
     }
 
     public object GetContext()
@@ -56,5 +58,10 @@ public sealed partial class ProfilesPageView : IContextAware
     private void OnResetContentScrollRequested(object? sender, EventArgs e)
     {
         ConnectionItemsControl.ResetContentScroll();
+    }
+
+    private void OnScrollToItemRequested(object? sender, ConnectionItemBase e)
+    {
+        ConnectionItemsControl.ScrollToItemAsync(e);
     }
 }

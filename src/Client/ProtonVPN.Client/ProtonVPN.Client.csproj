@@ -51,6 +51,7 @@
     <None Remove="UI\MainWindowShellView.xaml" />
     <None Remove="UI\Main\Components\ActivePortComponentView.xaml" />
     <None Remove="UI\Main\Components\ConnectionErrorComponent.xaml" />
+    <None Remove="UI\Main\Components\CurrentProfileIconView.xaml" />
     <None Remove="UI\Main\Components\EmptyPageView.xaml" />
     <None Remove="UI\Main\Components\TitleBarMenuComponent.xaml" />
     <None Remove="UI\Main\FeatureIcons\KillSwitchIconView.xaml" />
@@ -85,6 +86,8 @@
     <None Remove="UI\Main\Home\Upsell\ChangeServerComponentView.xaml" />
     <None Remove="UI\Main\Home\Upsell\ConnectionCardUpsellBannerView.xaml" />
     <None Remove="UI\Main\MainPageView.xaml" />
+    <None Remove="UI\Main\Profiles\Components\ProfileOptionsSelectorView.xaml" />
+    <None Remove="UI\Main\Profiles\ProfilePageView.xaml" />
     <None Remove="UI\Main\Settings\Pages\About\AboutPageView.xaml" />
     <None Remove="UI\Main\Settings\Pages\About\LicensingPageView.xaml" />
     <None Remove="UI\Main\Settings\Pages\AdvancedSettingsPageView.xaml" />
@@ -110,16 +113,16 @@
     <None Remove="UI\Main\Sidebar\Connections\Countries\SecureCore\SecureCoreCountriesComponentView.xaml" />
     <None Remove="UI\Main\Sidebar\Connections\Countries\Tor\TorCountriesComponentView.xaml" />
     <None Remove="UI\Main\Sidebar\Connections\Gateways\GatewaysPageView.xaml" />
-    <None Remove="UI\Main\Sidebar\Connections\Profiles\Controls\ConnectionIntentSelectorView.xaml" />
-    <None Remove="UI\Main\Sidebar\Connections\Profiles\Controls\ProfileIconSelectorView.xaml" />
-    <None Remove="UI\Main\Sidebar\Connections\Profiles\Controls\ProfileSettingsSelectorView.xaml" />
-    <None Remove="UI\Main\Sidebar\Connections\Profiles\Overlays\EditProfileOverlayView.xaml" />
+    <None Remove="UI\Main\Profiles\Components\ConnectionIntentSelectorView.xaml" />
+    <None Remove="UI\Main\Profiles\Components\ProfileIconSelectorView.xaml" />
+    <None Remove="UI\Main\Profiles\Components\ProfileSettingsSelectorView.xaml" />
     <None Remove="UI\Main\Sidebar\Connections\Profiles\ProfilesPageView.xaml" />
     <None Remove="UI\Main\Sidebar\Connections\Recents\RecentsPageView.xaml" />
     <None Remove="UI\Main\Sidebar\Search\SearchResultsPageView.xaml" />
     <None Remove="UI\Main\Sidebar\SidebarComponentView.xaml" />
     <None Remove="UI\Main\Widgets\SideWidgetsHostComponentView.xaml" />
     <None Remove="UI\NavigationMasterControllerView.xaml" />
+    <None Remove="UI\Overlays\Information\ProfileOverlayView.xaml" />
     <None Remove="UI\Overlays\Upsell\FreeConnectionsOverlayView.xaml" />
     <None Remove="UI\Overlays\HumanVerification\HumanVerificationOverlayView.xaml" />
     <None Remove="UI\Overlays\Information\OutdatedClientOverlayView.xaml" />
@@ -324,18 +327,6 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
     <Page Update="UI\Main\Sidebar\Connections\Bases\Controls\LocationComboBox.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-    </Page>
-    <Page Update="UI\Main\Sidebar\Connections\Profiles\Controls\ConnectionIntentSelectorView.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-    </Page>
-    <Page Update="UI\Main\Sidebar\Connections\Profiles\Controls\ProfileIconSelectorView.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-    </Page>
-    <Page Update="UI\Main\Sidebar\Connections\Profiles\Controls\ProfileSettingsSelectorView.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-    </Page>
-    <Page Update="UI\Main\Sidebar\Connections\Profiles\Overlays\EditProfileOverlayView.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
     <Page Update="UI\Overlays\Information\OutdatedClientOverlayView.xaml">
@@ -705,6 +696,30 @@
 
   <ItemGroup>
     <PRIResource Remove="UI\Main\Home\Details\Contracts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Main\Components\CurrentProfileIconView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Overlays\Information\ProfileOverlayView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Main\Profiles\Components\ProfileOptionsSelectorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Main\Profiles\ProfilePageView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>

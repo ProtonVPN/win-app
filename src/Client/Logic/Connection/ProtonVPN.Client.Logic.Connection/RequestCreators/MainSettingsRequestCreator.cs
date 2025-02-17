@@ -17,12 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
+using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
+using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.EntityMapping.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
@@ -32,14 +37,45 @@ public class MainSettingsRequestCreator : IMainSettingsRequestCreator
 {
     private readonly ISettings _settings;
     private readonly IEntityMapper _entityMapper;
+    private readonly IFeatureFlagsObserver _featureFlagsObserver;
+    private readonly ILogger _logger;
 
-    public MainSettingsRequestCreator(ISettings settings, IEntityMapper entityMapper)
+    public MainSettingsRequestCreator(
+        ISettings settings, 
+        IEntityMapper entityMapper, 
+        IFeatureFlagsObserver featureFlagsObserver,
+        ILogger logger)
     {
         _settings = settings;
         _entityMapper = entityMapper;
+        _featureFlagsObserver = featureFlagsObserver;
+        _logger = logger;
     }
 
-    public MainSettingsIpcEntity Create()
+    public MainSettingsIpcEntity Create(IConnectionIntent? connectionIntent)
+    {
+        MainSettingsIpcEntity settings = Create();
+
+        if (connectionIntent is IConnectionProfile connectionProfile)
+        {
+            settings.VpnProtocol = _entityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(connectionProfile.Settings.VpnProtocol);
+            settings.NetShieldMode = connectionProfile.Settings.IsNetShieldEnabled ? (int)connectionProfile.Settings.NetShieldMode : 0;
+            settings.PortForwarding = connectionProfile.Settings.IsPortForwardingEnabled;
+            settings.ModerateNat = connectionProfile.Settings.NatType == NatType.Moderate;
+        }
+
+        if (!_featureFlagsObserver.IsStealthEnabled &&
+            (settings.VpnProtocol is VpnProtocolIpcEntity.WireGuardTls or VpnProtocolIpcEntity.WireGuardTcp))
+        {
+            _logger.Warn<AppLog>("Stealth protocol is currently disabled. Switch to Smart protocol instead.");
+
+            settings.VpnProtocol = _entityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(DefaultSettings.VpnProtocol);
+        }
+
+        return settings;
+    }
+
+    private MainSettingsIpcEntity Create()
     {
         return new MainSettingsIpcEntity
         {

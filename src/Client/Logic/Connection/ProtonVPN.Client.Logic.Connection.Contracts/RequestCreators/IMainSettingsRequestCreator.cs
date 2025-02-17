@@ -17,11 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 
 public interface IMainSettingsRequestCreator
 {
-    MainSettingsIpcEntity Create();
+    MainSettingsIpcEntity Create(IConnectionIntent? connectionIntent);
 }

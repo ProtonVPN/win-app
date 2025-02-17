@@ -30,6 +30,7 @@ public interface IUrlsBrowser
     string ServerLoadLearnMore { get; }
     string InternetSpeedLearnMore { get; }
     string NatTypeLearnMore { get; }
+    string CustomDnsLearnMore { get; }
     string Ipv6LeakProtectionLearnMore { get; }
     string SupportCenter { get; }
     string UsageStatisticsLearnMore { get; }
@@ -55,6 +56,7 @@ public interface IUrlsBrowser
     string IncreaseVpnSpeeds { get; }
     string ActiveProxyLearnMore { get; }
     string EnableBaseFilteringEngine { get; }
+    string ProfileLearnMore { get; }
 
     void BrowseTo(string url);
 }

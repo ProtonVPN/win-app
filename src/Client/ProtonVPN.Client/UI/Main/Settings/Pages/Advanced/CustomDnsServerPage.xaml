@@ -79,10 +79,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                  PlaceholderText="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers_Watermark')}"
                                  Text="{x:Bind ViewModel.CurrentIpAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  KeyDown="{x:Bind ViewModel.OnIpAddressKeyDownHandler, Mode=OneTime}"
-                                 AutomationProperties.AutomationId="CustomDnsIpAddressBox"/>
+                                 AutomationProperties.AutomationId="CustomDnsIpAddressBox"
+                                 Style="{StaticResource ValidationTextBoxStyle}"
+                                 MinHeight="34"/>
 
                         <Button Grid.Row="0"
                                 Grid.Column="1"
+                                VerticalAlignment="Top"
                                 Command="{x:Bind ViewModel.AddDnsServerCommand, Mode=OneTime}"
                                 Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Add')}"
                                 AutomationProperties.AutomationId="AddButton"/>

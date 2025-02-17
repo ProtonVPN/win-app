@@ -29,6 +29,7 @@ using ProtonVPN.Client.UI.Main;
 using ProtonVPN.Client.UI.Main.Home;
 using ProtonVPN.Client.UI.Main.Home.Details.Connection;
 using ProtonVPN.Client.UI.Main.Home.Details.Location;
+using ProtonVPN.Client.UI.Main.Profiles;
 using ProtonVPN.Client.UI.Main.Settings;
 using ProtonVPN.Client.UI.Main.Settings.Connection;
 using ProtonVPN.Client.UI.Main.Settings.Pages;
@@ -70,6 +71,7 @@ public class PageViewMapper : ViewMapperBase<PageViewModelBase, Page>, IPageView
         ConfigureMapping<LicensingViewModel, LicensingPageView>();
         ConfigureMapping<RecentsPageViewModel, RecentsPageView>();
         ConfigureMapping<ProfilesPageViewModel, ProfilesPageView>();
+        ConfigureMapping<ProfilePageViewModel, ProfilePageView>();
         ConfigureMapping<GatewaysPageViewModel, GatewaysPageView>();
         ConfigureMapping<CountriesPageViewModel, CountriesPageView>();
         ConfigureMapping<SearchResultsPageViewModel, SearchResultsPageView>();

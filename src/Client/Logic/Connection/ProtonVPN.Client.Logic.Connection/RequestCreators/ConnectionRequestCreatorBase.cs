@@ -48,6 +48,11 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
 
     protected virtual VpnConfigIpcEntity GetVpnConfig(MainSettingsIpcEntity settings, IConnectionIntent? connectionIntent = null)
     {
+        bool isPortForwardingEnabled = settings.PortForwarding && (connectionIntent is null || connectionIntent.IsPortForwardingSupported());
+        bool isCustomDnsEnabled = connectionIntent is IConnectionProfile profile && profile.Settings.IsCustomDnsServersEnabled.HasValue
+            ? profile.Settings.IsCustomDnsServersEnabled.Value
+            : Settings.IsCustomDnsServersEnabled;
+
         return new VpnConfigIpcEntity
         {
             VpnProtocol = settings.VpnProtocol,
@@ -55,13 +60,13 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
             SplitTunnelIPs = settings.SplitTunnel.Ips.ToList(),
             ModerateNat = settings.ModerateNat,
             NetShieldMode = settings.NetShieldMode,
-            PortForwarding = settings.PortForwarding && (connectionIntent is null || connectionIntent.IsPortForwardingSupported()),
+            PortForwarding = isPortForwardingEnabled,
             SplitTcp = settings.SplitTcp,
             PreferredProtocols = settings.VpnProtocol == VpnProtocolIpcEntity.Smart
                 ? GetPreferredSmartProtocols()
                 : [settings.VpnProtocol],
             Ports = GetPorts(),
-            CustomDns = Settings.IsCustomDnsServersEnabled
+            CustomDns = isCustomDnsEnabled
                 ? Settings.CustomDnsServersList.Where(s => s.IsActive).Select(s => s.IpAddress).ToList()
                 : [],
         };

@@ -22,7 +22,6 @@ using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Mapping;
 using ProtonVPN.Client.Services.Mapping.Bases;
 using ProtonVPN.Client.UI.Login.Overlays;
-using ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles.Overlays;
 using ProtonVPN.Client.UI.Overlays.Upsell;
 using ProtonVPN.Client.UI.Overlays.HumanVerification;
 using ProtonVPN.Client.UI.Overlays.Information;
@@ -41,6 +40,7 @@ public class OverlayViewMapper : ViewMapperBase<OverlayViewModelBase, ContentDia
         ConfigureMapping<SecureCoreOverlayViewModel, SecureCoreOverlayView>();
         ConfigureMapping<TorOverlayViewModel, TorOverlayView>();
         ConfigureMapping<SmartRoutingOverlayViewModel, SmartRoutingOverlayView>();
+        ConfigureMapping<ProfileOverlayViewModel, ProfileOverlayView>();
         ConfigureMapping<ServerLoadOverlayViewModel, ServerLoadOverlayView>();
         ConfigureMapping<SsoLoginOverlayViewModel, SsoLoginOverlayView>();
         ConfigureMapping<OutdatedClientOverlayViewModel, OutdatedClientOverlayView>();
@@ -49,8 +49,6 @@ public class OverlayViewMapper : ViewMapperBase<OverlayViewModelBase, ContentDia
         ConfigureMapping<WelcomeToVpnPlusOverlayViewModel, WelcomeToVpnPlusOverlayView>();
         ConfigureMapping<WelcomeToVpnUnlimitedOverlayViewModel, WelcomeToVpnUnlimitedOverlayView>();
         ConfigureMapping<WelcomeToVpnB2BOverlayViewModel, WelcomeToVpnB2BOverlayView>();
-
-        ConfigureMapping<EditProfileOverlayViewModel, EditProfileOverlayView>();
 
         ConfigureMapping<FreeConnectionsOverlayViewModel, FreeConnectionsOverlayView>();
     }

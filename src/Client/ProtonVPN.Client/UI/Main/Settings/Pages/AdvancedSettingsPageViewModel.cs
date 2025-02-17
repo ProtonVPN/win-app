@@ -20,6 +20,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Common.Attributes;
+using ProtonVPN.Client.Contracts.Profiles;
 using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
@@ -29,6 +30,9 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Logic.Profiles.Contracts.Messages;
+using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
@@ -42,11 +46,14 @@ namespace ProtonVPN.Client.UI.Main.Settings.Pages;
 
 public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
     IEventMessageReceiver<LoggedInMessage>,
-    IEventMessageReceiver<VpnPlanChangedMessage>
+    IEventMessageReceiver<VpnPlanChangedMessage>,
+    IEventMessageReceiver<ProfilesChangedMessage>
 {
     private readonly IUrlsBrowser _urlsBrowser;
 
     private readonly IUpsellCarouselWindowActivator _upsellCarouselWindowActivator;
+    private readonly IProfileEditor _profileEditor;
+
     [ObservableProperty]
     private bool _isAlternativeRoutingEnabled;
 
@@ -65,13 +72,34 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
     [NotifyPropertyChangedFor(nameof(IsModerateNatType))]
     private NatType _currentNatType;
 
+    public IConnectionProfile? CurrentProfile => ConnectionManager.CurrentConnectionIntent as IConnectionProfile;
+
+    public bool AreSettingsOverridden => ConnectionManager.IsConnected && CurrentProfile != null;
+
+    public string SettingsOverriddenTagline => AreSettingsOverridden
+        ? Localizer.GetFormat("Settings_OverriddenByProfile_Tagline", CurrentProfile!.Name)
+        : string.Empty;
+
     public override string Title => Localizer.Get("Settings_Connection_AdvancedSettings");
 
     public bool IsPaidUser => Settings.VpnPlan.IsPaid;
 
-    public string CustomDnsServersSettingsState => Localizer.GetToggleValue(Settings.IsCustomDnsServersEnabled);
+    public bool IsCustomDnsServersOverridden => AreSettingsOverridden
+                                             && CurrentProfile!.Settings.IsCustomDnsServersEnabled.HasValue;
+
+    public string NatTypeSettingsState => Localizer.GetNatType(NatType);
+
+    public string CustomDnsServersSettingsState => Localizer.GetToggleValue(IsCustomDnsServersEnabled);
 
     public string NatTypeLearnMoreUrl => _urlsBrowser.NatTypeLearnMore;
+
+    public string CustomDnsLearnMoreUrl => _urlsBrowser.CustomDnsLearnMore;
+
+    public string CustomDnsConflictInformation => IsCustomDnsServersOverridden
+        ? Settings.IsCustomDnsServersEnabled
+            ? Localizer.Get("Settings_Connection_CustomDns_Conflict_Information_WhenEnabled")
+            : Localizer.Get("Settings_Connection_CustomDns_Conflict_Information_WhenDisabled")
+        : string.Empty;
 
     public string Ipv6LeakProtectionLearnMoreUrl => _urlsBrowser.Ipv6LeakProtectionLearnMore;
 
@@ -99,6 +127,14 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
         set => SetOpenVpnAdapter(value, OpenVpnAdapter.Tap);
     }
 
+    protected NatType NatType => AreSettingsOverridden
+        ? CurrentProfile!.Settings.NatType
+        : CurrentNatType;
+
+    protected bool IsCustomDnsServersEnabled => IsCustomDnsServersOverridden
+        ? CurrentProfile!.Settings.IsCustomDnsServersEnabled!.Value
+        : Settings.IsCustomDnsServersEnabled;
+
     public AdvancedSettingsPageViewModel(
         IUrlsBrowser urlsBrowser,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
@@ -111,7 +147,8 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
-        IConnectionManager connectionManager)
+        IConnectionManager connectionManager,
+        IProfileEditor profileEditor)
         : base(requiredReconnectionSettings,
                mainViewNavigator,
                settingsViewNavigator,
@@ -125,6 +162,7 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
     {
         _urlsBrowser = urlsBrowser;
         _upsellCarouselWindowActivator = upsellCarouselWindowActivator;
+        _profileEditor = profileEditor;
 
         PageSettings =
         [
@@ -137,12 +175,26 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
 
     public void Receive(LoggedInMessage message)
     {
-        ExecuteOnUIThread(InvalidateAllProperties);
+        if (IsActive)
+        {
+            ExecuteOnUIThread(InvalidateAllProperties);
+        }
     }
 
     public void Receive(VpnPlanChangedMessage message)
     {
-        ExecuteOnUIThread(InvalidateAllProperties);
+        if (IsActive)
+        {
+            ExecuteOnUIThread(InvalidateAllProperties);
+        }
+    }
+
+    public void Receive(ProfilesChangedMessage message)
+    {
+        if (IsActive && AreSettingsOverridden)
+        {
+            ExecuteOnUIThread(InvalidateAllProperties);
+        }
     }
 
     protected override void OnSettingsChanged(string propertyName)
@@ -151,7 +203,22 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
         {
             case nameof(ISettings.IsCustomDnsServersEnabled):
                 OnPropertyChanged(nameof(CustomDnsServersSettingsState));
+                OnPropertyChanged(nameof(CustomDnsConflictInformation));
                 break;
+
+            case nameof(ISettings.NatType):
+                OnPropertyChanged(nameof(NatTypeSettingsState));
+                break;
+        }
+    }
+
+    protected override void OnConnectionStatusChanged(ConnectionStatus connectionStatus)
+    {
+        base.OnConnectionStatusChanged(connectionStatus);
+
+        if (IsActive)
+        {
+            ExecuteOnUIThread(InvalidateAllProperties);
         }
     }
 
@@ -160,6 +227,8 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
         base.OnLanguageChanged();
 
         OnPropertyChanged(nameof(CustomDnsServersSettingsState));
+        OnPropertyChanged(nameof(NatTypeSettingsState));
+        OnPropertyChanged(nameof(SettingsOverriddenTagline));
     }
 
     protected override void OnRetrieveSettings()
@@ -174,8 +243,16 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
     private Task NavigateToCustomDnsServersPageAsync()
     {
         return IsPaidUser
-            ? ParentViewNavigator.NavigateToCustomDnsSettingsViewAsync()
+            ? IsCustomDnsServersOverridden
+                ? _profileEditor.TryRedirectToProfileAsync(Localizer.Get("Settings_Connection_Advanced_CustomDnsServers"), CurrentProfile!)
+                : ParentViewNavigator.NavigateToCustomDnsSettingsViewAsync()
             : _upsellCarouselWindowActivator.ActivateAsync(UpsellFeatureType.AdvancedSettings);
+    }
+
+    [RelayCommand]
+    private Task HandleNatTypeOverriddenByProfileAsync()
+    {
+        return _profileEditor.TryRedirectToProfileAsync(Localizer.Get("Settings_Connection_Advanced_NatType"), CurrentProfile!);
     }
 
     [RelayCommand]

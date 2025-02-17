@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
@@ -26,43 +25,54 @@ namespace ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 
 public class ConnectionProfile : ConnectionIntentBase, IConnectionProfile
 {
-    public const ProfileColor DEFAULT_COLOR = ProfileColor.Purple;
-    public const ProfileCategory DEFAULT_CATEGORY = ProfileCategory.Speed;
-
-    public static IConnectionProfile Default => new ConnectionProfile(new CountryLocationIntent());
+    public static IConnectionProfile Default => new ConnectionProfile(CountryLocationIntent.Fastest);
 
     public Guid Id { get; }
+
     public string Name { get; set; }
+
+    public IProfileIcon Icon { get; set; }
 
     public IProfileSettings Settings { get; set; }
 
+    public IProfileOptions Options { get; set; }
+
     public DateTime CreationDateTimeUtc { get; }
+
     public DateTime UpdateDateTimeUtc { get; set; }
-    public ProfileCategory Category { get; set; }
-    public ProfileColor Color { get; set; }
 
     public ConnectionProfile(
         Guid id,
         DateTime creationDateTimeUtc,
+        IProfileIcon icon,
         IProfileSettings settings,
+        IProfileOptions options,
         ILocationIntent location,
         IFeatureIntent? feature = null,
-        string name = "",
-        ProfileCategory category = DEFAULT_CATEGORY,
-        ProfileColor color = DEFAULT_COLOR)
+        string name = "")
         : base(location, feature)
     {
         Id = id;
         CreationDateTimeUtc = creationDateTimeUtc;
         UpdateDateTimeUtc = creationDateTimeUtc;
+        Icon = icon;
         Settings = settings;
+        Options = options;
         Name = name;
-        Category = category;
-        Color = color;
     }
 
+    public ConnectionProfile(
+        IProfileIcon icon,
+        IProfileSettings settings,
+        IProfileOptions options,
+        ILocationIntent location,
+        IFeatureIntent? feature = null,
+        string name = "")
+        : this(Guid.NewGuid(), DateTime.UtcNow, icon, settings, options, location, feature, name)
+    { }
+
     public ConnectionProfile(ILocationIntent location, IFeatureIntent? feature = null)
-        : this(Guid.NewGuid(), DateTime.UtcNow, ProfileSettings.Default, location, feature)
+        : this(ProfileIcon.Default, ProfileSettings.Default, ProfileOptions.Default, location, feature)
     { }
 
     public override bool IsSameAs(IConnectionIntent? intent)
@@ -75,10 +85,23 @@ public class ConnectionProfile : ConnectionIntentBase, IConnectionProfile
     {
         Location = locationIntent;
         Feature = featureIntent;
+
+        UpdateDateTimeUtc = DateTime.UtcNow;
     }
 
     public override string ToString()
     {
         return $"Profile {Name}: {base.ToString()}";
+    }
+
+    public IConnectionProfile Duplicate(string name)
+    {
+        return new ConnectionProfile(
+            Icon.Copy(),
+            Settings.Copy(),
+            Options.Copy(),
+            Location.Copy(),
+            Feature?.Copy(),
+            name);
     }
 }

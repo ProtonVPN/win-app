@@ -73,6 +73,10 @@ public partial class ProfileConnectionItem : ConnectionItemBase
 
     public FlagType FlagType => Profile.GetFlagType();
 
+    public override object FirstSortProperty => Profile.CreationDateTimeUtc;
+
+    public override object SecondSortProperty => Header;
+
     public ProfileConnectionItem(
         ILocalizationProvider localizer,
         IServersLoader serversLoader,
@@ -104,7 +108,6 @@ public partial class ProfileConnectionItem : ConnectionItemBase
     {
         base.InvalidateIsActiveConnection(currentConnectionDetails);
 
-        EditProfileCommand.NotifyCanExecuteChanged();
         DeleteProfileCommand.NotifyCanExecuteChanged();
     }
 
@@ -113,15 +116,16 @@ public partial class ProfileConnectionItem : ConnectionItemBase
         return Profile.IsSameAs(currentConnectionDetails?.OriginalConnectionIntent);
     }
 
-    [RelayCommand(CanExecute = nameof(CanEditProfile))]
+    [RelayCommand]
     private Task EditProfileAsync()
     {
         return _profileEditor.EditProfileAsync(Profile);
     }
 
-    private bool CanEditProfile()
+    [RelayCommand]
+    private Task DuplicateProfileAsync()
     {
-        return !IsActiveConnection;
+        return _profileEditor.DuplicateProfileAsync(Profile);
     }
 
     [RelayCommand(CanExecute = nameof(CanDeleteProfile))]

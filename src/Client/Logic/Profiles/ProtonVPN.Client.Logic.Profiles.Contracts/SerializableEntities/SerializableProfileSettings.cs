@@ -21,5 +21,9 @@ namespace ProtonVPN.Client.Logic.Profiles.Contracts.SerializableEntities;
 
 public class SerializableProfileSettings
 {
-    public int Protocol { get; set; }
+    public required int VpnProtocol { get; init; }
+    public required bool IsNetShieldEnabled { get; init; }
+    public required int NetShieldMode { get; init; }
+    public required bool IsPortForwardingEnabled { get; init; }
+    public required int NatType { get; init; }
 }

@@ -18,14 +18,13 @@
  */
 
 using System.Threading.Tasks;
-using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Navigation.Bases;
 
 namespace ProtonVPN.Client.Core.Services.Navigation;
 
 public interface IMainViewNavigator : IViewNavigator
 {
-    Task<bool> NavigateToHomeViewAsync();
+    Task<bool> NavigateToHomeViewAsync(bool forceNavigation = false);
 
     Task<bool> NavigateToSettingsViewAsync();
 }

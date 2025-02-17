@@ -148,7 +148,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="Foreground" Value="{ThemeResource TextNormColorBrush}" />
         <Setter Property="Background" Value="{ThemeResource InteractionDefaultColorBrush}" />
         <Setter Property="BorderBrush" Value="{ThemeResource TransparentColorBrush}" />
-        <Setter Property="SelectionHighlightColor" Value="{ThemeResource BackgroundStrongColorBrush}" />
+        <Setter Property="SelectionHighlightColor" Value="{ThemeResource TextControlSelectionHighlightColor}" />
         <Setter Property="SelectionHighlightColorWhenNotFocused" Value="{ThemeResource TransparentColorBrush}" />
         <Setter Property="BorderThickness" Value="0,0,0,2" />
         <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
@@ -337,7 +337,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="Foreground" Value="{ThemeResource TextNormColorBrush}" />
         <Setter Property="Background" Value="{ThemeResource InteractionDefaultColorBrush}" />
         <Setter Property="BorderBrush" Value="{ThemeResource TransparentColorBrush}" />
-        <Setter Property="SelectionHighlightColor" Value="{ThemeResource BackgroundStrongColorBrush}" />
+        <Setter Property="SelectionHighlightColor" Value="{ThemeResource TextControlSelectionHighlightColor}" />
         <Setter Property="SelectionHighlightColorWhenNotFocused" Value="{ThemeResource TransparentColorBrush}" />
         <Setter Property="BorderThickness" Value="0,0,0,2" />
         <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
@@ -546,11 +546,220 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Setter>
     </Style>
 
+    <Style x:Key="GhostTextBoxStyle" TargetType="TextBox">
+        <Setter Property="Foreground" Value="{ThemeResource TextNormColorBrush}" />
+        <Setter Property="Background" Value="{ThemeResource InteractionDefaultEmptyColorBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource TransparentColorBrush}" />
+        <Setter Property="SelectionHighlightColor" Value="{ThemeResource TextControlSelectionHighlightColor}" />
+        <Setter Property="SelectionHighlightColorWhenNotFocused" Value="{ThemeResource TransparentColorBrush}" />
+        <Setter Property="BorderThickness" Value="0,0,0,2" />
+        <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+        <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
+        <Setter Property="ScrollViewer.HorizontalScrollMode" Value="Auto" />
+        <Setter Property="ScrollViewer.VerticalScrollMode" Value="Auto" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden" />
+        <Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="False" />
+        <Setter Property="MinHeight" Value="{ThemeResource TextControlThemeMinSize}" />
+        <Setter Property="MinWidth" Value="{ThemeResource TextControlThemeMinSize}" />
+        <Setter Property="Padding" Value="{ThemeResource TextControlThemePadding}" />
+        <Setter Property="UseSystemFocusVisuals" Value="{ThemeResource IsApplicationFocusVisualKindReveal}" />
+        <Setter Property="ContextFlyout" Value="{StaticResource TextControlCommandBarContextFlyout}" />
+        <Setter Property="SelectionFlyout" Value="{StaticResource TextControlCommandBarSelectionFlyout}" />
+        <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+        <Setter Property="BackgroundSizing" Value="InnerBorderEdge" />
+        <Setter Property="PlaceholderForeground" Value="{ThemeResource TextControlPlaceholderForeground}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <ContentPresenter x:Name="HeaderContentPresenter"
+                                          Grid.Row="0"
+                                          Grid.Column="0"
+                                          Grid.ColumnSpan="2"
+                                          Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                                          VerticalAlignment="Top"
+                                          x:DeferLoadStrategy="Lazy"
+                                          Content="{TemplateBinding Header}"
+                                          ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                          FontWeight="Normal"
+                                          Foreground="{ThemeResource TextControlHeaderForeground}"
+                                          TextWrapping="Wrap"
+                                          Visibility="Collapsed" />
+
+                        <Border x:Name="BorderElement"
+                                Grid.Row="1"
+                                Grid.RowSpan="1"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                MinWidth="{TemplateBinding MinWidth}"
+                                MinHeight="{TemplateBinding MinHeight}"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Control.IsTemplateFocusTarget="True"
+                                CornerRadius="{TemplateBinding CornerRadius}" />
+
+                        <Border x:Name="BorderValidation"
+                                Grid.Row="1"
+                                Grid.RowSpan="1"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                MinWidth="{TemplateBinding MinWidth}"
+                                MinHeight="{TemplateBinding MinHeight}"
+                                Background="{ThemeResource SignalDangerWeakColorBrush}"
+                                BorderBrush="{ThemeResource SignalDangerColorBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                IsHitTestVisible="False"
+                                Opacity="1"
+                                Visibility="Collapsed" />
+
+                        <ScrollViewer x:Name="ContentElement"
+                                      Grid.Row="1"
+                                      Grid.Column="0"
+                                      Margin="{TemplateBinding BorderThickness}"
+                                      Padding="{TemplateBinding Padding}"
+                                      VerticalAlignment="Center"
+                                      AutomationProperties.AccessibilityView="Raw"
+                                      Foreground="{TemplateBinding Foreground}"
+                                      HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                                      HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
+                                      IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
+                                      IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
+                                      IsTabStop="False"
+                                      IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
+                                      VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
+                                      VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
+                                      ZoomMode="Disabled" />
+
+                        <TextBlock x:Name="PlaceholderTextContentPresenter"
+                                   Grid.Row="1"
+                                   Grid.Column="0"
+                                   Margin="{TemplateBinding BorderThickness}"
+                                   Padding="{TemplateBinding Padding}"
+                                   VerticalAlignment="Center"
+                                   Foreground="{TemplateBinding PlaceholderForeground}"
+                                   IsHitTestVisible="False"
+                                   Text="{TemplateBinding PlaceholderText}"
+                                   TextAlignment="{TemplateBinding TextAlignment}"
+                                   TextWrapping="{TemplateBinding TextWrapping}" />
+
+                        <custom:GhostButton x:Name="DeleteButton"
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            Margin="0,0,7,2"
+                                            VerticalAlignment="Center"
+                                            AutomationProperties.AccessibilityView="Raw"
+                                            IsTabStop="False"
+                                            Visibility="Collapsed">
+                            <custom:GhostButton.LeftIcon>
+                                <pathicons:CrossCircleFilled Size="Pixels16" />
+                            </custom:GhostButton.LeftIcon>
+                        </custom:GhostButton>
+
+                        <ContentPresenter x:Name="DescriptionPresenter"
+                                          Grid.Row="2"
+                                          Grid.Column="0"
+                                          Grid.ColumnSpan="2"
+                                          x:Load="False"
+                                          AutomationProperties.AccessibilityView="Raw"
+                                          Content="{TemplateBinding Description}"
+                                          Foreground="{ThemeResource TextHintColorBrush}" />
+
+                        <VisualStateManager.VisualStateGroups>
+
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Disabled">
+                                    <VisualState.Setters>
+                                        <Setter Target="HeaderContentPresenter.Foreground" Value="{ThemeResource TextControlHeaderForegroundDisabled}" />
+                                        <Setter Target="BorderElement.Background" Value="{ThemeResource InteractionDefaultEmptyColorBrush}" />
+                                        <Setter Target="BorderElement.BorderBrush" Value="{ThemeResource InteractionDefaultEmptyColorBrush}" />
+                                        <Setter Target="ContentElement.Foreground" Value="{ThemeResource TextWeakColorBrush}" />
+                                        <Setter Target="PlaceholderTextContentPresenter.Foreground" Value="{ThemeResource TextControlPlaceholderForegroundDisabled}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Target="BorderElement.Background" Value="{ThemeResource InteractionDefaultEmptyColorBrush}" />
+                                        <Setter Target="BorderElement.BorderBrush" Value="{ThemeResource InteractionDefaultEmptyColorBrush}" />
+                                        <Setter Target="ContentElement.Foreground" Value="{ThemeResource TextNormColorBrush}" />
+                                        <Setter Target="PlaceholderTextContentPresenter.Foreground" Value="{ThemeResource TextControlPlaceholderForegroundPointerOver}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Focused">
+                                    <VisualState.Setters>
+                                        <Setter Target="BorderElement.Background" Value="{ThemeResource InteractionDefaultEmptyColorBrush}" />
+                                        <Setter Target="BorderElement.BorderBrush" Value="{ThemeResource InteractionDefaultEmptyColorBrush}" />
+                                        <Setter Target="ContentElement.Foreground" Value="{ThemeResource TextNormColorBrush}" />
+                                        <Setter Target="PlaceholderTextContentPresenter.Foreground" Value="{ThemeResource TextControlPlaceholderForegroundFocused}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+
+                            <VisualStateGroup x:Name="ButtonStates">
+                                <VisualState x:Name="ButtonVisible"/>
+                                <VisualState x:Name="ButtonCollapsed" />
+                            </VisualStateGroup>
+
+                            <VisualStateGroup x:Name="ValidationStates">
+                                <VisualState x:Name="NoValidation" />
+                                <VisualState x:Name="ValidationEnabled">
+                                    <VisualState.StateTriggers>
+                                        <StateTrigger IsActive="{Binding (attached:FieldValidation.HasErrors), RelativeSource={RelativeSource TemplatedParent}}" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Target="BorderValidation.Visibility" Value="Visible" />
+                                        <Setter Target="DescriptionPresenter.Content">
+                                            <Setter.Value>
+                                                <Grid Margin="4,4,4,0"
+                                                      ColumnSpacing="6"
+                                                      Visibility="{Binding (attached:FieldValidation.ErrorMessage), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <pathicons:ExclamationTriangleFilled Grid.Column="0"
+                                                                                         Foreground="{ThemeResource SignalDangerColorBrush}"
+                                                                                         Size="Pixels16" />
+                                                    <TextBlock Grid.Column="1"
+                                                               Foreground="{ThemeResource SignalDangerColorBrush}"
+                                                               Text="{Binding (attached:FieldValidation.ErrorMessage), RelativeSource={RelativeSource TemplatedParent}}"
+                                                               TextTrimming="CharacterEllipsis"
+                                                               TextWrapping="NoWrap" />
+                                                </Grid>
+                                            </Setter.Value>
+
+                                        </Setter>
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="ValidationPasswordBoxStyle" TargetType="PasswordBox">
         <Setter Property="Foreground" Value="{ThemeResource TextNormColorBrush}" />
         <Setter Property="Background" Value="{ThemeResource InteractionDefaultColorBrush}" />
         <Setter Property="BorderBrush" Value="{ThemeResource TransparentColorBrush}" />
-        <Setter Property="SelectionHighlightColor" Value="{ThemeResource BackgroundStrongColorBrush}" />
+        <Setter Property="SelectionHighlightColor" Value="{ThemeResource TextControlSelectionHighlightColor}" />
         <Setter Property="BorderThickness" Value="0,0,0,2" />
         <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
         <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />

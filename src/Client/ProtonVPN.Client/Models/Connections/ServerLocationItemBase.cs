@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Common.Extensions;
+using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
@@ -34,7 +36,11 @@ public abstract class ServerLocationItemBase : LocationItemBase<Server>
 {
     public Server Server { get; }
 
-    public override string Header => Server.Name;
+    public override string Header { get; }
+
+    public string ServerTag { get; }
+
+    public int ServerNumber { get; }
 
     public override string? ToolTip =>
         IsRestricted
@@ -85,6 +91,9 @@ public abstract class ServerLocationItemBase : LocationItemBase<Server>
                isSearchItem)
     {
         Server = server;
+        Header = server.Name;
+        ServerTag = server.Name.GetServerTag();
+        ServerNumber = server.Name.GetServerNumber();
 
         LocationIntent = string.IsNullOrEmpty(Server.GatewayName)
             ? new ServerLocationIntent(Server.Id, Server.Name, Server.ExitCountry, Server.State, Server.City)

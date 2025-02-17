@@ -22,6 +22,8 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
+using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Configurations.Contracts;
@@ -38,6 +40,7 @@ public class VpnStatePollingObserver : PollingObserverBase,
     private readonly ISettings _settings;
     private readonly IConfiguration _configuration;
     private readonly IVpnServiceCaller _vpnServiceCaller;
+    private readonly IConnectionManager _connectionManager;
 
     private readonly object _timerLock = new();
 
@@ -49,12 +52,14 @@ public class VpnStatePollingObserver : PollingObserverBase,
         IIssueReporter issueReporter,
         ISettings settings,
         IConfiguration configuration,
-        IVpnServiceCaller vpnServiceCaller)
+        IVpnServiceCaller vpnServiceCaller,
+        IConnectionManager connectionManager)
         : base(logger, issueReporter)
     {
         _settings = settings;
         _configuration = configuration;
         _vpnServiceCaller = vpnServiceCaller;
+        _connectionManager = connectionManager;
     }
 
     protected override async Task OnTriggerAsync()
@@ -63,7 +68,11 @@ public class VpnStatePollingObserver : PollingObserverBase,
 
         await _vpnServiceCaller.RepeatStateAsync();
 
-        if (_settings.IsPortForwardingEnabled)
+        bool isPortForwardingEnabled = _connectionManager.CurrentConnectionIntent is IConnectionProfile profile
+            ? profile.Settings.IsPortForwardingEnabled
+            : _settings.IsPortForwardingEnabled;
+
+        if (isPortForwardingEnabled)
         {
             await _vpnServiceCaller.RepeatPortForwardingStateAsync();
         }

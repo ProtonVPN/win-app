@@ -48,9 +48,9 @@ public class ConnectionProfileMapper : IMapper<IConnectionProfile, SerializableP
                 UpdateDateTimeUtc = leftEntity.UpdateDateTimeUtc,
                 Location = _entityMapper.Map<ILocationIntent, SerializableLocationIntent>(leftEntity.Location),
                 Feature = _entityMapper.Map<IFeatureIntent, SerializableFeatureIntent>(leftEntity.Feature),
-                ProfileCategory = (int)leftEntity.Category,
-                ProfileColor = (int)leftEntity.Color,
+                Icon = _entityMapper.Map<IProfileIcon, SerializableProfileIcon>(leftEntity.Icon),
                 Settings = _entityMapper.Map<IProfileSettings, SerializableProfileSettings>(leftEntity.Settings),
+                Options = _entityMapper.Map<IProfileOptions, SerializableProfileOptions>(leftEntity.Options),
             };
     }
 
@@ -61,13 +61,13 @@ public class ConnectionProfileMapper : IMapper<IConnectionProfile, SerializableP
             : new ConnectionProfile(
                 id: rightEntity.Id,
                 creationDateTimeUtc: rightEntity.CreationDateTimeUtc,
+                icon: _entityMapper.Map<SerializableProfileIcon, IProfileIcon>(rightEntity.Icon),
                 settings: _entityMapper.Map<SerializableProfileSettings, IProfileSettings>(rightEntity.Settings),
+                options: _entityMapper.Map<SerializableProfileOptions, IProfileOptions>(rightEntity.Options),
                 location: _entityMapper.Map<SerializableLocationIntent, ILocationIntent>(rightEntity.Location),
                 feature: _entityMapper.Map<SerializableFeatureIntent, IFeatureIntent>(rightEntity.Feature))
             {
                 Name = rightEntity.Name,
-                Category = (ProfileCategory)rightEntity.ProfileCategory,
-                Color = (ProfileColor)rightEntity.ProfileColor,
                 UpdateDateTimeUtc = rightEntity.UpdateDateTimeUtc
             };
     }

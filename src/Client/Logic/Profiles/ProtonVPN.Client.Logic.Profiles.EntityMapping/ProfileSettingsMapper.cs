@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,6 +19,7 @@
 
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Profiles.Contracts.SerializableEntities;
+using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.EntityMapping.Contracts;
 
@@ -26,20 +27,17 @@ namespace ProtonVPN.Client.Logic.Profiles.EntityMapping;
 
 public class ProfileSettingsMapper : IMapper<IProfileSettings, SerializableProfileSettings>
 {
-    private readonly IEntityMapper _entityMapper;
-
-    public ProfileSettingsMapper(IEntityMapper entityMapper)
-    {
-        _entityMapper = entityMapper;
-    }
-
     public SerializableProfileSettings Map(IProfileSettings leftEntity)
     {
         return leftEntity is null
             ? null
             : new SerializableProfileSettings()
             {
-                Protocol = (int)leftEntity.Protocol,
+                VpnProtocol = (int)leftEntity.VpnProtocol,
+                IsNetShieldEnabled = leftEntity.IsNetShieldEnabled,
+                NetShieldMode = (int)leftEntity.NetShieldMode,
+                IsPortForwardingEnabled = leftEntity.IsPortForwardingEnabled,
+                NatType = (int)leftEntity.NatType,
             };
     }
 
@@ -49,7 +47,11 @@ public class ProfileSettingsMapper : IMapper<IProfileSettings, SerializableProfi
             ? null
             : new ProfileSettings()
             {
-                Protocol = (VpnProtocol)rightEntity.Protocol,
+                VpnProtocol = (VpnProtocol)rightEntity.VpnProtocol,
+                IsNetShieldEnabled = rightEntity.IsNetShieldEnabled,
+                NetShieldMode = (NetShieldMode)rightEntity.NetShieldMode,
+                IsPortForwardingEnabled = rightEntity.IsPortForwardingEnabled,
+                NatType = (NatType)rightEntity.NatType,
             };
     }
 }

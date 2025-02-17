@@ -37,10 +37,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <enums:ProfileCategory x:Key="ShoppingCategory">Shopping</enums:ProfileCategory>
     <enums:ProfileCategory x:Key="SecurityCategory">Security</enums:ProfileCategory>
     <enums:ProfileCategory x:Key="BrowsingCategory">Browsing</enums:ProfileCategory>
-    <enums:ProfileCategory x:Key="BotCategory">Bot</enums:ProfileCategory>
-    <enums:ProfileCategory x:Key="GatewayCategory">Gateway</enums:ProfileCategory>
-    <enums:ProfileCategory x:Key="HomeCategory">Home</enums:ProfileCategory>
-    <enums:ProfileCategory x:Key="FingerprintingCategory">Fingerprinting</enums:ProfileCategory>
+    <!--<enums:ProfileCategory x:Key="BotCategory">Bot</enums:ProfileCategory>-->
+    <!--<enums:ProfileCategory x:Key="GatewayCategory">Gateway</enums:ProfileCategory>-->
+    <!--<enums:ProfileCategory x:Key="HomeCategory">Home</enums:ProfileCategory>-->
+    <!--<enums:ProfileCategory x:Key="FingerprintingCategory">Fingerprinting</enums:ProfileCategory>-->
 
     <x:Double x:Key="StandardProfileWidth">48.0</x:Double>
     <x:Double x:Key="StandardProfileHeight">48.0</x:Double>
@@ -233,7 +233,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         </Setter>
                                     </VisualState.Setters>
                                 </VisualState>
-                                <VisualState x:Name="Bot">
+                                <!--<VisualState x:Name="Bot">
                                     <VisualState.StateTriggers>
                                         <triggers:IsEqualStateTrigger Value="{Binding ProfileCategory, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                                                       To="{StaticResource BotCategory}" />
@@ -284,7 +284,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             </Setter.Value>
                                         </Setter>
                                     </VisualState.Setters>
-                                </VisualState>
+                                </VisualState>-->
                                 <VisualState />
 
                             </VisualStateGroup>

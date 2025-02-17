@@ -2768,7 +2768,7 @@ Smart Routing se usa normalmente para eludir las leyes contra la privacidad y ot
   <data name="Settings_About_Loading">
     <value>Cargando</value>
   </data>
-  <data name="Settings_About_NewVersion">
+  <data name="Common_Tags_New">
     <value>NUEVO</value>
   </data>
   <data name="Settings_About_Title">

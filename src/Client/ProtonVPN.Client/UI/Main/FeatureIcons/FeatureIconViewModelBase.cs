@@ -20,12 +20,16 @@
 using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Messages;
+using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Client.Logic.Profiles.Contracts.Messages;
+using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -37,24 +41,33 @@ public abstract class FeatureIconViewModelBase : ViewModelBase,
     IEventMessageReceiver<SettingChangedMessage>,
     IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<LoggedInMessage>,
-    IEventMessageReceiver<VpnPlanChangedMessage>
+    IEventMessageReceiver<VpnPlanChangedMessage>,
+    IEventMessageReceiver<ProfilesChangedMessage>
 {
-    private readonly IConnectionManager _connectionManager;
+    protected readonly IConnectionManager ConnectionManager;
+    protected readonly ISettings Settings;
+    protected readonly IApplicationThemeSelector ThemeSelector;
 
     public ImageSource Icon => GetImageSource();
 
-    public virtual bool IsDimmed => IsFeatureEnabled && !_connectionManager.IsConnected;
+    public virtual bool IsDimmed => IsFeatureEnabled && !ConnectionManager.IsConnected;
 
     protected abstract bool IsFeatureEnabled { get; }
 
+    protected IConnectionProfile? CurrentProfile => ConnectionManager.CurrentConnectionIntent as IConnectionProfile;
+
     protected FeatureIconViewModelBase(
         IConnectionManager connectionManager,
+        ISettings settings,
+        IApplicationThemeSelector themeSelector,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter)
         : base(localizer, logger, issueReporter)
     {
-        _connectionManager = connectionManager;
+        ConnectionManager = connectionManager;
+        Settings = settings;
+        ThemeSelector = themeSelector;
     }
 
     public void Receive(ThemeChangedMessage message)
@@ -86,7 +99,15 @@ public abstract class FeatureIconViewModelBase : ViewModelBase,
 
     public void Receive(ConnectionStatusChangedMessage message)
     {
-        ExecuteOnUIThread(InvalidateIsDimmed);
+        ExecuteOnUIThread(InvalidateAllProperties);
+    }
+
+    public void Receive(ProfilesChangedMessage message)
+    {
+        if (ConnectionManager.IsConnected)
+        {
+            ExecuteOnUIThread(InvalidateAllProperties);
+        }
     }
 
     protected abstract ImageSource GetImageSource();

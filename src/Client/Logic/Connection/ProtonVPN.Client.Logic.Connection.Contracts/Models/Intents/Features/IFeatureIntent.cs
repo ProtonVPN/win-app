@@ -28,4 +28,6 @@ public interface IFeatureIntent : IIntent
     IEnumerable<Server> FilterServers(IEnumerable<Server> servers);
 
     bool IsSupported(Server server);
+
+    IFeatureIntent Copy();
 }

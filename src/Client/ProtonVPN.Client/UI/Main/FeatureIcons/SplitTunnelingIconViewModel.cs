@@ -31,31 +31,27 @@ namespace ProtonVPN.Client.UI.Main.FeatureIcons;
 
 public class SplitTunnelingIconViewModel : FeatureIconViewModelBase
 {
-    private readonly ISettings _settings;
-    private readonly IApplicationThemeSelector _themeSelector;
-
     public SplitTunnelingIconViewModel(
         IConnectionManager connectionManager,
         ISettings settings,
         IApplicationThemeSelector themeSelector,
         ILocalizationProvider localizer,
         ILogger logger,
-        IIssueReporter issueReporter) : base(connectionManager, localizer, logger, issueReporter)
-    {
-        _settings = settings;
-        _themeSelector = themeSelector;
-    }
+        IIssueReporter issueReporter)
+        : base(connectionManager, settings, themeSelector, localizer, logger, issueReporter)
+    { }
 
-    protected override bool IsFeatureEnabled => _settings.IsSplitTunnelingEnabled;
+    protected override bool IsFeatureEnabled => Settings.IsSplitTunnelingEnabled;
 
     protected override ImageSource GetImageSource()
     {
         return ResourceHelper.GetIllustration(
             IsFeatureEnabled
-                ? (_settings.SplitTunnelingMode == SplitTunnelingMode.Standard
+                ? (Settings.SplitTunnelingMode == SplitTunnelingMode.Standard
                     ? "SplitTunnelingStandardIllustrationSource"
                     : "SplitTunnelingInverseIllustrationSource")
-                : "SplitTunnelingOffIllustrationSource", _themeSelector.GetTheme());
+                : "SplitTunnelingOffIllustrationSource", 
+            ThemeSelector.GetTheme());
     }
 
     protected override IEnumerable<string> GetSettingsChangedForIconUpdate()

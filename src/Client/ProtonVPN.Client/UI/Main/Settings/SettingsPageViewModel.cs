@@ -22,17 +22,59 @@ using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Navigation;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 
 namespace ProtonVPN.Client.UI.Main.Settings;
 
-public partial class SettingsPageViewModel : PageViewModelBase<IMainViewNavigator, ISettingsViewNavigator>
+public partial class SettingsPageViewModel : PageViewModelBase<IMainViewNavigator, ISettingsViewNavigator>,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
+    private readonly IConnectionManager _connectionManager;
+
     public SettingsPageViewModel(
         IMainViewNavigator parentViewNavigator,
         ISettingsViewNavigator childViewNavigator,
         ILocalizationProvider localizer,
         ILogger logger,
-        IIssueReporter issueReporter)
+        IIssueReporter issueReporter,
+        IConnectionManager connectionManager)
         : base(parentViewNavigator, childViewNavigator, localizer, logger, issueReporter)
-    { }
+    {
+        _connectionManager = connectionManager;
+    }
+
+    public Task<bool> CloseAsync()
+    {
+        return ChildViewNavigator.GetCurrentPageContext() is SettingsPageViewModelBase settingsPage
+            ? settingsPage.CloseAsync()
+            : Task.FromResult(true);
+    }
+
+    public override void OnNavigatedFrom()
+    {
+        base.OnNavigatedFrom();
+
+        ForceNavigationToCommonSettingsAsync();
+    }
+
+    public void Receive(ConnectionStatusChangedMessage message)
+    {
+        if (IsActive && _connectionManager.IsConnected && _connectionManager.CurrentConnectionIntent is IConnectionProfile)
+        {
+            // When connected to a profile, force navigation to common settings page. Some settings might be overridden by the profile.
+            ForceNavigationToCommonSettingsAsync();
+        }
+    }
+
+    private async Task ForceNavigationToCommonSettingsAsync()
+    {
+        if (ChildViewNavigator.GetCurrentPageContext() is SettingsPageViewModelBase settingsPage)
+        {
+            await ChildViewNavigator.NavigateToCommonSettingsViewAsync(true);
+            settingsPage.RequestResetContentScroll();
+        }
+    }
 }

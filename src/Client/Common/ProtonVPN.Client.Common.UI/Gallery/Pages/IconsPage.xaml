@@ -293,10 +293,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <profiles:SecurityProfileIcon AccentColor="{Binding SelectedItem, ElementName=cboxProfileIconColor}" />
                 <profiles:BrowsingProfileIcon AccentColor="{Binding SelectedItem, ElementName=cboxProfileIconColor}" />
 
-                <profiles:BotProfileIcon AccentColor="{Binding SelectedItem, ElementName=cboxProfileIconColor}" />
+                <!--<profiles:BotProfileIcon AccentColor="{Binding SelectedItem, ElementName=cboxProfileIconColor}" />
                 <profiles:GatewayProfileIcon AccentColor="{Binding SelectedItem, ElementName=cboxProfileIconColor}" />
                 <profiles:HomeProfileIcon AccentColor="{Binding SelectedItem, ElementName=cboxProfileIconColor}" />
-                <profiles:FingerprintingProfileIcon AccentColor="{Binding SelectedItem, ElementName=cboxProfileIconColor}" />
+                <profiles:FingerprintingProfileIcon AccentColor="{Binding SelectedItem, ElementName=cboxProfileIconColor}" />-->
             </toolkitControls:UniformGrid>
             <gallery:SampleControl.Options>
                 <StackPanel MaxWidth="300"

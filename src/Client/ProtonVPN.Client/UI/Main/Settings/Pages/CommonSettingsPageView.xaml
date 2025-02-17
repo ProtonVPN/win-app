@@ -109,7 +109,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <ComboBox x:Name="cbLanguage"
                                   DisplayMemberPath="Description"
                                   ItemsSource="{x:Bind ViewModel.Languages}"
-                                  SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}" />
+                                  SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}" 
+                                  Style="{StaticResource ComboBoxStyle}"/>
                     </toolkit:SettingsCard>
 
                     <toolkit:SettingsCard AutomationProperties.AutomationId="ThemesSettingsCard"
@@ -122,7 +123,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <ComboBox x:Name="themeMode"
                                   DisplayMemberPath="TranslatedName"
                                   ItemsSource="{x:Bind ViewModel.Themes}"
-                                  SelectedItem="{x:Bind ViewModel.SelectedTheme, Mode=TwoWay}" />
+                                  SelectedItem="{x:Bind ViewModel.SelectedTheme, Mode=TwoWay}" 
+                                  Style="{StaticResource ComboBoxStyle}"/>
                     </toolkit:SettingsCard>
 
                     <toolkit:SettingsCard AutomationProperties.AutomationId="BetaAccessSettingsCard"

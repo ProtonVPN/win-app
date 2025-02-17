@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Reflection;
+
 namespace ProtonVPN.Client.Common.Attributes;
 
 /// <summary>
@@ -30,5 +32,16 @@ public class SettingNameAttribute : Attribute
     public SettingNameAttribute(string settingPropertyName)
     {
         SettingPropertyName = settingPropertyName;
+    }
+
+    public static string GetSettingName(object owner, string propertyName)
+    {
+        PropertyInfo? propertyInfo = owner.GetType()?.GetProperty(propertyName);
+
+        return propertyInfo != null
+            && Attribute.GetCustomAttribute(propertyInfo, typeof(SettingNameAttribute)) is SettingNameAttribute attribute
+            && !string.IsNullOrEmpty(attribute.SettingPropertyName)
+                ? attribute.SettingPropertyName
+                : propertyName;
     }
 }

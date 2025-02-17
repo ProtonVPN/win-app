@@ -89,7 +89,7 @@ public partial class SidebarComponentViewModel : HostViewModelBase<ISidebarViewN
 
     public void OnSearchTextBoxLostFocus(object sender, RoutedEventArgs _)
     {
-        if (sender is TextBox && SearchText.Length <= 0)
+        if (sender is TextBox && string.IsNullOrWhiteSpace(SearchText))
         {
             ChildViewNavigator.NavigateToConnectionsViewAsync();
         }

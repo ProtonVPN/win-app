@@ -31,9 +31,9 @@ public class SerializableProfile : SerializableConnectionIntent
 
     public required string Name { get; set; }
 
-    public int ProfileCategory { get; set; }
-
-    public int ProfileColor { get; set; }
+    public required SerializableProfileIcon Icon { get; set; }
 
     public required SerializableProfileSettings Settings { get; set; }
+
+    public required SerializableProfileOptions Options { get; set; }
 }

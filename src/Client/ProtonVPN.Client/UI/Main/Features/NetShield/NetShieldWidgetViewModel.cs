@@ -19,6 +19,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Contracts.Profiles;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
@@ -73,28 +74,37 @@ public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
 
     public string BlockAdsMalwareTrackersMessage => Localizer.Get("Flyouts_NetShield_AdsMalwareTrackers_Success");
 
+    public bool IsNetShieldEnabled => IsFeatureOverridden
+        ? CurrentProfile!.Settings.IsNetShieldEnabled
+        : Settings.IsNetShieldEnabled;
+
+    public NetShieldMode NetShieldMode => IsFeatureOverridden
+        ? CurrentProfile!.Settings.NetShieldMode
+        : Settings.NetShieldMode;
+
     public bool IsInfoMessageVisible => !ConnectionManager.IsConnected
-                                     || !Settings.IsNetShieldEnabled;
+                                     || !IsNetShieldEnabled;
 
     public bool IsBlockMalwareOnlyMessageVisible => ConnectionManager.IsConnected
-                                                 && Settings.IsNetShieldEnabled
-                                                 && Settings.NetShieldMode == NetShieldMode.BlockMalwareOnly;
+                                                 && IsNetShieldEnabled
+                                                 && NetShieldMode == NetShieldMode.BlockMalwareOnly;
 
     public bool IsBlockAdsMalwareTrackersMessageVisible => ConnectionManager.IsConnected
-                                                        && Settings.IsNetShieldEnabled
-                                                        && Settings.NetShieldMode == NetShieldMode.BlockAdsMalwareTrackers;
+                                                        && IsNetShieldEnabled
+                                                        && NetShieldMode == NetShieldMode.BlockAdsMalwareTrackers;
 
     public bool IsNetShieldStatsPanelVisible => ConnectionManager.IsConnected
-                                             && Settings.IsNetShieldEnabled
-                                             && Settings.NetShieldMode == NetShieldMode.BlockAdsMalwareTrackers;
+                                             && IsNetShieldEnabled
+                                             && NetShieldMode == NetShieldMode.BlockAdsMalwareTrackers;
 
-    public bool IsNetShieldDisabled => !Settings.IsNetShieldEnabled;
+    public bool IsStandardNetShieldEnabled => IsNetShieldEnabled && NetShieldMode == NetShieldMode.BlockMalwareOnly;
 
-    public bool IsStandardNetShieldEnabled => Settings.IsNetShieldEnabled && Settings.NetShieldMode == NetShieldMode.BlockMalwareOnly;
-
-    public bool IsAdvancedNetShieldEnabled => Settings.IsNetShieldEnabled && Settings.NetShieldMode == NetShieldMode.BlockAdsMalwareTrackers;
+    public bool IsAdvancedNetShieldEnabled => IsNetShieldEnabled && NetShieldMode == NetShieldMode.BlockAdsMalwareTrackers;
 
     protected override UpsellFeatureType? UpsellFeature { get; } = UpsellFeatureType.NetShield;
+
+    public override bool IsFeatureOverridden => ConnectionManager.IsConnected 
+                                             && CurrentProfile != null;
 
     public NetShieldWidgetViewModel(
         ILocalizationProvider localizer,
@@ -107,7 +117,8 @@ public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
         IConnectionManager connectionManager,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
         IRequiredReconnectionSettings requiredReconnectionSettings,
-        ISettingsConflictResolver settingsConflictResolver)
+        ISettingsConflictResolver settingsConflictResolver,
+        IProfileEditor profileEditor)
         : base(localizer,
                logger,
                issueReporter,
@@ -119,6 +130,7 @@ public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
                upsellCarouselWindowActivator,
                requiredReconnectionSettings,
                settingsConflictResolver,
+               profileEditor,
                ConnectionFeature.NetShield)
     {
         _disableNetShieldSettings = new(() =>
@@ -162,7 +174,7 @@ public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
 
     protected override string GetFeatureStatus()
     {
-        return Localizer.GetToggleValue(Settings.IsNetShieldEnabled);
+        return Localizer.GetToggleValue(IsNetShieldEnabled);
     }
 
     protected override void OnLanguageChanged()
@@ -181,17 +193,23 @@ public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
         OnPropertyChanged(nameof(IsBlockMalwareOnlyMessageVisible));
         OnPropertyChanged(nameof(IsBlockAdsMalwareTrackersMessageVisible));
         OnPropertyChanged(nameof(IsNetShieldStatsPanelVisible));
-        OnPropertyChanged(nameof(IsNetShieldDisabled));
+        OnPropertyChanged(nameof(IsNetShieldEnabled));
+        OnPropertyChanged(nameof(NetShieldMode));
         OnPropertyChanged(nameof(IsStandardNetShieldEnabled));
         OnPropertyChanged(nameof(IsAdvancedNetShieldEnabled));
     }
 
     protected override void OnConnectionStatusChanged()
     {
+        OnPropertyChanged(nameof(Status));
         OnPropertyChanged(nameof(IsInfoMessageVisible));
         OnPropertyChanged(nameof(IsBlockMalwareOnlyMessageVisible));
         OnPropertyChanged(nameof(IsBlockAdsMalwareTrackersMessageVisible));
         OnPropertyChanged(nameof(IsNetShieldStatsPanelVisible));
+        OnPropertyChanged(nameof(IsFeatureOverridden));
+        OnPropertyChanged(nameof(IsNetShieldEnabled));
+        OnPropertyChanged(nameof(NetShieldMode));
+        OnPropertyChanged(nameof(CurrentProfile));
 
         if (!ConnectionManager.IsConnected)
         {

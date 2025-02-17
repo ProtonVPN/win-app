@@ -51,6 +51,8 @@ public class UrlsBrowser : IUrlsBrowser
     public string InternetSpeedLearnMore => "https://protonvpn.com/support/how-latency-bandwidth-throughput-impact-internet-speed";
 
     public string NatTypeLearnMore => "https://protonvpn.com/support/moderate-nat"; 
+
+    public string CustomDnsLearnMore => "https://protonvpn.com/support/custom-dns"; 
     
     public string Ipv6LeakProtectionLearnMore => "https://protonvpn.com/support/prevent-ipv6-vpn-leaks";
 
@@ -101,6 +103,8 @@ public class UrlsBrowser : IUrlsBrowser
     public string ActiveProxyLearnMore => "https://protonvpn.com/support/remove-proxy";
 
     public string EnableBaseFilteringEngine => "https://protonvpn.com/support/how-to-enable-the-base-filtering-engine";
+
+    public string ProfileLearnMore => "https://protonvpn.com/support/connection-profiles";
 
     public void BrowseTo(string url)
     {

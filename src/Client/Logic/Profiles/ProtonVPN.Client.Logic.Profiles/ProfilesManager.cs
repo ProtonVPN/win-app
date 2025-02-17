@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Specialized;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Profiles.Contracts;
@@ -55,7 +56,7 @@ public class ProfilesManager : IProfilesManager,
 
     public IOrderedEnumerable<IConnectionProfile> GetAll()
     {
-        return _profiles.OrderBy(p => p.Name);
+        return _profiles.OrderBy(p => p.CreationDateTimeUtc);
     }
 
     public IConnectionProfile? GetById(Guid profileId)
@@ -88,17 +89,21 @@ public class ProfilesManager : IProfilesManager,
     {
         lock (_lock)
         {
+            NotifyCollectionChangedAction action = NotifyCollectionChangedAction.Add;
+
             List<IConnectionProfile> existingProfiles = _profiles.Where(p => p.Id == profile.Id).ToList();
             foreach (IConnectionProfile existingProfile in existingProfiles)
             {
                 _profiles.Remove(existingProfile);
+
+                action = NotifyCollectionChangedAction.Replace;
             }
 
             profile.UpdateDateTimeUtc = DateTime.UtcNow;
 
             _profiles.Add(profile);
 
-            SaveAndBroadcastProfileChanges();
+            SaveAndBroadcastProfileChanges(action, profile.Id);
         }
     }
 
@@ -114,7 +119,7 @@ public class ProfilesManager : IProfilesManager,
                     _profiles.Remove(profile);
                 }
 
-                SaveAndBroadcastProfileChanges();
+                SaveAndBroadcastProfileChanges(NotifyCollectionChangedAction.Remove, profileId);
             }
 
             ResetDefaultConnectionIfProfileDoesNotExist();
@@ -137,13 +142,13 @@ public class ProfilesManager : IProfilesManager,
             LoadProfiles();
         }
 
-        BroadcastProfileChanges();
+        BroadcastProfileChanges(NotifyCollectionChangedAction.Reset);
     }
 
-    private void SaveAndBroadcastProfileChanges()
+    private void SaveAndBroadcastProfileChanges(NotifyCollectionChangedAction action, Guid? changedProfileId = null)
     {
         SaveProfiles();
-        BroadcastProfileChanges();
+        BroadcastProfileChanges(action, changedProfileId);
     }
 
     private void LoadProfiles()
@@ -166,9 +171,13 @@ public class ProfilesManager : IProfilesManager,
         _profilesFileReaderWriter.Save(_profiles.ToList());
     }
 
-    private void BroadcastProfileChanges()
+    private void BroadcastProfileChanges(NotifyCollectionChangedAction action, Guid? changedProfileId = null)
     {
-        _eventMessageSender.Send(new ProfilesChangedMessage());
+        _eventMessageSender.Send(new ProfilesChangedMessage()
+        {
+            Action = action,
+            ChangedProfileId = changedProfileId
+        });
     }
 
     public void SetAsDefaultConnection(Guid profileId)

@@ -19,6 +19,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Contracts.Profiles;
 using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Navigation;
@@ -27,6 +28,7 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -38,6 +40,7 @@ public partial class ProtocolFlyoutViewModel : ActivatableViewModelBase,
 {
     private readonly IUrlsBrowser _urlsBrowser;
     private readonly IConnectionManager _connectionManager;
+    private readonly IProfileEditor _profileEditor;
     private readonly IMainViewNavigator _mainViewNavigator;
     private readonly ISettingsViewNavigator _settingsViewNavigator;
 
@@ -57,6 +60,7 @@ public partial class ProtocolFlyoutViewModel : ActivatableViewModelBase,
         ISettingsViewNavigator settingsViewNavigator,
         IUrlsBrowser urlsBrowser,
         IConnectionManager connectionManager,
+        IProfileEditor profileEditor,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter) :
@@ -64,6 +68,7 @@ public partial class ProtocolFlyoutViewModel : ActivatableViewModelBase,
     {
         _urlsBrowser = urlsBrowser;
         _connectionManager = connectionManager;
+        _profileEditor = profileEditor;
         _mainViewNavigator = mainViewNavigator;
         _settingsViewNavigator = settingsViewNavigator;
     }
@@ -101,6 +106,12 @@ public partial class ProtocolFlyoutViewModel : ActivatableViewModelBase,
     [RelayCommand]
     private async Task OpenProtocolSettingsAsync()
     {
+        if (_connectionManager.IsConnected && _connectionManager.CurrentConnectionIntent is IConnectionProfile profile)
+        {
+            await _profileEditor.TryRedirectToProfileAsync(Localizer.Get("Settings_Connection_Protocol"), profile);
+            return;
+        }
+
         await _mainViewNavigator.NavigateToSettingsViewAsync();
         await _settingsViewNavigator.NavigateToProtocolSettingsViewAsync();
     }

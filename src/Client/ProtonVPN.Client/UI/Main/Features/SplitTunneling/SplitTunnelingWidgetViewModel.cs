@@ -20,6 +20,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Data;
 using ProtonVPN.Client.Common.Collections;
+using ProtonVPN.Client.Contracts.Profiles;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
@@ -63,7 +64,7 @@ public partial class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
     public bool IsInfoMessageVisible => true;
 
     public bool IsSplitTunnelingComponentVisible => ConnectionManager.IsConnected
-                                                 && Settings.IsSplitTunnelingEnabled
+                                                 && IsSplitTunnelingEnabled
                                                  && HasItems;
 
     public SmartObservableCollection<SplitTunnelingGroup> Groups { get; } = [];
@@ -73,11 +74,13 @@ public partial class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
 
     public bool HasItems => GroupsCvs.View.Any();
 
-    public bool IsSplitTunnelingDisabled => !Settings.IsSplitTunnelingEnabled;
+    public bool IsSplitTunnelingEnabled => Settings.IsSplitTunnelingEnabled;
 
-    public bool IsStandardSplitTunnelingEnabled => Settings.IsSplitTunnelingEnabled && Settings.SplitTunnelingMode == SplitTunnelingMode.Standard;
+    public SplitTunnelingMode SplitTunnelingMode => Settings.SplitTunnelingMode;
 
-    public bool IsInverseSplitTunnelingEnabled => Settings.IsSplitTunnelingEnabled && Settings.SplitTunnelingMode == SplitTunnelingMode.Inverse;
+    public bool IsStandardSplitTunnelingEnabled => IsSplitTunnelingEnabled && SplitTunnelingMode == SplitTunnelingMode.Standard;
+
+    public bool IsInverseSplitTunnelingEnabled => IsSplitTunnelingEnabled && SplitTunnelingMode == SplitTunnelingMode.Inverse;
 
     protected override UpsellFeatureType? UpsellFeature { get; } = UpsellFeatureType.SplitTunneling;
 
@@ -94,7 +97,8 @@ public partial class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         ISplitTunnelingItemFactory splitTunnelingItemFactory,
         IRequiredReconnectionSettings requiredReconnectionSettings,
-        ISettingsConflictResolver settingsConflictResolver)
+        ISettingsConflictResolver settingsConflictResolver,
+        IProfileEditor profileEditor)
         : base(localizer,
                logger,
                issueReporter,
@@ -106,6 +110,7 @@ public partial class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
                upsellCarouselWindowActivator,
                requiredReconnectionSettings,
                settingsConflictResolver,
+               profileEditor,
                ConnectionFeature.SplitTunneling)
     {
         _splitTunnelingItemFactory = splitTunnelingItemFactory;
@@ -147,8 +152,8 @@ public partial class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
     protected override string GetFeatureStatus()
     {
         return Localizer.Get(
-            Settings.IsSplitTunnelingEnabled
-                ? Settings.SplitTunnelingMode switch
+            IsSplitTunnelingEnabled
+                ? SplitTunnelingMode switch
                 {
                     SplitTunnelingMode.Standard => "Settings_Connection_SplitTunneling_Standard",
                     SplitTunnelingMode.Inverse => "Settings_Connection_SplitTunneling_Inverse",
@@ -171,7 +176,8 @@ public partial class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
         OnPropertyChanged(nameof(Status));
         OnPropertyChanged(nameof(InfoMessage));
         OnPropertyChanged(nameof(IsSplitTunnelingComponentVisible));
-        OnPropertyChanged(nameof(IsSplitTunnelingDisabled));
+        OnPropertyChanged(nameof(IsSplitTunnelingEnabled));
+        OnPropertyChanged(nameof(SplitTunnelingMode));
         OnPropertyChanged(nameof(IsStandardSplitTunnelingEnabled));
         OnPropertyChanged(nameof(IsInverseSplitTunnelingEnabled));
 
@@ -193,14 +199,14 @@ public partial class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
 
     private async Task InvalidateAppsAndIpsAsync()
     {
-        if (!Settings.IsSplitTunnelingEnabled || !ConnectionManager.IsConnected)
+        if (!IsSplitTunnelingEnabled || !ConnectionManager.IsConnected)
         {
             Items.Clear();
             Groups.Clear();
             return;
         }
 
-        SplitTunnelingMode splitTunnelingMode = Settings.SplitTunnelingMode;
+        SplitTunnelingMode splitTunnelingMode = SplitTunnelingMode;
 
         List<SplitTunnelingItemBase> items = [];
 

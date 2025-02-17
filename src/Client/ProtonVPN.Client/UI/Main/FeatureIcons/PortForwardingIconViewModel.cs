@@ -22,6 +22,7 @@ using ProtonVPN.Client.Core.Helpers;
 using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -30,22 +31,19 @@ namespace ProtonVPN.Client.UI.Main.FeatureIcons;
 
 public class PortForwardingIconViewModel : FeatureIconViewModelBase
 {
-    private readonly ISettings _settings;
-    private readonly IApplicationThemeSelector _themeSelector;
-
     public PortForwardingIconViewModel(
         IConnectionManager connectionManager,
         ISettings settings,
         IApplicationThemeSelector themeSelector,
         ILocalizationProvider localizer,
         ILogger logger,
-        IIssueReporter issueReporter) : base(connectionManager, localizer, logger, issueReporter)
-    {
-        _settings = settings;
-        _themeSelector = themeSelector;
-    }
+        IIssueReporter issueReporter)
+        : base(connectionManager, settings, themeSelector, localizer, logger, issueReporter)
+    { }
 
-    protected override bool IsFeatureEnabled => _settings.IsPortForwardingEnabled;
+    protected override bool IsFeatureEnabled => ConnectionManager.IsConnected && CurrentProfile != null
+        ? CurrentProfile.Settings.IsPortForwardingEnabled
+        : Settings.IsPortForwardingEnabled;
 
     protected override ImageSource GetImageSource()
     {
@@ -53,7 +51,7 @@ public class PortForwardingIconViewModel : FeatureIconViewModelBase
             IsFeatureEnabled
                 ? "PortForwardingOnIllustrationSource"
                 : "PortForwardingOffIllustrationSource",
-            _themeSelector.GetTheme());
+            ThemeSelector.GetTheme());
     }
 
     protected override IEnumerable<string> GetSettingsChangedForIconUpdate()

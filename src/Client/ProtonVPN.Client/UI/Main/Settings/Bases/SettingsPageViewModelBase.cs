@@ -18,7 +18,6 @@
  */
 
 using System.ComponentModel;
-using System.Reflection;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
@@ -31,8 +30,6 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
-using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Conflicts.Bases;
 using ProtonVPN.Client.Settings.Contracts.Messages;
@@ -234,7 +231,7 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
         ApplyCommand.NotifyCanExecuteChanged();
         OnPropertyChanged(nameof(ApplyCommandText));
 
-        string settingName = GetSettingName(e.PropertyName);
+        string settingName = SettingNameAttribute.GetSettingName(this, e.PropertyName);
         object? settingValue = GetType()?.GetProperty(e.PropertyName)?.GetValue(this);
 
         ISettingsConflict? conflict = SettingsConflictResolver.GetConflict(settingName, settingValue);
@@ -290,23 +287,7 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
 
     protected virtual bool IsReconnectionRequiredDueToChanges(IEnumerable<ChangedSettingArgs> changedSettings)
     {
-        IConnectionIntent? currentConnectionIntent = ConnectionManager.CurrentConnectionIntent;
-        bool isConnectionProfile = currentConnectionIntent is IConnectionProfile;
-
-        foreach (ChangedSettingArgs changedSetting in changedSettings)
-        {
-            if (isConnectionProfile && IgnorableProfileReconnectionSettings.Contains(changedSetting.Name))
-            {
-                continue;
-            }
-
-            if (RequiredReconnectionSettings.IsReconnectionRequired(changedSetting.Name))
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return changedSettings.Any(s => RequiredReconnectionSettings.IsReconnectionRequired(s.Name));
     }
 
     private bool IsReconnectionRequiredDueToConflicts(IEnumerable<ChangedSettingArgs> changedSettings)
@@ -326,16 +307,5 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
     private IEnumerable<ChangedSettingArgs> GetChangedSettings()
     {
         return PageSettings.Where(s => s.HasChanged());
-    }
-
-    private string GetSettingName(string propertyName)
-    {
-        PropertyInfo? propertyInfo = GetType()?.GetProperty(propertyName);
-
-        return propertyInfo != null
-            && Attribute.GetCustomAttribute(propertyInfo, typeof(SettingNameAttribute)) is SettingNameAttribute attribute
-            && !string.IsNullOrEmpty(attribute.SettingPropertyName)
-            ? attribute.SettingPropertyName
-            : propertyName;
     }
 }

@@ -26,9 +26,6 @@ namespace ProtonVPN.Client.Common.UI.Controls.Custom;
 
 public class DualConnectionRowButton : DualConnectionRowButtonBase
 {
-    public static readonly DependencyProperty SecondaryCommandContentProperty =
-        DependencyProperty.Register(nameof(SecondaryCommandContent), typeof(object), typeof(DualConnectionRowButton), new PropertyMetadata(default));
-
     public static readonly DependencyProperty SecondaryCommandProperty =
         DependencyProperty.Register(nameof(SecondaryCommand), typeof(ICommand), typeof(DualConnectionRowButton), new PropertyMetadata(default));
 
@@ -40,12 +37,6 @@ public class DualConnectionRowButton : DualConnectionRowButtonBase
 
     private const string FLYOUT_OPENED_VISUAL_STATE = "FlyoutOpened";
     private const string FLYOUT_CLOSED_VISUAL_STATE = "FlyoutClosed";
-
-    public object SecondaryCommandContent
-    {
-        get => GetValue(SecondaryCommandContentProperty);
-        set => SetValue(SecondaryCommandContentProperty, value);
-    }
 
     public ICommand SecondaryCommand
     {

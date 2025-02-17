@@ -17,7 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -27,19 +29,20 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [TestFixture]
 [Category("2")]
 [Category("ARM")]
-public class ProfileTests : FreshSessionSetUp
+public class ProfileTests : BaseTest
 {
-    [SetUp]
-    public void TestInitialize()
+    private const string PROFILE_NAME = "Profile A";
+
+    [OneTimeSetUp]
+    public void SetUp()
     {
+        LaunchApp();
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
     }
 
-    [Test]
-    public void CreateFastestProfile()
+    [Test, Order(0)]
+    public void CreateProfile()
     {
-        const string profileName = "Profile A";
-
         NavigationRobot
             .Verify.IsOnConnectionsPage();
         SidebarRobot
@@ -49,11 +52,88 @@ public class ProfileTests : FreshSessionSetUp
 
         SidebarRobot
             .CreateProfile();
+        NavigationRobot
+            .Verify.IsOnProfilePage();
         ProfileRobot
-            .Verify.IsProfileOverlayDisplayed()
-            .SetProfileName(profileName)
+            .SetProfileName(PROFILE_NAME)
             .SaveProfile();
         SidebarRobot
-            .Verify.DoesConnectionItemExist(profileName);
+            .ScrollToProfile(PROFILE_NAME)
+            .Verify.DoesConnectionItemExist(PROFILE_NAME);
+    }
+
+    [Test, Order(1)]
+    public void ConnectToProfile()
+    {
+        SidebarRobot
+            .ConnectToProfile(PROFILE_NAME);
+
+        HomeRobot
+            .Verify.IsConnecting()
+            .DoesConnectionCardTitleEqual(PROFILE_NAME)
+            .Verify.IsConnected()
+            .DoesConnectionCardTitleEqual(PROFILE_NAME);
+
+        SettingRobot
+            .Verify.IsNetshieldBlocking(NetShieldMode.BlockAdsMalwareTrackers);
+    }
+
+    [Test, Order(2)]
+    public void EditProfile()
+    {
+        SidebarRobot
+            .ScrollToProfile(PROFILE_NAME)
+            .Verify.DoesConnectionItemExist(PROFILE_NAME)
+            .ExpandSecondaryActions(PROFILE_NAME)
+            .EditProfile();
+
+        ProfileRobot
+            .ExpandSettingsSection()
+            .DisableNetShield()
+            .SaveProfile();
+
+        HomeRobot
+            .Verify.IsConnected();
+
+        SettingRobot
+            .Verify.IsNetshieldNotBlocking();
+    }
+
+    [Test, Order(3)]
+    public void DisconnectFromProfile()
+    {
+        SidebarRobot
+            .ScrollToProfile(PROFILE_NAME)
+            .Verify.DoesConnectionItemExist(PROFILE_NAME)
+            .DisconnectViaProfile(PROFILE_NAME);
+
+        HomeRobot
+            .Verify.IsDisconnected();
+    }
+
+    [Test, Order(4)]
+    public void DeleteProfile()
+    {
+        SidebarRobot
+            .ScrollToProfile(PROFILE_NAME)
+            .Verify.DoesConnectionItemExist(PROFILE_NAME)
+            .ExpandSecondaryActions(PROFILE_NAME)
+            .DeleteProfile();
+
+        ConfirmationRobot
+            .PrimaryAction();
+
+        // Wait for profile to be deleted
+        Thread.Sleep(500);
+
+        SidebarRobot
+
+            .Verify.DoesConnectionItemNotExist(PROFILE_NAME);
+    }
+
+    [OneTimeTearDown]
+    public void TearDown()
+    {
+        Cleanup();
     }
 }

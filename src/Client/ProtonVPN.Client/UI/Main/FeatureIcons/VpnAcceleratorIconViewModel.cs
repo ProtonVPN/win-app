@@ -30,22 +30,17 @@ namespace ProtonVPN.Client.UI.Main.FeatureIcons;
 
 public class VpnAcceleratorIconViewModel : FeatureIconViewModelBase
 {
-    private readonly ISettings _settings;
-    private readonly IApplicationThemeSelector _themeSelector;
-
     public VpnAcceleratorIconViewModel(
         IConnectionManager connectionManager,
         ISettings settings,
         IApplicationThemeSelector themeSelector,
         ILocalizationProvider localizer,
         ILogger logger,
-        IIssueReporter issueReporter) : base(connectionManager, localizer, logger, issueReporter)
-    {
-        _settings = settings;
-        _themeSelector = themeSelector;
-    }
+        IIssueReporter issueReporter)
+        : base(connectionManager, settings, themeSelector, localizer, logger, issueReporter)
+    { }
 
-    protected override bool IsFeatureEnabled => _settings.VpnPlan.IsPaid && _settings.IsVpnAcceleratorEnabled;
+    protected override bool IsFeatureEnabled => Settings.VpnPlan.IsPaid && Settings.IsVpnAcceleratorEnabled;
 
     protected override ImageSource GetImageSource()
     {
@@ -53,7 +48,7 @@ public class VpnAcceleratorIconViewModel : FeatureIconViewModelBase
             IsFeatureEnabled
                 ? "VpnAcceleratorOnIllustrationSource"
                 : "VpnAcceleratorOffIllustrationSource",
-            _themeSelector.GetTheme());
+            ThemeSelector.GetTheme());
     }
 
     protected override IEnumerable<string> GetSettingsChangedForIconUpdate()

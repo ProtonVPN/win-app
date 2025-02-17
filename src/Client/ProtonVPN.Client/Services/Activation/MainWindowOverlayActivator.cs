@@ -76,6 +76,34 @@ public class MainWindowOverlayActivator : OverlayActivatorBase<MainWindow>, IMai
             });
     }
 
+    public Task<ContentDialogResult> ShowProfileDiscardOverlayAsync(bool isReconnectionRequired)
+    {
+        return ShowMessageAsync(
+            new MessageDialogParameters
+            {
+                Title = _localizer.Get("Profile_Discard_Title"),
+                Message = _localizer.Get("Profile_Discard_Description"),
+                PrimaryButtonText = _localizer.Get("Settings_Common_Discard"),
+                SecondaryButtonText = _localizer.Get(isReconnectionRequired
+                    ? "Settings_Common_ApplyAndReconnect"
+                    : "Settings_Common_Apply"),
+                CloseButtonText = _localizer.Get("Common_Actions_Cancel"),
+                UseVerticalLayoutForButtons = true,
+            });
+    }
+
+    public Task<ContentDialogResult> ShowSettingsOverriddenByProfileOverlayAsync(string localizedSettingsName)
+    {
+        return ShowMessageAsync(
+            new MessageDialogParameters
+            {
+                Title = _localizer.GetFormat("Settings_OverriddenByProfile_Title", localizedSettingsName),
+                Message = $"{_localizer.Get("Settings_OverriddenByProfile_Description1")}{Environment.NewLine}{Environment.NewLine}{_localizer.Get("Settings_OverriddenByProfile_Description2")}" ,
+                PrimaryButtonText = _localizer.Get("Connection_Error_EditProfile"),
+                CloseButtonText = _localizer.Get("Common_Actions_Close"),
+            });
+    }
+
     public Task<ContentDialogResult> ShowP2PInfoOverlayAsync()
     {
         return ShowOverlayAsync<P2POverlayViewModel>();
@@ -89,6 +117,11 @@ public class MainWindowOverlayActivator : OverlayActivatorBase<MainWindow>, IMai
     public Task<ContentDialogResult> ShowSmartRoutingInfoOverlayAsync()
     {
         return ShowOverlayAsync<SmartRoutingOverlayViewModel>();
+    }
+
+    public Task<ContentDialogResult> ShowProfileInfoOverlayAsync()
+    {
+        return ShowOverlayAsync<ProfileOverlayViewModel>();
     }
 
     public Task<ContentDialogResult> ShowServerLoadInfoOverlayAsync()

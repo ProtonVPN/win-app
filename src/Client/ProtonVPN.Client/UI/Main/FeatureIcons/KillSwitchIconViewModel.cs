@@ -31,9 +31,6 @@ namespace ProtonVPN.Client.UI.Main.FeatureIcons;
 
 public class KillSwitchIconViewModel : FeatureIconViewModelBase
 {
-    private readonly ISettings _settings;
-    private readonly IApplicationThemeSelector _themeSelector;
-
     public override bool IsDimmed => false;
 
     public KillSwitchIconViewModel(
@@ -42,22 +39,23 @@ public class KillSwitchIconViewModel : FeatureIconViewModelBase
         IApplicationThemeSelector themeSelector,
         ILocalizationProvider localizer,
         ILogger logger,
-        IIssueReporter issueReporter) : base(connectionManager, localizer, logger, issueReporter)
-    {
-        _settings = settings;
-        _themeSelector = themeSelector;
-    }
+        IIssueReporter issueReporter) 
+        : base(connectionManager, settings, themeSelector, localizer, logger, issueReporter)
+    { }
 
-    protected override bool IsFeatureEnabled => _settings.IsKillSwitchEnabled;
+    protected override bool IsFeatureEnabled => Settings.IsKillSwitchEnabled;
+
+    protected KillSwitchMode KillSwitchMode => Settings.KillSwitchMode;
 
     protected override ImageSource GetImageSource()
     {
         return ResourceHelper.GetIllustration(
             IsFeatureEnabled
-                ? (_settings.KillSwitchMode == KillSwitchMode.Standard
+                ? (KillSwitchMode == KillSwitchMode.Standard
                     ? "KillSwitchStandardIllustrationSource"
                     : "KillSwitchAdvancedIllustrationSource")
-                : "KillSwitchOffIllustrationSource", _themeSelector.GetTheme());
+                : "KillSwitchOffIllustrationSource", 
+            ThemeSelector.GetTheme());
     }
 
     protected override IEnumerable<string> GetSettingsChangedForIconUpdate()

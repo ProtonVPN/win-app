@@ -127,6 +127,7 @@
         <Content Remove="Assets\Icons\PathIcons\ChevronSquareLeft.cs" />
         <Content Remove="Assets\Icons\PathIcons\ChevronSquareRight.cs" />
         <Content Remove="Assets\Icons\PathIcons\ChevronsRight.cs" />
+        <Content Remove="Assets\Icons\PathIcons\ChevronTinyDown.cs" />
         <Content Remove="Assets\Icons\PathIcons\ChevronUp.cs" />
         <Content Remove="Assets\Icons\PathIcons\ChevronUpFilled.cs" />
         <Content Remove="Assets\Icons\PathIcons\Circle.cs" />
@@ -751,6 +752,7 @@
         <None Remove="Assets\Illustrations\p2p-thumbnail.png" />
         <None Remove="Assets\Illustrations\placeholder.svg" />
         <None Remove="Assets\Illustrations\profile-new.svg" />
+        <None Remove="Assets\Illustrations\profiles-thumbnail.png" />
         <None Remove="Assets\Illustrations\profiles.png" />
         <None Remove="Assets\Illustrations\protocol-thumbnail.png" />
         <None Remove="Assets\Illustrations\recents.png" />
@@ -857,6 +859,7 @@
         <None Remove="Styles\Controls\SettingsExpanderStyles.xaml" />
         <None Remove="Styles\Controls\SizerStyles.xaml" />
         <None Remove="Styles\Controls\StepContentControlStyles.xaml" />
+        <None Remove="Styles\Controls\TagControlStyles.xaml" />
         <None Remove="Styles\Controls\TextBoxStyles.xaml" />
         <None Remove="Styles\Controls\ToggleSwitchStyles.xaml" />
         <None Remove="Styles\Controls\TooltipStyles.xaml" />
@@ -2001,6 +2004,9 @@
         <Content Update="Assets\Illustrations\p2p-thumbnail.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Illustrations\profiles-thumbnail.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Illustrations\protocol-thumbnail.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -2480,6 +2486,11 @@
       <Content Update="Assets\Illustrations\Light\netshield-on-level-2.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Styles\Controls\TagControlStyles.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
     </ItemGroup>
     <ItemGroup>
       <Page Update="Styles\Typography_W10.xaml">

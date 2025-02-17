@@ -2948,7 +2948,7 @@ Funkcja Smart Routing jest wykorzystywana do omijania przepisów dotyczących pr
   <data name="Settings_About_Loading">
     <value>Ładowanie</value>
   </data>
-  <data name="Settings_About_NewVersion">
+  <data name="Common_Tags_New">
     <value>NOWA WERSJA</value>
   </data>
   <data name="Settings_About_Title">
