@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
+        <PreserveCompilationContext>true</PreserveCompilationContext>
         <OutputType>Library</OutputType>
         <ImplicitUsings>enable</ImplicitUsings>
         <OutputPath>..\..\bin</OutputPath>
@@ -15,6 +16,8 @@
         <Folder Include="Properties\" />
     </ItemGroup>
     <ItemGroup>
+        <PackageReference Include="System.Formats.Asn1" />
         <PackageReference Include="System.ServiceProcess.ServiceController" />
+        <PackageReference Include="System.Text.Json" />
     </ItemGroup>
 </Project>

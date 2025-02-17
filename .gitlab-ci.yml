@@ -28,14 +28,23 @@ include:
       artifact_metadata_path: ""
       artifact_metadata_list: ""
 
-  - component: $CI_SERVER_HOST/proton/devops/cicd-components/devsecops/grype/scan-code@0.0.15
+  - component: $CI_SERVER_HOST/proton/devops/cicd-components/devsecops/grype/scan-code@~latest
     inputs:
-      stage: test
+      stage: security
       cli-args: "-c .grype.yaml"
+      allowed-to-fail: false
+      output-filename: grype-$BUILD_TYPE
 
-  - component: $CI_SERVER_HOST/proton/devops/cicd-components/devsecops/gitleaks/scan-repository@0.0.18
+  - component: $CI_SERVER_HOST/proton/devops/cicd-components/devsecops/gitleaks/scan-repository@~latest
     inputs:
-      stage: test
+      stage: security
+      cli-args: "--no-git"
+      allowed-to-fail: false
+
+  - component: $CI_SERVER_HOST/proton/devops/cicd-components/devsecops/gitleaks/create-baseline@~latest
+    inputs:
+      stage: security
+      cli-args: ""
 
 variables:
   PUBLIC_REPO_URL: git@github.com:ProtonVPN/win-app.git
@@ -52,10 +61,15 @@ variables:
   NEXUS_REPO: "test-productivity-builds-distribution"
   GIT_FETCH_DEFAULT_BRANCH: "yes"
 
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE != "merge_request_event"'  # Disable Merge Request pipelines
+    
 stages:
   - release
   - bot # comes from translations/generator job
   - build
+  - security
   - test
   - build-installer
   - publish
@@ -73,20 +87,6 @@ stages:
   - dotnet restore ProtonVpn.sln
   - dotnet build ProtonVpn.sln
   
-gitleaks-scan-repository:
-  allow_failure: true
-  needs: []
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_PIPELINE_SOURCE == "merge_request_event"
-      when: never
-    - when: always
-
-grype-scan-code-dependencies:
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-      when: never
-    - when: always
-
 build-release-x64:
   extends: .build-script
   only:
@@ -97,6 +97,10 @@ build-release-x64:
     DEPENDENCIES: publish
     PLATFORM: x64
     BUILD_PATH: src/bin/win-x64/publish
+  artifacts:
+    paths:
+      - '**/*.deps.json'
+      - 'src/**'
 
 build-release-arm64:
   extends: .build-script
@@ -110,6 +114,10 @@ build-release-arm64:
     DEPENDENCIES: publish
     PLATFORM: arm64
     BUILD_PATH: src/bin/win-arm64/publish
+  artifacts:
+    paths:
+      - '**/*.deps.json'
+      - 'src/**'
 
 build-bti-x64:
   rules:
@@ -131,6 +139,10 @@ build-bti-x64:
     PLATFORM: x64
     DEPENDENCIES: publish-BTI
     BUILD_PATH: src/bin/win-x64/BTI/publish
+  artifacts:
+    paths:
+      - '**/*.deps.json'
+      - 'src/**'
 
 build-debug-x64:
   extends: .build-script
@@ -143,6 +155,10 @@ build-debug-x64:
     PLATFORM: x64
     DEPENDENCIES: publish
     BUILD_PATH: src/bin/win-x64/publish
+  artifacts:
+    paths:
+      - '**/*.deps.json'
+      - 'src/**'
 
 build-debug-arm64:
   extends: .build-script
@@ -158,6 +174,57 @@ build-debug-arm64:
     PLATFORM: arm64
     DEPENDENCIES: publish
     BUILD_PATH: src/bin/win-arm64/publish
+  artifacts:
+    paths:
+      - '**/*.deps.json'
+      - 'src/**'
+
+gitleaks-scan-repository:
+  needs: []
+
+gitleaks-create-baseline:
+  needs: []
+  rules:
+    - if: $CI_COMMIT_REF_PROTECTED == "false"
+      when: manual
+    - when: never
+  allow_failure: true
+    
+grype-scan-code-dependencies:
+  rules:
+  - when: never
+
+grype-scan-debug-x64:
+  needs:
+    - build-debug-x64
+  extends: grype-scan-code-dependencies
+  rules:
+    - if: '$CI_PIPELINE_SOURCE != "schedule" && $CI_COMMIT_BRANCH != "master" && $CI_COMMIT_BRANCH !~ /^release.*$/'
+      when: on_success
+
+grype-scan-debug-arm64:
+  needs:
+    - build-debug-arm64
+  extends: grype-scan-code-dependencies
+  rules:
+    - if: '$CI_PIPELINE_SOURCE != "schedule" && $CI_COMMIT_BRANCH != "master" && $CI_COMMIT_BRANCH !~ /^release.*$/'
+      when: on_success
+
+grype-scan-release-x64:
+  needs:
+    - build-release-x64
+  extends: grype-scan-code-dependencies
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH =~ /^release.*$/'
+      when: on_success
+
+grype-scan-release-arm64:
+  needs:
+    - build-release-arm64
+  extends: grype-scan-code-dependencies
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH =~ /^release.*$/'
+      when: on_success
 
 ui-tests-group-1:
   extends: .ui_test_execution_script

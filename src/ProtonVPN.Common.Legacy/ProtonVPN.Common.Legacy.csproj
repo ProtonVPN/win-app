@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net8.0-windows</TargetFramework>
+        <PreserveCompilationContext>true</PreserveCompilationContext>
         <OutputType>Library</OutputType>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <OutputPath>..\bin\</OutputPath>
@@ -24,7 +25,9 @@
         <PackageReference Include="DeviceId.Windows.Wmi" />
         <PackageReference Include="Newtonsoft.Json" />
         <PackageReference Include="Polly" />
+        <PackageReference Include="System.Formats.Asn1" />
         <PackageReference Include="System.ServiceProcess.ServiceController" />
+        <PackageReference Include="System.Text.Json" />
     </ItemGroup>
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />

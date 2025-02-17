@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net8.0-windows</TargetFramework>
+        <PreserveCompilationContext>true</PreserveCompilationContext>
         <OutputType>Library</OutputType>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <OutputPath>..\..\bin</OutputPath>
@@ -15,7 +16,9 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="BouncyCastle.NetCore" />
+        <PackageReference Include="System.Formats.Asn1" />
         <PackageReference Include="System.Security.Cryptography.ProtectedData" />
+        <PackageReference Include="System.Text.Json" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\ProtonVPN.Crypto.Contracts\ProtonVPN.Crypto.Contracts.csproj" />

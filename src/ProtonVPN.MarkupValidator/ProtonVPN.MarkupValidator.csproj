@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net8.0-windows</TargetFramework>
+        <PreserveCompilationContext>true</PreserveCompilationContext>
         <OutputType>Exe</OutputType>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <UseWindowsForms>true</UseWindowsForms>
@@ -20,5 +21,7 @@
         <PackageReference Include="Microsoft.Windows.Compatibility" />
         <PackageReference Include="System.Collections.Immutable" />
         <PackageReference Include="System.Private.ServiceModel" />
+        <PackageReference Include="System.Security.Cryptography.Pkcs" />
+        <PackageReference Include="System.Text.Json" />
     </ItemGroup>
 </Project>
