@@ -2827,10 +2827,10 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
     <value>Gelişmiş ayarlar</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting">
-    <value>Alternatif yöneltme</value>
+    <value>Alternatif yönlendirme</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting_Description">
-    <value>Ağ kısıtlamaları nedeniyle Proton hizmetleri engelleniyorsa sitelerimize bağlanmanız için alternatif ağ yöneltmesini kullanmayı deneriz.</value>
+    <value>Proton hizmetleri ağ kısıtlamaları nedeniyle engellenirse sizi sitelerimize bağlamak için alternatif ağ yönlendirmesi kullanmayı deneyeceğiz.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
     <value>Özel DNS sunucuları</value>
@@ -3088,7 +3088,7 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
     <value>Aygıtınızda oturum açtığınızda Proton VPN otomarik olarak açılır</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Desktop">
-    <value>Masaüstünde aç</value>
+    <value>Bilgisayarda aç</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray">
     <value>Sistem tepsisine küçült</value>

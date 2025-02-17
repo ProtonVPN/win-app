@@ -3356,13 +3356,13 @@ Smart Routing 經常被用來繞過反隱私法和其他形式的網路審查。
     <value>保護您的裝置免受惡意軟體威脅</value>
   </data>
   <data name="Upsell_Carousel_P2P">
-    <value>Unlock peer-to-peer downloads and file sharing (P2P)</value>
+    <value>解鎖點對點 (P2P) 下載與檔案共享</value>
   </data>
   <data name="Upsell_Carousel_P2P_Discretion">
     <value>向您的網絡服務供應商和其他下載者藏您的 IP 位址</value>
   </data>
   <data name="Upsell_Carousel_P2P_PortForwarding">
-    <value>Supercharge P2P speeds with port forwarding</value>
+    <value>利用通訊埠轉寄，提升P2P速度</value>
   </data>
   <data name="Upsell_Carousel_P2P_Speed">
     <value>增加上下載時的速度</value>
@@ -3372,16 +3372,16 @@ Smart Routing 經常被用來繞過反隱私法和其他形式的網路審查。
     <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
   </data>
   <data name="Upsell_Carousel_SecureCore">
-    <value>Add another layer of protection to your connection</value>
+    <value>增加另一層連線</value>
   </data>
   <data name="Upsell_Carousel_SecureCore_Encryption">
-    <value>Double your encryption with Secure Core</value>
+    <value>使用 Secure Core 以達到雙倍加密</value>
   </data>
   <data name="Upsell_Carousel_SecureCore_Protection">
     <value>保護您免受網路攻擊的威脅</value>
   </data>
   <data name="Upsell_Carousel_SecureCore_Routing">
-    <value>Route through ultra secure servers in Switzerland, Sweden, and Iceland</value>
+    <value>途經瑞士、瑞典及冰島的超高加密伺服器</value>
   </data>
   <data name="Upsell_Carousel_Speed">
     <value>以更高的速度瀏覽 (高達 10 Gbps)</value>
@@ -3402,10 +3402,10 @@ Smart Routing 經常被用來繞過反隱私法和其他形式的網路審查。
     <value>允許信任的應用程式及IP地址直接連接網路，同時使用虛擬私有網路保護任何東西</value>
   </data>
   <data name="Upsell_Carousel_Streaming">
-    <value>Stream your favorite movies and TV shows</value>
+    <value>影音串流觀看您喜愛的電影與電視節目</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Access">
-    <value>Access geoblocked TV and movies from anywhere in the world</value>
+    <value>從世界各地觀看地理攔截的電視節目與電影</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Platforms_BBC">
     <value>BBC iPlayer</value>
@@ -3426,7 +3426,7 @@ Smart Routing 經常被用來繞過反隱私法和其他形式的網路審查。
     <value>Amazon Prime Video</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Speed">
-    <value>Watch in 4K without buffering, slowdowns, or throttling</value>
+    <value>觀看 4K，沒有緩衝、減慢或節流</value>
   </data>
   <data name="Upsell_Carousel_Title">
     <value>探索 VPN Plus</value>

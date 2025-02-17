@@ -2672,7 +2672,7 @@ Prędkość pokazuje bieżącą aktywność urządzenia — nie reprezentuje mak
     <value>Ochrona cyfrowej tożsamości…</value>
   </data>
   <data name="Home_VpnStatus_Subtitle_Disconnected">
-    <value>Nie masz ochrony</value>
+    <value>Nie jesteś chroniony</value>
   </data>
   <data name="Home_VpnStatus_Title_Connected">
     <value>Ochrona</value>
