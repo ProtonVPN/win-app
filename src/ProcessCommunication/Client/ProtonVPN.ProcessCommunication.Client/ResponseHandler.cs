@@ -72,25 +72,28 @@ public class ResponseHandler : DelegatingHandler
             string serviceProcessVersion = GetHeaderValue(response.Headers, HttpConfiguration.SERVICE_PROCESS_VERSION);
             string installedServiceVersion = GetHeaderValue(response.Headers, HttpConfiguration.INSTALLED_SERVICE_VERSION);
 
-            _logger.Error<ProcessCommunicationErrorLog>(
-                $"Received HTTP status code {response.StatusCode} from gRPC server. " +
-                $"Client Process Path: '{clientProcessPath}' Version '{clientProcessVersion}'), " +
-                $"Service Process Path: '{serviceProcessPath}' Version '{serviceProcessVersion}'), " +
-                $"Installed Service Path: '{installedServicePath}' Version '{installedServiceVersion}')");
+            _logger.Error<ProcessCommunicationErrorLog>($"Received HTTP status code {response.StatusCode} from gRPC server. " +
+                $"Client Process Path: '{clientProcessPath}' Version '{clientProcessVersion}', " +
+                $"Service Process Path: '{serviceProcessPath}' Version '{serviceProcessVersion}', " +
+                $"Installed Service Path: '{installedServicePath}' Version '{installedServiceVersion}'");
 
             if (response.StatusCode == HttpStatusCode.Unauthorized)
             {
-                await Handle401UnauthorizedAsync(clientProcessVersion, serviceProcessVersion);
+                string logMessageDetails =
+                    $"Client Process Path: '{clientProcessPath}', " +
+                    $"Service Process Path: '{serviceProcessPath}', " +
+                    $"Installed Service Path: '{installedServicePath}'";
+                await Handle401UnauthorizedAsync(clientProcessVersion, serviceProcessVersion, logMessageDetails);
             }
         }
     }
 
-    private async Task Handle401UnauthorizedAsync(string clientProcessVersion, string serviceProcessVersion)
+    private async Task Handle401UnauthorizedAsync(string clientProcessVersion, string serviceProcessVersion, string logMessageDetails)
     {
         await _semaphore.WaitAsync();
         try
         {
-            Handle401Unauthorized(clientProcessVersion, serviceProcessVersion);
+            Handle401Unauthorized(clientProcessVersion, serviceProcessVersion, logMessageDetails);
         }
         finally
         {
@@ -98,7 +101,7 @@ public class ResponseHandler : DelegatingHandler
         }
     }
 
-    private void Handle401Unauthorized(string clientProcessVersionString, string serviceProcessVersionString)
+    private void Handle401Unauthorized(string clientProcessVersionString, string serviceProcessVersionString, string logMessageDetails)
     {
         string versions = $"ClientProcessVersion: {clientProcessVersionString}, ServiceProcessVersion: {serviceProcessVersionString}";
 
@@ -116,7 +119,7 @@ public class ResponseHandler : DelegatingHandler
 
             if (!_is401UnauthorizedWithoutBeingBelowServiceVersionHandled)
             {
-                _issueReporter.CaptureMessage(logExplanation, versions);
+                _issueReporter.CaptureMessage(logExplanation, logMessageDetails);
                 _is401UnauthorizedWithoutBeingBelowServiceVersionHandled = true;
             }
         }

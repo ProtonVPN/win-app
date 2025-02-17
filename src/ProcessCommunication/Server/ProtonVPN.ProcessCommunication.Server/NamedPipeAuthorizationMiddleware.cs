@@ -79,7 +79,7 @@ public class NamedPipeAuthorizationMiddleware
         {
             context.Response.StatusCode = authorizationResult.StatusCode;
 
-            string installedServicePath = _registryEditor.ReadString(_registryUri);
+            string installedServicePath = Path.GetFullPath(_registryEditor.ReadString(_registryUri));
 
             string clientProcessVersionString = GetVersionFromFilePath(authorizationResult.ClientProcessFileName);
             string serviceProcessVersionString = GetVersionFromFilePath(authorizationResult.ServerProcessFileName);
@@ -91,17 +91,17 @@ public class NamedPipeAuthorizationMiddleware
                 Version.TryParse(installedServiceVersionString, out Version installedServiceVersion) &&
                 installedServiceVersion > serviceProcessVersion)
             {
-                string serviceStopDescription = $"Client Process Path: '{authorizationResult.ClientProcessFileName}' Version '{clientProcessVersionString}'), " +
-                    $"Service Process Path: '{authorizationResult.ServerProcessFileName}' Version '{serviceProcessVersionString}'), " +
-                    $"Installed Service Path: '{installedServicePath}' Version '{installedServiceVersionString}')";
+                string serviceStopDescription = $"Client Process Path: '{authorizationResult.ClientProcessFileName}' Version '{clientProcessVersionString}', " +
+                    $"Service Process Path: '{authorizationResult.ServerProcessFileName}' Version '{serviceProcessVersionString}', " +
+                    $"Installed Service Path: '{installedServicePath}' Version '{installedServiceVersionString}'";
                 await StopServiceAsync(serviceStopDescription);
                 context.Response.StatusCode = StatusCodes.Status409Conflict;
             }
 
             _logger.Error<ProcessCommunicationErrorLog>($"Sending HTTP status code {context.Response.StatusCode} to gRPC client. " +
-                $"Client Process Path: '{authorizationResult.ClientProcessFileName}' Version '{clientProcessVersionString}'), " +
-                $"Service Process Path: '{authorizationResult.ServerProcessFileName}' Version '{serviceProcessVersionString}'), " +
-                $"Installed Service Path: '{installedServicePath}' Version '{installedServiceVersionString}')");
+                $"Client Process Path: '{authorizationResult.ClientProcessFileName}' Version '{clientProcessVersionString}', " +
+                $"Service Process Path: '{authorizationResult.ServerProcessFileName}' Version '{serviceProcessVersionString}', " +
+                $"Installed Service Path: '{installedServicePath}' Version '{installedServiceVersionString}'");
 
             context.Response.Headers[HttpConfiguration.CLIENT_PROCESS_PATH] = authorizationResult.ClientProcessFileName;
             context.Response.Headers[HttpConfiguration.SERVICE_PROCESS_PATH] = authorizationResult.ServerProcessFileName;
@@ -160,23 +160,25 @@ public class NamedPipeAuthorizationMiddleware
         {
             NamedPipeServerStream namedPipe = GetNamedPipe(context);
 
-            string clientProcessFileName = _pipeStreamProcessIdentifier.GetClientProcessFileName(namedPipe) ?? string.Empty;
-            string serverProcessFileName = _pipeStreamProcessIdentifier.GetServerProcessFileName(namedPipe) ?? string.Empty;
+            string clientProcessPath = _pipeStreamProcessIdentifier.GetClientProcessFullFilePath(namedPipe) ?? string.Empty;
+            string serverProcessPath = _pipeStreamProcessIdentifier.GetServerProcessFullFilePath(namedPipe) ?? string.Empty;
 
-            if (!_config.ServiceExePath.Equals(serverProcessFileName, StringComparison.InvariantCultureIgnoreCase))
+            string expectedServiceProcessPath = Path.GetFullPath(_config.ServiceExePath);
+            if (!expectedServiceProcessPath.Equals(serverProcessPath, StringComparison.InvariantCultureIgnoreCase))
             {
                 _logger.Warn<ProcessCommunicationErrorLog>($"The owner of the Named Pipe is not this Service. Dispose and recreate.");
                 await _recreateAndStartAsyncFunc();
-                return AuthorizationResult.Error(StatusCodes.Status409Conflict, clientProcessFileName, serverProcessFileName);
+                return AuthorizationResult.Error(StatusCodes.Status409Conflict, clientProcessPath, serverProcessPath);
             }
 
-            if (_config.AppExePath.Equals(clientProcessFileName, StringComparison.InvariantCultureIgnoreCase))
+            string expectedClientProcessPath = Path.GetFullPath(_config.AppExePath);
+            if (expectedClientProcessPath.Equals(clientProcessPath, StringComparison.InvariantCultureIgnoreCase))
             {
                 return AuthorizationResult.Ok();
             }
 
-            _logger.Warn<ProcessCommunicationErrorLog>($"The connected client is unauthorized. Client path: '{clientProcessFileName}'. Expected: '{_config.AppExePath}'.");
-            return AuthorizationResult.Error(StatusCodes.Status401Unauthorized, clientProcessFileName, serverProcessFileName);
+            _logger.Warn<ProcessCommunicationErrorLog>($"The connected client is unauthorized. Client path: '{clientProcessPath}'. Expected: '{expectedClientProcessPath}'.");
+            return AuthorizationResult.Error(StatusCodes.Status401Unauthorized, clientProcessPath, serverProcessPath);
         }
         catch (Exception ex)
         {
