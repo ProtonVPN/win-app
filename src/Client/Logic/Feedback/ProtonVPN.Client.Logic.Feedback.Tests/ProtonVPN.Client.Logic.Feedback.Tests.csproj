@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net8.0-windows</TargetFramework>
+        <PreserveCompilationContext>true</PreserveCompilationContext>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <OutputPath>..\..\..\..\bin</OutputPath>
@@ -42,6 +43,8 @@
         <PackageReference Include="MSTest.TestFramework" />
         <PackageReference Include="coverlet.collector" />
         <PackageReference Include="NSubstitute" />
+        <PackageReference Include="System.Formats.Asn1" />
+        <PackageReference Include="System.Text.Json" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\..\..\..\Tests\ProtonVPN.Tests.Common\ProtonVPN.Tests.Common.csproj" />

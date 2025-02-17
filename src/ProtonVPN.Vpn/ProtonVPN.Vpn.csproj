@@ -28,11 +28,14 @@
         <PackageReference Include="Autofac" />
         <PackageReference Include="Newtonsoft.Json" />
         <PackageReference Include="System.Collections.Immutable" />
+        <PackageReference Include="System.Formats.Asn1" />
         <PackageReference Include="System.Management" />
         <PackageReference Include="System.Runtime.CompilerServices.Unsafe" />
+        <PackageReference Include="System.Text.Json" />
     </ItemGroup>
     <PropertyGroup>
         <TargetFramework>net8.0-windows</TargetFramework>
+        <PreserveCompilationContext>true</PreserveCompilationContext>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     </PropertyGroup>
     <ItemGroup>

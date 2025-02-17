@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net8.0-windows</TargetFramework>
+        <PreserveCompilationContext>true</PreserveCompilationContext>
         <OutputType>Library</OutputType>
         <NoStandardLibraries>false</NoStandardLibraries>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -9,6 +10,8 @@
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Polly" />
+        <PackageReference Include="System.Formats.Asn1" />
+        <PackageReference Include="System.Text.Json" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\ProtonVPN.Common.Legacy\ProtonVPN.Common.Legacy.csproj" />

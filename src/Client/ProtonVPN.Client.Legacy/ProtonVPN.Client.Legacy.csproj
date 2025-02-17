@@ -2,6 +2,7 @@
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
         <TargetFramework>net8.0-windows10.0.22621.0</TargetFramework>
+        <PreserveCompilationContext>true</PreserveCompilationContext>
         <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
         <RootNamespace>ProtonVPN.Client.Legacy</RootNamespace>
         <ApplicationIcon>Assets/ProtonVPN.ico</ApplicationIcon>
@@ -64,6 +65,7 @@
         <PackageReference Include="System.Diagnostics.DiagnosticSource" />
         <PackageReference Include="System.Formats.Asn1" />
         <PackageReference Include="System.Text.Encoding.CodePages" />
+        <PackageReference Include="System.Text.Json" />
         <PackageReference Include="WinUIEx" />
     </ItemGroup>
     <ItemGroup>
