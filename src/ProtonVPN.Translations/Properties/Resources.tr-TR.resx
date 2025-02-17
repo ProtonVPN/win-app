@@ -1801,7 +1801,7 @@
     <comment>The button displayed in Troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_AlternativeRouting">
-    <value>&lt;Bold&gt;Alternatif yöneltme&lt;/Bold&gt; - Proton sitelerinin engellenmesi durumunda bu seçenek, uygulamanın Proton ağına erişmek için alternatif ağ yöneltmesini deneyerek, güvenlik duvarlarını veya ağ sorunlarını aşmasına yardımcı olabilir. Daha iyi güvenilirlik sağlamak için bu seçeneği açık tutmanızı öneririz. &lt;Hyperlink Command="{Binding AlternativeRoutingCommand}"&gt;Ayrıntılı bilgi alın&lt;/Hyperlink&gt;</value>
+    <value>&lt;Bold&gt;Alternatif Yönlendirme&lt;/Bold&gt; - Proton sitelerinin engellenmesi durumunda bu ayar uygulamanın Proton'a ulaşmak için alternatif ağ yönlendirmesini denemesini sağlar; bu, güvenlik duvarlarını veya ağ sorunlarını atlamak için yararlı olabilir. Daha fazla güvenilirlik için bu ayarı açık tutmanızı öneririz. &lt;Hyperlink Command="{Binding AlternativeRoutingCommand}"&gt;Ayrıntılı bilgi alın&lt;/Hyperlink&gt;</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Antivirus">
@@ -2675,11 +2675,11 @@
     <comment>The description of DNS Leak Protection setting displayed in the tooltip of the ( i ) image next to the label for DNS Leak Protection toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DoH">
-    <value>Alternatif yöneltme kullanılabilsin</value>
+    <value>Alternatif Yönlendirmeye İzin Ver</value>
     <comment>The label for Alternative Routing toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_DoH_Info">
-    <value>Açıldığında, uygulama Proton sitelerinin engellenmiş olması durumunda Proton ağına erişmek için alternatif ağ yöneltmesini dener. Güvenlik duvarlarını veya ağ sorunlarını aşmakta yararlı olabilir. Bağlantı güvenilirliğini artırmak için bu seçeneği açık tutmanız önerilir.</value>
+    <value>Proton sitelerinin engellenmesi durumunda bu ayar uygulamanın Proton'a ulaşmak için alternatif ağ yönlendirmesini denemesini sağlar; bu, güvenlik duvarlarını veya ağ sorunlarını atlamak için yararlı olabilir. Daha fazla güvenilirlik için bu ayarı açık tutmanızı öneririz.</value>
     <comment>The description of Allow Alternative Routing setting displayed in the tooltip of ( i ) image next to the label for Allow Alternative Routing toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_HardwareAcceleration">
