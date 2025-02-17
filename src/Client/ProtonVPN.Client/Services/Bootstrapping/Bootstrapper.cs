@@ -36,6 +36,7 @@ using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using ProtonVPN.StatisticalEvents.Contracts;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.Services.Bootstrapping;
@@ -46,6 +47,7 @@ public class Bootstrapper : IBootstrapper
     private const int EXIT_DISCONNECTION_DELAY_IN_MS = 200;
 
     private readonly IUrlsBrowser _urlsBrowser;
+    private readonly IClientInstallsStatisticalEventSender _clientInstallsStatisticalEventSender;
     private readonly IProcessCommunicationStarter _processCommunicationStarter;
     private readonly ISettingsRestorer _settingsRestorer;
     private readonly IServiceManager _serviceManager;
@@ -61,6 +63,7 @@ public class Bootstrapper : IBootstrapper
 
     public Bootstrapper(
         IUrlsBrowser urlsBrowser,
+        IClientInstallsStatisticalEventSender clientInstallsStatisticalEventSender,
         IProcessCommunicationStarter processCommunicationStarter,
         ISettingsRestorer settingsRestorer,
         IServiceManager serviceManager,
@@ -75,6 +78,7 @@ public class Bootstrapper : IBootstrapper
         IMainWindowOverlayActivator mainWindowOverlayActivator)
     {
         _urlsBrowser = urlsBrowser;
+        _clientInstallsStatisticalEventSender = clientInstallsStatisticalEventSender;
         _processCommunicationStarter = processCommunicationStarter;
         _settingsRestorer = settingsRestorer;
         _serviceManager = serviceManager;
@@ -228,9 +232,10 @@ public class Bootstrapper : IBootstrapper
 
         if (isCleanInstall)
         {
-            // TODO: uncomment this once statistical events are implemented
-            //IClientInstallsStatisticalEventSender statisticalEventSender = Resolve<IClientInstallsStatisticalEventSender>();
-            //statisticalEventSender.Send(isMailInstalled, isDriveInstalled, isPassInstalled);
+            _clientInstallsStatisticalEventSender.Send(
+                isMailInstalled: isMailInstalled,
+                isDriveInstalled: isDriveInstalled,
+                isPassInstalled: isPassInstalled);
         }
     }
 
