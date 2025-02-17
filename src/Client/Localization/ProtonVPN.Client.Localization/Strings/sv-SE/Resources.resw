@@ -253,7 +253,7 @@
     <value>Lär dig mer</value>
   </data>
   <data name="Common_Message_Loading">
-    <value>Läser in...</value>
+    <value>Laddar in …</value>
   </data>
   <data name="Common_States_Off">
     <value>Av</value>
@@ -2551,11 +2551,11 @@ Hastighet är baserat på din enhets nuvarande aktivitet – den representerar i
     <value>Ange din kod</value>
   </data>
   <data name="Main_Loading_SigningIn">
-    <value>Loggar in, vänta...</value>
+    <value>Loggar in, vänta …</value>
     <comment>Message in the loading screen when signing in or starting the app</comment>
   </data>
   <data name="Main_Loading_SigningOut">
-    <value>Loggar ut, vänta...</value>
+    <value>Loggar ut, vänta …</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
   <data name="Notifications_PortForwarding_Description">
@@ -2982,7 +2982,7 @@ Smart Routing används vanligtvis för att kringgå lagar som motverkar integrit
     <value>För att använda vidarebefordran av port, anslut till en server som stöder P2P.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Loading">
-    <value>Läser in...</value>
+    <value>Laddar in …</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications">
     <value>Aviseringar</value>
