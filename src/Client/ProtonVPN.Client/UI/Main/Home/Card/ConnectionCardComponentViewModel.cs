@@ -127,7 +127,7 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
     private int _freeCountriesCount;
 
     [ObservableProperty]
-    private bool _useInlineLayout;
+    private bool _useInlineLayout = true;
 
     public string FormattedFreeCountriesCount => FreeCountriesCount > FREE_COUNTRIES_DISPLAYED_AS_FLAGS
         ? $"+{FreeCountriesCount - FREE_COUNTRIES_DISPLAYED_AS_FLAGS}"
