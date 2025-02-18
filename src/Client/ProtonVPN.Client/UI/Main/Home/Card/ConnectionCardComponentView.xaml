@@ -47,7 +47,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <StackPanel Spacing="16">
         <StackPanel HorizontalAlignment="Center"
                     Orientation="{x:Bind ViewModel.UseInlineLayout, Converter={StaticResource BooleanToHorizontalOrientationConverter}}"
-                    PointerPressed="OnHeaderPointerPressed"
                     Spacing="16">
 
             <Grid HorizontalAlignment="Center" 

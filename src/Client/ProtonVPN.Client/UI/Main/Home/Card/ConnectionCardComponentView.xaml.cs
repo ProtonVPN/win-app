@@ -61,9 +61,4 @@ public sealed partial class ConnectionCardComponentView : IContextAware
             button.Focus(FocusState.Programmatic);
         }
     }
-
-    private void OnHeaderPointerPressed(object sender, PointerRoutedEventArgs e)
-    {
-        ViewModel.UseInlineLayout = !ViewModel.UseInlineLayout;
-    }
 }
