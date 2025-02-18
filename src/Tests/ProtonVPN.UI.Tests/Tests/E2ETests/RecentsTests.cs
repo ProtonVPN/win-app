@@ -56,7 +56,6 @@ public class RecentsTests : BaseTest
     }
 
     [Test, Order(1)]
-    [Retry(3)]
     public void RecentDeletion()
     {
         Thread.Sleep(TestConstants.AnimationDelay);

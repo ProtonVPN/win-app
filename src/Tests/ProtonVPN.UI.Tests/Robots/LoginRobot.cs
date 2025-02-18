@@ -115,7 +115,7 @@ public class LoginRobot
 
         public Verifications IsLoginWindowDisplayed()
         {
-            UsernameTextBox.WaitUntilDisplayed();
+            UsernameTextBox.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
             PasswordTextBox.WaitUntilDisplayed();
             return this;
         }

@@ -33,6 +33,7 @@ public class SupportRobot
     protected Element ReportSentLabel => Element.ByName("Report sent");
     protected Element NoLogsAttachedWarning => Element.ByAutomationId("Message");
     protected Element IncludeLogsCheckbox => Element.ByAutomationId("IncludeLogsCheckbox");
+    protected Element EmailInputField => Element.ByAutomationId("EmailInputField");
 
     public SupportRobot(Func<Window> windowFunc)
     {
@@ -47,7 +48,7 @@ public class SupportRobot
             .DoubleClick();
 
         ContactUsButton.Invoke();
-
+        EmailInputField.WaitUntilDisplayed();
         AutomationElement[] bugReportInputFields = _windowFunc().FindAllDescendants(cf => cf.ByControlType(FlaUI.Core.Definitions.ControlType.Edit));
         bugReportInputFields[0].AsTextBox().Text = "testing@email.com";
 
