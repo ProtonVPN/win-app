@@ -50,6 +50,14 @@ public static class UiActions
         return desiredElement;
     }
 
+    public static T RightClick<T>(this T desiredElement) where T : Element
+    {
+        AutomationElement elementToClick = WaitUntilExists(desiredElement);
+        elementToClick.WaitUntilClickable(TestConstants.TenSecondsTimeout);
+        elementToClick.RightClick();
+        return desiredElement;
+    }
+
     public static T Toggle<T>(this T desiredElement) where T : Element
     {
         AutomationElement elementToClick = WaitUntilExists(desiredElement);

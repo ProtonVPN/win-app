@@ -82,13 +82,14 @@ public class ProfileRobot
 
     public ProfileRobot SaveProfile()
     {
-        ApplyButton.Click();
+        ApplyButton.Invoke();
         return this;
     }
 
     public ProfileRobot ExpandSettingsSection()
     {
         ToggleSettingsButton.Click();
+        // Remove when VPNWIN-2599 is implemented.
         Thread.Sleep(TestConstants.AnimationDelay);
         return this;
     }
@@ -96,8 +97,35 @@ public class ProfileRobot
     public ProfileRobot DisableNetShield()
     {
         NetShieldDropDown.Click();
+        // Remove when VPNWIN-2599 is implemented.
         Thread.Sleep(TestConstants.AnimationDelay);
         NetShieldOffMenuItem.Click();
+        // Remove when VPNWIN-2599 is implemented.
+        Thread.Sleep(TestConstants.AnimationDelay);
+        return this;
+    }
+
+    public ProfileRobot SelectProtocol(TestConstants.Protocol protocol)
+    {
+        ProtocolsDropDown.Click();
+        switch (protocol)
+        {
+            case TestConstants.Protocol.OpenVpnUdp:
+                OpenVpnUdpProtocolMenuItem.Invoke();
+                break;
+            case TestConstants.Protocol.OpenVpnTcp:
+                OpenVpnTcpProtocolMenuItem.Invoke();
+                break;
+            case TestConstants.Protocol.WireGuardTcp:
+                WireGuardTcpProtocolMenuItem.Invoke();
+                break;
+            case TestConstants.Protocol.WireGuardTls:
+                WireGuardTlsProtocolMenuItem.Invoke();
+                break;
+            case TestConstants.Protocol.WireGuardUdp:
+                WireGuardUdpProtocolMenuItem.Invoke();
+                break;
+        }
         return this;
     }
 

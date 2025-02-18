@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
@@ -41,7 +42,7 @@ public class ProfileTests : BaseTest
     }
 
     [Test, Order(0)]
-    public void CreateProfile()
+    public void DeleteAllProfiles()
     {
         NavigationRobot
             .Verify.IsOnConnectionsPage();
@@ -50,6 +51,15 @@ public class ProfileTests : BaseTest
         NavigationRobot
             .Verify.IsOnProfilesPage();
 
+        RemoveProfiles();
+
+        SidebarRobot
+            .Verify.NoProfilesLabelIsDisplayed();
+    }
+
+    [Test, Order(1)]
+    public void CreateProfile()
+    {
         SidebarRobot
             .CreateProfile();
         NavigationRobot
@@ -62,7 +72,7 @@ public class ProfileTests : BaseTest
             .Verify.DoesConnectionItemExist(PROFILE_NAME);
     }
 
-    [Test, Order(1)]
+    [Test, Order(2)]
     public void ConnectToProfile()
     {
         SidebarRobot
@@ -78,7 +88,7 @@ public class ProfileTests : BaseTest
             .Verify.IsNetshieldBlocking(NetShieldMode.BlockAdsMalwareTrackers);
     }
 
-    [Test, Order(2)]
+    [Test, Order(3)]
     public void EditProfile()
     {
         SidebarRobot
@@ -99,7 +109,7 @@ public class ProfileTests : BaseTest
             .Verify.IsNetshieldNotBlocking();
     }
 
-    [Test, Order(3)]
+    [Test, Order(4)]
     public void DisconnectFromProfile()
     {
         SidebarRobot
@@ -111,7 +121,7 @@ public class ProfileTests : BaseTest
             .Verify.IsDisconnected();
     }
 
-    [Test, Order(4)]
+    [Test, Order(5)]
     public void DeleteProfile()
     {
         SidebarRobot
@@ -127,8 +137,21 @@ public class ProfileTests : BaseTest
         Thread.Sleep(500);
 
         SidebarRobot
-
             .Verify.DoesConnectionItemNotExist(PROFILE_NAME);
+    }
+
+    private void RemoveProfiles()
+    {
+        int profilesCount = SidebarRobot.GetProfileCount();
+        for (int profileIndex = 0; profileIndex < profilesCount; profileIndex++)
+        {
+            SidebarRobot.ExpandSecondaryActions()
+                .DeleteProfile();
+
+            ConfirmationRobot.PrimaryAction();
+            // Wait for profile to be deleted
+            Thread.Sleep(500);
+        }
     }
 
     [OneTimeTearDown]

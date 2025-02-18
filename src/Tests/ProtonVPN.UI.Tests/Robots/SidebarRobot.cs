@@ -18,8 +18,11 @@
  */
 
 using System.Threading;
+using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Input;
+using FlaUI.Core.Tools;
 using FlaUI.Core.WindowsAPI;
+using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
 
@@ -48,12 +51,13 @@ public class SidebarRobot
     protected Element ProfilesListItem = Element.ByName("Profiles");
 
     protected Element CountryTabs = Element.ByAutomationId("CountriesFeaturesList");
+    protected Element ConnectionItemsList = Element.ByAutomationId("ConnectionItemsList");
 
     protected Element CreateProfileButton = Element.ByAutomationId("CreateProfileButton");
 
     protected Element SearchTextBox = Element.ByAutomationId("SearchTextBox");
     protected Element CountryExpanderButton = Element.ByAutomationId("ExpanderButton");
-    protected Element CitySecondaryButton = Element.ByAutomationId("SecondaryButton");
+    protected Element SecondaryButton = Element.ByAutomationId("SecondaryButton");
     protected Element SpecificServerConnectionButton = Element.ByAutomationId("ConnectionRowHeader");
 
     protected Element NetshieldButton = Element.ByName("NetShield");
@@ -65,10 +69,12 @@ public class SidebarRobot
     protected Element SecureCoreSidebarUpsellLabel = Element.ByName("Add another layer of encryption to your VPN connection");
     protected Element P2pSidebarUpsellLabel = Element.ByName("Download files through BitTorrent and other file sharing protocols");
     protected Element TorSidebarUpsellLabel = Element.ByName("Use the Tor network over your VPN connection for extra privacy");
+    protected Element CreateYourFirstProfileLabel = Element.ByName("Create your first profile");
+    protected Element ProfileExplanationLabel = Element.ByName("Profiles are saved connections with your choice of location, server, and protocol.");
 
     protected Element EditProfileLabel = Element.ByName("Edit").FindChild(Element.ByAutomationId("TextBlock"));
     protected Element DuplicateProfileLabel = Element.ByName("Duplicate").FindChild(Element.ByAutomationId("TextBlock"));
-    protected Element DeleteProfileLabel = Element.ByName("Delete").FindChild(Element.ByAutomationId("TextBlock"));
+    protected Element DeleteProfileMenuitem = Element.ByAutomationId("DeleteMenuItem");
 
     public SidebarRobot NavigateToCountries()
     {
@@ -215,15 +221,31 @@ public class SidebarRobot
 
     public SidebarRobot ExpandSpecificServerList()
     {
-        CitySecondaryButton.Invoke();
+        SecondaryButton.Invoke();
+        return this;
+    }
+
+    public SidebarRobot ExpandSecondaryActions()
+    {
+        // Secondary actions expanding is problematic, that's why retry is needed.
+        Retry.WhileFalse(() => {
+            SecondaryButton.Invoke();
+            return !BaseTest.Window.FindFirstDescendant(DeleteProfileMenuitem.Condition).IsOffscreen;
+        }, TestConstants.TenSecondsTimeout, ignoreException: true, interval: TestConstants.RetryInterval);
+        
+
         return this;
     }
 
     public SidebarRobot ExpandSecondaryActions(string connectionValue)
     {
         Element countryButton = Element.ByAutomationId($"Actions_for_{connectionValue}");
+        countryButton.MoveMouse();
+        countryButton.RightClick();
         Element secondaryActionsButton = countryButton.FindChild(Element.ByAutomationId("SecondaryButton"));
         secondaryActionsButton.Invoke();
+        // Remove when VPNWIN-2599 is implemented.
+        Thread.Sleep(TestConstants.AnimationDelay);
         return this;
     }
 
@@ -253,9 +275,7 @@ public class SidebarRobot
 
     public SidebarRobot DeleteProfile()
     {
-        // First click does not work due to focus on first click.
-        // One click is needed for focus, other for clicking.
-        DeleteProfileLabel.DoubleClick();
+        DeleteProfileMenuitem.Invoke();
         return this;
     }
 
@@ -276,6 +296,12 @@ public class SidebarRobot
         Element profile = Element.ByAutomationId($"Actions_for_{profileName}");
         profile.ScrollIntoView();
         return this;
+    }
+
+    public int GetProfileCount()
+    {
+        SecondaryButton.WaitUntilDisplayed();
+        return BaseTest.Window.FindAllDescendants(SecondaryButton.Condition).Length;
     }
 
     private SidebarRobot NavigateToCountriesTab(int index)
@@ -392,6 +418,13 @@ public class SidebarRobot
         public Verifications IsSidebarSearchResultsDisplayed()
         {
             SearchResultsPage.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications NoProfilesLabelIsDisplayed()
+        {
+            CreateYourFirstProfileLabel.WaitUntilDisplayed();
+            ProfileExplanationLabel.WaitUntilDisplayed();
             return this;
         }
     }

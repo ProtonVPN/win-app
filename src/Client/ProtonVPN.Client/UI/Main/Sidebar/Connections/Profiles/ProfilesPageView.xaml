@@ -77,7 +77,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     HorizontalAlignment="Center"
                     Command="{x:Bind ViewModel.CreateProfileCommand, Mode=OneTime}"
                     Content="{x:Bind ViewModel.Localizer.Get('Connections_Profiles_Create')}"
-                    Style="{StaticResource PrimaryButtonStyle}" />
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    AutomationProperties.AutomationId="CreateProfileButton" />
 
         </StackPanel>
 

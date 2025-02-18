@@ -673,7 +673,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
                         <MenuFlyoutItem Command="{x:Bind DeleteProfileCommand}"
-                                        Text="{x:Bind Localizer.Get('Common_Actions_Delete')}">
+                                        Text="{x:Bind Localizer.Get('Common_Actions_Delete')}"
+                                        AutomationProperties.AutomationId="DeleteMenuItem">
                             <MenuFlyoutItem.Icon>
                                 <pathicons:TrashCrossFilled Size="Pixels20" />
                             </MenuFlyoutItem.Icon>

@@ -89,7 +89,7 @@ public class SettingRobot
 
     public SettingRobot CloseSettings()
     {
-        CloseSettingsButton.Click();
+        CloseSettingsButton.Invoke();
         return this;
     }
 
@@ -231,7 +231,7 @@ public class SettingRobot
 
     public SettingRobot ToggleNetShieldSetting()
     {
-        NetshieldToggle.Click();
+        NetshieldToggle.Toggle();
         return this;
     }
 

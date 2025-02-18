@@ -71,19 +71,21 @@ public class NetworkUtils
     {
         RetryResult<string> retry = Retry.WhileEmpty(
             () => {
+                FlushDns();
                 return GetIpAddressAsync().Result; },
-            TestConstants.ThirtySecondsTimeout, TestConstants.RetryInterval, ignoreException: true);
-        return retry.Result ?? throw new HttpRequestException("Failed to get IP Address.");
+            TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval, ignoreException: true);
+        return retry.Result ?? throw new HttpRequestException($"Failed to get IP Address. \n {retry.LastException.Message} \n {retry.LastException.StackTrace}");
     }
 
     public static string GetCountryNameWithRetry()
     {
         RetryResult<string> retry = Retry.WhileEmpty(
-        () => {
+            () => {
+                FlushDns();
                 return GetCountryNameAsync().Result;
             },
-            TestConstants.ThirtySecondsTimeout, TestConstants.RetryInterval, ignoreException: true);
-        return retry.Result ?? throw new HttpRequestException("Failed to get country name.");
+            TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval, ignoreException: true);
+        return retry.Result ?? throw new HttpRequestException($"Failed to get country name. \n {retry.LastException.Message} \n {retry.LastException.StackTrace}");
     }
 
     public static void VerifyUserIsConnectedToExpectedCountry(string countryNameToCompare)
@@ -101,10 +103,11 @@ public class NetworkUtils
         RetryResult<bool> retry = Retry.WhileTrue(
            () =>
            {
+               FlushDns();
                ipAddressFomAPI = GetIpAddressWithRetry();
                return ipAddressFomAPI.Equals(ipAddressToCompare);
            },
-           TestConstants.TenSecondsTimeout, TestConstants.ApiRetryInterval);
+           TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval);
 
         if (!retry.Success)
         {
@@ -120,10 +123,11 @@ public class NetworkUtils
         RetryResult<bool> retry = Retry.WhileFalse(
            () =>
            {
+               FlushDns();
                ipAddressFomAPI = GetIpAddressWithRetry();
                return ipAddressFomAPI.Equals(ipAddressToCompare);
            },
-           TestConstants.TenSecondsTimeout, TestConstants.ApiRetryInterval);
+           TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval);
 
         if (!retry.Success)
         {
