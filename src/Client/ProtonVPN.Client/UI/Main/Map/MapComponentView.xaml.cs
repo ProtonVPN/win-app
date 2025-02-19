@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Services.Activation;
 
@@ -24,6 +25,54 @@ namespace ProtonVPN.Client.UI.Main.Map;
 
 public sealed partial class MapComponentView : IContextAware
 {
+    public static readonly DependencyProperty LeftOffsetProperty = DependencyProperty.Register(
+        nameof(LeftOffset),
+        typeof(double),
+        typeof(MapComponentView),
+        new PropertyMetadata(default));
+
+    public static readonly DependencyProperty TopOffsetProperty = DependencyProperty.Register(
+        nameof(TopOffset),
+        typeof(double),
+        typeof(MapComponentView),
+        new PropertyMetadata(default));
+
+    public static readonly DependencyProperty RightOffsetProperty = DependencyProperty.Register(
+        nameof(RightOffset),
+        typeof(double),
+        typeof(MapComponentView),
+        new PropertyMetadata(default));
+
+    public static readonly DependencyProperty BottomOffsetProperty = DependencyProperty.Register(
+        nameof(BottomOffset),
+        typeof(double),
+        typeof(MapComponentView),
+        new PropertyMetadata(default));
+
+    public double LeftOffset
+    {
+        get => (double)GetValue(LeftOffsetProperty);
+        set => SetValue(LeftOffsetProperty, value);
+    }
+
+    public double TopOffset
+    {
+        get => (double)GetValue(TopOffsetProperty);
+        set => SetValue(TopOffsetProperty, value);
+    }
+
+    public double RightOffset
+    {
+        get => (double)GetValue(RightOffsetProperty);
+        set => SetValue(RightOffsetProperty, value);
+    }
+
+    public double BottomOffset
+    {
+        get => (double)GetValue(BottomOffsetProperty);
+        set => SetValue(BottomOffsetProperty, value);
+    }
+
     public MapComponentViewModel ViewModel { get; }
 
     public MapComponentView()
@@ -31,17 +80,10 @@ public sealed partial class MapComponentView : IContextAware
         ViewModel = App.GetService<MapComponentViewModel>();
 
         InitializeComponent();
-
-        App.GetService<IMainWindowActivator>().HostDpiChanged += OnWindowDpiChanged;
     }
 
     public object GetContext()
     {
         return ViewModel;
-    }
-
-    private void OnWindowDpiChanged(object? sender, EventArgs e)
-    {
-        MapControl.InvalidateDpi();
     }
 }

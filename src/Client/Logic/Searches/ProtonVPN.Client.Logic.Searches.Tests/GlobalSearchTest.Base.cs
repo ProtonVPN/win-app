@@ -140,6 +140,8 @@ public partial class GlobalSearchTest
             ExitCountry = countryCode,
             HostCountry = "",
             Domain = "test",
+            Latitude = 0,
+            Longitude = 0,
             GatewayName = "",
             Servers = [],
             Features = features

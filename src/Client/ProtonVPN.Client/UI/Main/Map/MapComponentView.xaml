@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (c) 2024 Proton AG
+Copyright (c) 2025 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -22,17 +22,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:map="using:ProtonVPN.Client.Common.UI.Controls.Map"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:map="using:ProtonVPN.Client.Common.UI.Controls.Map"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
-    <map:MapControl x:Name="MapControl"
-                    ActiveCountryCode="{x:Bind ViewModel.ActiveCountryCode}"
-                    ActiveFillColorBrush="{ThemeResource MapHighlightColorBrush}"
-                    InactiveFillColorBrush="{ThemeResource MapNormColorBrush}"
+    <map:MapControl Countries="{x:Bind ViewModel.Countries}"
+                    CurrentCountry="{x:Bind ViewModel.CurrentCountry}"
+                    ConnectCommand="{x:Bind ViewModel.ConnectCommand}"
                     IsConnected="{x:Bind ViewModel.IsConnected}"
                     IsConnecting="{x:Bind ViewModel.IsConnecting}"
-                    IsMainWindowVisible="{x:Bind ViewModel.IsMainWindowVisible}" />
+                    IsDisconnected="{x:Bind ViewModel.IsDisconnected}"
+                    LeftOffset="{x:Bind LeftOffset}"
+                    TopOffset="{x:Bind TopOffset}"
+                    RightOffset="{x:Bind RightOffset}"
+                    BottomOffset="{x:Bind BottomOffset}" />
 
 </UserControl>

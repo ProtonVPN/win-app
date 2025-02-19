@@ -35,7 +35,7 @@ namespace ProtonVPN.Api.Contracts.Servers
         public string Domain { get; set; }
         public sbyte Tier { get; set; }
         public ulong Features { get; set; }
-        public LocationResponse LocationResponse { get; set; }
+        public LocationResponse Location { get; set; }
         public sbyte Status { get; set; }
         public sbyte Load { get; set; }
         public float Score { get; set; }
@@ -54,7 +54,7 @@ namespace ProtonVPN.Api.Contracts.Servers
             Domain = string.Empty,
             Tier = 0,
             Features = 0,
-            LocationResponse = new LocationResponse
+            Location = new LocationResponse
             {
                 Lat = 0,
                 Long = 0

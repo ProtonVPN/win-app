@@ -82,7 +82,7 @@ public class LogicalServerMapperTest
             Features = features,
             HostCountry = string.Empty,
             Load = 0,
-            LocationResponse = new LocationResponse { Lat = 50, Long = 20, },
+            Location = new LocationResponse { Lat = 50, Long = 20, },
             Servers = new()
         };
     }

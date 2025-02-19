@@ -804,7 +804,8 @@
         <None Remove="Assets\Illustrations\world-map.svg" />
         <None Remove="Assets\Illustrations\worldwide-coverage.png" />
         <None Remove="Assets\Illustrations\wrong-country.png" />
-        <None Remove="Controls\Map\CountryPin.xaml" />
+        <None Remove="Assets\Map\Data\UsaStates.geojson" />
+        <None Remove="Controls\Map\CountryCallout.xaml" />
         <None Remove="Controls\Map\MapControl.xaml" />
         <None Remove="Controls\ScramblingTextControl.xaml" />
         <None Remove="Controls\ServerLoadControl.xaml" />
@@ -887,11 +888,9 @@
         <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
         <PackageReference Include="System.Formats.Asn1" />
         <PackageReference Include="System.Text.Json" />
+		<PackageReference Include="Mapsui.WinUI" />
     </ItemGroup>
     <ItemGroup>
-        <Page Update="Controls\Map\CountryPin.xaml">
-          <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-        </Page>
         <Page Update="Controls\Map\MapControl.xaml">
           <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
         </Page>
@@ -1032,6 +1031,7 @@
         </Page>
     </ItemGroup>
     <ItemGroup>
+        <Folder Include="Controls\Map\Layers\" />
         <Folder Include="Properties\" />
     </ItemGroup>
     <ItemGroup>
@@ -2253,6 +2253,15 @@
         <Content Update="Assets\Illustrations\wrong-country.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Map\Data\MapDisputedAreas.geojson">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Map\Data\Map.geojson">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Map\Data\UsaStates.geojson">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
     </ItemGroup>
     <ItemGroup>
       <Page Update="Assets\Icons\Profiles\BrowsingProfileIcon.xaml">
@@ -2492,6 +2501,11 @@
     </ItemGroup>
     <ItemGroup>
       <Page Update="Styles\Controls\TagControlStyles.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Controls\Map\CountryCallout.xaml">
         <Generator>MSBuild:Compile</Generator>
       </Page>
     </ItemGroup>

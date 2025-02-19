@@ -47,6 +47,8 @@ public class LogicalServerMapper : IMapper<LogicalServerResponse, Server>
                 ExitCountry = leftEntity.ExitCountry,
                 HostCountry = leftEntity.HostCountry,
                 Domain = leftEntity.Domain,
+                Latitude = leftEntity.Location?.Lat ?? 0,
+                Longitude = leftEntity.Location?.Long ?? 0,
                 ExitIp = GetExitIpIfEqualInAllPhysicalServers(leftEntity.Servers),
                 Status = leftEntity.Status,
                 Tier = (ServerTiers)leftEntity.Tier,

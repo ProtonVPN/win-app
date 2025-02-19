@@ -242,6 +242,7 @@ public class AppModule : Module
 
         builder.RegisterType<SystemTimeValidator>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ExitService>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<CoordinatesProvider>().AsImplementedInterfaces().SingleInstance();
     }
 
     private void RegisterLocalHandlers(ContainerBuilder builder)
@@ -294,7 +295,7 @@ public class AppModule : Module
         RegisterViewModel<TorCountriesComponentViewModel>(builder);
         RegisterViewModel<SearchResultsPageViewModel>(builder);
         RegisterViewModel<HomeComponentViewModel>(builder);
-        RegisterViewModel<MapComponentViewModel>(builder);
+        RegisterViewModel<MapComponentViewModel>(builder).AutoActivate();
         RegisterViewModel<ConnectionCardComponentViewModel>(builder);
         RegisterViewModel<ChangeServerComponentViewModel>(builder);
         RegisterViewModel<ConnectionCardUpsellBannerViewModel>(builder);

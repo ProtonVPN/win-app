@@ -235,7 +235,6 @@
 
   <ItemGroup>
     <Folder Include="UI\Overlays\Information\Notification\" />
-    <Folder Include="UI\Main\Map\" />
     <Page Update="UI\Main\Components\ConnectionErrorComponent.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>

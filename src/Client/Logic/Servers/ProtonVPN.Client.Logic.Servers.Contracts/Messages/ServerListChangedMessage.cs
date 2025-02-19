@@ -19,6 +19,4 @@
 
 namespace ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 
-public class ServerListChangedMessage
-{
-}
+public class ServerListChangedMessage;

@@ -24,7 +24,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:controls="using:CommunityToolkit.WinUI.Controls"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:home="using:ProtonVPN.Client.UI.Main.Home"
-      xmlns:map="using:ProtonVPN.Client.UI.Main.Map"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:sidebar="using:ProtonVPN.Client.UI.Main.Sidebar"
       xmlns:widgets="using:ProtonVPN.Client.UI.Main.Widgets"
@@ -44,7 +43,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Grid x:Name="LayoutRoot"
           PointerPressed="OnPointerPressed"
           Background="{ThemeResource TransparentColorBrush}">
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="{Binding Source={StaticResource MainTitleBarHeight}, Converter={StaticResource DoubleToPixelGridLengthConverter}}" />
             <RowDefinition Height="*" />
@@ -113,7 +112,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   IsEnabled="{x:Bind ViewModel.IsHomePageDisplayed}" />
 
         </Grid>
-        
+
     </Grid>
 
 </Page>
