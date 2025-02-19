@@ -23,5 +23,5 @@ namespace ProtonVPN.StatisticalEvents.Contracts;
 
 public interface IVpnConnectionStatisticalEventSender
 {
-    void Send(VpnConnectionStatisticalEventData eventData, float timeToConnectionInMilliseconds);
+    void Send(VpnConnectionEventData eventData, float timeToConnectionInMilliseconds);
 }

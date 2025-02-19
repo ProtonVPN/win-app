@@ -34,7 +34,7 @@ public class VpnConnectionStatisticalEventSender : VpnStatisticalEventSenderBase
     {
     }
 
-    public void Send(VpnConnectionStatisticalEventData eventData, float timeToConnectionInMilliseconds)
+    public void Send(VpnConnectionEventData eventData, float timeToConnectionInMilliseconds)
     {
         SendStatisticalEvent(eventData, "time_to_connection", timeToConnectionInMilliseconds);
     }

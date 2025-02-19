@@ -38,7 +38,7 @@ public abstract class VpnStatisticalEventSenderBase : StatisticalEventSenderBase
     }
 
     protected void SendStatisticalEvent(
-        VpnConnectionStatisticalEventData eventData,
+        VpnConnectionEventData eventData,
         string valueKey,
         float value)
     {

@@ -34,7 +34,7 @@ public class VpnDisconnectionStatisticalEventSender : VpnStatisticalEventSenderB
     {
     }
 
-    public void Send(VpnConnectionStatisticalEventData eventData, float sessionLengthInMilliseconds)
+    public void Send(VpnConnectionEventData eventData, float sessionLengthInMilliseconds)
     {
         SendStatisticalEvent(eventData, "session_length", sessionLengthInMilliseconds);
     }

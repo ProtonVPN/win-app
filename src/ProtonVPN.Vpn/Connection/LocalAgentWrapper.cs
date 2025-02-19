@@ -85,6 +85,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
     private bool _wasConnectEverRequested;
     private EventArgs<VpnState> _vpnState;
     private string _localIp = string.Empty;
+    private string _remoteIp = string.Empty;
     private DateTime _lastNetShieldStatsRequestDate = DateTime.MinValue;
     private ConnectionCertificate _lastConnectionCertificate = null;
 
@@ -359,6 +360,11 @@ internal class LocalAgentWrapper : ISingleVpnConnection
             {
                 case VpnStatus.Connected:
                     _localIp = e.Data.LocalIp;
+                    if (!string.IsNullOrEmpty(e.Data.RemoteIp))
+                    {
+                        _remoteIp = e.Data.RemoteIp;
+                    }
+
                     HandleVpnConnectedState();
                     return;
                 case VpnStatus.Disconnected:
@@ -459,11 +465,16 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         ConnectionCertificate connectionCertificate = null)
     {
         _currentStatus = status;
+
+        string remoteIp = !string.IsNullOrEmpty(_remoteIp)
+            ? _remoteIp
+            : _vpnState?.Data.RemoteIp ?? string.Empty;
+
         InvokeStateChange(new EventArgs<VpnState>(new VpnState(
             status,
             error ?? _vpnState?.Data.Error ?? VpnError.None,
             _localIp,
-            _vpnState?.Data.RemoteIp ?? string.Empty,
+            remoteIp,
             _vpnState?.Data.EndpointPort ?? 0,
             _vpnConfig?.VpnProtocol ?? VpnProtocol.Smart,
             _vpnConfig?.PortForwarding ?? false,

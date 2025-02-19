@@ -19,8 +19,9 @@
 
 using System.Net;
 using System.Net.NetworkInformation;
-using ProtonVPN.Logging.Contracts.Events.NetworkLogs;
+using System.Net.Sockets;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.NetworkLogs;
 using ProtonVPN.OperatingSystems.Network.Contracts;
 
 namespace ProtonVPN.OperatingSystems.Network.NetworkInterface;
@@ -116,16 +117,26 @@ public class SystemNetworkInterfaces : ISystemNetworkInterfaces
         return Guid.TryParse(stringId, out Guid result) && result == id;
     }
 
-    public NetworkConnectionType? GetGetNetworkConnectionType()
+    public NetworkConnectionType? GetNetworkConnectionType()
     {
         System.Net.NetworkInformation.NetworkInterface[] activeInterfaces = System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces()
             .Where(ni => ni.OperationalStatus == OperationalStatus.Up &&
-                            (ni.NetworkInterfaceType == NetworkInterfaceType.Ethernet ||
-                            ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211))
+                         (ni.NetworkInterfaceType == NetworkInterfaceType.Ethernet ||
+                          ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211))
             .ToArray();
 
         foreach (System.Net.NetworkInformation.NetworkInterface networkInterface in activeInterfaces)
         {
+            IPInterfaceProperties ipProperties = networkInterface.GetIPProperties();
+            bool hasDefaultGateway = ipProperties.GatewayAddresses.Any(g =>
+                g.Address.AddressFamily == AddressFamily.InterNetwork &&
+                !g.Address.Equals(IPAddress.Any));
+
+            if (!hasDefaultGateway)
+            {
+                continue;
+            }
+
             if (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Ethernet)
             {
                 return NetworkConnectionType.Wired;

@@ -24,7 +24,7 @@ using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.StatisticalEvents.Contracts.Models;
 
-public class VpnConnectionStatisticalEventData
+public class VpnConnectionEventData
 {
     public OutcomeDimension? Outcome { get; init; }
     public VpnStatusDimension? VpnStatus { get; init; }
@@ -35,7 +35,7 @@ public class VpnConnectionStatisticalEventData
     public VpnPlan VpnPlan { get; init; }
     public string? VpnCountry { get; init; }
     public string? UserCountry { get; init; }
-    public required ServerDetails Server { get; init; }
+    public required ServerDetailsEventData Server { get; init; }
     public int Port { get; init; }
     public string? Isp { get; init; }
 }

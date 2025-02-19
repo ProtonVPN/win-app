@@ -36,7 +36,7 @@ public class VpnConnectionDimensionsProvider : IVpnConnectionDimensionsProvider
     private readonly IDimensionMapper<NetworkConnectionType?> _networkConnectionTypeMapper;
     private readonly IDimensionMapper<VpnFeatureIntent?> _vpnFeatureIntentMapper;
     private readonly IDimensionMapper<VpnPlan?> _vpnPlanMapper;
-    private readonly IDimensionMapper<ServerDetails> _serverDetailsMapper;
+    private readonly IDimensionMapper<ServerDetailsEventData> _serverDetailsMapper;
 
     public VpnConnectionDimensionsProvider(
         IDimensionMapper<VpnProtocol?> vpnProtocolMapper,
@@ -46,7 +46,7 @@ public class VpnConnectionDimensionsProvider : IVpnConnectionDimensionsProvider
         IDimensionMapper<NetworkConnectionType?> networkConnectionTypeMapper,
         IDimensionMapper<VpnFeatureIntent?> vpnFeatureIntentMapper,
         IDimensionMapper<VpnPlan?> vpnPlanMapper,
-        IDimensionMapper<ServerDetails> serverDetailsMapper)
+        IDimensionMapper<ServerDetailsEventData> serverDetailsMapper)
     {
         _vpnProtocolMapper = vpnProtocolMapper;
         _outcomeMapper = outcomeMapper;
@@ -58,7 +58,7 @@ public class VpnConnectionDimensionsProvider : IVpnConnectionDimensionsProvider
         _serverDetailsMapper = serverDetailsMapper;
     }
 
-    public Dictionary<string, string> GetDimensions(VpnConnectionStatisticalEventData eventData)
+    public Dictionary<string, string> GetDimensions(VpnConnectionEventData eventData)
     {
         return new Dictionary<string, string>
         {
