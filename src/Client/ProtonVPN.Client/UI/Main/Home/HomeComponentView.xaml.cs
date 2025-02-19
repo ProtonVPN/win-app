@@ -24,14 +24,35 @@ namespace ProtonVPN.Client.UI.Main.Home;
 
 public sealed partial class HomeComponentView : IContextAware
 {
-    public static readonly DependencyProperty SidebarWidthProperty =
-        DependencyProperty.Register(nameof(SidebarWidth), typeof(double), typeof(HomeComponentView), new PropertyMetadata(default));
+    public static readonly DependencyProperty SidebarWidthProperty = DependencyProperty.Register(
+        nameof(SidebarWidth),
+        typeof(double),
+        typeof(HomeComponentView),
+        new PropertyMetadata(default));
 
-    public static readonly DependencyProperty WidgetsBarWidthProperty =
-        DependencyProperty.Register(nameof(WidgetsBarWidth), typeof(double), typeof(HomeComponentView), new PropertyMetadata(default));
+    public static readonly DependencyProperty WidgetsBarWidthProperty = DependencyProperty.Register(
+        nameof(WidgetsBarWidth),
+        typeof(double),
+        typeof(HomeComponentView),
+        new PropertyMetadata(default));
 
-    public static readonly DependencyProperty IsHomeDisplayedProperty =
-        DependencyProperty.Register(nameof(IsHomeDisplayed), typeof(bool), typeof(HomeComponentView), new PropertyMetadata(default));
+    public static readonly DependencyProperty MapTopOffsetProperty = DependencyProperty.Register(
+        nameof(MapTopOffset),
+        typeof(double),
+        typeof(HomeComponentView),
+        new PropertyMetadata(default));
+
+    public static readonly DependencyProperty MapBottomOffsetProperty = DependencyProperty.Register(
+        nameof(MapBottomOffset),
+        typeof(double),
+        typeof(HomeComponentView),
+        new PropertyMetadata(default));
+
+    public static readonly DependencyProperty IsHomeDisplayedProperty = DependencyProperty.Register(
+        nameof(IsHomeDisplayed),
+        typeof(bool),
+        typeof(HomeComponentView),
+        new PropertyMetadata(default));
 
     public HomeComponentViewModel ViewModel { get; }
 
@@ -45,6 +66,18 @@ public sealed partial class HomeComponentView : IContextAware
     {
         get => (double)GetValue(WidgetsBarWidthProperty);
         set => SetValue(WidgetsBarWidthProperty, value);
+    }
+
+    public double MapTopOffset
+    {
+        get => (double)GetValue(MapTopOffsetProperty);
+        set => SetValue(MapTopOffsetProperty, value);
+    }
+
+    public double MapBottomOffset
+    {
+        get => (double)GetValue(MapBottomOffsetProperty);
+        set => SetValue(MapBottomOffsetProperty, value);
     }
 
     public bool IsHomeDisplayed
@@ -71,10 +104,22 @@ public sealed partial class HomeComponentView : IContextAware
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
         ViewModel.Activate();
+        DetailsComponent.SizeChanged += InvalidateMapOffsets;
+        ConnectionCardComponent.SizeChanged += InvalidateMapOffsets;
+        BannersContainer.SizeChanged += InvalidateMapOffsets;
+    }
+
+    private void InvalidateMapOffsets(object sender, SizeChangedEventArgs e)
+    {
+        MapBottomOffset = DetailsComponent.ActualHeight + BannersContainer.ActualHeight;
+        MapTopOffset = ConnectionCardComponent.ActualHeight;
     }
 
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
         ViewModel.Deactivate();
+        DetailsComponent.SizeChanged -= InvalidateMapOffsets;
+        ConnectionCardComponent.SizeChanged -= InvalidateMapOffsets;
+        BannersContainer.SizeChanged -= InvalidateMapOffsets;
     }
 }

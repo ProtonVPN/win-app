@@ -32,6 +32,8 @@ public class Server : ILocation
     public required string ExitCountry { get; init; }
     public required string HostCountry { get; init; }
     public required string Domain { get; init; }
+    public required double Latitude { get; init; }
+    public required double Longitude { get; init; }
     public string? ExitIp { get; init; }
     public sbyte Status { get; set; }
     public ServerTiers Tier { get; init; }
@@ -68,6 +70,8 @@ public class Server : ILocation
             ExitCountry = ExitCountry,
             HostCountry = HostCountry,
             Domain = Domain,
+            Latitude = Latitude,
+            Longitude = Longitude,
             ExitIp = ExitIp,
             Status = Status,
             Tier = Tier,

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,6 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Logic.Servers.Contracts.Messages;
+namespace ProtonVPN.Client.Common.UI.Controls.Map.Animations;
 
-public class ServerListChangedMessage;
+public class CircleAnimationValues
+{
+    public required float Start { get; init; }
+    public required float End { get; init; }
+}

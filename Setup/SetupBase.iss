@@ -139,6 +139,8 @@ Source: "..\{#SourcePath}\Assets\Flags\Dark\*"; DestDir: "{app}\{#VersionFolder}
 Source: "..\{#SourcePath}\Assets\Flags\Light\*"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Flags\Light";
 Source: "..\{#SourcePath}\Assets\Flags\*"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Flags";
 
+Source: "..\{#SourcePath}\Assets\Map\Data\*"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Map\Data";
+
 Source: "Images\Proton*.bmp"; Flags: dontcopy;
 
 [Icons]

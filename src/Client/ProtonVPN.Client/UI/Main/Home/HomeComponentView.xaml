@@ -60,14 +60,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Grid.RowDefinitions>
 
         <map:MapComponentView x:Name="MapView"
-                              Grid.Row="2"
-                              Grid.Column="1" />
+                              LeftOffset="{x:Bind SidebarWidth}"
+                              RightOffset="{x:Bind WidgetsBarWidth}"
+                              TopOffset="{x:Bind MapTopOffset}"
+                              BottomOffset="{x:Bind MapBottomOffset}"
+                              Grid.ColumnSpan="3"
+                              Grid.RowSpan="5" />
 
         <!--  Connection status background  -->
         <Grid Grid.Row="0"
               Grid.RowSpan="4"
               Grid.Column="0"
               Grid.ColumnSpan="3"
+              IsHitTestVisible="False"
               Height="{StaticResource ConnectionStatusGradientHeight}"
               VerticalAlignment="Top">
 
@@ -83,6 +88,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 Grid.RowSpan="4"
                 Grid.Column="0"
                 Grid.ColumnSpan="3"
+                IsHitTestVisible="False"
                 Height="{StaticResource ConnectionDetailsGradientHeight}"
                 VerticalAlignment="Bottom"
                 Background="{ThemeResource ReverseGradientFadingColorBrush}" />
@@ -91,9 +97,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Border Grid.Row="4"
                 Grid.Column="0"
                 Grid.ColumnSpan="3"
+                IsHitTestVisible="False"
                 Background="{ThemeResource ReverseStrongGradientFadingColorBrush}" />
 
-        <card:ConnectionCardComponentView x:Name="ConnectionCardComponent"
+        <card:ConnectionCardComponentView x:Name="ConnectionCardComponent"                                        
                                           Grid.Row="1"
                                           Grid.Column="1"
                                           MaxWidth="{StaticResource MaximumHomePageContentWidth}"

@@ -34,7 +34,6 @@ using ProtonVPN.Client.Core.Extensions;
 using ProtonVPN.Client.Core.Services.Mapping;
 using ProtonVPN.Client.Core.Services.Selection;
 using WinUIEx;
-using Microsoft.UI.Xaml.Documents;
 
 namespace ProtonVPN.Client.Core.Services.Activation.Bases;
 

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,6 +17,25 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Logic.Servers.Contracts.Messages;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Mapsui;
+using Mapsui.Layers;
+using Mapsui.Providers;
 
-public class ServerListChangedMessage;
+namespace ProtonVPN.Client.Common.UI.Controls.Map.Providers;
+
+public class CustomMemoryProvider : MemoryProvider
+{
+    public CustomMemoryProvider(IEnumerable<IFeature> features) : base(features)
+    {
+    }
+
+    public override Task<IEnumerable<IFeature>> GetFeaturesAsync(FetchInfo fetchInfo)
+    {
+        IFeature[] source = Features.ToArray();
+        return Task.FromResult((IEnumerable<IFeature>)source.Where((IFeature f) => f != null).ToList());
+
+    }
+}

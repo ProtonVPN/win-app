@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,6 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Logic.Servers.Contracts.Messages;
+using Mapsui;
+using Mapsui.Extensions;
+using Mapsui.Projections;
 
-public class ServerListChangedMessage;
+namespace ProtonVPN.Client.Common.UI.Controls.Map;
+
+public class Country
+{
+    public string Name { get; set; } = string.Empty;
+
+    public string Code { get; set; } = string.Empty;
+
+    public double Longitude { get; set; } = 0;
+
+    public double Latitude { get; set; } = 0;
+
+    public MPoint GetMapPoint()
+    {
+        return SphericalMercator.FromLonLat(Longitude, Latitude).ToMPoint();
+    }
+}

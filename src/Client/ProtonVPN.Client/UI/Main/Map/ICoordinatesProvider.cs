@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,6 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Logic.Servers.Contracts.Messages;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
-public class ServerListChangedMessage;
+namespace ProtonVPN.Client.UI.Main.Map;
+
+public interface ICoordinatesProvider
+{
+    (double Latitude, double Longitude)? GetCoordinates(ILocation location);
+}

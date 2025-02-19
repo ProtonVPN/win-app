@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -28,7 +28,7 @@ using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Home;
 
-public class HomeComponentViewModel : ActivatableViewModelBase,
+public partial class HomeComponentViewModel : ActivatableViewModelBase,
     IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<ClientUpdateStateChangedMessage>
 {
