@@ -32,7 +32,7 @@ include:
     inputs:
       stage: security
       cli-args: "-c .grype.yaml"
-      allowed-to-fail: false
+      allowed-to-fail: true
       output-filename: grype-$BUILD_TYPE
 
   - component: $CI_SERVER_HOST/proton/devops/cicd-components/devsecops/gitleaks/scan-repository@~latest

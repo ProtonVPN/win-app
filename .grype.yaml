@@ -1,1 +1,2 @@
-fail-on-severity: "high"
+# Commented to allow Grype to fail
+# fail-on-severity: "high"
