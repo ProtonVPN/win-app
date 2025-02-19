@@ -22,6 +22,7 @@ using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
+using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
@@ -63,6 +64,8 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
     private readonly IRecentConnectionsManager _recentConnectionsManager;
     private readonly IChangeServerModerator _changeServerModerator;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
+    private readonly IMainViewNavigator _mainViewNavigator;
+    private readonly ISettingsViewNavigator _settingsViewNavigator;
     private readonly IServersLoader _serversLoader;
 
     [ObservableProperty]
@@ -81,6 +84,7 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
     [NotifyPropertyChangedFor(nameof(IsConnected))]
     [NotifyPropertyChangedFor(nameof(IsFreeConnectionsTaglineVisible))]
     [NotifyPropertyChangedFor(nameof(IsChangeServerOptionVisible))]
+    [NotifyPropertyChangedFor(nameof(IsChangeDefaultConnectionOptionVisible))]
     [NotifyPropertyChangedFor(nameof(ExitCountry))]
     [NotifyPropertyChangedFor(nameof(EntryCountry))]
     [NotifyPropertyChangedFor(nameof(IsSecureCore))]
@@ -126,9 +130,6 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
     [NotifyPropertyChangedFor(nameof(FormattedFreeCountriesCount))]
     private int _freeCountriesCount;
 
-    [ObservableProperty]
-    private bool _useInlineLayout = true;
-
     public string FormattedFreeCountriesCount => FreeCountriesCount > FREE_COUNTRIES_DISPLAYED_AS_FLAGS
         ? $"+{FreeCountriesCount - FREE_COUNTRIES_DISPLAYED_AS_FLAGS}"
         : string.Empty;
@@ -160,6 +161,8 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
     public bool IsFreeConnectionsTaglineVisible => IsFreeUser && !IsConnected;
 
     public bool IsChangeServerOptionVisible => IsFreeUser && IsConnected;
+
+    public bool IsChangeDefaultConnectionOptionVisible => !IsFreeUser && IsDisconnected;
 
     public string? ExitCountry =>
         CurrentConnectionStatus switch
@@ -201,6 +204,8 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
         IRecentConnectionsManager recentConnectionsManager,
         IChangeServerModerator changeServerModerator,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
+        IMainViewNavigator mainViewNavigator,
+        ISettingsViewNavigator settingsViewNavigator,
         IServersLoader serversLoader)
         : base(localizer, logger, issueReporter)
     {
@@ -209,6 +214,8 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
         _recentConnectionsManager = recentConnectionsManager;
         _changeServerModerator = changeServerModerator;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
+        _mainViewNavigator = mainViewNavigator;
+        _settingsViewNavigator = settingsViewNavigator;
         _serversLoader = serversLoader;
     }
 
@@ -339,6 +346,13 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
         return _mainWindowOverlayActivator.ShowTorInfoOverlayAsync();
     }
 
+    [RelayCommand]
+    private async Task<bool> NavigateToDefaultConnectionSettingsAsync()
+    {
+        return await _mainViewNavigator.NavigateToSettingsViewAsync()
+            && await _settingsViewNavigator.NavigateToDefaultConnectionSettingsViewAsync(isDirectNavigation: true);
+    }
+
     private void InvalidateConnectionStatus()
     {
         CurrentConnectionStatus = _connectionManager.ConnectionStatus;
@@ -372,6 +386,7 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
         OnPropertyChanged(nameof(IsFreeUser));
         OnPropertyChanged(nameof(IsFreeConnectionsTaglineVisible));
         OnPropertyChanged(nameof(IsChangeServerOptionVisible));
+        OnPropertyChanged(nameof(IsChangeDefaultConnectionOptionVisible));
     }
 
     private string GetConnectionCardTitle()

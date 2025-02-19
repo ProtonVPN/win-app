@@ -25,23 +25,23 @@ namespace ProtonVPN.Client.Core.Services.Navigation;
 
 public interface ISettingsViewNavigator : IViewNavigator
 {
-    Task<bool> NavigateToFeatureViewAsync(ConnectionFeature feature, bool isWidgetNavigation = false);
+    Task<bool> NavigateToFeatureViewAsync(ConnectionFeature feature, bool isDirectNavigation = false);
 
     Task<bool> NavigateToCommonSettingsViewAsync(bool forceNavigation = false);
 
     Task<bool> NavigateToAdvancedSettingsViewAsync();
 
-    Task<bool> NavigateToDefaultConnectionSettingsViewAsync();
+    Task<bool> NavigateToDefaultConnectionSettingsViewAsync(bool isDirectNavigation = false);
 
-    Task<bool> NavigateToProtocolSettingsViewAsync();
+    Task<bool> NavigateToProtocolSettingsViewAsync(bool isDirectNavigation = false);
 
-    Task<bool> NavigateToNetShieldSettingsViewAsync(bool isWidgetNavigation = false);
+    Task<bool> NavigateToNetShieldSettingsViewAsync(bool isDirectNavigation = false);
 
-    Task<bool> NavigateToKillSwitchSettingsViewAsync(bool isWidgetNavigation = false);
+    Task<bool> NavigateToKillSwitchSettingsViewAsync(bool isDirectNavigation = false);
 
-    Task<bool> NavigateToPortForwardingSettingsViewAsync(bool isWidgetNavigation = false);
+    Task<bool> NavigateToPortForwardingSettingsViewAsync(bool isDirectNavigation = false);
 
-    Task<bool> NavigateToSplitTunnelingSettingsViewAsync(bool isWidgetNavigation = false);
+    Task<bool> NavigateToSplitTunnelingSettingsViewAsync(bool isDirectNavigation = false);
 
     Task<bool> NavigateToVpnAcceleratorSettingsViewAsync();
 
