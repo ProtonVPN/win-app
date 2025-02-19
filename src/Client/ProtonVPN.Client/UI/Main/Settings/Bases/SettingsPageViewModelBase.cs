@@ -51,7 +51,7 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
     protected readonly ISettingsConflictResolver SettingsConflictResolver;
     protected readonly IConnectionManager ConnectionManager;
 
-    private bool _isNavigationFromWidget = false;
+    private bool _isNavigationFromHomePage = false;
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(ApplyCommand))]
@@ -103,7 +103,7 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
     public async Task<bool> ApplyAsync()
     {
         return await ApplyChangesAsync()
-            && _isNavigationFromWidget
+            && _isNavigationFromHomePage
                 ? await CloseAsync()
                 : await ParentViewNavigator.NavigateToDefaultAsync();
     }
@@ -134,7 +134,7 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
     {
         base.OnNavigatedTo(parameter, isBackNavigation);
 
-        _isNavigationFromWidget = Convert.ToBoolean(parameter ?? false);
+        _isNavigationFromHomePage = Convert.ToBoolean(parameter ?? false);
 
         await RetrieveSettingsAsync();
     }
@@ -166,7 +166,7 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
 
         // Reset flag when navigating to another page
         IsPageReady = false;
-        _isNavigationFromWidget = false;
+        _isNavigationFromHomePage = false;
     }
 
     protected virtual void OnConnectionStatusChanged(ConnectionStatus connectionStatus)

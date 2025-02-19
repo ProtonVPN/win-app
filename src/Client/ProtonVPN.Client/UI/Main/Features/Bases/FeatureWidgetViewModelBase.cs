@@ -125,7 +125,7 @@ public abstract partial class FeatureWidgetViewModelBase : SideWidgetViewModelBa
         }
 
         return await MainViewNavigator.NavigateToSettingsViewAsync() &&
-               await SettingsViewNavigator.NavigateToFeatureViewAsync(ConnectionFeature, isWidgetNavigation: true);
+               await SettingsViewNavigator.NavigateToFeatureViewAsync(ConnectionFeature, isDirectNavigation: true);
     }
 
     public void Receive(SettingChangedMessage message)

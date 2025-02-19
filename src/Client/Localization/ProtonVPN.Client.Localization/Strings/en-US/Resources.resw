@@ -1495,6 +1495,9 @@
     <value>Connection card</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection" xml:space="preserve">
+    <value>Change default connection</value>
+  </data>
   <data name="Home_ConnectionDetails_Unprotected" xml:space="preserve">
     <value>Unprotected</value>
   </data>

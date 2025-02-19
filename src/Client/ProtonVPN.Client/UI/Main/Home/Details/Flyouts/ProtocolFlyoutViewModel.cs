@@ -113,6 +113,6 @@ public partial class ProtocolFlyoutViewModel : ActivatableViewModelBase,
         }
 
         await _mainViewNavigator.NavigateToSettingsViewAsync();
-        await _settingsViewNavigator.NavigateToProtocolSettingsViewAsync();
+        await _settingsViewNavigator.NavigateToProtocolSettingsViewAsync(isDirectNavigation: true);
     }
 }

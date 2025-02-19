@@ -27,9 +27,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
              xmlns:upsell="using:ProtonVPN.Client.UI.Main.Home.Upsell"
+             x:DefaultBindMode="OneWay"
              AutomationProperties.AutomationId="ConnectionCardComponent"
              AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Automation_Properties_Connection_Card_Component')}"
-             x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -45,12 +45,23 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </UserControl.Resources>
 
     <StackPanel Spacing="16">
-        <StackPanel HorizontalAlignment="Center"
-                    Orientation="{x:Bind ViewModel.UseInlineLayout, Converter={StaticResource BooleanToHorizontalOrientationConverter}}"
-                    Spacing="16">
+        <Grid HorizontalAlignment="Center"
+              Background="Transparent"
+              ColumnSpacing="8"
+              PointerEntered="OnHeaderPointerEntered"
+              PointerExited="OnHeaderPointerExited">
 
-            <Grid HorizontalAlignment="Center" 
-                  Margin="0,1,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="30" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="1"
+                  Margin="0,4,8,0"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Top">
 
                 <custom:ComplexCountryFlag Width="{StaticResource ConnectionCardFlagWidth}"
                                            Height="{StaticResource ConnectionCardFlagHeight}"
@@ -73,12 +84,32 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             </Grid>
 
-            <TextBlock AutomationProperties.AutomationId="ConnectionCardTitle" 
+            <TextBlock Grid.Column="2"
+                       Margin="0,0,0,2"
+                       AutomationProperties.AutomationId="ConnectionCardTitle"
                        Style="{StaticResource TitleTextBlockStyle}"
                        Text="{x:Bind ViewModel.Title}"
-                       TextAlignment="Center" />
+                       TextAlignment="Left"
+                       TextTrimming="CharacterEllipsis"
+                       TextWrapping="WrapWholeWords" />
 
-        </StackPanel>
+            <custom:GhostButton x:Name="ChangeDefaultConnectionButton"
+                                Grid.Column="3"
+                                Margin="0,8,0,0"
+                                VerticalAlignment="Top"
+                                Command="{x:Bind ViewModel.NavigateToDefaultConnectionSettingsCommand, Mode=OneTime}"
+                                Opacity="0"
+                                Visibility="{x:Bind ViewModel.IsChangeDefaultConnectionOptionVisible}"
+                                ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_ConnectionCard_ChangeDefaultConnection')}">
+                <custom:GhostButton.OpacityTransition>
+                    <ScalarTransition Duration="0:0:0.2" />
+                </custom:GhostButton.OpacityTransition>
+                <custom:GhostButton.LeftIcon>
+                    <pathicons:ChevronRight />
+                </custom:GhostButton.LeftIcon>
+            </custom:GhostButton>
+
+        </Grid>
 
         <Grid Margin="0,-8,0,0"
               HorizontalAlignment="Center"
@@ -90,9 +121,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock AutomationProperties.AutomationId="ConnectionCardDescription" 
-                       Grid.Column="0"
+            <TextBlock Grid.Column="0"
                        Margin="4,0"
+                       AutomationProperties.AutomationId="ConnectionCardDescription"
                        Foreground="{ThemeResource TextWeakColorBrush}"
                        Style="{StaticResource BodyMediumStrongTextBlockStyle}"
                        Text="{x:Bind ViewModel.Subtitle}"
@@ -101,9 +132,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        TextWrapping="NoWrap"
                        Visibility="{x:Bind ViewModel.HasSubtitle, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
-            <custom:GhostButton AutomationProperties.AutomationId="ConnectionCardP2PTag" 
-                       Grid.Column="1"
+            <custom:GhostButton Grid.Column="1"
                                 Margin="4,0"
+                                AutomationProperties.AutomationId="ConnectionCardP2PTag"
                                 Background="{ThemeResource InteractionDefaultColorBrush}"
                                 Command="{x:Bind ViewModel.ShowP2PInfoOverlayCommand, Mode=OneTime}"
                                 Content="{x:Bind ViewModel.Localizer.Get('Countries_P2P')}"
@@ -114,9 +145,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </custom:GhostButton.LeftIcon>
             </custom:GhostButton>
 
-            <custom:GhostButton AutomationProperties.AutomationId="ConnectionCardTorTag" 
-                       Grid.Column="2"
+            <custom:GhostButton Grid.Column="2"
                                 Margin="4,0"
+                                AutomationProperties.AutomationId="ConnectionCardTorTag"
                                 Background="{ThemeResource InteractionDefaultColorBrush}"
                                 Command="{x:Bind ViewModel.ShowTorInfoOverlayCommand, Mode=OneTime}"
                                 Content="{x:Bind ViewModel.Localizer.Get('Countries_Tor')}"
@@ -129,9 +160,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         </Grid>
 
-        <custom:GhostButton AutomationProperties.AutomationId="ConnectionCardFreeConnectionsTagline" 
-                       Margin="0,-12,0,0"
+        <custom:GhostButton Margin="0,-12,0,0"
                             HorizontalAlignment="Center"
+                            AutomationProperties.AutomationId="ConnectionCardFreeConnectionsTagline"
                             Command="{x:Bind ViewModel.ShowFreeConnectionsOverlayCommand, Mode=OneTime}"
                             Style="{StaticResource LargeSecondaryGhostButtonStyle}"
                             ToolTipService.Placement="Top"
