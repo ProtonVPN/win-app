@@ -31,5 +31,5 @@ public interface ISystemNetworkInterfaces
     INetworkInterface GetById(Guid id);
     INetworkInterface GetByLocalAddress(IPAddress localAddress);
     INetworkInterface GetBestInterface(string hardwareIdToExclude);
-    NetworkConnectionType? GetGetNetworkConnectionType();
+    NetworkConnectionType? GetNetworkConnectionType();
 }

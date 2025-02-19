@@ -38,7 +38,7 @@ public class ServerFeaturesDimensionMapperTest
     public void Map_ShouldReturnCorrectString_ForAllFeatures()
     {
         // Arrange
-        ServerDetails serverDetails = new()
+        ServerDetailsEventData serverDetails = new()
         {
             IsFree = true,
             SupportsTor = true,
@@ -62,7 +62,7 @@ public class ServerFeaturesDimensionMapperTest
     public void Map_ShouldReturnEmptyString_ForNoFeatures()
     {
         // Arrange
-        ServerDetails serverDetails = new()
+        ServerDetailsEventData serverDetails = new()
         {
             IsFree = false,
             SupportsTor = false,
@@ -84,7 +84,7 @@ public class ServerFeaturesDimensionMapperTest
     public void Map_ShouldHandleSubsetOfFeatures()
     {
         // Arrange
-        ServerDetails serverDetails = new()
+        ServerDetailsEventData serverDetails = new()
         {
             IsFree = true,
             SupportsTor = false,

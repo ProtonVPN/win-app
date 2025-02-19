@@ -19,7 +19,7 @@
 
 namespace ProtonVPN.StatisticalEvents.Contracts.Models;
 
-public class ServerDetails
+public class ServerDetailsEventData
 {
     public string? Name { get; set; }
 

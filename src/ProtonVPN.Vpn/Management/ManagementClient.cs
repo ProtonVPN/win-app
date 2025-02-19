@@ -246,7 +246,7 @@ namespace ProtonVPN.Vpn.Management
                 if (managementState.HasStatus)
                 {
                     OnVpnStateChanged(new VpnState(managementState.Status, _lastError,
-                        managementState.LocalIpAddress, managementState.RemoteIpAddress, 0, default, label: _endpoint.Server.Label));
+                        managementState.LocalIpAddress, managementState.RemoteIpAddress, _endpoint?.Port ?? 0, default, label: _endpoint.Server.Label));
                 }
             }
         }
@@ -285,7 +285,7 @@ namespace ProtonVPN.Vpn.Management
 
         private void OnVpnStateChanged(VpnStatus status)
         {
-            OnVpnStateChanged(new VpnState(status, _lastError, string.Empty, string.Empty, 0, default));
+            OnVpnStateChanged(new VpnState(status, _lastError, string.Empty, _endpoint?.Server.Ip ?? string.Empty, _endpoint?.Port ?? 0, default));
         }
 
         private void OnVpnStateChanged(VpnState state)

@@ -22,9 +22,9 @@ using ProtonVPN.StatisticalEvents.Contracts.Models;
 
 namespace ProtonVPN.StatisticalEvents.DimensionMapping;
 
-public class ServerFeaturesDimensionMapper : DimensionMapperBase, IDimensionMapper<ServerDetails>
+public class ServerFeaturesDimensionMapper : DimensionMapperBase, IDimensionMapper<ServerDetailsEventData>
 {
-    public string Map(ServerDetails serverDetails)
+    public string Map(ServerDetailsEventData serverDetails)
     {
         List<string> features = [];
 

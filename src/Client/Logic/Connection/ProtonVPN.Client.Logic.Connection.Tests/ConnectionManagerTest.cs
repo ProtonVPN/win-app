@@ -56,8 +56,7 @@ public class ConnectionManagerTest
     private ISystemNetworkInterfaces? _networkInterfaces;
     private IGuestHoleServersFileStorage? _guestHoleServersFileStorage;
     private IGuestHoleConnectionRequestCreator? _guestHoleConnectionRequestCreator;
-    private IVpnConnectionStatisticalEventSender? _vpnConnectionStatisticalEventSender;
-    private IVpnDisconnectionStatisticalEventSender? _vpnDisconnectionStatisticalEventSender;
+    private IConnectionStatisticalEventsManager? _statisticalEventManager;
 
     [TestInitialize]
     public void Initialize()
@@ -74,8 +73,7 @@ public class ConnectionManagerTest
         _networkInterfaces = Substitute.For<ISystemNetworkInterfaces>();
         _guestHoleServersFileStorage = Substitute.For<IGuestHoleServersFileStorage>();
         _guestHoleConnectionRequestCreator = Substitute.For<IGuestHoleConnectionRequestCreator>();
-        _vpnConnectionStatisticalEventSender = Substitute.For<IVpnConnectionStatisticalEventSender>();
-        _vpnDisconnectionStatisticalEventSender = Substitute.For<IVpnDisconnectionStatisticalEventSender>();
+        _statisticalEventManager = Substitute.For<IConnectionStatisticalEventsManager>();
 
         _connectionRequestCreator!.CreateAsync(Arg.Any<IConnectionIntent>()).Returns(GetConnectionRequestIpcEntity());
         _reconnectionRequestCreator!.CreateAsync(Arg.Any<IConnectionIntent>()).Returns(GetConnectionRequestIpcEntity());
@@ -96,8 +94,7 @@ public class ConnectionManagerTest
         _networkInterfaces = null;
         _guestHoleServersFileStorage = null;
         _guestHoleConnectionRequestCreator = null;
-        _vpnConnectionStatisticalEventSender = null;
-        _vpnDisconnectionStatisticalEventSender = null;
+        _statisticalEventManager = null;
     }
 
     [TestMethod]
@@ -199,8 +196,7 @@ public class ConnectionManagerTest
             _networkInterfaces!,
             _guestHoleServersFileStorage!,
             _guestHoleConnectionRequestCreator!,
-            _vpnConnectionStatisticalEventSender!,
-            _vpnDisconnectionStatisticalEventSender!);
+            _statisticalEventManager!);
     }
 
     private IConnectionIntent GetConnectionIntent(IFeatureIntent featureIntent)

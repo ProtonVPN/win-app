@@ -70,11 +70,12 @@ public class ConnectionDetails
         Port = port;
     }
 
-    public void UpdateServer(Server server, PhysicalServer physicalServer, VpnProtocol protocol)
+    public void UpdateServer(Server server, PhysicalServer physicalServer, VpnProtocol protocol, int port)
     {
         Server = server;
         PhysicalServer = physicalServer;
         Protocol = protocol;
+        Port = port;
     }
 
     public void UpdateIpAddress(string serverIpAddress)

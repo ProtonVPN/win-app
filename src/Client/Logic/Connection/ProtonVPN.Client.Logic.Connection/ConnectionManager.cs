@@ -30,12 +30,9 @@ using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Logic.Connection.Extensions;
 using ProtonVPN.Client.Logic.Connection.GuestHole;
 using ProtonVPN.Client.Logic.Servers.Contracts;
-using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
-using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -44,9 +41,7 @@ using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.OperatingSystems.Network.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
-using ProtonVPN.StatisticalEvents.Contracts;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
-using ProtonVPN.StatisticalEvents.Contracts.Models;
 using ConnectionDetails = ProtonVPN.Client.Logic.Connection.Contracts.Models.ConnectionDetails;
 
 namespace ProtonVPN.Client.Logic.Connection;
@@ -71,18 +66,14 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
     private readonly ISystemNetworkInterfaces _networkInterfaces;
     private readonly IGuestHoleServersFileStorage _guestHoleServersFileStorage;
     private readonly IGuestHoleConnectionRequestCreator _guestHoleConnectionRequestCreator;
-    private readonly IVpnConnectionStatisticalEventSender _vpnConnectionStatisticalEventSender;
-    private readonly IVpnDisconnectionStatisticalEventSender _vpnDisconnectionStatisticalEventSender;
+    private readonly IConnectionStatisticalEventsManager _statisticalEventManager;
 
     private DateTime _minReconnectionDateUtc = DateTime.MinValue;
-    private DateTime? _lastConnectionAttemptDateUtc;
-    private DateTime? _lastSuccessfulConnectionDateUtc;
-    private VpnTriggerDimension? _lastConnectionTrigger;
-    private VpnTriggerDimension? _lastDisconnectionTrigger;
 
     private bool _isNetworkBlocked;
     private bool _isConnectionStatusHandled;
     private bool _isGuestHoleActive;
+
     private VpnStateIpcEntity? _cachedMessage;
 
     public ConnectionStatus ConnectionStatus { get; private set; }
@@ -109,8 +100,7 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
         ISystemNetworkInterfaces networkInterfaces,
         IGuestHoleServersFileStorage guestHoleServersFileStorage,
         IGuestHoleConnectionRequestCreator guestHoleConnectionRequestCreator,
-        IVpnConnectionStatisticalEventSender vpnConnectionStatisticalEventSender,
-        IVpnDisconnectionStatisticalEventSender vpnDisconnectionStatisticalEventSender)
+        IConnectionStatisticalEventsManager statisticalEventManager)
     {
         _logger = logger;
         _settings = settings;
@@ -125,16 +115,14 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
         _guestHoleServersFileStorage = guestHoleServersFileStorage;
         _guestHoleConnectionRequestCreator = guestHoleConnectionRequestCreator;
         _guestHoleConnectionRequestCreator = guestHoleConnectionRequestCreator;
-        _vpnConnectionStatisticalEventSender = vpnConnectionStatisticalEventSender;
-        _vpnDisconnectionStatisticalEventSender = vpnDisconnectionStatisticalEventSender;
+        _statisticalEventManager = statisticalEventManager;
     }
 
     public async Task ConnectAsync(
         VpnTriggerDimension connectionTrigger,
         IConnectionIntent? connectionIntent = null)
     {
-        _lastConnectionAttemptDateUtc = DateTime.UtcNow;
-        _lastConnectionTrigger = connectionTrigger;
+        _statisticalEventManager.SetConnectionAttempt(connectionTrigger);
 
         connectionIntent ??= _settings.VpnPlan.IsPaid ? ConnectionIntent.Default : ConnectionIntent.FreeDefault;
         connectionIntent = ChangeConnectionIntent(connectionIntent, CreateNewIntentIfPortForwardingEnabled); // TODO: this should be removed as it leads to weird situation. There is already a warning on the PF widget if the feature is enabled and the user connects to a non P2P server. If we remove this, then we can also remove PF from the required reconnection settings list.
@@ -155,8 +143,7 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
 
     public async Task ConnectToGuestHoleAsync()
     {
-        _lastConnectionAttemptDateUtc = DateTime.UtcNow;
-        _lastConnectionTrigger = VpnTriggerDimension.Auto;
+        _statisticalEventManager.SetConnectionAttempt(VpnTriggerDimension.Auto);
 
         IOrderedEnumerable<GuestHoleServerContract> servers = _guestHoleServersFileStorage.Get().OrderBy(_ => _random.Next());
         ConnectionRequestIpcEntity request = await _guestHoleConnectionRequestCreator.CreateAsync(servers);
@@ -167,7 +154,7 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
 
     public async Task DisconnectFromGuestHoleAsync()
     {
-        _lastDisconnectionTrigger = VpnTriggerDimension.Auto;
+        _statisticalEventManager.SetDisconnectionTrigger(VpnTriggerDimension.Auto);
 
         DisconnectionRequestIpcEntity request = _disconnectionRequestCreator.Create(VpnError.NoneKeepEnabledKillSwitch);
 
@@ -238,8 +225,9 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
 
         CurrentConnectionIntent = connectionIntent;
 
-        _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Reconnection attempt to: {connectionIntent}.");
+        _statisticalEventManager.SetReconnectionAttempt(ConnectionStatus);
 
+        _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Reconnection attempt to: {connectionIntent}.");
 
         SetConnectionStatus(ConnectionStatus.Connecting);
 
@@ -252,7 +240,9 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
     {
         _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Disconnection attempt.");
 
-        _lastDisconnectionTrigger = vpnTriggerDimension;
+        _statisticalEventManager.SetDisconnectionTrigger(vpnTriggerDimension);
+        _statisticalEventManager.SetConnectionCanceled(IsConnecting);
+        _statisticalEventManager.UpdateConnectionDetails(CurrentConnectionDetails);
 
         CurrentConnectionIntent = null;
         CurrentConnectionDetails = null;
@@ -275,12 +265,14 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
 
         if (_isGuestHoleActive)
         {
-            HandleStatisticalEvents(connectionStatus, message.Error);
+            _statisticalEventManager.HandleStatisticalEvents(connectionStatus, message.Error);
         }
         else
         {
-            if (message.Status == VpnStatusIpcEntity.Connected)
+            if (message.Status is VpnStatusIpcEntity.Pinging or VpnStatusIpcEntity.Connected)
             {
+                _statisticalEventManager.SetConnectionCanceled(false);
+
                 VpnProtocol vpnProtocol = _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(message.VpnProtocol);
                 Server? server = GetCurrentServer(message, vpnProtocol);
                 PhysicalServer? physicalServer = server?.Servers.FirstOrDefault(FilterPhysicalServerByVpnState(message, vpnProtocol));
@@ -293,8 +285,10 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
                     }
                     else
                     {
-                        CurrentConnectionDetails.UpdateServer(server, physicalServer, vpnProtocol);
+                        CurrentConnectionDetails.UpdateServer(server, physicalServer, vpnProtocol, message.EndpointPort);
                     }
+
+                    _statisticalEventManager.UpdateConnectionDetails(CurrentConnectionDetails);
                 }
                 else if (server is null)
                 {
@@ -317,54 +311,6 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
         {
             SetConnectionStatus(connectionStatus, message.Error, isToForceStatusUpdate);
         }
-    }
-
-    private void HandleStatisticalEvents(ConnectionStatus connectionStatus, VpnErrorTypeIpcEntity error)
-    {
-        if (connectionStatus == ConnectionStatus.Connected)
-        {
-            HandleConnectionStatisticalEvent();
-        }
-        else if (connectionStatus == ConnectionStatus.Disconnected)
-        {
-            HandleDisconnectionStatisticalEvent(error);
-        }
-    }
-
-    private void HandleConnectionStatisticalEvent()
-    {
-        if (_lastConnectionAttemptDateUtc is null || _lastConnectionTrigger is null)
-        {
-            return;
-        }
-
-        float totalMilliseconds = DateTime.UtcNow.Subtract(_lastConnectionAttemptDateUtc.Value).GetTotalMilliseconds();
-
-        _lastConnectionAttemptDateUtc = null;
-        _lastSuccessfulConnectionDateUtc = DateTime.UtcNow;
-
-        VpnConnectionStatisticalEventData eventData = GetConnectionStatisticalEventData(OutcomeDimension.Success, VpnStatusDimension.On, _lastConnectionTrigger.Value);
-
-        _vpnConnectionStatisticalEventSender.Send(eventData, totalMilliseconds);
-    }
-
-    private void HandleDisconnectionStatisticalEvent(VpnErrorTypeIpcEntity error)
-    {
-        if (_lastSuccessfulConnectionDateUtc is null || _lastDisconnectionTrigger is null)
-        {
-            return;
-        }
-
-        float sessionTimeInMilliseconds = DateTime.UtcNow.Subtract(_lastSuccessfulConnectionDateUtc.Value).GetTotalMilliseconds();
-        _lastSuccessfulConnectionDateUtc = null;
-
-        OutcomeDimension outcomeDimension = error is VpnErrorTypeIpcEntity.None or VpnErrorTypeIpcEntity.NoneKeepEnabledKillSwitch
-            ? OutcomeDimension.Success
-            : OutcomeDimension.Failure;
-
-        VpnConnectionStatisticalEventData eventData = GetConnectionStatisticalEventData(outcomeDimension, VpnStatusDimension.Off, _lastDisconnectionTrigger.Value);
-
-        _vpnDisconnectionStatisticalEventSender.Send(eventData, sessionTimeInMilliseconds);
     }
 
     private Server? GetCurrentServer(VpnStateIpcEntity state, VpnProtocol vpnProtocol)
@@ -395,52 +341,11 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
         ConnectionStatus = connectionStatus;
         CurrentError = error;
 
-        HandleStatisticalEvents(connectionStatus, error);
+        _statisticalEventManager.HandleStatisticalEvents(connectionStatus, error);
 
         _eventMessageSender.Send(new ConnectionStatusChangedMessage(connectionStatus));
 
         _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Status updated to {ConnectionStatus}.{(IsConnected ? $" Connected to server {CurrentConnectionDetails?.ServerName}" : string.Empty)}");
-    }
-
-    private VpnConnectionStatisticalEventData GetConnectionStatisticalEventData(
-        OutcomeDimension outcomeDimension,
-        VpnStatusDimension vpnStatusDimension,
-        VpnTriggerDimension vpnTriggerDimension)
-    {
-        VpnFeatureIntent? vpnFeatureIntent = CurrentConnectionIntent?.Feature switch
-        {
-            SecureCoreFeatureIntent => VpnFeatureIntent.SecureCore,
-            P2PFeatureIntent => VpnFeatureIntent.P2P,
-            TorFeatureIntent => VpnFeatureIntent.Tor,
-            null => null,
-            _ => VpnFeatureIntent.Standard
-        };
-
-        return new()
-        {
-            Outcome = outcomeDimension,
-            VpnStatus = vpnStatusDimension,
-            VpnTrigger = vpnTriggerDimension,
-            NetworkConnectionType = _networkInterfaces.GetGetNetworkConnectionType(),
-            Protocol = CurrentConnectionDetails?.Protocol,
-            VpnFeatureIntent = vpnFeatureIntent,
-            Isp = _settings.DeviceLocation?.Isp,
-            UserCountry = _settings.DeviceLocation?.CountryCode,
-            VpnCountry = CurrentConnectionDetails?.ExitCountryCode,
-            Port = CurrentConnectionDetails?.Port ?? 0,
-            VpnPlan = _settings.VpnPlan,
-            Server = new ServerDetails()
-            {
-                Name = CurrentConnectionDetails?.Server.Name,
-                IsFree = CurrentConnectionDetails?.Server.IsFree() ?? false,
-                IsB2B = CurrentConnectionDetails?.Server.Features.IsSupported(ServerFeatures.B2B) ?? false,
-                SupportsTor = CurrentConnectionDetails?.Server.Features.IsSupported(ServerFeatures.Tor) ?? false,
-                SupportsP2P = CurrentConnectionDetails?.Server.Features.IsSupported(ServerFeatures.P2P) ?? false,
-                SecureCore = CurrentConnectionDetails?.Server.Features.IsSupported(ServerFeatures.SecureCore) ?? false,
-                SupportsStreaming = CurrentConnectionDetails?.Server.Features.IsSupported(ServerFeatures.Streaming) ?? false,
-                SupportsIpv6 = CurrentConnectionDetails?.Server.Features.IsSupported(ServerFeatures.Ipv6) ?? false,
-            },
-        };
     }
 
     public void Receive(ConnectionDetailsIpcEntity message)

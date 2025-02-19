@@ -24,5 +24,5 @@ namespace ProtonVPN.StatisticalEvents;
 
 public interface IVpnConnectionDimensionsProvider
 {
-    Dictionary<string, string> GetDimensions(VpnConnectionStatisticalEventData eventData);
+    Dictionary<string, string> GetDimensions(VpnConnectionEventData eventData);
 }
