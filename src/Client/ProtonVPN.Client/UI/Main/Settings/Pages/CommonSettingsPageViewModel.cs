@@ -30,10 +30,14 @@ using ProtonVPN.Client.Core.Services.Activation.Bases;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Logic.Profiles.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Messages;
+using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
+using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Updates.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
@@ -58,7 +62,7 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
     private readonly IReportIssueWindowActivator _reportIssueWindowActivator;
     private readonly IDebugToolsWindowActivator _debugToolsWindowActivator;
     private readonly IConnectionManager _connectionManager;
-    private readonly IProfilesManager _profilesManager;
+    private readonly IRecentConnectionsManager _recentConnectionsManager;
     private readonly Lazy<ObservableCollection<Language>> _languages;
 
     public bool IsPaidUser => _settings.VpnPlan.IsPaid;
@@ -83,9 +87,23 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
         set => _settings.Language = value.Id;
     }
 
-    public string DefaultConnectionState => _settings.DefaultConnection.Type == DefaultConnectionType.Profile
-        ? _profilesManager.GetById(_settings.DefaultConnection.ProfileId)?.Name ?? string.Empty
-        : Localizer.Get($"Settings_Connection_Default_{_settings.DefaultConnection.Type}");
+    public string DefaultConnectionState
+    {
+        get
+        {
+            if (_settings.DefaultConnection.Type == DefaultConnectionType.Recent)
+            {
+                IConnectionIntent? connectionIntent = _recentConnectionsManager.GetById(_settings.DefaultConnection.RecentId)?.ConnectionIntent;
+                return connectionIntent is not null
+                    ? connectionIntent is IConnectionProfile profile
+                        ? profile.Name
+                        : Localizer.GetConnectionIntentTitle(connectionIntent)
+                    : string.Empty;
+            }
+
+            return Localizer.Get($"Settings_Connection_Default_{_settings.DefaultConnection.Type}");
+        }
+    }
 
     public bool IsNotificationEnabled
     {
@@ -123,7 +141,7 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
         IDebugToolsWindowActivator debugToolsWindowActivator,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager,
-        IProfilesManager profilesManager,
+        IRecentConnectionsManager recentConnectionsManager,
         ISettingsViewNavigator settingsViewNavigator,
         ILocalizationProvider localizer,
         ILogger logger,
@@ -149,7 +167,7 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
         _reportIssueWindowActivator = reportIssueWindowActivator;
         _debugToolsWindowActivator = debugToolsWindowActivator;
         _connectionManager = connectionManager;
-        _profilesManager = profilesManager;
+        _recentConnectionsManager = recentConnectionsManager;
 
         _languages = new Lazy<ObservableCollection<Language>>(
             () => new ObservableCollection<Language>(_localizationService.GetAvailableLanguages()));

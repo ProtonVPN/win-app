@@ -24,14 +24,17 @@ namespace ProtonVPN.Client.Logic.Recents;
 
 public class RecentConnection : IRecentConnection
 {
+    public Guid Id { get; }
+
     public IConnectionIntent ConnectionIntent { get; set; }
 
     public bool IsPinned { get; set; }
 
     public DateTime? PinTime { get; set; }
 
-    public RecentConnection(IConnectionIntent connectionIntent)
+    public RecentConnection(Guid id, IConnectionIntent connectionIntent)
     {
+        Id = id;
         ConnectionIntent = connectionIntent;
     }
 }

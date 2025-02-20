@@ -24,53 +24,72 @@ using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
+using ProtonVPN.Client.Logic.Recents;
+using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Models;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.DefaultConnections;
 
-public partial class ProfileDefaultConnectionObservable : ObservableObject
+public partial class RecentDefaultConnectionObservable : ObservableObject
 {
     private readonly DefaultConnectionSettingsPageViewModel _parentViewModel;
 
     public ILocalizationProvider Localizer { get; }
-    public IConnectionProfile Profile { get; }
+    public IRecentConnection Recent { get; }
 
-    public string? ExitCountryCode => Profile.Location.GetCountryCode();
-    public string Header => Profile.Name;
-    public string SubHeader => Localizer.GetConnectionProfileSubtitle(Profile);
-    public bool IsSecureCore => Profile?.Feature is SecureCoreFeatureIntent;
-    public bool IsTor => Profile?.Feature is TorFeatureIntent;
-    public bool IsP2P => Profile?.Feature is P2PFeatureIntent;
+    public string? ExitCountryCode => Recent.ConnectionIntent.Location.GetCountryCode();
 
-    public FlagType FlagType => Profile.GetFlagType();
+    public string? EntryCountryCode => Recent.ConnectionIntent?.Feature is SecureCoreFeatureIntent secureCoreIntent && !secureCoreIntent.IsFastest
+        ? secureCoreIntent.EntryCountryCode
+        : string.Empty;
 
-    public bool HasFeature => IsTor || IsP2P || IsSecureCore;
+    public string Header => Profile is not null
+        ? Profile!.Name
+        : Localizer.GetConnectionIntentTitle(Recent.ConnectionIntent);
+
+    public string SubHeader => Profile is not null
+        ? Localizer.GetConnectionProfileSubtitle(Profile)
+        : Localizer.GetConnectionIntentSubtitle(Recent.ConnectionIntent);
+
+    public bool IsSecureCore => Recent?.ConnectionIntent.Feature is SecureCoreFeatureIntent;
+    public bool IsTor => Recent?.ConnectionIntent.Feature is TorFeatureIntent;
+    public bool IsP2P => Recent?.ConnectionIntent.Feature is P2PFeatureIntent;
+
+    public FlagType FlagType => Recent.ConnectionIntent.GetFlagType();
+
+    public IConnectionProfile? Profile {  get; }
 
     [ObservableProperty]
     private bool _isDefaultConnection;
 
-    public ProfileDefaultConnectionObservable(ILocalizationProvider localizer,
+    public RecentDefaultConnectionObservable(ILocalizationProvider localizer,
         DefaultConnection defaultConnection,
         DefaultConnectionSettingsPageViewModel parentViewModel,
-        IConnectionProfile profile)
+        IRecentConnection recent)
     {
         Localizer = localizer;
         _parentViewModel = parentViewModel;
 
-        Profile = profile;
+        Recent = recent;
+
+        if (recent.ConnectionIntent is IConnectionProfile profile)
+        {
+            Profile = profile;
+        }
+
         OnDefaultConnectionChange(defaultConnection);
     }
 
     public void OnDefaultConnectionChange(DefaultConnection defaultConnection)
     {
-        IsDefaultConnection = defaultConnection.ProfileId == Profile.Id;
+        IsDefaultConnection = defaultConnection.RecentId == Recent.Id;
     }
 
     partial void OnIsDefaultConnectionChanged(bool value)
     {
         if (value)
         {
-            _parentViewModel.SetProfileAsDefaultConnection(Profile);
+            _parentViewModel.SetRecentAsDefaultConnection(Recent);
         }
     }
 }

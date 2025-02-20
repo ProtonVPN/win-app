@@ -23,6 +23,8 @@ namespace ProtonVPN.Client.Logic.Recents.Contracts;
 
 public interface IRecentConnection
 {
+    Guid Id { get; }
+
     IConnectionIntent ConnectionIntent { get; set; }
 
     bool IsPinned { get; set; }

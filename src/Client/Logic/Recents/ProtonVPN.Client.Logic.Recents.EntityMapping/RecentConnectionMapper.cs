@@ -59,6 +59,7 @@ public class RecentConnectionMapper : IMapper<IRecentConnection, SerializableRec
 
         return new SerializableRecentConnection
         {
+            RecentId = leftEntity.Id,
             ConnectionIntent = connectionIntent,
             ProfileId = leftEntity.ConnectionIntent is IConnectionProfile cnp ? cnp.Id : null,
             IsPinned = leftEntity.IsPinned,
@@ -81,7 +82,7 @@ public class RecentConnectionMapper : IMapper<IRecentConnection, SerializableRec
 
             return connectionIntent is null
                 ? null
-                : new RecentConnection(connectionIntent)
+                : new RecentConnection(rightEntity.RecentId ?? Guid.NewGuid(), connectionIntent)
                 {
                     IsPinned = rightEntity.IsPinned,
                     PinTime = rightEntity.PinTime,

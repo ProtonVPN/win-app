@@ -27,12 +27,12 @@ public struct DefaultConnection
     public static DefaultConnection Last => new(DefaultConnectionType.Last);
 
     public DefaultConnectionType Type { get; init; }
-    public Guid ProfileId { get; init; } = Guid.Empty;
+    public Guid RecentId { get; init; } = Guid.Empty;
 
-    public DefaultConnection(Guid profileId)
-        : this(DefaultConnectionType.Profile)
+    public DefaultConnection(Guid recentId)
+        : this(DefaultConnectionType.Recent)
     {
-        ProfileId = profileId;
+        RecentId = recentId;
     }
 
     private DefaultConnection(DefaultConnectionType type)
@@ -41,8 +41,8 @@ public struct DefaultConnection
     }
 
     public override bool Equals(object? obj) => obj is DefaultConnection other && Equals(other);
-    public bool Equals(DefaultConnection dc) => Type == dc.Type && ProfileId == dc.ProfileId;
-    public override int GetHashCode() => (Type, ProfileId).GetHashCode();
+    public bool Equals(DefaultConnection dc) => Type == dc.Type && RecentId == dc.RecentId;
+    public override int GetHashCode() => (Type, RecentId).GetHashCode();
     public static bool operator ==(DefaultConnection left, DefaultConnection right) => left.Equals(right);
     public static bool operator !=(DefaultConnection left, DefaultConnection right) => !(left == right);
 }

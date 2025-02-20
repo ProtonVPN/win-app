@@ -26,9 +26,6 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Logic.Profiles.Contracts;
-using ProtonVPN.Client.Logic.Profiles.Contracts.Messages;
-using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
@@ -36,14 +33,17 @@ using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
+using ProtonVPN.Client.Logic.Recents.Contracts;
+using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
+using Microsoft.UI.Xaml.Navigation;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.DefaultConnections;
 
 public partial class DefaultConnectionSettingsPageViewModel : SettingsPageViewModelBase,
-    IEventMessageReceiver<ProfilesChangedMessage>,
+    IEventMessageReceiver<RecentConnectionsChangedMessage>,
     IEventMessageReceiver<LoggedInMessage>
 {
-    private readonly IProfilesManager _profilesManager;
+    private readonly IRecentConnectionsManager _recentConnectionsManager;
 
     [ObservableProperty]
     [property: SettingName(nameof(ISettings.DefaultConnection))]
@@ -65,12 +65,12 @@ public partial class DefaultConnectionSettingsPageViewModel : SettingsPageViewMo
         set => SetDefaultConnectionType(value, DefaultConnectionType.Last);
     }
 
-    public SmartObservableCollection<ProfileDefaultConnectionObservable> Profiles { get; } = [];
+    public SmartObservableCollection<RecentDefaultConnectionObservable> Recents { get; } = [];
 
-    public bool HasProfiles => Profiles.Any();
+    public bool HasRecents => Recents.Any();
 
     public DefaultConnectionSettingsPageViewModel(
-        IProfilesManager profilesManager,
+        IRecentConnectionsManager recentConnectionsManager,
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
@@ -92,8 +92,8 @@ public partial class DefaultConnectionSettingsPageViewModel : SettingsPageViewMo
                settingsConflictResolver,
                connectionManager)
     {
-        _profilesManager = profilesManager;
-        InvalidateProfiles();
+        _recentConnectionsManager = recentConnectionsManager;
+        InvalidateRecents();
 
         PageSettings =
         [
@@ -111,7 +111,7 @@ public partial class DefaultConnectionSettingsPageViewModel : SettingsPageViewMo
         return CurrentDefaultConnection.Type == defaultConnectionType;
     }
 
-    private void SetDefaultConnectionType(bool value, DefaultConnectionType defaultConnectionType, Guid? profileId = null)
+    private void SetDefaultConnectionType(bool value, DefaultConnectionType defaultConnectionType, Guid? recentId = null)
     {
         if (value)
         {
@@ -119,25 +119,25 @@ public partial class DefaultConnectionSettingsPageViewModel : SettingsPageViewMo
             {
                 DefaultConnectionType.Fastest => DefaultConnection.Fastest,
                 DefaultConnectionType.Last => DefaultConnection.Last,
-                DefaultConnectionType.Profile when profileId.HasValue => new DefaultConnection(profileId.Value),
+                DefaultConnectionType.Recent when recentId.HasValue => new DefaultConnection(recentId.Value),
                 _ => DefaultSettings.DefaultConnection
             };
         }
     }
 
-    public void Receive(ProfilesChangedMessage message)
+    public void Receive(RecentConnectionsChangedMessage message)
     {
-        ExecuteOnUIThread(InvalidateProfiles);
+        ExecuteOnUIThread(InvalidateRecents);
     }
 
-    private void InvalidateProfiles()
+    private void InvalidateRecents()
     {
-        List<IConnectionProfile> profiles = _profilesManager.GetAll().ToList();
+        List<IRecentConnection> recents = _recentConnectionsManager.GetRecentConnections().ToList();
         DefaultConnection defaultConnection = Settings.DefaultConnection;
 
-        Profiles.Reset(profiles.Select(p => new ProfileDefaultConnectionObservable(Localizer, defaultConnection, this, p)));
+        Recents.Reset(recents.Select(r => new RecentDefaultConnectionObservable(Localizer, defaultConnection, this, r)));
 
-        OnPropertyChanged(nameof(HasProfiles));
+        OnPropertyChanged(nameof(HasRecents));
     }
 
     protected override void OnSettingsChanged(string propertyName)
@@ -145,27 +145,34 @@ public partial class DefaultConnectionSettingsPageViewModel : SettingsPageViewMo
         base.OnSettingsChanged(propertyName);
         if (propertyName == nameof(ISettings.DefaultConnection))
         {
-            InvalidateProfileDefaultConnection();
+            InvalidateRecentDefaultConnection();
         }
     }
 
-    private void InvalidateProfileDefaultConnection()
+    protected override void OnActivated()
+    {
+        base.OnActivated();
+
+        InvalidateRecentDefaultConnection();
+    }
+
+    private void InvalidateRecentDefaultConnection()
     {
         DefaultConnection defaultConnection = Settings.DefaultConnection;
-        List<ProfileDefaultConnectionObservable> profiles = Profiles.ToList();
-        foreach (ProfileDefaultConnectionObservable profile in profiles)
+        List<RecentDefaultConnectionObservable> recents = Recents.ToList();
+        foreach (RecentDefaultConnectionObservable recent in recents)
         {
-            profile.OnDefaultConnectionChange(defaultConnection);
+            recent.OnDefaultConnectionChange(defaultConnection);
         }
     }
 
-    public void SetProfileAsDefaultConnection(IConnectionProfile profile)
+    public void SetRecentAsDefaultConnection(IRecentConnection recent)
     {
-        SetDefaultConnectionType(true, DefaultConnectionType.Profile, profile.Id);
+        SetDefaultConnectionType(true, DefaultConnectionType.Recent, recent.Id);
     }
 
     public void Receive(LoggedInMessage message)
     {
-        ExecuteOnUIThread(InvalidateProfiles);
+        ExecuteOnUIThread(InvalidateRecents);
     }
 }

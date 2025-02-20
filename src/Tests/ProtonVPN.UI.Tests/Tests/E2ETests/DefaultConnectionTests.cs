@@ -83,24 +83,6 @@ public class DefaultConnectionTests : BaseTest
             .Verify.IsDisconnected();
     }
 
-    [Test, Order(2)]
-    public void DefaultCustomProfileConnectsToCorrectServer()
-    {
-        SettingRobot
-            .OpenSettings()
-            .OpenDefaultConnectionSettingsCard()
-            .SelectProfileDefaultConnectionOption(STREAMING_PROFILE)
-            .ApplySettings()
-            .CloseSettings();
-
-        HomeRobot
-            .Verify.DoesConnectionCardTitleEqual(STREAMING_PROFILE)
-            .ConnectViaConnectionCard()
-            .Verify.IsConnected()
-            .DoesConnectionCardTitleEqual(STREAMING_PROFILE);
-        NetworkUtils.VerifyUserIsConnectedToExpectedCountry(STREAMING_COUNTRY);
-    }
-
     [OneTimeTearDown]
     public void TearDown()
     {

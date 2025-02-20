@@ -1772,6 +1772,9 @@
   <data name="Settings_Connection_Default_Fastest" xml:space="preserve">
     <value>Fastest country</value>
   </data>
+  <data name="Settings_Connection_Default_Recents" xml:space="preserve">
+    <value>Recents</value>
+  </data>
   <data name="Settings_Connection_Default_Fastest_Description" xml:space="preserve">
     <value>The best server based on your location</value>
   </data>
