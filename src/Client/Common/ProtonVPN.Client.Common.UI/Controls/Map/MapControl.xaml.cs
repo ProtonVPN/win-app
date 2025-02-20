@@ -53,12 +53,11 @@ public sealed partial class MapControl
 {
     // Resolution related consts
     private const int MIN_RESOLUTION = 2000;
+    private const int TITLEBAR_HEIGHT = 16;
     private const double MIN_BBOX_WIDTH = 4411437;
     private const double MIN_BBOX_HEIGHT = 2445113;
-
+ 
     // Animations related consts
-    private const double PIN_LAYER_OPACITY_FADE_INCREMENET = 0.1;
-    private const int PINS_LAYER_OPACITY_FADE_INTERVAL_IN_MS = 50;
     private const int PINS_LAYER_ANIMATION_DURATION_IN_MS = 200;
     private const int COUNTRY_CHANGE_ANIMATION_DURATION_IN_MS = 1000;
     private const int MAX_PIN_PULSE_COUNT = 3;
@@ -230,20 +229,17 @@ public sealed partial class MapControl
         CRS = "EPSG:3857",
     };
 
-    private double _currentOpacity = 0;
     private bool _isManipulationRunning;
     private bool _isUnloaded;
     private bool _arePinsLoaded;
-    private bool _hasPointerEntered;
 
     private ILayer? _pinsLayer;
     private ILayer? _countriesLayer;
-    private DispatcherTimer? _fadeInTimer;
-    private DispatcherTimer? _fadeOutTimer;
     private CountryCallout _countryCallout;
     private GeometryFeature? _selectedPin;
     private Windows.Foundation.Point _currentMousePosition;
 
+    private AnimationEntry<double>? _pinFadeAnimation;
     private readonly Dictionary<AnimatedCircleStyle, List<AnimationEntry<AnimatedCircleStyle>>> _activeAnimations = [];
     private readonly AnimatedCirclesStyleSkiaRenderer _animatedCirclesStyleSkiaRenderer = new();
 
@@ -429,14 +425,11 @@ public sealed partial class MapControl
         DispatcherQueue?.TryEnqueue(ToggleFeatures);
     }
 
+    private bool _fadeInAnimationStarted;
+    private bool _fadeOutAnimationStarted;
+
     private void OnPointerMoved(object sender, PointerRoutedEventArgs e)
     {
-        if (!_hasPointerEntered)
-        {
-            _hasPointerEntered = true;
-            ToggleLayerWithFadeIn();
-        }
-
         if (_isManipulationRunning || _isUnloaded)
         {
             return;
@@ -444,7 +437,35 @@ public sealed partial class MapControl
 
         _currentMousePosition = e.GetCurrentPoint(Map).Position;
 
+        bool isMouseOnViewPort = IsMouseOnViewport(_currentMousePosition);
+
+        if (!_fadeInAnimationStarted && isMouseOnViewPort)
+        {
+            _fadeInAnimationStarted = true;
+            _fadeOutAnimationStarted = false;
+            StartFadeInPinAnimation();
+        }
+
+        if (_fadeInAnimationStarted && !_fadeOutAnimationStarted && !isMouseOnViewPort)
+        {
+            _fadeOutAnimationStarted = true;
+            _fadeInAnimationStarted = false;
+            StartFadeOutPinAnimation();
+        }
+
         ToggleFeatures();
+    }
+
+    private bool IsMouseOnViewport(Windows.Foundation.Point mousePosition)
+    {
+        Windows.Foundation.Rect viewportRect = new(
+            LeftOffset,
+            TopOffset + TITLEBAR_HEIGHT,
+            Map.ActualWidth - LeftOffset - RightOffset,
+            Map.ActualHeight - TopOffset - BottomOffset
+        );
+
+        return viewportRect.Contains(mousePosition);
     }
 
     private void ToggleFeatures()
@@ -479,7 +500,7 @@ public sealed partial class MapControl
             if (_selectedPin != null)
             {
                 _selectedPin.SetIsOnHover(false);
-                StartPinAnimation(_selectedPin, _selectedPin.GetHoverLostAnimationType());
+                StartPinScaleAnimations(_selectedPin, _selectedPin.GetHoverLostAnimationType());
             }
 
             _selectedPin = closestFeature;
@@ -490,14 +511,14 @@ public sealed partial class MapControl
             if (_selectedPin != null)
             {
                 _selectedPin.SetIsOnHover(false);
-                StartPinAnimation(_selectedPin, _selectedPin.GetHoverLostAnimationType());
+                StartPinScaleAnimations(_selectedPin, _selectedPin.GetHoverLostAnimationType());
             }
             _selectedPin = null;
 
             foreach (GeometryFeature feature in features.Cast<GeometryFeature>().Where(f => f.IsOnHover()))
             {
                 feature.SetIsOnHover(false);
-                StartPinAnimation(feature, feature.GetHoverLostAnimationType());
+                StartPinScaleAnimations(feature, feature.GetHoverLostAnimationType());
             }
 
             ProtectedCursor = InputSystemCursor.Create(InputSystemCursorShape.Arrow);
@@ -526,7 +547,7 @@ public sealed partial class MapControl
 
                 ProtectedCursor = InputSystemCursor.Create(InputSystemCursorShape.Hand);
 
-                StartPinAnimation(feature, feature.GetOnHoverAnimationType());
+                StartPinScaleAnimations(feature, feature.GetOnHoverAnimationType());
 
                 return;
             }
@@ -538,22 +559,17 @@ public sealed partial class MapControl
         return _pinsLayer?.GetFeatures(searchArea, _map.Navigator.Viewport.Resolution) ?? [];
     }
 
-    protected override void OnPointerEntered(PointerRoutedEventArgs e)
-    {
-        base.OnPointerEntered(e);
-
-        _hasPointerEntered = true;
-
-        ToggleLayerWithFadeIn();
-    }
-
     protected override void OnPointerExited(PointerRoutedEventArgs e)
     {
         base.OnPointerExited(e);
 
-        _hasPointerEntered = false;
+        if (_fadeInAnimationStarted)
+        {
+            StartFadeOutPinAnimation();
+        }
 
-        ToggleLayerWithFadeOut();
+        _fadeInAnimationStarted = false;
+        _fadeOutAnimationStarted = false;
 
         _countryCallout.Hide();
     }
@@ -658,12 +674,12 @@ public sealed partial class MapControl
 
     private bool OnLayerAnimationTick()
     {
-        if (_activeAnimations.Count < 0)
+        if (_activeAnimations.Count < 0 && _pinFadeAnimation is null)
         {
             return false;
         }
 
-        bool anyRunning = false;
+        bool isAnimationRunning = false;
 
         foreach (KeyValuePair<AnimatedCircleStyle, List<AnimationEntry<AnimatedCircleStyle>>> kvp in _activeAnimations.ToList())
         {
@@ -673,7 +689,7 @@ public sealed partial class MapControl
             AnimationResult<AnimatedCircleStyle> result = Animation.UpdateAnimations(style, entries);
             if (result.IsRunning)
             {
-                anyRunning = true;
+                isAnimationRunning = true;
             }
             else
             {
@@ -681,7 +697,20 @@ public sealed partial class MapControl
             }
         }
 
-        return anyRunning;
+        if (_pinFadeAnimation is not null)
+        {
+            AnimationResult<double> result = Animation.UpdateAnimations(_pinFadeAnimation.AnimationEnd, [_pinFadeAnimation]);
+            if (result.IsRunning)
+            {
+                isAnimationRunning = true;
+            }
+            else
+            {
+                _pinFadeAnimation = null;
+            }
+        }
+
+        return isAnimationRunning;
     }
 
     private AnimationEntry<AnimatedCircleStyle>? CreateShrinkGrowCycles(AnimatedCircleStyle style, int remainingPairs)
@@ -778,8 +807,8 @@ public sealed partial class MapControl
         where T : INumber<T>
     {
         return new AnimationEntry<AnimatedCircleStyle>(
-            start: start,
-            end: end,
+            start,
+            end,
             animationStart,
             animationEnd,
             easing,
@@ -872,13 +901,13 @@ public sealed partial class MapControl
 
                 if (!pin.IsConnected())
                 {
-                    StartPinAnimation(pin, PinAnimationType.DisconnectedToCurrentLocation);
+                    StartPinScaleAnimations(pin, PinAnimationType.DisconnectedToCurrentLocation);
                 }
             }
             else
             {
                 pin.SetIsCurrentCountry(false);
-                StartPinAnimation(pin, pin.GetDisconnectedAnimationType());
+                StartPinScaleAnimations(pin, pin.GetDisconnectedAnimationType());
             }
 
             pin.SetIsConnected(false);
@@ -894,7 +923,7 @@ public sealed partial class MapControl
             if (pin.GetCountryCode() == CurrentCountry?.Code)
             {
                 PinAnimationType animation = pin.GetConnectingAnimationType();
-                StartPinAnimation(pin, animation);
+                StartPinScaleAnimations(pin, animation);
 
                 pin.SetIsConnecting(true);
             }
@@ -907,7 +936,7 @@ public sealed partial class MapControl
 
                 if (pinAnimationType != null)
                 {
-                    StartPinAnimation(pin, pinAnimationType);
+                    StartPinScaleAnimations(pin, pinAnimationType);
                 }
             }
 
@@ -936,14 +965,14 @@ public sealed partial class MapControl
                 pin.SetIsConnected(true);
                 pin.SetIsCurrentCountry(true);
 
-                StartPinAnimation(pin, PinAnimationType.ConnectingToConnected);
+                StartPinScaleAnimations(pin, PinAnimationType.ConnectingToConnected);
             }
             else
             {
                 if (pin.IsCurrentCountry())
                 {
                     pin.SetIsCurrentCountry(false);
-                    StartPinAnimation(pin, PinAnimationType.NormalLocationConnectingToDisconnected);
+                    StartPinScaleAnimations(pin, PinAnimationType.NormalLocationConnectingToDisconnected);
                 }
 
                 pin.SetIsConnected(false);
@@ -1033,7 +1062,7 @@ public sealed partial class MapControl
         double effectiveViewportWidth = _map.Navigator.Viewport.Width - (LeftOffset + RightOffset);
         double effectiveViewportHeight = _map.Navigator.Viewport.Height - (TopOffset + BottomOffset);
         double horizontalOffsetInPixels = (LeftOffset - RightOffset) / 2.0;
-        double verticalOffsetInPixels = 16 + (TopOffset - BottomOffset) / 2.0;
+        double verticalOffsetInPixels = TITLEBAR_HEIGHT + (TopOffset - BottomOffset) / 2.0;
 
         if (CurrentCountry.Code == "RU")
         {
@@ -1080,95 +1109,50 @@ public sealed partial class MapControl
         return GetPinFeature(_mapBounds).ToList();
     }
 
-    private void ToggleLayerWithFadeIn()
+    private void StartFadeInPinAnimation()
+    {
+        StartFadePinAnimation(0, 1);
+    }
+
+    private void StartFadeOutPinAnimation()
+    {
+        StartFadePinAnimation(1, 0);
+    }
+
+    private void StartFadePinAnimation(double start, double end)
     {
         if (_pinsLayer == null)
         {
             return;
         }
 
-        if (_fadeOutTimer != null && _fadeOutTimer.IsEnabled)
-        {
-            _fadeOutTimer.Stop();
-        }
-
-        if (_fadeInTimer == null)
-        {
-            _fadeInTimer = new DispatcherTimer
+        AnimationEntry<double> fadeAnimation = new(
+            start,
+            end,
+            animationStart: 0,
+            animationEnd: 1,
+            Easing.Linear,
+            repeat: false,
+            tick: (_, e, v) =>
             {
-                Interval = TimeSpan.FromMilliseconds(PINS_LAYER_OPACITY_FADE_INTERVAL_IN_MS)
-            };
-            _fadeInTimer.Tick += FadeInStep;
-        }
+                _pinsLayer.Opacity = (double)e.Start + ((double)e.End - (double)e.Start) * e.Easing.Ease(v);
 
-        _fadeInTimer.Start();
-    }
-
-    private void FadeInStep(object? sender, object e)
-    {
-        if (_pinsLayer == null)
-        {
-            return;
-        }
-
-        _currentOpacity += PIN_LAYER_OPACITY_FADE_INCREMENET;
-
-        if (_currentOpacity >= 1)
-        {
-            _currentOpacity = 1;
-            _fadeInTimer?.Stop();
-        }
-
-        _pinsLayer.Opacity = _currentOpacity;
-
-        _map.RefreshGraphics();
-    }
-
-    private void ToggleLayerWithFadeOut()
-    {
-        if (_pinsLayer == null)
-        {
-            return;
-        }
-
-        if (_fadeInTimer != null && _fadeInTimer.IsEnabled)
-        {
-            _fadeInTimer.Stop();
-        }
-
-        if (_fadeOutTimer == null)
-        {
-            _fadeOutTimer = new DispatcherTimer
+                return new(_pinsLayer.Opacity, true);
+            },
+            final: (_, e) =>
             {
-                Interval = TimeSpan.FromMilliseconds(PINS_LAYER_OPACITY_FADE_INTERVAL_IN_MS)
-            };
-            _fadeOutTimer.Tick += FadeOutStep;
-        }
+                _pinsLayer.Opacity = (double)e.End;
+                _map.RefreshGraphics();
 
-        _fadeOutTimer.Start();
+                return new(_pinsLayer.Opacity, false);
+            });
+
+        Animation.Start(fadeAnimation, 500);
+
+        _pinFadeAnimation = fadeAnimation;
     }
 
-    private void FadeOutStep(object? sender, object e)
-    {
-        if (_pinsLayer == null)
-        {
-            return;
-        }
-
-        _currentOpacity -= PIN_LAYER_OPACITY_FADE_INCREMENET;
-
-        if (_currentOpacity <= 0)
-        {
-            _currentOpacity = 0;
-            _fadeOutTimer?.Stop();
-        }
-
-        _pinsLayer.Opacity = _currentOpacity;
-
-        _map.RefreshGraphics();
-    }
-
-    private void StartPinAnimation(IFeature feature, PinAnimationType? animationType)
+    private void StartPinScaleAnimations(IFeature feature, PinAnimationType? animationType)
     {
         if (animationType == null)
         {
