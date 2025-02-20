@@ -46,6 +46,12 @@ include:
       stage: security
       cli-args: ""
 
+  - component: $CI_SERVER_HOST/proton/devops/cicd-components/devsecops/project-settings-validator/scan-project@~latest
+    inputs:
+      stage: security
+      cli-args: ""
+      allowed-to-fail: false
+
 variables:
   PUBLIC_REPO_URL: git@github.com:ProtonVPN/win-app.git
   SCREENSHOT_PATH: src/bin/e2e/TestFailureData/
@@ -189,6 +195,9 @@ gitleaks-create-baseline:
       when: manual
     - when: never
   allow_failure: true
+
+project-settings-validator-scan-project:
+  needs: []
     
 grype-scan-code-dependencies:
   rules:
