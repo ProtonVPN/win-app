@@ -23,5 +23,5 @@ public enum DefaultConnectionType
 {
     Fastest,
     Last,
-    Profile
+    Recent,
 }

@@ -120,10 +120,15 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
 
         return defaultConnection.Type switch
         {
-            DefaultConnectionType.Profile => _profilesManager.GetById(defaultConnection.ProfileId) ?? ConnectionIntent.Default,
+            DefaultConnectionType.Recent => GetById(defaultConnection.RecentId)?.ConnectionIntent ?? ConnectionIntent.Default,
             DefaultConnectionType.Last => GetMostRecentConnection()?.ConnectionIntent ?? ConnectionIntent.Default,
             _ => ConnectionIntent.Default
         };
+    }
+
+    public IRecentConnection? GetById(Guid id)
+    {
+        return _recentConnections.FirstOrDefault(c => c.Id == id);
     }
 
     public void OverrideRecentConnections(List<IConnectionIntent> connectionIntents, IConnectionIntent? mostRecentConnectionIntent = null)
@@ -271,7 +276,7 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
             _recentConnections.Remove(duplicate);
         }
 
-        _recentConnections.Insert(0, duplicates.FirstOrDefault() ?? new RecentConnection(recentIntent));
+        _recentConnections.Insert(0, duplicates.FirstOrDefault() ?? new RecentConnection(Guid.NewGuid(), recentIntent));
 
         return true;
     }
@@ -281,6 +286,12 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
         if (recentConnection == null)
         {
             return false;
+        }
+
+        if (recentConnection.Id == _settings.DefaultConnection.RecentId)
+        {
+            _settings.DefaultConnection = DefaultSettings.DefaultConnection;
+            _logger.Info<AppLog>("Removing recent which is set as a current default connection.");
         }
 
         _recentConnections.Remove(recentConnection);
@@ -386,9 +397,14 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
 
     private void TrimRecentConnections()
     {
-        while (_recentConnections.Count(c => !c.IsPinned) > MAXIMUM_RECENT_CONNECTIONS)
+        while (_recentConnections.Count(c => !IsRecentInUseOrPinned(c)) > MAXIMUM_RECENT_CONNECTIONS)
         {
-            _recentConnections.Remove(_recentConnections.Last(c => !c.IsPinned));
+            _recentConnections.Remove(_recentConnections.Last(c => !IsRecentInUseOrPinned(c)));
         }
+    }
+
+    private bool IsRecentInUseOrPinned(IRecentConnection recent)
+    {
+        return recent.IsPinned || recent.Id == _settings.DefaultConnection.RecentId;
     }
 }

@@ -25,7 +25,6 @@ using ProtonVPN.Client.Logic.Profiles.Contracts.Messages;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Profiles.Files;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
 
 namespace ProtonVPN.Client.Logic.Profiles;
@@ -121,17 +120,6 @@ public class ProfilesManager : IProfilesManager,
 
                 SaveAndBroadcastProfileChanges(NotifyCollectionChangedAction.Remove, profileId);
             }
-
-            ResetDefaultConnectionIfProfileDoesNotExist();
-        }
-    }
-
-    private void ResetDefaultConnectionIfProfileDoesNotExist()
-    {
-        DefaultConnection defaultConnection = _settings.DefaultConnection;
-        if (defaultConnection.Type == DefaultConnectionType.Profile && !_profiles.Any(p => p.Id == defaultConnection.ProfileId))
-        {
-            _settings.DefaultConnection = DefaultSettings.DefaultConnection;
         }
     }
 
@@ -162,8 +150,6 @@ public class ProfilesManager : IProfilesManager,
 
             SaveProfiles();
         }
-
-        ResetDefaultConnectionIfProfileDoesNotExist();
     }
 
     private void SaveProfiles()
