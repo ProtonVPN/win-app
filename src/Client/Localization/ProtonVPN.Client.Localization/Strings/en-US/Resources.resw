@@ -2941,7 +2941,7 @@
     <value>Update Proton VPN</value>
   </data>
   <data name="Components_Update_MoreLikelyIssues" xml:space="preserve">
-    <value>You're more likely to have issues on older versions of ProtonVPN.</value>
+    <value>You're more likely to have issues on older versions of Proton VPN.</value>
   </data>
   <data name="Components_Update_GetMostFromYourVpn" xml:space="preserve">
     <value>Get the most from your VPN by updating to the latest version of the app.</value>
