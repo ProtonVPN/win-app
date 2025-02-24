@@ -123,6 +123,9 @@
   <data name="Automation_Properties_ConnectionDetails_Page">
     <value>Seite mit Verbindungsdetails</value>
   </data>
+  <data name="Automation_Properties_Connection_Card_Component">
+    <value>Verbindungskarte</value>
+  </data>
   <data name="Automation_Properties_Features_Bar">
     <value>Funktionsleiste</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>Portweiterleitungsseite</value>
+  </data>
+  <data name="Automation_Properties_Profile_Page">
+    <value>Profilseite</value>
   </data>
   <data name="Automation_Properties_Settings_Advanced_Page">
     <value>Erweiterte Einstellungsseite</value>
@@ -222,17 +228,38 @@
     <value>Von {0} trennen</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
+  <data name="Common_Actions_Duplicate">
+    <value>Duplizieren</value>
+  </data>
   <data name="Common_Actions_Edit">
     <value>Bearbeiten</value>
   </data>
   <data name="Common_Actions_Enable">
     <value>Aktivieren</value>
   </data>
+  <data name="Common_Actions_Exit_ProtonVPN">
+    <value>Proton VPN beenden</value>
+  </data>
+  <data name="Common_Actions_GotIt">
+    <value>Verstanden</value>
+  </data>
+  <data name="Common_Actions_Install">
+    <value>Installieren</value>
+  </data>
   <data name="Common_Actions_Reconnect">
     <value>Erneut verbinden</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>Entfernen</value>
+  </data>
+  <data name="Common_Actions_Restart">
+    <value>Neu starten</value>
+  </data>
+  <data name="Common_Actions_Save">
+    <value>Speichern</value>
+  </data>
+  <data name="Common_Actions_TryAgain">
+    <value>Erneut versuchen</value>
   </data>
   <data name="Common_Actions_Update">
     <value>Update</value>
@@ -241,10 +268,10 @@
     <value>Upgraden</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>**Erweiterter Kill Switch ist aktiviert.** Um das Internet ohne VPN zu nutzen, deaktiviere den erweiterten Kill Switch.</value>
+    <value>Erweiterter Kill Switch ist aktiviert. Um das Internet ohne VPN zu nutzen, deaktiviere den erweiterten Kill Switch.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>**Erweiterter Kill Switch ist aktiviert.** Wenn du fortfährst, wirst du vom Internet getrennt.</value>
+    <value>Erweiterter Kill Switch ist aktiviert. Wenn du fortfährst, wirst du vom Internet getrennt.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
     <value>Du wirst vom VPN getrennt.</value>
@@ -264,6 +291,21 @@
   <data name="Common_States_Updating">
     <value>Wird aktualisiert...</value>
   </data>
+  <data name="Common_Tags_New">
+    <value>NEU</value>
+  </data>
+  <data name="Components_Update_GetMostFromYourVpn">
+    <value>Hole das Beste aus deinem VPN heraus und aktualisiere auf die neuste Version der App.</value>
+  </data>
+  <data name="Components_Update_MoreLikelyIssues">
+    <value>Bei älteren Versionen von Proton VPN ist die Wahrscheinlichkeit größer, dass Probleme auftreten.</value>
+  </data>
+  <data name="Components_Update_UpdateAvailable">
+    <value>Update verfügbar</value>
+  </data>
+  <data name="Components_Update_UpdateProtonVpn">
+    <value>Proton VPN aktualisieren</value>
+  </data>
   <data name="Connection_Error_EditProfile">
     <value>Profil bearbeiten</value>
   </data>
@@ -271,7 +313,7 @@
     <value>Proton VPN konnte das Authentifizierungszertifikat aufgrund eines Netzwerkproblems nicht abrufen.</value>
   </data>
   <data name="Connection_Error_NoServers">
-    <value>Es gibt zurzeit keine Server, die auf deine Auswahl zutreffen. Bitte wähle eine andere Option aus.</value>
+    <value>Alle Server in deiner Auswahl sind nicht verfügbar. Bitte erweitere deine Auswahl oder versuche es später erneut.</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
     <value>Der Server, den du für '{0}' ausgewählt hast, ist derzeit nicht verfügbar. Wähle einen anderen Server oder versuche es später erneut.</value>
@@ -308,10 +350,10 @@
     <value>Wir sind nicht sicher, was hier passiert ist. Bitte versuche es erneut oder wende dich an unseren Kundensupport.</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
-    <value>Mögliche Lösungen ansehen</value>
+    <value>Fehlerkorrekturen anzeigen</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
-    <value>Proton VPN konnte keine Verbindung herstellen, da der WireGuard-Netzwerkadapter bereits in Verwendung ist. Bitte trenne alle aktiven VPN-Verbindungen und versuche es erneut. Wechsle alternativ auf ein anderes Protokoll in den "Erweiterten Einstellungen".</value>
+    <value>Der WireGuard-Adapter deines Geräts ist in Verwendung. Bitte trenne die Verbindung zu allen anderen VPNs und versuche es erneut.</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Automatisch ausgewählt aus</value>
@@ -445,8 +487,19 @@
   <data name="Connections_Profiles_Empty_Title">
     <value>Erstelle dein erstes Profil</value>
   </data>
+  <data name="Connections_Profiles_Location_Header">
+    <value>Verbindungstyp und Standort auswählen</value>
+  </data>
   <data name="Connections_Profiles_Name">
-    <value>Profilname</value>
+    <value>Gib deinem Profil einen Namen</value>
+  </data>
+  <data name="Connections_Profiles_Name_Default">
+    <value>Ohne Titel</value>
+    <comment>This will be used as the default profile name if the user creates a profile without entering a name</comment>
+  </data>
+  <data name="Connections_Profiles_Name_Duplicate">
+    <value>Kopie von {0}</value>
+    <comment>This will be used as the profile name when duplicating a profile. {0} is a placeholder for the original profile name.</comment>
   </data>
   <data name="Connections_Profiles_New">
     <value>Neues Profil</value>
@@ -456,8 +509,11 @@
     <value>Profile sind verfügbar mit VPN Plus</value>
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
   </data>
-  <data name="Connections_Profiles_Save">
-    <value>Profil speichern</value>
+  <data name="Connections_Profiles_Settings_Description">
+    <value>Die Profileinstellungen überschreiben deine VPN-Einstellungen, wenn du verbunden bist.</value>
+  </data>
+  <data name="Connections_Profiles_Settings_Header">
+    <value>Benutzerdefinierte Einstellungen hinzufügen</value>
   </data>
   <data name="Connections_Random">
     <value>Zufällig</value>
@@ -560,9 +616,6 @@
   <data name="Countries_All">
     <value>Alle</value>
   </data>
-  <data name="Countries_Cities">
-    <value>Städte</value>
-  </data>
   <data name="Countries_City_One">
     <value>{0} Stadt</value>
   </data>
@@ -576,19 +629,8 @@
   <data name="Countries_Fastest">
     <value>Schnellstes Land</value>
   </data>
-  <data name="Countries_Info">
-    <value>Info</value>
-  </data>
   <data name="Countries_NoSearchResults">
     <value>Keine Ergebnisse gefunden</value>
-  </data>
-  <data name="Countries_NumberOfCities">
-    <value>Städte ({0})</value>
-    <comment>{0} represents the number of cities</comment>
-  </data>
-  <data name="Countries_NumberOfCountries">
-    <value>Länder ({0})</value>
-    <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_NumberOfServers">
     <value>Server ({0})</value>
@@ -596,10 +638,6 @@
   </data>
   <data name="Countries_P2P">
     <value>P2P</value>
-  </data>
-  <data name="Countries_P2PCountries">
-    <value>P2P-Länder ({0})</value>
-    <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_P2P_Cities">
     <value>P2P-Städte ({0})</value>
@@ -620,22 +658,8 @@
   <data name="Countries_SecureCore">
     <value>Secure Core</value>
   </data>
-  <data name="Countries_SecureCoreCountries">
-    <value>Secure Core-Länder ({0})</value>
-    <comment>{0} represents the number of countries</comment>
-  </data>
-  <data name="Countries_SecureCoreServers">
-    <value>Secure Core-Server ({0})</value>
-    <comment>{0} represents the number of severs</comment>
-  </data>
   <data name="Countries_SecureCore_Description">
     <value>Füge deiner VPN-Verbindung eine weitere Verschlüsselungsebene hinzu.</value>
-  </data>
-  <data name="Countries_Server_One">
-    <value>{0} Server</value>
-  </data>
-  <data name="Countries_Server_Other">
-    <value>{0} Server</value>
   </data>
   <data name="Countries_ServerLoad">
     <value>Serverauslastung</value>
@@ -643,16 +667,8 @@
   <data name="Countries_SmartRouting">
     <value>Intelligentes Routing</value>
   </data>
-  <data name="Countries_SmartRouting_Description">
-    <value>Die Server befinden sich physisch in {0}, aber es wird so aussehen, als würdest du von {1} browsen.</value>
-    <comment>{0} and {1} represent country names.</comment>
-  </data>
   <data name="Countries_Tor">
     <value>Tor</value>
-  </data>
-  <data name="Countries_TorCountries">
-    <value>Tor-Länder ({0})</value>
-    <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_TorServers">
     <value>Tor-Server ({0})</value>
@@ -663,10 +679,6 @@
   </data>
   <data name="Countries_TryDifferentKeyword">
     <value>Bitte versuche es mit einem anderen Schlüsselwort</value>
-  </data>
-  <data name="Countries_ViaCountry">
-    <value>über {0}</value>
-    <comment>{0} represents country name. For example: via Australia.</comment>
   </data>
   <data name="Country_Fastest">
     <value>Schnellstes Land</value>
@@ -1684,6 +1696,15 @@
     <value>Unbekannt</value>
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
+  <data name="Dialogs_BaseFilteringEngine_Description">
+    <value>Das Basisfiltermodul (BFE) auf deinem Windows-PC ist deaktiviert. Du musst es aktivieren, damit Proton VPN korrekt funktioniert.</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_HowToEnable">
+    <value>Aktivieren des Basisfiltermoduls</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Title">
+    <value>Basisfiltermodul aktivieren, um fortzufahren</value>
+  </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
     <value>Hol dir unbegrenzte Serverwechsel mit VPN Plus.</value>
   </data>
@@ -1698,6 +1719,12 @@
   </data>
   <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
     <value>Upgrade, um Zugang zu Plus-Servern und Funktionen wieder zu erhalten.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Description">
+    <value>Es scheint, als sei der Proton VPN Service deaktiviert. Du musst ihn aktivieren, um dich verbinden zu können.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Title">
+    <value>Windows Dienst aktivieren, um fortzufahren</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free verbindet dich automatisch mit dem schnellsten verfügbaren freien Server aus unserem {0} freien Land. Dies ist normalerweise der Server, der deinem Standort am nächsten ist.</value>
@@ -1739,6 +1766,12 @@ Eine hohe Latenzzeit kann deine Verbindung verlangsamen.</value>
   </data>
   <data name="Dialogs_Latency_Title">
     <value>Was ist Latenz?</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Description">
+    <value>Deine Verbindung wurde deaktiviert, da du einen Server benutzt, der P2P-Traffic nicht unterstützt. P2P wird auf kostenlosen Servern nicht unterstützt. Bitte nutze einen anderen Server für P2P.</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Title">
+    <value>P2P-Traffic erkannt</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>Wie man P2P mit Hilfe von Torrent durchführt</value>
@@ -1803,7 +1836,7 @@ Eine hohe Latenzzeit kann deine Verbindung verlangsamen.</value>
     <value>Was ist das Problem?</value>
   </data>
   <data name="Dialogs_ReportIssue_NoLogsWarning">
-    <value>Fehlerprotokolle helfen uns, deinem Problem auf den Grund zu gehen. Wenn du uns diese nicht zur Verfügung stellst, können wir das Problem möglicherweise nicht vollständig untersuchen.</value>
+    <value>Fehlerprotokolle helfen uns, deinem Problem auf den Grund zu gehen. Wenn du sie nicht mitschickst, können wir das Problem möglicherweise nicht vollständig untersuchen.</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes">
     <value>Lösungsvorschläge</value>
@@ -1823,9 +1856,6 @@ Eine hohe Latenzzeit kann deine Verbindung verlangsamen.</value>
   <data name="Dialogs_ReportIssue_Result_Fail_Description">
     <value>Fehler beim Senden des Berichts. Bitte überprüfe deine Verbindung und versuche es erneut.</value>
   </data>
-  <data name="Dialogs_ReportIssue_Result_RetryAction">
-    <value>Erneut versuchen</value>
-  </data>
   <data name="Dialogs_ReportIssue_Result_Success">
     <value>Bericht gesendet</value>
   </data>
@@ -1841,42 +1871,6 @@ Eine hohe Latenzzeit kann deine Verbindung verlangsamen.</value>
   </data>
   <data name="Dialogs_ReportIssue_Title">
     <value>Ein Problem melden</value>
-  </data>
-  <data name="Dialogs_SecureCore_AdvancedPrivacy">
-    <value>Erweiterte Privatsphäre</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_Description">
-    <value>Secure Core verbindet dich mit deinem Zielserver über einen zweiten, maximal sicheren VPN-Server.
-
-Dieses höhere Schutzniveau kann zu höheren Latenzzeiten und langsameren Geschwindigkeiten führen.</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_HighPrivacy">
-    <value>Hohe Privatsphäre</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_HigherLatency">
-    <value>Höhere Latenz</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_LowerLatency">
-    <value>Niedrigere Latenz</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_SecureCoreConnection">
-    <value>Secure Core
-VPN-Verbindung</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_StandardConnection">
-    <value>Standard
-VPN-Verbindung</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_Title">
-    <value>Secure Core</value>
-    <comment>obsolete</comment>
   </data>
   <data name="Dialogs_ServerLoad_Description">
     <value>Die Serverauslastung zeigt an, wie nahe ein Server an seiner maximalen Kapazität ist.
@@ -1904,18 +1898,20 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
   <data name="Dialogs_ServerLoad_Title">
     <value>Was ist die Serverauslastung?</value>
   </data>
-  <data name="Dialogs_SmartRouting_Description">
-    <value>Smart Routing verwendet virtuelle Server, um VPN-Abdeckung in schwer zugänglichen Ländern zu bieten.
-
-Wenn du dich mit einem Smart Routing-Server verbindest, scheint es, als würdest du in deinem Zielland surfen, obwohl sich der physische Server anderswo befindet.  
-
-Smart Routing wird in der Regel verwendet, um Datenschutzgesetze und andere Formen der Zensur zu umgehen.</value>
-  </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Intelligentes Routing</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>Vielleicht später</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Description">
+    <value>Es sieht so aus, als ob dein Gerät einen Proxy-Server verwendet. Dies kann den VPN-Schutz beeinträchtigen.</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Disable">
+    <value>Proxy deaktivieren</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Title">
+    <value>Proxyserver erkannt</value>
   </data>
   <data name="Dialogs_Tor_Description">
     <value>Verbinde dich mit einem Tor-Server, um mit einem beliebigen Browser auf ausgeblendete Dienste und Onion-Seiten zuzugreifen.</value>
@@ -1941,9 +1937,6 @@ Smart Routing wird in der Regel verwendet, um Datenschutzgesetze und andere Form
   <data name="Dialogs_Troubleshooting_Description">
     <value>Diese Sofortmaßnahmen können dir helfen, eine Verbindung zu Proton herzustellen.</value>
   </data>
-  <data name="Dialogs_Troubleshooting_DidNotWork">
-    <value>Hat es nicht geklappt?</value>
-  </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork">
     <value>Verwende ein anderes Netzwerk</value>
   </data>
@@ -1958,6 +1951,18 @@ Smart Routing wird in der Regel verwendet, um Datenschutzgesetze und andere Form
   </data>
   <data name="Dialogs_Troubleshooting_Title">
     <value>Hilfe zur Verbindung</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOff">
+    <value>Dadurch wird die Verbindung zum VPN unterbrochen. Alle aktiven Internetverbindungen sind dann vorübergehend ungeschützt.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn">
+    <value>Dadurch wird die Verbindung zum VPN getrennt und der Kill Switch vorübergehend deaktiviert. Alle aktiven Internetverbindungen sind dann vorübergehend ungeschützt.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Install">
+    <value>Update installieren?</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Restart">
+    <value>Proton VPN neu starten, um das Update abzuschließen</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Description">
     <value>Es sieht so aus, als ob deine Systemuhr nicht mehr synchron ist. Dies kann zu Problemen bei der Verbindung mit VPN führen.</value>
@@ -2007,10 +2012,11 @@ Smart Routing wird in der Regel verwendet, um Datenschutzgesetze und andere Form
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Willkommen bei VPN Plus</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description">
-    <value>Herzlichen Glückwunsch! Du hast die Premium-Sicherheits- und Performance-Funktionen für alle Proton-Dienste freigeschaltet.
-
-Genieße das Beste der Proton Privatsphäre.</value>
+  <data name="Dialogs_WelcomeUnlimited_Description1">
+    <value>Herzlichen Glückwunsch! Du hast die Premium-Sicherheits- und Performance-Funktionen für alle Proton-Dienste freigeschaltet.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description2">
+    <value>Genieße die beste Proton-Privatsphäre</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Willkommen bei Proton Unlimited</value>
@@ -2030,12 +2036,14 @@ Genieße das Beste der Proton Privatsphäre.</value>
   <data name="Exit_Title">
     <value>Proton VPN beenden</value>
   </data>
-  <data name="Flyouts_Country_Description">
-    <value>Wenn du ohne VPN surfst, bist du anfällig für standortbezogene Internetbeschränkungen.
-
-Websites können Geoblocks verwenden, um Inhalte auf bestimmte Standorte zu beschränken. Regierungen können auch ISPs (Internetdienstanbieter) anweisen, bestimmte Websites in ihrem Land zu sperren.
-
-Ein VPN lässt es so aussehen, als würdest du von einem anderen Ort aus surfen, und schützt dich so vor Überwachung und Zensur.</value>
+  <data name="Flyouts_Country_Description1">
+    <value>Wenn du ohne VPN surfst, bist du ungeschützt vor standortbezogenen Internetbeschränkungen.</value>
+  </data>
+  <data name="Flyouts_Country_Description2">
+    <value>Webseiten können Geoblocking einsetzen, um Inhalte auf bestimmte Orte zu beschränken. Regierungen können auch ISPs (Internet Service Providers) anweisen, bestimmte Websites in ihrem Land zu sperren.</value>
+  </data>
+  <data name="Flyouts_Country_Description3">
+    <value>Ein VPN lässt es so aussehen, als ob du von einem anderen Ort aus surfen würdest, und schützt dich so vor Überwachung und Zensur.</value>
   </data>
   <data name="Flyouts_Country_Title">
     <value>Land</value>
@@ -2046,10 +2054,11 @@ Ein VPN lässt es so aussehen, als würdest du von einem anderen Ort aus surfen,
   <data name="Flyouts_IpAddress_Description_Connected">
     <value>Deine VPN-IP maskiert deine echte IP-Adresse. Dadurch sieht es so aus, als würdest du von deinem VPN-Standort aus surfen, sodass deine Online-Aktivitäten nicht mit deinem Gerät in Verbindung gebracht werden können.</value>
   </data>
-  <data name="Flyouts_IpAddress_Description_Disconnected">
-    <value>Dieser eindeutige Code kann von Websites und ISPs (Internetdienstanbietern) verwendet werden, um deinen Standort und deinen Browserverlauf mit deinem Gerät zu verknüpfen. 
-
-Ein VPN verbirgt deine IP-Adresse und erschwert so die Rückverfolgung deiner Aktivitäten zu dir.</value>
+  <data name="Flyouts_IpAddress_Description_Disconnected1">
+    <value>Dieser eindeutige Code kann von Webseiten und Internet-Diensteanbietern (ISPs) verwendet werden, um deinen Standort und deinen Browserverlauf mit deinem Gerät zu verknüpfen.</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected2">
+    <value>Ein VPN verbirgt deine IP-Adresse, sodass es schwieriger ist, deine Aktivitäten zu dir zurückzuverfolgen.</value>
   </data>
   <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
     <value>Was ist eine IP-Adresse?</value>
@@ -2066,12 +2075,14 @@ Ein VPN verbirgt deine IP-Adresse und erschwert so die Rückverfolgung deiner Ak
   <data name="Flyouts_IpAddress_YourIpIsVisible">
     <value>Deine IP-Adresse ist sichtbar</value>
   </data>
-  <data name="Flyouts_Isp_Description">
-    <value>Dein ISP (Internetdienstanbieter) ist das Unternehmen, das dich mit dem Internet verbindet. 
-
-Er kann deine Online-Aktivitäten aufzeichnen. In einigen Ländern können sie deine Daten an Werbetreibende verkaufen. In anderen Ländern können sie verpflichtet werden, die Daten an die Regierung weiterzugeben. 
-
-Ein VPN blendet deine IP-Adresse aus und schützt dich so vor Eingriffen des ISP.</value>
+  <data name="Flyouts_Isp_Description1">
+    <value>Dein ISP (Internet Service Provider) ist das Unternehmen, das dich mit dem Internet verbindet. </value>
+  </data>
+  <data name="Flyouts_Isp_Description2">
+    <value>Sie können deine Online-Aktivitäten aufzeichnen. In einigen Ländern können sie deine Daten an Werbetreibende verkaufen. In anderen können sie verpflichtet werden, sie an die Regierung weiterzugeben.</value>
+  </data>
+  <data name="Flyouts_Isp_Description3">
+    <value>Ein VPN verbirgt deine IP-Adresse und schützt dich so vor Eingriffen des ISP.</value>
   </data>
   <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
     <value>Was ist ein Internetdienstanbieter (ISP)?</value>
@@ -2081,6 +2092,54 @@ Ein VPN blendet deine IP-Adresse aus und schützt dich so vor Eingriffen des ISP
   </data>
   <data name="Flyouts_Isp_Warning">
     <value>Dein Anbieter kann sehen, welche Websites du besuchst</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Advanced_Success">
+    <value>Sperrt den gesamten Internetzugang, wenn du nicht mit Proton VPN verbunden bist</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info">
+    <value>Deine IP-Adresse könnte sichtbar werden, wenn deine VPN-Verbindung abbricht</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Standard_Success">
+    <value>Wenn deine VPN-Verbindung unterbrochen wird, wirst du vom Internet getrennt, bis das VPN wiederhergestellt ist.</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Connected">
+    <value>Der erweiterter Kill Switch gilt auch dann, wenn du die Verbindung zum VPN absichtlich trennst</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Disconnected">
+    <value>Um wieder online zu gehen, musst du wieder eine Verbindung zum VPN herstellen oder den erweiterten Kill Switch deaktivieren</value>
+  </data>
+  <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
+    <value>Du bist geschützt vor Werbung, Trackern und Malware.</value>
+  </data>
+  <data name="Flyouts_NetShield_Info">
+    <value>Schütz dich selbst vor Werbung, Trackern und Malware auf Webseiten und Apps</value>
+  </data>
+  <data name="Flyouts_NetShield_MalwareOnly_Success">
+    <value>Du bist nur vor Malware geschützt</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Description">
+    <value>Blockiere Werbung, Tracker und Malware mit VPN Plus.</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Title">
+    <value>Genieße werbefreies Surfen</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort">
+    <value>Aktive Portnummer</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Info">
+    <value>Gib die aktive Portnummer in deine BitTorrent-App ein, um deine P2P-Geschwindigkeit zu verbessern</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Info">
+    <value>Verbessert die P2P-Downloadgeschwindigkeit</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Description">
+    <value>Erhöhe die Leistung von Peer-to-Peer (P2P) Filesharing mit VPN Plus.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Title">
+    <value>Verbessert die P2P-Geschwindigkeit</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Warning">
+    <value>Um die Portweiterleitung zu verwenden, stelle eine Verbindung zu einem P2P-Server her.</value>
   </data>
   <data name="Flyouts_Protocol_Description">
     <value>Ein VPN-Protokoll bestimmt, wie der Verkehr verschlüsselt und über das VPN übertragen wird.</value>
@@ -2121,10 +2180,11 @@ Ein VPN blendet deine IP-Adresse aus und schützt dich so vor Eingriffen des ISP
   <data name="Flyouts_Speed_BoostedByVpnAccelerator">
     <value>Verstärkt durch VPN Accelerator</value>
   </data>
-  <data name="Flyouts_Speed_Description">
-    <value>Dies zeigt an, wie viele Daten pro Sekunde durch Proton VPN übertragen werden.
-
-Die Geschwindigkeit basiert auf der aktuellen Aktivität deines Geräts – sie stellt nicht die maximale Geschwindigkeit des VPNs dar.</value>
+  <data name="Flyouts_Speed_Description1">
+    <value>Dies zeigt an, wie viele Daten pro Sekunde über Proton VPN übertragen werden.</value>
+  </data>
+  <data name="Flyouts_Speed_Description2">
+    <value>Die Geschwindigkeit basiert auf der aktuellen Aktivität deines Geräts - sie stellt nicht die maximale Geschwindigkeit des VPNs dar.</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>Download</value>
@@ -2139,6 +2199,45 @@ Die Geschwindigkeit basiert auf der aktuellen Aktivität deines Geräts – sie
   <data name="Flyouts_Speed_Upload">
     <value>Upload</value>
     <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_One">
+    <value>Ausgeschlossene Anwendung ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_Other">
+    <value>Ausgeschlossene Anwendungen ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_One">
+    <value>Ausgeschlossene IP-Adresse ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_Other">
+    <value>Ausgeschlossene IP-Adressen ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Info">
+    <value>Ermöglicht vertrauenswürdigen Anwendungen und IP-Adressen die Verbindung ohne VPN-Schutz</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Inverse_Info">
+    <value>Nur diese Anwendungen und IP-Adressen werden über VPN verbunden. Der gesamte andere Datenverkehr ist ungeschützt.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_One">
+    <value>Geschützte Anwendung ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_Other">
+    <value>Geschützte Anwendungen ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_One">
+    <value>Geschützte IP-Adresse ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_Other">
+    <value>Geschützte IP-Adressen ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Standard_Info">
+    <value>Diese Anwendungen und IP-Adressen verbinden sich ohne VPN-Schutz. Der gesamte andere Datenverkehr ist geschützt.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Description">
+    <value>Teile mit VPN Plus deinen Datenverkehr in VPN- und Nicht-VPN-Tunnel auf.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Title">
+    <value>Erhalte das Beste aus beiden Welten</value>
   </data>
   <data name="Flyouts_Volume_Description">
     <value>Hier wird angezeigt, wie viel Verkehr durch dein VPN geleitet wurde.</value>
@@ -2269,6 +2368,12 @@ Die Geschwindigkeit basiert auf der aktuellen Aktivität deines Geräts – sie
   </data>
   <data name="FreeConnections_WorldwideCoverageUpsell">
     <value>Erhalte weltweite Abdeckung mit VPN Plus</value>
+  </data>
+  <data name="Gateway_Fastest">
+    <value>Schnellstes Gateway</value>
+  </data>
+  <data name="Gateway_Random">
+    <value>Zufälliges Gateway</value>
   </data>
   <data name="Gateways_Page_Description">
     <value>Stelle eine Verbindung zu einem Gateway her, um auf das VPN deines Unternehmens zuzugreifen.</value>
@@ -2471,12 +2576,29 @@ Die Geschwindigkeit basiert auf der aktuellen Aktivität deines Geräts – sie
   <data name="Home_Recents_Unpin">
     <value>Loslösen</value>
   </data>
-  <data name="Home_Update_Confirmation_Message">
-    <value>Um den Aktualisierungsprozess abzuschließen, wird Proton VPN die Verbindung vorübergehend unterbrechen und den Advanced Kill Switch deaktivieren, falls einer dieser Schalter aktiv ist. Möchtest du fortfahren?</value>
-    <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
+  <data name="Home_TitleBar_Menu_About">
+    <value>Über</value>
   </data>
-  <data name="Home_Update_Confirmation_Title">
-    <value>Proton VPN aktualisieren?</value>
+  <data name="Home_TitleBar_Menu_Account">
+    <value>Konto</value>
+  </data>
+  <data name="Home_TitleBar_Menu_ExitTheApp">
+    <value>App verlassen</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help">
+    <value>Hilfe</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help_WhatsTheIssue">
+    <value>Was ist das Problem?</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Settings">
+    <value>Einstellungen</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Signout">
+    <value>Abmelden</value>
+  </data>
+  <data name="Home_TitleBar_Menu_UpdateNow">
+    <value>Jetzt aktualisieren</value>
   </data>
   <data name="Home_Update_UpdateAvailable">
     <value>Update verfügbar</value>
@@ -2558,11 +2680,26 @@ Die Geschwindigkeit basiert auf der aktuellen Aktivität deines Geräts – sie
     <value>Abmelden, bitte warten…</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
+  <data name="Notifications_KillSwitch_Description">
+    <value>Um deine IP-Adresse zu schützen, blockiert Kill Switch deine Internetverbindung.</value>
+  </data>
+  <data name="Notifications_PortForwarding_CopyPortNumber">
+    <value>Portnummer kopieren</value>
+  </data>
   <data name="Notifications_PortForwarding_Description">
     <value>Trage diese Nummer in deiner BitTorrent-App ein, um bessere Geschwindigkeiten zu erzielen.</value>
   </data>
+  <data name="Notifications_SessionLimit_Description">
+    <value>Du hast dein maximales Gerätelimit erreicht. Um dich erneut mit VPN zu verbinden, trenne bitte die Verbindung mit einem anderen Gerät.</value>
+  </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
     <value>Dein Abonnement wurde auf Proton Free herabgestuft und wir verbinden dich wieder mit dem schnellsten kostenlosen Server.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Description">
+    <value>Öffentliche WLAN-Netzwerke sind anfälliger für Sicherheitsbedrohungen. Stelle eine VPN-Verbindung her, um sicher zu surfen.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Title">
+    <value>Ungesicherte WLAN‐Verbindung erkannt</value>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Jetzt aktualisieren</value>
@@ -2599,10 +2736,23 @@ Die Geschwindigkeit basiert auf der aktuellen Aktivität deines Geräts – sie
   <data name="Overlay_P2P_Title">
     <value>P2P</value>
   </data>
-  <data name="Overlay_SecureCore_Description">
-    <value>Secure Core verbindet dich mit deinem Zielserver über einen zweiten, maximal sicheren VPN-Server.
-
-Dieses höhere Schutzniveau kann zu höheren Latenzzeiten und langsameren Geschwindigkeiten führen.</value>
+  <data name="Overlay_Profile_Description1">
+    <value>Profile sind benutzerdefinierte VPN-Verbindungen, die du an deine Bedürfnisse anpassen und für den schnellen Zugriff speichern kannst.</value>
+  </data>
+  <data name="Overlay_Profile_Description2">
+    <value>Lege deinen bevorzugten Standort fest und optimiere deine Einstellungen für Sicherheit, Leistung, Gaming oder andere Szenarien.</value>
+  </data>
+  <data name="Overlay_Profile_LearnMore">
+    <value>Was ist ein VPN-Profil?</value>
+  </data>
+  <data name="Overlay_Profile_Title">
+    <value>Profile</value>
+  </data>
+  <data name="Overlay_SecureCore_Description1">
+    <value>Secure Core verbindet dich über einen zweiten, maximal sicheren VPN-Server mit deinem Zielserver.</value>
+  </data>
+  <data name="Overlay_SecureCore_Description2">
+    <value>Diese höhere Schutzstufe kann zu höheren Latenzzeiten und langsameren Geschwindigkeiten führen.</value>
   </data>
   <data name="Overlay_SecureCore_LearnMore">
     <value>Was ist Secure Core?</value>
@@ -2659,12 +2809,14 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   <data name="Overlay_ServerLoad_Title">
     <value>Serverauslastung</value>
   </data>
-  <data name="Overlay_SmartRouting_Description">
-    <value>Smart Routing verwendet virtuelle Server, um VPN-Abdeckung in schwer zugänglichen Ländern zu bieten.
-     
-Wenn du eine Verbindung zu einem Smart Routing-Server herstellst, scheint es, als würdest du in deinem Zielland surfen, obwohl sich der physische Server anderswo befindet.  
-
-Smart Routing wird in der Regel verwendet, um Anti-Datenschutzgesetze und andere Formen der Zensur zu umgehen.</value>
+  <data name="Overlay_SmartRouting_Description1">
+    <value>Smart Routing nutzt virtuelle Server, um VPN-Abdeckung in schwer zugänglichen Ländern zu bieten.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description2">
+    <value>Wenn du eine Verbindung zu einem Smart Routing-Server herstellst, scheint es, als würdest du im Zielland surfen, obwohl sich der physische Server anderswo befindet.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description3">
+    <value>Smart Routing wird in der Regel eingesetzt, um Datenschutzgesetze und andere Formen der Zensur zu umgehen.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
     <value>Die Server befinden sich physisch in {0}, aber es wird so aussehen, als würdest du von {1} browsen</value>
@@ -2686,6 +2838,66 @@ Smart Routing wird in der Regel verwendet, um Anti-Datenschutzgesetze und andere
   </data>
   <data name="Overlay_Tor_Title">
     <value>Tor</value>
+  </data>
+  <data name="Profile_CustomSettings_Description">
+    <value>Die Profileinstellungen überschreiben deine VPN-Einstellungen, wenn du verbunden bist.</value>
+  </data>
+  <data name="Profile_CustomSettings_Header">
+    <value>Benutzerdefinierte Einstellungen hinzufügen</value>
+  </data>
+  <data name="Profile_CustomSettings_Hide">
+    <value>Einstellungen ausblenden</value>
+  </data>
+  <data name="Profile_CustomSettings_Show">
+    <value>Einstellungen anzeigen</value>
+  </data>
+  <data name="Profile_Discard_Description">
+    <value>Du hast nicht gespeicherte Änderungen.</value>
+  </data>
+  <data name="Profile_Discard_Title">
+    <value>Seite verlassen?</value>
+  </data>
+  <data name="Profile_NatType_Conflict_Description">
+    <value>Dadurch wird die Portweiterleitung für dieses Profil deaktiviert.</value>
+  </data>
+  <data name="Profile_NetShield_Conflict_Description">
+    <value>Dadurch wird benutzerdefiniertes DNS für dieses Profil deaktiviert.</value>
+  </data>
+  <data name="Profile_Options_Description">
+    <value>Öffne automatisch eine Website deiner Wahl, wenn du dich mit diesem Profil verbindest.</value>
+  </data>
+  <data name="Profile_Options_Header">
+    <value>Verbinden und Los</value>
+  </data>
+  <data name="Profile_Options_Url">
+    <value>Website-URL</value>
+  </data>
+  <data name="Profile_Options_Url_Error">
+    <value>Bitte gib eine gültige URL ein.</value>
+  </data>
+  <data name="Profile_PortForwarding_Conflict_Description">
+    <value>Dadurch wird der NAT-Typ für dieses Profil in Strikt (Typ 3) geändert.</value>
+  </data>
+  <data name="Profiles_Default_Gaming">
+    <value>Gaming</value>
+  </data>
+  <data name="Profiles_Default_MaxSecurity">
+    <value>Maximale Sicherheit</value>
+  </data>
+  <data name="Profiles_Default_Office">
+    <value>Büro</value>
+  </data>
+  <data name="Profiles_Default_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Profiles_Default_RandomConnection">
+    <value>Zufällige Verbindung</value>
+  </data>
+  <data name="Profiles_Default_Streaming">
+    <value>US Streaming</value>
+  </data>
+  <data name="Profiles_Default_WorkSchool">
+    <value>Arbeit/Schule</value>
   </data>
   <data name="Profiles_Page_Description">
     <value>Konfiguriere deine eigenen VPN-Einstellungen und verbinde dich mit nur einem Klick.</value>
@@ -2724,16 +2936,25 @@ Smart Routing wird in der Regel verwendet, um Anti-Datenschutzgesetze und andere
     <value>Schnellster kostenloser Server</value>
   </data>
   <data name="Server_Feature_B2B">
-    <value>Gateways</value>
+    <value>Gateway</value>
+  </data>
+  <data name="Server_Feature_B2B_Description">
+    <value>Zugriff auf die Server deiner Organisation</value>
   </data>
   <data name="Server_Feature_None">
-    <value>Alle Länder</value>
+    <value>Standard</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
   </data>
+  <data name="Server_Feature_P2P_Description">
+    <value>Torrent-optimiert</value>
+  </data>
   <data name="Server_Feature_SecureCore">
     <value>Secure Core</value>
+  </data>
+  <data name="Server_Feature_SecureCore_Description">
+    <value>Doppelter Schutz</value>
   </data>
   <data name="Server_Feature_Tor">
     <value>Tor</value>
@@ -2756,9 +2977,6 @@ Smart Routing wird in der Regel verwendet, um Anti-Datenschutzgesetze und andere
   <data name="Settings_About_FailedToFetch">
     <value>Änderungsprotokoll-Informationen konnten nicht geladen werden.</value>
   </data>
-  <data name="Settings_About_GetLatestVersion">
-    <value>Aktuelle Version abrufen</value>
-  </data>
   <data name="Settings_About_LearnMore">
     <value>Mehr erfahren</value>
   </data>
@@ -2768,23 +2986,14 @@ Smart Routing wird in der Regel verwendet, um Anti-Datenschutzgesetze und andere
   <data name="Settings_About_Loading">
     <value>Laden</value>
   </data>
-  <data name="Common_Tags_New">
-    <value>NEU</value>
-  </data>
   <data name="Settings_About_Title">
     <value>Über</value>
   </data>
-  <data name="Settings_About_TryAgain">
-    <value>Erneut versuchen</value>
-  </data>
-  <data name="Settings_About_Update_Description">
-    <value>Hole das Beste aus deinem VPN heraus und aktualisiere auf die neuste Version der App.</value>
+  <data name="Settings_Account_Account">
+    <value>Konto</value>
   </data>
   <data name="Settings_Account_Exit">
     <value>Die App verlassen</value>
-  </data>
-  <data name="Settings_Account_MyAccount">
-    <value>Mein Konto</value>
   </data>
   <data name="Settings_Account_SignOut">
     <value>Abmelden</value>
@@ -2894,6 +3103,12 @@ Smart Routing wird in der Regel verwendet, um Anti-Datenschutzgesetze und andere
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
     <value>Verbindet Netzwerke über Bridging. TUN ermöglicht höhere Geschwindigkeiten als TAP, kann aber weniger stabil sein.</value>
   </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
+    <value>Benutzerdefiniertes DNS kann nicht aktiviert werden, weil du mit einem Profil verbunden bist, in dem NetShield aktiviert ist.</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenEnabled">
+    <value>Benutzerdefiniertes DNS ist deaktiviert, da du derzeit mit einem Profil verbunden bist, in dem NetShield aktiviert ist.</value>
+  </data>
   <data name="Settings_Connection_Default">
     <value>Standardverbindung</value>
   </data>
@@ -2948,6 +3163,9 @@ Smart Routing wird in der Regel verwendet, um Anti-Datenschutzgesetze und andere
   <data name="Settings_Connection_NetShield_Conflict_Description">
     <value>Wenn NetShield aktiviert ist, kannst du keine Verbindung mit einem benutzerdefinierten DNS-Server herstellen.</value>
   </data>
+  <data name="Settings_Connection_NetShield_Conflict_Information">
+    <value>NetShield ist nicht mit benutzerdefiniertem DNS kompatibel.</value>
+  </data>
   <data name="Settings_Connection_NetShield_Conflict_Title">
     <value>NetShield aktivieren?</value>
   </data>
@@ -2997,7 +3215,7 @@ Smart Routing wird in der Regel verwendet, um Anti-Datenschutzgesetze und andere
     <value>Zu Profilen gehen</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Message">
-    <value>Momentan bist du mit einem VPN-Profil verbunden.
+    <value>Du bist derzeit mit einem VPN-Profil verbunden.
 
 • Um das Protokoll für diese Verbindung zu ändern, trenne sie und bearbeite dann dein Profil.
 
@@ -3147,6 +3365,20 @@ Smart Routing wird in der Regel verwendet, um Anti-Datenschutzgesetze und andere
   <data name="Settings_OperatingSystemVersion">
     <value>Version des Betriebssystems</value>
   </data>
+  <data name="Settings_OverriddenByProfile_Description1">
+    <value>Diese Einstellung ist mit deinem aktiven Profil verbunden.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description2">
+    <value>Bearbeite dein Profil, um Änderungen vorzunehmen, oder trenne die Verbindung, um deine allgemeinen VPN-Einstellungen zu bearbeiten.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Tagline">
+    <value>Diese Einstellungen sind mit '{0}' verbunden und können nur in den Profilen verwaltet werden.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Settings_OverriddenByProfile_Title">
+    <value>{0} in den Profilen verwalten</value>
+    <comment>{0} is a placeholder for the name of the settings being overridden by the profile. (eg. Manage NetShield in Profiles)</comment>
+  </data>
   <data name="Settings_Page_Title">
     <value>Einstellungen</value>
   </data>
@@ -3197,6 +3429,9 @@ Smart Routing wird in der Regel verwendet, um Anti-Datenschutzgesetze und andere
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>
+  </data>
+  <data name="Settings_Reconnection_Title">
+    <value>Erneut verbinden, um Änderungen zu übernehmen</value>
   </data>
   <data name="Settings_RestoreDefault">
     <value>Standardeneinstellungen wiederherstellen</value>
@@ -3312,7 +3547,7 @@ Smart Routing wird in der Regel verwendet, um Anti-Datenschutzgesetze und andere
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_ResetPassword">
-    <value>Passwort zurücksetzen</value>
+    <value>Passwort vergessen</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_SignIn">
@@ -3329,7 +3564,7 @@ Smart Routing wird in der Regel verwendet, um Anti-Datenschutzgesetze und andere
     <value>Anmelden</value>
   </data>
   <data name="SignIn_Form_TroubleSigningIn">
-    <value>Probleme beim Anmelden</value>
+    <value>Support Center</value>
     <comment>A button at the bottom of the login window inside Get help popup</comment>
   </data>
   <data name="SignIn_Form_Username">
@@ -3462,6 +3697,18 @@ Smart Routing wird in der Regel verwendet, um Anti-Datenschutzgesetze und andere
   <data name="Upsell_Carousel_Platforms_More">
     <value>+ mehr</value>
     <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_Profiles">
+    <value>Erhalte schnellen Zugriff auf deine meistgenutzten Verbindungen</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Convenience">
+    <value>Lege ein Profil als Standardverbindung fest und verbinde dich mit nur einem Klick</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Creation">
+    <value>Erstelle und speichere deine eigenen VPN-Konfigurationen mit Profilen</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Customization">
+    <value>Passe deinen Standort, dein Protokoll und deine Einstellungen an</value>
   </data>
   <data name="Upsell_Carousel_SecureCore">
     <value>Füge eine weitere Schutzschicht für deine Verbindung hinzu</value>

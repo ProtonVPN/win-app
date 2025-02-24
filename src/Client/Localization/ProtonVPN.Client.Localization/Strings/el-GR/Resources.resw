@@ -123,6 +123,9 @@
   <data name="Automation_Properties_ConnectionDetails_Page">
     <value>Σελίδα λεπτομερειών σύνδεσης</value>
   </data>
+  <data name="Automation_Properties_Connection_Card_Component">
+    <value>Κάρτα σύνδεσης</value>
+  </data>
   <data name="Automation_Properties_Features_Bar">
     <value>Γραμμή χαρακτηριστικών</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>Σελίδα προώθησης θυρών</value>
+  </data>
+  <data name="Automation_Properties_Profile_Page">
+    <value>Σελίδα προφίλ</value>
   </data>
   <data name="Automation_Properties_Settings_Advanced_Page">
     <value>Σελίδα προηγμένων ρυθμίσεων</value>
@@ -222,17 +228,38 @@
     <value>Αποσύνδεση από {0}</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
+  <data name="Common_Actions_Duplicate">
+    <value>Διπλότυπο</value>
+  </data>
   <data name="Common_Actions_Edit">
     <value>Επεξεργασία</value>
   </data>
   <data name="Common_Actions_Enable">
     <value>Ενεργοποίηση</value>
   </data>
+  <data name="Common_Actions_Exit_ProtonVPN">
+    <value>Έξοδος απο το Proton VPN</value>
+  </data>
+  <data name="Common_Actions_GotIt">
+    <value>Το κατάλαβα</value>
+  </data>
+  <data name="Common_Actions_Install">
+    <value>Εγκατάσταση</value>
+  </data>
   <data name="Common_Actions_Reconnect">
     <value>Επανασύνδεση</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>Αφαίρεση</value>
+  </data>
+  <data name="Common_Actions_Restart">
+    <value>Επανεκκίνηση</value>
+  </data>
+  <data name="Common_Actions_Save">
+    <value>Αποθήκευση</value>
+  </data>
+  <data name="Common_Actions_TryAgain">
+    <value>Δοκιμάστε ξανά</value>
   </data>
   <data name="Common_Actions_Update">
     <value>Ενημέρωση</value>
@@ -241,10 +268,10 @@
     <value>Αναβάθμιση</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>**Η προηγμένη λειτουργία kill switch είναι ενεργοποιημένη.** Για να χρησιμοποιήσετε το διαδίκτυο χωρίς VPN, απενεργοποιήστε την προηγμένη λειτουργία kill switch.</value>
+    <value>Η προηγμένη λειτουργία kill switch είναι ενεργοποιημένη. Για να χρησιμοποιήσετε το διαδίκτυο χωρίς VPN, απενεργοποιήστε την προηγμένη λειτουργία kill switch.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>**Η προηγμένη λειτουργία kill switch είναι ενεργοποιημένη.** Εάν συνεχίσετε, θα αποσυνδεθείτε από το διαδίκτυο.</value>
+    <value>Η προηγμένη λειτουργία kill switch είναι ενεργοποιημένη. Εάν συνεχίσετε, θα αποσυνδεθείτε από το διαδίκτυο.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
     <value>Θα αποσυνδεθείτε από το VPN.</value>
@@ -264,6 +291,21 @@
   <data name="Common_States_Updating">
     <value>Ενημέρωση...</value>
   </data>
+  <data name="Common_Tags_New">
+    <value>ΝΕΟ</value>
+  </data>
+  <data name="Components_Update_GetMostFromYourVpn">
+    <value>Αξιοποιήστε στο έπακρο το VPN σας κάνοντας ενημέρωση στην πιο πρόσφατη έκδοση της εφαρμογής.</value>
+  </data>
+  <data name="Components_Update_MoreLikelyIssues">
+    <value>Σε παλαιότερες εκδόσεις του ProtonVPN, είναι πιο πιθανό να έχετε προβλήματα.</value>
+  </data>
+  <data name="Components_Update_UpdateAvailable">
+    <value>Υπάρχει διαθέσιμη ενημέρωση</value>
+  </data>
+  <data name="Components_Update_UpdateProtonVpn">
+    <value>Ενημέρωση Proton VPN</value>
+  </data>
   <data name="Connection_Error_EditProfile">
     <value>Επεξεργασία προφίλ</value>
   </data>
@@ -271,7 +313,7 @@
     <value>Το Proton VPN απέτυχε να ανακτήσει το πιστοποιητικό ελέγχου ταυτότητας λόγω προβλήματος δικτύου.</value>
   </data>
   <data name="Connection_Error_NoServers">
-    <value>Δεν υπάρχουν διακομιστές που να είναι διαθέσιμοι τώρα για την επιλογή σας. Επιλέξτε μια άλλη επιλογή.</value>
+    <value>Όλοι οι διακομιστές της επιλογής σας δεν είναι διαθέσιμοι. Παρακαλούμε επεκτείνετε την επιλογή σας ή προσπαθήστε ξανά αργότερα.</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
     <value>Η επιλογή διακομιστή για το "{0}" δεν είναι διαθέσιμη. Επιλέξτε έναν διαφορετικό διακομιστή ή δοκιμάστε ξανά αργότερα.</value>
@@ -308,10 +350,10 @@
     <value>Δεν είμαστε σίγουροι τι συνέβη εδώ. Παρακαλούμε δοκιμάστε ξανά ή επικοινωνήστε με την ομάδα υποστήριξης πελατών μας.</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
-    <value>Δείτε πιθανές λύσεις</value>
+    <value>Προβολή διορθώσεων</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
-    <value>Το Proton VPN δεν μπόρεσε να συνδεθεί επειδή ο προσαρμογέας δικτύου WireGuard είναι ήδη σε χρήση. Αποσυνδέστε τυχόν ενεργά VPN και δοκιμάστε ξανά. Εναλλακτικά, μπορείτε να αλλάξετε πρωτόκολλα στις Ρυθμίσεις για Προχωρημένους.</value>
+    <value>Ο προσαρμογέας WireGuard της συσκευής σας βρίσκεται σε χρήση. Αποσυνδεθείτε από οποιοδήποτε άλλο VPN που εκτελείται στη συσκευή σας και, στη συνέχεια, δοκιμάστε ξανά.</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Επιλέχθηκε αυτόματα από</value>
@@ -445,8 +487,19 @@
   <data name="Connections_Profiles_Empty_Title">
     <value>Δημιουργήστε το πρώτο σας προφίλ</value>
   </data>
+  <data name="Connections_Profiles_Location_Header">
+    <value>Επιλέξτε τύπο σύνδεσης και τοποθεσία</value>
+  </data>
   <data name="Connections_Profiles_Name">
-    <value>Όνομα προφίλ</value>
+    <value>Δώστε στο προφίλ σας ένα όνομα:</value>
+  </data>
+  <data name="Connections_Profiles_Name_Default">
+    <value>Χωρίς τίτλο</value>
+    <comment>This will be used as the default profile name if the user creates a profile without entering a name</comment>
+  </data>
+  <data name="Connections_Profiles_Name_Duplicate">
+    <value>Copy of {0}</value>
+    <comment>This will be used as the profile name when duplicating a profile. {0} is a placeholder for the original profile name.</comment>
   </data>
   <data name="Connections_Profiles_New">
     <value>Νέο προφίλ</value>
@@ -456,8 +509,11 @@
     <value>Τα προφίλ είναι διαθέσιμα με VPN Plus</value>
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
   </data>
-  <data name="Connections_Profiles_Save">
-    <value>Αποθήκευση προφίλ</value>
+  <data name="Connections_Profiles_Settings_Description">
+    <value>Οι ρυθμίσεις προφίλ θα παρακάμψουν τις ρυθμίσεις VPN όταν συνδεθείτε.</value>
+  </data>
+  <data name="Connections_Profiles_Settings_Header">
+    <value>Προσθήκη προσαρμοσμένων ρυθμίσεων</value>
   </data>
   <data name="Connections_Random">
     <value>Τυχαίο</value>
@@ -560,9 +616,6 @@
   <data name="Countries_All">
     <value>Όλες</value>
   </data>
-  <data name="Countries_Cities">
-    <value>Πόλεις</value>
-  </data>
   <data name="Countries_City_One">
     <value>{0} πόλη</value>
   </data>
@@ -576,19 +629,8 @@
   <data name="Countries_Fastest">
     <value>Ταχύτερη χώρα</value>
   </data>
-  <data name="Countries_Info">
-    <value>Πληροφορίες</value>
-  </data>
   <data name="Countries_NoSearchResults">
     <value>Δεν βρέθηκαν αποτελέσματα</value>
-  </data>
-  <data name="Countries_NumberOfCities">
-    <value>Πόλεις ({0})</value>
-    <comment>{0} represents the number of cities</comment>
-  </data>
-  <data name="Countries_NumberOfCountries">
-    <value>Χώρες ({0})</value>
-    <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_NumberOfServers">
     <value>Διακομιστές ({0})</value>
@@ -596,10 +638,6 @@
   </data>
   <data name="Countries_P2P">
     <value>P2P</value>
-  </data>
-  <data name="Countries_P2PCountries">
-    <value>P2P χώρες ({0})</value>
-    <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_P2P_Cities">
     <value>P2P πόλεις ({0})</value>
@@ -620,22 +658,8 @@
   <data name="Countries_SecureCore">
     <value>Secure Core</value>
   </data>
-  <data name="Countries_SecureCoreCountries">
-    <value>Χώρες Secure Core ({0})</value>
-    <comment>{0} represents the number of countries</comment>
-  </data>
-  <data name="Countries_SecureCoreServers">
-    <value>Διακομιστές Secure Core ({0})</value>
-    <comment>{0} represents the number of severs</comment>
-  </data>
   <data name="Countries_SecureCore_Description">
     <value>Επιπρόσθετο επίπεδο κρυπτογράφησης στη σύνδεση VPN σας.</value>
-  </data>
-  <data name="Countries_Server_One">
-    <value>{0} διακομιστής</value>
-  </data>
-  <data name="Countries_Server_Other">
-    <value>{0} διακομιστές</value>
   </data>
   <data name="Countries_ServerLoad">
     <value>Φορτίο διακομιστή</value>
@@ -643,16 +667,8 @@
   <data name="Countries_SmartRouting">
     <value>Smart routing</value>
   </data>
-  <data name="Countries_SmartRouting_Description">
-    <value>Οι διακομιστές βρίσκονται σε {0}, αλλά θα φαίνεται ότι περιηγείστε από {1}.</value>
-    <comment>{0} and {1} represent country names.</comment>
-  </data>
   <data name="Countries_Tor">
     <value>Tor</value>
-  </data>
-  <data name="Countries_TorCountries">
-    <value>Tor χώρες ({0})</value>
-    <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_TorServers">
     <value>Διακομιστές Tor ({0})</value>
@@ -663,10 +679,6 @@
   </data>
   <data name="Countries_TryDifferentKeyword">
     <value>Παρακαλούμε δοκιμάστε διαφορετική λέξη</value>
-  </data>
-  <data name="Countries_ViaCountry">
-    <value>μέσω {0}</value>
-    <comment>{0} represents country name. For example: via Australia.</comment>
   </data>
   <data name="Country_Fastest">
     <value>Ταχύτερη χώρα</value>
@@ -1684,6 +1696,15 @@
     <value>Άγνωστο</value>
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
+  <data name="Dialogs_BaseFilteringEngine_Description">
+    <value>Η υπηρεσία Μηχανισμού Βασικού Φιλτραρίσματος (BFE) στη συσκευή σας Windows είναι απενεργοποιημένη. Αυτή η υπηρεσία πρέπει να είναι ενεργοποιημένη για τη σωστή λειτουργία του Proton VPN.</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_HowToEnable">
+    <value>Τρόπος ενεργοποίησης του Μηχανισμού Φιλτραρίσματος Βάσης (Base Filtering Engine)</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Title">
+    <value>Ενεργοποιήστε τον Μηχανισμό Φιλτραρίσματος Βάσης για να συνεχίσετε</value>
+  </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
     <value>Αποκτήστε απεριόριστες αλλαγές διακομιστή με το VPN Plus.</value>
   </data>
@@ -1698,6 +1719,12 @@
   </data>
   <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
     <value>Αναβαθμίστε για απόκτηση πρόσβασης ξανά στους διακομιστές και τις λειτουργίες του Plus.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Description">
+    <value>Φαίνεται ότι η υπηρεσία Proton VPN είναι απενεργοποιημένη. Θα χρειαστεί να ενεργοποιήσετε ξανά την υπηρεσία για να συνδεθείτε.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Title">
+    <value>Ενεργοποιήστε την Υπηρεσία Windows για να συνεχίσετε</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Το Proton Free σας συνδέει αυτόματα με τον ταχύτερο διαθέσιμο δωρεάν διακομιστή από τη {0} δωρεάν χώρα μας. Αυτός θα είναι συνήθως ο πλησιέστερος διακομιστής στην τοποθεσία σας.</value>
@@ -1739,6 +1766,12 @@
   </data>
   <data name="Dialogs_Latency_Title">
     <value>Τι είναι ο χρόνος αδράνειας;</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Description">
+    <value>Η σύνδεσή σας έχει απενεργοποιηθεί επειδή χρησιμοποιείτε διακομιστή που δεν υποστηρίζει ομότιμη κυκλοφορία (P2P). Το P2P δεν υποστηρίζεται σε δωρεάν διακομιστές. Παρακαλούμε χρησιμοποιήστε διαφορετικό διακομιστή για P2P.</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Title">
+    <value>Εντοπίστηκε κίνηση P2P</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>Πώς να κάνετε torrent με P2P</value>
@@ -1823,9 +1856,6 @@
   <data name="Dialogs_ReportIssue_Result_Fail_Description">
     <value>Αδυναμία αποστολής της αναφοράς σας. Παρακαλούμε ελέγξτε τη σύνδεσή σας και προσπαθήστε ξανά.</value>
   </data>
-  <data name="Dialogs_ReportIssue_Result_RetryAction">
-    <value>Δοκιμάστε ξανά</value>
-  </data>
   <data name="Dialogs_ReportIssue_Result_Success">
     <value>Αναφορά αποστάλθηκε</value>
   </data>
@@ -1841,42 +1871,6 @@
   </data>
   <data name="Dialogs_ReportIssue_Title">
     <value>Αναφορά προβλήματος</value>
-  </data>
-  <data name="Dialogs_SecureCore_AdvancedPrivacy">
-    <value>Προηγμένο απόρρητο</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_Description">
-    <value>Το Secure Core σας συνδέει με τον διακομιστή προορισμού σας μέσω ενός δεύτερου, μέγιστης ασφάλειας διακομιστή VPN.
-
-Αυτό το υψηλότερο επίπεδο προστασίας μπορεί να προκαλέσει υψηλότερο χρόνο αδράνειας και χαμηλότερες ταχύτητες.</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_HighPrivacy">
-    <value>Υψηλή ιδιωτικότητα</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_HigherLatency">
-    <value>Υψηλότερη αδράνεια</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_LowerLatency">
-    <value>Χαμηλότερη αδράνεια</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_SecureCoreConnection">
-    <value>Secure Core
-Σύνδεση VPN</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_StandardConnection">
-    <value>Τυπική
-Σύνδεση VPN</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_Title">
-    <value>Secure Core</value>
-    <comment>obsolete</comment>
   </data>
   <data name="Dialogs_ServerLoad_Description">
     <value>Το φορτίο διακομιστή δείχνει πόσο κοντά βρίσκεται ένας διακομιστής στη μέγιστη χωρητικότητά του.
@@ -1904,18 +1898,20 @@
   <data name="Dialogs_ServerLoad_Title">
     <value>Τι είναι το φορτίο διακομιστή;</value>
   </data>
-  <data name="Dialogs_SmartRouting_Description">
-    <value>Το Smart Routing χρησιμοποιεί εικονικούς διακομιστές για να παρέχει κάλυψη VPN σε δυσπρόσιτες χώρες.
-
-Όταν συνδέεστε σε ένα Smart Routing διακομιστή, θα φαίνεται ότι περιηγείστε στη χώρα προορισμού σας, παρόλο που ο φυσικός διακομιστής βρίσκεται αλλού.  
-
-Το Smart Routing χρησιμοποιείται συνήθως για την παράκαμψη των νόμων κατά της ιδιωτικότητας και άλλων μορφών λογοκρισίας.</value>
-  </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>Ίσως αργότερα</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Description">
+    <value>Φαίνεται ότι η συσκευή σας χρησιμοποιεί διακομιστή μεσολάβησης. Αυτό μπορεί να επηρεάσει την προστασία του VPN σας.</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Disable">
+    <value>Απενεργοποίηση διακομιστή μεσολάβησης</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Title">
+    <value>Εντοπίστηκε διακομιστής μεσολάβησης</value>
   </data>
   <data name="Dialogs_Tor_Description">
     <value>Συνδεθείτε σε έναν διακομιστή Tor για να αποκτήσετε πρόσβαση σε κρυφές υπηρεσίες και ιστότοπους onion χρησιμοποιώντας οποιοδήποτε πρόγραμμα περιήγησης.</value>
@@ -1941,14 +1937,11 @@
   <data name="Dialogs_Troubleshooting_Description">
     <value>Αυτές οι γρήγορες διορθώσεις μπορεί να σας βοηθήσουν να συνδεθείτε στο Proton.</value>
   </data>
-  <data name="Dialogs_Troubleshooting_DidNotWork">
-    <value>Δε δούλεψε;</value>
-  </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork">
     <value>Χρησιμοποιήστε ένα διαφορετικό δίκτυο</value>
   </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
-    <value>Δοκιμάστε να αλλάξετε δίκτυα Wi-Fi ή χρησιμοποιήστε δεδομένα κινητής τηλεφωνίας.</value>
+    <value>Δοκιμάστε να αλλάξετε δίκτυα Wi-Fi ή χρησιμοποιήστε δεδομένα κινητής τηλεφωνίας αντ'αυτού.</value>
   </data>
   <data name="Dialogs_Troubleshooting_StatusPage">
     <value>Ελέγξτε τη σελίδα κατάστασής μας</value>
@@ -1958,6 +1951,18 @@
   </data>
   <data name="Dialogs_Troubleshooting_Title">
     <value>Βοήθεια σύνδεσης</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOff">
+    <value>Αυτό θα σας αποσυνδέσει από το VPN. Τυχόν ενεργές συνδέσεις στο διαδίκτυο θα είναι προσωρινά απροστάτευτες.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn">
+    <value>Αυτό θα σας αποσυνδέσει από το VPN και θα απενεργοποιήσει προσωρινά τη λειτουργία kill switch. Τυχόν ενεργές συνδέσεις στο διαδίκτυο θα είναι προσωρινά απροστάτευτες.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Install">
+    <value>Εγκατάσταση ενημέρωσης;</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Restart">
+    <value>Επανεκκινήστε το Proton VPN για να ολοκληρώσετε την ενημέρωση</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Description">
     <value>Φαίνεται ότι η ώρα συστήματός σας είναι απορρυθμισμένη. Αυτό ίσως προκαλέσει προβλήματα στη σύνδεση VPN.</value>
@@ -2007,10 +2012,11 @@
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Καλώς ήλθατε στο VPN Plus</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description">
-    <value>Συγχαρητήρια! Ξεκλειδώσατε κορυφαίες δυνατότητες ασφάλειας και απόδοσης σε όλες τις υπηρεσίες Proton.
-
-Απολαύστε το καλύτερο του απορρήτου Proton.</value>
+  <data name="Dialogs_WelcomeUnlimited_Description1">
+    <value>Συγχαρητήρια! Ξεκλειδώσατε κορυφαίες δυνατότητες ασφάλειας και απόδοσης σε όλες τις υπηρεσίες Proton.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description2">
+    <value>Απολαύστε τα καλύτερα της ιδιωτικής ζωής Proton.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Καλώς ήλθατε στο Proton Unlimited</value>
@@ -2030,12 +2036,14 @@
   <data name="Exit_Title">
     <value>Έξοδος απο το Proton VPN</value>
   </data>
-  <data name="Flyouts_Country_Description">
-    <value>Η περιήγηση χωρίς VPN σάς αφήνει ευάλωτους σε περιορισμούς στο διαδίκτυο βάσει τοποθεσίας.
-
-Οι ιστότοποι μπορούν να χρησιμοποιούν γεωγραφικούς περιορισμούς για να περιορίζουν το περιεχόμενο σε συγκεκριμένες τοποθεσίες. Οι κυβερνήσεις μπορούν επίσης να δώσουν εντολή στους ISP (Internet Service Providers) να μπλοκάρουν ορισμένους ιστότοπους στη χώρα τους.
-
-Ένα VPN κάνει να φαίνεται σαν να περιηγείστε από κάπου αλλού, προστατεύοντάς σας από την επιτήρηση και τη λογοκρισία.</value>
+  <data name="Flyouts_Country_Description1">
+    <value>Η περιήγηση χωρίς VPN σάς αφήνει ευάλωτους σε περιορισμούς στο διαδίκτυο βάσει τοποθεσίας.</value>
+  </data>
+  <data name="Flyouts_Country_Description2">
+    <value>Οι ιστότοποι μπορούν να χρησιμοποιούν γεωγραφικούς περιορισμούς για να περιορίζουν το περιεχόμενο σε συγκεκριμένες τοποθεσίες. Οι κυβερνήσεις μπορούν επίσης να δώσουν εντολή στους ISP (Internet Service Providers) να μπλοκάρουν ορισμένους ιστότοπους στη χώρα τους.</value>
+  </data>
+  <data name="Flyouts_Country_Description3">
+    <value>Ένα VPN κάνει να φαίνεται σαν να περιηγείστε από κάπου αλλού, προστατεύοντάς σας από την επιτήρηση και τη λογοκρισία.</value>
   </data>
   <data name="Flyouts_Country_Title">
     <value>Χώρα</value>
@@ -2046,10 +2054,11 @@
   <data name="Flyouts_IpAddress_Description_Connected">
     <value>Η VPN διεύθυνση IP σας κρύβει την πραγματική σας διεύθυνση IP. Αυτό κάνει να φαίνεται σαν να περιηγείστε από την τοποθεσία VPN σας, επομένως η δραστηριότητά σας στο διαδίκτυο δεν μπορεί να συνδεθεί με τη συσκευή σας.</value>
   </data>
-  <data name="Flyouts_IpAddress_Description_Disconnected">
-    <value>Αυτός ο μοναδικός κωδικός μπορεί να χρησιμοποιηθεί από ιστότοπους και ISP (Internet Service Providers) για τη σύνδεση της τοποθεσίας και του ιστορικού περιήγησής σας με τη συσκευή σας. 
-
-Ένα VPN αποκρύπτει την ΙΡ διεύθυνσή σας, καθιστώντας δυσκολότερο τον εντοπισμό της δραστηριότητάς σας.</value>
+  <data name="Flyouts_IpAddress_Description_Disconnected1">
+    <value>Αυτός ο μοναδικός κωδικός μπορεί να χρησιμοποιηθεί από ιστότοπους και ISP (Internet Service Providers) για τη σύνδεση της τοποθεσίας και του ιστορικού περιήγησής σας με τη συσκευή σας.</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected2">
+    <value>Ένα VPN αποκρύπτει την ΙΡ διεύθυνσή σας, καθιστώντας δυσκολότερο τον εντοπισμό της δραστηριότητάς σας.</value>
   </data>
   <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
     <value>Τι είναι η διεύθυνση IP;</value>
@@ -2066,12 +2075,14 @@
   <data name="Flyouts_IpAddress_YourIpIsVisible">
     <value>Η διεύθυνση IP σας είναι ορατή</value>
   </data>
-  <data name="Flyouts_Isp_Description">
-    <value>Ο ISP σας (Internet Service Provider) είναι η εταιρεία που σας συνδέει στο διαδίκτυο. 
-
-Μπορούν να καταγράψουν τη δραστηριότητά σας στο διαδίκτυο. Σε ορισμένες χώρες, μπορούν να πουλήσουν τα δεδομένα σας σε διαφημιζόμενους. Σε άλλες, μπορεί να τους ζητηθεί να το παραδώσουν στην κυβέρνηση. 
-
-Ένα VPN κρύβει την ΙΡ διεύθυνσή σας, προστατεύοντάς σας από παρεμβολές ISP.</value>
+  <data name="Flyouts_Isp_Description1">
+    <value>Ο ISP σας (Internet Service Provider) είναι η εταιρεία που σας συνδέει στο διαδίκτυο.</value>
+  </data>
+  <data name="Flyouts_Isp_Description2">
+    <value>Μπορούν να καταγράψουν τη δραστηριότητά σας στο διαδίκτυο. Σε ορισμένες χώρες, μπορούν να πουλήσουν τα δεδομένα σας σε διαφημιστές. Σε άλλες, μπορεί να τους ζητηθεί να τα παραδώσουν στην κυβέρνηση.</value>
+  </data>
+  <data name="Flyouts_Isp_Description3">
+    <value>Ένα VPN κρύβει την ΙΡ διεύθυνσή σας, προστατεύοντάς σας από παρεμβολές των ISP.</value>
   </data>
   <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
     <value>Τι είναι ο Πάροχος Υπηρεσιών Διαδικτύου (ISP);</value>
@@ -2081,6 +2092,54 @@
   </data>
   <data name="Flyouts_Isp_Warning">
     <value>Ο πάροχός σας μπορεί να δει ποιους ιστότοπους επισκέπτεστε</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Advanced_Success">
+    <value>Αποκλείει κάθε πρόσβαση στο διαδίκτυο όταν δεν είστε συνδεδεμένοι στο Proton VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info">
+    <value>Η διεύθυνση IP σας θα μπορεί να εκτεθεί εάν διακοπεί η VPN σύνδεσή σας</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Standard_Success">
+    <value>Αν διακοπεί η VPN σύνδεσή σας, θα αποσυνδεθείτε από το διαδίκτυο μέχρι να αποκατασταθεί το VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Connected">
+    <value>Η προηγμένη λειτουργία kill switch ισχύει ακόμα και αν αποσυνδεθείτε σκόπιμα από το VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Disconnected">
+    <value>Για να συνδεθείτε ξανά, συνδεθείτε στο VPN ή απενεργοποιήστε τη σύνθετη λειτουργία kill switch</value>
+  </data>
+  <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
+    <value>Προστατεύεστε από διαφημίσεις, ιχνηλάτες και κακόβουλα προγράμματα</value>
+  </data>
+  <data name="Flyouts_NetShield_Info">
+    <value>Προστατευτείτε από διαφημίσεις και κακόβουλο λογισμικό σε ιστότοπους και εφαρμογές</value>
+  </data>
+  <data name="Flyouts_NetShield_MalwareOnly_Success">
+    <value>Προστατεύεστε μόνο από κακόβουλο λογισμικό</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Description">
+    <value>Αποκλεισμός διαφημίσεων, ιχνηλατών και κακόβουλου λογισμικού με το VPN Plus.</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Title">
+    <value>Απολαύστε περιήγηση χωρίς διαφημίσεις</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort">
+    <value>Ενεργός αριθμός θύρας</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Info">
+    <value>Εισαγάγετε τον αριθμό ενεργού θύρας στην εφαρμογή BitTorrent για να βελτιώσετε τις ταχύτητες P2P</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Info">
+    <value>Βελτιώνει τις ταχύτητες λήψης peer-to-peer</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Description">
+    <value>Ενισχύστε την απόδοση κοινής χρήσης αρχείων peer-to-peer (P2P) με το VPN Plus.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Title">
+    <value>Βελτιώστε την ταχύτητα P2P</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Warning">
+    <value>Για να χρησιμοποιήσετε την προώθηση θυρών, συνδεθείτε σε διακομιστή P2P</value>
   </data>
   <data name="Flyouts_Protocol_Description">
     <value>Ένα πρωτόκολλο VPN καθορίζει τον τρόπο κρυπτογράφησης και μετάδοσης της κίνησης μέσω του VPN.</value>
@@ -2121,10 +2180,11 @@
   <data name="Flyouts_Speed_BoostedByVpnAccelerator">
     <value>Ενισχύεται από το VPN Accelerator</value>
   </data>
-  <data name="Flyouts_Speed_Description">
-    <value>Αυτό δείχνει πόσα δεδομένα μεταδίδονται μέσω του Proton VPN κάθε δευτερόλεπτο.
-
-Η ταχύτητα βασίζεται στην τρέχουσα δραστηριότητα της συσκευής σας — δεν αντιπροσωπεύει τη μέγιστη ταχύτητα του VPN.</value>
+  <data name="Flyouts_Speed_Description1">
+    <value>Αυτό δείχνει πόσα δεδομένα μεταδίδονται μέσω του Proton VPN κάθε δευτερόλεπτο.</value>
+  </data>
+  <data name="Flyouts_Speed_Description2">
+    <value>Η ταχύτητα βασίζεται στην τρέχουσα δραστηριότητα της συσκευής σας — δεν αντιπροσωπεύει τη μέγιστη ταχύτητα του VPN.</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>Λήψη</value>
@@ -2139,6 +2199,45 @@
   <data name="Flyouts_Speed_Upload">
     <value>Ανέβασμα</value>
     <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_One">
+    <value>Εξαιρούμενες εφαρμογή ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_Other">
+    <value>Εξαιρούμενες εφαρμογές ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_One">
+    <value>Εξαιρούμενη διεύθυνση IP ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_Other">
+    <value>Εξαιρούμενες διευθύνσεις IP ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Info">
+    <value>Επιτρέπει σε αξιόπιστες εφαρμογές και διευθύνσεις IP να συνδέονται χωρίς προστασία VPN</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Inverse_Info">
+    <value>Μόνο αυτές οι εφαρμογές και οι διευθύνσεις IP συνδέονται μέσω VPN. Όλη η υπόλοιπη κυκλοφορία είναι απροστάτευτη.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_One">
+    <value>Προστατευμένη εφαρμογή ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_Other">
+    <value>Προστατευμένες εφαρμογές ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_One">
+    <value>Προστατευμένη διεύθυνση IP ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_Other">
+    <value>Προστατευμένες διευθύνσεις IP ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Standard_Info">
+    <value>Αυτές οι εφαρμογές και οι διευθύνσεις IP συνδέονται χωρίς προστασία VPN. Όλη η υπόλοιπη κυκλοφορία προστατεύεται.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Description">
+    <value>Χωρίστε την κίνησή σας σε σήραγγες VPN και μη VPN με VPN Plus.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Title">
+    <value>Αξιοποιήστε στο έπακρο και τους δύο κόσμους</value>
   </data>
   <data name="Flyouts_Volume_Description">
     <value>Αυτό δείχνει πόση κίνηση έχει δρομολογηθεί μέσω του VPN σας.</value>
@@ -2269,6 +2368,12 @@
   </data>
   <data name="FreeConnections_WorldwideCoverageUpsell">
     <value>Αποκτήστε παγκόσμια κάλυψη με το VPN Plus</value>
+  </data>
+  <data name="Gateway_Fastest">
+    <value>Ταχύτερη πύλη</value>
+  </data>
+  <data name="Gateway_Random">
+    <value>Τυχαία πύλη</value>
   </data>
   <data name="Gateways_Page_Description">
     <value>Συνδεθείτε σε μια πύλη για να αποκτήσετε πρόσβαση στο VPN του οργανισμού σας.</value>
@@ -2471,12 +2576,29 @@
   <data name="Home_Recents_Unpin">
     <value>Ξεκαρφίτσωμα</value>
   </data>
-  <data name="Home_Update_Confirmation_Message">
-    <value>Για να ολοκληρωθεί η διαδικασία ενημέρωσης, το Proton VPN θα αποσυνδέθει προσωρινά και θα απενεργοποιήσει το Advanced Kill Switch εάν κάποιο από αυτά είναι ενεργό. Θέλετε να συνεχίσετε;</value>
-    <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
+  <data name="Home_TitleBar_Menu_About">
+    <value>Σχετικά</value>
   </data>
-  <data name="Home_Update_Confirmation_Title">
-    <value>Ενημέρωση Proton VPN?</value>
+  <data name="Home_TitleBar_Menu_Account">
+    <value>Λογαριασμός</value>
+  </data>
+  <data name="Home_TitleBar_Menu_ExitTheApp">
+    <value>Έξοδος από την εφαρμογή</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help">
+    <value>Βοήθεια</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help_WhatsTheIssue">
+    <value>Τι πρόβλημα αντιμετωπίζετε;</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Settings">
+    <value>Ρυθμίσεις</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Signout">
+    <value>Έξοδος</value>
+  </data>
+  <data name="Home_TitleBar_Menu_UpdateNow">
+    <value>Ενημέρωση τώρα</value>
   </data>
   <data name="Home_Update_UpdateAvailable">
     <value>Υπάρχει διαθέσιμη ενημέρωση</value>
@@ -2558,11 +2680,26 @@
     <value>Αποσύνδεση, παρακαλούμε περιμένετε...</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
+  <data name="Notifications_KillSwitch_Description">
+    <value>Για την προστασία της διεύθυνσης IP σας, η λειτουργία kill switch αποκλείει τη σύνδεσή σας στο διαδίκτυο.</value>
+  </data>
+  <data name="Notifications_PortForwarding_CopyPortNumber">
+    <value>Αντιγραφή αριθμού θύρας</value>
+  </data>
   <data name="Notifications_PortForwarding_Description">
     <value>Για μεγαλύτερη ταχύτητα, ρυθμίστε αυτόν τον αριθμό στην εφαρμογή σας BitTorrent.</value>
   </data>
+  <data name="Notifications_SessionLimit_Description">
+    <value>Έχετε συμπληρώσει το μέγιστο όριο συσκευών. Για να συνδεθείτε ξανά στο VPN, παρακαλούμε αποσυνδεθείτε από την άλλη συσκευή.</value>
+  </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
     <value>Το πλάνο σας έχει υποβαθμιστεί σε Proton Free και σας επανασυνδέουμε στον ταχύτερο δωρεάν διακομιστή.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Description">
+    <value>Τα δημόσια δίκτυα Wi-Fi είναι πιο ευάλωτα σε απειλές ασφαλείας. Συνδεθείτε στο VPN για να περιηγηθείτε με ασφάλεια.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Title">
+    <value>Εντοπίστηκε μην ασφαλής σύνδεση WiFi</value>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Ενημέρωση Τώρα</value>
@@ -2599,10 +2736,23 @@
   <data name="Overlay_P2P_Title">
     <value>P2P</value>
   </data>
-  <data name="Overlay_SecureCore_Description">
-    <value>Το Secure Core σας συνδέει με τον διακομιστή προορισμού σας μέσω ενός δεύτερου, μέγιστης ασφάλειας διακομιστή VPN.
-
-Αυτό το υψηλότερο επίπεδο προστασίας μπορεί να προκαλέσει υψηλότερο χρόνο αδράνειας και χαμηλότερες ταχύτητες.</value>
+  <data name="Overlay_Profile_Description1">
+    <value>Τα προφίλ είναι προσαρμοσμένες συνδέσεις VPN που μπορείτε να προσαρμόσετε στις ανάγκες σας και να αποθηκεύσετε για γρήγορη πρόσβαση.</value>
+  </data>
+  <data name="Overlay_Profile_Description2">
+    <value>Ορίστε την τοποθεσία που προτιμάτε και βελτιστοποιήστε τις ρυθμίσεις σας για ασφάλεια, απόδοση, παιχνίδια ή οποιοδήποτε άλλο σενάριο.</value>
+  </data>
+  <data name="Overlay_Profile_LearnMore">
+    <value>Τι είναι το προφίλ VPN;</value>
+  </data>
+  <data name="Overlay_Profile_Title">
+    <value>Προφίλ</value>
+  </data>
+  <data name="Overlay_SecureCore_Description1">
+    <value>Το Secure Core σας συνδέει με τον διακομιστή προορισμού σας μέσω ενός δεύτερου, μέγιστης ασφάλειας διακομιστή VPN.</value>
+  </data>
+  <data name="Overlay_SecureCore_Description2">
+    <value>Αυτό το υψηλότερο επίπεδο προστασίας μπορεί να προκαλέσει υψηλότερο λανθάνοντα χρόνο και χαμηλότερες ταχύτητες.</value>
   </data>
   <data name="Overlay_SecureCore_LearnMore">
     <value>Τι είναι το Secure Core;</value>
@@ -2659,12 +2809,14 @@
   <data name="Overlay_ServerLoad_Title">
     <value>Φόρτος Διακομιστή</value>
   </data>
-  <data name="Overlay_SmartRouting_Description">
-    <value>Το Smart Routing χρησιμοποιεί εικονικούς διακομιστές για να παρέχει κάλυψη VPN σε δυσπρόσιτες χώρες.
-    
-Όταν συνδέεστε σε ένα Smart Routing διακομιστή, θα φαίνεται ότι περιηγείστε στη χώρα προορισμού σας, παρόλο που ο φυσικός διακομιστής βρίσκεται αλλού.  
-
-Το Smart Routing χρησιμοποιείται συνήθως για την παράκαμψη των νόμων κατά της ιδιωτικότητας και άλλων μορφών λογοκρισίας.</value>
+  <data name="Overlay_SmartRouting_Description1">
+    <value>Το Smart Routing χρησιμοποιεί εικονικούς διακομιστές για να παρέχει κάλυψη VPN σε δυσπρόσιτες χώρες.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description2">
+    <value>Όταν συνδέεστε σε έναν Smart Routing διακομιστή, θα φαίνεται ότι περιηγείστε στη χώρα προορισμού σας, παρόλο που ο φυσικός διακομιστής βρίσκεται αλλού.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description3">
+    <value>To Smart Routing χρησιμοποιείται συνήθως για την παράκαμψη των νόμων κατά της ιδιωτικής ζωής και άλλων μορφών λογοκρισίας.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
     <value>Οι διακομιστές βρίσκονται σε {0}, αλλά θα φαίνεται ότι περιηγείστε από {1}</value>
@@ -2686,6 +2838,66 @@
   </data>
   <data name="Overlay_Tor_Title">
     <value>Tor</value>
+  </data>
+  <data name="Profile_CustomSettings_Description">
+    <value>Οι ρυθμίσεις προφίλ θα παρακάμψουν τις ρυθμίσεις VPN όταν συνδεθείτε.</value>
+  </data>
+  <data name="Profile_CustomSettings_Header">
+    <value>Προσθήκη προσαρμοσμένων ρυθμίσεων</value>
+  </data>
+  <data name="Profile_CustomSettings_Hide">
+    <value>Απόκρυψη ρυθμίσεων</value>
+  </data>
+  <data name="Profile_CustomSettings_Show">
+    <value>Εμφάνιση ρυθμίσεων</value>
+  </data>
+  <data name="Profile_Discard_Description">
+    <value>Έχετε μην αποθηκευμένες αλλαγές.</value>
+  </data>
+  <data name="Profile_Discard_Title">
+    <value>Έξοδος από τη σελίδα;</value>
+  </data>
+  <data name="Profile_NatType_Conflict_Description">
+    <value>Αυτό θα απενεργοποιήσει την προώθηση θυρών για αυτό το προφίλ.</value>
+  </data>
+  <data name="Profile_NetShield_Conflict_Description">
+    <value>Αυτό θα απενεργοποιήσει το προσαρμοσμένο DNS για αυτό το προφίλ.</value>
+  </data>
+  <data name="Profile_Options_Description">
+    <value>Αυτόματο άνοιγμα της επιλεγμένης ιστοσελίδας κατά τη σύνδεσή σας σε αυτό το προφίλ.</value>
+  </data>
+  <data name="Profile_Options_Header">
+    <value>Σύνδεση και Μετάβαση</value>
+  </data>
+  <data name="Profile_Options_Url">
+    <value>URL Ιστοσελίδας</value>
+  </data>
+  <data name="Profile_Options_Url_Error">
+    <value>Εισάγετε μια έγκυρη διεύθυνση URL</value>
+  </data>
+  <data name="Profile_PortForwarding_Conflict_Description">
+    <value>Αυτό θα αλλάξει τον τύπο NAT για αυτό το προφίλ σε Αυστηρό (τύπος 3).</value>
+  </data>
+  <data name="Profiles_Default_Gaming">
+    <value>Παιχνίδια</value>
+  </data>
+  <data name="Profiles_Default_MaxSecurity">
+    <value>Μέγιστη ασφάλεια</value>
+  </data>
+  <data name="Profiles_Default_Office">
+    <value>Γραφείο</value>
+  </data>
+  <data name="Profiles_Default_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Profiles_Default_RandomConnection">
+    <value>Τυχαία σύνδεση</value>
+  </data>
+  <data name="Profiles_Default_Streaming">
+    <value>Ροή US</value>
+  </data>
+  <data name="Profiles_Default_WorkSchool">
+    <value>Εργασία/Σχολείο</value>
   </data>
   <data name="Profiles_Page_Description">
     <value>Διαμορφώστε τις δικές σας ρυθμίσεις VPN και συνδεθείτε με ένα κλικ.</value>
@@ -2724,16 +2936,25 @@
     <value>Ο ταχύτερος δωρεάν διακομιστής</value>
   </data>
   <data name="Server_Feature_B2B">
-    <value>Πύλες</value>
+    <value>Πύλη</value>
+  </data>
+  <data name="Server_Feature_B2B_Description">
+    <value>Πρόσβαση στους διακομιστές του οργανισμού σας</value>
   </data>
   <data name="Server_Feature_None">
-    <value>Όλες οι χώρες</value>
+    <value>Τυπικό</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
   </data>
+  <data name="Server_Feature_P2P_Description">
+    <value>Βελτιστοποιημένο για torrents</value>
+  </data>
   <data name="Server_Feature_SecureCore">
     <value>Secure Core</value>
+  </data>
+  <data name="Server_Feature_SecureCore_Description">
+    <value>Διπλή προστασία</value>
   </data>
   <data name="Server_Feature_Tor">
     <value>Tor</value>
@@ -2756,9 +2977,6 @@
   <data name="Settings_About_FailedToFetch">
     <value>Αποτυχία φόρτωσης πληροφοριών αρχείου καταγραφής αλλαγών.</value>
   </data>
-  <data name="Settings_About_GetLatestVersion">
-    <value>Λάβετε την τελευταία έκδοση</value>
-  </data>
   <data name="Settings_About_LearnMore">
     <value>Περισσότερες πληροφορίες</value>
   </data>
@@ -2768,23 +2986,14 @@
   <data name="Settings_About_Loading">
     <value>Φόρτωση</value>
   </data>
-  <data name="Common_Tags_New">
-    <value>ΝΕΟ</value>
-  </data>
   <data name="Settings_About_Title">
     <value>Σχετικά</value>
   </data>
-  <data name="Settings_About_TryAgain">
-    <value>Δοκιμάστε ξανά</value>
-  </data>
-  <data name="Settings_About_Update_Description">
-    <value>Αξιοποιήστε στο έπακρο το VPN σας κάνοντας ενημέρωση στην πιο πρόσφατη έκδοση της εφαρμογής.</value>
+  <data name="Settings_Account_Account">
+    <value>Λογαριασμός</value>
   </data>
   <data name="Settings_Account_Exit">
     <value>Έξοδος από την εφαρμογή</value>
-  </data>
-  <data name="Settings_Account_MyAccount">
-    <value>Ο λογαριασμός μου</value>
   </data>
   <data name="Settings_Account_SignOut">
     <value>Αποσύνδεση</value>
@@ -2894,6 +3103,12 @@
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
     <value>Χρησιμοποιεί γεφύρωση για τη σύνδεση δικτύων. Το TUN παρέχει υψηλότερες ταχύτητες από το TAP, αλλά μπορεί να είναι λιγότερο σταθερό.</value>
   </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
+    <value>Δεν είναι δυνατή η ενεργοποίηση του προσαρμοσμένου DNS επειδή είστε συνδεδεμένοι σε ένα προφίλ με ενεργοποιημένο το NetShield.</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenEnabled">
+    <value>Το προσαρμοσμένο DNS είναι απενεργοποιημένο επειδή είστε συνδεδεμένοι σε ένα προφίλ με ενεργοποιημένο το NetShield.</value>
+  </data>
   <data name="Settings_Connection_Default">
     <value>Προεπιλεγμένη σύνδεση</value>
   </data>
@@ -2947,6 +3162,9 @@
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Description">
     <value>Δε θα μπορείτε να συνδεθείτε με έναν προσαρμοσμένο διακομιστή DNS όταν είναι ενεργοποιημένο το NetShield.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Information">
+    <value>Το NetShield δεν είναι συμβατό με το Προσαρμοσμένο DNS.</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Title">
     <value>Ενεργοποίηση NetShield;</value>
@@ -3147,6 +3365,20 @@
   <data name="Settings_OperatingSystemVersion">
     <value>Έκδοση Λειτουργικού Συστήματος</value>
   </data>
+  <data name="Settings_OverriddenByProfile_Description1">
+    <value>Αυτή η ρύθμιση συνδέεται με το ενεργό προφίλ σας.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description2">
+    <value>Επεξεργαστείτε το προφίλ σας για να κάνετε αλλαγές ή αποσυνδεθείτε για να επεξεργαστείτε τις γενικές ρυθμίσεις VPN.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Tagline">
+    <value>Αυτές οι ρυθμίσεις είναι συνδεδεμένες με '{0}' προφίλ και η διαχείρισή τους μπορεί να γίνει αποκλειστικά μέσω των επιλογών Προφίλ</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Settings_OverriddenByProfile_Title">
+    <value>Διαχείριση {0} σε Προφίλ</value>
+    <comment>{0} is a placeholder for the name of the settings being overridden by the profile. (eg. Manage NetShield in Profiles)</comment>
+  </data>
   <data name="Settings_Page_Title">
     <value>Ρυθμίσεις</value>
   </data>
@@ -3197,6 +3429,9 @@
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>
+  </data>
+  <data name="Settings_Reconnection_Title">
+    <value>Επανασυνδεθείτε για να εφαρμόσετε αλλαγές</value>
   </data>
   <data name="Settings_RestoreDefault">
     <value>Επαναφορά προεπιλεγμένων ρυθμίσεων</value>
@@ -3312,7 +3547,7 @@
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_ResetPassword">
-    <value>Επαναφορά κωδικού πρόσβασης</value>
+    <value>Ξέχασα τον κωδικό πρόσβασης</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_SignIn">
@@ -3329,7 +3564,7 @@
     <value>Σύνδεση</value>
   </data>
   <data name="SignIn_Form_TroubleSigningIn">
-    <value>Πρόβλημα σύνδεσης</value>
+    <value>Κέντρο Υποστήριξης</value>
     <comment>A button at the bottom of the login window inside Get help popup</comment>
   </data>
   <data name="SignIn_Form_Username">
@@ -3462,6 +3697,18 @@
   <data name="Upsell_Carousel_Platforms_More">
     <value>+ περισσότερα</value>
     <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_Profiles">
+    <value>Αποκτήστε γρήγορη πρόσβαση στις συχνές συνδέσεις</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Convenience">
+    <value>Ορίστε ένα προφίλ ως προεπιλεγμένη σύνδεση και συνδεθείτε με 1 κλικ</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Creation">
+    <value>Δημιουργήστε και αποθηκεύστε τις δικές σας διαμορφώσεις VPN με τα Προφίλ</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Customization">
+    <value>Προσαρμόστε την τοποθεσία, το πρωτόκολλο και τις ρυθμίσεις σας</value>
   </data>
   <data name="Upsell_Carousel_SecureCore">
     <value>Προσθέστε ακόμα ένα επίπεδο προστασίας στη σύνδεσή σας</value>

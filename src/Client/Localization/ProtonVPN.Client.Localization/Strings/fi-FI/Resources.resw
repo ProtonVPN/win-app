@@ -123,6 +123,9 @@
   <data name="Automation_Properties_ConnectionDetails_Page">
     <value>Yhteyden tiedot -sivu</value>
   </data>
+  <data name="Automation_Properties_Connection_Card_Component">
+    <value>Connection card</value>
+  </data>
   <data name="Automation_Properties_Features_Bar">
     <value>Ominaisuudet-palkki</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>Porttiohjaus-sivu</value>
+  </data>
+  <data name="Automation_Properties_Profile_Page">
+    <value>Profile page</value>
   </data>
   <data name="Automation_Properties_Settings_Advanced_Page">
     <value>Lisäasetukset-sivu</value>
@@ -222,17 +228,38 @@
     <value>Katkaise yhteys kohteeseen {0}</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
+  <data name="Common_Actions_Duplicate">
+    <value>Duplicate</value>
+  </data>
   <data name="Common_Actions_Edit">
     <value>Muokkaa</value>
   </data>
   <data name="Common_Actions_Enable">
     <value>Käytä</value>
   </data>
+  <data name="Common_Actions_Exit_ProtonVPN">
+    <value>Exit Proton VPN</value>
+  </data>
+  <data name="Common_Actions_GotIt">
+    <value>Got it</value>
+  </data>
+  <data name="Common_Actions_Install">
+    <value>Install</value>
+  </data>
   <data name="Common_Actions_Reconnect">
     <value>Yhdistä uudelleen</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>Poista</value>
+  </data>
+  <data name="Common_Actions_Restart">
+    <value>Restart</value>
+  </data>
+  <data name="Common_Actions_Save">
+    <value>Save</value>
+  </data>
+  <data name="Common_Actions_TryAgain">
+    <value>Try again</value>
   </data>
   <data name="Common_Actions_Update">
     <value>Päivitä</value>
@@ -241,10 +268,10 @@
     <value>Päivitä</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>**Edistynyt tappokytkin on käytössä.** Jos haluat käyttää Internetiä ilman VPN:ää, poista se käytöstä.</value>
+    <value>Advanced kill switch is enabled. To use the internet without VPN, disable advanced kill switch.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>**Edistynyt tappokytkin on käytössä.** Jos jatkat, Internet-yhteytesi katkaistaan.</value>
+    <value>Advanced kill switch is enabled. If you continue, you will be disconnected from the internet.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
     <value>VPN-yhteytesi katkaistaan.</value>
@@ -264,6 +291,21 @@
   <data name="Common_States_Updating">
     <value>Päivitetään...</value>
   </data>
+  <data name="Common_Tags_New">
+    <value>NEW</value>
+  </data>
+  <data name="Components_Update_GetMostFromYourVpn">
+    <value>Get the most from your VPN by updating to the latest version of the app.</value>
+  </data>
+  <data name="Components_Update_MoreLikelyIssues">
+    <value>You're more likely to have issues on older versions of ProtonVPN.</value>
+  </data>
+  <data name="Components_Update_UpdateAvailable">
+    <value>Update available</value>
+  </data>
+  <data name="Components_Update_UpdateProtonVpn">
+    <value>Update Proton VPN</value>
+  </data>
   <data name="Connection_Error_EditProfile">
     <value>Muokkaa profiilia</value>
   </data>
@@ -271,7 +313,7 @@
     <value>Proton VPN ei voinut noutaa todennusvarmennetta verkko-ongelman vuoksi.</value>
   </data>
   <data name="Connection_Error_NoServers">
-    <value>Valintaasi vastaavia palvelimia ei ole tällä hetkellä käytettävissä. Valitse eri vaihtoehto.</value>
+    <value>All servers in your selection are unavailable. Please expand your selection or try again later.</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
     <value>Valitsemasi palvelin '{0}' ei ole käytettävissä. Valitse toinen palvelin tai kokeile myöhemmin uudelleen.</value>
@@ -308,10 +350,10 @@
     <value>Emme ole varmoja, mitä tapahtui. Yritä uudelleen tai ota yhteyttä asiakaspalveluumme.</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
-    <value>Näytä mahdollisia ratkaisuja</value>
+    <value>View fixes</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
-    <value>Proton VPN ei voi yhdistää, koska WireGuard-verkkosovitin on jo käytössä. Katkaise kaikki aktiiviset VPN-yhteydet ja yritä uudelleen. Vaihtoehtoisesti voit vaihtaa protokollaa lisäasetuksista.</value>
+    <value>Your device's WireGuard adapter is in use. Disconnect from any other VPN running on your device, then try again.</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Valittu automaattisesti seuraavista</value>
@@ -445,8 +487,19 @@
   <data name="Connections_Profiles_Empty_Title">
     <value>Luo ensimmäinen profiilisi</value>
   </data>
+  <data name="Connections_Profiles_Location_Header">
+    <value>Select connection type and location</value>
+  </data>
   <data name="Connections_Profiles_Name">
-    <value>Profiilin nimi</value>
+    <value>Give your profile a name</value>
+  </data>
+  <data name="Connections_Profiles_Name_Default">
+    <value>Untitled</value>
+    <comment>This will be used as the default profile name if the user creates a profile without entering a name</comment>
+  </data>
+  <data name="Connections_Profiles_Name_Duplicate">
+    <value>Copy of {0}</value>
+    <comment>This will be used as the profile name when duplicating a profile. {0} is a placeholder for the original profile name.</comment>
   </data>
   <data name="Connections_Profiles_New">
     <value>Uusi profiili</value>
@@ -456,8 +509,11 @@
     <value>Profiilit ovat käytettävissä VPN Plussalla</value>
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
   </data>
-  <data name="Connections_Profiles_Save">
-    <value>Tallenna profiilii</value>
+  <data name="Connections_Profiles_Settings_Description">
+    <value>Profile settings will override your VPN settings when connected.</value>
+  </data>
+  <data name="Connections_Profiles_Settings_Header">
+    <value>Add custom settings</value>
   </data>
   <data name="Connections_Random">
     <value>Satunnainen</value>
@@ -560,9 +616,6 @@
   <data name="Countries_All">
     <value>Kaikki</value>
   </data>
-  <data name="Countries_Cities">
-    <value>Kaupungit</value>
-  </data>
   <data name="Countries_City_One">
     <value>{0} kaupunki</value>
   </data>
@@ -576,19 +629,8 @@
   <data name="Countries_Fastest">
     <value>Nopein maa</value>
   </data>
-  <data name="Countries_Info">
-    <value>Tietoja</value>
-  </data>
   <data name="Countries_NoSearchResults">
     <value>Tuloksia ei löytynyt</value>
-  </data>
-  <data name="Countries_NumberOfCities">
-    <value>Kaupungit ({0})</value>
-    <comment>{0} represents the number of cities</comment>
-  </data>
-  <data name="Countries_NumberOfCountries">
-    <value>Maat ({0})</value>
-    <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_NumberOfServers">
     <value>Palvelimet ({0})</value>
@@ -596,10 +638,6 @@
   </data>
   <data name="Countries_P2P">
     <value>P2P</value>
-  </data>
-  <data name="Countries_P2PCountries">
-    <value>P2P-maat ({0})</value>
-    <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_P2P_Cities">
     <value>P2P-kaupungit ({0})</value>
@@ -620,22 +658,8 @@
   <data name="Countries_SecureCore">
     <value>Secure Core</value>
   </data>
-  <data name="Countries_SecureCoreCountries">
-    <value>Secure Core -maat ({0})</value>
-    <comment>{0} represents the number of countries</comment>
-  </data>
-  <data name="Countries_SecureCoreServers">
-    <value>Secure Core -palvelimet ({0})</value>
-    <comment>{0} represents the number of severs</comment>
-  </data>
   <data name="Countries_SecureCore_Description">
     <value>Lisää VPN-yhteyteesi toinen salauskerros.</value>
-  </data>
-  <data name="Countries_Server_One">
-    <value>{0} palvelin</value>
-  </data>
-  <data name="Countries_Server_Other">
-    <value>{0} palvelinta</value>
   </data>
   <data name="Countries_ServerLoad">
     <value>Palvelimen kuormitus</value>
@@ -643,16 +667,8 @@
   <data name="Countries_SmartRouting">
     <value>Smart Routing</value>
   </data>
-  <data name="Countries_SmartRouting_Description">
-    <value>Palvelimien fyysinen sijainti on {0}, mutta näytät selaavasi sijainnista {1}.</value>
-    <comment>{0} and {1} represent country names.</comment>
-  </data>
   <data name="Countries_Tor">
     <value>Tor</value>
-  </data>
-  <data name="Countries_TorCountries">
-    <value>Tor-maat ({0})</value>
-    <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_TorServers">
     <value>Tor-palvelimet ({0})</value>
@@ -663,10 +679,6 @@
   </data>
   <data name="Countries_TryDifferentKeyword">
     <value>Kokeile eri hakusanaa</value>
-  </data>
-  <data name="Countries_ViaCountry">
-    <value>maan {0} kautta</value>
-    <comment>{0} represents country name. For example: via Australia.</comment>
   </data>
   <data name="Country_Fastest">
     <value>Nopein maa</value>
@@ -1684,6 +1696,15 @@
     <value>Tuntematon</value>
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
+  <data name="Dialogs_BaseFilteringEngine_Description">
+    <value>The Base Filtering Engine (BFE) service on your Windows device is disabled. This service needs to be enabled for Proton VPN to work properly.</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_HowToEnable">
+    <value>How to enable Base Filtering Engine</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Title">
+    <value>Enable Base Filtering Engine to continue</value>
+  </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
     <value>Hanki rajattomasti palvelinvaihtoja VPN Plus -tilauksella.</value>
   </data>
@@ -1698,6 +1719,12 @@
   </data>
   <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
     <value>Päivitä tilauksesi saadaksesi jälleen Plus-palvelimet ja -ominaisuudet käyttöösi.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Description">
+    <value>Looks like the Proton VPN Service is disabled. You'll need to re-enable the service to connect.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Title">
+    <value>Enable Windows Service to continue</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free yhdistää sinut automaattisesti nopeimpaan saatavilla olevaan ilmaiseen palvelimeen {0} ilmaisessa maassa. Yleensä tämä on lähinnä sijaintiasi oleva palvelin.</value>
@@ -1739,6 +1766,12 @@ Korkea viive voi hidastaa yhteyttäsi.</value>
   </data>
   <data name="Dialogs_Latency_Title">
     <value>Mikä on viive?</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Description">
+    <value>Your connection has been disabled because you are using a server that does not support peer-to-peer (P2P) traffic. P2P is not supported on free servers. Please use a different server for P2P.</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Title">
+    <value>P2P traffic detected</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>Miten torrentoit P2P:llä</value>
@@ -1803,7 +1836,7 @@ Korkea viive voi hidastaa yhteyttäsi.</value>
     <value>Mikä on ongelmana?</value>
   </data>
   <data name="Dialogs_ReportIssue_NoLogsWarning">
-    <value>Virhelokit auttavat meitä selvittämään ongelmasi perusteellisesti. Jos et halua sisällyttää niitä, emme välttämättä pysty tutkimaan ongelmaa täysin.</value>
+    <value>Error logs help us to get to the bottom of your issue. If you don't include them, we may not be able to investigate fully.</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes">
     <value>Pikaratkaisut</value>
@@ -1823,9 +1856,6 @@ Korkea viive voi hidastaa yhteyttäsi.</value>
   <data name="Dialogs_ReportIssue_Result_Fail_Description">
     <value>Raportin lähetys ei onnistunut. Tarkista yhteytesi ja yritä uudelleen.</value>
   </data>
-  <data name="Dialogs_ReportIssue_Result_RetryAction">
-    <value>Yritä uudelleen</value>
-  </data>
   <data name="Dialogs_ReportIssue_Result_Success">
     <value>Raportti on lähetetty</value>
   </data>
@@ -1841,42 +1871,6 @@ Korkea viive voi hidastaa yhteyttäsi.</value>
   </data>
   <data name="Dialogs_ReportIssue_Title">
     <value>Ilmoita ongelmasta</value>
-  </data>
-  <data name="Dialogs_SecureCore_AdvancedPrivacy">
-    <value>Edistynyt yksityisyys</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_Description">
-    <value>Secure Core yhdistää sinut kohdepalvelimeesi toisen, huipputurvallisen VPN-palvelimen välityksellä.
-
-Tämä korkeampi suojaustaso voi kasvattaa viivettä ja hidastaa nopeuksia.</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_HighPrivacy">
-    <value>Korkea yksityisyys</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_HigherLatency">
-    <value>Korkeampi viive</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_LowerLatency">
-    <value>Matalampi viive</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_SecureCoreConnection">
-    <value>Secure Core
--VPN-yhteys</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_StandardConnection">
-    <value>Tavallinen
-VPN-yhteys</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_Title">
-    <value>Secure Core</value>
-    <comment>obsolete</comment>
   </data>
   <data name="Dialogs_ServerLoad_Description">
     <value>Palvelimen kuormitus kertoo, miten lähellä palvelin on sen enimmäiskapasiteettia.
@@ -1904,18 +1898,20 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
   <data name="Dialogs_ServerLoad_Title">
     <value>Mitä palvelimen kuormitus tarkoittaa?</value>
   </data>
-  <data name="Dialogs_SmartRouting_Description">
-    <value>Smart Routing käyttää virtuaalipalvelimia VPN-verkon laajentamiseksi vaikeasti tavoitettaviin maihin.
-
-Kun yhdistätä Smart Routing -palvelimeen, näytät selaavasi kohdemaastasi, vaikka fyysinen palvelin sijaitsee muualla.
-
-Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja muunlaisen sensuurin kiertämiseen.</value>
-  </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>Ehkä myöhemmin</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Description">
+    <value>It looks like your device is using a proxy server. This may interfere with your VPN protection.</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Disable">
+    <value>Disable proxy</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Title">
+    <value>Proxy server detected</value>
   </data>
   <data name="Dialogs_Tor_Description">
     <value>Yhdistä Tor-palvelimeen ja käytä piilotettuja palveluita ja onion-sivustoja millä tahansa selaimella.</value>
@@ -1941,14 +1937,11 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
   <data name="Dialogs_Troubleshooting_Description">
     <value>Nämä pikaratkaisut voivat auttaa yhdistämään Protoniin.</value>
   </data>
-  <data name="Dialogs_Troubleshooting_DidNotWork">
-    <value>Eikö ratkaisu toiminut?</value>
-  </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork">
     <value>Käytä eri verkkoa</value>
   </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
-    <value>Kokeile vaihtaa Wi-Fi-verkkoa tai käytä mobiiliverkkoa.</value>
+    <value>Try switching Wi-Fi networks, or use mobile data instead.</value>
   </data>
   <data name="Dialogs_Troubleshooting_StatusPage">
     <value>Tarkasta tilasivumme</value>
@@ -1958,6 +1951,18 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
   </data>
   <data name="Dialogs_Troubleshooting_Title">
     <value>Yhteysapua</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOff">
+    <value>This will disconnect you from VPN. Any active internet connections will be temporarily unprotected.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn">
+    <value>This will disconnect you from VPN and temporarily disable kill switch. Any active internet connections will be temporarily unprotected.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Install">
+    <value>Install update?</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Restart">
+    <value>Restart Proton VPN to complete update</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Description">
     <value>Näyttää siltä, että järjestelmäsi kello ei ole synkronoitu. Tämä voi aiheuttaa ongelmia VPN:ään yhdistämisessä.</value>
@@ -2007,10 +2012,11 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Tervetuloa VPN Plussaan</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description">
-    <value>Onnittelut! Avasit kaikkien Proton-palveluiden premium-tason suojaus- ja suorituskykyominaisuudet. 
-
-Nauti Proton-yksityisyyden parhaista puolista.</value>
+  <data name="Dialogs_WelcomeUnlimited_Description1">
+    <value>Congratulations! You unlocked premium security and performance features on all Proton services.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description2">
+    <value>Enjoy the best of Proton privacy.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Tervetuloa Proton Unlimitediin</value>
@@ -2030,12 +2036,14 @@ Nauti Proton-yksityisyyden parhaista puolista.</value>
   <data name="Exit_Title">
     <value>Suljetaanko Proton VPN</value>
   </data>
-  <data name="Flyouts_Country_Description">
-    <value>Ilman VPN:ää selaaminen altistaa sinut sijaintiin perustuville Internet-rajoituksille.
-
-Verkkosivustot voivat käyttää geoblokkausta rajoittaakseen sisältöä tiettyihin sijainteihin. Hallitukset voivat myös määrätä Internet-palveluntarjoajia (ISP) estämään tietyt verkkosivustot omassa maassaan.
-
-VPN saa sen näyttämään siltä, että selaat jostain muualta, joka suojaa sinua seurannalta ja sensuurilta.</value>
+  <data name="Flyouts_Country_Description1">
+    <value>Browsing without a VPN leaves you vulnerable to location-based internet restrictions.</value>
+  </data>
+  <data name="Flyouts_Country_Description2">
+    <value>Websites can use geoblocks to restrict content to certain locations. Governments can also instruct ISPs (Internet Service Providers) to block certain websites in their country.</value>
+  </data>
+  <data name="Flyouts_Country_Description3">
+    <value>A VPN makes it looks like you're browsing from somewhere else, protecting you from surveillance and censorship.</value>
   </data>
   <data name="Flyouts_Country_Title">
     <value>Maa</value>
@@ -2044,12 +2052,13 @@ VPN saa sen näyttämään siltä, että selaat jostain muualta, joka suojaa sin
     <value>Yhdistä VPN:ään muuttaaksesi virtuaalista sijaintiasi</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Connected">
-    <value>VPN:n IP-osoite naamioi todellisen IP-osoitteesi. Tämä saa sen näyttämään siltä, että selaat VPN-sijainnistasi, joten verkkotoimintaasi ei voida yhdistää laitteeseesi.</value>
+    <value>Your VPN IP masks your real IP address. This makes it look like you're browsing from your VPN location, so your online activity can't be linked to your device.</value>
   </data>
-  <data name="Flyouts_IpAddress_Description_Disconnected">
-    <value>Verkkosivustot ja Internet-palveluntarjoajat (ISP) voivat käyttää tätä yksilöllistä koodia yhdistääkseen sijaintisi ja selaushistoriasi laitteeseesi. 
-
-VPN naamioi IP-osoitteesi, jolloin toimintasi jäljittäminen sinuun on hankalampaa.</value>
+  <data name="Flyouts_IpAddress_Description_Disconnected1">
+    <value>This unique code can be used by websites and ISPs (Internet Service Providers) to link your location and browsing history to your device.</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected2">
+    <value>A VPN masks your IP address, making it harder for your activity to be traced back to you.</value>
   </data>
   <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
     <value>Mikä on IP-osoite?</value>
@@ -2066,12 +2075,14 @@ VPN naamioi IP-osoitteesi, jolloin toimintasi jäljittäminen sinuun on hankalam
   <data name="Flyouts_IpAddress_YourIpIsVisible">
     <value>IP-osoitteesi on näkyvissä</value>
   </data>
-  <data name="Flyouts_Isp_Description">
-    <value>Internet-palveluntarjoajasi (ISP) on se yritys, joka yhdistää sinut Internetiin. 
-
-He voivat seurata verkkotoimintaasi. Joissain maissa he voivat myydä tietojasi mainostajille. Toisissa maissa heitä voidaan vaatia luovuttamaan nämä tiedot hallitukselle. 
-
-VPN piilottaa IP-osoitteesi ja suojaa sinua Internet-palveluntarjoajan seurannalta.</value>
+  <data name="Flyouts_Isp_Description1">
+    <value>Your ISP (Internet Service Provider) is the company that connects you to the internet.</value>
+  </data>
+  <data name="Flyouts_Isp_Description2">
+    <value>They can log your online activity. In some countries, they can sell your data to advertisers. In others, they can be required to hand it over to the government.</value>
+  </data>
+  <data name="Flyouts_Isp_Description3">
+    <value>A VPN hides your IP address, protecting you from ISP interference.</value>
   </data>
   <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
     <value>Mikä on Internet-palveluntarjoaja (ISP)?</value>
@@ -2081,6 +2092,54 @@ VPN piilottaa IP-osoitteesi ja suojaa sinua Internet-palveluntarjoajan seurannal
   </data>
   <data name="Flyouts_Isp_Warning">
     <value>Palveluntarjoajasi näkee, millä verkkosivustoilla vierailet</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Advanced_Success">
+    <value>Blocks all internet access when you're not connected to Proton VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info">
+    <value>Your IP address could be exposed if your VPN connection drops</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Standard_Success">
+    <value>If your VPN connection drops, you'll be disconnected from the internet until VPN is restored</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Connected">
+    <value>Advanced kill switch applies even if you intentionally disconnect from VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Disconnected">
+    <value>To get back online, connect to VPN or disable advanced kill switch</value>
+  </data>
+  <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
+    <value>You're protected from ads, trackers, and malware</value>
+  </data>
+  <data name="Flyouts_NetShield_Info">
+    <value>Protect yourself from ads, trackers, and malware on websites and apps</value>
+  </data>
+  <data name="Flyouts_NetShield_MalwareOnly_Success">
+    <value>You're protected from malware only</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Description">
+    <value>Block ads, trackers, and malware with VPN Plus.</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Title">
+    <value>Enjoy ad-free browsing</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort">
+    <value>Active port number</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Info">
+    <value>Enter the active port number into your BitTorrent app to improve your P2P speeds</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Info">
+    <value>Improves peer-to-peer download speeds</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Description">
+    <value>Supercharge peer-to-peer (P2P) file sharing performance with VPN Plus.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Title">
+    <value>Improve P2P speed</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Warning">
+    <value>To use port forwarding, connect to a P2P server</value>
   </data>
   <data name="Flyouts_Protocol_Description">
     <value>VPN-protokolla määrittää, miten liikenne salataan ja lähetetään VPN:n välityksellä.</value>
@@ -2121,10 +2180,11 @@ VPN piilottaa IP-osoitteesi ja suojaa sinua Internet-palveluntarjoajan seurannal
   <data name="Flyouts_Speed_BoostedByVpnAccelerator">
     <value>VPN Acceleratorin tehostama</value>
   </data>
-  <data name="Flyouts_Speed_Description">
-    <value>Tämä kertoo, kuinka paljon dataa Proton VPN:n kautta siirretään joka sekunti.
-
-Nopeus perustuu laitteesi tämänhetkiseen toimintaan — se ei ilmaise VPN:n maksiminopeutta.</value>
+  <data name="Flyouts_Speed_Description1">
+    <value>This shows how much data gets transmitted through Proton VPN each second.</value>
+  </data>
+  <data name="Flyouts_Speed_Description2">
+    <value>Speed is based on your device's current activity — it doesn't represent the VPN's maximum speed.</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>Lataus</value>
@@ -2139,6 +2199,45 @@ Nopeus perustuu laitteesi tämänhetkiseen toimintaan — se ei ilmaise VPN:n ma
   <data name="Flyouts_Speed_Upload">
     <value>Lähetys</value>
     <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_One">
+    <value>Excluded app ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_Other">
+    <value>Excluded apps ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_One">
+    <value>Excluded IP address ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_Other">
+    <value>Excluded IP addresses ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Info">
+    <value>Allows trusted apps and IP addresses to connect without VPN protection</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Inverse_Info">
+    <value>Only these apps and IP addresses connect through VPN. All other traffic is unprotected.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_One">
+    <value>Protected app ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_Other">
+    <value>Protected apps ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_One">
+    <value>Protected IP address ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_Other">
+    <value>Protected IP addresses ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Standard_Info">
+    <value>These apps and IP addresses connect without VPN protection. All other traffic is protected.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Description">
+    <value>Divide your traffic into VPN and non-VPN tunnels with VPN Plus.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Title">
+    <value>Get the best of both worlds</value>
   </data>
   <data name="Flyouts_Volume_Description">
     <value>Tämä näyttää, kuinka paljon liikennettä on ohjattu VPN:si kautta.</value>
@@ -2269,6 +2368,12 @@ Nopeus perustuu laitteesi tämänhetkiseen toimintaan — se ei ilmaise VPN:n ma
   </data>
   <data name="FreeConnections_WorldwideCoverageUpsell">
     <value>Hanki maailmanlaajuinen kattavuus VPN Plussalla</value>
+  </data>
+  <data name="Gateway_Fastest">
+    <value>Fastest gateway</value>
+  </data>
+  <data name="Gateway_Random">
+    <value>Random gateway</value>
   </data>
   <data name="Gateways_Page_Description">
     <value>Yhdistä yhdyskäytävään käyttääksesi organisaatiosi VPN:ää.</value>
@@ -2471,12 +2576,29 @@ Nopeus perustuu laitteesi tämänhetkiseen toimintaan — se ei ilmaise VPN:n ma
   <data name="Home_Recents_Unpin">
     <value>Irrota</value>
   </data>
-  <data name="Home_Update_Confirmation_Message">
-    <value>Päivitysprosessin viimeistelemiseksi Proton VPN katkaisee yhteyden hetkeksi ja poistaa edistyneen tappokytkimen käytöstä. Haluatko jatkaa?</value>
-    <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
+  <data name="Home_TitleBar_Menu_About">
+    <value>About</value>
   </data>
-  <data name="Home_Update_Confirmation_Title">
-    <value>Päivitetäänkö Proton VPN?</value>
+  <data name="Home_TitleBar_Menu_Account">
+    <value>Account</value>
+  </data>
+  <data name="Home_TitleBar_Menu_ExitTheApp">
+    <value>Exit the app</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help">
+    <value>Help</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help_WhatsTheIssue">
+    <value>What's the issue?</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Settings">
+    <value>Settings</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Signout">
+    <value>Sign out</value>
+  </data>
+  <data name="Home_TitleBar_Menu_UpdateNow">
+    <value>Update now</value>
   </data>
   <data name="Home_Update_UpdateAvailable">
     <value>Päivitys saatavilla</value>
@@ -2558,11 +2680,26 @@ Nopeus perustuu laitteesi tämänhetkiseen toimintaan — se ei ilmaise VPN:n ma
     <value>Kirjaudutaan ulos. Odota...</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
+  <data name="Notifications_KillSwitch_Description">
+    <value>To protect your IP address, kill switch is blocking your internet connection.</value>
+  </data>
+  <data name="Notifications_PortForwarding_CopyPortNumber">
+    <value>Copy port number</value>
+  </data>
   <data name="Notifications_PortForwarding_Description">
     <value>Määritä tämä numero BitTorrent-sovellukseesi korkeampaa nopeutta varten.</value>
   </data>
+  <data name="Notifications_SessionLimit_Description">
+    <value>You’ve reached your maximum device limit. To reconnect to VPN, please disconnect from another device.</value>
+  </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
     <value>Tilauksesi on alennettu Proton Free -tasolle, yhdistämme sinut uudelleen nopeimmalle ilmaispalvelimelle.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Description">
+    <value>Public Wi-Fi networks are more vulnerable to security threats. Connect to VPN to browse safely.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Title">
+    <value>Unsecured Wi-Fi connection detected</value>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Päivitä nyt</value>
@@ -2599,10 +2736,23 @@ Nopeus perustuu laitteesi tämänhetkiseen toimintaan — se ei ilmaise VPN:n ma
   <data name="Overlay_P2P_Title">
     <value>P2P</value>
   </data>
-  <data name="Overlay_SecureCore_Description">
-    <value>Secure Core yhdistää sinut kohdepalvelimeesi toisen, huipputurvallisen VPN-palvelimen välityksellä.
-
-Tämä korkeampi suojaustaso voi kasvattaa viivettä ja hidastaa nopeuksia.</value>
+  <data name="Overlay_Profile_Description1">
+    <value>Profiles are custom VPN connections that you can tailor to your needs and save for quick access.</value>
+  </data>
+  <data name="Overlay_Profile_Description2">
+    <value>Set your preferred location and optimize your settings for security, performance, gaming, or any other scenario.</value>
+  </data>
+  <data name="Overlay_Profile_LearnMore">
+    <value>What is a VPN profile?</value>
+  </data>
+  <data name="Overlay_Profile_Title">
+    <value>Profiles</value>
+  </data>
+  <data name="Overlay_SecureCore_Description1">
+    <value>Secure Core connects you to your destination server via a second, maximum security VPN server.</value>
+  </data>
+  <data name="Overlay_SecureCore_Description2">
+    <value>This higher level of protection may cause higher latency and slower speeds.</value>
   </data>
   <data name="Overlay_SecureCore_LearnMore">
     <value>Mikä on Secure Core?</value>
@@ -2659,12 +2809,14 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
   <data name="Overlay_ServerLoad_Title">
     <value>Palvelinten kuormitus</value>
   </data>
-  <data name="Overlay_SmartRouting_Description">
-    <value>Smart Routing käyttää virtuaalipalvelimia tarjotakseen VPN-verkon kattavuuden vaikeasti saavutettavissa maissa.
-    
-Kun muodostat yhteyden Smart Routing -palvelimeen, näytät selaavasi kohdemaastasi, vaikka fyysinen palvelin sijaitsee muualla.  
-
-Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja muunlaisen sensuurin kiertämiseen</value>
+  <data name="Overlay_SmartRouting_Description1">
+    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description2">
+    <value>When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description3">
+    <value>Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
     <value>Palvelimien fyysinen sijainti on {0}, mutta näytät selaavasi sijainnista {1}</value>
@@ -2686,6 +2838,66 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
   </data>
   <data name="Overlay_Tor_Title">
     <value>Tor</value>
+  </data>
+  <data name="Profile_CustomSettings_Description">
+    <value>Profile settings will override your VPN settings when connected.</value>
+  </data>
+  <data name="Profile_CustomSettings_Header">
+    <value>Add custom settings</value>
+  </data>
+  <data name="Profile_CustomSettings_Hide">
+    <value>Hide settings</value>
+  </data>
+  <data name="Profile_CustomSettings_Show">
+    <value>Show settings</value>
+  </data>
+  <data name="Profile_Discard_Description">
+    <value>You have unsaved changes.</value>
+  </data>
+  <data name="Profile_Discard_Title">
+    <value>Leave page?</value>
+  </data>
+  <data name="Profile_NatType_Conflict_Description">
+    <value>This will disable port forwarding for this profile.</value>
+  </data>
+  <data name="Profile_NetShield_Conflict_Description">
+    <value>This will disable custom DNS for this profile.</value>
+  </data>
+  <data name="Profile_Options_Description">
+    <value>Automatically open a website of your choice when you connect to this profile.</value>
+  </data>
+  <data name="Profile_Options_Header">
+    <value>Connect and Go</value>
+  </data>
+  <data name="Profile_Options_Url">
+    <value>Website URL</value>
+  </data>
+  <data name="Profile_Options_Url_Error">
+    <value>Enter a valid URL</value>
+  </data>
+  <data name="Profile_PortForwarding_Conflict_Description">
+    <value>This will change the NAT type for this profile to Strict (type 3).</value>
+  </data>
+  <data name="Profiles_Default_Gaming">
+    <value>Gaming</value>
+  </data>
+  <data name="Profiles_Default_MaxSecurity">
+    <value>Max security</value>
+  </data>
+  <data name="Profiles_Default_Office">
+    <value>Office</value>
+  </data>
+  <data name="Profiles_Default_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Profiles_Default_RandomConnection">
+    <value>Random connection</value>
+  </data>
+  <data name="Profiles_Default_Streaming">
+    <value>Streaming US</value>
+  </data>
+  <data name="Profiles_Default_WorkSchool">
+    <value>Work/School</value>
   </data>
   <data name="Profiles_Page_Description">
     <value>Määritä omat VPN-asetuksesi ja yhdistä yhdellä klikkauksella.</value>
@@ -2724,16 +2936,25 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
     <value>Nopein ilmainen palvelin</value>
   </data>
   <data name="Server_Feature_B2B">
-    <value>Yhdyskäytävät</value>
+    <value>Gateway</value>
+  </data>
+  <data name="Server_Feature_B2B_Description">
+    <value>Access your organization's servers</value>
   </data>
   <data name="Server_Feature_None">
-    <value>Kaikki maat</value>
+    <value>Standard</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
   </data>
+  <data name="Server_Feature_P2P_Description">
+    <value>Torrent-optimized</value>
+  </data>
   <data name="Server_Feature_SecureCore">
     <value>Secure Core</value>
+  </data>
+  <data name="Server_Feature_SecureCore_Description">
+    <value>Double protection</value>
   </data>
   <data name="Server_Feature_Tor">
     <value>Tor</value>
@@ -2756,9 +2977,6 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
   <data name="Settings_About_FailedToFetch">
     <value>Muutoshistorian lataus epäonnistui.</value>
   </data>
-  <data name="Settings_About_GetLatestVersion">
-    <value>Hanki uusin versio</value>
-  </data>
   <data name="Settings_About_LearnMore">
     <value>Lue lisää</value>
   </data>
@@ -2768,23 +2986,14 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
   <data name="Settings_About_Loading">
     <value>Ladataan</value>
   </data>
-  <data name="Common_Tags_New">
-    <value>UUSI</value>
-  </data>
   <data name="Settings_About_Title">
     <value>Tietoja</value>
   </data>
-  <data name="Settings_About_TryAgain">
-    <value>Yritä uudelleen</value>
-  </data>
-  <data name="Settings_About_Update_Description">
-    <value>Ota VPN:stä kaikki irti päivittämällä sovellus uusimpaan versioon.</value>
+  <data name="Settings_Account_Account">
+    <value>Account</value>
   </data>
   <data name="Settings_Account_Exit">
     <value>Sulje sovellus</value>
-  </data>
-  <data name="Settings_Account_MyAccount">
-    <value>Oma tili</value>
   </data>
   <data name="Settings_Account_SignOut">
     <value>Kirjaudu ulos</value>
@@ -2894,6 +3103,12 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
     <value>Käyttää siltausta verkkojen yhdistämiseen. TUN tarjoaa suurempia nopeuksia kuin TAP, mutta se ei välttämättä ole yhtä vakaa.</value>
   </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
+    <value>Custom DNS can't be turned on because you're connected to a profile with NetShield enabled.</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenEnabled">
+    <value>Custom DNS is disabled because you're currently connected to a profile with NetShield enabled.</value>
+  </data>
   <data name="Settings_Connection_Default">
     <value>Oletusyhteys</value>
   </data>
@@ -2948,6 +3163,9 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
   <data name="Settings_Connection_NetShield_Conflict_Description">
     <value>Et voi muodostaa yhteyttä omalla DNS-palvelimella, kun NetShield on käytössä.</value>
   </data>
+  <data name="Settings_Connection_NetShield_Conflict_Information">
+    <value>NetShield is not compatible with Custom DNS.</value>
+  </data>
   <data name="Settings_Connection_NetShield_Conflict_Title">
     <value>Otetaanko NetShield käyttöön?</value>
   </data>
@@ -2997,10 +3215,11 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
     <value>Siirry profiileihin</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Message">
-    <value>Olet yhteydessä VPN-profiiliin. 
-• Jos haluat muuttaa tämän yhteyden protokollaa, katkaise yhteys ja muokkaa sitten profiiliasi.
+    <value>You're currently connected to a VPN profile.
 
-• Jos haluat muuttaa muiden VPN-yhteyksien protokollia, sinun on ensin katkaistava yhteys profiiliisi.</value>
+• To change the protocol for this connection, disconnect then edit your profile.
+
+• To change your protocol for other VPN connections, you'll need to disconnect from your profile first.</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Title">
     <value>Muuta protokollaa profiileissa</value>
@@ -3146,6 +3365,20 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
   <data name="Settings_OperatingSystemVersion">
     <value>Käyttöjärjestelmän versio</value>
   </data>
+  <data name="Settings_OverriddenByProfile_Description1">
+    <value>This setting is connected to your active profile.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description2">
+    <value>Edit your profile to make changes, or disconnect to edit your general VPN settings.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Tagline">
+    <value>These settings are connected to '{0}' profile and can only be managed in Profiles.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Settings_OverriddenByProfile_Title">
+    <value>Manage {0} in Profiles</value>
+    <comment>{0} is a placeholder for the name of the settings being overridden by the profile. (eg. Manage NetShield in Profiles)</comment>
+  </data>
   <data name="Settings_Page_Title">
     <value>Asetukset</value>
   </data>
@@ -3196,6 +3429,9 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>
+  </data>
+  <data name="Settings_Reconnection_Title">
+    <value>Reconnect to apply changes</value>
   </data>
   <data name="Settings_RestoreDefault">
     <value>Palauta oletusasetukset</value>
@@ -3311,7 +3547,7 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_ResetPassword">
-    <value>Nollaa salasana</value>
+    <value>Forgot password</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_SignIn">
@@ -3328,7 +3564,7 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
     <value>Kirjaudu sisään</value>
   </data>
   <data name="SignIn_Form_TroubleSigningIn">
-    <value>Ongelmia kirjautumisessa</value>
+    <value>Support Center</value>
     <comment>A button at the bottom of the login window inside Get help popup</comment>
   </data>
   <data name="SignIn_Form_Username">
@@ -3461,6 +3697,18 @@ Smart Routingia käytetään yleensä yksityisyydensuojan vastaisten lakien ja m
   <data name="Upsell_Carousel_Platforms_More">
     <value>+ enemmän</value>
     <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_Profiles">
+    <value>Get quick access to frequent connections</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Convenience">
+    <value>Set a profile as your default connection and connect in 1 click</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Creation">
+    <value>Create and save your own VPN configurations with Profiles</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Customization">
+    <value>Customize your location, protocol, and settings</value>
   </data>
   <data name="Upsell_Carousel_SecureCore">
     <value>Lisää yhteyteesi toinen suojauskerros</value>

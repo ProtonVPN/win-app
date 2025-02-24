@@ -123,6 +123,9 @@
   <data name="Automation_Properties_ConnectionDetails_Page">
     <value>Bağlantı bilgileri sayfası</value>
   </data>
+  <data name="Automation_Properties_Connection_Card_Component">
+    <value>Bağlantı kartı</value>
+  </data>
   <data name="Automation_Properties_Features_Bar">
     <value>Özellikler çubuğu</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>Bağlantı noktası yönlendirme sayfası</value>
+  </data>
+  <data name="Automation_Properties_Profile_Page">
+    <value>Profil sayfası</value>
   </data>
   <data name="Automation_Properties_Settings_Advanced_Page">
     <value>Gelişmiş ayarlar sayfası</value>
@@ -222,17 +228,38 @@
     <value>{0} bağlantısını kes</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
+  <data name="Common_Actions_Duplicate">
+    <value>Çoğalt</value>
+  </data>
   <data name="Common_Actions_Edit">
     <value>Düzenle</value>
   </data>
   <data name="Common_Actions_Enable">
     <value>Aç</value>
   </data>
+  <data name="Common_Actions_Exit_ProtonVPN">
+    <value>Proton VPN uygulamasından çık</value>
+  </data>
+  <data name="Common_Actions_GotIt">
+    <value>Anladım</value>
+  </data>
+  <data name="Common_Actions_Install">
+    <value>Kur</value>
+  </data>
   <data name="Common_Actions_Reconnect">
     <value>Yeniden bağlan</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>Kaldır</value>
+  </data>
+  <data name="Common_Actions_Restart">
+    <value>Yeniden başlat</value>
+  </data>
+  <data name="Common_Actions_Save">
+    <value>Kaydet</value>
+  </data>
+  <data name="Common_Actions_TryAgain">
+    <value>Yeniden dene</value>
   </data>
   <data name="Common_Actions_Update">
     <value>Güncelle</value>
@@ -241,10 +268,10 @@
     <value>Yükselt</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>**Gelişmiş bağlantı kesici özelliği açıldı.** VPN olmadan internet kullanmak için gelişmiş bağlantı kesici özelliğini kapatın.</value>
+    <value>Gelişmiş bağlantı kesici özelliği açıldı. VPN olmadan internet kullanmak için gelişmiş bağlantı kesici özelliğini kapatın.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>**Gelişmiş balantı kesici özelliği açık.** İlerlerseniz internet bağlantınız kesilecek.</value>
+    <value>Gelişmiş bağlantı kesici özelliği açık. İlerlerseniz internet bağlantınız kesilecek.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
     <value>VPN bağlantınız kesilecek.</value>
@@ -264,6 +291,21 @@
   <data name="Common_States_Updating">
     <value>Güncelleniyor...</value>
   </data>
+  <data name="Common_Tags_New">
+    <value>YENİ</value>
+  </data>
+  <data name="Components_Update_GetMostFromYourVpn">
+    <value>Uygulamayı son sürüme güncelleyerek VPN hizmetinizden en iyi şekilde yararlanın.</value>
+  </data>
+  <data name="Components_Update_MoreLikelyIssues">
+    <value>Eski Proton VPN sürümlerinde sorun yaşama olasılığınız daha yüksektir.</value>
+  </data>
+  <data name="Components_Update_UpdateAvailable">
+    <value>Güncelleme yayınlanmış</value>
+  </data>
+  <data name="Components_Update_UpdateProtonVpn">
+    <value>Proton VPN uygulamasını güncelle</value>
+  </data>
   <data name="Connection_Error_EditProfile">
     <value>Profili düzenle</value>
   </data>
@@ -271,7 +313,7 @@
     <value>Proton VPN, ağ sorunu nedeniyle kimlik doğrulama sertifikasını alamadı.</value>
   </data>
   <data name="Connection_Error_NoServers">
-    <value>Şu anda seçiminize uygun bir sunucu yok. Lütfen başka bir seçenek seçin.</value>
+    <value>Seçtiğiniz hiç bir sunucu kullanılamıyor. Lütfen seçiminizi genişletin ya da bir süre sonra yeniden deneyin.</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
     <value>Seçtiğiniz '{0}' sunucusu şu anda kullanılamıyor. Başka bir sunucu seçin ya da bir süre sonra yeniden deneyin.</value>
@@ -308,10 +350,10 @@
     <value>Sorunun ne olduğundan emin değiliz. Lütfen yeniden deneyin ya da müşteri destek ekibimizle görüşün.</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
-    <value>Olası çözümlere bakın</value>
+    <value>Düzeltmeleri görüntüle</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
-    <value>Zaten bir WireGuard ağ bağdaştırıcısı kullanıldığından Proton VPN bağlantı kuramadı. Lütfen etkin VPN bağlantısını kestikten sonra yeniden deneyin. Alternatif olarak, gelişmiş ayarlar bölümünden iletişim kurallarını değiştirebilirsiniz.</value>
+    <value>Aygıtınızın WireGuard bağdaştırıcısı kullanılıyor. Aygıtınızda çalışan diğer VPN uygulamalarının bağlantısını kesip yeniden deneyin.</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Şuralardan otomatik seçildi</value>
@@ -445,8 +487,19 @@
   <data name="Connections_Profiles_Empty_Title">
     <value>İlk profilinizi oluşturun</value>
   </data>
+  <data name="Connections_Profiles_Location_Header">
+    <value>Bağlantı türünü ve konumunu seçin</value>
+  </data>
   <data name="Connections_Profiles_Name">
-    <value>Profil adı</value>
+    <value>Profilinize bir ad verin</value>
+  </data>
+  <data name="Connections_Profiles_Name_Default">
+    <value>Adlandırılmamış</value>
+    <comment>This will be used as the default profile name if the user creates a profile without entering a name</comment>
+  </data>
+  <data name="Connections_Profiles_Name_Duplicate">
+    <value>{0} kopyası</value>
+    <comment>This will be used as the profile name when duplicating a profile. {0} is a placeholder for the original profile name.</comment>
   </data>
   <data name="Connections_Profiles_New">
     <value>Yeni profil</value>
@@ -456,8 +509,11 @@
     <value>Profiller VPN Plus tarifesi ile kullanılabilir</value>
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
   </data>
-  <data name="Connections_Profiles_Save">
-    <value>Profili kaydet</value>
+  <data name="Connections_Profiles_Settings_Description">
+    <value>Profil ayarları, bağlandığınızda VPN ayarlarınızı değiştirecek.</value>
+  </data>
+  <data name="Connections_Profiles_Settings_Header">
+    <value>Özel ayarlar ekle</value>
   </data>
   <data name="Connections_Random">
     <value>Rastgele</value>
@@ -560,9 +616,6 @@
   <data name="Countries_All">
     <value>Tümü</value>
   </data>
-  <data name="Countries_Cities">
-    <value>İller</value>
-  </data>
   <data name="Countries_City_One">
     <value>{0} il</value>
   </data>
@@ -576,19 +629,8 @@
   <data name="Countries_Fastest">
     <value>En hızlı ülke</value>
   </data>
-  <data name="Countries_Info">
-    <value>Bilgiler</value>
-  </data>
   <data name="Countries_NoSearchResults">
     <value>Herhangi bir sonuç bulunamadı</value>
-  </data>
-  <data name="Countries_NumberOfCities">
-    <value>İller ({0})</value>
-    <comment>{0} represents the number of cities</comment>
-  </data>
-  <data name="Countries_NumberOfCountries">
-    <value>Ülkeler ({0})</value>
-    <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_NumberOfServers">
     <value>Sunucular ({0})</value>
@@ -596,10 +638,6 @@
   </data>
   <data name="Countries_P2P">
     <value>P2P</value>
-  </data>
-  <data name="Countries_P2PCountries">
-    <value>P2P ülkeleri ({0})</value>
-    <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_P2P_Cities">
     <value>P2P illeri ({0})</value>
@@ -620,22 +658,8 @@
   <data name="Countries_SecureCore">
     <value>Secure Core</value>
   </data>
-  <data name="Countries_SecureCoreCountries">
-    <value>Secure Core ülkeleri ({0})</value>
-    <comment>{0} represents the number of countries</comment>
-  </data>
-  <data name="Countries_SecureCoreServers">
-    <value>Secure Core sunucuları ({0})</value>
-    <comment>{0} represents the number of severs</comment>
-  </data>
   <data name="Countries_SecureCore_Description">
     <value>VPN bağlantınıze ek bir şifreleme düzeyi ekleyebilirsiniz.</value>
-  </data>
-  <data name="Countries_Server_One">
-    <value>{0} sunucu</value>
-  </data>
-  <data name="Countries_Server_Other">
-    <value>{0} sunucu</value>
   </data>
   <data name="Countries_ServerLoad">
     <value>Sunucu yükü</value>
@@ -643,16 +667,8 @@
   <data name="Countries_SmartRouting">
     <value>Smart Routing</value>
   </data>
-  <data name="Countries_SmartRouting_Description">
-    <value>Sunucular fiziksel olarak {0} konumunda bulunuyor ancak siz {1} konumundan geziniyor gibi görüneceksiniz.</value>
-    <comment>{0} and {1} represent country names.</comment>
-  </data>
   <data name="Countries_Tor">
     <value>Tor</value>
-  </data>
-  <data name="Countries_TorCountries">
-    <value>Tor ülkeleri ({0})</value>
-    <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_TorServers">
     <value>Tor sunucuları ({0})</value>
@@ -663,10 +679,6 @@
   </data>
   <data name="Countries_TryDifferentKeyword">
     <value>Lütfen başka bir anahtar sözcük deneyin</value>
-  </data>
-  <data name="Countries_ViaCountry">
-    <value>{0} üzerinden</value>
-    <comment>{0} represents country name. For example: via Australia.</comment>
   </data>
   <data name="Country_Fastest">
     <value>En hızlı ülke</value>
@@ -1684,6 +1696,15 @@
     <value>Bilinmiyor</value>
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
+  <data name="Dialogs_BaseFilteringEngine_Description">
+    <value>Windows aygıtınızdaki Temel Filtre Altyapısı (BFE) hizmeti durdurulmuş. Proton VPN uygulamasının düzgün çalışması için bu hizmetin başlatılması gerekiyor.</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_HowToEnable">
+    <value>Temel Filtre Altyapısı nasıl başlatılır</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Title">
+    <value>İlerlemek için Temel Filtre Altyapısı hizmetini başlatın</value>
+  </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
     <value>VPN Plus tarifesi ile sınırsız sunucu değişimi elde edin.</value>
   </data>
@@ -1698,6 +1719,12 @@
   </data>
   <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
     <value>Plus sunucularına ve özelliklerine yeniden erişmek için tarifenizi yükseltin.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Description">
+    <value>Proton VPN Hizmeti durdurulmuş gibi görünüyor. Bağlantı kurmak için hizmeti yeniden başlatmanız gerekir.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Title">
+    <value>İlerlemek için Windows Hizmetini başlatın</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free otomatik olarak {0} Free ülkemizdeki en hızlı Free sunucusuyla bağlantınızı kurar. Bu sunucu normalde konumunuza en yakın sunucudur.</value>
@@ -1739,6 +1766,12 @@ Yüksek gecikme değeri bağlantınızı yavaşlatabilir.</value>
   </data>
   <data name="Dialogs_Latency_Title">
     <value>Gecikme nedir?</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Description">
+    <value>Eşler arası (P2P) trafiği desteklemeyen bir sunucu kullandığınız için bağlantınız kapatıldı. P2P, ücretsiz sunucularda desteklenmez. Lütfen P2P için başka bir sunucu kullanın.</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Title">
+    <value>P2P trafiği algılandı</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>P2P ile torrent nasıl kullanılır</value>
@@ -1803,7 +1836,7 @@ Yüksek gecikme değeri bağlantınızı yavaşlatabilir.</value>
     <value>Sorun neydi?</value>
   </data>
   <data name="Dialogs_ReportIssue_NoLogsWarning">
-    <value>Hata günlüğü, sorununuzun temeline inmemize yardımcı olur. Bunu göndermezeniz, sorunu tam olarak araştıramayabiliriz.</value>
+    <value>Hata günlüğü, sorununuzun temeline inmemize yardımcı olur. Bunu göndermezseniz, sorunu tam olarak araştıramayabiliriz.</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes">
     <value>Hızlı çözümler</value>
@@ -1823,9 +1856,6 @@ Yüksek gecikme değeri bağlantınızı yavaşlatabilir.</value>
   <data name="Dialogs_ReportIssue_Result_Fail_Description">
     <value>Bildiriminiz gönderilemedi. Lütfen bağlantınızı denetleyip yeniden deneyin.</value>
   </data>
-  <data name="Dialogs_ReportIssue_Result_RetryAction">
-    <value>Yeniden dene</value>
-  </data>
   <data name="Dialogs_ReportIssue_Result_Success">
     <value>Bildirim gönderildi</value>
   </data>
@@ -1841,42 +1871,6 @@ Yüksek gecikme değeri bağlantınızı yavaşlatabilir.</value>
   </data>
   <data name="Dialogs_ReportIssue_Title">
     <value>Sorun bildireceğim</value>
-  </data>
-  <data name="Dialogs_SecureCore_AdvancedPrivacy">
-    <value>Gelişmiş gizlilik</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_Description">
-    <value>Secure Core, sizi ikinci, yüksek güvenlikli bir VPN sunucusu üzerinden hedef sunucunuza bağlar.
-
-Bu yöntem daha yüksek düzeyde koruma sağlarken, gecikme süresinin artmasına ve hızın düşmesine neden olabilir.</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_HighPrivacy">
-    <value>Yüksek gizlilik</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_HigherLatency">
-    <value>Daha yüksek gecikme</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_LowerLatency">
-    <value>Daha düşük gecikme</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_SecureCoreConnection">
-    <value>Secure Core
-VPN bağlantısı</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_StandardConnection">
-    <value>Standart
-VPN bağlantısı</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_Title">
-    <value>Secure Core</value>
-    <comment>obsolete</comment>
   </data>
   <data name="Dialogs_ServerLoad_Description">
     <value>Sunucu yükü, bir sunucunun tam kapasitesine ne kadar yakın olduğunu gösterir.
@@ -1904,18 +1898,20 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   <data name="Dialogs_ServerLoad_Title">
     <value>Sunucu yükü nedir?</value>
   </data>
-  <data name="Dialogs_SmartRouting_Description">
-    <value>Smart Routing, ulaşılması zor ülkelerde VPN erişimi sağlamak için sanal sunucuları kullanır.
-
-Bir Smart Routing sunucusuna bağlandığınızda, fiziksel sunucu başka bir yerde bulunsa bile, hedef ülkenizde geziniyormuş gibi görüneceksiniz.  
-
-Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçimlerini aşmak için kullanılır.</value>
-  </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>Belki daha sonra</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Description">
+    <value>Aygıtınız bir vekil sunucu kullanıyor gibi görünüyor. Bu durum VPN korumanızı etkileyebilir.</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Disable">
+    <value>Vekil sunucuyu kullanma</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Title">
+    <value>Vekil sunucu algılandı</value>
   </data>
   <data name="Dialogs_Tor_Description">
     <value>Herhangi bir tarayıcı ile gizli hizmetlere ve onion sitelerine erişmek için bir Tor sunucusuna bağlanın.</value>
@@ -1941,14 +1937,11 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
   <data name="Dialogs_Troubleshooting_Description">
     <value>Bu hızlı düzeltmeler Proton ile bağlantı kurmanıza yardımcı olabilir.</value>
   </data>
-  <data name="Dialogs_Troubleshooting_DidNotWork">
-    <value>İşe yaramadı mı?</value>
-  </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork">
     <value>Farklı bir ağ kullanın</value>
   </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
-    <value>Wi-Fi ağını değiştirmeyi veya mobil veri kullanmayı deneyin.</value>
+    <value>Wi-Fi ağını değiştirmeyi deneyin veya Wi-Fi yerine mobil veri kullanın.</value>
   </data>
   <data name="Dialogs_Troubleshooting_StatusPage">
     <value>Durum sayfamıza bakın</value>
@@ -1958,6 +1951,18 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
   </data>
   <data name="Dialogs_Troubleshooting_Title">
     <value>Bağlantı yardımı</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOff">
+    <value>Bu işlem VPN bağlantınızı kesecek. Etkin tüm internet bağlantıları geçici olarak korumasız kalacak.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn">
+    <value>Bu işlem VPN bağlantınızı kesecek ve bağlantı kesiciyi geçici olarak kapatacak. Etkin tüm internet bağlantıları geçici olarak korumasız kalacak.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Install">
+    <value>Güncelleme kurulsun mu?</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Restart">
+    <value>Güncellemeyi tamamlamak için Proton VPN uygulamasını yeniden başlatın</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Description">
     <value>Sistem saatiniz eşitlenmemiş gibi görünüyor. Bu durum VPN bağlantısı kurulurken sorun çıkarabilir.</value>
@@ -2007,10 +2012,11 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>VPN Plus tarifesine hoş geldiniz</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description">
-    <value>Tebrikler! Tüm Proton hizmetlerinin ücretli güvenlik ve başarım özelliklerini kullanabilirsiniz.
-
-En iyi Proton gizliliğinin tadını çıkarın.</value>
+  <data name="Dialogs_WelcomeUnlimited_Description1">
+    <value>Tebrikler! Tüm Proton hizmetlerinin ücretli güvenlik ve başarım özelliklerini kullanabilirsiniz.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description2">
+    <value>Proton gizliliğinin tadını en iyi şekilde çıkarın.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Proton Unlimited tarifesine hoş geldiniz</value>
@@ -2030,12 +2036,14 @@ En iyi Proton gizliliğinin tadını çıkarın.</value>
   <data name="Exit_Title">
     <value>Proton VPN uygulamasından çıkılsın mı</value>
   </data>
-  <data name="Flyouts_Country_Description">
-    <value>VPN olmadan gezinmek sizi konuma göre uygulanan internet kısıtlamalarına karşı savunmasız bırakır.
-
-Siteler, içeriği belirli konumlarla sınırlamak için coğrafi engellemeler kullanabilir. Ayrıca hükümetler internet hizmeti sağlayıcılarına ülkelerindeki belirli siteleri engellemeleri için talimat verebilir.
-
-Bir VPN, başka bir yerden geziniyormuşsunuz gibi görünmenizi sağlayarak sizi izleme ve sansürden korur.</value>
+  <data name="Flyouts_Country_Description1">
+    <value>VPN olmadan gezinmek, sizi konuma göre uygulanan internet kısıtlamalarına karşı savunmasız bırakır.</value>
+  </data>
+  <data name="Flyouts_Country_Description2">
+    <value>Siteler içeriklerine yalnızca belirli konumlardan erişilmesini sağlamak için coğrafi engelleme kullanabilir. Ayrıca hükümetler, internet hizmeti sağlayıcılarına, ülkelerinden belirli sitelere erişilmesini engelleme talimatı verebilir.</value>
+  </data>
+  <data name="Flyouts_Country_Description3">
+    <value>VPN başka bir yerden geziniyormuşsunuz gibi görünmenizi sağlayarak sizi izlenmekten ve sansürden korur.</value>
   </data>
   <data name="Flyouts_Country_Title">
     <value>Ülke</value>
@@ -2046,10 +2054,11 @@ Bir VPN, başka bir yerden geziniyormuşsunuz gibi görünmenizi sağlayarak siz
   <data name="Flyouts_IpAddress_Description_Connected">
     <value>VPN IP adresiniz gerçek IP adresinizi gizler. Böylece VPN bağlantınızın konumundan geziniyormuşsunuz gibi görünürsünüz ve çevrim içi etkinliğiniz aygıtınız ile ilişkilendirilemez.</value>
   </data>
-  <data name="Flyouts_IpAddress_Description_Disconnected">
-    <value>Bu benzersiz kod, siteler ve internet hizmeti sağlayıcıları tarafından konumunuzu ve tarama geçmişinizi aygıtınızla ilişkilendirmek için kullanılabilir.
-
-Bir VPN, IP adresinizi gizleyerek etkinliğinizin size kadar izlenmesini zorlaştırır.</value>
+  <data name="Flyouts_IpAddress_Description_Disconnected1">
+    <value>Bu benzersiz kod, siteler ve internet hizmeti sağlayıcıları tarafından konumunuzu ve tarama geçmişinizi aygıtınızla ilişkilendirmek için kullanılabilir.</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected2">
+    <value>Bir VPN, IP adresinizi gizleyerek etkinliğinizin sizinle ilişkilendirilmesini zorlaştırır.</value>
   </data>
   <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
     <value>IP adresi nedir?</value>
@@ -2066,12 +2075,14 @@ Bir VPN, IP adresinizi gizleyerek etkinliğinizin size kadar izlenmesini zorlaş
   <data name="Flyouts_IpAddress_YourIpIsVisible">
     <value>IP adresiniz görülebilir</value>
   </data>
-  <data name="Flyouts_Isp_Description">
-    <value>İnternet hizmeti sağlayıcısı sizi internete bağlayan kuruluştur.
-
-Çevrim içi etkinliğinizi kaydedebilir. Bazı ülkelerde verilerinizi reklam verenlere satabilir. Diğerlerinde ise verilerinizi hükümete teslim etmek zorunda olabilir.
-
-Bir VPN IP adresinizi gizleyerek sizi internet hizmeti sağlayıcınızın müdahalesinden korur.</value>
+  <data name="Flyouts_Isp_Description1">
+    <value>İnternet hizmeti sağlayıcınız (İSS) sizi internete bağlayan şirkettir.</value>
+  </data>
+  <data name="Flyouts_Isp_Description2">
+    <value>Çevrim içi etkinliğinizin günlük kaydını tutabilirler. Bazı ülkelerde verilerinizi reklam verenlere satabilirler. Diğerlerinde ise bunu hükümete vermeleri istenebilir.</value>
+  </data>
+  <data name="Flyouts_Isp_Description3">
+    <value>VPN, IP adresinizi gizleyerek sizi internet hizmeti sağlayıcınızın müdahalesinden korur.</value>
   </data>
   <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
     <value>İnternet servis sağlayıcısı (İSS) nedir?</value>
@@ -2081,6 +2092,54 @@ Bir VPN IP adresinizi gizleyerek sizi internet hizmeti sağlayıcınızın müda
   </data>
   <data name="Flyouts_Isp_Warning">
     <value>Hizmet sağlayıcınız hangi siteleri ziyaret ettiğinizi görebilir</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Advanced_Success">
+    <value>Proton VPN ile bağlantınız yokken tüm internet erişimini engeller</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info">
+    <value>VPN bağlantınız kesilirse IP adresiniz açığa çıkabilir</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Standard_Success">
+    <value>VPN bağlantınız kesilirse, VPN bağlantısı yeniden kurulana kadar internet bağlantınız kesilir</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Connected">
+    <value>VPN bağlantısını kasıtlı olarak kesseniz bile gelişmiş bağlantı kesici uygulanır</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Disconnected">
+    <value>Yeniden çevrim içi olmak için VPN bağlantısı kurun ya da gelişmiş bağlantı kesiciyi kapatın</value>
+  </data>
+  <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
+    <value>Reklamlardan, izleyicilerden ve kötü amaçlı yazılımlardan korunursunuz</value>
+  </data>
+  <data name="Flyouts_NetShield_Info">
+    <value>Kendinizi sitelerdeki ve uygulamalardaki reklamlardan, izleyicilerden ve kötü amaçlı yazılımlardan koruyun</value>
+  </data>
+  <data name="Flyouts_NetShield_MalwareOnly_Success">
+    <value>Yalnızca kötü amaçlı yazılımlara karşı korunursunuz</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Description">
+    <value>VPN Plus ile reklamları, izleyicileri ve kötü amaçlı yazılımları engelleyin.</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Title">
+    <value>Reklamsız gezinmenin tadını çıkarın</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort">
+    <value>Etkin bağlantı noktası</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Info">
+    <value>P2P hızınızı artırmak için BitTorrent uygulamanıza etkin bağlantı noktasını yazın</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Info">
+    <value>Eşler arası indirme hızlarını iyileştirir</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Description">
+    <value>VPN Plus ile eşler arası (P2P) dosya paylaşım başarımını artırın.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Title">
+    <value>P2P hızını iyileştirin</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Warning">
+    <value>Bağlantı noktası yönlendirmeyi kullanmak için bir P2P sunucusuna bağlanın</value>
   </data>
   <data name="Flyouts_Protocol_Description">
     <value>Bir VPN iletişim kuralı, trafiğin VPN üzerinden nasıl şifrelenip iletileceğini belirler.</value>
@@ -2121,10 +2180,11 @@ Bir VPN IP adresinizi gizleyerek sizi internet hizmeti sağlayıcınızın müda
   <data name="Flyouts_Speed_BoostedByVpnAccelerator">
     <value>VPN Accelerator ile güçlendirilmiş</value>
   </data>
-  <data name="Flyouts_Speed_Description">
-    <value>Burada Proton VPN üzerinden her saniye ne kadar verinin iletildiği görüntülenir.
-
-Hız, aygıtınızın o andaki etkinliğine bağlıdır ve en yüksek VPN hızını göstermez.</value>
+  <data name="Flyouts_Speed_Description1">
+    <value>Burada Proton VPN üzerinden her saniye ne kadar veri iletildiği görüntülenir.</value>
+  </data>
+  <data name="Flyouts_Speed_Description2">
+    <value>Hız, aygıtınızın o anda yaptığı işlemlerle ilgilidir. En yüksek VPN hızını göstermez.</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>İndirme</value>
@@ -2139,6 +2199,45 @@ Hız, aygıtınızın o andaki etkinliğine bağlıdır ve en yüksek VPN hızı
   <data name="Flyouts_Speed_Upload">
     <value>Yükleme</value>
     <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_One">
+    <value>Katılmayan uygulama ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_Other">
+    <value>Katılmayan uygulamalar ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_One">
+    <value>Katılmayan IP adresi ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_Other">
+    <value>Katılmayan IP adresleri ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Info">
+    <value>Güvenilir uygulamaların ve IP adreslerinin VPN koruması olmadan bağlantı kurmasını sağlar</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Inverse_Info">
+    <value>Yalnızca bu uygulamalar ve IP adresleri VPN üzerinden bağlanır. Diğer tüm trafik korumasızdır.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_One">
+    <value>Korunan uygulama ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_Other">
+    <value>Korunan uygulamalar ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_One">
+    <value>Korunan IP adresi ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_Other">
+    <value>Korunan IP adresleri ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Standard_Info">
+    <value>Bu uygulamalar ve IP adresleri VPN koruması olmadan bağlanır. Diğer tüm trafik korunur.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Description">
+    <value>VPN Plus ile trafiğinizi VPN kullanan ve VPN kullanmayan tünellere bölün.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Title">
+    <value>Her iki dünyanın da en iyisini elde edin</value>
   </data>
   <data name="Flyouts_Volume_Description">
     <value>Bu, VPN bağlantınız üzerinden ne kadar trafik geçtiğini gösterir.</value>
@@ -2269,6 +2368,12 @@ Hız, aygıtınızın o andaki etkinliğine bağlıdır ve en yüksek VPN hızı
   </data>
   <data name="FreeConnections_WorldwideCoverageUpsell">
     <value>VPN Plus tarifesi ile tüm Dünya'ya erişin</value>
+  </data>
+  <data name="Gateway_Fastest">
+    <value>En hızlı ağ geçidi</value>
+  </data>
+  <data name="Gateway_Random">
+    <value>Rastgele ağ geçidi</value>
   </data>
   <data name="Gateways_Page_Description">
     <value>Kuruluşunuzun VPN hizmetine erişmek için bir ağ geçidine bağlanın.</value>
@@ -2444,7 +2549,7 @@ Hız, aygıtınızın o andaki etkinliğine bağlıdır ve en yüksek VPN hızı
     <value>İzleyici engellendi</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_Description">
-    <value>İzleyiciler, internet üzerindeki etkinlikleriniz ile ilgili bilgi toplayıp kaydeden ve satan üçüncü taraf siteler ve çerezlerdir.</value>
+    <value>İzleyiciler, internet üzerindeki etkinlikleriniz ile ilgili bilgi toplayıp kaydeden ve satan üçüncü taraf siteler ve tanımlama bilgileridir.</value>
   </data>
   <data name="Home_Page_Title">
     <value>Giriş</value>
@@ -2471,12 +2576,29 @@ Hız, aygıtınızın o andaki etkinliğine bağlıdır ve en yüksek VPN hızı
   <data name="Home_Recents_Unpin">
     <value>Sabitlemeyi kaldır</value>
   </data>
-  <data name="Home_Update_Confirmation_Message">
-    <value>Proton VPN, güncelleme işlemini tamamlamak için etkinse bağlantıyı geçici olarak kesecek ve varsa açık olan gelişmiş bağlantı kesici özelliğini kapatacak. İlerlemek istiyor musunuz?</value>
-    <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
+  <data name="Home_TitleBar_Menu_About">
+    <value>Hakkında</value>
   </data>
-  <data name="Home_Update_Confirmation_Title">
-    <value>Proton VPN uygulaması güncellensin mi?</value>
+  <data name="Home_TitleBar_Menu_Account">
+    <value>Hesap</value>
+  </data>
+  <data name="Home_TitleBar_Menu_ExitTheApp">
+    <value>Uygulamadan çık</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help">
+    <value>Yardım</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help_WhatsTheIssue">
+    <value>Sorun neydi?</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Settings">
+    <value>Ayarlar</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Signout">
+    <value>Oturumu kapat</value>
+  </data>
+  <data name="Home_TitleBar_Menu_UpdateNow">
+    <value>Güncelle</value>
   </data>
   <data name="Home_Update_UpdateAvailable">
     <value>Güncelleme yayınlanmış</value>
@@ -2558,11 +2680,26 @@ Hız, aygıtınızın o andaki etkinliğine bağlıdır ve en yüksek VPN hızı
     <value>Lütfen oturum kapatılırken bekleyin...</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
+  <data name="Notifications_KillSwitch_Description">
+    <value>Bağlantı kesici IP adresinizi korumak için internet bağlantınızı engelliyor.</value>
+  </data>
+  <data name="Notifications_PortForwarding_CopyPortNumber">
+    <value>Bağlantı noktasını kopyala</value>
+  </data>
   <data name="Notifications_PortForwarding_Description">
     <value>Daha yüksek hız elde etmek için BitTorrent uygulamasında bu numarayı ayarlayın.</value>
   </data>
+  <data name="Notifications_SessionLimit_Description">
+    <value>En fazla aygıt sayısı sınırınıza ulaştınız. Yeniden VPN bağlantısı kurmak için lütfen başka bir aygıtın bağlantısını kesin.</value>
+  </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
     <value>Aboneliğiniz Proton Free tarifesine düşürüldü ve sizi yeniden en hızlı Free sunucusuna bağlıyoruz.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Description">
+    <value>Herkese açık Wi-Fi ağları güvenlik tehditlerine karşı daha savunmasızdır. Güvenli bir şekilde gezinmek için VPN bağlantısı kurun.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Title">
+    <value>Güvenli olmayan Wi-Fi bağlantısı algılandı</value>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Güncelle</value>
@@ -2599,10 +2736,23 @@ Hız, aygıtınızın o andaki etkinliğine bağlıdır ve en yüksek VPN hızı
   <data name="Overlay_P2P_Title">
     <value>P2P</value>
   </data>
-  <data name="Overlay_SecureCore_Description">
-    <value>Secure Core, sizi ikinci, yüksek güvenlikli bir VPN sunucusu üzerinden hedef sunucunuza bağlar.
-
-Bu yöntem daha yüksek düzeyde koruma sağlarken, gecikme süresinin artmasına ve hızın düşmesine neden olabilir.</value>
+  <data name="Overlay_Profile_Description1">
+    <value>Profiller, gereksiniminize göre uyarlayabileceğiniz ve hızlı erişim için kaydedebileceğiniz özel VPN bağlantılarıdır.</value>
+  </data>
+  <data name="Overlay_Profile_Description2">
+    <value>Bağlanmak istediğiniz konumu ayarlayın ve güvenlik, başarım, oyun veya diğer senaryolara göre ayarlarınızı yapın.</value>
+  </data>
+  <data name="Overlay_Profile_LearnMore">
+    <value>VPN profili nedir?</value>
+  </data>
+  <data name="Overlay_Profile_Title">
+    <value>Profiller</value>
+  </data>
+  <data name="Overlay_SecureCore_Description1">
+    <value>Secure Core, sizi hedef sunucunuza ikinci, en yüksek güvenlikli bir VPN sunucusu üzerinden bağlar.</value>
+  </data>
+  <data name="Overlay_SecureCore_Description2">
+    <value>Bu yüksek koruma düzeyi gecikmenin artmasına ve hızın düşmesine neden olabilir.</value>
   </data>
   <data name="Overlay_SecureCore_LearnMore">
     <value>Secure Core nedir?</value>
@@ -2659,12 +2809,14 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   <data name="Overlay_ServerLoad_Title">
     <value>Sunucu yükü</value>
   </data>
-  <data name="Overlay_SmartRouting_Description">
-    <value>Smart Routing, ulaşılması zor ülkelerde VPN erişimi sağlamak için sanal sunucuları kullanır.
-    
-Bir Smart Routing sunucusuna bağlandığınızda, fiziksel sunucu başka bir yerde bulunsa bile, hedef ülkenizde geziniyormuş gibi görüneceksiniz.  
-
-Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçimlerini aşmak için kullanılır.</value>
+  <data name="Overlay_SmartRouting_Description1">
+    <value>Smart Routing ulaşılması zor ülkelerde VPN kapsaması sağlamak için sanal sunucular kullanır.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description2">
+    <value>Bir Smart Routing sunucusuna bağlandığınızda fiziksel sunucu başka bir yerde olsa bile hedef ülkenizde geziniyor gibi görünürsünüz.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description3">
+    <value>Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçimlerini aşmak için kullanılır.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
     <value>Sunucular fiziksel olarak {0} konumunda bulunuyor ancak siz {1} konumundan geziniyor gibi görüneceksiniz</value>
@@ -2686,6 +2838,66 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
   </data>
   <data name="Overlay_Tor_Title">
     <value>Tor</value>
+  </data>
+  <data name="Profile_CustomSettings_Description">
+    <value>Profil ayarları, bağlandığınızda VPN ayarlarınızı değiştirecek.</value>
+  </data>
+  <data name="Profile_CustomSettings_Header">
+    <value>Özel ayarlar ekle</value>
+  </data>
+  <data name="Profile_CustomSettings_Hide">
+    <value>Ayarları gizle</value>
+  </data>
+  <data name="Profile_CustomSettings_Show">
+    <value>Ayarları görüntüle</value>
+  </data>
+  <data name="Profile_Discard_Description">
+    <value>Kaydedilmemiş değişiklikleriniz var.</value>
+  </data>
+  <data name="Profile_Discard_Title">
+    <value>Sayfadan ayrılınsın mı?</value>
+  </data>
+  <data name="Profile_NatType_Conflict_Description">
+    <value>Bu seçenek, bu profil için bağlantı noktası yönlendirmeyi kapatır.</value>
+  </data>
+  <data name="Profile_NetShield_Conflict_Description">
+    <value>Bu seçenek, bu profil için özel DNS sunucusunu kapatır.</value>
+  </data>
+  <data name="Profile_Options_Description">
+    <value>Bu profil ile bağlantı kurduğunuzda seçtiğiniz bir siteyi otomatik olarak açın.</value>
+  </data>
+  <data name="Profile_Options_Header">
+    <value>Bağlan ve git</value>
+  </data>
+  <data name="Profile_Options_Url">
+    <value>Site adresi</value>
+  </data>
+  <data name="Profile_Options_Url_Error">
+    <value>Geçerli bir adres yazın</value>
+  </data>
+  <data name="Profile_PortForwarding_Conflict_Description">
+    <value>Bu seçenek, bu profil için Strict NAT Type (type 3) kullanır.</value>
+  </data>
+  <data name="Profiles_Default_Gaming">
+    <value>Oyun</value>
+  </data>
+  <data name="Profiles_Default_MaxSecurity">
+    <value>En yüksek güvenlik</value>
+  </data>
+  <data name="Profiles_Default_Office">
+    <value>Ofis</value>
+  </data>
+  <data name="Profiles_Default_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Profiles_Default_RandomConnection">
+    <value>Rastgele bağlantı</value>
+  </data>
+  <data name="Profiles_Default_Streaming">
+    <value>Birleşik Devletler'de yayın akışı izlemek</value>
+  </data>
+  <data name="Profiles_Default_WorkSchool">
+    <value>İş/Okul</value>
   </data>
   <data name="Profiles_Page_Description">
     <value>Size özel VPN ayarları yapın ve tek tıkla bağlantı kurun.</value>
@@ -2724,16 +2936,25 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
     <value>En hızlı Free sunucusu</value>
   </data>
   <data name="Server_Feature_B2B">
-    <value>Ağ geçitleri</value>
+    <value>Ağ geçidi</value>
+  </data>
+  <data name="Server_Feature_B2B_Description">
+    <value>Kuruluşunuzun sunucularına erişin</value>
   </data>
   <data name="Server_Feature_None">
-    <value>Tüm ülkeler</value>
+    <value>Standart</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
   </data>
+  <data name="Server_Feature_P2P_Description">
+    <value>Torrent için ayarlanmış</value>
+  </data>
   <data name="Server_Feature_SecureCore">
     <value>Secure Core</value>
+  </data>
+  <data name="Server_Feature_SecureCore_Description">
+    <value>Çifte koruma</value>
   </data>
   <data name="Server_Feature_Tor">
     <value>Tor</value>
@@ -2756,9 +2977,6 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
   <data name="Settings_About_FailedToFetch">
     <value>Değişiklik günlüğü bilgileri yüklenemedi.</value>
   </data>
-  <data name="Settings_About_GetLatestVersion">
-    <value>Son sürümü edinin</value>
-  </data>
   <data name="Settings_About_LearnMore">
     <value>Ayrıntılı bilgi alın</value>
   </data>
@@ -2768,23 +2986,14 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
   <data name="Settings_About_Loading">
     <value>Yükleniyor</value>
   </data>
-  <data name="Common_Tags_New">
-    <value>YENİ</value>
-  </data>
   <data name="Settings_About_Title">
     <value>Hakkında</value>
   </data>
-  <data name="Settings_About_TryAgain">
-    <value>Yeniden dene</value>
-  </data>
-  <data name="Settings_About_Update_Description">
-    <value>Uygulamayı son sürüme güncelleyerek VPN hizmetinizden en iyi şekilde yararlanın.</value>
+  <data name="Settings_Account_Account">
+    <value>Hesap</value>
   </data>
   <data name="Settings_Account_Exit">
     <value>Uygulamadan çık</value>
-  </data>
-  <data name="Settings_Account_MyAccount">
-    <value>Hesabım</value>
   </data>
   <data name="Settings_Account_SignOut">
     <value>Oturumu kapat</value>
@@ -2894,6 +3103,12 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
     <value>Ağları bağlamak için köprüleme kullanır. TUN, TAP bağlantısına göre daha hızlıdır, ancak daha az kararlı olabilir.</value>
   </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
+    <value>NetShield kullanılan bir profil ile bağlı olduğunuz için özel DNS açılamaz.</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenEnabled">
+    <value>Şu anda NetShield kullanan bir profil ile bağlı olduğunuz için özel DNS kullanılamaz.</value>
+  </data>
   <data name="Settings_Connection_Default">
     <value>Varsayılan bağlantı</value>
   </data>
@@ -2948,6 +3163,9 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
   <data name="Settings_Connection_NetShield_Conflict_Description">
     <value>NetShield açıldığında özel DNS sunucu kullanarak bağlantı kuramayacaksınız.</value>
   </data>
+  <data name="Settings_Connection_NetShield_Conflict_Information">
+    <value>NetShield, özel DNS ile birlikte kullanılamaz.</value>
+  </data>
   <data name="Settings_Connection_NetShield_Conflict_Title">
     <value>NetShield açılsın mı?</value>
   </data>
@@ -2997,7 +3215,7 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
     <value>Profillere git</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Message">
-    <value>Şu anda bir VPN profiline bağlısınız.
+    <value>Şu anda bir VPN profili ile bağlısınız.
 
 • Bu bağlantının iletişim kuralını değiştirmek için bağlantıyı kesin ve profilinizi düzenleyin.
 
@@ -3147,6 +3365,20 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
   <data name="Settings_OperatingSystemVersion">
     <value>İştelim sistemi sürümü</value>
   </data>
+  <data name="Settings_OverriddenByProfile_Description1">
+    <value>Bu ayar etkin profilinizle ilişkilidir.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description2">
+    <value>Değişiklik yapmak için profilinizi düzenleyin veya genel VPN ayarlarınızı düzenlemek için bağlantıyı kesin.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Tagline">
+    <value>Bu ayarlar '{0}' profili ile ilişkilidir ve yalnızca Profiller bölümünden yönetilebilir.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Settings_OverriddenByProfile_Title">
+    <value>{0} profilini yönet</value>
+    <comment>{0} is a placeholder for the name of the settings being overridden by the profile. (eg. Manage NetShield in Profiles)</comment>
+  </data>
   <data name="Settings_Page_Title">
     <value>Ayarlar</value>
   </data>
@@ -3197,6 +3429,9 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>
+  </data>
+  <data name="Settings_Reconnection_Title">
+    <value>Değişiklikleri uygulamak için yeniden bağlanın</value>
   </data>
   <data name="Settings_RestoreDefault">
     <value>Varsayılan ayarları yükle</value>
@@ -3312,7 +3547,7 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_ResetPassword">
-    <value>Parolayı sıfırla</value>
+    <value>Parolamı unuttum</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_SignIn">
@@ -3329,7 +3564,7 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
     <value>Oturum aç</value>
   </data>
   <data name="SignIn_Form_TroubleSigningIn">
-    <value>Oturum açmakta sorun mu yaşıyorsunuz</value>
+    <value>Destek merkezi</value>
     <comment>A button at the bottom of the login window inside Get help popup</comment>
   </data>
   <data name="SignIn_Form_Username">
@@ -3462,6 +3697,18 @@ Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçiml
   <data name="Upsell_Carousel_Platforms_More">
     <value>+ diğer</value>
     <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_Profiles">
+    <value>Sık kullanılan bağlantılara hızla erişin</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Convenience">
+    <value>Bir profili varsayılan bağlantınız olarak ayarlayın ve tek tıkla bağlantı kurun</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Creation">
+    <value>Profiller ile kendi VPN yapılandırmalarınızı oluşturun ve kaydedin</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Customization">
+    <value>Konumunuzu, iletişim kuralınızı ve ayarlarınızı özelleştirin</value>
   </data>
   <data name="Upsell_Carousel_SecureCore">
     <value>Bağlantınıze ek bir koruma düzeyi ekleyebilirsiniz</value>

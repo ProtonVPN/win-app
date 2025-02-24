@@ -123,6 +123,9 @@
   <data name="Automation_Properties_ConnectionDetails_Page">
     <value>Сторінка подробиць з'єднання</value>
   </data>
+  <data name="Automation_Properties_Connection_Card_Component">
+    <value>Connection card</value>
+  </data>
   <data name="Automation_Properties_Features_Bar">
     <value>Панель функцій</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>Сторінка переспрямування портів</value>
+  </data>
+  <data name="Automation_Properties_Profile_Page">
+    <value>Profile page</value>
   </data>
   <data name="Automation_Properties_Settings_Advanced_Page">
     <value>Сторінка розширених налаштувань</value>
@@ -222,17 +228,38 @@
     <value>Від'єднатися від {0}</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
+  <data name="Common_Actions_Duplicate">
+    <value>Duplicate</value>
+  </data>
   <data name="Common_Actions_Edit">
     <value>Змінити</value>
   </data>
   <data name="Common_Actions_Enable">
     <value>Увімкнути</value>
   </data>
+  <data name="Common_Actions_Exit_ProtonVPN">
+    <value>Exit Proton VPN</value>
+  </data>
+  <data name="Common_Actions_GotIt">
+    <value>Got it</value>
+  </data>
+  <data name="Common_Actions_Install">
+    <value>Install</value>
+  </data>
   <data name="Common_Actions_Reconnect">
     <value>Повторно з'єднатися</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>Вилучити</value>
+  </data>
+  <data name="Common_Actions_Restart">
+    <value>Restart</value>
+  </data>
+  <data name="Common_Actions_Save">
+    <value>Save</value>
+  </data>
+  <data name="Common_Actions_TryAgain">
+    <value>Try again</value>
   </data>
   <data name="Common_Actions_Update">
     <value>Оновити</value>
@@ -241,10 +268,10 @@
     <value>Покращити</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>**Розширений вимикач увімкнено.** Щоб користуватися інтернетом без VPN, вимкніть розширений вимикач.</value>
+    <value>Advanced kill switch is enabled. To use the internet without VPN, disable advanced kill switch.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>**Увімкнено розширений вимикач.** Якщо ви продовжите, вас буде відключено від Інтернету.</value>
+    <value>Advanced kill switch is enabled. If you continue, you will be disconnected from the internet.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
     <value>Ви будете від'єднані від VPN.</value>
@@ -264,6 +291,21 @@
   <data name="Common_States_Updating">
     <value>Оновлення...</value>
   </data>
+  <data name="Common_Tags_New">
+    <value>NEW</value>
+  </data>
+  <data name="Components_Update_GetMostFromYourVpn">
+    <value>Get the most from your VPN by updating to the latest version of the app.</value>
+  </data>
+  <data name="Components_Update_MoreLikelyIssues">
+    <value>You're more likely to have issues on older versions of ProtonVPN.</value>
+  </data>
+  <data name="Components_Update_UpdateAvailable">
+    <value>Update available</value>
+  </data>
+  <data name="Components_Update_UpdateProtonVpn">
+    <value>Update Proton VPN</value>
+  </data>
   <data name="Connection_Error_EditProfile">
     <value>Редагувати профіль</value>
   </data>
@@ -271,7 +313,7 @@
     <value>Proton VPN не вдалося одержати сертифікат автентифікацій через проблему мережі.</value>
   </data>
   <data name="Connection_Error_NoServers">
-    <value>Наразі немає доступних серверів для вашого вибору. Будь ласка, виберіть інший варіант.</value>
+    <value>All servers in your selection are unavailable. Please expand your selection or try again later.</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
     <value>Сервер, який ви вибрали для '{0}', недоступний. Виберіть інший сервер або повторіть спробу пізніше.</value>
@@ -308,10 +350,10 @@
     <value>Ми не впевнені, що тут сталося. Будь ласка, спробуйте ще раз або зверніться до нашої служби підтримки.</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
-    <value>Перегляд можливих рішень</value>
+    <value>View fixes</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
-    <value>Proton VPN не може під'єднатися, оскільки мережевий адаптер WireGuard зараз використовується. Від'єднайте будь-які активні VPN і повторіть спробу. Або ж ви можете змінити протокол у розширених налаштуваннях.</value>
+    <value>Your device's WireGuard adapter is in use. Disconnect from any other VPN running on your device, then try again.</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Автоматично вибрано з</value>
@@ -505,8 +547,19 @@
   <data name="Connections_Profiles_Empty_Title">
     <value>Створіть перший профіль</value>
   </data>
+  <data name="Connections_Profiles_Location_Header">
+    <value>Select connection type and location</value>
+  </data>
   <data name="Connections_Profiles_Name">
-    <value>Назва профілю</value>
+    <value>Give your profile a name</value>
+  </data>
+  <data name="Connections_Profiles_Name_Default">
+    <value>Untitled</value>
+    <comment>This will be used as the default profile name if the user creates a profile without entering a name</comment>
+  </data>
+  <data name="Connections_Profiles_Name_Duplicate">
+    <value>Copy of {0}</value>
+    <comment>This will be used as the profile name when duplicating a profile. {0} is a placeholder for the original profile name.</comment>
   </data>
   <data name="Connections_Profiles_New">
     <value>Новий профіль</value>
@@ -516,8 +569,11 @@
     <value>Профілі доступні з VPN Plus</value>
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
   </data>
-  <data name="Connections_Profiles_Save">
-    <value>Зберегти профіль</value>
+  <data name="Connections_Profiles_Settings_Description">
+    <value>Profile settings will override your VPN settings when connected.</value>
+  </data>
+  <data name="Connections_Profiles_Settings_Header">
+    <value>Add custom settings</value>
   </data>
   <data name="Connections_Random">
     <value>Випадковий</value>
@@ -686,9 +742,6 @@
   <data name="Countries_All">
     <value>Всі</value>
   </data>
-  <data name="Countries_Cities">
-    <value>Міста</value>
-  </data>
   <data name="Countries_City_One">
     <value>{0} місто</value>
   </data>
@@ -708,19 +761,8 @@
   <data name="Countries_Fastest">
     <value>Найшвидша країна</value>
   </data>
-  <data name="Countries_Info">
-    <value>Інформація</value>
-  </data>
   <data name="Countries_NoSearchResults">
     <value>Нічого не знайдено</value>
-  </data>
-  <data name="Countries_NumberOfCities">
-    <value>Міста ({0})</value>
-    <comment>{0} represents the number of cities</comment>
-  </data>
-  <data name="Countries_NumberOfCountries">
-    <value>Країни ({0})</value>
-    <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_NumberOfServers">
     <value>Сервери ({0})</value>
@@ -728,10 +770,6 @@
   </data>
   <data name="Countries_P2P">
     <value>P2P</value>
-  </data>
-  <data name="Countries_P2PCountries">
-    <value>Країни P2P ({0})</value>
-    <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_P2P_Cities">
     <value>Міста P2P ({0})</value>
@@ -752,28 +790,8 @@
   <data name="Countries_SecureCore">
     <value>Secure Core</value>
   </data>
-  <data name="Countries_SecureCoreCountries">
-    <value>Країни Secure Core ({0})</value>
-    <comment>{0} represents the number of countries</comment>
-  </data>
-  <data name="Countries_SecureCoreServers">
-    <value>Сервери Secure Core ({0})</value>
-    <comment>{0} represents the number of severs</comment>
-  </data>
   <data name="Countries_SecureCore_Description">
     <value>Додайте ще один рівень шифрування до свого VPN-з'єднання.</value>
-  </data>
-  <data name="Countries_Server_One">
-    <value>{0} сервера</value>
-  </data>
-  <data name="Countries_Server_Few">
-    <value>{0} сервери</value>
-  </data>
-  <data name="Countries_Server_Many">
-    <value>{0} серверів</value>
-  </data>
-  <data name="Countries_Server_Other">
-    <value>{0} серверів</value>
   </data>
   <data name="Countries_ServerLoad">
     <value>Навантаження сервера</value>
@@ -781,16 +799,8 @@
   <data name="Countries_SmartRouting">
     <value>Smart routing</value>
   </data>
-  <data name="Countries_SmartRouting_Description">
-    <value>Сервери фізично розташовані в {0}, але вам буде здаватися, що ви переглядаєте сторінки з {1}.</value>
-    <comment>{0} and {1} represent country names.</comment>
-  </data>
   <data name="Countries_Tor">
     <value>Tor</value>
-  </data>
-  <data name="Countries_TorCountries">
-    <value>Країни Tor ({0})</value>
-    <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_TorServers">
     <value>Сервери Tor ({0})</value>
@@ -801,10 +811,6 @@
   </data>
   <data name="Countries_TryDifferentKeyword">
     <value>Спробуйте інше ключове слово</value>
-  </data>
-  <data name="Countries_ViaCountry">
-    <value>через {0}</value>
-    <comment>{0} represents country name. For example: via Australia.</comment>
   </data>
   <data name="Country_Fastest">
     <value>Найшвидша країна</value>
@@ -1822,6 +1828,15 @@
     <value>Невідомо</value>
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
+  <data name="Dialogs_BaseFilteringEngine_Description">
+    <value>The Base Filtering Engine (BFE) service on your Windows device is disabled. This service needs to be enabled for Proton VPN to work properly.</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_HowToEnable">
+    <value>How to enable Base Filtering Engine</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Title">
+    <value>Enable Base Filtering Engine to continue</value>
+  </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
     <value>Отримуйте необмежену кількість змін серверів з VPN Plus.</value>
   </data>
@@ -1836,6 +1851,12 @@
   </data>
   <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
     <value>Оновіться, щоб знову отримати доступ до серверів і функцій Plus.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Description">
+    <value>Looks like the Proton VPN Service is disabled. You'll need to re-enable the service to connect.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Title">
+    <value>Enable Windows Service to continue</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free автоматично з'єднує вас з найшвидшим доступним безплатним сервером з нашої {0} вільної країни. Зазвичай це буде найближчий до вас сервер.</value>
@@ -1889,6 +1910,12 @@
   </data>
   <data name="Dialogs_Latency_Title">
     <value>Що таке затримка?</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Description">
+    <value>Your connection has been disabled because you are using a server that does not support peer-to-peer (P2P) traffic. P2P is not supported on free servers. Please use a different server for P2P.</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Title">
+    <value>P2P traffic detected</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>Як користуватися торентами за допомогою P2P</value>
@@ -1953,7 +1980,7 @@
     <value>Що сталося?</value>
   </data>
   <data name="Dialogs_ReportIssue_NoLogsWarning">
-    <value>Журнали помилок допомагають нам виявити причину вашої проблеми. Якщо ви не додасте їх, ми не зможемо якісно дослідити проблему.</value>
+    <value>Error logs help us to get to the bottom of your issue. If you don't include them, we may not be able to investigate fully.</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes">
     <value>Швидкі виправлення</value>
@@ -1973,9 +2000,6 @@
   <data name="Dialogs_ReportIssue_Result_Fail_Description">
     <value>Ми не змогли надіслати звіт. Будь ласка, перевірте ваше з'єднання та спробуйте ще раз.</value>
   </data>
-  <data name="Dialogs_ReportIssue_Result_RetryAction">
-    <value>Спробувати знову</value>
-  </data>
   <data name="Dialogs_ReportIssue_Result_Success">
     <value>Звіт надіслано</value>
   </data>
@@ -1991,42 +2015,6 @@
   </data>
   <data name="Dialogs_ReportIssue_Title">
     <value>Повідомити про проблему</value>
-  </data>
-  <data name="Dialogs_SecureCore_AdvancedPrivacy">
-    <value>Вдосконалена приватність</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_Description">
-    <value>Secure Core з'єднує вас із сервером призначення через другий, максимально захищений VPN-сервер.
-
-Цей вищий рівень захисту може спричинити більшу затримку та повільнішу швидкість роботи.</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_HighPrivacy">
-    <value>Високий рівень приватності</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_HigherLatency">
-    <value>Вища затримка</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_LowerLatency">
-    <value>Нижча затримка</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_SecureCoreConnection">
-    <value>Secure Core
-VPN-з'єднання</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_StandardConnection">
-    <value>Стандартне
-VPN-з'єднання</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_Title">
-    <value>Secure Core</value>
-    <comment>obsolete</comment>
   </data>
   <data name="Dialogs_ServerLoad_Description">
     <value>Навантаження на сервер показує, наскільки сервер близький до своєї максимальної потужності.
@@ -2054,18 +2042,20 @@ VPN-з'єднання</value>
   <data name="Dialogs_ServerLoad_Title">
     <value>Що таке навантаження сервера?</value>
   </data>
-  <data name="Dialogs_SmartRouting_Description">
-    <value>Smart Routing використовує віртуальні сервери для забезпечення VPN-покриття у важкодоступних країнах.
-
-Коли ви підключаєтеся до сервера Smart Routing, вам буде здаватися, що ви переглядаєте веб-сторінки в країні призначення, навіть якщо фізичний сервер знаходиться в іншому місці.  
-
-Smart Routing зазвичай використовується для того, щоб обійти закони про недоторканність приватного життя та інші форми цензури.</value>
-  </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>Можливо пізніше</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Description">
+    <value>It looks like your device is using a proxy server. This may interfere with your VPN protection.</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Disable">
+    <value>Disable proxy</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Title">
+    <value>Proxy server detected</value>
   </data>
   <data name="Dialogs_Tor_Description">
     <value>Під'єднайтесь до Tor-сервера, щоб отримати доступ до прихованих сервісів і сайтів за допомогою будь-якого браузера.</value>
@@ -2091,14 +2081,11 @@ Smart Routing зазвичай використовується для того,
   <data name="Dialogs_Troubleshooting_Description">
     <value>Ці швидкі виправлення можуть допомогти вам під'єднатися до Proton.</value>
   </data>
-  <data name="Dialogs_Troubleshooting_DidNotWork">
-    <value>Не спрацювало?</value>
-  </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork">
     <value>Використати іншу мережу</value>
   </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
-    <value>Спробуйте перемкнутися на мережу Wi-Fi або скористатися мобільним зв'язком.</value>
+    <value>Try switching Wi-Fi networks, or use mobile data instead.</value>
   </data>
   <data name="Dialogs_Troubleshooting_StatusPage">
     <value>Перевірте нашу сторінку статусу</value>
@@ -2108,6 +2095,18 @@ Smart Routing зазвичай використовується для того,
   </data>
   <data name="Dialogs_Troubleshooting_Title">
     <value>Допомога зі з'єднанням</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOff">
+    <value>This will disconnect you from VPN. Any active internet connections will be temporarily unprotected.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn">
+    <value>This will disconnect you from VPN and temporarily disable kill switch. Any active internet connections will be temporarily unprotected.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Install">
+    <value>Install update?</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Restart">
+    <value>Restart Proton VPN to complete update</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Description">
     <value>Схоже, ваш системний годинник не синхронізований. Це може спричинити проблеми при підключенні до VPN.</value>
@@ -2163,10 +2162,11 @@ Smart Routing зазвичай використовується для того,
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Вітаємо у VPN Plus</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description">
-    <value>Вітаємо! Ви розблокували функції безпеки й продуктивності рівня преміум у всіх службах Proton.
-
-Насолоджуйтеся найкращими функціями захисту приватності від Proton.</value>
+  <data name="Dialogs_WelcomeUnlimited_Description1">
+    <value>Congratulations! You unlocked premium security and performance features on all Proton services.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description2">
+    <value>Enjoy the best of Proton privacy.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Вітаємо у Proton Unlimited</value>
@@ -2186,12 +2186,14 @@ Smart Routing зазвичай використовується для того,
   <data name="Exit_Title">
     <value>Вийти з Proton VPN</value>
   </data>
-  <data name="Flyouts_Country_Description">
-    <value>Перегляд вебсторінок без VPN робить вас вразливими до інтернет-обмежень, пов'язаних з вашим місцеперебуванням.
-
-Вебсайти можуть використовувати геоблоки, щоб обмежити доступ до контенту в певних місцях. Уряди також можуть давати вказівки провайдерам (інтернет-провайдерам) блокувати певні вебсайти у своїй країні.
-
-VPN створює враження, що ви переглядаєте вебсторінки з іншого місця, захищаючи вас від стеження та цензури.</value>
+  <data name="Flyouts_Country_Description1">
+    <value>Browsing without a VPN leaves you vulnerable to location-based internet restrictions.</value>
+  </data>
+  <data name="Flyouts_Country_Description2">
+    <value>Websites can use geoblocks to restrict content to certain locations. Governments can also instruct ISPs (Internet Service Providers) to block certain websites in their country.</value>
+  </data>
+  <data name="Flyouts_Country_Description3">
+    <value>A VPN makes it looks like you're browsing from somewhere else, protecting you from surveillance and censorship.</value>
   </data>
   <data name="Flyouts_Country_Title">
     <value>Країна</value>
@@ -2200,12 +2202,13 @@ VPN створює враження, що ви переглядаєте вебс
     <value>Під'єднайтеся до VPN, щоб змінити своє віртуальне місцеперебування</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Connected">
-    <value>Ваша IP-адреса VPN маскує вашу справжню IP-адресу. Це створює враження, що ви переглядаєте вебсторінки з вашого VPN-місця, тому ваша діяльність в Інтернеті не може бути пов'язана з вашим пристроєм.</value>
+    <value>Your VPN IP masks your real IP address. This makes it look like you're browsing from your VPN location, so your online activity can't be linked to your device.</value>
   </data>
-  <data name="Flyouts_IpAddress_Description_Disconnected">
-    <value>Цей унікальний код може використовуватися вебсайтами та інтернет-провайдерами (постачальниками послуг Інтернету) для прив'язки вашого місцеперебування та історії переглядів до вашого пристрою. 
-
-VPN маскує вашу IP-адресу, що ускладнює відстеження вашої активності.</value>
+  <data name="Flyouts_IpAddress_Description_Disconnected1">
+    <value>This unique code can be used by websites and ISPs (Internet Service Providers) to link your location and browsing history to your device.</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected2">
+    <value>A VPN masks your IP address, making it harder for your activity to be traced back to you.</value>
   </data>
   <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
     <value>Що таке IP-адреса?</value>
@@ -2222,12 +2225,14 @@ VPN маскує вашу IP-адресу, що ускладнює відсте�
   <data name="Flyouts_IpAddress_YourIpIsVisible">
     <value>Ваша IP адреса видима</value>
   </data>
-  <data name="Flyouts_Isp_Description">
-    <value>Ваш інтернет-провайдер (Internet Service Provider) - це компанія, яка підключає вас до інтернету. 
-
-Вони можуть реєструвати вашу активність в Інтернеті. У деяких країнах вони можуть продавати ваші дані рекламодавцям. В інших - вони можуть бути зобов'язані передати їх уряду. 
-
-VPN приховує вашу IP-адресу, захищаючи вас від втручання провайдера.</value>
+  <data name="Flyouts_Isp_Description1">
+    <value>Your ISP (Internet Service Provider) is the company that connects you to the internet.</value>
+  </data>
+  <data name="Flyouts_Isp_Description2">
+    <value>They can log your online activity. In some countries, they can sell your data to advertisers. In others, they can be required to hand it over to the government.</value>
+  </data>
+  <data name="Flyouts_Isp_Description3">
+    <value>A VPN hides your IP address, protecting you from ISP interference.</value>
   </data>
   <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
     <value>Що таке інтернет-провайдер (ISP)?</value>
@@ -2237,6 +2242,54 @@ VPN приховує вашу IP-адресу, захищаючи вас від 
   </data>
   <data name="Flyouts_Isp_Warning">
     <value>Ваш провайдер може бачити, які вебсайти ви відвідуєте</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Advanced_Success">
+    <value>Blocks all internet access when you're not connected to Proton VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info">
+    <value>Your IP address could be exposed if your VPN connection drops</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Standard_Success">
+    <value>If your VPN connection drops, you'll be disconnected from the internet until VPN is restored</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Connected">
+    <value>Advanced kill switch applies even if you intentionally disconnect from VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Disconnected">
+    <value>To get back online, connect to VPN or disable advanced kill switch</value>
+  </data>
+  <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
+    <value>You're protected from ads, trackers, and malware</value>
+  </data>
+  <data name="Flyouts_NetShield_Info">
+    <value>Protect yourself from ads, trackers, and malware on websites and apps</value>
+  </data>
+  <data name="Flyouts_NetShield_MalwareOnly_Success">
+    <value>You're protected from malware only</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Description">
+    <value>Block ads, trackers, and malware with VPN Plus.</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Title">
+    <value>Enjoy ad-free browsing</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort">
+    <value>Active port number</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Info">
+    <value>Enter the active port number into your BitTorrent app to improve your P2P speeds</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Info">
+    <value>Improves peer-to-peer download speeds</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Description">
+    <value>Supercharge peer-to-peer (P2P) file sharing performance with VPN Plus.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Title">
+    <value>Improve P2P speed</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Warning">
+    <value>To use port forwarding, connect to a P2P server</value>
   </data>
   <data name="Flyouts_Protocol_Description">
     <value>Протокол VPN визначає, як трафік шифрується і передається через VPN.</value>
@@ -2277,10 +2330,11 @@ VPN приховує вашу IP-адресу, захищаючи вас від 
   <data name="Flyouts_Speed_BoostedByVpnAccelerator">
     <value>Прискорено завдяки VPN Accelerator</value>
   </data>
-  <data name="Flyouts_Speed_Description">
-    <value>Він показує, скільки даних передається через Proton VPN щосекунди.
-
-Швидкість залежить від поточної активності вашого пристрою - вона не показує максимальну швидкість VPN.</value>
+  <data name="Flyouts_Speed_Description1">
+    <value>This shows how much data gets transmitted through Proton VPN each second.</value>
+  </data>
+  <data name="Flyouts_Speed_Description2">
+    <value>Speed is based on your device's current activity — it doesn't represent the VPN's maximum speed.</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>Завантажити</value>
@@ -2295,6 +2349,69 @@ VPN приховує вашу IP-адресу, захищаючи вас від 
   <data name="Flyouts_Speed_Upload">
     <value>Вивантажити</value>
     <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_One">
+    <value>Excluded app ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_Few">
+    <value>Excluded apps ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_Many">
+    <value>Excluded apps ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_Other">
+    <value>Excluded apps ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_One">
+    <value>Excluded IP address ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_Few">
+    <value>Excluded IP addresses ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_Many">
+    <value>Excluded IP addresses ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_Other">
+    <value>Excluded IP addresses ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Info">
+    <value>Allows trusted apps and IP addresses to connect without VPN protection</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Inverse_Info">
+    <value>Only these apps and IP addresses connect through VPN. All other traffic is unprotected.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_One">
+    <value>Protected app ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_Few">
+    <value>Protected apps ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_Many">
+    <value>Protected apps ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_Other">
+    <value>Protected apps ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_One">
+    <value>Protected IP address ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_Few">
+    <value>Protected IP addresses ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_Many">
+    <value>Protected IP addresses ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_Other">
+    <value>Protected IP addresses ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Standard_Info">
+    <value>These apps and IP addresses connect without VPN protection. All other traffic is protected.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Description">
+    <value>Divide your traffic into VPN and non-VPN tunnels with VPN Plus.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Title">
+    <value>Get the best of both worlds</value>
   </data>
   <data name="Flyouts_Volume_Description">
     <value>Він показує, скільки трафіку пройшло через вашу VPN.</value>
@@ -2437,6 +2554,12 @@ VPN приховує вашу IP-адресу, захищаючи вас від 
   </data>
   <data name="FreeConnections_WorldwideCoverageUpsell">
     <value>Користуйтеся світовим покриттям з VPN Plus</value>
+  </data>
+  <data name="Gateway_Fastest">
+    <value>Fastest gateway</value>
+  </data>
+  <data name="Gateway_Random">
+    <value>Random gateway</value>
   </data>
   <data name="Gateways_Page_Description">
     <value>Під'єднайтеся до шлюзу, щоб отримати доступ до VPN вашої організації.</value>
@@ -2651,12 +2774,29 @@ VPN приховує вашу IP-адресу, захищаючи вас від 
   <data name="Home_Recents_Unpin">
     <value>Відкріпити</value>
   </data>
-  <data name="Home_Update_Confirmation_Message">
-    <value>Щоб завершити процес оновлення, Proton VPN тимчасово відключить і деактивує Advanced Kill Switch, якщо будь-який з них активний. Чи бажаєте ви продовжити?</value>
-    <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
+  <data name="Home_TitleBar_Menu_About">
+    <value>About</value>
   </data>
-  <data name="Home_Update_Confirmation_Title">
-    <value>Оновити Proton VPN?</value>
+  <data name="Home_TitleBar_Menu_Account">
+    <value>Account</value>
+  </data>
+  <data name="Home_TitleBar_Menu_ExitTheApp">
+    <value>Exit the app</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help">
+    <value>Help</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help_WhatsTheIssue">
+    <value>What's the issue?</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Settings">
+    <value>Settings</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Signout">
+    <value>Sign out</value>
+  </data>
+  <data name="Home_TitleBar_Menu_UpdateNow">
+    <value>Update now</value>
   </data>
   <data name="Home_Update_UpdateAvailable">
     <value>Доступне оновлення</value>
@@ -2738,11 +2878,26 @@ VPN приховує вашу IP-адресу, захищаючи вас від 
     <value>Виконується вихід, будь ласка, зачекайте...</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
+  <data name="Notifications_KillSwitch_Description">
+    <value>To protect your IP address, kill switch is blocking your internet connection.</value>
+  </data>
+  <data name="Notifications_PortForwarding_CopyPortNumber">
+    <value>Copy port number</value>
+  </data>
   <data name="Notifications_PortForwarding_Description">
     <value>Встановіть це значення у вашій програмі BitTorrent для вищої швидкості.</value>
   </data>
+  <data name="Notifications_SessionLimit_Description">
+    <value>You’ve reached your maximum device limit. To reconnect to VPN, please disconnect from another device.</value>
+  </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
     <value>Ваш тарифний план було знижено до Proton Free, і ми повторно підключаємо вас до найшвидшого безплатного сервера.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Description">
+    <value>Public Wi-Fi networks are more vulnerable to security threats. Connect to VPN to browse safely.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Title">
+    <value>Unsecured Wi-Fi connection detected</value>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Оновити зараз</value>
@@ -2779,10 +2934,23 @@ VPN приховує вашу IP-адресу, захищаючи вас від 
   <data name="Overlay_P2P_Title">
     <value>P2P</value>
   </data>
-  <data name="Overlay_SecureCore_Description">
-    <value>Secure Core з'єднує вас із сервером призначення через другий, максимально захищений VPN-сервер.
-
-Цей вищий рівень захисту може спричинити більшу затримку та повільнішу швидкість роботи.</value>
+  <data name="Overlay_Profile_Description1">
+    <value>Profiles are custom VPN connections that you can tailor to your needs and save for quick access.</value>
+  </data>
+  <data name="Overlay_Profile_Description2">
+    <value>Set your preferred location and optimize your settings for security, performance, gaming, or any other scenario.</value>
+  </data>
+  <data name="Overlay_Profile_LearnMore">
+    <value>What is a VPN profile?</value>
+  </data>
+  <data name="Overlay_Profile_Title">
+    <value>Profiles</value>
+  </data>
+  <data name="Overlay_SecureCore_Description1">
+    <value>Secure Core connects you to your destination server via a second, maximum security VPN server.</value>
+  </data>
+  <data name="Overlay_SecureCore_Description2">
+    <value>This higher level of protection may cause higher latency and slower speeds.</value>
   </data>
   <data name="Overlay_SecureCore_LearnMore">
     <value>Що таке Secure Core?</value>
@@ -2839,11 +3007,14 @@ VPN-з'єднання</value>
   <data name="Overlay_ServerLoad_Title">
     <value>Завантаження сервера</value>
   </data>
-  <data name="Overlay_SmartRouting_Description">
-    <value>Технологія Smart Routing використовує віртуальні сервери для забезпечення покриття VPN у країнах з ускладненим доступом.
-Під час з'єднання з сервером Smart Routing здаватиметься, наче ви користуєтесь інтернетом у країні призначення, навіть попри інше фізичне розташування сервера.  
-
-Smart Routing зазвичай використовується для обходу законодавчих обмежень щодо приватності та інших форм цензури.</value>
+  <data name="Overlay_SmartRouting_Description1">
+    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description2">
+    <value>When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description3">
+    <value>Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
     <value>Сервери фізично розташовані в {0}, але вам буде здаватися, що ви переглядаєте сторінки з {1}</value>
@@ -2865,6 +3036,66 @@ Smart Routing зазвичай використовується для обхо�
   </data>
   <data name="Overlay_Tor_Title">
     <value>Tor</value>
+  </data>
+  <data name="Profile_CustomSettings_Description">
+    <value>Profile settings will override your VPN settings when connected.</value>
+  </data>
+  <data name="Profile_CustomSettings_Header">
+    <value>Add custom settings</value>
+  </data>
+  <data name="Profile_CustomSettings_Hide">
+    <value>Hide settings</value>
+  </data>
+  <data name="Profile_CustomSettings_Show">
+    <value>Show settings</value>
+  </data>
+  <data name="Profile_Discard_Description">
+    <value>You have unsaved changes.</value>
+  </data>
+  <data name="Profile_Discard_Title">
+    <value>Leave page?</value>
+  </data>
+  <data name="Profile_NatType_Conflict_Description">
+    <value>This will disable port forwarding for this profile.</value>
+  </data>
+  <data name="Profile_NetShield_Conflict_Description">
+    <value>This will disable custom DNS for this profile.</value>
+  </data>
+  <data name="Profile_Options_Description">
+    <value>Automatically open a website of your choice when you connect to this profile.</value>
+  </data>
+  <data name="Profile_Options_Header">
+    <value>Connect and Go</value>
+  </data>
+  <data name="Profile_Options_Url">
+    <value>Website URL</value>
+  </data>
+  <data name="Profile_Options_Url_Error">
+    <value>Enter a valid URL</value>
+  </data>
+  <data name="Profile_PortForwarding_Conflict_Description">
+    <value>This will change the NAT type for this profile to Strict (type 3).</value>
+  </data>
+  <data name="Profiles_Default_Gaming">
+    <value>Gaming</value>
+  </data>
+  <data name="Profiles_Default_MaxSecurity">
+    <value>Max security</value>
+  </data>
+  <data name="Profiles_Default_Office">
+    <value>Office</value>
+  </data>
+  <data name="Profiles_Default_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Profiles_Default_RandomConnection">
+    <value>Random connection</value>
+  </data>
+  <data name="Profiles_Default_Streaming">
+    <value>Streaming US</value>
+  </data>
+  <data name="Profiles_Default_WorkSchool">
+    <value>Work/School</value>
   </data>
   <data name="Profiles_Page_Description">
     <value>Налаштуйте власні параметри VPN і підключайтеся в один клац.</value>
@@ -2903,16 +3134,25 @@ Smart Routing зазвичай використовується для обхо�
     <value>Найшвидший безплатний сервер</value>
   </data>
   <data name="Server_Feature_B2B">
-    <value>Шлюзи</value>
+    <value>Gateway</value>
+  </data>
+  <data name="Server_Feature_B2B_Description">
+    <value>Access your organization's servers</value>
   </data>
   <data name="Server_Feature_None">
-    <value>Всі країни</value>
+    <value>Standard</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
   </data>
+  <data name="Server_Feature_P2P_Description">
+    <value>Torrent-optimized</value>
+  </data>
   <data name="Server_Feature_SecureCore">
     <value>Secure Core</value>
+  </data>
+  <data name="Server_Feature_SecureCore_Description">
+    <value>Double protection</value>
   </data>
   <data name="Server_Feature_Tor">
     <value>Tor</value>
@@ -2935,9 +3175,6 @@ Smart Routing зазвичай використовується для обхо�
   <data name="Settings_About_FailedToFetch">
     <value>Не вдалося завантажити інформацію про список змін.</value>
   </data>
-  <data name="Settings_About_GetLatestVersion">
-    <value>Отримати останню версію</value>
-  </data>
   <data name="Settings_About_LearnMore">
     <value>Докладніше</value>
   </data>
@@ -2947,23 +3184,14 @@ Smart Routing зазвичай використовується для обхо�
   <data name="Settings_About_Loading">
     <value>Завантаження</value>
   </data>
-  <data name="Common_Tags_New">
-    <value>НОВА</value>
-  </data>
   <data name="Settings_About_Title">
     <value>Про програму</value>
   </data>
-  <data name="Settings_About_TryAgain">
-    <value>Спробувати знову</value>
-  </data>
-  <data name="Settings_About_Update_Description">
-    <value>Отримайте максимум від вашої VPN, оновивши додаток до останньої версії.</value>
+  <data name="Settings_Account_Account">
+    <value>Account</value>
   </data>
   <data name="Settings_Account_Exit">
     <value>Вийти з додатка</value>
-  </data>
-  <data name="Settings_Account_MyAccount">
-    <value>Мій обліковий запис</value>
   </data>
   <data name="Settings_Account_SignOut">
     <value>Вийти</value>
@@ -3073,6 +3301,12 @@ Smart Routing зазвичай використовується для обхо�
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
     <value>Використовує мостіння для з'єднання мереж. TUN забезпечує вищу швидкість, ніж TAP, але може бути менш стабільним.</value>
   </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
+    <value>Custom DNS can't be turned on because you're connected to a profile with NetShield enabled.</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenEnabled">
+    <value>Custom DNS is disabled because you're currently connected to a profile with NetShield enabled.</value>
+  </data>
   <data name="Settings_Connection_Default">
     <value>З'єднання за замовчуванням</value>
   </data>
@@ -3127,6 +3361,9 @@ Smart Routing зазвичай використовується для обхо�
   <data name="Settings_Connection_NetShield_Conflict_Description">
     <value>Якщо увімкнено NetShield, ви не зможете з'єднатися з користувацьким DNS-сервером.</value>
   </data>
+  <data name="Settings_Connection_NetShield_Conflict_Information">
+    <value>NetShield is not compatible with Custom DNS.</value>
+  </data>
   <data name="Settings_Connection_NetShield_Conflict_Title">
     <value>Увімкнути NetShield?</value>
   </data>
@@ -3176,11 +3413,11 @@ Smart Routing зазвичай використовується для обхо�
     <value>Перейти до профілів</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Message">
-    <value>Наразі ви підключені до профілю VPN. 
+    <value>You're currently connected to a VPN profile.
 
-• Щоб змінити протокол для цього з'єднання, від'єднайтеся, а потім відредагуйте свій профіль.
+• To change the protocol for this connection, disconnect then edit your profile.
 
-• Щоб змінити протокол для інших VPN-з'єднань, вам потрібно спочатку від'єднатися від свого профілю.</value>
+• To change your protocol for other VPN connections, you'll need to disconnect from your profile first.</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Title">
     <value>Змінити протокол в профілях</value>
@@ -3326,6 +3563,20 @@ Smart Routing зазвичай використовується для обхо�
   <data name="Settings_OperatingSystemVersion">
     <value>Версія операційної системи</value>
   </data>
+  <data name="Settings_OverriddenByProfile_Description1">
+    <value>This setting is connected to your active profile.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description2">
+    <value>Edit your profile to make changes, or disconnect to edit your general VPN settings.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Tagline">
+    <value>These settings are connected to '{0}' profile and can only be managed in Profiles.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Settings_OverriddenByProfile_Title">
+    <value>Manage {0} in Profiles</value>
+    <comment>{0} is a placeholder for the name of the settings being overridden by the profile. (eg. Manage NetShield in Profiles)</comment>
+  </data>
   <data name="Settings_Page_Title">
     <value>Налаштування</value>
   </data>
@@ -3376,6 +3627,9 @@ Smart Routing зазвичай використовується для обхо�
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>
+  </data>
+  <data name="Settings_Reconnection_Title">
+    <value>Reconnect to apply changes</value>
   </data>
   <data name="Settings_RestoreDefault">
     <value>Відновити типові налаштування</value>
@@ -3491,7 +3745,7 @@ Smart Routing зазвичай використовується для обхо�
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_ResetPassword">
-    <value>Скинути пароль</value>
+    <value>Forgot password</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_SignIn">
@@ -3508,7 +3762,7 @@ Smart Routing зазвичай використовується для обхо�
     <value>Увійти</value>
   </data>
   <data name="SignIn_Form_TroubleSigningIn">
-    <value>Проблеми з входом</value>
+    <value>Support Center</value>
     <comment>A button at the bottom of the login window inside Get help popup</comment>
   </data>
   <data name="SignIn_Form_Username">
@@ -3641,6 +3895,18 @@ Smart Routing зазвичай використовується для обхо�
   <data name="Upsell_Carousel_Platforms_More">
     <value>+ ще</value>
     <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_Profiles">
+    <value>Get quick access to frequent connections</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Convenience">
+    <value>Set a profile as your default connection and connect in 1 click</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Creation">
+    <value>Create and save your own VPN configurations with Profiles</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Customization">
+    <value>Customize your location, protocol, and settings</value>
   </data>
   <data name="Upsell_Carousel_SecureCore">
     <value>Додайте ще один рівень захисту до вашого з'єднання</value>
