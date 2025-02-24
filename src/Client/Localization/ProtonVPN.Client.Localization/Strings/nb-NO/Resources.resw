@@ -123,6 +123,9 @@
   <data name="Automation_Properties_ConnectionDetails_Page">
     <value>Side med tilkoblingsdetaljer</value>
   </data>
+  <data name="Automation_Properties_Connection_Card_Component">
+    <value>Tilkoblingskort</value>
+  </data>
   <data name="Automation_Properties_Features_Bar">
     <value>Funksjonslinje</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>Portvideresendingsside</value>
+  </data>
+  <data name="Automation_Properties_Profile_Page">
+    <value>Profilside</value>
   </data>
   <data name="Automation_Properties_Settings_Advanced_Page">
     <value>Side for avanserte innstillinger</value>
@@ -222,17 +228,38 @@
     <value>Koble fra {0}</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
+  <data name="Common_Actions_Duplicate">
+    <value>Dupliser</value>
+  </data>
   <data name="Common_Actions_Edit">
     <value>Rediger</value>
   </data>
   <data name="Common_Actions_Enable">
     <value>Aktiver</value>
   </data>
+  <data name="Common_Actions_Exit_ProtonVPN">
+    <value>Avslutt Proton VPN</value>
+  </data>
+  <data name="Common_Actions_GotIt">
+    <value>Skjønner</value>
+  </data>
+  <data name="Common_Actions_Install">
+    <value>Installer</value>
+  </data>
   <data name="Common_Actions_Reconnect">
     <value>Koble til på nytt</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>Fjern</value>
+  </data>
+  <data name="Common_Actions_Restart">
+    <value>Start på nytt</value>
+  </data>
+  <data name="Common_Actions_Save">
+    <value>Lagre</value>
+  </data>
+  <data name="Common_Actions_TryAgain">
+    <value>Prøv igjen</value>
   </data>
   <data name="Common_Actions_Update">
     <value>Oppdater</value>
@@ -241,10 +268,10 @@
     <value>Oppgrader</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>**Avansert nødstopp er aktivert.** For å bruke internett uten VPN, deaktiver avansert nødstopp.</value>
+    <value>Avansert nødstopp er aktivert. For å bruke internett uten VPN, deaktiver avansert nødstopp.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>**Avansert nødstopp er aktivert.** Hvis du fortsetter, vil du bli koblet fra internett.</value>
+    <value>Avansert nødstopp er aktivert. Hvis du fortsetter, vil du bli koblet fra internett.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
     <value>Du blir koblet fra VPN.</value>
@@ -264,6 +291,21 @@
   <data name="Common_States_Updating">
     <value>Oppdaterer...</value>
   </data>
+  <data name="Common_Tags_New">
+    <value>NY</value>
+  </data>
+  <data name="Components_Update_GetMostFromYourVpn">
+    <value>Få mest mulig ut av VPN-et ditt ved å oppdatere til den nyeste versjonen av appen.</value>
+  </data>
+  <data name="Components_Update_MoreLikelyIssues">
+    <value>Det er mer sannsynlig at du har problemer med eldre versjoner av Proton VPN.</value>
+  </data>
+  <data name="Components_Update_UpdateAvailable">
+    <value>Oppdatering tilgjengelig</value>
+  </data>
+  <data name="Components_Update_UpdateProtonVpn">
+    <value>Oppdater Proton VPN</value>
+  </data>
   <data name="Connection_Error_EditProfile">
     <value>Rediger profil</value>
   </data>
@@ -271,7 +313,7 @@
     <value>Proton VPN klarte ikke å hente autentiseringssertifikat på grunn av nettverksproblem.</value>
   </data>
   <data name="Connection_Error_NoServers">
-    <value>Det er ingen tjenere tilgjengelig akkurat nå for ditt valg. Velg et annet alternativ.</value>
+    <value>Alle tjenere i ditt utvalg er utilgjengelige. Utvid utvalget eller prøv igjen senere.</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
     <value>Tjenervalget ditt for '{0}' er ikke tilgjengelig. Velg en annen tjener eller prøv igjen senere.</value>
@@ -308,10 +350,10 @@
     <value>Vi er ikke sikre på hva som skjedde her. Prøv på nytt eller kontakt kundestøtteteamet vårt.</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
-    <value>Se mulige løsninger</value>
+    <value>Vis løsninger</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
-    <value>Proton VPN kunne ikke koble til fordi et WireGuard-nettverkskort allerede er i bruk. Koble fra alle aktive VPN-er og prøv på nytt. Alternativt kan du bytte protokoller i avanserte innstillinger.</value>
+    <value>Enhetens WireGuard-adapter er i bruk. Koble fra alle andre VPN-er som kjører på enheten din, og prøv igjen.</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Auto-valgt fra</value>
@@ -445,8 +487,19 @@
   <data name="Connections_Profiles_Empty_Title">
     <value>Opprett din første profil</value>
   </data>
+  <data name="Connections_Profiles_Location_Header">
+    <value>Velg forbindelsestype og plassering</value>
+  </data>
   <data name="Connections_Profiles_Name">
-    <value>Profilnavn</value>
+    <value>Gi profilen din et navn</value>
+  </data>
+  <data name="Connections_Profiles_Name_Default">
+    <value>Uten navn</value>
+    <comment>This will be used as the default profile name if the user creates a profile without entering a name</comment>
+  </data>
+  <data name="Connections_Profiles_Name_Duplicate">
+    <value>Kopi av {0}</value>
+    <comment>This will be used as the profile name when duplicating a profile. {0} is a placeholder for the original profile name.</comment>
   </data>
   <data name="Connections_Profiles_New">
     <value>Ny profil</value>
@@ -456,8 +509,11 @@
     <value>Profiler er tilgjengelige med VPN Plus</value>
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
   </data>
-  <data name="Connections_Profiles_Save">
-    <value>Lagre profil</value>
+  <data name="Connections_Profiles_Settings_Description">
+    <value>Profilinnstillinger vil overstyre VPN-innstillingene dine når du er tilkoblet.</value>
+  </data>
+  <data name="Connections_Profiles_Settings_Header">
+    <value>Legg til egendefinerte innstillinger</value>
   </data>
   <data name="Connections_Random">
     <value>Tilfeldig</value>
@@ -560,9 +616,6 @@
   <data name="Countries_All">
     <value>Alle</value>
   </data>
-  <data name="Countries_Cities">
-    <value>Byer</value>
-  </data>
   <data name="Countries_City_One">
     <value>{0} by</value>
   </data>
@@ -576,19 +629,8 @@
   <data name="Countries_Fastest">
     <value>Raskeste land</value>
   </data>
-  <data name="Countries_Info">
-    <value>Info</value>
-  </data>
   <data name="Countries_NoSearchResults">
     <value>Ingen resultater funnet</value>
-  </data>
-  <data name="Countries_NumberOfCities">
-    <value>Byer ({0})</value>
-    <comment>{0} represents the number of cities</comment>
-  </data>
-  <data name="Countries_NumberOfCountries">
-    <value>Land ({0})</value>
-    <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_NumberOfServers">
     <value>Tjenere ({0})</value>
@@ -596,10 +638,6 @@
   </data>
   <data name="Countries_P2P">
     <value>P2P</value>
-  </data>
-  <data name="Countries_P2PCountries">
-    <value>P2P-land ({0})</value>
-    <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_P2P_Cities">
     <value>P2P-land ({0})</value>
@@ -620,22 +658,8 @@
   <data name="Countries_SecureCore">
     <value>Secure Core</value>
   </data>
-  <data name="Countries_SecureCoreCountries">
-    <value>Secure Core land ({0})</value>
-    <comment>{0} represents the number of countries</comment>
-  </data>
-  <data name="Countries_SecureCoreServers">
-    <value>Secure Core-tjenere ({0})</value>
-    <comment>{0} represents the number of severs</comment>
-  </data>
   <data name="Countries_SecureCore_Description">
     <value>Legg til et ekstra krypteringslag til VPN-tilkoblingen din.</value>
-  </data>
-  <data name="Countries_Server_One">
-    <value>{0} tjener</value>
-  </data>
-  <data name="Countries_Server_Other">
-    <value>{0} tjenere</value>
   </data>
   <data name="Countries_ServerLoad">
     <value>Tjenerbelastning</value>
@@ -643,16 +667,8 @@
   <data name="Countries_SmartRouting">
     <value>Smart ruting</value>
   </data>
-  <data name="Countries_SmartRouting_Description">
-    <value>Tjenere er fysisk plassert i {0}, men det ser ut til at du surfer fra {1}.</value>
-    <comment>{0} and {1} represent country names.</comment>
-  </data>
   <data name="Countries_Tor">
     <value>Tor</value>
-  </data>
-  <data name="Countries_TorCountries">
-    <value>Tor-land ({0})</value>
-    <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_TorServers">
     <value>Tor-tjenere ({0})</value>
@@ -663,10 +679,6 @@
   </data>
   <data name="Countries_TryDifferentKeyword">
     <value>Forsøk et annet nøkkelord</value>
-  </data>
-  <data name="Countries_ViaCountry">
-    <value>via {0}</value>
-    <comment>{0} represents country name. For example: via Australia.</comment>
   </data>
   <data name="Country_Fastest">
     <value>Raskeste land</value>
@@ -1684,6 +1696,15 @@
     <value>Ukjent</value>
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
+  <data name="Dialogs_BaseFilteringEngine_Description">
+    <value>BFE-tjenesten (Base Filtering Engine) på Windows-enheten er deaktivert. Denne tjenesten må være aktivert for at Proton VPN skal fungere skikkelig.</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_HowToEnable">
+    <value>Hvordan aktivere Base Filtering Engine</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Title">
+    <value>Aktiver Base Filtering Engine for å fortsette</value>
+  </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
     <value>Få ubegrensede tjenerbytter med VPN Plus.</value>
   </data>
@@ -1698,6 +1719,12 @@
   </data>
   <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
     <value>Oppgrader for å få tilbake tilgang til Plus-tjenere og funksjoner.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Description">
+    <value>Ser ut til at Proton VPN-tjenesten er deaktivert. Du må aktivere tjenesten på nytt for å koble til.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Title">
+    <value>Aktiver Windows-tjenesten for å fortsette</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free kobler deg automatisk til den raskeste tilgjengelige tjeneren fra {0} gratis land. Dette vil normalt være den nærmeste tjeneren til din plassering.</value>
@@ -1739,6 +1766,12 @@ Høy latens kan redusere tilkoblingen.</value>
   </data>
   <data name="Dialogs_Latency_Title">
     <value>Hva er latens?</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Description">
+    <value>Tilkoblingen din er deaktivert fordi du bruker en tjener som ikke støtter node-til-node-trafikk (P2P). P2P støttes ikke på gratis tjenere. Bruk en annen tjener for P2P.</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Title">
+    <value>P2P-trafikk oppdaget</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>Hvordan laste ned/opp torrent med P2P</value>
@@ -1823,9 +1856,6 @@ Høy latens kan redusere tilkoblingen.</value>
   <data name="Dialogs_ReportIssue_Result_Fail_Description">
     <value>Vi kunne ikke sende rapporten. Kontroller tilkoblingen og prøv på nytt.</value>
   </data>
-  <data name="Dialogs_ReportIssue_Result_RetryAction">
-    <value>Prøv igjen</value>
-  </data>
   <data name="Dialogs_ReportIssue_Result_Success">
     <value>Rapporten er sendt</value>
   </data>
@@ -1841,42 +1871,6 @@ Høy latens kan redusere tilkoblingen.</value>
   </data>
   <data name="Dialogs_ReportIssue_Title">
     <value>Rapporter et problem</value>
-  </data>
-  <data name="Dialogs_SecureCore_AdvancedPrivacy">
-    <value>Avansert personvern</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_Description">
-    <value>Secure Core kobler deg til destinasjonstjeneren din via en andre, VPN-tjener med maksimal sikkerhet.
-
-Dette høyere beskyttelsesnivået kan føre til høyere latens og lavere hastigheter.</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_HighPrivacy">
-    <value>Høy personvern</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_HigherLatency">
-    <value>Høyere latens</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_LowerLatency">
-    <value>Lavere latens</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_SecureCoreConnection">
-    <value>Secure Core
-VPN-forbindelse</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_StandardConnection">
-    <value>Standard
-VPN-forbindelse</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_Title">
-    <value>Secure Core</value>
-    <comment>obsolete</comment>
   </data>
   <data name="Dialogs_ServerLoad_Description">
     <value>Tjenerbelastning viser hvor nær en tjener er maksimal kapasitet. 
@@ -1904,18 +1898,20 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
   <data name="Dialogs_ServerLoad_Title">
     <value>Hva er tjenerbelastning?</value>
   </data>
-  <data name="Dialogs_SmartRouting_Description">
-    <value>Smart Routing bruker virtuelle tjenere for å gi VPN-dekning i vanskelig tilgjengelige land.
-
-Når du kobler til en Smart Routing-tjener, ser det ut til at du surfer i destinasjonslandet ditt, selv om den fysiske tjeneren befinner seg et annet sted.  
-
-Smart Routing brukes vanligvis til å omgå personvernlover og andre former for sensur.</value>
-  </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>Kanskje senere</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Description">
+    <value>Det ser ut til at enheten din bruker en proxy-tjener. Dette kan forstyrre VPN-beskyttelsen din.</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Disable">
+    <value>Deaktiver proxy</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Title">
+    <value>Proxy-tjener oppdaget</value>
   </data>
   <data name="Dialogs_Tor_Description">
     <value>Koble til en Tor-tjener for å få tilgang til skjulte tjenester og onion-sider ved hjelp av hvilken som helst nettleser.</value>
@@ -1941,14 +1937,11 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
   <data name="Dialogs_Troubleshooting_Description">
     <value>Disse raske løsningene kan hjelpe deg med å koble til Proton.</value>
   </data>
-  <data name="Dialogs_Troubleshooting_DidNotWork">
-    <value>Fungerte det ikke?</value>
-  </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork">
     <value>Bruk et annet nettverk</value>
   </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
-    <value>Prøv å bytte Wi-Fi-nettverk, eller bruk mobildata.</value>
+    <value>Prøv å bytte Wi-Fi-nettverk, eller bruk mobildata istedenfor.</value>
   </data>
   <data name="Dialogs_Troubleshooting_StatusPage">
     <value>Sjekk vår statusside</value>
@@ -1958,6 +1951,18 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
   </data>
   <data name="Dialogs_Troubleshooting_Title">
     <value>Hjelp for tilkobling</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOff">
+    <value>Dette vil koble deg fra VPN. Eventuelle aktive internettforbindelser vil være midlertidig ubeskyttet.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn">
+    <value>Dette vil koble deg fra VPN og midlertidig deaktivere nødstopp. Eventuelle aktive internettforbindelser vil være midlertidig ubeskyttet.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Install">
+    <value>Installere oppdatering?</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Restart">
+    <value>Start Proton VPN på nytt for å fullføre oppdateringen</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Description">
     <value>Det ser ut til at systemklokken din er ute av synkronisering. Dette kan forårsake problemer når du kobler til VPN.</value>
@@ -2007,10 +2012,11 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Velkommen til VPN Plus</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description">
-    <value>Gratulerer! Du låste opp premium sikkerhets- og ytelsesfunksjoner på alle Proton-tjenester.
-
-Nyt det beste av Proton-personvern.</value>
+  <data name="Dialogs_WelcomeUnlimited_Description1">
+    <value>Gratulerer! Du låste opp premium sikkerhets- og ytelsesfunksjoner på alle Proton-tjenester.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description2">
+    <value>Nyt det beste av Protons personvern.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Velkommen til Proton Unlimited</value>
@@ -2030,12 +2036,14 @@ Nyt det beste av Proton-personvern.</value>
   <data name="Exit_Title">
     <value>Avslutt Proton VPN</value>
   </data>
-  <data name="Flyouts_Country_Description">
-    <value>Surfing uten VPN gjør deg sårbar for stedsbaserte internettrestriksjoner.
-
-Nettsteder kan bruke geoblokkeringer for å begrense innhold til bestemte steder. Myndighetene kan også instruere Internett-leverandører (Internet Service Providers) om å blokkere visse nettsteder i landet deres.
-
-Et VPN får det til å se ut som om du surfer fra et annet sted, og beskytter deg mot overvåking og sensur.</value>
+  <data name="Flyouts_Country_Description1">
+    <value>Surfing uten VPN gjør deg sårbar for stedsbaserte internettrestriksjoner.</value>
+  </data>
+  <data name="Flyouts_Country_Description2">
+    <value>Nettsteder kan bruke geoblokkeringer for å begrense innhold til bestemte steder. Myndighetene kan også instruere Internett-leverandører (Internet Service Providers) om å blokkere visse nettsteder i landet deres.</value>
+  </data>
+  <data name="Flyouts_Country_Description3">
+    <value>Et VPN får det til å se ut som om du surfer fra et annet sted, og beskytter deg mot overvåking og sensur.</value>
   </data>
   <data name="Flyouts_Country_Title">
     <value>Land</value>
@@ -2046,10 +2054,11 @@ Et VPN får det til å se ut som om du surfer fra et annet sted, og beskytter de
   <data name="Flyouts_IpAddress_Description_Connected">
     <value>VPN-IP-en maskerer din virkelige IP-adresse. Dette får det til å se ut som om du surfer fra VPN-lokasjonen din, slik at nettaktiviteten ikke kan kobles til enheten din.</value>
   </data>
-  <data name="Flyouts_IpAddress_Description_Disconnected">
-    <value>Denne unike koden kan brukes av nettsteder og Internett-leverandører (ISP) for å koble posisjonen og nettleserloggen din til enheten din. 
-
-Et VPN maskerer IP-adressen din, noe som gjør det vanskeligere å spore aktiviteten din tilbake til deg.</value>
+  <data name="Flyouts_IpAddress_Description_Disconnected1">
+    <value>Denne unike koden kan brukes av nettsteder og Internett-leverandører (Internett-leverandører) for å koble posisjonen og nettleserloggen din til enheten din.</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected2">
+    <value>Et VPN maskerer IP-adressen din, noe som gjør det vanskeligere for aktiviteten din å spores tilbake til deg.</value>
   </data>
   <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
     <value>Hva er en IP-adresse?</value>
@@ -2066,12 +2075,14 @@ Et VPN maskerer IP-adressen din, noe som gjør det vanskeligere å spore aktivit
   <data name="Flyouts_IpAddress_YourIpIsVisible">
     <value>IP-adressen din er synlig</value>
   </data>
-  <data name="Flyouts_Isp_Description">
-    <value>Din ISP (Internett-leverandør) er selskapet som kobler deg til internett. 
-
-De kan logge nettaktiviteten din. I noen land kan de selge dataene dine til annonsører. I andre kan de bli pålagt å overlevere den til myndighetene. 
-
-Et VPN skjuler IP-adressen din, og beskytter deg mot forstyrrelser fra Internett-leverandøren.</value>
+  <data name="Flyouts_Isp_Description1">
+    <value>Din internettleverandør (Internet Service Provider) er selskapet som kobler deg til internett.</value>
+  </data>
+  <data name="Flyouts_Isp_Description2">
+    <value>De kan logge nettaktiviteten din. I noen land kan de selge dataene dine til annonsører. I andre kan de bli pålagt å overlevere det til myndighetene.</value>
+  </data>
+  <data name="Flyouts_Isp_Description3">
+    <value>Et VPN skjuler IP-adressen din, og beskytter deg mot forstyrrelser fra Internett-leverandøren.</value>
   </data>
   <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
     <value>Hva er en Internett-leverandør (ISP)?</value>
@@ -2081,6 +2092,54 @@ Et VPN skjuler IP-adressen din, og beskytter deg mot forstyrrelser fra Internett
   </data>
   <data name="Flyouts_Isp_Warning">
     <value>Leverandøren din kan se hvilke nettsteder du besøker</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Advanced_Success">
+    <value>Blokkerer all internettilgang når du ikke er koblet til Proton VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info">
+    <value>IP-adressen din kan bli eksponert hvis VPN-tilkoblingen din faller ut</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Standard_Success">
+    <value>Hvis VPN-tilkoblingen din brytes, blir du koblet fra internett til VPN-et er gjenopprettet</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Connected">
+    <value>Avansert nødstopp gjelder selv om du med vilje kobler fra VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Disconnected">
+    <value>For å komme tilbake på nettet, koble til VPN eller deaktiver avansert nødstopp</value>
+  </data>
+  <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
+    <value>Du er beskyttet mot annonser, sporere og skadelig programvare</value>
+  </data>
+  <data name="Flyouts_NetShield_Info">
+    <value>Beskytt deg mot annonser, sporere og skadelig programvare på nettsteder og apper</value>
+  </data>
+  <data name="Flyouts_NetShield_MalwareOnly_Success">
+    <value>Du er kun beskyttet mot skadelig programvare</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Description">
+    <value>Blokkér annonser, sporere og skadelig programvare med VPN Plus.</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Title">
+    <value>Kos deg med reklamefri surfing</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort">
+    <value>Aktivt portnummer</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Info">
+    <value>Skriv inn det aktive portnummeret i BitTorrent-appen din for å forbedre P2P-hastighetene dine</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Info">
+    <value>Forbedrer node-til-node nedlastningshastigheter</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Description">
+    <value>Få fart på node-til-node (P2P) fildelingsytelsen med VPN Plus.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Title">
+    <value>Forbedre P2P-hastigheten</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Warning">
+    <value>Hvis du vil bruke videresending av porter, kobler du til en P2P-tjener</value>
   </data>
   <data name="Flyouts_Protocol_Description">
     <value>En VPN-protokoll avgjør hvordan trafikk krypteres og overføres over VPN.</value>
@@ -2121,10 +2180,11 @@ Et VPN skjuler IP-adressen din, og beskytter deg mot forstyrrelser fra Internett
   <data name="Flyouts_Speed_BoostedByVpnAccelerator">
     <value>Styrket av VPN Accelerator</value>
   </data>
-  <data name="Flyouts_Speed_Description">
-    <value>Dette viser hvor mye data som overføres gjennom Proton VPN hvert sekund.
-
-Hastigheten er basert på enhetens nåværende aktivitet – den representerer ikke VPN-ens maksimale hastighet.</value>
+  <data name="Flyouts_Speed_Description1">
+    <value>Dette viser hvor mye data som overføres gjennom Proton VPN hvert sekund.</value>
+  </data>
+  <data name="Flyouts_Speed_Description2">
+    <value>Hastigheten er basert på enhetens nåværende aktivitet – den representerer ikke VPN-ens maksimale hastighet.</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>Nedlasting</value>
@@ -2139,6 +2199,45 @@ Hastigheten er basert på enhetens nåværende aktivitet – den representerer i
   <data name="Flyouts_Speed_Upload">
     <value>Opplasting</value>
     <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_One">
+    <value>Ekskludert app ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_Other">
+    <value>Ekskluderte apper ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_One">
+    <value>Ekskludert IP-adresse ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_Other">
+    <value>Ekskluderte IP-adresser ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Info">
+    <value>Lar pålitelige apper og IP-adresser koble til uten VPN-beskyttelse</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Inverse_Info">
+    <value>Bare disse appene og IP-adressene kobles til via VPN. All annen trafikk er ubeskyttet.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_One">
+    <value>Beskyttet app ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_Other">
+    <value>Beskyttede apper ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_One">
+    <value>Beskyttet IP-adresse ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_Other">
+    <value>Beskyttede IP-adresser ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Standard_Info">
+    <value>Disse appene og IP-adressene kobles til uten VPN-beskyttelse. All annen trafikk er beskyttet.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Description">
+    <value>Del trafikken din inn i VPN- og ikke-VPN-tunneler med VPN Plus.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Title">
+    <value>Få det beste fra to verdener</value>
   </data>
   <data name="Flyouts_Volume_Description">
     <value>Dette viser hvor mye trafikk som er rutet gjennom VPN-en.</value>
@@ -2269,6 +2368,12 @@ Hastigheten er basert på enhetens nåværende aktivitet – den representerer i
   </data>
   <data name="FreeConnections_WorldwideCoverageUpsell">
     <value>Skaff deg verdensomspennende dekning med VPN Plus</value>
+  </data>
+  <data name="Gateway_Fastest">
+    <value>Raskeste porttjener</value>
+  </data>
+  <data name="Gateway_Random">
+    <value>Tilfeldig porttjener</value>
   </data>
   <data name="Gateways_Page_Description">
     <value>Koble til en porttjener for å få tilgang til organisasjonens VPN.</value>
@@ -2471,12 +2576,29 @@ Hastigheten er basert på enhetens nåværende aktivitet – den representerer i
   <data name="Home_Recents_Unpin">
     <value>Løsne</value>
   </data>
-  <data name="Home_Update_Confirmation_Message">
-    <value>For å fullføre oppdateringsprosessen vil Proton VPN midlertidig koble fra og deaktivere avansert nødstopp hvis aktivert. Vil du fortsette?</value>
-    <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
+  <data name="Home_TitleBar_Menu_About">
+    <value>Om</value>
   </data>
-  <data name="Home_Update_Confirmation_Title">
-    <value>Oppdatere Proton VPN?</value>
+  <data name="Home_TitleBar_Menu_Account">
+    <value>Konto</value>
+  </data>
+  <data name="Home_TitleBar_Menu_ExitTheApp">
+    <value>Avslutt appen</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help">
+    <value>Hjelp</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help_WhatsTheIssue">
+    <value>Hva er problemet?</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Settings">
+    <value>Innstillinger</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Signout">
+    <value>Logg av</value>
+  </data>
+  <data name="Home_TitleBar_Menu_UpdateNow">
+    <value>Oppdater nå</value>
   </data>
   <data name="Home_Update_UpdateAvailable">
     <value>Oppdatering tilgjengelig</value>
@@ -2558,11 +2680,26 @@ Hastigheten er basert på enhetens nåværende aktivitet – den representerer i
     <value>Logger av, vent litt...</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
+  <data name="Notifications_KillSwitch_Description">
+    <value>For å beskytte IP-adressen din blokkerer nødstopp internettforbindelsen.</value>
+  </data>
+  <data name="Notifications_PortForwarding_CopyPortNumber">
+    <value>Kopier portnummer</value>
+  </data>
   <data name="Notifications_PortForwarding_Description">
     <value>Sett dette nummeret i BitTorrent-appen din for større hastighet.</value>
   </data>
+  <data name="Notifications_SessionLimit_Description">
+    <value>Du har nådd den maksimale enhetsgrensen. For å koble til VPN igjen, koble fra en annen enhet.</value>
+  </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
     <value>Planen din har blitt nedgradert til Proton Free, og vi kobler deg til den raskeste gratistjeneren igjen.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Description">
+    <value>Offentlige Wi-Fi-nettverk er mer sårbare for sikkerhetstrusler. Koble til VPN for å surfe trygt.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Title">
+    <value>Usikret Wi-Fi-tilkobling oppdaget</value>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Oppdater nå</value>
@@ -2599,10 +2736,23 @@ Hastigheten er basert på enhetens nåværende aktivitet – den representerer i
   <data name="Overlay_P2P_Title">
     <value>P2P</value>
   </data>
-  <data name="Overlay_SecureCore_Description">
-    <value>Secure Core kobler deg til destinasjonstjeneren din via en andre VPN-tjener med maksimal sikkerhet.
-
-Dette høyere beskyttelsesnivået kan føre til høyere latens og lavere hastigheter.</value>
+  <data name="Overlay_Profile_Description1">
+    <value>Profiler er tilpassede VPN-tilkoblinger som du kan skreddersy til dine behov og lagre for rask tilgang.</value>
+  </data>
+  <data name="Overlay_Profile_Description2">
+    <value>Angi din foretrukne plassering og optimaliser innstillingene dine for sikkerhet, ytelse, spill eller andre scenarier.</value>
+  </data>
+  <data name="Overlay_Profile_LearnMore">
+    <value>Hva er en VPN-profil?</value>
+  </data>
+  <data name="Overlay_Profile_Title">
+    <value>Profiler</value>
+  </data>
+  <data name="Overlay_SecureCore_Description1">
+    <value>Secure Core kobler deg til destinasjonstjeneren din via en andre VPN-tjener med maksimal sikkerhet.</value>
+  </data>
+  <data name="Overlay_SecureCore_Description2">
+    <value>Dette høyere beskyttelsesnivået kan føre til høyere forsinkelse og lavere hastigheter.</value>
   </data>
   <data name="Overlay_SecureCore_LearnMore">
     <value>Hva er Secure Core?</value>
@@ -2659,12 +2809,14 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
   <data name="Overlay_ServerLoad_Title">
     <value>Tjenerbelastning</value>
   </data>
-  <data name="Overlay_SmartRouting_Description">
-    <value>Smart Routing bruker virtuelle tjenere for å gi VPN-dekning i vanskelig tilgjengelige land.
-
-Når du kobler til en Smart Routing-tjener, ser det ut til at du surfer i destinasjonslandet ditt, selv om den fysiske tjeneren befinner seg et annet sted.  
-
-Smart Routing brukes vanligvis til å omgå personvernlover og andre former for sensur.</value>
+  <data name="Overlay_SmartRouting_Description1">
+    <value>Smart Routing bruker virtuelle tjenere for å gi VPN-dekning i land som er vanskelig tilgjengelige.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description2">
+    <value>Når du kobler til en Smart Routing-tjener, ser det ut som om du surfer i destinasjonslandet, selv om den fysiske tjeneren er plassert et annet sted.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description3">
+    <value>Smart Routing brukes vanligvis for å omgå anti-personvernlover og andre former for sensur.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
     <value>Tjenere er fysisk plassert i {0}, men det ser ut til at du surfer fra {1}</value>
@@ -2686,6 +2838,66 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
   </data>
   <data name="Overlay_Tor_Title">
     <value>Tor</value>
+  </data>
+  <data name="Profile_CustomSettings_Description">
+    <value>Profilinnstillinger vil overstyre VPN-innstillingene dine når du er tilkoblet.</value>
+  </data>
+  <data name="Profile_CustomSettings_Header">
+    <value>Legg til egendefinerte innstillinger</value>
+  </data>
+  <data name="Profile_CustomSettings_Hide">
+    <value>Skjul innstillinger</value>
+  </data>
+  <data name="Profile_CustomSettings_Show">
+    <value>Vis innstillinger</value>
+  </data>
+  <data name="Profile_Discard_Description">
+    <value>Du har ulagrede endringer.</value>
+  </data>
+  <data name="Profile_Discard_Title">
+    <value>Forlate siden?</value>
+  </data>
+  <data name="Profile_NatType_Conflict_Description">
+    <value>Dette vil deaktivere portvideresending for denne profilen.</value>
+  </data>
+  <data name="Profile_NetShield_Conflict_Description">
+    <value>Dette vil deaktivere egendefinert DNS for denne profilen.</value>
+  </data>
+  <data name="Profile_Options_Description">
+    <value>Åpne automatisk et nettsted du ønsker når du kobler til denne profilen.</value>
+  </data>
+  <data name="Profile_Options_Header">
+    <value>Koble til og åpne</value>
+  </data>
+  <data name="Profile_Options_Url">
+    <value>Nettstedets URL</value>
+  </data>
+  <data name="Profile_Options_Url_Error">
+    <value>Skriv inn en gyldig nettadresse</value>
+  </data>
+  <data name="Profile_PortForwarding_Conflict_Description">
+    <value>Dette vil endre NAT-typen for denne profilen til streng (type 3).</value>
+  </data>
+  <data name="Profiles_Default_Gaming">
+    <value>Spilling</value>
+  </data>
+  <data name="Profiles_Default_MaxSecurity">
+    <value>Maks. sikkerhet</value>
+  </data>
+  <data name="Profiles_Default_Office">
+    <value>Kontor</value>
+  </data>
+  <data name="Profiles_Default_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Profiles_Default_RandomConnection">
+    <value>Tilfeldig forbindelse</value>
+  </data>
+  <data name="Profiles_Default_Streaming">
+    <value>Strømming USA</value>
+  </data>
+  <data name="Profiles_Default_WorkSchool">
+    <value>Arbeid/Skole</value>
   </data>
   <data name="Profiles_Page_Description">
     <value>Konfigurer dine egne VPN-innstillinger og koble til med ett klikk.</value>
@@ -2724,16 +2936,25 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
     <value>Raskeste gratis tjener</value>
   </data>
   <data name="Server_Feature_B2B">
-    <value>Porttjenere</value>
+    <value>Porttjener</value>
+  </data>
+  <data name="Server_Feature_B2B_Description">
+    <value>Få tilgang til organisasjonens tjenere</value>
   </data>
   <data name="Server_Feature_None">
-    <value>Alle land</value>
+    <value>Standard</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
   </data>
+  <data name="Server_Feature_P2P_Description">
+    <value>Optimalisert for torrent</value>
+  </data>
   <data name="Server_Feature_SecureCore">
     <value>Secure Core</value>
+  </data>
+  <data name="Server_Feature_SecureCore_Description">
+    <value>Dobbel beskyttelse</value>
   </data>
   <data name="Server_Feature_Tor">
     <value>Tor</value>
@@ -2756,9 +2977,6 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
   <data name="Settings_About_FailedToFetch">
     <value>Kan ikke laste inn endringslogginformasjon.</value>
   </data>
-  <data name="Settings_About_GetLatestVersion">
-    <value>Få den nyeste versjonen</value>
-  </data>
   <data name="Settings_About_LearnMore">
     <value>Lær mer</value>
   </data>
@@ -2768,23 +2986,14 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
   <data name="Settings_About_Loading">
     <value>Laster</value>
   </data>
-  <data name="Common_Tags_New">
-    <value>NYTT</value>
-  </data>
   <data name="Settings_About_Title">
     <value>Om</value>
   </data>
-  <data name="Settings_About_TryAgain">
-    <value>Prøv igjen</value>
-  </data>
-  <data name="Settings_About_Update_Description">
-    <value>Få mest mulig ut av VPN-et ditt ved å oppdatere til den nyeste versjonen av appen.</value>
+  <data name="Settings_Account_Account">
+    <value>Konto</value>
   </data>
   <data name="Settings_Account_Exit">
     <value>Avslutt appen</value>
-  </data>
-  <data name="Settings_Account_MyAccount">
-    <value>Min konto</value>
   </data>
   <data name="Settings_Account_SignOut">
     <value>Logg av</value>
@@ -2894,6 +3103,12 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
     <value>Bruker brokobling for å koble til nettverk. TUN gir høyere hastigheter enn TAP, men kan være mindre stabil.</value>
   </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
+    <value>Egendefinert DNS kan ikke slås på fordi du er koblet til en profil med NetShield aktivert.</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenEnabled">
+    <value>Egendefinert DNS er deaktivert fordi du er koblet til en profil med NetShield aktivert.</value>
+  </data>
   <data name="Settings_Connection_Default">
     <value>Standard forbindelse</value>
   </data>
@@ -2947,6 +3162,9 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Description">
     <value>Du vil ikke kunne koble til en egendefinert DNS-tjener når NetShield er aktivert.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Information">
+    <value>NetShield er ikke kompatibel med egendefinert DNS.</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Title">
     <value>Aktivere NetShield?</value>
@@ -3147,6 +3365,20 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
   <data name="Settings_OperatingSystemVersion">
     <value>Operativsystemversjon</value>
   </data>
+  <data name="Settings_OverriddenByProfile_Description1">
+    <value>Denne innstillingen er koblet til den aktive profilen din.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description2">
+    <value>Rediger profilen din for å gjøre endringer, eller koble fra for å redigere de generelle VPN-innstillingene dine.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Tagline">
+    <value>Disse innstillingene er koblet til '{0}'-profilen og kan bare administreres i profiler.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Settings_OverriddenByProfile_Title">
+    <value>Administrer {0} i profiler</value>
+    <comment>{0} is a placeholder for the name of the settings being overridden by the profile. (eg. Manage NetShield in Profiles)</comment>
+  </data>
   <data name="Settings_Page_Title">
     <value>Innstillinger</value>
   </data>
@@ -3197,6 +3429,9 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>
+  </data>
+  <data name="Settings_Reconnection_Title">
+    <value>Koble til på nytt for å ta i bruk endringer</value>
   </data>
   <data name="Settings_RestoreDefault">
     <value>Gjenopprett standardinnstillinger</value>
@@ -3312,7 +3547,7 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_ResetPassword">
-    <value>Tilbakestill passord</value>
+    <value>Glemt passord</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_SignIn">
@@ -3329,7 +3564,7 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
     <value>Logg på</value>
   </data>
   <data name="SignIn_Form_TroubleSigningIn">
-    <value>Problemer med å logge på</value>
+    <value>Kundesenter</value>
     <comment>A button at the bottom of the login window inside Get help popup</comment>
   </data>
   <data name="SignIn_Form_Username">
@@ -3462,6 +3697,18 @@ Smart Routing brukes vanligvis til å omgå personvernlover og andre former for 
   <data name="Upsell_Carousel_Platforms_More">
     <value>+ flere</value>
     <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_Profiles">
+    <value>Få rask tilgang til hyppige tilkoblinger</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Convenience">
+    <value>Angi en profil som standardtilkobling og koble til med 1 klikk</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Creation">
+    <value>Opprett og lagre dine egne VPN-konfigurasjoner med profiler</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Customization">
+    <value>Tilpass plassering, protokoll og innstillinger</value>
   </data>
   <data name="Upsell_Carousel_SecureCore">
     <value>Legg til et ekstra lag med beskyttelse til tilkoblingen din</value>

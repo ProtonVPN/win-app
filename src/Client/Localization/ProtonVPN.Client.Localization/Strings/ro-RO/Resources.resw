@@ -123,6 +123,9 @@
   <data name="Automation_Properties_ConnectionDetails_Page">
     <value>Pagină detalii conexiune</value>
   </data>
+  <data name="Automation_Properties_Connection_Card_Component">
+    <value>Card conexiune</value>
+  </data>
   <data name="Automation_Properties_Features_Bar">
     <value>Bară de funcții</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>Pagină redirecționare port</value>
+  </data>
+  <data name="Automation_Properties_Profile_Page">
+    <value>Pagină profil</value>
   </data>
   <data name="Automation_Properties_Settings_Advanced_Page">
     <value>Pagina setări avansate</value>
@@ -222,17 +228,38 @@
     <value>Deconectare din {0}</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
+  <data name="Common_Actions_Duplicate">
+    <value>Duplicare</value>
+  </data>
   <data name="Common_Actions_Edit">
     <value>Editare</value>
   </data>
   <data name="Common_Actions_Enable">
     <value>Activare</value>
   </data>
+  <data name="Common_Actions_Exit_ProtonVPN">
+    <value>Închidere Proton VPN</value>
+  </data>
+  <data name="Common_Actions_GotIt">
+    <value>Am înțeles</value>
+  </data>
+  <data name="Common_Actions_Install">
+    <value>Instalare</value>
+  </data>
   <data name="Common_Actions_Reconnect">
     <value>Reconectare</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>Eliminare</value>
+  </data>
+  <data name="Common_Actions_Restart">
+    <value>Repornire</value>
+  </data>
+  <data name="Common_Actions_Save">
+    <value>Salvare</value>
+  </data>
+  <data name="Common_Actions_TryAgain">
+    <value>Reîncercare</value>
   </data>
   <data name="Common_Actions_Update">
     <value>Actualizare</value>
@@ -241,10 +268,10 @@
     <value>Modificare</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>**Întrerupătorul de conexiune avansat este activat.** Pentru a utiliza internetul fără VPN, dezactivați-l.</value>
+    <value>Întrerupătorul de conexiune avansat este activat. Pentru a utiliza internetul fără VPN, dezactivați-l.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>**Întrerupătorul de conexiune avansat este activat.** Dacă veți continua, accesul la internet va fi blocat.</value>
+    <value>Întrerupătorul de conexiune avansat este activat. Dacă veți continua, accesul la internet va fi blocat.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
     <value>Se va întrerupe conexiunea prin VPN.</value>
@@ -264,6 +291,21 @@
   <data name="Common_States_Updating">
     <value>Se actualizează...</value>
   </data>
+  <data name="Common_Tags_New">
+    <value>NOU</value>
+  </data>
+  <data name="Components_Update_GetMostFromYourVpn">
+    <value>Obțineți tot ce poate oferi aplicația VPN actualizând-o la ultima versiune.</value>
+  </data>
+  <data name="Components_Update_MoreLikelyIssues">
+    <value>Este mai probabil să aveți probleme cu versiunile mai vechi ale Proton VPN.</value>
+  </data>
+  <data name="Components_Update_UpdateAvailable">
+    <value>Actualizare disponibilă</value>
+  </data>
+  <data name="Components_Update_UpdateProtonVpn">
+    <value>Actualizare Proton VPN</value>
+  </data>
   <data name="Connection_Error_EditProfile">
     <value>Editare profil</value>
   </data>
@@ -271,7 +313,7 @@
     <value>Proton VPN a eșuat să preia certificatul de autentificare datorită problemelor de rețea.</value>
   </data>
   <data name="Connection_Error_NoServers">
-    <value>Nu sunt servere disponibile acum pentru selecția curentă. Selectați o opțiune diferită.</value>
+    <value>Toate serverele din selecție nu sunt disponibile. Extindeți selecția și reîncercați.</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
     <value>Serverul „{0}” selectat nu este disponibil. Selectați un server diferit sau reîncercați mai târziu.</value>
@@ -308,10 +350,10 @@
     <value>Nu suntem siguri ce s-a întâmplat aici. Reîncercați sau contactați echipa noastră de asistență pentru clienți.</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
-    <value>Vedeți soluții posibile</value>
+    <value>Afișare soluții</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
-    <value>Proton VPN nu s-a putut conecta deoarece un adaptor de rețea WireGuard este deja utilizat. Deconectați orice VPN activ și reîncercați. Alternativ, puteți schimba protocolul în „Setări avansate”.</value>
+    <value>Adaptorul WireGuard este deja accesat. Deconectați-vă de la orice alt VPN care rulează pe dispozitiv și reîncercați.</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Autoselectare din</value>
@@ -475,8 +517,19 @@
   <data name="Connections_Profiles_Empty_Title">
     <value>Creați primul profil</value>
   </data>
+  <data name="Connections_Profiles_Location_Header">
+    <value>Selectați tipul și locul conexiunii</value>
+  </data>
   <data name="Connections_Profiles_Name">
-    <value>Nume profil</value>
+    <value>Atribuiți unu nume profilului</value>
+  </data>
+  <data name="Connections_Profiles_Name_Default">
+    <value>Nedenumit</value>
+    <comment>This will be used as the default profile name if the user creates a profile without entering a name</comment>
+  </data>
+  <data name="Connections_Profiles_Name_Duplicate">
+    <value>Copie a {0}</value>
+    <comment>This will be used as the profile name when duplicating a profile. {0} is a placeholder for the original profile name.</comment>
   </data>
   <data name="Connections_Profiles_New">
     <value>Profil nou</value>
@@ -486,8 +539,11 @@
     <value>Profilurile sunt disponibile în VPN Plus</value>
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
   </data>
-  <data name="Connections_Profiles_Save">
-    <value>Salvare profil</value>
+  <data name="Connections_Profiles_Settings_Description">
+    <value>Setările profilului vor înlocui setările VPN la conectare.</value>
+  </data>
+  <data name="Connections_Profiles_Settings_Header">
+    <value>Adăugare setări personale</value>
   </data>
   <data name="Connections_Random">
     <value>Aleatoriu</value>
@@ -623,9 +679,6 @@
   <data name="Countries_All">
     <value>Toate</value>
   </data>
-  <data name="Countries_Cities">
-    <value>Orașe</value>
-  </data>
   <data name="Countries_City_One">
     <value>{0} oraș</value>
   </data>
@@ -642,19 +695,8 @@
   <data name="Countries_Fastest">
     <value>Cea mai rapidă țară</value>
   </data>
-  <data name="Countries_Info">
-    <value>Informații</value>
-  </data>
   <data name="Countries_NoSearchResults">
     <value>Nu s-au găsit rezultate.</value>
-  </data>
-  <data name="Countries_NumberOfCities">
-    <value>Orașe ({0})</value>
-    <comment>{0} represents the number of cities</comment>
-  </data>
-  <data name="Countries_NumberOfCountries">
-    <value>Țări ({0})</value>
-    <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_NumberOfServers">
     <value>Servere ({0})</value>
@@ -662,10 +704,6 @@
   </data>
   <data name="Countries_P2P">
     <value>P2P</value>
-  </data>
-  <data name="Countries_P2PCountries">
-    <value>Țări P2P ({0})</value>
-    <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_P2P_Cities">
     <value>Orașe P2P ({0})</value>
@@ -686,25 +724,8 @@
   <data name="Countries_SecureCore">
     <value>Secure Core</value>
   </data>
-  <data name="Countries_SecureCoreCountries">
-    <value>Țări cu Secure Core ({0})</value>
-    <comment>{0} represents the number of countries</comment>
-  </data>
-  <data name="Countries_SecureCoreServers">
-    <value>Servere Secure Core ({0})</value>
-    <comment>{0} represents the number of severs</comment>
-  </data>
   <data name="Countries_SecureCore_Description">
     <value>Adăugați încă un nivel de criptare a conexiunii VPN.</value>
-  </data>
-  <data name="Countries_Server_One">
-    <value>{0} server</value>
-  </data>
-  <data name="Countries_Server_Few">
-    <value>{0} servere</value>
-  </data>
-  <data name="Countries_Server_Other">
-    <value>{0} de servere</value>
   </data>
   <data name="Countries_ServerLoad">
     <value>Solicitare server</value>
@@ -712,16 +733,8 @@
   <data name="Countries_SmartRouting">
     <value>Smart routing</value>
   </data>
-  <data name="Countries_SmartRouting_Description">
-    <value>Serverele se află fizic în {0}, dar se pare că navigați din {1}.</value>
-    <comment>{0} and {1} represent country names.</comment>
-  </data>
   <data name="Countries_Tor">
     <value>Tor</value>
-  </data>
-  <data name="Countries_TorCountries">
-    <value>Țări Tor ({0})</value>
-    <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_TorServers">
     <value>Servere Tor ({0})</value>
@@ -732,10 +745,6 @@
   </data>
   <data name="Countries_TryDifferentKeyword">
     <value>Încercați alt cuvânt cheie.</value>
-  </data>
-  <data name="Countries_ViaCountry">
-    <value>via {0}</value>
-    <comment>{0} represents country name. For example: via Australia.</comment>
   </data>
   <data name="Country_Fastest">
     <value>Cea mai rapidă țară</value>
@@ -1753,6 +1762,15 @@
     <value>Necunoscută</value>
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
+  <data name="Dialogs_BaseFilteringEngine_Description">
+    <value>Serviciul Base Filtering Engine (BFE) de pe dispozitivul Windows este dezactivat. Acesta trebuie să fie activat pentru ca Proton VPN să funcționeze.</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_HowToEnable">
+    <value>Cum se activează serviciul Base Filtering Engine</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Title">
+    <value>Activați serviciul Base Filtering Engine pentru a continua</value>
+  </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
     <value>Obțineți schimbări nelimitate ale serverului cu VPN Plus.</value>
   </data>
@@ -1767,6 +1785,12 @@
   </data>
   <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
     <value>Modificați planul pentru a obține din nou acces la serverele și funcțiile Plus.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Description">
+    <value>Se pare că serviciul Proton VPN este dezactivat. Va trebui să-l reactivați pentru a vă conecta.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Title">
+    <value>Activați serviciul Windows pentru a continua</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free vă conectează automat la cel mai rapid server din {0} țară disponibilă. Acesta va fi în mod normal cel mai apropiat server de locul de unde vă conectați.</value>
@@ -1814,6 +1838,12 @@ Latența mare vă poate încetini conexiunea.</value>
   </data>
   <data name="Dialogs_Latency_Title">
     <value>Ce este latența?</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Description">
+    <value>Conexiunea a fost dezactivată deoarece folosiți un server care nu suportă traficul de la persoană-la-persoană (P2P). P2P nu este suportat pe serverele gratuite. Folosiți un server P2P diferit.</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Title">
+    <value>Trafic P2P detectat</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>Cum se folosește partajarea fișierelor prin torrent cu P2P</value>
@@ -1898,9 +1928,6 @@ Latența mare vă poate încetini conexiunea.</value>
   <data name="Dialogs_ReportIssue_Result_Fail_Description">
     <value>Nu s-a putut trimite raportul. Verificați-vă conexiunea și reîncercați.</value>
   </data>
-  <data name="Dialogs_ReportIssue_Result_RetryAction">
-    <value>Reîncercare</value>
-  </data>
   <data name="Dialogs_ReportIssue_Result_Success">
     <value>Raport trimis</value>
   </data>
@@ -1916,42 +1943,6 @@ Latența mare vă poate încetini conexiunea.</value>
   </data>
   <data name="Dialogs_ReportIssue_Title">
     <value>Raportare o problemă</value>
-  </data>
-  <data name="Dialogs_SecureCore_AdvancedPrivacy">
-    <value>Intimitate avansată</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_Description">
-    <value>Secure Core vă conectează la serverul de destinație printr-un al doilea server VPN de securitate maximă.
-
-Acest nivel mai mare de protecție poate provoca latență mai mare și viteze mai mici.</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_HighPrivacy">
-    <value>Intimitate mai mare</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_HigherLatency">
-    <value>Latență mai mare</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_LowerLatency">
-    <value>Latență scăzută</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_SecureCoreConnection">
-    <value>Conexiune VPN
-Secure Core</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_StandardConnection">
-    <value>Conexiune VPN
-standard</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_Title">
-    <value>Secure Core</value>
-    <comment>obsolete</comment>
   </data>
   <data name="Dialogs_ServerLoad_Description">
     <value>Încărcarea serverului arată cât de aproape este un server de capacitatea sa maximă.
@@ -1979,18 +1970,20 @@ O sarcină mare a serverului vă poate încetini conexiunea.</value>
   <data name="Dialogs_ServerLoad_Title">
     <value>Care este solicitarea serverului?</value>
   </data>
-  <data name="Dialogs_SmartRouting_Description">
-    <value>Smart Routing folosește servere virtuale pentru a oferi acoperire VPN în țările greu accesibile.
-
-Când vă conectați la un server Smart Routing, veți părea că navigați în țara de destinație, chiar dacă serverul fizic este situat în altă parte.
-
-Smart Routing este de obicei folosit pentru a evita legile anticonfidențialitate și alte forme de cenzură.</value>
-  </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>Poate mai târziu</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Description">
+    <value>Se pare că dispozitivul folosește un server proxy. Acesta ar putea interfera cu protecția oferită de VPN.</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Disable">
+    <value>Dezactivare proxy</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Title">
+    <value>Server proxy detectat</value>
   </data>
   <data name="Dialogs_Tor_Description">
     <value>Conectați-vă la un server Tor pentru a accesa servicii ascunse și site-uri de tip onion folosind orice navigator web.</value>
@@ -2016,9 +2009,6 @@ Smart Routing este de obicei folosit pentru a evita legile anticonfidențialitat
   <data name="Dialogs_Troubleshooting_Description">
     <value>Aceste remedieri rapide vă pot ajuta să vă conectați la Proton.</value>
   </data>
-  <data name="Dialogs_Troubleshooting_DidNotWork">
-    <value>Nu a funcționat?</value>
-  </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork">
     <value>Folosiți o rețea diferită.</value>
   </data>
@@ -2033,6 +2023,18 @@ Smart Routing este de obicei folosit pentru a evita legile anticonfidențialitat
   </data>
   <data name="Dialogs_Troubleshooting_Title">
     <value>Ajutor conectare</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOff">
+    <value>Aceasta vă va deconecta de la VPN. Orice conexiune la internet activă va fi temporar neprotejată.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn">
+    <value>Aceasta vă va deconecta de la VPN și va dezactiva temporar întrerupătorul de conexiune. Orice conexiune la internet activă va fi temporar neprotejată.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Install">
+    <value>Instalați actualizarea?</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Restart">
+    <value>Reporniți Proton VPN pentru a finaliza actualizarea</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Description">
     <value>Se pare că ceasul sistemului nu este sincronizat. Aceasta ar putea provoca erori la conectarea în VPN.</value>
@@ -2085,10 +2087,11 @@ Smart Routing este de obicei folosit pentru a evita legile anticonfidențialitat
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Bun venit la VPN Plus</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description">
-    <value>Felicitări! Ați deblocat funcții premium de securitate și performanță pentru toate serviciile Proton, plus 
-
-Bucurați-vă de cea mai bună confidențialitate de la Proton.</value>
+  <data name="Dialogs_WelcomeUnlimited_Description1">
+    <value>Felicitări! Ați deblocat funcțiile de securitate și performanță premium în toate serviciile Proton.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description2">
+    <value>Bucurați-vă de cea mai bună confidențialitate cu Proton.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Bun venit la Proton Unlimited</value>
@@ -2108,12 +2111,14 @@ Bucurați-vă de cea mai bună confidențialitate de la Proton.</value>
   <data name="Exit_Title">
     <value>Închideți Proton VPN</value>
   </data>
-  <data name="Flyouts_Country_Description">
-    <value>Navigarea fără VPN vă expune la restricțiile pe internet pe bază de poziție geografică.
-
-Site-urile web pot folosi blocări geografice pentru a restricționa conținutul la anumite regiuni. Guvernele pot și ele să impună ISP-urilor (furnizorii de servicii de internet) să blocheze anumite site-uri web din țara lor.
-
-Un VPN face să pară că navigați din altă parte, protejându-vă de supraveghere și cenzură.</value>
+  <data name="Flyouts_Country_Description1">
+    <value>Navigând fără VPN vă expune la restricțiile de internet bazate pe poziția geografică.</value>
+  </data>
+  <data name="Flyouts_Country_Description2">
+    <value>Site-urile web pot folosi blocări geografice pentru a restricționa conținutul la anumite zone de pe glob. Guvernele pot și ele instrui ISP-urile (furnizorii de servicii de internet) să blocheze anumite site-uri web din țara lor.</value>
+  </data>
+  <data name="Flyouts_Country_Description3">
+    <value>Un VPN face să pară că navigați din altă parte, protejându-vă de supraveghere și cenzură.</value>
   </data>
   <data name="Flyouts_Country_Title">
     <value>Țara</value>
@@ -2124,10 +2129,11 @@ Un VPN face să pară că navigați din altă parte, protejându-vă de supraveg
   <data name="Flyouts_IpAddress_Description_Connected">
     <value>Adresa IP din VPN vă maschează adresa IP reală. Acest lucru face să pară că navigați de la adresa din VPN, astfel încât activitatea online nu vă poate fi corelată cu cea a dispozitivului.</value>
   </data>
-  <data name="Flyouts_IpAddress_Description_Disconnected">
-    <value>Acest cod unic poate fi folosit de site-uri web și ISP (furnizori de servicii de internet) pentru a vă corela poziția geografică și istoricul de navigare cu dispozitivul pe care îl folosiți.
-
-Un VPN vă maschează adresa IP, ceea ce face mai dificil ca activitatea online să vă trădeze identitatea.</value>
+  <data name="Flyouts_IpAddress_Description_Disconnected1">
+    <value>Acest cod unic poate fi folosit de site-uri web și ISP-uri (furnizorii de servicii de internet) pentru a vă conecta poziția geografică și istoricul de navigare la dispozitivul personal.</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected2">
+    <value>Un VPN vă maschează adresa IP, făcând dificil să vi se urmărească activitatea care să vă identifice.</value>
   </data>
   <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
     <value>Ce este o adresă IP?</value>
@@ -2144,12 +2150,14 @@ Un VPN vă maschează adresa IP, ceea ce face mai dificil ca activitatea online 
   <data name="Flyouts_IpAddress_YourIpIsVisible">
     <value>Adresa IP este vizibilă</value>
   </data>
-  <data name="Flyouts_Isp_Description">
-    <value>ISP-ul dumneavoastră (furnizor de servicii de internet) este compania care vă conectează la internet.
-
-Acesta vă poate înregistra activitatea online. În unele țări, acesta vă poate vinde datele agenților de publicitate. În altele, li se poate cere să le furnizeze guvernului.
-
-Un VPN vă ascunde adresa IP, protejându-vă de interferența ISP-ului.</value>
+  <data name="Flyouts_Isp_Description1">
+    <value>ISP-ul (furnizorul de servicii de internet) este compania care vă conectează la internet.</value>
+  </data>
+  <data name="Flyouts_Isp_Description2">
+    <value>Aceasta vă poate înregistra activitatea online. În unele țări, vă poate vinde datele personale agenților de publicitate. În altele, li se poate solicita predarea acestora către guvern.</value>
+  </data>
+  <data name="Flyouts_Isp_Description3">
+    <value>Un VPN vă ascunde adresa IP, protejându-vă de interferența cu ISP-ul.</value>
   </data>
   <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
     <value>Ce este un furnizor de servicii de internet (ISP)</value>
@@ -2159,6 +2167,54 @@ Un VPN vă ascunde adresa IP, protejându-vă de interferența ISP-ului.</value>
   </data>
   <data name="Flyouts_Isp_Warning">
     <value>Furnizorul de internet poate vedea paginile web pe care le vizitați</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Advanced_Success">
+    <value>Blochează întregul acces la internet când nu aveți conexiune la Proton VPN.</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info">
+    <value>Adresa IP v-ar putea fi expusă dacă ar cădea conexiunea la VPN.</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Standard_Success">
+    <value>Dacă se întrerupe conexiunea la VPN, se va întrerupe și conexiunea la internet până la reconectarea în VPN.</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Connected">
+    <value>Întrerupătorul avansat de conexiune se aplică chiar și când vă deconectați intenționat de la VPN.</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Disconnected">
+    <value>Pentru reveni online, conectați-vă la VPN sau dezactivați întrerupătorul de conexiune.</value>
+  </data>
+  <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
+    <value>Aveți protecție împotriva reclamelor, instrumentelor de urmărire și programelor malware.</value>
+  </data>
+  <data name="Flyouts_NetShield_Info">
+    <value>Vă protejați de reclame, instrumente de urmărire și programe malware de pe site-uri și aplicații.</value>
+  </data>
+  <data name="Flyouts_NetShield_MalwareOnly_Success">
+    <value>Aveți protecție doar împotriva programelor malware.</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Description">
+    <value>Blocați reclamele, instrumentele de urmărire și programele malware cu VPN Plus.</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Title">
+    <value>Bucurați-vă de navigare pe internet fără reclame</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort">
+    <value>Număr port activ</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Info">
+    <value>Introduceți numărul portului activ în aplicația BitTorrent pentru a vă îmbunătăți viteza P2P.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Info">
+    <value>Îmbunătățește viteza de descărcare persoană-la-persoană (P2P)</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Description">
+    <value>Îmbunătățiți performanța de partajare a fișierelor persoană-la-persoană (P2P) cu VPN Plus.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Title">
+    <value>Îmbunătățiți viteza P2P</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Warning">
+    <value>Pentru a folosi redirecționarea portului, conectați-vă la un server P2P.</value>
   </data>
   <data name="Flyouts_Protocol_Description">
     <value>Un protocol VPN determină cum este criptat traficul pe internet și transmis prin VPN.</value>
@@ -2199,10 +2255,11 @@ Un VPN vă ascunde adresa IP, protejându-vă de interferența ISP-ului.</value>
   <data name="Flyouts_Speed_BoostedByVpnAccelerator">
     <value>Accelerată de VPN Accelerator</value>
   </data>
-  <data name="Flyouts_Speed_Description">
-    <value>Aceasta arată câte date sunt transmise prin Proton VPN în fiecare secundă.
-
-Viteza se bazează pe activitatea curentă a dispozitivului - nu reprezintă viteza maximă din VPN.</value>
+  <data name="Flyouts_Speed_Description1">
+    <value>Aceasta arată câte date sunt transmise prin Proton VPN în fiecare secundă.</value>
+  </data>
+  <data name="Flyouts_Speed_Description2">
+    <value>Viteza este bazată pe activitatea curentă a dispozitivului — nu reprezintă viteza maximă a VPN-ului.</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>Descărcare</value>
@@ -2217,6 +2274,57 @@ Viteza se bazează pe activitatea curentă a dispozitivului - nu reprezintă vit
   <data name="Flyouts_Speed_Upload">
     <value>Încărcare</value>
     <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_One">
+    <value>Aplicații excluse ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_Few">
+    <value>Aplicații excluse ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_Other">
+    <value>Aplicații excluse ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_One">
+    <value>Adrese IP excluse ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_Few">
+    <value>Adrese IP excluse ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_Other">
+    <value>Adrese IP excluse ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Info">
+    <value>Permite aplicațiilor de încredere și adresele IP să se conecteze fără protecția VPN.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Inverse_Info">
+    <value>Doar aceste aplicații selectate și adrese IP se conectează prin VPN. Orice alt trafic nu este protejat.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_One">
+    <value>Aplicații protejate ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_Few">
+    <value>Aplicații protejate ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_Other">
+    <value>Aplicații protejate ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_One">
+    <value>Adrese IP protejate ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_Few">
+    <value>Adrese IP protejate ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_Other">
+    <value>Adrese IP protejate ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Standard_Info">
+    <value>Aceste aplicații și adrese IP se conectează fără VPN. Orice alt trafic este protejat.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Description">
+    <value>Divizați traficul în tunele cu VPN și fără VPN cu VPN Plus.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Title">
+    <value>Obțineți maximum din ambele părți</value>
   </data>
   <data name="Flyouts_Volume_Description">
     <value>Aceasta artă cât trafic este direcționat prin VPN.</value>
@@ -2353,6 +2461,12 @@ Viteza se bazează pe activitatea curentă a dispozitivului - nu reprezintă vit
   </data>
   <data name="FreeConnections_WorldwideCoverageUpsell">
     <value>Obțineți acoperire la nivel mondial cu VPN Plus</value>
+  </data>
+  <data name="Gateway_Fastest">
+    <value>Cea mai rapidă poartă de acces</value>
+  </data>
+  <data name="Gateway_Random">
+    <value>Poartă de acces aleatorie</value>
   </data>
   <data name="Gateways_Page_Description">
     <value>Conectați-vă la o poartă de acces pentru a accesa VPN-ul organizației.</value>
@@ -2561,12 +2675,29 @@ Viteza se bazează pe activitatea curentă a dispozitivului - nu reprezintă vit
   <data name="Home_Recents_Unpin">
     <value>Anulare fixare</value>
   </data>
-  <data name="Home_Update_Confirmation_Message">
-    <value>Pentru a finaliza procesul de actualizare, Proton VPN se va deconecta temporar și se va dezactiva întrerupătorul de conexiune dacă una din aceste funcții este activă. Continuați?</value>
-    <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
+  <data name="Home_TitleBar_Menu_About">
+    <value>Despre</value>
   </data>
-  <data name="Home_Update_Confirmation_Title">
-    <value>Actualizați Proton VPN?</value>
+  <data name="Home_TitleBar_Menu_Account">
+    <value>Cont</value>
+  </data>
+  <data name="Home_TitleBar_Menu_ExitTheApp">
+    <value>Ieșire din aplicație</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help">
+    <value>Ajutor</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help_WhatsTheIssue">
+    <value>Care este problema?</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Settings">
+    <value>Setări</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Signout">
+    <value>Deconectare</value>
+  </data>
+  <data name="Home_TitleBar_Menu_UpdateNow">
+    <value>Actualizare</value>
   </data>
   <data name="Home_Update_UpdateAvailable">
     <value>Actualizare disponibilă</value>
@@ -2648,11 +2779,26 @@ Viteza se bazează pe activitatea curentă a dispozitivului - nu reprezintă vit
     <value>Se deconectează, așteptați...</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
+  <data name="Notifications_KillSwitch_Description">
+    <value>Pentru a vă proteja adresa IP, întrerupătorul de conexiune vă blochează conexiunea la internet.</value>
+  </data>
+  <data name="Notifications_PortForwarding_CopyPortNumber">
+    <value>Copiere număr port</value>
+  </data>
   <data name="Notifications_PortForwarding_Description">
     <value>Setați acest număr în aplicația BitTorrent pentru o viteză sporită.</value>
   </data>
+  <data name="Notifications_SessionLimit_Description">
+    <value>Ați atins limita de dispozitive utilizate. Pentru a vă reconecta la VPN, deconectați-vă de pe alt dispozitiv.</value>
+  </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
     <value>Planul v-a fost retrogradat la Proton Free și vă reconectam la cel mai rapid server gratuit.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Description">
+    <value>Rețelele Wi-Fi publice sunt mai vulnerabile la amenințările de securitate. Conectați-vă la VPN pentru a naviga în siguranță.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Title">
+    <value>S-a detectat o conexiune Wi-Fi nesigură</value>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Actualizare acum</value>
@@ -2689,10 +2835,23 @@ Viteza se bazează pe activitatea curentă a dispozitivului - nu reprezintă vit
   <data name="Overlay_P2P_Title">
     <value>P2P</value>
   </data>
-  <data name="Overlay_SecureCore_Description">
-    <value>Secure Core vă conectează la serverul de destinație printr-un al doilea server VPN cu securitate maximă.
-
-Acest nivel mai ridicat de protecție poate cauza o latență mai mare și viteze mai mici.</value>
+  <data name="Overlay_Profile_Description1">
+    <value>Profilurile sunt conexiuni VPN personalizate pe care le puteți adapta nevoilor personale și slava pentru accesare rapidă.</value>
+  </data>
+  <data name="Overlay_Profile_Description2">
+    <value>Setați-vă locul preferat ți optimizați-vă setările pentru securitate, performanță, jocuri sau orice alt scenariu.</value>
+  </data>
+  <data name="Overlay_Profile_LearnMore">
+    <value>Ce este un profil VPN?</value>
+  </data>
+  <data name="Overlay_Profile_Title">
+    <value>Profiluri</value>
+  </data>
+  <data name="Overlay_SecureCore_Description1">
+    <value>Secure Core vă conectează la serverul de destinație printr-un alt server VPN de maximă securitate.</value>
+  </data>
+  <data name="Overlay_SecureCore_Description2">
+    <value>Acest nivel ridicat de protecție poate cauza o latență mai mare și viteză mai redusă.</value>
   </data>
   <data name="Overlay_SecureCore_LearnMore">
     <value>Ce este Secure Core?</value>
@@ -2749,12 +2908,14 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
   <data name="Overlay_ServerLoad_Title">
     <value>Solicitare server</value>
   </data>
-  <data name="Overlay_SmartRouting_Description">
-    <value>Smart Routing folosește servere virtuale pentru a oferi acoperire VPN în țările greu accesibile.
-    
-Când vă conectați la un server Smart Routing, veți părea că navigați în țara de destinație, chiar dacă serverul fizic este situat în altă parte.  
-
-Smart Routing este de obicei folosit pentru a evita legile anti-confidențialitate și alte forme de cenzură.</value>
+  <data name="Overlay_SmartRouting_Description1">
+    <value>Smart Routing folosește servere virtuale pentru a furniza acoperire VPN în țările greu de accesat.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description2">
+    <value>Când vă conectați la un server Smart Routing, va părea că navigați în țara de destinație, chiar dacă serverul fizic este situat în altă parte.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description3">
+    <value>Smart Routing este de obicei folosit pentru a ocoli legile anticonfidențialitate și alte forme de cenzură.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
     <value>Serverele se află fizic în {0}, dar se pare că navigați din {1}</value>
@@ -2776,6 +2937,66 @@ Smart Routing este de obicei folosit pentru a evita legile anti-confidențialita
   </data>
   <data name="Overlay_Tor_Title">
     <value>Tor</value>
+  </data>
+  <data name="Profile_CustomSettings_Description">
+    <value>Setările profilului vor înlocui setările VPN la conectare.</value>
+  </data>
+  <data name="Profile_CustomSettings_Header">
+    <value>Adăugare setări personale</value>
+  </data>
+  <data name="Profile_CustomSettings_Hide">
+    <value>Ascundere setări</value>
+  </data>
+  <data name="Profile_CustomSettings_Show">
+    <value>Afișare setări</value>
+  </data>
+  <data name="Profile_Discard_Description">
+    <value>Aveți modificări nesalvate.</value>
+  </data>
+  <data name="Profile_Discard_Title">
+    <value>Părăsiți pagina?</value>
+  </data>
+  <data name="Profile_NatType_Conflict_Description">
+    <value>Aceasta va dezactiva redirecționarea portului pentru acest profil.</value>
+  </data>
+  <data name="Profile_NetShield_Conflict_Description">
+    <value>Aceasta va dezactiva DNS-ul personal pentru acest profil.</value>
+  </data>
+  <data name="Profile_Options_Description">
+    <value>Deschidere automată a unei pagini web alese când vă conectați la acest profil.</value>
+  </data>
+  <data name="Profile_Options_Header">
+    <value>Conectare și accesare</value>
+  </data>
+  <data name="Profile_Options_Url">
+    <value>URL Website</value>
+  </data>
+  <data name="Profile_Options_Url_Error">
+    <value>Introduceți un URL valid</value>
+  </data>
+  <data name="Profile_PortForwarding_Conflict_Description">
+    <value>Aceasta va schimba tipul de NAT pentru acest profil la strict (tip 3).</value>
+  </data>
+  <data name="Profiles_Default_Gaming">
+    <value>Jocuri</value>
+  </data>
+  <data name="Profiles_Default_MaxSecurity">
+    <value>Securitate maximă</value>
+  </data>
+  <data name="Profiles_Default_Office">
+    <value>Birou</value>
+  </data>
+  <data name="Profiles_Default_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Profiles_Default_RandomConnection">
+    <value>Conexiune aleatoare</value>
+  </data>
+  <data name="Profiles_Default_Streaming">
+    <value>Transmisii în flux SUA</value>
+  </data>
+  <data name="Profiles_Default_WorkSchool">
+    <value>Serviciu/Școală</value>
   </data>
   <data name="Profiles_Page_Description">
     <value>Configurați-vă propriile setări pentru VPN și conectați-vă cu un singur clic.</value>
@@ -2814,16 +3035,25 @@ Smart Routing este de obicei folosit pentru a evita legile anti-confidențialita
     <value>Cel mai rapid server gratuit</value>
   </data>
   <data name="Server_Feature_B2B">
-    <value>Porți de acces</value>
+    <value>Poartă de acces</value>
+  </data>
+  <data name="Server_Feature_B2B_Description">
+    <value>Accesați serverele organizației</value>
   </data>
   <data name="Server_Feature_None">
-    <value>Toate țările</value>
+    <value>Standard</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
   </data>
+  <data name="Server_Feature_P2P_Description">
+    <value>Optimizat torrente</value>
+  </data>
   <data name="Server_Feature_SecureCore">
     <value>Secure Core</value>
+  </data>
+  <data name="Server_Feature_SecureCore_Description">
+    <value>Protecție dublă</value>
   </data>
   <data name="Server_Feature_Tor">
     <value>Tor</value>
@@ -2846,9 +3076,6 @@ Smart Routing este de obicei folosit pentru a evita legile anti-confidențialita
   <data name="Settings_About_FailedToFetch">
     <value>Eșuare încărcare informații cu istoricul modificărilor.</value>
   </data>
-  <data name="Settings_About_GetLatestVersion">
-    <value>Luați ultima versiune!</value>
-  </data>
   <data name="Settings_About_LearnMore">
     <value>Detalii</value>
   </data>
@@ -2858,23 +3085,14 @@ Smart Routing este de obicei folosit pentru a evita legile anti-confidențialita
   <data name="Settings_About_Loading">
     <value>Se încarcă</value>
   </data>
-  <data name="Common_Tags_New">
-    <value>NOU</value>
-  </data>
   <data name="Settings_About_Title">
     <value>Despre</value>
   </data>
-  <data name="Settings_About_TryAgain">
-    <value>Reîncercare</value>
-  </data>
-  <data name="Settings_About_Update_Description">
-    <value>Obțineți tot ce poate oferi aplicația VPN actualizând-o la ultima versiune.</value>
+  <data name="Settings_Account_Account">
+    <value>Cont</value>
   </data>
   <data name="Settings_Account_Exit">
     <value>Ieși din aplicație</value>
-  </data>
-  <data name="Settings_Account_MyAccount">
-    <value>Contul meu</value>
   </data>
   <data name="Settings_Account_SignOut">
     <value>Deconectare</value>
@@ -2984,6 +3202,12 @@ Smart Routing este de obicei folosit pentru a evita legile anti-confidențialita
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
     <value>Folosește punți pentru a conecta rețelele. TUN oferă viteze mai mari decât TAP, dar poate fi mai puțin stabil.</value>
   </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
+    <value>DNS-ul personal nu poate fi activat deoarece v-ați conectat la un profil cu NetShield activat.</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenEnabled">
+    <value>DNS-ul personal este dezactivat deoarece v-ați conectat la un profil cu NetShield activat.</value>
+  </data>
   <data name="Settings_Connection_Default">
     <value>Conexiune implicită</value>
   </data>
@@ -3038,6 +3262,9 @@ Smart Routing este de obicei folosit pentru a evita legile anti-confidențialita
   <data name="Settings_Connection_NetShield_Conflict_Description">
     <value>Nu vă veți putea conecta cu un server DNS personal atunci când NetShield este activat.</value>
   </data>
+  <data name="Settings_Connection_NetShield_Conflict_Information">
+    <value>NetShield nu este compatibil cu DNS-uri personale.</value>
+  </data>
   <data name="Settings_Connection_NetShield_Conflict_Title">
     <value>Activați NetShield?</value>
   </data>
@@ -3087,11 +3314,11 @@ Smart Routing este de obicei folosit pentru a evita legile anti-confidențialita
     <value>Accesare profiluri</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Message">
-    <value>În prezent, folosiți conexiunea de la un profil VPN.
+    <value>Acum folosiți conexiunea de la un profil VPN.
 
 • Pentru a schimba protocolul pentru această conexiune, deconectați-vă, apoi editați-vă profilul.
 
-• Pentru a schimba protocolul pentru alte conexiuni VPN, mai întâi va trebui să vă deconectați de la acest profil.</value>
+• Pentru a schimba protocolul pentru alte conexiuni VPN, va trebui mai întâi să vă deconectați de la acest profil.</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Title">
     <value>Modificare protocol în profiluri</value>
@@ -3237,6 +3464,20 @@ Smart Routing este de obicei folosit pentru a evita legile anti-confidențialita
   <data name="Settings_OperatingSystemVersion">
     <value>Versiune sistem de operare</value>
   </data>
+  <data name="Settings_OverriddenByProfile_Description1">
+    <value>Această setare este conectată la profilul activ.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description2">
+    <value>Editați-vă profilul pentru a efectua modificări sau deconectați-vă pentru a edita setările generale din VPN.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Tagline">
+    <value>Aceste setări sunt conectate la profilil „{0}” și pot fi gestionate doar în secțiunea „Profiluri”.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Settings_OverriddenByProfile_Title">
+    <value>Gestionare {0} în profiluri</value>
+    <comment>{0} is a placeholder for the name of the settings being overridden by the profile. (eg. Manage NetShield in Profiles)</comment>
+  </data>
   <data name="Settings_Page_Title">
     <value>Setări</value>
   </data>
@@ -3287,6 +3528,9 @@ Smart Routing este de obicei folosit pentru a evita legile anti-confidențialita
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>
+  </data>
+  <data name="Settings_Reconnection_Title">
+    <value>Reconectați pentru aplicare modificări</value>
   </data>
   <data name="Settings_RestoreDefault">
     <value>Restaurare setări implicite</value>
@@ -3402,7 +3646,7 @@ Smart Routing este de obicei folosit pentru a evita legile anti-confidențialita
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_ResetPassword">
-    <value>Resetare parolă</value>
+    <value>Am uitat parola</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_SignIn">
@@ -3419,7 +3663,7 @@ Smart Routing este de obicei folosit pentru a evita legile anti-confidențialita
     <value>Conectare</value>
   </data>
   <data name="SignIn_Form_TroubleSigningIn">
-    <value>Probleme la conectare</value>
+    <value>Centrul de asistență</value>
     <comment>A button at the bottom of the login window inside Get help popup</comment>
   </data>
   <data name="SignIn_Form_Username">
@@ -3552,6 +3796,18 @@ Smart Routing este de obicei folosit pentru a evita legile anti-confidențialita
   <data name="Upsell_Carousel_Platforms_More">
     <value>+ mai multe</value>
     <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_Profiles">
+    <value>Obțineți acces rapid la conexiunile frecvente</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Convenience">
+    <value>Setați un profil ca și conexiune implicită și conectați-vă cu un clic</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Creation">
+    <value>Creați-vă și salvați-vă propria configurație VPN folosind profilurile</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Customization">
+    <value>Personalizați-vă locul, protocolul și setările</value>
   </data>
   <data name="Upsell_Carousel_SecureCore">
     <value>Adăugați încă un nivel de criptare conexiunii</value>

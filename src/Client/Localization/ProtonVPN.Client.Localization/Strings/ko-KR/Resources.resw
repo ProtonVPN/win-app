@@ -123,6 +123,9 @@
   <data name="Automation_Properties_ConnectionDetails_Page">
     <value>세부사항 페이지</value>
   </data>
+  <data name="Automation_Properties_Connection_Card_Component">
+    <value>연결 카드</value>
+  </data>
   <data name="Automation_Properties_Features_Bar">
     <value>기능 바</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>포트 포워딩 페이지</value>
+  </data>
+  <data name="Automation_Properties_Profile_Page">
+    <value>프로필 페이지</value>
   </data>
   <data name="Automation_Properties_Settings_Advanced_Page">
     <value>고급 설정 페이지</value>
@@ -222,17 +228,38 @@
     <value>{0}에서 연결 해제</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
+  <data name="Common_Actions_Duplicate">
+    <value>복제</value>
+  </data>
   <data name="Common_Actions_Edit">
     <value>수정</value>
   </data>
   <data name="Common_Actions_Enable">
     <value>활성화</value>
   </data>
+  <data name="Common_Actions_Exit_ProtonVPN">
+    <value>Proton VPN 종료</value>
+  </data>
+  <data name="Common_Actions_GotIt">
+    <value>확인</value>
+  </data>
+  <data name="Common_Actions_Install">
+    <value>설치</value>
+  </data>
   <data name="Common_Actions_Reconnect">
     <value>재연결</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>제거</value>
+  </data>
+  <data name="Common_Actions_Restart">
+    <value>재시작</value>
+  </data>
+  <data name="Common_Actions_Save">
+    <value>저장</value>
+  </data>
+  <data name="Common_Actions_TryAgain">
+    <value>다시 시도</value>
   </data>
   <data name="Common_Actions_Update">
     <value>업데이트</value>
@@ -241,10 +268,10 @@
     <value>업그레이드</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>**향상된 킬 스위치가 활성화되었습니다.** VPN 없이 인터넷을 사용하려면 향상된 킬 스위치를 비활성화 하십시오.</value>
+    <value>향상된 킬 스위치가 활성화되었습니다. VPN 없이 인터넷을 사용하려면 향상된 킬 스위치를 비활성화 하십시오.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>**향상된 킬 스위치가 활성화되었습니다.** 계속하면 인터넷에서 연결 해제됩니다.</value>
+    <value>향상된 킬 스위치가 활성화되었습니다. 계속하면 인터넷에서 연결 해제됩니다.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
     <value>VPN 연결이 해제됩니다.</value>
@@ -264,6 +291,21 @@
   <data name="Common_States_Updating">
     <value>업데이트 중...</value>
   </data>
+  <data name="Common_Tags_New">
+    <value>신규</value>
+  </data>
+  <data name="Components_Update_GetMostFromYourVpn">
+    <value>최신 버전으로 업데이트하여 VPN을 최대한 활용해 보세요.</value>
+  </data>
+  <data name="Components_Update_MoreLikelyIssues">
+    <value>이전 버전의 Proton VPN에서는 문제를 겪기 쉽습니다.</value>
+  </data>
+  <data name="Components_Update_UpdateAvailable">
+    <value>업데이트 사용 가능</value>
+  </data>
+  <data name="Components_Update_UpdateProtonVpn">
+    <value>Proton VPN 업데이트</value>
+  </data>
   <data name="Connection_Error_EditProfile">
     <value>프로필 편집</value>
   </data>
@@ -271,7 +313,7 @@
     <value>Proton VPN이 네트워크 문제로 인해 인증서를 불러오지 못했습니다.</value>
   </data>
   <data name="Connection_Error_NoServers">
-    <value>현재 선택 가능한 서버가 없습니다. 다른 옵션을 선택하세요.</value>
+    <value>선택한 섹션의 모든 서버가 사용할 수 없습니다. 섹션을 확장하거나 나중에 다시 시도해 주세요.</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
     <value>선택한 '{0}' 서버가 현재 사용 불가합니다. 다른 서버를 선택하거나 나중에 다시 시도하세요.</value>
@@ -308,10 +350,10 @@
     <value>현재 무슨 증상인지 알 수 없습니다. 재시도 하거나 고객 지원 팀에 연락해 주십시오.</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
-    <value>가능한 솔루션 보기</value>
+    <value>수정 사항 보기</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
-    <value>WireGuard 네트워크 어뎁터가 이미 사용 중이기 대문에 Proton VPN이 연결할 수 없습니다. 다른 VPN을 연결 해제하고 다시 시도해 주세요. 또는, 프로토콜을 고급 설정에서 변경할 수 있습니다.</value>
+    <value>기기의 WireGuard 어댑터가 사용 중입니다. 기기에서 실행 중인 다른 VPN에서 연결을 끊은 다음 다시 시도해 주세요.</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>다음 국가에서 자동 선택됨:</value>
@@ -415,8 +457,19 @@
   <data name="Connections_Profiles_Empty_Title">
     <value>첫 프로필을 만들어 보세요</value>
   </data>
+  <data name="Connections_Profiles_Location_Header">
+    <value>연결 종류와 위치를 선택하세요</value>
+  </data>
   <data name="Connections_Profiles_Name">
-    <value>프로필 이름</value>
+    <value>프로필에 이름을 입력하세요</value>
+  </data>
+  <data name="Connections_Profiles_Name_Default">
+    <value>무제</value>
+    <comment>This will be used as the default profile name if the user creates a profile without entering a name</comment>
+  </data>
+  <data name="Connections_Profiles_Name_Duplicate">
+    <value>{0}의 복사본</value>
+    <comment>This will be used as the profile name when duplicating a profile. {0} is a placeholder for the original profile name.</comment>
   </data>
   <data name="Connections_Profiles_New">
     <value>새 프로필</value>
@@ -426,8 +479,11 @@
     <value>VPN Plus에서 프로필을 사용할 수 있습니다</value>
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
   </data>
-  <data name="Connections_Profiles_Save">
-    <value>프로필 저장</value>
+  <data name="Connections_Profiles_Settings_Description">
+    <value>연결시 프로필 설정이 VPN 설정을 덮어쓰게 됩니다.</value>
+  </data>
+  <data name="Connections_Profiles_Settings_Header">
+    <value>사용자 지정 설정 추가</value>
   </data>
   <data name="Connections_Random">
     <value>무작위</value>
@@ -497,9 +553,6 @@
   <data name="Countries_All">
     <value>전체</value>
   </data>
-  <data name="Countries_Cities">
-    <value>도시</value>
-  </data>
   <data name="Countries_City_Other">
     <value>{0}개 도시</value>
   </data>
@@ -510,19 +563,8 @@
   <data name="Countries_Fastest">
     <value>가장 빠른 국가</value>
   </data>
-  <data name="Countries_Info">
-    <value>정보</value>
-  </data>
   <data name="Countries_NoSearchResults">
     <value>검색 결과가 없습니다.</value>
-  </data>
-  <data name="Countries_NumberOfCities">
-    <value>도시 ({0})</value>
-    <comment>{0} represents the number of cities</comment>
-  </data>
-  <data name="Countries_NumberOfCountries">
-    <value>국가 ({0})</value>
-    <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_NumberOfServers">
     <value>서버 ({0})</value>
@@ -530,10 +572,6 @@
   </data>
   <data name="Countries_P2P">
     <value>P2P</value>
-  </data>
-  <data name="Countries_P2PCountries">
-    <value>P2P 국가 ({0})</value>
-    <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_P2P_Cities">
     <value>P2P 도시 ({0})</value>
@@ -554,19 +592,8 @@
   <data name="Countries_SecureCore">
     <value>Secure Core</value>
   </data>
-  <data name="Countries_SecureCoreCountries">
-    <value>Secure Core 도시 ({0})</value>
-    <comment>{0} represents the number of countries</comment>
-  </data>
-  <data name="Countries_SecureCoreServers">
-    <value>Secure Core 서버 ({0})</value>
-    <comment>{0} represents the number of severs</comment>
-  </data>
   <data name="Countries_SecureCore_Description">
     <value>VPN 연결에 암호화 계층 추가.</value>
-  </data>
-  <data name="Countries_Server_Other">
-    <value>{0}개 서버</value>
   </data>
   <data name="Countries_ServerLoad">
     <value>서버 부하</value>
@@ -574,16 +601,8 @@
   <data name="Countries_SmartRouting">
     <value>Smart Routing</value>
   </data>
-  <data name="Countries_SmartRouting_Description">
-    <value>{0}에 위치한 서버지만, {1}에서 브라우징하는 것으로 보일 것입니다.</value>
-    <comment>{0} and {1} represent country names.</comment>
-  </data>
   <data name="Countries_Tor">
     <value>Tor</value>
-  </data>
-  <data name="Countries_TorCountries">
-    <value>Tor 국가 ({0})</value>
-    <comment>{0} represents the number of countries</comment>
   </data>
   <data name="Countries_TorServers">
     <value>Tor 서버 ({0})</value>
@@ -594,10 +613,6 @@
   </data>
   <data name="Countries_TryDifferentKeyword">
     <value>다른 키워드를 입력해주세요</value>
-  </data>
-  <data name="Countries_ViaCountry">
-    <value>{0} 경유중</value>
-    <comment>{0} represents country name. For example: via Australia.</comment>
   </data>
   <data name="Country_Fastest">
     <value>가장 빠른 국가</value>
@@ -1615,6 +1630,15 @@
     <value>알 수 없음</value>
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
+  <data name="Dialogs_BaseFilteringEngine_Description">
+    <value>Windows 장치의 기본 필터링 엔진(BFE) 서비스가 비활성화되어 있습니다. Proton VPN이 제대로 작동하려면 이 서비스를 활성화해야 합니다.</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_HowToEnable">
+    <value>기본 필터링 엔진 (BPE) 활성화 방법</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Title">
+    <value>계속하려면 기본 필터링 엔진 (BPE) 활성화</value>
+  </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
     <value>VPN Plus로 무제한 서버 변경을 이용하십시오.</value>
   </data>
@@ -1629,6 +1653,12 @@
   </data>
   <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
     <value>다시 Plus 서버 및 기능에 접근하려면 업그레이드 하세요.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Description">
+    <value>Proton VPN 서비스가 비활성화된 것으로 보이네요. 연결하려면 서비스를 재활성화 해야합니다.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Title">
+    <value>계속하려면 Windows 서비스 활성화</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
     <value>Proton Free가 {0}개 무료 국가 내의 가능한 빠른 서버로 자동으로 연결해 줍니다. 사용자의 위치에서 가장 가까운 곳으로 연결됩니다.</value>
@@ -1664,6 +1694,12 @@
   </data>
   <data name="Dialogs_Latency_Title">
     <value>레이턴시라는 것은?</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Description">
+    <value>사용 중인 서버가 P2P 트래픽을 지원하지 않아 연결이 해제되었습니다. P2P는 무료 서버에서 지원되지 않습니다. P2P를 지원하는 다른 서버를 사용해 주세요.</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Title">
+    <value>P2P 트래픽 감지됨</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>P2P를 이용해 토렌트하는 방법</value>
@@ -1748,9 +1784,6 @@
   <data name="Dialogs_ReportIssue_Result_Fail_Description">
     <value>보고서 보내기에 실패했습니다. 인터넷 연결을 확인하시고 다시 시도해주세요.</value>
   </data>
-  <data name="Dialogs_ReportIssue_Result_RetryAction">
-    <value>다시 시도</value>
-  </data>
   <data name="Dialogs_ReportIssue_Result_Success">
     <value>보고서 보내짐</value>
   </data>
@@ -1766,42 +1799,6 @@
   </data>
   <data name="Dialogs_ReportIssue_Title">
     <value>문제 보고하기</value>
-  </data>
-  <data name="Dialogs_SecureCore_AdvancedPrivacy">
-    <value>진보한 프라이버시</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_Description">
-    <value>Secure Core는 최대의 보안을 갖는 두 번째 VPN 서버를 경유하여 목적지 서버로 연결합니다.
-
-이런 높은 수준의 보호는 높아진 레이턴시와 느려진 속도를 유발할 수 있습니다.</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_HighPrivacy">
-    <value>높은 프라이버시</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_HigherLatency">
-    <value>더 높은 레이턴시</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_LowerLatency">
-    <value>더 낮은 레이턴시</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_SecureCoreConnection">
-    <value>Secure Core
-VPN 연결</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_StandardConnection">
-    <value>스탠다드
-VPN 연결</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_SecureCore_Title">
-    <value>Secure Core</value>
-    <comment>obsolete</comment>
   </data>
   <data name="Dialogs_ServerLoad_Description">
     <value>서버 부하는 서버가 최대 수용량에 얼마나 근접했는지 보여줍니다.
@@ -1829,18 +1826,20 @@ VPN 연결</value>
   <data name="Dialogs_ServerLoad_Title">
     <value>서버 부하라는 것은?</value>
   </data>
-  <data name="Dialogs_SmartRouting_Description">
-    <value>Smart Routing은 가상 서버를 이용하여 접근이 어려운 국가에 VPN 커버리지를 제공합니다.
-
-Smart Routing 서버에 접속했다면 물리적 서버의 위치와 상관없이 목적지 국가에서 탐색하는 것으로 보이게 됩니다.
-
-Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열을 우회하는 데 쓸모가 있습니다.</value>
-  </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>나중에</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Description">
+    <value>기기가 프록시 서버를 사용하고 있는 것으로 추정됩니다. 이는 VPN 보호를 방해할 수 있습니다.</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Disable">
+    <value>프록시 비활성</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Title">
+    <value>프록시 서버 감지됨</value>
   </data>
   <data name="Dialogs_Tor_Description">
     <value>Tor 서버에 접속하면 히든 서비스와 어니언 사이트에 어느 브라우저를 사용해도 접근할 수 있습니다.</value>
@@ -1866,9 +1865,6 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   <data name="Dialogs_Troubleshooting_Description">
     <value>이러한 간단한 해결책이 여러분이 Proton에 연결하는 데 도움이 될 수 있습니다.</value>
   </data>
-  <data name="Dialogs_Troubleshooting_DidNotWork">
-    <value>소용이 없었나요?</value>
-  </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork">
     <value>다른 네트워크를 사용해 보세요</value>
   </data>
@@ -1883,6 +1879,18 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   </data>
   <data name="Dialogs_Troubleshooting_Title">
     <value>연결 지원</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOff">
+    <value>이 작업으로 VPN 연결이 끊어집니다. 모든 활성 인터넷 연결은 일시적으로 보호되지 않습니다.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn">
+    <value>이 작업으로 VPN로부터의 연결이 끊어지고 킬 스위치가 일시적으로 비활성화됩니다. 모든 활성 인터넷 연결은 일시적으로 보호되지 않습니다.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Install">
+    <value>업데이트를 설치하시겠어요?</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Restart">
+    <value>업데이트를 완료하기 위해 Proton VPN을 다시 시작하세요.</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Description">
     <value>회원님의 시스템 시계가 동기화되지 않은 것으로 보입니다. 이 문제는 VPN 사용 중일때 발생할 수 있습니다.</value>
@@ -1929,10 +1937,11 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>VPN Plus에 오신 것을 환영합니다</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description">
-    <value>축하합니다! 모든 Proton 서비스의 프리미엄 보안 및 퍼포먼스 기능을 잠금해제 했습니다.
-
-강력한 Proton 개인정보 보호 기능을 누려보세요.</value>
+  <data name="Dialogs_WelcomeUnlimited_Description1">
+    <value>축하드려요! 모든 Proton 서비스의 프리미엄 보안 및 퍼포먼스 기능을 잠금해제 했어요.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description2">
+    <value>강력한 Proton 개인정보 보호 기능을 누려보세요.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Proton Unlimited에 오신 것을 환영합니다</value>
@@ -1952,12 +1961,14 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   <data name="Exit_Title">
     <value>Proton VPN을 종료합니까</value>
   </data>
-  <data name="Flyouts_Country_Description">
-    <value>VPN 없이 탐색하면 위치 기반 인터넷 검열에 취약하게 됩니다.
-
-웹 사이트는 특정 위치에서 콘텐츠를 제한하기 위해 지오블록(Geoblock)을 사용할 수 있습니다. 정부는 또한 ISP(인터넷 서비스 제공업체)로 특정 웹사이트를 차단하도록 명령할 수 있습니다.
-
-VPN은 마치 다른 지역에서 탐색하는 것처럼 보이게 하여 감시와 검열로부터 당신을 보호합니다.</value>
+  <data name="Flyouts_Country_Description1">
+    <value>VPN 없이 브라우징하면 위치 기반 인터넷 제한에 취약합니다.</value>
+  </data>
+  <data name="Flyouts_Country_Description2">
+    <value>웹사이트는 지리적 차단을 사용하여 콘텐츠를 특정 위치로 제한할 수 있습니다. 정부는 또한 ISP(인터넷 서비스 제공업체)에게 자국의 특정 웹사이트를 차단하도록 지시할 수 있습니다.</value>
+  </data>
+  <data name="Flyouts_Country_Description3">
+    <value>VPN은 사용자가 다른 위치에서 브라우징하는 것처럼 위장하여 감시와 검열로부터 회원님을 보호합니다.</value>
   </data>
   <data name="Flyouts_Country_Title">
     <value>국가</value>
@@ -1966,12 +1977,13 @@ VPN은 마치 다른 지역에서 탐색하는 것처럼 보이게 하여 감시
     <value>VPN에 연결하여 가상 위치를 변경하기</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Connected">
-    <value>VPN IP는 사용자의 실제 IP 주소를 가립니다. 이것은 사용자가 VPN의 위치에서 브라우징하는 것처럼 보이게 하므로 사용자의 온라인 활동이 사용자의 기기와 연결되지 않습니다.</value>
+    <value>VPN IP는 실제 IP 주소를 마스킹합니다. 이로써 VPN상의 위치에서 브라우징하는 것처럼 보이기 때문에 온라인 활동이 기기와 연결될 수 없습니다.</value>
   </data>
-  <data name="Flyouts_IpAddress_Description_Disconnected">
-    <value>이 고유 코드는 웹사이트 및 ISP(인터넷 서비스 제공업체)에서 나의 위치 및 검색 기록을 내 장치와 연결하는 데 사용할 수 있습니다. 
-
-VPN이 IP주소를 가려, 당신의 활동내역들이 당신을 추적하는데 더 어렵게 만듭니다.</value>
+  <data name="Flyouts_IpAddress_Description_Disconnected1">
+    <value>이 고유 코드는 웹사이트와 ISP(인터넷 서비스 제공업체)에서 위치와 검색 기록을 기기에 연결하는 데 사용할 수 있습니다.</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected2">
+    <value>VPN은 IP 주소를 가리고, 자신의 할동이 다시 자신으로 거슬러 올라가는 것을 더 어렵게 만듭니다.</value>
   </data>
   <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
     <value>IP 주소란?</value>
@@ -1988,12 +2000,14 @@ VPN이 IP주소를 가려, 당신의 활동내역들이 당신을 추적하는�
   <data name="Flyouts_IpAddress_YourIpIsVisible">
     <value>나의 IP 주소를 확인할 수 있음</value>
   </data>
-  <data name="Flyouts_Isp_Description">
-    <value>ISP(인터넷 서비스 제공업체)는 인터넷을 연결하는 업체입니다.
-
-ISP는 나의 온라인 활동을 기록(로그)할 수 있으며, 내 데이터를 광고 업체에 판매할 수 있습니다. 다른 지역에서는, ISP가 내 데이터를 정부에 넘기도록 요구받을 수도 있습니다. 
-
-VPN은 ISP의 간섭으로부터 보호하며 IP주소를 감춥니다.</value>
+  <data name="Flyouts_Isp_Description1">
+    <value>ISP(인터넷 서비스 제공업체)는 회원님을 인터넷에 연결하는 기업입니다.</value>
+  </data>
+  <data name="Flyouts_Isp_Description2">
+    <value>ISP는 사용자의 온라인 활동을 기록할 수 있습니다. 일부 국가에서는 광고주에게 데이터를 판매할 수 있습니다. 또 다른 곳에서는, ISP는 로그를 정부에 넘겨야 할 수도 있죠.</value>
+  </data>
+  <data name="Flyouts_Isp_Description3">
+    <value>VPN은 ISP 간섭으로부터 IP 주소를 숨깁니다.</value>
   </data>
   <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
     <value>인터넷 서비스 제공자 (ISP)란?</value>
@@ -2003,6 +2017,54 @@ VPN은 ISP의 간섭으로부터 보호하며 IP주소를 감춥니다.</value>
   </data>
   <data name="Flyouts_Isp_Warning">
     <value>제공자가 내가 방문하는 웹사이트를 확인할 수 있습니다.</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Advanced_Success">
+    <value>Proton VPN에 연결되어 있지 않을 때 모든 인터넷 접속을 차단합니다.</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info">
+    <value>VPN 연결이 끊어지면 IP 주소가 노출될 수 있습니다.</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Standard_Success">
+    <value>VPN 연결이 끊어지면 VPN이 복원될 때까지 인터넷 연결이 끊어집니다.</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Connected">
+    <value>의도적으로 VPN 연결을 끊는 경우에도 향상된 킬 스위치가 적용됩니다.</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Disconnected">
+    <value>다시 온라인에 접속하려면 VPN에 연결하거나 향상된 킬 스위치를 비활성화하세요.</value>
+  </data>
+  <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
+    <value>광고, 추적기 및 악성 코드로부터 보호됩니다.</value>
+  </data>
+  <data name="Flyouts_NetShield_Info">
+    <value>웹사이트와 앱에서 광고, 추적기 및 악성코드로부터 자신을 보호하세요</value>
+  </data>
+  <data name="Flyouts_NetShield_MalwareOnly_Success">
+    <value>맬웨어로부터만 보호됩니다.</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Description">
+    <value>VPN Plus로 광고, 추적기 및 악성코드를 차단하세요.</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Title">
+    <value>광고 없는 브라우징을 즐겨보세요</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort">
+    <value>활성 포트 번호</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Info">
+    <value>P2P 속도를 향상시키기 위해 BitTorrent 앱으로 활성 포트 번호를 입력하세요.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Info">
+    <value>피어 투 피어 (P2P) 다운로드 속도를 개선하세요</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Description">
+    <value>VPN Plus로 피어 투 피어 (P2P) 파일 공유 속도를 가속화하세요.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Title">
+    <value>P2P 속도 향상</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Warning">
+    <value>포트 포워딩을 사용하기 위해, P2P 서버로 연결하세요.</value>
   </data>
   <data name="Flyouts_Protocol_Description">
     <value>VPN 프로토콜은 트래픽이 VPN을 통해 암호화되고 전송되는 방식을 결정합니다.</value>
@@ -2043,10 +2105,11 @@ VPN은 ISP의 간섭으로부터 보호하며 IP주소를 감춥니다.</value>
   <data name="Flyouts_Speed_BoostedByVpnAccelerator">
     <value>VPN Accelerator로 가속됨</value>
   </data>
-  <data name="Flyouts_Speed_Description">
-    <value>이 그래프는 Proton VPN이 초당 얼마나 데이터를 전달하는지 보여줍니다.
-
-속도는 기기의 현재 활동을 기반으로 합니다 — 이 그래프는 VPN의 최고 속도를 나타내지 않습니다.</value>
+  <data name="Flyouts_Speed_Description1">
+    <value>이 값은 Proton VPN을 통해 매초 얼마나 많은 데이터가 전송되는지 보여줍니다.</value>
+  </data>
+  <data name="Flyouts_Speed_Description2">
+    <value>속도는 회원님 기기의 현재 활동에 기반합니다 — VPN의 최소 속도를 나타내지 않습니다.</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>다운로드</value>
@@ -2061,6 +2124,33 @@ VPN은 ISP의 간섭으로부터 보호하며 IP주소를 감춥니다.</value>
   <data name="Flyouts_Speed_Upload">
     <value>업로드</value>
     <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_Other">
+    <value>제외된 앱 ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_Other">
+    <value>제외된 IP 주소 ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Info">
+    <value>신뢰할 수 있는 앱과 IP 주소를 VPN 보호 없이 연결할 수 있습니다.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Inverse_Info">
+    <value>선택한 앱과 IP 주소만이 VPN에 연결되고 그 외 트래픽은 보호되지 않습니다.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_Other">
+    <value>보호되는 앱 ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_Other">
+    <value>보호되는 IP 주소 ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Standard_Info">
+    <value>선택한 앱과 IP 주소는 VPN 보호 없이 연결됩니다. 다른 모든 트래픽은 보호됩니다.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Description">
+    <value>VPN Plus로 VPN과 비VPN 터널로 트래픽을 분할하세요.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Title">
+    <value>하나로 두 가지 이득을 얻으세요</value>
   </data>
   <data name="Flyouts_Volume_Description">
     <value>이 자료는 VPN이 통해 얼마나 많은 트래픽을 라우팅했는지 보여줍니다.</value>
@@ -2185,6 +2275,12 @@ VPN은 ISP의 간섭으로부터 보호하며 IP주소를 감춥니다.</value>
   </data>
   <data name="FreeConnections_WorldwideCoverageUpsell">
     <value>VPN Plus로 전세계 커버리지 갖기</value>
+  </data>
+  <data name="Gateway_Fastest">
+    <value>빠른 게이트웨이</value>
+  </data>
+  <data name="Gateway_Random">
+    <value>무작위 게이트웨이</value>
   </data>
   <data name="Gateways_Page_Description">
     <value>조직의 VPN으로 연결하려면 게이트웨이에 접속하세요.</value>
@@ -2381,12 +2477,29 @@ VPN은 ISP의 간섭으로부터 보호하며 IP주소를 감춥니다.</value>
   <data name="Home_Recents_Unpin">
     <value>고정 해제</value>
   </data>
-  <data name="Home_Update_Confirmation_Message">
-    <value>업데이트를 완료하기 위해 일시적으로 VPN 연결 해제하고 영구 킬 스위치를 비활성화합니다. 계속하시겠습니까?</value>
-    <comment>The question displayed when trying to update the app while connected to a VPN or when Advanced Kill Switch is enabled</comment>
+  <data name="Home_TitleBar_Menu_About">
+    <value>정보</value>
   </data>
-  <data name="Home_Update_Confirmation_Title">
-    <value>Proton VPN 업데이트?</value>
+  <data name="Home_TitleBar_Menu_Account">
+    <value>계정</value>
+  </data>
+  <data name="Home_TitleBar_Menu_ExitTheApp">
+    <value>앱 나가기</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help">
+    <value>지원</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help_WhatsTheIssue">
+    <value>문제가 무엇인가요?</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Settings">
+    <value>설정</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Signout">
+    <value>로그아웃</value>
+  </data>
+  <data name="Home_TitleBar_Menu_UpdateNow">
+    <value>지금 업데이트</value>
   </data>
   <data name="Home_Update_UpdateAvailable">
     <value>사용 가능한 업데이트가 있습니다</value>
@@ -2468,11 +2581,26 @@ VPN은 ISP의 간섭으로부터 보호하며 IP주소를 감춥니다.</value>
     <value>로그아웃 중, 기다려 주세요…</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
+  <data name="Notifications_KillSwitch_Description">
+    <value>IP 주소를 보호하기 위해, 킬 스위치가 사용자의 인터넷 연결을 차단 중입니다.</value>
+  </data>
+  <data name="Notifications_PortForwarding_CopyPortNumber">
+    <value>포트 번호 복사</value>
+  </data>
   <data name="Notifications_PortForwarding_Description">
     <value>더 빠른 속도를 위해 BitTorrent 앱에서 이 번호로 설정하세요.</value>
   </data>
+  <data name="Notifications_SessionLimit_Description">
+    <value>최대 기기 수 제한에 도달했습니다. VPN에 다시 연결하기 위해, 다른 기기에서 연결 해제해주세요.</value>
+  </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
     <value>사용자의 플랜이 Proton Free로 다운그레이드 되어, 가장 빠른 무료 서버로 재연결 중입니다.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Description">
+    <value>공공 Wi-Fi 네트워크는 보안 위협에 더 취약합니다. VPN에 연결하여 안전하게 탐색하세요.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Title">
+    <value>보호되지 않는 Wi-Fi 연결 감지됨</value>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>지금 업데이트하기</value>
@@ -2509,10 +2637,23 @@ VPN은 ISP의 간섭으로부터 보호하며 IP주소를 감춥니다.</value>
   <data name="Overlay_P2P_Title">
     <value>P2P</value>
   </data>
-  <data name="Overlay_SecureCore_Description">
-    <value>Secure Core는 최대의 보안을 갖는 두 번째 VPN 서버를 경유하여 목적지 서버로 연결합니다.
-
-이런 높은 수준의 보호는 높아진 레이턴시와 느려진 속도를 유발할 수 있습니다.</value>
+  <data name="Overlay_Profile_Description1">
+    <value>프로필은 필요에 맞게 조정하고 빠른 접근을 위해 저장할 수 있는 사용자 지정 VPN 연결입니다.</value>
+  </data>
+  <data name="Overlay_Profile_Description2">
+    <value>선호하는 위치를 설정하고 보안, 성능, 게임 또는 기타 시나리오에 대한 설정을 최적화하세요.</value>
+  </data>
+  <data name="Overlay_Profile_LearnMore">
+    <value>VPN 프로필이란?</value>
+  </data>
+  <data name="Overlay_Profile_Title">
+    <value>프로필</value>
+  </data>
+  <data name="Overlay_SecureCore_Description1">
+    <value>Secure Core는 2차적인 최대의 보안 VPN 서버를 통해 대상 서버에 연결합니다.</value>
+  </data>
+  <data name="Overlay_SecureCore_Description2">
+    <value>이러한 높은 수준의 보호는 더 높은 레이턴시와 더 느린 속도를 유발할 가능성이 있습니다.</value>
   </data>
   <data name="Overlay_SecureCore_LearnMore">
     <value>Secure Core란?</value>
@@ -2569,12 +2710,14 @@ VPN 연결</value>
   <data name="Overlay_ServerLoad_Title">
     <value>서버 부하율</value>
   </data>
-  <data name="Overlay_SmartRouting_Description">
-    <value>Smart Routing은 가상 서버를 이용하여 접근이 어려운 국가에 VPN 커버리지를 제공합니다.
-
-Smart Routing 서버에 접속했다면 물리적 서버의 위치와 상관없이 목적지 국가에서 탐색하는 것으로 보이게 됩니다.  
-
-Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열을 우회하는 데 쓸모가 있습니다.</value>
+  <data name="Overlay_SmartRouting_Description1">
+    <value>스마트 라우팅은 가상 서버를 사용하여 접근하기 어려운 국가에서 VPN 커버리지를 제공합니다.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description2">
+    <value>스마트 라우팅 서버에 연결하면 물리적인 서버가 선택한 국가가 아닌 곳에 있더라도 선택한 국가에서 탐색하는 것처럼 보이게 됩니다.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description3">
+    <value>스마트 라우팅은 일반적으로 개인 정보 보호 방지법 및 기타 형태의 검열을 우회하는 데 사용됩니다.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
     <value>{0}에 위치한 서버지만, {1}에서 브라우징하는 것으로 보일 것입니다</value>
@@ -2596,6 +2739,66 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   </data>
   <data name="Overlay_Tor_Title">
     <value>Tor</value>
+  </data>
+  <data name="Profile_CustomSettings_Description">
+    <value>연결시 프로필 설정이 VPN 설정을 덮어쓰게 됩니다.</value>
+  </data>
+  <data name="Profile_CustomSettings_Header">
+    <value>사용자 지정 설정 추가</value>
+  </data>
+  <data name="Profile_CustomSettings_Hide">
+    <value>설정 숨기기</value>
+  </data>
+  <data name="Profile_CustomSettings_Show">
+    <value>설정 보이기</value>
+  </data>
+  <data name="Profile_Discard_Description">
+    <value>변경 내용이 저장되지 않았습니다.</value>
+  </data>
+  <data name="Profile_Discard_Title">
+    <value>페이지를 떠나시겠어요?</value>
+  </data>
+  <data name="Profile_NatType_Conflict_Description">
+    <value>이 작업은 이 프로필에 대한 포트 포워딩을 비활성화합니다.</value>
+  </data>
+  <data name="Profile_NetShield_Conflict_Description">
+    <value>이 작업은 이 프로필에 대한 커스텀 DNS를 비활성화합니다.</value>
+  </data>
+  <data name="Profile_Options_Description">
+    <value>이 프로필로 연결할 때 선택한 웹 사이트을 자동으로 열어줍니다.</value>
+  </data>
+  <data name="Profile_Options_Header">
+    <value>연결 및 시작하기</value>
+  </data>
+  <data name="Profile_Options_Url">
+    <value>웹사이트 URL</value>
+  </data>
+  <data name="Profile_Options_Url_Error">
+    <value>유효한 URL을 입력하세요.</value>
+  </data>
+  <data name="Profile_PortForwarding_Conflict_Description">
+    <value>이 프로필의 NAT 유형이 엄격하게(3번)로 변경됩니다.</value>
+  </data>
+  <data name="Profiles_Default_Gaming">
+    <value>게이밍</value>
+  </data>
+  <data name="Profiles_Default_MaxSecurity">
+    <value>최대 보안</value>
+  </data>
+  <data name="Profiles_Default_Office">
+    <value>사무실</value>
+  </data>
+  <data name="Profiles_Default_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Profiles_Default_RandomConnection">
+    <value>무작위 연결</value>
+  </data>
+  <data name="Profiles_Default_Streaming">
+    <value>미국 스트리밍</value>
+  </data>
+  <data name="Profiles_Default_WorkSchool">
+    <value>직장/학교</value>
   </data>
   <data name="Profiles_Page_Description">
     <value>한 번의 클릭으로 나만의 VPN 설정을 구성하고 연결하세요.</value>
@@ -2636,14 +2839,23 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   <data name="Server_Feature_B2B">
     <value>게이트웨이</value>
   </data>
+  <data name="Server_Feature_B2B_Description">
+    <value>조직의 서버에 접근</value>
+  </data>
   <data name="Server_Feature_None">
-    <value>전체 국가</value>
+    <value>표준</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
   </data>
+  <data name="Server_Feature_P2P_Description">
+    <value>Torrent 최적화</value>
+  </data>
   <data name="Server_Feature_SecureCore">
     <value>Secure Core</value>
+  </data>
+  <data name="Server_Feature_SecureCore_Description">
+    <value>두 배의 보호</value>
   </data>
   <data name="Server_Feature_Tor">
     <value>Tor</value>
@@ -2666,9 +2878,6 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   <data name="Settings_About_FailedToFetch">
     <value>변경기록을 불러오지 못했습니다.</value>
   </data>
-  <data name="Settings_About_GetLatestVersion">
-    <value>최신 버전 받기</value>
-  </data>
   <data name="Settings_About_LearnMore">
     <value>더 알아보기</value>
   </data>
@@ -2678,23 +2887,14 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   <data name="Settings_About_Loading">
     <value>로딩 중</value>
   </data>
-  <data name="Common_Tags_New">
-    <value>신규</value>
-  </data>
   <data name="Settings_About_Title">
     <value>정보</value>
   </data>
-  <data name="Settings_About_TryAgain">
-    <value>다시 시도하기</value>
-  </data>
-  <data name="Settings_About_Update_Description">
-    <value>최신 버전으로 업데이트하여 VPN을 최대한 활용해 보세요.</value>
+  <data name="Settings_Account_Account">
+    <value>계정</value>
   </data>
   <data name="Settings_Account_Exit">
     <value>앱 나가기</value>
-  </data>
-  <data name="Settings_Account_MyAccount">
-    <value>나의 계정</value>
   </data>
   <data name="Settings_Account_SignOut">
     <value>로그아웃</value>
@@ -2804,6 +3004,12 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
     <value>브릿징을 사용하여 네트워크에 연결합니다. TUN이 TAP보다 더 빠른 속도를 제공하지만, 덜 안정적입니다.</value>
   </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
+    <value>NetShield가 활성화된 프로필에 연결되어 있기 때문에 사용자 지정 DNS를 켤 수 없습니다.</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenEnabled">
+    <value>현재 NetShield가 활성화된 프로필에 연결되어 있기 때문에 사용자 지정 DNS가 비활성화되었습니다.</value>
+  </data>
   <data name="Settings_Connection_Default">
     <value>기본 연결</value>
   </data>
@@ -2858,6 +3064,9 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   <data name="Settings_Connection_NetShield_Conflict_Description">
     <value>NetShield를 활성화하면 커스텀 DNS 서버에 연결할 수 없게 됩니다.</value>
   </data>
+  <data name="Settings_Connection_NetShield_Conflict_Information">
+    <value>NetShield가 사용자 지정 DNS와 호환되지 않습니다.</value>
+  </data>
   <data name="Settings_Connection_NetShield_Conflict_Title">
     <value>NetShield를 활성화합니까?</value>
   </data>
@@ -2909,7 +3118,7 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   <data name="Settings_Connection_Protocol_NavigationFailed_Message">
     <value>현재 VPN 프로필으로 연결되었습니다. 
 
-• 이 연결에 대한 프로토콜을 변경하려면 프로필에서 수정 후 연결 해제하십시오.
+• 이 연결에 대한 프로토콜을 변경하려면 프로필에서 수정 후 연결 해제하세요.
 
 • 타 VPN 연결에 대한 프로토콜을 변경하려면 먼저 프로필에서 연결 해제가 필요합니다.</value>
   </data>
@@ -3057,6 +3266,20 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   <data name="Settings_OperatingSystemVersion">
     <value>운영 체제 버전</value>
   </data>
+  <data name="Settings_OverriddenByProfile_Description1">
+    <value>이 설정이 활성 프로필과 연결되었습니다.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description2">
+    <value>설정값을 변경하기 위해 프로필을 수정하거나 일반 VPN 설정을 편집하기 위해 연결 해제하세요.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Tagline">
+    <value>이 설정 값들이 '{0}' 프로필로 연결되며 프로필 내에서만 관리할 수 있습니다.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Settings_OverriddenByProfile_Title">
+    <value>프로필 내의 {0} 관리</value>
+    <comment>{0} is a placeholder for the name of the settings being overridden by the profile. (eg. Manage NetShield in Profiles)</comment>
+  </data>
   <data name="Settings_Page_Title">
     <value>설정</value>
   </data>
@@ -3107,6 +3330,9 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>
+  </data>
+  <data name="Settings_Reconnection_Title">
+    <value>변경 사항을 적용하기 위해 다시 연결</value>
   </data>
   <data name="Settings_RestoreDefault">
     <value>기본 설정값 복원</value>
@@ -3222,7 +3448,7 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_ResetPassword">
-    <value>비밀번호 재설정</value>
+    <value>비밀번호를 잊어버리셨나요</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_SignIn">
@@ -3239,7 +3465,7 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
     <value>로그인</value>
   </data>
   <data name="SignIn_Form_TroubleSigningIn">
-    <value>로그인에 문제를 겪고 계신가요</value>
+    <value>지원 센터</value>
     <comment>A button at the bottom of the login window inside Get help popup</comment>
   </data>
   <data name="SignIn_Form_Username">
@@ -3372,6 +3598,18 @@ Smart Routing은 보통 안티-프라이버시 법령과 기타 유형의 검열
   <data name="Upsell_Carousel_Platforms_More">
     <value>+ 더 많음</value>
     <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_Profiles">
+    <value>자주 연결하는 연결에 더 빠르게 접근하세요.</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Convenience">
+    <value>한 번의 클릭으로 프로필을 기본 연결로 설정 및 연결하세요.</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Creation">
+    <value>프로필로 나만의 VPN 구성을 생성 및 저장하세요.</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Customization">
+    <value>위치와 프로토콜, 설정을 사용자화하세요</value>
   </data>
   <data name="Upsell_Carousel_SecureCore">
     <value>접속에 또 다른 보호를 한겹 더해보세요</value>
