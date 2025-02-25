@@ -20,6 +20,7 @@
 using System;
 using System.Runtime.InteropServices;
 using ProtonVPN.Builds.Variables;
+using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Update.Contracts;
 using ProtonVPN.Update.Contracts.Config;
@@ -53,7 +54,7 @@ public class FeedUrlProvider : IFeedUrlProvider
 
     private string GetArchitecture()
     {
-        Architecture osArchitecture = RuntimeInformation.OSArchitecture;
+        Architecture osArchitecture = OSArchitecture.Value;
 
         return osArchitecture switch
         {
