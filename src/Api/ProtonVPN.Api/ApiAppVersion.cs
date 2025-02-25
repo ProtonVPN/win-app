@@ -18,7 +18,8 @@
  */
 
 using System;
-using System.Runtime.InteropServices;
+using System.Text;
+using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.Configurations.Contracts;
 
 namespace ProtonVPN.Api;
@@ -44,16 +45,18 @@ public class ApiAppVersion : IApiAppVersion
 
     public string CalculateAppVersion()
     {
-        string value = $"{_config.ApiClientId}@{GetVersion()}";
+        StringBuilder sb = new();
+        sb.Append($"{_config.ApiClientId}@{GetVersion()}");
 #if DEBUG
-        value += DEVELOPMENT_SUFFIX;
+        sb.Append(DEVELOPMENT_SUFFIX);
 #endif
-        return value;
+        sb.Append($"+{OSArchitecture.StringValue}");
+        return sb.ToString();
     }
 
     public string CalculateUserAgent()
     {
-        return $"{_config.UserAgent}/{GetVersion()} ({Environment.OSVersion}; {RuntimeInformation.OSArchitecture})";
+        return $"{_config.UserAgent}/{GetVersion()} ({Environment.OSVersion}; {OSArchitecture.StringValue})";
     }
 
     private string GetVersion()
