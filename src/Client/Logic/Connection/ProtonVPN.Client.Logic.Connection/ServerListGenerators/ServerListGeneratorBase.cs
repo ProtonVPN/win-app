@@ -38,7 +38,7 @@ public abstract class ServerListGeneratorBase
 
     protected IEnumerable<PhysicalServer> SelectPhysicalServers(Server server)
     {
-        return server.Servers.Where(s => !s.IsUnderMaintenance()).OrderBy(_ => Random.Next()).Take(MaxPhysicalServersPerLogical);
+        return server.Servers?.Where(s => !s.IsUnderMaintenance()).OrderBy(_ => Random.Next()).Take(MaxPhysicalServersPerLogical) ?? [];
     }
 
     protected string? GetCity(List<Server> pickedServers, CityLocationIntent? cityLocationIntent)
