@@ -56,7 +56,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        VerticalAlignment="Center"
                        FontSize="14"
                        Foreground="{ThemeResource TextNormColorBrush}"
-                       Text="{x:Bind Country.Name}" />
+                       Text="{x:Bind Location}" />
         </StackPanel>
 
         <VisualStateManager.VisualStateGroups>

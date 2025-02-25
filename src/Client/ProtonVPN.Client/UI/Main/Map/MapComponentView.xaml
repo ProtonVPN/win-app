@@ -36,6 +36,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     LeftOffset="{x:Bind LeftOffset}"
                     TopOffset="{x:Bind TopOffset}"
                     RightOffset="{x:Bind RightOffset}"
-                    BottomOffset="{x:Bind BottomOffset}" />
+                    BottomOffset="{x:Bind BottomOffset}"
+                    ConnectPhrase="{x:Bind ViewModel.Localizer.Get('Map_ConnectTo')}" />
 
 </UserControl>
