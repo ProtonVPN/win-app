@@ -126,6 +126,12 @@ public sealed partial class MapControl
         typeof(MapControl),
         new PropertyMetadata(default, OnMapOffsetChanged));
 
+    public static readonly DependencyProperty ConnectPhraseProperty = DependencyProperty.Register(
+        nameof(ConnectPhrase),
+        typeof(string),
+        typeof(MapControl),
+        new PropertyMetadata(default, OnConnectPhraseChanged));
+
     public List<Country> Countries
     {
         get => (List<Country>)GetValue(CountriesProperty);
@@ -184,6 +190,12 @@ public sealed partial class MapControl
     {
         get => (double)GetValue(BottomOffsetProperty);
         set => SetValue(BottomOffsetProperty, value);
+    }
+
+    public string ConnectPhrase
+    {
+        get => (string)GetValue(ConnectPhraseProperty);
+        set => SetValue(ConnectPhraseProperty, value);
     }
 
     private static Color _defaultFillColor = Color.FromArgb(255, 53, 49, 64);
@@ -889,6 +901,16 @@ public sealed partial class MapControl
         control.InvalidateCurrentCountry(COUNTRY_CHANGE_ANIMATION_DURATION_IN_MS);
     }
 
+    private static void OnConnectPhraseChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is not MapControl control)
+        {
+            return;
+        }
+
+        control.InvalidateConnectPhrase();
+    }
+
     private void HandleDisconnectedState()
     {
         List<IFeature> pins = GetAllPins();
@@ -1172,5 +1194,10 @@ public sealed partial class MapControl
         }
 
         _activeAnimations[style] = animations;
+    }
+
+    private void InvalidateConnectPhrase()
+    {
+        _countryCallout.ConnectPhrase = ConnectPhrase;
     }
 }

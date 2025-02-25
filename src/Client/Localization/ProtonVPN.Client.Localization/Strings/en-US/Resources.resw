@@ -3902,4 +3902,8 @@
     <value>Excluded IP addresses ({0})</value>
     <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of excluded IP addresses in the list. (eg. "Excluded IP addresses (2)")</comment>
   </data>
+  <data name="Map_ConnectTo" xml:space="preserve">
+    <value>Connect - {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
 </root>
