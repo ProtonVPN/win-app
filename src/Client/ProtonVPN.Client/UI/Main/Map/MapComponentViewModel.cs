@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,11 +21,11 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Common.UI.Controls.Map;
 using ProtonVPN.Client.Contracts.Messages;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
@@ -36,8 +36,6 @@ using ProtonVPN.Client.Logic.Servers;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.UI.Main.Map;
@@ -54,10 +52,6 @@ public partial class MapComponentViewModel : ViewModelBase,
     private readonly ICoordinatesProvider _coordinatesProvider;
     private readonly IUpsellCarouselWindowActivator _upsellCarouselWindowActivator;
 
-    public bool IsConnecting => _connectionManager.IsConnecting;
-    public bool IsConnected => _connectionManager.IsConnected;
-    public bool IsDisconnected => _connectionManager.IsDisconnected;
-
     [ObservableProperty]
     private bool _isMainWindowVisible;
 
@@ -67,16 +61,18 @@ public partial class MapComponentViewModel : ViewModelBase,
     [ObservableProperty]
     private Country? _currentCountry;
 
+    public bool IsConnecting => _connectionManager.IsConnecting;
+    public bool IsConnected => _connectionManager.IsConnected;
+    public bool IsDisconnected => _connectionManager.IsDisconnected;
+
     public MapComponentViewModel(
         ISettings settings,
         IServersCache serversCache,
         IConnectionManager connectionManager,
         ICoordinatesProvider coordinatesProvider,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(localizer, logger, issueReporter)
+        IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
     {
         _settings = settings;
         _serversCache = serversCache;
@@ -87,26 +83,6 @@ public partial class MapComponentViewModel : ViewModelBase,
         InvalidateActiveCountry();
     }
 
-    private void InvalidateActiveCountry()
-    {
-        switch (_connectionManager.ConnectionStatus)
-        {
-            case ConnectionStatus.Connected:
-            case ConnectionStatus.Connecting:
-            {
-                string? countryCode = _connectionManager.CurrentConnectionDetails?.ExitCountryCode;
-                if (!string.IsNullOrEmpty(countryCode))
-                {
-                    CurrentCountry = Countries.FirstOrDefault(c => c.Code == countryCode);
-                }
-                break;
-            }
-            case ConnectionStatus.Disconnected:
-                CurrentCountry = Countries.FirstOrDefault(c => c.Code == _settings.DeviceLocation?.CountryCode);
-                break;
-        }
-    }
-
     public void Receive(ConnectionStatusChangedMessage message)
     {
         ExecuteOnUIThread(() =>
@@ -115,7 +91,7 @@ public partial class MapComponentViewModel : ViewModelBase,
 
             OnPropertyChanged(nameof(IsConnecting));
             OnPropertyChanged(nameof(IsConnected));
-            OnPropertyChanged(nameof(IsDisconnected)); 
+            OnPropertyChanged(nameof(IsDisconnected));
         });
     }
 
@@ -133,6 +109,31 @@ public partial class MapComponentViewModel : ViewModelBase,
     public void Receive(MainWindowVisibilityChangedMessage message)
     {
         ExecuteOnUIThread(() => IsMainWindowVisible = message.IsMainWindowVisible);
+    }
+
+    public void Receive(ServerListChangedMessage message)
+    {
+        ExecuteOnUIThread(InvalidateCountries);
+    }
+
+    private void InvalidateActiveCountry()
+    {
+        switch (_connectionManager.ConnectionStatus)
+        {
+            case ConnectionStatus.Connected:
+            case ConnectionStatus.Connecting:
+                {
+                    string? countryCode = _connectionManager.CurrentConnectionDetails?.ExitCountryCode;
+                    if (!string.IsNullOrEmpty(countryCode))
+                    {
+                        CurrentCountry = Countries.FirstOrDefault(c => c.Code == countryCode);
+                    }
+                    break;
+                }
+            case ConnectionStatus.Disconnected:
+                CurrentCountry = Countries.FirstOrDefault(c => c.Code == _settings.DeviceLocation?.CountryCode);
+                break;
+        }
     }
 
     private void InvalidateCountries()
@@ -153,11 +154,6 @@ public partial class MapComponentViewModel : ViewModelBase,
             })
             .OfType<Country>()
             .ToList();
-    }
-
-    public void Receive(ServerListChangedMessage message)
-    {
-        ExecuteOnUIThread(InvalidateCountries);
     }
 
     [RelayCommand]

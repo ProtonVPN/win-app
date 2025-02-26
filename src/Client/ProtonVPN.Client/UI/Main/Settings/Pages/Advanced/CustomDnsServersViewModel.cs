@@ -23,17 +23,15 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Input;
 using ProtonVPN.Client.Common.Attributes;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Common.Core.Extensions;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 using Windows.System;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.Advanced;
@@ -62,23 +60,19 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
-        IConnectionManager connectionManager)
+        IConnectionManager connectionManager,
+        IViewModelHelper viewModelHelper)
         : base(requiredReconnectionSettings,
                mainViewNavigator,
                settingsViewNavigator,
-               localizer,
-               logger,
-               issueReporter,
                mainWindowOverlayActivator,
                settings,
                settingsConflictResolver,
-               connectionManager)
+               connectionManager,
+               viewModelHelper)
     {
         _currentIpAddress = string.Empty;
 
@@ -102,7 +96,7 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
         }
         else
         {
-            CustomDnsServers.Add(new(Localizer, Logger, IssueReporter, this, CurrentIpAddress));
+            CustomDnsServers.Add(new(this, ViewModelHelper, CurrentIpAddress));
         }
 
         CurrentIpAddress = string.Empty;
@@ -132,7 +126,7 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
         CustomDnsServers.Clear();
         foreach (CustomDnsServer server in Settings.CustomDnsServersList)
         {
-            CustomDnsServers.Add(new(Localizer, Logger, IssueReporter, this, server.IpAddress, server.IsActive));
+            CustomDnsServers.Add(new(this, ViewModelHelper, server.IpAddress, server.IsActive));
         }
     }
 

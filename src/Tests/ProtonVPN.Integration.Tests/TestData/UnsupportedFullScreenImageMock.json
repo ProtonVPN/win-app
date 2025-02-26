@@ -4,7 +4,7 @@
         {
             "NotificationID": "1",
             "StartTime": 1658397600,
-            "EndTime": 1660816800,
+            "EndTime": 1760816800,
             "Type": 0,
             "Offer": {
                 "URL": "https://protonvpn.com",
@@ -14,8 +14,8 @@
                     "FullScreenImage": {
                         "Source": [
                             {
-                                "URL": "https://protonvpn.com/full-screen-image.png",
-                                "Type": "PNG",
+                                "URL": "https://protonvpn.com/full-screen-image.svg",
+                                "Type": "SVG",
                                 "Width": 2000,
                                 "Height": 1000
                             }

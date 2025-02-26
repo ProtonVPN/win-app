@@ -19,6 +19,9 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Common.Collections;
+using ProtonVPN.Client.Core.Bases;
+using ProtonVPN.Client.Core.Bases.ViewModels;
+using ProtonVPN.Client.Factories;
 using ProtonVPN.Client.Legacy.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
@@ -26,8 +29,6 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Legacy.UI.Connections.Common.Factories;
 using ProtonVPN.Client.Legacy.UI.Connections.Common.Items;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Legacy.UI.Connections.Profiles.Controls;
 
@@ -41,13 +42,9 @@ public partial class ProfileSettingsSelectorViewModel : ViewModelBase, IProfileS
     public SmartObservableCollection<ProtocolItem> Protocols { get; } = [];
 
     public ProfileSettingsSelectorViewModel(
-        ILocalizationProvider localizationProvider,
-        ILogger logger,
-        IIssueReporter issueReporter,
-        CommonItemFactory commonItemFactory)
-        : base(localizationProvider,
-               logger,
-               issueReporter)
+        ICommonItemFactory commonItemFactory,
+        IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
     {
         _commonItemFactory = commonItemFactory;
     }

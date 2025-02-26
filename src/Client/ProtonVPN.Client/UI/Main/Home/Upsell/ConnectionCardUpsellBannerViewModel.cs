@@ -18,21 +18,16 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.UI.Xaml.Media;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
-using ProtonVPN.Client.Core.Helpers;
 using ProtonVPN.Client.Core.Services.Activation;
-using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Home.Upsell;
 
@@ -51,14 +46,12 @@ public partial class ConnectionCardUpsellBannerViewModel : ActivatableViewModelB
                                    !_changeServerModerator.CanChangeServer();
 
     public ConnectionCardUpsellBannerViewModel(
-        ILocalizationProvider localizationProvider,
-        ILogger logger,
-        IIssueReporter issueReporter,
         IConnectionManager connectionManager,
         IChangeServerModerator changeServerModerator,
         ISettings settings,
-        IUpsellCarouselWindowActivator upsellCarouselWindowActivator)
-        : base(localizationProvider, logger, issueReporter)
+        IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
+        IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
     {
         _connectionManager = connectionManager;
         _changeServerModerator = changeServerModerator;

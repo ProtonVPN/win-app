@@ -28,15 +28,13 @@ using LiveChartsCore.SkiaSharpView.Painting.Effects;
 using ProtonVPN.Client.Common.Collections;
 using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Common.Helpers;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts.History;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 using SkiaSharp;
 
 namespace ProtonVPN.Client.UI.Main.Home.Details.Connection;
@@ -105,11 +103,9 @@ public partial class VpnSpeedViewModel : ActivatableViewModelBase,
     public SmartObservableCollection<double> Separators { get; } = [];
 
     public VpnSpeedViewModel(
-        ILocalizationProvider localizationProvider,
         INetworkTrafficManager networkTrafficManager,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(localizationProvider, logger, issueReporter)
+        IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
     {
         _networkTrafficManager = networkTrafficManager;
 

@@ -20,11 +20,9 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.Services.Activation;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Services.Navigation;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue.Bases;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Dialogs.ReportIssue.Pages;
 
@@ -50,10 +48,8 @@ public partial class ReportIssueResultPageViewModel : ReportIssuePageViewModelBa
     public ReportIssueResultPageViewModel(
         IReportIssueWindowActivator reportIssueWindowActivator,
         IReportIssueViewNavigator parentViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(parentViewNavigator, localizer, logger, issueReporter)
+        IViewModelHelper viewModelHelper)
+        : base(parentViewNavigator, viewModelHelper)
     {
         _reportIssueWindowActivator = reportIssueWindowActivator;
     }

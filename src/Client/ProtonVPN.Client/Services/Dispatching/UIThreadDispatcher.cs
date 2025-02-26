@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,11 +18,14 @@
  */
 
 using System.Runtime.CompilerServices;
+using CommunityToolkit.WinUI;
 using Microsoft.UI.Dispatching;
+using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using DispatcherTimer = ProtonVPN.Client.Services.Dispatching.DispatcherTimer;
 
 namespace ProtonVPN.Client.Services.Dispatching;
 
@@ -49,6 +52,19 @@ public class UIThreadDispatcher : IUIThreadDispatcher
         return _dispatcherQueue.TryEnqueue(() => ExecuteSafely(callback, sourceFilePath, sourceMemberName, sourceLineNumber));
     }
 
+    public Task<bool> TryEnqueueAsync(Func<Task> callback,
+        [CallerFilePath] string sourceFilePath = "",
+        [CallerMemberName] string sourceMemberName = "",
+        [CallerLineNumber] int sourceLineNumber = 0)
+    {
+        return _dispatcherQueue.EnqueueAsync(async () => await ExecuteSafelyAsync(callback, sourceFilePath, sourceMemberName, sourceLineNumber));
+    }
+
+    public IDispatcherTimer GetTimer(TimeSpan interval)
+    {
+        return new DispatcherTimer(interval);
+    }
+
     private void ExecuteSafely(Action callback, string sourceFilePath, string sourceMemberName, int sourceLineNumber)
     {
         try
@@ -63,17 +79,19 @@ public class UIThreadDispatcher : IUIThreadDispatcher
         }
     }
 
-    private async Task ExecuteSafelyAsync(Task task, string sourceFilePath, string sourceMemberName, int sourceLineNumber)
+    private async Task<bool> ExecuteSafelyAsync(Func<Task> task, string sourceFilePath, string sourceMemberName, int sourceLineNumber)
     {
         try
         {
-            await task;
+            await task();
+            return true;
         }
         catch (Exception ex)
         {
             _logger.Error<AppLog>($"Exception handled by {nameof(UIThreadDispatcher)} {nameof(ExecuteSafelyAsync)}.",
                 ex, sourceFilePath, sourceMemberName, sourceLineNumber);
             _issueReporter.CaptureError(ex, sourceFilePath, sourceMemberName, sourceLineNumber);
+            return false;
         }
     }
 }

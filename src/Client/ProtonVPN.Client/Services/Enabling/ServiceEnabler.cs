@@ -17,9 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.WinUI;
-using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Localization.Contracts;
@@ -33,18 +32,20 @@ namespace ProtonVPN.Client.Services.Enabling;
 public class ServiceEnabler : IServiceEnabler
 {
     private readonly ILogger _logger;
+    private readonly IUIThreadDispatcher _uIThreadDispatcher;
     private readonly ILocalizationProvider _localizer;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
 
     private readonly SemaphoreSlim _semaphore = new(1, 1);
-    private readonly DispatcherQueue _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
 
     public ServiceEnabler(
         ILogger logger,
+        IUIThreadDispatcher uIThreadDispatcher,
         ILocalizationProvider localizer,
         IMainWindowOverlayActivator mainWindowOverlayActivator)
     {
         _logger = logger;
+        _uIThreadDispatcher = uIThreadDispatcher;
         _localizer = localizer;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
     }
@@ -60,7 +61,7 @@ public class ServiceEnabler : IServiceEnabler
 
         try
         {
-            await _dispatcherQueue.EnqueueAsync(() => ShowOverlayAsync(service));
+            await _uIThreadDispatcher.TryEnqueueAsync(() => ShowOverlayAsync(service));
         }
         catch (Exception)
         {

@@ -22,18 +22,16 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Contracts.Profiles;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Profiles.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.UI.Main.Profiles.Contracts;
 using ProtonVPN.Configurations.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Profiles;
 
@@ -68,9 +66,7 @@ public partial class ProfilePageViewModel : PageViewModelBase<IMainViewNavigator
 
     public ProfilePageViewModel(
         IMainViewNavigator parentViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
+        IViewModelHelper viewModelHelper,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         IConnectionManager connectionManager,
         IProfilesManager profilesManager,
@@ -81,9 +77,7 @@ public partial class ProfilePageViewModel : PageViewModelBase<IMainViewNavigator
         IConfiguration configuration,
         IVpnServiceSettingsUpdater vpnServiceSettingsUpdater)
         : base(parentViewNavigator,
-               localizer,
-               logger,
-               issueReporter)
+               viewModelHelper)
     {
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
         _connectionManager = connectionManager;
@@ -238,8 +232,8 @@ public partial class ProfilePageViewModel : PageViewModelBase<IMainViewNavigator
         bool isReconnectionRequired = IsReconnectionRequired();
         bool haveSettingsChanged = _profileSettingsSelector.HasChanged();
 
-        _profile.Name = IsProfileNameValid 
-            ? ProfileName.Trim() 
+        _profile.Name = IsProfileNameValid
+            ? ProfileName.Trim()
             : Localizer.Get("Connections_Profiles_Name_Default");
         _profile.Icon = _profileIconSelector.GetProfileIcon();
         _profile.Settings = _profileSettingsSelector.GetProfileSettings();

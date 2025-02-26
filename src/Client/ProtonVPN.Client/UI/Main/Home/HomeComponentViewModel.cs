@@ -17,25 +17,27 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Announcements.Contracts;
+using ProtonVPN.Client.Logic.Announcements.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Updates.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Home;
 
 public partial class HomeComponentViewModel : ActivatableViewModelBase,
     IEventMessageReceiver<ConnectionStatusChangedMessage>,
-    IEventMessageReceiver<ClientUpdateStateChangedMessage>
+    IEventMessageReceiver<ClientUpdateStateChangedMessage>,
+    IEventMessageReceiver<AnnouncementListChangedMessage>
 {
     private readonly IConnectionManager _connectionManager;
     private readonly IUpdatesManager _updatesManager;
+    private readonly IAnnouncementsProvider _announcementsProvider;
 
-    public bool IsUpdateAvailable => _updatesManager.IsUpdateAvailable;
+    public bool IsUpdateAvailable => _updatesManager.IsUpdateAvailable && _announcementsProvider.GetActiveAndUnseenBanner() is null;
 
     public bool IsConnected => _connectionManager.IsConnected;
 
@@ -44,15 +46,15 @@ public partial class HomeComponentViewModel : ActivatableViewModelBase,
     public bool IsDisconnected => _connectionManager.IsDisconnected;
 
     public HomeComponentViewModel(
-            ILocalizationProvider localizer,
-            ILogger logger,
-            IIssueReporter issueReporter,
-            IConnectionManager connectionManager,
-            IUpdatesManager updatesManager)
-        : base(localizer, logger, issueReporter)
+        IConnectionManager connectionManager,
+        IUpdatesManager updatesManager,
+        IAnnouncementsProvider announcementsProvider,
+        IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
     {
         _connectionManager = connectionManager;
         _updatesManager = updatesManager;
+        _announcementsProvider = announcementsProvider;
     }
 
     public void Receive(ConnectionStatusChangedMessage message)
@@ -69,6 +71,14 @@ public partial class HomeComponentViewModel : ActivatableViewModelBase,
         {
             ExecuteOnUIThread(InvalidateUpdateStatus);
         }
+    }
+
+    public void Receive(AnnouncementListChangedMessage message)
+    {
+        ExecuteOnUIThread(() =>
+        {
+            OnPropertyChanged(nameof(IsUpdateAvailable));
+        });
     }
 
     protected override void OnActivated()

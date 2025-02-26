@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,17 +18,15 @@
  */
 
 using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Factories;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Models.Connections;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Countries.P2P;
@@ -49,23 +47,20 @@ public class P2PCountriesComponentViewModel : CountriesComponentViewModelBase
     protected override ModalSource UpsellModalSource => ModalSource.P2P;
 
     public P2PCountriesComponentViewModel(
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
         ISettings settings,
         IServersLoader serversLoader,
         ILocationItemFactory locationItemFactory,
         IUrlsBrowser urlsBrowser,
-        IWebAuthenticator webAuthenticator)
-        : base(localizer,
-               logger,
-               issueReporter,
-               settings,
+        IWebAuthenticator webAuthenticator,
+        IViewModelHelper viewModelHelper)
+        : base(settings,
                serversLoader,
                locationItemFactory,
                urlsBrowser,
-               webAuthenticator)
-    { }
+               webAuthenticator,
+               viewModelHelper)
+    {
+    }
 
     public override IEnumerable<ConnectionItemBase> GetItems()
     {

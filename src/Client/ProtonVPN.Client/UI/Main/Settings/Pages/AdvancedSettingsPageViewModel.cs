@@ -22,11 +22,11 @@ using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Common.Attributes;
 using ProtonVPN.Client.Contracts.Profiles;
 using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
@@ -39,8 +39,6 @@ using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages;
 
@@ -141,24 +139,20 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager,
-        IProfileEditor profileEditor)
+        IProfileEditor profileEditor,
+        IViewModelHelper viewModelHelper)
         : base(requiredReconnectionSettings,
                mainViewNavigator,
                settingsViewNavigator,
-               localizer,
-               logger,
-               issueReporter,
                mainWindowOverlayActivator,
                settings,
                settingsConflictResolver,
-               connectionManager)
+               connectionManager,
+               viewModelHelper)
     {
         _urlsBrowser = urlsBrowser;
         _upsellCarouselWindowActivator = upsellCarouselWindowActivator;

@@ -21,13 +21,13 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Data;
 using ProtonVPN.Client.Common.Collections;
 using ProtonVPN.Client.Contracts.Profiles;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.Factories;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Models.Features.SplitTunneling;
 using ProtonVPN.Client.Settings.Contracts;
@@ -37,8 +37,6 @@ using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Features.Bases;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Client.UI.Main.Settings.Connection;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Features.SplitTunneling;
 
@@ -85,10 +83,8 @@ public partial class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
     protected override UpsellFeatureType? UpsellFeature { get; } = UpsellFeatureType.SplitTunneling;
 
     public SplitTunnelingWidgetViewModel(
+        IViewModelHelper viewModelHelper,
         IApplicationThemeSelector applicationThemeSelector,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
         ISettings settings,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
@@ -99,9 +95,7 @@ public partial class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
         IRequiredReconnectionSettings requiredReconnectionSettings,
         ISettingsConflictResolver settingsConflictResolver,
         IProfileEditor profileEditor)
-        : base(localizer,
-               logger,
-               issueReporter,
+        : base(viewModelHelper,
                mainViewNavigator,
                settingsViewNavigator,
                mainWindowOverlayActivator,

@@ -20,15 +20,13 @@
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Configurations.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages;
 
@@ -47,22 +45,18 @@ public partial class DebugLogsPageViewModel : SettingsPageViewModelBase
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
-        IConnectionManager connectionManager)
+        IConnectionManager connectionManager,
+        IViewModelHelper viewModelHelper)
         : base(requiredReconnectionSettings,
                mainViewNavigator,
                settingsViewNavigator,
-               localizer,
-               logger,
-               issueReporter,
                mainWindowOverlayActivator,
                settings,
                settingsConflictResolver,
-               connectionManager)
+               connectionManager,
+               viewModelHelper)
     {
         _urlsBrowser = urlsBrowser;
         _staticConfig = staticConfig;

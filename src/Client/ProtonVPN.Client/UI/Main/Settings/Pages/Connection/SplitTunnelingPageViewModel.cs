@@ -25,11 +25,11 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Common.Attributes;
 using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Extensions;
 using ProtonVPN.Client.Core.Helpers;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
@@ -37,8 +37,6 @@ using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Common.Core.Extensions;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 using Windows.System;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Connection;
@@ -121,23 +119,19 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
-        IConnectionManager connectionManager)
+        IConnectionManager connectionManager,
+        IViewModelHelper viewModelHelper)
         : base(requiredReconnectionSettings,
                mainViewNavigator,
                settingsViewNavigator,
-               localizer,
-               logger,
-               issueReporter,
                mainWindowOverlayActivator,
                settings,
                settingsConflictResolver,
-               connectionManager)
+               connectionManager,
+               viewModelHelper)
     {
         _urlsBrowser = urlsBrowser;
         _mainWindowActivator = mainWindowActivator;
@@ -222,7 +216,7 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
         }
         else
         {
-            ipAddresses.Add(new(Localizer, Logger, IssueReporter, this, CurrentIpAddress!));
+            ipAddresses.Add(new(ViewModelHelper, this, CurrentIpAddress!));
         }
 
         CurrentIpAddress = string.Empty;
@@ -297,13 +291,13 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
         ipAddresses.Clear();
         foreach (SplitTunnelingIpAddress ip in settingsIpAddresses)
         {
-            ipAddresses.Add(new(Localizer, Logger, IssueReporter, this, ip.IpAddress, ip.IsActive));
+            ipAddresses.Add(new(ViewModelHelper, this, ip.IpAddress, ip.IsActive));
         }
     }
 
     private async Task<SplitTunnelingAppViewModel> CreateAppFromPathAsync(string filePath, bool isActive, List<string>? alternateFilePaths)
     {
-        SplitTunnelingAppViewModel app = new(Localizer, Logger, IssueReporter, this, filePath, isActive, alternateFilePaths);
+        SplitTunnelingAppViewModel app = new(ViewModelHelper, this, filePath, isActive, alternateFilePaths);
         await app.InitializeAsync();
         return app;
     }

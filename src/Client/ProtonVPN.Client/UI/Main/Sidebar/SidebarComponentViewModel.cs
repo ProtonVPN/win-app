@@ -22,6 +22,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
+using ProtonVPN.Client.Common.Dispatching;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
@@ -46,13 +48,15 @@ public partial class SidebarComponentViewModel : HostViewModelBase<ISidebarViewN
     public ObservableCollection<IConnectionPage> ConnectionPages { get; }
 
     public SidebarComponentViewModel(
+        IUIThreadDispatcher uIThreadDispatcher,
         ISidebarViewNavigator childViewNavigator,
         ILocalizationProvider localizer,
         ILogger logger,
         IIssueReporter issueReporter,
         ISearchInputReceiver searchInputReceiver,
-        IEnumerable<IConnectionPage> connectionPages)
-        : base(childViewNavigator, localizer, logger, issueReporter)
+        IEnumerable<IConnectionPage> connectionPages,
+        IViewModelHelper viewModelHelper)
+        : base(childViewNavigator, viewModelHelper)
     {
         _searchInputReceiver = searchInputReceiver;
 

@@ -20,11 +20,9 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Media;
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Common.UI.Extensions;
+using ProtonVPN.Client.Core.Bases;
+using ProtonVPN.Client.Core.Bases.ViewModels;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Connection;
 
@@ -43,23 +41,21 @@ public partial class SplitTunnelingAppViewModel : ViewModelBase
 
     public ImageSource? AppIcon { get; private set; }
 
-    public SplitTunnelingAppViewModel(ILocalizationProvider localizationProvider,
-        ILogger logger,
-        IIssueReporter issueReporter,
+    public SplitTunnelingAppViewModel(
+        IViewModelHelper viewModelHelper,
         SplitTunnelingPageViewModel parentViewModel,
         string appFilePath,
         List<string>? alternateAppFilePaths)
-        : this(localizationProvider, logger, issueReporter, parentViewModel, appFilePath, true, alternateAppFilePaths)
+        : this(viewModelHelper, parentViewModel, appFilePath, true, alternateAppFilePaths)
     { }
 
-    public SplitTunnelingAppViewModel(ILocalizationProvider localizationProvider,
-        ILogger logger,
-        IIssueReporter issueReporter,
+    public SplitTunnelingAppViewModel(
+        IViewModelHelper viewModelHelper,
         SplitTunnelingPageViewModel parentViewModel,
         string appFilePath,
         bool isActive,
         List<string>? alternateAppFilePaths)
-        : base(localizationProvider, logger, issueReporter)
+        : base(viewModelHelper)
     {
         _parentViewModel = parentViewModel;
 

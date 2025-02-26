@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,12 +19,10 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Common.Enums;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.UI.Main.Profiles.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Profiles.Components;
 
@@ -39,12 +37,8 @@ public partial class ProfileIconSelectorViewModel : ViewModelBase, IProfileIconS
     private ProfileColor _selectedColor;
 
     public ProfileIconSelectorViewModel(
-        ILocalizationProvider localizationProvider,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(localizationProvider,
-               logger,
-               issueReporter)
+        IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
     { }
 
     public ProfileCategory GetProfileCategory()

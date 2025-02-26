@@ -19,24 +19,21 @@
 
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.Profiles;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Messages;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
-using ProtonVPN.Client.Services.Activation;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.Connection;
 
@@ -91,10 +88,9 @@ public partial class ConnectionSettingsViewModel : ActivatableViewModelBase,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
         ISettingsViewNavigator settingsViewNavigator,
         IProfileEditor profileEditor,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
-        IConnectionManager connectionManager) : base(localizer, logger, issueReporter)
+        IConnectionManager connectionManager,
+        IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
     {
         _settings = settings;
         _upsellCarouselWindowActivator = upsellCarouselWindowActivator;

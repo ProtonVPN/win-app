@@ -19,14 +19,12 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Services.PortForwarding;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Components;
 
@@ -54,12 +52,10 @@ public partial class ActivePortComponentViewModel : ActivatableViewModelBase,
     public bool IsFetchingPort => !HasActivePortNumber && _portForwardingManager.IsFetchingPort;
 
     public ActivePortComponentViewModel(
-        ILocalizationProvider localizationProvider,
-        ILogger logger,
-        IIssueReporter issueReporter,
         IPortForwardingManager portForwardingManager,
-        IPortForwardingClipboardService portForwardingClipboardService)
-        : base(localizationProvider, logger, issueReporter)
+        IPortForwardingClipboardService portForwardingClipboardService,
+        IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
     {
         _portForwardingManager = portForwardingManager;
         _portForwardingClipboardService = portForwardingClipboardService;

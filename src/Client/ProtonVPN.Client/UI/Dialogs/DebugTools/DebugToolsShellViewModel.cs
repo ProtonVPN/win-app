@@ -18,27 +18,20 @@
  */
 
 using System.Reflection;
-using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
-using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
-using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
-using ProtonVPN.Client.Logic.Services;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Dialogs.DebugTools.Models;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
 namespace ProtonVPN.Client.UI.Dialogs.DebugTools;
@@ -48,13 +41,8 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     private readonly IServersUpdater _serversUpdater;
     private readonly IVpnServiceCaller _vpnServiceCaller;
     private readonly IUserAuthenticator _userAuthenticator;
-    private readonly IRequiredReconnectionSettings _requiredReconnectionSettings;
-    private readonly IMainViewNavigator _mainViewNavigator;
-    private readonly ISettingsViewNavigator _settingsViewNavigator;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
     private readonly ISettings _settings;
-    private readonly ISettingsConflictResolver _settingsConflictResolver;
-    private readonly IConnectionManager _connectionManager;
     private readonly IEventMessageSender _eventMessageSender;
 
     [ObservableProperty]
@@ -79,36 +67,21 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     ];
 
     public DebugToolsShellViewModel(
-        IDebugToolsWindowActivator windowActivator,
         IVpnServiceCaller vpnServiceCaller,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
         IServersUpdater serversUpdater,
         IUserAuthenticator userAuthenticator,
-        IRequiredReconnectionSettings requiredReconnectionSettings,
-        IMainViewNavigator mainViewNavigator,
-        ISettingsViewNavigator settingsViewNavigator,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         ISettings settings,
-        ISettingsConflictResolver settingsConflictResolver,
-        IConnectionManager connectionManager,
-        IEventMessageSender eventMessageSender)
-        : base(windowActivator,
-               localizer,
-               logger,
-               issueReporter)
+        IEventMessageSender eventMessageSender,
+        IDebugToolsWindowActivator windowActivator,
+        IViewModelHelper viewModelHelper)
+        : base(windowActivator, viewModelHelper)
     {
         _serversUpdater = serversUpdater;
         _vpnServiceCaller = vpnServiceCaller;
         _userAuthenticator = userAuthenticator;
-        _requiredReconnectionSettings = requiredReconnectionSettings;
-        _mainViewNavigator = mainViewNavigator;
-        _settingsViewNavigator = settingsViewNavigator;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
         _settings = settings;
-        _settingsConflictResolver = settingsConflictResolver;
-        _connectionManager = connectionManager;
         _eventMessageSender = eventMessageSender;
 
         OverlaysList =

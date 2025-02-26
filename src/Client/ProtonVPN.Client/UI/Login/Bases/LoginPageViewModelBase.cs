@@ -17,9 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Navigation;
 
@@ -29,9 +27,7 @@ public abstract class LoginPageViewModelBase : PageViewModelBase<ILoginViewNavig
 {
     protected LoginPageViewModelBase(
         ILoginViewNavigator parentViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(parentViewNavigator, localizer, logger, issueReporter)
+        IViewModelHelper viewModelHelper)
+        : base(parentViewNavigator, viewModelHelper)
     { }
 }

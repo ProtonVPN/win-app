@@ -17,13 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Core.Bases;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.Profiles;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
@@ -31,8 +31,6 @@ using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Features.Bases;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Client.UI.Main.Settings.Connection;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Features.PortForwarding;
 
@@ -69,9 +67,7 @@ public partial class PortForwardingWidgetViewModel : FeatureWidgetViewModelBase
                                              && CurrentProfile != null;
 
     public PortForwardingWidgetViewModel(
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
+        IViewModelHelper viewModelHelper,
         ISettings settings,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
@@ -81,9 +77,7 @@ public partial class PortForwardingWidgetViewModel : FeatureWidgetViewModelBase
         IRequiredReconnectionSettings requiredReconnectionSettings,
         ISettingsConflictResolver settingsConflictResolver,
         IProfileEditor profileEditor)
-        : base(localizer,
-               logger,
-               issueReporter,
+        : base(viewModelHelper,
                mainViewNavigator,
                settingsViewNavigator,
                mainWindowOverlayActivator,

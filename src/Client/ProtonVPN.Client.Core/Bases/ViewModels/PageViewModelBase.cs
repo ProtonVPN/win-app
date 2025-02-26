@@ -21,9 +21,6 @@ using System;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Navigation;
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Client.Core.Services.Navigation.Bases;
 
 namespace ProtonVPN.Client.Core.Bases.ViewModels;
@@ -32,12 +29,9 @@ public abstract class PageViewModelBase : ActivatableViewModelBase, INavigationA
 {
     public virtual string Title => string.Empty;
 
-    protected PageViewModelBase(
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(localizer, logger, issueReporter)
-    { }
+    protected PageViewModelBase(IViewModelHelper viewModelHelper) : base(viewModelHelper)
+    {
+    }
 
     public event EventHandler? ResetContentScrollRequested;
 
@@ -84,10 +78,7 @@ public abstract partial class PageViewModelBase<TParentViewNavigator> : PageView
 
     public PageViewModelBase(
         TParentViewNavigator parentViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(localizer, logger, issueReporter)
+        IViewModelHelper viewModelHelper) : base(viewModelHelper)
     {
         ParentViewNavigator = parentViewNavigator;
         ParentViewNavigator.Navigated += OnNavigated;
@@ -140,10 +131,8 @@ public abstract partial class PageViewModelBase<TParentViewNavigator, TChildView
     protected PageViewModelBase(
         TParentViewNavigator parentViewNavigator,
         TChildViewNavigator childViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(parentViewNavigator, localizer, logger, issueReporter)
+        IViewModelHelper viewModelHelper)
+        : base(parentViewNavigator, viewModelHelper)
     {
         ChildViewNavigator = childViewNavigator;
         ChildViewNavigator.Navigated += OnChildNavigated;

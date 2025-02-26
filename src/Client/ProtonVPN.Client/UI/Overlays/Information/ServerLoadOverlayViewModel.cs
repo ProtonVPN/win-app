@@ -18,11 +18,9 @@
  */
 
 using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Overlays.Information;
 
@@ -34,11 +32,9 @@ public class ServerLoadOverlayViewModel : OverlayViewModelBase<IMainWindowOverla
 
     public ServerLoadOverlayViewModel(
         IMainWindowOverlayActivator overlayActivator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
-        IUrlsBrowser urlsBrowser)
-        : base(overlayActivator, localizer, logger, issueReporter)
+        IUrlsBrowser urlsBrowser,
+        IViewModelHelper viewModelHelper)
+        : base(overlayActivator, viewModelHelper)
     {
         _urlsBrowser = urlsBrowser;
     }

@@ -24,6 +24,5 @@ public class ProminentBannerResponse
     public string Title { get; set; }
     public string Description { get; set; }
     public OfferPanelButtonResponse ActionButton { get; set; }
-    public string DismissButtonText { get; set; }
     public string Style { get; set; }
 }

@@ -19,9 +19,9 @@
 
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
@@ -29,8 +29,6 @@ using ProtonVPN.Client.Services.Bootstrapping;
 using ProtonVPN.Client.Services.SignoutHandling;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Extensions;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages;
 
@@ -57,9 +55,8 @@ public partial class UserDetailsComponentViewModel : PageViewModelBase,
         ISettings settings,
         IWebAuthenticator webAuthenticator,
         IBootstrapper bootstrapper,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter) : base(localizer, logger, issueReporter)
+        IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
     {
         _urlsBrowser = urlsBrowser;
         _signoutHandler = signoutHandler;

@@ -26,7 +26,6 @@ using ProtonVPN.Client.UI.Dialogs.Upsell.Features;
 using ProtonVPN.Client.UI.Login;
 using ProtonVPN.Client.UI.Login.Pages;
 using ProtonVPN.Client.UI.Main;
-using ProtonVPN.Client.UI.Main.Home;
 using ProtonVPN.Client.UI.Main.Home.Details.Connection;
 using ProtonVPN.Client.UI.Main.Home.Details.Location;
 using ProtonVPN.Client.UI.Main.Profiles;

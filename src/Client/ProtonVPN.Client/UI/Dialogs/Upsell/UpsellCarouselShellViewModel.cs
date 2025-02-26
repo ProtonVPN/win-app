@@ -22,15 +22,13 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.UI.Dialogs.Upsell.Bases;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.UI.Dialogs.Upsell;
@@ -54,18 +52,12 @@ public partial class UpsellCarouselShellViewModel : ShellViewModelBase<IUpsellCa
     public UpsellCarouselShellViewModel(
         IUpsellCarouselWindowActivator windowActivator,
         IUpsellCarouselViewNavigator childViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
         IUrlsBrowser urlsBrowser,
         IWebAuthenticator webAuthenticator,
         IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender,
-        IEnumerable<IUpsellFeaturePage> upsellFeaturePages)
-        : base(windowActivator,
-               childViewNavigator,
-               localizer,
-               logger,
-               issueReporter)
+        IEnumerable<IUpsellFeaturePage> upsellFeaturePages,
+        IViewModelHelper viewModelHelper)
+        : base(windowActivator, childViewNavigator, viewModelHelper)
     {
         _urlsBrowser = urlsBrowser;
         _webAuthenticator = webAuthenticator;

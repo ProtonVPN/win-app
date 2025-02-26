@@ -18,20 +18,18 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
-using Microsoft.UI.Xaml;
+using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Contracts.Messages;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Home.Details;
 
@@ -41,10 +39,9 @@ public partial class DetailsComponentViewModel : HostViewModelBase<IDetailsViewN
 {
     private const int REFRESH_TIMER_INTERVAL_IN_MS = 1000;
 
-    private readonly DispatcherTimer _refreshTimer;
+    private readonly IDispatcherTimer _refreshTimer;
 
     private readonly IConnectionManager _connectionManager;
-    private readonly IMainWindowActivator _mainWindowActivator;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ProtectionDescription))]
@@ -76,20 +73,14 @@ public partial class DetailsComponentViewModel : HostViewModelBase<IDetailsViewN
 
     public DetailsComponentViewModel(
         IDetailsViewNavigator childViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
         IConnectionManager connectionManager,
-        IMainWindowActivator mainWindowActivator)
-        : base(childViewNavigator, localizer, logger, issueReporter)
+        IMainWindowActivator mainWindowActivator,
+        IViewModelHelper viewModelHelper)
+        : base(childViewNavigator, viewModelHelper)
     {
         _connectionManager = connectionManager;
-        _mainWindowActivator = mainWindowActivator;
 
-        _refreshTimer = new()
-        {
-            Interval = TimeSpan.FromMilliseconds(REFRESH_TIMER_INTERVAL_IN_MS)
-        };
+        _refreshTimer = UIThreadDispatcher.GetTimer(TimeSpan.FromMilliseconds(REFRESH_TIMER_INTERVAL_IN_MS));
         _refreshTimer.Tick += OnRefreshTimerTick;
     }
 

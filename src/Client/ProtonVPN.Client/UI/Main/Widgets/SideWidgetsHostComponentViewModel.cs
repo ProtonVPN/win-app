@@ -18,9 +18,7 @@
  */
 
 using System.Collections.ObjectModel;
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.UI.Main.Widgets.Contracts;
 
@@ -35,12 +33,10 @@ public partial class SideWidgetsHostComponentViewModel : ViewModelBase
     public bool HasHeaderAndFooterWidgets => HeaderWidgets.Count > 0 && FooterWidgets.Count > 0;
 
     public SideWidgetsHostComponentViewModel(
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
         IEnumerable<ISideHeaderWidget> headerWidgets,
-        IEnumerable<ISideFooterWidget> footerWidgets)
-        : base(localizer, logger, issueReporter)
+        IEnumerable<ISideFooterWidget> footerWidgets,
+        IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
     {
         HeaderWidgets = new(headerWidgets.OrderBy(p => p.SortIndex));
         FooterWidgets = new(footerWidgets.OrderBy(p => p.SortIndex));

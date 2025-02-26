@@ -18,16 +18,14 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Services.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Components;
 
@@ -39,7 +37,6 @@ public partial class NetShieldStatsViewModel : ActivatableViewModelBase,
     private const int AVG_TRACKER_SIZE_IN_BYTES = 50000;
     private const int AVG_MALWARE_SIZE_IN_BYTES = 750000;
 
-    private readonly IVpnServiceCaller _vpnServiceCaller;
     private readonly IConnectionManager _connectionManager;
 
     [ObservableProperty]
@@ -59,13 +56,10 @@ public partial class NetShieldStatsViewModel : ActivatableViewModelBase,
 
     public NetShieldStatsViewModel(
         IVpnServiceCaller vpnServiceCaller,
-        ILocalizationProvider localizationProvider,
-        ILogger logger,
-        IIssueReporter issueReporter,
-        IConnectionManager connectionManager)
-        : base(localizationProvider, logger, issueReporter)
+        IConnectionManager connectionManager,
+        IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
     {
-        _vpnServiceCaller = vpnServiceCaller;
         _connectionManager = connectionManager;
     }
 

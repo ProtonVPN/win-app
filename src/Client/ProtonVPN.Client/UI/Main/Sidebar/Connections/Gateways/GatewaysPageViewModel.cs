@@ -21,18 +21,16 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.UI.Assets.Icons.Base;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Factories;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Models.Connections;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Gateways;
 
@@ -55,22 +53,18 @@ public partial class GatewaysPageViewModel : ConnectionPageViewModelBase,
 
     public GatewaysPageViewModel(
         IConnectionsViewNavigator parentViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
         ISettings settings,
         IServersLoader serversLoader,
         IConnectionManager connectionManager,
         IConnectionGroupFactory connectionGroupFactory,
-        ILocationItemFactory locationItemFactory)
+        ILocationItemFactory locationItemFactory,
+        IViewModelHelper viewModelHelper)
         : base(parentViewNavigator,
-               localizer,
-               logger,
-               issueReporter,
                settings,
                serversLoader,
                connectionManager,
-               connectionGroupFactory)
+               connectionGroupFactory,
+               viewModelHelper)
     {
         _locationItemFactory = locationItemFactory;
     }

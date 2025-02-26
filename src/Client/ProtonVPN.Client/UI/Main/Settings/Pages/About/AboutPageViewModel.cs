@@ -19,18 +19,16 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Updates.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Settings.Pages.About.Models;
 using ProtonVPN.Common.Core.Helpers;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Update.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.About;
@@ -63,23 +61,19 @@ public partial class AboutPageViewModel : SettingsPageViewModelBase,
         ReleaseViewModelFactory releaseViewModelFactory,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
-        IConnectionManager connectionManager)
+        IConnectionManager connectionManager,
+        IViewModelHelper viewModelHelper)
         : base(requiredReconnectionSettings,
                mainViewNavigator,
                settingsViewNavigator,
-               localizer,
-               logger,
-               issueReporter,
                mainWindowOverlayActivator,
                settings,
                settingsConflictResolver,
-               connectionManager)
+               connectionManager,
+               viewModelHelper)
     {
         _updatesManager = updatesManager;
         _releaseViewModelFactory = releaseViewModelFactory;

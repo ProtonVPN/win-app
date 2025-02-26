@@ -209,7 +209,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="Padding" Value="{StaticResource LargeGhostButtonPadding}" />
     </Style>
 
-        <Style BasedOn="{StaticResource SecondaryGhostButtonStyle}" TargetType="custom:GhostButton" />
+    <Style BasedOn="{StaticResource SecondaryGhostButtonStyle}" TargetType="custom:GhostButton" />
 
     <Style x:Key="SecondaryGhostButtonStyle" BasedOn="{StaticResource DefaultButtonStyle}" TargetType="custom:GhostButton">
         <Setter Property="Foreground" Value="{ThemeResource SecondaryGhostButtonForeground}" />

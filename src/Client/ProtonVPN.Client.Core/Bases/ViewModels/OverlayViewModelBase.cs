@@ -21,21 +21,15 @@ using System;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Client.Core.Services.Activation.Bases;
 
 namespace ProtonVPN.Client.Core.Bases.ViewModels;
 
 public abstract partial class OverlayViewModelBase : ActivatableViewModelBase, IOverlayActivationAware
 {
-    protected OverlayViewModelBase(
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(localizer, logger, issueReporter)
-    { }
+    protected OverlayViewModelBase(IViewModelHelper viewModelHelper) : base(viewModelHelper)
+    {
+    }
 
     public virtual void OnShow(object? parameter)
     { }
@@ -50,10 +44,8 @@ public abstract partial class OverlayViewModelBase<TOverlayActivator> : OverlayV
 
     protected OverlayViewModelBase(
         TOverlayActivator overlayActivator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(localizer, logger, issueReporter)
+        IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
     {
         OverlayActivator = overlayActivator;
         OverlayActivator.OverlayChanged += OnOverlayChanged;

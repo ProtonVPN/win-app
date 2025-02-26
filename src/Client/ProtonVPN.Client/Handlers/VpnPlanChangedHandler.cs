@@ -17,9 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.WinUI;
-using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Services.Activation;
@@ -43,8 +42,8 @@ public class VpnPlanChangedHandler : IHandler,
     IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<VpnPlanChangedMessage>
 {
-    private readonly DispatcherQueue _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
     private readonly ILogger _logger;
+    private readonly IUIThreadDispatcher _uIThreadDispatcher;
     private readonly ILocalizationProvider _localizer;
     private readonly IConnectionManager _connectionManager;
     private readonly IUserAuthenticator _userAuthenticator;
@@ -57,7 +56,9 @@ public class VpnPlanChangedHandler : IHandler,
 
     private bool _notifyOnNextConnection;
 
-    public VpnPlanChangedHandler(ILogger logger,
+    public VpnPlanChangedHandler(
+        ILogger logger,
+        IUIThreadDispatcher uIThreadDispatcher,
         ILocalizationProvider localizer,
         IConnectionManager connectionManager,
         IUserAuthenticator userAuthenticator,
@@ -69,6 +70,7 @@ public class VpnPlanChangedHandler : IHandler,
         ISubscriptionExpiredNotificationSender subscriptionExpiredNotificationSender)
     {
         _logger = logger;
+        _uIThreadDispatcher = uIThreadDispatcher;
         _localizer = localizer;
         _connectionManager = connectionManager;
         _userAuthenticator = userAuthenticator;
@@ -90,7 +92,7 @@ public class VpnPlanChangedHandler : IHandler,
         if (message.HasMaxTierChanged())
         {
             _logger.Info<AppLog>("Navigating to Home page due to max tier change.");
-            await _dispatcherQueue.EnqueueAsync(ResetNavigationAsync);
+            await _uIThreadDispatcher.TryEnqueueAsync(ResetNavigationAsync);
         }
 
         if (message.IsDowngrade())
@@ -123,7 +125,7 @@ public class VpnPlanChangedHandler : IHandler,
     private async Task NotifyUserOfSubscriptionExpirationAsync()
     {
         _subscriptionExpiredNotificationSender.Send();
-        await _dispatcherQueue.EnqueueAsync(ShowSubscriptionExpiredDialogAsync);
+        await _uIThreadDispatcher.TryEnqueueAsync(ShowSubscriptionExpiredDialogAsync);
     }
 
     private async Task ShowSubscriptionExpiredDialogAsync()

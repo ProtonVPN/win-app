@@ -20,11 +20,11 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Common.Enums;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
@@ -44,8 +44,6 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.UI.Main.Home.Card;
@@ -196,9 +194,7 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
     }).GetFlagType(CurrentConnectionStatus is ConnectionStatus.Connected);
 
     public ConnectionCardComponentViewModel(
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
+        IViewModelHelper viewModelHelper,
         IConnectionManager connectionManager,
         ISettings settings,
         IRecentConnectionsManager recentConnectionsManager,
@@ -207,7 +203,7 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
         IServersLoader serversLoader)
-        : base(localizer, logger, issueReporter)
+        : base(viewModelHelper)
     {
         _connectionManager = connectionManager;
         _settings = settings;

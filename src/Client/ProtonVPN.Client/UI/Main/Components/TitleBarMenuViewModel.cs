@@ -22,11 +22,11 @@ using ProtonVPN.Client.Commands;
 using ProtonVPN.Client.Common.Collections;
 using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Models.ReportIssue;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Feedback.Contracts;
@@ -34,8 +34,6 @@ using ProtonVPN.Client.Logic.Updates.Contracts;
 using ProtonVPN.Client.Mappers;
 using ProtonVPN.Client.Services.Bootstrapping;
 using ProtonVPN.Client.Services.SignoutHandling;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Components;
 
@@ -78,9 +76,8 @@ public partial class TitleBarMenuViewModel : ActivatableViewModelBase,
         IUpdatesManager updatesManager,
         ISettingsViewNavigator settingsViewNavigator,
         IUpdateClientCommand updateClientCommand,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter) : base(localizer, logger, issueReporter)
+        IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
     {
         _bootstrapper = bootstrapper;
         _urlsBrowser = urlsBrowser;

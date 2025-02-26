@@ -17,14 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Overlays.Welcome;
 
@@ -37,11 +35,9 @@ public class WelcomeToVpnPlusOverlayViewModel : OverlayViewModelBase<IMainWindow
 
     public WelcomeToVpnPlusOverlayViewModel(
         IMainWindowOverlayActivator mainWindowOverlayActivator,
-        ILocalizationProvider localizationProvider,
-        ILogger logger,
-        IIssueReporter issueReporter,
-        IServerCountCache serverCountCache) :
-        base(mainWindowOverlayActivator, localizationProvider, logger, issueReporter)
+        IServerCountCache serverCountCache,
+        IViewModelHelper viewModelHelper)
+        : base(mainWindowOverlayActivator, viewModelHelper)
     {
         _serverCountCache = serverCountCache;
     }

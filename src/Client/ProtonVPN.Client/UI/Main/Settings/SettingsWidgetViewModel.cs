@@ -17,12 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Services.Navigation;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.UI.Main.Widgets.Bases;
 using ProtonVPN.Client.UI.Main.Widgets.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Settings;
 
@@ -33,11 +31,9 @@ public class SettingsWidgetViewModel : SideWidgetViewModelBase, ISideFooterWidge
     public override string Header => Localizer.Get("Settings_Page_Title");
 
     public SettingsWidgetViewModel(
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
-        IMainViewNavigator mainViewNavigator)
-        : base(localizer, logger, issueReporter, mainViewNavigator)
+        IMainViewNavigator mainViewNavigator,
+        IViewModelHelper viewModelHelper)
+        : base(mainViewNavigator, viewModelHelper)
     { }
 
     public override Task<bool> InvokeAsync()

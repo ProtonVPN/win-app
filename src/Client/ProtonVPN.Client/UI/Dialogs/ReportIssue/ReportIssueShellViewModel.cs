@@ -19,16 +19,15 @@
 
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Navigation;
+using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Contracts.Services.Activation;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Updates.Contracts;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue.Pages;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Dialogs.ReportIssue;
 
@@ -63,13 +62,12 @@ public partial class ReportIssueShellViewModel : ShellViewModelBase<IReportIssue
     public bool IsUpdateAvailable => _updatesManager.IsUpdateAvailable;
 
     public ReportIssueShellViewModel(
+        IUIThreadDispatcher uIThreadDispatcher,
         IUpdatesManager updatesManager,
         IReportIssueWindowActivator windowActivator,
         IReportIssueViewNavigator childViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(windowActivator, childViewNavigator, localizer, logger, issueReporter)
+        IViewModelHelper viewModelHelper)
+        : base(windowActivator, childViewNavigator, viewModelHelper)
     {
         _updatesManager = updatesManager;
     }

@@ -21,16 +21,14 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Client.Contracts.Services.Activation;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Models.ReportIssue;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Feedback.Contracts;
 using ProtonVPN.Client.Mappers;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Dialogs.ReportIssue;
 
@@ -48,11 +46,9 @@ public partial class ReportIssueComponentViewModel : ViewModelBase,
     public ReportIssueComponentViewModel(
         IReportIssueViewNavigator reportIssueViewNavigator,
         IReportIssueDataProvider dataProvider,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
-        IReportIssueWindowActivator reportIssueWindowActivator)
-        : base(localizer, logger, issueReporter)
+        IReportIssueWindowActivator reportIssueWindowActivator,
+        IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
     {
         _reportIssueViewNavigator = reportIssueViewNavigator;
         _dataProvider = dataProvider;

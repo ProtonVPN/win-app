@@ -17,11 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Overlays.Welcome;
 
@@ -29,10 +27,7 @@ public class WelcomeToVpnB2BOverlayViewModel : OverlayViewModelBase<IMainWindowO
 {
     public WelcomeToVpnB2BOverlayViewModel(
         IMainWindowOverlayActivator mainWindowOverlayActivator,
-        ILocalizationProvider localizationProvider,
-        ILogger logger,
-        IIssueReporter issueReporter) :
-        base(mainWindowOverlayActivator, localizationProvider, logger, issueReporter)
-    {
-    }
+        IViewModelHelper viewModelHelper)
+        : base(mainWindowOverlayActivator, viewModelHelper)
+    { }
 }

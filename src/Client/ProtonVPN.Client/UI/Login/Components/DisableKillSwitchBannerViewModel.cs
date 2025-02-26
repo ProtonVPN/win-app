@@ -20,18 +20,16 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Navigation;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Extensions;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.UI.Login.Pages;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Login.Components;
 
@@ -50,9 +48,8 @@ public partial class DisableKillSwitchBannerViewModel : ViewModelBase,
         ISettings settings,
         ILoginViewNavigator loginViewNavigator,
         IConnectionManager connectionManager,
-        ILocalizationProvider localizationProvider,
-        ILogger logger,
-        IIssueReporter issueReporter) : base(localizationProvider, logger, issueReporter)
+        IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
     {
         _settings = settings;
         _loginViewNavigator = loginViewNavigator;

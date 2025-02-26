@@ -20,9 +20,6 @@
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Navigation;
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Client.Core.Services.Navigation.Bases;
 
 namespace ProtonVPN.Client.Core.Bases.ViewModels;
@@ -36,10 +33,8 @@ public abstract partial class HostViewModelBase<TChildViewNavigator> : Activatab
 
     protected HostViewModelBase(
         TChildViewNavigator childViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(localizer, logger, issueReporter)
+        IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
     {
         ChildViewNavigator = childViewNavigator;
         ChildViewNavigator.Navigated += OnChildNavigated;

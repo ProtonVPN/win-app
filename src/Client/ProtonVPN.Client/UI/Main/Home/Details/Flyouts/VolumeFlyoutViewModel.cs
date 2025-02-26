@@ -18,15 +18,13 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts.History;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Home.Details.Flyouts;
 
@@ -48,11 +46,9 @@ public partial class VolumeFlyoutViewModel : ActivatableViewModelBase,
     public string FormattedUploadVolume => Localizer.GetFormattedSize(UploadVolume);
 
     public VolumeFlyoutViewModel(
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
-        INetworkTrafficManager networkTrafficManager) :
-        base(localizer, logger, issueReporter)
+        INetworkTrafficManager networkTrafficManager,
+        IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
     {
         _networkTrafficManager = networkTrafficManager;
     }

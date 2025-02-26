@@ -20,13 +20,11 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Navigation;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Mapping;
 using ProtonVPN.Client.Core.Services.Navigation;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections;
 
@@ -42,12 +40,10 @@ public partial class ConnectionsPageViewModel : PageViewModelBase<ISidebarViewNa
     public ConnectionsPageViewModel(
         ISidebarViewNavigator parentViewNavigator,
         IConnectionsViewNavigator childViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
         IEnumerable<IConnectionPage> connectionPages,
-        IPageViewMapper pageViewMapper)
-        : base(parentViewNavigator, childViewNavigator, localizer, logger, issueReporter)
+        IPageViewMapper pageViewMapper,
+        IViewModelHelper viewModelHelper)
+        : base(parentViewNavigator, childViewNavigator, viewModelHelper)
     {
         _pageViewMapper = pageViewMapper;
 

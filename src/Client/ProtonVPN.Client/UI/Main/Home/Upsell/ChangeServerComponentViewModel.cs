@@ -19,18 +19,16 @@
 
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.StatisticalEvents.Contracts;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
@@ -57,15 +55,13 @@ public partial class ChangeServerComponentViewModel : ActivatableViewModelBase,
     public string? FormattedRemainingTime => Localizer.GetFormattedShortTime(_changeServerModerator.GetRemainingDelayUntilNextAttempt());
 
     public ChangeServerComponentViewModel(
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
         IConnectionManager connectionManager,
         IChangeServerModerator changeServerModerator,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
         IUrlsBrowser urlsBrowser,
-        IWebAuthenticator webAuthenticator)
-        : base(localizer, logger, issueReporter)
+        IWebAuthenticator webAuthenticator,
+        IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
     {
         _connectionManager = connectionManager;
         _changeServerModerator = changeServerModerator;

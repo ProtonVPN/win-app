@@ -19,8 +19,12 @@
 
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Media;
+using ProtonVPN.Client.Core.Bases;
+using ProtonVPN.Client.Core.Bases.ViewModels;
+using ProtonVPN.Client.Core.Models;
+using ProtonVPN.Client.Core.Services.Activation;
+using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
@@ -28,15 +32,9 @@ using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Recents.Contracts;
-using ProtonVPN.Common.Core.Helpers;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Core.Bases.ViewModels;
-using ProtonVPN.Client.Core.Models;
-using ProtonVPN.Client.Core.Services.Activation;
-using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.Services.Bootstrapping;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.UI.Tray;
@@ -68,9 +66,6 @@ public partial class TrayIconComponentViewModel : ViewModelBase,
     public bool IsDebugModeEnabled => _settings.IsDebugModeEnabled;
 
     public TrayIconComponentViewModel(
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
         IBootstrapper bootstrapper,
         IMainWindowActivator mainWindowActivator,
         IRecentConnectionsManager recentConnectionsManager,
@@ -79,8 +74,9 @@ public partial class TrayIconComponentViewModel : ViewModelBase,
         IGuestHoleManager guestHoleManager,
         IApplicationIconSelector applicationIconSelector,
         ISettings settings,
-        IDebugToolsWindowActivator debugToolsWindowActivator)
-        : base(localizer, logger, issueReporter)
+        IDebugToolsWindowActivator debugToolsWindowActivator,
+        IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
     {
         _bootstrapper = bootstrapper;
         _mainWindowActivator = mainWindowActivator;

@@ -22,11 +22,11 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
@@ -38,8 +38,6 @@ using ProtonVPN.Client.UI.Login.Enums;
 using ProtonVPN.Client.UI.Login.Overlays;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Legacy.Abstract;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 using Windows.System;
 
 namespace ProtonVPN.Client.UI.Login.Pages;
@@ -113,17 +111,15 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
 
     public SignInPageViewModel(
         ILoginViewNavigator parentViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
         IUrlsBrowser urlsBrowser,
         IUserAuthenticator userAuthenticator,
         IEventMessageSender eventMessageSender,
         IApiAvailabilityVerifier apiAvailabilityVerifier,
         IGuestHoleManager guestHoleManager,
         IFeatureFlagsObserver featureFlagsObserver,
-        SsoLoginOverlayViewModel ssoLoginOverlayViewModel)
-        : base(parentViewNavigator, localizer, logger, issueReporter)
+        SsoLoginOverlayViewModel ssoLoginOverlayViewModel,
+        IViewModelHelper viewModelHelper)
+        : base(parentViewNavigator, viewModelHelper)
     {
         _urlsBrowser = urlsBrowser;
         _userAuthenticator = userAuthenticator;

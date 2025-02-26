@@ -18,16 +18,14 @@
  */
 
 using Microsoft.UI.Xaml.Media;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Helpers;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.UI.Dialogs.Upsell.Bases;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Dialogs.Upsell.Features;
 
@@ -47,14 +45,10 @@ public class WorldwideCoverageUpsellFeaturePageViewModel : UpsellFeaturePageView
 
     public WorldwideCoverageUpsellFeaturePageViewModel(
         IUpsellCarouselViewNavigator upsellCarouselViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
-        IServerCountCache serverCountCache)
+        IServerCountCache serverCountCache,
+        IViewModelHelper viewModelHelper)
         : base(upsellCarouselViewNavigator,
-               localizer,
-               logger,
-               issueReporter,
+               viewModelHelper,
                UpsellFeatureType.WorldwideCoverage)
     {
         _serverCountCache = serverCountCache;

@@ -22,17 +22,15 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Common.Messages;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Main.Profiles;
 using ProtonVPN.Client.UI.Main.Settings;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main;
 
@@ -79,14 +77,12 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
     public MainPageViewModel(
         IMainWindowViewNavigator parentViewNavigator,
         IMainViewNavigator childViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
         IMainWindowActivator mainWindowActivator,
         ISettings settings,
         ISettingsViewNavigator settingsViewNavigator,
-        IUserAuthenticator userAuthenticator)
-        : base(parentViewNavigator, childViewNavigator, localizer, logger, issueReporter)
+        IUserAuthenticator userAuthenticator,
+        IViewModelHelper viewModelHelper)
+        : base(parentViewNavigator, childViewNavigator, viewModelHelper)
     {
         _mainWindowActivator = mainWindowActivator;
         _settings = settings;

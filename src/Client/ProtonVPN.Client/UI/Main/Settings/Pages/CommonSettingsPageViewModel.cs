@@ -23,6 +23,7 @@ using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.Core.Models;
 using ProtonVPN.Client.Core.Services.Activation;
@@ -33,7 +34,6 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Messages;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
@@ -44,8 +44,6 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Common.Core.Helpers;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages;
 
@@ -143,19 +141,15 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
         IConnectionManager connectionManager,
         IRecentConnectionsManager recentConnectionsManager,
         ISettingsViewNavigator settingsViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter)
+        IViewModelHelper viewModelHelper)
         : base(requiredReconnectionSettings,
                mainViewNavigator,
                settingsViewNavigator,
-               localizer,
-               logger,
-               issueReporter,
                mainWindowOverlayActivator,
                settings,
                settingsConflictResolver,
-               connectionManager)
+               connectionManager,
+               viewModelHelper)
     {
         _updatesManager = updatesManager;
         _themeSelector = themeSelector;

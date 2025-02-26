@@ -18,14 +18,12 @@
  */
 
 using Microsoft.UI.Xaml.Media;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Helpers;
 using ProtonVPN.Client.Core.Services.Selection;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.FeatureIcons;
 
@@ -33,19 +31,17 @@ public class KillSwitchIconViewModel : FeatureIconViewModelBase
 {
     public override bool IsDimmed => false;
 
-    public KillSwitchIconViewModel(
-        IConnectionManager connectionManager,
-        ISettings settings,
-        IApplicationThemeSelector themeSelector,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter) 
-        : base(connectionManager, settings, themeSelector, localizer, logger, issueReporter)
-    { }
-
     protected override bool IsFeatureEnabled => Settings.IsKillSwitchEnabled;
 
     protected KillSwitchMode KillSwitchMode => Settings.KillSwitchMode;
+
+    public KillSwitchIconViewModel(
+                IConnectionManager connectionManager,
+        ISettings settings,
+        IApplicationThemeSelector themeSelector,
+        IViewModelHelper viewModelHelper)
+        : base(connectionManager, settings, themeSelector, viewModelHelper)
+    { }
 
     protected override ImageSource GetImageSource()
     {
@@ -54,7 +50,7 @@ public class KillSwitchIconViewModel : FeatureIconViewModelBase
                 ? (KillSwitchMode == KillSwitchMode.Standard
                     ? "KillSwitchStandardIllustrationSource"
                     : "KillSwitchAdvancedIllustrationSource")
-                : "KillSwitchOffIllustrationSource", 
+                : "KillSwitchOffIllustrationSource",
             ThemeSelector.GetTheme());
     }
 

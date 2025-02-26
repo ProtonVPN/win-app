@@ -21,16 +21,14 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.Core.Models.ReportIssue;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Feedback.Contracts;
 using ProtonVPN.Client.Mappers;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue.Bases;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Dialogs.ReportIssue.Pages;
 
@@ -54,10 +52,8 @@ public partial class ReportIssueCategoryPageViewModel : ReportIssuePageViewModel
         IReportIssueDataProvider dataProvider,
         IUrlsBrowser urlsBrowser,
         IReportIssueViewNavigator parentViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(parentViewNavigator, localizer, logger, issueReporter)
+        IViewModelHelper viewModelHelper)
+        : base(parentViewNavigator, viewModelHelper)
     {
         _eventMessageSender = eventMessageSender;
         _dataProvider = dataProvider;

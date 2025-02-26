@@ -18,13 +18,11 @@
  */
 
 using Microsoft.UI.Xaml.Media;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Helpers;
 using ProtonVPN.Client.Core.Services.Navigation;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.UI.Dialogs.Upsell.Bases;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Dialogs.Upsell.Features;
 
@@ -38,13 +36,10 @@ public class SpeedUpsellFeaturePageViewModel : UpsellFeaturePageViewModelBase
 
     public SpeedUpsellFeaturePageViewModel(
         IUpsellCarouselViewNavigator upsellCarouselViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter)
+        IViewModelHelper viewModelHelper)
         : base(upsellCarouselViewNavigator,
-               localizer,
-               logger,
-               issueReporter,
+               viewModelHelper,
                UpsellFeatureType.Speed)
-    { }
+    {
+    }
 }

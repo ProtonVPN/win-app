@@ -22,16 +22,14 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Client.Common.Collections;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Models.ReportIssue;
 using ProtonVPN.Client.Core.Models.ReportIssue.Fields;
 using ProtonVPN.Client.Core.Services.Navigation;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Feedback.Contracts;
 using ProtonVPN.Client.Mappers;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue.Bases;
 using ProtonVPN.Common.Legacy.Abstract;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.UI.Dialogs.ReportIssue.Pages;
@@ -61,10 +59,8 @@ public partial class ReportIssueContactPageViewModel : ReportIssuePageViewModelB
         IReportIssueDataProvider dataProvider,
         IReportIssueSender reportIssueSender,
         IReportIssueViewNavigator parentViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(parentViewNavigator, localizer, logger, issueReporter)
+        IViewModelHelper viewModelHelper)
+        : base(parentViewNavigator, viewModelHelper)
     {
         _dataProvider = dataProvider;
         _reportIssueSender = reportIssueSender;

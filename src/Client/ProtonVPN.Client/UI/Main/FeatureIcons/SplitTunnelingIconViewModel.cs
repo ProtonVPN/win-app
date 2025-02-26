@@ -18,30 +18,26 @@
  */
 
 using Microsoft.UI.Xaml.Media;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Helpers;
 using ProtonVPN.Client.Core.Services.Selection;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.FeatureIcons;
 
 public class SplitTunnelingIconViewModel : FeatureIconViewModelBase
 {
+    protected override bool IsFeatureEnabled => Settings.IsSplitTunnelingEnabled;
+
     public SplitTunnelingIconViewModel(
-        IConnectionManager connectionManager,
+            IConnectionManager connectionManager,
         ISettings settings,
         IApplicationThemeSelector themeSelector,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(connectionManager, settings, themeSelector, localizer, logger, issueReporter)
+        IViewModelHelper viewModelHelper)
+        : base(connectionManager, settings, themeSelector, viewModelHelper)
     { }
-
-    protected override bool IsFeatureEnabled => Settings.IsSplitTunnelingEnabled;
 
     protected override ImageSource GetImageSource()
     {
@@ -50,7 +46,7 @@ public class SplitTunnelingIconViewModel : FeatureIconViewModelBase
                 ? (Settings.SplitTunnelingMode == SplitTunnelingMode.Standard
                     ? "SplitTunnelingStandardIllustrationSource"
                     : "SplitTunnelingInverseIllustrationSource")
-                : "SplitTunnelingOffIllustrationSource", 
+                : "SplitTunnelingOffIllustrationSource",
             ThemeSelector.GetTheme());
     }
 

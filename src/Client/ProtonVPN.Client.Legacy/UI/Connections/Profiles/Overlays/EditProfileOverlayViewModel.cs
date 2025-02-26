@@ -21,13 +21,15 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Legacy.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Contracts.Profiles;
+using ProtonVPN.Client.Core.Bases;
+using ProtonVPN.Client.Core.Bases.ViewModels;
+using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Profiles.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Legacy.Models.Activation;
 using ProtonVPN.Configurations.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Legacy.UI.Connections.Profiles.Overlays;
 
@@ -48,19 +50,15 @@ public partial class EditProfileOverlayViewModel : OverlayViewModelBase, IProfil
     public int MaximumProfileNameLength => _configuration.MaximumProfileNameLength;
 
     public EditProfileOverlayViewModel(
-        ILocalizationProvider localizationProvider,
-        ILogger logger,
-        IIssueReporter issueReporter,
-        IOverlayActivator overlayActivator,
+        IMainWindowOverlayActivator overlayActivator,
         IProfilesManager profilesManager,
         IProfileIconSelector profileIconSelector,
         IProfileSettingsSelector profileSettingsSelector,
         IConnectionIntentSelector connectionIntentSelector,
-        IConfiguration configuration)
-        : base(localizationProvider,
-               logger,
-               issueReporter,
-               overlayActivator)
+        IConfiguration configuration,
+        IViewModelHelper viewModelHelper)
+        : base(overlayActivator,
+               viewModelHelper)
     {
         _profilesManager = profilesManager;
         _profileIconSelector = profileIconSelector;

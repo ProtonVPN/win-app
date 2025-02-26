@@ -4,7 +4,7 @@
         {
             "NotificationID": "hUcV0_EeNwUmXA6EoyNrtO-ZTD8H8F6LvNaSjMaPxB5ecFkA7y-5kc3q38cGumJENGHjtSoUndkYFUx0_xlJeg==",
             "StartTime": 1658397600,
-            "EndTime": 1660816800,
+            "EndTime": 1760816800,
             "Type": 0,
             "Offer": {
                 "URL": "https://protonprivacy.typeform.com/to/x3pgDMFr",
@@ -30,12 +30,6 @@
                     "PageFooter": ""
                 }
             }
-        },
-        {
-            "NotificationID": "hUcV0_EeNwUmXA6EoyNrtO-ZTD8H8F6LvNaSjMaPxB5ecFkA7y-5kc3q38cGumJENGHjtSoUndkYFUx0_xlJeg==",
-            "StartTime": 1658497600,
-            "EndTime": 1660826800,
-            "Type": 0
         }
     ]
 }

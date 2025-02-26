@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,25 +18,26 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Core.Settings;
+using ProtonVPN.Client.Settings.Contracts;
 
-namespace ProtonVPN.IntegrationTests.Auth
+namespace ProtonVPN.Integration.Tests.Auth;
+
+[TestClass]
+public class AuthCertificateTests : AuthenticatedUserTests
 {
-    [TestClass]
-    public class AuthCertificateTests : AuthenticatedUserTests
+    [TestMethod]
+    public async Task ItShouldSaveCertificateToAppSettingsAsync()
     {
-        [TestMethod]
-        public async Task ItShouldSaveCertificateToAppSettings()
-        {
-            // Arrange
-            SetApiResponsesForAuth();
-            await MakeUserAuth(CORRECT_PASSWORD);
+        // Arrange
+        SetApiResponsesForAuth();
+        InitializeContainer();
 
-            // Assert
-            Resolve<IAppSettings>().AuthenticationCertificatePem.Should().Be(CERTIFICATE);
-        }
+        // Act
+        await MakeUserAuthAsync(CORRECT_PASSWORD);
+
+        // Assert
+        Resolve<ISettings>().ConnectionCertificate?.Pem.Should().Be(CERTIFICATE);
     }
 }
