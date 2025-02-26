@@ -156,6 +156,12 @@
   <data name="Common_Actions_Change" xml:space="preserve">
     <value>Change</value>
   </data>
+  <data name="Common_Actions_Reconnect" xml:space="preserve">
+    <value>Reconnect</value>
+  </data>
+  <data name="Common_Actions_Enable" xml:space="preserve">
+    <value>Enable</value>
+  </data>
   <data name="Common_Links_LearnMore" xml:space="preserve">
     <value>Learn more</value>
   </data>
@@ -203,7 +209,7 @@
   </data>
   <data name="Country_Random_ExcludingMyCountry" xml:space="preserve">
     <value>Random (excluding my country)</value>
-  </data>  
+  </data>
   <data name="Gateway_Fastest" xml:space="preserve">
     <value>Fastest gateway</value>
   </data>
@@ -1824,7 +1830,7 @@
   <data name="Settings_OverriddenByProfile_Tagline" xml:space="preserve">
     <value>These settings are connected to '{0}' profile and can only be managed in Profiles.</value>
     <comment>{0} is a placeholder for the profile name</comment>
-  </data>  
+  </data>
   <data name="Settings_OverriddenByProfile_Title" xml:space="preserve">
     <value>Manage {0} in Profiles</value>
     <comment>{0} is a placeholder for the name of the settings being overridden by the profile. (eg. Manage NetShield in Profiles)</comment>
@@ -2191,6 +2197,15 @@
   <data name="Settings_RestoreDefault_Confirmation_Title" xml:space="preserve">
     <value>Restore default settings?</value>
   </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title" xml:space="preserve">
+    <value>Discard unsaved changes?</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action" xml:space="preserve">
+    <value>Discard changes</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel" xml:space="preserve">
+    <value>Keep editing</value>
+  </data>
   <data name="Settings_Support_DebugLogs_ErrorMessage" xml:space="preserve">
     <value>The logs folder could not be found.</value>
   </data>
@@ -2280,27 +2295,6 @@
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName" xml:space="preserve">
     <value>App files</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
-  </data>
-  <data name="Common_Actions_Reconnect" xml:space="preserve">
-    <value>Reconnect</value>
-  </data>
-  <data name="Settings_Common_ApplyAndReconnect" xml:space="preserve">
-    <value>Apply and reconnect</value>
-  </data>
-  <data name="Settings_Common_Discard" xml:space="preserve">
-    <value>Discard</value>
-  </data>
-  <data name="Settings_Common_Discard_Title" xml:space="preserve">
-    <value>Discard settings changes?</value>
-  </data>
-  <data name="Profile_Discard_Title" xml:space="preserve">
-    <value>Leave page?</value>
-  </data>
-  <data name="Profile_Discard_Description" xml:space="preserve">
-    <value>You have unsaved changes.</value>
-  </data>
-  <data name="Common_Actions_Enable" xml:space="preserve">
-    <value>Enable</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description" xml:space="preserve">
     <value>You won't be able to use NetShield when connected with a custom DNS server.</value>
@@ -2524,7 +2518,7 @@
   </data>
   <data name="Overlay_OutdatedClient_Action" xml:space="preserve">
     <value>Update now</value>
-  </data>  
+  </data>
   <data name="Overlay_Profile_Title" xml:space="preserve">
     <value>Profiles</value>
   </data>
@@ -2536,7 +2530,7 @@
   </data>
   <data name="Overlay_Profile_LearnMore" xml:space="preserve">
     <value>What is a VPN profile?</value>
-  </data>  
+  </data>
   <data name="Dialogs_P2P_HowToTorrentLink" xml:space="preserve">
     <value>How to torrent with P2P</value>
     <comment>obsolete</comment>
@@ -3074,7 +3068,7 @@
   </data>
   <data name="Upsell_Carousel_P2P_Speed" xml:space="preserve">
     <value>Increased upload and download speeds</value>
-  </data>  
+  </data>
   <data name="Upsell_Carousel_Profiles" xml:space="preserve">
     <value>Get quick access to frequent connections</value>
   </data>
@@ -3086,7 +3080,7 @@
   </data>
   <data name="Upsell_Carousel_Profiles_Convenience" xml:space="preserve">
     <value>Set a profile as your default connection and connect in 1 click</value>
-  </data>  
+  </data>
   <data name="Upsell_Carousel_SecureCore" xml:space="preserve">
     <value>Add another layer of protection to your connection</value>
   </data>
@@ -3331,7 +3325,7 @@
   <data name="Connections_Profiles_NotAvailable_Tooltip" xml:space="preserve">
     <value>Profiles are available with VPN Plus</value>
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
-  </data>  
+  </data>
   <data name="Connections_Profiles_Location_Header" xml:space="preserve">
     <value>Select connection type and location</value>
   </data>
@@ -3574,10 +3568,10 @@
   </data>
   <data name="SignIn_Form_Title" xml:space="preserve">
     <value>Sign in</value>
-  </data>  
+  </data>
   <data name="Automation_Properties_Login_Page" xml:space="preserve">
     <value>Login page</value>
-  </data> 
+  </data>
   <data name="Automation_Properties_Main_Page" xml:space="preserve">
     <value>Main page</value>
   </data>
@@ -3806,7 +3800,7 @@
   </data>
   <data name="Dialogs_UpdateSystemClock_PrimaryButton" xml:space="preserve">
     <value>How to update system clock</value>
-  </data>  
+  </data>
   <data name="Flyouts_KillSwitch_Info" xml:space="preserve">
     <value>Your IP address could be exposed if your VPN connection drops</value>
   </data>

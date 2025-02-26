@@ -142,7 +142,7 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
             return true;
         }
 
-        ContentDialogResult result = await MainWindowOverlayActivator.ShowSettingsDiscardOverlayAsync(IsReconnectionRequired());
+        ContentDialogResult result = await MainWindowOverlayActivator.ShowDiscardConfirmationOverlayAsync();
         switch (result)
         {
             case ContentDialogResult.Primary: // Do nothing, user decided to discard settings changes.

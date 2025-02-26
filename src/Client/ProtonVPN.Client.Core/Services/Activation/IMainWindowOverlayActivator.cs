@@ -39,9 +39,7 @@ public interface IMainWindowOverlayActivator : IOverlayActivator
 
     Task<ContentDialogResult> ShowServerLoadInfoOverlayAsync();
 
-    Task<ContentDialogResult> ShowSettingsDiscardOverlayAsync(bool isReconnectionRequired);
-
-    Task<ContentDialogResult> ShowProfileDiscardOverlayAsync(bool isReconnectionRequired);
+    Task<ContentDialogResult> ShowDiscardConfirmationOverlayAsync();
 
     Task<ContentDialogResult> ShowSettingsOverriddenByProfileOverlayAsync(string localizedSettingsName);
 
