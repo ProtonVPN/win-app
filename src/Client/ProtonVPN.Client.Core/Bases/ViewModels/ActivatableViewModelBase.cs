@@ -17,22 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
-
 namespace ProtonVPN.Client.Core.Bases.ViewModels;
 
 public abstract partial class ActivatableViewModelBase : ViewModelBase, IActivationAware
 {
     public bool IsActive { get; private set; }
 
-    protected ActivatableViewModelBase(
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(localizer, logger, issueReporter)
-    { }
+    protected ActivatableViewModelBase(IViewModelHelper viewModelHelper) : base(viewModelHelper)
+    {
+    }
 
     public void Activate()
     {

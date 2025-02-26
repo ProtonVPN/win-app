@@ -20,28 +20,23 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Common.Attributes;
+using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Helpers;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
-using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.UI.Main.Settings.Bases;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Connection;
 
 public partial class KillSwitchPageViewModel : SettingsPageViewModelBase
 {
-    public override string Title => Localizer.Get("Settings_Connection_KillSwitch");
-
     private readonly IUrlsBrowser _urlsBrowser;
-
-    [ObservableProperty] 
+    [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(KillSwitchFeatureIconSource))]
     private bool _isKillSwitchEnabled;
 
@@ -52,6 +47,7 @@ public partial class KillSwitchPageViewModel : SettingsPageViewModelBase
     [NotifyPropertyChangedFor(nameof(KillSwitchFeatureIconSource))]
     private KillSwitchMode _currentKillSwitchMode;
 
+    public override string Title => Localizer.Get("Settings_Connection_KillSwitch");
     public ImageSource KillSwitchFeatureIconSource => GetFeatureIconSource(IsKillSwitchEnabled, CurrentKillSwitchMode);
 
     public string LearnMoreUrl => _urlsBrowser.KillSwitchLearnMore;
@@ -73,23 +69,19 @@ public partial class KillSwitchPageViewModel : SettingsPageViewModelBase
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
-        IConnectionManager connectionManager)
+        IConnectionManager connectionManager,
+        IViewModelHelper viewModelHelper)
         : base(requiredReconnectionSettings,
                mainViewNavigator,
                settingsViewNavigator,
-               localizer,
-               logger,
-               issueReporter,
                mainWindowOverlayActivator,
                settings,
                settingsConflictResolver,
-               connectionManager)
+               connectionManager,
+               viewModelHelper)
     {
         _urlsBrowser = urlsBrowser;
 

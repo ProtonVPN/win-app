@@ -20,18 +20,19 @@
 using System;
 using System.Runtime.CompilerServices;
 using CommunityToolkit.Mvvm.ComponentModel;
-using Microsoft.UI.Dispatching;
+using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Contracts.Messages;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Core.Bases.ViewModels;
 
 public abstract partial class ViewModelBase : ObservableObject, ILanguageAware
 {
-    private readonly DispatcherQueue _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
+    public IViewModelHelper ViewModelHelper { get; }
+
+    public IUIThreadDispatcher UIThreadDispatcher { get; }
 
     public ILocalizationProvider Localizer { get; }
 
@@ -39,14 +40,13 @@ public abstract partial class ViewModelBase : ObservableObject, ILanguageAware
 
     protected IIssueReporter IssueReporter { get; }
 
-    protected ViewModelBase(
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter)
+    protected ViewModelBase(IViewModelHelper viewModelHelper)
     {
-        Localizer = localizer;
-        Logger = logger;
-        IssueReporter = issueReporter;
+        ViewModelHelper = viewModelHelper;
+        UIThreadDispatcher = viewModelHelper.UIThreadDispatcher;
+        Localizer = viewModelHelper.Localizer;
+        Logger = viewModelHelper.Logger;
+        IssueReporter = viewModelHelper.IssueReporter;
     }
 
     public void Receive(LanguageChangedMessage message)
@@ -71,20 +71,6 @@ public abstract partial class ViewModelBase : ObservableObject, ILanguageAware
         [CallerMemberName] string sourceMemberName = "",
         [CallerLineNumber] int sourceLineNumber = 0)
     {
-        _dispatcherQueue.TryEnqueue(() => ExecuteSafely(callback, sourceFilePath, sourceMemberName, sourceLineNumber));
-    }
-
-    private void ExecuteSafely(Action callback, string sourceFilePath, string sourceMemberName, int sourceLineNumber)
-    {
-        try
-        {
-            callback();
-        }
-        catch (Exception ex)
-        {
-            Logger.Error<AppLog>($"Exception handled by {nameof(ViewModelBase)} {nameof(ExecuteSafely)}.",
-                ex, sourceFilePath, sourceMemberName, sourceLineNumber);
-            IssueReporter.CaptureError(ex, sourceFilePath, sourceMemberName, sourceLineNumber);
-        }
+        UIThreadDispatcher.TryEnqueue(callback);
     }
 }

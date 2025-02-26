@@ -22,9 +22,6 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Contracts.Services.Activation.Bases;
 using ProtonVPN.Client.Core.Services.Navigation.Bases;
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Core.Bases.ViewModels;
 
@@ -32,12 +29,9 @@ public abstract class ShellViewModelBase : ActivatableViewModelBase
 {
     public virtual string Title => string.Empty;
 
-    protected ShellViewModelBase(
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(localizer, logger, issueReporter)
-    { }
+    protected ShellViewModelBase(IViewModelHelper viewModelHelper) : base(viewModelHelper)
+    {
+    }
 
     protected override void OnLanguageChanged()
     {
@@ -55,11 +49,9 @@ public abstract partial class ShellViewModelBase<TWindowActivator> : ShellViewMo
     public virtual bool CanClose => true;
 
     protected ShellViewModelBase(
-            TWindowActivator windowActivator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(localizer, logger, issueReporter)
+        TWindowActivator windowActivator,
+        IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
     {
         WindowActivator = windowActivator;
     }
@@ -109,10 +101,8 @@ public abstract partial class ShellViewModelBase<TWindowActivator, TChildViewNav
     protected ShellViewModelBase(
         TWindowActivator windowActivator,
         TChildViewNavigator childViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(windowActivator, localizer, logger, issueReporter)
+        IViewModelHelper viewModelHelper)
+        : base(windowActivator, viewModelHelper)
     {
         ChildViewNavigator = childViewNavigator;
         ChildViewNavigator.Navigated += OnChildNavigated;

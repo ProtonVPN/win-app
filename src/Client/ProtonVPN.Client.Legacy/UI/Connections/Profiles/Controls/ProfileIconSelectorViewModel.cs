@@ -23,25 +23,24 @@ using ProtonVPN.Client.Legacy.Contracts.ViewModels;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Client.Core.Bases;
+using ProtonVPN.Client.Core.Bases.ViewModels;
 
 namespace ProtonVPN.Client.Legacy.UI.Connections.Profiles.Controls;
 
 public partial class ProfileIconSelectorViewModel : ViewModelBase, IProfileIconSelector
 {
     [ObservableProperty]
+using ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles.Contracts;
     private ProfileCategory _selectedCategory;
 
     [ObservableProperty]
     private ProfileColor _selectedColor;
 
-    public ProfileIconSelectorViewModel(
-        ILocalizationProvider localizationProvider,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(localizationProvider,
-               logger,
-               issueReporter)
-    { }
+    public ProfileIconSelectorViewModel(IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
+    {
+    }
 
     public ProfileCategory GetProfileCategory()
     {

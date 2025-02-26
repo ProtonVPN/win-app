@@ -19,9 +19,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Navigation;
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.UI.Main.Widgets.Contracts;
 
@@ -35,11 +33,9 @@ public abstract partial class SideWidgetViewModelBase : WidgetViewModelBase, ISi
     private bool _isSelected;
 
     protected SideWidgetViewModelBase(
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
-        IMainViewNavigator mainViewNavigator)
-        : base(localizer, logger, issueReporter)
+        IMainViewNavigator mainViewNavigator,
+        IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
     {
         MainViewNavigator = mainViewNavigator;
         MainViewNavigator.Navigated += OnMainViewNavigation;

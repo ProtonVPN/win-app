@@ -21,6 +21,7 @@ using Autofac;
 using Autofac.Builder;
 using ProtonVPN.Api.Installers;
 using ProtonVPN.Client.Commands;
+using ProtonVPN.Client.Core.Bases.Helpers;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.EventMessaging.Installers;
 using ProtonVPN.Client.Factories;
@@ -39,6 +40,7 @@ using ProtonVPN.Client.Logic.Servers.Installers;
 using ProtonVPN.Client.Logic.Services.Installers;
 using ProtonVPN.Client.Logic.Updates.Installers;
 using ProtonVPN.Client.Logic.Users.Installers;
+using ProtonVPN.Client.Models.Announcements;
 using ProtonVPN.Client.Notifications.Installers;
 using ProtonVPN.Client.Services.Activation;
 using ProtonVPN.Client.Services.Bootstrapping;
@@ -58,6 +60,7 @@ using ProtonVPN.Client.Services.Verification;
 using ProtonVPN.Client.Settings.Installers;
 using ProtonVPN.Client.UI;
 using ProtonVPN.Client.UI.Dialogs.DebugTools;
+using ProtonVPN.Client.UI.Dialogs.OneTimeAnnouncement;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue.Pages;
 using ProtonVPN.Client.UI.Dialogs.Troubleshooting;
@@ -69,6 +72,7 @@ using ProtonVPN.Client.UI.Login.Overlays;
 using ProtonVPN.Client.UI.Login.Pages;
 using ProtonVPN.Client.UI.Main;
 using ProtonVPN.Client.UI.Main.Components;
+using ProtonVPN.Client.UI.Main.Components.Banners;
 using ProtonVPN.Client.UI.Main.FeatureIcons;
 using ProtonVPN.Client.UI.Main.Features.KillSwitch;
 using ProtonVPN.Client.UI.Main.Features.NetShield;
@@ -147,6 +151,12 @@ public class AppModule : Module
         RegisterCommands(builder);
     }
 
+    private static IRegistrationBuilder<TViewModel, ConcreteReflectionActivatorData, SingleRegistrationStyle> RegisterViewModel<TViewModel>(ContainerBuilder builder)
+        where TViewModel : ViewModelBase
+    {
+        return builder.RegisterType<TViewModel>().AsSelf().AsImplementedInterfaces().SingleInstance();
+    }
+
     private void RegisterExternalServices(ContainerBuilder builder)
     {
         builder.RegisterType<SystemProcesses>().As<IOsProcesses>().SingleInstance();
@@ -208,6 +218,7 @@ public class AppModule : Module
         builder.RegisterType<ClipboardEditor>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<SignOutHandler>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<PortForwardingClipboardService>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<AnnouncementActivator>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<MainWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<MainWindowOverlayActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
@@ -228,6 +239,7 @@ public class AppModule : Module
 
         builder.RegisterType<DebugToolsWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<TroubleshootingWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<OneTimeAnnouncementWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<AppNotificationSender>().AsSelf().AsImplementedInterfaces().SingleInstance();
 
@@ -241,6 +253,8 @@ public class AppModule : Module
         builder.RegisterType<SplitTunnelingItemFactory>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<SystemTimeValidator>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ViewModelHelper>().AsImplementedInterfaces().SingleInstance();
+
         builder.RegisterType<ExitService>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<CoordinatesProvider>().AsImplementedInterfaces().SingleInstance();
     }
@@ -278,6 +292,8 @@ public class AppModule : Module
         RegisterViewModel<LoadingPageViewModel>(builder);
         RegisterViewModel<DisableKillSwitchBannerViewModel>(builder);
 
+        RegisterViewModel<BannerViewModel>(builder).AutoActivate();
+        RegisterViewModel<ProminentBannerViewModel>(builder).AutoActivate();
         RegisterViewModel<TitleBarMenuViewModel>(builder);
         RegisterViewModel<NetShieldStatsViewModel>(builder);
         RegisterViewModel<ActivePortComponentViewModel>(builder);
@@ -386,14 +402,9 @@ public class AppModule : Module
         RegisterViewModel<SpeedFlyoutViewModel>(builder).AutoActivate();
 
         RegisterViewModel<DebugToolsShellViewModel>(builder);
+        RegisterViewModel<OneTimeAnnouncementShellViewModel>(builder).AutoActivate();
         RegisterViewModel<TroubleshootingShellViewModel>(builder);
 
         builder.RegisterType<ReleaseViewModelFactory>().SingleInstance();
-    }
-
-    private static IRegistrationBuilder<TViewModel, ConcreteReflectionActivatorData, SingleRegistrationStyle> RegisterViewModel<TViewModel>(ContainerBuilder builder)
-        where TViewModel : ViewModelBase
-    {
-        return builder.RegisterType<TViewModel>().AsSelf().AsImplementedInterfaces().SingleInstance();
     }
 }

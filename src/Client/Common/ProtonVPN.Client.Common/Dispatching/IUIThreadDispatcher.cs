@@ -27,4 +27,11 @@ public interface IUIThreadDispatcher
         [CallerFilePath] string sourceFilePath = "",
         [CallerMemberName] string sourceMemberName = "",
         [CallerLineNumber] int sourceLineNumber = 0);
+
+    Task<bool> TryEnqueueAsync(Func<Task> callback,
+        [CallerFilePath] string sourceFilePath = "",
+        [CallerMemberName] string sourceMemberName = "",
+        [CallerLineNumber] int sourceLineNumber = 0);
+
+    IDispatcherTimer GetTimer(TimeSpan interval);
 }

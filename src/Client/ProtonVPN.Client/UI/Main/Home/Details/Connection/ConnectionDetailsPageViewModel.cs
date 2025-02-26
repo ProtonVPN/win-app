@@ -18,18 +18,16 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.History;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Home.Details.Connection;
 
@@ -62,10 +60,8 @@ public partial class ConnectionDetailsPageViewModel : PageViewModelBase<IDetails
         IConnectionManager connectionManager,
         INetworkTrafficManager networkTrafficManager,
         IDetailsViewNavigator viewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(viewNavigator, localizer, logger, issueReporter)
+        IViewModelHelper viewModelHelper)
+        : base(viewNavigator, viewModelHelper)
     {
         _connectionManager = connectionManager;
         _networkTrafficManager = networkTrafficManager;

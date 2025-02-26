@@ -23,10 +23,10 @@ using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Collections;
 using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Factories;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Models.Settings;
 using ProtonVPN.Client.Settings.Contracts;
@@ -34,8 +34,6 @@ using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Profiles.Contracts;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Profiles.Components;
 
@@ -87,17 +85,13 @@ public partial class ProfileSettingsSelectorViewModel : ViewModelBase, IProfileS
     protected bool PortForwardingHasChanged => _originalProfileSettings.IsPortForwardingEnabled != SelectedPortForwardingState?.IsEnabled;
 
     public ProfileSettingsSelectorViewModel(
-        ILocalizationProvider localizationProvider,
-        ILogger logger,
-        IIssueReporter issueReporter,
+        IViewModelHelper viewModelHelper,
         ISettings settings,
         ICommonItemFactory commonItemFactory,
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         IUrlsBrowser urlsBrowser)
-        : base(localizationProvider,
-               logger,
-               issueReporter)
+        : base(viewModelHelper)
     {
         _settings = settings;
         _commonItemFactory = commonItemFactory;
@@ -233,12 +227,11 @@ public partial class ProfileSettingsSelectorViewModel : ViewModelBase, IProfileS
         }
 
         SelectedNetShieldMode = isEnabled
-            ? NetShieldModes.FirstOrDefault(nsm => nsm.IsEnabled && nsm.Mode == netShieldMode) 
+            ? NetShieldModes.FirstOrDefault(nsm => nsm.IsEnabled && nsm.Mode == netShieldMode)
             : NetShieldModes.FirstOrDefault(nsm => !nsm.IsEnabled);
 
         return true;
     }
-
 
     [RelayCommand]
     private Task<bool> DisablePortForwardingAsync()
@@ -361,7 +354,7 @@ public partial class ProfileSettingsSelectorViewModel : ViewModelBase, IProfileS
     }
 
     private void SelectProtocol(VpnProtocol protocol)
-    { 
+    {
         SelectedProtocol = Protocols.FirstOrDefault(p => p.Protocol == protocol);
     }
- }
+}

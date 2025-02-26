@@ -23,20 +23,18 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.UI.Login.Pages;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Logging.Contracts.Events.GuestHoleLogs;
 
@@ -67,14 +65,12 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
     public LoginPageViewModel(
         IMainWindowViewNavigator parentViewNavigator,
         ILoginViewNavigator childViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
         IUrlsBrowser urlsBrowser,
         IMainWindowActivator mainWindowActivator,
         IReportIssueWindowActivator reportIssueWindowActivator,
-        ITroubleshootingWindowActivator troubleshootingWindowActivator)
-        : base(parentViewNavigator, childViewNavigator, localizer, logger, issueReporter)
+        ITroubleshootingWindowActivator troubleshootingWindowActivator,
+        IViewModelHelper viewModelHelper)
+        : base( parentViewNavigator, childViewNavigator, viewModelHelper)
     {
         _urlsBrowser = urlsBrowser;
         _mainWindowActivator = mainWindowActivator;

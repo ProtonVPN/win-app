@@ -18,13 +18,11 @@
  */
 
 using ProtonVPN.Client.Common.Messages;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI;
 
@@ -35,11 +33,9 @@ public class MainWindowShellViewModel : ShellViewModelBase<IMainWindowActivator,
     public MainWindowShellViewModel(
         IMainWindowActivator windowActivator,
         IMainWindowViewNavigator childViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
-        IEventMessageSender eventMessageSender)
-        : base(windowActivator, childViewNavigator, localizer, logger, issueReporter)
+        IEventMessageSender eventMessageSender,
+        IViewModelHelper viewModelHelper)
+        : base(windowActivator, childViewNavigator, viewModelHelper)
     {
         _eventMessageSender = eventMessageSender;
     }

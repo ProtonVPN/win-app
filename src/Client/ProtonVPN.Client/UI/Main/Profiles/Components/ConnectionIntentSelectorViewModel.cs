@@ -19,11 +19,11 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Common.Collections;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Factories;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
@@ -36,8 +36,6 @@ using ProtonVPN.Client.Models.Connections;
 using ProtonVPN.Client.Models.Connections.Countries;
 using ProtonVPN.Client.Models.Connections.Gateways;
 using ProtonVPN.Client.UI.Main.Profiles.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Profiles.Components;
 
@@ -108,15 +106,11 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
     public bool HasThirdLevel => HasSecondLevel && SelectedSecondLevelLocationItem is IHostLocationItem;
 
     public ConnectionIntentSelectorViewModel(
-        ILocalizationProvider localizationProvider,
-        ILogger logger,
-        IIssueReporter issueReporter,
         IServersLoader serversLoader,
         ILocationItemFactory locationItemFactory,
-        ICommonItemFactory commonItemFactory)
-        : base(localizationProvider,
-               logger,
-               issueReporter)
+        ICommonItemFactory commonItemFactory,
+        IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
     {
         _serversLoader = serversLoader;
         _locationItemFactory = locationItemFactory;
@@ -151,6 +145,20 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
     public void Receive(ServerListChangedMessage message)
     {
         ExecuteOnUIThread(InvalidateServers);
+    }
+
+    public bool HasChanged()
+    {
+        bool isSameIntent =
+            _originalConnectionIntent.Location.IsSameAs(_currentLocationIntent) &&
+            ((_originalConnectionIntent.Feature == null && _currentFeatureIntent == null) || _originalConnectionIntent.Feature?.IsSameAs(_currentFeatureIntent) == true);
+
+        return !isSameIntent;
+    }
+
+    public bool IsReconnectionRequired()
+    {
+        return HasChanged();
     }
 
     private void InvalidateServers()
@@ -361,7 +369,7 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
         if (SelectedSecondLevelLocationItem is IHostLocationItem hostLocationItem)
         {
             hostLocationItem.FetchSubItems();
-            
+
             ConnectionItemBase fastestLocation =
                 _locationItemFactory.GetGenericFastestLocation(hostLocationItem.GroupType, hostLocationItem.LocationIntent);
 
@@ -398,9 +406,8 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
                 : HasSecondLevel && SelectedSecondLevelLocationItem is LocationItemBase secondLevelLocationItem
                     ? secondLevelLocationItem.LocationIntent
                     : SelectedFirstLevelLocationItem is LocationItemBase firstLevelLocationItem
-                        ? firstLevelLocationItem.LocationIntent 
+                        ? firstLevelLocationItem.LocationIntent
                         : CountryLocationIntent.Fastest;
-
     }
 
     partial void OnSelectedFeatureChanged(FeatureItem? value)
@@ -444,19 +451,5 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
         {
             InvalidateCurrentLocationIntent();
         }
-    }
-
-    public bool HasChanged()
-    {
-        bool isSameIntent =
-            _originalConnectionIntent.Location.IsSameAs(_currentLocationIntent) &&
-            ((_originalConnectionIntent.Feature == null && _currentFeatureIntent == null) || _originalConnectionIntent.Feature?.IsSameAs(_currentFeatureIntent) == true);
-
-        return !isSameIntent;
-    }
-
-    public bool IsReconnectionRequired()
-    {
-        return HasChanged();
     }
 }

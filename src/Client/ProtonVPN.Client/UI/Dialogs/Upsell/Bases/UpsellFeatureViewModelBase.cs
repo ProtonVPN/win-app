@@ -18,12 +18,10 @@
  */
 
 using Microsoft.UI.Xaml.Media;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Navigation;
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Dialogs.Upsell.Bases;
 
@@ -39,14 +37,9 @@ public abstract class UpsellFeaturePageViewModelBase : PageViewModelBase<IUpsell
 
     protected UpsellFeaturePageViewModelBase(
         IUpsellCarouselViewNavigator parentViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
+        IViewModelHelper viewModelHelper,
         UpsellFeatureType feature)
-        : base(parentViewNavigator,
-               localizer,
-               logger,
-               issueReporter)
+        : base(parentViewNavigator, viewModelHelper)
     {
         Feature = feature;
     }

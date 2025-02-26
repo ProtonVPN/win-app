@@ -21,12 +21,12 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Contracts.Profiles;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
@@ -41,8 +41,6 @@ using ProtonVPN.Client.UI.Main.Settings;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Client.UI.Main.Widgets.Bases;
 using ProtonVPN.Client.UI.Main.Widgets.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Features.Bases;
 
@@ -83,9 +81,7 @@ public abstract partial class FeatureWidgetViewModelBase : SideWidgetViewModelBa
     public IConnectionProfile? CurrentProfile => ConnectionManager.CurrentConnectionIntent as IConnectionProfile;
 
     protected FeatureWidgetViewModelBase(
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
+        IViewModelHelper viewModelHelper,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
@@ -96,7 +92,7 @@ public abstract partial class FeatureWidgetViewModelBase : SideWidgetViewModelBa
         ISettingsConflictResolver settingsConflictResolver,
         IProfileEditor profileEditor,
         ConnectionFeature connectionFeature)
-        : base(localizer, logger, issueReporter, mainViewNavigator)
+        : base(mainViewNavigator, viewModelHelper)
     {
         SettingsViewNavigator = settingsViewNavigator;
         MainWindowOverlayActivator = mainWindowOverlayActivator;

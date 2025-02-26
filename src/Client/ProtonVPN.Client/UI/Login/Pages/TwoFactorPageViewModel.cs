@@ -19,17 +19,15 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Core.Bases;
+using ProtonVPN.Client.Core.Enums;
+using ProtonVPN.Client.Core.Messages;
+using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Core.Enums;
-using ProtonVPN.Client.Core.Messages;
-using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.UI.Login.Bases;
 
 namespace ProtonVPN.Client.UI.Login.Pages;
@@ -52,13 +50,11 @@ public partial class TwoFactorPageViewModel : LoginPageViewModelBase
 
     public TwoFactorPageViewModel(
         ILoginViewNavigator parentViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
         IEventMessageSender eventMessageSender,
         IUserAuthenticator userAuthenticator,
-        IGuestHoleManager guestHoleManager)
-        : base(parentViewNavigator, localizer, logger, issueReporter)
+        IGuestHoleManager guestHoleManager,
+        IViewModelHelper viewModelHelper)
+        : base(parentViewNavigator, viewModelHelper)
     {
         _eventMessageSender = eventMessageSender;
         _userAuthenticator = userAuthenticator;

@@ -853,7 +853,6 @@
         <None Remove="Styles\Controls\PivotStyles.xaml" />
         <None Remove="Styles\Controls\ProgressBarStyles.xaml" />
         <None Remove="Styles\Controls\ProgressRingStyles.xaml" />
-        <None Remove="Styles\Controls\ProminentBannerControlStyles.xaml" />
         <None Remove="Styles\Controls\RadioButtonStyles.xaml" />
         <None Remove="Styles\Controls\ScrollViewerStyles.xaml" />
         <None Remove="Styles\Controls\ServerLoadStyles.xaml" />
@@ -2329,7 +2328,7 @@
       </Page>
     </ItemGroup>
     <ItemGroup>
-      <Page Update="Styles\Controls\ProminentBannerControlStyles.xaml">
+      <Page Update="Styles\Controls\BannerControlStyles.xaml">
         <Generator>MSBuild:Compile</Generator>
       </Page>
     </ItemGroup>

@@ -18,11 +18,11 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Factories;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Searches.Contracts;
@@ -36,8 +36,6 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Main.Sidebar.Bases;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Contracts;
 using ProtonVPN.Client.UI.Main.Sidebar.Search.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Search;
 
@@ -67,15 +65,17 @@ public partial class SearchResultsPageViewModel : ConnectionListViewModelBase<IS
         IConnectionManager connectionManager,
         IServersLoader serversLoader,
         ISidebarViewNavigator parentViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
         IGlobalSearch globalSearch,
         ILocationItemFactory locationItemFactory,
         IConnectionGroupFactory connectionGroupFactory,
-        IEnumerable<ICountriesComponent> countriesComponents)
-        : base(parentViewNavigator, localizer, logger, issueReporter, settings,
-            serversLoader, connectionManager, connectionGroupFactory)
+        IEnumerable<ICountriesComponent> countriesComponents,
+        IViewModelHelper viewModelHelper)
+        : base(parentViewNavigator,
+               settings,
+               serversLoader,
+               connectionManager,
+               connectionGroupFactory,
+               viewModelHelper)
     {
         _globalSearch = globalSearch;
         _locationItemFactory = locationItemFactory;

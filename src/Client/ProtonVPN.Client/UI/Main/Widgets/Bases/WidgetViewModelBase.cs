@@ -18,11 +18,9 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.UI.Main.Widgets.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Widgets.Bases;
 
@@ -34,11 +32,8 @@ public abstract partial class WidgetViewModelBase : ViewModelBase, IWidget
 
     public virtual bool IsAvailable => true;
 
-    protected WidgetViewModelBase(
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(localizer, logger, issueReporter)
+    protected WidgetViewModelBase(IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
     { }
 
     [RelayCommand]

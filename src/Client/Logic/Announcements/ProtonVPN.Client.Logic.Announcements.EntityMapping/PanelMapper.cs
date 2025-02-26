@@ -69,7 +69,7 @@ public class PanelMapper : IMapper<OfferPanelResponse, Panel>
             Button = _entityMapper.Map<OfferPanelButtonResponse, PanelButton>(leftEntity?.Button),
             PageFooter = leftEntity?.PageFooter,
             FullScreenImage = _entityMapper.Map<FullScreenImageResponse, FullScreenImage>(leftEntity?.FullScreenImage),
-            Style = ProminentBannerStyle.Upsell
+            Style = ProminentBannerStyle.Regular,
         };
     }
 

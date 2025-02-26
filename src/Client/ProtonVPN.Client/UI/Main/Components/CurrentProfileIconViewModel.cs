@@ -19,16 +19,14 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Common.Enums;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Messages;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Components;
 
@@ -48,11 +46,9 @@ public partial class CurrentProfileIconViewModel : ActivatableViewModelBase,
     public string ExitCountry => CurrentProfile?.Location.GetCountryCode() ?? string.Empty;
 
     public CurrentProfileIconViewModel(
-            ILocalizationProvider localizer,
-            ILogger logger,
-            IIssueReporter issueReporter,
+            IViewModelHelper viewModelHelper,
             IConnectionManager connectionManager)
-            : base(localizer, logger, issueReporter)
+            : base(viewModelHelper)
     {
         _connectionManager = connectionManager;
 

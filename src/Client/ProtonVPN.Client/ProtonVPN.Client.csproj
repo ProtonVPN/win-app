@@ -737,6 +737,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Update="UI\Main\Components\BannerComponent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
     <Page Update="UI\Dialogs\Upsell\Features\ProfilesUpsellFeaturePageView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

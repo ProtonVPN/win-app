@@ -24,7 +24,6 @@ using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
-using ProtonVPN.Client.Logic.Recents;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Models;
 

@@ -34,10 +34,13 @@ public class ProtobufSerializer : IProtobufSerializer
         RuntimeTypeModel.Default.InferTagFromNameDefault = true;
         foreach (Type type in protobufSerializableEntities.Types)
         {
-            MetaType metaType = RuntimeTypeModel.Default.Add(type, applyDefaultBehaviour: false);
-            if (type.IsClass || type.IsInterface || type.IsStruct())
+            if (!RuntimeTypeModel.Default.IsDefined(type))
             {
-                metaType.Add(type.GetProperties(BindingFlags.Public | BindingFlags.Instance).Select(p => p.Name).ToArray());
+                MetaType metaType = RuntimeTypeModel.Default.Add(type, applyDefaultBehaviour: false);
+                if (type.IsClass || type.IsInterface || type.IsStruct())
+                {
+                    metaType.Add(type.GetProperties(BindingFlags.Public | BindingFlags.Instance).Select(p => p.Name).ToArray());
+                }
             }
         }
     }

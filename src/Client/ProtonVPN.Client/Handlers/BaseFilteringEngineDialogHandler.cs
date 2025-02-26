@@ -17,8 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.WinUI;
-using Microsoft.UI.Dispatching;
+using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Services.Activation;
@@ -39,9 +38,9 @@ public class BaseFilteringEngineDialogHandler : IBaseFilteringEngineDialogHandle
     private readonly IServiceFactory _serviceFactory;
     private readonly ILocalizationProvider _localizer;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
+    private readonly IUIThreadDispatcher _uIThreadDispatcher;
 
     private readonly SemaphoreSlim _semaphore = new(1, 1);
-    private readonly DispatcherQueue _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
 
     public BaseFilteringEngineDialogHandler(
         ILogger logger,
@@ -49,7 +48,8 @@ public class BaseFilteringEngineDialogHandler : IBaseFilteringEngineDialogHandle
         IStaticConfiguration staticConfiguration,
         IServiceFactory serviceFactory,
         ILocalizationProvider localizer,
-        IMainWindowOverlayActivator mainWindowOverlayActivator)
+        IMainWindowOverlayActivator mainWindowOverlayActivator,
+        IUIThreadDispatcher uIThreadDispatcher)
     {
         _logger = logger;
         _urlsBrowser = urlsBrowser;
@@ -57,6 +57,7 @@ public class BaseFilteringEngineDialogHandler : IBaseFilteringEngineDialogHandle
         _serviceFactory = serviceFactory;
         _localizer = localizer;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
+        _uIThreadDispatcher = uIThreadDispatcher;
     }
 
     public async Task<bool> HandleAsync()
@@ -65,8 +66,7 @@ public class BaseFilteringEngineDialogHandler : IBaseFilteringEngineDialogHandle
 
         try
         {
-            await _dispatcherQueue.EnqueueAsync(ShowOverlayAsync);
-            return true;
+            return await _uIThreadDispatcher.TryEnqueueAsync(ShowOverlayAsync);
         }
         catch (Exception)
         {

@@ -18,29 +18,25 @@
  */
 
 using Microsoft.UI.Xaml.Media;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Helpers;
 using ProtonVPN.Client.Core.Services.Selection;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.FeatureIcons;
 
 public class VpnAcceleratorIconViewModel : FeatureIconViewModelBase
 {
+    protected override bool IsFeatureEnabled => Settings.VpnPlan.IsPaid && Settings.IsVpnAcceleratorEnabled;
+
     public VpnAcceleratorIconViewModel(
-        IConnectionManager connectionManager,
+            IConnectionManager connectionManager,
         ISettings settings,
         IApplicationThemeSelector themeSelector,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(connectionManager, settings, themeSelector, localizer, logger, issueReporter)
+        IViewModelHelper viewModelHelper)
+        : base(connectionManager, settings, themeSelector, viewModelHelper)
     { }
-
-    protected override bool IsFeatureEnabled => Settings.VpnPlan.IsPaid && Settings.IsVpnAcceleratorEnabled;
 
     protected override ImageSource GetImageSource()
     {

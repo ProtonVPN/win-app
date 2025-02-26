@@ -21,17 +21,15 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.Profiles;
 using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Home.Details.Flyouts;
 
@@ -61,10 +59,8 @@ public partial class ProtocolFlyoutViewModel : ActivatableViewModelBase,
         IUrlsBrowser urlsBrowser,
         IConnectionManager connectionManager,
         IProfileEditor profileEditor,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter) :
-        base(localizer, logger, issueReporter)
+        IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
     {
         _urlsBrowser = urlsBrowser;
         _connectionManager = connectionManager;

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -26,7 +26,8 @@ public interface IAnnouncementsProvider
     IReadOnlyList<Announcement> GetAllActive();
     Announcement? GetActiveById(string id);
 
-    Announcement? GetActiveAndUnseenByType(params AnnouncementType[] types);
+    Announcement? GetActiveAndUnseenByType(AnnouncementType type);
+    Announcement? GetActiveAndUnseenBanner();
 
     void MarkAsSeen(string id);
     void Delete(string id);

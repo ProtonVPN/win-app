@@ -18,13 +18,11 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.UI.Main.Profiles.Contracts;
 using ProtonVPN.Common.Core.Extensions;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Profiles.Components;
 
@@ -47,19 +45,15 @@ public partial class ProfileOptionsSelectorViewModel : ViewModelBase, IProfileOp
         : string.Empty;
 
     public ProfileOptionsSelectorViewModel(
-        ILocalizationProvider localizationProvider,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(localizationProvider,
-               logger,
-               issueReporter)
+        IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
     { }
 
     public IProfileOptions GetProfileOptions()
     {
         return new ProfileOptions()
         {
-            IsConnectAndGoEnabled = !string.IsNullOrWhiteSpace(ConnectAndGoUrl) 
+            IsConnectAndGoEnabled = !string.IsNullOrWhiteSpace(ConnectAndGoUrl)
                                  && IsConnectAndGoEnabled,
             ConnectAndGoUrl = ConnectAndGoUrl.Trim()
         };

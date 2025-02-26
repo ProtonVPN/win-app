@@ -18,6 +18,8 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using ProtonVPN.Client.Common.Dispatching;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
@@ -56,12 +58,9 @@ public partial class LocationDetailsPageViewModel : PageViewModelBase<IDetailsVi
     public LocationDetailsPageViewModel(
         ISettings settings,
         IDetailsViewNavigator viewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
-        IConnectionManager connectionManager)
-
-        : base(viewNavigator, localizer, logger, issueReporter)
+        IConnectionManager connectionManager,
+        IViewModelHelper viewModelHelper)
+        : base(viewNavigator, viewModelHelper)
     {
         _settings = settings;
         _connectionManager = connectionManager;

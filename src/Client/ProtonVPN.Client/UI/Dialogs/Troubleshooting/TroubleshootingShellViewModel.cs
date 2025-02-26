@@ -18,12 +18,11 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Dialogs.Troubleshooting;
 
@@ -32,15 +31,11 @@ public partial class TroubleshootingShellViewModel : ShellViewModelBase<ITrouble
     private readonly IUrlsBrowser _urlsBrowser;
 
     public TroubleshootingShellViewModel(
+        IUIThreadDispatcher uIThreadDispatcher,
         IUrlsBrowser urlsBrowser,
         ITroubleshootingWindowActivator windowActivator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(windowActivator,
-               localizer,
-               logger,
-               issueReporter)
+        IViewModelHelper viewModelHelper)
+        : base(windowActivator, viewModelHelper)
     {
         _urlsBrowser = urlsBrowser;
     }

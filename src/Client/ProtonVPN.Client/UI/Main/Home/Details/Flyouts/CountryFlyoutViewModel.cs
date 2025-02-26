@@ -18,14 +18,12 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Home.Details.Flyouts;
 
@@ -45,10 +43,8 @@ public partial class CountryFlyoutViewModel : ActivatableViewModelBase,
 
     public CountryFlyoutViewModel(
         ISettings settings,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter) :
-        base(localizer, logger, issueReporter)
+        IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
     {
         _settings = settings;
     }

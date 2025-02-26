@@ -22,17 +22,15 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.Web.WebView2.Core;
-using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Core.Bases;
+using ProtonVPN.Client.Core.Bases.ViewModels;
+using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Configurations.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
-using ProtonVPN.Client.Core.Bases.ViewModels;
-using ProtonVPN.Client.Core.Services.Activation;
 
 namespace ProtonVPN.Client.UI.Login.Overlays;
 
@@ -51,14 +49,12 @@ public partial class SsoLoginOverlayViewModel :  OverlayViewModelBase<IMainWindo
     public WebView2 SsoWebView { get; }
 
     public SsoLoginOverlayViewModel(
-        ILocalizationProvider localizer,
         IMainWindowOverlayActivator overlayActivator,
         IUserAuthenticator userAuthenticator,
         ISettings settings,
         IConfiguration configuration,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(overlayActivator, localizer, logger, issueReporter)
+        IViewModelHelper viewModelHelper)
+        : base(overlayActivator, viewModelHelper)
     {
         _userAuthenticator = userAuthenticator;
         _settings = settings;

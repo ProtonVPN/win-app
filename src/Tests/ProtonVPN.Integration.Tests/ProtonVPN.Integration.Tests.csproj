@@ -1,11 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+        <TargetFramework>net8.0-windows10.0.22621.0</TargetFramework>
         <OutputType>Library</OutputType>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <OutputPath>..\..\bin\</OutputPath>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <IsPublishable>false</IsPublishable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<UseWinUI>true</UseWinUI>
+		<EnableMsixTooling>true</EnableMsixTooling>
+		<WindowsPackageType>None</WindowsPackageType>
     </PropertyGroup>
     <ItemGroup>
         <Compile Include="..\..\GlobalAssemblyInfo.cs">
@@ -13,16 +18,7 @@
         </Compile>
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\..\Announcements\ProtonVPN.Announcements.Contracts\ProtonVPN.Announcements.Contracts.csproj" />
-        <ProjectReference Include="..\..\Announcements\ProtonVPN.Announcements.Installers\ProtonVPN.Announcements.Installers.csproj" />
-        <ProjectReference Include="..\..\Announcements\ProtonVPN.Announcements.Tests\ProtonVPN.Announcements.Tests.csproj" />
-        <ProjectReference Include="..\..\Api\ProtonVPN.Api.Contracts\ProtonVPN.Api.Contracts.csproj" />
-        <ProjectReference Include="..\..\Api\ProtonVPN.Api.Installers\ProtonVPN.Api.Installers.csproj" />
-        <ProjectReference Include="..\..\Api\ProtonVPN.Api\ProtonVPN.Api.csproj" />
-        <ProjectReference Include="..\..\ProtonVPN.Common.Legacy\ProtonVPN.Common.Legacy.csproj" />
-        <ProjectReference Include="..\..\ProtonVPN.Core\ProtonVPN.Core.csproj" />
-        <ProjectReference Include="..\..\HumanVerification\ProtonVPN.HumanVerification.Installers\ProtonVPN.HumanVerification.Installers.csproj" />
-        <ProjectReference Include="..\..\Update\ProtonVPN.Update\ProtonVPN.Update.csproj" />
+        <ProjectReference Include="..\..\Client\ProtonVPN.Client\ProtonVPN.Client.csproj" />
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Autofac" />

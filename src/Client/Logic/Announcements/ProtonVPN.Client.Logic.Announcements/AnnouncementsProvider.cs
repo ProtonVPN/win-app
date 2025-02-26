@@ -168,11 +168,23 @@ public class AnnouncementsProvider : IAnnouncementsProvider, IAnnouncementsUpdat
         return GetWithReadLock(() => _announcements.FirstOrDefault(a => a.Id == id && a.IsActive()));
     }
 
-    public Announcement? GetActiveAndUnseenByType(params AnnouncementType[] types)
+    public Announcement? GetActiveAndUnseenByType(AnnouncementType type)
+    {
+        return GetWithReadLock(() => _announcements
+            .OrderBy(a => a.EndDateTimeUtc)
+            .FirstOrDefault(a => a.Type == type && a.IsActiveAndUnseen())
+        );
+    }
+
+    public Announcement? GetActiveAndUnseenBanner()
     {
         return GetWithReadLock(() =>
-            _announcements.OrderBy(a => a.EndDateTimeUtc)
-                          .FirstOrDefault(a => (types is null || types.Length == 0 || types.Contains(a.Type)) && a.IsActiveAndUnseen()));
+        {
+            return _announcements
+                .OrderBy(a => a.EndDateTimeUtc)
+                .FirstOrDefault(a => a.IsActiveAndUnseen() &&
+                    (a.Type == AnnouncementType.Banner || a.Type == AnnouncementType.ProminentBanner));
+        });
     }
 
     public void MarkAsSeen(string id)

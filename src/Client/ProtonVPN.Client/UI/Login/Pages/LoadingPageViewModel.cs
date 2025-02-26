@@ -17,13 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Logic.Auth.Contracts;
-using ProtonVPN.Client.UI.Login.Bases;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
+using ProtonVPN.Client.UI.Login.Bases;
 
 namespace ProtonVPN.Client.UI.Login.Pages;
 
@@ -41,10 +39,8 @@ public class LoadingPageViewModel : LoginPageViewModelBase
     public LoadingPageViewModel(
         IUserAuthenticator userAuthenticator,
         ILoginViewNavigator parentViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter)
-        : base(parentViewNavigator, localizer, logger, issueReporter)
+        IViewModelHelper viewModelHelper)
+        : base(parentViewNavigator, viewModelHelper)
     {
         _userAuthenticator = userAuthenticator;
     }

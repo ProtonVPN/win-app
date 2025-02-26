@@ -24,10 +24,10 @@ using ProtonVPN.Client.Common.UI.Assets.Icons.Base;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Contracts.Profiles;
 using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Factories;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts;
@@ -70,9 +70,6 @@ public partial class ProfilesPageViewModel : ConnectionPageViewModelBase,
 
     public ProfilesPageViewModel(
         IConnectionsViewNavigator parentViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
         ISettings settings,
         IServersLoader serversLoader,
         IConnectionManager connectionManager,
@@ -81,8 +78,14 @@ public partial class ProfilesPageViewModel : ConnectionPageViewModelBase,
         IProfilesManager profilesManager,
         IProfileEditor profileEditor,
         IUrlsBrowser urlsBrowser,
-        IWebAuthenticator webAuthenticator)
-        : base(parentViewNavigator, localizer, logger, issueReporter, settings, serversLoader, connectionManager, connectionGroupFactory)
+        IWebAuthenticator webAuthenticator,
+        IViewModelHelper viewModelHelper)
+        : base(parentViewNavigator,
+               settings,
+               serversLoader,
+               connectionManager,
+               connectionGroupFactory,
+               viewModelHelper)
     {
         _connectionItemFactory = connectionItemFactory;
         _profilesManager = profilesManager;

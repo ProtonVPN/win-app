@@ -23,5 +23,4 @@ public enum ProminentBannerStyle
 {
     Regular,
     Warning,
-    Upsell
 }

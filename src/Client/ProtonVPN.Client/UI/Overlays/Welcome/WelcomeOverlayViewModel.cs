@@ -19,12 +19,9 @@
 
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Services.Browsing;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Overlays.Welcome;
 
@@ -34,10 +31,9 @@ public partial class WelcomeOverlayViewModel : OverlayViewModelBase<IMainWindowO
 
     public WelcomeOverlayViewModel(
         IMainWindowOverlayActivator mainWindowOverlayActivator,
-        ILocalizationProvider localizationProvider,
-        ILogger logger,
-        IIssueReporter issueReporter,
-        IUrlsBrowser urlsBrowser) : base(mainWindowOverlayActivator, localizationProvider, logger, issueReporter)
+        IUrlsBrowser urlsBrowser,
+        IViewModelHelper viewModelHelper)
+        : base(mainWindowOverlayActivator, viewModelHelper)
     {
         _urlsBrowser = urlsBrowser;
     }

@@ -20,17 +20,15 @@
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Common.Collections;
 using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Searches;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.UI.Overlays.Upsell;
@@ -54,14 +52,12 @@ public partial class FreeConnectionsOverlayViewModel : OverlayViewModelBase<IMai
 
     public FreeConnectionsOverlayViewModel(
         IMainWindowOverlayActivator overlayActivator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
         IServersLoader serversLoader,
         IServerCountCache serverCountCache,
         IUrlsBrowser urlsBrowser,
-        IWebAuthenticator webAuthenticator)
-        : base(overlayActivator, localizer, logger, issueReporter)
+        IWebAuthenticator webAuthenticator,
+        IViewModelHelper viewModelHelper)
+        : base(overlayActivator, viewModelHelper)
     {
         _serversLoader = serversLoader;
         _serverCountCache = serverCountCache;

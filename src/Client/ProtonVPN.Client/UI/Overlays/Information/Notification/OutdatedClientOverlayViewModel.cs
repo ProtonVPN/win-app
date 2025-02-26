@@ -22,13 +22,11 @@ using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Commands;
 using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Contracts.Services.Lifecycle;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Updates.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Update.Contracts;
 
 namespace ProtonVPN.Client.UI.Overlays.Information.Notification;
@@ -60,9 +58,8 @@ public partial class OutdatedClientOverlayViewModel : OverlayViewModelBase<IMain
         IUpdatesManager updatesManager,
         IExitService exitService,
         IMainWindowOverlayActivator overlayActivator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter) : base(overlayActivator, localizer, logger, issueReporter)
+        IViewModelHelper viewModelHelper)
+        : base(overlayActivator, viewModelHelper)
     {
         _urlsBrowser = urlsBrowser;
         _updateClientCommand = updateClientCommand;

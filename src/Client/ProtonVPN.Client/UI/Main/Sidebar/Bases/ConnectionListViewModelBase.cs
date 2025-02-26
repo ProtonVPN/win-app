@@ -19,17 +19,15 @@
 
 using Microsoft.UI.Xaml.Data;
 using ProtonVPN.Client.Common.Collections;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Navigation.Bases;
 using ProtonVPN.Client.Factories;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Models.Connections;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Bases;
 
@@ -51,14 +49,12 @@ public abstract class ConnectionListViewModelBase<TParentViewNavigator> : PageVi
 
     protected ConnectionListViewModelBase(
         TParentViewNavigator parentViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
         ISettings settings,
         IServersLoader serversLoader,
         IConnectionManager connectionManager,
-        IConnectionGroupFactory connectionGroupFactory)
-        : base(parentViewNavigator, localizer, logger, issueReporter)
+        IConnectionGroupFactory connectionGroupFactory,
+        IViewModelHelper viewModelHelper)
+        : base(parentViewNavigator, viewModelHelper)
     {
         Settings = settings;
         ServersLoader = serversLoader;

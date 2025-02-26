@@ -19,10 +19,8 @@
 
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Commands;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Update;
 
@@ -32,9 +30,8 @@ public partial class UpdateViewModel : ViewModelBase
 
     public UpdateViewModel(
         IUpdateClientCommand updateClientCommand,
-        ILocalizationProvider localizationProvider,
-        ILogger logger,
-        IIssueReporter issueReporter) : base(localizationProvider, logger, issueReporter)
+        IViewModelHelper viewModelHelper)
+        : base(viewModelHelper)
     {
         UpdateCommand = updateClientCommand.Command;
     }

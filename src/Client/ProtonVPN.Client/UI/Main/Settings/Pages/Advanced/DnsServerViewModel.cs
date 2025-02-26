@@ -19,9 +19,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.Advanced;
@@ -35,21 +33,19 @@ public partial class DnsServerViewModel : ViewModelBase
 
     public string IpAddress { get; }
 
-    public DnsServerViewModel(ILocalizationProvider localizationProvider,
-        ILogger logger,
-        IIssueReporter issueReporter,
+    public DnsServerViewModel(
         CustomDnsServersViewModel parentViewModel,
+        IViewModelHelper viewModelHelper,
         string ipAddress)
-        : this(localizationProvider, logger, issueReporter, parentViewModel, ipAddress, true)
+        : this(parentViewModel, viewModelHelper, ipAddress, true)
     { }
 
-    public DnsServerViewModel(ILocalizationProvider localizationProvider,
-        ILogger logger,
-        IIssueReporter issueReporter,
+    public DnsServerViewModel(
         CustomDnsServersViewModel parentViewModel,
+        IViewModelHelper viewModelHelper,
         string ipAddress,
         bool isActive)
-        : base(localizationProvider, logger, issueReporter)
+        : base(viewModelHelper)
     {
         _parentViewModel = parentViewModel;
 

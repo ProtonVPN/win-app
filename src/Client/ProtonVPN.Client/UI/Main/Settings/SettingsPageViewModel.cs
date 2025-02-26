@@ -17,9 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
@@ -37,11 +35,9 @@ public partial class SettingsPageViewModel : PageViewModelBase<IMainViewNavigato
     public SettingsPageViewModel(
         IMainViewNavigator parentViewNavigator,
         ISettingsViewNavigator childViewNavigator,
-        ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
-        IConnectionManager connectionManager)
-        : base(parentViewNavigator, childViewNavigator, localizer, logger, issueReporter)
+        IConnectionManager connectionManager,
+        IViewModelHelper viewModelHelper)
+        : base(parentViewNavigator, childViewNavigator, viewModelHelper)
     {
         _connectionManager = connectionManager;
     }

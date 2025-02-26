@@ -19,9 +19,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Connection;
@@ -35,21 +33,19 @@ public partial class SplitTunnelingIpAddressViewModel : ViewModelBase, IEquatabl
 
     public string IpAddress { get; }
 
-    public SplitTunnelingIpAddressViewModel(ILocalizationProvider localizationProvider,
-        ILogger logger,
-        IIssueReporter issueReporter,
+    public SplitTunnelingIpAddressViewModel(
+        IViewModelHelper viewModelHelper,
         SplitTunnelingPageViewModel parentViewModel,
         string ipAddress)
-        : this(localizationProvider, logger, issueReporter, parentViewModel, ipAddress, true)
+        : this(viewModelHelper, parentViewModel, ipAddress, true)
     { }
 
-    public SplitTunnelingIpAddressViewModel(ILocalizationProvider localizationProvider,
-        ILogger logger,
-        IIssueReporter issueReporter,
+    public SplitTunnelingIpAddressViewModel(
+        IViewModelHelper viewModelHelper,
         SplitTunnelingPageViewModel parentViewModel,
         string ipAddress,
         bool isActive)
-        : base(localizationProvider, logger, issueReporter)
+        : base(viewModelHelper)
     {
         _parentViewModel = parentViewModel;
 

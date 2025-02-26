@@ -30,6 +30,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:map="using:ProtonVPN.Client.UI.Main.Map"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:update="using:ProtonVPN.Client.UI.Update"
+             xmlns:banners="using:ProtonVPN.Client.UI.Main.Components.Banners"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
@@ -127,6 +128,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Margin="0,0,0,8"
                     HorizontalAlignment="Stretch"
                     Spacing="8">
+
+            <banners:BannerComponent HorizontalAlignment="Stretch"
+                                     HorizontalContentAlignment="Stretch" />
+
+            <banners:ProminentBannerComponent HorizontalAlignment="Stretch"
+                                              HorizontalContentAlignment="Stretch" />
 
             <ContentControl Padding="0"
                             HorizontalAlignment="Stretch"
