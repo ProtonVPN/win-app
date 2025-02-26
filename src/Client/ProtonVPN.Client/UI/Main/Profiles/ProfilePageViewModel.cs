@@ -164,7 +164,7 @@ public partial class ProfilePageViewModel : PageViewModelBase<IMainViewNavigator
             return true;
         }
 
-        ContentDialogResult result = await _mainWindowOverlayActivator.ShowProfileDiscardOverlayAsync(IsReconnectionRequired());
+        ContentDialogResult result = await _mainWindowOverlayActivator.ShowDiscardConfirmationOverlayAsync();
         return result switch
         {
             // Do nothing, user decided to discard profile changes.

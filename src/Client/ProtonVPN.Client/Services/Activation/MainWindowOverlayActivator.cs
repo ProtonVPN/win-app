@@ -61,34 +61,14 @@ public class MainWindowOverlayActivator : OverlayActivatorBase<MainWindow>, IMai
         return ShowOverlayAsync<SecureCoreOverlayViewModel>();
     }
 
-    public Task<ContentDialogResult> ShowSettingsDiscardOverlayAsync(bool isReconnectionRequired)
+    public Task<ContentDialogResult> ShowDiscardConfirmationOverlayAsync()
     {
         return ShowMessageAsync(
             new MessageDialogParameters
             {
-                Title = _localizer.Get("Settings_Common_Discard_Title"),
-                PrimaryButtonText = _localizer.Get("Settings_Common_Discard"),
-                SecondaryButtonText = _localizer.Get(isReconnectionRequired
-                    ? "Settings_Common_ApplyAndReconnect"
-                    : "Settings_Common_Apply"),
-                CloseButtonText = _localizer.Get("Common_Actions_Cancel"),
-                UseVerticalLayoutForButtons = true,
-            });
-    }
-
-    public Task<ContentDialogResult> ShowProfileDiscardOverlayAsync(bool isReconnectionRequired)
-    {
-        return ShowMessageAsync(
-            new MessageDialogParameters
-            {
-                Title = _localizer.Get("Profile_Discard_Title"),
-                Message = _localizer.Get("Profile_Discard_Description"),
-                PrimaryButtonText = _localizer.Get("Settings_Common_Discard"),
-                SecondaryButtonText = _localizer.Get(isReconnectionRequired
-                    ? "Settings_Common_ApplyAndReconnect"
-                    : "Settings_Common_Apply"),
-                CloseButtonText = _localizer.Get("Common_Actions_Cancel"),
-                UseVerticalLayoutForButtons = true,
+                Title = _localizer.Get("Settings_DiscardChanges_Confirmation_Title"),
+                PrimaryButtonText = _localizer.Get("Settings_DiscardChanges_Confirmation_Action"),
+                CloseButtonText = _localizer.Get("Settings_DiscardChanges_Confirmation_Cancel"),
             });
     }
 
