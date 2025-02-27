@@ -61,7 +61,7 @@ public class RecentsTests : BaseTest
         Thread.Sleep(TestConstants.AnimationDelay);
 
         SidebarRobot
-            .ExpandSecondaryActions(CONNECTION_NAME)
+            .ExpandSecondaryActionsForRecents(CONNECTION_NAME)
             .RemoveRecent();
 
         SidebarRobot.Verify.IsNoRecentsLabelDisplayed();

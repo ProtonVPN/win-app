@@ -82,10 +82,11 @@ public static class UiActions
         return desiredElement;
     }
 
-    public static T Invoke<T>(this T desiredElement) where T : Element
+    public static T Invoke<T>(this T desiredElement, TimeSpan? clickableTimeout = null) where T : Element
     {
+        clickableTimeout ??= TestConstants.DefaultElementWaitingTime;
         AutomationElement elementToClick = WaitUntilExists(desiredElement);
-        elementToClick.WaitUntilClickable(TestConstants.TenSecondsTimeout);
+        elementToClick.WaitUntilClickable(clickableTimeout);
         elementToClick.AsButton().Invoke();
         return desiredElement;
     }

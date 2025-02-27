@@ -137,7 +137,7 @@ public class NavigationTests : FreshSessionSetUp
         foreach (string profileName in profileNames)
         {
             SidebarRobot
-                .ExpandSecondaryActions(profileName)
+                .ExpandSecondaryActionsForProfile(profileName)
                 .EditProfile();
             NavigationRobot
                 .Verify.IsOnProfilePage();

@@ -26,6 +26,7 @@ public static class TestConstants
 {
     public static TimeSpan? DefaultElementWaitingTime => TimeSpan.FromSeconds(10);
     public static TimeSpan ApiRetryInterval => TimeSpan.FromSeconds(3);
+    public static TimeSpan OneSecondTimeout => TimeSpan.FromSeconds(1);
     public static TimeSpan FiveSecondsTimeout => TimeSpan.FromSeconds(5);
     public static TimeSpan TenSecondsTimeout => TimeSpan.FromSeconds(10);
     public static TimeSpan ThirtySecondsTimeout => TimeSpan.FromSeconds(30);
