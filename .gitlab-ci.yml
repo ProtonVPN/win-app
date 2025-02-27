@@ -13,14 +13,14 @@ include:
 
   - local: '/.gitlab-ci-templates.yml'
 
-  - component: $CI_SERVER_HOST/proton/devops/cicd-components/tools/artifactlift/release-candidate@0.1.20
+  - component: $CI_SERVER_HOST/proton/devops/cicd-components/tools/artifactlift/release-candidate@~latest
     inputs:
       product: vpn
       platform: windows
       artifact_list: "*"
       artifact_local_directory: Setup/Installers
 
-  - component: $CI_SERVER_HOST/proton/devops/cicd-components/tools/artifactlift/release@0.1.20
+  - component: $CI_SERVER_HOST/proton/devops/cicd-components/tools/artifactlift/release@~latest
     inputs:
       product: vpn
       platform: windows
