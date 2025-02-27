@@ -54,7 +54,7 @@ public class CancellingHandler : CancellingHandlerBase
     private bool IsLogout(HttpRequestMessage request)
     {
         string endpoint = request.RequestUri.AbsoluteUri.Replace(_config.Urls.ApiUrl, "");
-        return request.Method == HttpMethod.Delete && endpoint == "auth";
+        return request.Method == HttpMethod.Delete && endpoint == "/auth";
     }
 
     private static bool HasAuthorization(HttpRequestMessage request)
