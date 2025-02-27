@@ -94,7 +94,7 @@ public class ProfileTests : BaseTest
         SidebarRobot
             .ScrollToProfile(PROFILE_NAME)
             .Verify.DoesConnectionItemExist(PROFILE_NAME)
-            .ExpandSecondaryActions(PROFILE_NAME)
+            .ExpandSecondaryActionsForProfile(PROFILE_NAME)
             .EditProfile();
 
         ProfileRobot
@@ -127,7 +127,7 @@ public class ProfileTests : BaseTest
         SidebarRobot
             .ScrollToProfile(PROFILE_NAME)
             .Verify.DoesConnectionItemExist(PROFILE_NAME)
-            .ExpandSecondaryActions(PROFILE_NAME)
+            .ExpandSecondaryActionsForProfile(PROFILE_NAME)
             .DeleteProfile();
 
         ConfirmationRobot
@@ -145,7 +145,7 @@ public class ProfileTests : BaseTest
         int profilesCount = SidebarRobot.GetProfileCount();
         for (int profileIndex = 0; profileIndex < profilesCount; profileIndex++)
         {
-            SidebarRobot.ExpandSecondaryActions()
+            SidebarRobot.ExpandFirstSecondaryActions()
                 .DeleteProfile();
 
             ConfirmationRobot.PrimaryAction();

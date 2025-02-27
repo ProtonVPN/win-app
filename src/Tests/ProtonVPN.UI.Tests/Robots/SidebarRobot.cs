@@ -17,8 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Threading;
 using FlaUI.Core.AutomationElements;
+using FlaUI.Core.Conditions;
 using FlaUI.Core.Input;
 using FlaUI.Core.Tools;
 using FlaUI.Core.WindowsAPI;
@@ -73,8 +75,9 @@ public class SidebarRobot
     protected Element ProfileExplanationLabel = Element.ByName("Profiles are saved connections with your choice of location, server, and protocol.");
 
     protected Element EditProfileLabel = Element.ByName("Edit").FindChild(Element.ByAutomationId("TextBlock"));
+    protected Element PinLabel = Element.ByName("Pin").FindChild(Element.ByAutomationId("TextBlock"));
     protected Element DuplicateProfileLabel = Element.ByName("Duplicate").FindChild(Element.ByAutomationId("TextBlock"));
-    protected Element DeleteProfileMenuitem = Element.ByAutomationId("DeleteMenuItem");
+    protected Element DeleteMenuItem = Element.ByAutomationId("DeleteMenuItem");
 
     public SidebarRobot NavigateToCountries()
     {
@@ -225,27 +228,33 @@ public class SidebarRobot
         return this;
     }
 
-    public SidebarRobot ExpandSecondaryActions()
+    public SidebarRobot ExpandFirstSecondaryActions()
     {
         // Secondary actions expanding is problematic, that's why retry is needed.
-        Retry.WhileFalse(() => {
+        RetryResult<bool> retry = Retry.WhileFalse(() => {
             SecondaryButton.Invoke();
-            return !BaseTest.Window.FindFirstDescendant(DeleteProfileMenuitem.Condition).IsOffscreen;
+            return !BaseTest.Window.FindFirstDescendant(DeleteMenuItem.Condition).IsOffscreen;
         }, TestConstants.TenSecondsTimeout, ignoreException: true, interval: TestConstants.RetryInterval);
-        
 
+        if (!retry.Success)
+        {
+            throw new Exception($"{retry.LastException.Message}\n{retry.LastException.StackTrace}");
+        }
+
+        // Remove when VPNWIN-2599 is implemented.
+        Thread.Sleep(TestConstants.AnimationDelay);
         return this;
     }
 
-    public SidebarRobot ExpandSecondaryActions(string connectionValue)
+    public SidebarRobot ExpandSecondaryActionsForRecents(string connectionName)
     {
-        Element countryButton = Element.ByAutomationId($"Actions_for_{connectionValue}");
-        countryButton.MoveMouse();
-        countryButton.RightClick();
-        Element secondaryActionsButton = countryButton.FindChild(Element.ByAutomationId("SecondaryButton"));
-        secondaryActionsButton.Invoke();
-        // Remove when VPNWIN-2599 is implemented.
-        Thread.Sleep(TestConstants.AnimationDelay);
+        ExpandSecondaryActions(connectionName, PinLabel);
+        return this;
+    }
+
+    public SidebarRobot ExpandSecondaryActionsForProfile(string connectionName)
+    {
+        ExpandSecondaryActions(connectionName, DeleteMenuItem);
         return this;
     }
 
@@ -275,7 +284,7 @@ public class SidebarRobot
 
     public SidebarRobot DeleteProfile()
     {
-        DeleteProfileMenuitem.Invoke();
+        DeleteMenuItem.Invoke();
         return this;
     }
 
@@ -315,6 +324,27 @@ public class SidebarRobot
     {
         Element countryButton = Element.ByAutomationId($"Disconnect_from_{connectionValue}");
         countryButton.FindChild(Element.ByAutomationId("ConnectionRowHeader")).Click();
+        return this;
+    }
+
+    private SidebarRobot ExpandSecondaryActions(string connectionValue, Element elementToWaitFor)
+    {
+        // Secondary actions expanding is problematic, that's why retry is needed.
+        RetryResult<bool> retry = Retry.WhileFalse(() => {
+            Element countryButton = Element.ByAutomationId($"Actions_for_{connectionValue}");
+            Element secondaryActionsButton = countryButton.FindChild(Element.ByAutomationId("SecondaryButton"));
+            secondaryActionsButton.Invoke(TestConstants.OneSecondTimeout);
+            return !BaseTest.Window.FindFirstDescendant(elementToWaitFor.Condition).IsOffscreen;
+        }, TestConstants.TenSecondsTimeout, ignoreException: true, interval: TestConstants.OneSecondTimeout);
+
+        if (!retry.Success)
+        {
+            throw new Exception($"{retry.LastException.Message}\n{retry.LastException.StackTrace}");
+        }
+
+        // Remove when VPNWIN-2599 is implemented.
+        Thread.Sleep(TestConstants.AnimationDelay);
+
         return this;
     }
 
