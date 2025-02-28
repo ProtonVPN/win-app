@@ -32,7 +32,6 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
-using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Client.UI.Login.Bases;
 using ProtonVPN.Client.UI.Login.Enums;
 using ProtonVPN.Client.UI.Login.Overlays;
@@ -49,7 +48,6 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IApiAvailabilityVerifier _apiAvailabilityVerifier;
     private readonly IGuestHoleManager _guestHoleManager;
-    private readonly IFeatureFlagsObserver _featureFlagsObserver;
     private readonly SsoLoginOverlayViewModel _ssoLoginOverlayViewModel;
 
     [ObservableProperty]
@@ -116,7 +114,6 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
         IEventMessageSender eventMessageSender,
         IApiAvailabilityVerifier apiAvailabilityVerifier,
         IGuestHoleManager guestHoleManager,
-        IFeatureFlagsObserver featureFlagsObserver,
         SsoLoginOverlayViewModel ssoLoginOverlayViewModel,
         IViewModelHelper viewModelHelper)
         : base(parentViewNavigator, viewModelHelper)
@@ -126,7 +123,6 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
         _eventMessageSender = eventMessageSender;
         _apiAvailabilityVerifier = apiAvailabilityVerifier;
         _guestHoleManager = guestHoleManager;
-        _featureFlagsObserver = featureFlagsObserver;
         _ssoLoginOverlayViewModel = ssoLoginOverlayViewModel;
     }
 

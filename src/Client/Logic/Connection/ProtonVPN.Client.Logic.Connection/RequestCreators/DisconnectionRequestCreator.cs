@@ -20,7 +20,6 @@
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
@@ -34,9 +33,8 @@ public class DisconnectionRequestCreator : RequestCreatorBase, IDisconnectionReq
         ILogger logger,
         ISettings settings,
         IEntityMapper entityMapper,
-        IFeatureFlagsObserver featureFlagsObserver,
         IMainSettingsRequestCreator mainSettingsRequestCreator)
-        : base(logger, settings, entityMapper, featureFlagsObserver, mainSettingsRequestCreator)
+        : base(logger, settings, entityMapper, mainSettingsRequestCreator)
     { }
 
     public DisconnectionRequestIpcEntity Create(VpnError vpnError = VpnError.None)

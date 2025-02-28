@@ -22,7 +22,6 @@ using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -39,10 +38,9 @@ public class GuestHoleConnectionRequestCreator : ConnectionRequestCreatorBase, I
         ILogger logger,
         ISettings settings,
         IEntityMapper entityMapper,
-        IFeatureFlagsObserver featureFlagsObserver,
         IConnectionKeyManager connectionKeyManager,
         IMainSettingsRequestCreator mainSettingsRequestCreator)
-        : base(logger, settings, entityMapper, featureFlagsObserver, mainSettingsRequestCreator)
+        : base(logger, settings, entityMapper, mainSettingsRequestCreator)
     {
         _connectionKeyManager = connectionKeyManager;
     }
