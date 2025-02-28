@@ -23,5 +23,4 @@ namespace ProtonVPN.Client.Settings.Contracts.Observers;
 
 public interface IFeatureFlagsObserver : IObserver
 {
-    bool IsStealthEnabled { get; }
 }

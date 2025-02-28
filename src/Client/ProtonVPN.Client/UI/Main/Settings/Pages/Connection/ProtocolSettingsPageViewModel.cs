@@ -23,21 +23,16 @@ using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
-using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Messages;
-using ProtonVPN.Client.Settings.Contracts.Observers;
-using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
+using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.Connection;
 
-public partial class ProtocolSettingsPageViewModel : SettingsPageViewModelBase,
-    IEventMessageReceiver<FeatureFlagsChangedMessage>
+public partial class ProtocolSettingsPageViewModel : SettingsPageViewModelBase
 {
-    private readonly IFeatureFlagsObserver _featureFlagsObserver;
     private readonly IUrlsBrowser _urlsBrowser;
 
     [ObservableProperty]
@@ -90,13 +85,10 @@ public partial class ProtocolSettingsPageViewModel : SettingsPageViewModelBase,
         set => SetProtocol(value, VpnProtocol.OpenVpnTcp);
     }
 
-    public bool IsStealthVisible => _featureFlagsObserver.IsStealthEnabled;
-
     public string LearnMoreUrl => _urlsBrowser.ProtocolsLearnMore;
 
     public ProtocolSettingsPageViewModel(
         IUrlsBrowser urlsBrowser,
-        IFeatureFlagsObserver featureFlagsObserver,
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
@@ -115,7 +107,6 @@ public partial class ProtocolSettingsPageViewModel : SettingsPageViewModelBase,
                viewModelHelper)
     {
         _urlsBrowser = urlsBrowser;
-        _featureFlagsObserver = featureFlagsObserver;
 
         PageSettings =
         [
@@ -146,18 +137,5 @@ public partial class ProtocolSettingsPageViewModel : SettingsPageViewModelBase,
         {
             CurrentVpnProtocol = protocol;
         }
-    }
-
-    public void Receive(FeatureFlagsChangedMessage message)
-    {
-        ExecuteOnUIThread(() =>
-        {
-            OnPropertyChanged(nameof(IsStealthVisible));
-
-            if (IsActive && !IsStealthVisible && CurrentVpnProtocol == VpnProtocol.WireGuardTls)
-            {
-                CurrentVpnProtocol = VpnProtocol.Smart;
-            }
-        });
     }
 }

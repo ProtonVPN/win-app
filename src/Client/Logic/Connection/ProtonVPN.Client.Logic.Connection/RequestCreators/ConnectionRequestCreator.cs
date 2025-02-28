@@ -26,7 +26,6 @@ using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Logic.Connection.Contracts.ServerListGenerators;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
@@ -52,14 +51,13 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
         ILogger logger,
         ISettings settings,
         IEntityMapper entityMapper,
-        IFeatureFlagsObserver featureFlagsObserver,
         IConnectionKeyManager connectionKeyManager,
         IConnectionCertificateManager connectionCertificateManager,
         IIntentServerListGenerator intentServerListGenerator,
         ISmartSecureCoreServerListGenerator smartSecureCoreServerListGenerator,
         ISmartStandardServerListGenerator smartStandardServerListGenerator,
         IMainSettingsRequestCreator mainSettingsRequestCreator)
-        : base(logger, settings, entityMapper, featureFlagsObserver, mainSettingsRequestCreator)
+        : base(logger, settings, entityMapper, mainSettingsRequestCreator)
     {
         IntentServerListGenerator = intentServerListGenerator;
         SmartSecureCoreServerListGenerator = smartSecureCoreServerListGenerator;

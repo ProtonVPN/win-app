@@ -44,7 +44,7 @@ public class FeatureFlagsObserver :
 
     protected override TimeSpan PollingInterval => _config.FeatureFlagsUpdateInterval;
 
-    public bool IsStealthEnabled => IsFlagEnabled("Stealth");
+    private bool HasFeatureFlags { get; } = typeof(IFeatureFlagsObserver).GetProperties().Any(prop => prop.PropertyType == typeof(bool));
 
     public FeatureFlagsObserver(
         ILogger logger,
@@ -60,7 +60,10 @@ public class FeatureFlagsObserver :
         _config = config;
         _eventMessageSender = eventMessageSender;
 
-        StartTimerAndTriggerOnStart();
+        if (HasFeatureFlags)
+        {
+            StartTimerAndTriggerOnStart();
+        }
     }
 
     private bool IsFlagEnabled(string featureFlagName)

@@ -19,15 +19,10 @@
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
-using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Observers;
-using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
 namespace ProtonVPN.Client.Logic.Connection.RequestCreators;
 
@@ -36,7 +31,6 @@ public abstract class RequestCreatorBase
     protected readonly ILogger Logger;
     protected readonly ISettings Settings;
     protected readonly IEntityMapper EntityMapper;
-    protected readonly IFeatureFlagsObserver FeatureFlagsObserver;
 
     private readonly IMainSettingsRequestCreator _mainSettingsRequestCreator;
 
@@ -44,13 +38,11 @@ public abstract class RequestCreatorBase
         ILogger logger,
         ISettings settings,
         IEntityMapper entityMapper,
-        IFeatureFlagsObserver featureFlagsObserver,
         IMainSettingsRequestCreator mainSettingsRequestCreator)
     {
         Logger = logger;
         Settings = settings;
         EntityMapper = entityMapper;
-        FeatureFlagsObserver = featureFlagsObserver;
 
         _mainSettingsRequestCreator = mainSettingsRequestCreator;
     }

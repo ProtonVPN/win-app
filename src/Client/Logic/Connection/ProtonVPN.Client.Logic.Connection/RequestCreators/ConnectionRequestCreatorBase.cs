@@ -24,7 +24,6 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -39,9 +38,8 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
         ILogger logger, 
         ISettings settings,
         IEntityMapper entityMapper,
-        IFeatureFlagsObserver featureFlagsObserver,
         IMainSettingsRequestCreator mainSettingsRequestCreator)
-        : base(logger, settings, entityMapper, featureFlagsObserver, mainSettingsRequestCreator)
+        : base(logger, settings, entityMapper, mainSettingsRequestCreator)
     { }
 
     protected abstract Task<VpnCredentialsIpcEntity> GetVpnCredentialsAsync();
@@ -78,13 +76,8 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
         List<VpnProtocol> fallbackProtocols = new();
 
         SetProtocolBucket(VpnProtocol.WireGuardUdp, preferredProtocols, fallbackProtocols);
-
-        if (FeatureFlagsObserver.IsStealthEnabled)
-        {
-            SetProtocolBucket(VpnProtocol.WireGuardTcp, preferredProtocols, fallbackProtocols);
-            SetProtocolBucket(VpnProtocol.WireGuardTls, preferredProtocols, fallbackProtocols);
-        }
-
+        SetProtocolBucket(VpnProtocol.WireGuardTcp, preferredProtocols, fallbackProtocols);
+        SetProtocolBucket(VpnProtocol.WireGuardTls, preferredProtocols, fallbackProtocols);
         SetProtocolBucket(VpnProtocol.OpenVpnUdp, preferredProtocols, fallbackProtocols);
         SetProtocolBucket(VpnProtocol.OpenVpnTcp, preferredProtocols, fallbackProtocols);
 
@@ -107,7 +100,7 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
 
     private Dictionary<VpnProtocolIpcEntity, int[]> GetPorts()
     {
-        Dictionary<VpnProtocolIpcEntity, int[]> ports = new()
+        return new()
         {
             { VpnProtocolIpcEntity.WireGuardUdp, Settings.WireGuardUdpPorts },
             { VpnProtocolIpcEntity.WireGuardTcp, Settings.WireGuardTcpPorts },
@@ -115,14 +108,6 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
             { VpnProtocolIpcEntity.OpenVpnUdp, Settings.OpenVpnUdpPorts },
             { VpnProtocolIpcEntity.OpenVpnTcp, Settings.OpenVpnTcpPorts },
         };
-
-        if (!FeatureFlagsObserver.IsStealthEnabled)
-        {
-            ports.Remove(VpnProtocolIpcEntity.WireGuardTcp);
-            ports.Remove(VpnProtocolIpcEntity.WireGuardTls);
-        }
-
-        return ports;
     }
 
     protected bool IsToBypassSmartServerListGenerator(IConnectionIntent connectionIntent)
