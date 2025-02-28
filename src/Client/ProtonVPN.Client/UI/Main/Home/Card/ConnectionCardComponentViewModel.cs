@@ -286,6 +286,14 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
         InvalidateVpnPlan();
     }
 
+    protected override void OnLanguageChanged()
+    {
+        base.OnLanguageChanged();
+
+        OnPropertyChanged(nameof(Title));
+        OnPropertyChanged(nameof(Subtitle));
+    }
+
     [RelayCommand(CanExecute = nameof(CanConnect))]
     private Task ConnectAsync()
     {
