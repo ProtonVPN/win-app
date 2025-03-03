@@ -2115,7 +2115,7 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
     <value>Protégez-vous des publicités, des traqueurs et des logiciels malveillants sur les sites internet et les applications.</value>
   </data>
   <data name="Flyouts_NetShield_MalwareOnly_Success">
-    <value>Vous êtes protégé uniquement contre les logiciels malveillants</value>
+    <value>Vous êtes protégé uniquement contre les logiciels malveillants.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Description">
     <value>Bloquez les publicités, les traqueurs et les logiciels malveillants avec VPN Plus.</value>
@@ -2393,6 +2393,9 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
   </data>
   <data name="Home_Account_Title">
     <value>Mon compte</value>
+  </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>Modifier la connexion par défaut</value>
   </data>
   <data name="Home_ConnectionCard_ChangeServer">
     <value>Changer de serveur</value>
@@ -2680,6 +2683,10 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
     <value>La déconnexion est en cours. Veuillez patienter...</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
+  <data name="Map_ConnectTo">
+    <value>Connexion - {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Pour protéger votre adresse IP, la fonction Arrêt d'urgence (kill switch) bloque votre connexion internet.</value>
   </data>
@@ -2851,12 +2858,6 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
   <data name="Profile_CustomSettings_Show">
     <value>Afficher les paramètres</value>
   </data>
-  <data name="Profile_Discard_Description">
-    <value>Des modifications n'ont pas été enregistrées.</value>
-  </data>
-  <data name="Profile_Discard_Title">
-    <value>Quitter la page ?</value>
-  </data>
   <data name="Profile_NatType_Conflict_Description">
     <value>Ceci désactivera la redirection de port pour ce profil.</value>
   </data>
@@ -3020,15 +3021,6 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
     <value>Appliquer</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
-  <data name="Settings_Common_ApplyAndReconnect">
-    <value>Appliquer et se reconnecter</value>
-  </data>
-  <data name="Settings_Common_Discard">
-    <value>Abandonner</value>
-  </data>
-  <data name="Settings_Common_Discard_Title">
-    <value>Abandonner les modifications des paramètres ?</value>
-  </data>
   <data name="Settings_Connection">
     <value>Connexion</value>
   </data>
@@ -3123,6 +3115,9 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Votre connexion récente la plus utilisée</value>
+  </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>Connexions récentes</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Arrêt d'urgence (kill switch)</value>
@@ -3277,6 +3272,15 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>Abandonner les modifications</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>Continuer les modifications</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>Abandonner les modifications non enregistrées ?</value>
   </data>
   <data name="Settings_Features">
     <value>Fonctionnalités VPN</value>

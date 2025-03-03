@@ -298,7 +298,7 @@
     <value>Get the most from your VPN by updating to the latest version of the app.</value>
   </data>
   <data name="Components_Update_MoreLikelyIssues">
-    <value>You're more likely to have issues on older versions of ProtonVPN.</value>
+    <value>You're more likely to have issues on older versions of Proton VPN.</value>
   </data>
   <data name="Components_Update_UpdateAvailable">
     <value>Update available</value>
@@ -2394,6 +2394,9 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
   <data name="Home_Account_Title">
     <value>Oma tili</value>
   </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>Change default connection</value>
+  </data>
   <data name="Home_ConnectionCard_ChangeServer">
     <value>Vaihda palvelinta</value>
   </data>
@@ -2680,6 +2683,10 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Kirjaudutaan ulos. Odota...</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
+  <data name="Map_ConnectTo">
+    <value>Connect - {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
   <data name="Notifications_KillSwitch_Description">
     <value>To protect your IP address, kill switch is blocking your internet connection.</value>
   </data>
@@ -2851,12 +2858,6 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
   <data name="Profile_CustomSettings_Show">
     <value>Show settings</value>
   </data>
-  <data name="Profile_Discard_Description">
-    <value>You have unsaved changes.</value>
-  </data>
-  <data name="Profile_Discard_Title">
-    <value>Leave page?</value>
-  </data>
   <data name="Profile_NatType_Conflict_Description">
     <value>This will disable port forwarding for this profile.</value>
   </data>
@@ -3020,15 +3021,6 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Toteuta</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
-  <data name="Settings_Common_ApplyAndReconnect">
-    <value>Hyväksy ja yhdistä uudelleen</value>
-  </data>
-  <data name="Settings_Common_Discard">
-    <value>Hylkää</value>
-  </data>
-  <data name="Settings_Common_Discard_Title">
-    <value>Hylätäänkö asetusmuutokset?</value>
-  </data>
   <data name="Settings_Connection">
     <value>Yhteys</value>
   </data>
@@ -3123,6 +3115,9 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Viimeksi käyttämäsi yhteys</value>
+  </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>Recents</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Tappokytkin</value>
@@ -3277,6 +3272,15 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>Discard changes</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>Keep editing</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>Discard unsaved changes?</value>
   </data>
   <data name="Settings_Features">
     <value>VPN:n ominaisuudet</value>

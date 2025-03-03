@@ -298,7 +298,7 @@
     <value>Αξιοποιήστε στο έπακρο το VPN σας κάνοντας ενημέρωση στην πιο πρόσφατη έκδοση της εφαρμογής.</value>
   </data>
   <data name="Components_Update_MoreLikelyIssues">
-    <value>Σε παλαιότερες εκδόσεις του ProtonVPN, είναι πιο πιθανό να έχετε προβλήματα.</value>
+    <value>Σε παλαιότερες εκδόσεις του Proton VPN, είναι πιο πιθανό να έχετε προβλήματα.</value>
   </data>
   <data name="Components_Update_UpdateAvailable">
     <value>Υπάρχει διαθέσιμη ενημέρωση</value>
@@ -2394,6 +2394,9 @@
   <data name="Home_Account_Title">
     <value>Ο λογαριασμός μου</value>
   </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>Αλλαγή προεπιλεγμένης σύνδεσης</value>
+  </data>
   <data name="Home_ConnectionCard_ChangeServer">
     <value>Αλλαγή διακομιστή</value>
   </data>
@@ -2680,6 +2683,10 @@
     <value>Αποσύνδεση, παρακαλούμε περιμένετε...</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
+  <data name="Map_ConnectTo">
+    <value>Σύνδεση - {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Για την προστασία της διεύθυνσης IP σας, η λειτουργία kill switch αποκλείει τη σύνδεσή σας στο διαδίκτυο.</value>
   </data>
@@ -2851,12 +2858,6 @@
   <data name="Profile_CustomSettings_Show">
     <value>Εμφάνιση ρυθμίσεων</value>
   </data>
-  <data name="Profile_Discard_Description">
-    <value>Έχετε μην αποθηκευμένες αλλαγές.</value>
-  </data>
-  <data name="Profile_Discard_Title">
-    <value>Έξοδος από τη σελίδα;</value>
-  </data>
   <data name="Profile_NatType_Conflict_Description">
     <value>Αυτό θα απενεργοποιήσει την προώθηση θυρών για αυτό το προφίλ.</value>
   </data>
@@ -3020,15 +3021,6 @@
     <value>Εφαρμογή</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
-  <data name="Settings_Common_ApplyAndReconnect">
-    <value>Εφαρμογή και επανασύνδεση</value>
-  </data>
-  <data name="Settings_Common_Discard">
-    <value>Απόρριψη</value>
-  </data>
-  <data name="Settings_Common_Discard_Title">
-    <value>Απόρριψη αλλαγών ρυθμίσεων;</value>
-  </data>
   <data name="Settings_Connection">
     <value>Σύνδεση</value>
   </data>
@@ -3123,6 +3115,9 @@
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Η σύνδεση που χρησιμοποιήσατε πιο πρόσφατα</value>
+  </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>Πρόσφατα</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Kill switch</value>
@@ -3277,6 +3272,15 @@
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>Απόρριψη αλλαγών</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>Συνέχιση επεξεργασίας</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>Απόρριψη μη αποθηκευμένων αλλαγών;</value>
   </data>
   <data name="Settings_Features">
     <value>Χαρακτηριστικά VPN</value>

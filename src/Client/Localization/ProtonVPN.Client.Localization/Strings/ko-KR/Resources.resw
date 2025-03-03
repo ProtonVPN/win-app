@@ -2301,6 +2301,9 @@
   <data name="Home_Account_Title">
     <value>내 계정</value>
   </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>기본 연결 변경</value>
+  </data>
   <data name="Home_ConnectionCard_ChangeServer">
     <value>서버 변경</value>
   </data>
@@ -2581,6 +2584,10 @@
     <value>로그아웃 중, 기다려 주세요…</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
+  <data name="Map_ConnectTo">
+    <value>연결 - {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
   <data name="Notifications_KillSwitch_Description">
     <value>IP 주소를 보호하기 위해, 킬 스위치가 사용자의 인터넷 연결을 차단 중입니다.</value>
   </data>
@@ -2752,12 +2759,6 @@ VPN 연결</value>
   <data name="Profile_CustomSettings_Show">
     <value>설정 보이기</value>
   </data>
-  <data name="Profile_Discard_Description">
-    <value>변경 내용이 저장되지 않았습니다.</value>
-  </data>
-  <data name="Profile_Discard_Title">
-    <value>페이지를 떠나시겠어요?</value>
-  </data>
   <data name="Profile_NatType_Conflict_Description">
     <value>이 작업은 이 프로필에 대한 포트 포워딩을 비활성화합니다.</value>
   </data>
@@ -2921,15 +2922,6 @@ VPN 연결</value>
     <value>적용하기</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
-  <data name="Settings_Common_ApplyAndReconnect">
-    <value>적용 및 재연결</value>
-  </data>
-  <data name="Settings_Common_Discard">
-    <value>저장 안 함</value>
-  </data>
-  <data name="Settings_Common_Discard_Title">
-    <value>설정값 변경을 취소합니까?</value>
-  </data>
   <data name="Settings_Connection">
     <value>연결</value>
   </data>
@@ -3024,6 +3016,9 @@ VPN 연결</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>회원님이 주로 사용한 연결</value>
+  </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>최근</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>킬 스위치</value>
@@ -3178,6 +3173,15 @@ VPN 연결</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>변경사항 취소</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>계속 수정하기</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>저장하지 않은 변경 사항을 취소할까요?</value>
   </data>
   <data name="Settings_Features">
     <value>VPN 기능</value>

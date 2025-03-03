@@ -298,7 +298,7 @@
     <value>Ak chcete VPN využívať naplno, aktualizujte si najnovšiu verziu aplikácie.</value>
   </data>
   <data name="Components_Update_MoreLikelyIssues">
-    <value>Je pravdepodobnejšie, že budete mať problémy so staršími verziami Proton VPN.</value>
+    <value>You're more likely to have issues on older versions of Proton VPN.</value>
   </data>
   <data name="Components_Update_UpdateAvailable">
     <value>K dispozícii je aktualizácia</value>
@@ -2580,6 +2580,9 @@ Vysoké zaťaženie servera môže spomaliť vaše pripojenie.</value>
   <data name="Home_Account_Title">
     <value>Môj účet</value>
   </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>Change default connection</value>
+  </data>
   <data name="Home_ConnectionCard_ChangeServer">
     <value>Zmeniť server</value>
   </data>
@@ -2878,6 +2881,10 @@ Vysoké zaťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Odhlasovanie, počkajte prosím...</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
+  <data name="Map_ConnectTo">
+    <value>Connect - {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
   <data name="Notifications_KillSwitch_Description">
     <value>To protect your IP address, kill switch is blocking your internet connection.</value>
   </data>
@@ -3049,12 +3056,6 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
   <data name="Profile_CustomSettings_Show">
     <value>Zobraziť nastavenia</value>
   </data>
-  <data name="Profile_Discard_Description">
-    <value>You have unsaved changes.</value>
-  </data>
-  <data name="Profile_Discard_Title">
-    <value>Leave page?</value>
-  </data>
   <data name="Profile_NatType_Conflict_Description">
     <value>This will disable port forwarding for this profile.</value>
   </data>
@@ -3218,15 +3219,6 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Použiť</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
-  <data name="Settings_Common_ApplyAndReconnect">
-    <value>Používanie a opätovné pripojenie</value>
-  </data>
-  <data name="Settings_Common_Discard">
-    <value>Zahodiť</value>
-  </data>
-  <data name="Settings_Common_Discard_Title">
-    <value>Zrušiť zmeny nastavení?</value>
-  </data>
   <data name="Settings_Connection">
     <value>Pripojenie</value>
   </data>
@@ -3321,6 +3313,9 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Vaše naposledy použité pripojenie</value>
+  </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>Recents</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Kill switch</value>
@@ -3475,6 +3470,15 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>Discard changes</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>Keep editing</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>Discard unsaved changes?</value>
   </data>
   <data name="Settings_Features">
     <value>Funkcie VPN</value>

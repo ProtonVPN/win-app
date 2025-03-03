@@ -2487,6 +2487,9 @@ O sarcină mare a serverului vă poate încetini conexiunea.</value>
   <data name="Home_Account_Title">
     <value>Contul meu</value>
   </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>Modificare conexiune implicită</value>
+  </data>
   <data name="Home_ConnectionCard_ChangeServer">
     <value>Schimbare server</value>
   </data>
@@ -2779,6 +2782,10 @@ O sarcină mare a serverului vă poate încetini conexiunea.</value>
     <value>Se deconectează, așteptați...</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
+  <data name="Map_ConnectTo">
+    <value>Conectare - {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Pentru a vă proteja adresa IP, întrerupătorul de conexiune vă blochează conexiunea la internet.</value>
   </data>
@@ -2950,12 +2957,6 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
   <data name="Profile_CustomSettings_Show">
     <value>Afișare setări</value>
   </data>
-  <data name="Profile_Discard_Description">
-    <value>Aveți modificări nesalvate.</value>
-  </data>
-  <data name="Profile_Discard_Title">
-    <value>Părăsiți pagina?</value>
-  </data>
   <data name="Profile_NatType_Conflict_Description">
     <value>Aceasta va dezactiva redirecționarea portului pentru acest profil.</value>
   </data>
@@ -3119,15 +3120,6 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
     <value>Aplicare</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
-  <data name="Settings_Common_ApplyAndReconnect">
-    <value>Aplicare și reconectare</value>
-  </data>
-  <data name="Settings_Common_Discard">
-    <value>Ignorare</value>
-  </data>
-  <data name="Settings_Common_Discard_Title">
-    <value>Ignorați modificările setărilor?</value>
-  </data>
   <data name="Settings_Connection">
     <value>Conexiune</value>
   </data>
@@ -3222,6 +3214,9 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Ultima conexiune folosită</value>
+  </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>Recente</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Întrerupător de conexiune</value>
@@ -3376,6 +3371,15 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>Anulare modificări</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>Continuare editare</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>Anulați modificările nesalvate?</value>
   </data>
   <data name="Settings_Features">
     <value>Funcții VPN</value>

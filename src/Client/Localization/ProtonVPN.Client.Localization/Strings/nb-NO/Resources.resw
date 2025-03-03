@@ -2394,6 +2394,9 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
   <data name="Home_Account_Title">
     <value>Min konto</value>
   </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>Endre standard tilkobling</value>
+  </data>
   <data name="Home_ConnectionCard_ChangeServer">
     <value>Endre tjener</value>
   </data>
@@ -2680,6 +2683,10 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Logger av, vent litt...</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
+  <data name="Map_ConnectTo">
+    <value>Koble til - {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
   <data name="Notifications_KillSwitch_Description">
     <value>For å beskytte IP-adressen din blokkerer nødstopp internettforbindelsen.</value>
   </data>
@@ -2851,12 +2858,6 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
   <data name="Profile_CustomSettings_Show">
     <value>Vis innstillinger</value>
   </data>
-  <data name="Profile_Discard_Description">
-    <value>Du har ulagrede endringer.</value>
-  </data>
-  <data name="Profile_Discard_Title">
-    <value>Forlate siden?</value>
-  </data>
   <data name="Profile_NatType_Conflict_Description">
     <value>Dette vil deaktivere portvideresending for denne profilen.</value>
   </data>
@@ -3020,15 +3021,6 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Anvend</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
-  <data name="Settings_Common_ApplyAndReconnect">
-    <value>Anvend og koble til på nytt</value>
-  </data>
-  <data name="Settings_Common_Discard">
-    <value>Forkast</value>
-  </data>
-  <data name="Settings_Common_Discard_Title">
-    <value>Forkast endringer i innstillinger?</value>
-  </data>
   <data name="Settings_Connection">
     <value>Tilkobling</value>
   </data>
@@ -3123,6 +3115,9 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Den sist brukte tilkoblingen</value>
+  </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>Nylige</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Nødstopp</value>
@@ -3277,6 +3272,15 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>Forkast endringer</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>Fortsett med å redigere</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>Vil du forkaste endringer som ikke er lagret?</value>
   </data>
   <data name="Settings_Features">
     <value>VPN-funksjoner</value>

@@ -2394,6 +2394,9 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   <data name="Home_Account_Title">
     <value>Hesabım</value>
   </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>Varsayılan bağlantıyı değiştir</value>
+  </data>
   <data name="Home_ConnectionCard_ChangeServer">
     <value>Sunucu değiştir</value>
   </data>
@@ -2680,6 +2683,10 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Lütfen oturum kapatılırken bekleyin...</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
+  <data name="Map_ConnectTo">
+    <value>Bağlantı kur - {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Bağlantı kesici IP adresinizi korumak için internet bağlantınızı engelliyor.</value>
   </data>
@@ -2851,14 +2858,8 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   <data name="Profile_CustomSettings_Show">
     <value>Ayarları görüntüle</value>
   </data>
-  <data name="Profile_Discard_Description">
-    <value>Kaydedilmemiş değişiklikleriniz var.</value>
-  </data>
-  <data name="Profile_Discard_Title">
-    <value>Sayfadan ayrılınsın mı?</value>
-  </data>
   <data name="Profile_NatType_Conflict_Description">
-    <value>Bu seçenek, bu profil için bağlantı noktası yönlendirmeyi kapatır.</value>
+    <value>Bu profil için bağlantı noktası yönlendirmeyi kapatır.</value>
   </data>
   <data name="Profile_NetShield_Conflict_Description">
     <value>Bu seçenek, bu profil için özel DNS sunucusunu kapatır.</value>
@@ -3020,15 +3021,6 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Uygula</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
-  <data name="Settings_Common_ApplyAndReconnect">
-    <value>Uygula ve yeniden bağlan</value>
-  </data>
-  <data name="Settings_Common_Discard">
-    <value>Yok say</value>
-  </data>
-  <data name="Settings_Common_Discard_Title">
-    <value>Ayar değişiklikleri yok sayılsın mı?</value>
-  </data>
   <data name="Settings_Connection">
     <value>Bağlantı</value>
   </data>
@@ -3036,10 +3028,10 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Gelişmiş ayarlar</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting">
-    <value>Alternatif yönlendirme</value>
+    <value>Alternatif yöneltme</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting_Description">
-    <value>Proton hizmetleri ağ kısıtlamaları nedeniyle engellenirse sizi sitelerimize bağlamak için alternatif ağ yönlendirmesi kullanmayı deneyeceğiz.</value>
+    <value>Proton hizmetlerine erişim ağ üzerinden engelleniyorsa, sitelerimizle bağlantınızı kurmak için alternatif ağ yöneltmesi kullanmayı deneyeceğiz.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
     <value>Özel DNS sunucuları</value>
@@ -3124,6 +3116,9 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Son kullandığınız bağlantı</value>
   </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>Son kullanılanlar</value>
+  </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Bağlantı kesici</value>
   </data>
@@ -3191,7 +3186,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Bağlantı noktası yönlendirme kullanılırken Ilımlı NAT kullanamayacaksınız.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Conflict_Title">
-    <value>Bağlantı noktası yönlendirme özelliği açılsın mı?</value>
+    <value>Bağlantı noktası yönlendirme açılsın mı?</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Description">
     <value>Yerel ağınızdaki P2P sunuculara ve aygıtlara bağlanmak için güvenlik duvarlarını aşar.</value>
@@ -3277,6 +3272,15 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>Değişiklileri yok say</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>Düzenlemeyi sürdür</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>Kaydedilmemiş değişiklikler yok sayılsın mı?</value>
   </data>
   <data name="Settings_Features">
     <value>VPN özellikleri</value>

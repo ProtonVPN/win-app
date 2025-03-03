@@ -2394,6 +2394,9 @@
   <data name="Home_Account_Title">
     <value>Mijn account</value>
   </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>Standaard verbinding wijzigen</value>
+  </data>
   <data name="Home_ConnectionCard_ChangeServer">
     <value>Server wijzigen</value>
   </data>
@@ -2680,6 +2683,10 @@
     <value>Uitloggen, een ogenblik geduld…</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
+  <data name="Map_ConnectTo">
+    <value>Verbind met {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Om uw IP-adres te beschermen, blokkeert de IP-beveiliging uw internetverbinding.</value>
   </data>
@@ -2851,12 +2858,6 @@ VPN-verbinding</value>
   <data name="Profile_CustomSettings_Show">
     <value>Instellingen tonen</value>
   </data>
-  <data name="Profile_Discard_Description">
-    <value>U heeft niet-opgeslagen wijzigingen.</value>
-  </data>
-  <data name="Profile_Discard_Title">
-    <value>Pagina verlaten?</value>
-  </data>
   <data name="Profile_NatType_Conflict_Description">
     <value>Dit schakelt poort forwarding voor dit profiel uit.</value>
   </data>
@@ -3020,15 +3021,6 @@ VPN-verbinding</value>
     <value>Toepassen</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
-  <data name="Settings_Common_ApplyAndReconnect">
-    <value>Toepassen en opnieuw verbinden</value>
-  </data>
-  <data name="Settings_Common_Discard">
-    <value>Weggooien</value>
-  </data>
-  <data name="Settings_Common_Discard_Title">
-    <value>Wijzigingen in instellingen negeren?</value>
-  </data>
   <data name="Settings_Connection">
     <value>Verbinding</value>
   </data>
@@ -3123,6 +3115,9 @@ VPN-verbinding</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Uw meest recent gebruikte verbinding</value>
+  </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>Recente</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Kill switch</value>
@@ -3277,6 +3272,15 @@ VPN-verbinding</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>Wijzigingen annuleren</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>Blijf bewerken</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>Niet opgeslagen wijzigingen annuleren?</value>
   </data>
   <data name="Settings_Features">
     <value>VPN-functies</value>

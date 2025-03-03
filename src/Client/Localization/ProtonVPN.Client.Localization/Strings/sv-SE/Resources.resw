@@ -2043,7 +2043,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Websites can use geoblocks to restrict content to certain locations. Governments can also instruct ISPs (Internet Service Providers) to block certain websites in their country.</value>
   </data>
   <data name="Flyouts_Country_Description3">
-    <value>A VPN makes it looks like you're browsing from somewhere else, protecting you from surveillance and censorship.</value>
+    <value>En VPN får det att se ut som att du surfar från någon annanstans och skyddar dig från övervakning och censur.</value>
   </data>
   <data name="Flyouts_Country_Title">
     <value>Land</value>
@@ -2058,7 +2058,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>This unique code can be used by websites and ISPs (Internet Service Providers) to link your location and browsing history to your device.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected2">
-    <value>A VPN masks your IP address, making it harder for your activity to be traced back to you.</value>
+    <value>En VPN maskerar din IP-adress vilket gör det svårare för din aktivitet att spåras tillbaka till dig.</value>
   </data>
   <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
     <value>Vad är en IP-adress?</value>
@@ -2130,7 +2130,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Ange det aktiva portnumret i din BitTorrent-app för att förbättra dina P2P-hastigheter</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
-    <value>Improves peer-to-peer download speeds</value>
+    <value>Förbättrar peer-to-peer nedladdningshastigheter</value>
   </data>
   <data name="Flyouts_PortForwarding_Upsell_Description">
     <value>Supercharge peer-to-peer (P2P) file sharing performance with VPN Plus.</value>
@@ -2393,6 +2393,9 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   </data>
   <data name="Home_Account_Title">
     <value>Mitt konto</value>
+  </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>Ändra standardanslutning</value>
   </data>
   <data name="Home_ConnectionCard_ChangeServer">
     <value>Byt server</value>
@@ -2680,6 +2683,10 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Loggar ut, vänta …</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
+  <data name="Map_ConnectTo">
+    <value>Anslut - {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
   <data name="Notifications_KillSwitch_Description">
     <value>För att skydda din IP-adress blockerar kill switch din internetanslutning.</value>
   </data>
@@ -2690,7 +2697,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Ställ in detta nummer i din BitTorrent-app för högre hastighet.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
-    <value>You’ve reached your maximum device limit. To reconnect to VPN, please disconnect from another device.</value>
+    <value>Du har nått din maximala enhetsgräns. För att återansluta till VPN, koppla från annan enhet.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
     <value>Ditt paket har nedgraderats till Proton Free och vi återansluter dig till den snabbaste gratisservern.</value>
@@ -2813,7 +2820,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.</value>
   </data>
   <data name="Overlay_SmartRouting_Description2">
-    <value>When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.</value>
+    <value>När du ansluter till en Smart Routing-server ser det ut som om du surfar i ditt destinationsland, även om den fysiska servern finns någon annanstans.</value>
   </data>
   <data name="Overlay_SmartRouting_Description3">
     <value>Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
@@ -2850,12 +2857,6 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   </data>
   <data name="Profile_CustomSettings_Show">
     <value>Visa inställningar</value>
-  </data>
-  <data name="Profile_Discard_Description">
-    <value>Du har osparade ändringar.</value>
-  </data>
-  <data name="Profile_Discard_Title">
-    <value>Lämna sida?</value>
   </data>
   <data name="Profile_NatType_Conflict_Description">
     <value>Detta kommer inaktivera vidarebefordran av port för denna profil.</value>
@@ -3020,15 +3021,6 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Verkställ</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
-  <data name="Settings_Common_ApplyAndReconnect">
-    <value>Verkställ och anslut igen</value>
-  </data>
-  <data name="Settings_Common_Discard">
-    <value>Kasta</value>
-  </data>
-  <data name="Settings_Common_Discard_Title">
-    <value>Kasta inställningsändringar?</value>
-  </data>
   <data name="Settings_Connection">
     <value>Anslutning</value>
   </data>
@@ -3123,6 +3115,9 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Din senast använda anslutning</value>
+  </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>Senaste</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Kill switch</value>
@@ -3277,6 +3272,15 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>Kasta ändringar</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>Fortsätt redigera</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>Kasta osparade ändringar?</value>
   </data>
   <data name="Settings_Features">
     <value>VPN-funktioner</value>

@@ -124,7 +124,7 @@
     <value>Strona szczegółów połączenia</value>
   </data>
   <data name="Automation_Properties_Connection_Card_Component">
-    <value>Connection card</value>
+    <value>Karta połączenia</value>
   </data>
   <data name="Automation_Properties_Features_Bar">
     <value>Pasek funkcji</value>
@@ -151,7 +151,7 @@
     <value>Strona przekierowania portów</value>
   </data>
   <data name="Automation_Properties_Profile_Page">
-    <value>Profile page</value>
+    <value>Strona profilu</value>
   </data>
   <data name="Automation_Properties_Settings_Advanced_Page">
     <value>Strona ustawień zaawansowanych</value>
@@ -229,7 +229,7 @@
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Duplicate">
-    <value>Duplicate</value>
+    <value>Duplikat</value>
   </data>
   <data name="Common_Actions_Edit">
     <value>Edytuj</value>
@@ -238,13 +238,13 @@
     <value>Włącz</value>
   </data>
   <data name="Common_Actions_Exit_ProtonVPN">
-    <value>Exit Proton VPN</value>
+    <value>Wyjdź z Proton VPN</value>
   </data>
   <data name="Common_Actions_GotIt">
-    <value>Got it</value>
+    <value>Rozumiem</value>
   </data>
   <data name="Common_Actions_Install">
-    <value>Install</value>
+    <value>Zainstaluj</value>
   </data>
   <data name="Common_Actions_Reconnect">
     <value>Połącz ponownie</value>
@@ -253,13 +253,13 @@
     <value>Usuń</value>
   </data>
   <data name="Common_Actions_Restart">
-    <value>Restart</value>
+    <value>Uruchom ponownie</value>
   </data>
   <data name="Common_Actions_Save">
-    <value>Save</value>
+    <value>Zapisz</value>
   </data>
   <data name="Common_Actions_TryAgain">
-    <value>Try again</value>
+    <value>Spróbuj ponownie</value>
   </data>
   <data name="Common_Actions_Update">
     <value>Zaktualizuj</value>
@@ -268,10 +268,10 @@
     <value>Ulepsz</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>Advanced kill switch is enabled. To use the internet without VPN, disable advanced kill switch.</value>
+    <value>Zaawansowany wyłącznik awaryjny jest włączony. Aby korzystać z Internetu bez VPN, wyłącz zaawansowany wyłącznik awaryjny.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>Advanced kill switch is enabled. If you continue, you will be disconnected from the internet.</value>
+    <value>Zaawansowany wyłącznik awaryjny jest włączony. Jeśli będziesz kontynuować, zostaniesz odłączony od Internetu.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
     <value>Sieć VPN zostanie rozłączona.</value>
@@ -292,19 +292,19 @@
     <value>Aktualizowanie…</value>
   </data>
   <data name="Common_Tags_New">
-    <value>NEW</value>
+    <value>NOWOŚĆ</value>
   </data>
   <data name="Components_Update_GetMostFromYourVpn">
-    <value>Get the most from your VPN by updating to the latest version of the app.</value>
+    <value>Wykorzystaj w pełni możliwości VPN, aktualizując aplikację do najnowszej wersji.</value>
   </data>
   <data name="Components_Update_MoreLikelyIssues">
-    <value>You're more likely to have issues on older versions of ProtonVPN.</value>
+    <value>You're more likely to have issues on older versions of Proton VPN.</value>
   </data>
   <data name="Components_Update_UpdateAvailable">
-    <value>Update available</value>
+    <value>Dostępna jest aktualizacja</value>
   </data>
   <data name="Components_Update_UpdateProtonVpn">
-    <value>Update Proton VPN</value>
+    <value>Zaktualizuj aplikację Proton VPN</value>
   </data>
   <data name="Connection_Error_EditProfile">
     <value>Edytuj profil</value>
@@ -313,7 +313,7 @@
     <value>Aplikacja Proton VPN nie może pobrać certyfikatu uwierzytelniania z powodu problemu z siecią.</value>
   </data>
   <data name="Connection_Error_NoServers">
-    <value>All servers in your selection are unavailable. Please expand your selection or try again later.</value>
+    <value>Wszystkie wybrane serwery są niedostępne. Rozszerz swój zakres dostępnych serwerów lub spróbuj ponownie później.</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
     <value>Serwer profilu „{0}” jest niedostępny. Wybierz inny serwer lub spróbuj ponownie później.</value>
@@ -350,10 +350,10 @@
     <value>Nie jesteśmy pewni, co się stało. Spróbuj ponownie lub skontaktuj się z naszym zespołem wsparcia klienta.</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
-    <value>View fixes</value>
+    <value>Wyświetl poprawki</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
-    <value>Your device's WireGuard adapter is in use. Disconnect from any other VPN running on your device, then try again.</value>
+    <value>Adapter WireGuard na twoim urządzeniu jest w użyciu. Odłącz się od innych sieci VPN uruchomionych na urządzeniu, a następnie spróbuj ponownie.</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Automatycznie wybrany z</value>
@@ -551,14 +551,14 @@
     <value>Wybierz typ połączenia i lokalizację</value>
   </data>
   <data name="Connections_Profiles_Name">
-    <value>Give your profile a name</value>
+    <value>Nadaj swojemu profilowi nazwę</value>
   </data>
   <data name="Connections_Profiles_Name_Default">
-    <value>Untitled</value>
+    <value>Bez nazwy</value>
     <comment>This will be used as the default profile name if the user creates a profile without entering a name</comment>
   </data>
   <data name="Connections_Profiles_Name_Duplicate">
-    <value>Copy of {0}</value>
+    <value>Kopia {0}</value>
     <comment>This will be used as the profile name when duplicating a profile. {0} is a placeholder for the original profile name.</comment>
   </data>
   <data name="Connections_Profiles_New">
@@ -570,10 +570,10 @@
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
   </data>
   <data name="Connections_Profiles_Settings_Description">
-    <value>Profile settings will override your VPN settings when connected.</value>
+    <value>Ustawienia profilu zastąpią ustawienia VPN podczas połączenia.</value>
   </data>
   <data name="Connections_Profiles_Settings_Header">
-    <value>Add custom settings</value>
+    <value>Dodaj ustawienia niestandardowe</value>
   </data>
   <data name="Connections_Random">
     <value>Losowe</value>
@@ -1829,13 +1829,13 @@
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_BaseFilteringEngine_Description">
-    <value>The Base Filtering Engine (BFE) service on your Windows device is disabled. This service needs to be enabled for Proton VPN to work properly.</value>
+    <value>Usługa Base Filtering Engine (BFE) na urządzeniu z systemem Windows jest wyłączona. Usługa ta musi być włączona, aby Proton VPN działał </value>
   </data>
   <data name="Dialogs_BaseFilteringEngine_HowToEnable">
-    <value>How to enable Base Filtering Engine</value>
+    <value>Jak włączyć Base Filtering Engine</value>
   </data>
   <data name="Dialogs_BaseFilteringEngine_Title">
-    <value>Enable Base Filtering Engine to continue</value>
+    <value>Włącz Base Filtering Engine, aby kontynuować</value>
   </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
     <value>Uzyskaj nieograniczoną liczbę zmian serwerów w planie VPN Plus.</value>
@@ -1853,10 +1853,10 @@
     <value>Ulepsz konto, aby ponownie uzyskać dostęp do serwerów i funkcji planu Plus.</value>
   </data>
   <data name="Dialogs_DisabledService_Description">
-    <value>Looks like the Proton VPN Service is disabled. You'll need to re-enable the service to connect.</value>
+    <value>Wygląda na to, że usługa Proton VPN jest wyłączona. Będziesz musiał ponownie włączyć usługę, aby się połączyć.</value>
   </data>
   <data name="Dialogs_DisabledService_Title">
-    <value>Enable Windows Service to continue</value>
+    <value>Włącz usługę Windows, aby kontynuować</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Plan Proton Free automatycznie łączy użytkownika z najszybszym dostępnym serwerem spośród {0} darmowego kraju. Zazwyczaj będzie to serwer znajdujący się najbliżej lokalizacji użytkownika.</value>
@@ -1912,10 +1912,10 @@ Wysokie opóźnienie może spowolnić połączenie.</value>
     <value>Co to jest opóźnienie?</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>Your connection has been disabled because you are using a server that does not support peer-to-peer (P2P) traffic. P2P is not supported on free servers. Please use a different server for P2P.</value>
+    <value>Twoje połączenie zostało zablokowane, ponieważ korzystasz z serwera, który nie obsługuje ruchu peer-to-peer (P2P). P2P nie jest obsługiwane na darmowych serwerach. Użyj innego serwera dla P2P.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
-    <value>P2P traffic detected</value>
+    <value>Wykryto ruch P2P</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>Jak używać torrentów z P2P</value>
@@ -1980,7 +1980,7 @@ Wysokie opóźnienie może spowolnić połączenie.</value>
     <value>Co nie działa?</value>
   </data>
   <data name="Dialogs_ReportIssue_NoLogsWarning">
-    <value>Error logs help us to get to the bottom of your issue. If you don't include them, we may not be able to investigate fully.</value>
+    <value>Dzienniki błędów pomagają nam dotrzeć do sedna problemu. Jeśli ich nie dołączysz, możemy nie być w stanie w pełni zbadać sprawy.</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes">
     <value>Szybkie rozwiązania</value>
@@ -2049,13 +2049,13 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Może później</value>
   </data>
   <data name="Dialogs_SystemProxy_Description">
-    <value>It looks like your device is using a proxy server. This may interfere with your VPN protection.</value>
+    <value>Wygląda na to, że urządzenie korzysta z serwera proxy. Może to zakłócać funkcjonowanie ochrony VPN.</value>
   </data>
   <data name="Dialogs_SystemProxy_Disable">
-    <value>Disable proxy</value>
+    <value>Wyłącz proxy</value>
   </data>
   <data name="Dialogs_SystemProxy_Title">
-    <value>Proxy server detected</value>
+    <value>Wykryto serwer proxy</value>
   </data>
   <data name="Dialogs_Tor_Description">
     <value>Połącz się z serwerem Tor, aby uzyskać dostęp do ukrytych usług i stron onion za pomocą dowolnej przeglądarki.</value>
@@ -2085,7 +2085,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Użyj innej sieci</value>
   </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
-    <value>Try switching Wi-Fi networks, or use mobile data instead.</value>
+    <value>Spróbuj zmienić sieć Wi-Fi lub zamiast tego użyj danych mobilnych.</value>
   </data>
   <data name="Dialogs_Troubleshooting_StatusPage">
     <value>Sprawdź naszą stronę stanu usługi</value>
@@ -2097,16 +2097,16 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Pomoc z połączeniem</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOff">
-    <value>This will disconnect you from VPN. Any active internet connections will be temporarily unprotected.</value>
+    <value>Spowoduje to odłączenie od sieci VPN. Wszelkie aktywne połączenia internetowe będą tymczasowo pozbawione ochrony.</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn">
-    <value>This will disconnect you from VPN and temporarily disable kill switch. Any active internet connections will be temporarily unprotected.</value>
+    <value>Spowoduje to odłączenie od sieci VPN. Wszelkie aktywne połączenia internetowe będą tymczasowo pozbawione ochrony.</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Title_Install">
-    <value>Install update?</value>
+    <value>Zainstalować aktualizację?</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Title_Restart">
-    <value>Restart Proton VPN to complete update</value>
+    <value>Uruchom ponownie Proton VPN, aby zakończyć aktualizację</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Description">
     <value>Wygląda na to, że czas systemowy nie jest zsynchronizowany. Może to powodować problemy podczas łączenia się z VPN.</value>
@@ -2163,10 +2163,10 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Witaj w planie VPN Plus</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description1">
-    <value>Congratulations! You unlocked premium security and performance features on all Proton services.</value>
+    <value>Gratulacje! Odblokowałeś funkcje bezpieczeństwa i wydajności premium we wszystkich usługach Proton.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>Enjoy the best of Proton privacy.</value>
+    <value>Ciesz się najlepszą prywatnością z Proton.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Witaj w planie Proton Unlimited</value>
@@ -2187,13 +2187,13 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Wyjdź z Proton VPN</value>
   </data>
   <data name="Flyouts_Country_Description1">
-    <value>Browsing without a VPN leaves you vulnerable to location-based internet restrictions.</value>
+    <value>Przeglądanie bez VPN pozostawia użytkownika bezbronnym wobec ograniczeń internetowych opartych na lokalizacji.</value>
   </data>
   <data name="Flyouts_Country_Description2">
-    <value>Websites can use geoblocks to restrict content to certain locations. Governments can also instruct ISPs (Internet Service Providers) to block certain websites in their country.</value>
+    <value>Strony internetowe mogą wykorzystywać geoblokady do ograniczania treści w określonych lokalizacjach. Rządy mogą również nakazać dostawcom usług internetowych (ISP) blokowanie określonych witryn w ich kraju.</value>
   </data>
   <data name="Flyouts_Country_Description3">
-    <value>A VPN makes it looks like you're browsing from somewhere else, protecting you from surveillance and censorship.</value>
+    <value>VPN sprawia, że przeglądanie wygląda tak, jakby odbywało się z innego miejsca, chroniąc użytkownika przed inwigilacją i cenzurą</value>
   </data>
   <data name="Flyouts_Country_Title">
     <value>Kraj</value>
@@ -2202,13 +2202,13 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Połącz się z VPN, aby zmienić swoją wirtualną lokalizację</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Connected">
-    <value>Your VPN IP masks your real IP address. This makes it look like you're browsing from your VPN location, so your online activity can't be linked to your device.</value>
+    <value>Adres IP sieci VPN maskuje prawdziwy adres IP użytkownika. Sprawia to, że przeglądanie wygląda tak, jakby odbywało się z lokalizacji VPN, więc aktywność online nie może być powiązana z urządzeniem.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected1">
-    <value>This unique code can be used by websites and ISPs (Internet Service Providers) to link your location and browsing history to your device.</value>
+    <value>Ten unikalny kod może być wykorzystywany przez strony internetowe i dostawców usług internetowych (ISP) do powiązania lokalizacji użytkownika i historii przeglądania z jego urządzeniem.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected2">
-    <value>A VPN masks your IP address, making it harder for your activity to be traced back to you.</value>
+    <value>VPN maskuje adres IP użytkownika, utrudniając śledzenie jego aktywności.</value>
   </data>
   <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
     <value>Co to jest adres IP?</value>
@@ -2226,13 +2226,13 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Twój adres IP jest widoczny</value>
   </data>
   <data name="Flyouts_Isp_Description1">
-    <value>Your ISP (Internet Service Provider) is the company that connects you to the internet.</value>
+    <value>Twój ISP (dostawca internetu) to firma, która łączy Cię z Internetem.</value>
   </data>
   <data name="Flyouts_Isp_Description2">
-    <value>They can log your online activity. In some countries, they can sell your data to advertisers. In others, they can be required to hand it over to the government.</value>
+    <value>Mogą rejestrować Twoją aktywność online. W niektórych krajach mogą sprzedawać Twoje dane reklamodawcom. W innych mogą być zobowiązane do przekazania ich rządowi.</value>
   </data>
   <data name="Flyouts_Isp_Description3">
-    <value>A VPN hides your IP address, protecting you from ISP interference.</value>
+    <value>VPN ukrywa adres IP użytkownika, chroniąc go przed ingerencją dostawcy usług internetowych.</value>
   </data>
   <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
     <value>Co to jest dostawca usług internetowych (ISP)?</value>
@@ -2244,13 +2244,13 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Twój dostawca może zobaczyć, jakie strony internetowe odwiedzasz</value>
   </data>
   <data name="Flyouts_KillSwitch_Advanced_Success">
-    <value>Blocks all internet access when you're not connected to Proton VPN</value>
+    <value>Blokuje cały dostęp do Internetu, gdy nie jesteś połączony z Proton VPN.</value>
   </data>
   <data name="Flyouts_KillSwitch_Info">
-    <value>Your IP address could be exposed if your VPN connection drops</value>
+    <value>Adres IP użytkownika może zostać ujawniony, jeśli połączenie VPN zostanie przerwane.</value>
   </data>
   <data name="Flyouts_KillSwitch_Standard_Success">
-    <value>If your VPN connection drops, you'll be disconnected from the internet until VPN is restored</value>
+    <value>Jeśli połączenie VPN zostanie przerwane, użytkownik zostanie odłączony od Internetu do momentu przywrócenia połączenia VPN.</value>
   </data>
   <data name="Flyouts_KillSwitch_Warning_Connected">
     <value>Advanced kill switch applies even if you intentionally disconnect from VPN</value>
@@ -2271,7 +2271,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Block ads, trackers, and malware with VPN Plus.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Title">
-    <value>Enjoy ad-free browsing</value>
+    <value>Ciesz się przeglądaniem bez reklam</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Active port number</value>
@@ -2580,6 +2580,9 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
   <data name="Home_Account_Title">
     <value>Moje konto</value>
   </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>Change default connection</value>
+  </data>
   <data name="Home_ConnectionCard_ChangeServer">
     <value>Zmień serwer</value>
   </data>
@@ -2778,25 +2781,25 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>About</value>
   </data>
   <data name="Home_TitleBar_Menu_Account">
-    <value>Account</value>
+    <value>Konto</value>
   </data>
   <data name="Home_TitleBar_Menu_ExitTheApp">
     <value>Exit the app</value>
   </data>
   <data name="Home_TitleBar_Menu_Help">
-    <value>Help</value>
+    <value>Pomoc</value>
   </data>
   <data name="Home_TitleBar_Menu_Help_WhatsTheIssue">
-    <value>What's the issue?</value>
+    <value>Co nie działa?</value>
   </data>
   <data name="Home_TitleBar_Menu_Settings">
-    <value>Settings</value>
+    <value>Ustawienia</value>
   </data>
   <data name="Home_TitleBar_Menu_Signout">
-    <value>Sign out</value>
+    <value>Wyloguj</value>
   </data>
   <data name="Home_TitleBar_Menu_UpdateNow">
-    <value>Update now</value>
+    <value>Zaktualizuj teraz</value>
   </data>
   <data name="Home_Update_UpdateAvailable">
     <value>Dostępna jest aktualizacja</value>
@@ -2878,11 +2881,15 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Trwa wylogowywanie. Poczekaj chwilę…</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
+  <data name="Map_ConnectTo">
+    <value>Connect - {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
   <data name="Notifications_KillSwitch_Description">
     <value>To protect your IP address, kill switch is blocking your internet connection.</value>
   </data>
   <data name="Notifications_PortForwarding_CopyPortNumber">
-    <value>Copy port number</value>
+    <value>Kopiuj numer portu</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
     <value>Ustaw ten numer portu w aplikacji BitTorrent dla lepszej prędkości.</value>
@@ -2944,7 +2951,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>What is a VPN profile?</value>
   </data>
   <data name="Overlay_Profile_Title">
-    <value>Profiles</value>
+    <value>Profile</value>
   </data>
   <data name="Overlay_SecureCore_Description1">
     <value>Secure Core connects you to your destination server via a second, maximum security VPN server.</value>
@@ -3038,64 +3045,58 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Tor</value>
   </data>
   <data name="Profile_CustomSettings_Description">
-    <value>Profile settings will override your VPN settings when connected.</value>
+    <value>Ustawienia profilu zastąpią ustawienia VPN podczas połączenia.</value>
   </data>
   <data name="Profile_CustomSettings_Header">
     <value>Dodaj niestandardowe ustawienia</value>
   </data>
   <data name="Profile_CustomSettings_Hide">
-    <value>Hide settings</value>
+    <value>Ukryj ustawienia</value>
   </data>
   <data name="Profile_CustomSettings_Show">
     <value>Pokaż ustawienia</value>
   </data>
-  <data name="Profile_Discard_Description">
-    <value>You have unsaved changes.</value>
-  </data>
-  <data name="Profile_Discard_Title">
-    <value>Leave page?</value>
-  </data>
   <data name="Profile_NatType_Conflict_Description">
-    <value>This will disable port forwarding for this profile.</value>
+    <value>Spowoduje to wyłączenie przekierowania portów dla tego profilu.</value>
   </data>
   <data name="Profile_NetShield_Conflict_Description">
-    <value>This will disable custom DNS for this profile.</value>
+    <value>Spowoduje to wyłączenie niestandardowego DNS dla tego profilu.</value>
   </data>
   <data name="Profile_Options_Description">
     <value>Automatycznie otwórz wybraną stronę internetową podczas połączenia z tym profilem.</value>
   </data>
   <data name="Profile_Options_Header">
-    <value>Connect and Go</value>
+    <value>Połącz się i gotowe</value>
   </data>
   <data name="Profile_Options_Url">
-    <value>Website URL</value>
+    <value>Adres URL strony</value>
   </data>
   <data name="Profile_Options_Url_Error">
-    <value>Enter a valid URL</value>
+    <value>Wpisz prawidłowy adres URL</value>
   </data>
   <data name="Profile_PortForwarding_Conflict_Description">
-    <value>This will change the NAT type for this profile to Strict (type 3).</value>
+    <value>Spowoduje to zmianę typu NAT dla tego profilu na Strict (typ 3).</value>
   </data>
   <data name="Profiles_Default_Gaming">
-    <value>Gaming</value>
+    <value>Rozrywka</value>
   </data>
   <data name="Profiles_Default_MaxSecurity">
-    <value>Max security</value>
+    <value>Maksymalne bezpieczeństwo</value>
   </data>
   <data name="Profiles_Default_Office">
-    <value>Office</value>
+    <value>Biuro</value>
   </data>
   <data name="Profiles_Default_P2P">
     <value>P2P</value>
   </data>
   <data name="Profiles_Default_RandomConnection">
-    <value>Random connection</value>
+    <value>Losowe połączenie</value>
   </data>
   <data name="Profiles_Default_Streaming">
-    <value>Streaming US</value>
+    <value>Streaming USA</value>
   </data>
   <data name="Profiles_Default_WorkSchool">
-    <value>Work/School</value>
+    <value>Praca / Szkoła</value>
   </data>
   <data name="Profiles_Page_Description">
     <value>Skonfiguruj własne ustawienia VPN i połącz się za pomocą jednego kliknięcia.</value>
@@ -3134,19 +3135,19 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Najszybszy darmowy serwer</value>
   </data>
   <data name="Server_Feature_B2B">
-    <value>Gateway</value>
+    <value>Brama</value>
   </data>
   <data name="Server_Feature_B2B_Description">
-    <value>Access your organization's servers</value>
+    <value>Uzyskaj dostęp do serwerów organizacji</value>
   </data>
   <data name="Server_Feature_None">
-    <value>Standard</value>
+    <value>Standardowy</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
   </data>
   <data name="Server_Feature_P2P_Description">
-    <value>Torrent-optimized</value>
+    <value>Zoptymalizowany dla torrentów</value>
   </data>
   <data name="Server_Feature_SecureCore">
     <value>Secure Core</value>
@@ -3188,7 +3189,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>O aplikacji</value>
   </data>
   <data name="Settings_Account_Account">
-    <value>Account</value>
+    <value>Konto</value>
   </data>
   <data name="Settings_Account_Exit">
     <value>Wyjście z aplikacji</value>
@@ -3217,15 +3218,6 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
   <data name="Settings_Common_Apply">
     <value>Zastosuj</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
-  </data>
-  <data name="Settings_Common_ApplyAndReconnect">
-    <value>Zastosuj i połącz ponownie</value>
-  </data>
-  <data name="Settings_Common_Discard">
-    <value>Odrzuć</value>
-  </data>
-  <data name="Settings_Common_Discard_Title">
-    <value>Czy chcesz odrzucić zmiany?</value>
   </data>
   <data name="Settings_Connection">
     <value>Połączenie</value>
@@ -3302,10 +3294,10 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Wykorzystuje mosty do łączenia sieci. Adapter TUN zapewnia wyższe prędkości niż TAP, ale może być mniej stabilny.</value>
   </data>
   <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
-    <value>Custom DNS can't be turned on because you're connected to a profile with NetShield enabled.</value>
+    <value>Nie można włączyć niestandardowego DNS, ponieważ użytkownik jest połączony z profilem z włączoną usługą NetShield.</value>
   </data>
   <data name="Settings_Connection_CustomDns_Conflict_Information_WhenEnabled">
-    <value>Custom DNS is disabled because you're currently connected to a profile with NetShield enabled.</value>
+    <value>Niestandardowy DNS jest wyłączony, ponieważ użytkownik jest obecnie połączony z profilem z włączoną usługą NetShield.</value>
   </data>
   <data name="Settings_Connection_Default">
     <value>Domyślne połączenie</value>
@@ -3321,6 +3313,9 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Ostatnio używane połączenia</value>
+  </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>Recents</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Kill switch</value>
@@ -3362,7 +3357,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Nie będzie można użyć funkcji NetShield po połączeniu się z niestandardowym serwerem DNS.</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Information">
-    <value>NetShield is not compatible with Custom DNS.</value>
+    <value>NetShield nie jest kompatybilny z niestandardowym DNS.</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Title">
     <value>Włączyć NetShield?</value>
@@ -3413,11 +3408,11 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Przejdź do profilów</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Message">
-    <value>You're currently connected to a VPN profile.
+    <value>Jesteś obecnie połączony z profilem VPN.
 
-• To change the protocol for this connection, disconnect then edit your profile.
+• Jeżeli chcesz zmienić protokół dla tego połączenia, rozłącz się, a następnie edytuj swój profil.
 
-• To change your protocol for other VPN connections, you'll need to disconnect from your profile first.</value>
+• Jeżeli chcesz zmienić protokół dla innych połączeń VPN, musisz najpierw rozłączyć się z profilem.</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Title">
     <value>Zmień protokół w profilach</value>
@@ -3475,6 +3470,15 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>Discard changes</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>Keep editing</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>Discard unsaved changes?</value>
   </data>
   <data name="Settings_Features">
     <value>Funkcje VPN</value>
@@ -3564,17 +3568,17 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Wersja systemu operacyjnego</value>
   </data>
   <data name="Settings_OverriddenByProfile_Description1">
-    <value>This setting is connected to your active profile.</value>
+    <value>To ustawienie jest powiązane z aktywnym profilem.</value>
   </data>
   <data name="Settings_OverriddenByProfile_Description2">
-    <value>Edit your profile to make changes, or disconnect to edit your general VPN settings.</value>
+    <value>Edytuj swój profil, aby wprowadzić zmiany, lub rozłącz się, aby edytować ogólne ustawienia VPN.</value>
   </data>
   <data name="Settings_OverriddenByProfile_Tagline">
-    <value>These settings are connected to '{0}' profile and can only be managed in Profiles.</value>
+    <value>Ustawienia te są powiązane z profilem '{0}' i można nimi zarządzać tylko w profilach.</value>
     <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Settings_OverriddenByProfile_Title">
-    <value>Manage {0} in Profiles</value>
+    <value>Zarządzaj {0} w profilach</value>
     <comment>{0} is a placeholder for the name of the settings being overridden by the profile. (eg. Manage NetShield in Profiles)</comment>
   </data>
   <data name="Settings_Page_Title">
@@ -3629,7 +3633,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>WireGuard</value>
   </data>
   <data name="Settings_Reconnection_Title">
-    <value>Reconnect to apply changes</value>
+    <value>Połącz się ponownie, aby zastosować zmiany</value>
   </data>
   <data name="Settings_RestoreDefault">
     <value>Przywróć ustawienia domyślne</value>
@@ -3745,7 +3749,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_ResetPassword">
-    <value>Forgot password</value>
+    <value>Nie pamiętasz hasła</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_SignIn">
@@ -3762,7 +3766,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Zaloguj się</value>
   </data>
   <data name="SignIn_Form_TroubleSigningIn">
-    <value>Support Center</value>
+    <value>Centrum pomocy</value>
     <comment>A button at the bottom of the login window inside Get help popup</comment>
   </data>
   <data name="SignIn_Form_Username">
@@ -3897,16 +3901,16 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
   </data>
   <data name="Upsell_Carousel_Profiles">
-    <value>Get quick access to frequent connections</value>
+    <value>Szybki dostęp do często wybieranych połączeń</value>
   </data>
   <data name="Upsell_Carousel_Profiles_Convenience">
-    <value>Set a profile as your default connection and connect in 1 click</value>
+    <value>Ustaw profil jako domyślne połączenie i połącz się 1 kliknięciem</value>
   </data>
   <data name="Upsell_Carousel_Profiles_Creation">
-    <value>Create and save your own VPN configurations with Profiles</value>
+    <value>Tworzenie i zapisywanie własnych konfiguracji VPN za pomocą profili</value>
   </data>
   <data name="Upsell_Carousel_Profiles_Customization">
-    <value>Customize your location, protocol, and settings</value>
+    <value>Dostosuj swoją lokalizację, protokół i ustawienia</value>
   </data>
   <data name="Upsell_Carousel_SecureCore">
     <value>Dodaj kolejną warstwę ochrony do połączenia</value>
