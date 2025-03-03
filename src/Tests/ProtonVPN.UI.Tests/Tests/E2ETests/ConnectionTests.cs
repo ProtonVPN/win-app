@@ -174,9 +174,12 @@ public class ConnectionTests : FreshSessionSetUp
 
         string ipAddressBeforeClientKill = NetworkUtils.GetIpAddressWithRetry();
 
+        // Allow some time for the app to settle down to imitate user's delay
+        Thread.Sleep(TestConstants.FiveSecondsTimeout);
+
         App.Kill();
         // Delay to make sure that connection is not lost even after brief delay.
-        Thread.Sleep(5000);
+        Thread.Sleep(TestConstants.FiveSecondsTimeout);
 
         string ipAddressAfterClientKill = NetworkUtils.GetIpAddressWithRetry();
         Assert.That(ipAddressBeforeClientKill.Equals(ipAddressAfterClientKill), Is.True,
