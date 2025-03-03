@@ -2301,6 +2301,9 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Home_Account_Title">
     <value>Akun saya</value>
   </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>Ubah koneksi bawaan</value>
+  </data>
   <data name="Home_ConnectionCard_ChangeServer">
     <value>Ubah server</value>
   </data>
@@ -2581,6 +2584,10 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Mengeluarkan Anda dari akun, mohon tunggu…</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
+  <data name="Map_ConnectTo">
+    <value>Hubungkan - {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Untuk melindungi alamat IP Anda, kill switch memblokir koneksi internet Anda.</value>
   </data>
@@ -2752,12 +2759,6 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Profile_CustomSettings_Show">
     <value>Tampilkan pengaturan</value>
   </data>
-  <data name="Profile_Discard_Description">
-    <value>Anda memiliki perubahan yang belum disimpan.</value>
-  </data>
-  <data name="Profile_Discard_Title">
-    <value>Tinggalkan halaman?</value>
-  </data>
   <data name="Profile_NatType_Conflict_Description">
     <value>Hal ini akan menonaktifkan penerusan port bagi profil ini.</value>
   </data>
@@ -2921,15 +2922,6 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Terapkan</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
-  <data name="Settings_Common_ApplyAndReconnect">
-    <value>Terapkan dan hubungkan ulang</value>
-  </data>
-  <data name="Settings_Common_Discard">
-    <value>Buang</value>
-  </data>
-  <data name="Settings_Common_Discard_Title">
-    <value>Abaikan perubahan pengaturan?</value>
-  </data>
   <data name="Settings_Connection">
     <value>Koneksi</value>
   </data>
@@ -3024,6 +3016,9 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Koneksi yang terakhir Anda gunakan</value>
+  </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>Terkini</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Kill switch</value>
@@ -3178,6 +3173,15 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>Buang perubahan</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>Lanjut menyunting</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>Buang perubahan yang belum disimpan?</value>
   </data>
   <data name="Settings_Features">
     <value>Fitur-fitur VPN</value>

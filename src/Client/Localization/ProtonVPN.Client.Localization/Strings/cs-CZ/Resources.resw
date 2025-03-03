@@ -2580,6 +2580,9 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
   <data name="Home_Account_Title">
     <value>Můj účet</value>
   </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>Změna výchozího připojení</value>
+  </data>
   <data name="Home_ConnectionCard_ChangeServer">
     <value>Změnit server</value>
   </data>
@@ -2878,6 +2881,10 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
     <value>Odhlašuji, počkejte prosím...</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
+  <data name="Map_ConnectTo">
+    <value>Připojit - {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Kill Switch blokuje vaše připojení k internetu, aby ochránil vaši skutečnou IP adresu.</value>
   </data>
@@ -3049,12 +3056,6 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
   <data name="Profile_CustomSettings_Show">
     <value>Zobrazit nastavení</value>
   </data>
-  <data name="Profile_Discard_Description">
-    <value>Máte neuložené změny.</value>
-  </data>
-  <data name="Profile_Discard_Title">
-    <value>Opustit stránku?</value>
-  </data>
   <data name="Profile_NatType_Conflict_Description">
     <value>Tím se pro tento profil deaktivuje přesměrování portů.</value>
   </data>
@@ -3218,15 +3219,6 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
     <value>Použít</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
-  <data name="Settings_Common_ApplyAndReconnect">
-    <value>Použít a znovu připojit</value>
-  </data>
-  <data name="Settings_Common_Discard">
-    <value>Zahodit</value>
-  </data>
-  <data name="Settings_Common_Discard_Title">
-    <value>Zrušit změny nastavení?</value>
-  </data>
   <data name="Settings_Connection">
     <value>Připojení</value>
   </data>
@@ -3321,6 +3313,9 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Vaše poslední použité připojení</value>
+  </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>Nedávné</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Kill Switch</value>
@@ -3475,6 +3470,15 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>Zahodit změny</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>Pokračovat v editaci</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>Zahodit neuložené změny?</value>
   </data>
   <data name="Settings_Features">
     <value>VPN funkce</value>

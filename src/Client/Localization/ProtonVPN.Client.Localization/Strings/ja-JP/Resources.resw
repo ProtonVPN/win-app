@@ -298,7 +298,7 @@
     <value>アプリの最新バージョンに更新することで、VPNを最大限に活用できます。</value>
   </data>
   <data name="Components_Update_MoreLikelyIssues">
-    <value>古い Proton VPN のバージョンには問題がある可能性があります。</value>
+    <value>Proton VPNの古いバージョンでは、問題が発生する可能性が高まります。</value>
   </data>
   <data name="Components_Update_UpdateAvailable">
     <value>更新できます</value>
@@ -2301,6 +2301,9 @@
   <data name="Home_Account_Title">
     <value>マイアカウント</value>
   </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>デフォルトの接続を変更する</value>
+  </data>
   <data name="Home_ConnectionCard_ChangeServer">
     <value>サーバーを変更</value>
   </data>
@@ -2581,6 +2584,10 @@
     <value>サインアウトしています。お待ちください...</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
+  <data name="Map_ConnectTo">
+    <value>{0} に接続</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
   <data name="Notifications_KillSwitch_Description">
     <value>IPアドレスを保護するため、キルスイッチがインターネット接続をブロックしています。</value>
   </data>
@@ -2752,12 +2759,6 @@ VPN接続</value>
   <data name="Profile_CustomSettings_Show">
     <value>設定を表示</value>
   </data>
-  <data name="Profile_Discard_Description">
-    <value>未保存の変更があります。</value>
-  </data>
-  <data name="Profile_Discard_Title">
-    <value>ページを離れますか？</value>
-  </data>
   <data name="Profile_NatType_Conflict_Description">
     <value>このプロファイルの転送を無効にします。</value>
   </data>
@@ -2921,15 +2922,6 @@ VPN接続</value>
     <value>適用</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
-  <data name="Settings_Common_ApplyAndReconnect">
-    <value>適用して再接続する</value>
-  </data>
-  <data name="Settings_Common_Discard">
-    <value>破棄</value>
-  </data>
-  <data name="Settings_Common_Discard_Title">
-    <value>設定の変更を破棄しますか?</value>
-  </data>
   <data name="Settings_Connection">
     <value>接続</value>
   </data>
@@ -3024,6 +3016,9 @@ VPN接続</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>最近使用した接続</value>
+  </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>最近</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>キルスイッチ</value>
@@ -3178,6 +3173,15 @@ VPN接続</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>変更を破棄</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>編集を続ける</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>保存せずに終了しますか?</value>
   </data>
   <data name="Settings_Features">
     <value>VPN機能</value>

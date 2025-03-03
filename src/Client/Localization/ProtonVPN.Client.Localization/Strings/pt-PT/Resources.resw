@@ -298,7 +298,7 @@
     <value>Tire o máximo partido da sua VPN atualizando para a versão mais recente da aplicação.</value>
   </data>
   <data name="Components_Update_MoreLikelyIssues">
-    <value>É provável que tenha problemas com versões mais antigas do Proton VPN.</value>
+    <value>You're more likely to have issues on older versions of Proton VPN.</value>
   </data>
   <data name="Components_Update_UpdateAvailable">
     <value>Atualização disponível</value>
@@ -2394,6 +2394,9 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
   <data name="Home_Account_Title">
     <value>A minha conta</value>
   </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>Change default connection</value>
+  </data>
   <data name="Home_ConnectionCard_ChangeServer">
     <value>Alterar servidor</value>
   </data>
@@ -2680,6 +2683,10 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>A terminar sessão. Aguarde...</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
+  <data name="Map_ConnectTo">
+    <value>Connect - {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Para proteger o seu endereço IP, o kill switch bloqueia a conexão com a internet.</value>
   </data>
@@ -2851,12 +2858,6 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
   <data name="Profile_CustomSettings_Show">
     <value>Mostrar as definições</value>
   </data>
-  <data name="Profile_Discard_Description">
-    <value>Tem alterações não guardadas.</value>
-  </data>
-  <data name="Profile_Discard_Title">
-    <value>Deixar a página?</value>
-  </data>
   <data name="Profile_NatType_Conflict_Description">
     <value>Isto desativará o encaminhamento de porta para este perfil.</value>
   </data>
@@ -3020,15 +3021,6 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Aplicar</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
-  <data name="Settings_Common_ApplyAndReconnect">
-    <value>Aplicar e religar</value>
-  </data>
-  <data name="Settings_Common_Discard">
-    <value>Descartar</value>
-  </data>
-  <data name="Settings_Common_Discard_Title">
-    <value>Descartar as alterações nas definições?</value>
-  </data>
   <data name="Settings_Connection">
     <value>Ligação</value>
   </data>
@@ -3123,6 +3115,9 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>A sua ligação utilizada mais recentemente</value>
+  </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>Recentes</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Kill switch</value>
@@ -3277,6 +3272,15 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>Descartar as alterações</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>Continuar a editar</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>Discard unsaved changes?</value>
   </data>
   <data name="Settings_Features">
     <value>Funcionalidades VPN</value>

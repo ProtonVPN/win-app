@@ -2394,6 +2394,9 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
   <data name="Home_Account_Title">
     <value>Mein Konto</value>
   </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>Standardverbindung ändern</value>
+  </data>
   <data name="Home_ConnectionCard_ChangeServer">
     <value>Server wechseln</value>
   </data>
@@ -2680,6 +2683,10 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
     <value>Abmelden, bitte warten…</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
+  <data name="Map_ConnectTo">
+    <value>Verbinden - {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Um deine IP-Adresse zu schützen, blockiert Kill Switch deine Internetverbindung.</value>
   </data>
@@ -2851,12 +2858,6 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   <data name="Profile_CustomSettings_Show">
     <value>Einstellungen anzeigen</value>
   </data>
-  <data name="Profile_Discard_Description">
-    <value>Du hast nicht gespeicherte Änderungen.</value>
-  </data>
-  <data name="Profile_Discard_Title">
-    <value>Seite verlassen?</value>
-  </data>
   <data name="Profile_NatType_Conflict_Description">
     <value>Dadurch wird die Portweiterleitung für dieses Profil deaktiviert.</value>
   </data>
@@ -3020,15 +3021,6 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
     <value>Übernehmen</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
-  <data name="Settings_Common_ApplyAndReconnect">
-    <value>Anwenden und neu verbinden</value>
-  </data>
-  <data name="Settings_Common_Discard">
-    <value>Verwerfen</value>
-  </data>
-  <data name="Settings_Common_Discard_Title">
-    <value>Änderungen verwerfen?</value>
-  </data>
   <data name="Settings_Connection">
     <value>Verbindung</value>
   </data>
@@ -3123,6 +3115,9 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Deine zuletzt verwendete Verbindung</value>
+  </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>Letzte</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Kill Switch</value>
@@ -3277,6 +3272,15 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>Änderungen verwerfen</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>Bearbeitung fortsetzen</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>Noch nicht gespeicherte Änderungen verwerfen?</value>
   </data>
   <data name="Settings_Features">
     <value>VPN-Funktionen</value>

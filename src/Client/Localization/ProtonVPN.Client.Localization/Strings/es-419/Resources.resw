@@ -513,7 +513,7 @@
     <value>Los ajustes del perfil sobreescribirán los ajustes de VPN cuando se conecte.</value>
   </data>
   <data name="Connections_Profiles_Settings_Header">
-    <value>Añadir ajustes personalizados</value>
+    <value>Agregar ajustes personalizados</value>
   </data>
   <data name="Connections_Random">
     <value>Aleatorio</value>
@@ -2394,6 +2394,9 @@ Una carga del servidor alta puede ralentizar la conexión.</value>
   <data name="Home_Account_Title">
     <value>Mi cuenta</value>
   </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>Cambiar la conexión por defecto</value>
+  </data>
   <data name="Home_ConnectionCard_ChangeServer">
     <value>Cambiar servidor</value>
   </data>
@@ -2680,6 +2683,10 @@ Una carga del servidor alta puede ralentizar la conexión.</value>
     <value>Cerrando sesión, espere...</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
+  <data name="Map_ConnectTo">
+    <value>Conectar - {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Para proteger su dirección IP, el interruptor de bloqueo está bloqueando su conexión de internet.</value>
   </data>
@@ -2843,19 +2850,13 @@ Una carga alta del servidor puede ralentizar la conexión.</value>
     <value>Los ajustes del perfil sobreescribirán los ajustes de VPN cuando se conecte.</value>
   </data>
   <data name="Profile_CustomSettings_Header">
-    <value>Añadir ajustes personalizados</value>
+    <value>Agregar ajustes personalizados</value>
   </data>
   <data name="Profile_CustomSettings_Hide">
     <value>Ocultar ajustes</value>
   </data>
   <data name="Profile_CustomSettings_Show">
     <value>Mostrar ajustes</value>
-  </data>
-  <data name="Profile_Discard_Description">
-    <value>Tiene cambios sin guardar.</value>
-  </data>
-  <data name="Profile_Discard_Title">
-    <value>¿Salir de la página?</value>
   </data>
   <data name="Profile_NatType_Conflict_Description">
     <value>Esto desactivará el reenvío de puertos para este perfil.</value>
@@ -3020,15 +3021,6 @@ Una carga alta del servidor puede ralentizar la conexión.</value>
     <value>Aplicar</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
-  <data name="Settings_Common_ApplyAndReconnect">
-    <value>Aplicar y reconectar</value>
-  </data>
-  <data name="Settings_Common_Discard">
-    <value>Descartar</value>
-  </data>
-  <data name="Settings_Common_Discard_Title">
-    <value>¿Descartar los cambios en los ajustes?</value>
-  </data>
   <data name="Settings_Connection">
     <value>Conexión</value>
   </data>
@@ -3123,6 +3115,9 @@ Una carga alta del servidor puede ralentizar la conexión.</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Su conexión usada más recientemente</value>
+  </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>Recientes</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Interruptor de bloqueo</value>
@@ -3277,6 +3272,15 @@ Una carga alta del servidor puede ralentizar la conexión.</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>Descartar los cambios</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>Continuar editando</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>¿Descartar los cambios no guardados?</value>
   </data>
   <data name="Settings_Features">
     <value>Funciones de la VPN</value>

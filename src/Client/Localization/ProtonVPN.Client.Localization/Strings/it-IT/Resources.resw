@@ -298,7 +298,7 @@
     <value>Aggiorna l'app all'ultima versione per ottenere il massimo dalla tua VPN.</value>
   </data>
   <data name="Components_Update_MoreLikelyIssues">
-    <value>È più probabile che tu abbia problemi con le versioni precedenti di ProtonVPN.</value>
+    <value>È più probabile che tu abbia problemi con le versioni precedenti di Proton VPN.</value>
   </data>
   <data name="Components_Update_UpdateAvailable">
     <value>Aggiornamento disponibile</value>
@@ -2394,6 +2394,9 @@ Un carico elevato può rallentare la connessione.</value>
   <data name="Home_Account_Title">
     <value>Il mio account</value>
   </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>Modifica la connessione predefinita</value>
+  </data>
   <data name="Home_ConnectionCard_ChangeServer">
     <value>Cambia server</value>
   </data>
@@ -2680,6 +2683,10 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Uscita in corso</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
+  <data name="Map_ConnectTo">
+    <value>Connetti - {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Per proteggere il tuo indirizzo IP, il kill switch blocca la tua connessione Internet.</value>
   </data>
@@ -2851,12 +2858,6 @@ Un carico elevato può rallentare la connessione.</value>
   <data name="Profile_CustomSettings_Show">
     <value>Mostra Impostazioni</value>
   </data>
-  <data name="Profile_Discard_Description">
-    <value>Hai modifiche non salvate.</value>
-  </data>
-  <data name="Profile_Discard_Title">
-    <value>Vuoi abbandonare la pagina?</value>
-  </data>
   <data name="Profile_NatType_Conflict_Description">
     <value>Questo disabiliterà il port forwarding per questo profilo.</value>
   </data>
@@ -3020,15 +3021,6 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Applica</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
-  <data name="Settings_Common_ApplyAndReconnect">
-    <value>Applica e riconnetti</value>
-  </data>
-  <data name="Settings_Common_Discard">
-    <value>Annulla</value>
-  </data>
-  <data name="Settings_Common_Discard_Title">
-    <value>Vuoi annullare le modifiche alle impostazioni?</value>
-  </data>
   <data name="Settings_Connection">
     <value>Connessione</value>
   </data>
@@ -3123,6 +3115,9 @@ Un carico elevato può rallentare la connessione.</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>La tua connessione utilizzata più di recente</value>
+  </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>Recenti</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Kill switch</value>
@@ -3277,6 +3272,15 @@ Un carico elevato può rallentare la connessione.</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>Annulla le modifiche</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>Mantieni la modifica</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>Annullare le modifiche non salvate?</value>
   </data>
   <data name="Settings_Features">
     <value>Funzionalità VPN</value>
