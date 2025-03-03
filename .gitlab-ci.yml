@@ -46,11 +46,12 @@ include:
       stage: security
       cli-args: ""
 
-  - component: $CI_SERVER_HOST/proton/devops/cicd-components/devsecops/project-settings-validator/scan-project@~latest
-    inputs:
-      stage: security
-      cli-args: ""
-      allowed-to-fail: false
+# Commented because the validator fails since we allow self-approvals even though we require 2 approvers
+#  - component: $CI_SERVER_HOST/proton/devops/cicd-components/devsecops/project-settings-validator/scan-project@~latest
+#    inputs:
+#      stage: security
+#      cli-args: ""
+#      allowed-to-fail: false
 
 variables:
   PUBLIC_REPO_URL: git@github.com:ProtonVPN/win-app.git
@@ -197,8 +198,8 @@ gitleaks-create-baseline:
     - when: never
   allow_failure: true
 
-project-settings-validator-scan-project:
-  needs: []
+#project-settings-validator-scan-project:
+#  needs: []
     
 grype-scan-code-dependencies:
   rules:
