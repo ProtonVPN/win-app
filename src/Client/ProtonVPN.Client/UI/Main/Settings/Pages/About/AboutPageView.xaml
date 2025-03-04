@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!--
 Copyright (c) 2024 Proton AG
 
@@ -25,29 +25,25 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:models="using:ProtonVPN.Client.UI.Settings.Pages.About.Models"
-      xmlns:sys="using:System" xmlns:update="using:ProtonVPN.Client.UI.Update"
+      xmlns:sys="using:System"
+      xmlns:update="using:ProtonVPN.Client.UI.Update"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
       mc:Ignorable="d">
 
     <custom:SettingsPageContentControl x:Name="PageContentHost"
-                                       BackCommand="{x:Bind ViewModel.NavigateBackCommand, Mode=OneTime}"
-                                       CanContentScroll="False"
-                                       IsBackButtonVisible="{x:Bind ViewModel.CanGoBack}"
                                        ApplyCommand="{x:Bind ViewModel.ApplyCommand}"
-                                       CloseCommand="{x:Bind ViewModel.CloseCommand, Mode=OneTime}">
+                                       BackCommand="{x:Bind ViewModel.NavigateBackCommand, Mode=OneTime}"
+                                       CanContentScroll="True"
+                                       CloseCommand="{x:Bind ViewModel.CloseCommand, Mode=OneTime}"
+                                       IsBackButtonVisible="{x:Bind ViewModel.CanGoBack}">
 
         <custom:SettingsPageContentControl.PageHeader>
-            <custom:SettingsPageHeaderContentControl Header="{x:Bind ViewModel.Title}" />
+            <custom:SettingsPageHeaderContentControl Header="{x:Bind ViewModel.Title}"
+                                                     Style="{StaticResource SettingsPageHeaderContentControlStyle}" />
         </custom:SettingsPageContentControl.PageHeader>
 
-        <Grid Margin="0,8,0,0"
-              RowSpacing="16">
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <custom:SettingsPageContentControl.StickyContent>
 
             <StackPanel Grid.Row="0"
                         Spacing="16">
@@ -85,15 +81,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    VerticalAlignment="Center"
                                    Foreground="{ThemeResource TextWeakColorBrush}"
                                    Style="{ThemeResource BodyTextBlockStyle}"
-                                   Text="{x:Bind ViewModel.Localizer.Get('Settings_About_CurrentVersion')}"/>
+                                   Text="{x:Bind ViewModel.Localizer.Get('Settings_About_CurrentVersion')}" />
                         <TextBlock Grid.Row="0"
                                    Grid.Column="1"
+                                   Margin="0,0,8,0"
                                    HorizontalAlignment="Right"
                                    VerticalAlignment="Center"
+                                   AutomationProperties.AutomationId="CurrentVersionLabel"
                                    Style="{ThemeResource BodyStrongTextBlockStyle}"
-                                   Text="{x:Bind ViewModel.ClientVersion}"
-                                   Margin="0,0,8,0"
-                                   AutomationProperties.AutomationId="CurrentVersionLabel" />
+                                   Text="{x:Bind ViewModel.ClientVersion}" />
                         <TextBlock Grid.Row="2"
                                    Grid.Column="0"
                                    VerticalAlignment="Center"
@@ -104,25 +100,26 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             Grid.Column="1"
                                             HorizontalAlignment="Right"
                                             VerticalAlignment="Center"
-                                            Style="{StaticResource PrimaryGhostButtonStyle}"
                                             Command="{x:Bind ViewModel.NavigateToLicensingPageCommand, Mode=OneTime}"
-                                            Content="{x:Bind ViewModel.Localizer.Get('Settings_About_LearnMore')}" />
+                                            Content="{x:Bind ViewModel.Localizer.Get('Settings_About_LearnMore')}"
+                                            Style="{StaticResource PrimaryGhostButtonStyle}" />
                     </Grid>
                 </Grid>
 
-                <Border Background="{ThemeResource InteractionDefaultColorBrush}"
+                <Border Padding="16,8"
+                        Background="{ThemeResource InteractionDefaultColorBrush}"
                         CornerRadius="8"
-                        Padding="16,8"
                         Visibility="{x:Bind ViewModel.IsUpdateAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <update:UpdateComponent IsImageVisible="False"
-                                            Title="{x:Bind ViewModel.Localizer.Get('Components_Update_UpdateAvailable')}"
-                                            Description="{x:Bind ViewModel.Localizer.Get('Components_Update_GetMostFromYourVpn')}" />
+                    <update:UpdateComponent Title="{x:Bind ViewModel.Localizer.Get('Components_Update_UpdateAvailable')}"
+                                            Description="{x:Bind ViewModel.Localizer.Get('Components_Update_GetMostFromYourVpn')}"
+                                            IsImageVisible="False" />
                 </Border>
 
                 <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}"
                            Text="{x:Bind ViewModel.Localizer.Get('Settings_About_Changelog')}" />
 
-                <Grid VerticalAlignment="Center"
+                <Grid Margin="0,6,0,0"
+                      VerticalAlignment="Center"
                       ColumnSpacing="8"
                       Visibility="{x:Bind ViewModel.IsToShowLoadingComponent, Converter={StaticResource BooleanToVisibilityConverter}}">
 
@@ -141,66 +138,65 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                Text="{x:Bind ViewModel.Localizer.Get('Settings_About_Loading')}" />
                 </Grid>
 
-                <Grid ColumnSpacing="8"
+                <Grid HorizontalAlignment="Left"
+                      ColumnSpacing="16"
                       Visibility="{x:Bind ViewModel.IsToShowErrorComponent, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0"
-                               VerticalAlignment="Center"
-                               Style="{ThemeResource BodyStrongTextBlockStyle}"
+                               Margin="0,6,0,0"
+                               VerticalAlignment="Top"
+                               Foreground="{ThemeResource TextWeakColorBrush}"
+                               Style="{ThemeResource BodyTextBlockStyle}"
                                Text="{x:Bind ViewModel.Localizer.Get('Settings_About_FailedToFetch')}" />
                     <Button Grid.Column="1"
-                            VerticalAlignment="Center"
+                            VerticalAlignment="Top"
                             Command="{x:Bind ViewModel.TryAgainCommand, Mode=OneTime}"
                             Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_TryAgain')}"
                             Style="{ThemeResource PrimaryButtonStyle}" />
                 </Grid>
             </StackPanel>
+        </custom:SettingsPageContentControl.StickyContent>
 
-            <ScrollViewer Grid.Row="1"
-                          Margin="0"
-                          VerticalScrollBarVisibility="Auto">
-                <ItemsRepeater ItemsSource="{x:Bind ViewModel.Releases}">
-                    <ItemsRepeater.ItemTemplate>
-                        <DataTemplate x:DataType="models:Release">
-                            <StackPanel Margin="0,8,0,16"
-                                        Spacing="4">
-                                <StackPanel Orientation="Horizontal"
-                                            Spacing="4">
-                                    <TextBlock VerticalAlignment="Center"
-                                               Style="{ThemeResource BodyStrongTextBlockStyle}"
-                                               Text="{x:Bind Version, Mode=OneTime}" />
-                                    <custom:TagControl Text="{x:Bind NewVersionLabel, Mode=OneTime}"
-                                                       Visibility="{x:Bind NewVersionLabel, Converter={StaticResource StringVisibilityConverter}, Mode=OneTime}"
-                                                       VerticalAlignment="Center" 
-                                                       Style="{StaticResource NewTagControlStyle}"/>
-                                    <TextBlock Margin="4,0,0,0"
-                                               VerticalAlignment="Center"
-                                               Foreground="{ThemeResource TextWeakColorBrush}"
-                                               Style="{ThemeResource CaptionTextBlockStyle}"
-                                               Text="{x:Bind sys:String.Format('{0:d}', ReleaseDate), Mode=OneTime}" />
-                                </StackPanel>
+        <ItemsRepeater ItemsSource="{x:Bind ViewModel.Releases}">
+            <ItemsRepeater.ItemTemplate>
+                <DataTemplate x:DataType="models:Release">
+                    <StackPanel Margin="0,8,0,16"
+                                Spacing="4">
+                        <StackPanel Orientation="Horizontal"
+                                    Spacing="8">
+                            <TextBlock VerticalAlignment="Center"
+                                       Style="{ThemeResource BodyStrongTextBlockStyle}"
+                                       Text="{x:Bind Version, Mode=OneTime}" />
+                            <custom:TagControl VerticalAlignment="Center"
+                                               Style="{StaticResource NewTagControlStyle}"
+                                               Text="{x:Bind NewVersionLabel, Mode=OneTime}"
+                                               Visibility="{x:Bind NewVersionLabel, Converter={StaticResource StringVisibilityConverter}, Mode=OneTime}" />
+                            <TextBlock VerticalAlignment="Center"
+                                       Foreground="{ThemeResource TextWeakColorBrush}"
+                                       Style="{ThemeResource CaptionTextBlockStyle}"
+                                       Text="{x:Bind sys:String.Format('{0:d}', ReleaseDate), Mode=OneTime}"
+                                       Visibility="{x:Bind ReleaseDate, Converter={StaticResource NotNullToVisibilityConverter}}" />
+                        </StackPanel>
 
-                                <ItemsControl Margin="4,0,0,0"
-                                              ItemsSource="{x:Bind ChangeLog, Mode=OneTime}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate x:DataType="sys:String">
-                                            <TextBlock Style="{ThemeResource CaptionTextBlockStyle}">
-                                                <Run Text="•" />
-                                                <Run Text="{x:Bind}" />
-                                            </TextBlock>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsRepeater.ItemTemplate>
-                </ItemsRepeater>
-            </ScrollViewer>
-        </Grid>
+                        <ItemsControl Margin="4,0,0,0"
+                                      ItemsSource="{x:Bind ChangeLog, Mode=OneTime}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="sys:String">
+                                    <TextBlock Style="{ThemeResource CaptionTextBlockStyle}">
+                                        <Run Text="• " />
+                                        <Run Text="{x:Bind}" />
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsRepeater.ItemTemplate>
+        </ItemsRepeater>
     </custom:SettingsPageContentControl>
 </Page>

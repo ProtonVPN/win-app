@@ -23,13 +23,15 @@ using Microsoft.UI.Xaml.Data;
 
 namespace ProtonVPN.Client.Common.UI.Converters;
 
-public class PositiveNumberToVisibilityConverter : IValueConverter
+public class ScrollOffsetToVisibilityConverter : IValueConverter
 {
+    private const double PRECISION_THRESHOLD = 0.01;
+
     public object Convert(object value, Type targetType, object parameter, string language)
     {
         double number = System.Convert.ToDouble(value);
 
-        return number > 0
+        return number > PRECISION_THRESHOLD
             ? Visibility.Visible
             : Visibility.Collapsed;
     }

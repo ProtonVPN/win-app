@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -39,6 +39,9 @@ public class SettingsPageContentControl : PageContentControl
     public static readonly DependencyProperty CloseButtonTextProperty =
         DependencyProperty.Register(nameof(CloseButtonText), typeof(string), typeof(SettingsPageContentControl), new PropertyMetadata(default));
 
+    public static readonly DependencyProperty StickyContentProperty =
+        DependencyProperty.Register(nameof(StickyContent), typeof(object), typeof(SettingsPageContentControl), new PropertyMetadata(default));
+
     public ICommand ApplyCommand
     {
         get => (ICommand)GetValue(ApplyCommandProperty);
@@ -67,6 +70,12 @@ public class SettingsPageContentControl : PageContentControl
     {
         get => (string)GetValue(CloseButtonTextProperty);
         set => SetValue(CloseButtonTextProperty, value);
+    }
+
+    public object StickyContent
+    {
+        get => GetValue(StickyContentProperty);
+        set => SetValue(StickyContentProperty, value);
     }
 
     protected bool IsApplyCommandEmpty => ApplyCommand == null || !ApplyCommand.CanExecute(ApplyCommandParameter);

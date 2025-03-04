@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,56 +19,47 @@
 
 using System;
 using System.Collections.Generic;
-using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Update.Responses;
 
-namespace ProtonVPN.Update.Releases
+namespace ProtonVPN.Update.Releases;
+
+/// <summary>
+/// A release of the app in the release history.
+/// </summary>
+public class Release : IRelease, IComparable, IComparable<IRelease>
 {
-    /// <summary>
-    /// A release of the app in the release history.
-    /// </summary>
-    public class Release : IRelease, IComparable, IComparable<IRelease>
+    public static Release Empty => new Release();
+
+    public Version Version { get; set; } = new(0, 0, 0);
+
+    public IReadOnlyList<string> ChangeLog { get; set; } = new List<string>();
+
+    public bool IsEarlyAccess { get; set; } = false;
+
+    public bool IsNew { get; set; } = false;
+
+    public FileResponse File { get; set; } = null;
+
+    public DateTime? ReleaseDate { get; set; }
+
+    public Release()
+    { }
+
+    public bool IsEmpty()
     {
-        public Version Version { get; set; } = new(0, 0, 0);
+        return Version.ToString() == "0.0.0" ||
+               File == null ||
+               string.IsNullOrEmpty(File.Url) ||
+               string.IsNullOrEmpty(File.Sha512CheckSum);
+    }
 
-        public IReadOnlyList<string> ChangeLog { get; set; } = new List<string>();
+    public int CompareTo(IRelease other)
+    {
+        return Version.CompareTo(other.Version);
+    }
 
-        public bool EarlyAccess { get; set; }
-
-        public bool New { get; set; }
-
-        public FileResponse File { get; set; }
-
-        public DateTimeOffset? ReleaseDate { get; set; }
-
-        public bool Empty()
-        {
-            return Version.ToString() == "0.0.0" ||
-                   File == null ||
-                   string.IsNullOrEmpty(File.Url) ||
-                   string.IsNullOrEmpty(File.Sha512CheckSum);
-        }
-
-        public static Release EmptyRelease()
-        {
-            return new()
-            {
-                ChangeLog = new List<string>(),
-                EarlyAccess = false,
-                File = null,
-                New = false,
-                Version = new Version(0, 0, 0),
-            };
-        }
-
-        public int CompareTo(IRelease other)
-        {
-            return Version.CompareTo(other.Version);
-        }
-
-        public int CompareTo(object obj)
-        {
-            return CompareTo((IRelease)obj);
-        }
+    public int CompareTo(object obj)
+    {
+        return CompareTo((IRelease)obj);
     }
 }

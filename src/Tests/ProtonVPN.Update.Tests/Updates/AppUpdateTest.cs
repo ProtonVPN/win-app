@@ -120,7 +120,7 @@ namespace ProtonVPN.Update.Tests.Updates
 
             result.Should()
                 .HaveCount(3).And
-                .Match(r => r.All(x => !x.EarlyAccess));
+                .Match(r => r.All(x => !x.IsEarlyAccess));
         }
 
         [TestMethod]
@@ -133,7 +133,7 @@ namespace ProtonVPN.Update.Tests.Updates
 
             result.Should()
                 .HaveCount(5).And
-                .Match(r => r.Count(x => x.EarlyAccess) == 2);
+                .Match(r => r.Count(x => x.IsEarlyAccess) == 2);
         }
 
         [TestMethod]
@@ -147,7 +147,7 @@ namespace ProtonVPN.Update.Tests.Updates
             result.Should()
                 .HaveCount(4).And
                 .Match(r => r.First().Version == _config.CurrentVersion).And
-                .Match(r => r.First().EarlyAccess);
+                .Match(r => r.First().IsEarlyAccess);
         }
 
         [TestMethod]

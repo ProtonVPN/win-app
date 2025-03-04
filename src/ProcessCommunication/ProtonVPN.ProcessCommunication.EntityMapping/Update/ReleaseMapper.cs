@@ -30,9 +30,9 @@ public class ReleaseMapper : IMapper<ReleaseContract, ReleaseIpcEntity>
         return new ReleaseIpcEntity
         {
             ChangeLog = leftEntity.ChangeLog.ToArray(),
-            EarlyAccess = leftEntity.EarlyAccess,
-            New = leftEntity.New,
-            ReleaseDate = leftEntity.ReleaseDate.ToString(),
+            EarlyAccess = leftEntity.IsEarlyAccess,
+            New = leftEntity.IsNew,
+            ReleaseDate = leftEntity.ReleaseDate,
             Version = leftEntity.Version.ToString(),
         };
     }
@@ -40,14 +40,13 @@ public class ReleaseMapper : IMapper<ReleaseContract, ReleaseIpcEntity>
     public ReleaseContract Map(ReleaseIpcEntity rightEntity)
     {
         bool isVersionValid = Version.TryParse(rightEntity.Version, out Version version);
-        DateTimeOffset.TryParse(rightEntity.ReleaseDate, out DateTimeOffset releaseDate);
 
         return new ReleaseContract
         {
             ChangeLog = rightEntity.ChangeLog,
-            EarlyAccess = rightEntity.EarlyAccess,
-            New = rightEntity.New,
-            ReleaseDate = releaseDate,
+            IsEarlyAccess = rightEntity.EarlyAccess,
+            IsNew = rightEntity.New,
+            ReleaseDate = rightEntity.ReleaseDate,
             Version = isVersionValid ? version : new Version(),
         };
     }

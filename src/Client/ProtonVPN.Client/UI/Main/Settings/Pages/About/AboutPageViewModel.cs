@@ -19,6 +19,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Common.Collections;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
@@ -43,17 +44,19 @@ public partial class AboutPageViewModel : SettingsPageViewModelBase,
     private string _clientVersion;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsToShowErrorComponent))]
     [NotifyPropertyChangedFor(nameof(IsToShowLoadingComponent))]
-    private IReadOnlyList<Release> _releases = [];
+    private AppUpdateStatus _latestAppUpdateStatus = AppUpdateStatus.None;
 
-    [ObservableProperty]
-    private bool _isToShowErrorComponent;
+    public bool IsToShowErrorComponent => LatestAppUpdateStatus == AppUpdateStatus.CheckFailed;
+
+    public bool IsToShowLoadingComponent => LatestAppUpdateStatus == AppUpdateStatus.Checking;
+
+    public SmartObservableCollection<Release> Releases { get; } = [];
 
     public override string Title => Localizer.Get("Settings_About_Title");
 
     public bool IsUpdateAvailable => _updatesManager.IsUpdateAvailable;
-
-    public bool IsToShowLoadingComponent => Releases.Count == 0;
 
     public AboutPageViewModel(
         IRequiredReconnectionSettings requiredReconnectionSettings,
@@ -88,17 +91,14 @@ public partial class AboutPageViewModel : SettingsPageViewModelBase,
 
     private void HandleUpdateStateChangedMessage(ClientUpdateStateChangedMessage message)
     {
-        ExecuteOnUIThread(() =>
+        LatestAppUpdateStatus = message.State?.Status ?? AppUpdateStatus.None;
+
+        if (message.State?.ReleaseHistory.Count > 0)
         {
-            if (message.State?.ReleaseHistory.Count > 0)
-            {
-                Releases = _releaseViewModelFactory.GetReleases(message.State.ReleaseHistory);
-            }
+            Releases.Reset(_releaseViewModelFactory.GetReleases(message.State.ReleaseHistory));
+        }
 
-            IsToShowErrorComponent = IsToShowLoadingComponent && message.State?.Status is AppUpdateStatus.CheckFailed;
-
-            OnPropertyChanged(nameof(IsUpdateAvailable));
-        });
+        OnPropertyChanged(nameof(IsUpdateAvailable));
     }
 
     public override void OnNavigatedTo(object parameter, bool isBackNavigation)
@@ -129,7 +129,6 @@ public partial class AboutPageViewModel : SettingsPageViewModelBase,
     {
         base.OnLanguageChanged();
 
-        Releases = [];
         StartCheckingForUpdate();
     }
 }

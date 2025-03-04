@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace ProtonVPN.Update.Responses;
 
@@ -26,7 +27,7 @@ public class ReleaseResponse
 {
     public string CategoryName { get; set; }
     public string Version { get; set; }
-    public DateTimeOffset? ReleaseDate { get; set; }
+    public DateTime? ReleaseDate { get; set; }
     public FileResponse File { get; set; }
     public IReadOnlyList<ReleaseNote> ReleaseNotes { get; set; }
     public SystemVersion SystemVersion { get; set; }
