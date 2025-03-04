@@ -59,6 +59,8 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
     private readonly IVpnPlanUpdater _vpnPlanUpdater;
     private AuthResponse? _authResponse;
 
+    private readonly SemaphoreSlim _semaphore = new(1, 1);
+
     public AuthenticationStatus AuthenticationStatus { get; private set; }
 
     public bool IsLoggedIn => AuthenticationStatus == AuthenticationStatus.LoggedIn;
@@ -94,8 +96,15 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
 
     public async Task CreateUnauthSessionAsync()
     {
+        await _semaphore.WaitAsync();
+
         try
         {
+            if (IsUnauthSessionCreated())
+            {
+                return;
+            }
+
             _logger.Info<UserLog>("Requesting unauth session to initiate login process.");
 
             ApiResponseResult<UnauthSessionResponse> unauthSessionResponse = await _apiClient.PostUnauthSessionAsync();
@@ -108,6 +117,10 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
         catch (Exception ex)
         {
             _logger.Error<ApiErrorLog>("An error occurred when requesting a new unauth session.", ex);
+        }
+        finally
+        {
+            _semaphore.Release();
         }
     }
 
