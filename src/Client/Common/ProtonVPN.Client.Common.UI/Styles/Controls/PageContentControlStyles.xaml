@@ -44,7 +44,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           BorderBrush="{TemplateBinding BorderBrush}"
                           BorderThickness="{TemplateBinding BorderThickness}"
                           CornerRadius="{TemplateBinding CornerRadius}">
-
                         <ContentPresenter x:Name="PART_ContentPresenter" />
 
                         <VisualStateManager.VisualStateGroups>
@@ -97,7 +96,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </Grid.RowDefinitions>
 
                             <Grid x:Name="PART_HeaderContainer"
-                                  Grid.Row="0" 
+                                  Grid.Row="0"
                                   Margin="{StaticResource PageContentControlHeaderContainerMargin}"
                                   Visibility="Collapsed">
 
@@ -191,7 +190,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </Grid.RowDefinitions>
 
                             <Grid x:Name="PART_HeaderContainer"
-                                  Grid.Row="1"
+                                  Grid.Row="0"
                                   MaxWidth="{TemplateBinding MaxContentWidth}"
                                   Padding="24,24,8,16"
                                   Visibility="Collapsed">
@@ -204,7 +203,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 </Grid.ColumnDefinitions>
 
                                 <custom:GhostButton Grid.Column="0"
-                                                    Margin="0,0,12,0"
+                                                    Margin="0,8,12,0"
+                                                    VerticalAlignment="Top"
                                                     AutomationProperties.AutomationId="GoBackButton"
                                                     Command="{Binding BackCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                                     CommandParameter="{Binding BackCommandParameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
@@ -228,7 +228,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   TextWrapping="Wrap" />
 
                                 <Button Grid.Column="2"
-                                        Margin="12,0,0,0"
+                                        Margin="12,5,0,0"
+                                        VerticalAlignment="Top"
                                         AutomationProperties.AutomationId="ApplyButton"
                                         Command="{Binding ApplyCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                         CommandParameter="{Binding ApplyCommandParameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
@@ -237,11 +238,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}" />
 
                                 <custom:GhostButton Grid.Column="3"
-                                                    Command="{Binding CloseCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                                    Margin="12,0,16,0"
-                                                    VerticalAlignment="Center"
+                                                    Margin="12,6,16,0"
                                                     HorizontalAlignment="Right"
-                                                    AutomationProperties.AutomationId="CloseSettingsButton">
+                                                    VerticalAlignment="Top"
+                                                    AutomationProperties.AutomationId="CloseSettingsButton"
+                                                    Command="{Binding CloseCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}">
                                     <custom:GhostButton.RightIcon>
                                         <pathicons:CrossCircleFilled />
                                     </custom:GhostButton.RightIcon>
@@ -251,23 +252,31 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 </custom:GhostButton>
                             </Grid>
 
+                            <ContentPresenter x:Name="PART_StickyContentPresenter"
+                                              Grid.Row="1"
+                                              MaxWidth="{TemplateBinding MaxContentWidth}"
+                                              Padding="24,0,24,16"
+                                              AutomationProperties.AutomationId="PageStickyContent"
+                                              Content="{TemplateBinding StickyContent}"
+                                              Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
+
                             <ScrollViewer x:Name="PART_ScrollViewer"
                                           Grid.Row="2"
                                           MaxWidth="{TemplateBinding MaxContentWidth}"
-                                          Padding="4,0,-4,0"
                                           Margin="0,0,8,0"
+                                          Padding="4,0,-4,0"
                                           HorizontalScrollBarVisibility="Disabled"
                                           VerticalScrollBarVisibility="{Binding CanContentScroll, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToScrollBarVisibilityConverter}}">
-                                <ContentPresenter Padding="24,0,24,24"/>
+                                <ContentPresenter Padding="24,0,24,24" />
                             </ScrollViewer>
 
                             <Border Grid.Row="2"
-                                    VerticalAlignment="Top"
                                     Height="25"
-                                    Opacity="0.3"
-                                    IsHitTestVisible="False"
+                                    VerticalAlignment="Top"
                                     Background="{ThemeResource GradientFadingColorBrush}"
-                                    Visibility="{Binding VerticalOffset, ElementName=PART_ScrollViewer, Converter={StaticResource PositiveNumberToVisibilityConverter}}" />
+                                    IsHitTestVisible="False"
+                                    Opacity="0.3"
+                                    Visibility="{Binding VerticalOffset, ElementName=PART_ScrollViewer, Converter={StaticResource ScrollOffsetToVisibilityConverter}}" />
                         </Grid>
 
                         <VisualStateManager.VisualStateGroups>

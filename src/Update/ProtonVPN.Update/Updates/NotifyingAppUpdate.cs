@@ -201,9 +201,9 @@ namespace ProtonVPN.Update.Updates
             return releases.Select(release => new ReleaseContract
             {
                 ChangeLog = release.ChangeLog,
-                EarlyAccess = release.EarlyAccess,
+                IsEarlyAccess = release.IsEarlyAccess,
                 ReleaseDate = release.ReleaseDate,
-                New = release.New,
+                IsNew = release.IsNew,
                 Version = release.Version
             }).ToList();
         }

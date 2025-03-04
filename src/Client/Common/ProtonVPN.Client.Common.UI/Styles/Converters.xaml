@@ -42,7 +42,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <converters:DoubleToPercentFormatConverter x:Key="DoubleToPercentFormatConverter" />
     <converters:FocusStateToBooleanConverter x:Key="FocusStateToBooleanConverter" />
     <converters:OpacityToVisibilityConverter x:Key="OpacityToVisibilityConverter"/>
-    <converters:PositiveNumberToVisibilityConverter x:Key="PositiveNumberToVisibilityConverter"/>
+    <converters:ScrollOffsetToVisibilityConverter x:Key="ScrollOffsetToVisibilityConverter"/>
     <toolkitConverters:StringVisibilityConverter x:Key="StringVisibilityConverter" />
     <converters:IsStringNotEmptyConverter x:Key="IsStringNotEmptyConverter" />
     <converters:ProfileColorToBrushConverter x:Key="ProfileColorToBrushConverter"

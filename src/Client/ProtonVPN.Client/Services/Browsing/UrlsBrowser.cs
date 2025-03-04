@@ -36,7 +36,7 @@ public class UrlsBrowser : IUrlsBrowser
 
     public string ProtocolsLearnMore => "https://protonvpn.com/blog/whats-the-best-vpn-protocol";
 
-    public string CreateAccount => "https://account.protonvpn.com/signup";
+    public string CreateAccount => "https://account.protonvpn.com/signup?ref=windows";
 
     public string ResetPassword => "https://account.protonvpn.com/reset-password";
 

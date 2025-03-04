@@ -33,7 +33,7 @@ namespace ProtonVPN.Update.Tests.Releases
         public void Empty_ShouldBeTrue_WhenReleaseVersion_IsZero()
         {
             Release release = new() { ChangeLog = new List<string>(), Version = new(0, 0, 0) };
-            bool result = release.Empty();
+            bool result = release.IsEmpty();
             result.Should().BeTrue();
         }
 
@@ -47,13 +47,13 @@ namespace ProtonVPN.Update.Tests.Releases
             Release release = new()
             {
                 ChangeLog = new[] { "Fixed" },
-                EarlyAccess = false,
+                IsEarlyAccess = false,
                 File = file,
-                New = true,
+                IsNew = true,
                 Version = new(0, 0, 1),
             };
 
-            bool result = release.Empty();
+            bool result = release.IsEmpty();
 
             result.Should().BeFalse();
         }
@@ -61,15 +61,15 @@ namespace ProtonVPN.Update.Tests.Releases
         [TestMethod]
         public void EmptyRelease_Should_BeEmpty()
         {
-            Release result = Release.EmptyRelease();
+            Release result = Release.Empty;
 
-            result.Empty().Should().BeTrue();
+            result.IsEmpty().Should().BeTrue();
         }
 
         [TestMethod]
         public void EmptyRelease_ShouldHave_ZeroVersion()
         {
-            Release result = Release.EmptyRelease();
+            Release result = Release.Empty;
 
             result.Version.Major.Should().Be(0);
             result.Version.Minor.Should().Be(0);
@@ -80,7 +80,7 @@ namespace ProtonVPN.Update.Tests.Releases
         [TestMethod]
         public void Release_ShouldImplement_IComparable()
         {
-            Release release = new() { Version = new(1, 2, 3), EarlyAccess = false, New = true, };
+            Release release = new() { Version = new(1, 2, 3), IsEarlyAccess = false, IsNew = true, };
 
             release.Should().BeAssignableTo<IComparable<IRelease>>();
         }

@@ -88,7 +88,7 @@ public class WebReleaseStorage : IReleaseStorage
 
     private bool ReleaseFilter(ReleaseResponse r)
     {
-        return (r.ReleaseDate is null || r.ReleaseDate <= DateTimeOffset.UtcNow) &&
+        return (r.ReleaseDate is null || r.ReleaseDate <= DateTime.UtcNow) &&
                (r.SystemVersion?.Minimum is null ||
                 !Version.TryParse(r.SystemVersion.Minimum, out Version minimumOsVersion) ||
                 Environment.OSVersion.Version >= minimumOsVersion) &&

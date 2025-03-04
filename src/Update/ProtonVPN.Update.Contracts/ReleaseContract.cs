@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,18 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Update.Contracts
+namespace ProtonVPN.Update.Contracts;
+
+public class ReleaseContract
 {
-    public class ReleaseContract
-    {
-        public Version Version { get; set; } = new();
+    public Version Version { get; set; } = new();
 
-        public bool EarlyAccess { get; set; }
+    public bool IsEarlyAccess { get; set; }
 
-        public bool New { get; set; }
+    public bool IsNew { get; set; }
 
-        public DateTimeOffset? ReleaseDate { get; set; }
+    public DateTime? ReleaseDate { get; set; }
 
-        public IReadOnlyList<string> ChangeLog { get; set; } = new List<string>();
-    }
+    public IReadOnlyList<string> ChangeLog { get; set; } = new List<string>();
 }

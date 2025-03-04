@@ -60,10 +60,11 @@ public class Releases : IEnumerable<Release>
                 yield return new Release
                 {
                     ChangeLog = release.ReleaseNotes.FirstOrDefault()?.Notes ?? [],
-                    EarlyAccess = isEarlyAccess,
+                    IsEarlyAccess = isEarlyAccess,
                     File = release.File,
-                    New = version > _currentVersion,
+                    IsNew = version > _currentVersion,
                     Version = version,
+                    ReleaseDate = release.ReleaseDate
                 };
             }
             else

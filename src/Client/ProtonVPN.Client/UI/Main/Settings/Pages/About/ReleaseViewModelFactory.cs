@@ -37,7 +37,7 @@ public class ReleaseViewModelFactory
         return releases.Select(r => new Release
         {
             Version = r.Version,
-            NewVersionLabel = r.New ? _localizer.Get("Common_Tags_New") : string.Empty,
+            NewVersionLabel = r.IsNew ? _localizer.Get("Common_Tags_New") : string.Empty,
             ReleaseDate = r.ReleaseDate,
             ChangeLog = r.ChangeLog,
         }).ToList();

@@ -79,7 +79,7 @@ public class ReleasesTest
         ReleasesResponse releasesResponse = JsonConvert.DeserializeObject<ReleasesResponse>(json);
         Update.Releases.Releases releases = new(_logger, releasesResponse.Releases, new Version(), "EarlyAccess");
 
-        releases.Where(r => r.EarlyAccess).Should().HaveCount(2);
+        releases.Where(r => r.IsEarlyAccess).Should().HaveCount(2);
     }
 
     [TestMethod]
@@ -89,7 +89,7 @@ public class ReleasesTest
         ReleasesResponse releasesResponse = JsonConvert.DeserializeObject<ReleasesResponse>(json);
         Update.Releases.Releases releases = new(_logger, releasesResponse.Releases, Version.Parse("1.5.0"), "");
 
-        releases.Where(r => r.New).Should().HaveCount(3);
+        releases.Where(r => r.IsNew).Should().HaveCount(3);
     }
 
     [TestMethod]

@@ -38,7 +38,7 @@ namespace ProtonVPN.Update.Updates
             {
                 AppUpdates = appUpdates,
                 Releases = new List<Release>(),
-                NewRelease = Release.EmptyRelease()
+                NewRelease = Release.Empty
             })
         {
         }
@@ -48,7 +48,7 @@ namespace ProtonVPN.Update.Updates
             _state = state;
         }
 
-        public bool Available => !_state.NewRelease.Empty();
+        public bool Available => !_state.NewRelease.IsEmpty();
 
         public bool Ready => _state.Ready;
 
@@ -56,7 +56,7 @@ namespace ProtonVPN.Update.Updates
         {
             get
             {
-                if (_state.NewRelease.New)
+                if (_state.NewRelease.IsNew)
                 {
                     return _state.AppUpdates.FilePath(_state.NewRelease);
                 }
@@ -69,7 +69,7 @@ namespace ProtonVPN.Update.Updates
         {
             get
             {
-                if (_state.NewRelease.New)
+                if (_state.NewRelease.IsNew)
                 {
                     return _state.NewRelease.File.Args;
                 }
@@ -78,7 +78,7 @@ namespace ProtonVPN.Update.Updates
             }
         }
 
-        public Version Version => _state.NewRelease.New ? _state.NewRelease.Version : new Version();
+        public Version Version => _state.NewRelease.IsNew ? _state.NewRelease.Version : new Version();
 
         public IReadOnlyList<IRelease> ReleaseHistory()
         {
@@ -150,15 +150,15 @@ namespace ProtonVPN.Update.Updates
         private IReadOnlyList<IRelease> GetStableReleases()
         {
             return _state.Releases
-                .SkipWhile(r => r.EarlyAccess && r.New)
+                .SkipWhile(r => r.IsEarlyAccess && r.IsNew)
                 .ToList();
         }
 
         private static Release NewRelease(IEnumerable<Release> releases, bool earlyAccess)
         {
             return releases
-                   .FirstOrDefault(r => r.New && (!r.EarlyAccess || earlyAccess))
-                   ?? Release.EmptyRelease();
+                   .FirstOrDefault(r => r.IsNew && (!r.IsEarlyAccess || earlyAccess))
+                   ?? Release.Empty;
         }
 
         private static bool Equals(Release one, Release other)
