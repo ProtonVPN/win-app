@@ -25,6 +25,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Categories;
+using ProtonVPN.Logging.Contracts.Events;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 
 namespace ProtonVPN.Api.Handlers;
@@ -48,12 +50,12 @@ public class LoggingHandler : LoggingHandlerBase
         {
             _logger.Info<ApiRequestLog>(req);
 #if DEBUG
-            LogHttpHeaders($"{req} request", request.Headers);
+            LogHttpHeaders<ApiRequestLog>($"{req} request", request.Headers);
 #endif
             HttpResponseMessage result = await base.SendAsync(request, cancellationToken);
             _logger.Info<ApiResponseLog>($"{req}: {(int)result.StatusCode} {result.StatusCode}");
 #if DEBUG
-            LogHttpHeaders($"{req} response", result.Headers);
+            LogHttpHeaders<ApiResponseLog>($"{req} response", result.Headers);
 #endif
             return result;
         }
@@ -64,9 +66,9 @@ public class LoggingHandler : LoggingHandlerBase
         }
     }
 
-    private void LogHttpHeaders(string req, HttpHeaders headers)
+    private void LogHttpHeaders<T>(string req, HttpHeaders headers) where T : LogEventBase<ApiLogCategory>, new()
     {
         string mergedHeaders = string.Join(',', headers.Select(kvp => $"{kvp.Key}: [{string.Join("],[", kvp.Value)}]"));
-        _logger.Debug<ApiRequestLog>($"{req} headers: {mergedHeaders}");
+        _logger.Debug<T>($"{req} headers: {mergedHeaders}");
     }
 }
