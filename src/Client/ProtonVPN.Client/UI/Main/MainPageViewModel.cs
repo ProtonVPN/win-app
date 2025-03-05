@@ -112,22 +112,6 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
         SaveSidebarWidth();
     }
 
-    public void OnSidebarInteractionStarted()
-    {
-        if (SidebarDisplayMode == SplitViewDisplayMode.CompactOverlay)
-        {
-            IsSidebarExpanded = true;
-        }
-    }
-
-    public void OnSidebarInteractionEnded()
-    {
-        if (SidebarDisplayMode == SplitViewDisplayMode.CompactOverlay)
-        {
-            IsSidebarExpanded = false;
-        }
-    }
-
     protected override void OnActivated()
     {
         base.OnActivated();

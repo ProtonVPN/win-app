@@ -78,8 +78,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   Canvas.ZIndex="2"
                                                   IsEnabled="{x:Bind ViewModel.IsHomePageDisplayed}"
                                                   IsSidebarExpanded="{x:Bind MainSplitView.IsPaneOpen}"
-                                                  PointerEntered="{x:Bind ViewModel.OnSidebarInteractionStarted}"
-                                                  PointerExited="{x:Bind ViewModel.OnSidebarInteractionEnded}" />
+                                                  PointerEntered="OnSidebarPointerEntered"
+                                                  PointerExited="OnSidebarPointerExited" />
                 </SplitView.Pane>
 
                 <Grid>
