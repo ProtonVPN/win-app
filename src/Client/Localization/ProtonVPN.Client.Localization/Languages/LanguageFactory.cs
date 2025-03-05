@@ -59,12 +59,11 @@ public class LanguageFactory : ILanguageFactory
         return new Language() { Id = id, Description = CreateLanguageDescription(id) };
     }
 
-    // Strings from https://simplelocalize.io/data/locale-code/en-US/
     private static string CreateLanguageDescription(string id)
     {
         return id switch
         {
-            "be-BY" => "беларуская мова - Belarusian",
+            "be-BY" => "беларуская - Belarusian",
             "cs-CZ" => "Čeština - Czech",
             "de-DE" => "Deutsch - German",
             "el-GR" => "ελληνικά - Greek",
@@ -74,10 +73,10 @@ public class LanguageFactory : ILanguageFactory
             "fa-IR" => "فارسی - Persian",
             "fi-FI" => "Suomi - Finnish",
             "fr-FR" => "Français - French",
-            "hr-HR" => "Hrvatski jezik - Croatian",
+            "hr-HR" => "Hrvatski - Croatian",
             "id-ID" => "Bahasa Indonesia - Indonesian",
             "it-IT" => "Italiano - Italian",
-            "ja-JP" => "日本語 (にほんご) - Japanese",
+            "ja-JP" => "日本語 - Japanese",
             "ka-GE" => "ქართული - Georgian",
             "ko-KR" => "한국어 - Korean",
             "nb-NO" => "Norsk bokmål - Norwegian",
@@ -88,11 +87,11 @@ public class LanguageFactory : ILanguageFactory
             "ro-RO" => "Română - Romanian",
             "ru-RU" => "Русский - Russian",
             "sk-SK" => "Slovenčina - Slovak",
-            "sl-SI" => "Slovenski jezik - Slovenian",
+            "sl-SI" => "Slovenščina - Slovenian",
             "sv-SE" => "Svenska - Swedish",
             "tr-TR" => "Türkçe - Turkish",
             "uk-UA" => "Українська - Ukrainian",
-            "zh-TW" => "中文 - Chinese",
+            "zh-TW" => "繁體中文 - Chinese (Traditional)",
             _ => id,
         };
     }
