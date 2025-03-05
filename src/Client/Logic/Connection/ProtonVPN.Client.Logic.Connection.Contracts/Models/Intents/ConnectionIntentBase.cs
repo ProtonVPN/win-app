@@ -47,7 +47,7 @@ public abstract class ConnectionIntentBase : IntentBase, IConnectionIntent
 
     public bool AreAllServersUnderMaintenance(IEnumerable<Server> servers, DeviceLocation? deviceLocation)
     {
-        return servers.Where(s => IsSupported(s, deviceLocation)).All(server => server.IsLocationUnderMaintenance());
+        return servers.Where(s => IsSupported(s, deviceLocation)).All(server => server.IsUnderMaintenance());
     }
 
     public override string ToString()

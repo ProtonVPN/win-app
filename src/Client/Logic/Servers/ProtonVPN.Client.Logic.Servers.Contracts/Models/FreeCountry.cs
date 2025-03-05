@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,7 +19,7 @@
 
 namespace ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
-public interface ILocation
+public class FreeCountry : StandardLocationBase, ICountryLocation
 {
-    bool IsUnderMaintenance();
+    public required string Code { get; init; }
 }

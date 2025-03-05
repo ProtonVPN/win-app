@@ -135,17 +135,18 @@ public partial class GlobalSearch : IGlobalSearch
 
     private IEnumerable<ILocation> SearchCountries(string input, ServerFeatures? serverFeatures, Func<string, string, bool> searchFunc)
     {
-        IEnumerable<Country> countryCodes = serverFeatures is null
+        IEnumerable<ICountryLocation> countries = serverFeatures is null
             ? _serversLoader.GetCountries()
             : _serversLoader.GetCountriesByFeatures(serverFeatures.Value);
 
-        List<LocalizedCountry> localizedCountries = countryCodes.Select(c => new LocalizedCountry()
+        List<LocalizedCountry> localizedCountries = countries.Select(c => new LocalizedCountry()
         {
             Country = c,
             LocalizedName = _localizationProvider.GetCountryName(c.Code)
         }).ToList();
 
-        return localizedCountries.Where(c => searchFunc(c.Country.Code, input) || searchFunc(c.LocalizedName, input))
+        return localizedCountries
+            .Where(c => searchFunc(c.Country.Code, input) || searchFunc(c.LocalizedName, input))
             .Select(c => c.Country);
     }
 

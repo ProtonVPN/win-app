@@ -19,10 +19,7 @@
 
 namespace ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
-public class Gateway : ILocation
+public class Gateway : StandardLocationBase
 {
     public required string Name { get; init; }
-    public required bool IsUnderMaintenance { get; init; }
-
-    public bool IsLocationUnderMaintenance() => IsUnderMaintenance;
 }

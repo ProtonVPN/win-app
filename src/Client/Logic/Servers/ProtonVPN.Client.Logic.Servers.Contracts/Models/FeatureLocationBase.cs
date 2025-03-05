@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,9 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
+
 namespace ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
-public interface ILocation
+public abstract class FeatureLocationBase : IFeatureLocation
 {
-    bool IsUnderMaintenance();
+    public required ServerFeatures Features { get; init; }
+
+    public required bool IsStandardUnderMaintenance { get; init; }
+    public required bool IsP2PUnderMaintenance { get; init; }
+    public required bool IsSecureCoreUnderMaintenance { get; init; }
+    public required bool IsTorUnderMaintenance { get; init; }
+
+    public bool IsUnderMaintenance()
+    {
+        return IsStandardUnderMaintenance
+            && IsP2PUnderMaintenance
+            && IsSecureCoreUnderMaintenance
+            && IsTorUnderMaintenance;
+    }
 }

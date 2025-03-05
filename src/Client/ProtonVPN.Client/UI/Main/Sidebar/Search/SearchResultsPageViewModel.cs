@@ -210,7 +210,7 @@ public partial class SearchResultsPageViewModel : ConnectionListViewModelBase<IS
     {
         if (location is Server server)
         {
-            if (server.Features.IsSupported(ServerFeatures.B2B))
+            if (server.Features.IsB2B())
             {
                 return _locationItemFactory.GetGatewayServer(server);
             }

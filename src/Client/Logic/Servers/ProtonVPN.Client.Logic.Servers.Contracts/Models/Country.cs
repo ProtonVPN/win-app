@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,15 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
-
 namespace ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
-public class Country : ILocation
+public class Country : FeatureLocationBase, ICountryLocation
 {
     public required string Code { get; init; }
-    public required bool IsUnderMaintenance { get; init; }
-    public required ServerFeatures Features { get; init; }
-
-    public bool IsLocationUnderMaintenance() => IsUnderMaintenance;
 }

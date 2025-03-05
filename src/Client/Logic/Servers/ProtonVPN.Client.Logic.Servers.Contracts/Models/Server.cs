@@ -44,16 +44,16 @@ public class Server : ILocation
     public bool IsVirtual { get; init; }
     public required string GatewayName { get; init; }
 
-    public bool IsLocationUnderMaintenance() => Status == 0;
+    public bool IsUnderMaintenance() => Status == 0;
 
-    public bool IsAvailable() => !IsLocationUnderMaintenance() && Servers is not null && Servers.Any(s => !s.IsUnderMaintenance());
+    public bool IsAvailable() => !IsUnderMaintenance() && Servers is not null && Servers.Any(s => !s.IsUnderMaintenance());
 
-    public bool IsStandard() => !Features.IsSupported(ServerFeatures.SecureCore | ServerFeatures.B2B | ServerFeatures.Tor);
+    public bool IsStandard() => Features.IsStandard();
 
     public bool IsPaidNonB2B() => IsPaid() && IsNonB2B();
     public bool IsFreeNonB2B() => IsFree() && IsNonB2B();
 
-    public bool IsNonB2B() => !Features.IsSupported(ServerFeatures.B2B);
+    public bool IsNonB2B() => !Features.IsB2B();
 
     public bool IsPaid() => Tier is ServerTiers.Basic or ServerTiers.Plus;
     public bool IsFree() => Tier is ServerTiers.Free;

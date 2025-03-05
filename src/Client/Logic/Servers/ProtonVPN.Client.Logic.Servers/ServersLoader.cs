@@ -38,6 +38,11 @@ public class ServersLoader : IServersLoader
         return GetServers().FirstOrDefault(s => s.Id == serverId);
     }
 
+    public IEnumerable<FreeCountry> GetFreeCountries()
+    {
+        return _serversCache.FreeCountries;
+    }
+
     public IEnumerable<Country> GetCountries()
     {
         return _serversCache.Countries;
@@ -46,11 +51,6 @@ public class ServersLoader : IServersLoader
     public IEnumerable<Country> GetCountriesByFeatures(ServerFeatures serverFeatures)
     {
         return _serversCache.Countries.Where(c => c.Features.IsSupported(serverFeatures));
-    }
-
-    public IEnumerable<Country> GetFreeCountries()
-    {
-        return _serversCache.FreeCountries;
     }
 
     public IEnumerable<State> GetStates()
@@ -118,7 +118,7 @@ public class ServersLoader : IServersLoader
         return GetServers()
             .Where(s => s.Tier is ServerTiers.Basic or ServerTiers.Plus
                      && (filterFunc is null || filterFunc(s))
-                     && !s.Features.IsSupported(ServerFeatures.B2B));
+                     && !s.Features.IsB2B());
     }
 
     private IEnumerable<Server> GetFreeServersByFilter(Func<Server, bool>? filterFunc)
@@ -126,14 +126,14 @@ public class ServersLoader : IServersLoader
         return GetServers()
             .Where(s => s.Tier == ServerTiers.Free
                      && (filterFunc is null || filterFunc(s))
-                     && !s.Features.IsSupported(ServerFeatures.B2B));
+                     && !s.Features.IsB2B());
     }
 
     private IEnumerable<Server> GetGatewayServersByFilter(Func<Server, bool>? filterFunc)
     {
         return GetServers()
             .Where(s => (filterFunc is null || filterFunc(s))
-                     && s.Features.IsSupported(ServerFeatures.B2B));
+                     && s.Features.IsB2B());
     }
 
     public IEnumerable<Server> GetFreeServers()

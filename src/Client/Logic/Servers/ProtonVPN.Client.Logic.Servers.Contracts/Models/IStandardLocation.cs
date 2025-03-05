@@ -19,7 +19,7 @@
 
 namespace ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
-public interface ILocation
+public interface IStandardLocation : ILocation
 {
-    bool IsUnderMaintenance();
+    bool IsLocationUnderMaintenance { get; init; }
 }

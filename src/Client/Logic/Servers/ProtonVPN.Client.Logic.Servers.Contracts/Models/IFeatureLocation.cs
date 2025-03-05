@@ -17,9 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
+
 namespace ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
-public interface ILocation
+public interface IFeatureLocation : ILocation
 {
-    bool IsUnderMaintenance();
+    ServerFeatures Features { get; init; }
+
+    bool IsStandardUnderMaintenance { get; init; }
+    bool IsP2PUnderMaintenance { get; init; }
+    bool IsSecureCoreUnderMaintenance { get; init; }
+    bool IsTorUnderMaintenance { get; init; }
 }

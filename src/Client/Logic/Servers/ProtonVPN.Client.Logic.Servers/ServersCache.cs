@@ -20,6 +20,7 @@
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
@@ -50,8 +51,8 @@ public class ServersCache : IServersCache
     private IReadOnlyList<Server> _filteredServers = [];
     public IReadOnlyList<Server> Servers => GetWithReadLock(() => _filteredServers);
 
-    private IReadOnlyList<Country> _freeCountries = [];
-    public IReadOnlyList<Country> FreeCountries => GetWithReadLock(() => _freeCountries);
+    private IReadOnlyList<FreeCountry> _freeCountries = [];
+    public IReadOnlyList<FreeCountry> FreeCountries => GetWithReadLock(() => _freeCountries);
 
     private IReadOnlyList<Country> _countries = [];
     public IReadOnlyList<Country> Countries => GetWithReadLock(() => _countries);
@@ -195,7 +196,7 @@ public class ServersCache : IServersCache
     {
         if (servers is not null && servers.Any())
         {
-            IReadOnlyList<Country> freeCountries = GetFreeCountries(servers);
+            IReadOnlyList<FreeCountry> freeCountries = GetFreeCountries(servers);
             IReadOnlyList<Country> countries = GetCountries(servers);
             IReadOnlyList<State> states = GetStates(servers);
             IReadOnlyList<City> cities = GetCities(servers);
@@ -225,17 +226,16 @@ public class ServersCache : IServersCache
         }
     }
 
-    private IReadOnlyList<Country> GetFreeCountries(IEnumerable<Server> servers)
+    private IReadOnlyList<FreeCountry> GetFreeCountries(IEnumerable<Server> servers)
     {
         return servers
             .Where(s => !string.IsNullOrWhiteSpace(s.ExitCountry)
                      && s.IsFreeNonB2B())
             .GroupBy(s => s.ExitCountry)
-            .Select(s => new Country()
+            .Select(g => new FreeCountry()
             {
-                Code = s.Key,
-                IsUnderMaintenance = IsUnderMaintenance(s),
-                Features = AggregateFeatures(s),
+                Code = g.Key,
+                IsLocationUnderMaintenance = IsUnderMaintenance(g)
             })
             .ToList();
     }
@@ -246,24 +246,27 @@ public class ServersCache : IServersCache
             .Where(s => !string.IsNullOrWhiteSpace(s.ExitCountry)
                      && s.IsPaidNonB2B())
             .GroupBy(s => s.ExitCountry)
-            .Select(s => new Country()
+            .Select(g => new Country()
             {
-                Code = s.Key,
-                IsUnderMaintenance = IsUnderMaintenance(s),
-                Features = AggregateFeatures(s),
+                Code = g.Key,
+                Features = AggregateFeatures(g),
+                IsStandardUnderMaintenance = IsUnderMaintenance(g, s => s.Features.IsStandard()),
+                IsP2PUnderMaintenance = IsUnderMaintenance(g, s => s.Features.IsSupported(ServerFeatures.P2P)),
+                IsSecureCoreUnderMaintenance = IsUnderMaintenance(g, s => s.Features.IsSupported(ServerFeatures.SecureCore)),
+                IsTorUnderMaintenance = IsUnderMaintenance(g, s => s.Features.IsSupported(ServerFeatures.Tor))
             })
             .ToList();
     }
 
     private ServerFeatures AggregateFeatures<T>(IGrouping<T, Server> servers)
     {
-        return servers.Aggregate(ServerFeatures.Standard, (combinedFeatures, s) => combinedFeatures | s.Features);
+        return servers.Aggregate(default(ServerFeatures), (combinedFeatures, s) => combinedFeatures | s.Features);
     }
 
-    private bool IsUnderMaintenance<T>(IGrouping<T, Server> servers)
+    private bool IsUnderMaintenance<T>(IGrouping<T, Server> servers, Func<Server, bool>? filterFunc = null)
     {
-        // This should be more performant than doing: servers.All(s => s.IsUnderMaintenance())
-        return !servers.Any(s => !s.IsLocationUnderMaintenance());
+        return !servers.Any(s => (filterFunc == null || filterFunc(s)) 
+                              && !s.IsUnderMaintenance());
     }
 
     private IReadOnlyList<State> GetStates(IReadOnlyList<Server> servers)
@@ -273,12 +276,15 @@ public class ServersCache : IServersCache
                      && !string.IsNullOrWhiteSpace(s.State)
                      && s.IsPaidNonB2B())
             .GroupBy(s => new { Country = s.ExitCountry, State = s.State })
-            .Select(s => new State()
+            .Select(g => new State()
             {
-                CountryCode = s.Key.Country,
-                Name = s.Key.State,
-                IsUnderMaintenance = IsUnderMaintenance(s),
-                Features = AggregateFeatures(s),
+                CountryCode = g.Key.Country,
+                Name = g.Key.State,
+                Features = AggregateFeatures(g),
+                IsStandardUnderMaintenance = IsUnderMaintenance(g, s => s.Features.IsStandard()),
+                IsP2PUnderMaintenance = IsUnderMaintenance(g, s => s.Features.IsSupported(ServerFeatures.P2P)),
+                IsSecureCoreUnderMaintenance = IsUnderMaintenance(g, s => s.Features.IsSupported(ServerFeatures.SecureCore)),
+                IsTorUnderMaintenance = IsUnderMaintenance(g, s => s.Features.IsSupported(ServerFeatures.Tor))
             })
             .ToList();
     }
@@ -290,13 +296,16 @@ public class ServersCache : IServersCache
                      && !string.IsNullOrWhiteSpace(s.City)
                      && s.IsPaidNonB2B())
             .GroupBy(s => new { Country = s.ExitCountry, State = s.State, City = s.City })
-            .Select(c => new City()
+            .Select(g => new City()
             {
-                CountryCode = c.Key.Country,
-                StateName = c.Key.State,
-                Name = c.Key.City,
-                IsUnderMaintenance = IsUnderMaintenance(c),
-                Features = AggregateFeatures(c),
+                CountryCode = g.Key.Country,
+                StateName = g.Key.State,
+                Name = g.Key.City,
+                Features = AggregateFeatures(g),
+                IsStandardUnderMaintenance = IsUnderMaintenance(g, s => s.Features.IsStandard()),
+                IsP2PUnderMaintenance = IsUnderMaintenance(g, s => s.Features.IsSupported(ServerFeatures.P2P)),
+                IsSecureCoreUnderMaintenance = IsUnderMaintenance(g, s => s.Features.IsSupported(ServerFeatures.SecureCore)),
+                IsTorUnderMaintenance = IsUnderMaintenance(g, s => s.Features.IsSupported(ServerFeatures.Tor))
             })
             .ToList();
     }
@@ -304,13 +313,13 @@ public class ServersCache : IServersCache
     private IReadOnlyList<Gateway> GetGateways(IReadOnlyList<Server> servers)
     {
         return servers
-            .Where(s => s.Features.IsSupported(ServerFeatures.B2B)
+            .Where(s => s.Features.IsB2B()
                      && !string.IsNullOrWhiteSpace(s.GatewayName))
             .GroupBy(s => s.GatewayName)
             .Select(g => new Gateway()
             {
                 Name = g.Key,
-                IsUnderMaintenance = IsUnderMaintenance(g)
+                IsLocationUnderMaintenance = IsUnderMaintenance(g)
             })
             .ToList();
     }
@@ -322,11 +331,11 @@ public class ServersCache : IServersCache
                      && !string.IsNullOrWhiteSpace(s.EntryCountry)
                      && !string.IsNullOrWhiteSpace(s.ExitCountry))
             .GroupBy(s => new { EntryCountry = s.EntryCountry, ExitCountry = s.ExitCountry })
-            .Select(sccp => new SecureCoreCountryPair()
+            .Select(g => new SecureCoreCountryPair()
             {
-                EntryCountry = sccp.Key.EntryCountry,
-                ExitCountry = sccp.Key.ExitCountry,
-                IsUnderMaintenance = IsUnderMaintenance(sccp)
+                EntryCountry = g.Key.EntryCountry,
+                ExitCountry = g.Key.ExitCountry,
+                IsLocationUnderMaintenance = IsUnderMaintenance(g)
             })
             .ToList();
     }

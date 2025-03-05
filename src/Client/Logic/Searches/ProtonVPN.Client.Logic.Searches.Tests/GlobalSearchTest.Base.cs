@@ -42,13 +42,13 @@ public partial class GlobalSearchTest
 
         List<Server> standardServers = new()
         {
-            CreateMockOfServer("DZ#123", "Argel", "", "DZ", ServerFeatures.Standard),
-            CreateMockOfServer("CA#234", "Ottawa", "", "CA", ServerFeatures.Standard),
-            CreateMockOfServer("US-AK#345", "Anchorage", "Alaska", "US", ServerFeatures.Standard),
-            CreateMockOfServer("US-FL#456", "Jacksonville", "Florida", "US", ServerFeatures.Standard),
-            CreateMockOfServer("US-MI#567", "Detroit", "Michigan", "US", ServerFeatures.Standard),
-            CreateMockOfServer("CH#678", "Zurich", "", "CH", ServerFeatures.Standard),
-            CreateMockOfServer("CL#789", "Santiago", "", "CL", ServerFeatures.Standard),
+            CreateMockOfServer("DZ#123", "Argel", "", "DZ", default(ServerFeatures)),
+            CreateMockOfServer("CA#234", "Ottawa", "", "CA", default(ServerFeatures)),
+            CreateMockOfServer("US-AK#345", "Anchorage", "Alaska", "US", default(ServerFeatures)),
+            CreateMockOfServer("US-FL#456", "Jacksonville", "Florida", "US", default(ServerFeatures)),
+            CreateMockOfServer("US-MI#567", "Detroit", "Michigan", "US", default(ServerFeatures)),
+            CreateMockOfServer("CH#678", "Zurich", "", "CH", default(ServerFeatures)),
+            CreateMockOfServer("CL#789", "Santiago", "", "CL", default(ServerFeatures)),
         };
         List<Server> secureCoreServers = new()
         {
@@ -62,13 +62,13 @@ public partial class GlobalSearchTest
 
         List<City> standardCities = new()
         {
-            CreateMockOfCity("Argel", "", "DZ", ServerFeatures.Standard),
-            CreateMockOfCity("Ottawa", "", "CA", ServerFeatures.Standard),
-            CreateMockOfCity("Anchorage", "Alaska", "US", ServerFeatures.Standard),
-            CreateMockOfCity("Jacksonville", "Florida", "US", ServerFeatures.Standard),
-            CreateMockOfCity("Detroit", "Michigan", "US", ServerFeatures.Standard),
-            CreateMockOfCity("Zurich", "", "CH", ServerFeatures.Standard),
-            CreateMockOfCity("Santiago", "", "CL", ServerFeatures.Standard),
+            CreateMockOfCity("Argel", "", "DZ", default(ServerFeatures)),
+            CreateMockOfCity("Ottawa", "", "CA", default(ServerFeatures)),
+            CreateMockOfCity("Anchorage", "Alaska", "US", default(ServerFeatures)),
+            CreateMockOfCity("Jacksonville", "Florida", "US", default(ServerFeatures)),
+            CreateMockOfCity("Detroit", "Michigan", "US", default(ServerFeatures)),
+            CreateMockOfCity("Zurich", "", "CH", default(ServerFeatures)),
+            CreateMockOfCity("Santiago", "", "CL", default(ServerFeatures)),
         };
         List<City> secureCoreCities = new()
         {
@@ -82,9 +82,9 @@ public partial class GlobalSearchTest
 
         List<State> standardStates = new()
         {
-            CreateMockOfState("Alaska", "US", ServerFeatures.Standard),
-            CreateMockOfState("Florida", "US", ServerFeatures.Standard),
-            CreateMockOfState("Michigan", "US", ServerFeatures.Standard),
+            CreateMockOfState("Alaska", "US", default(ServerFeatures)),
+            CreateMockOfState("Florida", "US", default(ServerFeatures)),
+            CreateMockOfState("Michigan", "US", default(ServerFeatures)),
         };
         List<State> secureCoreStates = new()
         {
@@ -96,17 +96,17 @@ public partial class GlobalSearchTest
 
         List<Country> standardCountries = new()
         {
-            CreateMockOfCountry("AE", ServerFeatures.Standard),
-            CreateMockOfCountry("DZ", ServerFeatures.Standard),
-            CreateMockOfCountry("CA", ServerFeatures.Standard),
-            CreateMockOfCountry("US", ServerFeatures.Standard),
-            CreateMockOfCountry("CH", ServerFeatures.Standard),
-            CreateMockOfCountry("CL", ServerFeatures.Standard),
+            CreateMockOfCountry("AE", default(ServerFeatures)),
+            CreateMockOfCountry("DZ", default(ServerFeatures)),
+            CreateMockOfCountry("CA", default(ServerFeatures)),
+            CreateMockOfCountry("US", default(ServerFeatures)),
+            CreateMockOfCountry("CH", default(ServerFeatures)),
+            CreateMockOfCountry("CL", default(ServerFeatures)),
         };
         List<Country> secureCoreCountries = new()
         {
             CreateMockOfCountry("IS", ServerFeatures.SecureCore),
-            CreateMockOfCountry("PK", ServerFeatures.Standard),
+            CreateMockOfCountry("PK", default(ServerFeatures)),
         };
         _serversLoader.GetCountries().Returns(standardCountries.Concat(secureCoreCountries));
         _serversLoader.GetCountriesByFeatures(Arg.Is(ServerFeatures.SecureCore)).Returns(secureCoreCountries);
@@ -155,7 +155,10 @@ public partial class GlobalSearchTest
             Name = name,
             StateName = stateName,
             CountryCode = countryCode,
-            IsUnderMaintenance = false,
+            IsStandardUnderMaintenance = false,
+            IsP2PUnderMaintenance = false,
+            IsSecureCoreUnderMaintenance = false,
+            IsTorUnderMaintenance = false,
             Features = features,
         };
     }
@@ -166,7 +169,10 @@ public partial class GlobalSearchTest
         {
             Name = name,
             CountryCode = countryCode,
-            IsUnderMaintenance = false,
+            IsStandardUnderMaintenance = false,
+            IsP2PUnderMaintenance = false,
+            IsSecureCoreUnderMaintenance = false,
+            IsTorUnderMaintenance = false,
             Features = features,
         };
     }
@@ -176,7 +182,10 @@ public partial class GlobalSearchTest
         return new Country()
         {
             Code = countryCode,
-            IsUnderMaintenance = false,
+            IsStandardUnderMaintenance = false,
+            IsP2PUnderMaintenance = false,
+            IsSecureCoreUnderMaintenance = false,
+            IsTorUnderMaintenance = false,
             Features = features,
         };
     }

@@ -57,7 +57,7 @@ public class P2PCountryLocationItem : CountryLocationItemBase
                country,
                isSearchItem)
     {
-        FetchSubItems();
+        IsUnderMaintenance = country.IsP2PUnderMaintenance;
     }
 
     protected override IEnumerable<ConnectionItemBase> GetSubItems()

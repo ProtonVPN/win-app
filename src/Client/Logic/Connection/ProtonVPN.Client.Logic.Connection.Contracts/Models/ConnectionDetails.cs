@@ -55,7 +55,7 @@ public class ConnectionDetails
     public ServerTiers? ServerTier => Server.Tier;
     public string ServerName => Server.Name;
     public double ServerLoad => Server.Load / 100D;
-    public bool IsGateway => Server.Features.IsSupported(ServerFeatures.B2B);
+    public bool IsGateway => Server.Features.IsB2B();
     public string GatewayName => Server.GatewayName;
 
     public ConnectionDetails(IConnectionIntent connectionIntent, Server server, PhysicalServer physicalServer, VpnProtocol protocol, int port)

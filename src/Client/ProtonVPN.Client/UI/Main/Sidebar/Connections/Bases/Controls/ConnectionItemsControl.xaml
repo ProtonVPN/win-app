@@ -137,7 +137,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <custom:DualConnectionRowExpander AutomationProperties.AutomationId="{x:Bind SecondaryCommandAutomationId}"
                                               AutomationProperties.Name="{x:Bind Header}"
-                                              ToolTipService.ToolTip="{x:Bind ToolTip}">
+                                              ToolTipService.ToolTip="{x:Bind ToolTip}"
+                                              IsExpanded="{x:Bind IsCountryExpanded, Mode=TwoWay}">
 
                 <custom:ConnectionRowButton ActionLabel="{x:Bind PrimaryActionLabel}"
                                             AutomationProperties.AutomationId="{x:Bind PrimaryCommandAutomationId}"
@@ -704,7 +705,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <ListView x:Name="ConnectionItemsList"
               ItemTemplateSelector="{StaticResource LocationItemTemplateSelector}"
-              ItemsSource="{x:Bind ItemsSource, Mode=OneTime}" 
+              ItemsSource="{x:Bind ItemsSource}" 
               SelectionMode="None" 
               Style="{StaticResource GhostListViewStyle}">
 

@@ -51,12 +51,13 @@ public class LogicalServerMapperTest
     }
 
     [TestMethod]
-    [DataRow(0u, ServerFeatures.Standard)]
     [DataRow(1u, ServerFeatures.SecureCore)]
     [DataRow(4u, ServerFeatures.P2P)]
     [DataRow(8u, ServerFeatures.Streaming)]
     [DataRow(16u, ServerFeatures.Ipv6)]
-    [DataRow(32u, ServerFeatures.B2B)]
+    [DataRow(32u, ServerFeatures.Restricted)]
+    [DataRow(64u, ServerFeatures.Partner)]
+    [DataRow(128u, ServerFeatures.DoubleRestricted)]
     [DataRow(0u | 16u, ServerFeatures.Ipv6)]
     [DataRow(4u | 8u, ServerFeatures.P2P)]
     public void TestGetLogicalServer(ulong features, ServerFeatures expectedFeatures)

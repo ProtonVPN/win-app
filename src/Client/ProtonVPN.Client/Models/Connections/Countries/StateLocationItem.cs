@@ -55,7 +55,9 @@ public class StateLocationItem : StateLocationItemBase
                state,
                showBaseLocation,
                isSearchItem)
-    { }
+    {
+        IsUnderMaintenance = state.IsStandardUnderMaintenance;
+    }
 
     protected override IEnumerable<ConnectionItemBase> GetSubItems()
     {
