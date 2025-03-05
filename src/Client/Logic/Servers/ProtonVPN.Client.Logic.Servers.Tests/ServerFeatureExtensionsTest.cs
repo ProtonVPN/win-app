@@ -27,25 +27,72 @@ namespace ProtonVPN.Client.Logic.Servers.Tests;
 public class ServerFeatureExtensionsTest
 {
     [TestMethod]
-    [DataRow(ServerFeatures.Standard, ServerFeatures.Standard, true)]
-    [DataRow(ServerFeatures.Standard, ServerFeatures.SecureCore, false)]
-    [DataRow(ServerFeatures.Standard, ServerFeatures.SecureCore | ServerFeatures.Tor | ServerFeatures.B2B, false)]
-    [DataRow(ServerFeatures.SecureCore, ServerFeatures.Standard, false)]
     [DataRow(ServerFeatures.SecureCore, ServerFeatures.P2P, false)]
     [DataRow(ServerFeatures.SecureCore, ServerFeatures.SecureCore, true)]
-    [DataRow(ServerFeatures.SecureCore, ServerFeatures.P2P | ServerFeatures.Tor | ServerFeatures.B2B, false)]
-    [DataRow(ServerFeatures.SecureCore, ServerFeatures.SecureCore | ServerFeatures.Tor | ServerFeatures.B2B, true)]
-    [DataRow(ServerFeatures.P2P | ServerFeatures.B2B, ServerFeatures.Standard, false)]
-    [DataRow(ServerFeatures.P2P | ServerFeatures.B2B, ServerFeatures.SecureCore, false)]
-    [DataRow(ServerFeatures.P2P | ServerFeatures.B2B, ServerFeatures.P2P, true)]
-    [DataRow(ServerFeatures.P2P | ServerFeatures.B2B, ServerFeatures.B2B, true)]
-    [DataRow(ServerFeatures.P2P | ServerFeatures.B2B, ServerFeatures.P2P | ServerFeatures.B2B, true)]
-    [DataRow(ServerFeatures.P2P | ServerFeatures.B2B, ServerFeatures.SecureCore | ServerFeatures.Tor | ServerFeatures.Ipv6, false)]
-    [DataRow(ServerFeatures.P2P | ServerFeatures.B2B, ServerFeatures.SecureCore | ServerFeatures.Tor | ServerFeatures.B2B, true)]
-    [DataRow(ServerFeatures.P2P | ServerFeatures.B2B, ServerFeatures.P2P | ServerFeatures.Tor | ServerFeatures.B2B, true)]
+    [DataRow(ServerFeatures.SecureCore, ServerFeatures.P2P | ServerFeatures.Tor | ServerFeatures.Restricted, false)]
+    [DataRow(ServerFeatures.SecureCore, ServerFeatures.SecureCore | ServerFeatures.Tor | ServerFeatures.Restricted, true)]
+    [DataRow(ServerFeatures.P2P | ServerFeatures.Restricted, ServerFeatures.SecureCore, false)]
+    [DataRow(ServerFeatures.P2P | ServerFeatures.Restricted, ServerFeatures.P2P, true)]
+    [DataRow(ServerFeatures.P2P | ServerFeatures.Restricted, ServerFeatures.Restricted, true)]
+    [DataRow(ServerFeatures.P2P | ServerFeatures.Restricted, ServerFeatures.P2P | ServerFeatures.Restricted, true)]
+    [DataRow(ServerFeatures.P2P | ServerFeatures.Restricted, ServerFeatures.SecureCore | ServerFeatures.Tor | ServerFeatures.Ipv6, false)]
+    [DataRow(ServerFeatures.P2P | ServerFeatures.Restricted, ServerFeatures.SecureCore | ServerFeatures.Tor | ServerFeatures.Restricted, true)]
+    [DataRow(ServerFeatures.P2P | ServerFeatures.Restricted, ServerFeatures.P2P | ServerFeatures.Tor | ServerFeatures.Restricted, true)]
+    [DataRow(ServerFeatures.Restricted, ServerFeatures.B2B, true)]
+    [DataRow(ServerFeatures.B2B, ServerFeatures.Restricted, true)]
     public void TestIsSupported(ServerFeatures serverFeatures, ServerFeatures expectedFeatures, bool expectedResult)
     {
         bool result = ServerFeatureExtensions.IsSupported(serverFeatures, expectedFeatures);
+        Assert.AreEqual(expectedResult, result);
+    }
+
+    [TestMethod]
+    [DataRow(default, true)]
+    [DataRow(ServerFeatures.SecureCore, false)]
+    [DataRow(ServerFeatures.Tor, false)]
+    [DataRow(ServerFeatures.P2P, true)]
+    [DataRow(ServerFeatures.Streaming, true)]
+    [DataRow(ServerFeatures.Ipv6, true)]
+    [DataRow(ServerFeatures.Restricted, false)]
+    [DataRow(ServerFeatures.Partner, false)]
+    [DataRow(ServerFeatures.DoubleRestricted, false)]
+    [DataRow(ServerFeatures.B2B, false)]
+    [DataRow(ServerFeatures.NonStandard, false)]
+    [DataRow(ServerFeatures.SecureCore | ServerFeatures.Tor, false)]
+    [DataRow(ServerFeatures.Streaming | ServerFeatures.Ipv6, true)]
+    [DataRow(ServerFeatures.Restricted | ServerFeatures.DoubleRestricted, false)]
+    [DataRow(ServerFeatures.P2P | ServerFeatures.DoubleRestricted, false)]
+    [DataRow(ServerFeatures.Restricted | ServerFeatures.Partner, false)]
+    [DataRow(ServerFeatures.Restricted | ServerFeatures.DoubleRestricted | ServerFeatures.B2B, false)]
+    [DataRow(ServerFeatures.SecureCore | ServerFeatures.Tor | ServerFeatures.P2P | ServerFeatures.Streaming | ServerFeatures.Ipv6 | ServerFeatures.Restricted | ServerFeatures.Partner | ServerFeatures.DoubleRestricted, false)]
+    public void TestIsStandard(ServerFeatures serverFeatures, bool expectedResult)
+    {
+        bool result = ServerFeatureExtensions.IsStandard(serverFeatures);
+        Assert.AreEqual(expectedResult, result);
+    }
+
+    [TestMethod]
+    [DataRow(default, false)]
+    [DataRow(ServerFeatures.SecureCore, false)]
+    [DataRow(ServerFeatures.Tor, false)]
+    [DataRow(ServerFeatures.P2P, false)]
+    [DataRow(ServerFeatures.Streaming, false)]
+    [DataRow(ServerFeatures.Ipv6, false)]
+    [DataRow(ServerFeatures.Restricted, true)]
+    [DataRow(ServerFeatures.Partner, false)]
+    [DataRow(ServerFeatures.DoubleRestricted, true)]
+    [DataRow(ServerFeatures.B2B, true)]
+    [DataRow(ServerFeatures.NonStandard, true)]
+    [DataRow(ServerFeatures.SecureCore | ServerFeatures.Tor, false)]
+    [DataRow(ServerFeatures.Streaming | ServerFeatures.Ipv6, false)]
+    [DataRow(ServerFeatures.Restricted | ServerFeatures.DoubleRestricted, true)]
+    [DataRow(ServerFeatures.P2P | ServerFeatures.DoubleRestricted, true)]
+    [DataRow(ServerFeatures.Restricted | ServerFeatures.Partner, true)]
+    [DataRow(ServerFeatures.Restricted | ServerFeatures.DoubleRestricted | ServerFeatures.B2B, true)]
+    [DataRow(ServerFeatures.SecureCore | ServerFeatures.Tor | ServerFeatures.P2P | ServerFeatures.Streaming | ServerFeatures.Ipv6 | ServerFeatures.Restricted | ServerFeatures.Partner | ServerFeatures.DoubleRestricted, true)]
+    public void TestIsB2B(ServerFeatures serverFeatures, bool expectedResult)
+    {
+        bool result = ServerFeatureExtensions.IsB2B(serverFeatures);
         Assert.AreEqual(expectedResult, result);
     }
 }

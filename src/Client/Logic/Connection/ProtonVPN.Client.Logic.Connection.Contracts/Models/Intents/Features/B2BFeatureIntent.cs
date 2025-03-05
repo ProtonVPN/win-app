@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
@@ -29,7 +28,7 @@ public class B2BFeatureIntent : FeatureIntentBase
 
     public override bool IsSupported(Server server)
     {
-        return server.Features.IsSupported(ServerFeatures.B2B);
+        return server.Features.IsB2B();
     }
 
     public override string ToString()

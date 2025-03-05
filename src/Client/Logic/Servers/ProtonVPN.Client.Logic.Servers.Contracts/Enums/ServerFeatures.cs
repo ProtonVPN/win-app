@@ -22,11 +22,15 @@ namespace ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 [Flags]
 public enum ServerFeatures : ulong
 {
-    Standard = 0,
     SecureCore = 1,
     Tor = 2,
     P2P = 4,
     Streaming = 8,
     Ipv6 = 16,
-    B2B = 32,
+    Restricted = 32,
+    Partner = 64,
+    DoubleRestricted = 128,
+
+    B2B = Restricted | DoubleRestricted,
+    NonStandard = SecureCore | Tor | Restricted | Partner | DoubleRestricted,
 }

@@ -56,7 +56,9 @@ public class P2PStateLocationItem : StateLocationItemBase
                state,
                showBaseLocation,
                isSearchItem)
-    { }
+    {
+        IsUnderMaintenance = state.IsP2PUnderMaintenance;
+    }
 
     protected override IEnumerable<ConnectionItemBase> GetSubItems()
     {

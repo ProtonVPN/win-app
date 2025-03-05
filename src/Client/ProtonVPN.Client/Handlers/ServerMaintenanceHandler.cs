@@ -49,7 +49,7 @@ public class ServerMaintenanceHandler : IHandler, IEventMessageReceiver<ServerLi
         if (_connectionManager.IsConnected && _connectionManager.CurrentConnectionDetails is not null)
         {
             Server? server = _serversLoader.GetById(_connectionManager.CurrentConnectionDetails.ServerId);
-            if (server is null || server.IsLocationUnderMaintenance())
+            if (server is null || server.IsUnderMaintenance())
             {
                 string reason = server is null ? "removed from the API" : "put under maintenance";
                 _logger.Info<AppLog>($"The current server {_connectionManager.CurrentConnectionDetails.ServerName} " +

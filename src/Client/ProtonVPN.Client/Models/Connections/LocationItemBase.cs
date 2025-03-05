@@ -72,6 +72,6 @@ public abstract partial class LocationItemBase<TLocation> : LocationItemBase
                upsellCarouselWindowActivator,
                isSearchItem)
     {
-        IsUnderMaintenance = location.IsLocationUnderMaintenance();
+        IsUnderMaintenance = location.IsUnderMaintenance();
     }
 }

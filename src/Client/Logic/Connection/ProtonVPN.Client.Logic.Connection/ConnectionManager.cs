@@ -315,7 +315,6 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
 
     private Server? GetCurrentServer(VpnStateIpcEntity state, VpnProtocol vpnProtocol)
     {
-        // VPNWIN-2113 - instead of EndpointIp and Label we should have VpnHost (including Id property) so we can easily find server by ID.
         return _serversLoader.GetServers().FirstOrDefault(s => s.Servers.Any(FilterPhysicalServerByVpnState(state, vpnProtocol)));
     }
 

@@ -181,7 +181,7 @@ public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsMa
             {
                 Name = _lastConnectionDetails?.Server.Name,
                 IsFree = _lastConnectionDetails?.Server.IsFree() ?? false,
-                IsB2B = _lastConnectionDetails?.Server.Features.IsSupported(ServerFeatures.B2B) ?? false,
+                IsB2B = _lastConnectionDetails?.Server.Features.IsB2B() ?? false,
                 SupportsTor = _lastConnectionDetails?.Server.Features.IsSupported(ServerFeatures.Tor) ?? false,
                 SupportsP2P = _lastConnectionDetails?.Server.Features.IsSupported(ServerFeatures.P2P) ?? false,
                 SecureCore = _lastConnectionDetails?.Server.Features.IsSupported(ServerFeatures.SecureCore) ?? false,

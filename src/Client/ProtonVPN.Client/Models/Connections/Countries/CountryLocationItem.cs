@@ -56,7 +56,7 @@ public class CountryLocationItem : CountryLocationItemBase
                country,
                isSearchItem)
     {
-        FetchSubItems();
+        IsUnderMaintenance = country.IsStandardUnderMaintenance;
     }
 
     protected override IEnumerable<ConnectionItemBase> GetSubItems()

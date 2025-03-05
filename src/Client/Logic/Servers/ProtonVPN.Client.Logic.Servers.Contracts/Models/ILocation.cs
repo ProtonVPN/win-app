@@ -21,5 +21,5 @@ namespace ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 public interface ILocation
 {
-    public bool IsLocationUnderMaintenance();
+    bool IsUnderMaintenance();
 }

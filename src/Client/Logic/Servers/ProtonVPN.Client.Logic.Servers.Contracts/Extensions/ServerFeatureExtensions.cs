@@ -28,9 +28,28 @@ public static class ServerFeatureExtensions
         return ((ServerFeatures)features).IsSupported(expectedFeatures);
     }
 
-    /// <summary>Is at least one of the features supported by one of the expected features.</summary>
+    public static bool IsStandard(this ulong features)
+    {
+        return ((ServerFeatures)features).IsStandard();
+    }
+
+    public static bool IsB2B(this ulong features)
+    {
+        return ((ServerFeatures)features).IsB2B();
+    }
+
     public static bool IsSupported(this ServerFeatures features, ServerFeatures expectedFeatures)
     {
-        return features == expectedFeatures || (features & expectedFeatures) > 0;
+        return (features & expectedFeatures) != 0;
+    }
+
+    public static bool IsStandard(this ServerFeatures features)
+    {
+        return !features.IsSupported(ServerFeatures.NonStandard);
+    }
+
+    public static bool IsB2B(this ServerFeatures features)
+    {
+        return features.IsSupported(ServerFeatures.B2B);
     }
 }

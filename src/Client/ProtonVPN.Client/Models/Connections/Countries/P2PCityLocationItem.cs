@@ -56,7 +56,9 @@ public class P2PCityLocationItem : CityLocationItemBase
                city,
                showBaseLocation,
                isSearchItem)
-    { }
+    {
+        IsUnderMaintenance = city.IsP2PUnderMaintenance;
+    }
 
     protected override IEnumerable<ConnectionItemBase> GetSubItems()
     {

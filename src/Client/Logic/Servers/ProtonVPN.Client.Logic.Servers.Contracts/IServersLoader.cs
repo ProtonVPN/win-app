@@ -26,9 +26,10 @@ public interface IServersLoader
 {
     Server? GetById(string serverId);
 
+    IEnumerable<FreeCountry> GetFreeCountries();
+
     IEnumerable<Country> GetCountries();
     IEnumerable<Country> GetCountriesByFeatures(ServerFeatures serverFeatures);
-    IEnumerable<Country> GetFreeCountries();
 
     IEnumerable<State> GetStates();
     IEnumerable<State> GetStatesByCountryCode(string countryCode);

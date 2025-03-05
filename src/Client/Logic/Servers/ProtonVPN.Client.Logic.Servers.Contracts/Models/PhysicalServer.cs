@@ -21,7 +21,7 @@ using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
-public class PhysicalServer
+public class PhysicalServer : ILocation
 {
     public required string Id { get; init; }
     public required string EntryIp { get; init; }

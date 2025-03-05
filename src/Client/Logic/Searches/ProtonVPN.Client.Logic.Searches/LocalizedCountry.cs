@@ -23,6 +23,6 @@ namespace ProtonVPN.Client.Logic.Searches;
 
 public class LocalizedCountry
 {
-    public required Country Country { get; init; }
+    public required ICountryLocation Country { get; init; }
     public required string LocalizedName { get; init; }
 }

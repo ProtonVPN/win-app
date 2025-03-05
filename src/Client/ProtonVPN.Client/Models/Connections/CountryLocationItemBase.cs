@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Factories;
 using ProtonVPN.Client.Localization.Contracts;
@@ -31,8 +32,11 @@ using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.Models.Connections;
 
-public abstract class CountryLocationItemBase : HostLocationItemBase<Country>
+public abstract partial class CountryLocationItemBase : HostLocationItemBase<Country>
 {
+    [ObservableProperty]
+    private bool _isCountryExpanded;
+
     public Country Country { get; }
 
     public string ExitCountryCode => Country.Code;
@@ -77,7 +81,7 @@ public abstract class CountryLocationItemBase : HostLocationItemBase<Country>
                isSearchItem)
     {
         Country = country;
-        IsUnderMaintenance = country.IsLocationUnderMaintenance();
+        IsUnderMaintenance = country.IsUnderMaintenance();
         LocationIntent = new CountryLocationIntent(ExitCountryCode);
     }
 
@@ -97,5 +101,17 @@ public abstract class CountryLocationItemBase : HostLocationItemBase<Country>
             && !currentConnectionDetails.IsGateway
             && ExitCountryCode == currentConnectionDetails.ExitCountryCode
             && (FeatureIntent?.GetType().IsAssignableTo(currentConnectionDetails.OriginalConnectionIntent.Feature?.GetType()) ?? true);
+    }
+
+    partial void OnIsCountryExpandedChanged(bool value)
+    {
+        if (value)
+        {
+            OnExpandCountry();
+        }
+        else
+        {
+            OnCollapseCountry();
+        }
     }
 }

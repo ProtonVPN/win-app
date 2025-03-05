@@ -117,7 +117,7 @@ public class ProfilesMigrator : IProfilesMigrator
             }
         }
 
-        if (legacyProfile.Features.IsSupported(ServerFeatures.B2B))
+        if (legacyProfile.Features.IsB2B())
         {
             featureIntent = new B2BFeatureIntent();
         }

@@ -54,7 +54,9 @@ public class TorCountryLocationItem : CountryLocationItemBase
                locationItemFactory,
                country,
                isSearchItem)
-    { }
+    {
+        IsUnderMaintenance = country.IsTorUnderMaintenance;
+    }
 
     protected override IEnumerable<ConnectionItemBase> GetSubItems()
     {
