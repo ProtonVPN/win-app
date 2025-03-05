@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,6 +18,7 @@
  */
 
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Services.Navigation;
@@ -27,6 +28,10 @@ namespace ProtonVPN.Client.UI.Main;
 
 public sealed partial class MainPageView : IContextAware
 {
+    private const int EXPAND_SIDEBAR_DELAY_IN_MS = 100;
+
+    private readonly DispatcherTimer _timer;
+
     public MainPageViewModel ViewModel { get; }
 
     public MainViewNavigator Navigator { get; }
@@ -42,11 +47,32 @@ public sealed partial class MainPageView : IContextAware
 
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
+
+        _timer = new DispatcherTimer()
+        {
+            Interval = TimeSpan.FromMilliseconds(EXPAND_SIDEBAR_DELAY_IN_MS)
+        };
+        _timer.Tick += OnExpandSidebarTimerTick;
     }
 
     public object GetContext()
     {
         return ViewModel;
+    }
+
+    private static bool IsInside(PointerRoutedEventArgs e, FrameworkElement element)
+    {
+        if (element.Visibility == Visibility.Collapsed)
+        {
+            return false;
+        }
+
+        Point pos = e.GetCurrentPoint(element).Position;
+
+        return pos.X >= 0
+            && pos.Y >= 0
+            && pos.X <= element.ActualWidth
+            && pos.Y <= element.ActualHeight;
     }
 
     private void OnLoaded(object sender, RoutedEventArgs e)
@@ -71,18 +97,51 @@ public sealed partial class MainPageView : IContextAware
         }
     }
 
-    private static bool IsInside(PointerRoutedEventArgs e, FrameworkElement element)
+    private void OnSidebarPointerEntered(object sender, PointerRoutedEventArgs e)
     {
-        if (element.Visibility == Visibility.Collapsed)
+        // Delay the sidebar expansion to avoid flickering effect.
+        if (IsSidebarDisplayedAsCompactOverlay())
         {
-            return false;
+            StartTimer();
         }
+    }
 
-        Point pos = e.GetCurrentPoint(element).Position;
+    private void OnSidebarPointerExited(object sender, PointerRoutedEventArgs e)
+    {
+        StopTimer();
 
-        return pos.X >= 0
-            && pos.Y >= 0
-            && pos.X <= element.ActualWidth
-            && pos.Y <= element.ActualHeight;
+        if (IsSidebarDisplayedAsCompactOverlay())
+        {
+            ViewModel.IsSidebarExpanded = false;
+        }
+    }
+
+    private void OnExpandSidebarTimerTick(object? sender, object e)
+    {
+        if (IsSidebarDisplayedAsCompactOverlay())
+        {
+            ViewModel.IsSidebarExpanded = true;
+        }
+    }
+
+    private void StartTimer()
+    {
+        if (!_timer.IsEnabled)
+        {
+            _timer.Start();
+        }
+    }
+
+    private void StopTimer()
+    {
+        if (_timer.IsEnabled)
+        {
+            _timer.Stop();
+        }
+    }
+
+    private bool IsSidebarDisplayedAsCompactOverlay()
+    {
+        return ViewModel.SidebarDisplayMode == SplitViewDisplayMode.CompactOverlay;
     }
 }
