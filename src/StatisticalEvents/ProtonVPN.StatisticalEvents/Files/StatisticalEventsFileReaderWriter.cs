@@ -30,10 +30,10 @@ namespace ProtonVPN.StatisticalEvents.Files;
 
 public class StatisticalEventsFileReaderWriter : IStatisticalEventsFileReaderWriter
 {
-    private const Serializers SERIALIZER = Serializers.PrettyJson;
+    private const Serializers SERIALIZER = Serializers.Protobuf;
     private const string AUTH_EVENTS_FILE_NAME_PREFIX = "AuthenticatedStatisticalEvents";
-    private const string UNAUTH_EVENTS_FILE_NAME_PREFIX = "UnauthenticatedStatisticalEvents";
     private const string FILE_EXTENSION = "bin";
+    private const string UNAUTH_EVENTS_FILE_NAME = $"UnauthenticatedStatisticalEvents.{FILE_EXTENSION}";
 
     private readonly ILogger _logger;
     private readonly IStaticConfiguration _staticConfiguration;
@@ -54,8 +54,8 @@ public class StatisticalEventsFileReaderWriter : IStatisticalEventsFileReaderWri
         _userFileReaderWriter = userFileReaderWriter;
         _fileReaderWriter = fileReaderWriter;
 
-        _authEventsFileReaderWriterParameters = new(Serializers.Protobuf, _staticConfiguration.StorageFolder, AUTH_EVENTS_FILE_NAME_PREFIX, FILE_EXTENSION);
-        _unauthEventsFullFilePath = Path.Combine(_staticConfiguration.StorageFolder, UNAUTH_EVENTS_FILE_NAME_PREFIX);
+        _authEventsFileReaderWriterParameters = new(SERIALIZER, _staticConfiguration.StorageFolder, AUTH_EVENTS_FILE_NAME_PREFIX, FILE_EXTENSION);
+        _unauthEventsFullFilePath = Path.Combine(_staticConfiguration.StorageFolder, UNAUTH_EVENTS_FILE_NAME);
     }
 
     public StatisticalEventsFile ReadAuthenticatedEvents()
