@@ -113,7 +113,11 @@ public partial class MapComponentViewModel : ViewModelBase,
 
     public void Receive(ServerListChangedMessage message)
     {
-        ExecuteOnUIThread(InvalidateCountries);
+        ExecuteOnUIThread(() =>
+        {
+            InvalidateCountries();
+            InvalidateActiveCountry();
+        });
     }
 
     private void InvalidateActiveCountry()
