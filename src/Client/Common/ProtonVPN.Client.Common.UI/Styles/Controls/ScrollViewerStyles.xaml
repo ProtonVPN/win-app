@@ -30,6 +30,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="Margin" Value="{ThemeResource DefaultScrollViewerMargin}" />
         <Setter Property="Padding" Value="{ThemeResource DefaultScrollViewerPadding}" />
     </Style>
+    
+    <Thickness x:Key="SmallOffsetScrollViewerMargin">0,0,-5,0</Thickness>
+    <Thickness x:Key="SmallOffsetScrollViewerPadding">0,0,5,0</Thickness>
+
+    <Style x:Key="SmallOffsetScrollViewer" BasedOn="{StaticResource DefaultScrollViewer}" TargetType="ScrollViewer">
+        <Setter Property="Margin" Value="{ThemeResource SmallOffsetScrollViewerMargin}" />
+        <Setter Property="Padding" Value="{ThemeResource SmallOffsetScrollViewerPadding}" />
+    </Style>
 
     <Thickness x:Key="OffsetScrollViewerMargin">0,0,-12,0</Thickness>
     <Thickness x:Key="OffsetScrollViewerPadding">0,0,12,0</Thickness>

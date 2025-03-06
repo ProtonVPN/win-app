@@ -53,7 +53,7 @@ public sealed partial class MapControl
 {
     // Resolution related consts
     private const int MIN_RESOLUTION = 2000;
-    private const int TITLEBAR_HEIGHT = 16;
+    private const int SIDE_MARGIN = 8;
     private const double MIN_BBOX_WIDTH = 4411437;
     private const double MIN_BBOX_HEIGHT = 2445113;
  
@@ -126,6 +126,12 @@ public sealed partial class MapControl
         typeof(MapControl),
         new PropertyMetadata(default, OnMapOffsetChanged));
 
+    public static readonly DependencyProperty TitleBarHeightProperty = DependencyProperty.Register(
+        nameof(TitleBarHeight),
+        typeof(double),
+        typeof(MapControl),
+        new PropertyMetadata(default, OnMapOffsetChanged));
+
     public static readonly DependencyProperty ConnectPhraseProperty = DependencyProperty.Register(
         nameof(ConnectPhrase),
         typeof(string),
@@ -190,6 +196,11 @@ public sealed partial class MapControl
     {
         get => (double)GetValue(BottomOffsetProperty);
         set => SetValue(BottomOffsetProperty, value);
+    }
+    public double TitleBarHeight
+    {
+        get => (double)GetValue(TitleBarHeightProperty);
+        set => SetValue(TitleBarHeightProperty, value);
     }
 
     public string ConnectPhrase
@@ -470,11 +481,16 @@ public sealed partial class MapControl
 
     private bool IsMouseOnViewport(Windows.Foundation.Point mousePosition)
     {
+        double left = SIDE_MARGIN + LeftOffset;
+        double top = TitleBarHeight + TopOffset;
+        double right = SIDE_MARGIN;
+        double bottom = BottomOffset + SIDE_MARGIN;
+
         Windows.Foundation.Rect viewportRect = new(
-            LeftOffset,
-            TopOffset + TITLEBAR_HEIGHT,
-            Map.ActualWidth - LeftOffset - RightOffset,
-            Map.ActualHeight - TopOffset - BottomOffset
+            left,
+            top,
+            Map.ActualWidth - (left + right),
+            Map.ActualHeight - (top + bottom)
         );
 
         return viewportRect.Contains(mousePosition);
@@ -1081,10 +1097,16 @@ public sealed partial class MapControl
         }
 
         MPoint countryPoint = CurrentCountry.GetMapPoint();
-        double effectiveViewportWidth = _map.Navigator.Viewport.Width - (LeftOffset + RightOffset);
-        double effectiveViewportHeight = _map.Navigator.Viewport.Height - (TopOffset + BottomOffset);
-        double horizontalOffsetInPixels = (LeftOffset - RightOffset) / 2.0;
-        double verticalOffsetInPixels = TITLEBAR_HEIGHT + (TopOffset - BottomOffset) / 2.0;
+
+        double leftOffset = SIDE_MARGIN + LeftOffset;
+        double topOffset = TitleBarHeight + TopOffset;
+        double rightOffset = RightOffset + SIDE_MARGIN;
+        double bottomOffset = BottomOffset + SIDE_MARGIN;
+
+        double effectiveViewportWidth = _map.Navigator.Viewport.Width - leftOffset - rightOffset;
+        double effectiveViewportHeight = _map.Navigator.Viewport.Height - topOffset - bottomOffset;
+        double horizontalOffsetInPixels = (leftOffset - rightOffset) / 2.0;
+        double verticalOffsetInPixels = (topOffset - bottomOffset) / 2.0;
 
         if (CurrentCountry.Code == "RU")
         {

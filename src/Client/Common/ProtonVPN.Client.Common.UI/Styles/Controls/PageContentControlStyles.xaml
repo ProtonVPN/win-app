@@ -67,6 +67,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Setter>
     </Style>
 
+    <Style x:Key="TranslucentPaneContentControlStyle" TargetType="ContentControl" BasedOn="{StaticResource PaneContentControlStyle}">
+        <Setter Property="Background" Value="{ThemeResource PaneOverlayTranslucentBackgroundColorBrush}" />
+    </Style>
+
     <Style BasedOn="{StaticResource DefaultPageContentControlStyle}" TargetType="custom:PageContentControl" />
 
     <Style x:Key="StretchPageContentControlStyle" TargetType="custom:PageContentControl">
