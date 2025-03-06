@@ -144,7 +144,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <x:Double x:Key="TextControlThemeMinSize">40</x:Double>
     <Visibility x:Key="TextBoxDeleteButtonVisibility">Visible</Visibility>
 
-    <Style x:Key="SearchTextBoxStyle" TargetType="TextBox">
+    <Style x:Key="SearchTextBoxStyle" TargetType="custom:SearchTextBox">
         <Setter Property="Foreground" Value="{ThemeResource TextNormColorBrush}" />
         <Setter Property="Background" Value="{ThemeResource InteractionDefaultColorBrush}" />
         <Setter Property="BorderBrush" Value="{ThemeResource TransparentColorBrush}" />
@@ -169,7 +169,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="PlaceholderForeground" Value="{ThemeResource TextControlPlaceholderForeground}"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="TextBox">
+                <ControlTemplate TargetType="custom:SearchTextBox">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -210,12 +210,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Control.IsTemplateFocusTarget="True"
                                 CornerRadius="{TemplateBinding CornerRadius}" />
 
-                        <pathicons:Magnifier x:Name="MagnifierIcon"
-                                             Grid.Row="1"
-                                             Grid.Column="0"
-                                             Margin="10,0,0,0"
-                                             Foreground="{ThemeResource TextHintColorBrush}"
-                                             Size="Pixels16" />
+                        <Grid Grid.Row="1"
+                              Grid.Column="0">
+                            <pathicons:Magnifier x:Name="MagnifierIcon"
+                                                 Margin="10,0,6,0"
+                                                 Foreground="{ThemeResource TextHintColorBrush}"
+                                                 Size="Pixels16"
+                                                 Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}" />
+
+                            <custom:GhostButton Command="{TemplateBinding BackCommand}"
+                                                Margin="6,0,0,0"
+                                                Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}">
+                                <custom:GhostButton.LeftIcon>
+                                    <pathicons:ArrowLeft x:Name="BackArrow"
+                                                         Foreground="{ThemeResource TextHintColorBrush}"
+                                                         Size="Pixels16" />
+                                </custom:GhostButton.LeftIcon>
+                            </custom:GhostButton>
+                        </Grid>
 
                         <ScrollViewer x:Name="ContentElement"
                                       Grid.Row="1"
@@ -310,6 +322,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="BorderElement.BorderBrush" Value="{ThemeResource TextNormColorBrush}" />
                                         <Setter Target="ContentElement.Foreground" Value="{ThemeResource TextNormColorBrush}" />
                                         <Setter Target="MagnifierIcon.Foreground" Value="{ThemeResource TextNormColorBrush}" />
+                                        <Setter Target="BackArrow.Foreground" Value="{ThemeResource TextNormColorBrush}" />
                                         <Setter Target="PlaceholderTextContentPresenter.Foreground" Value="{ThemeResource TextControlPlaceholderForegroundFocused}" />
                                     </VisualState.Setters>
                                 </VisualState>
