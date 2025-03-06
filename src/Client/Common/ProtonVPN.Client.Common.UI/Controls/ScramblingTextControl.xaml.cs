@@ -62,10 +62,7 @@ public sealed partial class ScramblingTextControl
     {
         InitializeComponent();
 
-        _scramblingTimer = new()
-        {
-            Interval = TimeSpan.FromMilliseconds(SCRAMBLING_TIMER_INTERVAL_IN_MS)
-        };
+        _scramblingTimer.Interval = TimeSpan.FromMilliseconds(SCRAMBLING_TIMER_INTERVAL_IN_MS);
         _scramblingTimer.Tick += OnScramblingTimerTick;
     }
 
@@ -124,6 +121,9 @@ public sealed partial class ScramblingTextControl
 
         text = $"{text.Remove(index)}{SCRAMBLING_CHAR}{text.Remove(0, index + 1)}";
 
-        PART_ScrambledText.Text = text.Substring(0, Text.Length);
+        if (IsScrambling)
+        {
+            PART_ScrambledText.Text = text.Substring(0, Text.Length);
+        }
     }
 }
