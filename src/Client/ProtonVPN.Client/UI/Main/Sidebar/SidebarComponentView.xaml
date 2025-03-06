@@ -25,6 +25,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+             xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
              x:DefaultBindMode="OneWay"
              AutomationProperties.AutomationId="SidebarComponent"
              AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Automation_Properties_Sidebar')}"
@@ -80,14 +81,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Grid.RowDefinitions>
 
                 <!--  Search box  -->
-                <TextBox Name="SearchTextBox"
-                         Grid.Row="0"
-                         Margin="4"
-                         GotFocus="{x:Bind ViewModel.OnSearchTextBoxGotFocus}"
-                         LostFocus="{x:Bind ViewModel.OnSearchTextBoxLostFocus}"
-                         PlaceholderText="{x:Bind ViewModel.Localizer.Get('Search_InputBox_Placeholder')}"
-                         Style="{StaticResource SearchTextBoxStyle}"
-                         Text="{x:Bind ViewModel.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <custom:SearchTextBox Name="SearchTextBox"
+                                      Grid.Row="0"
+                                      Margin="4"
+                                      GotFocus="{x:Bind ViewModel.OnSearchTextBoxGotFocus}"
+                                      LostFocus="{x:Bind ViewModel.OnSearchTextBoxLostFocus}"
+                                      BackCommand="{x:Bind ViewModel.LeaveSearchModeCommand, Mode=OneTime}"
+                                      PlaceholderText="{x:Bind ViewModel.Localizer.Get('Search_InputBox_Placeholder')}"
+                                      Style="{StaticResource SearchTextBoxStyle}"
+                                      Text="{x:Bind ViewModel.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                 <Frame x:Name="SidebarNavigationFrame"
                        Grid.Row="1"

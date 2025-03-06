@@ -23,6 +23,7 @@ using ProtonVPN.Client.Core.Services.Mapping;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Core.Services.Navigation.Bases;
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts;
@@ -41,13 +42,14 @@ namespace ProtonVPN.Client.Services.Navigation;
 public class ConnectionsViewNavigator : ViewNavigatorBase, IConnectionsViewNavigator,
     IEventMessageReceiver<VpnPlanChangedMessage>,
     IEventMessageReceiver<ServerListChangedMessage>,
-    IEventMessageReceiver<RecentConnectionsChangedMessage>
+    IEventMessageReceiver<RecentConnectionsChangedMessage>,
+    IEventMessageReceiver<LoggedInMessage>
 {
     private readonly IRecentConnectionsManager _recentConnectionsManager;
     private readonly IServersLoader _serversLoader;
     private readonly ISettings _settings;
 
-    public override FrameLoadedBehavior LoadBehavior { get; protected set; } = FrameLoadedBehavior.NavigateToDefaultView;
+    public override FrameLoadedBehavior LoadBehavior { get; protected set; } = FrameLoadedBehavior.NavigateToDefaultViewIfEmpty;
 
     public ConnectionsViewNavigator(
         ILogger logger,
@@ -130,6 +132,11 @@ public class ConnectionsViewNavigator : ViewNavigatorBase, IConnectionsViewNavig
     public void Receive(RecentConnectionsChangedMessage message)
     {
         UIThreadDispatcher.TryEnqueue(async () => await InvalidateCurrentPageAsync());
+    }
+
+    public void Receive(LoggedInMessage message)
+    {
+        UIThreadDispatcher.TryEnqueue(async () => await NavigateToDefaultAsync());
     }
 
     private async Task InvalidateCurrentPageAsync()

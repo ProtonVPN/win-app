@@ -19,6 +19,7 @@
 
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
@@ -102,5 +103,12 @@ public partial class SidebarComponentViewModel : HostViewModelBase<ISidebarViewN
     public void Receive(LoggedInMessage message)
     {
         ExecuteOnUIThread(ClearSearch);
+    }
+
+    [RelayCommand]
+    private Task LeaveSearchModeAsync()
+    {
+        ClearSearch();
+        return ChildViewNavigator.NavigateToConnectionsViewAsync();
     }
 }
