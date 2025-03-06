@@ -25,38 +25,50 @@ using ProtonVPN.Common.Abstract;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
+using ProtonVPN.Logging.Contracts.Events.ProcessCommunicationLogs;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 
 namespace ProtonVPN.Core.Service
 {
-    public abstract class ServiceControllerCaller<Controller> where Controller : IServiceController
+    public class ServiceControllerCaller : IServiceControllerCaller
     {
         private readonly TimeSpan _callTimeout = TimeSpan.FromSeconds(3);
 
         private readonly ILogger _logger;
         private readonly IGrpcClient _grpcClient;
-        private readonly Lazy<IMonitoredVpnService> _monitoredVpnService;
+        private readonly Lazy<IServiceCommunicationErrorHandler> _serviceCommunicationErrorHandler;
 
-        protected ServiceControllerCaller(ILogger logger, IGrpcClient grpcClient, Lazy<IMonitoredVpnService> monitoredVpnService)
+        private readonly CancellationTokenSource _cancellationTokenSource = new();
+
+        public ServiceControllerCaller(ILogger logger, IGrpcClient grpcClient,
+            Lazy<IServiceCommunicationErrorHandler> serviceCommunicationErrorHandler)
         {
             _logger = logger;
             _grpcClient = grpcClient;
-            _monitoredVpnService = monitoredVpnService;
+            _serviceCommunicationErrorHandler = serviceCommunicationErrorHandler;
         }
 
-        protected async Task<Result<T>> Invoke<T>(Func<Controller, CancellationToken, Task<T>> serviceCall,
+        public Task<Result<Task>> InvokeAsync<TController>(Func<TController, CancellationToken, Task<Task>> serviceCall,
             [CallerMemberName] string memberName = "")
+            where TController : IServiceController
+        {
+            return InvokeAsync<TController, Task>(serviceCall, memberName);
+        }
+
+        public async Task<Result<TResult>> InvokeAsync<TController, TResult>(Func<TController, CancellationToken, Task<TResult>> serviceCall,
+            [CallerMemberName] string memberName = "")
+            where TController : IServiceController
         {
             int retryCount = 5;
-            while (true)
+            while (!_cancellationTokenSource.IsCancellationRequested)
             {
                 try
                 {
-                    Controller serviceController =
-                        await _grpcClient.GetServiceControllerOrThrowAsync<Controller>(TimeSpan.FromSeconds(1));
+                    TController serviceController =
+                        await _grpcClient.GetServiceControllerOrThrowAsync<TController>(TimeSpan.FromSeconds(1));
                     CancellationTokenSource cancellationTokenSource = new(_callTimeout);
-                    T result = await serviceCall(serviceController, cancellationTokenSource.Token);
+                    TResult result = await serviceCall(serviceController, cancellationTokenSource.Token);
                     if (result is Task task)
                     {
                         await task;
@@ -66,11 +78,14 @@ namespace ProtonVPN.Core.Service
                 }
                 catch (Exception e)
                 {
-                    await CheckForIssuesAsync();
-                    if (retryCount <= 0)
+                    if (!_cancellationTokenSource.IsCancellationRequested)
+                    {
+                        await _serviceCommunicationErrorHandler.Value.HandleAsync();
+                    }
+                    if (_cancellationTokenSource.IsCancellationRequested || retryCount <= 0)
                     {
                         LogError(e, memberName, isToRetry: false);
-                        return Result.Fail<T>(e.CombinedMessage());
+                        return Result.Fail<TResult>(e.CombinedMessage());
                     }
 
                     LogError(e, memberName, isToRetry: true);
@@ -78,22 +93,8 @@ namespace ProtonVPN.Core.Service
 
                 retryCount--;
             }
-        }
 
-        private async Task CheckForIssuesAsync()
-        {
-            await StartServiceIfStoppedAsync();
-            RecreateGrpcChannelIfPipeNameChanged();
-        }
-
-        private async Task StartServiceIfStoppedAsync()
-        {
-            await _monitoredVpnService.Value.StartIfNotRunningAsync();
-        }
-
-        private void RecreateGrpcChannelIfPipeNameChanged()
-        {
-            _grpcClient.CreateIfPipeNameChanged();
+            return Result.Fail<TResult>($"Can't send message because the {nameof(ServiceControllerCaller)} has been stopped.");
         }
 
         private void LogError(Exception exception, string callerMemberName, bool isToRetry)
@@ -102,6 +103,12 @@ namespace ProtonVPN.Core.Service
                 $"The invocation of '{callerMemberName}' on VPN Service channel returned an exception and will " +
                 (isToRetry ? string.Empty : "not ") +
                 $"be retried. Exception message: {exception.Message}");
+        }
+
+        public void Stop()
+        {
+            _logger.Info<ProcessCommunicationLog>($"The {nameof(ServiceControllerCaller)} has been stopped.");
+            _cancellationTokenSource.Cancel();
         }
     }
 }

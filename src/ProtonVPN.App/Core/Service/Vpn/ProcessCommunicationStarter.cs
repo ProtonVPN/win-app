@@ -19,6 +19,7 @@
  */
 
 using System;
+using ProtonVPN.Exiting;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
 using ProtonVPN.ProcessCommunication.Contracts;
@@ -30,14 +31,29 @@ public class ProcessCommunicationStarter : IProcessCommunicationStarter
     private readonly IGrpcClient _grpcClient;
     private readonly ILogger _logger;
     private readonly IClientControllerListener _clientControllerListener;
+    private readonly IServiceControllerCaller _serviceControllerCaller;
+    private readonly IAppExitInvoker _appExitInvoker;
 
     public ProcessCommunicationStarter(IGrpcClient grpcClient,
         ILogger logger,
-        IClientControllerListener clientControllerListener)
+        IClientControllerListener clientControllerListener,
+        IServiceControllerCaller serviceControllerCaller,
+        IAppExitInvoker appExitInvoker)
     {
         _grpcClient = grpcClient;
         _logger = logger;
         _clientControllerListener = clientControllerListener;
+        _serviceControllerCaller = serviceControllerCaller;
+        _appExitInvoker = appExitInvoker;
+
+        _grpcClient.InvokingAppRestart += OnInvokingAppRestart;
+    }
+
+    private void OnInvokingAppRestart(object sender, EventArgs e)
+    {
+        _clientControllerListener.Stop();
+        _serviceControllerCaller.Stop();
+        _appExitInvoker.Restart();
     }
 
     public void Start()

@@ -19,6 +19,7 @@
 
 using System;
 using System.ComponentModel;
+using System.ServiceProcess;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
@@ -74,6 +75,19 @@ namespace ProtonVPN.Common.OS.Services
             catch (Win32Exception e)
             {
                 _logger.Error<AppServiceLog>($"Failed to update path and args for {Name} service.", e);
+            }
+        }
+
+        public ServiceControllerStatus? GetStatus()
+        {
+            try
+            {
+                return _origin.GetStatus();
+            }
+            catch (Win32Exception e)
+            {
+                _logger.Error<AppServiceLog>($"Failed to get the service {Name} status.", e);
+                return null;
             }
         }
 

@@ -19,7 +19,7 @@
 
 using ProtonVPN.Account;
 using ProtonVPN.Config.Url;
-using ProtonVPN.Core.Servers;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.StatisticalEvents.Contracts;
 using ProtonVPN.Translations;
 
@@ -34,7 +34,7 @@ public class CountryUpsellModalViewModel : UpsellModalViewModel
     {
         get
         {
-            int totalCountries = ServerManager.GetCountries().Count;
+            int totalCountries = AppSettings.CountryCount;
             return string.Format(Translation.GetPlural("Upsell_Country_Bullet1", totalCountries), totalCountries);
         }
     }
@@ -48,11 +48,11 @@ public class CountryUpsellModalViewModel : UpsellModalViewModel
     protected override ModalSources ModalSource { get; } = ModalSources.Countries;
 
     public CountryUpsellModalViewModel(ISubscriptionManager subscriptionManager,
-        ServerManager serverManager,
+        IAppSettings appSettings,
         IActiveUrls urls,
         IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender,
         IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender)
-        : base(subscriptionManager, serverManager, urls, upsellUpgradeAttemptStatisticalEventSender,
+        : base(subscriptionManager, appSettings, urls, upsellUpgradeAttemptStatisticalEventSender,
               upsellDisplayStatisticalEventSender)
     {
     }

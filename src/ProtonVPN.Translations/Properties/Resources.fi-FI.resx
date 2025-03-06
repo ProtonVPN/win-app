@@ -490,7 +490,7 @@
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_btn_Cancel">
-    <value>Keskeytä</value>
+    <value>Peruuta</value>
     <comment>The text on cancel button in Connecting overlay of main app window (cancels connection attempt)</comment>
   </data>
   <data name="Connecting_btn_TryAgain">
@@ -3145,7 +3145,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Parannettu nopeus ja vakaus, kun yhteys on muodostettu kaukana sijaitseviin palvelimiin.</value>
   </data>
   <data name="Upsell_Accelerator_Title">
-    <value>Selaa vieläkin korkeammilla nopeuksilla (jopa 10 Gbps)</value>
+    <value>Selaa vieläkin korkeammilla nopeuksilla (jopa 10 Gbit/s)</value>
   </data>
   <data name="Upsell_Countries_AccessGeoblockedContent">
     <value>Käytä alueellisesti estettyä sisältöä</value>
@@ -3174,7 +3174,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>Yhdistä {0} maahan</value>
   </data>
   <data name="Upsell_Country_Bullet2">
-    <value>Korkeammat nopeudet (10 Gbps)</value>
+    <value>Korkeammat nopeudet (10 Gbit/s)</value>
   </data>
   <data name="Upsell_Country_Bullet3">
     <value>Suoratoista suosikkielokuviasi</value>

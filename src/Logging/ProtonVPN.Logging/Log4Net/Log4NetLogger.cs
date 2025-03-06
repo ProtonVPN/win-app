@@ -26,6 +26,8 @@ namespace ProtonVPN.Logging.Log4Net
 {
     public class Log4NetLogger : Log4NetLoggerInitializer, ILogger
     {
+        private const int MAX_RECENT_LOG_LINES = 100;
+
         private readonly IList<string> _recentLogs = new List<string>();
 
         public Log4NetLogger(ILoggerConfiguration loggerConfiguration)
@@ -150,7 +152,7 @@ namespace ProtonVPN.Logging.Log4Net
             }
             _recentLogs.Add(message);
 
-            while (_recentLogs.Count > 100)
+            while (_recentLogs.Count > MAX_RECENT_LOG_LINES)
             {
                 _recentLogs.RemoveAt(0);
             }

@@ -29,7 +29,6 @@ using ProtonVPN.Common.Configuration;
 using ProtonVPN.Common.Extensions;
 using ProtonVPN.Common.Networking;
 using ProtonVPN.Common.Vpn;
-using ProtonVPN.Core;
 using ProtonVPN.Core.Auth;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Servers.Models;
@@ -37,6 +36,7 @@ using ProtonVPN.Core.Service.Vpn;
 using ProtonVPN.Core.Settings;
 using ProtonVPN.Core.Vpn;
 using ProtonVPN.Core.Windows.Popups;
+using ProtonVPN.Exiting;
 using ProtonVPN.Notifications;
 using ProtonVPN.Sidebar;
 using ProtonVPN.StatisticalEvents.Contracts;
@@ -379,7 +379,7 @@ namespace ProtonVPN.Windows.Popups.DeveloperTools
         private void DisableTlsPinningAction()
         {
             _configWriter.Write(_config.DisableTlsPinning());
-            _appExitInvoker.Exit();
+            _appExitInvoker.Kill();
         }
     }
 }

@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.ServiceProcess;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Abstract;
 
@@ -29,6 +30,7 @@ namespace ProtonVPN.Core.Service
         bool IsEnabled();
         void Enable();
 
+        ServiceControllerStatus? GetStatus();
         bool IsRunning();
         Task<Result> StartAsync();
         Task<Result> StopAsync();

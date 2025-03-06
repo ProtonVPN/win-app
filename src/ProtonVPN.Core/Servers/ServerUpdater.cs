@@ -39,7 +39,6 @@ namespace ProtonVPN.Core.Servers
         private readonly IApiServers _apiServers;
         private readonly IServersFileStorage _serversFileStorage;
         private readonly SingleAction _updateAction;
-        private readonly IAppSettings _appSettings;
 
         private bool _firstTime = true;
 
@@ -49,13 +48,11 @@ namespace ProtonVPN.Core.Servers
             ServerManager serverManager,
             IApiServers apiServers,
             IServersFileStorage serversFileStorage,
-            ServerLoadUpdater serverLoadUpdater,
-            IAppSettings appSettings)
+            ServerLoadUpdater serverLoadUpdater)
         {
             _serverManager = serverManager;
             _apiServers = apiServers;
             _serversFileStorage = serversFileStorage;
-            _appSettings = appSettings;
 
             _timer = scheduler.Timer();
             _timer.Interval = appConfig.ServerUpdateInterval.RandomizedWithDeviation(0.2);

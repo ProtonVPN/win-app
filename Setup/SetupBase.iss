@@ -83,13 +83,11 @@ Source: "..\{#SourcePath}\*.deps.json"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\{#SourcePath}\*.dll.config"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\{#SourcePath}\Resources\ProtonVPN.InstallActions.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 
-Source: "..\{#SourcePath}\en-US\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\en-US"; Flags: signonce;
 Source: "..\{#SourcePath}\cs-CZ\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\cs-CZ"; Flags: signonce;
 Source: "..\{#SourcePath}\de-DE\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\de-DE"; Flags: signonce;
 Source: "..\{#SourcePath}\fa-IR\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\fa-IR"; Flags: signonce;
 Source: "..\{#SourcePath}\fr-FR\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\fr-FR"; Flags: signonce;
 Source: "..\{#SourcePath}\nl-NL\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\nl-NL"; Flags: signonce;
-Source: "..\{#SourcePath}\hr-HR\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\hr-HR"; Flags: signonce;
 Source: "..\{#SourcePath}\id-ID\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\id-ID"; Flags: signonce;
 Source: "..\{#SourcePath}\it-IT\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\it-IT"; Flags: signonce;
 Source: "..\{#SourcePath}\pl-PL\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\pl-PL"; Flags: signonce;
@@ -110,7 +108,6 @@ Source: "..\{#SourcePath}\zh-TW\ProtonVPN.Translations.resources.dll"; DestDir: 
 Source: "..\{#SourcePath}\sv-SE\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\sv-SE"; Flags: signonce;
 Source: "..\{#SourcePath}\ja-JP\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\ja-JP"; Flags: signonce;
 Source: "..\{#SourcePath}\sk-SK\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\sk-SK"; Flags: signonce;
-Source: "..\{#SourcePath}\nn-NO\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\nn-NO"; Flags: signonce;
 Source: "..\{#SourcePath}\nb-NO\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\nb-NO"; Flags: signonce;
 Source: "..\{#SourcePath}\sl-SI\ProtonVPN.Translations.resources.dll"; DestDir: "{app}\{#VersionFolder}\sl-SI"; Flags: signonce;
 
@@ -354,7 +351,7 @@ begin
     ProductDriveCheckBox.Left := ScaleX(Padding);
     ProductDriveCheckBox.Width := ScaleX(14);
     ProductDriveCheckBox.Height := ScaleY(14);
-    ProductDriveCheckBox.Checked := not IsProductDriveInstalled and not IsArm64; // Drive doesn't work on arm64
+    ProductDriveCheckBox.Checked := not IsProductDriveInstalled;
 
     ProductDriveImage := TBitmapImage.Create(ProductDrivePanel);
     ProductDriveImage.Parent := ProductDrivePanel;
@@ -386,8 +383,7 @@ begin
     ProductDrivePanelOverlay.Transparent := True;
     ProductDrivePanelOverlay.OnClick := @OnProductDriveClick;
 
-    // Drive doesn't work on arm64
-    if IsProductDriveInstalled or IsArm64 then begin
+    if IsProductDriveInstalled then begin
       ProductDrivePanel.Visible := False;
       ProductDrivePanel.Height := 0;
       ProductPadding := 0;

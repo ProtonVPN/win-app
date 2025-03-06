@@ -1649,7 +1649,7 @@
     <value>어플리케이션을 종료하면 현재 VPN 연결이 끊어집니다.</value>
   </data>
   <data name="Dialogs_Exit_msg_KillSwitchOn">
-    <value>킬 스위치는 당신의 데이터가 유출되는 것을 방지하기 위해 모든 연결을 차단합니다. 어플리케이션을 종료하면 킬 스위치가 비활성화됩니다.</value>
+    <value>킬 스위치는 데이터가 유출되는 것을 방지하기 위해 모든 연결을 차단합니다. 어플리케이션을 종료하면 킬 스위치가 비활성화됩니다.</value>
   </data>
   <data name="Dialogs_Exit_msg_PermanentKillSwitch">
     <value>영구 킬 스위치가 활성화되었습니다. 어플리케이션을 종료하면 다시 Proton VPN에 연결될 때까지 모든 연결이 차단됩니다.</value>
@@ -1725,7 +1725,7 @@
     <value>포트포워딩을 활성화할까요?</value>
   </data>
   <data name="Dialogs_Proxy_msg_ProxyDetected">
-    <value>Proton VPN이 로컬 네트워크에 설정된 프록시 서버를 감지했습니다. Proton VPN은 이 프록시를 지나가는 트래픽을 보호할 수 없습니다. 이것은 당신의 연결이 기대한 만큼 완전히 보호받지 못한다는 것을 의미합니다.</value>
+    <value>Proton VPN이 로컬 네트워크에 설정된 프록시 서버를 감지했습니다. Proton VPN은 이 프록시를 지나가는 트래픽을 보호할 수 없습니다. 이는 연결이 기대한 만큼 완전히 보호받지 못한다는 것을 의미합니다.</value>
     <comment>The text displayed in modal window when the app detects system proxy is turned on</comment>
   </data>
   <data name="Dialogs_Rebranding_Subtitle_new_plans">
@@ -1796,11 +1796,11 @@
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_GovBlock">
-    <value>&lt;Bold&gt;정부 차단&lt;/Bold&gt; - 당신의 국가에서 Proton에 대한 접근을 차단하고 있을 수 있습니다. Proton에 접근하기 위해 &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt;를 사용해 보세요.</value>
+    <value>&lt;Bold&gt;정부 차단&lt;/Bold&gt; - 현재 거주 국가에서 Proton에 대한 접근을 차단하고 있을 수 있습니다. Proton에 접근하기 위해 &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt;를 사용해 보세요.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_GovBlockDoH">
-    <value>&lt;Bold&gt;정부 차단&lt;/Bold&gt; - 당신의 국가에서 Proton에 대한 접근을 차단하고 있을 수 있습니다. Proton에 접근하기 위해 &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt;를 사용해 보세요.</value>
+    <value>&lt;Bold&gt;정부 차단&lt;/Bold&gt; - 현재 거주 국가에서 Proton에 대한 접근을 차단하고 있을 수 있습니다. Proton에 접근하기 위해 &lt;Hyperlink Command="{Binding TorCommand}"&gt;Tor&lt;/Hyperlink&gt;를 사용해 보세요.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_IspProblem">
@@ -2452,7 +2452,7 @@
     <value>업그레이드</value>
   </data>
   <data name="QuickSettings_lbl_KillSwitchInfo">
-    <value>VPN 연결이 해제된 경우 IP 노출을 막기 위해 인터넷을 끕니다.</value>
+    <value>VPN 연결이 해제된 경우 IP 노출을 방지하기 위해 인터넷을 비활성화합니다.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldInfo">
     <value>광고와 멀웨어 없이 인터넷을 탐색합니다.</value>
@@ -2473,7 +2473,7 @@
     <value>트래커가 멈춤</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
-    <value>트래커는 당신의 웹 활동에 대한 정보를 수집, 저장 및 판매하는 제3자 웹사이트입니다.</value>
+    <value>트래커는 사용자의 웹 활동에 대한 정보를 수집, 저장 및 판매하는 제3자 웹사이트입니다.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldWarning">
     <value>웹사이트가 로드되지 않는다면, NetShield를 비활성화해 보세요</value>
@@ -2491,7 +2491,7 @@
     <value>Secure Core</value>
   </data>
   <data name="Secure_Servers_lbl_Other">
-    <value>{0} 보안 서버</value>
+    <value>{0}개 보안 서버</value>
   </data>
   <data name="ServerType_val_B2B">
     <value>게이트웨이</value>
@@ -2568,7 +2568,7 @@
     <comment>The heading of Secure Core server info displayed in Server Load popup. The {0} is a placeholder for entry country, {1} - exit country. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_UpsellBanner">
-    <value>전세계 커버리지를 VPN Plus로 누리세요</value>
+    <value>전세계 커버리지를 VPN Plus로 누려보세요</value>
   </data>
   <data name="Servers_UpsellBanner_NotTheCountryYouWanted">
     <value>원하는 국가가 아닌가요? 업그레이드해서 모든 서버를 선택할 수 있어요</value>
@@ -3012,7 +3012,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>스트리밍 서비스</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Streaming_Desc">
-    <value>플러스 서버는 전 세계 어디서나 스트리밍 서비스 (넷플릭스, 디즈니+, 등) 을 지원합니다.</value>
+    <value>Plus 서버는 전 세계 어디서나 스트리밍 서비스 (Netflix, Disney+, 등) 을 지원합니다.</value>
   </data>
   <data name="Sidebar_FeaturesPopup_Title">
     <value>기능</value>
@@ -3248,7 +3248,7 @@ This setting instructs the Proton VPN to start automatically when the user logs 
     <value>자주 연결하는 연결에 더 빠르게 접근하세요.</value>
   </data>
   <data name="Upsell_SecureCore_ExtraEncryption">
-    <value>VPN 연결에 암호화 계층 추가</value>
+    <value>VPN 연결에 암호화 계층을 추가하세요</value>
   </data>
   <data name="Upsell_SecureCore_NetworkAttacks">
     <value>네트워크 공격으로부터의 보호</value>

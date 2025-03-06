@@ -379,12 +379,12 @@
     <comment>The label in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_IncludeLogsInfo">
-    <value>Dengan menyertakan informasi berikut, tim kami akan dapat mengidentifikasi masalah yang ada dan menyediakan solusi kepada Anda secara lebih tepat dan lebih cepat:
+    <value>Dengan menyertakan informasi berikut, tim kami akan dapat mengidentifikasi masalah Anda beserta solusinya secara lebih tepat dan lebih cepat:
 • Log instalasi driver
-• Daftar aplikasi yang terinstal
+• Daftar aplikasi yang terpasang
 • Log aplikasi Proton VPN dan layanan Proton VPN
 • Daftar adaptor jaringan
-• Informasi tabel pengalihan</value>
+• Informasi tabel perutean</value>
     <comment>The text inside info tooltip in Issue Report window</comment>
   </data>
   <data name="BugReport_lbl_LogsDescription">
@@ -400,7 +400,7 @@
     <value>Versi Proton VPN ini mungkin telah mengatasi masalah Anda!</value>
   </data>
   <data name="BugReport_lbl_QuickSolutions">
-    <value>Solusi instan</value>
+    <value>Solusi kilat</value>
   </data>
   <data name="BugReport_lbl_QuickSolutionsInfo">
     <value>Tips-tips berikut dapat membantu Anda untuk menyelesaikan masalah yang Anda hadapi dengan cepat.</value>
@@ -1537,12 +1537,12 @@
     <value>Langkah ini akan memakan waktu beberapa menit. Setelahnya, Anda akan dapat masuk dan melindungi seluruh perangkat Anda.</value>
   </data>
   <data name="Dialogs_AssignVpnConnections_ttl_Thanks">
-    <value>Terima kasih karena telah meningkatkan paket Anda</value>
+    <value>Terima kasih telah meningkatkan akun</value>
     <comment>The title to thank the user for upgrading to Professional/Visionary plan.</comment>
   </data>
   <data name="Dialogs_Bfe_msg_info">
-    <value>Salah satu layanan yang dibutuhkan oleh Proton VPN (Base Filtering Engine) sedang tidak aktif.&lt;LineBreak/&gt;
-Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="petunjuk berikut"/&gt;&lt;/Hyperlink&gt; untuk mengaktifkan layanan tersebut dan coba lagi.</value>
+    <value>Salah satu layanan yang dibutuhkan oleh Proton VPN (Base Filtering Engine) sedang tidak berjalan.&lt;LineBreak/&gt;
+Silakan ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="petunjuk berikut"/&gt;&lt;/Hyperlink&gt; untuk mengaktifkan kembali layanan ini dan coba lagi.</value>
     <comment>The text on Base Filtering Engine dialog window</comment>
   </data>
   <data name="Dialogs_Delinquency_GoToBilling">
@@ -2673,7 +2673,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <value>Driver Jaringan OpenVPN</value>
   </data>
   <data name="Settings_Advanced_lbl_NetworkDriver_info">
-    <value>Driver jaringan dapat memengaruhi koneksi dan kecepatan Anda. Adapter TUN yang baru menyediakan kecepatan yang lebih tinggi, namun apabila koneksi Anda bermasalah, kembalilah ke adapter TAP yang lama.</value>
+    <value>Driver jaringan dapat memengaruhi koneksi dan kecepatan Anda. Adaptor TUN yang baru menyediakan kecepatan yang lebih tinggi dan akan secara otomatis berbalik ke adapter TAP apabila Anda menemui masalah konektivitas.</value>
   </data>
   <data name="Settings_Advanced_lbl_NonStandardPorts">
     <value>Port non-standar</value>
@@ -2684,10 +2684,10 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The description of Non-standard ports setting displayed in the tooltip of ( i ) image next to the label for Allow non-standard ports toggle switch in Advanced tab of Settings window</comment>
   </data>
   <data name="Settings_Advanced_lbl_OpenVpnTap">
-    <value>Adapter TAP</value>
+    <value>Adaptor TAP</value>
   </data>
   <data name="Settings_Advanced_lbl_OpenVpnTun">
-    <value>Adapter TUN</value>
+    <value>Adaptor TUN</value>
   </data>
   <data name="Settings_Advanced_lbl_PortForwarding">
     <value>Penerusan Port</value>
@@ -2763,7 +2763,7 @@ Mohon ikuti &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text
     <comment>The label for Protocol combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_DefaultProtocol_Info">
-    <value>Aktifkan Smart Protocol agar Anda dapat terhubung ke internet melalui protokol dan port yang memiliki kualitas sambungan terbaik secara otomatis.</value>
+    <value>Aktifkan Smart Protocol untuk menggunakan protokol dan port yang menjunjung kualitas sambungan terbaik secara otomatis.</value>
     <comment>The description of Default Protocol settings displayed in the tooltip of ( i ) image next to the label for Default Protocol combo box in Connection tab of Settings window</comment>
   </data>
   <data name="Settings_Connection_lbl_ModerateNat">

@@ -94,6 +94,7 @@ namespace ProtonVPN.UI.Tests.Tests
 
         [Test]
         [Category("ARM")]
+        [Ignore("Zero assigned connections user is broken on BE. Remove this when fixed.")]
         public void LoginWithZeroAssignedConnections()
         {
             _loginWindow.EnterCredentials(TestUserData.GetZeroAssignedConnectionUser());

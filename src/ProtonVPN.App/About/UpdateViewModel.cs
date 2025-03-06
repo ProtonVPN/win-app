@@ -39,13 +39,12 @@ using ProtonVPN.Core.Vpn;
 using ProtonVPN.Translations;
 using ProtonVPN.Update;
 using ProtonVPN.Update.Contracts;
+using ProtonVPN.Exiting;
 
 namespace ProtonVPN.About
 {
     public class UpdateViewModel : ViewModel, IUpdateStateAware, IVpnStateAware
     {
-        private const int APP_EXIT_TIMEOUT_IN_SECONDS = 3;
-
         private readonly ILogger _logger;
         private readonly IDialogs _dialogs;
         private readonly IOsProcesses _osProcesses;
@@ -53,6 +52,7 @@ namespace ProtonVPN.About
         private readonly IAppSettings _appSettings;
         private readonly ISettingsServiceClientManager _settingsServiceClientManager;
         private readonly IConfiguration _appConfig;
+        private readonly IAppExitInvoker _appExitInvoker;
 
         private UpdateStateChangedEventArgs _updateStateChangedEventArgs;
         private VpnStatus _vpnStatus;
@@ -64,7 +64,8 @@ namespace ProtonVPN.About
             IModals modals,
             IAppSettings appSettings,
             ISettingsServiceClientManager settingsServiceClientManager,
-            IConfiguration appConfig)
+            IConfiguration appConfig,
+            IAppExitInvoker appExitInvoker)
         {
             _logger = logger;
             _dialogs = dialogs;
@@ -73,6 +74,7 @@ namespace ProtonVPN.About
             _appSettings = appSettings;
             _settingsServiceClientManager = settingsServiceClientManager;
             _appConfig = appConfig;
+            _appExitInvoker = appExitInvoker;
 
             OpenAboutCommand = new RelayCommand(OpenAbout);
         }
@@ -159,20 +161,13 @@ namespace ProtonVPN.About
         {
             if (Status == AppUpdateStatus.AutoUpdated)
             {
-                RestartApp();
+                _logger.Info<AppUpdateLog>("Restarting app after auto update due to manual request.");
+                _appExitInvoker.Restart();
             }
             else
             {
                 await UpdateManuallyAsync();
             }
-        }
-
-        private void RestartApp()
-        {
-            string cmd = $"/c Timeout /t {APP_EXIT_TIMEOUT_IN_SECONDS} >nul & \"{_appConfig.AppLauncherExePath}\"";
-            using IOsProcess process = _osProcesses.CommandLineProcess(cmd);
-            process.Start();
-            ExitApp();
         }
 
         private async Task UpdateManuallyAsync()
@@ -194,7 +189,7 @@ namespace ProtonVPN.About
                     _updateStateChangedEventArgs.FilePath,
                     _updateStateChangedEventArgs.FileArguments).Start();
 
-                ExitApp();
+                _appExitInvoker.Close();
             }
             catch (System.ComponentModel.Win32Exception)
             {
@@ -206,11 +201,6 @@ namespace ProtonVPN.About
                 // Privileges were not granted
                 Updating = false;
             }
-        }
-
-        private void ExitApp()
-        {
-            Application.Current.Shutdown();
         }
 
         private string GetUpdateFileName()

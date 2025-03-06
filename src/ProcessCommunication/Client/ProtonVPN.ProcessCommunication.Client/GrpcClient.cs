@@ -19,6 +19,8 @@
 
 using Grpc.Net.Client;
 using ProtoBuf.Grpc.Client;
+using ProtonVPN.Core.Settings;
+using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ProcessCommunicationLogs;
 using ProtonVPN.ProcessCommunication.Contracts;
@@ -28,8 +30,10 @@ namespace ProtonVPN.ProcessCommunication.Client;
 
 public class GrpcClient : IGrpcClient
 {
-    private readonly ILogger _logger;
     private readonly INamedPipesConnectionFactory _namedPipesConnectionFactory;
+    private readonly ILogger _logger;
+    private readonly IIssueReporter _issueReporter;
+    private readonly IAppSettings _appSettings;
     private readonly object _lock = new();
     private GrpcChannel _channel;
 
@@ -38,10 +42,17 @@ public class GrpcClient : IGrpcClient
     public IVpnController VpnController { get; private set; }
     public IUiController UiController { get; private set; }
 
-    public GrpcClient(ILogger logger, INamedPipesConnectionFactory namedPipesConnectionFactory)
+    public event EventHandler InvokingAppRestart;
+
+    public GrpcClient(INamedPipesConnectionFactory namedPipesConnectionFactory,
+        ILogger logger,
+        IIssueReporter issueReporter,
+        IAppSettings appSettings)
     {
-        _logger = logger;
         _namedPipesConnectionFactory = namedPipesConnectionFactory;
+        _logger = logger;
+        _issueReporter = issueReporter;
+        _appSettings = appSettings;
     }
 
     public void Stop()
@@ -83,7 +94,7 @@ public class GrpcClient : IGrpcClient
 
         return GrpcChannel.ForAddress("http://localhost", new GrpcChannelOptions
         {
-            HttpHandler = socketsHttpHandler
+            HttpHandler = new ResponseHandler(_logger, _issueReporter, _appSettings, InvokingAppRestart, socketsHttpHandler)
         });
     }
 

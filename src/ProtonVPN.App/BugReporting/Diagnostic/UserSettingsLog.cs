@@ -17,9 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
 using ProtonVPN.Common.Configuration;
@@ -81,6 +83,7 @@ namespace ProtonVPN.BugReporting.Diagnostic
             yield return new(nameof(IAppSettings.Ipv6LeakProtection), _appSettings.Ipv6LeakProtection);
             yield return new(nameof(IAppSettings.CustomDnsEnabled), _appSettings.CustomDnsEnabled);
             yield return new(nameof(IAppSettings.SidebarMode), _appSettings.SidebarMode);
+            yield return new(nameof(IAppSettings.ModerateNat), _appSettings.ModerateNat);
             yield return new(nameof(IAppSettings.WelcomeModalShown), _appSettings.WelcomeModalShown);
             yield return new(nameof(IAppSettings.OnboardingStep), _appSettings.OnboardingStep);
             yield return new(nameof(IAppSettings.AppStartCounter), _appSettings.AppStartCounter);
@@ -109,6 +112,8 @@ namespace ProtonVPN.BugReporting.Diagnostic
             yield return new(nameof(IAppSettings.OpenVpnTcpPorts), JsonConvert.SerializeObject(_appSettings.OpenVpnTcpPorts));
             yield return new(nameof(IAppSettings.OpenVpnUdpPorts), JsonConvert.SerializeObject(_appSettings.OpenVpnUdpPorts));
             yield return new(nameof(IAppSettings.WireGuardPorts), JsonConvert.SerializeObject(_appSettings.WireGuardPorts));
+            yield return new(nameof(IAppSettings.WireGuardTcpPorts), JsonConvert.SerializeObject(_appSettings.WireGuardTcpPorts));
+            yield return new(nameof(IAppSettings.WireGuardTlsPorts), JsonConvert.SerializeObject(_appSettings.WireGuardTlsPorts));
             yield return new(nameof(IAppSettings.FeatureNetShieldEnabled), _appSettings.FeatureNetShieldEnabled);
             yield return new(nameof(IAppSettings.FeatureMaintenanceTrackerEnabled), _appSettings.FeatureMaintenanceTrackerEnabled);
             yield return new(nameof(IAppSettings.FeaturePollNotificationApiEnabled), _appSettings.FeaturePollNotificationApiEnabled);
@@ -124,8 +129,25 @@ namespace ProtonVPN.BugReporting.Diagnostic
             yield return new(nameof(IAppSettings.AuthenticationCertificateRefreshUtcDate), _appSettings.AuthenticationCertificateRefreshUtcDate);
             yield return new(nameof(IAppSettings.AuthenticationCertificateRequestUtcDate), _appSettings.AuthenticationCertificateRequestUtcDate);
             yield return new(nameof(IAppSettings.HardwareAccelerationEnabled), _appSettings.HardwareAccelerationEnabled);
-            yield return new(nameof(IAppSettings.ModerateNat), _appSettings.ModerateNat);
+            yield return new(nameof(IAppSettings.IsToShowRebrandingPopup), _appSettings.IsToShowRebrandingPopup);
+            yield return new(nameof(IAppSettings.DnsCache), JsonConvert.SerializeObject(_appSettings.DnsCache));
+            yield return new(nameof(IAppSettings.FeatureNetShieldStatsEnabled), _appSettings.FeatureNetShieldStatsEnabled);
+            yield return new(nameof(IAppSettings.ChangeServerAttempts), _appSettings.ChangeServerAttempts);
+            yield return new(nameof(IAppSettings.NextChangeServerTimeUtc), _appSettings.NextChangeServerTimeUtc);
+            yield return new(nameof(IAppSettings.ChangeServerAttemptLimit), _appSettings.ChangeServerAttemptLimit);
+            yield return new(nameof(IAppSettings.ChangeServerShortDelayInSeconds), _appSettings.ChangeServerShortDelayInSeconds);
+            yield return new(nameof(IAppSettings.ChangeServerLongDelayInSeconds), _appSettings.ChangeServerLongDelayInSeconds);
+            yield return new(nameof(IAppSettings.IsTelemetryGloballyEnabled), _appSettings.IsTelemetryGloballyEnabled);
             yield return new(nameof(IAppSettings.LogicalsLastModifiedDate), _appSettings.LogicalsLastModifiedDate);
+            yield return new(nameof(IAppSettings.DisabledSmartProtocols), EnumArrayToString(_appSettings.DisabledSmartProtocols));
+            yield return new(nameof(IAppSettings.LastProcessVersionMismatchRestartVersions), _appSettings.LastProcessVersionMismatchRestartVersions);
+            yield return new(nameof(IAppSettings.LastProcessVersionMismatchRestartUtcDate), _appSettings.LastProcessVersionMismatchRestartUtcDate);
+        }
+
+        private string EnumArrayToString<T>(T[]? enums)
+            where T : Enum
+        {
+            return $"[{string.Join(',', enums?.Select(e => e.ToString()) ?? [])}]";
         }
 
         private string ConvertToReadableValue(dynamic value)

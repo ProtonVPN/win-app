@@ -19,7 +19,7 @@
 
 using ProtonVPN.Account;
 using ProtonVPN.Config.Url;
-using ProtonVPN.Core.Servers;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Modals.Upsell
@@ -28,10 +28,11 @@ namespace ProtonVPN.Modals.Upsell
     {
         protected override ModalSources ModalSource { get; } = ModalSources.NetShield;
 
-        public NetshieldUpsellModalViewModel(ISubscriptionManager subscriptionManager, ServerManager serverManager, IActiveUrls urls,
+        public NetshieldUpsellModalViewModel(ISubscriptionManager subscriptionManager,
+            IAppSettings appSettings, IActiveUrls urls,
             IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender,
             IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender)
-            : base(subscriptionManager, serverManager, urls, upsellUpgradeAttemptStatisticalEventSender,
+            : base(subscriptionManager, appSettings, urls, upsellUpgradeAttemptStatisticalEventSender,
                   upsellDisplayStatisticalEventSender)
         {
         }

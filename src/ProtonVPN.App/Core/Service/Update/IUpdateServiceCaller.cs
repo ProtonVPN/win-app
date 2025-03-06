@@ -17,15 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
+using System.Threading.Tasks;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Update;
 
-namespace ProtonVPN.Core
+namespace ProtonVPN.Core.Service.Update
 {
-    public class AppExitInvoker : IAppExitInvoker
+    public interface IUpdateServiceCaller
     {
-        public void Exit(int code = 0)
-        {
-            Environment.Exit(code);
-        }
+        Task CheckForUpdates(UpdateSettingsIpcEntity updateSettingsIpcEntity);
+        Task StartAutoUpdate();
     }
 }

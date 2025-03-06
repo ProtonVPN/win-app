@@ -42,7 +42,7 @@ namespace ProtonVPN.Update
         private readonly IConfiguration _appConfig;
         private readonly IAppSettings _appSettings;
         private readonly IEntityMapper _entityMapper;
-        private readonly UpdateServiceCaller _updateServiceCaller;
+        private readonly IUpdateServiceCaller _updateServiceCaller;
         private readonly DispatcherTimer _timer;
 
         private bool _manualCheck;
@@ -57,7 +57,7 @@ namespace ProtonVPN.Update
             IConfiguration appConfig,
             IAppSettings appSettings,
             IEntityMapper entityMapper,
-            UpdateServiceCaller updateServiceCaller,
+            IUpdateServiceCaller updateServiceCaller,
             IClientControllerEventHandler clientControllerEventHandler)
         {
             _scheduler = scheduler;

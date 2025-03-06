@@ -23,4 +23,6 @@ public interface IGrpcServer
 {
     void CreateAndStart();
     Task StopAsync();
+
+    event EventHandler InvokingServiceStop;
 }

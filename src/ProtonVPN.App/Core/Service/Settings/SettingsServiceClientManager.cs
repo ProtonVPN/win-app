@@ -31,12 +31,12 @@ namespace ProtonVPN.Core.Service.Settings
     public class SettingsServiceClientManager : ISettingsServiceClientManager, ISettingsAware
     {
         private readonly ILogger _logger;
-        private readonly VpnServiceCaller _vpnServiceCaller;
+        private readonly IVpnServiceCaller _vpnServiceCaller;
         private readonly MainSettingsProvider _settingsContractProvider;
 
         public SettingsServiceClientManager(
             ILogger logger,
-            VpnServiceCaller vpnServiceCaller,
+            IVpnServiceCaller vpnServiceCaller,
             MainSettingsProvider settingsContractProvider)
         {
             _logger = logger;

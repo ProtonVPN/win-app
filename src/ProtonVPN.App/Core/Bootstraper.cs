@@ -67,6 +67,7 @@ using ProtonVPN.Core.Vpn;
 using ProtonVPN.Dns.Installers;
 using ProtonVPN.EntityMapping.Installers;
 using ProtonVPN.ErrorHandling;
+using ProtonVPN.Exiting;
 using ProtonVPN.HumanVerification.Installers;
 using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.Logging.Contracts;
@@ -364,9 +365,10 @@ namespace ProtonVPN.Core
 
             userAuthenticator.UserLoggedIn += async (_, e) =>
             {
-                await Resolve<IUserLocationService>().Update();
-                await Resolve<IServerUpdater>().Update();
                 await Resolve<IClientConfig>().Update();
+                await Resolve<IUserLocationService>().Update();
+                await Resolve<IServerCountUpdater>().UpdateAsync();
+                await Resolve<IServerUpdater>().Update();
                 await Resolve<StreamingServicesUpdater>().Update();
 
                 GuestHoleState guestHoleState = Resolve<GuestHoleState>();
@@ -638,7 +640,7 @@ namespace ProtonVPN.Core
             if (result.Failure && result.Exception != null)
             {
                 Resolve<ILogger>().Error<AppServiceStartFailedLog>($"Failed to start {service.Name} service.", result.Exception);
-                FatalErrorHandler fatalErrorHandler = new();
+                FatalErrorHandler fatalErrorHandler = new(Resolve<IAppExitInvoker>());
                 fatalErrorHandler.Exit("Failed to start ProtonVPN Service.");
             }
         }

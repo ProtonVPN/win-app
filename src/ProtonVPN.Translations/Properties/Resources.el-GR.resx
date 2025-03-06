@@ -210,7 +210,7 @@
     <value>σε &lt;Bold&gt;{0}&lt;/Bold&gt; χώρες</value>
   </data>
   <data name="Account_lbl_CurrentPlan">
-    <value>Τρέχον πρόγραμμα</value>
+    <value>Τρέχον πλάνο</value>
   </data>
   <data name="Account_lbl_Device_One">
     <value>Συσκευή</value>
@@ -1565,7 +1565,7 @@
     <comment>The "go to billing website" button text in the Delinquency window</comment>
   </data>
   <data name="Dialogs_Delinquency_Reconnected_Subtitle">
-    <value>Θα μπορείτε να αποκτήσετε ξανά πρόσβαση σε premium λειτουργίες μετά την πληρωμή αυτών. Προς το παρόν, επανασυνδεόμαστε στον ταχύτερο διαθέσιμο διακομιστή δωρεάν προγράμματος.</value>
+    <value>Θα μπορείτε να αποκτήσετε ξανά πρόσβαση σε premium λειτουργίες μετά την πληρωμή αυτών. Προς το παρόν, επανασυνδεόμαστε στον ταχύτερο διαθέσιμο διακομιστή δωρεάν πλάνου.</value>
     <comment>The subtitle of the Delinquency window when the user is reconnected</comment>
   </data>
   <data name="Dialogs_Delinquency_Subtitle">
@@ -1782,7 +1782,7 @@
     <comment>The subtitle of the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Title">
-    <value>Το πρόγραμμά σας συνδρομής VPN έχει λήξει.</value>
+    <value>Το πλάνο σας συνδρομής VPN έχει λήξει.</value>
     <comment>The title of the Subscription Expired window</comment>
   </data>
   <data name="Dialogs_SubscriptionExpired_Upgrade">
@@ -2110,7 +2110,7 @@
     <comment>The description of the Delinquency notification</comment>
   </data>
   <data name="Notifications_Delinquency_Reconnected_Description">
-    <value>Θα μπορείτε να αποκτήσετε ξανά πρόσβαση σε premium λειτουργίες μετά την πληρωμή αυτών. Προς το παρόν, επανασυνδεόμαστε στον ταχύτερο διαθέσιμο διακομιστή δωρεάν προγράμματος.</value>
+    <value>Θα μπορείτε να αποκτήσετε ξανά πρόσβαση σε premium λειτουργίες μετά την πληρωμή αυτών. Προς το παρόν, επανασυνδεόμαστε στον ταχύτερο διαθέσιμο διακομιστή δωρεάν πλάνου.</value>
     <comment>The description of the Delinquency notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_Delinquency_Title">
@@ -2154,7 +2154,7 @@
     <comment>The description of the Subscription Expired notification when the user is reconnected</comment>
   </data>
   <data name="Notifications_SubscriptionExpired_Title">
-    <value>Το πρόγραμμά σας συνδρομής VPN έχει λήξει</value>
+    <value>Το πλάνο σας συνδρομής VPN έχει λήξει</value>
     <comment>The title of the Subscription Expired notification</comment>
   </data>
   <data name="Notifications_Update_lnk_Restart">

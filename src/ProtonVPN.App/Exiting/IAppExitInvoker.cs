@@ -17,10 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Core
+namespace ProtonVPN.Exiting
 {
     public interface IAppExitInvoker
     {
-        void Exit(int code = 0);
+        void Restart();
+        void Close();
+        void Kill(int code = 0);
     }
 }

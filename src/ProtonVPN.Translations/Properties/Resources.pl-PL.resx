@@ -174,7 +174,7 @@
     <comment>The text of Update hyperlink in About window and Update flash notification (starts app update)</comment>
   </data>
   <data name="About_ttl">
-    <value>Informacje</value>
+    <value>O aplikacji</value>
     <comment>The title of About window</comment>
   </data>
   <data name="Account_btn_ManageSubscription">
@@ -308,7 +308,7 @@
     <value>Żądanie nie powiodło się. Spróbuj ponownie.</value>
   </data>
   <data name="App_mnu_About">
-    <value>Informacje</value>
+    <value>O aplikacji</value>
     <comment>The header of About menu item in the main app window (opens About window)</comment>
   </data>
   <data name="App_mnu_Account">
@@ -2521,16 +2521,16 @@ Postępuj zgodnie z &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;
     <value>Przeglądaj Internet bez reklam i złośliwego oprogramowania.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAds_Other">
-    <value>reklam zablokowanych</value>
+    <value>zablokowanych reklam</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAds_One">
-    <value>reklama zablokowana</value>
+    <value>zablokowana reklama</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAds_Few">
-    <value>reklamy zablokowane</value>
+    <value>zablokowane reklamy</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAds_Many">
-    <value>reklam zablokowanych</value>
+    <value>zablokowanych reklam</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsAdsTooltip">
     <value>Strony reklamowe wykorzystują pliki cookies i śledzą Cię.</value>
@@ -2542,16 +2542,16 @@ Postępuj zgodnie z &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;
     <value>Szacowany rozmiar reklam, elementów śledzących i złośliwego oprogramowania zablokowanego przez funkcję NetShield.</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_Other">
-    <value>elementów śledzących zatrzymanych</value>
+    <value>zatrzymanych elementów śledzących</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_One">
-    <value>element śledzący zatrzymany</value>
+    <value>zatrzymany element śledzący</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_Few">
-    <value>elementy śledzące zatrzymane</value>
+    <value>zatrzymane elementy śledzące</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackers_Many">
-    <value>elementów śledzących zatrzymanych</value>
+    <value>zatrzymanych elementów śledzących</value>
   </data>
   <data name="QuickSettings_lbl_NetShieldStatsTrackersTooltip">
     <value>Elementy śledzące to strony trzecie, które zbierają, przechowują i sprzedają informacje o Twojej aktywności w sieci.</value>

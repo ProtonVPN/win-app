@@ -77,7 +77,7 @@ namespace ProtonVPN.Core
 
         public IReadOnlyList<Announcement> Announcements
         {
-            get => GetPerUser<IReadOnlyList<Announcement>>() ?? new List<Announcement>();
+            get => GetPerUser<IReadOnlyList<Announcement>>() ?? [];
             set => SetPerUser(value);
         }
 
@@ -89,7 +89,7 @@ namespace ProtonVPN.Core
 
         public List<IssueCategoryResponse> ReportAnIssueFormData
         {
-            get => GetPerUser<List<IssueCategoryResponse>>() ?? new List<IssueCategoryResponse>();
+            get => GetPerUser<List<IssueCategoryResponse>>() ?? [];
             set => SetPerUser(value);
         }
 
@@ -305,31 +305,31 @@ namespace ProtonVPN.Core
 
         public SplitTunnelingApp[] SplitTunnelingBlockApps
         {
-            get => Get<SplitTunnelingApp[]>() ?? new SplitTunnelingApp[0];
+            get => Get<SplitTunnelingApp[]>() ?? [];
             set => Set(value);
         }
 
         public SplitTunnelingApp[] SplitTunnelingAllowApps
         {
-            get => Get<SplitTunnelingApp[]>() ?? new SplitTunnelingApp[0];
+            get => Get<SplitTunnelingApp[]>() ?? [];
             set => Set(value);
         }
 
         public IpContract[] SplitTunnelExcludeIps
         {
-            get => Get<IpContract[]>() ?? new IpContract[0];
+            get => Get<IpContract[]>() ?? [];
             set => Set(value);
         }
 
         public IpContract[] SplitTunnelIncludeIps
         {
-            get => Get<IpContract[]>() ?? new IpContract[0];
+            get => Get<IpContract[]>() ?? [];
             set => Set(value);
         }
 
         public IpContract[] CustomDnsIps
         {
-            get => GetPerUser<IpContract[]>() ?? new IpContract[0];
+            get => GetPerUser<IpContract[]>() ?? [];
             set => SetPerUser(value);
         }
 
@@ -648,6 +648,30 @@ namespace ProtonVPN.Core
         public VpnProtocol[] DisabledSmartProtocols
         {
             get => Get<VpnProtocol[]>() ?? new List<VpnProtocol>().ToArray();
+            set => Set(value);
+        }
+
+        public string LastProcessVersionMismatchRestartVersions
+        {
+            get => Get<string>();
+            set => Set(value);
+        }
+
+        public DateTimeOffset? LastProcessVersionMismatchRestartUtcDate
+        {
+            get => Get<string>().FromJsonDateTimeOffset();
+            set => Set(value.ToJsonDateTimeOffset());
+        }
+
+        public int ServerCount
+        {
+            get => Get<int>();
+            set => Set(value);
+        }
+
+        public int CountryCount
+        {
+            get => Get<int>();
             set => Set(value);
         }
 

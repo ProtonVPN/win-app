@@ -31,7 +31,7 @@ namespace ProtonVPN.ProcessCommunication.Client
             ILogger logger = new NullLogger();
             IRegistryEditor registryEditor = RegistryEditorFactory.Create(logger);
             NamedPipesConnectionFactory namedPipesConnectionFactory = new(registryEditor);
-            GrpcClient grpcClient = new(logger, namedPipesConnectionFactory);
+            GrpcClient grpcClient = new(namedPipesConnectionFactory, logger, null, null);
             grpcClient.Create();
             IUiController uiController = await grpcClient.GetServiceControllerOrThrowAsync<IUiController>(TimeSpan.FromMinutes(1));
             await SendOpenWindowCommandAsync(uiController, args);

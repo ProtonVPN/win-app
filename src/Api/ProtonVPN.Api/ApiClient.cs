@@ -115,6 +115,12 @@ public class ApiClient : BaseApiClient, IApiClient
         return await SendRequest<ServersResponse>(request, "Get servers");
     }
 
+    public async Task<ApiResponseResult<ServerCountResponse>> GetServerCountAsync()
+    {
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/servers-count");
+        return await SendRequest<ServerCountResponse>(request, "Get servers and countries count");
+    }
+
     public async Task<ApiResponseResult<ServersResponse>> GetServerLoadsAsync(string countryCode, string ip)
     {
         HttpRequestMessage request = GetAuthorizedRequestWithLocation(HttpMethod.Get, "vpn/loads", countryCode, ip);

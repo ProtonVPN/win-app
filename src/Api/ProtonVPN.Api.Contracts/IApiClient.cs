@@ -46,6 +46,7 @@ namespace ProtonVPN.Api.Contracts
         Task<ApiResponseResult<VpnInfoWrapperResponse>> GetVpnInfoResponse();
         Task<ApiResponseResult<BaseResponse>> GetLogoutResponse();
         Task<ApiResponseResult<ServersResponse>> GetServersAsync(string countryCode, string ip);
+        Task<ApiResponseResult<ServerCountResponse>> GetServerCountAsync();
         Task<ApiResponseResult<ReportAnIssueFormResponse>> GetReportAnIssueFormData();
         Task<ApiResponseResult<ServersResponse>> GetServerLoadsAsync(string countryCode, string ip);
         Task<ApiResponseResult<UserLocationResponse>> GetLocationDataAsync();

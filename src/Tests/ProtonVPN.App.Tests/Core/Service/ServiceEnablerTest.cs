@@ -17,20 +17,23 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Common.OS.Services;
-using ProtonVPN.Core;
 using ProtonVPN.Core.Modals;
 using ProtonVPN.Core.Service;
+using ProtonVPN.Exiting;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.App.Tests.Core.Service
 {
     [TestClass]
     public class ServiceEnablerTest
     {
+        private const string APP_KILL_EXCEPTION_MESSAGE = "App kill converted to exception in unit tests";
+
         private ILogger _logger;
         private IModals _modals;
         private IAppExitInvoker _appExitInvoker;
@@ -41,6 +44,7 @@ namespace ProtonVPN.App.Tests.Core.Service
             _logger = Substitute.For<ILogger>();
             _modals = Substitute.For<IModals>();
             _appExitInvoker = Substitute.For<IAppExitInvoker>();
+            _appExitInvoker.When(x => x.Kill()).Do(_ => throw new Exception(APP_KILL_EXCEPTION_MESSAGE));
         }
 
         [TestCleanup]
@@ -48,6 +52,7 @@ namespace ProtonVPN.App.Tests.Core.Service
         {
             _logger = null;
             _modals = null;
+            _appExitInvoker = null;
         }
 
         [TestMethod]
@@ -91,9 +96,17 @@ namespace ProtonVPN.App.Tests.Core.Service
 
             // Act
             ServiceEnabler sut = new(_logger, _modals, _appExitInvoker);
-            await sut.GetServiceEnabledResultAsync(service);
-
+            try
+            {
+                await sut.GetServiceEnabledResultAsync(service);
+                Assert.Fail("The method should have thrown an exception to simulate the app kill, as defined in the Initialize() method");
+            }
             // Assert
+            catch (Exception ex)
+            {
+                Assert.AreEqual(APP_KILL_EXCEPTION_MESSAGE, ex.Message);
+            }
+
             service.Received(0).Enable();
         }
     }

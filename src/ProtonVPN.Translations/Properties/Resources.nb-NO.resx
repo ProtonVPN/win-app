@@ -239,7 +239,7 @@
     <comment>The text displayed in Account window for NetShield</comment>
   </data>
   <data name="Account_lbl_NoLogs">
-    <value>Streng ingen-loggførings-praksis</value>
+    <value>Streng politikk om ingen logger</value>
     <comment>The text displayed in Account window</comment>
   </data>
   <data name="Account_lbl_P2P">
@@ -354,7 +354,7 @@
     <value>Oppdater</value>
   </data>
   <data name="BugReport_btn_GotIt">
-    <value>Ferdig</value>
+    <value>Utført</value>
   </data>
   <data name="BugReport_btn_LearnMore">
     <value>Lær mer</value>
@@ -482,7 +482,7 @@
     <comment>The VPN status displayed in Pinging overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_RetrievingConfiguration">
-    <value>Etablering av VPN-tunnel</value>
+    <value>Etablerer VPN-tunnel</value>
     <comment>The VPN status displayed in Connecting overlay of main app window</comment>
   </data>
   <data name="Connecting_VpnStatus_val_Waiting">
@@ -522,7 +522,7 @@
     <comment>The beginning of text for Secure Core VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text before imaginary placeholder {0} in the text string "The {0} connection has failed". If translated text suppose to not include any text before the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_2">
-    <value>har mislyktes</value>
+    <value>mislyktes</value>
     <comment>The end of text for VPN server failed to connect to in Connecting overlay of main app window. It shall be translated as a text after imaginary placeholder {0} in the text string "Connection to {0} has failed". If translated text suppose to not include any text after the placeholder {0} then please leave it empty. Do not include placeholder {0} into translated text.</comment>
   </data>
   <data name="Connecting_lbl_FailedConnection_2_SecureCore">
@@ -948,7 +948,7 @@
     <comment>The name of IL country</comment>
   </data>
   <data name="Country_val_IM">
-    <value>Man</value>
+    <value>Isle of Man</value>
     <comment>The name of IM country</comment>
   </data>
   <data name="Country_val_IN">
@@ -1468,7 +1468,7 @@
     <comment>The name of UM country</comment>
   </data>
   <data name="Country_val_US">
-    <value>Amerikas forente stater</value>
+    <value>USA</value>
     <comment>The name of US country</comment>
   </data>
   <data name="Country_val_UY">
@@ -1881,11 +1881,11 @@ Følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="diss
     <comment>The label for the new server in dialog windows</comment>
   </data>
   <data name="Dialogs_ttl_Question">
-    <value>Vær oppmerksom</value>
+    <value>Oppmerksomhet</value>
     <comment>The title of question message window</comment>
   </data>
   <data name="Dialogs_ttl_Warning">
-    <value>Vær oppmerksom</value>
+    <value>Oppmerksomhet</value>
     <comment>The title of warning message window</comment>
   </data>
   <data name="ErrorWindow_lbl_Close">
@@ -1922,7 +1922,7 @@ Følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="diss
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_msg_Unauthorized">
-    <value>Ugyldig oppdateringstoken, vennligst logg på igjen.</value>
+    <value>Ugyldig oppdateringstoken, logg på igjen.</value>
     <comment>The text displayed after failed login attempt</comment>
   </data>
   <data name="Login_Error_msg_Unknown">
@@ -2002,7 +2002,7 @@ Følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="diss
     <value>Feil tofaktorautentiseringskode</value>
   </data>
   <data name="Login_msg_TwoFactorAuthFailed">
-    <value>Feil påloggingslegitimasjon. Vennligst prøv på nytt.</value>
+    <value>Feil påloggingslegitimasjon. Prøv på nytt.</value>
   </data>
   <data name="Login_ttl">
     <value>Proton VPN</value>
@@ -2064,7 +2064,7 @@ Følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="diss
     <comment>The part of text displayed in a balloon above Secure Core Pin in Map. The full text is "(Secure Core) country name".</comment>
   </data>
   <data name="Modal_ChangeServer_Subtitle">
-    <value>Skaff deg ubegrensede bytter med VPN Plus</value>
+    <value>Skaff deg ubegrenset antall bytter med VPN Plus</value>
   </data>
   <data name="Modal_ChangeServer_Title">
     <value>Du har nådd maksimalt antall gratis tjenerbytter for nå.</value>
@@ -2386,7 +2386,7 @@ Følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="diss
     <comment>The warning message displayed when trying to connect to profile with all servers offline</comment>
   </data>
   <data name="Profiles_msg_CountryOffline">
-    <value>Tjenere i dette landet er for øyeblikket frakoblet for vedlikehold. Vennligst velg et annet land.</value>
+    <value>Tjenere i dette landet er for øyeblikket frakoblet for vedlikehold. Velg et annet land.</value>
     <comment>The message displayed when trying to connect to country with no servers available</comment>
   </data>
   <data name="Profiles_msg_DeleteConfirm">
@@ -2394,7 +2394,7 @@ Følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="diss
     <comment>The confirmation message displayed when deleting profile in Profiles window</comment>
   </data>
   <data name="Profiles_msg_NoServersAvailable">
-    <value>Det er ingen tjenere tilgjengelig akkurat nå for ditt valg. Vennligst velg et annet alternativ.</value>
+    <value>Det er ingen tjenere tilgjengelig akkurat nå for ditt valg. Velg et annet alternativ.</value>
     <comment>The message displayed when trying to connect to a country or profile with no servers available</comment>
   </data>
   <data name="Profiles_ttl">
@@ -2570,7 +2570,7 @@ Følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="diss
     <value>Gratis forbindelser (1)</value>
   </data>
   <data name="Servers_Load_lbl_IP">
-    <value>Tjener IP:</value>
+    <value>Tjener-IP:</value>
     <comment>The label for server IP address in Server Load popup. Popup opens by pressing mouse button on server load image in Countries tab of Sidebar section of main app window.</comment>
   </data>
   <data name="Servers_Load_lbl_IPAutoAssigned">
@@ -2626,7 +2626,7 @@ Følg &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="diss
     <value>Proton VPN klarte ikke å oppdatere klientautentiseringssertifikatet.</value>
   </data>
   <data name="Servers_msg_CantConnect_Maintenance">
-    <value>Tjeneren du prøver å koble til, er for øyeblikket frakoblet for vedlikehold. Vennligst velg en annen tjener eller profil.</value>
+    <value>Tjeneren du prøver å koble til, er for øyeblikket frakoblet for vedlikehold. Velg en annen tjener eller profil.</value>
     <comment>The message displayed when connecting to server which is on maintenance</comment>
   </data>
   <data name="Servers_msg_CantConnect_Missing">

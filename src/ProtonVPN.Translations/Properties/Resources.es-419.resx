@@ -1806,7 +1806,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Antivirus">
-    <value>&lt;Bold&gt;Interferencia de antivirus&lt;/Bold&gt; - Desactive o borre temporalmente el software antivirus.</value>
+    <value>&lt;Bold&gt;Interferencia de antivirus&lt;/Bold&gt; - Desactive o elimine temporalmente el software antivirus.</value>
     <comment>The text displayed in troubleshooting modal window</comment>
   </data>
   <data name="Dialogs_Troubleshooting_msg_Firewall">
@@ -1901,7 +1901,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <value>A la aplicación le falta un archivo requerido</value>
   </data>
   <data name="ErrorWindow_lbl_MissingInfo">
-    <value>Algunas aplicaciones del PC podrían haber borrado algunos archivos o impedido que se instalaran correctamente.</value>
+    <value>Algunas aplicaciones del PC podrían haber eliminado algunos archivos o impedido que se instalaran correctamente.</value>
   </data>
   <data name="ErrorWindow_lbl_Repair">
     <value>Reparar</value>
@@ -2094,7 +2094,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <value>Cambios a la selección de servidor</value>
   </data>
   <data name="Modals_Rescope_ServerSelectionDescription">
-    <value>Para evitar la saturación de servidores y garantizar que todos tengan acceso a una navegación rápida y segura, borramos la selección manual de países e hicimos mejoras importantes en la selección automática de servidores.</value>
+    <value>Para evitar la saturación de servidores y garantizar que todos tengan acceso a una navegación rápida y segura, eliminamos la selección manual de países e hicimos mejoras importantes en la selección automática de servidores.</value>
   </data>
   <data name="Modals_Rescope_Title">
     <value>Novedades</value>
@@ -2630,7 +2630,7 @@ Siga &lt;Hyperlink Command="{Binding OpenArticleCommand}"&gt;&lt;Run Text="estas
     <comment>The message displayed when connecting to server which is on maintenance</comment>
   </data>
   <data name="Servers_msg_CantConnect_Missing">
-    <value>El servidor al que está intentando conectarse ha sido borrado. Seleccione otro servidor o perfil.</value>
+    <value>Se eliminó el servidor al que está intentando conectarse. Seleccione otro servidor o perfil.</value>
     <comment>The message displayed when connecting to server which was removed and doesn't exist anymore</comment>
   </data>
   <data name="Servers_msg_CantConnect_RpcServerUnavailable">

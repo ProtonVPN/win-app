@@ -21,7 +21,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Account;
 using ProtonVPN.Config.Url;
-using ProtonVPN.Core.Servers;
+using ProtonVPN.Core.Settings;
 using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Modals.Upsell
@@ -32,10 +32,11 @@ namespace ProtonVPN.Modals.Upsell
 
         public ICommand AboutSecureCoreCommand { get; set; }
 
-        public SecureCoreUpsellModalViewModel(ISubscriptionManager subscriptionManager, ServerManager serverManager,
+        public SecureCoreUpsellModalViewModel(ISubscriptionManager subscriptionManager,
+            IAppSettings appSettings,
             IActiveUrls urls, IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender,
             IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender)
-            : base(subscriptionManager, serverManager, urls, upsellUpgradeAttemptStatisticalEventSender,
+            : base(subscriptionManager, appSettings, urls, upsellUpgradeAttemptStatisticalEventSender,
                   upsellDisplayStatisticalEventSender)
         {
             AboutSecureCoreCommand = new RelayCommand(OpenAboutSecureCorePage);

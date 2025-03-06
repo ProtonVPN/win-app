@@ -123,6 +123,11 @@ namespace ProtonVPN.Common.OS.Services
             }
         }
 
+        public ServiceControllerStatus? GetStatus()
+        {
+            return GetServices().FirstOrDefault(s => s.ServiceName.EqualsIgnoringCase(Name))?.Status;
+        }
+
         public bool Running()
         {
             return GetServices()

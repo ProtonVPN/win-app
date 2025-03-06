@@ -20,6 +20,8 @@
 using System;
 using System.Threading.Tasks;
 using ProtonVPN.Common.OS.Net.Http;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Login
 {
@@ -27,10 +29,13 @@ namespace ProtonVPN.Login
     {
         private const string PROTON_WEBSITE_URL = "https://protonvpn.com";
         private const string PROTON_API_PING_URL = "https://account.protonvpn.com/api/tests/ping";
+
+        private readonly ILogger _logger;
         private readonly IHttpClient _httpClient;
 
-        public ApiAvailabilityVerifier(IHttpClients httpClients)
+        public ApiAvailabilityVerifier(ILogger logger, IHttpClients httpClients)
         {
+            _logger = logger;
             _httpClient = httpClients.Client();
             _httpClient.Timeout = TimeSpan.FromSeconds(3);
         }
@@ -47,8 +52,9 @@ namespace ProtonVPN.Login
                 IHttpResponseMessage response = await _httpClient.GetAsync(PROTON_API_PING_URL);
                 return response.IsSuccessStatusCode;
             }
-            catch
+            catch (Exception e)
             {
+                _logger.Error<AppLog>("Failed to check if API is reachable.", e);
                 return false;
             }
         }
@@ -60,8 +66,9 @@ namespace ProtonVPN.Login
                 IHttpResponseMessage response = await _httpClient.GetAsync(PROTON_WEBSITE_URL);
                 return response.IsSuccessStatusCode;
             }
-            catch
+            catch (Exception e)
             {
+                _logger.Error<AppLog>("Failed to check if Proton website is reachable.", e);
                 return false;
             }
         }

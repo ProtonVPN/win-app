@@ -20,8 +20,8 @@
 using System;
 using System.Runtime.CompilerServices;
 using ProtonVPN.Common.Helpers;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 using Sentry;
 
 namespace ProtonVPN.IssueReporting
@@ -54,9 +54,19 @@ namespace ProtonVPN.IssueReporting
             SentrySdk.CaptureEvent(new SentryEvent { Message = message, Level = SentryLevel.Error });
         }
 
-        public void CaptureMessage(string message)
+        public void CaptureMessage(string message, string description = null)
         {
-            SentrySdk.CaptureMessage(message);
+            SentrySdk.WithScope(scope =>
+            {
+                if (!string.IsNullOrWhiteSpace(description))
+                {
+                    scope.TransactionName = description;
+                    scope.SetExtra("description", description);
+                }
+
+                scope.SetFingerprint([message]);
+                SentrySdk.CaptureMessage(message);
+            });
         }
     }
 }

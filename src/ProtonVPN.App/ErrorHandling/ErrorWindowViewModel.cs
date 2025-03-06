@@ -21,10 +21,10 @@ using System.ComponentModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using ProtonVPN.Common.Configuration;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Common.OS.Processes;
-using ProtonVPN.Core;
 using ProtonVPN.Core.MVVM;
+using ProtonVPN.Exiting;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.ErrorHandling
 {
@@ -32,12 +32,13 @@ namespace ProtonVPN.ErrorHandling
     {
         private const string PRODUCT_NAME = "ProtonVPN";
 
+        private readonly IAppExitInvoker _appExitInvoker;
         private readonly IConfiguration _config;
         private readonly IOsProcesses _processes;
-        private readonly IAppExitInvoker _appExitInvoker;
         private readonly InstallerPath _installerPath;
         private readonly RepairLauncher _repairLauncher;
         private readonly InstalledAppRegistry _installedAppRegistry;
+
         private string ProductCode => _installedAppRegistry.GetAppProductCode(PRODUCT_NAME);
 
         public ICommand CloseCommand { get; }
@@ -54,9 +55,9 @@ namespace ProtonVPN.ErrorHandling
             }
         }
 
-        public ErrorWindowViewModel()
+        public ErrorWindowViewModel(IAppExitInvoker appExitInvoker)
         {
-            _appExitInvoker = new AppExitInvoker();
+            _appExitInvoker = appExitInvoker;
             _processes = new SystemProcesses(new NullLogger());
             _config = new ConfigFactory().Config();
             _installerPath = new InstallerPath(_config);
@@ -85,7 +86,7 @@ namespace ProtonVPN.ErrorHandling
 
         private void CloseAction()
         {
-            _appExitInvoker.Exit();
+            _appExitInvoker.Kill();
         }
     }
 }
