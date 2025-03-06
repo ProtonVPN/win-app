@@ -31,7 +31,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
-    <custom:ProminentBannerControl ActionButtonText="{x:Bind ViewModel.ActionButtonText}"
+    <custom:ProminentBannerControl Margin="0,8,0,0"
+                                   ActionButtonText="{x:Bind ViewModel.ActionButtonText}"
                                    ActionCommand="{x:Bind ViewModel.OpenAnnouncementCommand, Mode=OneTime}"
                                    BannerStyle="{x:Bind ViewModel.BannerStyle}"
                                    Description="{x:Bind ViewModel.Description}"

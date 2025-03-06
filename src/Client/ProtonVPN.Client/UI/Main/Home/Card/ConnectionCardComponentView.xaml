@@ -44,7 +44,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style>
     </UserControl.Resources>
 
-    <StackPanel Spacing="16">
+    <StackPanel>
         <Grid HorizontalAlignment="Center"
               Background="Transparent"
               ColumnSpacing="8"
@@ -111,7 +111,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         </Grid>
 
-        <Grid Margin="0,-8,0,0"
+        <Grid Margin="0,8,0,0"
               HorizontalAlignment="Center"
               Visibility="{x:Bind ViewModel.HasSubtitleOrFeature, Converter={StaticResource BooleanToVisibilityConverter}}">
 
@@ -160,7 +160,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         </Grid>
 
-        <custom:GhostButton Margin="0,-12,0,0"
+        <custom:GhostButton Margin="0,4,0,0"
                             HorizontalAlignment="Center"
                             AutomationProperties.AutomationId="ConnectionCardFreeConnectionsTagline"
                             Command="{x:Bind ViewModel.ShowFreeConnectionsOverlayCommand, Mode=OneTime}"
@@ -187,6 +187,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </custom:GhostButton>
 
         <Grid MinWidth="{StaticResource MinButtonSpaceWidth}"
+              Margin="0,16,0,0"
               HorizontalAlignment="Center"
               ColumnSpacing="12">
 

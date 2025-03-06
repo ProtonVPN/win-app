@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2024 Proton AG
+Copyright (c) 2025 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -27,15 +27,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
-    <Grid Padding="8,16,8,8"
-          RowSpacing="12">
+    <Grid RowSpacing="12">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0"
-              Margin="10,0"
+              Margin="10,4,10,0"
               ColumnSpacing="8">
 
             <Grid.ColumnDefinitions>

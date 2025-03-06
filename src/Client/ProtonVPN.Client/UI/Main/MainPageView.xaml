@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2024 Proton AG
+Copyright (c) 2025 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -41,8 +41,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Page.Resources>
 
     <Grid x:Name="LayoutRoot"
-          PointerPressed="OnPointerPressed"
-          Background="{ThemeResource TransparentColorBrush}">
+          Background="{ThemeResource TransparentColorBrush}"
+          PointerPressed="OnPointerPressed">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="{Binding Source={StaticResource MainTitleBarHeight}, Converter={StaticResource DoubleToPixelGridLengthConverter}}" />
@@ -55,10 +55,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 SidebarWidth="{x:Bind ViewModel.EffectiveSidebarWidth}"
                                 WidgetsBarWidth="{x:Bind ViewModel.WidgetBarWidth}" />
 
-        <Grid Grid.Row="1"
-              Margin="8,0,8,8"
-              ColumnSpacing="8"
-              x:Name="MainContainer">
+        <Grid x:Name="MainContainer"
+              Grid.Row="1"
+              Margin="8,0,0,8"
+              ColumnSpacing="8">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -90,8 +90,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                     <Border Grid.Column="0"
                             Width="8">
-                        <controls:PropertySizer Margin="-8,0,0,0" 
-                                                x:Name="SidebarSizeGrip"
+                        <controls:PropertySizer x:Name="SidebarSizeGrip"
+                                                Margin="-8,0,0,0"
                                                 Binding="{x:Bind ViewModel.SidebarWidth, Mode=TwoWay}"
                                                 Maximum="{StaticResource SidebarComponentMaxWidth}"
                                                 Minimum="{StaticResource SidebarComponentMinWidth}"
@@ -104,12 +104,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Grid>
 
             </SplitView>
-
-            <widgets:SideWidgetsHostComponentView x:Name="SideWidgetsHostComponent"
-                                                  Grid.Column="1"
-                                                  Width="{x:Bind ViewModel.WidgetBarWidth}"
-                                                  Canvas.ZIndex="2"
-                                                  IsEnabled="{x:Bind ViewModel.IsHomePageDisplayed}" />
 
         </Grid>
 

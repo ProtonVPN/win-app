@@ -158,13 +158,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           TintColor="{StaticResource BackgroundNormColor}"
                           TintOpacity="0.4" />
             <SolidColorBrush x:Key="PaneOverlayBorderColorBrush" Opacity="0.82" Color="{StaticResource BorderWeakColor}" />
-            
+
+            <AcrylicBrush x:Key="PaneOverlayTranslucentBackgroundColorBrush"
+                          FallbackColor="{StaticResource BackgroundNormColor}"
+                          TintColor="#00FFFFFF"
+                          TintOpacity="0" />
+
             <AcrylicBrush x:Key="PaneOverlayDisabledBackgroundColorBrush"
                           FallbackColor="{StaticResource BackgroundNormColor}"
                           TintColor="{StaticResource BackgroundNormColor}"
                           TintOpacity="0.2" />
             <SolidColorBrush x:Key="PaneOverlayDisabledBorderColorBrush" Opacity="0.60" Color="{StaticResource BorderWeakColor}" />
-
 
             <AcrylicBrush x:Key="FlyoutOverlayBackgroundColorBrush"
                           FallbackColor="{StaticResource BackgroundNormColor}"
@@ -310,6 +314,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           TintOpacity="0.4" />
             <SolidColorBrush x:Key="PaneOverlayBorderColorBrush" Opacity="0.82" Color="{StaticResource BorderWeakColor}" />
 
+            <AcrylicBrush x:Key="PaneOverlayTranslucentBackgroundColorBrush"
+                          FallbackColor="{StaticResource BackgroundNormColor}"
+                          TintColor="#00000000"
+                          TintOpacity="0" />
+            
             <AcrylicBrush x:Key="PaneOverlayDisabledBackgroundColorBrush"
                           FallbackColor="{StaticResource BackgroundNormColor}"
                           TintColor="{StaticResource BackgroundNormColor}"

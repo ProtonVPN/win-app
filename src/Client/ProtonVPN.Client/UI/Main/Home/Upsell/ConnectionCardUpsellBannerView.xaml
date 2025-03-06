@@ -29,12 +29,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              mc:Ignorable="d">
 
     <Grid Background="{ThemeResource BannerBackgroundColorBrush}"
+          Visibility="{x:Bind ViewModel.IsBannerVisible, Converter={StaticResource BooleanToVisibilityConverter}}" 
+          Margin="0,16,0,0"
           CornerRadius="8">
         <custom:UpsellBanner Title="{x:Bind ViewModel.Localizer.Get('UpsellBanner_WrongCountry_Title')}"
                              Command="{x:Bind ViewModel.UpgradeCommand, Mode=OneTime}"
                              Description="{x:Bind ViewModel.Localizer.Get('UpsellBanner_WrongCountry_Description')}"
-                             IllustrationSource="{StaticResource WrongCountryIllustrationSource}"
-                             Visibility="{x:Bind ViewModel.IsBannerVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                             IllustrationSource="{StaticResource WrongCountryIllustrationSource}"/>
     </Grid>
 
 </UserControl>
