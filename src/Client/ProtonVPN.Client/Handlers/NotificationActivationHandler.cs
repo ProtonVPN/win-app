@@ -39,6 +39,7 @@ public class NotificationActivationHandler : IHandler,
     private readonly IUIThreadDispatcher _uiThreadDispatcher;
     private readonly IMainWindowActivator _mainWindowActivator;
     private readonly IPortForwardingClipboardService _portForwardingClipboardService;
+    private readonly IUpsellUpgradeAttemptStatisticalEventSender _upsellUpgradeAttemptStatisticalEventSender;
 
     public NotificationActivationHandler(
         IUrlsBrowser urlsBrowser,
@@ -46,13 +47,15 @@ public class NotificationActivationHandler : IHandler,
         IUIThreadDispatcher uIThreadDispatcher,
         IMainWindowActivator mainWindowActivator,
         IPortForwardingManager portForwardingManager,
-        IPortForwardingClipboardService portForwardingClipboardService)
+        IPortForwardingClipboardService portForwardingClipboardService,
+        IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender)
     {
         _urlsBrowser = urlsBrowser;
         _webAuthenticator = webAuthenticator;
         _uiThreadDispatcher = uIThreadDispatcher;
         _mainWindowActivator = mainWindowActivator;
         _portForwardingClipboardService = portForwardingClipboardService;
+        _upsellUpgradeAttemptStatisticalEventSender = upsellUpgradeAttemptStatisticalEventSender;
     }
 
     public void Receive(NotificationActivationMessage message)
@@ -67,6 +70,7 @@ public class NotificationActivationHandler : IHandler,
         switch (argument)
         {
             case NotificationArguments.UPGRADE:
+                _upsellUpgradeAttemptStatisticalEventSender.Send(ModalSource.Downgrade);
                 _urlsBrowser.BrowseTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSource.Downgrade));
                 break;
             case NotificationArguments.COPY_PORT_FORWARDING_PORT_TO_CLIPBOARD:

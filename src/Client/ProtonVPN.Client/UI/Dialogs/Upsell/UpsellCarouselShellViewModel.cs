@@ -105,7 +105,6 @@ public partial class UpsellCarouselShellViewModel : ShellViewModelBase<IUpsellCa
     private async Task UpgradeAsync()
     {
         _upsellUpgradeAttemptStatisticalEventSender.Send(WindowActivator.ModalSource);
-
         _urlsBrowser.BrowseTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(WindowActivator.ModalSource));
 
         WindowActivator.Exit();

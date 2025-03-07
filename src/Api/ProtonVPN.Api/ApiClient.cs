@@ -246,18 +246,18 @@ public class ApiClient : BaseApiClient, IApiClient
         return await SendRequest<ForkedAuthSessionResponse>(request, "Fork auth session");
     }
 
-    public async Task<ApiResponseResult<BaseResponse>> PostUnauthStatisticalEventsAsync(StatisticalEventsBatch statisticalEvents)
+    public async Task<ApiResponseResult<BaseResponse>> PostUnauthenticatedStatisticalEventsAsync(StatisticalEventsBatch statisticalEvents)
     {
         HttpRequestMessage request = GetRequest(HttpMethod.Post, "data/v1/stats/multiple");
         request.Content = GetJsonContent(statisticalEvents);
-        return await SendRequest<BaseResponse>(request, "Post unauth statistical events batch");
+        return await SendRequest<BaseResponse>(request, "Post unauthenticated statistical events batch");
     }
 
-    public async Task<ApiResponseResult<BaseResponse>> PostStatisticalEventsAsync(StatisticalEventsBatch statisticalEvents)
+    public async Task<ApiResponseResult<BaseResponse>> PostAuthenticatedStatisticalEventsAsync(StatisticalEventsBatch statisticalEvents)
     {
         HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "data/v1/stats/multiple");
         request.Content = GetJsonContent(statisticalEvents);
-        return await SendRequest<BaseResponse>(request, "Post statistical events batch");
+        return await SendRequest<BaseResponse>(request, "Post authenticated statistical events batch");
     }
 
     public async Task<ApiResponseResult<UsersResponse>> GetUserAsync()

@@ -31,9 +31,9 @@ public class ClientInstallsStatisticalEventSender : StatisticalEventSenderBase<C
 {
     public override string Event => "client_launch";
 
-    private readonly IUnauthStatisticalEventSender _statisticalEventSender;
+    private readonly IUnauthenticatedStatisticalEventSender _statisticalEventSender;
 
-    public ClientInstallsStatisticalEventSender(IUnauthStatisticalEventSender statisticalEventSender)
+    public ClientInstallsStatisticalEventSender(IUnauthenticatedStatisticalEventSender statisticalEventSender)
     {
         _statisticalEventSender = statisticalEventSender;
     }

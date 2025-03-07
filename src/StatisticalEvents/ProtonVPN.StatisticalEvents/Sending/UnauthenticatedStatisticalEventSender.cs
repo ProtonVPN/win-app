@@ -17,11 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Common;
+using ProtonVPN.Client.Common.Messages;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.StatisticalEvents;
 using ProtonVPN.Configurations.Contracts;
@@ -32,9 +33,14 @@ using ProtonVPN.StatisticalEvents.Sending.Contracts;
 
 namespace ProtonVPN.StatisticalEvents.Sending;
 
-public class UnauthStatisticalEventSender : StatisticEventSenderBase, IUnauthStatisticalEventSender
+public class UnauthenticatedStatisticalEventSender : StatisticEventSenderBase, IUnauthenticatedStatisticalEventSender,
+    IEventMessageReceiver<ApplicationStartedMessage>,
+    IEventMessageReceiver<ApplicationStoppedMessage>
 {
-    public UnauthStatisticalEventSender(
+    protected override bool IsShareStatisticsEnabled => true;
+    protected override bool CanSendTelemetryEvents => true;
+
+    public UnauthenticatedStatisticalEventSender(
         IApiClient api,
         ILogger logger,
         ISettings settings,
@@ -47,7 +53,7 @@ public class UnauthStatisticalEventSender : StatisticEventSenderBase, IUnauthSta
     protected async override Task<ApiResponseResult<BaseResponse>> SendApiRequestAsync(
         StatisticalEventsBatch statisticalEventsBatch)
     {
-        return await Api.PostUnauthStatisticalEventsAsync(statisticalEventsBatch);
+        return await Api.PostUnauthenticatedStatisticalEventsAsync(statisticalEventsBatch);
     }
 
     protected override List<StatisticalEvent> GetStatisticalEventsFromFile()
@@ -63,8 +69,13 @@ public class UnauthStatisticalEventSender : StatisticEventSenderBase, IUnauthSta
         });
     }
 
-    public async Task EnqueueAsync(StatisticalEvent statisticalEvent)
+    public async void Receive(ApplicationStartedMessage message)
     {
-        await EnqueueAsync(statisticalEvent, () => new ConcurrentQueue<StatisticalEvent>(GetStoredStatisticalEvents()));
+        await StartAsync();
+    }
+
+    public async void Receive(ApplicationStoppedMessage message)
+    {
+        await StopAsync();
     }
 }

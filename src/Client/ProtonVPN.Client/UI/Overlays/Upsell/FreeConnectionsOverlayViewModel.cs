@@ -40,6 +40,7 @@ public partial class FreeConnectionsOverlayViewModel : OverlayViewModelBase<IMai
     private readonly IServerCountCache _serverCountCache;
     private readonly IWebAuthenticator _webAuthenticator;
     private readonly IUrlsBrowser _urlsBrowser;
+    private readonly IUpsellUpgradeAttemptStatisticalEventSender _upsellUpgradeAttemptStatisticalEventSender;
 
     public SmartObservableCollection<LocalizedCountry> FreeCountries { get; } = new();
 
@@ -56,14 +57,15 @@ public partial class FreeConnectionsOverlayViewModel : OverlayViewModelBase<IMai
         IServerCountCache serverCountCache,
         IUrlsBrowser urlsBrowser,
         IWebAuthenticator webAuthenticator,
-        IViewModelHelper viewModelHelper)
+        IViewModelHelper viewModelHelper,
+        IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender)
         : base(overlayActivator, viewModelHelper)
     {
         _serversLoader = serversLoader;
         _serverCountCache = serverCountCache;
         _urlsBrowser = urlsBrowser;
         _webAuthenticator = webAuthenticator;
-
+        _upsellUpgradeAttemptStatisticalEventSender = upsellUpgradeAttemptStatisticalEventSender;
         InvalidateFreeCountries();
     }
 
@@ -110,6 +112,7 @@ public partial class FreeConnectionsOverlayViewModel : OverlayViewModelBase<IMai
     [RelayCommand]
     private async Task UpgradePlanAsync()
     {
+        _upsellUpgradeAttemptStatisticalEventSender.Send(ModalSource.Countries);
         _urlsBrowser.BrowseTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSource.Countries));
     }
 }

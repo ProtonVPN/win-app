@@ -33,7 +33,7 @@ public class StatisticalEventsModule : Module
         builder.RegisterType<StatisticalEventsFileReaderWriter>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<UpsellDimensionBuilder>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<AuthenticatedStatisticalEventSender>().AsImplementedInterfaces().SingleInstance().AutoActivate();
-        builder.RegisterType<UnauthStatisticalEventSender>().AsImplementedInterfaces().SingleInstance().AutoActivate();
+        builder.RegisterType<UnauthenticatedStatisticalEventSender>().AsImplementedInterfaces().SingleInstance().AutoActivate();
 
         RegisterSpecificSenders(builder);
         RegisterMappers(builder);
