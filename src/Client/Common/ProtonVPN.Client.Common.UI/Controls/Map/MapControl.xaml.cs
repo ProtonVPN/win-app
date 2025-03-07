@@ -854,7 +854,7 @@ public sealed partial class MapControl
                 updateAction(symbolStyle, (T)e.End);
                 _map.RefreshGraphics();
 
-                DispatcherQueue.TryEnqueue(() =>
+                DispatcherQueue?.TryEnqueue(() =>
                 {
                     if (subsequentAnimation?.Animation != null)
                     {
@@ -1069,7 +1069,7 @@ public sealed partial class MapControl
 
         _arePinsLoaded = true;
 
-        DispatcherQueue.TryEnqueue(() =>
+        DispatcherQueue?.TryEnqueue(() =>
         {
             if (IsDisconnected)
             {
