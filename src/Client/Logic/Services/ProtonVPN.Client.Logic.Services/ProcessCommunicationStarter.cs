@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Contracts.Services.Lifecycle;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
@@ -29,17 +30,32 @@ public class ProcessCommunicationStarter : IProcessCommunicationStarter
     private readonly IGrpcClient _grpcClient;
     private readonly ILogger _logger;
     private readonly IClientControllerListener _clientControllerListener;
-    private readonly IVpnServiceCaller _vpnServiceCaller;
+    private readonly IEnumerable<IServiceCaller> _serviceCallers;
+    private readonly IAppExitInvoker _appExitInvoker;
 
     public ProcessCommunicationStarter(IGrpcClient grpcClient,
         ILogger logger,
         IClientControllerListener clientControllerListener,
-        IVpnServiceCaller vpnServiceCaller)
+        IEnumerable<IServiceCaller> serviceCallers,
+        IAppExitInvoker appExitInvoker)
     {
         _grpcClient = grpcClient;
         _logger = logger;
         _clientControllerListener = clientControllerListener;
-        _vpnServiceCaller = vpnServiceCaller;
+        _serviceCallers = serviceCallers;
+        _appExitInvoker = appExitInvoker;
+
+        _grpcClient.InvokingAppRestart += OnInvokingAppRestart;
+    }
+
+    private void OnInvokingAppRestart(object sender, EventArgs e)
+    {
+        foreach (IServiceCaller serviceCaller in _serviceCallers)
+        {
+            serviceCaller.Stop();
+        }
+        _clientControllerListener.Stop();
+        _appExitInvoker.Restart();
     }
 
     public void Start()
@@ -48,7 +64,6 @@ public class ProcessCommunicationStarter : IProcessCommunicationStarter
         {
             _grpcClient.Create();
             _clientControllerListener.Start();
-            _vpnServiceCaller.RepeatStateAsync();
         }
         catch (Exception e)
         {

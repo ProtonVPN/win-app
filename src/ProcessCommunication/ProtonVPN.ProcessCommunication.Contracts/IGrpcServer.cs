@@ -21,6 +21,8 @@ namespace ProtonVPN.ProcessCommunication.Contracts;
 
 public interface IGrpcServer
 {
+    event EventHandler InvokingServiceStop;
+
     void CreateAndStart();
     Task StopAsync();
 }

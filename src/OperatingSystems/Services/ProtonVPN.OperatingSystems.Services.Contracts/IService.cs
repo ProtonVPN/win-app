@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.ServiceProcess;
+
 namespace ProtonVPN.OperatingSystems.Services.Contracts;
 
 public interface IService
@@ -33,4 +35,6 @@ public interface IService
 
     bool Start();
     bool Stop();
+
+    ServiceControllerStatus? GetStatus();
 }

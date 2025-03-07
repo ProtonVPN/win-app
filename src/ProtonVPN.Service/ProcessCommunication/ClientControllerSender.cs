@@ -92,7 +92,7 @@ public class ClientControllerSender : IClientController, IClientControllerSender
     }
 
 
-    public IAsyncEnumerable<VpnStateIpcEntity> StreamVpnStateChangeAsync()
+    public IAsyncEnumerable<VpnStateIpcEntity> StreamVpnStateChangeAsync(CancellationToken cancelToken)
     {
         CancellationTokenSource cts = new();
         lock (_streamCancellationTokenLock)
@@ -113,7 +113,7 @@ public class ClientControllerSender : IClientController, IClientControllerSender
         }
     }
 
-    public IAsyncEnumerable<PortForwardingStateIpcEntity> StreamPortForwardingStateChangeAsync()
+    public IAsyncEnumerable<PortForwardingStateIpcEntity> StreamPortForwardingStateChangeAsync(CancellationToken cancelToken)
     {
         CancellationTokenSource cts = new();
         lock (_streamCancellationTokenLock)
@@ -124,7 +124,7 @@ public class ClientControllerSender : IClientController, IClientControllerSender
         return StreamAsync(_portForwardingStateChannel, cts.Token);
     }
 
-    public IAsyncEnumerable<ConnectionDetailsIpcEntity> StreamConnectionDetailsChangeAsync()
+    public IAsyncEnumerable<ConnectionDetailsIpcEntity> StreamConnectionDetailsChangeAsync(CancellationToken cancelToken)
     {
         CancellationTokenSource cts = new();
         lock (_streamCancellationTokenLock)
@@ -135,7 +135,7 @@ public class ClientControllerSender : IClientController, IClientControllerSender
         return StreamAsync(_connectionDetailsChannel, cts.Token);
     }
 
-    public IAsyncEnumerable<NetShieldStatisticIpcEntity> StreamNetShieldStatisticChangeAsync()
+    public IAsyncEnumerable<NetShieldStatisticIpcEntity> StreamNetShieldStatisticChangeAsync(CancellationToken cancelToken)
     {
         CancellationTokenSource cts = new();
         lock (_streamCancellationTokenLock)
@@ -146,7 +146,7 @@ public class ClientControllerSender : IClientController, IClientControllerSender
         return StreamAsync(_netShieldStatisticChannel, cts.Token);
     }
 
-    public IAsyncEnumerable<UpdateStateIpcEntity> StreamUpdateStateChangeAsync()
+    public IAsyncEnumerable<UpdateStateIpcEntity> StreamUpdateStateChangeAsync(CancellationToken cancelToken)
     {
         CancellationTokenSource cts = new();
         lock (_streamCancellationTokenLock)

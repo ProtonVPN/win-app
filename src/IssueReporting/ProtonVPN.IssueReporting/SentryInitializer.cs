@@ -19,6 +19,7 @@
 
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using ProtonVPN.Builds.Variables;
 using ProtonVPN.Common.Core.Helpers;
@@ -121,7 +122,7 @@ public static class SentryInitializer
 
     private static string GetLogs()
     {
-        IList<string> logs = _logger?.GetRecentLogs() ?? new List<string>();
+        IList<string> logs = _logger?.GetRecentLogs().Reverse().ToList() ?? [];
         StringBuilder sb = new();
         foreach (string log in logs)
         {

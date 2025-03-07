@@ -22,6 +22,7 @@
     <ItemGroup>
       <ProjectReference Include="..\..\..\Client\Common\ProtonVPN.Client.Common\ProtonVPN.Client.Common.csproj" />
       <ProjectReference Include="..\..\..\Client\EventMessaging\ProtonVPN.Client.EventMessaging.Contracts\ProtonVPN.Client.EventMessaging.Contracts.csproj" />
+      <ProjectReference Include="..\..\..\Client\Settings\ProtonVPN.Client.Settings.Contracts\ProtonVPN.Client.Settings.Contracts.csproj" />
       <ProjectReference Include="..\..\..\OperatingSystems\Processes\ProtonVPN.OperatingSystems.Processes.Contracts\ProtonVPN.OperatingSystems.Processes.Contracts.csproj" />
       <ProjectReference Include="..\..\..\OperatingSystems\Registries\ProtonVPN.OperatingSystems.Registries.Contracts\ProtonVPN.OperatingSystems.Registries.Contracts.csproj" />
       <ProjectReference Include="..\..\Common\ProtonVPN.ProcessCommunication.Common\ProtonVPN.ProcessCommunication.Common.csproj" />

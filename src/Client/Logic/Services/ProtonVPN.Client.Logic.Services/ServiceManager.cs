@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.ServiceProcess;
 using ProtonVPN.Client.Common.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Services.Contracts;
@@ -41,6 +42,11 @@ public class ServiceManager : IServiceManager, IEventMessageReceiver<Application
         _service = serviceFactory.Get(configuration.ServiceName);
         _serviceEnabler = serviceEnabler;
         _baseFilteringEngineDialogHandler = baseFilteringEngineDialogHandler;
+    }
+
+    public ServiceControllerStatus? GetStatus()
+    {
+        return _service.GetStatus();
     }
 
     public void Receive(ApplicationStoppedMessage message)

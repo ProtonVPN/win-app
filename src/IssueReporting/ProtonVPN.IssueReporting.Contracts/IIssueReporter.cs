@@ -27,6 +27,6 @@ namespace ProtonVPN.IssueReporting.Contracts
         void CaptureError(Exception e, [CallerFilePath] string sourceFilePath = "",
             [CallerMemberName] string sourceMemberName = "", [CallerLineNumber] int sourceLineNumber = 0);
         void CaptureError(string message);
-        void CaptureMessage(string message);
+        void CaptureMessage(string message, string description = null);
     }
 }

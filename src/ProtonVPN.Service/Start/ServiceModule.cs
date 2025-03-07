@@ -36,6 +36,7 @@ using ProtonVPN.OperatingSystems.Registries.Installers;
 using ProtonVPN.ProcessCommunication.Installers;
 using ProtonVPN.ProcessCommunication.Server.Installers;
 using ProtonVPN.Serialization.Installers;
+using ProtonVPN.Service.ControllerRetries;
 using ProtonVPN.Service.Driver;
 using ProtonVPN.Service.Firewall;
 using ProtonVPN.Service.ProcessCommunication;
@@ -115,7 +116,8 @@ internal class ServiceModule : Module
         builder.RegisterType<CurrentAppVersionProvider>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<DeviceIdCache>().AsImplementedInterfaces().SingleInstance();
-
+        builder.RegisterType<ControllerRetryManager>().AsImplementedInterfaces().SingleInstance();
+        
         RegisterModules(builder);
     }
 

@@ -20,6 +20,7 @@
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Common.Models;
+using ProtonVPN.Client.Contracts.Services.Lifecycle;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Services.Contracts;
@@ -35,19 +36,21 @@ public class ServiceEnabler : IServiceEnabler
     private readonly IUIThreadDispatcher _uIThreadDispatcher;
     private readonly ILocalizationProvider _localizer;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
-
+    private readonly IAppExitInvoker _appExitInvoker;
     private readonly SemaphoreSlim _semaphore = new(1, 1);
 
     public ServiceEnabler(
         ILogger logger,
         IUIThreadDispatcher uIThreadDispatcher,
         ILocalizationProvider localizer,
-        IMainWindowOverlayActivator mainWindowOverlayActivator)
+        IMainWindowOverlayActivator mainWindowOverlayActivator,
+        IAppExitInvoker appExitInvoker)
     {
         _logger = logger;
         _uIThreadDispatcher = uIThreadDispatcher;
         _localizer = localizer;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
+        _appExitInvoker = appExitInvoker;
     }
 
     public async Task EnableAsync(IService service)
@@ -104,7 +107,7 @@ public class ServiceEnabler : IServiceEnabler
             _logger.Info<AppServiceLog>($"The service {service.Name} was not enabled. Shutting down the application.");
 
             // Used Environment.Exit, because IMainWindowActivator.Exit causes circular dependency
-            Environment.Exit(0);
+            _appExitInvoker.Exit();
         }
     }
 }

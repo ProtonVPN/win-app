@@ -23,6 +23,6 @@ namespace ProtonVPN.OperatingSystems.Processes.Contracts;
 
 public interface IPipeStreamProcessIdentifier
 {
-    string? GetClientProcessFileName(PipeStream pipeStream);
-    string? GetServerProcessFileName(PipeStream pipeStream);
+    string? GetClientProcessFullFilePath(PipeStream pipeStream);
+    string? GetServerProcessFullFilePath(PipeStream pipeStream);
 }

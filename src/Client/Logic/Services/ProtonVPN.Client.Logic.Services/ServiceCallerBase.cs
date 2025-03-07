@@ -18,57 +18,72 @@
  */
 
 using System.Runtime.CompilerServices;
+using ProtonVPN.Client.Common.Messages;
+using ProtonVPN.Client.Contracts.ProcessCommunication;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Common.Legacy.Abstract;
 using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
+using ProtonVPN.Logging.Contracts.Events.ProcessCommunicationLogs;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 
 namespace ProtonVPN.Client.Logic.Services;
 
-public abstract class ServiceCallerBase<TController>
+public abstract class ServiceCallerBase<TController> : IServiceCaller, IEventMessageReceiver<ApplicationStoppedMessage>
     where TController : IServiceController
 {
-    private static readonly TimeSpan _timeout = TimeSpan.FromSeconds(5);
+    private static readonly TimeSpan _callTimeout = TimeSpan.FromSeconds(3);
 
     private readonly IGrpcClient _grpcClient;
-    private readonly IServiceManager _serviceManager;
+    private readonly Lazy<IServiceCommunicationErrorHandler> _serviceCommunicationErrorHandler;
+    private readonly CancellationTokenSource _cancellationTokenSource = new();
 
     protected ILogger Logger { get; }
 
     protected ServiceCallerBase(ILogger logger,
         IGrpcClient grpcClient,
-        IServiceManager serviceManager)
+        Lazy<IServiceCommunicationErrorHandler> serviceCommunicationErrorHandler)
     {
         Logger = logger;
         _grpcClient = grpcClient;
-        _serviceManager = serviceManager;
+        _serviceCommunicationErrorHandler = serviceCommunicationErrorHandler;
     }
 
-    protected async Task<Result<T>> InvokeAsync<T>(Func<TController, Task<T>> serviceCall,
+    public void Receive(ApplicationStoppedMessage message)
+    {
+        _cancellationTokenSource.Cancel();
+    }
+
+    protected async Task<Result<T>> InvokeAsync<T>(Func<TController, CancellationToken, Task<T>> serviceCall,
         [CallerMemberName] string memberName = "")
     {
         int retryCount = 5;
-        while (true)
+        while (!_cancellationTokenSource.IsCancellationRequested)
         {
             try
             {
                 TController serviceController =
                     await _grpcClient.GetServiceControllerOrThrowAsync<TController>(TimeSpan.FromSeconds(1));
-                T result = await serviceCall(serviceController);
+                CancellationTokenSource cancellationTokenSource = new(_callTimeout);
+                T result = await serviceCall(serviceController, cancellationTokenSource.Token);
                 if (result is Task task)
                 {
-                    await RunWithTimeoutAsync(task);
+                    await task;
                 }
 
                 return Result.Ok(result);
             }
             catch (Exception e)
             {
-                await StartServiceIfStoppedAsync();
-                if (retryCount <= 0)
+                if (!_cancellationTokenSource.IsCancellationRequested)
+                {
+                    await _serviceCommunicationErrorHandler.Value.HandleAsync();
+                }
+
+                if (_cancellationTokenSource.IsCancellationRequested || retryCount <= 0)
                 {
                     LogError(e, memberName, isToRetry: false);
                     return Result.Fail<T>(e.CombinedMessage());
@@ -79,23 +94,8 @@ public abstract class ServiceCallerBase<TController>
 
             retryCount--;
         }
-    }
 
-    private async Task RunWithTimeoutAsync(Task task)
-    {
-        if (await Task.WhenAny(task, Task.Delay(_timeout)) == task)
-        {
-            await task;
-        }
-        else
-        {
-            throw new TimeoutException($"The gRPC call has timed out ({_timeout}).");
-        }
-    }
-
-    private async Task StartServiceIfStoppedAsync()
-    {
-        await _serviceManager.StartAsync();
+        return Result.Fail<T>($"Can't send message because the {GetType().Name} has been stopped.");
     }
 
     private void LogError(Exception exception, string callerMemberName, bool isToRetry)
@@ -104,5 +104,11 @@ public abstract class ServiceCallerBase<TController>
             $"The invocation of '{callerMemberName}' on VPN Service channel returned an exception and will " +
             (isToRetry ? string.Empty : "not ") +
             $"be retried. Exception message: {exception.Message}");
+    }
+
+    public void Stop()
+    {
+        Logger.Info<ProcessCommunicationLog>($"The {GetType().Name} has been stopped.");
+        _cancellationTokenSource.Cancel();
     }
 }

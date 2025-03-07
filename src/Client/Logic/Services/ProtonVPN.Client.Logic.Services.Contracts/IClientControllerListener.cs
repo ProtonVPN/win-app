@@ -21,5 +21,6 @@ namespace ProtonVPN.Client.Logic.Services.Contracts;
 
 public interface IClientControllerListener
 {
+    void Stop();
     void Start();
 }

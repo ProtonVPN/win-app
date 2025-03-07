@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Contracts.ProcessCommunication;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Legacy.Abstract;
@@ -31,52 +32,53 @@ namespace ProtonVPN.Client.Logic.Services;
 
 public class VpnServiceCaller : ServiceCallerBase<IVpnController>, IVpnServiceCaller
 {
-    public VpnServiceCaller(ILogger logger, IGrpcClient grpcClient, IServiceManager serviceManager)
-        : base(logger, grpcClient, serviceManager)
+    public VpnServiceCaller(ILogger logger, IGrpcClient grpcClient,
+        Lazy<IServiceCommunicationErrorHandler> serviceCommunicationErrorHandler)
+        : base(logger, grpcClient, serviceCommunicationErrorHandler)
     { }
 
     public Task ConnectAsync(ConnectionRequestIpcEntity connectionRequest)
     {
-        return InvokeAsync(c => c.Connect(connectionRequest).Wrap());
+        return InvokeAsync((c, ct) => c.Connect(connectionRequest, ct).Wrap());
     }
 
     public Task DisconnectAsync(DisconnectionRequestIpcEntity disconnectionRequest)
     {
-        return InvokeAsync(c => c.Disconnect(disconnectionRequest).Wrap());
+        return InvokeAsync((c, ct) => c.Disconnect(disconnectionRequest, ct).Wrap());
     }
 
     public Task<Result<NetworkTrafficIpcEntity>> GetNetworkTrafficAsync()
     {
-         return InvokeAsync(c => c.GetNetworkTraffic());
+         return InvokeAsync((c, ct) => c.GetNetworkTraffic(ct));
     }
 
     public Task RequestNetShieldStatsAsync()
     {
-        return InvokeAsync(c => c.RequestNetShieldStats().Wrap());
+        return InvokeAsync((c, ct) => c.RequestNetShieldStats(ct).Wrap());
     }
 
     public Task RequestConnectionDetailsAsync()
     {
-        return InvokeAsync(c => c.RequestConnectionDetails().Wrap());
+        return InvokeAsync((c, ct) => c.RequestConnectionDetails(ct).Wrap());
     }
 
     public Task UpdateConnectionCertificateAsync(ConnectionCertificateIpcEntity certificate)
     {
-        return InvokeAsync(c => c.UpdateConnectionCertificate(certificate).Wrap());
+        return InvokeAsync((c, ct) => c.UpdateConnectionCertificate(certificate, ct).Wrap());
     }
 
     public Task ApplySettingsAsync(MainSettingsIpcEntity settings)
     {
-        return InvokeAsync(c => c.ApplySettings(settings).Wrap());
+        return InvokeAsync((c, ct) => c.ApplySettings(settings, ct).Wrap());
     }
 
     public Task RepeatStateAsync()
     {
-        return InvokeAsync(c => c.RepeatState().Wrap());
+        return InvokeAsync((c, ct) => c.RepeatState(ct).Wrap());
     }
 
     public Task RepeatPortForwardingStateAsync()
     {
-        return InvokeAsync(c => c.RepeatPortForwardingState().Wrap());
+        return InvokeAsync((c, ct) => c.RepeatPortForwardingState(ct).Wrap());
     }
 }

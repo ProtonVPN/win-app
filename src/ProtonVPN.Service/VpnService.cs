@@ -71,12 +71,18 @@ internal partial class VpnService : ServiceBase
 
         powerEventNotifier.OnResume += OnPowerEventResume;
         _vpnConnection.StateChanged += OnVpnStateChanged;
+        _grpcServer.InvokingServiceStop += OnInvokingServiceStop;
 
         _cancellationTokenSource = new CancellationTokenSource();
         CancellationToken = _cancellationTokenSource.Token;
         CanHandleSessionChangeEvent = true;
 
         InitializeComponent();
+    }
+
+    private void OnInvokingServiceStop(object sender, EventArgs e)
+    {
+        Stop();
     }
 
     protected override void OnSessionChange(SessionChangeDescription changeDescription)

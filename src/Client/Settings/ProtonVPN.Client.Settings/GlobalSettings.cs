@@ -230,6 +230,18 @@ public class GlobalSettings : IGlobalSettings
         set => _globalCache.SetValueType<int>(value, SettingEncryption.Unencrypted);
     }
 
+    public string? LastProcessVersionMismatchRestartVersions
+    {
+        get => _globalCache.GetReferenceType<string>(SettingEncryption.Unencrypted);
+        set => _globalCache.SetReferenceType(value, SettingEncryption.Unencrypted);
+    }
+
+    public DateTimeOffset? LastProcessVersionMismatchRestartUtcDate
+    {
+        get => _globalCache.GetValueType<DateTimeOffset>(SettingEncryption.Unencrypted);
+        set => _globalCache.SetValueType(value, SettingEncryption.Unencrypted);
+    }
+
     public GlobalSettings(IGlobalSettingsCache globalSettingsCache)
     {
         _globalCache = globalSettingsCache;

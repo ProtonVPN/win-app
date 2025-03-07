@@ -29,17 +29,17 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Controllers;
 public interface IClientController
 {
     [OperationContract]
-    IAsyncEnumerable<VpnStateIpcEntity> StreamVpnStateChangeAsync();
+    IAsyncEnumerable<VpnStateIpcEntity> StreamVpnStateChangeAsync(CancellationToken cancelToken);
 
     [OperationContract]
-    IAsyncEnumerable<PortForwardingStateIpcEntity> StreamPortForwardingStateChangeAsync();
+    IAsyncEnumerable<PortForwardingStateIpcEntity> StreamPortForwardingStateChangeAsync(CancellationToken cancelToken);
 
     [OperationContract]
-    IAsyncEnumerable<ConnectionDetailsIpcEntity> StreamConnectionDetailsChangeAsync();
+    IAsyncEnumerable<ConnectionDetailsIpcEntity> StreamConnectionDetailsChangeAsync(CancellationToken cancelToken);
 
     [OperationContract]
-    IAsyncEnumerable<NetShieldStatisticIpcEntity> StreamNetShieldStatisticChangeAsync();
+    IAsyncEnumerable<NetShieldStatisticIpcEntity> StreamNetShieldStatisticChangeAsync(CancellationToken cancelToken);
 
     [OperationContract]
-    IAsyncEnumerable<UpdateStateIpcEntity> StreamUpdateStateChangeAsync();
+    IAsyncEnumerable<UpdateStateIpcEntity> StreamUpdateStateChangeAsync(CancellationToken cancelToken);
 }

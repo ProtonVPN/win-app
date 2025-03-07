@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -16,16 +16,11 @@
  * You should have received a copy of the GNU General Public License
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
-using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 
-namespace ProtonVPN.ProcessCommunication.Contracts
+namespace ProtonVPN.Client.Contracts.Services.Lifecycle;
+
+public interface IAppExitInvoker
 {
-    public interface IServiceGrpcClient
-    {
-        IAppController? AppController { get; }
-
-        Task CreateAsync(int serverPort);
-        Task RecreateAsync();
-        bool IsRecreatable();
-    }
+    void Restart();
+    void Exit(int code = 0);
 }

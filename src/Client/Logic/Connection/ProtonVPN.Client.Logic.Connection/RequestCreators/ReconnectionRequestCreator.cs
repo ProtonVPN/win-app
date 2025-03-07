@@ -66,6 +66,7 @@ public class ReconnectionRequestCreator : ConnectionRequestCreator, IReconnectio
 
         ConnectionRequestIpcEntity request = new()
         {
+            RetryId = Guid.NewGuid(),
             Config = config,
             Credentials = await GetVpnCredentialsAsync(),
             Protocol = VpnProtocolIpcEntity.Smart,

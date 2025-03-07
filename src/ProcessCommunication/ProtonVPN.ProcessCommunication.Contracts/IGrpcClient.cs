@@ -26,6 +26,10 @@ public interface IGrpcClient
     IUpdateController UpdateController { get; }
     IVpnController VpnController { get; }
 
+    event EventHandler InvokingAppRestart;
+
+    void Stop();
+    void CreateIfPipeNameChanged();
     void Create();
 
     Task<T> GetServiceControllerOrThrowAsync<T>(TimeSpan timeout)

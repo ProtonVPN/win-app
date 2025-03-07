@@ -170,7 +170,11 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     [RelayCommand]
     public void DisconnectWithSessionLimitReachedError()
     {
-        _vpnServiceCaller.DisconnectAsync(new() { ErrorType = VpnErrorTypeIpcEntity.SessionLimitReachedPlus });
+        _vpnServiceCaller.DisconnectAsync(new DisconnectionRequestIpcEntity()
+        {
+            RetryId = Guid.NewGuid(),
+            ErrorType = VpnErrorTypeIpcEntity.SessionLimitReachedPlus
+        });
     }
 
     private string GenerateOverlayDisplayName(string methodName)

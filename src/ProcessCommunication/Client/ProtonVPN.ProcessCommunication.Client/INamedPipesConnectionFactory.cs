@@ -23,4 +23,6 @@ public interface INamedPipesConnectionFactory
 {
     ValueTask<Stream> ConnectAsync(SocketsHttpConnectionContext _,
         CancellationToken cancellationToken = default);
+    void Stop();
+    bool HasPipeNameChanged();
 }

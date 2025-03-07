@@ -35,18 +35,19 @@ public class PipeStreamProcessIdentifier : IPipeStreamProcessIdentifier
         _logger = logger;
     }
 
-    public string? GetClientProcessFileName(PipeStream pipeStream)
+    public string? GetClientProcessFullFilePath(PipeStream pipeStream)
     {
-        return GetProcessFileName(GetClientProcessId, pipeStream);
+        return GetProcessFullFilePath(GetClientProcessId, pipeStream);
     }
 
-    private string? GetProcessFileName(Func<PipeStream, int> processIdRequester, PipeStream pipeStream)
+    private string? GetProcessFullFilePath(Func<PipeStream, int> processIdRequester, PipeStream pipeStream)
     {
         try
         {
             int processId = processIdRequester(pipeStream);
             Process? process = processId == 0 ? null : Process.GetProcessById(processId);
-            return process?.MainModule?.FileName;
+            string? filePath = process?.MainModule?.FileName;
+            return string.IsNullOrWhiteSpace(filePath) ? null : Path.GetFullPath(filePath);
         }
         catch (Exception ex)
         {
@@ -68,9 +69,9 @@ public class PipeStreamProcessIdentifier : IPipeStreamProcessIdentifier
     [return: MarshalAs(UnmanagedType.Bool)]
     private static extern bool GetNamedPipeClientProcessId(IntPtr hNamedPipe, out uint clientProcessId);
 
-    public string? GetServerProcessFileName(PipeStream pipeStream)
+    public string? GetServerProcessFullFilePath(PipeStream pipeStream)
     {
-        return GetProcessFileName(GetServerProcessId, pipeStream);
+        return GetProcessFullFilePath(GetServerProcessId, pipeStream);
     }
 
     private int GetServerProcessId(PipeStream pipeStream)

@@ -60,6 +60,8 @@ public interface IGlobalSettings
     VpnProtocol[] DisabledSmartProtocols { get; set; }
     int TotalCountryCount { get; set; }
     int TotalServerCount { get; set; }
+    string? LastProcessVersionMismatchRestartVersions { get; set; }
+    DateTimeOffset? LastProcessVersionMismatchRestartUtcDate { get; set; }
 
     Dictionary<string, Dictionary<string, string?>>? LegacySettingsByUsername { get; set; }
 }

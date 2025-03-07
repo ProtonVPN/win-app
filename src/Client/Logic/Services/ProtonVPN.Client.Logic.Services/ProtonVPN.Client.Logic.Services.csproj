@@ -13,6 +13,7 @@
     </ItemGroup>
     <ItemGroup>
       <PackageReference Include="System.Formats.Asn1" />
+      <PackageReference Include="System.ServiceProcess.ServiceController" />
       <PackageReference Include="System.Text.Json" />
     </ItemGroup>
     <ItemGroup>
@@ -21,6 +22,7 @@
         <ProjectReference Include="..\..\..\..\OperatingSystems\Services\ProtonVPN.OperatingSystems.Services.Contracts\ProtonVPN.OperatingSystems.Services.Contracts.csproj" />
         <ProjectReference Include="..\..\..\..\ProcessCommunication\ProtonVPN.ProcessCommunication.Contracts\ProtonVPN.ProcessCommunication.Contracts.csproj" />
         <ProjectReference Include="..\..\..\EventMessaging\ProtonVPN.Client.EventMessaging.Contracts\ProtonVPN.Client.EventMessaging.Contracts.csproj" />
+        <ProjectReference Include="..\..\..\ProtonVPN.Client.Contracts\ProtonVPN.Client.Contracts.csproj" />
         <ProjectReference Include="..\..\..\Settings\ProtonVPN.Client.Settings.Contracts\ProtonVPN.Client.Settings.Contracts.csproj" />
         <ProjectReference Include="..\..\Auth\ProtonVPN.Client.Logic.Auth.Contracts\ProtonVPN.Client.Logic.Auth.Contracts.csproj" />
         <ProjectReference Include="..\ProtonVPN.Client.Logic.Services.Contracts\ProtonVPN.Client.Logic.Services.Contracts.csproj" />

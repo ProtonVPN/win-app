@@ -20,6 +20,7 @@
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\..\..\Crypto\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj" />
+      <ProjectReference Include="..\..\..\IssueReporting\ProtonVPN.IssueReporting.Contracts\ProtonVPN.IssueReporting.Contracts.csproj" />
       <ProjectReference Include="..\..\..\OperatingSystems\Processes\ProtonVPN.OperatingSystems.Processes.Contracts\ProtonVPN.OperatingSystems.Processes.Contracts.csproj" />
       <ProjectReference Include="..\..\..\OperatingSystems\Registries\ProtonVPN.OperatingSystems.Registries.Contracts\ProtonVPN.OperatingSystems.Registries.Contracts.csproj" />
       <ProjectReference Include="..\..\Common\ProtonVPN.ProcessCommunication.Common\ProtonVPN.ProcessCommunication.Common.csproj" />

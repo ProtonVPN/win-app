@@ -73,6 +73,7 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
 
         ConnectionRequestIpcEntity request = new()
         {
+            RetryId = Guid.NewGuid(),
             Config = GetVpnConfig(settings, connectionIntent),
             Credentials = await GetVpnCredentialsAsync(),
             Protocol = settings.VpnProtocol,

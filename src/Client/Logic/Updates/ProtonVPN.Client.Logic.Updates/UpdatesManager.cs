@@ -47,8 +47,6 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
     IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<SettingChangedMessage>
 {
-    private const int APP_EXIT_TIMEOUT_IN_SECONDS = 3;
-
     private readonly IConnectionManager _connectionManager;
     private readonly IConfiguration _config;
     private readonly IEntityMapper _entityMapper;
@@ -57,7 +55,7 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IVpnServiceSettingsUpdater _vpnServiceSettingsUpdater;
     private readonly IOsProcesses _osProcesses;
-    private readonly IExitService _exitService;
+    private readonly IAppExitInvoker _appExitInvoker;
 
     private bool _requestedManualCheck;
     private DateTime _lastCheckTime;
@@ -86,7 +84,7 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
         IEventMessageSender eventMessageSender,
         IVpnServiceSettingsUpdater vpnServiceSettingsUpdater,
         IOsProcesses osProcesses,
-        IExitService exitService) : base(logger, issueReporter)
+        IAppExitInvoker appExitInvoker) : base(logger, issueReporter)
     {
         _connectionManager = connectionManager;
         _config = config;
@@ -96,7 +94,7 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
         _eventMessageSender = eventMessageSender;
         _vpnServiceSettingsUpdater = vpnServiceSettingsUpdater;
         _osProcesses = osProcesses;
-        _exitService = exitService;
+        _appExitInvoker = appExitInvoker;
     }
 
     protected override Task OnTriggerAsync()
@@ -209,20 +207,13 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
 
         if (_lastUpdateState.Status == AppUpdateStatus.AutoUpdated)
         {
-            RestartApp();
+            Logger.Info<AppUpdateLog>("Restarting app after auto update due to manual request.");
+            _appExitInvoker.Restart();
         }
         else if (_lastUpdateState.IsReady)
         {
             await UpdateManuallyAsync();
         }
-    }
-
-    private void RestartApp()
-    {
-        string cmd = $"/c Timeout /t {APP_EXIT_TIMEOUT_IN_SECONDS} >nul & \"{_config.ClientLauncherExePath}\"";
-        using IOsProcess process = _osProcesses.CommandLineProcess(cmd);
-        process.Start();
-        _exitService.Exit();
     }
 
     private async Task UpdateManuallyAsync()
@@ -242,7 +233,7 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
         try
         {
             _osProcesses.ElevatedProcess(_lastUpdateState.FilePath, _lastUpdateState.FileArguments).Start();
-            _exitService.Exit();
+            _appExitInvoker.Exit();
         }
         catch (System.ComponentModel.Win32Exception)
         {

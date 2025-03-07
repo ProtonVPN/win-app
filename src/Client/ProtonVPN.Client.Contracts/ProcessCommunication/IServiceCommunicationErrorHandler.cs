@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,23 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Contracts.Services.Lifecycle;
-using ProtonVPN.Client.Logic.Services.Contracts;
+namespace ProtonVPN.Client.Contracts.ProcessCommunication;
 
-namespace ProtonVPN.Client.Services.Lifecycle;
-
-public class ExitService : IExitService
+public interface IServiceCommunicationErrorHandler
 {
-    private readonly IServiceManager _serviceManager;
-
-    public ExitService(IServiceManager serviceManager)
-    {
-        _serviceManager = serviceManager;
-    }
-
-    public void Exit()
-    {
-        _serviceManager.Stop();
-        Environment.Exit(0);
-    }
+    Task HandleAsync();
 }

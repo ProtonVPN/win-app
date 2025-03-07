@@ -19,6 +19,8 @@
 
 using Grpc.Net.Client;
 using ProtoBuf.Grpc.Client;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ProcessCommunicationLogs;
 using ProtonVPN.ProcessCommunication.Contracts;
@@ -28,26 +30,56 @@ namespace ProtonVPN.ProcessCommunication.Client;
 
 public class GrpcClient : IGrpcClient
 {
-    private readonly ILogger _logger;
     private readonly INamedPipesConnectionFactory _namedPipesConnectionFactory;
+    private readonly ILogger _logger;
+    private readonly IIssueReporter _issueReporter;
+    private readonly ISettings _settings;
+
+    private readonly object _lock = new();
+    private GrpcChannel _channel;
 
     public IClientController ClientController { get; private set; }
     public IUpdateController UpdateController { get; private set; }
     public IVpnController VpnController { get; private set; }
 
-    public GrpcClient(ILogger logger, INamedPipesConnectionFactory namedPipesConnectionFactory)
+    public event EventHandler InvokingAppRestart;
+
+    public GrpcClient(INamedPipesConnectionFactory namedPipesConnectionFactory,
+        ILogger logger,
+        IIssueReporter issueReporter,
+        ISettings settings)
     {
-        _logger = logger;
         _namedPipesConnectionFactory = namedPipesConnectionFactory;
+        _logger = logger;
+        _issueReporter = issueReporter;
+        _settings = settings;
+    }
+
+    public void Stop()
+    {
+        _namedPipesConnectionFactory.Stop();
+    }
+
+    public void CreateIfPipeNameChanged()
+    {
+        if (_namedPipesConnectionFactory.HasPipeNameChanged())
+        {
+            Create();
+        }
     }
 
     public void Create()
     {
-        GrpcChannel channel = CreateChannel();
+        lock (_lock)
+        {
+            _channel?.Dispose();
 
-        ClientController = channel.CreateGrpcService<IClientController>();
-        UpdateController = channel.CreateGrpcService<IUpdateController>();
-        VpnController = channel.CreateGrpcService<IVpnController>();
+            _channel = CreateChannel();
+
+            ClientController = _channel.CreateGrpcService<IClientController>();
+            UpdateController = _channel.CreateGrpcService<IUpdateController>();
+            VpnController = _channel.CreateGrpcService<IVpnController>();
+        }
     }
 
     private GrpcChannel CreateChannel()
@@ -61,7 +93,7 @@ public class GrpcClient : IGrpcClient
 
         return GrpcChannel.ForAddress("http://localhost", new GrpcChannelOptions
         {
-            HttpHandler = socketsHttpHandler
+            HttpHandler = new ResponseHandler(_logger, _issueReporter, _settings, InvokingAppRestart, socketsHttpHandler)
         });
     }
 

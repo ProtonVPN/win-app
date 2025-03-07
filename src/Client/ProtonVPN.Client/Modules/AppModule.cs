@@ -53,6 +53,7 @@ using ProtonVPN.Client.Services.Mapping;
 using ProtonVPN.Client.Services.Navigation;
 using ProtonVPN.Client.Services.Notification;
 using ProtonVPN.Client.Services.PortForwarding;
+using ProtonVPN.Client.Services.ProcessCommunication;
 using ProtonVPN.Client.Services.Selection;
 using ProtonVPN.Client.Services.SignoutHandling;
 using ProtonVPN.Client.Services.Validation;
@@ -254,9 +255,10 @@ public class AppModule : Module
 
         builder.RegisterType<SystemTimeValidator>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ViewModelHelper>().AsImplementedInterfaces().SingleInstance();
-
-        builder.RegisterType<ExitService>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<AppExitInvoker>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<CoordinatesProvider>().AsImplementedInterfaces().SingleInstance();
+
+        builder.RegisterType<ServiceCommunicationErrorHandler>().AsImplementedInterfaces().SingleInstance();
     }
 
     private void RegisterLocalHandlers(ContainerBuilder builder)

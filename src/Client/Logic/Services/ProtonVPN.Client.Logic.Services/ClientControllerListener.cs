@@ -20,6 +20,7 @@
 using System.Text;
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Common.Messages;
+using ProtonVPN.Client.Contracts.ProcessCommunication;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -39,7 +40,7 @@ public class ClientControllerListener : IClientControllerListener, IEventMessage
     private readonly IGrpcClient _grpcClient;
     private readonly IUIThreadDispatcher _uiThreadDispatcher;
     private readonly IEventMessageSender _eventMessageSender;
-    private readonly IServiceManager _serviceManager;
+    private readonly IServiceCommunicationErrorHandler _serviceCommunicationErrorHandler;
 
     private readonly CancellationTokenSource _cancellationTokenSource = new();
 
@@ -47,16 +48,21 @@ public class ClientControllerListener : IClientControllerListener, IEventMessage
         IGrpcClient grpcClient,
         IUIThreadDispatcher uiThreadDispatcher,
         IEventMessageSender eventMessageSender,
-        IServiceManager serviceManager)
+        IServiceCommunicationErrorHandler serviceCommunicationErrorHandler)
     {
         _logger = logger;
         _grpcClient = grpcClient;
         _uiThreadDispatcher = uiThreadDispatcher;
         _eventMessageSender = eventMessageSender;
-        _serviceManager = serviceManager;
+        _serviceCommunicationErrorHandler = serviceCommunicationErrorHandler;
     }
 
     public void Receive(ApplicationStoppedMessage message)
+    {
+        Stop();
+    }
+
+    public void Stop()
     {
         _cancellationTokenSource.Cancel();
     }
@@ -76,24 +82,25 @@ public class ClientControllerListener : IClientControllerListener, IEventMessage
         {
             try
             {
+                _logger.Info<ProcessCommunicationLog>($"Listener starting ({listener.Method.Name})");
                 await listener();
             }
             catch
             {
-                _logger.Warn<AppLog>($"Listener stopped ({listener.Method.Name}). Restarting.");
+                _logger.Warn<ProcessCommunicationLog>($"Listener stopped ({listener.Method.Name})");
             }
-            await StartServiceIfStoppedAsync();
-        }
-    }
 
-    private async Task StartServiceIfStoppedAsync()
-    {
-        await _serviceManager.StartAsync();
+            if (!_cancellationTokenSource.IsCancellationRequested)
+            {
+                await _serviceCommunicationErrorHandler.HandleAsync();
+            }
+        }
     }
 
     private async Task StartVpnStateListenerAsync()
     {
-        await foreach (VpnStateIpcEntity state in _grpcClient.ClientController.StreamVpnStateChangeAsync())
+        await foreach (VpnStateIpcEntity state in
+            _grpcClient.ClientController.StreamVpnStateChangeAsync(_cancellationTokenSource.Token))
         {
             _logger.Info<ProcessCommunicationLog>($"Received VPN Status '{state.Status}', NetworkBlocked: {state.NetworkBlocked} " +
             $"Error: '{state.Error}', EndpointIp: '{state.EndpointIp}', Label: '{state.Label}', " +
@@ -105,7 +112,8 @@ public class ClientControllerListener : IClientControllerListener, IEventMessage
 
     private async Task StartPortForwardingStateListenerAsync()
     {
-        await foreach (PortForwardingStateIpcEntity state in _grpcClient.ClientController.StreamPortForwardingStateChangeAsync())
+        await foreach (PortForwardingStateIpcEntity state in
+            _grpcClient.ClientController.StreamPortForwardingStateChangeAsync(_cancellationTokenSource.Token))
         {
             StringBuilder logMessage = new StringBuilder().Append("Received PortForwarding " +
                 $"Status '{state.Status}' triggered at '{state.TimestampUtc}'");
@@ -123,7 +131,8 @@ public class ClientControllerListener : IClientControllerListener, IEventMessage
 
     private async Task StartConnectionDetailsListenerAsync()
     {
-        await foreach (ConnectionDetailsIpcEntity connectionDetails in _grpcClient.ClientController.StreamConnectionDetailsChangeAsync())
+        await foreach (ConnectionDetailsIpcEntity connectionDetails in
+            _grpcClient.ClientController.StreamConnectionDetailsChangeAsync(_cancellationTokenSource.Token))
         {
             _logger.Info<ProcessCommunicationLog>($"Received connection details change while " +
                 $"connected to server with IP '{connectionDetails.ServerIpAddress}'");
@@ -134,7 +143,8 @@ public class ClientControllerListener : IClientControllerListener, IEventMessage
 
     private async Task StartUpdateStateListenerAsync()
     {
-        await foreach (UpdateStateIpcEntity state in _grpcClient.ClientController.StreamUpdateStateChangeAsync())
+        await foreach (UpdateStateIpcEntity state in
+            _grpcClient.ClientController.StreamUpdateStateChangeAsync(_cancellationTokenSource.Token))
         {
             _logger.Info<ProcessCommunicationLog>(
                 $"Received update state change with status {state.Status}.");
@@ -145,7 +155,8 @@ public class ClientControllerListener : IClientControllerListener, IEventMessage
 
     private async Task StartNetShieldStatisticListenerAsync()
     {
-        await foreach (NetShieldStatisticIpcEntity netShieldStatistic in _grpcClient.ClientController.StreamNetShieldStatisticChangeAsync())
+        await foreach (NetShieldStatisticIpcEntity netShieldStatistic in
+            _grpcClient.ClientController.StreamNetShieldStatisticChangeAsync(_cancellationTokenSource.Token))
         {
             _logger.Info<ProcessCommunicationLog>(
                 $"Received NetShield statistic change with timestamp '{netShieldStatistic.TimestampUtc}' " +

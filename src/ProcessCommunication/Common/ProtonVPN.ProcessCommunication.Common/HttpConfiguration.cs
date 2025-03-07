@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,10 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.ProcessCommunication.Contracts.Registration
+namespace ProtonVPN.ProcessCommunication.Common;
+
+public class HttpConfiguration
 {
-    public interface IServiceServerPortRegister : IServerPortRegister
-    {
-        Task<int> ReadAsync(CancellationToken cancellationToken);
-    }
+    public const string CLIENT_PROCESS_PATH = "ClientProcessPath";
+    public const string SERVICE_PROCESS_PATH = "ServiceProcessPath";
+    public const string INSTALLED_SERVICE_PATH = "InstalledServicePath";
+
+    public const string CLIENT_PROCESS_VERSION = "ClientProcessVersion";
+    public const string SERVICE_PROCESS_VERSION = "ServiceProcessVersion";
+    public const string INSTALLED_SERVICE_VERSION = "InstalledServiceVersion";
 }
