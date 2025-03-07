@@ -19,16 +19,15 @@
 
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Common.Collections;
-using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
-using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Searches;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
+using ProtonVPN.Client.Services.Upselling;
 using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.UI.Overlays.Upsell;
@@ -38,9 +37,7 @@ public partial class FreeConnectionsOverlayViewModel : OverlayViewModelBase<IMai
 {
     private readonly IServersLoader _serversLoader;
     private readonly IServerCountCache _serverCountCache;
-    private readonly IWebAuthenticator _webAuthenticator;
-    private readonly IUrlsBrowser _urlsBrowser;
-    private readonly IUpsellUpgradeAttemptStatisticalEventSender _upsellUpgradeAttemptStatisticalEventSender;
+    private readonly IAccountUpgradeUrlLauncher _accountUpgradeUrlLauncher;
 
     public SmartObservableCollection<LocalizedCountry> FreeCountries { get; } = new();
 
@@ -55,17 +52,13 @@ public partial class FreeConnectionsOverlayViewModel : OverlayViewModelBase<IMai
         IMainWindowOverlayActivator overlayActivator,
         IServersLoader serversLoader,
         IServerCountCache serverCountCache,
-        IUrlsBrowser urlsBrowser,
-        IWebAuthenticator webAuthenticator,
-        IViewModelHelper viewModelHelper,
-        IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender)
+        IAccountUpgradeUrlLauncher accountUpgradeUrlLauncher,
+        IViewModelHelper viewModelHelper)
         : base(overlayActivator, viewModelHelper)
     {
         _serversLoader = serversLoader;
         _serverCountCache = serverCountCache;
-        _urlsBrowser = urlsBrowser;
-        _webAuthenticator = webAuthenticator;
-        _upsellUpgradeAttemptStatisticalEventSender = upsellUpgradeAttemptStatisticalEventSender;
+        _accountUpgradeUrlLauncher = accountUpgradeUrlLauncher;
         InvalidateFreeCountries();
     }
 
@@ -112,7 +105,6 @@ public partial class FreeConnectionsOverlayViewModel : OverlayViewModelBase<IMai
     [RelayCommand]
     private async Task UpgradePlanAsync()
     {
-        _upsellUpgradeAttemptStatisticalEventSender.Send(ModalSource.Countries);
-        _urlsBrowser.BrowseTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSource.Countries));
+        await _accountUpgradeUrlLauncher.OpenAsync(ModalSource.Countries);
     }
 }

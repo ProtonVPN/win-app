@@ -20,7 +20,6 @@
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Common.Models;
-using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
@@ -32,6 +31,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Notifications.Contracts;
+using ProtonVPN.Client.Services.Upselling;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.StatisticalEvents.Contracts;
@@ -50,10 +50,8 @@ public class VpnPlanChangedHandler : IHandler,
     private readonly IMainViewNavigator _mainViewNavigator;
     private readonly ISettingsViewNavigator _settingsViewNavigator;
     private readonly IMainWindowOverlayActivator _overlayActivator;
-    private readonly IWebAuthenticator _webAuthenticator;
-    private readonly IUrlsBrowser _urlsBrowser;
     private readonly ISubscriptionExpiredNotificationSender _subscriptionExpiredNotificationSender;
-    private readonly IUpsellUpgradeAttemptStatisticalEventSender _upsellUpgradeAttemptStatisticalEventSender;
+    private readonly IAccountUpgradeUrlLauncher _accountUpgradeUrlLauncher;
 
     private bool _notifyOnNextConnection;
 
@@ -66,10 +64,8 @@ public class VpnPlanChangedHandler : IHandler,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
         IMainWindowOverlayActivator overlayActivator,
-        IWebAuthenticator webAuthenticator,
-        IUrlsBrowser urlsBrowser,
         ISubscriptionExpiredNotificationSender subscriptionExpiredNotificationSender,
-        IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender)
+        IAccountUpgradeUrlLauncher accountUpgradeUrlLauncher)
     {
         _logger = logger;
         _uIThreadDispatcher = uIThreadDispatcher;
@@ -79,10 +75,8 @@ public class VpnPlanChangedHandler : IHandler,
         _mainViewNavigator = mainViewNavigator;
         _settingsViewNavigator = settingsViewNavigator;
         _overlayActivator = overlayActivator;
-        _webAuthenticator = webAuthenticator;
-        _urlsBrowser = urlsBrowser;
         _subscriptionExpiredNotificationSender = subscriptionExpiredNotificationSender;
-        _upsellUpgradeAttemptStatisticalEventSender = upsellUpgradeAttemptStatisticalEventSender;
+        _accountUpgradeUrlLauncher = accountUpgradeUrlLauncher;
     }
 
     public async void Receive(VpnPlanChangedMessage message)
@@ -147,8 +141,7 @@ public class VpnPlanChangedHandler : IHandler,
             return;
         }
 
-        _upsellUpgradeAttemptStatisticalEventSender.Send(ModalSource.Downgrade);
-        _urlsBrowser.BrowseTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSource.Downgrade));
+        await _accountUpgradeUrlLauncher.OpenAsync(ModalSource.Downgrade);
     }
 
     private async Task ResetNavigationAsync()

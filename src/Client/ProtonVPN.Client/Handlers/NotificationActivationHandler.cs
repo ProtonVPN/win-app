@@ -18,15 +18,14 @@
  */
 
 using ProtonVPN.Client.Common.Dispatching;
-using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Handlers.Bases;
-using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Notifications.Contracts;
 using ProtonVPN.Client.Notifications.Contracts.Arguments;
 using ProtonVPN.Client.Services.PortForwarding;
+using ProtonVPN.Client.Services.Upselling;
 using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.Handlers;
@@ -34,28 +33,22 @@ namespace ProtonVPN.Client.Handlers;
 public class NotificationActivationHandler : IHandler,
     IEventMessageReceiver<NotificationActivationMessage>
 {
-    private readonly IUrlsBrowser _urlsBrowser;
-    private readonly IWebAuthenticator _webAuthenticator;
     private readonly IUIThreadDispatcher _uiThreadDispatcher;
     private readonly IMainWindowActivator _mainWindowActivator;
     private readonly IPortForwardingClipboardService _portForwardingClipboardService;
-    private readonly IUpsellUpgradeAttemptStatisticalEventSender _upsellUpgradeAttemptStatisticalEventSender;
+    private readonly IAccountUpgradeUrlLauncher _accountUpgradeUrlLauncher;
 
     public NotificationActivationHandler(
-        IUrlsBrowser urlsBrowser,
-        IWebAuthenticator webAuthenticator,
         IUIThreadDispatcher uIThreadDispatcher,
         IMainWindowActivator mainWindowActivator,
         IPortForwardingManager portForwardingManager,
         IPortForwardingClipboardService portForwardingClipboardService,
-        IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender)
+        IAccountUpgradeUrlLauncher accountUpgradeUrlLauncher)
     {
-        _urlsBrowser = urlsBrowser;
-        _webAuthenticator = webAuthenticator;
         _uiThreadDispatcher = uIThreadDispatcher;
         _mainWindowActivator = mainWindowActivator;
         _portForwardingClipboardService = portForwardingClipboardService;
-        _upsellUpgradeAttemptStatisticalEventSender = upsellUpgradeAttemptStatisticalEventSender;
+        _accountUpgradeUrlLauncher = accountUpgradeUrlLauncher;
     }
 
     public void Receive(NotificationActivationMessage message)
@@ -70,8 +63,7 @@ public class NotificationActivationHandler : IHandler,
         switch (argument)
         {
             case NotificationArguments.UPGRADE:
-                _upsellUpgradeAttemptStatisticalEventSender.Send(ModalSource.Downgrade);
-                _urlsBrowser.BrowseTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSource.Downgrade));
+                await _accountUpgradeUrlLauncher.OpenAsync(ModalSource.Downgrade);
                 break;
             case NotificationArguments.COPY_PORT_FORWARDING_PORT_TO_CLIPBOARD:
                 _uiThreadDispatcher.TryEnqueue(async () =>

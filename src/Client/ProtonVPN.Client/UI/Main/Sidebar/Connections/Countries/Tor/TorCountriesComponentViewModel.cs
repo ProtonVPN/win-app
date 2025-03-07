@@ -17,14 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Factories;
-using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Models.Connections;
+using ProtonVPN.Client.Services.Upselling;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;
 using ProtonVPN.StatisticalEvents.Contracts;
@@ -50,17 +49,13 @@ public class TorCountriesComponentViewModel : CountriesComponentViewModelBase
         ISettings settings,
         IServersLoader serversLoader,
         ILocationItemFactory locationItemFactory,
-        IUrlsBrowser urlsBrowser,
-        IWebAuthenticator webAuthenticator,
         IViewModelHelper viewModelHelper,
-        IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender)
+        IAccountUpgradeUrlLauncher accountUpgradeUrlLauncher)
         : base(settings,
                serversLoader,
                locationItemFactory,
-               urlsBrowser,
-               webAuthenticator,
                viewModelHelper,
-               upsellUpgradeAttemptStatisticalEventSender)
+               accountUpgradeUrlLauncher)
     { }
 
     public override IEnumerable<ConnectionItemBase> GetItems()
