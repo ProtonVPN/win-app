@@ -63,8 +63,8 @@ public interface IApiClient : IClientBase
     Task<ApiResponseResult<CertificateResponse>> RequestConnectionCertificateAsync(CertificateRequest request);
     Task<ApiResponseResult<BaseResponse>> ApplyPromoCodeAsync(PromoCodeRequest promoCodeRequest);
     Task<ApiResponseResult<ForkedAuthSessionResponse>> ForkAuthSessionAsync(AuthForkSessionRequest request);
-    Task<ApiResponseResult<BaseResponse>> PostUnauthStatisticalEventsAsync(StatisticalEventsBatch statisticalEvents);
-    Task<ApiResponseResult<BaseResponse>> PostStatisticalEventsAsync(StatisticalEventsBatch statisticalEvents);
+    Task<ApiResponseResult<BaseResponse>> PostUnauthenticatedStatisticalEventsAsync(StatisticalEventsBatch statisticalEvents);
+    Task<ApiResponseResult<BaseResponse>> PostAuthenticatedStatisticalEventsAsync(StatisticalEventsBatch statisticalEvents);
     Task<ApiResponseResult<UsersResponse>> GetUserAsync();
     Task<ApiResponseResult<FeatureFlagsResponse>> GetFeatureFlagsAsync();
 }

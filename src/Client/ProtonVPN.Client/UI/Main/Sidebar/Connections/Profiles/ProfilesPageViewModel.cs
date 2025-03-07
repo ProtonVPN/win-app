@@ -40,8 +40,6 @@ using ProtonVPN.Client.Models.Connections.Profiles;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;
 using ProtonVPN.Common.Core.Geographical;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles;
@@ -54,6 +52,7 @@ public partial class ProfilesPageViewModel : ConnectionPageViewModelBase,
     private readonly IProfileEditor _profileEditor;
     private readonly IUrlsBrowser _urlsBrowser;
     private readonly IWebAuthenticator _webAuthenticator;
+    private readonly IUpsellUpgradeAttemptStatisticalEventSender _upsellUpgradeAttemptStatisticalEventSender;
 
     public override string Header => Localizer.Get("Profiles_Page_Title");
 
@@ -79,7 +78,8 @@ public partial class ProfilesPageViewModel : ConnectionPageViewModelBase,
         IProfileEditor profileEditor,
         IUrlsBrowser urlsBrowser,
         IWebAuthenticator webAuthenticator,
-        IViewModelHelper viewModelHelper)
+        IViewModelHelper viewModelHelper,
+        IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender)
         : base(parentViewNavigator,
                settings,
                serversLoader,
@@ -92,6 +92,7 @@ public partial class ProfilesPageViewModel : ConnectionPageViewModelBase,
         _profileEditor = profileEditor;
         _urlsBrowser = urlsBrowser;
         _webAuthenticator = webAuthenticator;
+        _upsellUpgradeAttemptStatisticalEventSender = upsellUpgradeAttemptStatisticalEventSender;
     }
 
     public void Receive(ProfilesChangedMessage message)
@@ -160,6 +161,7 @@ public partial class ProfilesPageViewModel : ConnectionPageViewModelBase,
     [RelayCommand]
     private async Task UpgradeAsync()
     {
+        _upsellUpgradeAttemptStatisticalEventSender.Send(ModalSource.Profiles);
         _urlsBrowser.BrowseTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSource.Profiles));
     }
 }

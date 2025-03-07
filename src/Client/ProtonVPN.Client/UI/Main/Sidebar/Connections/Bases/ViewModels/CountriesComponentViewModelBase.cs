@@ -47,6 +47,7 @@ public abstract partial class CountriesComponentViewModelBase : ActivatableViewM
     protected readonly ILocationItemFactory LocationItemFactory;
     protected readonly IUrlsBrowser UrlsBrowser;
     protected readonly IWebAuthenticator WebAuthenticator;
+    private readonly IUpsellUpgradeAttemptStatisticalEventSender _upsellUpgradeAttemptStatisticalEventSender;
 
     public abstract CountriesConnectionType ConnectionType { get; }
 
@@ -68,7 +69,8 @@ public abstract partial class CountriesComponentViewModelBase : ActivatableViewM
         ILocationItemFactory locationItemFactory,
         IUrlsBrowser urlsBrowser,
         IWebAuthenticator webAuthenticator,
-        IViewModelHelper viewModelHelper)
+        IViewModelHelper viewModelHelper,
+        IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender)
         : base(viewModelHelper)
     {
         Settings = settings;
@@ -77,6 +79,7 @@ public abstract partial class CountriesComponentViewModelBase : ActivatableViewM
 
         UrlsBrowser = urlsBrowser;
         WebAuthenticator = webAuthenticator;
+        _upsellUpgradeAttemptStatisticalEventSender = upsellUpgradeAttemptStatisticalEventSender;
     }
 
     public virtual IEnumerable<ConnectionItemBase> GetItems()
@@ -125,6 +128,7 @@ public abstract partial class CountriesComponentViewModelBase : ActivatableViewM
     [RelayCommand]
     private async Task UpgradeAsync()
     {
+        _upsellUpgradeAttemptStatisticalEventSender.Send(UpsellModalSource);
         UrlsBrowser.BrowseTo(await WebAuthenticator.GetUpgradeAccountUrlAsync(UpsellModalSource));
     }
 }

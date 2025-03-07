@@ -53,6 +53,7 @@ public class VpnPlanChangedHandler : IHandler,
     private readonly IWebAuthenticator _webAuthenticator;
     private readonly IUrlsBrowser _urlsBrowser;
     private readonly ISubscriptionExpiredNotificationSender _subscriptionExpiredNotificationSender;
+    private readonly IUpsellUpgradeAttemptStatisticalEventSender _upsellUpgradeAttemptStatisticalEventSender;
 
     private bool _notifyOnNextConnection;
 
@@ -67,7 +68,8 @@ public class VpnPlanChangedHandler : IHandler,
         IMainWindowOverlayActivator overlayActivator,
         IWebAuthenticator webAuthenticator,
         IUrlsBrowser urlsBrowser,
-        ISubscriptionExpiredNotificationSender subscriptionExpiredNotificationSender)
+        ISubscriptionExpiredNotificationSender subscriptionExpiredNotificationSender,
+        IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender)
     {
         _logger = logger;
         _uIThreadDispatcher = uIThreadDispatcher;
@@ -80,6 +82,7 @@ public class VpnPlanChangedHandler : IHandler,
         _webAuthenticator = webAuthenticator;
         _urlsBrowser = urlsBrowser;
         _subscriptionExpiredNotificationSender = subscriptionExpiredNotificationSender;
+        _upsellUpgradeAttemptStatisticalEventSender = upsellUpgradeAttemptStatisticalEventSender;
     }
 
     public async void Receive(VpnPlanChangedMessage message)
@@ -144,6 +147,7 @@ public class VpnPlanChangedHandler : IHandler,
             return;
         }
 
+        _upsellUpgradeAttemptStatisticalEventSender.Send(ModalSource.Downgrade);
         _urlsBrowser.BrowseTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSource.Downgrade));
     }
 

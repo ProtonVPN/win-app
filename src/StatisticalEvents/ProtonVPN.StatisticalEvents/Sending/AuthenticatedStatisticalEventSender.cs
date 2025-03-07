@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts;
@@ -36,13 +35,14 @@ using ProtonVPN.StatisticalEvents.Sending.Contracts;
 namespace ProtonVPN.StatisticalEvents.Sending;
 
 public class AuthenticatedStatisticalEventSender : StatisticEventSenderBase, IAuthenticatedStatisticalEventSender,
-    IEventMessageReceiver<SettingChangedMessage>,
     IEventMessageReceiver<LoggedInMessage>,
-    IEventMessageReceiver<LoggedOutMessage>
+    IEventMessageReceiver<LoggedOutMessage>,
+    IEventMessageReceiver<SettingChangedMessage>
 {
     private bool _isLoggedIn;
 
-    protected bool CanSendAuthenticatedTelemetryEvents => _isLoggedIn && Settings.IsShareStatisticsEnabled;
+    protected override bool IsShareStatisticsEnabled => Settings.IsShareStatisticsEnabled;
+    protected override bool CanSendTelemetryEvents => _isLoggedIn && IsShareStatisticsEnabled;
 
     public AuthenticatedStatisticalEventSender(
         IApiClient api,
@@ -57,7 +57,7 @@ public class AuthenticatedStatisticalEventSender : StatisticEventSenderBase, IAu
     protected async override Task<ApiResponseResult<BaseResponse>> SendApiRequestAsync(
         StatisticalEventsBatch statisticalEventsBatch)
     {
-        return await Api.PostStatisticalEventsAsync(statisticalEventsBatch);
+        return await Api.PostAuthenticatedStatisticalEventsAsync(statisticalEventsBatch);
     }
 
     protected override List<StatisticalEvent> GetStatisticalEventsFromFile()
@@ -73,43 +73,32 @@ public class AuthenticatedStatisticalEventSender : StatisticEventSenderBase, IAu
         });
     }
 
-    public async Task EnqueueAsync(StatisticalEvent statisticalEvent)
-    {
-        if (CanSendAuthenticatedTelemetryEvents)
-        {
-            await EnqueueAsync(statisticalEvent, () => new ConcurrentQueue<StatisticalEvent>());
-        }
-    }
-
-    protected override async Task TriggerSendAsync()
-    {
-        if (CanSendAuthenticatedTelemetryEvents)
-        {
-            await base.TriggerSendAsync();
-        }
-    }
-
-    public void Receive(LoggedInMessage message)
+    public async void Receive(LoggedInMessage message)
     {
         _isLoggedIn = true;
-        StartTimer();
-        EventsToSend = new ConcurrentQueue<StatisticalEvent>(GetStoredStatisticalEvents());
+        await StartAsync();
     }
 
-    public void Receive(LoggedOutMessage message)
+    public async void Receive(LoggedOutMessage message)
     {
         _isLoggedIn = false;
-        StopTimer();
-        EventsToSend = null;
+        await StopAsync();
     }
 
     public async void Receive(SettingChangedMessage message)
     {
-        if (message.PropertyName is not null &&
-            message.PropertyName.Equals(nameof(ISettings.IsShareStatisticsEnabled)) &&
-            !Settings.IsShareStatisticsEnabled)
+        if (message.PropertyName == nameof(ISettings.IsShareStatisticsEnabled) &&
+            !IsShareStatisticsEnabled)
         {
-            await ClearEventsDueToDisabledTelemetryAsync();
+            await Semaphore.WaitAsync();
+            try
+            {
+                ClearEventsDueToDisabledTelemetry();
+            }
+            finally
+            {
+                Semaphore.Release();
+            }
         }
     }
 }

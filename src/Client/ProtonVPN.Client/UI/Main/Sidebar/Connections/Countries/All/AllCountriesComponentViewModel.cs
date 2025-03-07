@@ -50,15 +50,16 @@ public class AllCountriesComponentViewModel : CountriesComponentViewModelBase
         ILocationItemFactory locationItemFactory,
         IUrlsBrowser urlsBrowser,
         IWebAuthenticator webAuthenticator,
-        IViewModelHelper viewModelHelper)
+        IViewModelHelper viewModelHelper,
+        IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender)
         : base(settings,
                serversLoader,
                locationItemFactory,
                urlsBrowser,
                webAuthenticator,
-               viewModelHelper)
-    {
-    }
+                viewModelHelper,
+               upsellUpgradeAttemptStatisticalEventSender)
+    { }
 
     public override IEnumerable<ConnectionItemBase> GetItems()
     {

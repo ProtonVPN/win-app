@@ -27,7 +27,6 @@ using Newtonsoft.Json;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.StatisticalEvents;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -45,7 +44,6 @@ public abstract class StatisticEventSenderBase
     private readonly IConfiguration _config;
     private readonly TimeSpan _minSendWaitTime;
     private readonly SingleAction _triggerSendAction;
-    private readonly SemaphoreSlim _semaphore = new(1, 1);
 
     private Timer _timer;
     private TimeSpan _timerInterval;
@@ -56,6 +54,10 @@ public abstract class StatisticEventSenderBase
     protected ISettings Settings { get; }
     protected IStatisticalEventsFileReaderWriter StatisticalEventsFileReaderWriter { get; }
     protected ConcurrentQueue<StatisticalEvent>? EventsToSend { get; set; }
+    protected readonly SemaphoreSlim Semaphore = new(1, 1);
+
+    protected abstract bool IsShareStatisticsEnabled { get; }
+    protected abstract bool CanSendTelemetryEvents { get; }
 
     protected StatisticEventSenderBase(
         IApiClient api,
@@ -70,23 +72,28 @@ public abstract class StatisticEventSenderBase
         StatisticalEventsFileReaderWriter = statisticalEventsFileReaderWriter;
         _config = config;
 
-        _timerInterval = _config.StatisticalEventSendTriggerInterval.AddJitter(0.2);
+        _timerInterval = _config.StatisticalEventSendTriggerInterval;
         _minSendWaitTime = _config.StatisticalEventMinimumWaitInterval;
         _triggerSendAction = new SingleAction(TriggerSendAsync);
 
         _timer = new Timer(_ =>
         {
             _triggerSendAction.Run();
-        }, null, TimeSpan.Zero, _timerInterval);
+        }, null, Timeout.Infinite, Timeout.Infinite);
     }
 
-    protected virtual async Task EnqueueAsync(StatisticalEvent statisticalEvent, Func<ConcurrentQueue<StatisticalEvent>> newQueueFunc)
+    public async Task EnqueueAsync(StatisticalEvent statisticalEvent)
     {
-        await _semaphore.WaitAsync();
+        if (!CanSendTelemetryEvents)
+        {
+            return;
+        }
+
+        await Semaphore.WaitAsync();
         try
         {
-            EventsToSend ??= newQueueFunc();
-            EventsToSend.Enqueue(statisticalEvent);
+            LoadStoredEventsIfEventsToSendIsNull();
+            EventsToSend!.Enqueue(statisticalEvent);
             Logger.Debug<AppLog>($"Statistical event queued. {JsonConvert.SerializeObject(statisticalEvent)}");
             if (EventsToSend.Count > MAX_NUM_OF_EVENTS)
             {
@@ -104,21 +111,26 @@ public abstract class StatisticEventSenderBase
         }
         finally
         {
-            _semaphore.Release();
+            Semaphore.Release();
         }
         _triggerSendAction.Run();
     }
 
+    private void LoadStoredEventsIfEventsToSendIsNull()
+    {
+        EventsToSend ??= new ConcurrentQueue<StatisticalEvent>(GetStoredStatisticalEvents());
+    }
+
     protected List<StatisticalEvent> GetStoredStatisticalEvents()
-    {    
+    {
         return GetStatisticalEventsFromFile().TakeLast(MAX_NUM_OF_EVENTS).ToList();
     }
 
     protected abstract List<StatisticalEvent> GetStatisticalEventsFromFile();
 
-    protected virtual async Task TriggerSendAsync()
+    protected async Task TriggerSendAsync()
     {
-        if ((_lastSendTime + _minSendWaitTime) <= DateTime.UtcNow)
+        if (CanSendTelemetryEvents && (_lastSendTime + _minSendWaitTime) <= DateTime.UtcNow)
         {
             await SendAsync();
         }
@@ -127,14 +139,14 @@ public abstract class StatisticEventSenderBase
     private async Task SendAsync()
     {
         StatisticalEventsBatch statisticalEventsBatch = new();
-        await _semaphore.WaitAsync();
+        await Semaphore.WaitAsync();
         try
         {
             statisticalEventsBatch.EventInfo = EventsToSend?.ToList() ?? [];
         }
         finally
         {
-            _semaphore.Release();
+            Semaphore.Release();
         }
 
         int numOfEvents = statisticalEventsBatch.EventInfo.Count;
@@ -143,11 +155,10 @@ public abstract class StatisticEventSenderBase
             return;
         }
 
-        _lastSendTime = DateTime.UtcNow;
-        Logger.Info<AppLog>($"Sending {numOfEvents} statistical events.");
-
         try
         {
+            _lastSendTime = DateTime.UtcNow;
+            Logger.Info<AppLog>($"Sending {numOfEvents} statistical events.");
             ApiResponseResult<BaseResponse> baseResponse = await SendApiRequestAsync(statisticalEventsBatch);
             if (baseResponse.Success)
             {
@@ -169,7 +180,7 @@ public abstract class StatisticEventSenderBase
 
     private async Task RemoveSuccessfullySentEventsAsync(List<StatisticalEvent> statisticalEventsSent)
     {
-        await _semaphore.WaitAsync();
+        await Semaphore.WaitAsync();
         try
         {
             int numOfEventsSent = statisticalEventsSent.Count;
@@ -194,44 +205,60 @@ public abstract class StatisticEventSenderBase
         }
         finally
         {
-            _semaphore.Release();
+            Semaphore.Release();
         }
     }
 
     protected abstract void SaveToFile(List<StatisticalEvent> events);
 
-    protected async Task ClearEventsDueToDisabledTelemetryAsync()
+    protected async Task StartAsync()
     {
-        await _semaphore.WaitAsync();
+        await Semaphore.WaitAsync();
         try
         {
-            if (EventsToSend is null)
+            LoadStoredEventsIfEventsToSendIsNull();
+            if (!IsShareStatisticsEnabled)
             {
-                Logger.Warn<AppLog>($"Can't clear statistical events because the queue is null.");
-            }
-            else
-            {
-                int numOfEventsBefore = EventsToSend.Count;
-                EventsToSend.Clear();
-                SaveToFile(EventsToSend.ToList());
-                Logger.Info<AppLog>($"Statistical events cleared from telemetry becoming disabled. " +
-                    $"{numOfEventsBefore} queued events before deletion. " +
-                    $"{EventsToSend.Count} queued events after deletion.");
+                ClearEventsDueToDisabledTelemetry();
             }
         }
         finally
         {
-            _semaphore.Release();
+            Semaphore.Release();
         }
-    }
 
-    protected void StartTimer()
-    {
         _timer.Change(TimeSpan.Zero, _timerInterval);
     }
 
-    protected void StopTimer()
+    protected void ClearEventsDueToDisabledTelemetry()
+    {
+        if (EventsToSend is null)
+        {
+            Logger.Warn<AppLog>($"Can't clear statistical events because the queue is null.");
+        }
+        else
+        {
+            int numOfEventsBefore = EventsToSend.Count;
+            EventsToSend.Clear();
+            SaveToFile(EventsToSend.ToList());
+            Logger.Info<AppLog>($"Statistical events cleared from telemetry becoming disabled. " +
+                $"{numOfEventsBefore} queued events before deletion. " +
+                $"{EventsToSend.Count} queued events after deletion.");
+        }
+    }
+
+    protected async Task StopAsync()
     {
         _timer.Change(Timeout.Infinite, Timeout.Infinite);
+
+        await Semaphore.WaitAsync();
+        try
+        {
+            EventsToSend = null;
+        }
+        finally
+        {
+            Semaphore.Release();
+        }
     }
 }

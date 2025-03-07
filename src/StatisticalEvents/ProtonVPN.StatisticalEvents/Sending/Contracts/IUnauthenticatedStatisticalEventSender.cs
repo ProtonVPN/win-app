@@ -19,6 +19,6 @@
 
 namespace ProtonVPN.StatisticalEvents.Sending.Contracts;
 
-public interface IUnauthStatisticalEventSender : IStatisticalEventSenderBase
+public interface IUnauthenticatedStatisticalEventSender : IStatisticalEventSenderBase
 {
 }

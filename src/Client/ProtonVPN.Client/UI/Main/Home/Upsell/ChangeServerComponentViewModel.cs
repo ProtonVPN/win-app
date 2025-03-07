@@ -43,6 +43,7 @@ public partial class ChangeServerComponentViewModel : ActivatableViewModelBase,
     private readonly IUpsellCarouselWindowActivator _upsellCarouselWindowActivator;
     private readonly IUrlsBrowser _urlsBrowser;
     private readonly IWebAuthenticator _webAuthenticator;
+    private readonly IUpsellUpgradeAttemptStatisticalEventSender _upsellUpgradeAttemptStatisticalEventSender;
 
     public bool IsChangeServerTimerVisible => !_changeServerModerator.CanChangeServer();
 
@@ -60,7 +61,8 @@ public partial class ChangeServerComponentViewModel : ActivatableViewModelBase,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
         IUrlsBrowser urlsBrowser,
         IWebAuthenticator webAuthenticator,
-        IViewModelHelper viewModelHelper)
+        IViewModelHelper viewModelHelper,
+        IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender)
         : base(viewModelHelper)
     {
         _connectionManager = connectionManager;
@@ -68,6 +70,7 @@ public partial class ChangeServerComponentViewModel : ActivatableViewModelBase,
         _upsellCarouselWindowActivator = upsellCarouselWindowActivator;
         _urlsBrowser = urlsBrowser;
         _webAuthenticator = webAuthenticator;
+        _upsellUpgradeAttemptStatisticalEventSender = upsellUpgradeAttemptStatisticalEventSender;
     }
 
     public void Receive(ConnectionStatusChangedMessage message)
@@ -113,6 +116,7 @@ public partial class ChangeServerComponentViewModel : ActivatableViewModelBase,
     [RelayCommand]
     private async Task UpgradePlanAsync()
     {
+        _upsellUpgradeAttemptStatisticalEventSender.Send(ModalSource.ChangeServer);
         _urlsBrowser.BrowseTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSource.ChangeServer));
     }
 
