@@ -37,20 +37,20 @@ namespace ProtonVPN.Core.MVVM.Converters
 
             if (seconds < 60)
             {
-                return $"{ts:%s}s";
+                return $"{ts:%s} s";
             }
 
             if (seconds < 3600)
             {
-                return $"{ts:%m}m {ts:%s}s";
+                return $"{ts:%m} min {ts:%s} s";
             }
 
             if (seconds < 86400)
             {
-                return $"{ts:%h}h {ts:%m}m {ts:%s}s";
+                return $"{ts:%h} h {ts:%m} min {ts:%s} s";
             }
 
-            return $"{ts:%d}d {ts:%h}h {ts:%m}m {ts:%s}s";
+            return $"{ts:%d} d {ts:%h} h {ts:%m} min {ts:%s} s";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
