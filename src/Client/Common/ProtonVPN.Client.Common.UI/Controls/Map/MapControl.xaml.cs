@@ -448,6 +448,7 @@ public sealed partial class MapControl
         DispatcherQueue?.TryEnqueue(ToggleFeatures);
     }
 
+    private bool _isMouseOnViewport;
     private bool _fadeInAnimationStarted;
     private bool _fadeOutAnimationStarted;
 
@@ -460,16 +461,16 @@ public sealed partial class MapControl
 
         _currentMousePosition = e.GetCurrentPoint(Map).Position;
 
-        bool isMouseOnViewPort = IsMouseOnViewport(_currentMousePosition);
+        _isMouseOnViewport = IsMouseOnViewport(_currentMousePosition);
 
-        if (!_fadeInAnimationStarted && isMouseOnViewPort)
+        if (!_fadeInAnimationStarted && _isMouseOnViewport)
         {
             _fadeInAnimationStarted = true;
             _fadeOutAnimationStarted = false;
             StartFadeInPinAnimation();
         }
 
-        if (_fadeInAnimationStarted && !_fadeOutAnimationStarted && !isMouseOnViewPort)
+        if (_fadeInAnimationStarted && !_fadeOutAnimationStarted && !_isMouseOnViewport)
         {
             _fadeOutAnimationStarted = true;
             _fadeInAnimationStarted = false;
@@ -523,18 +524,7 @@ public sealed partial class MapControl
             }
         }
 
-        if (closestFeature != null && closestFeature != _selectedPin)
-        {
-            if (_selectedPin != null)
-            {
-                _selectedPin.SetIsOnHover(false);
-                StartPinScaleAnimations(_selectedPin, _selectedPin.GetHoverLostAnimationType());
-            }
-
-            _selectedPin = closestFeature;
-            ActivateCountry(_selectedPin);
-        }
-        else if (closestFeature == null)
+        if (closestFeature == null || !_isMouseOnViewport)
         {
             if (_selectedPin != null)
             {
@@ -551,6 +541,17 @@ public sealed partial class MapControl
 
             ProtectedCursor = InputSystemCursor.Create(InputSystemCursorShape.Arrow);
             _countryCallout.Hide();
+        }
+        else if (closestFeature != _selectedPin)
+        {
+            if (_selectedPin != null)
+            {
+                _selectedPin.SetIsOnHover(false);
+                StartPinScaleAnimations(_selectedPin, _selectedPin.GetHoverLostAnimationType());
+            }
+
+            _selectedPin = closestFeature;
+            ActivateCountry(_selectedPin);
         }
 
         _map.RefreshGraphics();

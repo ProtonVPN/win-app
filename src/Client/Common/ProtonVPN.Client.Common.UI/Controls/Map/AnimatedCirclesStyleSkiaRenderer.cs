@@ -188,26 +188,25 @@ public class AnimatedCirclesStyleSkiaRenderer : ISkiaStyleRenderer
 
     private SKColor GetCenterCircleColor(IFeature feature, double layerOpacity)
     {
+        SKColor color = SKColors.White;
+
         if (feature.IsOnHover())
         {
-            return SKColor.Parse("#8A6EFF");
+            color = SKColor.Parse("#8A6EFF");
         }
-
-        if (feature.IsConnected())
+        else if (feature.IsConnected())
         {
-            return SKColor.Parse(GreenColor);
+            color = SKColor.Parse(GreenColor);
         }
-
-        if (feature.IsConnecting())
+        else if (feature.IsConnecting())
         {
-            return SKColor.Parse("#6E6B79");
+            color = SKColor.Parse("#6E6B79");
         }
-
-        if (feature.IsCurrentCountry())
+        else if (feature.IsCurrentCountry())
         {
-            return SKColor.Parse(RedColor);
+            color = SKColor.Parse(RedColor);
         }
 
-        return SKColors.White.WithAlpha((byte)(layerOpacity * 255));
+        return color.WithAlpha((byte)(layerOpacity * 255));
     }
 }
