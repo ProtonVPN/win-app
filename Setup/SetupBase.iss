@@ -751,10 +751,11 @@ begin
         ExtractTemporaryFile('{#Webview2InstallerName}');
         LaunchUnelevatedProcess(ExpandConstant('{tmp}\{#Webview2InstallerName}'), '/silent /install', True);
       end;
-      if productArguments <> '' then
+      if productArguments <> '' then begin
         if WizardIsTaskSelected('desktopicon') then
           productArguments := productArguments + ' /CreateDesktopShortcut';
         LaunchUnelevatedProcess(ExpandConstant('{app}\{#VersionFolder}\{#ProtonInstallerName}'), Trim(productArguments), False);
+      end;
     end;
   end;
 end;
