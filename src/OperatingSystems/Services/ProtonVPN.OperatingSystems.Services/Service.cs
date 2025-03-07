@@ -144,4 +144,9 @@ public class Service : IService
         _logger.Info<OperatingSystemLog>($"Stopping the Windows service '{Name}'.");
         return ExecuteSafeServiceAction(service => service.Stop());
     }
+
+    public ServiceControllerStatus? GetStatus()
+    {
+        return GetService()?.Status;
+    }
 }

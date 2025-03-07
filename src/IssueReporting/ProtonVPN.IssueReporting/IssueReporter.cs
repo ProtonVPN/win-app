@@ -20,43 +20,52 @@
 using System;
 using System.Runtime.CompilerServices;
 using ProtonVPN.Common.Legacy.Helpers;
-using ProtonVPN.Logging.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
+using ProtonVPN.Logging.Contracts;
 using Sentry;
 
-namespace ProtonVPN.IssueReporting
+namespace ProtonVPN.IssueReporting;
+
+public class IssueReporter : IIssueReporter
 {
-    public class IssueReporter : IIssueReporter
+    public IssueReporter(ILogger logger)
     {
-        public IssueReporter(ILogger logger)
-        {
-            SentryInitializer.SetLogger(logger);
-        }
+        SentryInitializer.SetLogger(logger);
+    }
 
-        public void CaptureError(
-            Exception e,
-            [CallerFilePath] string sourceFilePath = "",
-            [CallerMemberName] string sourceMemberName = "",
-            [CallerLineNumber] int sourceLineNumber = 0)
+    public void CaptureError(
+        Exception e,
+        [CallerFilePath] string sourceFilePath = "",
+        [CallerMemberName] string sourceMemberName = "",
+        [CallerLineNumber] int sourceLineNumber = 0)
+    {
+        CallerProfile callerProfile = new(sourceFilePath, sourceMemberName, sourceLineNumber);
+        SentrySdk.ConfigureScope(scope =>
         {
-            CallerProfile callerProfile = new(sourceFilePath, sourceMemberName, sourceLineNumber);
-            SentrySdk.ConfigureScope(scope =>
+            scope.Level = SentryLevel.Error;
+            scope.SetTag("captured_in",
+                $"{callerProfile.SourceClassName}.{callerProfile.SourceMemberName}:{callerProfile.SourceLineNumber}");
+            SentrySdk.CaptureException(e);
+        });
+    }
+
+    public void CaptureError(string message)
+    {
+        SentrySdk.CaptureEvent(new SentryEvent { Message = message, Level = SentryLevel.Error });
+    }
+
+    public void CaptureMessage(string message, string description = null)
+    {
+        SentrySdk.ConfigureScope(scope =>
+        {
+            if (!string.IsNullOrWhiteSpace(description))
             {
-                scope.Level = SentryLevel.Error;
-                scope.SetTag("captured_in",
-                    $"{callerProfile.SourceClassName}.{callerProfile.SourceMemberName}:{callerProfile.SourceLineNumber}");
-                SentrySdk.CaptureException(e);
-            });
-        }
+                scope.TransactionName = description;
+                scope.SetExtra("description", description);
+            }
 
-        public void CaptureError(string message)
-        {
-            SentrySdk.CaptureEvent(new SentryEvent { Message = message, Level = SentryLevel.Error });
-        }
-
-        public void CaptureMessage(string message)
-        {
+            scope.SetFingerprint([message]);
             SentrySdk.CaptureMessage(message);
-        }
+        });
     }
 }

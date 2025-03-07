@@ -35,27 +35,42 @@ public class CommandLineCaller : ICommandLineCaller
         _logger = logger;
     }
 
+    public void Execute(string arguments)
+    {
+        RunCommand(arguments, isElevated: false);
+    }
+
     public void ExecuteElevated(string arguments)
     {
-        _logger.Info<ProcessStartLog>($"Running command line argument '{arguments}'.");
+        RunCommand(arguments, isElevated: true);
+    }
+
+    private void RunCommand(string arguments, bool isElevated)
+    {
+        string commandDescription = (isElevated ? "elevated " : "") + "command line argument";
+        _logger.Info<ProcessStartLog>($"Running {commandDescription} '{arguments}'.");
         try
         {
             Process process = new()
             {
                 StartInfo = new ProcessStartInfo("cmd.exe", arguments)
                 {
-                    CreateNoWindow = true,
                     UseShellExecute = true,
-                    RedirectStandardOutput = false,
-                    Verb = "runas"
+                    WindowStyle = ProcessWindowStyle.Hidden
+                    // Because UseShellExecute is true, the property CreateNoWindow is ignored and therefore there is no need to set it
                 }
             };
+            if (isElevated)
+            {
+                process.StartInfo.Verb = "runas";
+            }
             process.Start();
             process.WaitForExit(PROCESS_TIMEOUT_IN_MILLISECONDS);
-        } 
+            _logger.Info<ProcessStartLog>($"Finished running the {commandDescription} '{arguments}'.");
+        }
         catch
         {
-            _logger.Error<ProcessStartLog>($"Failed to run command line argument '{arguments}'.");
+            _logger.Error<ProcessStartLog>($"Failed to run {commandDescription} '{arguments}'.");
         }
     }
 }

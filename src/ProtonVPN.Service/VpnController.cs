@@ -18,9 +18,10 @@
  */
 
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Legacy.Helpers;
 using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.EntityMapping.Contracts;
@@ -31,6 +32,7 @@ using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
+using ProtonVPN.Service.ControllerRetries;
 using ProtonVPN.Service.ProcessCommunication;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Vpn.Common;
@@ -49,6 +51,7 @@ public class VpnController : IVpnController
     private readonly IClientControllerSender _appControllerCaller;
     private readonly IEntityMapper _entityMapper;
     private readonly IConnectionCertificateCache _connectionCertificateCache;
+    private readonly IControllerRetryManager _controllerRetryManager;
 
     public VpnController(
         IVpnConnection vpnConnection,
@@ -58,7 +61,8 @@ public class VpnController : IVpnController
         IPortMappingProtocolClient portMappingProtocolClient,
         IClientControllerSender appControllerCaller,
         IEntityMapper entityMapper,
-        IConnectionCertificateCache connectionCertificateCache)
+        IConnectionCertificateCache connectionCertificateCache,
+        IControllerRetryManager controllerRetryManager)
     {
         _vpnConnection = vpnConnection;
         _logger = logger;
@@ -68,11 +72,13 @@ public class VpnController : IVpnController
         _appControllerCaller = appControllerCaller;
         _entityMapper = entityMapper;
         _connectionCertificateCache = connectionCertificateCache;
+        _controllerRetryManager = controllerRetryManager;
     }
 
-    public async Task Connect(ConnectionRequestIpcEntity connectionRequest)
+    public async Task Connect(ConnectionRequestIpcEntity connectionRequest, CancellationToken cancelToken)
     {
         Ensure.NotNull(connectionRequest, nameof(connectionRequest));
+        _controllerRetryManager.EnforceRetryId(connectionRequest);
 
         _logger.Info<ConnectLog>("Connect requested");
 
@@ -86,30 +92,33 @@ public class VpnController : IVpnController
         _vpnConnection.Connect(endpoints, config, credentials);
     }
 
-    public async Task Disconnect(DisconnectionRequestIpcEntity disconnectionRequest)
+    public async Task Disconnect(DisconnectionRequestIpcEntity disconnectionRequest, CancellationToken cancelToken)
     {
+        Ensure.NotNull(disconnectionRequest, nameof(disconnectionRequest));
+        _controllerRetryManager.EnforceRetryId(disconnectionRequest);
+
         _logger.Info<DisconnectLog>($"Disconnect requested (Error: {disconnectionRequest.ErrorType})");
         _serviceSettings.Apply(disconnectionRequest.Settings);
         _vpnConnection.Disconnect((VpnError)disconnectionRequest.ErrorType);
     }
 
-    public async Task UpdateConnectionCertificate(ConnectionCertificateIpcEntity certificate)
+    public async Task UpdateConnectionCertificate(ConnectionCertificateIpcEntity certificate, CancellationToken cancelToken)
     {
         _connectionCertificateCache.Set(new ConnectionCertificate(certificate.Pem, certificate.ExpirationDateUtc));
     }
 
-    public async Task<NetworkTrafficIpcEntity> GetNetworkTraffic()
+    public async Task<NetworkTrafficIpcEntity> GetNetworkTraffic(CancellationToken cancelToken)
     {
         return _entityMapper.Map<NetworkTraffic, NetworkTrafficIpcEntity>(_vpnConnection.NetworkTraffic);
     }
 
-    public async Task ApplySettings(MainSettingsIpcEntity settings)
+    public async Task ApplySettings(MainSettingsIpcEntity settings, CancellationToken cancelToken)
     {
         Ensure.NotNull(settings, nameof(settings));
         _serviceSettings.Apply(settings);
     }
 
-    public async Task RepeatState()
+    public async Task RepeatState(CancellationToken cancelToken)
     {
         _taskQueue.Enqueue(async () =>
         {
@@ -117,17 +126,17 @@ public class VpnController : IVpnController
         });
     }
 
-    public async Task RepeatPortForwardingState()
+    public async Task RepeatPortForwardingState(CancellationToken cancelToken)
     {
         _portMappingProtocolClient.RepeatState();
     }
 
-    public async Task RequestNetShieldStats()
+    public async Task RequestNetShieldStats(CancellationToken cancelToken)
     {
         _vpnConnection.RequestNetShieldStats();
     }
 
-    public async Task RequestConnectionDetails()
+    public async Task RequestConnectionDetails(CancellationToken cancelToken)
     {
         _vpnConnection.RequestConnectionDetails();
     }

@@ -37,7 +37,7 @@ public partial class OutdatedClientOverlayViewModel : OverlayViewModelBase<IMain
     private readonly IUrlsBrowser _urlsBrowser;
     private readonly IUpdateClientCommand _updateClientCommand;
     private readonly IUpdatesManager _updatesManager;
-    private readonly IExitService _exitService;
+    private readonly IAppExitInvoker _exitService;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsCheckingForUpdate))]
@@ -56,7 +56,7 @@ public partial class OutdatedClientOverlayViewModel : OverlayViewModelBase<IMain
         IUrlsBrowser urlsBrowser,
         IUpdateClientCommand updateClientCommand,
         IUpdatesManager updatesManager,
-        IExitService exitService,
+        IAppExitInvoker exitService,
         IMainWindowOverlayActivator overlayActivator,
         IViewModelHelper viewModelHelper)
         : base(overlayActivator, viewModelHelper)

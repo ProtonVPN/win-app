@@ -19,21 +19,22 @@
 using System.Runtime.Serialization;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 
-namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
+namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
+
+[DataContract]
+public class DisconnectionRequestIpcEntity : IRetryableEntity
 {
-    [DataContract]
-    public class DisconnectionRequestIpcEntity
+    [DataMember(Order = 1, IsRequired = true)]
+    public Guid RetryId { get; set; }
+
+    [DataMember(Order = 2, IsRequired = true)]
+    public MainSettingsIpcEntity Settings { get; set; }
+
+    [DataMember(Order = 3, IsRequired = true)]
+    public VpnErrorTypeIpcEntity ErrorType { get; set; }
+
+    public DisconnectionRequestIpcEntity()
     {
-        [DataMember(Order = 1, IsRequired = true)]
-        public MainSettingsIpcEntity Settings { get; set; }
-
-        [DataMember(Order = 2, IsRequired = true)]
-        public VpnErrorTypeIpcEntity ErrorType { get; set; }
-
-
-        public DisconnectionRequestIpcEntity()
-        {
-            Settings = new();
-        }
+        Settings = new();
     }
 }

@@ -17,10 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.ServiceProcess;
+
 namespace ProtonVPN.Client.Logic.Services.Contracts;
 
 public interface IServiceManager
 {
+    ServiceControllerStatus? GetStatus();
     Task StartAsync();
     void Stop();
 }

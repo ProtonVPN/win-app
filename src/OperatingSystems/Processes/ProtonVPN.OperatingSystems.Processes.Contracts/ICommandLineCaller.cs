@@ -21,5 +21,6 @@ namespace ProtonVPN.OperatingSystems.Processes.Contracts;
 
 public interface ICommandLineCaller
 {
+    void Execute(string arguments);
     void ExecuteElevated(string arguments);
 }

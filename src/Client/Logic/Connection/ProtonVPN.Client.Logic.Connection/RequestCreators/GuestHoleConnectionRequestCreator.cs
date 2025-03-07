@@ -52,6 +52,7 @@ public class GuestHoleConnectionRequestCreator : ConnectionRequestCreatorBase, I
 
         ConnectionRequestIpcEntity request = new()
         {
+            RetryId = Guid.NewGuid(),
             Config = GetVpnConfig(settings),
             Credentials = await GetVpnCredentialsAsync(),
             Protocol = VpnProtocolIpcEntity.WireGuardTls,

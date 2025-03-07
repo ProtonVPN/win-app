@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,12 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.ProcessCommunication.Contracts.Registration
+namespace ProtonVPN.Client.Logic.Services.Contracts;
+
+public interface IServiceCaller
 {
-    public interface IServerPortRegister
-    {
-        void Write(int serverBoundPort);
-        void Delete();
-        int? ReadOnce();
-    }
+    void Stop();
 }

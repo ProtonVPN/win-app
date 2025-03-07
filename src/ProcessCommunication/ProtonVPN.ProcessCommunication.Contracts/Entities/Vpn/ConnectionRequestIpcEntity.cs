@@ -19,32 +19,34 @@
 using System.Runtime.Serialization;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 
-namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
+namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
+
+[DataContract]
+public class ConnectionRequestIpcEntity : IRetryableEntity
 {
-    [DataContract]
-    public class ConnectionRequestIpcEntity
+    [DataMember(Order = 1, IsRequired = true)]
+    public Guid RetryId { get; set; }
+
+    [DataMember(Order = 2, IsRequired = true)]
+    public VpnServerIpcEntity[] Servers { get; set; }
+
+    [DataMember(Order = 3, IsRequired = true)]
+    public VpnProtocolIpcEntity Protocol { get; set; }
+
+    [DataMember(Order = 4, IsRequired = true)]
+    public VpnConfigIpcEntity Config { get; set; }
+
+    [DataMember(Order = 5, IsRequired = true)]
+    public VpnCredentialsIpcEntity Credentials { get; set; }
+
+    [DataMember(Order = 6, IsRequired = true)]
+    public MainSettingsIpcEntity Settings { get; set; }
+
+    public ConnectionRequestIpcEntity()
     {
-        [DataMember(Order = 1, IsRequired = true)]
-        public VpnServerIpcEntity[] Servers { get; set; }
-
-        [DataMember(Order = 2, IsRequired = true)]
-        public VpnProtocolIpcEntity Protocol { get; set; }
-
-        [DataMember(Order = 3, IsRequired = true)]
-        public VpnConfigIpcEntity Config { get; set; }
-
-        [DataMember(Order = 4, IsRequired = true)]
-        public VpnCredentialsIpcEntity Credentials { get; set; }
-
-        [DataMember(Order = 5, IsRequired = true)]
-        public MainSettingsIpcEntity Settings { get; set; }
-
-        public ConnectionRequestIpcEntity()
-        {
-            Servers = Array.Empty<VpnServerIpcEntity>();
-            Config = new();
-            Credentials = new();
-            Settings = new();
-        }
+        Servers = [];
+        Config = new();
+        Credentials = new();
+        Settings = new();
     }
 }

@@ -43,6 +43,7 @@ public class DisconnectionRequestCreator : RequestCreatorBase, IDisconnectionReq
 
         DisconnectionRequestIpcEntity request = new()
         {
+            RetryId = Guid.NewGuid(),
             Settings = settings,
             ErrorType = EntityMapper.Map<VpnError, VpnErrorTypeIpcEntity>(vpnError)
         };

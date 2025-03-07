@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,9 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Contracts.Services.Lifecycle;
+namespace ProtonVPN.ProcessCommunication.Contracts.Entities;
 
-public interface IExitService
+public interface IRetryableEntity
 {
-    void Exit();
+    Guid RetryId { get; set; }
 }

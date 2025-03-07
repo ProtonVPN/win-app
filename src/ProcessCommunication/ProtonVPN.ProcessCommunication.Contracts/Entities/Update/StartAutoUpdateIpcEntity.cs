@@ -22,7 +22,7 @@ using System.Runtime.Serialization;
 namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Update;
 
 [DataContract]
-public class StartAutoUpdateIpcEntity
+public class StartAutoUpdateIpcEntity : IRetryableEntity
 {
     [DataMember(Order = 1, IsRequired = true)]
     public Guid RetryId { get; set; }

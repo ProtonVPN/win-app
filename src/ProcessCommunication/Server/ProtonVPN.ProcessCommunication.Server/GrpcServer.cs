@@ -22,7 +22,6 @@ using System.Security.AccessControl;
 using System.Security.Principal;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Connections;
-using Microsoft.AspNetCore.Connections.Features;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,7 +30,7 @@ using ProtoBuf.Grpc.Server;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Crypto;
-using ProtonVPN.Logging.Contracts.Events.ProcessCommunicationLogs;
+using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.OperatingSystems.Processes.Contracts;
 using ProtonVPN.OperatingSystems.Registries.Contracts;
 using ProtonVPN.ProcessCommunication.Common;
@@ -51,6 +50,7 @@ public class GrpcServer : IGrpcServer
         NamedPipeConfiguration.REGISTRY_PATH, NamedPipeConfiguration.REGISTRY_KEY);
 
     private readonly ILogger _logger;
+    private readonly IIssueReporter _issueReporter;
     private readonly IClientController _clientController;
     private readonly IUpdateController _updateController;
     private readonly IVpnController _vpnController;
@@ -61,7 +61,10 @@ public class GrpcServer : IGrpcServer
     private WebApplication _app;
     private CancellationTokenSource _cancellationTokenSource = new();
 
+    public event EventHandler InvokingServiceStop;
+
     public GrpcServer(ILogger logger,
+        IIssueReporter issueReporter,
         IClientController clientController,
         IUpdateController updateController,
         IVpnController vpnController,
@@ -70,6 +73,7 @@ public class GrpcServer : IGrpcServer
         IRegistryEditor registryEditor)
     {
         _logger = logger;
+        _issueReporter = issueReporter;
         _clientController = clientController;
         _updateController = updateController;
         _vpnController = vpnController;
@@ -83,12 +87,17 @@ public class GrpcServer : IGrpcServer
         if (!_cancellationTokenSource.Token.IsCancellationRequested)
         {
             _app = Create();
-            _app.RunAsync().ContinueWith(t => RetryAsync()).IgnoreExceptions();
+            _app.RunAsync().ContinueWith(t => RecreateAndStartAsync()).IgnoreExceptions();
         }
     }
 
-    private async Task RetryAsync()
+    private async Task RecreateAndStartAsync()
     {
+        WebApplication app = _app;
+        if (app is not null)
+        {
+            await app.DisposeAsync();
+        }
         await Task.Delay(TimeSpan.FromSeconds(3), _cancellationTokenSource.Token);
         CreateAndStart();
     }
@@ -121,6 +130,8 @@ public class GrpcServer : IGrpcServer
 
         WebApplication app = builder.Build();
 
+        app.UseMiddleware<NamedPipeAuthorizationMiddleware>(_logger, _issueReporter, _config, _pipeStreamProcessIdentifier,
+            _registryEditor, InvokingServiceStop, RecreateAndStartAsync);
         app.MapGrpcService<IClientController>();
         app.MapGrpcService<IUpdateController>();
         app.MapGrpcService<IVpnController>();
@@ -138,10 +149,6 @@ public class GrpcServer : IGrpcServer
             serverOptions.Listen(new NamedPipeEndPoint(pipeName), listenOptions =>
             {
                 listenOptions.Protocols = HttpProtocols.Http2;
-                listenOptions.Use((ConnectionContext context, Func<Task> next) =>
-                {
-                    return RequestDelegateAsync(context, next);
-                });
             });
         });
     }
@@ -149,42 +156,6 @@ public class GrpcServer : IGrpcServer
     private string GeneratePipeName()
     {
         return $"ProtonVPN-{HashGenerator.GenerateRandomString(32)}";
-    }
-
-    private async Task RequestDelegateAsync(ConnectionContext context, Func<Task> next)
-    {
-        if (!IsAuthorized(context))
-        {
-            context.Abort();
-        }
-
-        await next();
-    }
-
-    private bool IsAuthorized(ConnectionContext context)
-    {
-        if (context is IConnectionNamedPipeFeature connectionNamedPipeFeature)
-        {
-            string clientProcessFileName = _pipeStreamProcessIdentifier.GetClientProcessFileName(connectionNamedPipeFeature.NamedPipe) ?? string.Empty;
-            string serverProcessFileName = _pipeStreamProcessIdentifier.GetServerProcessFileName(connectionNamedPipeFeature.NamedPipe) ?? string.Empty;
-
-            if (!_config.ServiceExePath.Equals(serverProcessFileName, StringComparison.InvariantCultureIgnoreCase))
-            {
-                _logger.Warn<ProcessCommunicationErrorLog>("The owner of the Named Pipe is not this Service. Dispose and recreate.");
-                _app.DisposeAsync();
-                RetryAsync();
-                return false;
-            }
-
-            if (_config.ClientExePath.Equals(clientProcessFileName, StringComparison.InvariantCultureIgnoreCase))
-            {
-                return true;
-            }
-
-            _logger.Warn<ProcessCommunicationErrorLog>($"The connected client is unauthorized ({clientProcessFileName}).");
-        }
-
-        return false;
     }
 
     private PipeSecurity CreatePipeSecurity()

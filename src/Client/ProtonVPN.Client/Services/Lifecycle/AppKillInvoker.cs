@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -16,22 +16,13 @@
  * You should have received a copy of the GNU General Public License
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
-using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 
-namespace ProtonVPN.ProcessCommunication.Contracts;
+namespace ProtonVPN.Client.Services.Lifecycle;
 
-public interface IGrpcClient
+public static class AppKillInvoker
 {
-    IClientController ClientController { get; }
-    IUpdateController UpdateController { get; }
-    IVpnController VpnController { get; }
-
-    event EventHandler InvokingAppRestart;
-
-    void Stop();
-    void CreateIfPipeNameChanged();
-    void Create();
-
-    Task<T> GetServiceControllerOrThrowAsync<T>(TimeSpan timeout)
-        where T : IServiceController;
+    public static void Kill(int code = 0)
+    {
+        Environment.Exit(code);
+    }
 }

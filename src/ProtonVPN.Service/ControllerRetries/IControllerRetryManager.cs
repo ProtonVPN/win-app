@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -16,17 +16,14 @@
  * You should have received a copy of the GNU General Public License
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
-using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 
-namespace ProtonVPN.ProcessCommunication.Contracts
+using System;
+using System.Runtime.CompilerServices;
+using ProtonVPN.ProcessCommunication.Contracts.Entities;
+
+namespace ProtonVPN.Service.ControllerRetries;
+
+public interface IControllerRetryManager
 {
-    public interface IAppGrpcClient
-    {
-        IVpnController? VpnController { get; }
-        IUpdateController? UpdateController { get; }
-
-        Task CreateAsync();
-        Task RecreateAsync();
-        Task<Controller> GetServiceControllerOrThrowAsync<Controller>(TimeSpan timeout) where Controller : IServiceController;
-    }
+    public void EnforceRetryId(IRetryableEntity retryableEntity, [CallerMemberName] string sourceMemberName = "");
 }
