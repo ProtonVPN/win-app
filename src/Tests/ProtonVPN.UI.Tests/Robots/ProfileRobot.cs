@@ -76,7 +76,7 @@ public class ProfileRobot
 
     public ProfileRobot CloseProfile()
     {
-        CloseButton.Click();
+        CloseButton.Invoke();
         return this;
     }
 
