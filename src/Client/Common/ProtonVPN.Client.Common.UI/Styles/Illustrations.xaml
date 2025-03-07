@@ -54,6 +54,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
                          UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/settings.png" />
             <BitmapImage x:Key="VpnFeatureProtocolIllustrationSource"
                             UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/vpn-feature-protocol.png" />
+            <BitmapImage x:Key="RedesignIllustrationSource"
+                         UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/redesign.png" />
             <SvgImageSource x:Key="ProductLogoIllustrationSource"
                             UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Light/product-logo.svg" />
             <SvgImageSource x:Key="VpnPlusIllustrationSource"
@@ -94,6 +96,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
                          UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Dark/settings.png" />
             <BitmapImage x:Key="VpnFeatureProtocolIllustrationSource"
                          UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Dark/vpn-feature-protocol.png" />
+            <BitmapImage x:Key="RedesignIllustrationSource"
+                         UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Dark/redesign.png" />
             <SvgImageSource x:Key="ProductLogoIllustrationSource"
                             UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/Dark/product-logo.svg" />
             <SvgImageSource x:Key="VpnPlusIllustrationSource"
@@ -276,5 +280,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/tor-thumbnail.png" />
     <BitmapImage x:Key="ProfilesThumbnailIllustrationSource"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/profiles-thumbnail.png" />
+
+    <BitmapImage x:Key="EncryptedLockIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/encrypted-lock.png" />
 
 </ResourceDictionary>

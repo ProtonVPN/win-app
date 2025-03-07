@@ -707,6 +707,7 @@
         <None Remove="Assets\Illustrations\Dark\port-forwarding-off.png" />
         <None Remove="Assets\Illustrations\Dark\port-forwarding-on.png" />
         <None Remove="Assets\Illustrations\Dark\product-logo.svg" />
+        <None Remove="Assets\Illustrations\Dark\redesign.png" />
         <None Remove="Assets\Illustrations\Dark\settings.png" />
         <None Remove="Assets\Illustrations\Dark\split-tunneling-inverse.png" />
         <None Remove="Assets\Illustrations\Dark\split-tunneling-off.png" />
@@ -716,6 +717,7 @@
         <None Remove="Assets\Illustrations\Dark\vpn-feature-protocol.png" />
         <None Remove="Assets\Illustrations\Dark\vpn-plus.svg" />
         <None Remove="Assets\Illustrations\Dark\welcome.png" />
+        <None Remove="Assets\Illustrations\encrypted-lock.png" />
         <None Remove="Assets\Illustrations\feature-kill-switch.png" />
         <None Remove="Assets\Illustrations\feature-port-forwarding.png" />
         <None Remove="Assets\Illustrations\free-connection-flags.svg" />
@@ -739,6 +741,7 @@
         <None Remove="Assets\Illustrations\Light\port-forwarding-on.png" />
         <None Remove="Assets\Illustrations\Light\product-logo.svg" />
         <None Remove="Assets\Illustrations\Light\profile-new.svg" />
+        <None Remove="Assets\Illustrations\Light\redesign.png" />
         <None Remove="Assets\Illustrations\Light\settings.png" />
         <None Remove="Assets\Illustrations\Light\split-tunneling-inverse.png" />
         <None Remove="Assets\Illustrations\Light\split-tunneling-off.png" />
@@ -1931,6 +1934,9 @@
         <Content Update="Assets\Illustrations\certified-no-logs.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Illustrations\Dark\redesign.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Illustrations\Dark\settings.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -1944,6 +1950,9 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\Dark\vpn-feature-protocol.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\encrypted-lock.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\ip-thumbnail.png">
@@ -1986,6 +1995,9 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\kill-switch-protected.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Light\redesign.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\Light\settings.png">

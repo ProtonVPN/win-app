@@ -1340,6 +1340,36 @@
   <data name="Dialogs_SystemProxy_Disable" xml:space="preserve">
     <value>Disable proxy</value>
   </data>
+  <data name="Dialogs_WhatsNew_Title" xml:space="preserve">
+    <value>What's new</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Title" xml:space="preserve">
+    <value>New look, same protection</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Description" xml:space="preserve">
+    <value>We refreshed our designs and moved some things around to make the app easier to use.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Title" xml:space="preserve">
+    <value>Gateways have moved</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Description" xml:space="preserve">
+    <value>You can now access your organization’s dedicated servers from the main sidebar.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Title" xml:space="preserve">
+    <value>Introducing Recents</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Description" xml:space="preserve">
+    <value>It's now even easier to reconnect to your favorite servers. View your most recent connections on the home screen, or pin them for quick access.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Title" xml:space="preserve">
+    <value>Even more powerful profiles</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Description" xml:space="preserve">
+    <value>Add advanced profile settings like NetShield and port forwarding, or set up Connect and Go to launch a website of your choice when you connect.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook" xml:space="preserve">
+    <value>Take a look</value>
+  </data>
   <data name="Format_Milliseconds" xml:space="preserve">
     <value>{0}ms</value>
     <comment>Format a number as a time in milliseconds. {0} is a place holder for the number of milliseconds (eg. 46ms)</comment>

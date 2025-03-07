@@ -388,6 +388,21 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
+    public int LastSeenWhatsNewOverlayVersion
+    {
+        get
+        {
+            int? version = _userCache.GetValueType<int>(SettingEncryption.Unencrypted);
+            if (version is null)
+            {
+                version = DefaultSettings.WhatsNewOverlayVersion;
+                _userCache.SetValueType<int>(version.Value, SettingEncryption.Unencrypted);
+            }
+            return version.Value;
+        }
+        set => _userCache.SetValueType<int>(value, SettingEncryption.Unencrypted);
+    }
+
     public UserSettings(IGlobalSettingsCache globalSettingsCache, IUserSettingsCache userSettingsCache)
             : base(globalSettingsCache)
     {

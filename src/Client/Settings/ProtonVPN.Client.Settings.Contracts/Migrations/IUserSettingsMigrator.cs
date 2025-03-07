@@ -22,6 +22,4 @@ namespace ProtonVPN.Client.Settings.Contracts.Migrations;
 public interface IUserSettingsMigrator
 {
     void Migrate();
-
-    bool HasUserSettingsMigrationRun { get; }
 }

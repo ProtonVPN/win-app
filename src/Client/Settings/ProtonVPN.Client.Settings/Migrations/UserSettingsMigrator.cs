@@ -38,8 +38,6 @@ public class UserSettingsMigrator : IUserSettingsMigrator
     private readonly ISettingsCorrector _settingsCorrector;
     private readonly IProfilesMigrator _profilesMigrator;
 
-    public bool HasUserSettingsMigrationRun { get; private set; }
-
     public UserSettingsMigrator(ISettings settings,
         ILogger logger,
         IJsonSerializer jsonSerializer,
@@ -76,8 +74,6 @@ public class UserSettingsMigrator : IUserSettingsMigrator
                 _logger.Info<AppLog>($"Finished migrating user settings for username '{username}'. Removing previous settings.");
                 RemoveMigratedUserSettings(settingsByUsername, userSettingsPair.Value.Key);
                 _logger.Info<AppLog>($"Removed previous settings.");
-
-                HasUserSettingsMigrationRun = true;
             }
         }
         else
@@ -168,7 +164,7 @@ public class UserSettingsMigrator : IUserSettingsMigrator
 
         MigrateProfilesAndQuickConnectProfileId(userSettings);
 
-        SetWelcomeOverlaysAsDisplayed();
+        ConfigureWelcomeOverlays();
     }
 
     private void MigrateConnectionKeyPair(Dictionary<string, string?> userSettings)
@@ -306,9 +302,10 @@ public class UserSettingsMigrator : IUserSettingsMigrator
         }
     }
 
-    private void SetWelcomeOverlaysAsDisplayed()
+    private void ConfigureWelcomeOverlays()
     {
         _settings.WasWelcomeOverlayDisplayed = true;
         _settings.WasWelcomeB2BOverlayDisplayed = true;
+        _settings.LastSeenWhatsNewOverlayVersion = 0;
     }
 }
