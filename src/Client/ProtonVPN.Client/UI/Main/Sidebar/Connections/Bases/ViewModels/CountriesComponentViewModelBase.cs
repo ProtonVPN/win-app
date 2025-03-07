@@ -18,18 +18,17 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
-using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Factories;
-using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Models.Connections;
+using ProtonVPN.Client.Services.Upselling;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Contracts;
@@ -45,18 +44,13 @@ public abstract partial class CountriesComponentViewModelBase : ActivatableViewM
     protected readonly ISettings Settings;
     protected readonly IServersLoader ServersLoader;
     protected readonly ILocationItemFactory LocationItemFactory;
-    protected readonly IUrlsBrowser UrlsBrowser;
-    protected readonly IWebAuthenticator WebAuthenticator;
-    private readonly IUpsellUpgradeAttemptStatisticalEventSender _upsellUpgradeAttemptStatisticalEventSender;
+    private readonly IAccountUpgradeUrlLauncher _accountUpgradeUrlLauncher;
 
     public abstract CountriesConnectionType ConnectionType { get; }
 
     public abstract int SortIndex { get; }
-
     public abstract string Header { get; }
-
     public abstract string Description { get; }
-
     public abstract bool IsInfoBannerVisible { get; }
 
     public bool IsUpsellBannerVisible => IsRestricted;
@@ -67,19 +61,14 @@ public abstract partial class CountriesComponentViewModelBase : ActivatableViewM
         ISettings settings,
         IServersLoader serversLoader,
         ILocationItemFactory locationItemFactory,
-        IUrlsBrowser urlsBrowser,
-        IWebAuthenticator webAuthenticator,
         IViewModelHelper viewModelHelper,
-        IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender)
+        IAccountUpgradeUrlLauncher accountUpgradeUrlLauncher)
         : base(viewModelHelper)
     {
         Settings = settings;
         ServersLoader = serversLoader;
         LocationItemFactory = locationItemFactory;
-
-        UrlsBrowser = urlsBrowser;
-        WebAuthenticator = webAuthenticator;
-        _upsellUpgradeAttemptStatisticalEventSender = upsellUpgradeAttemptStatisticalEventSender;
+        _accountUpgradeUrlLauncher = accountUpgradeUrlLauncher;
     }
 
     public virtual IEnumerable<ConnectionItemBase> GetItems()
@@ -128,7 +117,6 @@ public abstract partial class CountriesComponentViewModelBase : ActivatableViewM
     [RelayCommand]
     private async Task UpgradeAsync()
     {
-        _upsellUpgradeAttemptStatisticalEventSender.Send(UpsellModalSource);
-        UrlsBrowser.BrowseTo(await WebAuthenticator.GetUpgradeAccountUrlAsync(UpsellModalSource));
+        await _accountUpgradeUrlLauncher.OpenAsync(UpsellModalSource);
     }
 }

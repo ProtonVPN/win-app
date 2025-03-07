@@ -18,17 +18,16 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
-using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
-using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Services.Upselling;
 using ProtonVPN.StatisticalEvents.Contracts;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
@@ -41,36 +40,26 @@ public partial class ChangeServerComponentViewModel : ActivatableViewModelBase,
     private readonly IConnectionManager _connectionManager;
     private readonly IChangeServerModerator _changeServerModerator;
     private readonly IUpsellCarouselWindowActivator _upsellCarouselWindowActivator;
-    private readonly IUrlsBrowser _urlsBrowser;
-    private readonly IWebAuthenticator _webAuthenticator;
-    private readonly IUpsellUpgradeAttemptStatisticalEventSender _upsellUpgradeAttemptStatisticalEventSender;
+    private readonly IAccountUpgradeUrlLauncher _accountUpgradeUrlLauncher;
 
     public bool IsChangeServerTimerVisible => !_changeServerModerator.CanChangeServer();
-
     public bool IsAttemptsLimitReached => _changeServerModerator.IsAttemptsLimitReached();
-
     public double DelayInSeconds => _changeServerModerator.GetDelayUntilNextAttempt().TotalSeconds;
-
     public double RemainingDelayInSeconds => _changeServerModerator.GetRemainingDelayUntilNextAttempt().TotalSeconds;
-
     public string? FormattedRemainingTime => Localizer.GetFormattedShortTime(_changeServerModerator.GetRemainingDelayUntilNextAttempt());
 
     public ChangeServerComponentViewModel(
         IConnectionManager connectionManager,
         IChangeServerModerator changeServerModerator,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
-        IUrlsBrowser urlsBrowser,
-        IWebAuthenticator webAuthenticator,
         IViewModelHelper viewModelHelper,
-        IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender)
+        IAccountUpgradeUrlLauncher accountUpgradeUrlLauncher)
         : base(viewModelHelper)
     {
         _connectionManager = connectionManager;
         _changeServerModerator = changeServerModerator;
         _upsellCarouselWindowActivator = upsellCarouselWindowActivator;
-        _urlsBrowser = urlsBrowser;
-        _webAuthenticator = webAuthenticator;
-        _upsellUpgradeAttemptStatisticalEventSender = upsellUpgradeAttemptStatisticalEventSender;
+        _accountUpgradeUrlLauncher = accountUpgradeUrlLauncher;
     }
 
     public void Receive(ConnectionStatusChangedMessage message)
@@ -116,8 +105,7 @@ public partial class ChangeServerComponentViewModel : ActivatableViewModelBase,
     [RelayCommand]
     private async Task UpgradePlanAsync()
     {
-        _upsellUpgradeAttemptStatisticalEventSender.Send(ModalSource.ChangeServer);
-        _urlsBrowser.BrowseTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSource.ChangeServer));
+        await _accountUpgradeUrlLauncher.OpenAsync(ModalSource.ChangeServer);
     }
 
     private void InvalidateChangeServer()

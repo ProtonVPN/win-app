@@ -23,12 +23,10 @@ using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.UI.Assets.Icons.Base;
 using ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons;
 using ProtonVPN.Client.Contracts.Profiles;
-using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Factories;
-using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Messages;
@@ -37,6 +35,7 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Models.Connections;
 using ProtonVPN.Client.Models.Connections.Profiles;
+using ProtonVPN.Client.Services.Upselling;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.ViewModels;
 using ProtonVPN.Common.Core.Geographical;
@@ -50,20 +49,13 @@ public partial class ProfilesPageViewModel : ConnectionPageViewModelBase,
     private readonly IConnectionItemFactory _connectionItemFactory;
     private readonly IProfilesManager _profilesManager;
     private readonly IProfileEditor _profileEditor;
-    private readonly IUrlsBrowser _urlsBrowser;
-    private readonly IWebAuthenticator _webAuthenticator;
-    private readonly IUpsellUpgradeAttemptStatisticalEventSender _upsellUpgradeAttemptStatisticalEventSender;
+    private readonly IAccountUpgradeUrlLauncher _accountUpgradeUrlLauncher;
 
     public override string Header => Localizer.Get("Profiles_Page_Title");
-
     public override IconElement Icon => new WindowTerminal() { Size = PathIconSize.Pixels16 };
-
     public override int SortIndex { get; } = 3;
-
     public bool IsUpsellBannerVisible => !Settings.VpnPlan.IsPaid;
-
     public override bool IsAvailable => ParentViewNavigator.CanNavigateToProfilesView();
-
 
     public event EventHandler<ConnectionItemBase>? ScrollToItemRequested;
 
@@ -76,10 +68,8 @@ public partial class ProfilesPageViewModel : ConnectionPageViewModelBase,
         IConnectionItemFactory connectionItemFactory,
         IProfilesManager profilesManager,
         IProfileEditor profileEditor,
-        IUrlsBrowser urlsBrowser,
-        IWebAuthenticator webAuthenticator,
         IViewModelHelper viewModelHelper,
-        IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender)
+        IAccountUpgradeUrlLauncher accountUpgradeUrlLauncher)
         : base(parentViewNavigator,
                settings,
                serversLoader,
@@ -90,9 +80,7 @@ public partial class ProfilesPageViewModel : ConnectionPageViewModelBase,
         _connectionItemFactory = connectionItemFactory;
         _profilesManager = profilesManager;
         _profileEditor = profileEditor;
-        _urlsBrowser = urlsBrowser;
-        _webAuthenticator = webAuthenticator;
-        _upsellUpgradeAttemptStatisticalEventSender = upsellUpgradeAttemptStatisticalEventSender;
+        _accountUpgradeUrlLauncher = accountUpgradeUrlLauncher;
     }
 
     public void Receive(ProfilesChangedMessage message)
@@ -161,7 +149,6 @@ public partial class ProfilesPageViewModel : ConnectionPageViewModelBase,
     [RelayCommand]
     private async Task UpgradeAsync()
     {
-        _upsellUpgradeAttemptStatisticalEventSender.Send(ModalSource.Profiles);
-        _urlsBrowser.BrowseTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(ModalSource.Profiles));
+        await _accountUpgradeUrlLauncher.OpenAsync(ModalSource.Profiles);
     }
 }

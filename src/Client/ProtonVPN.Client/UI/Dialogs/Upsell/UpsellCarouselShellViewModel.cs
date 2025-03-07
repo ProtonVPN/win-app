@@ -21,15 +21,13 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Navigation;
-using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
-using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Services.Upselling;
 using ProtonVPN.Client.UI.Dialogs.Upsell.Bases;
-using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.UI.Dialogs.Upsell;
 
@@ -38,9 +36,7 @@ public partial class UpsellCarouselShellViewModel : ShellViewModelBase<IUpsellCa
     private static readonly int _firstUpsellFeatureIndex = 0;
     private static readonly int _lastUpsellFeatureIndex = Enum.GetValues<UpsellFeatureType>().Length - 1;
 
-    private readonly IUrlsBrowser _urlsBrowser;
-    private readonly IWebAuthenticator _webAuthenticator;
-    private readonly IUpsellUpgradeAttemptStatisticalEventSender _upsellUpgradeAttemptStatisticalEventSender;
+    private readonly IAccountUpgradeUrlLauncher _accountUpgradeUrlLauncher;
 
     [ObservableProperty]
     private IUpsellFeaturePage? _selectedUpsellFeaturePage;
@@ -52,16 +48,12 @@ public partial class UpsellCarouselShellViewModel : ShellViewModelBase<IUpsellCa
     public UpsellCarouselShellViewModel(
         IUpsellCarouselWindowActivator windowActivator,
         IUpsellCarouselViewNavigator childViewNavigator,
-        IUrlsBrowser urlsBrowser,
-        IWebAuthenticator webAuthenticator,
-        IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender,
+        IAccountUpgradeUrlLauncher accountUpgradeUrlLauncher,
         IEnumerable<IUpsellFeaturePage> upsellFeaturePages,
         IViewModelHelper viewModelHelper)
         : base(windowActivator, childViewNavigator, viewModelHelper)
     {
-        _urlsBrowser = urlsBrowser;
-        _webAuthenticator = webAuthenticator;
-        _upsellUpgradeAttemptStatisticalEventSender = upsellUpgradeAttemptStatisticalEventSender;
+        _accountUpgradeUrlLauncher = accountUpgradeUrlLauncher;
 
         UpsellFeaturePages = new(upsellFeaturePages.OrderBy(p => p.SortIndex));
     }
@@ -104,8 +96,7 @@ public partial class UpsellCarouselShellViewModel : ShellViewModelBase<IUpsellCa
     [RelayCommand]
     private async Task UpgradeAsync()
     {
-        _upsellUpgradeAttemptStatisticalEventSender.Send(WindowActivator.ModalSource);
-        _urlsBrowser.BrowseTo(await _webAuthenticator.GetUpgradeAccountUrlAsync(WindowActivator.ModalSource));
+        await _accountUpgradeUrlLauncher.OpenAsync(WindowActivator.ModalSource);
 
         WindowActivator.Exit();
     }

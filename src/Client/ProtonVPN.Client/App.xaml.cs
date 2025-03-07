@@ -21,7 +21,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
-using ProtonVPN.Client.Modules;
+using ProtonVPN.Client.Installers;
 using ProtonVPN.Client.Services.Bootstrapping;
 using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.IssueReporting.Installers;
