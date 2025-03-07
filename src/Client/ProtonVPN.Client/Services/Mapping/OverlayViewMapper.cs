@@ -27,6 +27,7 @@ using ProtonVPN.Client.UI.Overlays.HumanVerification;
 using ProtonVPN.Client.UI.Overlays.Information;
 using ProtonVPN.Client.UI.Overlays.Information.Notification;
 using ProtonVPN.Client.UI.Overlays.Welcome;
+using ProtonVPN.Client.UI.Overlays.WhatsNew;
 
 namespace ProtonVPN.Client.Services.Mapping;
 
@@ -51,5 +52,6 @@ public class OverlayViewMapper : ViewMapperBase<OverlayViewModelBase, ContentDia
         ConfigureMapping<WelcomeToVpnB2BOverlayViewModel, WelcomeToVpnB2BOverlayView>();
 
         ConfigureMapping<FreeConnectionsOverlayViewModel, FreeConnectionsOverlayView>();
+        ConfigureMapping<WhatsNewOverlayViewModel, WhatsNewOverlayView>();
     }
 }

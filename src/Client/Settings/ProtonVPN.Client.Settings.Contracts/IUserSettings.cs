@@ -77,4 +77,5 @@ public interface IUserSettings
     bool IsSecureCoreInfoBannerDismissed { get; set; }
     bool IsTorInfoBannerDismissed { get; set; }
     bool IsGatewayInfoBannerDismissed { get; set; }
+    int LastSeenWhatsNewOverlayVersion { get; set; }
 }

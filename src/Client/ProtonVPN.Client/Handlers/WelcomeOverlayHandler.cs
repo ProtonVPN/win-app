@@ -25,6 +25,7 @@ using ProtonVPN.Client.Handlers.Bases;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Migrations;
 
 namespace ProtonVPN.Client.Handlers;
 
@@ -34,17 +35,20 @@ public class WelcomeOverlayHandler : IHandler,
 {
     private readonly ISettings _settings;
     private readonly IUIThreadDispatcher _uiThreadDispatcher;
+    private readonly IUserSettingsMigrator _userSettingsMigrator;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
     private readonly IUserAuthenticator _userAuthenticator;
 
     public WelcomeOverlayHandler(
         ISettings settings,
         IUIThreadDispatcher uIThreadDispatcher,
+        IUserSettingsMigrator userSettingsMigrator,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         IUserAuthenticator userAuthenticator)
     {
         _settings = settings;
         _uiThreadDispatcher = uIThreadDispatcher;
+        _userSettingsMigrator = userSettingsMigrator;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
         _userAuthenticator = userAuthenticator;
     }
@@ -53,7 +57,12 @@ public class WelcomeOverlayHandler : IHandler,
     {
         _uiThreadDispatcher.TryEnqueue(() =>
         {
-            if (!_settings.VpnPlan.IsB2B && !_settings.WasWelcomeOverlayDisplayed)
+            if (_settings.LastSeenWhatsNewOverlayVersion < DefaultSettings.WhatsNewOverlayVersion)
+            {
+                _settings.LastSeenWhatsNewOverlayVersion = DefaultSettings.WhatsNewOverlayVersion;
+                _mainWindowOverlayActivator.ShowWhatsNewOverlayAsync();
+            }
+            else if (!_settings.VpnPlan.IsB2B && !_settings.WasWelcomeOverlayDisplayed)
             {
                 _settings.WasWelcomeOverlayDisplayed = true;
                 _mainWindowOverlayActivator.ShowWelcomeOverlayAsync();
