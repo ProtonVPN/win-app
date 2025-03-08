@@ -51,7 +51,7 @@ DisableReadyPage=yes
 DirExistsWarning=no
 VersionInfoProductTextVersion={#MyAppVersion}-{#hash}
 VersionInfoVersion={#MyAppVersion}
-AppCopyright=© 2022 {#MyPublisher}
+AppCopyright=Â© 2022 {#MyPublisher}
 
 SignTool=signtool sign /a /tr http://timestamp.sectigo.com /td SHA256 /fd SHA256 $f
 
@@ -147,6 +147,7 @@ Name: "es_ES"; MessagesFile: "compiler:Languages\Spanish.isl,Strings\Spanish.isl
 Name: "uk_UA"; MessagesFile: "compiler:Languages\Ukrainian.isl,Strings\Ukrainian.isl"
 Name: "tr_TR"; MessagesFile: "compiler:Languages\Turkish.isl,Strings\Turkish.isl"
 Name: "sl_SI"; MessagesFile: "compiler:Languages\Slovenian.isl,Strings\Slovenian.isl"
+Name: "sv_SE"; MessagesFile: "compiler:Languages\Swedish.isl,Strings\Swedish.isl"
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{app}\{#VersionFolder}\ServiceData"
