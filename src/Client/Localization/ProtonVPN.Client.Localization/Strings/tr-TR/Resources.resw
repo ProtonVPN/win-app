@@ -2895,7 +2895,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Rastgele bağlantı</value>
   </data>
   <data name="Profiles_Default_Streaming">
-    <value>Birleşik Devletler'de yayın akışı izlemek</value>
+    <value>Birleşik Devletler yayın akışı</value>
   </data>
   <data name="Profiles_Default_WorkSchool">
     <value>İş/Okul</value>

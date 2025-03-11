@@ -151,7 +151,7 @@
     <value>Página de redirección de puertos</value>
   </data>
   <data name="Automation_Properties_Profile_Page">
-    <value>Página Perfil</value>
+    <value>Página de perfil</value>
   </data>
   <data name="Automation_Properties_Settings_Advanced_Page">
     <value>Página de ajustes avanzados</value>
@@ -488,7 +488,7 @@
     <value>Crea tu primer perfil</value>
   </data>
   <data name="Connections_Profiles_Location_Header">
-    <value>Selecciona el tipo de conexión y ubicación</value>
+    <value>Selecciona la ubicación y el tipo de conexión</value>
   </data>
   <data name="Connections_Profiles_Name">
     <value>Dale un nombre a tu perfil</value>
@@ -1911,7 +1911,7 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Desactivar proxy</value>
   </data>
   <data name="Dialogs_SystemProxy_Title">
-    <value>Servidor Proxy detectado</value>
+    <value>Servidor proxy detectado</value>
   </data>
   <data name="Dialogs_Tor_Description">
     <value>Conéctate a un servidor Tor para acceder a servicios ocultos y sitios onion usando cualquier navegador.</value>
@@ -2121,7 +2121,7 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Bloquea anuncios, rastreadores y malware con VPN Plus.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Title">
-    <value>Disfruta de la navegación sin publicidad</value>
+    <value>Disfruta de una navegación sin publicidad</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Número de puerto activo</value>
@@ -2219,10 +2219,10 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Solo estas aplicaciones y direcciones IP se conectan mediante VPN. El resto del tráfico no está protegido.</value>
   </data>
   <data name="Flyouts_SplitTunneling_Protected_Apps_One">
-    <value>Aplicación seleccionada ({0})</value>
+    <value>Aplicación protegida ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Protected_Apps_Other">
-    <value>Aplicaciones seleccionadas ({0})</value>
+    <value>Aplicaciones protegidas ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Protected_Ips_One">
     <value>Dirección IP seleccionada ({0})</value>
@@ -2706,7 +2706,7 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Las redes wifi públicas son más vulnerables a amenazas. Conéctate a una VPN para navegar de forma segura.</value>
   </data>
   <data name="Notifications_UnsecureWifi_Title">
-    <value>Conexión Wi-Fi no segura detectada</value>
+    <value>Se ha detectado una conexión wifi no segura.</value>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Actualizar ahora</value>

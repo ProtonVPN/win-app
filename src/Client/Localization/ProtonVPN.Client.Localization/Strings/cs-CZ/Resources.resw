@@ -3699,7 +3699,7 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
     <value>Světlý</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
-    <value>Zvyšte rychlost vašeho připojení až o 400% pomocí technologií zvyšujících výkon.</value>
+    <value>Zvyšte rychlost vašeho připojení až o 400 % pomocí technologií zvyšujících výkon.</value>
   </data>
   <data name="SignIn_Form">
     <value>Přihlašovací formulář</value>
@@ -3928,7 +3928,7 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
     <value>Procházejte ještě vyšší rychlostí (až 10 Gb/s)</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
-    <value>Zvyšte rychlost vašeho připojení až o 400% pomocí funkce VPN Accelerator</value>
+    <value>Zvyšte rychlost vašeho připojení až o 400 % pomocí funkce VPN Accelerator</value>
   </data>
   <data name="Upsell_Carousel_Speed_Access">
     <value>Přístup k rychlejším a méně vytíženým serverům</value>

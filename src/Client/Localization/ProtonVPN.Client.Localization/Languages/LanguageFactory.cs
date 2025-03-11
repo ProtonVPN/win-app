@@ -31,6 +31,37 @@ public class LanguageFactory : ILanguageFactory
 {
     private readonly ILocalizer _localizer;
     private readonly Lazy<IList<Language>> _languages;
+    private readonly Dictionary<string, string> _languageNames = new()
+    {
+        { "en-US",  "English" },
+        { "de-DE",  "Deutsch - German" },
+        { "fr-FR",  "Français - French" },
+        { "nl-NL",  "Nederlands - Dutch" },
+        { "es-ES",  "Español (España) - Spanish (Spain)" },
+        { "es-419", "Español (América Latina) - Spanish (Latin America)" },
+        { "it-IT",  "Italiano - Italian" },
+        { "pl-PL",  "Polski - Polish" },
+        { "pt-BR",  "Português (Brasil) - Portuguese (Brazil)" },
+        { "pt-PT",  "Português (Portugal) - Portuguese (Portugal)" },
+        { "ru-RU",  "Русский - Russian" },
+        { "tr-TR",  "Türkçe - Turkish" },
+        { "cs-CZ",  "Čeština - Czech" },
+        { "fi-FI",  "Suomi - Finnish" },
+        { "id-ID",  "Bahasa Indonesia - Indonesian" },
+        { "nb-NO",  "Norsk (bokmål) - Norwegian (Bokmål)" },
+        { "ro-RO",  "Română - Romanian" },
+        { "sk-SK",  "Slovenčina - Slovak" },
+        { "sl-SI",  "Slovenščina - Slovenian" },
+        { "sv-SE",  "Svenska - Swedish" },
+        { "el-GR",  "ελληνικά - Greek" },
+        { "be-BY",  "беларуская - Belarusian" },
+        { "uk-UA",  "Українська - Ukrainian" },
+        { "ka-GE",  "ქართული - Georgian" },
+        { "ko-KR",  "한국어 - Korean" },
+        { "ja-JP",  "日本語 - Japanese" },
+        { "zh-TW",  "繁體中文 - Chinese (Traditional)" },
+        { "fa-IR",  "فارسی - Persian" },
+    };
 
     public LanguageFactory(ILocalizerFactory localizerFactory)
     {
@@ -51,48 +82,12 @@ public class LanguageFactory : ILanguageFactory
 
     private IList<Language> CreateLanguages()
     {
-        return _localizer.GetAvailableLanguages().Select(CreateLanguage).ToList();
+        IEnumerable<string> availableLanguages = _localizer.GetAvailableLanguages();
+        return _languageNames.Where(ln => availableLanguages.Contains(ln.Key)).Select(CreateLanguage).ToList();
     }
 
-    private Language CreateLanguage(string id)
+    private Language CreateLanguage(KeyValuePair<string, string> languageName)
     {
-        return new Language() { Id = id, Description = CreateLanguageDescription(id) };
-    }
-
-    private static string CreateLanguageDescription(string id)
-    {
-        return id switch
-        {
-            "be-BY" => "беларуская - Belarusian",
-            "cs-CZ" => "Čeština - Czech",
-            "de-DE" => "Deutsch - German",
-            "el-GR" => "ελληνικά - Greek",
-            "en-US" => "English",
-            "es-419" => "Español (América Latina) - Spanish",
-            "es-ES" => "Español (España) - Spanish",
-            "fa-IR" => "فارسی - Persian",
-            "fi-FI" => "Suomi - Finnish",
-            "fr-FR" => "Français - French",
-            "hr-HR" => "Hrvatski - Croatian",
-            "id-ID" => "Bahasa Indonesia - Indonesian",
-            "it-IT" => "Italiano - Italian",
-            "ja-JP" => "日本語 - Japanese",
-            "ka-GE" => "ქართული - Georgian",
-            "ko-KR" => "한국어 - Korean",
-            "nb-NO" => "Norsk bokmål - Norwegian",
-            "nl-NL" => "Nederlands - Dutch",
-            "pl-PL" => "Polski - Polish",
-            "pt-BR" => "Português (Brasil) - Portuguese",
-            "pt-PT" => "Português (Portugal) - Portuguese",
-            "ro-RO" => "Română - Romanian",
-            "ru-RU" => "Русский - Russian",
-            "sk-SK" => "Slovenčina - Slovak",
-            "sl-SI" => "Slovenščina - Slovenian",
-            "sv-SE" => "Svenska - Swedish",
-            "tr-TR" => "Türkçe - Turkish",
-            "uk-UA" => "Українська - Ukrainian",
-            "zh-TW" => "繁體中文 - Chinese (Traditional)",
-            _ => id,
-        };
+        return new Language() { Id = languageName.Key, Description = languageName.Value };
     }
 }
