@@ -23,6 +23,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Profiles.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
+using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
@@ -41,13 +42,16 @@ public class ProfilesMigrator : IProfilesMigrator
 
     private readonly IServersLoader _serversLoader;
     private readonly IProfilesManager _profilesManager;
+    private readonly IRecentConnectionsManager _recentConnectionsManager;
 
     public ProfilesMigrator(
         IServersLoader serversLoader,
-        IProfilesManager profilesManager)
+        IProfilesManager profilesManager,
+        IRecentConnectionsManager recentConnectionsManager)
     {
         _serversLoader = serversLoader;
         _profilesManager = profilesManager;
+        _recentConnectionsManager = recentConnectionsManager;
     }
 
     public void Migrate(List<LegacyProfile> legacyProfiles, string? quickConnectProfileId = null)
@@ -61,6 +65,11 @@ public class ProfilesMigrator : IProfilesMigrator
         IConnectionProfile? quickConnectionProfile = MapQuickConnectProfileToConnectionProfile(legacyProfiles, quickConnectProfileId);
 
         _profilesManager.OverrideProfiles(connectionProfiles, quickConnectionProfile);
+
+        if (quickConnectionProfile is not null)
+        {
+            _recentConnectionsManager.OverrideRecentConnections([], quickConnectionProfile);
+        }
     }
 
     private List<IConnectionProfile> MapProfilesToConnectionProfiles(List<LegacyProfile> legacyProfiles)

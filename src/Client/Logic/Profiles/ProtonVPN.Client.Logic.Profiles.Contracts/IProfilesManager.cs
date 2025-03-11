@@ -30,5 +30,4 @@ public interface IProfilesManager
 
     void AddOrEditProfile(IConnectionProfile profile);
     void DeleteProfile(Guid profileId);
-    void SetAsDefaultConnection(Guid profileId);
 }

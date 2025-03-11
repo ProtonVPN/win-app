@@ -25,7 +25,6 @@ using ProtonVPN.Client.Logic.Profiles.Contracts.Messages;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Profiles.Files;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Models;
 
 namespace ProtonVPN.Client.Logic.Profiles;
 
@@ -77,7 +76,6 @@ public class ProfilesManager : IProfilesManager,
             if (quickConnectionProfile is not null)
             {
                 AddOrEditProfile(quickConnectionProfile);
-                SetAsDefaultConnection(quickConnectionProfile.Id);
             }
 
             SaveProfiles();
@@ -164,10 +162,5 @@ public class ProfilesManager : IProfilesManager,
             Action = action,
             ChangedProfileId = changedProfileId
         });
-    }
-
-    public void SetAsDefaultConnection(Guid profileId)
-    {
-        _settings.DefaultConnection = new DefaultConnection(profileId);
     }
 }
