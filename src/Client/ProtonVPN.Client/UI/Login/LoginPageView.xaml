@@ -119,6 +119,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <pathIcons:Bug />
                                     </MenuFlyoutItem.Icon>
                                 </MenuFlyoutItem>
+                                <MenuFlyoutItem Command="{x:Bind ViewModel.ShowDebugToolsCommand, Mode=OneTime}"
+                                                Text="Debug tools"
+                                                Visibility="{x:Bind ViewModel.IsDebugModeEnabled, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <MenuFlyoutItem.Icon>
+                                        <pathIcons:WindowTerminal />
+                                    </MenuFlyoutItem.Icon>
+                                </MenuFlyoutItem>
                             </MenuFlyout>
                         </custom:GhostButton.Flyout>
                         <custom:GhostButton.RightIcon>
