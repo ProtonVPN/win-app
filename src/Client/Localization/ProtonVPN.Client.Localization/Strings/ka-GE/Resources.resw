@@ -298,7 +298,7 @@
     <value>მიიღეთ VPN-ისგან უფრო მეტი აპის ბოლო ვერსიამდე განახლებით.</value>
   </data>
   <data name="Components_Update_MoreLikelyIssues">
-    <value>You're more likely to have issues on older versions of Proton VPN.</value>
+    <value>Proton VPN-ის ძველ ვერსიებზე პრობლემები გექნებათ.</value>
   </data>
   <data name="Components_Update_UpdateAvailable">
     <value>განახლება ხელმისაწვდომია</value>

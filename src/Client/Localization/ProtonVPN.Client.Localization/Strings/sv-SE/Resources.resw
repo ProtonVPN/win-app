@@ -2013,10 +2013,10 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Välkommen till VPN Plus</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description1">
-    <value>Congratulations! You unlocked premium security and performance features on all Proton services.</value>
+    <value>Grattis! Du låste upp premium säkerhets- och prestandafunktioner på alla Proton-tjänster.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>Enjoy the best of Proton privacy.</value>
+    <value>Njut av det bästa av Proton-integritet.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Välkommen till Proton Unlimited</value>
@@ -2877,7 +2877,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Ange en giltig URL</value>
   </data>
   <data name="Profile_PortForwarding_Conflict_Description">
-    <value>This will change the NAT type for this profile to Strict (type 3).</value>
+    <value>Detta kommer ändra NAT-typen för denna profil till Strikt (typ 3).</value>
   </data>
   <data name="Profiles_Default_Gaming">
     <value>Spel</value>

@@ -2052,7 +2052,7 @@
     <value>Здаецца, што ваша прылада выкарыстоўвае проксі-сервер. Гэта можа перашкодзіць абароне VPN.</value>
   </data>
   <data name="Dialogs_SystemProxy_Disable">
-    <value>Адключыць проксі-сервер</value>
+    <value>Адключыць проксі</value>
   </data>
   <data name="Dialogs_SystemProxy_Title">
     <value>Выяўлены проксі-сервер</value>
