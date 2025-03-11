@@ -81,6 +81,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </MenuFlyoutItem.Icon>
                 </MenuFlyoutItem>
 
+                <MenuFlyoutItem Command="{x:Bind ViewModel.ShowDebugToolsCommand, Mode=OneTime}"
+                                Style="{StaticResource TitleBarMenuFlyoutItemStyle}"
+                                Text="Debug tools"
+                                Visibility="{x:Bind ViewModel.IsDebugModeEnabled, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <MenuFlyoutItem.Icon>
+                        <pathicons:WindowTerminal Size="Pixels16" />
+                    </MenuFlyoutItem.Icon>
+                </MenuFlyoutItem>
+
                 <MenuFlyoutSeparator />
 
                 <MenuFlyoutItem Command="{x:Bind ViewModel.SignoutCommand, Mode=OneTime}"

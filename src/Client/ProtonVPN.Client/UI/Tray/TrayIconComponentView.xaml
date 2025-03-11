@@ -48,10 +48,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <MenuFlyoutItem Command="{x:Bind ViewModel.DisconnectCommand, Mode=OneTime}"
                                 Text="{x:Bind ViewModel.Localizer.Get('Common_Actions_Disconnect')}" />
                 
-                <MenuFlyoutItem Command="{x:Bind ViewModel.ShowDebugToolsCommand, Mode=OneTime}"
-                                Text="Debug tools"
-                                Visibility="{x:Bind ViewModel.IsDebugModeEnabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
-
                 <MenuFlyoutSeparator />
 
                 <MenuFlyoutItem Command="{x:Bind ViewModel.ExitApplicationCommand, Mode=OneTime}"

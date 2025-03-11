@@ -25,6 +25,7 @@ using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Models.ReportIssue;
+using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
@@ -34,6 +35,7 @@ using ProtonVPN.Client.Logic.Updates.Contracts;
 using ProtonVPN.Client.Mappers;
 using ProtonVPN.Client.Services.Bootstrapping;
 using ProtonVPN.Client.Services.SignoutHandling;
+using ProtonVPN.Client.Settings.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Components;
 
@@ -54,10 +56,14 @@ public partial class TitleBarMenuViewModel : ActivatableViewModelBase,
     private readonly IReportIssueDataProvider _reportIssueDataProvider;
     private readonly IUpdatesManager _updatesManager;
     private readonly ISettingsViewNavigator _settingsViewNavigator;
+    private readonly ISettings _settings;
+    private readonly IDebugToolsWindowActivator _debugToolsWindowActivator;
 
     public bool IsUpdateAvailable => _updatesManager.IsUpdateAvailable;
 
     public bool IsVisible => _userAuthenticator.IsLoggedIn;
+
+    public bool IsDebugModeEnabled => _settings.IsDebugModeEnabled;
 
     public SmartObservableCollection<IssueCategory> ReportIssueCategories { get; } = [];
 
@@ -75,6 +81,8 @@ public partial class TitleBarMenuViewModel : ActivatableViewModelBase,
         IReportIssueDataProvider reportIssueDataProvider,
         IUpdatesManager updatesManager,
         ISettingsViewNavigator settingsViewNavigator,
+        ISettings settings,
+        IDebugToolsWindowActivator debugToolsWindowActivator,
         IUpdateClientCommand updateClientCommand,
         IViewModelHelper viewModelHelper)
         : base(viewModelHelper)
@@ -90,6 +98,8 @@ public partial class TitleBarMenuViewModel : ActivatableViewModelBase,
         _reportIssueDataProvider = reportIssueDataProvider;
         _updatesManager = updatesManager;
         _settingsViewNavigator = settingsViewNavigator;
+        _settings = settings;
+        _debugToolsWindowActivator = debugToolsWindowActivator;
 
         UpdateCommand = updateClientCommand.Command;
     }
@@ -169,5 +179,16 @@ public partial class TitleBarMenuViewModel : ActivatableViewModelBase,
         _reportIssueWindowActivator.Activate();
 
         return _reportIssueViewNavigator.NavigateToCategoryViewAsync(category);
+    }
+
+    [RelayCommand(CanExecute = nameof(CanShowDebugTools))]
+    private void ShowDebugTools()
+    {
+        _debugToolsWindowActivator.Activate();
+    }
+
+    private bool CanShowDebugTools()
+    {
+        return IsDebugModeEnabled;
     }
 }

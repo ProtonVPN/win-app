@@ -211,7 +211,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                     <toolkit:SettingsCard AutomationProperties.AutomationId="DeveloperToolsSettingsCard"
                                           Command="{x:Bind ViewModel.ShowDebugToolsCommand, Mode=OneTime}"
-                                          Header="Developer tools"
+                                          Header="Debug tools"
                                           IsClickEnabled="True"
                                           Style="{StaticResource DefaultSettingsCardStyle}"
                                           Visibility="{x:Bind ViewModel.IsToShowDeveloperTools}">

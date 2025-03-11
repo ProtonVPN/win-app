@@ -49,6 +49,8 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
     private readonly IMainWindowActivator _mainWindowActivator;
     private readonly IReportIssueWindowActivator _reportIssueWindowActivator;
     private readonly ITroubleshootingWindowActivator _troubleshootingWindowActivator;
+    private readonly ISettings _settings;
+    private readonly IDebugToolsWindowActivator _debugToolsWindowActivator;
 
     [ObservableProperty]
     private string _message;
@@ -62,6 +64,8 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
     [ObservableProperty]
     private bool _isHelpVisible;
 
+    public bool IsDebugModeEnabled => _settings.IsDebugModeEnabled;
+
     public LoginPageViewModel(
         IMainWindowViewNavigator parentViewNavigator,
         ILoginViewNavigator childViewNavigator,
@@ -69,6 +73,8 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
         IMainWindowActivator mainWindowActivator,
         IReportIssueWindowActivator reportIssueWindowActivator,
         ITroubleshootingWindowActivator troubleshootingWindowActivator,
+        ISettings settings,
+        IDebugToolsWindowActivator debugToolsWindowActivator,
         IViewModelHelper viewModelHelper)
         : base( parentViewNavigator, childViewNavigator, viewModelHelper)
     {
@@ -76,6 +82,9 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
         _mainWindowActivator = mainWindowActivator;
         _reportIssueWindowActivator = reportIssueWindowActivator;
         _troubleshootingWindowActivator = troubleshootingWindowActivator;
+        _settings = settings;
+        _debugToolsWindowActivator = debugToolsWindowActivator;
+
         _message = string.Empty;
     }
 
@@ -208,6 +217,17 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
     public Task ReportAnIssueAsync()
     {
         return _reportIssueWindowActivator.ActivateAsync();
+    }
+
+    [RelayCommand(CanExecute = nameof(CanShowDebugTools))]
+    private void ShowDebugTools()
+    {
+        _debugToolsWindowActivator.Activate();
+    }
+
+    private bool CanShowDebugTools()
+    {
+        return IsDebugModeEnabled;
     }
 
     private void SetErrorMessage(string message)
