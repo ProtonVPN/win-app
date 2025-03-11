@@ -131,7 +131,7 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
         return _recentConnections.FirstOrDefault(c => c.Id == id);
     }
 
-    public void OverrideRecentConnections(List<IConnectionIntent> connectionIntents, IConnectionIntent? mostRecentConnectionIntent = null)
+    public void OverrideRecentConnections(List<IConnectionIntent> connectionIntents, IConnectionIntent? quickConnectionIntent = null)
     {
         lock (_lock)
         {
@@ -142,12 +142,11 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
                 TryInsertRecentConnection(connectionIntent);
             }
 
-            foreach (IRecentConnection recentConnection in _recentConnections)
+            if (quickConnectionIntent is not null)
             {
-                TryPinRecentConnection(recentConnection);
+                TryInsertRecentConnection(quickConnectionIntent);
+                SetAsDefaultConnection(GetMostRecentConnection()?.Id);
             }
-
-            TryInsertRecentConnection(mostRecentConnectionIntent ?? ConnectionIntent.Default);
 
             SaveRecentConnections();
         }
@@ -185,6 +184,13 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
                 SaveAndBroadcastRecentConnectionsChanges();
             }
         }
+    }
+
+    public void SetAsDefaultConnection(Guid? recentConnectionId)
+    {
+        _settings.DefaultConnection = recentConnectionId != null 
+            ? new DefaultConnection(recentConnectionId.Value)
+            : DefaultSettings.DefaultConnection;
     }
 
     public void Receive(LoggedInMessage message)

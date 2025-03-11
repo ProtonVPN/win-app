@@ -28,8 +28,9 @@ public interface IRecentConnectionsManager
     IRecentConnection? GetMostRecentConnection();
     IConnectionIntent GetDefaultConnection();
     IRecentConnection? GetById(Guid id);
-    void OverrideRecentConnections(List<IConnectionIntent> connectionIntents, IConnectionIntent? mostRecentConnectionIntent = null);
+    void OverrideRecentConnections(List<IConnectionIntent> connectionIntents, IConnectionIntent? quickConnectionIntent = null);
     void Pin(IRecentConnection recentConnection);
     void Unpin(IRecentConnection recentConnection);
     void Remove(IRecentConnection recentConnection);
+    void SetAsDefaultConnection(Guid? recentConnectionId);
 }
