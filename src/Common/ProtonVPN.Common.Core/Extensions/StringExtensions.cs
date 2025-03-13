@@ -22,6 +22,7 @@ using System.Net;
 using System.Security;
 using System.Text;
 using System.Text.RegularExpressions;
+using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Common.Core.Extensions;
 
@@ -230,10 +231,21 @@ public static class StringExtensions
             .ToArray();
     }
 
-    public static bool IsValidIpAddress(this string ip)
+    public static bool IsValidIpAddressFormat(this string ip)
     {
         return IPAddress.TryParse(ip, out IPAddress? parsedIpAddress) &&
                ip.EqualsIgnoringCase(parsedIpAddress.ToString());
+    }
+
+    public static bool IsValidIpAddress(this string ip)
+    {
+        return NetworkAddress.TryParse(ip, out NetworkAddress address)
+            && address.IsSingleIp;
+    }
+
+    public static bool IsValidIpAddressOrRange(this string ip)
+    {
+        return NetworkAddress.TryParse(ip, out _);
     }
 
     public static bool IsValidBase64Key(this string key)

@@ -60,4 +60,85 @@ public class StringExtensionsTest
         bool result = url.IsValidUrl();
         Assert.AreEqual(expectedResult, result);
     }
+
+    [TestMethod]
+    [DataRow("", false)]
+    [DataRow("1.2.3.4.5", false)]
+    [DataRow("proton.com", false)]
+    [DataRow("0.0.0.0", true)]
+    [DataRow("0.0.512", false)]
+    [DataRow("255.255.255.255", true)]
+    [DataRow("256.0.0.0", false)]
+    [DataRow("1.2.3.4", true)]
+    [DataRow("1.2.3.0/24", false)]
+    [DataRow("1.2.3.0/0", false)]
+    [DataRow("1.2.3.0/32", false)]
+    [DataRow("1.2.3.0/35", false)]
+    [DataRow("1.2.3.0/00024", false)]
+    [DataRow("1.2.3.0/", false)]
+    [DataRow("1.2.3.0/abc", false)]
+    [DataRow("0.0.512/32", false)]
+    [DataRow("0.0.512/16", false)]
+    [DataRow("1", false)]
+    [DataRow("1.2.3.0/24/16", false)]
+    [DataRow("1.2.3.0/24.16", false)]
+    public void TestIpAddressFormatValidation(string ipAddress, bool expectedResult)
+    {
+        bool result = ipAddress.IsValidIpAddressFormat();
+        Assert.AreEqual(expectedResult, result);
+    }
+
+    [TestMethod]
+    [DataRow("", false)]
+    [DataRow("1.2.3.4.5", false)]
+    [DataRow("proton.com", false)]
+    [DataRow("0.0.0.0", true)]
+    [DataRow("0.0.512", true)]
+    [DataRow("255.255.255.255", true)]
+    [DataRow("256.0.0.0", false)]
+    [DataRow("1.2.3.4", true)]
+    [DataRow("1.2.3.0/24", false)]
+    [DataRow("1.2.3.0/0", false)]
+    [DataRow("1.2.3.0/32", true)]
+    [DataRow("1.2.3.0/35", false)]
+    [DataRow("1.2.3.0/00024", false)]
+    [DataRow("1.2.3.0/", false)]
+    [DataRow("1.2.3.0/abc", false)]
+    [DataRow("0.0.512/32", true)]
+    [DataRow("0.0.512/16", false)]
+    [DataRow("1", true)]
+    [DataRow("1.2.3.0/24/16", false)]
+    [DataRow("1.2.3.0/24.16", false)]
+    public void TestIpAddressValidation(string ipAddress, bool expectedResult)
+    {
+        bool result = ipAddress.IsValidIpAddress();
+        Assert.AreEqual(expectedResult, result);
+    }
+
+    [TestMethod]
+    [DataRow("", false)]
+    [DataRow("1.2.3.4.5", false)]
+    [DataRow("proton.com", false)]
+    [DataRow("0.0.0.0", true)]
+    [DataRow("0.0.512", true)]
+    [DataRow("255.255.255.255", true)]
+    [DataRow("256.0.0.0", false)]
+    [DataRow("1.2.3.4", true)]
+    [DataRow("1.2.3.0/24", true)]
+    [DataRow("1.2.3.0/0", true)]
+    [DataRow("1.2.3.0/32", true)]
+    [DataRow("1.2.3.0/35", false)]
+    [DataRow("1.2.3.0/00024", true)]
+    [DataRow("1.2.3.0/", false)]
+    [DataRow("1.2.3.0/abc", false)]
+    [DataRow("0.0.512/32", true)]
+    [DataRow("0.0.512/16", true)]
+    [DataRow("1", true)]
+    [DataRow("1.2.3.0/24/16", false)]
+    [DataRow("1.2.3.0/24.16", false)]
+    public void TestIpAddressOrRangeValidation(string ipAddress, bool expectedResult)
+    {
+        bool result = ipAddress.IsValidIpAddressOrRange();
+        Assert.AreEqual(expectedResult, result);
+    }
 }

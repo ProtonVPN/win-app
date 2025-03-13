@@ -36,7 +36,7 @@ using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
-using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.Common.Core.Networking;
 using Windows.System;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Connection;
@@ -52,6 +52,7 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(AddIpAddressCommand))]
+    [NotifyPropertyChangedFor(nameof(IsCurrentAddressValid))]
     private string? _currentIpAddress;
 
     [ObservableProperty]
@@ -74,6 +75,9 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
     public ImageSource SplitTunnelingFeatureIconSource => GetFeatureIconSource(IsSplitTunnelingEnabled, CurrentSplitTunnelingMode);
 
     public string LearnMoreUrl => _urlsBrowser.SplitTunnelingLearnMore;
+
+    public bool IsCurrentAddressValid => string.IsNullOrWhiteSpace(CurrentIpAddress) 
+                                      || CanAddIpAddress();
 
     public bool IsStandardSplitTunneling
     {
@@ -208,15 +212,20 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
     [RelayCommand(CanExecute = nameof(CanAddIpAddress))]
     public void AddIpAddress()
     {
+        if (!NetworkAddress.TryParse(CurrentIpAddress, out NetworkAddress address))
+        {
+            return;
+        }
+
         ObservableCollection<SplitTunnelingIpAddressViewModel> ipAddresses = GetIpAddresses();
-        SplitTunnelingIpAddressViewModel? ipAddress = ipAddresses.FirstOrDefault(s => s.IpAddress == CurrentIpAddress);
+        SplitTunnelingIpAddressViewModel? ipAddress = ipAddresses.FirstOrDefault(s => s.IpAddress == address.FormattedAddress);
         if (ipAddress != null)
         {
             ipAddress.IsActive = true;
         }
         else
         {
-            ipAddresses.Add(new(ViewModelHelper, this, CurrentIpAddress!));
+            ipAddresses.Add(new(ViewModelHelper, this, address.FormattedAddress));
         }
 
         CurrentIpAddress = string.Empty;
@@ -229,8 +238,8 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
 
     public bool CanAddIpAddress()
     {
-        return !string.IsNullOrEmpty(CurrentIpAddress)
-            && CurrentIpAddress.IsValidIpAddress();
+        return NetworkAddress.TryParse(CurrentIpAddress, out NetworkAddress address)
+            && address.IsIpV4;
     }
 
     public void RemoveApp(SplitTunnelingAppViewModel app)
