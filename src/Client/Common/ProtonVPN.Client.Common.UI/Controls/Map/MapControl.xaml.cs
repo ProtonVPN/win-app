@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -34,7 +35,6 @@ using Mapsui.Nts.Extensions;
 using Mapsui.Nts.Providers;
 using Mapsui.Providers;
 using Mapsui.Styles;
-using Microsoft.UI.Dispatching;
 using Microsoft.UI.Input;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -56,7 +56,7 @@ public sealed partial class MapControl
     private const int SIDE_MARGIN = 8;
     private const double MIN_BBOX_WIDTH = 4411437;
     private const double MIN_BBOX_HEIGHT = 2445113;
- 
+
     // Animations related consts
     private const int PINS_LAYER_ANIMATION_DURATION_IN_MS = 200;
     private const int COUNTRY_CHANGE_ANIMATION_DURATION_IN_MS = 1000;
@@ -263,7 +263,7 @@ public sealed partial class MapControl
     private Windows.Foundation.Point _currentMousePosition;
 
     private AnimationEntry<double>? _pinFadeAnimation;
-    private readonly Dictionary<AnimatedCircleStyle, List<AnimationEntry<AnimatedCircleStyle>>> _activeAnimations = [];
+    private readonly ConcurrentDictionary<AnimatedCircleStyle, List<AnimationEntry<AnimatedCircleStyle>>> _activeAnimations = [];
     private readonly AnimatedCirclesStyleSkiaRenderer _animatedCirclesStyleSkiaRenderer = new();
 
     public MapControl()
@@ -722,7 +722,7 @@ public sealed partial class MapControl
             }
             else
             {
-                _activeAnimations.Remove(style);
+                _activeAnimations.TryRemove(style, out _);
             }
         }
 
@@ -859,8 +859,7 @@ public sealed partial class MapControl
                     if (subsequentAnimation?.Animation != null)
                     {
                         Animation.Start(subsequentAnimation.Animation, subsequentAnimation.TotalDurationInMs);
-
-                        _activeAnimations[subsequentAnimation.AnimatedCircleStyle] = [subsequentAnimation.Animation];
+                        _activeAnimations.AddOrUpdate(subsequentAnimation.AnimatedCircleStyle, _ => [subsequentAnimation.Animation], (_, _) => [subsequentAnimation.Animation]);
                     }
                 });
 
@@ -1216,7 +1215,7 @@ public sealed partial class MapControl
             Animation.Start(animation, PINS_LAYER_ANIMATION_DURATION_IN_MS);
         }
 
-        _activeAnimations[style] = animations;
+        _activeAnimations.AddOrUpdate(style, _ => animations, (_, _) => animations);
     }
 
     private void InvalidateConnectPhrase()
