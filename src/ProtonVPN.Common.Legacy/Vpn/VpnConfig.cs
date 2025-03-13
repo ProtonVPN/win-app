@@ -80,7 +80,7 @@ public class VpnConfig
 
         foreach (string dns in customDns)
         {
-            if (!dns.IsValidIpAddress())
+            if (!dns.IsValidIpAddressFormat())
             {
                 throw new ArgumentException($"Invalid DNS address: {dns}");
             }

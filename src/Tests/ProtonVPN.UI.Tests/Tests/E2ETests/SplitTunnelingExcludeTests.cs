@@ -58,6 +58,7 @@ public class SplitTunnelingExcludeModeTests : BaseTest
     }
 
     [Test, Order(1)]
+    [Ignore("IPv6 is not yet officially supported for Split Tunneling")]
     public void SplitTunnelingIpInputAllowsIpV6()
     {
         SplitTunnelingRobot

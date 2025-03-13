@@ -27,6 +27,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       xmlns:advanced="using:ProtonVPN.Client.UI.Main.Settings.Pages.Advanced"
+      xmlns:ap="using:ProtonVPN.Client.Common.UI.AttachedProperties"
       NavigationCacheMode="Required"
       x:DefaultBindMode="OneWay"
       mc:Ignorable="d">
@@ -78,6 +79,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                  Grid.Column="0"
                                  PlaceholderText="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers_Watermark')}"
                                  Text="{x:Bind ViewModel.CurrentIpAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 ap:FieldValidation.HasErrors="{x:Bind ViewModel.IsCurrentAddressValid, Converter={StaticResource NotBooleanToBooleanConverter}}"     
                                  KeyDown="{x:Bind ViewModel.OnIpAddressKeyDownHandler, Mode=OneTime}"
                                  AutomationProperties.AutomationId="CustomDnsIpAddressBox"
                                  Style="{StaticResource ValidationTextBoxStyle}"

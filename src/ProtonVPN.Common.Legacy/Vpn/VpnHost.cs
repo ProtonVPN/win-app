@@ -79,7 +79,7 @@ public struct VpnHost
 
     private static void AssertIpAddressIsValid(string ip)
     {
-        if (!string.IsNullOrEmpty(ip) && !ip.IsValidIpAddress())
+        if (!string.IsNullOrEmpty(ip) && !ip.IsValidIpAddressFormat())
         {
             throw new ArgumentException($"Invalid argument {nameof(ip)} value: {ip}");
         }

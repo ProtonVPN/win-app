@@ -31,7 +31,7 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
-using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.Common.Core.Networking;
 using Windows.System;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.Advanced;
@@ -40,6 +40,7 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
 {
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(AddDnsServerCommand))]
+    [NotifyPropertyChangedFor(nameof(IsCurrentAddressValid))]
     private string _currentIpAddress;
 
     [ObservableProperty]
@@ -55,6 +56,9 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
     public bool HasCustomDnsServers => CustomDnsServers.Count > 0;
 
     public bool HasActiveCustomDnsServers => ActiveCustomDnsServersCount > 0;
+
+    public bool IsCurrentAddressValid => string.IsNullOrWhiteSpace(CurrentIpAddress)
+                                      || CanAddDnsServer();
 
     public CustomDnsServersViewModel(
         IRequiredReconnectionSettings requiredReconnectionSettings,
@@ -89,14 +93,19 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
     [RelayCommand(CanExecute = nameof(CanAddDnsServer))]
     public void AddDnsServer()
     {
-        DnsServerViewModel? dnsServer = CustomDnsServers.FirstOrDefault(s => s.IpAddress == CurrentIpAddress);
+        if (!NetworkAddress.TryParse(CurrentIpAddress, out NetworkAddress address))
+        {
+            return;
+        }
+
+        DnsServerViewModel? dnsServer = CustomDnsServers.FirstOrDefault(s => s.IpAddress == address.FormattedAddress);
         if (dnsServer != null)
         {
             dnsServer.IsActive = true;
         }
         else
         {
-            CustomDnsServers.Add(new(this, ViewModelHelper, CurrentIpAddress));
+            CustomDnsServers.Add(new(this, ViewModelHelper, address.FormattedAddress));
         }
 
         CurrentIpAddress = string.Empty;
@@ -104,8 +113,9 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
 
     public bool CanAddDnsServer()
     {
-        return !string.IsNullOrEmpty(CurrentIpAddress)
-            && CurrentIpAddress.IsValidIpAddress();
+        return NetworkAddress.TryParse(CurrentIpAddress, out NetworkAddress address)
+            && address.IsIpV4 
+            && address.IsSingleIp;
     }
 
     [RelayCommand]
