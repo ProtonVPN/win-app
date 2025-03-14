@@ -60,6 +60,7 @@ public readonly struct NetworkAddress
             {
                 throw new ArgumentException("Address cannot be null or empty.", nameof(rawAddress));
             }
+            
             // Split IP and CIDR subnet
             string[] parts = rawAddress.Trim().Split('/');
             if (!IPAddress.TryParse(parts[0], out IPAddress? ip))
@@ -67,11 +68,20 @@ public readonly struct NetworkAddress
                 throw new FormatException("Invalid IP address format.");
             }
 
+            // Confirm the given IPv4 address is well formatted (#.#.#.#)
+            if (ip.AddressFamily == AddressFamily.InterNetwork && 
+                parts[0] != ip.ToString())
+            {
+                throw new FormatException("Invalid IPv4 address format.");
+            }
+
+            // Confirm there are 2 parts at most (<ip> or <ip>/<subnet>)
             if (parts.Length > 2)
             {
                 throw new FormatException("Invalid CIDR notation format.");
             }
 
+            // Confirm subnet value (if any) is in range 
             int? subnet = null;
             if (parts.Length == 2)
             {
