@@ -44,7 +44,7 @@ public class ApiSli
     public async Task PushLogicalMetricsPlusUser()
     {
         SecureString password = new NetworkCredential("", TestUserData.PlusUser.Password).SecurePassword;
-        await PushServerMaintenanceStatsAsync(TestUserData.PlusUser.Username, password, 2);
+        await PushLogicalStats(TestUserData.PlusUser.Username, password, 2);
     }
 
     [Test]
@@ -52,7 +52,7 @@ public class ApiSli
     public async Task PushLogicalsStatsFreeUser()
     {
         SecureString password = new NetworkCredential("", TestUserData.FreeUser.Password).SecurePassword;
-        await PushServerMaintenanceStatsAsync(TestUserData.FreeUser.Username, password, 0);
+        await PushLogicalStats(TestUserData.FreeUser.Username, password, 0);
     }
 
     [TearDown]
@@ -62,7 +62,7 @@ public class ApiSli
         SliHelper.Reset();
     }
 
-    private async Task PushServerMaintenanceStatsAsync(string username, SecureString password, int serverTier)
+    private async Task PushLogicalStats(string username, SecureString password, int serverTier)
     {
         int totalIndividualServers = 0;
         int onlineIndividualServers = 0;

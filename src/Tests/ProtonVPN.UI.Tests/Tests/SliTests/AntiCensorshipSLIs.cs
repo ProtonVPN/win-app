@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Annotations;
 using ProtonVPN.UI.Tests.ApiClient.TestEnv;
@@ -39,6 +40,8 @@ public class AntiCensorshipSLIs : SliSetUp
         // Scenario has to be set before app is launched
         BtiController.SetScenario(Scenarios.RESET);
         BtiController.SetScenario(Scenarios.BLOCK_PROD_ENDPOINT);
+        // Allow some time for network to settle down
+        Thread.Sleep(TestConstants.FiveSecondsTimeout);
 
         LaunchApp();
 
@@ -47,5 +50,31 @@ public class AntiCensorshipSLIs : SliSetUp
         {
             HomeRobot.Verify.IsWelcomeModalDisplayed();
         });
+    }
+
+    [Test]
+    [Duration, TestStatus]
+    [Sli("guest_holes_login")]
+    public void GuestHolesSliMeasurements()
+    {
+        // Scenario has to be set before app is launched
+        BtiController.SetScenario(Scenarios.RESET);
+        BtiController.SetScenario(Scenarios.BLOCK_DOH_ENDPOINT);
+        // Allow some time for network to settle down
+        Thread.Sleep(TestConstants.FiveSecondsTimeout);
+
+        LaunchApp();
+
+        LoginRobot.Login(TestUserData.PlusUser);
+        SliHelper.MeasureTime(() =>
+        {
+            HomeRobot.Verify.IsWelcomeModalDisplayed();
+        });
+    }
+
+    [TearDown]
+    public void TearDown()
+    {
+        BtiController.SetScenario(Scenarios.RESET);
     }
 }
