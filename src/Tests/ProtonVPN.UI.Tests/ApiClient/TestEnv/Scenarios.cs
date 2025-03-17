@@ -32,6 +32,7 @@ internal class Scenarios
     public const string HARDJAIL_86999 = "once/sessions_hardjail_all_86999";
     public const string PUT_NL_1_IN_MAINTENANCE = "enable/server_down_nl_01";
     public const string BLOCK_PROD_ENDPOINT = "enable/block_vpn_prod_api_endpoint";
+    public const string BLOCK_DOH_ENDPOINT = "enable/block_vpn_prod_api_doh_endpoints";
 
     public const string MAINTENANCE_ONE_MINUTE = "GET /vpn/v2/clientconfig:\n " +
         "- body: {\"Code\":1000,\"DefaultPorts\":{\"OpenVPN\":{\"UDP\":[80,51820,4569,1194,5060],\"TCP\":[443,7770,8443]}," +
