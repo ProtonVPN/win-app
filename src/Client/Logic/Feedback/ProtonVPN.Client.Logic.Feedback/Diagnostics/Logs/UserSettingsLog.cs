@@ -86,6 +86,8 @@ public class UserSettingsLog : LogBase
         yield return new(nameof(ISettings.IsWindowMaximized), _settings.IsWindowMaximized);
         yield return new(nameof(ISettings.IsNotificationEnabled), _settings.IsNotificationEnabled);
         yield return new(nameof(ISettings.IsBetaAccessEnabled), _settings.IsBetaAccessEnabled);
+        yield return new(nameof(ISettings.AreAutomaticUpdatesEnabled), _settings.AreAutomaticUpdatesEnabled);
+        yield return new(nameof(ISettings.IsGlobalSettingsMigrationDone), _settings.IsGlobalSettingsMigrationDone);
         yield return new(nameof(ISettings.IsShareStatisticsEnabled), _settings.IsShareStatisticsEnabled);
         yield return new(nameof(ISettings.IsShareCrashReportsEnabled), _settings.IsShareCrashReportsEnabled);
         yield return new(nameof(ISettings.IsAlternativeRoutingEnabled), _settings.IsAlternativeRoutingEnabled);
@@ -97,6 +99,10 @@ public class UserSettingsLog : LogBase
         yield return new(nameof(ISettings.OpenVpnAdapter), _settings.OpenVpnAdapter);
         yield return new(nameof(ISettings.IsIpv6LeakProtectionEnabled), _settings.IsIpv6LeakProtectionEnabled);
         yield return new(nameof(ISettings.IsAutoConnectEnabled), _settings.IsAutoConnectEnabled);
+        yield return new(nameof(ISettings.IsAutoLaunchEnabled), _settings.IsAutoLaunchEnabled);
+        yield return new(nameof(ISettings.AutoLaunchMode), _settings.AutoLaunchMode);
+        yield return new(nameof(ISettings.IsKillSwitchEnabled), _settings.IsKillSwitchEnabled);
+        yield return new(nameof(ISettings.KillSwitchMode), _settings.KillSwitchMode);
         yield return new(nameof(ISettings.IsNetShieldEnabled), _settings.IsNetShieldEnabled);
         yield return new(nameof(ISettings.NetShieldMode), _settings.NetShieldMode);
         yield return new(nameof(ISettings.IsPortForwardingEnabled), _settings.IsPortForwardingEnabled);
@@ -114,6 +120,7 @@ public class UserSettingsLog : LogBase
         yield return new(nameof(ISettings.IsSecureCoreInfoBannerDismissed), _settings.IsSecureCoreInfoBannerDismissed);
         yield return new(nameof(ISettings.IsTorInfoBannerDismissed), _settings.IsTorInfoBannerDismissed);
         yield return new(nameof(ISettings.IsGatewayInfoBannerDismissed), _settings.IsGatewayInfoBannerDismissed);
+        yield return new(nameof(ISettings.LastSeenWhatsNewOverlayVersion), _settings.LastSeenWhatsNewOverlayVersion);
     }
 
     private string Serialize(dynamic? value)
